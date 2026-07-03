@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes window or balcony camera images and video to detect child climbing, leaning, railing-crossing, or window-edge gripping behavior and return structured alerts and report links. <br>
+This skill analyzes fixed-camera images or videos of windows and balconies to detect child climbing, leaning, railing-crossing, gripping, and other high-fall-risk behaviors, then returns structured alerts and report links when available. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Families, childcare operators, and safety-system developers can use this skill to submit fixed-camera footage of window or balcony areas for child fall-risk detection and to retrieve current or historical warning reports. The skill is an auxiliary monitoring aid and does not replace adult supervision. <br>
+External users, developers, and caretaking teams use this skill to analyze fixed-camera images or videos of window and balcony areas for child climbing, leaning, railing-crossing, and other high-fall-risk behaviors. It returns structured detection results, alert levels, report links when available, and cloud history lookup output. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive child and home monitoring footage, snapshots, and report history may be sent to lifeemergence.com cloud services. <br>
-Mitigation: Use only with guardian consent, upload the minimum footage needed, and verify retention, access-control, and deletion practices before deployment. <br>
-Risk: The skill silently creates or reuses identity data and stores service tokens locally for analysis and report history. <br>
-Mitigation: Review identity and token storage before installation, restrict workspace access, and rotate or clear credentials when users or deployments change. <br>
-Risk: Report export links and snapshot URLs can reveal sensitive child or home information if shared too broadly. <br>
-Mitigation: Limit access to report links, avoid posting them in shared channels, and confirm whether generated links expire or can be revoked. <br>
+Risk: Cloud processing of child-monitoring images or videos may expose sensitive minor-related media outside the local workspace. <br>
+Mitigation: Use only media for which guardians have consented, prefer a dedicated workspace/account, and avoid private household camera feeds unless cloud processing is acceptable. <br>
+Risk: The skill silently associates requests with an account identity and stores authentication material locally for reuse. <br>
+Mitigation: Run it in a dedicated workspace, limit workspace access, and remove local data/token files when you stop using the skill. <br>
+Risk: History lookup returns cloud report history linked to the resolved identity. <br>
+Mitigation: Treat report links, snapshots, and exported reports as sensitive child-safety records and share them only with authorized guardians or operators. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-child-window-climbing-detection-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
-- [API interface reference](artifact/references/api_doc.md) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 - [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-formatted structured reports with optional shell command examples.] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown and JSON text with optional report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include warning levels, confidence values, event timestamps, snapshot URLs, report export links, and historical report lists.] <br>
+**Other Properties Related to Output:** [Outputs analysis results, alert status, history listings, and optional local result files when an output path is provided.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact/SKILL.md reports 1.0.3) <br>
+1.0.3 (source: frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

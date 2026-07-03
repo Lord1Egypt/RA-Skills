@@ -12,5 +12,4 @@ ConstantEnum:
   feishu-app--id: cli_a93d769369badcb1
   feishu-app--secret: null
   is-debug: false
-api-key: ak_d5SUcPkfRHabvy72KZKNLhETdN1qdO1XCzhHcxroaWM
 env: prod

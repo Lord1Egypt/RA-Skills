@@ -48,31 +48,31 @@
 
 ```bash
 # Simplest usage (default PicInPic mode, automatically waits for completion)
-python scripts/mps_dedupe.py --url https://example.com/video.mp4
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4
 
 # Vertical Fill deduplication
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode VerticalExtend
 
 # Horizontal Fill deduplication
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode HorizontalExtend
 
 # Video Expansion deduplication (COS input)
-python scripts/mps_dedupe.py --cos-input-key /input/video.mp4 \
+python3 scripts/mps_dedupe.py --cos-input-key /input/video.mp4 \
     --mode BackgroundExtend
 
 # Local file (automatically uploaded to COS)
-python scripts/mps_dedupe.py --local-file ./video.mp4
+python3 scripts/mps_dedupe.py --local-file ./video.mp4
 
 # Async submission (no waiting; use mps_get_video_task.py to query with the returned TaskId)
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
 
 # Automatically download results to local after completion
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --download-dir /data/workspace/output/
 
 # dry-run preview
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode BackgroundExtend --dry-run
 ```

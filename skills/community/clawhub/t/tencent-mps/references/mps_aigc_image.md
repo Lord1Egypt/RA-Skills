@@ -43,22 +43,22 @@
 
 ```bash
 # COS 图生图（脚本自动将 COS Key 转为预签名 URL 后传入 API）
-python scripts/mps_aigc_image.py --prompt "城市夜景" \
+python3 scripts/mps_aigc_image.py --prompt "城市夜景" \
     --image-cos-bucket mps-test-1234567 \
     --image-cos-region ap-guangzhou \
     --image-cos-key input/ref.jpg
 
 # 本地文件图生图（自动上传 COS 后传入 API）
-python scripts/mps_aigc_image.py --prompt "城市夜景" \
+python3 scripts/mps_aigc_image.py --prompt "城市夜景" \
     --image-local /tmp/ref.jpg
 
 # 本地文件 + 指定 ref-type
-python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
+python3 scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
     --prompt "参考风格生成" \
     --image-local /tmp/style.jpg --image-ref-type style
 
 # 多张本地文件（GEM 最多 3 张）
-python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
+python3 scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
     --prompt "融合风格" \
     --image-local /tmp/a.jpg --image-ref-type asset \
     --image-local /tmp/b.jpg --image-ref-type style
@@ -68,39 +68,39 @@ python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
 
 ```bash
 # 文生图（Hunyuan 默认）
-python scripts/mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
+python3 scripts/mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
 
 # GEM 3.1 + 反向提示词 + 16:9 + 2K
-python scripts/mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.1 \
+python3 scripts/mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.1 \
     --negative-prompt "人物" --aspect-ratio 16:9 --resolution 2K
 
 # Vidu q2 文生图
-python scripts/mps_aigc_image.py --prompt "星空下的湖泊倒影" --model Vidu --model-version q2
+python3 scripts/mps_aigc_image.py --prompt "星空下的湖泊倒影" --model Vidu --model-version q2
 
 # Kling 3.0 文生图
-python scripts/mps_aigc_image.py --prompt "赛博朋克城市夜景霓虹灯" --model Kling --model-version 3.0
+python3 scripts/mps_aigc_image.py --prompt "赛博朋克城市夜景霓虹灯" --model Kling --model-version 3.0
 
 # OG image2_high 文生图（高质量）
-python scripts/mps_aigc_image.py --prompt "写实风格山水画" --model OG --model-version image2_high
+python3 scripts/mps_aigc_image.py --prompt "写实风格山水画" --model OG --model-version image2_high
 
 # OG image2_low 文生图（快速出图）
-python scripts/mps_aigc_image.py --prompt "卡通风格小猫" --model OG --model-version image2_low
+python3 scripts/mps_aigc_image.py --prompt "卡通风格小猫" --model OG --model-version image2_low
 
 # Hunyuan 3D 全景图
-python scripts/mps_aigc_image.py --prompt "热带雨林全景" --model Hunyuan --scene-type 3d_panorama
+python3 scripts/mps_aigc_image.py --prompt "热带雨林全景" --model Hunyuan --scene-type 3d_panorama
 
 # 图生图（参考图片 + 描述）
-python scripts/mps_aigc_image.py --prompt "将这张照片变成油画风格" \
+python3 scripts/mps_aigc_image.py --prompt "将这张照片变成油画风格" \
     --image-url https://example.com/photo.jpg
 
 # GEM 多图参考（支持 asset/style 参考类型）
-python scripts/mps_aigc_image.py --prompt "融合这些元素" --model GEM \
+python3 scripts/mps_aigc_image.py --prompt "融合这些元素" --model GEM \
     --image-url https://example.com/img1.jpg --image-ref-type asset \
     --image-url https://example.com/img2.jpg --image-ref-type style
 
 # 仅提交任务不等待
-python scripts/mps_aigc_image.py --prompt "产品海报" --no-wait
+python3 scripts/mps_aigc_image.py --prompt "产品海报" --no-wait
 
 # 查询任务结果
-python scripts/mps_aigc_image.py --task-id abc123def456-aigc-image-20260328112000
+python3 scripts/mps_aigc_image.py --task-id abc123def456-aigc-image-20260328112000
 ```

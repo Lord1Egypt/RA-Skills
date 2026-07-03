@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Shared subscription state for the unified digest router. Stored in the current workspace by default, or overridden by UNIFIED_DIGEST_HOME.",
+  "type": "object",
+  "properties": {
+    "bootPrompt": {
+      "type": "object",
+      "properties": {
+        "dismissed": {
+          "type": "boolean",
+          "default": false
+        },
+        "snoozeUntil": {
+          "type": ["string", "null"],
+          "description": "ISO timestamp after which the startup prompt may be shown again."
+        },
+        "lastAskedAt": {
+          "type": ["string", "null"],
+          "description": "ISO timestamp when the startup prompt was last shown."
+        }
+      },
+      "required": ["dismissed", "snoozeUntil", "lastAskedAt"]
+    },
+    "topics": {
+      "type": "object",
+      "properties": {
+        "ai": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["unknown", "subscribed", "declined"],
+              "default": "unknown"
+            },
+            "configPath": {
+              "type": "string",
+              "default": ".follow-builders/config.json"
+            }
+          },
+          "required": ["status", "configPath"]
+        },
+        "med": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["unknown", "subscribed", "declined"],
+              "default": "unknown"
+            },
+            "configPath": {
+              "type": "string",
+              "default": ".med-builders/config.json"
+            }
+          },
+          "required": ["status", "configPath"]
+        }
+      },
+      "required": ["ai", "med"]
+    },
+    "deliveryDefaults": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly"],
+          "default": "daily"
+        },
+        "time": {
+          "type": "string",
+          "default": "08:00"
+        },
+        "timezone": {
+          "type": "string",
+          "default": "Asia/Shanghai"
+        },
+        "language": {
+          "type": "string",
+          "enum": ["en", "zh", "bilingual"],
+          "default": "zh"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["stdout", "telegram", "email"],
+          "default": "stdout"
+        }
+      },
+      "required": ["frequency", "time", "timezone", "language", "method"]
+    }
+  },
+  "required": ["bootPrompt", "topics", "deliveryDefaults"]
+}

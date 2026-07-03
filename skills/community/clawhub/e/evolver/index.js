@@ -1,4 +1,150 @@
 #!/usr/bin/env node
+function _parseBootstrapSemver(version) {
+  const match = /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z.-]+))?(?:\+[0-9A-Za-z.-]+)?$/.exec(String(version || ''));
+  if (!match) return null;
+  return {
+    major: match[1],
+    minor: match[2],
+    patch: match[3],
+    prerelease: match[4] ? match[4].split('.') : [],
+  };
+}
+
+function _compareBootstrapNumeric(left, right) {
+  if (left.length !== right.length) return left.length - right.length;
+  if (left < right) return -1;
+  if (left > right) return 1;
+  return 0;
+}
+
+function _compareBootstrapPrerelease(left, right) {
+  const leftNumeric = /^\d+$/.test(left);
+  const rightNumeric = /^\d+$/.test(right);
+  if (leftNumeric && rightNumeric) return _compareBootstrapNumeric(left, right);
+  if (leftNumeric) return -1;
+  if (rightNumeric) return 1;
+  if (left < right) return -1;
+  if (left > right) return 1;
+  return 0;
+}
+
+function _compareBootstrapSemver(left, right) {
+  const a = _parseBootstrapSemver(left);
+  const b = _parseBootstrapSemver(right);
+  if (!a || !b) return null;
+  for (const key of ['major', 'minor', 'patch']) {
+    const cmp = _compareBootstrapNumeric(a[key], b[key]);
+    if (cmp !== 0) return cmp;
+  }
+  if (!a.prerelease.length && !b.prerelease.length) return 0;
+  if (!a.prerelease.length) return 1;
+  if (!b.prerelease.length) return -1;
+  const max = Math.max(a.prerelease.length, b.prerelease.length);
+  for (let i = 0; i < max; i++) {
+    if (a.prerelease[i] === undefined) return -1;
+    if (b.prerelease[i] === undefined) return 1;
+    const cmp = _compareBootstrapPrerelease(a.prerelease[i], b.prerelease[i]);
+    if (cmp !== 0) return cmp;
+  }
+  return 0;
+}
+
+function _bootstrapVersionSatisfies(currentVersion, requiredVersion) {
+  if (String(currentVersion || '') === String(requiredVersion || '')) return true;
+  const cmp = _compareBootstrapSemver(currentVersion, requiredVersion);
+  return cmp !== null && cmp >= 0;
+}
+
+function _failClosedForceUpdateBootstrap(backupName, entryName, error) {
+  const detail = error && error.message ? error.message : String(error || 'unknown error');
+  console.error('[ForceUpdate] Bootstrap recovery failed for ' + backupName +
+    (entryName ? ' while restoring ' + entryName : '') + ': ' + detail);
+  console.error('[ForceUpdate] Refusing to continue startup; recovery backup and journal were left in place.');
+  process.exit(1);
+}
+
+function _recoverInterruptedForceUpdateBootstrap() {
+  const fs = require('fs');
+  const path = require('path');
+  const installRoot = __dirname;
+  const backupPrefix = '.evolver-force-update-backup-';
+  const journalName = '.evolver-force-update-journal.json';
+  let backups = [];
+  try {
+    backups = fs.readdirSync(installRoot)
+      .filter((name) => name.startsWith(backupPrefix))
+      .sort()
+      .reverse();
+  } catch (_) {
+    return false;
+  }
+  for (const backupName of backups) {
+    const backupRoot = path.join(installRoot, backupName);
+    const journalPath = path.join(backupRoot, journalName);
+    let journal = null;
+    try {
+      journal = JSON.parse(fs.readFileSync(journalPath, 'utf8'));
+    } catch (_) {
+      // Not a force-update recovery journal; leave unrelated directories alone.
+      continue;
+    }
+    if (!journal || journal.state !== 'precommit' || !journal.requiredVersion) continue;
+    let currentVersion = '';
+    try {
+      const pkg = JSON.parse(fs.readFileSync(path.join(installRoot, 'package.json'), 'utf8'));
+      currentVersion = pkg && pkg.version ? String(pkg.version) : '';
+    } catch (_) {
+      // If the package marker is unreadable, prefer restoring the old payload.
+    }
+    if (_bootstrapVersionSatisfies(currentVersion, String(journal.requiredVersion))) {
+      try { fs.rmSync(backupRoot, { recursive: true, force: true }); } catch (_) {
+        // Cleanup failure is non-fatal; normal startup can continue.
+      }
+      continue;
+    }
+    let entries = [];
+    try {
+      entries = fs.readdirSync(backupRoot, { withFileTypes: true });
+    } catch (readErr) {
+      _failClosedForceUpdateBootstrap(backupName, '', readErr);
+    }
+    for (const entry of entries) {
+      if (entry.name === journalName) continue;
+      const livePath = path.join(installRoot, entry.name);
+      const backupPath = path.join(backupRoot, entry.name);
+      try {
+        if (entry.name === 'index.js') {
+          const tmpPath = livePath + '.' + process.pid + '.recover-tmp';
+          try { fs.rmSync(tmpPath, { force: true }); } catch (_) {}
+          fs.copyFileSync(backupPath, tmpPath);
+          try {
+            const backupStat = fs.statSync(backupPath);
+            fs.chmodSync(tmpPath, backupStat.mode & 0o777);
+          } catch (_) {
+            // Recovery can proceed without mode restoration; npm/service launches
+            // normally use `node index.js` after an interrupted update.
+          }
+          fs.renameSync(tmpPath, livePath);
+          fs.rmSync(backupPath, { force: true });
+        } else {
+          fs.rmSync(livePath, { recursive: true, force: true });
+          fs.renameSync(backupPath, livePath);
+        }
+      } catch (restoreErr) {
+        _failClosedForceUpdateBootstrap(backupName, entry.name, restoreErr);
+      }
+    }
+    try { fs.rmSync(backupRoot, { recursive: true, force: true }); } catch (_) {
+      // Best-effort cleanup; recovery already restored the payload.
+    }
+    console.warn('[ForceUpdate] Recovered interrupted install from ' + backupName);
+    return true;
+  }
+  return false;
+}
+
+_recoverInterruptedForceUpdateBootstrap();
+
 function _printProxyTokenUsage(out = process.stderr) {
   out.write('Usage: node index.js proxy-token [--settings FILE]\n');
 }
@@ -315,6 +461,68 @@ function writeCycleProgressAtomic(progressPath, fields) {
     return true;
   } catch (e) {
     return false;
+  }
+}
+
+function handleCycleTimeout({ error, cycleProgressPath, progressFields, suicideEnabled, args, logPath, spawnReplacementFn }) {
+  const msg = error && error.message ? String(error.message) : String(error);
+  console.error('[Daemon] ' + msg);
+
+  if (!suicideEnabled) {
+    console.warn('[Daemon] Cycle hard-timeout treated as non-fatal because EVOLVER_SUICIDE=false.');
+    writeCycleProgressAtomic(cycleProgressPath, Object.assign({}, progressFields, {
+      phase: 'cycle_timeout_nonfatal',
+    }));
+    return { action: 'continue' };
+  }
+
+  writeCycleProgressAtomic(cycleProgressPath, Object.assign({}, progressFields, {
+    phase: 'cycle_timeout_respawn',
+  }));
+  spawnReplacementFn({
+    reason: 'cycle_hard_timeout',
+    args: args,
+    logPath: logPath,
+  });
+  return { action: 'respawn' };
+}
+
+function logTimedOutEvolveRejection(error, logFn) {
+  const lateMsg = error && error.message ? String(error.message) : String(error);
+  try {
+    logFn('[Daemon] Timed-out evolve.run() eventually rejected: ' + lateMsg);
+  } catch (logError) {
+    const fallbackMsg = logError && logError.message ? String(logError.message) : String(logError);
+    console.error('[Daemon] Failed to log timed-out evolve.run() rejection: ' + fallbackMsg);
+  }
+}
+
+function observeTimedOutEvolvePromise(evolvePromise, logFn = console.error) {
+  if (!evolvePromise || typeof evolvePromise.then !== 'function') {
+    return { status: 'ignored' };
+  }
+
+  Promise.resolve(evolvePromise).then(
+    function () {},
+    function (error) {
+      logTimedOutEvolveRejection(error, logFn);
+    }
+  );
+
+  return { status: 'observing' };
+}
+
+async function waitForTimedOutEvolvePromise(evolvePromise, logFn = console.error) {
+  if (!evolvePromise || typeof evolvePromise.then !== 'function') {
+    return { status: 'ignored' };
+  }
+
+  try {
+    await evolvePromise;
+    return { status: 'resolved' };
+  } catch (error) {
+    logTimedOutEvolveRejection(error, logFn);
+    return { status: 'rejected' };
   }
 }
 
@@ -1211,6 +1419,7 @@ async function main() {
             const { startProxy } = require('./src/proxy');
             const proxyInfo = await startProxy({
               hubUrl: process.env.A2A_HUB_URL,
+              clientSettings: {},
             });
             console.log('[Proxy] Started on ' + proxyInfo.url);
             try {
@@ -1446,13 +1655,12 @@ async function main() {
             if (typeof progressTicker.unref === 'function') progressTicker.unref();
           }
           let cycleTimeoutHandle = null;
-          let cycleTimedOut = false;
+          let evolvePromise = null;
           try {
-            const evolvePromise = evolve.run();
+            evolvePromise = evolve.run();
             if (cycleTimeoutEnabled && cycleTimeoutMs > 0) {
               const timeoutPromise = new Promise(function (_, reject) {
                 cycleTimeoutHandle = setTimeout(function () {
-                  cycleTimedOut = true;
                   reject(new CycleTimeoutError(cycleTimeoutMs, 'evolve.run', cycleCount));
                 }, cycleTimeoutMs);
                 if (cycleTimeoutHandle && typeof cycleTimeoutHandle.unref === 'function') cycleTimeoutHandle.unref();
@@ -1475,25 +1683,32 @@ async function main() {
           } catch (error) {
             const msg = error && error.message ? String(error.message) : String(error);
             if (error && error.code === 'CYCLE_TIMEOUT') {
-              console.error('[Daemon] ' + msg);
               if (progressTicker) { clearInterval(progressTicker); progressTicker = null; }
               if (cycleTimeoutHandle) { clearTimeout(cycleTimeoutHandle); cycleTimeoutHandle = null; }
-              writeCycleProgressAtomic(cycleProgressPath, {
-                pid: process.pid,
-                outer_cycle: cycleCount,
-                inner_cycle: cycleCount,
-                started_at: t0,
-                phase: 'cycle_timeout_respawn',
-              });
-              spawnReplacementProcess({
-                reason: 'cycle_hard_timeout',
-                args: args,
+              const timeoutAction = handleCycleTimeout({
+                error,
+                cycleProgressPath,
+                progressFields: {
+                  pid: process.pid,
+                  outer_cycle: cycleCount,
+                  inner_cycle: cycleCount,
+                  started_at: t0,
+                },
+                suicideEnabled,
+                args,
                 logPath: getEvolverLogPath(),
+                spawnReplacementFn: spawnReplacementProcess,
               });
-              releaseLock();
-              process.exit(1);
+              if (timeoutAction.action === 'respawn') {
+                releaseLock();
+                process.exit(1);
+              }
+              if (timeoutAction.action === 'continue') {
+                await waitForTimedOutEvolvePromise(evolvePromise);
+              }
+            } else {
+              console.error(`Evolution cycle failed: ${msg}`);
             }
-            console.error(`Evolution cycle failed: ${msg}`);
           } finally {
             if (progressTicker) { clearInterval(progressTicker); progressTicker = null; }
             if (cycleTimeoutHandle) { clearTimeout(cycleTimeoutHandle); cycleTimeoutHandle = null; }
@@ -2602,6 +2817,165 @@ async function main() {
       console.log('');
     }
 
+  } else if (command === 'trajectory-export') {
+    const allowPartial = args.includes('--allow-partial');
+    const runtimeSessions = args.includes('--runtime-sessions');
+    // Strict-by-default marking gate (v1): runtime-session discovery only
+    // collects sessions evolver actively marked (session-start hook), minus
+    // those the gateway already captured. These flags open each gate back up.
+    const includeUnmarked = args.includes('--include-unmarked');
+    const includeGatewayCaptured = args.includes('--include-gateway-captured');
+    try {
+      const optionValue = (name) => {
+        let value;
+        for (let i = 0; i < args.length; i += 1) {
+          const arg = args[i];
+          if (arg === name) {
+            if (i + 1 >= args.length || String(args[i + 1]).startsWith('--')) {
+              throw new Error('missing value for ' + name);
+            }
+            value = String(args[i + 1]);
+          } else if (typeof arg === 'string' && arg.startsWith(name + '=')) {
+            value = arg.slice(name.length + 1);
+          }
+        }
+        return value;
+      };
+      const optionValues = (name) => {
+        const values = [];
+        for (let i = 0; i < args.length; i += 1) {
+          const arg = args[i];
+          if (arg === name) {
+            if (i + 1 >= args.length || String(args[i + 1]).startsWith('--')) {
+              throw new Error('missing value for ' + name);
+            }
+            values.push(String(args[i + 1]));
+          } else if (typeof arg === 'string' && arg.startsWith(name + '=')) {
+            values.push(arg.slice(name.length + 1));
+          }
+        }
+        return values;
+      };
+      const input = optionValue('--input');
+      const output = optionValue('--output');
+      const runtimeSessionDirs = optionValues('--runtime-session-dir');
+      const nodeSecretInline = optionValue('--node-secret');
+      const nodeSecretFile = optionValue('--node-secret-file');
+      const nodeSecretEnv = optionValue('--node-secret-env');
+      const hubPrivateKeyFile = optionValue('--hub-private-key');
+      const nodeSecretKeyringFile = optionValue('--node-secret-keyring');
+      const markedSessionsFile = optionValue('--marked-sessions-file');
+      let nodeSecret;
+      let hubPrivateKey;
+      let nodeSecretKeyring;
+      const nodeSecretSourceCount = [nodeSecretInline, nodeSecretFile, nodeSecretEnv]
+        .filter((value) => value !== undefined).length;
+      if (nodeSecretSourceCount > 1) {
+        throw new Error('use only one node secret source');
+      }
+      if (nodeSecretInline !== undefined) {
+        if (!nodeSecretInline) throw new Error('missing value for --node-secret');
+        if (fs.existsSync(nodeSecretInline)) {
+          try {
+            nodeSecret = fs.readFileSync(nodeSecretInline, 'utf8').trim();
+          } catch (readErr) {
+            const err = new Error('node secret file is not readable: ' + nodeSecretInline);
+            err.cause = readErr;
+            throw err;
+          }
+          if (!nodeSecret) throw new Error('node secret file is empty');
+        } else {
+          nodeSecret = String(nodeSecretInline).trim();
+          if (!nodeSecret) throw new Error('node secret is empty');
+        }
+      }
+      if (nodeSecretFile !== undefined) {
+        if (!nodeSecretFile) throw new Error('missing path for --node-secret-file');
+        try {
+          nodeSecret = fs.readFileSync(nodeSecretFile, 'utf8').trim();
+        } catch (readErr) {
+          const err = new Error('node secret file is not readable: ' + nodeSecretFile);
+          err.cause = readErr;
+          throw err;
+        }
+        if (!nodeSecret) throw new Error('node secret file is empty');
+      }
+      if (nodeSecretEnv !== undefined) {
+        if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(nodeSecretEnv)) {
+          throw new Error('invalid environment variable name for --node-secret-env');
+        }
+        nodeSecret = String(process.env[nodeSecretEnv] || '').trim();
+        if (!nodeSecret) throw new Error('node secret environment variable is empty or unset');
+      }
+      if (hubPrivateKeyFile !== undefined) {
+        if (!hubPrivateKeyFile) throw new Error('missing path for --hub-private-key');
+        try {
+          hubPrivateKey = fs.readFileSync(hubPrivateKeyFile, 'utf8');
+        } catch (readErr) {
+          const err = new Error('hub private key file is not readable: ' + hubPrivateKeyFile);
+          err.cause = readErr;
+          throw err;
+        }
+        if (!String(hubPrivateKey || '').trim()) throw new Error('hub private key file is empty');
+      }
+      if (nodeSecretKeyringFile !== undefined) {
+        if (!nodeSecretKeyringFile) throw new Error('missing path for --node-secret-keyring');
+        try {
+          nodeSecretKeyring = JSON.parse(fs.readFileSync(nodeSecretKeyringFile, 'utf8'));
+        } catch (readErr) {
+          const err = new Error('node secret keyring file is not readable or invalid JSON: ' + nodeSecretKeyringFile);
+          err.cause = readErr;
+          throw err;
+        }
+      }
+      const { writeTrajectories } = require('./src/gep/trajectoryExport');
+      const result = writeTrajectories({
+        input,
+        output,
+        nodeSecret,
+        nodeSecretKeyring,
+        hubPrivateKey,
+        allowPartial,
+        runtimeSessions: runtimeSessions ? true : undefined,
+        runtimeSessionDirs,
+        markedSessionsFile,
+        includeUnmarked: includeUnmarked ? true : undefined,
+        includeGatewayCaptured: includeGatewayCaptured ? true : undefined,
+      });
+      console.log('[trajectory-export] Wrote ' + result.trajectories.length + ' trajector' + (result.trajectories.length === 1 ? 'y' : 'ies') + ' to ' + result.outputPath);
+      console.log('[trajectory-export] Read ' + result.rowsRead + ' trace row(s) and ' + (result.sessionTurnsRead || 0) + ' session turn(s) from ' + (result.filesRead || 0) + ' file(s).');
+      if (result.sessionFilesRead > 0) {
+        console.log('[trajectory-export] Converted ' + result.sessionFilesRead + ' runtime session file(s).');
+      }
+      if (result.runtimeSessionDiscovery && result.runtimeSessionDiscovery.enabled) {
+        console.log('[trajectory-export] Runtime session discovery is local-only; no Hub upload is performed.');
+        console.log('[trajectory-export] Runtime discovery scanned '
+          + result.runtimeSessionDiscovery.dirsScanned + ' Codex/Claude dir(s), matched '
+          + result.runtimeSessionDiscovery.filesMatched + ' workspace session file(s).');
+        const mg = result.runtimeSessionDiscovery.markGate;
+        if (mg) {
+          console.log('[trajectory-export] Marking gate: enforce_marked=' + mg.enforceMarked
+            + ', exclude_gateway_captured=' + mg.excludeGatewayCaptured
+            + '; marked_registry=' + mg.markedSessionCount
+            + ', gateway_captured=' + mg.gatewayCapturedCount
+            + ', excluded_unmarked=' + mg.excludedByMark
+            + ', excluded_gateway=' + mg.excludedByGateway + '.');
+        }
+      }
+      if (result.stats) {
+        console.log('[trajectory-export] Scanned ' + result.stats.rowsScanned
+          + ' row(s); encrypted=' + result.stats.encryptedRows
+          + ', skipped_missing_secret=' + result.stats.skippedMissingSecret
+          + ', decrypt_failures=' + result.stats.decryptFailures
+          + ', invalid_json=' + result.stats.invalidJson
+          + ', session_invalid_json=' + (result.stats.sessionInvalidJson || 0)
+          + ', non_prism=' + result.stats.nonPrismSkipped + '.');
+      }
+    } catch (error) {
+      console.error('[trajectory-export] Failed: ' + (error && error.message || error));
+      process.exit(1);
+    }
+
   } else if (command === 'webui') {
     const portFlag = args.find(a => typeof a === 'string' && a.startsWith('--port='));
     const port = portFlag ? Number(portFlag.slice('--port='.length)) : undefined;
@@ -2715,11 +3089,13 @@ async function main() {
   } else if (command === 'reset-local-secret') {
     // Wipe every local store of node_secret in one shot, so a daemon stuck
     // after a manual web reset (https://evomap.ai/account -> Reset Secret)
-    // can boot clean. Three locations are involved:
-    //   - MailboxStore: ~/.evomap/mailbox/state.json key node_secret
-    //   - Legacy file:  ~/.evomap/node_secret
-    //   - Shell env:    A2A_NODE_SECRET (we cannot mutate the parent shell;
-    //                   we just print the unset hint)
+    // can boot clean. Local stores involved:
+    //   - MailboxStore: ~/.evomap/mailbox/state.json node_secret state keys
+    //   - Legacy files: ~/.evomap/node_secret, node_secret_version,
+    //     node_secret_source, and node_secret_env_suppressed
+    //   - Shell env:    A2A_NODE_SECRET / EVOMAP_NODE_SECRET and matching
+    //                   version vars (we cannot mutate the parent shell; we
+    //                   just print the unset hint)
     const path = require('path');
     const fs = require('fs');
     // Honor an explicit HOME override (used by tests to redirect to a fake
@@ -2729,43 +3105,64 @@ async function main() {
     // this fallback, test/resetLocalSecret.test.js cannot inject a fake home
     // and the reset operates on the real user dir.
     const home = process.env.HOME || os.homedir();
-    const stateFile = path.join(home, '.evomap', 'mailbox', 'state.json');
-    const legacyFile = path.join(home, '.evomap', 'node_secret');
+    const evomapDirs = [];
+    const seenEvomapDirs = new Set();
+    const addEvomapDir = (dir) => {
+      if (!dir) return;
+      const resolved = path.resolve(dir);
+      if (seenEvomapDirs.has(resolved)) return;
+      seenEvomapDirs.add(resolved);
+      evomapDirs.push(dir);
+    };
+    addEvomapDir(path.join(home, '.evomap'));
+    addEvomapDir(process.env.EVOLVER_HOME);
     let cleared = 0;
     try {
-      if (fs.existsSync(stateFile)) {
-        const raw = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
-        let mutated = false;
-        for (const k of ['node_secret', 'node_secret_source']) {
-          if (raw[k] !== undefined && raw[k] !== '') {
-            raw[k] = '';
-            mutated = true;
+      for (const evomapDir of evomapDirs) {
+        const stateFile = path.join(evomapDir, 'mailbox', 'state.json');
+        if (fs.existsSync(stateFile)) {
+          const raw = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+          let mutated = false;
+          for (const k of ['node_secret', 'node_secret_source', 'node_secret_version', 'node_secret_env_suppressed']) {
+            if (raw[k] !== undefined && raw[k] !== '') {
+              raw[k] = '';
+              mutated = true;
+            }
+          }
+          if (mutated) {
+            fs.writeFileSync(stateFile, JSON.stringify(raw, null, 2) + '\n', 'utf8');
+            cleared += 1;
+            console.log('[reset-local-secret] cleared MailboxStore at ' + stateFile);
+          } else {
+            console.log('[reset-local-secret] MailboxStore had no node_secret to clear at ' + stateFile);
           }
         }
-        if (mutated) {
-          fs.writeFileSync(stateFile, JSON.stringify(raw, null, 2) + '\n', 'utf8');
-          cleared += 1;
-          console.log('[reset-local-secret] cleared MailboxStore at ' + stateFile);
-        } else {
-          console.log('[reset-local-secret] MailboxStore had no node_secret to clear');
+        for (const legacyName of ['node_secret', 'node_secret_version', 'node_secret_source', 'node_secret_env_suppressed']) {
+          const legacyFile = path.join(evomapDir, legacyName);
+          if (fs.existsSync(legacyFile)) {
+            fs.unlinkSync(legacyFile);
+            cleared += 1;
+            console.log('[reset-local-secret] removed legacy file ' + legacyFile);
+          }
         }
-      }
-      if (fs.existsSync(legacyFile)) {
-        fs.unlinkSync(legacyFile);
-        cleared += 1;
-        console.log('[reset-local-secret] removed legacy file ' + legacyFile);
       }
     } catch (err) {
       console.error('[reset-local-secret] error:', err && err.message || err);
       process.exit(1);
     }
-    if (process.env.A2A_NODE_SECRET) {
+    const stillSetEnv = [
+      'A2A_NODE_SECRET',
+      'A2A_NODE_SECRET_VERSION',
+      'EVOMAP_NODE_SECRET',
+      'EVOMAP_NODE_SECRET_VERSION',
+    ].filter((key) => process.env[key]);
+    if (stillSetEnv.length > 0) {
       console.log('');
-      console.log('[reset-local-secret] A2A_NODE_SECRET is still set in this shell.');
-      console.log('[reset-local-secret] Run:    unset A2A_NODE_SECRET');
-      console.log('[reset-local-secret] Or edit your shell rc / .env file before restarting the daemon.');
+      console.log('[reset-local-secret] Node secret env vars are still set in this shell: ' + stillSetEnv.join(', '));
+      console.log('[reset-local-secret] Run:    unset A2A_NODE_SECRET A2A_NODE_SECRET_VERSION EVOMAP_NODE_SECRET EVOMAP_NODE_SECRET_VERSION');
+      console.log('[reset-local-secret] Or update secret and version as a matched pair before restarting the daemon.');
     } else {
-      console.log('[reset-local-secret] A2A_NODE_SECRET is not set in env -- good.');
+      console.log('[reset-local-secret] Node secret env vars are not set in env -- good.');
     }
     console.log('[reset-local-secret] ' + cleared + ' location(s) cleared. Restart the daemon to pick a fresh secret from the hub.');
     process.exit(0);
@@ -2859,6 +3256,35 @@ async function main() {
       process.exit(res && typeof res.exitCode === 'number' ? res.exitCode : 0);
     } catch (atpCliErr) {
       console.error('[ATP] CLI error:', atpCliErr && atpCliErr.message || atpCliErr);
+      process.exit(1);
+    }
+
+  } else if (command === 'reuse') {
+    try {
+      const { runReuseCommand } = require('./src/gep/cliContracts');
+      process.exit(await runReuseCommand(args.slice(1)));
+    } catch (e) {
+      process.stdout.write(JSON.stringify({
+        ok: false,
+        contract: 'reuse.v1',
+        reason: 'internal_error',
+        message: 'evolver reuse failed',
+      }) + '\n');
+      process.exit(1);
+    }
+
+  } else if (command === 'publish') {
+    try {
+      const { runPublishCommand } = require('./src/gep/cliContracts');
+      process.exit(await runPublishCommand(args.slice(1)));
+    } catch (e) {
+      process.stdout.write(JSON.stringify({
+        ok: false,
+        contract: 'publish.v1',
+        reason: 'internal_error',
+        retryable: false,
+        message: 'evolver publish failed',
+      }) + '\n');
       process.exit(1);
     }
 
@@ -3029,7 +3455,7 @@ async function main() {
     }
 
   } else {
-    console.log(`Usage: node index.js [run|/evolve|login|logout|proxy-token|solidify|review|distill|fetch|sync|asset-log|webui|setup-hooks|recipe|buy|orders|verify|atp|atp-complete|experiment] [--loop]
+    console.log(`Usage: node index.js [run|/evolve|login|logout|proxy-token|solidify|review|distill|fetch|sync|asset-log|trajectory-export|webui|setup-hooks|reuse|publish|recipe|buy|orders|verify|atp|atp-complete|experiment] [--loop]
   - login                      (authorize this device via the hub, gh-auth-login style; stores an OAuth token used instead of node_secret)
   - logout                     (remove the stored OAuth token)
   - proxy-token                (print the local proxy bearer token for command-backed client auth)
@@ -3041,6 +3467,11 @@ async function main() {
     - build --title="..." --genes=<asset_id,...> [--description] [--price=N] [--publish]
                               (builds a DRAFT DNA blueprint; --publish is opt-in)
     - reuse --id=<recipe_id> [--input=<json>]   (express a recipe into an organism)
+  - reuse flags:
+    - --id=<asset_id> --json     (reuse a Hub asset into the local library; stdout JSON contract reuse.v1)
+  - publish flags:
+    - --asset=<id|path> [--asset ...] [--dry-run] --json
+                              (publish.v1 stdout JSON contract for Desktop)
   - fetch flags:
     - --skill=<id> | -s <id>   (skill ID to download)
     - --out=<dir>              (output directory, default: ./skills/<skill_id>)
@@ -3073,6 +3504,29 @@ async function main() {
     - --last=<N>               (show last N entries)
     - --since=<ISO_date>       (entries after date)
     - --json                   (raw JSON output)
+  - trajectory-export flags:
+    - --input=<path>|--input <path>
+                                (proxy trace JSONL, Claude/Codex/Cursor session JSONL, or directory; default: platform trace file)
+    - --output=<path>|--output <path>
+                                (output JSONL; default: ./coding-trajectories.jsonl)
+    - --runtime-sessions        (local-only: also scan current-workspace Codex/Claude JSONL from ~/.codex/sessions and ~/.claude/projects; env: EVOLVER_TRAJECTORY_RUNTIME_SESSIONS=1)
+    - --runtime-session-dir=<path>|--runtime-session-dir <path>
+                                (local-only: extra Codex/Claude runtime session directory; may be repeated)
+    - --include-unmarked        (collect runtime sessions even if evolver did not actively mark them; default: strict — only marked sessions are collected; env: EVOLVER_TRAJECTORY_INCLUDE_UNMARKED=1)
+    - --include-gateway-captured (collect runtime sessions even if the proxy gateway already captured them; default: strict — gateway-captured sessions are skipped; env: EVOLVER_TRAJECTORY_INCLUDE_GATEWAY_CAPTURED=1)
+    - --marked-sessions-file=<path>|--marked-sessions-file <path>
+                                (override the evolver-marked-sessions registry path; default: <trace-dir>/marked-sessions.jsonl; env: EVOLVER_MARKED_SESSIONS_FILE)
+    - --allow-partial           (skip unreadable encrypted rows instead of failing the whole export)
+    - --node-secret=<hex|path>|--node-secret <hex|path>
+                                (read node secret from an existing local file, otherwise use the literal value)
+    - --node-secret-file=<path>|--node-secret-file <path>
+                                (read node secret from a local file)
+    - --node-secret-env=<name>|--node-secret-env <name>
+                                (read node secret from an environment variable)
+    - --node-secret-keyring=<path>|--node-secret-keyring <path>
+                                (read versioned node secrets from a JSON file)
+    - --hub-private-key=<path>|--hub-private-key <path>
+                                (decrypt hub_key_envelope trace rows with a local private key)
   - webui flags:
     - --port=<N>               (local Web UI port, default 19821)
 
@@ -3125,5 +3579,8 @@ module.exports = {
   parseBoolEnv,
   CycleTimeoutError,
   writeCycleProgressAtomic,
+  handleCycleTimeout,
+  observeTimedOutEvolvePromise,
+  waitForTimedOutEvolvePromise,
   spawnReplacementProcess,
 };

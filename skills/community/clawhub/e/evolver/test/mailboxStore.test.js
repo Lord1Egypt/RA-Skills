@@ -12,6 +12,52 @@ function tmpDataDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'mailbox-test-'));
 }
 
+function withEnv(name, value, fn) {
+  const saved = process.env[name];
+  process.env[name] = value;
+  try {
+    return fn();
+  } finally {
+    if (saved === undefined) delete process.env[name];
+    else process.env[name] = saved;
+  }
+}
+
+function withFixedNow(now, fn) {
+  const originalNow = Date.now;
+  Date.now = () => now;
+  try {
+    return fn();
+  } finally {
+    Date.now = originalNow;
+  }
+}
+
+function inboundRow({ id, type, text, now }) {
+  return {
+    id,
+    channel: DEFAULT_CHANNEL,
+    direction: 'inbound',
+    type,
+    status: 'pending',
+    payload: { text },
+    priority: 'normal',
+    ref_id: null,
+    created_at: now,
+    synced_at: null,
+    expires_at: null,
+    retry_count: 0,
+    error: null,
+  };
+}
+
+function inboundTextForLineBytes(maxBytes, { id, type, now }) {
+  const baseLine = JSON.stringify(inboundRow({ id, type, text: '', now })) + '\n';
+  const fillerBytes = maxBytes - Buffer.byteLength(baseLine, 'utf8');
+  assert.ok(fillerBytes >= 0, 'test fixture base row must fit below max line bytes');
+  return 'a'.repeat(fillerBytes);
+}
+
 describe('generateUUIDv7', () => {
   it('returns a valid UUID v7 format', () => {
     const id = generateUUIDv7();
@@ -297,6 +343,43 @@ describe('MailboxStore', () => {
       assert.equal(store.getState('counter'), '2');
     });
 
+    it('prevents stale explicit node_secret writes from overwriting disk hub_rotate tuple', () => {
+      const dir = tmpDataDir();
+      const oldStore = new MailboxStore(dir);
+      try {
+        oldStore.setNodeSecretState({
+          secret: 'a'.repeat(64),
+          version: '1',
+          source: 'env_seed',
+          envSuppressed: '',
+        });
+
+        const freshStore = new MailboxStore(dir);
+        freshStore.setNodeSecretState({
+          secret: 'b'.repeat(64),
+          version: '9',
+          source: 'hub_rotate',
+          envSuppressed: '',
+        });
+        freshStore.close();
+
+        oldStore.setState('node_secret', 'c'.repeat(64));
+        oldStore.setState('node_secret_version', '2');
+        oldStore.setState('node_secret_source', 'env_seed');
+
+        assert.equal(oldStore.getState('node_secret'), 'b'.repeat(64));
+        assert.equal(oldStore.getState('node_secret_version'), '9');
+        assert.equal(oldStore.getState('node_secret_source'), 'hub_rotate');
+        const stateRaw = JSON.parse(fs.readFileSync(path.join(dir, 'state.json'), 'utf8'));
+        assert.equal(stateRaw.node_secret, 'b'.repeat(64));
+        assert.equal(stateRaw.node_secret_version, '9');
+        assert.equal(stateRaw.node_secret_source, 'hub_rotate');
+      } finally {
+        oldStore.close();
+        try { fs.rmSync(dir, { recursive: true }); } catch {}
+      }
+    });
+
     it('creates mailbox state files with owner-only permissions', {
       skip: process.platform === 'win32' ? 'chmod not enforced on Windows' : false,
     }, () => {
@@ -362,6 +445,178 @@ describe('MailboxStore', () => {
       assert.equal(s2.getCursor('test:cursor'), 'c1');
       s2.close();
       try { fs.rmSync(dir, { recursive: true }); } catch {}
+    });
+
+    it('rebuilds from JSONL without reading the whole mailbox into one string', () => {
+      const dir = tmpDataDir();
+      fs.mkdirSync(dir, { recursive: true });
+      const msgFile = path.join(dir, 'messages.jsonl');
+      const rows = [];
+      for (let i = 0; i < 5000; i++) {
+        rows.push(JSON.stringify({
+          id: `msg-${i}`,
+          channel: DEFAULT_CHANNEL,
+          direction: 'outbound',
+          type: 'stream_rebuild',
+          status: 'pending',
+          payload: { i, text: 'x'.repeat(256) },
+          priority: 'normal',
+          created_at: Date.now() + i,
+        }));
+      }
+      fs.writeFileSync(msgFile, rows.join('\n') + '\n', 'utf8');
+
+      const s = new MailboxStore(dir);
+      try {
+        assert.equal(s.countPending({ direction: 'outbound', type: 'stream_rebuild' }), 5000);
+        assert.equal(s._lastRebuildStats.parsed, 5000);
+      } finally {
+        s.close();
+        try { fs.rmSync(dir, { recursive: true }); } catch {}
+      }
+    });
+
+    it('skips overlong mailbox JSONL rows during startup rebuild', () => {
+      const dir = tmpDataDir();
+      fs.mkdirSync(dir, { recursive: true });
+      const msgFile = path.join(dir, 'messages.jsonl');
+      const good = {
+        id: 'msg-good',
+        channel: DEFAULT_CHANNEL,
+        direction: 'inbound',
+        type: 'startup_good',
+        status: 'pending',
+        payload: { ok: true },
+        priority: 'normal',
+        created_at: Date.now(),
+      };
+      fs.writeFileSync(
+        msgFile,
+        'x'.repeat(2048) + '\n' + JSON.stringify(good) + '\n',
+        'utf8'
+      );
+      const saved = process.env.EVOMAP_MAILBOX_MAX_LINE_BYTES;
+      process.env.EVOMAP_MAILBOX_MAX_LINE_BYTES = '512';
+      const s = new MailboxStore(dir);
+      try {
+        assert.equal(s._lastRebuildStats.overlong, 1);
+        assert.equal(s.poll({ type: 'startup_good' }).length, 1);
+      } finally {
+        if (saved === undefined) delete process.env.EVOMAP_MAILBOX_MAX_LINE_BYTES;
+        else process.env.EVOMAP_MAILBOX_MAX_LINE_BYTES = saved;
+        s.close();
+        try { fs.rmSync(dir, { recursive: true }); } catch {}
+      }
+    });
+
+    it('keeps public API writes at the JSONL line limit visible after restart', () => {
+      const dir = tmpDataDir();
+      const maxBytes = 512;
+      const now = 1700000000000;
+      const id = 'msg-close-to-limit';
+      const type = 'line_limit_close';
+      const text = inboundTextForLineBytes(maxBytes, { id, type, now });
+
+      withEnv('EVOMAP_MAILBOX_MAX_LINE_BYTES', String(maxBytes), () => {
+        withFixedNow(now, () => {
+          const s1 = new MailboxStore(dir);
+          try {
+            assert.equal(s1.writeInbound({ id, type, payload: { text } }), id);
+          } finally {
+            s1.close();
+          }
+        });
+
+        const raw = fs.readFileSync(path.join(dir, 'messages.jsonl'));
+        assert.equal(raw.length, maxBytes);
+
+        const s2 = new MailboxStore(dir);
+        try {
+          assert.equal(s2._lastRebuildStats.overlong, 0);
+          const msg = s2.getById(id);
+          assert.ok(msg);
+          assert.deepEqual(msg.payload, { text });
+        } finally {
+          s2.close();
+        }
+      });
+      try { fs.rmSync(dir, { recursive: true }); } catch {}
+    });
+
+    it('rejects public API writes over the JSONL line limit without indexing them', () => {
+      const dir = tmpDataDir();
+      const maxBytes = 512;
+      const now = 1700000000000;
+      const id = 'msg-over-limit';
+      const type = 'line_limit_over';
+      const text = inboundTextForLineBytes(maxBytes, { id, type, now }) + 'a';
+
+      withEnv('EVOMAP_MAILBOX_MAX_LINE_BYTES', String(maxBytes), () => {
+        withFixedNow(now, () => {
+          const s1 = new MailboxStore(dir);
+          try {
+            assert.throws(
+              () => s1.writeInbound({ id, type, payload: { text } }),
+              (err) => err
+                && err.code === 'MAILBOX_JSONL_LINE_TOO_LARGE'
+                && /maximum is 512 bytes/.test(err.message)
+            );
+            assert.equal(s1.getById(id), null);
+            assert.equal(s1.poll({ type }).length, 0);
+          } finally {
+            s1.close();
+          }
+        });
+
+        const s2 = new MailboxStore(dir);
+        try {
+          assert.equal(s2.getById(id), null);
+          assert.equal(s2.poll({ type }).length, 0);
+        } finally {
+          s2.close();
+        }
+      });
+      try { fs.rmSync(dir, { recursive: true }); } catch {}
+    });
+
+    it('fails startup rebuild on mailbox JSONL read errors', () => {
+      const dir = tmpDataDir();
+      fs.mkdirSync(dir, { recursive: true });
+      const msgFile = path.join(dir, 'messages.jsonl');
+      fs.writeFileSync(
+        msgFile,
+        JSON.stringify({
+          id: 'msg-unreadable',
+          channel: DEFAULT_CHANNEL,
+          direction: 'outbound',
+          type: 'read_failure',
+          status: 'pending',
+          payload: {},
+          priority: 'normal',
+          created_at: Date.now(),
+        }) + '\n',
+        'utf8'
+      );
+
+      const originalReadSync = fs.readSync;
+      fs.readSync = function failReadSync(...args) {
+        const err = new Error('simulated read failure');
+        err.code = 'EIO';
+        throw err;
+      };
+      try {
+        assert.throws(
+          () => new MailboxStore(dir),
+          (err) => err
+            && err.code === 'MAILBOX_JSONL_READ_FAILED'
+            && err.stats
+            && err.stats.read_failed === 1
+            && /simulated read failure/.test(err.message)
+        );
+      } finally {
+        fs.readSync = originalReadSync;
+        try { fs.rmSync(dir, { recursive: true }); } catch {}
+      }
     });
   });
 

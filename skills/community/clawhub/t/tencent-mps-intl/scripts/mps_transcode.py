@@ -22,52 +22,52 @@ COS Storage Convention:
 
 Usage:
   # Simplest usage: URL input + default template (output to TENCENTCLOUD_COS_BUCKET/output/transcode/)
-  python mps_transcode.py --url https://example.com/video.mp4
+  python3 mps_transcode.py --url https://example.com/video.mp4
 
   # COS input (recommended, using --cos-input-key)
-  python mps_transcode.py --cos-input-key /input/video/test.mp4
+  python3 mps_transcode.py --cos-input-key /input/video/test.mp4
 
   # COS input + explicitly specifying bucket (overrides environment variable)
-  python mps_transcode.py --cos-input-bucket mybucket-125xxx \
+  python3 mps_transcode.py --cos-input-bucket mybucket-125xxx \
       --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # Custom output COS location (overrides default /output/transcode/ directory)
-  python mps_transcode.py --url https://example.com/video.mp4 \
+  python3 mps_transcode.py --url https://example.com/video.mp4 \
       --output-bucket mybucket-125xxx --output-region ap-guangzhou --output-dir /custom_output/
 
   # Custom resolution (width 1920, height auto-scaling)
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1920
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1920
 
   # Custom resolution (720P)
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720
 
   # Custom maximum bitrate (unit kbps)
-  python mps_transcode.py --url https://example.com/video.mp4 --bitrate 2000
+  python3 mps_transcode.py --url https://example.com/video.mp4 --bitrate 2000
 
   # Custom encoding format
-  python mps_transcode.py --url https://example.com/video.mp4 --codec h264
+  python3 mps_transcode.py --url https://example.com/video.mp4 --codec h264
 
   # Custom container format
-  python mps_transcode.py --url https://example.com/video.mp4 --container hls
+  python3 mps_transcode.py --url https://example.com/video.mp4 --container hls
 
   # Custom frame rate
-  python mps_transcode.py --url https://example.com/video.mp4 --fps 30
+  python3 mps_transcode.py --url https://example.com/video.mp4 --fps 30
 
   # Using custom parameter override (fully custom mode, not using preset template)
-  python mps_transcode.py --url https://example.com/video.mp4 \
+  python3 mps_transcode.py --url https://example.com/video.mp4 \
       --codec h265 --width 1920 --height 1080 --bitrate 3000 --fps 30 --container mp4
 
   # Maximum compression mode
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
 
   # Quality priority mode
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
 
   # Specify scene-based transcoding (e.g., UGC short video)
-  python mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
+  python3 mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
 
   # Set callback URL
-  python mps_transcode.py --url https://example.com/video.mp4 --notify-url https://example.com/callback
+  python3 mps_transcode.py --url https://example.com/video.mp4 --notify-url https://example.com/callback
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -104,7 +104,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -444,7 +444,7 @@ def process_media(args):
         else:
             print()
             print(f"Tip: Task is processing in background, you can use the following command to check progress:")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -460,29 +460,29 @@ def main():
         epilog="""
 Examples:
   # URL input + default template (TESHD-H265-1080P), output to TENCENTCLOUD_COS_BUCKET/output/transcode/
-  python mps_transcode.py --url https://example.com/video.mp4
+  python3 mps_transcode.py --url https://example.com/video.mp4
 
   # COS path input (recommended, use after local upload)
-  python mps_transcode.py --cos-input-bucket mybucket-125xxx \
+  python3 mps_transcode.py --cos-input-bucket mybucket-125xxx \
       --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # COS input (bucket and region automatically obtained from environment variables)
-  python mps_transcode.py --cos-input-key /input/video/test.mp4
+  python3 mps_transcode.py --cos-input-key /input/video/test.mp4
 
   # Custom 720P + 2Mbps bitrate limit
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720 --bitrate 2000
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720 --bitrate 2000
 
   # Extreme compression mode
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
 
   # UGC short video scene optimization
-  python mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
+  python3 mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
 
   # Custom output directory (override default /output/transcode/)
-  python mps_transcode.py --url https://example.com/video.mp4 --output-dir /custom/
+  python3 mps_transcode.py --url https://example.com/video.mp4 --output-dir /custom/
 
   # Dry Run (only print request parameters)
-  python mps_transcode.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_transcode.py --url https://example.com/video.mp4 --dry-run
 
 Environment variables:
   TENCENTCLOUD_SECRET_ID   Tencent Cloud SecretId
@@ -565,6 +565,17 @@ Environment variables:
                              help="Automatically generate comparison HTML page after task completion (optionally specify output path, auto-generated by default)")  # noqa: E501  # NOCA:line-too-long(content cannot be shortened)
 
     args = parser.parse_args()
+
+    # Auto-load environment variables (execute at entry to ensure all downstream functions can access)
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  Auto-load env failed: {e}", file=sys.stderr)
+
     # --url local path automatically converted to local upload mode
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -624,8 +635,11 @@ Environment variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (environment variable): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     if not has_custom_params(args):

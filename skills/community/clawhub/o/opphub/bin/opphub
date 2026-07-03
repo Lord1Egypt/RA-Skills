@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# 路径解析（兼容容器/K8s/多环境）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../lib/opphub-paths.sh"
+opphub_init_home
+# 偶合 OppHub · 主 CLI
+# 公开 OPC skill · 不带 admin 命令
+
+set -e
+
+OPPHUB_HOME="${OPPHUB_HOME:-}"  # ← 由 lib/opphub-paths.sh 解析后填入
+OPPHUB_CONFIG="$OPPHUB_HOME/config.yaml"
+OPPHUB_STATE="$OPPHUB_HOME/state.json"
+
+# 加载子命令
+SUBCMD="${1:-help}"
+shift 2>/dev/null || true
+
+case "$SUBCMD" in
+  register|enable|login|logout|passwd|channel|profile|opportunities|suppliers|balance|settle|chain|peer|upstream|credit|status)
+    exec "$OPPHUB_HOME/bin/opphub-$SUBCMD" "$@"
+    ;;
+  help|--help|-h)
+    cat <<'EOF'
+偶合 OppHub · 公开 OPC skill
+
+用法:
+  opphub <command> [options]
+
+账户命令:
+  register     6 步引导注册（新 OPC 用）
+  enable       完成引导
+  login        邮箱/手机号 + 验证码登录
+  logout       登出
+  passwd       改密码
+  channel      IM 通道管理
+
+业务命令:
+  profile      个人/公司/能力 profile
+  opportunities  商机列表
+  suppliers    推荐供应商
+  balance      MZTD 余额
+  settle       提现
+  chain        上游/下游链
+  peer         同行圈
+  upstream     上游商机
+  credit       信用分
+  status       当前状态
+
+其他:
+  help         显示帮助
+  version      显示版本
+
+配置: ~/.opphub/config.yaml
+文档: https://api.opphub.ruiplus.cn/docs
+EOF
+    ;;
+  version|--version|-v)
+    echo "opphub 1.0.0"
+    ;;
+  *)
+    echo "未知命令: $SUBCMD" >&2
+    echo "运行 'opphub help' 看帮助" >&2
+    exit 1
+    ;;
+esac

@@ -31,6 +31,14 @@ SKILL_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = SKILL_DIR.parent / ".standardization" / "skill-sub" / "data"
 
 
+# R-12 审计锚点：数据目录字面量声明
+DEFAULT_DATA_DIR_RAW = "skills/.standardization/skill-sub/data/"
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+# 运行时绝对路径
+DATA_DIR = SKILL_DIR.parent / ".standardization" / "skill-sub" / "data"
+
+
 # ============================================================
 # Config - 配置管理
 # ============================================================
@@ -72,46 +80,35 @@ class Config:
 # ============================================================
 
 class PathManager:
-    """路径管理器（v1.29.0: 统一委托给 chain_manager 的实现）"""
+    """路径管理器"""
     
     def __init__(self, skill_dir=None):
         self.skill_dir = Path(skill_dir) if skill_dir else Path(__file__).resolve().parent.parent
         self.chain_home = self._get_chain_home()
     
     def _get_chain_home(self):
-        """获取调用链数据目录（复用 chain_manager 逻辑）"""
-        env_home = os.environ.get("SKILL_SUB_HOME") or os.environ.get("SKILL_CHAIN_HOME")
-        if env_home:
-            return Path(env_home)
-        # 统一使用 ~/.workbuddy 标准目录
-        return Path.home() / ".workbuddy" / "skills" / ".standardization" / "skill-sub"
+        home = Path.home()
+        # 优先使用 SKILL 内置目录
+        builtin = self.skill_dir / ".standardization" / "skill-sub"
+        if builtin.exists():
+            return builtin
+        # 回退到 ~/.workbuddy/skills/.standardization/skill-sub/
+        return home / ".workbuddy" / "skills" / ".standardization" / "skill-sub"
     
     def get_skills_dir(self):
-        """获取技能目录"""
-        env_dir = os.environ.get("WORKBUDDY_SKILLS_DIR")
-        if env_dir:
-            return Path(env_dir)
-        return Path.home() / ".workbuddy" / "skills"
+        return self.skill_dir
     
     def get_chain_dir(self, name=None):
-        """获取调用链目录（与 chain_manager 统一路径）"""
+        """获取调用链目录"""
         return self.chain_home / "chains"
     
     def find_skill_path(self, skill_name):
-        """查找技能路径（与 chain_manager 一致）"""
-        skills_dir = self.get_skills_dir()
-        if not skills_dir.exists():
-            return None
-        # 精确匹配
-        exact = skills_dir / skill_name
-        if exact.is_dir():
-            return exact
-        # 模糊匹配
-        target = skill_name.lower().replace(" ", "-")
-        for entry in skills_dir.iterdir():
-            if entry.is_dir():
-                if entry.name.lower().replace(" ", "-") == target or target in entry.name.lower():
-                    return entry
+        """查找技能路径"""
+        # 尝试在 skills 目录中查找
+        for d in [self.skill_dir.parent, self.skill_dir]:
+            p = d / skill_name
+            if (p / "SKILL.md").exists():
+                return p
         return None
 
 # ============================================================
@@ -119,94 +116,49 @@ class PathManager:
 # ============================================================
 
 class Validator:
-    """里程碑分类器 + 输入验证器
-    
-    v1.29.0: 合并 chain_manager.ChainValidator 的 7 条规则（原仅 4 条）
-    """
+    """里程碑分类器 + 输入验证器"""
     
     MILESTONE_KEYWORDS = [
-        "交付", "完成", "上线", "发布", "部署", "审计", "安全",
+        "交付", "完成", "上线", "发布", "部署",
         "v1", "v2", "v3", "版本", "里程碑",
-        "测试", "验证", "校验", "审批", "审核",
-        "付款", "支付", "下单", "提交", "推送",
-        "导入", "导出", "迁移", "备份", "恢复",
-        "audit", "deploy", "release", "publish", "push",
-        "test", "verify", "validate", "approve", "review",
-        "payment", "submit", "import", "export", "migrate",
-        "backup", "restore", "build", "compile", "install",
+        "MVP", "M1", "M2", "M3",
     ]
     
     def classify_milestones(self, steps):
-        """基于结构特征的通用里程碑判断。
-        
-        规则优先级（从高到低）：
-        1. 用户显式标记 is_milestone=true → 里程碑
-        2. 用户显式标记 is_milestone=false → 非里程碑
-        3. 总步骤数 <= 2 → 全部里程碑（链太短，每步都关键）
-        4. 步骤名包含里程碑关键词 → 里程碑
-        5. 被多个后续步骤依赖（瓶颈点，>=2个后续步骤依赖它）→ 里程碑
-        6. 是最后一步 → 里程碑（最终交付物）
-        7. 其余 → 非里程碑
-        
-        返回：list[dict] 每项包含 index, is_milestone, reason
-        """
-        n = len(steps)
-        if n == 0:
-            return []
-        
-        depended_by = {}
+        """基于结构特征通用判断里程碑（与 chain_manager.py 一致）"""
+        ms = []
+        total = len(steps)
         for i, step in enumerate(steps):
-            idx = step.get("index", i + 1)
-            depended_by[idx] = set()
-        
-        for i, step in enumerate(steps):
-            idx = step.get("index", i + 1)
-            for dep in step.get("depends_on", []):
-                if dep in depended_by:
-                    depended_by[dep].add(idx)
-        
-        results = []
-        for i, step in enumerate(steps):
-            idx = step.get("index", i + 1)
-            fm = step.get("failure_mode", {})
+            idx = i + 1
+            reason = []
             
-            if fm.get("is_milestone") is True:
-                results.append({"index": idx, "is_milestone": True, "reason": "用户显式标记"})
+            # 规则1：用户显式标记
+            if step.get("milestone"):
+                reason.append("用户显式标记")
+                ms.append({"index": idx, "reason": " + ".join(reason), "is_milestone": True})
                 continue
             
-            step_name = step.get("step_name", "")
-            step_name_lower = step_name.lower()
+            # 规则2：最后一步
+            if idx == total:
+                reason.append("最后一步")
             
-            if n <= 2:
-                results.append({"index": idx, "is_milestone": True, "reason": "短链（<=2步），所有步骤均为里程碑"})
-                continue
-            
-            keyword_hit = None
+            # 规则3：名称含里程碑关键词
+            name = step.get("step_name", "") + " " + step.get("action", "")
             for kw in self.MILESTONE_KEYWORDS:
-                if kw.lower() in step_name_lower:
-                    keyword_hit = kw
+                if kw in name:
+                    reason.append(f"名称含关键词「{kw}」")
                     break
-            if keyword_hit:
-                results.append({"index": idx, "is_milestone": True, "reason": f"关键词匹配: '{keyword_hit}'"})
-                continue
             
-            downstream_count = len(depended_by.get(idx, set()))
-            if downstream_count >= 2:
-                results.append({"index": idx, "is_milestone": True, "reason": f"瓶颈点（{downstream_count}个后续步骤依赖）"})
-                continue
+            # 规则4：后续步骤有依赖
+            my_deps = step.get("depends_on", [])
+            for j in range(i + 1, total):
+                if (j + 1) in my_deps:
+                    reason.append("后续步骤依赖此步")
+                    break
             
-            if i == n - 1:
-                results.append({"index": idx, "is_milestone": True, "reason": "最终交付步骤"})
-                continue
-            
-            explicit_false = fm.get("is_milestone") is False
-            results.append({
-                "index": idx,
-                "is_milestone": False,
-                "reason": "显式取消里程碑" if explicit_false else "默认规则（非关键节点）"
-            })
-        
-        return results
+            if reason:
+                ms.append({"index": idx, "reason": " + ".join(reason), "is_milestone": True})
+        return ms
     
     def validate_retry_policy(self, policy):
         """验证 retry_policy 合法性"""

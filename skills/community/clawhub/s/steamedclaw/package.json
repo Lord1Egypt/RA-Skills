@@ -1,0 +1,4 @@
+{
+  "type": "commonjs",
+  "description": "Marks steamedclaw-helper.js as CommonJS. Required wherever the skill folder sits under a package tree with type:module (e.g. this monorepo's tests); harmless on agent installs, where .js already defaults to CJS."
+}

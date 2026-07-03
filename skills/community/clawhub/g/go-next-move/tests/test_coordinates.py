@@ -118,6 +118,50 @@ class CoordinateTests(unittest.TestCase):
         move = {"move": "J4", "pv": ["J4", "T16"]}
         self.assertEqual(convert_move_info(move, 19, "gtp"), move)
 
+    def test_build_result_accepts_custom_analysis_runner(self):
+        rows = ["." * 19 for _ in range(19)]
+        args = SimpleNamespace(
+            side_to_move="black",
+            level="advanced",
+            board_size=19,
+            move_overlay=[],
+            coordinate_style="gtp",
+            komi=7.5,
+            visits=10,
+            katago="katago",
+            model="model",
+            analysis_config="config",
+            skill_config=Path("katago/analysis_skill.cfg"),
+            top_candidates=20,
+            result_image=None,
+            source_result_image=None,
+        )
+        analysis = {
+            "moveInfos": [
+                {
+                    "move": "D4",
+                    "order": 0,
+                    "visits": 10,
+                    "winrate": 0.55,
+                    "scoreLead": 1.2,
+                    "pv": ["D4"],
+                }
+            ],
+            "rootInfo": {},
+        }
+        calls = []
+
+        def fake_runner(*runner_args, **runner_kwargs):
+            calls.append((runner_args, runner_kwargs))
+            return analysis
+
+        args.analysis_runner = fake_runner
+        with patch.object(next_move, "load_board_source", return_value=(rows, None, None)):
+            result = build_result(args)
+
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(result["recommendation"]["move"], "D4")
+
 
 if __name__ == "__main__":
     unittest.main()

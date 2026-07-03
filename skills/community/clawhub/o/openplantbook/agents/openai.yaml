@@ -1,0 +1,5 @@
+interface:
+  display_name: "Open Plantbook"
+  short_description: "Schema-first Open Plantbook API workflows"
+  brand_color: "#2F855A"
+  default_prompt: "Use $openplantbook to search Open Plantbook for a plant and return care fields from the API."

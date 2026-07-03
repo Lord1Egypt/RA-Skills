@@ -1,6 +1,6 @@
 {
   "name": "english-daily",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Daily English learning with spaced repetition — built-in A1–B2 word bank, new words daily, quiz mode (MCQ/fill-in/spelling), streak tracking, level progression.",
   "keywords": [
     "学英语",
@@ -22,7 +22,7 @@
     "word bank"
   ],
   "author": "jiajiaoy",
-  "license": "MIT",
+  "license": "MIT-0",
   "scripts": {
     "register": "node scripts/register.js",
     "daily": "node scripts/daily-push.js",

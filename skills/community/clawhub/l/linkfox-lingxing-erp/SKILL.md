@@ -1,7 +1,5 @@
 ---
 name: linkfox-lingxing-erp
-version: 1.0.0
-category: product-sourcing
 description: LinkFox 包装的领星（Lingxing）ERP 技能「linkfox-lingxing-erp」：由 LinkFox Skills 仓库收录分发，封装领星官方 OpenAPI 文档与脚本用法，底层仍直连 openapi.lingxing.com（非 LinkFox 自建网关）。覆盖约 373 个接口场景，含广告报表 SP/SB/SD、订单与 Listing、库存仓库、财务与 FBA、源表、采购、客服、多平台广告与订单等。当用户提到领星、Lingxing、领星开放接口、领星 ERP 数据、领星广告报表、领星订单/库存/利润、领星 SID、Lingxing OpenAPI、Lingxing ERP data、LinkFox 领星、linkfox-lingxing-erp 时触发。分模块参数见 references/api.md 及各 references/*.md；需 LINGXING_APP_ID 与 LINGXING_APP_SECRET。
 ---
 
@@ -305,3 +303,28 @@ StoreBatchSelect, UserBatchSelect
 | API 返回 code != 0 | 检查参数是否正确，参见错误信息 |
 | --list-stores 返回 403 | AppKey 仅有广告权限；设置 LINGXING_SID 直接指定店铺 |
 | 依赖未安装 | `pip install pycryptodome requests` |
+
+<!-- LF_LARGE_RESPONSE_BLOCK -->
+## Handling Large Responses
+
+To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
+
+```
+python scripts/response_io.py run --script scripts/lingxing.py --out-dir <DIR> '<params>'
+python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
+```
+
+> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data — do not commit them. Files are not auto-deleted; clean up when the task is done.
+
+`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
+
+**When to prefer this pattern** — apply your judgment based on the response characteristics, e.g.:
+- High field count per record, or fields you don't need
+- Batch/paginated results (multiple items per call)
+- Long-text fields (descriptions, reviews, HTML, time series)
+- Output reused across later steps rather than consumed immediately
+
+For small, single-use responses, calling the main script directly is fine.
+
+⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
+<!-- /LF_LARGE_RESPONSE_BLOCK -->

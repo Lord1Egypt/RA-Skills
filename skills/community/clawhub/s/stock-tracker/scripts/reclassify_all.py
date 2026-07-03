@@ -15,6 +15,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import db
 from llm_judge import LLMJudge
+from config_manager import ConfigManager
 
 logger = logging.getLogger("reclassify_all")
 
@@ -86,13 +87,8 @@ def main():
         return
 
     # 加载 config.json 中的 LLM 配置（包含正确的 base_url）
-    import json as _json
-    config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.json")
-    if os.path.exists(config_path):
-        with open(config_path, "r") as f:
-            config = _json.load(f)
-    else:
-        config = {"llm": {"enabled": True}}
+    config_manager = ConfigManager()
+    config = config_manager.load()
     judge = LLMJudge.from_config(config)
     if not judge.enabled:
         logger.error("LLM 未启用，请检查 .env 中的 LLM_API_KEY")

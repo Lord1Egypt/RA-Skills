@@ -314,6 +314,49 @@ Suggest switching to interview mode (but don't force it) when:
 
 Output: `"ℹ️ This project is hard to auto-detect. Run /rune onboard --interview for guided setup."`
 
+### Step 6f — Emit comprehension.json
+
+Write `.rune/comprehension.json` conforming to `compiler/schemas/comprehension.schema.json`.
+This is ADDITIVE — do not touch any of the Markdown files created above.
+
+Populate from the scan data already collected in Steps 2–3:
+
+```json
+{
+  "project": "<project name from Step 2>",
+  "generated_at": "<ISO 8601 timestamp>",
+  "source": "onboard",
+  "health_score": null,
+  "layers": [
+    { "id": "api", "name": "API / Routes", "color": "service" },
+    { "id": "service", "name": "Business Logic", "color": "service" },
+    { "id": "data", "name": "Data / Storage", "color": "data" },
+    { "id": "ui", "name": "UI / Views", "color": "code" },
+    { "id": "util", "name": "Utilities", "color": "code" }
+  ],
+  "domains": [],
+  "modules": [
+    {
+      "id": "<relative file path or module id>",
+      "name": "<file or module name>",
+      "layer": "<id from layers — best-guess from file path>",
+      "type": "file",
+      "complexity": "simple",
+      "files": 1,
+      "summary": "<one-line description>"
+    }
+  ],
+  "edges": []
+}
+```
+
+Rules:
+- `modules[]` — include only the entry points and config files read in Steps 1–3 (5–15 items max). Do not enumerate all project files.
+- `layers[]` — include only layers actually detected; omit unused ones.
+- `edges[]` — leave empty; onboard does not trace cross-file dependencies.
+- `health_score` — set to null; health scoring requires autopsy.
+- If `.rune/comprehension.json` already exists, overwrite it (generated output, not human-written).
+
 ### Step 7 — Commit
 Run_command to stage and commit the generated files:
 ```bash
@@ -421,6 +464,7 @@ Known failure modes for this skill. Check these before declaring done.
 - .rune/ directory initialized with conventions, decisions, progress, session-log, instincts
 - .rune/DEVELOPER-GUIDE.md written with setup commands from actual scan
 - All generated commands verified to exist in package.json/Makefile/etc.
+- .rune/comprehension.json written conforming to comprehension.schema.json (project, generated_at, source:"onboard", modules[], edges[])
 - Onboard Report emitted with Generated + Skipped + Observations sections
 
 ## Returns
@@ -432,6 +476,7 @@ Known failure modes for this skill. Check these before declaring done.
 | Decision log (initialized) | Markdown | `.rune/decisions.md` |
 | Developer onboarding guide | Markdown | `.rune/DEVELOPER-GUIDE.md` |
 | Session/progress files | Markdown | `.rune/progress.md`, `.rune/session-log.md` |
+| Comprehension graph | JSON | `.rune/comprehension.json` |
 
 ## Cost Profile
 
@@ -440,7 +485,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail:** onboard generates project context files — it does not modify source code, install dependencies, or change project configuration.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

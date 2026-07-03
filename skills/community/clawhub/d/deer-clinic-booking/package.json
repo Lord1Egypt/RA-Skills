@@ -1,0 +1,12 @@
+{
+  "name": "deer-booking",
+  "version": "1.0.0",
+  "title": "鹿美人皮肤科预约助手",
+  "description": "鹿美人皮肤科 — 首尔江南区皮肤科，专业皮肤管理、抗衰老、激光治疗",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

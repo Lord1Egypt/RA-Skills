@@ -1,3 +1,14 @@
+# v5.5.2 (2026-07-01)
+
+## 安全修复
+- code-executor.js: 清理 _cp/_es/_efs 混淆别名，全部改为直接引用
+- _saveDreamHistory: 新增 AES-256-GCM 加密写入 dream-history.jsonl.enc
+- 对话历史 recordDialogue(): 已有 AES-256-GCM 加密（.jsonl.enc），验证通过
+
+## 审计验证
+- 外部审计报告逐条核实：6项已确认修复，2项新增修复
+- 混淆残留、梦境明文写入为最后两项真实风险，现已消除
+
 ## [v5.4.8] - 2026-06-29
 ### Added
 - **Smart Routing 优化** — 吸收 GitHub 社区反馈（DeepSeek-V3 #1446 / #1462）

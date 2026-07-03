@@ -1,0 +1,628 @@
+{
+  "name": "tradebee",
+  "description": "v26.6.26 A unified Tradebee Website Builder Open API skill for mapping an explicit Tradebee platform data-operation request to the correct Tradebee action. Use it only when the user clearly wants to operate on Tradebee blogs, blog groups, FAQs, FAQ groups, custom pages, products, product groups, inquiries, recent visitors, keyword rankings, or tenant HTML rule retrieval, and the target object type matches this skill. Do not use it for generic 'find', 'show', 'check', 'update', or 'delete' requests outside Tradebee platform data context. For all `*_update` actions, the skill also automatically reads the current record and writes a local JSON backup file before sending the update request.",
+  "version": "26.6.26",
+  "input": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "blog-create",
+          "blog-delete",
+          "blog-read",
+          "blog-update",
+          "bloggroup-create",
+          "bloggroup-delete",
+          "bloggroup-read",
+          "bloggroup-update",
+          "custompage-create",
+          "custompage-delete",
+          "custompage-read",
+          "custompage-update",
+          "faq-create",
+          "faq-delete",
+          "faq-read",
+          "faq-update",
+          "faqgroup-create",
+          "faqgroup-delete",
+          "faqgroup-read",
+          "faqgroup-update",
+          "inquiry-read",
+          "keywords-rank",
+          "languages-get",
+          "products-create",
+          "products-delete",
+          "products-read",
+          "products-update",
+          "productsgroup-create",
+          "productsgroup-delete",
+          "productsgroup-read",
+          "productsgroup-update",
+          "rule-get",
+          "visitor-recent"
+        ],
+        "description": "Required. Selects which Tradebee OpenAPI capability to execute. Route only after the Tradebee data domain and object type are explicit. Use `*-read` for Tradebee requests to read/list/find/check/query/analyze existing Tradebee data; use `*-create` for Tradebee requests to create/add/publish new Tradebee content; use `*-update` for Tradebee requests to modify one explicit existing Tradebee record; use `*-delete` for Tradebee requests to delete one explicit existing Tradebee record or one explicitly confirmed Tradebee ID list. Do not infer destructive actions from vague requests. For every `*-update` action, execution also includes an automatic pre-update read of the current record and a local JSON backup file write before the Tradebee update request is sent. Route by object type: HTML rule retrieval -> `rule-get`, blog/article -> `blog-*`, blog group/category -> `bloggroup-*`, FAQ article -> `faq-*`, FAQ group/category -> `faqgroup-*`, custom page -> `custompage-*`, product -> `products-*`, product group/category -> `productsgroup-*`, inquiries/leads -> `inquiry-read`, visitors/IP activity -> `visitor-recent`, keyword performance/top N rankings -> `keywords-rank`."
+      },
+      "blog": {
+        "type": "object",
+        "description": "Required by `blog-create` and `blog-update`. This object contains the blog fields to create or update. For `blog-create`, send a complete new blog payload. For `blog-update`, `blog_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "blog_id": {
+            "type": "integer",
+            "description": "Required for `blog-update`. Existing blog ID to update. Do not invent it. Read or obtain the real blog ID first, then copy that exact integer here."
+          },
+          "bloggroup_id": {
+            "type": "integer",
+            "description": "Blog group ID. For `blog-create`, this field is required. For `blog-update`, omit it if the blog should stay in its current group. Only send it when the user explicitly wants to move the blog to another group."
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher name, up to 100 characters. Omit it in `blog-update` if the publisher should stay unchanged."
+          },
+          "publication_date": {
+            "type": "string",
+            "description": "Display publication date in `yyyy/M/d` format, for example `2026/4/24`. For `blog-create`, if omitted, the server uses the current date. For `blog-update`, omit it if the publication date should stay unchanged."
+          },
+          "title": {
+            "type": "string",
+            "description": "Blog title shown to users, up to 500 characters. For `blog-create`, this is required. For `blog-update`, omit it if the title should stay unchanged."
+          },
+          "cover_image": {
+            "type": "object",
+            "description": "Cover image payload, up to 500 kB. For `blog-create`, this field is required. For `blog-update`, omit it if the cover image should stay unchanged.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Image file label used only to identify this image inside the payload."
+              },
+              "base64": {
+                "type": "string",
+                "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`."
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "description": "Keyword tags. For `blog-create`, provide 1 to 6 keyword tags. Each tag must contain 3 to 50 characters. For `blog-update`, omit this field if tags should stay unchanged.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "summary": {
+            "type": "string",
+            "description": "Blog summary as plain text, up to 500 characters. For `blog-create`, this is required. For `blog-update`, omit it if the summary should stay unchanged."
+          },
+          "description": {
+            "type": "string",
+            "description": "HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `blog.description`. Do not invent, shorten, translate, or rename the `scene` value. The generated fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Do not hardcode assumptions here about individual rule details, because the rule API may add new constraints later without requiring `tradebee` changes. For `blog-create`, this is required. For `blog-update`, omit it if the detailed description should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional SEO fields for the blog detail page. For `blog-update`, omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "blog_id": {
+        "type": "integer",
+        "description": "Optional. Exact blog filter used by `blog-read`. Use this when the user wants one specific blog article, one exact blog record, or blog detail. If provided, it must be one positive integer (`> 0`). `blog_id` and `bloggroup_id` are mutually exclusive for `blog-read`: omit both to read all blogs, or provide exactly one of them."
+      },
+      "bloggroup": {
+        "type": "object",
+        "description": "Required by `bloggroup-create` and `bloggroup-update`. This object contains the blog group fields to create or update. For `bloggroup-create`, send a new blog group payload. For `bloggroup-update`, `bloggroup_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "bloggroup_id": {
+            "type": "integer",
+            "description": "Required for `bloggroup-update`. Existing blog group ID to update. Do not invent it. Read or obtain the real blog group ID first, then copy that exact integer here."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Blog group name, up to 100 characters. For `bloggroup-create`, this is required. For `bloggroup-update`, omit it if the group name should stay unchanged."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Keyword tags. For `bloggroup-create`, provide 1 to 6 keyword tags. Each tag must be 50 characters or fewer. For `bloggroup-update`, omit this field if tags should stay unchanged.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Short plain-text description, up to 300 characters. Omit it in `bloggroup-update` if the brief description should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional SEO fields for the blog group page. For `bloggroup-update`, omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "bloggroup_id": {
+        "type": "integer",
+        "description": "Optional. Blog group filter used by `blog-read` and `bloggroup-read`. For `blog-read`, use this when the user wants blogs under one blog group or category. Omit this field to read blogs from all groups. If filtering blogs by group, use a positive integer (`> 0`) selected from `bloggroup-read` under the same language. For `bloggroup-read`, this field means one exact blog group ID and should be used when the user wants one specific blog category record; omit it to read all blog groups. `blog_id` and `bloggroup_id` are mutually exclusive for `blog-read`: omit both to read all blogs, or provide exactly one of them."
+      },
+      "faq": {
+        "type": "object",
+        "description": "Required by `faq-create` and `faq-update`. This object contains the FAQ fields to create or update. For `faq-create`, send a complete new FAQ payload. For `faq-update`, `faq_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "faq_id": {
+            "type": "integer",
+            "description": "Required for `faq-update`. Existing FAQ ID to update. Do not invent it. Read or obtain the real FAQ ID first, then copy that exact integer here."
+          },
+          "faqgroup_id": {
+            "type": "integer",
+            "description": "FAQ group ID. For `faq-create`, this field is required. For `faq-update`, omit it if the FAQ should stay in its current group. If provided, it must be a positive `faqgroup_id` selected from `faqgroup-read` under the same language."
+          },
+          "cover_image": {
+            "type": "object",
+            "description": "Optional. FAQ cover image payload, up to 500 kB. Omit it in `faq-update` if the cover image should stay unchanged.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Image file label used only to identify this image inside the payload."
+              },
+              "base64": {
+                "type": "string",
+                "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`."
+              }
+            }
+          },
+          "question": {
+            "type": "string",
+            "description": "FAQ question shown to users, up to 100 characters. For `faq-create`, this is required. For `faq-update`, omit it if the question should stay unchanged."
+          },
+          "tags": {
+            "type": "array",
+            "description": "FAQ keyword tags. For `faq-create`, provide 1 to 6 unique tags. Each tag must contain 3 to 50 characters. For `faq-update`, omit this field if tags should stay unchanged.",
+            "items": {
+              "type": "string",
+              "description": "One FAQ keyword tag."
+            }
+          },
+          "summary": {
+            "type": "string",
+            "description": "FAQ summary as plain text, up to 500 characters. For `faq-create`, this is required. For `faq-update`, omit it if the summary should stay unchanged."
+          },
+          "answer": {
+            "type": "string",
+            "description": "HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `faq.answer`. Do not invent, shorten, translate, or rename the `scene` value. For `faq-create`, this is required. For `faq-update`, omit it if the answer should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional SEO fields for the FAQ detail page. For `faq-update`, omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "faq_id": {
+        "type": "integer",
+        "description": "Optional. Exact FAQ filter used by `faq-read`. Use this when the user wants one specific FAQ record or FAQ detail. If provided, it must be one positive integer (`> 0`). `faq_id` and `faqgroup_id` are mutually exclusive for `faq-read`: omit both to read all FAQs, or provide exactly one of them."
+      },
+      "faqgroup": {
+        "type": "object",
+        "description": "Required by `faqgroup-create` and `faqgroup-update`. This object contains the FAQ group fields to create or update. For `faqgroup-create`, send a complete new FAQ group payload. For `faqgroup-update`, `faqgroup_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "faqgroup_id": {
+            "type": "integer",
+            "description": "Required for `faqgroup-update`. Existing FAQ group ID to update. Do not invent it. Read or obtain the real FAQ group ID first, then copy that exact integer here."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "FAQ group name, up to 100 characters. For `faqgroup-create`, this is required. For `faqgroup-update`, omit it if the group name should stay unchanged."
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Short plain-text description, up to 300 characters. Omit it in `faqgroup-update` if the brief description should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional SEO fields for the FAQ group page. For `faqgroup-update`, omit the whole object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "faqgroup_id": {
+        "type": "integer",
+        "description": "Optional. FAQ group filter used by `faq-read` and `faqgroup-read`. For `faq-read`, use this when the user wants FAQs under one FAQ group. Omit this field to read FAQs from all groups. For `faqgroup-read`, this field means one exact FAQ group ID and should be used when the user wants one specific FAQ group record; omit it to read all FAQ groups. `faq_id` and `faqgroup_id` are mutually exclusive for `faq-read`: omit both to read all FAQs, or provide exactly one of them."
+      },
+      "custompage": {
+        "type": "object",
+        "description": "Required by `custompage-create` and `custompage-update`. This object contains the custom page fields to create or update. For `custompage-create`, send a complete new custom page payload. For `custompage-update`, `custompage_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "custompage_id": {
+            "type": "integer",
+            "description": "Required for `custompage-update`. Existing custom page ID to update. Do not invent it. Read or obtain the real custom page ID first, then copy that exact integer here."
+          },
+          "title": {
+            "type": "string",
+            "description": "Custom page title, up to 100 characters. For `custompage-create`, this field is required. For `custompage-update`, omit it if the title should stay unchanged."
+          },
+          "content": {
+            "type": "string",
+            "description": "HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `custompage.content`. Do not invent, shorten, translate, or rename the `scene` value. The generated fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Do not hardcode assumptions here about individual rule details, because the rule API may add new constraints later without requiring `tradebee` changes. For `custompage-create`, this is required. For `custompage-update`, omit it if the detailed content should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional SEO fields for the custom page detail page. For `custompage-update`, omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "content": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "custompage_id": {
+        "type": "integer",
+        "description": "Optional. Exact custom page filter used by `custompage-read`. Use this when the user wants one specific custom page, one exact custom page record, or custom page detail. If provided, it must be one positive integer (`> 0`). Omit this field to read all custom pages."
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required by `blog-create`, `blog-update`, `blog-delete`, `bloggroup-create`, `bloggroup-update`, `bloggroup-delete`, `custompage-create`, `custompage-update`, `custompage-delete`, `faq-create`, `faq-update`, `faq-delete`, `faqgroup-create`, `faqgroup-update`, `faqgroup-delete`, `productsgroup-create`, `productsgroup-update`, `productsgroup-delete`, `products-create`, `products-update`, and `products-delete`. This object proves the user explicitly approved the exact destructive or high-impact change after seeing the real payload or ID list. For all `*-update` actions, that approval must also cover the automatic local backup file write of the current record and requested update payload before execution. Never set it automatically before showing the user the final action details.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the action. If the user has not clearly approved the exact payload or ID list, do not send this action."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required human-readable confirmation note that restates the action, language, and the exact payload or product IDs shown to the user before execution. This must match what the user approved."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list for read actions that support partial field retrieval.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "id_list": {
+        "type": "array",
+        "description": "Required by `blog-delete`, `bloggroup-delete`, `custompage-delete`, `faq-delete`, `faqgroup-delete`, `productsgroup-delete`, and `products-delete`. ID list, up to 100 items. For `blog-delete`, these are blog IDs. For `bloggroup-delete`, these are blog group IDs. For `custompage-delete`, these are custom page IDs. For `faq-delete`, these are FAQ IDs. For `faqgroup-delete`, these are FAQ group IDs. For `productsgroup-delete`, these are product group IDs. For `products-delete`, these are product IDs.",
+        "items": {
+          "type": "integer",
+          "description": "Target ID"
+        }
+      },
+      "ip": {
+        "type": "string",
+        "description": "Optional. Exact visitor IP filter used by `visitor-recent`. Use this when the user gives one IP and wants that visitor's access data. Omit this field to read recent visitors for all IPs. If provided, it must be one exact IPv4 or IPv6 address."
+      },
+      "keywords": {
+        "type": "string",
+        "description": "Optional. Exact keyword filter used by `keywords-rank`. Use this when the user wants one specific keyword's ranking data. Omit this field to read all keyword ranking records. If provided, it must be one exact non-empty keyword string. `keywords` and `rank` are mutually exclusive for `keywords-rank`: omit both to read all records, or provide exactly one of them."
+      },
+      "language": {
+        "type": "string",
+        "description": "Required for most content operations and for `rule-get`. This is the exact site language code to operate on, such as `en` or `fr`. Do not guess, translate, or invent this value. First call `languages-get`, show the returned language list to the user, and copy one exact `language` value from that list after the user confirms it. When generating any HTML fragment such as `blog.description`, `faq.answer`, `products.description`, `productsgroup.section.top`, `productsgroup.section.bottom`, or `custompage.content`, call `rule-get` first with the exact same selected `language` and the exact matching `scene` value. Do not normalize or replace the selected `language` value when calling `rule-get`."
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Optional. Used by `blog-read`, `bloggroup-read`, `custompage-read`, `products-read`, `inquiry-read`, `visitor-recent`, and `keywords-rank`.",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10."
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      },
+      "parent_productsgroup_id": {
+        "type": "integer",
+        "description": "Optional. Parent product group filter used by `productsgroup-read`. Use this when the user wants child groups under one parent group. Omit this field or set `0` to read top-level groups. If provided, it must be a non-negative product group ID. `parent_productsgroup_id` and `productsgroup_id` are mutually exclusive for `productsgroup-read`: omit both to read top-level groups, or provide exactly one of them."
+      },
+      "products": {
+        "type": "object",
+        "description": "Required by `products-create` and `products-update`. This object contains the product fields to create or update. For `products-create`, send a complete new product payload. For `products-update`, `products_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "products_id": {
+            "type": "integer",
+            "description": "Required for `products-update`. This is the existing product ID to edit. Do not invent it. Read or obtain the real product ID first, then copy that exact integer here."
+          },
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Product group ID. For `products-create`, this field is required and must be a positive leaf group ID selected from `productsgroup-read` where `is_leaf === true`. For `products-update`, omit this field if the product should stay in its current group. Only send this field when the user explicitly wants to move the product to another group. Parent groups and `0` are never allowed."
+          },
+          "product_name": {
+            "type": "string",
+            "description": "Product name, up to 300 characters. For `products-create`, treat this as required product content. For `products-update`, omit it if the name should stay unchanged."
+          },
+          "model": {
+            "type": "string",
+            "description": "Product model, up to 50 characters. For `products-update`, omit it if the model should stay unchanged."
+          },
+          "upload_images": {
+            "type": "array",
+            "description": "Image upload list, up to 5 images. The first image becomes the main image. For `products-create`, provide at least 1 image. For `products-update`, omit this field if images should stay unchanged.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Image file label used only to identify this image inside the payload."
+                },
+                "base64": {
+                  "type": "string",
+                  "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`. Each image must be 500 kB or smaller."
+                }
+              },
+              "required": [
+                "name",
+                "base64"
+              ]
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "description": "Optional. Product attribute list, up to 15 items. Each item is a visible attribute pair like material, size, or color. For `products-update`, omit this field if attributes should stay unchanged.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Attribute name, up to 100 characters."
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Attribute value, up to 100 characters."
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            }
+          },
+          "tags": {
+            "type": "array",
+            "description": "Search keywords, up to 6 unique items. Each tag must contain 3 to 50 characters. For `products-create`, provide at least 1 tag. For `products-update`, omit this field if tags should stay unchanged.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Short summary shown as plain text, up to 127 characters. For `products-update`, omit it if the brief description should stay unchanged."
+          },
+          "description": {
+            "type": "string",
+            "description": "HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `products.description`. Do not invent, shorten, translate, or rename the `scene` value. The generated fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Do not hardcode assumptions here about individual rule details, because the rule API may add new constraints later without requiring `tradebee` changes. For `products-update`, omit this field if the detailed description should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO fields for search engines. For `products-update`, omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as a single comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "products_id": {
+        "type": "integer",
+        "description": "Optional. Exact product filter used by `products-read`. Use this when the user wants one specific product, product detail, or one exact product record. If provided, it must be one positive integer (`> 0`). `products_id` and `productsgroup_id` are mutually exclusive for `products-read`: omit both to read all products, or provide exactly one of them."
+      },
+      "productsgroup": {
+        "type": "object",
+        "description": "Required by `productsgroup-create` and `productsgroup-update`. This object contains the product group fields to create or update. For `productsgroup-create`, send a new product group payload. For `productsgroup-update`, `productsgroup_id` is required and every other field is optional: omit any field you do not want to change.",
+        "properties": {
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Required for `productsgroup-update`. Existing product group ID to update. Do not invent it. Read or obtain the real product group ID first, then copy that exact integer here."
+          },
+          "parent_productsgroup_id": {
+            "type": "integer",
+            "description": "Optional for `productsgroup-create`. Omit this field or set `0` to create a top-level group. If creating a child group, use one exact `productsgroup_id` selected from `productsgroup-read` under the same language."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Required for `productsgroup-create`. Product group name, up to 200 characters."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Required for `productsgroup-create`. Provide 1 to 6 unique keyword tags. Each tag must contain 3 to 50 characters.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional for `productsgroup-create`. Short plain-text description, up to 4,000 characters."
+          },
+          "section": {
+            "type": "object",
+            "description": "Optional. Product group page custom decoration HTML fragments. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed in each fragment. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit for each fragment is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating these fragments, call `rule-get` with the exact selected `language` and the exact scene value `productsgroup.section.top` or `productsgroup.section.bottom` to match the fragment being generated. Do not invent, shorten, translate, or rename the `scene` value. Each fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Do not hardcode assumptions here about individual rule details, because the rule API may add new constraints later without requiring `tradebee` changes. For `productsgroup-update`, omit the whole object, or omit `top` / `bottom`, or pass an empty string, to keep the current fragment unchanged.",
+            "properties": {
+              "top": {
+                "type": "string",
+                "description": "Optional. Product group page header decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with exact `language` and exact `scene=productsgroup.section.top`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              },
+              "bottom": {
+                "type": "string",
+                "description": "Optional. Product group page footer decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with exact `language` and exact `scene=productsgroup.section.bottom`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              }
+            }
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional for `productsgroup-update`. Product group page SEO fields. Omit the whole object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        }
+      },
+      "productsgroup_id": {
+        "type": "integer",
+        "description": "Optional. Product group filter used by `products-read` and `productsgroup-read`. For `products-read`, use this when the user wants products under one group or category. Omit this field to avoid product-group filtering. If provided for product selection, it should be a positive integer (`> 0`) selected from `productsgroup-read` where `is_leaf === true`. For `productsgroup-read`, this field means one exact product group ID and should be used when the user wants one specific product category record. `products_id` and `productsgroup_id` are mutually exclusive for `products-read`: omit both to read all products, or provide exactly one of them. `parent_productsgroup_id` and `productsgroup_id` are mutually exclusive for `productsgroup-read`: omit both to read top-level groups, or provide exactly one of them."
+      },
+      "rank": {
+        "type": "integer",
+        "description": "Optional. Top-N rank filter used by `keywords-rank`. Use this when the user asks for keywords within the top N positions, such as top 10, top 50, or top 100. Omit this field to read all keyword ranking records. If provided, it must be one integer from 1 to 999. For example, `rank=100` means return keywords ranked within the top 100 positions, not only keywords whose rank equals 100. `keywords` and `rank` are mutually exclusive for `keywords-rank`: omit both to read all records, or provide exactly one of them."
+      },
+      "recent_days": {
+        "type": "integer",
+        "description": "Optional. Used by `inquiry-read`. Range 0-36500. `0` means no time limit."
+      },
+      "scene": {
+        "type": "string",
+        "enum": [
+          "blog.description",
+          "faq.answer",
+          "products.description",
+          "productsgroup.section.top",
+          "productsgroup.section.bottom",
+          "custompage.content"
+        ],
+        "description": "Required by `rule-get`. Exact HTML rule scene. Use only one fixed supported value and do not invent, shorten, translate, or rename it."
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "array",
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "description": "Returned result from the selected action."
+      },
+      "backup": {
+        "type": "object",
+        "description": "Returned by `blog-update`, `bloggroup-update`, `custompage-update`, `productsgroup-update`, and `products-update` when the automatic pre-update backup succeeds. It includes backup file storage metadata, the raw read API response, the extracted pre-change snapshot, and a best-effort `restore_payload` that can be passed back into the same `*-update` action to revert the change. The local backup JSON file also persists `confirmation_summary`, `requested_update_payload`, and `restore_limitations` alongside those returned structures, and may therefore contain sensitive business or personal data from the record being changed. If the backup snapshot cannot be captured or the backup file cannot be written, the update action must fail instead of modifying data."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

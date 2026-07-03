@@ -88,10 +88,10 @@
 
 ```bash
 # Query task status and summary information
-python scripts/vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+python3 scripts/vod_describe_task.py --task-id 1490013579-procedurev2-acd135
 
 # Specify sub-application ID
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --sub-app-id 1500046806
 ```
@@ -114,12 +114,12 @@ Media Processing Sub-tasks: 1
 
 ```bash
 # Wait for task completion (default: up to 600 seconds, polling every 5 seconds)
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
 
 
 # Custom timeout and polling interval
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
  \
     --max-wait 300 \
@@ -130,17 +130,17 @@ python scripts/vod_describe_task.py \
 
 ```bash
 # Verbose mode: display output URLs, review suggestions, and other result information
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --verbose
 
 # JSON format output of full API response (useful for script parsing)
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --json
 
 # Wait for completion and output as JSON
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
  --json
 ```
@@ -149,22 +149,22 @@ python scripts/vod_describe_task.py \
 
 ```bash
 # Case 1: Submit transcoding then query separately (suitable for long-running tasks)
-TASK_ID=$(python scripts/vod_process_media.py transcode \
+TASK_ID=$(python3 scripts/vod_process_media.py transcode \
     --file-id 5145403721233902989 \
     --quality hd \
     --json | python3 -c "import sys,json; print(json.load(sys.stdin)['TaskId'])")
 
 echo "Task submitted: $TASK_ID"
 # Query later
-python scripts/vod_describe_task.py --task-id "$TASK_ID" --verbose
+python3 scripts/vod_describe_task.py --task-id "$TASK_ID" --verbose
 
 # Case 2: Query pull upload task result
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-pullupload-acd135 \
     --verbose
 
 # Case 3: Query AIGC image generation task result
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-aigcimagetask-acd135 \
     --verbose --json
 ```

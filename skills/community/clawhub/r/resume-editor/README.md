@@ -17,9 +17,9 @@ AI-powered resume builder that runs locally. Import from PDF, edit interactively
 
 ## Prerequisites
 
-- **Python 3.7+** is required for resume generation scripts
-- **Optional**: `pip install pymupdf` for PDF import
-- **Optional**: `pip install playwright && playwright install chromium` (recommended) OR `pip install pdfkit && brew install wkhtmltopdf` for PDF export
+- **Python 3.9+** is required for the pinned script dependencies below
+- **Optional**: `pip install pymupdf==1.26.5` for PDF import
+- **Optional**: `pip install playwright==1.60.0 && playwright install chromium` for PDF export
 
 ## Installation
 
@@ -105,6 +105,12 @@ After installing, just talk to your AI agent naturally:
 - "Translate my resume to Chinese"
 
 The skill auto-detects when you're working on resumes and guides the process.
+
+Privacy/security notes:
+- Imported resumes may contain sensitive personal data; only process documents you are authorized to handle.
+- `personal.linkedin` and `personal.github` must use `https://`.
+- `personal.photo` supports relative paths, absolute local files, `file://`, `https://`, or `data:` URIs. `http://` is rejected.
+- PDF export intentionally blocks external network requests during Playwright rendering, so remote assets must be reachable via `https://` and may still be skipped in PDF if they require network access.
 
 ## Quick Start (CLI)
 

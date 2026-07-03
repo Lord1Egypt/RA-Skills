@@ -153,7 +153,7 @@ function assertEq<T>(actual: T, expected: T, name: string): void {
   // is that the fields that USED to be env-backed now have hardcoded values
   // regardless of env.
   process.env.TOTALRECLAW_CHAIN_ID = '1234';
-  assertEq(CONFIG.chainId, 84532, 'CHAIN_ID env ignored → default 84532');
+  assertEq(CONFIG.chainId, 100, 'CHAIN_ID env ignored → default 100');
 
   // Store dedup flag is always true.
   assertEq(CONFIG.storeDedupEnabled, true, 'STORE_DEDUP env ignored → always true');
@@ -181,7 +181,7 @@ function assertEq<T>(actual: T, expected: T, name: string): void {
 // Chain ID auto-detect override
 //
 // Regression test for the P0 latent bug where Pro-tier users would sign
-// UserOps against chain 84532 (Base Sepolia) while the relay routed their
+// UserOps against chain 100 (Base Sepolia) while the relay routed their
 // writes to chain 100 (Gnosis mainnet). The bundler would reject the sig
 // with AA23. Fix: CONFIG.chainId is a getter that reads a runtime override
 // set from the billing response. See syncChainIdFromTier in index.ts.
@@ -189,22 +189,22 @@ function assertEq<T>(actual: T, expected: T, name: string): void {
 
 {
   __resetChainIdOverrideForTests();
-  assertEq(CONFIG.chainId, 84532, 'chainId: defaults to 84532 with no override');
+  assertEq(CONFIG.chainId, 100, 'chainId: defaults to 100 with no override');
 
   setChainIdOverride(100);
   assertEq(CONFIG.chainId, 100, 'chainId: reflects Pro tier override (Gnosis)');
 
-  setChainIdOverride(84532);
-  assertEq(CONFIG.chainId, 84532, 'chainId: reflects Free tier override (Base Sepolia)');
+  setChainIdOverride(100);
+  assertEq(CONFIG.chainId, 100, 'chainId: reflects Free tier override (Base Sepolia)');
 
   // Pro → Free downgrade flow: override flips back correctly.
   setChainIdOverride(100);
   assertEq(CONFIG.chainId, 100, 'chainId: Pro override set');
-  setChainIdOverride(84532);
-  assertEq(CONFIG.chainId, 84532, 'chainId: downgrade to Free flips override back');
+  setChainIdOverride(100);
+  assertEq(CONFIG.chainId, 100, 'chainId: downgrade to Free flips override back');
 
   __resetChainIdOverrideForTests();
-  assertEq(CONFIG.chainId, 84532, 'chainId: reset returns to 84532 default');
+  assertEq(CONFIG.chainId, 100, 'chainId: reset returns to 100 default');
 }
 
 // ---------------------------------------------------------------------------

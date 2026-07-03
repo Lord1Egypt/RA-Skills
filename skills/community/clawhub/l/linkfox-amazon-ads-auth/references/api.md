@@ -2,13 +2,13 @@
 
 Amazon Ads 授权、已授权账号列表、profile 管理、令牌读取与刷新。
 
-下游实体查询见 `linkfox-amazon-ads-entity`；SP 报告见 `linkfox-amazon-ads-report`。
+下游实体查询见 `linkfox-amazon-ads-manager`；SP 报告见 `linkfox-amazon-ads-report`。
 
 ## 通用约定
 
-- **Base URL**：`https://tool-gateway.linkfox.com`
+- **Base URL**：`${LINKFOX_TOOL_GATEWAY}`
 - **Method**：POST，`Content-Type: application/json`
-- **Auth**：Header `Authorization: <api_key>`（读环境变量 `LINKFOXAGENT_API_KEY`；未配置时引导用户到 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **Auth**：Header `Authorization: <api_key>`（读环境变量 `LINKFOX_AGENT_API_KEY`（优先）或 `LINKFOXAGENT_API_KEY`；未配置时引导用户到 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
 
 ## 关键 ID 关系
 

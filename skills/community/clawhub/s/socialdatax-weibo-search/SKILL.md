@@ -38,6 +38,7 @@ Optional arguments:
 
 - `--pretty`: output formatting only.
 - `--max-items <n>`: stop after collecting N search results.
+- `--since-days <1-365>`: keep only results whose public `publish_time` is within the last N days. Search remains bounded by `--pages` and does not promise complete platform coverage.
 - Weibo `--page-token <next_page_token>`: opaque pagination token; omit it on the first search request. Continue only with the complete returned `next_page_token` from the same search pagination chain. Do not modify, truncate, redact, mask, omit, normalize, rebuild, generate, or replace the middle with ellipses.
 - Weibo `--pages <n>`: fetch and merge N search pages from the current starting point; continue with returned `next_page_token`.
 
@@ -46,7 +47,7 @@ The command prints JSON with `platform`, `tool`, `arguments`, and `data`. Search
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 

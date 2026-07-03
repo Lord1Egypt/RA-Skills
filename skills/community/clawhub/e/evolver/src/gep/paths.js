@@ -124,6 +124,26 @@ function getRepoRoot() {
     return _cachedRepoRoot;
   }
 
+  // Final fallback.
+  //
+  // Opt-out (EVOLVER_NO_PARENT_GIT=true / EVOLVER_USE_PARENT_GIT=false) means
+  // "isolated install, treat my own dir as the root" -> ownDir.
+  //
+  // Otherwise: for a dev clone, ownDir IS the package root and is correct. But
+  // for an npm install, ownDir is `<prefix>/node_modules/@evomap/evolver`,
+  // the install dir, NOT the user's project. Falling back to it makes the
+  // daemon FATAL with "Not a git repository (...\node_modules\@evomap\evolver)"
+  // and tell the user to `git init` inside the global install dir, the wrong
+  // place (#580 Bug 2). When ownDir is inside a node_modules, prefer
+  // process.cwd(): it is where the user is standing and where they should
+  // actually `git init`, so the FATAL message points at the right directory.
+  // This still satisfies #541's invariant (the cwd/ownDir walks above already
+  // returned nothing, so we are not escaping to any host .git).
+  if (!noParent && !legacyOptOut && _nodeModulesBoundary(ownDir) !== null) {
+    _cachedRepoRoot = process.cwd();
+    return _cachedRepoRoot;
+  }
+
   _cachedRepoRoot = ownDir;
   return _cachedRepoRoot;
 }

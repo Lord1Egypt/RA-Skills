@@ -24,7 +24,7 @@ Note:
 - `AACPCore` — main job contract
 - `TermixUSDC` — USDC token address
 - `StrategyVaultFactory` — needed for `CEX_CAPITAL` only
-- `chain.rpcUrl` — BSC Testnet RPC
+- `chain.rpcUrl` — BSC Mainnet RPC
 
 **Success criteria:** Addresses retrieved from live config. Never hardcode them.
 
@@ -80,7 +80,7 @@ import {
   parseAbiParameters,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 // ── Config — fill these in ────────────────────────────────────────────────────
 const ACP_CORE  = "<AACPCore>"   as `0x${string}`;  // from Step 1 (key: "AACPCore")
@@ -116,8 +116,8 @@ const rubricHash: `0x${string}` = strategyType === STRATEGY_MAP["CEX_CAPITAL"]
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
 
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const ERC20_ABI = [{
   name: "approve", type: "function",
@@ -215,7 +215,7 @@ import {
   http,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 // ── Config — fill these in ────────────────────────────────────────────────────
 const VAULT_FACTORY  = "<StrategyVaultFactory>" as `0x${string}`;  // from Step 1
@@ -232,8 +232,8 @@ const DEADLINE          = BigInt(Math.floor(Date.now() / 1000) + <deadlineHours>
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
 
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const VAULT_FACTORY_ABI = [{
   name: "deployVault", type: "function",
@@ -390,6 +390,8 @@ Fields:
 
 > **X-Wallet-Address format:** Pass the address exactly as returned by viem (`account.address`) — that is EIP-55 checksummed (mixed-case). Do not lowercase it manually.
 >
+> **If this step returns 404:** The backend proxies the TEE's response directly. A 404 means the TEE enclave did not recognise the job — usually a transient TEE service issue. Wait 10–30 s and retry. It does **not** mean the endpoint path is wrong (the path `POST /api/v1/tee/jobs` is correct). If you receive a 404 from the backend itself (before reaching the TEE), the most likely cause is that the job is not yet in the backend database — wait for the indexer to pick up the `VaultDeployed` event and retry.
+>
 > **Step 5 ↔ Step 6 dependency:** Steps 5 and 6 are **independent**. Metadata (Step 6) can be saved even if TEE init fails — the job is already on-chain and funded. TEE init failure does NOT block metadata saving.
 
 ### 6. Save job metadata (title & description)
@@ -457,7 +459,7 @@ import {
   parseAbiParameters,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 // ── Config — fill these in ────────────────────────────────────────────────────
 const ACP_CORE       = "<AACPCore>"            as `0x${string}`;  // key: "AACPCore"
@@ -480,8 +482,8 @@ const cexRubricHash = encodeAbiParameters(parseAbiParameters("uint256"), [budget
 
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const ERC20_ABI = [{
   name: "approve", type: "function",

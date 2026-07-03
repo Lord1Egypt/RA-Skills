@@ -1,3 +1,19 @@
+---
+name: trendradar
+description: "TrendRadar scans 小红书, 微博, Reddit, Google Trends, and Product Hunt to spot trending products before they peak — assigning a trend direction (surging/rising/stable/cooling) and a buy/wait/skip signal. Upstream discovery source for BuyWise + CouponClaw."
+keywords: trending products, trend detection, viral products, product discovery, hot products, trend radar, social listening, Google Trends, Product Hunt, Reddit trends, Xiaohongshu, Weibo, what's trending, dropshipping research, product research, buy or wait, trend signal, early trend, 爆款, 趋势, 热门产品, 种草, 选品, 小红书, 微博, トレンド, 트렌드, sản phẩm hot
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
+metadata:
+  openclaw:
+    runtime:
+      node: ">=18"
+---
+
 # TrendRadar
 
 > Scan social media and communities to detect trending products before they peak — then act on them with BuyWise and CouponClaw.

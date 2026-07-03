@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { mergeJsonFile, copyHookScripts, appendSectionToFile, removeHookScripts, removeMarkedSection, assertSafeConfigDir } = require('./hookAdapter');
+const { mergeJsonFile, copyHookScripts, appendSectionToFile, removeHookScripts, removeMarkedSection, assertSafeConfigDir, isEvolverHookCommand } = require('./hookAdapter');
 
 const HOOK_SCRIPTS_DIR_NAME = 'hooks';
 const EVOLVER_MARKER = '<!-- evolver-evolution-memory -->';
@@ -166,7 +166,7 @@ function uninstall({ configRoot }) {
             const before = data.hooks[event].length;
             data.hooks[event] = data.hooks[event].filter(h => {
               const cmd = (h && h.command) || '';
-              return !cmd.includes('evolver-session') && !cmd.includes('evolver-signal');
+              return !isEvolverHookCommand(cmd);
             });
             if (data.hooks[event].length !== before) touched = true;
             if (data.hooks[event].length === 0) delete data.hooks[event];

@@ -4,7 +4,7 @@ description: "全功能开发工具箱：Git/脚手架/CI-CD/测试/规范管理
 metadata:
   openclaw:
     emoji: "🔧"
-    version: "2.0.0"
+    version: "2.2.1"
     author: "墨鱼精@g1776933879"
     tags: ["dev", "git", "scaffold", "ci-cd", "testing", "code-review"]
 ---
@@ -12,6 +12,7 @@ metadata:
 # 🔧 Dev Toolkit Pro — 全功能开发工具箱
 
 > **slug**: `dev-toolkit-pro` | **安装**: `clawhub install @g1776933879/dev-toolkit-pro`
+> **一键部署**: `bash install.sh` （自动安装 prettier + flake8 + black）
 
 ## 模块总览
 
@@ -322,3 +323,5 @@ bin/dev-tk scaffold my-app node
 - diff/refactor/dep 的文档输出放在 `docs/` 下
 - spec 的配置文件放在 `.ads/` 下
 - 标记为子命令的参数要准确解析
+
+```

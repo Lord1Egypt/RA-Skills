@@ -1,4 +1,4 @@
-﻿---
+---
 name: transformer-core
 description: 基于 Attention Is All You Need 论文，理解 AI 自身的底层架构
 metadata:
@@ -423,4 +423,3 @@ interface CognitiveAgentWithArchitecture extends CognitiveAgent {
 *Created by 小钳 🦞*
 *基于 Attention Is All You Need 论文*
 *2026-03-19*
-

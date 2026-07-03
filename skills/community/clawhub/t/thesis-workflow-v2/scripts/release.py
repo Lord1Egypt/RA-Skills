@@ -77,19 +77,46 @@ def get_clawhub_latest_version(slug: str) -> Optional[str]:
         return None
 
 
-def get_max_beta_tag(base_version: str) -> int:
-    """获取当前 base_version 下最大的 beta.N 编号。"""
+def get_next_beta_num(base_version: str) -> int:
+    """获取下一个 beta.N 编号（合并 git tag + .release-meta.json）。"""
+    max_n = 0
+
+    # 1. 从 git tag 收集
     result = run(
         ["git", "tag", "-l", f"v{base_version}-beta.*"],
         capture=True,
     )
-    tags = result.stdout.strip().split("\n")
-    max_n = 0
-    for tag in tags:
+    for tag in result.stdout.strip().split("\n"):
         m = re.search(rf"v{re.escape(base_version)}-beta\.(\d+)", tag)
         if m:
             max_n = max(max_n, int(m.group(1)))
+
+    # 2. 从 .release-meta.json 收集（覆盖手动 clawhub publish 的版本）
+    META_PATH = REPO_ROOT / ".release-meta.json"
+    if META_PATH.exists():
+        try:
+            data = json.loads(META_PATH.read_text())
+            last_published = data.get("last_published_version", "")
+            m = re.match(rf"{re.escape(base_version)}-beta\.(\d+)", last_published)
+            if m:
+                max_n = max(max_n, int(m.group(1)))
+        except Exception:
+            pass
+
     return max_n
+
+
+def record_published_version(version: str):
+    """记录已发布的版本号到 .release-meta.json。"""
+    META_PATH = REPO_ROOT / ".release-meta.json"
+    data = {}
+    if META_PATH.exists():
+        try:
+            data = json.loads(META_PATH.read_text())
+        except Exception:
+            pass
+    data["last_published_version"] = version
+    META_PATH.write_text(json.dumps(data, indent=2))
 
 
 def get_current_git_tags() -> List[str]:
@@ -164,7 +191,7 @@ def release(release_mode: bool):
         full_git_tag = f"v{version}"
         full_clawhub_version = version
     else:
-        max_beta = get_max_beta_tag(version)
+        max_beta = get_next_beta_num(version)
         next_beta_n = max_beta + 1
         tag_suffix = f"-beta.{next_beta_n}"
         full_git_tag = f"v{version}{tag_suffix}"
@@ -235,7 +262,10 @@ def release(release_mode: bool):
     run(["git", "push", "origin", "v2"])
     run(["git", "push", "--tags"])
 
-    # Step 8: 验证
+    # Step 8: 记录发布的版本号
+    record_published_version(full_clawhub_version)
+
+    # Step 9: 验证
     print(f"\n✅ 发布完成，版本状态:")
     print(f"  SKILL.md:  {version}")
     print(f"  Git tag:   {full_git_tag}")

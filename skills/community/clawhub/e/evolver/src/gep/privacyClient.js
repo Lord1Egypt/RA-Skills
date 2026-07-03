@@ -4,15 +4,27 @@
 // status polling, and result retrieval.
 // ---------------------------------------------------------------------------
 
-const { getNodeId, buildHubHeaders } = require('./a2aProtocol');
+const { getNodeId, buildHubHeaders, buildNodeScopedHubHeaders } = require('./a2aProtocol');
 const { generateKey, encrypt, decrypt, pack, unpack } = require('./crypto');
 const { resolveHubUrl } = require('../config');
 const { hubFetch } = require('./hubFetch');
 
 const PRIVACY_TIMEOUT_MS = 15000;
 
+function buildPrivacyNodeHeaders() {
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
+  return buildHeaders();
+}
+
 function privacyUrl(path) {
   return `${resolveHubUrl().replace(/\/+$/, '')}/a2a/privacy${path}`;
+}
+
+function privacyNodeUrl(path) {
+  const nodeId = getNodeId();
+  if (!nodeId) return null;
+  const sep = path.includes('?') ? '&' : '?';
+  return privacyUrl(path) + sep + 'node_id=' + encodeURIComponent(nodeId);
 }
 
 /**
@@ -27,7 +39,7 @@ async function submitPrivacyTask(opts) {
   try {
     const res = await hubFetch(privacyUrl('/submit'), {
       method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, buildHubHeaders() || {}),
+      headers: Object.assign({ 'Content-Type': 'application/json' }, buildPrivacyNodeHeaders() || {}),
       body: JSON.stringify({ ...opts, node_id: nodeId }),
       signal: AbortSignal.timeout(PRIVACY_TIMEOUT_MS),
     });
@@ -65,7 +77,7 @@ async function uploadEncryptedBlob(plaintext, opts) {
 
     const res = await hubFetch(privacyUrl('/blob/upload'), {
       method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, buildHubHeaders() || {}),
+      headers: Object.assign({ 'Content-Type': 'application/json' }, buildPrivacyNodeHeaders() || {}),
       body,
       signal: AbortSignal.timeout(PRIVACY_TIMEOUT_MS),
     });
@@ -95,7 +107,7 @@ async function executeSealedTool(opts) {
   try {
     const res = await hubFetch(privacyUrl('/tool/execute'), {
       method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, buildHubHeaders() || {}),
+      headers: Object.assign({ 'Content-Type': 'application/json' }, buildPrivacyNodeHeaders() || {}),
       body: JSON.stringify({
         toolId: opts.toolId,
         blobId: opts.blobId,
@@ -122,8 +134,10 @@ async function executeSealedTool(opts) {
 async function getPrivacyStatus(taskId) {
   if (!taskId) return null;
   try {
-    const res = await hubFetch(privacyUrl(`/status/${encodeURIComponent(taskId)}`), {
-      headers: buildHubHeaders(),
+    const url = privacyNodeUrl(`/status/${encodeURIComponent(taskId)}`);
+    if (!url) return null;
+    const res = await hubFetch(url, {
+      headers: buildPrivacyNodeHeaders(),
       signal: AbortSignal.timeout(PRIVACY_TIMEOUT_MS),
     });
     if (!res.ok) return null;
@@ -142,8 +156,10 @@ async function getPrivacyStatus(taskId) {
 async function getPrivacyResult(taskId, key) {
   if (!taskId || !key) return null;
   try {
-    const res = await hubFetch(privacyUrl(`/result/${encodeURIComponent(taskId)}`), {
-      headers: buildHubHeaders(),
+    const url = privacyNodeUrl(`/result/${encodeURIComponent(taskId)}`);
+    if (!url) return null;
+    const res = await hubFetch(url, {
+      headers: buildPrivacyNodeHeaders(),
       signal: AbortSignal.timeout(PRIVACY_TIMEOUT_MS),
     });
     if (!res.ok) return null;
@@ -166,8 +182,10 @@ async function getPrivacyResult(taskId, key) {
  */
 async function getToolTemplates() {
   try {
-    const res = await hubFetch(privacyUrl('/tool/templates'), {
-      headers: buildHubHeaders(),
+    const url = privacyNodeUrl('/tool/templates');
+    if (!url) return null;
+    const res = await hubFetch(url, {
+      headers: buildPrivacyNodeHeaders(),
       signal: AbortSignal.timeout(PRIVACY_TIMEOUT_MS),
     });
     if (!res.ok) return null;

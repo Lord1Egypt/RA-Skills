@@ -1,0 +1,45 @@
+{
+  "title": "HaluCatch",
+  "subtitle": "从用户调用到报告落盘的完整决策树",
+  "nodes": [
+    {"id": "entry",        "type": "entry",    "label": "用户调用 HaluCatch",                    "role": "ai"},
+    {"id": "check_path",   "type": "decision", "label": "路径存在?",                            "role": "decision"},
+    {"id": "exit_no_path", "type": "terminal", "label": "报错退出",                             "role": "terminal"},
+    {"id": "check_mode",   "type": "decision", "label": "模式?",                                "role": "decision"},
+    {"id": "l1_scan",      "type": "process",  "label": "L1 脚本扫描", "subtitle": "--validate", "role": "script"},
+    {"id": "l1_end",       "type": "terminal", "label": "结束",                                 "role": "terminal"},
+    {"id": "phase0",       "type": "process",  "label": "Phase 0: 技能分类", "subtitle": "含 .py / .xlsx / pd.read_ ?", "role": "ai"},
+    {"id": "type_data",    "type": "process",  "label": "数据驱动型",   "subtitle": "L2+L3 四维评估",   "role": "ai"},
+    {"id": "type_method",  "type": "process",  "label": "纯方法论型",   "subtitle": "L3 方法论评估",    "role": "ai"},
+    {"id": "evaluate",     "type": "process",  "label": "L2 脚本基线", "subtitle": "地基 · 代码 · 规则 · 护栏", "role": "script"},
+    {"id": "l3_ai",        "type": "process",  "label": "L3 AI 补充", "subtitle": "四维交叉验证", "role": "ai"},
+    {"id": "report",       "type": "output",   "label": "Phase 3: 三版报告生成", "subtitle": "专业版 / 通俗版 / AI 行动版 → 落盘", "role": "output"},
+    {"id": "check_fix",    "type": "decision", "label": "修复?",                                "role": "decision"},
+    {"id": "gen_fix",      "type": "process",  "label": "生成修复方案",                         "role": "script"},
+    {"id": "end_no_fix",   "type": "terminal", "label": "结束",                                 "role": "terminal"}
+  ],
+  "edges": [
+    {"from": "entry",      "to": "check_path",   "label": "",     "side": "bottom"},
+    {"from": "check_path", "to": "exit_no_path", "label": "否",   "side": "left"},
+    {"from": "check_path", "to": "check_mode",   "label": "是",   "side": "bottom"},
+    {"from": "check_mode", "to": "l1_scan",      "label": "val",  "side": "right"},
+    {"from": "l1_scan",    "to": "l1_end",       "label": "",     "side": "bottom"},
+    {"from": "check_mode", "to": "phase0",       "label": "非val","side": "bottom"},
+    {"from": "phase0",     "to": "type_data",    "label": "",     "side": "left"},
+    {"from": "phase0",     "to": "type_method",  "label": "",     "side": "right"},
+    {"from": "type_data",  "to": "evaluate",     "label": "",     "side": "bottom"},
+    {"from": "type_method","to": "l3_ai",        "label": "",     "side": "bottom"},
+    {"from": "evaluate",   "to": "l3_ai",        "label": "",     "side": "bottom"},
+    {"from": "l3_ai",      "to": "report",       "label": "",     "side": "bottom"},
+    {"from": "report",     "to": "check_fix",    "label": "",     "side": "bottom"},
+    {"from": "check_fix",  "to": "gen_fix",      "label": "修",   "side": "left"},
+    {"from": "check_fix",  "to": "end_no_fix",   "label": "不修", "side": "right"}
+  ],
+  "legend": [
+    {"label": "AI 执行",   "fill": "#E6F1FB", "stroke": "#185FA5"},
+    {"label": "输出/报告", "fill": "#EEEDFE", "stroke": "#534AB7"},
+    {"label": "决策点",    "fill": "#FAEEDA", "stroke": "#854F0B"},
+    {"label": "脚本",      "fill": "#E1F5EE", "stroke": "#0F6E56"},
+    {"label": "终止",      "fill": "#FCEBEB", "stroke": "#A32D2D"}
+  ]
+}

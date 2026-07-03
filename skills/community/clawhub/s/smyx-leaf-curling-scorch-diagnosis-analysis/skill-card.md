@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes plant leaf images or videos to identify curl direction, margin scorch patterns, affected leaf layers, likely causes, confidence, and directional care suggestions. <br>
+Using agricultural camera images, this skill detects leaf curl direction and leaf-margin scorch patterns, optionally considers soil-moisture data, and returns likely causes such as drought stress, disease, pesticide damage, or fertilizer burn with directional recommendations. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External growers, agronomy teams, and agriculture application developers use this skill to submit plant leaf media for curl and scorch diagnosis and to query previously generated cloud reports. <br>
+External users and agricultural developers use this skill to analyze plant leaf images or videos for curl direction, scorch distribution, affected leaf layer, likely stress or disease causes, and practical next-step guidance. It can also query cloud-hosted historical diagnosis reports for the same scenario. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Plant images or videos and report-history queries are sent to remote lifeemergence.com services. <br>
-Mitigation: Avoid sensitive farm, facility, worker, or location imagery unless the publisher explains retention, account creation, token storage, and deletion controls. <br>
-Risk: The skill can silently create or reuse identities and store local identity or token records in the workspace. <br>
-Mitigation: Review the identity and token storage behavior before installation, run in an isolated workspace, and remove local records when they are no longer needed. <br>
-Risk: Plant diagnosis may be incomplete or mistaken when visual symptoms overlap across drought, disease, pesticide damage, fertilizer burn, or cold stress. <br>
-Mitigation: Treat results as directional guidance, combine them with field inspection and sensor context, and seek professional plant-health advice for severe suspected disease. <br>
+Risk: Provided plant images, videos, or URLs are processed by a cloud service. <br>
+Mitigation: Use non-sensitive agricultural media, review the configured service endpoints before installation, and avoid sending private or regulated files. <br>
+Risk: The skill can silently create or reuse a service identity and store returned service tokens in the workspace data directory. <br>
+Mitigation: Install only in workspaces where local token storage is acceptable, restrict workspace access, and rotate or remove stored service credentials when no longer needed. <br>
+Risk: Diagnosis results are advisory and may confuse drought, disease, pesticide damage, fertilizer burn, or other similar symptoms. <br>
+Mitigation: Treat outputs as plant-stress screening guidance and confirm severe or high-impact findings with field inspection or professional crop-protection advice. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-leaf-curling-scorch-diagnosis-analysis) <br>
-- [Leaf curl and scorch API documentation](references/api_doc.md) <br>
+- [API interface documentation](references/api_doc.md) <br>
 - [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown or JSON diagnostic reports and history lists.] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown text with structured JSON analysis, report links, and optional file output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report export links returned by the remote service.] <br>
+**Other Properties Related to Output:** [The command-line interface accepts local image or video paths, public media URLs, a history-list mode, detail level, and an optional output file.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.4) <br>
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.4) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

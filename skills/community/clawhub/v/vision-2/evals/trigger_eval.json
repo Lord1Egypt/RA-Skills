@@ -1,0 +1,82 @@
+[
+  {
+    "query": "帮我看看这个截图里的报错是什么意思：/tmp/error-screenshot.png",
+    "should_trigger": true
+  },
+  {
+    "query": "我发了两张产品设计图，帮我对比一下哪个更好看",
+    "should_trigger": true
+  },
+  {
+    "query": "看看这张照片里的文字，我需要提取出来",
+    "should_trigger": true
+  },
+  {
+    "query": "分析一下这张数据可视化的图表，趋势怎么样",
+    "should_trigger": true
+  },
+  {
+    "query": "我上传了几张图片，帮我描述一下每张的内容",
+    "should_trigger": true
+  },
+  {
+    "query": "这个 logo 设计怎么样？有什么可以改进的地方",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我识别一下这张身份证上的信息",
+    "should_trigger": true
+  },
+  {
+    "query": "看看这个 UI 界面有什么问题",
+    "should_trigger": true
+  },
+  {
+    "query": "我拍了张菜单的照片，帮我翻译一下",
+    "should_trigger": true
+  },
+  {
+    "query": "这两张图片有什么区别？我找不同",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我写一个 Python 脚本处理图片",
+    "should_trigger": false
+  },
+  {
+    "query": "怎么用 PIL 库调整图片大小",
+    "should_trigger": false
+  },
+  {
+    "query": "介绍一下计算机视觉的发展历史",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我生成一张猫咪的图片",
+    "should_trigger": false
+  },
+  {
+    "query": "这个图片格式怎么转换成 PDF",
+    "should_trigger": false
+  },
+  {
+    "query": "解释一下 JPEG 和 PNG 的区别",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我设计一个图片处理的算法",
+    "should_trigger": false
+  },
+  {
+    "query": "这个 CSS 样式怎么让图片居中",
+    "should_trigger": false
+  },
+  {
+    "query": "怎么用 ffmpeg 从视频里截取图片",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我优化一下这个图片的加载速度",
+    "should_trigger": false
+  }
+]

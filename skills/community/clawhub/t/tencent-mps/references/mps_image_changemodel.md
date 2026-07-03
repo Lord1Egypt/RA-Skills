@@ -73,59 +73,59 @@
 
 ```bash
 # 最简用法：URL 原图 + URL 衣物图（默认沙漏型体型）
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg"
 
 # 指定体型为梨型
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --body-shape pear
 
 # 大码体型
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/coat.jpg" \
     --body-shape plus-size
 
 # 提高精度（适合细节要求高的场景）
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --precision-scale 1.5
 
 # 本地原图 + COS 衣物图
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --local-file /tmp/model.jpg \
     --garment-cos-key "/input/garment.jpg"
 
 # COS 原图 + COS 衣物图
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --cos-input-key "/input/model.jpg" \
     --garment-cos-key "/input/garment.jpg"
 
 # 衣物图使用非默认 Bucket
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-cos-key "/clothes/summer_dress.jpg" \
     --garment-cos-bucket mybucket-125xxx \
     --garment-cos-region ap-shanghai
 
 # 只提交任务，不等待结果
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --download-dir /tmp/results/
 
 # 手动查询换模特任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

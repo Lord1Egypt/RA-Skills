@@ -1,5 +1,5 @@
 name: business_license_ocr
-version: 1.0.4
+version: 1.0.5
 description: 精准识别中国大陆本营业执照。自动提取统一社会信用代码、企业名称、法定代表人、注册资本、成立日期、经营范围、住所等信息。
 author: SCNet
 license: MIT

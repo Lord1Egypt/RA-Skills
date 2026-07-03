@@ -1,7 +1,7 @@
 ---
 name: "pet-restricted-area-warning-analysis"
 description: "Monitors restricted area intrusions, climbing on dining tables, and rummaging through trash cans, and issues real-time alerts, suitable for home pet monitoring scenarios. | 宠物禁区预警技能，监测禁止区域闯入、攀爬餐桌、翻垃圾桶行为并实时报警，适用于家庭宠物监控场景"
-version: "1.0.4"
+version: "1.0.5"
 license: "MIT-0"
 ---
 

@@ -1,0 +1,162 @@
+{
+  "name": "productsgroup-read",
+  "description": "A product group list retrieval skill based on the Tradebee Website Builder Open API. It is used to obtain published product category/group data from the website. It supports filtering by language and parent product group, multi-level group hierarchy retrieval, and is suitable for product category display, navigation generation, data analysis, AI content generation, SEO optimization, intelligent retrieval, and similar scenarios.",
+  "version": "2.0.7",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. It must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "parent_productsgroup_id": {
+        "type": "integer",
+        "description": "Optional. Parent product group ID. Omit this field or set `0` to read top-level groups. If provided as a positive integer (`> 0`), the API returns the direct child groups under that parent group. `parent_productsgroup_id` and `productsgroup_id` are mutually exclusive: omit both to read top-level groups, or provide exactly one of them."
+      },
+      "productsgroup_id": {
+        "type": "integer",
+        "description": "Optional. Exact product group filter. Omit this field to avoid exact-group filtering. If provided, it must be one positive integer (`> 0`). `parent_productsgroup_id` and `productsgroup_id` are mutually exclusive: omit both to read top-level groups, or provide exactly one of them."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. If omitted, all supported product group fields are returned. When returning a list to the user, include `productsgroup_id` and `productsgroup_url` so one ID and one preview URL are available in the final answer. Do not tell the user they must preview it; provide the preview URL so the user can decide.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      }
+    },
+    "required": [
+      "language"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure",
+        "properties": {
+          "list": {
+            "type": "array",
+            "description": "Product group data list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productsgroup_id": {
+                  "type": "integer",
+                  "description": "Product group ID"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Site language code"
+                },
+                "group_name": {
+                  "type": "string",
+                  "description": "Group name"
+                },
+                "tags": {
+                  "type": "array",
+                  "description": "Keywords",
+                  "items": {
+                    "type": "string",
+                    "description": "Keyword"
+                  }
+                },
+                "seo": {
+                  "type": "object",
+                  "description": "Optimization data for the product group page, including title, description, and keywords",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Optimized title, <= 90 characters"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Optimized description, <= 200 characters"
+                    },
+                    "keywords": {
+                      "type": "string",
+                      "description": "Optimized keywords, up to 6 keywords separated by commas, with a total length <= 120 characters"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "keywords"
+                  ]
+                },
+                "section": {
+                  "type": "object",
+                  "description": "Custom HTML decoration fragments for the product group page body.",
+                  "properties": {
+                    "top": {
+                      "type": "string",
+                      "description": "Product group page header decoration fragment. HTML fragment only."
+                    },
+                    "bottom": {
+                      "type": "string",
+                      "description": "Product group page footer decoration fragment. HTML fragment only."
+                    }
+                  },
+                  "required": [
+                    "top",
+                    "bottom"
+                  ]
+                },
+                "productsgroup_url": {
+                  "type": "string",
+                  "description": "Product group URL. When the response is a list, use one returned `productsgroup_url` as the preview URL in the final answer so the user can decide whether to preview it."
+                },
+                "create_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Creation time in ISO 8601 date-time format"
+                },
+                "update_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Update time in ISO 8601 date-time format"
+                },
+                "is_leaf": {
+                  "type": "boolean",
+                  "description": "Whether this is a leaf node. `true` means yes and `false` means no."
+                },
+                "children": {
+                  "type": "array",
+                  "description": "List of child groups, supporting recursive nesting",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

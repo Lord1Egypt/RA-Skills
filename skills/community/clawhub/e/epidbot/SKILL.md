@@ -1,447 +1,404 @@
 ---
 name: epidbot
-description: Interact with EpidBot - AI-powered assistant for Brazilian public health data (DATASUS/SINAN)
-version: 1.1.2
+description: Query EpidBot (Brazilian public health data AI assistant) via its REST API. Use when you need epidemiological data analysis, plots, reports, DATASUS queries, plot management, report downloads, code snippets, or dataset uploads.
+license: MIT
+compatibility: opencode
 metadata:
-  openclaw:
-    requires:
-      env:
-        - EPIDBOT_API_KEY
-        - EPIDBOT_BASE_URL
-    primaryEnv: EPIDBOT_API_KEY
-    bins:
-      - curl
-    skillKey: epidbot
-    emoji: "\U0001F3E5"
-    homepage: https://github.com/fccoelho/EpiDBot
+  audience: all
+  requires:
+    - EPIDBOT_API_KEY
+    - EPIDBOT_API_URL
 ---
 
-# EpidBot OpenClaw Skill
+## What this skill does
 
-Enables AI agents to interact with EpidBot's REST API for analyzing Brazilian public health data. EpidBot uses natural language processing to help users query, download, and analyze health data from DATASUS.
+EpidBot is an AI-powered assistant for Brazilian public health data (DATASUS). This skill is a REST API reference for all EpidBot operations. Make HTTP requests directly — no helper scripts needed.
 
-## Overview
+**Capabilities:**
+- Ask epidemiological questions and get AI-generated analysis with charts
+- List, search, download plots from "My Plots" collection
+- Download the Python code that generated each plot
+- List and download reports (Markdown and PDF)
+- Search code snippets saved from previous analyses
+- List, upload, preview datasets in "My Data" area
 
-EpidBot provides access to:
-- **Brazilian health data**: SINAN disease notifications, SIM mortality, SIH hospital admissions
-- **International data sources**: WHO, PAHO, HealthData.gov, World Bank, ECDC
-- **Data analysis**: Temporal trends, spatial distribution, demographic breakdowns
-- **Visualizations**: Charts, maps, heatmaps, and reports
-- **SQL queries**: Execute DuckDB SQL on parquet files
+## When to use this skill
+
+| User says... | Action |
+|---|---|
+| "Show my plots" / "Search plots for dengue" | `GET /plots/?search=...` |
+| "Download plot 42" / "Give me the dengue chart" | `GET /plots/{id}/file` |
+| "How was plot 42 made?" / "Show me the code for this plot" | `GET /plots/{id}/snippet` |
+| "Download all my plots as ZIP" | `POST /plots/download-zip` |
+| "List my reports" | `GET /reports` |
+| "Download report 15 as PDF" | `GET /reports/{id}/pdf` |
+| "Search for code snippets about ARIMA" | `POST /search` with `source_type: snippet` |
+| "Show my datasets" / "List my data" | `GET /uploads/` |
+| "Upload this CSV to EpidBot" | `POST /uploads/` (multipart) |
+| Any epidemiological question / data analysis request | `POST /chat` → poll |
 
 ## Authentication
 
-### Option 1: API Key (Recommended for agents)
+All endpoints accept the `X-API-Key` header with an `ek_`-prefixed API key (obtained from EpidBot Settings → API Keys).
 
-1. Login to EpidBot web interface at https://epidbot.kwar-ai.com.br
-2. Go to Admin Panel -> API Keys -> Create new API key
-3. Set the API key as an environment variable:
+**Exception:** `GET /plots/{id}/file` does NOT read the `X-API-Key` header. For this endpoint, use `Authorization: Bearer {EPIDBOT_API_KEY}` instead. The server accepts `ek_`-prefixed keys as Bearer tokens.
 
-```bash
-export EPIDBOT_API_KEY="your-api-key-here"
-export EPIDBOT_BASE_URL="https://api.epidbot.kwar-ai.com.br"
+## Environment variables
+
+| Variable | Description | Default |
+|---|---|---|
+| `EPIDBOT_API_KEY` | API key from EpidBot (starts with `ek_`). Required. | — |
+| `EPIDBOT_API_URL` | Base URL of the EpidBot API. | `https://epidbot.kwar-ai.com.br` |
+
+---
+
+## Chat
+
+**Submit a question and poll for the response.** The API is asynchronous — you must poll until the job completes.
+
+### Submit question
+
+```
+POST {EPIDBOT_API_URL}/api/v1/chat
+Headers:
+  X-API-Key: {EPIDBOT_API_KEY}
+  Content-Type: application/json
+Body:
+  {"message": "Quantos casos de dengue em SP em 2024?", "locale": "en"}
+Response (HTTP 200):
+  {"job_id": "abc123", "session_id": 42, "status": "processing"}
 ```
 
-### Option 2: Username/Password (Returns JWT tokens)
+### Poll for result
 
-```bash
-curl -X POST "$EPIDBOT_BASE_URL/api/v1/auth/login" \
-  -H "Content-Type: application/json" \
-  -d '{"username": "user", "password": "pass"}'
-
-# Response:
-# {
-#   "access_token": "eyJ...",
-#   "refresh_token": "eyJ...",
-#   "token_type": "bearer",
-#   "expires_in": 900
-# }
 ```
-
-## API Base URL
-
-Default: `https://api.epidbot.kwar-ai.com.br/api/v1`
-
-Configure via `EPIDBOT_BASE_URL` environment variable.
-
-## Quick Examples
-
-### Check API Health
-
-```bash
-curl -H "X-API-Key: $EPIDBOT_API_KEY" \
-  "$EPIDBOT_BASE_URL/api/v1/health"
-```
-
-### Send a Chat Message (Async Submit + Poll)
-
-Chat messages are processed asynchronously. Submit a message to get a job_id, then poll for the result.
-
-> **Important:** EpidBot queries may invoke data downloads, SQL execution, and LLM reasoning. Responses typically take **30 seconds to 3 minutes**, and complex queries involving large datasets can take up to **5 minutes**. Use exponential backoff when polling (start at 3s, double each interval up to 30s, max total wait 5 minutes).
-
-```bash
-# Step 1: Submit the message (returns immediately with job_id)
-JOB=$(curl -s -X POST "$EPIDBOT_BASE_URL/api/v1/chat" \
-  -H "X-API-Key: $EPIDBOT_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"message": "Show me dengue cases in São Paulo for 2023", "locale": "en"}')
-
-JOB_ID=$(echo $JOB | jq -r '.job_id')
-
-# Step 2: Poll for result with exponential backoff
-INTERVAL=3
-MAX_WAIT=300  # 5 minutes
-ELAPSED=0
-while [ "$ELAPSED" -lt "$MAX_WAIT" ]; do
-  RESULT=$(curl -s "$EPIDBOT_BASE_URL/api/v1/chat/$JOB_ID" \
-    -H "X-API-Key: $EPIDBOT_API_KEY")
-  STATUS=$(echo $RESULT | jq -r '.status')
-  if [ "$STATUS" = "completed" ] || [ "$STATUS" = "failed" ]; then
-    echo $RESULT | jq .
-    break
-  fi
-  sleep $INTERVAL
-  ELAPSED=$((ELAPSED + INTERVAL))
-  INTERVAL=$((INTERVAL * 2))
-  if [ "$INTERVAL" -gt 30 ]; then
-    INTERVAL=30
-  fi
-done
-```
-
-### List Available Tools
-
-```bash
-curl -H "X-API-Key: $EPIDBOT_API_KEY" \
-  "$EPIDBOT_BASE_URL/api/v1/tools"
-```
-
-## Tools / Capabilities
-
-### chat (async submit)
-
-Submit a chat message for async processing. Returns a job_id immediately. LLM responses typically take 5-120 seconds.
-
-**Request:**
-```json
-{
-  "message": "What data is available for dengue in 2023?",
-  "session_id": null,
-  "locale": "en"
-}
-```
-
-**Submit Response (200):**
-```json
-{
-  "job_id": "job_a1b2c3d4...",
-  "session_id": 1,
-  "status": "processing"
-}
-```
-
-### chat_poll
-
-Poll for the status and result of a chat job. Endpoint: `GET /api/v1/chat/{job_id}`
-
-Recommended polling: exponential backoff starting at 3s, doubling up to 30s, max total wait 5 minutes. Responses may take 30s–3min for simple queries, up to 5min for complex data analysis.
-
-**Poll Response -- still processing:**
-```json
-{
-  "job_id": "job_a1b2c3d4...",
-  "status": "processing",
-  "created_at": "2024-01-01T00:00:00Z",
-  "updated_at": "2024-01-01T00:00:05Z"
-}
-```
-
-**Poll Response -- completed:**
-```json
-{
-  "job_id": "job_a1b2c3d4...",
-  "status": "completed",
-  "session_id": 1,
-  "content": "EpidBot has access to SINAN dengue data for 2023...",
-  "images": ["![plot](plots/abc.png)"],
-  "thinking": "The user is asking about available data...",
-  "created_at": "2024-01-01T00:00:00Z",
-  "updated_at": "2024-01-01T00:00:45Z"
-}
-```
-
-**Poll Response -- failed:**
-```json
-{
-  "job_id": "job_a1b2c3d4...",
-  "status": "failed",
-  "error": "Error message description",
-  "created_at": "2024-01-01T00:00:00Z",
-  "updated_at": "2024-01-01T00:00:10Z"
-}
-```
-
-### chat_stream (WebSocket)
-
-For streaming responses, connect via WebSocket at:
-```
-wss://api.epidbot.kwar-ai.com.br/api/v1/chat/stream?api_key=<your-api-key>
-```
-
-**Client -> Server Messages:**
-
-```json
-{"type": "start", "payload": {"message": "...", "session_id": null, "locale": "en"}}
-{"type": "cancel"}
-{"type": "ping"}
-```
-
-**Server -> Client Messages:**
-
-```json
-{"type": "thinking", "data": {"content": "..."}}
-{"type": "chunk", "data": {"content": "..."}}
-{"type": "complete", "data": {"content": "...", "images": [], "usage": {...}}}
-{"type": "error", "data": {"error": "..."}}
-{"type": "cancelled"}
-{"type": "pong"}
-```
-
-### list_sessions
-
-List all chat sessions for the authenticated user.
-
-**Endpoint:** `GET /api/v1/sessions`
-
-**Output:**
-```json
-[
+GET {EPIDBOT_API_URL}/api/v1/chat/{job_id}
+Headers:
+  X-API-Key: {EPIDBOT_API_KEY}
+Response (when completed):
   {
-    "id": 1,
-    "name": "Dengue Analysis",
-    "message_count": 12,
-    "created_at": "2024-01-01T00:00:00Z",
-    "updated_at": "2024-01-02T00:00:00Z"
+    "job_id": "abc123",
+    "status": "completed",
+    "content": "## Analysis\n\n... markdown ...",
+    "images": ["/file=/data/plots/sandbox/figure_001.png"]
+  }
+```
+
+**Polling rules:**
+- Poll every 3 seconds until `status` is `"completed"`, `"failed"`, or `"cancelled"`
+- Status values: `pending`, `processing`, `completed`, `failed`, `cancelled`
+- Timeout: 5 minutes (300s)
+- Markdown images in `content` use `![desc](/file=...)` syntax — these reference the EpidBot server and may require auth to display
+- Each query creates a new session prefixed with `[API]`
+
+### Response modes
+
+The `content` field may contain:
+- **Inline analysis** — markdown tables, statistics, links
+- **Plot references** — `![description](/file=/data/plots/...)` — the chart was generated and saved
+- **Combined** — analysis text plus embedded plot references
+
+Present the response clearly. If it contains plot references, note that the user can download them via the Plots endpoints.
+
+---
+
+## Plots ("My Plots")
+
+### List / search plots
+
+```
+GET {EPIDBOT_API_URL}/api/v1/plots/
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Query params:
+  search (optional) — filters by filename/description (ILIKE match)
+Response: [
+  {
+    "id": 42,
+    "filename": "figure_001.png",
+    "description": "Dengue cases São Paulo 2024",
+    "source": "chat",
+    "file_size_bytes": 48500,
+    "mime_type": "image/png",
+    "width": 1200,
+    "height": 800,
+    "created_at": "2025-01-15T10:30:00Z",
+    "has_snippet": true
   }
 ]
 ```
 
-### get_session_messages
+### Get plot metadata
 
-Get message history for a specific session.
+```
+GET {EPIDBOT_API_URL}/api/v1/plots/{plot_id}
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: { single PlotInfo object, same fields as list }
+```
 
-**Endpoint:** `GET /api/v1/sessions/{session_id}/messages`
+### Download plot image
 
-**Output:**
-```json
-{
-  "session_id": 1,
-  "messages": [
+```
+GET {EPIDBOT_API_URL}/api/v1/plots/{plot_id}/file
+Headers: Authorization: Bearer {EPIDBOT_API_KEY}   ← NOTE: Bearer, not X-API-Key!
+Response: Binary image data (Content-Type: image/png or image/jpeg etc.)
+```
+
+Save the response body as a file. The filename from the plot metadata (`filename` field) is a good default.
+
+### Download plot's Python code
+
+```
+GET {EPIDBOT_API_URL}/api/v1/plots/{plot_id}/snippet
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: Python source code (Content-Type: text/x-python)
+Returns HTTP 404 if no snippet was saved for this plot.
+```
+
+The `has_snippet` field in plot listings tells you whether code is available.
+
+### Download multiple plots as ZIP
+
+```
+POST {EPIDBOT_API_URL}/api/v1/plots/download-zip
+Headers:
+  X-API-Key: {EPIDBOT_API_KEY}
+  Content-Type: application/json
+Body: {"plot_ids": [42, 43, 44]}
+Response: Binary ZIP data (Content-Type: application/zip)
+```
+
+### Upload a new plot
+
+```
+POST {EPIDBOT_API_URL}/api/v1/plots/upload
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Body: multipart/form-data
+  file: (binary image, max 20 MB, allowed: png/jpg/jpeg/webp/gif/svg)
+  description: (string, optional)
+Response: { PlotInfo object }
+```
+
+### Update / delete plots
+
+```
+PATCH  /api/v1/plots/{plot_id}     Body: {"description": "new desc"}
+DELETE /api/v1/plots/{plot_id}
+POST   /api/v1/plots/bulk-delete   Body: {"plot_ids": [42, 43]}
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+```
+
+---
+
+## Reports
+
+### List reports
+
+```
+GET {EPIDBOT_API_URL}/api/v1/reports
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: [
+  {
+    "id": 15,
+    "title": "Dengue trends in Southeast Brazil",
+    "report_type": "manuscript",
+    "created_at": "2025-01-14T08:00:00Z",
+    "updated_at": "2025-01-14T08:05:00Z",
+    "image_count": 3,
+    "content_size_bytes": 45000,
+    "has_pdf": true,
+    "user_id": 1,
+    "username": "user",
+    "is_shared": false,
+    "permission": "owner",
+    "owner_name": "User Name",
+    "share_count": 0,
+    "zenodo_doi": null,
+    "zenodo_record_url": null,
+    "zenodo_status": null,
+    "reference_count": 12
+  }
+]
+```
+
+### Download report as PDF
+
+```
+GET {EPIDBOT_API_URL}/api/v1/reports/{report_id}/pdf
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: Binary PDF data (Content-Type: application/pdf)
+```
+
+The PDF is generated server-side via WeasyPrint with embedded charts and bibliography. To force regeneration, use `POST /reports/{report_id}/regenerate-pdf`.
+
+### Download report as Markdown
+
+```
+GET {EPIDBOT_API_URL}/api/v1/reports/{report_id}/download
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: Markdown text (Content-Type: text/markdown)
+```
+
+### Get report details
+
+```
+GET {EPIDBOT_API_URL}/api/v1/reports/{report_id}
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: {
+  "id": 15,
+  "title": "...",
+  "report_type": "manuscript",
+  "prompt": "...",
+  "content": "# Abstract\n\n...",
+  "abstract": "...",
+  "image_count": 3,
+  "has_pdf": true,
+  "created_at": "...",
+  "updated_at": "...",
+  "user_id": 1,
+  "is_shared": false,
+  "permission": "owner"
+}
+```
+
+### Delete report
+
+```
+DELETE {EPIDBOT_API_URL}/api/v1/reports/{report_id}
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: {"message": "Report deleted"}
+```
+
+### Additional report endpoints
+
+```
+GET  /reports/{id}/versions             — version history
+GET  /reports/{id}/references           — bibliography listing
+GET  /reports/{id}/bibtex               — download .bib file
+POST /reports/{id}/regenerate-pdf       — force PDF regeneration
+```
+
+---
+
+## Code Snippets
+
+There is no dedicated snippets REST API. Use the unified search endpoint:
+
+```
+POST {EPIDBOT_API_URL}/api/v1/search
+Headers:
+  X-API-Key: {EPIDBOT_API_KEY}
+  Content-Type: application/json
+Body: {
+  "query": "ARIMA forecast",
+  "source_type": "snippet"
+}
+Response: {
+  "results": [
     {
-      "id": 1,
-      "role": "user",
-      "text_content": "Show me dengue data",
-      "thinking": null,
-      "created_at": "2024-01-01T00:00:00Z"
-    },
+      "source_type": "snippet",
+      "title": "Dengue ARIMA forecast",
+      "language": "python",
+      "source_code": "import pandas as pd\n...",
+      "description": "ARIMA model for dengue time series",
+      "tags": ["arima", "forecast", "dengue"],
+      "created_at": "2025-01-10T12:00:00Z"
+    }
+  ],
+  "total": 1
+}
+```
+
+The `source_code` field contains the full snippet. If you need all snippets without filtering, omit `query` and just pass `source_type: "snippet"`.
+
+---
+
+## My Data (User Datasets)
+
+### List datasets
+
+```
+GET {EPIDBOT_API_URL}/api/v1/uploads/
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: {
+  "datasets": [
     {
-      "id": 2,
-      "role": "assistant",
-      "text_content": "Here is the dengue data...",
-      "thinking": "The user is asking about...",
-      "created_at": "2024-01-01T00:00:01Z"
+      "id": 7,
+      "name": "hospital_admissions",
+      "path": "/data/private/42/hospital_admissions/data.parquet",
+      "row_count": 15000,
+      "file_size_bytes": 2048000,
+      "file_count": 1,
+      "created_at": "2025-01-12T09:00:00Z",
+      "original_filename": "admissions.csv",
+      "description": "Monthly hospital admissions by municipality"
     }
   ]
 }
 ```
 
-### list_reports
+### Upload a dataset
 
-List all generated reports.
-
-**Endpoint:** `GET /api/v1/reports`
-
-**Output:**
-```json
-[
-  {
-    "id": 1,
-    "title": "Dengue Analysis 2023",
-    "report_type": "analysis",
-    "image_count": 3,
-    "content_size_bytes": 15234,
-    "has_pdf": true,
-    "created_at": "2024-01-01T00:00:00Z"
-  }
-]
 ```
-
-### get_report
-
-Get full details of a specific report.
-
-**Endpoint:** `GET /api/v1/reports/{report_id}`
-
-**Output:**
-```json
-{
-  "id": 1,
-  "title": "Dengue Analysis 2023",
-  "report_type": "analysis",
-  "prompt": "Show me dengue cases...",
-  "content": "# Dengue Analysis\n\n...",
-  "image_count": 3,
-  "content_size_bytes": 15234,
-  "has_pdf": true,
-  "created_at": "2024-01-01T00:00:00Z"
+POST {EPIDBOT_API_URL}/api/v1/uploads/
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Body: multipart/form-data
+  file: (the dataset file)
+  description: (string, optional — description for the catalog)
+Response: {
+  "id": 8,
+  "name": "my_dataset",
+  "path": "/data/private/42/my_dataset/data.parquet",
+  "row_count": 5000,
+  "file_size_bytes": 1024000,
+  "message": "Dataset uploaded successfully"
 }
 ```
 
-### download_report
+**Supported formats:** `.csv`, `.ods`, `.xlsx`, `.xls` (converted to Parquet) and `.geojson`, `.json`, `.gpkg`, `.zip` (converted to GIS Parquet). Max file size: 50 MB.
 
-Download report as a markdown file.
+Uploaded datasets are automatically cataloged and can be queried by EpidBot in subsequent chat interactions.
 
-**Endpoint:** `GET /api/v1/reports/{report_id}/download`
+### Get dataset details
 
-**Output:** File download with `Content-Disposition` header.
-
-### list_tools
-
-List all available agent tools with descriptions.
-
-**Endpoint:** `GET /api/v1/tools`
-
-**Output:**
-```json
-[
-  {
-    "name": "download_sinan_data",
-    "description": "Download SINAN disease notification data for a given disease",
-    "parameters": null
-  },
-  {
-    "name": "execute_sql_query",
-    "description": "Execute a SQL query on the health database",
-    "parameters": null
-  },
-  {
-    "name": "get_temporal_trend",
-    "description": "Calculate temporal trend for a dataset",
-    "parameters": null
-  }
-]
+```
+GET {EPIDBOT_API_URL}/api/v1/uploads/{dataset_id}
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: { single dataset object, same fields as list }
 ```
 
-## Error Handling
+### Preview dataset (first 10 rows)
 
-All endpoints may return errors:
-
-```json
-{
-  "detail": "Error message description"
+```
+GET {EPIDBOT_API_URL}/api/v1/uploads/{dataset_id}/preview
+Headers: X-API-Key: {EPIDBOT_API_KEY}
+Response: {
+  "columns": ["col1", "col2", "..."],
+  "rows": [["val1", "val2"], ...],
+  "total_rows": 5000,
+  "total_columns": 25,
+  "showing_columns": 15,
+  "truncated_columns": 10
 }
 ```
 
-**Common Status Codes:**
-- `400` - Bad Request (invalid input)
-- `401` - Unauthorized (missing/invalid authentication)
-- `403` - Forbidden (valid auth but insufficient permissions)
-- `404` - Not Found
-- `429` - Too Many Requests
-- `500` - Internal Server Error
-
-## Agent Usage Patterns
-
-### Pattern 1: Async Chat (Submit + Poll) -- Recommended
+### Additional dataset endpoints
 
 ```
-Agent: POST /chat -> get job_id -> poll GET /chat/{job_id} with exponential backoff (3s, 6s, 12s, 24s, 30s, 30s...) -> return result
-Best for: All queries. Responses take 30s–5min depending on complexity.
-IMPORTANT: Always poll with exponential backoff up to 5 minutes total. Do not give up early.
+DELETE /uploads/{id}                  — delete dataset
+POST   /uploads/{id}/publish          — publish to public catalog
+PATCH  /uploads/{id}/description      — update description
+GET    /uploads/{id}/crate-metadata   — read RO-Crate metadata
+PATCH  /uploads/{id}/metadata         — update full metadata
 ```
 
-### Pattern 2: Streaming Chat (WebSocket)
+---
 
-```
-Agent: Connect to WebSocket -> Send start message -> Receive streaming chunks -> Receive complete
-Best for: Long responses, real-time feedback, progress indicators
-```
+## Notes
 
-### Pattern 3: Session-Aware Chat
-
-```
-Agent: List sessions -> Get session messages -> Continue conversation in same session
-Best for: Multi-turn analysis workflows
-```
-
-### Pattern 4: Tool-Based Workflow
-
-```
-Agent: List tools -> Execute specific tool -> Process result -> Chat about results
-Best for: Automated data retrieval pipelines
-```
-
-## Available Data Sources
-
-### Brazilian Data (PySUS)
-- **SINAN**: Disease notifications (dengue, Zika, chikungunya, measles, etc.)
-- **SIM**: Mortality data
-- **SIH**: Hospital admissions
-- **CNES**: Health facilities
-- **IBGE**: Census and demographic data
-
-### International Data
-- **WHO/GHO**: Global health indicators
-- **PAHO**: Americas health data
-- **HealthData.gov**: US hospital capacity, COVID metrics
-- **World Bank**: Development indicators
-- **ECDC**: European disease surveillance
-
-### Specialized
-- **Mosqlimate/Infodengue**: Brazilian epidemiological parameters
-
-## Configuration
-
-| Environment Variable | Default | Description |
-|---------------------|---------|-------------|
-| `EPIDBOT_API_KEY` | - | API key for authentication |
-| `EPIDBOT_BASE_URL` | `https://api.epidbot.kwar-ai.com.br` | Base URL of EpidBot API |
-
-## Rate Limits
-
-| Endpoint | Limit |
-|----------|-------|
-| `POST /auth/login` | 10 requests/minute |
-| `POST /auth/register` | 5 requests/minute |
-| Other endpoints | 60 requests/minute |
-
-## Deployment
-
-EpidBot is typically deployed via Docker Compose:
-
-```yaml
-services:
-  api:
-    ports:
-      - '8123:8123'
-  epidbot:
-    ports:
-      - '7860:7860'
-  db:
-    ports:
-      - '5432:5432'
-```
-
-Health check: `curl https://api.epidbot.kwar-ai.com.br/api/v1/health`
-
-## Limitations
-
-- **Job expiry**: Chat jobs expire after 1 hour
-- **Response time**: Simple queries take 30s–3min; complex data analysis can take up to 5 minutes. Always poll with exponential backoff.
-- **File sizes**: Large data exports may be limited by memory constraints
-- **Sandbox execution**: Python/SQL code execution happens in an isolated sandbox with resource limits
-
-## Support
-
-- GitHub: https://github.com/fccoelho/EpiDBot
-- Documentation: https://github.com/fccoelho/EpiDBot/tree/main/docs
+- **Chat is asynchronous.** No synchronous request-response. Always poll.
+- **Plot file downloads require Bearer auth**, not `X-API-Key`. All other endpoints use `X-API-Key`.
+- **Plot code snippets** may not exist for every plot (`has_snippet` field tells you).
+- **Code snippets** are searched via the unified `/api/v1/search` endpoint with `source_type: "snippet"`.
+- **Uploaded datasets** are automatically converted to Parquet and cataloged. They become queryable via `read_parquet('/data/private/{user_id}/...')` in subsequent chat queries.
+- **Markdown images in chat responses** (`![...](/file=...)`) reference the EpidBot server. The files are in `/data/plots/` or `/data/public/plots/sandbox/`. They can be downloaded via the Plots endpoints.
+- All timestamps are in ISO 8601 format (UTC).

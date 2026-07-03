@@ -10,7 +10,7 @@
 # still works but is DEPRECATED and warns on every run.
 set -uo pipefail
 
-VERSION="2.0.1"
+VERSION="2.0.2"
 
 # --- locations ---------------------------------------------------------------
 STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
@@ -34,6 +34,7 @@ DEFAULT_EXCLUDES=(
   "agents/*/agent/codex-home/.tmp/**"
   "agents/*/agent/codex-home/models_cache.json"
   "agents/*/agent/codex-home/sessions/**"
+  "agents/*/qmd/xdg-cache/**"
   "agents/*/sessions/**"
   "archive/**"
   "tools/**"
@@ -1143,7 +1144,7 @@ cmd_status() {
   echo "Archive scope (mode=full)"
   echo "  Sensitivity: $VERDICT$([ "$VERDICT" = "secret-material" ] && echo ' → encryption FORCED')"
   local r; for r in "${VERDICT_REASONS[@]:-}"; do [ -n "$r" ] && echo "    - $r"; done
-  echo "  Default excludes: codex caches/logs, session transcripts, tools, media, logs, old backups"
+  echo "  Default excludes: codex caches/logs, qmd embedding caches, session transcripts, tools, media, logs, old backups"
 
   if [ -n "$BUCKET" ]; then
     echo

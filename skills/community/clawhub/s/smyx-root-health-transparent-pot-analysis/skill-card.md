@@ -1,5 +1,5 @@
 ## Description: <br>
-AI-powered plant root health analysis from transparent pots or smart seedling boxes that analyzes root images or videos, identifies visual root-health indicators, and returns a health score, vitality grade, and care-direction guidance. <br>
+Analyzes plant root images or videos from transparent pots and smart seedling boxes to report visual root health indicators, a 0-100 health score, a vitality grade, care guidance, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and plant-care operators use this skill to analyze transparent-pot, seedling-box, plant-factory, or hydroponic root media for visible signs of root health, rot risk, and care adjustments. It can also query cloud-stored historical root-health reports for an open-id. <br>
+External users and developers use this skill to analyze root imagery from transparent pots, smart seedling boxes, plant factories, and hydroponic systems. It helps identify visual signs such as root tip color, root hair density, branching structure, and possible root rot so users can adjust care practices. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Uploaded plant images, videos, or media URLs may be sent to remote services and associated with an open-id. <br>
-Mitigation: Review the publisher's data handling before installation, avoid sensitive media, and use a non-sensitive identifier instead of a phone number. <br>
-Risk: The security evidence reports under-disclosed identity, account, token, history, and mismatched analysis components. <br>
-Mitigation: Review the publisher and bundled behavior before execution, and remove or disable unrelated account, payment, camera-management, and history capabilities before production use. <br>
-Risk: The security guidance calls for removal and rotation of an embedded API key. <br>
-Mitigation: Require the publisher to remove the embedded key, rotate any exposed credential, and document account creation, retention, and deletion behavior. <br>
+Risk: The security scan reports that plant images or videos may be sent to a cloud service. <br>
+Mitigation: Use only with media that is acceptable to share with the publisher's cloud service, and avoid sensitive greenhouse, home, or business footage unless consent and retention expectations are clear. <br>
+Risk: The security scan reports persistent identities and locally stored tokens used for account-linked history queries. <br>
+Mitigation: Review identity and token handling before deployment, and limit use to environments where account-linked report history is acceptable. <br>
+Risk: The skill returns visual plant-health assessments that may be incomplete or misleading for severe root disease. <br>
+Mitigation: Treat results as care guidance rather than a definitive diagnosis, and seek professional agronomy support for serious root rot or crop-impacting findings. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-root-health-transparent-pot-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 - [API interface documentation](references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-root-health-transparent-pot-analysis) <br>
+- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown or JSON report text; history queries render Markdown tables with report links.] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON analysis results, including report links and Markdown tables for history queries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a local image/video path or public media URL plus an open-id; results may also be saved to an output file.] <br>
+**Other Properties Related to Output:** [Supports local image/video files, remote media URLs, configurable detail level, optional output files, and cloud-backed history report queries.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+1.0.3 (source: frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

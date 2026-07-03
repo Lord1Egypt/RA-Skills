@@ -1,6 +1,8 @@
+
 # Fulcra CLI
 
 Fulcra Context is a universal data and memory platform that collects and records any data a user wants to ingest from any source. This includes "life data" (like calendar events, device locations, health metrics like step count & heart rate), digital activity, and automated background data from their AI agents (like task logs, summaries, or artifacts). You are an agent that interacts with the Fulcra Life API on behalf of a user. You should expect to receive queries and directives from a user and use the tools described in this skill to answer them.
+
 
 ## Installation
 
@@ -15,15 +17,22 @@ uv tool run fulcra-api
 
 Use the `auth login` subcommand to authenticate to Fulcra on behalf of a user.
 
-**CRITICAL WARNING FOR AGENTS:** The `fulcra-api auth login` command is a blocking command. It will poll for a valid token and will *not* complete until the user finishes the authorization flow in their browser (or until it hits a two-minute timeout). Because it blocks, **you must run it as a background process or allow it to yield, then read its active output stream to extract the authentication URL and code.** Do not wait for the command to finish before sending the URL to the user, or the authentication will time out and fail.
+The `fulcra-api auth login` command should be run in a two-step process to avoid hanging and timing out while waiting for the user. 
 
+**Step 1: Get the Auth URL**
+Run the command with the `--get-auth-url` flag. It will immediately return a web auth URL, a user verification code, and a device code.
 ```
-uv tool run fulcra-api auth login
+uv tool run fulcra-api auth login --get-auth-url
+```
+You must extract the URL and user code and present them to the user so they can complete the flow in their browser. Keep the device code for the next step. **You must present the URL and code directly to the user; do not assume their browser will automatically open.**
+
+**Step 2: Complete Authentication**
+After the user confirms they have completed the flow in their browser, finish the login process by passing the device code. We pass `--poll-timeout=5` so the command fails quickly if there is a miscommunication about whether the flow is actually finished.
+```
+uv tool run fulcra-api auth login --device-code <DEVICE_CODE> --poll-timeout=5
 ```
 
-This will return a URL that you should direct the user to load in their browser, and a unique code that they should ensure matches the code displayed in their browser. **You must present the URL and code directly to the user; do not assume their browser will automatically open.**
-
-**Network Restrictions:** If this command immediately fails or prints a raw `<http.client.HTTPResponse object...>` error, your shell likely lacks outbound network access. Do not attempt to retry or troubleshoot the network to work around the issue. Instead, inform the user that the CLI method cannot be used in this environment, and advise them on the MCP Connector option.
+**Network Restrictions:** If the login command immediately fails or prints a raw `<http.client.HTTPResponse object...>` error, your shell likely lacks outbound network access. Do not attempt to retry or troubleshoot the network to work around the issue. Instead, inform the user that the CLI method cannot be used in this environment, and advise them on the MCP Connector option.
 
 Credentials will be persisted on the filesystem to `~/.config/fulcra/credentials.json` and the tool will refresh access tokens as neccessary.
 
@@ -45,7 +54,9 @@ All date/time fields are returned in ISO 8601 format, time zone aware, and in UT
 
 Authenticate to the API:
 ```
-uv tool run fulcra-api auth login
+uv tool run fulcra-api auth login --get-auth-url
+# ... present url/code to user, then ...
+uv tool run fulcra-api auth login --device-code <DEVICE_CODE> --poll-timeout=5
 ```
 
 Get list of Fulcra data type identifiers:
@@ -103,27 +114,45 @@ The `create` command will output the JSON definition of the new data type. Make 
 
 ## Fulcra File Store & Open Knowledge Format (OKF)
 
-The Fulcra File Store is an environment-agnostic remote filesystem accessed via the `fulcra-api file` commands. When storing text and markdown data in the file store (like memory or shared team files), agents must adhere to the **Open Knowledge Format (OKF)** standard (v0.1) to ensure the file store remains understandable to users and other agents, and to provide auditability. You can read the full OKF specification here: [https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md).
+The Fulcra File Store is an environment-agnostic remote filesystem accessed via the `fulcra-api file` commands. When storing text and markdown data in the file store, agents should adhere to the **Open Knowledge Format (OKF)** standard (v0.1) when possible to ensure the file store remains understandable to users and other agents, and to provide auditability. You can read the full OKF specification here: [https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md).
+
+### File Uploads
+
+You can manage versioned files using the `fulcra-api file` commands. This allows you to upload files directly into the Fulcra File Store, which will automatically track revisions and handle versioning.
+
+```bash
+# Upload a file to a specific remote path
+uv tool run fulcra-api file upload ./local-file.md /remote/path/file.md
+
+# List files in a remote directory
+uv tool run fulcra-api file list /remote/path/
+
+# Get information about a file, including previous versions
+uv tool run fulcra-api file stat /remote/path/file.md
+
+# Download a file from the remote path
+uv tool run fulcra-api file download /remote/path/file.md ./downloaded-file.md
+```
 
 ### Core OKF Principles
 *   **Markdown + YAML Frontmatter:** All knowledge concepts should be written as `.md` files containing a YAML frontmatter block at the top, bordered by `---`. The frontmatter must contain at least a `type: <Type name>` field, and may optionally include `title:`, `description:`, `tags:`, etc.
 *   **`index.md` (Directory Listing):** Each directory should contain an `index.md` file (with no frontmatter). It provides progressive disclosure via grouped lists of links to the files within that directory (e.g., `* [Title](relative-url.md) - description`).
 *   **`log.md` (Update History):** Each directory should contain a `log.md` file to record a chronological history of changes. It contains date-grouped headings (e.g., `## YYYY-MM-DD`) with bulleted entries describing the updates (e.g., `* **Update**: Added new context file.`).
 
-**IMPORTANT OKF EFFICIENCY DIRECTIVE:** While OKF compliance is mandatory, it must not become cumbersome.
-- **DO NOT** attempt to index every individual file, especially not transient or highly repetitive files like individual messages inside an `inbox/` subdirectory. 
+While OKF compliance is important, it must not become cumbersome.
 - For directories that contain many small or transient items, simply list the directory itself in the `index.md` with a high-level description of its purpose.
 - Keep the `index.md` and `log.md` focused on top-level structure and significant milestones so they remain useful but lightweight.
 
 ### Artifacts Directory
-To maintain a clean OKF directory structure, any binary files, media, images, compiled code, or non-markdown files must be stored inside a dedicated `artifact/` subdirectory within the relevant memory or team namespace.
+To maintain a clean OKF directory structure, any binary files, media, images, compiled code, or non-markdown files should be stored inside a dedicated `artifact/` subdirectory within the relevant namespace.
 
 ## Further Reading & References
 
-As an agent, you should rely on the `fulcra-api` CLI as the primary and most robust way to interact with Fulcra. However, if the CLI cannot be installed/used in your environment, or if a user requests something outside the CLI's capabilities, you may use alternative methods like raw `curl` requests or the Python SDK.
+As an agent, you should rely on the `fulcra-api` CLI as the primary and most robust way to interact with Fulcra. However, if a user requests something outside the CLI's capabilities, you may use alternative methods like raw `curl` requests or the Python SDK.
 
 To maintain your context as Fulcra evolves, or to assist users with deeper technical questions, you can consult the following external resources:
 - **Fulcra Website:** [https://www.fulcradynamics.com/](https://www.fulcradynamics.com/)
 - **REST API Documentation:** [https://fulcradynamics.github.io/developer-docs/api-reference/](https://fulcradynamics.github.io/developer-docs/api-reference/)
 - **Python SDK & CLI Source:** [https://github.com/fulcradynamics/fulcra-api-python/](https://github.com/fulcradynamics/fulcra-api-python/)
+- **Fulcra MCP:** Fulcra also has an MCP (Model Context Protocol) interface that you can learn more about at [https://fulcradynamics.github.io/developer-docs/mcp-server/](https://fulcradynamics.github.io/developer-docs/mcp-server/)
 - **Fulcra Agent Skills Repository:** [https://github.com/fulcradynamics/agent-skills](https://github.com/fulcradynamics/agent-skills) (Note: Official skills are maintained here, but may also be published on ClawHub or other agent marketplaces.)

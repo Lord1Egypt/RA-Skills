@@ -1,0 +1,16 @@
+{
+  "skill_name": "sync-obsidian-to-lexiang",
+  "display_name": "Sync Obsidian to Lexiang",
+  "version": "1.0.0",
+  "github_repo": "ajaxhe/sync-obsidian-to-lexiang",
+  "category": "productivity",
+  "tags": ["obsidian", "lexiang", "sync", "markdown", "chinese", "knowledge-base"],
+  "clawscan_note": "Uses agent Lexiang connector OAuth token via MCP endpoint. No app_key required. Sync logic runs entirely in Python scripts.",
+  "pr_description": "## sync-obsidian-to-lexiang\n\nOne-way sync from Obsidian vault to Tencent Lexiang knowledge base.\n\n**Features:**\n- Full and incremental sync\n- Directory structure preservation\n- Markdown + images + attachments\n- Zero-config OAuth via agent connector\n- Zero token: scripts run outside LLM context",
+  "platforms": {
+    "clawhub": { "enabled": true },
+    "agentskillhub": { "enabled": true },
+    "skillshubai": { "enabled": true },
+    "agentskillshub": { "enabled": false }
+  }
+}

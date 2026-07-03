@@ -1,0 +1,26 @@
+{
+  "_intent": "clean_board with the +3V3 power flag rotated to 90 (body would point left, into the wire) instead of 180 (body up, post-2026-06-29 y-DOWN vertical fix). MUST fire exactly `orientation` and nothing else — this is the positive test for the rule the table validation protects.",
+  "parts": [
+    {"pid": "u1", "type": "part", "designator": "U1", "x": 130, "y": 150,
+     "pins": [
+       {"num": "1", "name": "VCC", "x": 100, "y": 200},
+       {"num": "2", "name": "GND", "x": 160, "y": 100}
+     ],
+     "bbox": [100, 100, 160, 200]},
+    {"pid": "u2", "type": "part", "designator": "U2", "x": 500, "y": 200,
+     "pins": [
+       {"num": "1", "name": "IN", "x": 500, "y": 200}
+     ],
+     "bbox": [500, 200, 500, 200]}
+  ],
+  "flags": [
+    {"pid": "f1", "type": "netflag", "net": "+3V3", "x": 100, "y": 230, "rotation": 90},
+    {"pid": "f2", "type": "netflag", "net": "GND",  "x": 160, "y": 70,  "rotation": 180},
+    {"pid": "f3", "type": "netport", "net": "SIG",  "x": 470, "y": 200, "rotation": 180}
+  ],
+  "wires": [
+    {"pid": "w1", "net": "+3V3", "line": [100, 200, 100, 230]},
+    {"pid": "w2", "net": "GND",  "line": [160, 100, 160, 70]},
+    {"pid": "w3", "net": "SIG",  "line": [500, 200, 470, 200]}
+  ]
+}

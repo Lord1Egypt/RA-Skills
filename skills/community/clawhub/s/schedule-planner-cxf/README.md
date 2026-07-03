@@ -1,6 +1,6 @@
 # 📦 schedule-planner-cxf
 
-> 全能出行管家 — 智能行程规划、交通比价、酒店推荐
+> 全能出行管家 — 智能行程规划、交通比价、酒店推荐（默认本地输出 + 显式 opt-in 副作用）
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -12,7 +12,7 @@
 |------|------|
 | 🗺️ **行程规划** | 出差/旅游场景智能识别，自动生成行程框架 |
 | 💰 **智能比价** | 多维度比价：交通方式、多日期、酒店性价比 |
-| 📄 **行程网页生成** | 自动生成 HTML 行程单（左侧行程 + 右侧支付二维码） |
+| 📄 **行程网页生成** | 生成 HTML 行程单 + 二维码（默认写入本地 output/，使用 --open 才自动打开浏览器） |
 | 🧪 **Mock 模式** | 无需 API Key 即可体验全部功能 |
 
 ---
@@ -21,7 +21,7 @@
 
 ```bash
 # 1. 安装依赖
-cd schedule-planner-cxf-1.0.4
+cd schedule-planner-cxf-1.0.8
 npm install
 
 # 2. 使用 mock 模式直接生成行程网页
@@ -32,7 +32,7 @@ node scripts/generate-trip-page.js --mock
 ```
 [Mock mode] Using built-in mock trip data
 HTML generated: ./output/trip-Hangzhou-xxxxxxxx.html
-Opened in browser: ...
+提示：添加 --open 参数可自动用浏览器打开生成的页面。
 ```
 
 ---
@@ -42,7 +42,7 @@ Opened in browser: ...
 ### 安装依赖
 
 ```bash
-cd schedule-planner-cxf-1.0.4
+cd schedule-planner-cxf-1.0.8
 npm install
 ```
 

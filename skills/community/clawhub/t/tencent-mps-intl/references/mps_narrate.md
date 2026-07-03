@@ -55,29 +55,29 @@
 
 ```bash
 # Single episode short drama narration (with erasure by default)
-python scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
+python3 scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
 
 # COS object input
-python scripts/mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
+python3 scripts/mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
 
 # Original video has no subtitles, disable erasure
-python scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
+python3 scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
 
 # Multi-episode video combined narration (first episode with --url, subsequent episodes with --extra-urls)
-python scripts/mps_narrate.py \
+python3 scripts/mps_narrate.py \
     --url https://example.com/ep01.mp4 \
     --extra-urls https://example.com/ep02.mp4 https://example.com/ep03.mp4 \
     --scene short-drama
 
 # Output 3 different versions of the video
-python scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
+python3 scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
 
 # Async submission (do not wait for results)
-python scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
+python3 scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
 
 # Dry Run (preview Extended Parameter)
-python scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
+python3 scripts/mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
 
 # Query task status
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 ```

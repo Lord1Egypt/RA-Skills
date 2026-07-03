@@ -1,0 +1,46 @@
+{
+  "name": "local-search",
+  "version": "1.6.2",
+  "description": "Web search skill with 4 engines (Brave / DuckDuckGo / Bing / Google), automatic fallback, query rewriting, and quality-gated merging. No API key, no cloud dependency.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./engines": "./src/engines/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "bin": {
+    "web-search": "./bin/web-search.ts"
+  },
+  "scripts": {
+    "search": "tsx bin/web-search.ts",
+    "example": "tsx scripts/web_search.ts",
+    "test": "tsx scripts/test.ts",
+    "test:ddg": "tsx bin/web-search.ts \"openai gpt\" --engine duckduckgo --num 3",
+    "test:bing": "tsx bin/web-search.ts \"openai gpt\" --engine bing --num 3",
+    "test:google": "tsx bin/web-search.ts \"openai gpt\" --engine google --num 3",
+    "test:auto": "tsx bin/web-search.ts \"openai gpt\" --engine auto --num 5 --json"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.22.4",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "search",
+    "web-search",
+    "duckduckgo",
+    "bing",
+    "google",
+    "scraper",
+    "cli",
+    "skill"
+  ]
+}

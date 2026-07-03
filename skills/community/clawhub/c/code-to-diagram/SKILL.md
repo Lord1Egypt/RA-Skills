@@ -29,6 +29,38 @@ bindShells: ["ClaudeCode"]
 
 使用 `Read`、`Glob`、`Grep` 工具理解代码结构，识别主要逻辑模式。
 
+### 分析目标
+
+从代码中提取以下信息，作为图表生成的素材：
+
+| 提取内容 | 分析方法 | 对应图表 |
+|---------|---------|---------|
+| 函数调用链 / 执行路径 | Grep 函数名，追踪调用关系 | 流程图、时序图 |
+| 类 / 接口 / 继承关系 | 搜索 `class`、`implements`、`extends`、`interface` | 类图 |
+| 状态字段 / 状态机 | 搜索 `state`、`status`、`switch/case`、枚举定义 | 状态图 |
+| HTTP / RPC 调用 | 搜索 `fetch`、`axios`、`http`、`grpc`、`request` | 时序图 |
+| 数据库表 / ORM 模型 | 搜索 `CREATE TABLE`、`@Entity`、`schema`、`Model` | ER 图 |
+| 模块划分 / 目录结构 | Glob 扫描目录，识别子系统边界 | 流程图（subgraph）、架构图 |
+| API 路由 / 端点 | 搜索路由定义（`router`、`@Get`、`@Post`、`app.get`） | 时序图、流程图 |
+| 配置 / 依赖关系 | 搜索 `import`、`require`、`dependency` | 流程图、类图 |
+
+### 分析策略
+
+- **单文件**：从入口函数开始，沿调用链向下追踪
+- **多文件 / 多模块**：先 Glob 扫描目录结构，识别模块边界和入口文件，再逐模块分析核心逻辑
+- **大型代码库**：优先分析入口文件（`main`、`index`、`app`），再按依赖方向向外扩展
+- **不确定图表类型时**：先提取代码特征，再对照[图表类型表](#图表类型快速判断)选择
+
+### 多文件 / 多模块处理
+
+当分析涉及多个文件或模块时：
+
+1. **先画架构全景**：用 `flowchart TB` + `subgraph` 或 SVG 架构图展示模块间关系，再对核心模块单独画详细图
+2. **模块间用时序图**：跨模块调用链适合 `sequenceDiagram`，参与者对应模块/服务
+3. **模块内用流程图**：单个模块的内部逻辑适合 `flowchart`
+4. **合并策略**：如果多个文件逻辑紧密耦合，合并为一张图；如果松散耦合，分别生成独立图表
+5. **命名规范**：多张图时用 `模块名-图表类型` 命名，如 `auth-sequence.png`、`order-flow.png`
+
 ---
 
 ## 第二步 —— 选择引擎
@@ -52,18 +84,33 @@ bindShells: ["ClaudeCode"]
 
 ### 生成 Mermaid 源码
 
-根据分析结果编写 Mermaid 图表源码。
+根据分析结果编写 Mermaid 图表源码。确定图表类型后，仅需了解对应语法即可，不需要加载所有类型。
 
-| 代码模式 | 推荐 Mermaid 图表类型 |
-|---------|----------------------|
-| 状态机 / 工作流 | `flowchart TD` 或 `stateDiagram-v2` |
-| 类继承关系 | `classDiagram` |
-| 接口 / 消息传递 | `sequenceDiagram` |
-| 实体关系 | `erDiagram` |
-| 简单流程 | `flowchart LR` |
-| 系统架构 / 分层架构 | `flowchart TB` + `subgraph` |
-| 微服务架构 | `flowchart TB` + `subgraph` 或 `C4Container` |
-| 数据趋势 / 图表 | `xychart-beta` |
+| 代码特征 | 图表类型 | Mermaid 关键字 | 典型场景 |
+|---------|---------|----------------|---------|
+| `switch/case`、状态枚举、状态字段转换 | 状态图 | `stateDiagram-v2` | 订单状态流转、连接器生命周期 |
+| `class`、`implements`、`extends`、字段和方法定义 | 类图 | `classDiagram` | 领域模型、SDK 结构 |
+| 函数调用链、if/else 分支、循环 | 流程图 | `flowchart TD/LR/TB` | 算法逻辑、业务流程、请求处理 |
+| HTTP/RPC 调用、跨模块交互、消息传递 | 时序图 | `sequenceDiagram` | API 调用链、微服务交互 |
+| `CREATE TABLE`、ORM 模型、外键关系 | ER 图 | `erDiagram` | 数据库 schema、数据模型 |
+| 多模块/多服务、目录结构分层 | 架构图 | `flowchart TB` + `subgraph` | 系统架构、微服务拓扑 |
+| 甘特排期、任务依赖 | 甘特图 | `gantt` | 项目计划、迭代排期 |
+| 占比数据、模块权重 | 饼图 | `pie` | 资源分布、模块占比 |
+| Git 分支/合并 | Git 图 | `gitGraph` | 版本历史、分支策略 |
+| 用户操作路径 | 用户旅程图 | `journey` | 用户体验、操作步骤 |
+| 功能分解、层级结构 | 思维导图 | `mindmap` | 模块拆解、知识结构 |
+| 版本演进、里程碑 | 时间线图 | `timeline` | 版本历史、演进路线 |
+| 对比矩阵、优先级 | 象限图 | `quadrantChart` | 技术选型、优先级排序 |
+| 数据趋势、性能指标 | XY 图 | `xychart-beta` | 性能监控、趋势分析 |
+| 多容器部署、服务拓扑 | C4 架构 | `C4Container` | 微服务部署、云架构 |
+
+**图表类型快速判断**：
+- 代码中有状态转换 / 枚举 → `stateDiagram-v2`
+- 代码中有类定义 / 继承 → `classDiagram`
+- 需要展示执行流程 / 分支逻辑 → `flowchart`
+- 需要展示跨模块调用 → `sequenceDiagram`
+- 需要展示数据模型 → `erDiagram`
+- 需要展示系统整体结构 → `flowchart + subgraph` 或 SVG 架构图
 
 **语言规则**：节点标签、连线说明**必须使用中文**。代码标识符保留原文。
 
@@ -124,11 +171,68 @@ bindShells: ["ClaudeCode"]
 
 ### 生成逻辑解释文字
 
-在生成图表源码的同时，编写代码逻辑解释文字，包括：
-- 代码的整体结构和主要功能
-- 关键逻辑流程和数据流向
-- 重要的设计模式和架构决策
-- 图表中各组件的作用说明
+在生成图表源码的同时，编写代码逻辑解释文字。输出结构：
+
+```markdown
+## 概述
+<用 1-2 句话说明这段代码的整体功能和职责>
+
+## 核心流程
+<按执行顺序描述主要逻辑路径，每个步骤对应图表中的一个节点或子图>
+
+## 关键组件
+<列出图表中每个关键节点/子图对应的代码实体（类名、函数名、模块名），以及它们的职责>
+
+## 设计要点
+<描述代码中值得注意的设计模式、架构决策或边界处理>
+```
+
+### 渲染前校验
+
+Mermaid 对语法要求严格。写入 `.mmd` 文件前，逐项检查：
+
+- 第一行是合法的图表关键字（`flowchart`、`sequenceDiagram`、`classDiagram`、`stateDiagram-v2`、`erDiagram`、`gantt`、`pie`、`gitGraph`、`journey`、`mindmap`、`timeline`、`quadrantChart`、`xychart-beta`）
+- 流程图关键字后需跟方向（`TD`、`LR`、`BT`、`RL`）
+- 节点 ID 不含空格（用方括号/引号包裹的 label 来显示文本）
+- 标签中的特殊字符用引号包裹：`A["节点 (含括号)"]`
+- 箭头类型合法（`-->`、`->>`、`-->>`、`-.-`、`==>`）
+- 节点标签中禁止使用双引号 `"`，用单引号或移除
+- `&` 符号使用 `&amp;` 转义
+
+如果渲染报解析错误，根据错误信息定位行号、修正 `.mmd` 文件后重试。
+
+### 前置检测
+
+渲染前必须检测依赖工具是否已安装：
+
+```bash
+which rsvg-convert
+```
+
+- **已安装**：返回路径，可继续
+- **未安装**：停止流程，提示用户安装：
+
+  > 未检测到 `rsvg-convert`。请先安装：
+  >
+  > ```bash
+  > # macOS
+  > brew install librsvg
+  >
+  > # Debian / Ubuntu
+  > apt-get install librsvg2-bin
+  > ```
+  >
+  > 安装完成后告知我，我会继续。
+
+如果使用 mmdc 回退渲染器（gantt、mindmap、pie、journey、gitgraph 等图表类型），还需检测：
+
+```bash
+which mmdc
+```
+
+- **未安装**：提示用户安装 `npm install -g @mermaid-js/mermaid-cli`，或使用 npx 免安装运行
+
+> beautiful-mermaid 由脚本自动管理，无需额外检测。
 
 ### 写入 .mmd 文件并渲染
 
@@ -192,11 +296,21 @@ node ~/.claude/skills/code-to-diagram/scripts/code_to_diagram.js render \
 
 ### 3. 生成逻辑解释文字
 
-在生成 SVG 的同时，编写代码逻辑解释文字，包括：
-- 代码的整体结构和主要功能
-- 关键逻辑流程和数据流向
-- 重要的设计模式和架构决策
-- 图表中各组件的作用说明
+在生成 SVG 的同时，编写代码逻辑解释文字。输出结构：
+
+```markdown
+## 概述
+<用 1-2 句话说明这段代码/系统的整体功能和职责>
+
+## 核心流程
+<按执行顺序描述主要逻辑路径，每个步骤对应图表中的一个节点或子图>
+
+## 关键组件
+<列出图表中每个关键节点/子图对应的代码实体（类名、函数名、模块名），以及它们的职责>
+
+## 设计要点
+<描述代码中值得注意的设计模式、架构决策或边界处理>
+```
 
 ### 4. 写入 SVG 文件并渲染
 
@@ -356,3 +470,20 @@ apt-get install librsvg2-bin
 cd ~/.claude/skills/code-to-diagram/scripts
 npm install
 ```
+
+---
+
+## 排错
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 解析错误 / unknown error | Mermaid 语法不合法 | 阅读错误信息，定位行号，修正 `.mmd` 文件后重试 |
+| 输出空白 | 图表关键字缺失或拼写错误 | 第一行必须以合法关键字开头，且流程图需跟方向（`TD`/`LR`） |
+| 含特殊字符的标签出错 | 字符未转义 | 用引号包裹标签：`A["节点 (文本)"]` |
+| 节点 ID 含空格失败 | ID 必须是单个标识符 | 用 camelCase 或下划线做 ID，文本放在 label 中 |
+| rsvg-convert 报错 | 未安装 librsvg | 执行 `brew install librsvg`（macOS）或 `apt-get install librsvg2-bin`（Linux） |
+| mmdc 未找到 | 未安装 Mermaid CLI | 执行 `npm install -g @mermaid-js/mermaid-cli` 或使用 npx |
+| Puppeteer/Chrome 启动报错 | 无头浏览器不可用 | 创建 `puppeteer-config.json` 加 `{"args": ["--no-sandbox"]}`，通过 `-p` 传入 |
+| 大图被截断 | 默认页面过小 | 增大 `--width` / `--height`，或用 `--scale` 缩放 |
+| SVG 引擎字体缺失 | 内联字体声明不完整 | 检查 `<style>` 中 `@font-face` 的 `font-family` 是否与文本一致 |
+| beautiful-mermaid 主题不生效 | 脚本未安装依赖 | 在 `scripts/` 目录下执行 `npm install` |

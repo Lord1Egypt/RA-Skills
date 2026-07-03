@@ -1,389 +1,92 @@
 ---
 name: pptx-generator
-description: 专业PPT生成器。Use when user wants to create editable PowerPoint presentations with professional layouts, multiple styles, and beautiful designs. Supports business, academic, creative styles. 可编辑PPT、幻灯片制作、演示文稿。
-version: 1.0.1
+description: 专业 PPT 生成器。11 种幻灯片类型、5 套配色、图表/表格/时间线/图片支持。JSON 驱动，生成标准可编辑 PPTX。PPT、幻灯片、演示文稿、PowerPoint。
+version: 2.0.0
 license: MIT-0
 metadata: {"openclaw": {"emoji": "📊", "requires": {"bins": ["python3"], "env": []}}}
-dependencies: "pip install python-pptx pillow"
+dependencies: "pip install python-pptx"
 ---
 
 # PPT Generator
 
-专业PPT生成器，创建可编辑、排版精美、多风格的PowerPoint演示文稿。
+专业 PPT 生成器。通过 JSON 描述生成标准、可编辑的 PowerPoint 演示文稿。
 
-## Features
+## 用法
 
-- 📊 **可编辑PPTX**: 标准Office格式，可二次编辑
-- 🎨 **多种风格**: 商务、学术、创意、简约
-- 📐 **精美排版**: 专业布局，字体层次清晰
-- 📈 **图表支持**: 柱状图、折线图、饼图
-- 🖼️ **图片支持**: 插入图片，自动排版
-- 📝 **专业模板**: 10+预制模板
-
-## 支持的风格
-
-| 风格 | 适用场景 | 特点 |
-|------|----------|------|
-| 商务蓝 | 商业汇报 | 专业、稳重 |
-| 学术白 | 学术论文 | 简洁、规范 |
-| 创意紫 | 创意展示 | 时尚、活力 |
-| 科技深 | 技术分享 | 现代、高端 |
-| 极简灰 | 通用场景 | 简约、百搭 |
-
-## 使用方式
-
-```
-User: "帮我做一个关于AI发展的PPT"
-User: "生成商务风格的项目汇报PPT"
-User: "做一个学术论文答辩PPT"
+```bash
+python3 scripts/generate_pptx.py slides.json --out output.pptx
 ```
 
----
+## JSON 结构
 
-## Python代码实现
-
-```python
-from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
-from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
-from pptx.enum.shapes import MSO_SHAPE
-
-class PPTGenerator:
-    def __init__(self, style='business_blue'):
-        self.prs = Presentation()
-        self.style = style
-        self.colors = self._get_colors(style)
-        self.fonts = self._get_fonts()
-    
-    def _get_colors(self, style):
-        """获取配色方案"""
-        schemes = {
-            'business_blue': {
-                'primary': RGBColor(30, 60, 114),
-                'secondary': RGBColor(70, 130, 180),
-                'accent': RGBColor(255, 193, 7),
-                'text': RGBColor(51, 51, 51),
-                'bg': RGBColor(255, 255, 255)
-            },
-            'academic_white': {
-                'primary': RGBColor(0, 51, 102),
-                'secondary': RGBColor(102, 102, 102),
-                'accent': RGBColor(204, 0, 0),
-                'text': RGBColor(51, 51, 51),
-                'bg': RGBColor(255, 255, 255)
-            },
-            'creative_purple': {
-                'primary': RGBColor(102, 45, 140),
-                'secondary': RGBColor(155, 89, 182),
-                'accent': RGBColor(241, 196, 15),
-                'text': RGBColor(51, 51, 51),
-                'bg': RGBColor(248, 248, 255)
-            },
-            'tech_dark': {
-                'primary': RGBColor(30, 30, 30),
-                'secondary': RGBColor(60, 60, 60),
-                'accent': RGBColor(0, 200, 150),
-                'text': RGBColor(240, 240, 240),
-                'bg': RGBColor(20, 20, 25)
-            },
-            'minimal_gray': {
-                'primary': RGBColor(80, 80, 80),
-                'secondary': RGBColor(150, 150, 150),
-                'accent': RGBColor(0, 120, 215),
-                'text': RGBColor(51, 51, 51),
-                'bg': RGBColor(250, 250, 250)
-            }
-        }
-        return schemes.get(style, schemes['business_blue'])
-    
-    def _get_fonts(self):
-        """获取字体配置"""
-        return {
-            'title': 'Arial',
-            'body': 'Arial',
-            'chinese': 'Microsoft YaHei'
-        }
-    
-    def add_title_slide(self, title, subtitle=''):
-        """添加封面页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        # 背景色
-        self._set_slide_bg(slide, self.colors['bg'])
-        
-        # 标题
-        left, top, width, height = Inches(1), Inches(2), Inches(8), Inches(2)
-        txBox = slide.shapes.add_textbox(left, top, width, height)
-        tf = txBox.text_frame
-        tf.word_wrap = True
-        
-        p = tf.paragraphs[0]
-        p.text = title
-        p.font.size = Pt(44)
-        p.font.bold = True
-        p.font.color.rgb = self.colors['primary']
-        p.alignment = PP_ALIGN.CENTER
-        
-        # 副标题
-        if subtitle:
-            p2 = tf.add_paragraph()
-            p2.text = subtitle
-            p2.font.size = Pt(20)
-            p2.font.color.rgb = self.colors['secondary']
-            p2.alignment = PP_ALIGN.CENTER
-            p2.space_before = Pt(20)
-        
-        return slide
-    
-    def add_content_slide(self, title, bullets, layout='left'):
-        """添加内容页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        # 背景色
-        self._set_slide_bg(slide, self.colors['bg'])
-        
-        # 标题栏
-        self._add_title_bar(slide, title)
-        
-        # 内容区域
-        left, top, width, height = Inches(0.8), Inches(1.5), Inches(8.4), Inches(5)
-        txBox = slide.shapes.add_textbox(left, top, width, height)
-        tf = txBox.text_frame
-        tf.word_wrap = True
-        
-        for i, bullet in enumerate(bullets):
-            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-            p.text = f"• {bullet}"
-            p.font.size = Pt(18)
-            p.font.color.rgb = self.colors['text']
-            p.space_after = Pt(12)
-        
-        return slide
-    
-    def add_two_column_slide(self, title, left_content, right_content):
-        """添加双栏内容页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        self._set_slide_bg(slide, self.colors['bg'])
-        self._add_title_bar(slide, title)
-        
-        # 左栏
-        left_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(5))
-        left_tf = left_box.text_frame
-        left_tf.word_wrap = True
-        
-        for i, item in enumerate(left_content):
-            p = left_tf.paragraphs[0] if i == 0 else left_tf.add_paragraph()
-            p.text = f"• {item}"
-            p.font.size = Pt(16)
-            p.font.color.rgb = self.colors['text']
-            p.space_after = Pt(10)
-        
-        # 右栏
-        right_box = slide.shapes.add_textbox(Inches(5.2), Inches(1.5), Inches(4.5), Inches(5))
-        right_tf = right_box.text_frame
-        right_tf.word_wrap = True
-        
-        for i, item in enumerate(right_content):
-            p = right_tf.paragraphs[0] if i == 0 else right_tf.add_paragraph()
-            p.text = f"• {item}"
-            p.font.size = Pt(16)
-            p.font.color.rgb = self.colors['text']
-            p.space_after = Pt(10)
-        
-        return slide
-    
-    def add_table_slide(self, title, headers, rows):
-        """添加表格页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        self._set_slide_bg(slide, self.colors['bg'])
-        self._add_title_bar(slide, title)
-        
-        # 创建表格
-        rows_count = len(rows) + 1
-        cols_count = len(headers)
-        
-        left, top = Inches(0.5), Inches(1.8)
-        width, height = Inches(9), Inches(4)
-        
-        table_shape = slide.shapes.add_table(rows_count, cols_count, left, top, width, height)
-        table = table_shape.table
-        
-        # 设置表头
-        for i, header in enumerate(headers):
-            cell = table.cell(0, i)
-            cell.text = header
-            cell.fill.solid()
-            cell.fill.fore_color.rgb = self.colors['primary']
-            
-            for paragraph in cell.text_frame.paragraphs:
-                paragraph.font.size = Pt(14)
-                paragraph.font.bold = True
-                paragraph.font.color.rgb = RGBColor(255, 255, 255)
-                paragraph.alignment = PP_ALIGN.CENTER
-        
-        # 设置数据行
-        for row_idx, row in enumerate(rows, 1):
-            for col_idx, cell_text in enumerate(row):
-                cell = table.cell(row_idx, col_idx)
-                cell.text = str(cell_text)
-                
-                for paragraph in cell.text_frame.paragraphs:
-                    paragraph.font.size = Pt(12)
-                    paragraph.font.color.rgb = self.colors['text']
-                    paragraph.alignment = PP_ALIGN.CENTER
-        
-        return slide
-    
-    def add_image_slide(self, title, image_path, caption=''):
-        """添加图片页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        self._set_slide_bg(slide, self.colors['bg'])
-        self._add_title_bar(slide, title)
-        
-        # 插入图片
-        left, top, width, height = Inches(1.5), Inches(1.8), Inches(7), Inches(4.5)
-        slide.shapes.add_picture(image_path, left, top, width, height)
-        
-        # 添加说明
-        if caption:
-            txBox = slide.shapes.add_textbox(Inches(1), Inches(6.5), Inches(8), Inches(0.5))
-            tf = txBox.text_frame
-            p = tf.paragraphs[0]
-            p.text = caption
-            p.font.size = Pt(12)
-            p.font.color.rgb = self.colors['secondary']
-            p.alignment = PP_ALIGN.CENTER
-        
-        return slide
-    
-    def add_summary_slide(self, title, points, conclusion):
-        """添加总结页"""
-        slide = self.prs.slides.add_slide(self.prs.slide_layouts[6])
-        
-        self._set_slide_bg(slide, self.colors['bg'])
-        self._add_title_bar(slide, title)
-        
-        # 要点
-        txBox = slide.shapes.add_textbox(Inches(0.8), Inches(1.5), Inches(8.4), Inches(3.5))
-        tf = txBox.text_frame
-        tf.word_wrap = True
-        
-        for i, point in enumerate(points):
-            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-            p.text = f"✓ {point}"
-            p.font.size = Pt(18)
-            p.font.color.rgb = self.colors['text']
-            p.space_after = Pt(10)
-        
-        # 结论框
-        conclusion_box = slide.shapes.add_shape(
-            MSO_SHAPE.ROUNDED_RECTANGLE,
-            Inches(0.8), Inches(5.2), Inches(8.4), Inches(1.2)
-        )
-        conclusion_box.fill.solid()
-        conclusion_box.fill.fore_color.rgb = self.colors['secondary']
-        
-        tf2 = conclusion_box.text_frame
-        tf2.word_wrap = True
-        p2 = tf2.paragraphs[0]
-        p2.text = f"💡 {conclusion}"
-        p2.font.size = Pt(16)
-        p2.font.color.rgb = RGBColor(255, 255, 255)
-        p2.alignment = PP_ALIGN.CENTER
-        
-        return slide
-    
-    def _set_slide_bg(self, slide, color):
-        """设置幻灯片背景"""
-        background = slide.background
-        fill = background.fill
-        fill.solid()
-        fill.fore_color.rgb = color
-    
-    def _add_title_bar(self, slide, title):
-        """添加标题栏"""
-        # 标题背景
-        title_bar = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(0), Inches(0), Inches(10), Inches(1.2)
-        )
-        title_bar.fill.solid()
-        title_bar.fill.fore_color.rgb = self.colors['primary']
-        title_bar.line.fill.background()
-        
-        # 标题文字
-        txBox = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(9), Inches(0.8))
-        tf = txBox.text_frame
-        p = tf.paragraphs[0]
-        p.text = title
-        p.font.size = Pt(28)
-        p.font.bold = True
-        p.font.color.rgb = RGBColor(255, 255, 255)
-        p.alignment = PP_ALIGN.LEFT
-    
-    def save(self, output_path):
-        """保存PPT"""
-        self.prs.save(output_path)
-        return output_path
-
-# 使用示例
-gen = PPTGenerator(style='business_blue')
-
-# 添加封面
-gen.add_title_slide('2026年AI行业报告', '从大模型到智能体时代')
-
-# 添加内容页
-gen.add_content_slide('市场概况', [
-    '全球AI市场规模突破3.2万亿美元',
-    '企业AI采用率达到89%',
-    '年度投资总额1280亿美元'
-])
-
-# 添加表格页
-gen.add_table_slide('核心数据', 
-    ['指标', '2025', '2026', '增长率'],
-    [
-        ['市场规模', '$2.1T', '$3.2T', '52%'],
-        ['企业采用', '72%', '89%', '24%'],
-        ['投资总额', '$790亿', '$1280亿', '62%']
-    ]
-)
-
-# 添加总结页
-gen.add_summary_slide('总结', [
-    'AI技术持续突破',
-    'Agent技术走向成熟',
-    '开源生态蓬勃发展'
-], '2026年是AI发展的关键转折点')
-
-# 保存
-gen.save('output.pptx')
+```json
+{
+  "style": "business_blue",
+  "footer": "机密",
+  "page_numbers": true,
+  "output": "report.pptx",
+  "slides": [
+    {"type": "cover", "title": "标题", "subtitle": "副标题", "variant": "centered"},
+    {"type": "section", "title": "第一部分"},
+    {"type": "agenda", "title": "目录", "topics": ["主题1", "主题2"], "highlight": 0},
+    {"type": "content", "title": "内容页", "items": ["要点1", "要点2"], "columns": 1},
+    {"type": "two_column", "title": "双栏", "left": ["左栏"], "right": ["右栏"]},
+    {"type": "table", "title": "表格", "headers": ["A","B"], "rows": [[1,2]]},
+    {"type": "chart", "title": "图表", "chart_type": "bar|line|pie",
+     "categories": ["Q1","Q2"], "series": [{"name":"S1","values":[10,20]}]},
+    {"type": "timeline", "title": "时间线",
+     "milestones": [{"label":"阶段1","desc":"描述"}]},
+    {"type": "quote", "title": "", "quote": "内容", "attribution": "作者"},
+    {"type": "image", "title": "图片", "image_path": "img.png", "overlay": false},
+    {"type": "summary", "title": "总结", "points": ["要点"], "conclusion": "结论"},
+    {"type": "contact", "title": "联系我们", "info": "邮箱/电话"}
+  ]
+}
 ```
 
----
+## 幻灯片类型（11 种）
 
-## 使用场景
+| 类型 | 功能 |
+|------|------|
+| cover | 封面，3 种变体：centered / left / split |
+| section | 过渡页/章节分隔 |
+| agenda | 目录页，支持高亮当前章节 |
+| content | 内容页，支持单栏/双栏、多级列表 |
+| two_column | 双栏对比 |
+| table | 表格（隔行变色） |
+| chart | 图表（柱状/折线/饼图） |
+| timeline | 时间线/里程碑 |
+| quote | 引用/强调 |
+| image | 图片页，支持普通/全屏叠加两种模式 |
+| summary | 总结页，底部结论框 |
+| contact | 结尾/联系信息页 |
 
-```
-User: "做一个20页的AI行业报告PPT，商务风格"
-Agent: 使用 PPTGenerator(style='business_blue') 生成
+## 配色方案（5 套）
 
-User: "做一个学术答辩PPT"
-Agent: 使用 PPTGenerator(style='academic_white') 生成
+| 风格 | 适用场景 |
+|------|----------|
+| business_blue | 商业汇报，专业稳重 |
+| academic_white | 学术论文，简洁规范 |
+| creative_purple | 创意展示，时尚活力 |
+| tech_dark | 技术分享，现代高端 |
+| minimal_gray | 通用场景，简约百搭 |
 
-User: "做一个技术分享PPT，科技风格"
-Agent: 使用 PPTGenerator(style='tech_dark') 生成
-```
+## 能力变更（v2.0.0）
 
----
-
-## Notes
-
-- 生成标准.pptx格式，可编辑
-- 支持Microsoft PowerPoint、WPS、LibreOffice
-- 字体自动适配系统
-- 支持中英文
+- **修复**: 副标题与标题共用 textbox 导致重叠
+- **修复**: `layout` 参数声明但未使用
+- **修复**: 图片幻灯片不检查文件是否存在
+- **修复**: 标题栏硬编码 10 英寸宽度
+- **新增**: 11 种幻灯片类型（原 7 种 → 11 种）
+- **新增**: 分页目录页（agenda）
+- **新增**: 封面 3 种变体（居中/居左/分割）
+- **新增**: 图表支持（柱状图/折线图/饼图）
+- **新增**: 时间线/里程碑
+- **新增**: 引用/强调页
+- **新增**: 结尾/联系信息页
+- **新增**: 自动页码 + 页脚
+- **新增**: 渐变色背景
+- **新增**: 多级列表支持
+- **新增**: 10 色完整调色板（原 5 色 → 10 色角色）
+- **新增**: JSON 驱动生成管线
+- **新增**: 错误跳过 + 逐页报告

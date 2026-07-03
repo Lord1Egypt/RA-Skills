@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 公文排版脚本 v2.0.0
-严格按照《广东省政务服务和数据管理局公文格式样本（试行）》进行自动排版
+严格按照《XX单位公文格式样本（试行）》进行自动排版
 
 【v2.0.0 更新说明】
 - 删除所有红头文件相关代码（红头+尾表由 template_generator.py 处理）
@@ -92,8 +92,6 @@ def is_internal_search_endpoint(url):
     """识别深知搜索接口地址，避免误当成知识专库链接输出。"""
     return "open.dknowc.cn/dependable/search" in url
 
-DEFAULT_ORG = "广东省政务服务和数据管理局"
-DEFAULT_DOC_PREFIX = "粤政数"
 DEFAULT_OUTPUT_DIR = "official-docs/output"
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), '..', 'config', 'format.json')
 SKILL_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -189,6 +187,15 @@ def resolve_output_path(output_path):
     return resolved
 
 
+def display_path(path):
+    """将 Skill 内文件路径转换为面向用户的相对路径。"""
+    resolved = os.path.abspath(os.path.expanduser(str(path)))
+    try:
+        return os.path.relpath(resolved, get_skill_root())
+    except ValueError:
+        return resolved
+
+
 def get_font_config(element_name):
     """从配置获取字体设置，返回 (font_name, font_size, bold)"""
     if not FORMAT_CONFIG or element_name not in FORMAT_CONFIG:
@@ -198,7 +205,7 @@ def get_font_config(element_name):
             'body': ('仿宋_GB2312', 16, False),
             'heading1': ('黑体', 16, False),
             'heading2': ('楷体_GB2312', 16, False),
-            'heading3': ('仿宋_GB2312', 16, True),
+            'heading3': ('仿宋_GB2312', 16, False),
         }
         return defaults.get(element_name, ('仿宋_GB2312', 16, False))
     
@@ -218,14 +225,14 @@ def get_page_margin():
         if 'margin_top_mm' in page:
             return (
                 page.get('margin_top_mm', 37),
-                page.get('margin_bottom_mm', 33),
+                page.get('margin_bottom_mm', 35),
                 page.get('margin_left_mm', 28),
                 page.get('margin_right_mm', 26),
             )
         # 兼容旧配置：统一边距
         unified = page.get('margin_mm', 25)
         return (unified, unified, unified, unified)
-    return (37, 33, 28, 26)
+    return (37, 35, 28, 26)
 
 
 def get_page_size():
@@ -408,14 +415,8 @@ def set_outline_level(para, level):
     pPr.append(outlineLvl)
 
 
-def add_center_page_number(section):
-    """在页脚居中添加页码。"""
-    footer = section.footer
-    para = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
-    para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = para.add_run()
-    set_run_font(run, '宋体', 14)
-
+def add_page_field(run):
+    """添加 Word 页码域。"""
     fld_begin = OxmlElement('w:fldChar')
     fld_begin.set(qn('w:fldCharType'), 'begin')
     instr_text = OxmlElement('w:instrText')
@@ -433,6 +434,27 @@ def add_center_page_number(section):
     run._r.append(fld_separate)
     run._r.append(text)
     run._r.append(fld_end)
+
+
+def add_standard_page_number(footer, alignment):
+    """按 GB/T 9704 页码样式添加页脚：数字左右各一字线。"""
+    para = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
+    para.clear()
+    para.alignment = alignment
+    left_dash = para.add_run("— ")
+    set_run_font(left_dash, '宋体', 14)
+    run = para.add_run()
+    set_run_font(run, '宋体', 14)
+    add_page_field(run)
+    right_dash = para.add_run(" —")
+    set_run_font(right_dash, '宋体', 14)
+
+
+def add_gbt_page_numbers(doc, section):
+    """设置奇数页右侧、偶数页左侧页码。"""
+    doc.settings.odd_and_even_pages_header_footer = True
+    add_standard_page_number(section.footer, WD_ALIGN_PARAGRAPH.RIGHT)
+    add_standard_page_number(section.even_page_footer, WD_ALIGN_PARAGRAPH.LEFT)
 
 
 def add_ai_disclaimer(doc):
@@ -984,7 +1006,7 @@ def create_document(content_text, output_path=None):
         section.bottom_margin = Cm(margin_bottom / 10)
         section.left_margin = Cm(margin_left / 10)
         section.right_margin = Cm(margin_right / 10)
-        add_center_page_number(section)
+        add_gbt_page_numbers(doc, section)
     
     # 处理正文内容
     lines = content_text.strip().split('\n')
@@ -1295,7 +1317,7 @@ def create_document(content_text, output_path=None):
     add_ai_disclaimer(doc)
     set_document_core_properties(doc, default_title)
     doc.save(output_path)
-    return output_path
+    return display_path(output_path)
 
 
 def main():

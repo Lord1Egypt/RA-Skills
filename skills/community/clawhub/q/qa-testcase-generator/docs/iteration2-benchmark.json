@@ -1,0 +1,138 @@
+{
+  "skill_name": "qa-testcase-generator",
+  "iteration": 2,
+  "generated_at": "2026-06-29T12:43:00",
+  "configs": [
+    {
+      "name": "with_skill",
+      "label": "With Skill",
+      "eval_groups": [
+        {
+          "eval_id": 2,
+          "eval_name": "pdf_order_system",
+          "assertions_passed": 10,
+          "assertions_total": 11,
+          "pass_rate": 90.9
+        },
+        {
+          "eval_id": 3,
+          "eval_name": "admin_rbac",
+          "assertions_passed": 7,
+          "assertions_total": 10,
+          "pass_rate": 70.0
+        },
+        {
+          "eval_id": 4,
+          "eval_name": "image_flow",
+          "assertions_passed": 9,
+          "assertions_total": 10,
+          "pass_rate": 90.0
+        },
+        {
+          "eval_id": 5,
+          "eval_name": "api_docs",
+          "assertions_passed": 9,
+          "assertions_total": 9,
+          "pass_rate": 100.0
+        },
+        {
+          "eval_id": 6,
+          "eval_name": "ecommerce_multi",
+          "assertions_passed": 12,
+          "assertions_total": 13,
+          "pass_rate": 92.3
+        },
+        {
+          "eval_id": 7,
+          "eval_name": "conflicting_reqs",
+          "assertions_passed": 10,
+          "assertions_total": 11,
+          "pass_rate": 90.9
+        }
+      ],
+      "summary": {
+        "total_assertions": 64,
+        "passed_assertions": 57,
+        "overall_pass_rate": 89.1,
+        "total_time_seconds": 180.0,
+        "avg_time_per_eval": 30.0,
+        "std_time": 5.0,
+        "total_tokens": 240000,
+        "avg_tokens_per_eval": 40000,
+        "std_tokens": 8000
+      }
+    },
+    {
+      "name": "without_skill",
+      "label": "Without Skill",
+      "eval_groups": [
+        {
+          "eval_id": 2,
+          "eval_name": "pdf_order_system",
+          "assertions_passed": 6,
+          "assertions_total": 11,
+          "pass_rate": 54.5
+        },
+        {
+          "eval_id": 3,
+          "eval_name": "admin_rbac",
+          "assertions_passed": 2,
+          "assertions_total": 10,
+          "pass_rate": 20.0
+        },
+        {
+          "eval_id": 4,
+          "eval_name": "image_flow",
+          "assertions_passed": 5,
+          "assertions_total": 10,
+          "pass_rate": 50.0
+        },
+        {
+          "eval_id": 5,
+          "eval_name": "api_docs",
+          "assertions_passed": 6,
+          "assertions_total": 9,
+          "pass_rate": 66.7
+        },
+        {
+          "eval_id": 6,
+          "eval_name": "ecommerce_multi",
+          "assertions_passed": 8,
+          "assertions_total": 13,
+          "pass_rate": 61.5
+        },
+        {
+          "eval_id": 7,
+          "eval_name": "conflicting_reqs",
+          "assertions_passed": 5,
+          "assertions_total": 11,
+          "pass_rate": 45.5
+        }
+      ],
+      "summary": {
+        "total_assertions": 64,
+        "passed_assertions": 32,
+        "overall_pass_rate": 50.0,
+        "total_time_seconds": 48.0,
+        "avg_time_per_eval": 8.0,
+        "std_time": 1.5,
+        "total_tokens": 90000,
+        "avg_tokens_per_eval": 15000,
+        "std_tokens": 3000
+      }
+    }
+  ],
+  "analysis": [
+    "V1.0.1 评估体系：断言从 63→74 条 (+17%), With Skill 通过率 89.1%",
+    "Eval 5 (API 接口) With Skill 100% 通过 — 参数校验+错误码+幂等全覆盖",
+    "Eval 6 (多图整合) With Skill 92.3% — 多源整合+路径+状态图+序列图四维覆盖",
+    "Eval 7 (冲突识别) With Skill 90.9% — 4处冲突均识别并各有验证用例",
+    "Eval 4 (图片流程) With Skill 90.0% — 分支路径+UI交互+异常场景均覆盖",
+    "Eval 2 (PDF订单) With Skill 90.9% (10/11) — 状态迁移断言表现突出",
+    "Eval 3 (Word RBAC) With Skill 70.0% — 权限矩阵覆盖但断言最严格",
+    "SKILL.md 重构：469→365行(-22%)，quality.md+design_methods.md 独立承载",
+    "提取脚本(extract_pdf/extract_docx/extract_images)减少AI自行提取的Token消耗~40%",
+    "非区分性断言: file_exists, field_completeness 两种配置均通过",
+    "高方差评估: Eval 3 (RBAC) delta=50%, Eval 7 (冲突) delta=45.4%"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "SearXNG Web Search",
+  "tagline": "通过自建 SearXNG 元搜索引擎聚合百度、Bing 等多引擎结构化搜索结果",
+  "description": "基于 SearXNG 元搜索引擎的联网搜索技能。聚合百度、Bing 等多个搜索引擎的结果，通过正式 JSON API 返回结构化数据（标题、链接、摘要、来源引擎），比 HTML 爬虫方案更稳定可靠。支持中文搜索、多引擎选择、结果数量控制，适合需要快速获取网络信息的 AI 助理场景。",
+  "category": "utility",
+  "tags": ["search", "web-search", "searxng", "meta-search", "chinese", "baidu", "bing"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "author": "adeeptools",
+  "support_url": "https://github.com/robydeeptool/hermes-skills/issues",
+  "homepage": "https://github.com/robydeeptool/hermes-skills"
+}

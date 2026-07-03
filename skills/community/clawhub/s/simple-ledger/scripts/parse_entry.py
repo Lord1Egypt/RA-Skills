@@ -321,10 +321,53 @@ def _safe_write_path(path: Path) -> bool:
     return False
 
 
+def _validate_csv_line(line: str) -> tuple:
+    """校验即将写入的 CSV 行是否合法。防止垃圾数据写入账本。"""
+    import csv as csv_mod
+    import re as re_mod
+    from datetime import datetime as dt_mod
+    
+    stripped = line.strip()
+    parts = next(csv_mod.reader([stripped]), None)
+    if not parts or len(parts) < 6:
+        return False, f"字段不足（需6列，实际{len(parts) if parts else 0}列）"
+    
+    date_str, txn_type, amount_str = parts[0], parts[1], parts[2]
+    
+    if not re_mod.match(r'^\d{4}-\d{2}-\d{2}$', date_str):
+        return False, f"日期格式非法：{date_str}"
+    try:
+        dt_mod.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        return False, f"日期不存在：{date_str}"
+    
+    if txn_type not in {"收入", "支出"}:
+        return False, f"类型非法：{txn_type}"
+    
+    try:
+        if float(amount_str) <= 0:
+            return False, f"金额必须为正数：{amount_str}"
+    except ValueError:
+        return False, f"金额非法：{amount_str}"
+    
+    if not parts[3].strip():
+        return False, "分类为空"
+    if not parts[5].strip():
+        return False, "账户为空"
+    
+    return True, "OK"
+
+
 def append_to_ledger(entry: dict, ledger_path: str) -> bool:
-    """将条目追加到 CSV 账本文件。自动处理账户定义和初始余额。"""
+    """将条目追加到 CSV 账本文件。自动处理账户定义和初始余额。写入前校验。"""
     line = format_csv_line(entry)
     if not line:
+        return False
+
+    # 写入前校验，防止垃圾数据
+    valid, reason = _validate_csv_line(line)
+    if not valid:
+        print(f"❌ 校验失败，拒绝写入：{reason}", file=sys.stderr)
         return False
 
     path = Path(ledger_path)

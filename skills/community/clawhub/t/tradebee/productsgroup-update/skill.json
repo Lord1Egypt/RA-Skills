@@ -1,0 +1,159 @@
+{
+  "name": "productsgroup-update",
+  "description": "A product group update skill based on the Tradebee Website Builder Open API. Before sending the update request, it automatically reads the current product group and writes a local JSON backup file containing the pre-update backup bundle. It then updates an existing product group under a specified site language and supports updating group name, tags, brief description, and SEO data.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to update, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "productsgroup": {
+        "type": "object",
+        "description": "Required. Product group fields to update. `productsgroup_id` is mandatory. Every other field is optional and should be omitted unless the user explicitly wants to change it.",
+        "properties": {
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Required. Existing product group ID to update. First call `productsgroup-read`, then copy one exact `productsgroup_id`."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Optional. Product group name, up to 200 characters. Omit this field unless the user explicitly wants to change it."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Optional. Provide up to 6 unique keyword tags. Each tag must contain 3 to 50 characters. Omit this field unless the user explicitly wants to change tags.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. Short plain-text description, up to 4,000 characters. Omit this field unless the user explicitly wants to change it."
+          },
+          "section": {
+            "type": "object",
+            "description": "Optional. Product group page custom decoration HTML fragments. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed in each fragment. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit for each fragment is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating `top` or `bottom`, call `rule-get` with the exact selected `language` and the exact matching scene `productsgroup.section.top` or `productsgroup.section.bottom`. Do not guess, translate, normalize, shorten, or rename either `language` or `scene`. The fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Omit the whole object to keep the current section unchanged. Inside the object, omit `top` or `bottom` when that fragment should stay unchanged.",
+            "properties": {
+              "top": {
+                "type": "string",
+                "description": "Optional. Product group page header decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with the exact scene value `productsgroup.section.top`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              },
+              "bottom": {
+                "type": "string",
+                "description": "Optional. Product group page footer decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with the exact scene value `productsgroup.section.bottom`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              }
+            }
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. Product group page SEO fields. Omit the whole object unless the user explicitly wants to change SEO.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        },
+        "required": [
+          "productsgroup_id"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact product group update request after seeing the final language and payload. That approval must also cover the automatic pre-update backup read and local backup file write before the update request is sent, because the backup file can contain the current product group data and requested update payload. If the backup snapshot cannot be captured or the backup file cannot be written, the update must not run.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact product group payload to be updated. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact product group payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "productsgroup",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Updated product group ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the updated product group page. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "productsgroup_id",
+          "url"
+        ]
+      },
+      "backup": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned automatic pre-update backup information. Includes backup file metadata, the raw read API response, the extracted snapshot, and a best-effort `restore_payload` that includes `section` when it exists. The local backup file can contain sensitive business content from the current record and requested update payload."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "productsgroup.productsgroup_id": {
+      "skill": "productsgroup-read",
+      "field": "list[].productsgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select one existing product group ID from `productsgroup-read` under the same language."
+    }
+  }
+}

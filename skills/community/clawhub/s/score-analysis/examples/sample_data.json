@@ -1,0 +1,75 @@
+{
+  "class_name": "Class 1, Grade 10",
+  "exam_name": "Mid-term Exam",
+  "date": "2026-01-15",
+  "total_students": 45,
+  "score_lines": {
+    "special_control": 508,
+    "undergraduate": 401
+  },
+  "basic_stats": {
+    "total_score": {
+      "average": 480.62,
+      "max": 609,
+      "min": 367,
+      "median": 478.5
+    },
+    "subjects": {
+      "Chinese": {"average": 104.2, "max": 118, "min": 88, "full_score": 150},
+      "Math": {"average": 87.9, "max": 135, "min": 37, "full_score": 150},
+      "English": {"average": 87.2, "max": 117.5, "min": 54, "full_score": 150},
+      "Physics": {"average": 45.7, "max": 77, "min": 24, "full_score": 100},
+      "Chemistry": {"average": 77.0, "max": 88, "min": 55, "full_score": 100},
+      "Biology": {"average": 78.2, "max": 88, "min": 39, "full_score": 100}
+    }
+  },
+  "score_distribution": {
+    "600+": 1,
+    "550-600": 4,
+    "500-550": 16,
+    "450-500": 17,
+    "400-450": 13,
+    "350-400": 4,
+    "below_350": 0
+  },
+  "peer_classes": [
+    {"name": "Class 2", "average": 478.51, "top_score": 585, "special_line": 13, "undergrad_line": 50},
+    {"name": "Class 3", "average": 478.39, "top_score": 590, "special_line": 18, "undergrad_line": 52}
+  ],
+  "critical_students": {
+    "special_control": [
+      {"name": "Student_A", "score": 506, "gap": -2, "weak_subject": "Physics", "suggestion": "Focus on physics fundamentals"},
+      {"name": "Student_B", "score": 505, "gap": -3, "weak_subject": "Math", "suggestion": "Strengthen math practice"},
+      {"name": "Student_C", "score": 503, "gap": -5, "weak_subject": "Physics", "suggestion": "Physics has room for improvement"},
+      {"name": "Student_D", "score": 498, "gap": -10, "weak_subject": "Math", "suggestion": "Build math foundation"}
+    ],
+    "undergraduate": [
+      {"name": "Student_E", "score": 427, "gap": 26, "weak_subject": "Math", "suggestion": "Urgent math improvement needed"},
+      {"name": "Student_F", "score": 411, "gap": 10, "weak_subject": "Physics", "suggestion": "Physics is core weakness"},
+      {"name": "Student_G", "score": 405, "gap": 4, "weak_subject": "Physics", "suggestion": "Physics has high potential"}
+    ]
+  },
+  "imbalanced_students": [
+    {"name": "Student_H", "total": 563, "Chinese": 112, "Math": 45, "English": 108.5, "Physics": 65, "Chemistry": 88, "Biology": 73, "imbalance_index": 28.6},
+    {"name": "Student_I", "total": 609, "Chinese": 116, "Math": 135, "English": 109, "Physics": 77, "Chemistry": 82, "Biology": 56, "imbalance_index": 22.5},
+    {"name": "Student_J", "total": 594, "Chinese": 116, "Math": 113, "English": 103.5, "Physics": 66, "Chemistry": 88, "Biology": 73, "imbalance_index": 18.2}
+  ],
+  "conclusions": {
+    "strengths": [
+      "Top-tier students are competitive",
+      "English and Chinese performance improved",
+      "Overall undergraduate pass rate increased"
+    ],
+    "weaknesses": [
+      "Severe subject imbalance in Math and Physics",
+      "Middle score segment (450-500) is underrepresented",
+      "Too many students in lower score segments"
+    ],
+    "recommendations": [
+      "Strengthen Math and Physics tutoring",
+      "Focus on middle-tier students (450-550)",
+      "Establish tracking system for critical students",
+      "Provide additional support for lower-performing students"
+    ]
+  }
+}

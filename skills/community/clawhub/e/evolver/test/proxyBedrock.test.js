@@ -629,9 +629,11 @@ describe('messages_route auth gate softens under EVOMAP_UPSTREAM=bedrock', () =>
   it('throws 401 when neither inbound x-api-key nor proxy env creds (default mode)', async () => {
     const prevMode = process.env.EVOMAP_UPSTREAM;
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
     delete process.env.EVOMAP_UPSTREAM;
     delete process.env.ANTHROPIC_API_KEY;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_AUTH_TOKEN;
     try {
       const handler = buildMessagesHandler({
@@ -646,6 +648,7 @@ describe('messages_route auth gate softens under EVOMAP_UPSTREAM=bedrock', () =>
     } finally {
       if (prevMode !== undefined) process.env.EVOMAP_UPSTREAM = prevMode;
       if (prevKey !== undefined) process.env.ANTHROPIC_API_KEY = prevKey;
+      if (prevUpstreamKey !== undefined) process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
     }
   });
@@ -653,9 +656,11 @@ describe('messages_route auth gate softens under EVOMAP_UPSTREAM=bedrock', () =>
   it('skips the credential check when EVOMAP_UPSTREAM=bedrock (proxy_token gate is upstream of this handler)', async () => {
     const prevMode = process.env.EVOMAP_UPSTREAM;
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
     process.env.EVOMAP_UPSTREAM = 'bedrock';
     delete process.env.ANTHROPIC_API_KEY;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_AUTH_TOKEN;
     try {
       let called = false;
@@ -674,6 +679,7 @@ describe('messages_route auth gate softens under EVOMAP_UPSTREAM=bedrock', () =>
       if (prevMode === undefined) delete process.env.EVOMAP_UPSTREAM;
       else process.env.EVOMAP_UPSTREAM = prevMode;
       if (prevKey !== undefined) process.env.ANTHROPIC_API_KEY = prevKey;
+      if (prevUpstreamKey !== undefined) process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
     }
   });

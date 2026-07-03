@@ -30,39 +30,39 @@ COS storage conventions:
 
 Usage:
   # Basic: Initiate quality control for a video URL (default template 60, detects visual blur/screen corruption issues)
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
 
   # Playback compatibility detection (template 70): Detects if video can play normally, playback stuttering, playback
   abnormalities
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
 
   # Visual quality detection (template 60, default): Detects visual blur, screen corruption, visual damage issues
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
 
   # Audio quality control (template 50): Detects audio quality, audio events, and other audio content issues
-  python scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
 
   # COS input (recommended, using --cos-input-key)
-  python scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
+  python3 scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
 
   # COS path input (recommended, after local upload)
-  python scripts/mps_qualitycontrol.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou
+  python3 scripts/mps_qualitycontrol.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou
   --cos-input-key /input/video.mp4
 
   # Async mode (only submit task, don't wait for results)
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
 
   # Query existing task results
-  python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # JSON format output
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --json
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --json
 
   # dry-run mode (only prints parameters, doesn't actually call)
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --dry-run
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --dry-run
 
   # Specify region
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --region ap-guangzhou
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --region ap-guangzhou
 
 Parameter specification:
   All command-line parameters must use hyphen form (--no-wait, --dry-run, etc.),
@@ -98,7 +98,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Tencent Cloud SDK not installed, please run: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Tencent Cloud SDK not installed, please run: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -481,11 +481,11 @@ def main():
     #         underscore form (--no_wait) is not recognized by argparse and will be silently ignored as unknown args,
     #         causing logic errors that are hard to debug, so we intercept early and provide a clear message.
     _underscore_map = {
-        "--output-dir":  "--output-dir",
-        "--notify-url":  "--notify-url",
-        "--no-wait":     "--no-wait",
-        "--dry-run":     "--dry-run",
-        "--json-output": "--json",
+        "--output_dir":  "--output-dir",
+        "--notify_url":  "--notify-url",
+        "--no_wait":     "--no-wait",
+        "--dry_run":     "--dry-run",
+        "--json_output": "--json",
     }
     for raw_arg in sys.argv[1:]:
         arg_name = raw_arg.split("=")[0]
@@ -619,7 +619,7 @@ def main():
 
     if args.no_wait:
         print("ℹ️  Async mode, use the following command to query results:")
-        print(f"   python scripts/mps_get_video_task.py --task-id {task_id}")
+        print(f"   python3 scripts/mps_get_video_task.py --task-id {task_id}")
         return
 
     try:

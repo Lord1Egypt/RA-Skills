@@ -343,8 +343,8 @@ def _init_trade_client():
         return _trade_client
     
     try:
-        from py_clob_client.client import ClobClient
-        from py_clob_client.clob_types import MarketOrderArgs, OrderType
+        from py_clob_client_v2 import ClobClient
+        from py_clob_client_v2.clob_types import MarketOrderArgsV2, OrderType, PartialCreateOrderOptions
         from py_clob_client.order_builder.constants import BUY, SELL
     except ImportError:
         print("❌ py-clob-client not installed")
@@ -383,7 +383,7 @@ def check_price(token_id):
         return
     
     try:
-        from py_clob_client.client import ClobClient
+        from py_clob_client_v2 import ClobClient
         
         buy = client.get_price(token_id=token_id, side="BUY")
         sell = client.get_price(token_id=token_id, side="SELL")
@@ -409,7 +409,7 @@ def check_price(token_id):
 
 def trade(token_id, amount, side):
     """Execute trade"""
-    from py_clob_client.clob_types import MarketOrderArgs, OrderType
+    from py_clob_client_v2.clob_types import MarketOrderArgsV2, OrderType, PartialCreateOrderOptions
     from py_clob_client.order_builder.constants import BUY, SELL
     
     print(f"\n🛒 {'BUY' if side == 'BUY' else 'SELL'}")
@@ -421,7 +421,7 @@ def trade(token_id, amount, side):
         return
     
     try:
-        mo_args = MarketOrderArgs(
+        mo_args = MarketOrderArgsV2(
             token_id=token_id, 
             amount=amount, 
             side=BUY if side == "BUY" else SELL
@@ -459,29 +459,76 @@ def query_positions(wallet):
         for p in data:
             o = p.get('outcome', 'Unknown')
             s = float(p.get('size', 0))
-            v = float(p.get('value', 0))
-            pnl = float(p.get('unrealizedPnl', 0))
+            v = float(p.get('currentValue', 0))
+            cur_price = float(p.get('curPrice', 0))
+            title = p.get('title', '')
+            init_val = float(p.get('initialValue', 0))
+            pnl = float(p.get('cashPnl', 0))
             
-            print(f"\n  {o}")
-            print(f"    {s:,.4f} shares | Value: ${v:,.2f} | PnL: ${pnl:+,.2f}")
+            print(f"\n  📌 {title}")
+            print(f"     选项: {o} | {s:,.4f} shares")
+            print(f"     当前价: {cur_price:.4f} | 市值: ${v:,.2f} | 投入: ${init_val:.2f} | PnL: ${pnl:+,.2f}")
             total += v
         
-        print(f"\n💰 Total: ${total:,.2f}")
+        print(f"\n💰 总市值: ${total:,.2f}")
         
     except Exception as e:
         print(f"Error: {e}")
 
 def query_balance(wallet):
-    """Query USDC balance"""
-    payload = {
-        "jsonrpc": "2.0", "method": "eth_call",
-        "params": [{"to": USDC_CONTRACT, "data": f"0x70a08231000000000000000000000000{wallet[2:]}"}, "latest"],
-        "id": 1
-    }
+    """Query wallet balances (USDC, USDC.e, POL, pUSD via clob)"""
+    def _balance_of(contract, decimals):
+        data = f"0x70a08231000000000000000000000000{wallet[2:]}"
+        try:
+            resp = requests.post(POLYGON_RPC, json={"jsonrpc":"2.0","method":"eth_call","params":[{"to":contract,"data":data},"latest"],"id":1}, timeout=10)
+            return int(resp.json().get("result", "0x0"), 16) / 10**decimals
+        except:
+            return None
+    
     try:
-        resp = requests.post(POLYGON_RPC, json=payload, timeout=10)
-        balance = int(resp.json().get("result", "0x0"), 16) / 10**6
-        print(f"\n💵 USDC Balance: {balance:,.6f} USDC")
+        # POL (native MATIC)
+        resp = requests.post(POLYGON_RPC, json={"jsonrpc":"2.0","method":"eth_getBalance","params":[wallet,"latest"],"id":1}, timeout=10)
+        pol = int(resp.json().get("result", "0x0"), 16) / 10**18
+        
+        # USDC (native)
+        usdc_contract = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
+        usdc_bal = _balance_of(usdc_contract, 6)
+        
+        # USDC.e (Bridged)
+        usdc_e_contract = "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+        usdce_bal = _balance_of(usdc_e_contract, 6)
+        
+        # pUSD via CLOB API (Polymarket platform balance)
+        pusd_bal = None
+        try:
+            creds = load_creds()
+            if creds and creds.get('private_key'):
+                from py_clob_client_v2 import ClobClient
+                from py_clob_client_v2.clob_types import ApiCreds, BalanceAllowanceParams, AssetType
+                
+                client = ClobClient(CLOB_HOST, key=creds['private_key'], chain_id=CHAIN_ID, signature_type=2, funder=creds.get('proxy_address',''))
+                api_creds = load_api_creds()
+                if api_creds:
+                    client.set_api_creds(api_creds)
+                else:
+                    api_creds = client.create_or_derive_api_creds()
+                    client.set_api_creds(api_creds)
+                    save_api_creds(api_creds)
+                
+                params = BalanceAllowanceParams(asset_type=AssetType.COLLATERAL)
+                ba = client.get_balance_allowance(params)
+                pusd_bal = int(ba.get('balance', '0')) / 10**6
+        except Exception:
+            pass
+        
+        print(f"\n💵 Balance for {wallet}")
+        print(f"   POL: {pol:,.6f}")
+        if usdc_bal is not None:
+            print(f"   USDC (on-chain): {usdc_bal:,.6f}")
+        if usdce_bal is not None:
+            print(f"   USDC.e: {usdce_bal:,.6f}")
+        if pusd_bal is not None:
+            print(f"   pUSD (Polymarket): {pusd_bal:,.6f}")
     except Exception as e:
         print(f"Error: {e}")
 

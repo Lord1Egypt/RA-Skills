@@ -49,14 +49,14 @@ async function withServer(run) {
   const silent = { log() {}, warn() {}, error() {} };
   const routes = { 'POST /v1/chat/completions': buildChatCompletionsHandler({ openAIProxy: mockOpenAI, logger: silent }) };
   const srv = new ProxyHttpServer(routes, { port: 0, logger: silent });
-  srv.token = 'e2e-token';
+  srv.token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
   srv.server = http.createServer((req, res) => srv._handleRequest(req, res));
   const port = await new Promise((resolve) => srv.server.listen(0, '127.0.0.1', () => resolve(srv.server.address().port)));
   srv.actualPort = port;
 
   const call = ({ headers, body }) => new Promise((resolve, reject) => {
     const req = http.request({ host: '127.0.0.1', port, path: '/v1/chat/completions', method: 'POST',
-      headers: { 'content-type': 'application/json', authorization: 'Bearer e2e-token', 'x-api-key': 'sk-client', ...headers } }, (res) => {
+      headers: { 'content-type': 'application/json', authorization: 'Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'x-api-key': 'sk-client', ...headers } }, (res) => {
       const chunks = [];
       res.on('data', (d) => chunks.push(d));
       res.on('end', () => resolve({ status: res.statusCode, bytes: Buffer.concat(chunks) }));

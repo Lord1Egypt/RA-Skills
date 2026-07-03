@@ -88,64 +88,64 @@
 # ===== Large Model Enhancement Templates (Recommended, Use First) =====
 
 # Real-person scene - Upscale to 1080P (recommended for real-person footage)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003
 
 # Real-person scene - Upscale to 4K (ultra-HD restoration)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327007
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327007
 
 # Anime scene - Upscale to 1080P
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327004
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327004
 
 # Anime scene - Upscale to 4K (recommended for anime video ultra-clear restoration)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327008
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327008
 
 # Jitter optimization - Upscale to 1080P (reduce inter-frame jitter and texture flickering)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327010
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327010
 
 # Maximum detail - Upscale to 4K (ultimate detail restoration)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327016
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327016
 
 # Face fidelity - Upscale to 1080P (recommended for portrait/photoshoot/interview videos)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327018
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327018
 
 # ===== Custom Parameter Mode =====
 
 # Large model enhancement (strongest effect)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
 # Comprehensive enhancement (balanced effect and efficiency)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
 # De-artifact (repair artifacts caused by compression)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
 # Super resolution + denoising + color enhancement
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
 # HDR + frame interpolation 60fps
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10 --frame-rate 60
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10 --frame-rate 60
 
 # ===== Audio Separation =====
 
 # Extract vocals (remove background music)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate vocal
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate vocal
 
 # Extract background sound (remove vocals)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate background
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate background
 
 # Extract accompaniment (remove vocals, keep music)
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate accompaniment
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate accompaniment
 
 # Audio enhancement: denoising + volume balancing + beautification
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
 # ===== Output Encoding Control =====
 
 # Enhanced output as H265 + 1080P + specified bitrate
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution \
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution \
     --codec h265 --width 1920 --height 1080 --bitrate 4000
 
 # Submit asynchronously then query task status
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003 --no-wait
-python scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003 --no-wait
+python3 scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
 ```

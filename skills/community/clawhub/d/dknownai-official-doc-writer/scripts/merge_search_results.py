@@ -10,6 +10,58 @@ import sys
 from pathlib import Path
 from typing import List, Dict
 
+SKILL_ROOT = Path(__file__).resolve().parent.parent
+OFFICIAL_DOCS_DIR = SKILL_ROOT / "official-docs"
+SEARCH_RESULTS_DIR = OFFICIAL_DOCS_DIR / "search-results"
+ALLOWED_INPUT_DIRS = (
+    OFFICIAL_DOCS_DIR / "input",
+    OFFICIAL_DOCS_DIR / "output",
+    SEARCH_RESULTS_DIR,
+)
+
+
+def is_relative_to(path: Path, parent: Path) -> bool:
+    """兼容旧 Python 版本的 Path.is_relative_to。"""
+    try:
+        path.relative_to(parent)
+        return True
+    except ValueError:
+        return False
+
+
+def resolve_input_json(file_path: str) -> Path:
+    """只允许读取 skill 工作目录内的 JSON 搜索结果。"""
+    raw_path = Path(file_path).expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (SEARCH_RESULTS_DIR / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+
+    if resolved.suffix.lower() != ".json":
+        raise ValueError(f"只允许读取 JSON 文件: {file_path}")
+    if not any(is_relative_to(resolved, allowed.resolve()) for allowed in ALLOWED_INPUT_DIRS):
+        raise ValueError(f"输入文件必须位于 skill 工作目录内: {file_path}")
+    return resolved
+
+
+def resolve_output_json(output_path: str) -> Path:
+    """只允许将合并结果写入搜索结果目录。"""
+    raw_path = Path(output_path).expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (SEARCH_RESULTS_DIR / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+
+    if resolved.suffix.lower() != ".json":
+        resolved = resolved.with_suffix(".json")
+    if not is_relative_to(resolved, SEARCH_RESULTS_DIR.resolve()):
+        raise ValueError(f"输出文件必须位于搜索结果目录内: {SEARCH_RESULTS_DIR}")
+    return resolved
+
 
 def merge_results(result_files: List[str]) -> Dict:
     """
@@ -30,7 +82,8 @@ def merge_results(result_files: List[str]) -> Dict:
     
     for file_path in result_files:
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            safe_file_path = resolve_input_json(file_path)
+            with safe_file_path.open('r', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception as e:
             print(f"警告: 无法读取文件 {file_path}: {e}", file=sys.stderr)
@@ -46,10 +99,10 @@ def merge_results(result_files: List[str]) -> Dict:
             continue
         
         search_meta = data.get("search_meta", {})
-        region = search_meta.get("area") or infer_region_from_filename(file_path)
+        region = search_meta.get("area") or infer_region_from_filename(str(safe_file_path))
         regions_searched.append(region)
         searches.append({
-            "file": file_path,
+            "file": str(safe_file_path),
             "query": search_meta.get("query", ""),
             "area": region,
             "time": search_meta.get("time", ""),
@@ -60,7 +113,7 @@ def merge_results(result_files: List[str]) -> Dict:
         })
         if data.get("knowledgeBase"):
             knowledge_bases.append({
-                "file": file_path,
+                "file": str(safe_file_path),
                 "query": search_meta.get("query", ""),
                 "area": region,
                 "knowledgeBase": data.get("knowledgeBase", ""),
@@ -139,13 +192,15 @@ def main():
     output_json = json.dumps(merged, ensure_ascii=False, indent=2)
     
     if args.output:
-        with open(args.output, 'w', encoding='utf-8') as f:
+        output_path = resolve_output_json(args.output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with output_path.open('w', encoding='utf-8') as f:
             f.write(output_json)
         print(f"✅ 已合并 {merged['search_summary']['total_searches']} 次搜索结果")
         print(f"   - 文章数: {merged['search_summary']['total_articles']}")
         print(f"   - 段落数: {merged['search_summary']['total_paragraphs']}")
         print(f"   - 去重: {merged['search_summary']['duplicates_removed']} 篇")
-        print(f"   - 输出: {args.output}")
+        print(f"   - 输出: {output_path}")
     else:
         print(output_json)
 

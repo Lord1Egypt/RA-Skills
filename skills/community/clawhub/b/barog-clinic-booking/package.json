@@ -1,0 +1,12 @@
+{
+  "name": "barog-booking",
+  "version": "1.0.0",
+  "title": "Barog医院（江南店）预约助手",
+  "description": "Barog医院（江南店） — 首尔江南区Barog皮肤科，人气注射/激光/皮肤管理",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

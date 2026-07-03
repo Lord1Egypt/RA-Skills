@@ -1,0 +1,15 @@
+{
+  "id": "report-export",
+  "name": "报告导出",
+  "version": "1.3.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "诊断完成后一键导出报告，支持Markdown和HTML格式",
+  "stage": null,
+  "stageName": "通用（跨阶段）",
+  "triggers": ["导出", "报告", "下载"],
+  "formats": ["markdown", "html"],
+  "outputDir": "opc-reports/",
+  "files": {
+    "prompt": "prompt.md"
+  }
+}

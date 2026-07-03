@@ -1,6 +1,6 @@
 #!/bin/bash
 # stock_tracker 仪表盘模式
-# 抓取公告 → 生成摘要 → 启动 Web 仪表盘
+# 抓取公告（含摘要） → 启动 Web 仪表盘
 #
 # 用法: bash dashboard.sh [group] [days] [source]
 # 示例: bash dashboard.sh mygroup 15 eastmoney

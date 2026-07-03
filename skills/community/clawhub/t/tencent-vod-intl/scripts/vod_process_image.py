@@ -45,7 +45,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -61,13 +61,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -517,31 +520,40 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 
 
 def main():
+    # Load .env early so that `argparse default=os.environ.get(...)` sees the values.
+    # Bug fix: previously SubAppId default was evaluated at add_argument time,
+    # but .env was loaded inside get_credential() — too late, causing SubAppId=None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD image processing tool (image super-resolution enhancement + image understanding)',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
   # Image super-resolution enhancement (default 2x advanced super-resolution, auto-wait for result)
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
 
   # Super-resolution to fixed resolution 1920x1080
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode fixed --width 1920 --height 1080
 
   # Super-resolution using an existing template ID
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --template-id 7
 
   # Image understanding (default prompt "Understand this image", auto-wait for result)
-  python vod_process_image.py understand --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py understand --file-id <id> --sub-app-id 1500046154
 
   # Image understanding with custom prompt and specified model
-  python vod_process_image.py understand --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py understand --file-id <id> --sub-app-id 1500046154 \\
       --model gemini-2.5-pro --prompt "Analyze the composition and color palette of this image"
 
   # Image understanding using a template ID
-  python vod_process_image.py understand --url 'https://example.com/img.jpg' --sub-app-id 1500046154 \\
+  python3 vod_process_image.py understand --url 'https://example.com/img.jpg' --sub-app-id 1500046154 \\
       --template-id 10
 
 Supported image understanding models: gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3-pro
@@ -580,7 +592,7 @@ Supported image understanding models: gemini-2.5-flash, gemini-2.5-flash-lite, g
     understand_parser.add_argument('--session-context', help='Source context, passes through user request information')
     understand_parser.add_argument('--tasks-priority', type=int, help='Task priority, range -10 to 10')
     understand_parser.add_argument('--ext-info', help='Extended information (JSON string, e.g. to specify a model name)')  # NOCA:line-too-long(long output string or argparse help text, cannot be shortened)
-    understand_parser.add_argument('--region', default='ap-guangzhou', help='Region, default ap-guangzhou')
+    understand_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region, default ap-guangzhou')
     understand_parser.add_argument('--no-wait', action='store_true',
                                    help='Submit task only, do not wait for result (default: auto-wait)')
     understand_parser.add_argument('--max-wait', type=int, default=120, help='Maximum wait time in seconds, default 120')  # NOCA:line-too-long(long output string or argparse help text, cannot be shortened)
@@ -603,18 +615,18 @@ Super-resolution type descriptions:
 
 Examples:
   # 2x super-resolution (default advanced super-resolution, percent mode)
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
 
   # Fixed-resolution super-resolution to 1920x1080
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode fixed --width 1920 --height 1080
 
   # Aspect-fit super-resolution to 4K
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode aspect --width 3840 --height 2160
 
   # Use an existing template
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --template-id 30023
         ''')
 
@@ -650,7 +662,7 @@ Examples:
                            help='Sub-application ID (required)')
     sr_parser.add_argument('--session-id', help='Deduplication identifier; requests with the same ID within three days will return an error')  # NOCA:line-too-long(long output string or argparse help text, cannot be shortened)
     sr_parser.add_argument('--tasks-priority', type=int, help='Task priority, range -10 to 10')
-    sr_parser.add_argument('--region', default='ap-guangzhou', help='Region, default ap-guangzhou')
+    sr_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region, default ap-guangzhou')
     sr_parser.add_argument('--no-wait', action='store_true',
                            help='Submit task only, do not wait for result (default: auto-wait)')
     sr_parser.add_argument('--max-wait', type=int, default=300,

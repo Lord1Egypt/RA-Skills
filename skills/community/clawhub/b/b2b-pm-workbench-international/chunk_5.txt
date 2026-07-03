@@ -1,0 +1,438 @@
+## Competency Model & Career Development
+
+### B2B PM Capability Pyramid (Reference: Yang Kun "Mastering B2B")
+
+```
+               ┌──────────────┐
+               │  Business     │  ← Industry insight / Business models / Enterprise architecture
+               │  Acumen (40%) │
+               ├──────────────┤
+               │  System Design│  ← Product planning / Requirements analysis / Business modeling /
+               │  (25%)        │     Permission design / Report design / Project management
+               ├──────────────┤
+               │  Project Mgmt │
+               │  (20%)        │
+               ├──────────────┤
+               │  Business     │
+               │  Instinct (15%)│
+               └──────────────┘
+```
+
+### Global B2B PM Competency Models Comparison
+
+| Dimension | Google | Microsoft | Amazon (AWS) | Salesforce |
+|-----------|--------|-----------|-------------|------------|
+| Core Orientation | User-first + Technical depth | Platform thinking + Ecosystem | Customer obsession + Data-driven | Trust + Customer Success |
+| General Abilities | Problem-solving / Communication / Leadership | Cross-team collaboration / Influence | Bias for action / Ownership / Dive deep | Beginner's mind / Stakeholder management |
+| Professional Skills | Technical fluency / Data analysis / UX sense | Enterprise architecture / API design / Compliance | Business judgment / Metrics design / Technical architecture | Domain expertise / GTM strategy / Pricing science |
+| Decision Basis | Data + User research | Strategic alignment + Partner feedback | Data + Customer anecdotes | Customer evidence + Market signals |
+| Level System | L3-L9 | PM1-PM5 (Principal) | L5-L8 (Principal PM) | Associate PM → EVP Product |
+
+### China Tech PM Competency Models (Tencent / Alibaba / ByteDance)
+
+| Dimension | Tencent | Alibaba (B2B) | ByteDance |
+|-----------|---------|---------------|-----------|
+| Core Orientation | User value first | Commercial monetization + Platform thinking | Data-driven + Extreme execution |
+| General Abilities | Learning / Communication / Execution / Resilience | Requirements insight / Trend judgment / Independent thinking | Data sensitivity / Experimentation mindset |
+| Professional Skills | User research / Market analysis / Product design | Commercial monetization / Platform construction / Mechanism design | SQL / A/B testing / Growth hacking |
+| Organizational Influence | Methodology building / Knowledge transfer / Talent development | Cross-department collaboration / Platform rule design | Context not Control |
+| Decision Basis | User research + Consensus | Business value + Strategy | Data + Experiments |
+| Level System | T1-T6 | P5-P10 | Flexible + Lateral mobility |
+
+### PM to CPO Growth Path
+
+| Level | Experience | Core Competency Requirements |
+|-------|-----------|------------------------------|
+| **Junior PM** | 0-2 years | Requirements execution, PRD writing, basic data analysis, use case design |
+| **Mid-Level PM** | 2-5 years | Independent module ownership, user insight, cross-functional coordination, version planning |
+| **Senior PM** | 5-8 years | Product line strategy, commercial monetization, architecture design, team mentoring |
+| **Product Expert / Lead** | 8-10 years | Domain depth, multi-product line coordination, organizational influence, methodology building |
+| **Director of Product** | 10-12 years | Product portfolio strategy, P&L, organizational building, executive communication |
+| **VP / CPO** | 12+ years | Company product vision, investment portfolio, product culture, organizational transformation |
+
+### Global B2B PM Salary Benchmarks (2025-2026)
+
+| Region | Junior PM | Mid-Level PM | Senior PM | Director | VP/CPO |
+|--------|-----------|-------------|-----------|----------|--------|
+| **US (SF Bay Area)** | $120K-$160K | $160K-$220K | $220K-$300K | $280K-$400K | $400K-$800K+ |
+| **US (Other Tech Hubs)** | $100K-$140K | $140K-$190K | $190K-$260K | $250K-$350K | $350K-$600K |
+| **UK (London)** | £55K-£80K | £80K-£110K | £110K-£150K | £140K-£200K | £200K-£400K |
+| **EU (Berlin/Amsterdam)** | €55K-€80K | €80K-€110K | €110K-€150K | €140K-€200K | €200K-€350K |
+| **APAC (Singapore)** | SGD $80K-$120K | SGD $120K-$180K | SGD $180K-$250K | SGD $250K-$350K | SGD $350K-$500K |
+| **APAC (India)** | ₹15L-₹30L | ₹30L-₹60L | ₹60L-₹1Cr | ₹1Cr-₹1.8Cr | ₹1.8Cr-₹4Cr |
+| **Middle East (Dubai)** | AED 180K-300K | AED 300K-500K | AED 500K-800K | AED 800K-1.2M | AED 1.2M-2M+ |
+| **LATAM (Brazil/Mexico)** | $30K-$55K | $55K-$90K | $90K-$140K | $140K-$200K | $200K-$350K |
+
+*Sources: Glassdoor, Levels.fyi, Blind, Hired.com 2025 State of Tech Salaries. Total compensation (base + bonus + equity).*
+
+### International B2B PM Certifications
+
+| Certification | Organization | Focus | Cost | Duration | Global Recognition |
+|--------------|-------------|-------|------|----------|-------------------|
+| **Pragmatic Institute Certified** | Pragmatic Institute | Product management & marketing framework | $1,295-$2,495 | 2-5 days | ⭐⭐⭐⭐⭐ (Global standard) |
+| **Product School Certifications** | Product School | PM, Product Leader, AI Product | $4,999-$5,999 | 8 weeks | ⭐⭐⭐⭐ (Silicon Valley) |
+| **Reforge Product Management** | Reforge | Advanced PM, Growth, Retention | $1,995/year | Self-paced | ⭐⭐⭐⭐⭐ (Elite cohort) |
+| **SVPG Product Management** | Silicon Valley Product Group | Marty Cagan methodology | Varies | Workshop-based | ⭐⭐⭐⭐⭐ (Thought leadership) |
+| **AIPMM CPM** | AIPMM | Certified Product Manager | $500-$700 | Self-study + exam | ⭐⭐⭐ (Broad recognition) |
+| **PSPO / PSPO II** | Scrum.org | Product Owner certification | $200-$500 | Exam only | ⭐⭐⭐⭐ (Agile standard) |
+| **Google Project Management** | Google/Coursera | Entry-level PM | $49/month | 6 months | ⭐⭐⭐ (Entry level) |
+
+### B2B PM Hard Skills Checklist
+
+```
+Must-Have:
+□ Business modeling (ER diagrams, UML, data dictionary)
+□ Permission design (RBAC/ABAC)
+□ Database fundamentals (at least SQL)
+□ API design (RESTful basics)
+□ Data analysis and instrumentation design
+□ Project management (Agile/Scrum/Kanban)
+
+Advanced:
+□ Enterprise architecture (TOGAF basics / 4A Architecture)
+□ AI product design (RAG/Agent/Prompt Engineering)
+□ Microservices architecture basics
+□ Multi-tenant architecture design
+□ Compliance knowledge (GDPR/SOC2/ISO27001/HIPAA)
+□ Financial fundamentals (Pricing/Budgeting/ROI/NRR)
+```
+
+---
+
+## Diagram Factory
+
+### One-Click Diagram Generation
+
+Describe what you want to draw, and the tool is auto-matched to generate `.drawio` editable source files.
+
+```
+"Draw a procurement approval swimlane diagram, roles: Purchaser/Purchasing Manager/Finance/CEO"
+"Draw a CRM system C4 container diagram"
+"Draw XX module ER diagram"
+"Draw an approval flow state machine diagram"
+"Draw a hand-drawn style user journey map, role: Enterprise Procurement Manager"
+```
+
+### Tool Call Rules
+
+| Diagram Type | Primary Tool | Backup |
+|-------------|-------------|--------|
+| Architecture (System/Function/Integration/Deployment) | drawio-skill | drawio-coderknock |
+| Business Process (Swimlane) | drawio-skill | processon-diagram |
+| Data (ER/Data Model) | drawio-generator-pro | drawio-skill |
+| Hand-drawn Style (Journey/Blueprint/Wireframe) | excalidraw-diagram | - |
+| State Machine / Approval Flow | drawio-skill | - |
+| Roadmap / Gantt | drawio-skill | - |
+
+Output: `.drawio` + `.png` preview (with embedded XML, editable anytime with draw.io)
+
+---
+
+## Prototype Factory
+
+### One-Click Interactive Prototype Generation
+
+```
+"Generate an enterprise procurement management admin HTML prototype, including: Dashboard / Purchase Request List / New Request Form / Approval Detail"
+"Generate a CRM contract management list page prototype with search, filter, batch operations, pagination"
+```
+
+Output: Complete HTML file (Tailwind CSS + Alpine.js CDN), browser-runnable, includes:
+- Sidebar navigation + top bar + breadcrumbs
+- Table with sort / filter / pagination / multi-select
+- Forms with validation (required / format / length)
+- Modal confirmations / drawer details
+- Approval flow state visualization
+- Role switching to view different permission views
+- Mock data
+
+---
+
+## Document Factory
+
+### One-Click Professional Document Generation
+
+```
+"Write a complete PRD for enterprise procurement management"
+"Write a Market Requirements Document (MRD) for HR SaaS"
+"Create a competitive analysis report for Slack vs Teams"
+```
+
+Process: Describe requirements → Confirm structure → Generate Markdown → Optional: Convert to DOCX/PDF/PPT
+
+### Format Conversion Commands
+
+| Need | Call |
+|------|------|
+| MD to DOCX | `word-docx` skill → Standard formatting |
+| MD to PDF | `minimax-pdf` skill → Professional layout |
+| Key points to PPT | `pptx-2` skill → Auto-layout |
+| Data to Excel | `xlsx` skill → Professional formatting |
+
+---
+
+## PPT Factory
+
+### B2B PPT Types
+
+| Type | Pages | Use Case | Color Recommendation |
+|------|-------|----------|---------------------|
+| Product Initiation Pitch | 8-12 pages | Initiation review meeting | Enterprise Professional |
+| Product Solution Review | 12-18 pages | Requirements / Solution review | Enterprise Professional / Tech Blue |
+| Executive Monthly Report | 5-8 pages | Monthly reporting | Enterprise Professional |
+| Customer Presentation | 10-15 pages | Pre-sales / Industry conferences | Tech Blue / Premium Dark |
+| Industry Summit Keynote | 15-25 pages | Marketing events | Premium Dark |
+
+### Color Schemes
+
+| Scheme | Use Case |
+|--------|----------|
+| Enterprise Professional (Deep Blue + White) | Internal reporting / Executives |
+| Tech Blue (Blue + Purple Gradient) | Technical reviews / Customer demos |
+| Professional Gray (Gray + Brand Color) | Document-type PPTs |
+| Premium Dark (Dark Gray + Gold) | Summit keynotes |
+| Government Red (Red + White + Gray) | Government / SOE clients |
+
+---
+
+## Tool Integration Matrix
+
+### Tools Auto-Invoked by This Skill
+
+| Task | Primary Tool | Backup |
+|------|-------------|--------|
+| Draw architecture / flow / ER diagrams | `drawio-skill` | `drawio-coderknock` / `drawio-generator-pro` |
+| Draw hand-drawn / wireframe diagrams | `excalidraw-diagram` | - |
+| Draw on ProcessOn | `processon-diagram-generator` | - |
+| Make PPT | `pptx-2` | `guizang-ppt-skill` / `deck-generator` |
+| Write Word docs | `word-docx` + `word-cn-format` | - |
+| Write PDF | `minimax-pdf` | `md-to-pdf-cjk` |
+| Write Excel | `xlsx` | - |
+| Generate prototypes | Direct HTML generation (Tailwind+Alpine.js) | - |
+| Project management (if needed) | Plane / Jira / Linear (API) | - |
+| Data analysis (if needed) | PostHog / Amplitude (conceptual guidance) | - |
+
+### Tool Decision Principles
+
+1. **Auto-select optimal**: No need for user to specify tools
+2. **Editable source files first**: drawio→.drawio, PPT→.pptx
+3. **Preview output simultaneously**: Diagrams output .png preview alongside
+4. **International formatting standards**: Documents follow professional formatting
+
+---
+
+## Usage Examples
+
+### Example 1: From 0 to 1 — Build a B2B SaaS Product
+
+```
+User: Help me plan an enterprise contract management SaaS from 0 to 1
+
+Output Sequence:
+Stage 1 → Industry analysis (market size / trends / competitors) + Product Strategy One-Pager
+Stage 2 → User personas (Legal / Sales / Executive — 3 roles) + User Journey Map + JTBD Cards
+Stage 3 → Requirements backlog + KANO classification + RICE prioritization
+Stage 4 → Permission matrix + Approval flow design + Data dictionary + Integration plan
+Stage 5 → (If AI features involved) AI feature design document
+Stage 6 → HTML interactive prototype (Dashboard / Contract List / Approval Detail / Template Library)
+Stage 7 → Business swimlane diagram + System architecture (C4) + ER diagram + State machine
+Stage 8 → Complete PRD document + Convert to DOCX/PDF
+Stage 11 → Pricing plan (3 packages) + Sales one-pager + Demo script
+```
+
+### Example 2: Add AI Features to Existing Product
+
+```
+User: Add an AI-powered contract review feature to my CRM system
+
+Output Sequence:
+Stage 5 → AI capability plan: Model selection (Closed API + RAG) +
+        RAG architecture (contract clause retrieval) + Prompt engineering (review rules) +
+        HITL design (AI suggests → Human confirms) + Evaluation system (Golden Dataset)
+Stage 4 → Permission design (who can use AI review) + Audit design (AI suggestions must be logged)
+Stage 6 → HTML prototype (Contract upload → AI review → Risk annotation → Human review)
+Stage 8 → PRD (AI feature section) with accuracy requirements and exception handling
+```
+
+### Example 3: Senior PM Weekly Routine
+
+```
+User: I'm a B2B PM, help me establish workflows and weekly plan
+
+Output:
+→ Set up Dual-Track Agile (Discovery + Delivery)
+→ Establish bi-weekly iteration cadence
+→ This week's calendar: Monday Standup / Tuesday Customer Interviews / Wednesday PRD Writing /
+  Thursday Cross-functional Alignment / Friday Data Review
+→ Requirements management workflow SOP
+→ Meeting templates (Requirements Review / Iteration Planning / Retrospective)
+```
+
+---
+
+## World-Class B2B PM Framework Library (Global Top Methodologies)
+
+### Shreyas Doshi's LNO Framework (Time Allocation)
+
+```
+Classify all work into three types:
+L - Leverage: Things that produce compounding returns (10x impact)
+N - Neutral: Things with linear returns
+O - Overhead: Must-do things with no direct value
+
+Target time allocation: L:70% N:20% O:10%
+Actual allocation for most PMs: L:20% N:40% O:40%
+
+B2B PM's L-type work:
+- Deep interviews with KA customers (discover insights, not confirm requirements)
+- Building product strategy documents (influence entire team's direction)
+- Designing data models and architecture (extremely costly to fix later)
+- Developing product team (highest compounding investment)
+```
+
+### Gibson Biddle's DHM Framework (Product Strategy Evaluation)
+
+```
+D - Delightful: Does this feature delight users?
+H - Hard-to-copy: How quickly can competitors replicate it?
+M - Margin-enhancing: Does it improve margins or just add cost?
+
+Evaluate each strategic decision: D × H × M composite score
+Ideal features: Triple high (D high + H high + M high)
+Avoid features: Only D but H and M low (easily copied "gift" features that don't make money)
+```
+
+### Hamilton Helmer's 7 Powers (B2B Competitive Advantage)
+
+| Power | B2B Example | Moat Strength |
+|-------|-------------|--------------|
+| **Network Effects** | Platform GMV grows with buyers and sellers | ⭐⭐⭐⭐⭐ |
+| **Switching Costs** | Enterprise data + process + training sunk cost | ⭐⭐⭐⭐⭐ |
+| **Scale Economies** | R&D cost spread across more customers | ⭐⭐⭐⭐ |
+| **Cornered Resource** | Proprietary industry data / IP / licenses | ⭐⭐⭐⭐ |
+| **Counter-Positioning** | New model incumbents can't imitate (e.g. PLG vs traditional SLG) | ⭐⭐⭐ |
+| **Brand** | SOC2 / Gartner / customer success stories accumulated trust | ⭐⭐⭐ |
+| **Process Power** | Embedded organizational knowledge and efficiency | ⭐⭐ |
+
+### Geoffrey Moore's Crossing the Chasm (B2B GTM Bible)
+
+```
+Technology Adoption Lifecycle:
+Innovators(2.5%) → Early Adopters(13.5%) → [THE CHASM] →
+Early Majority(34%) → Late Majority(34%) → Laggards(16%)
+
+Main reason B2B tech companies fail: Stuck at the Chasm
+- Early Adopters are willing to take risks on new technology
+- Early Majority only buys "proven solutions"
+- The only way to cross the chasm: Find a Beachhead market, become a big fish in a small pond
+
+Beachhead Market Selection Criteria:
+1. Customer has clear, urgent pain point
+2. Budget already exists or can be quickly obtained
+3. Can become undisputed #1 in that segment
+4. Can use it as a springboard to adjacent markets
+```
+
+### Bob Moesta's JTBD Progress Four Forces Model
+
+```
+┌──────────────────────────────────────┐
+│  Push of Current Situation →  ← Pull of New Solution    │
+│  (Dissatisfaction with status quo)   (Attraction to new) │
+│                                      │
+│  ← Anxiety of New Solution    → Inertia of Old Habits   │
+│  (Switching risk/cost)         (Behavioral inertia/sunk cost) │
+└──────────────────────────────────────┘
+
+B2B Buyer's Four Forces:
+- Push: "Current system is too slow, departments are complaining"
+- Pull: "New system's automation can free up 20% of my team's bandwidth"
+- Anxiety: "Will data migration go wrong? Can the team learn it?"
+- Inertia: "Already invested $2M in current system, contract has 18 months left"
+```
+
+### John Cutler's Feature Factory Diagnosis
+
+```
+Is your team a "Feature Factory"? Self-check:
+□ Proud of "how many features delivered" rather than "what outcomes produced"
+□ Roadmap is a feature list with fixed dates, not hypotheses to validate
+□ Very few discovery activities with direct user involvement
+□ Don't track usage and business impact after launch
+□ Requirements come directly from sales/customers, no requirements analysis
+□ No OKRs or OKRs are "launch XX feature" (output, not outcome)
+
+Statistics: Only 10-30% of features produce measurable business impact
+Escape method: Replace Output with Outcome as success measure
+```
+
+### Richard Rumelt's Good Strategy Bad Strategy
+
+```
+Good Strategy = Diagnosis + Guiding Policy + Coherent Actions
+
+Diagnosis: Essential judgment of the current challenge
+  "We don't lack features — customers don't know how to use existing features"
+
+Guiding Policy: Overall approach to overcome obstacles
+  "Focus on Onboarding experience, let new customers feel core value within 7 days"
+
+Coherent Actions: Mutually coordinated specific actions
+  - Design guided Onboarding flow
+  - Establish CSM proactive outreach mechanism
+  - Simplify core feature operation paths
+
+Bad Strategy = "Nice-sounding nonsense"
+  "We want to become the industry's best XX platform" ← This is a vision, not a strategy
+  "Our focus this year is growth" ← This is a goal, not a strategy
+```
+
+### Petra Wille's PM Capability Wheel
+
+```
+PM Capability 8-Dimension Assessment:
+         Understanding Customer Problems
+                    │
+     Ideation / Solution ──┼── Roadmap Planning
+                    │
+     Delivery & Execution ───┼─── Listening & Learning
+                    │
+     Team Motivation & Coaching ──┼─── Personal Continuous Growth
+                    │
+              Agile Principles Application
+
+Self-assess each dimension quarterly (1-5), identify weakest as growth target
+```
+
+---
+
+## Product Operations System (Melissa Perri Product Ops 3 Pillars)
+
+| Pillar | Description | B2B Typical Activities |
+|--------|-------------|----------------------|
+| **Data & Insights** | Connect product metrics to business metrics | Build NRR dashboard / Feature adoption tracking / Customer segmentation analysis |
+| **Customer & Market Insights** | Structurally collect and distribute customer voice | User interview library / NPS trends / Competitive intelligence weekly |
+| **Process & Governance** | Keep scale from creating chaos | Requirements review SOP / Release checklist / Cross-team communication cadence |
+
+---
+
+## PRD 14-Dimension Quality Review Framework
+
+| # | Review Dimension | Check Points |
+|---|-----------------|--------------|
+| 1 | Business Research Clarity | Are existing business processes and pain points fully described? |
+| 2 | Product Type Accuracy | Commercial product vs Internal system: different strategies |
+| 3 | Product Positioning | Value proposition clear? Differentiation defensible? |
+| 4 | Scenario Coverage | All roles / all exceptions considered? |
+| 5 | Document Structure | Logic coherent? Chapter arrangement reasonable? |
+| 6 | Application Architecture | Functional module division reasonable? Boundaries clear? |
+| 7 | Data Model Completeness | ER diagram + data dictionary complete? |
+| 8 | Process Completeness | Main flow + branches + exceptions + state machine, all covered? |
+| 9 | Interaction Experience | Aligned with B2B efficiency-first principle? |
+| 10 | Business Analysis (Commercial) | ROI / pricing model reasonable? |
+| 11 | MVP Strategy | Is the first version scope minimal and viable? |
+| 12 | Exception Handling | Network errors / concurrency conflicts / empty data all considered? |
+| 13 | AI Feature Design | Any AI features? Human-AI collaboration boundary clear? |
+| 14 | Operations Plan & Monitoring | How to track after launch? What are the metrics? |
+
+---

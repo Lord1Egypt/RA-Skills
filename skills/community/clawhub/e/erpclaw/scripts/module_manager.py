@@ -27,14 +27,19 @@ from uuid import uuid4
 # ---------------------------------------------------------------------------
 # Shared library imports
 # ---------------------------------------------------------------------------
-sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+# Bootstrap the lib onto sys.path via the ERPCLAW_HOME point of truth
+# (ADR-0017). This is the chicken-and-egg site: it makes erpclaw_lib importable,
+# so it resolves the lib dir inline (equivalent to erpclaw_lib.paths.lib_dir()).
+# With ERPCLAW_HOME unset this equals os.path.expanduser("~/.openclaw/erpclaw/lib").
+sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
 from erpclaw_lib.db import get_connection
+from erpclaw_lib.paths import db_default, install_state_dir, lib_dir, modules_dir
 from erpclaw_lib.response import ok, err, rows_to_list, row_to_dict
 
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-MODULES_DIR = os.path.expanduser("~/.openclaw/erpclaw/modules")
+MODULES_DIR = modules_dir()
 
 # OpenClaw's agent / `openclaw skills list` only discovers skills under
 # `~/.openclaw/workspace/skills/`. Modules installed by this manager
@@ -50,16 +55,18 @@ OPENCLAW_WORKSPACE_SKILLS_DIR = os.path.expanduser(
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REGISTRY_PATH = os.path.join(SCRIPT_DIR, "module_registry.json")
 REMOTE_REGISTRY_URL = "https://raw.githubusercontent.com/avansaber/erpclaw/main/scripts/module_registry.json"
-LOCAL_CACHE_PATH = os.path.expanduser("~/.openclaw/erpclaw/registry_cache.json")
+LOCAL_CACHE_PATH = os.path.join(install_state_dir(), "registry_cache.json")
 CACHE_TTL_SECONDS = 86400  # 24 hours
 
-# Foundation source synchronization
+# Foundation source synchronization. Install-state markers resolve through the
+# ERPCLAW_HOME point of truth (ADR-0017); ERPCLAW_HOME unset ⇒ today's
+# ~/.openclaw/erpclaw/* paths byte-for-byte.
 FOUNDATION_INSTALL_ROOT = os.path.dirname(SCRIPT_DIR)  # parent of scripts/
 GITHUB_RAW_BASE = "https://raw.githubusercontent.com/avansaber/erpclaw/main"
-SYNC_LOCK_PATH = os.path.expanduser("~/.openclaw/erpclaw/.sync.lock")
-LAST_SYNC_MARKER = os.path.expanduser("~/.openclaw/erpclaw/.last_sync")
-NO_AUTOSYNC_MARKER = os.path.expanduser("~/.openclaw/erpclaw/.no_autosync")
-SYNC_LOG_PATH = os.path.expanduser("~/.openclaw/erpclaw/logs/sync.log")
+SYNC_LOCK_PATH = os.path.join(install_state_dir(), ".sync.lock")
+LAST_SYNC_MARKER = os.path.join(install_state_dir(), ".last_sync")
+NO_AUTOSYNC_MARKER = os.path.join(install_state_dir(), ".no_autosync")
+SYNC_LOG_PATH = os.path.join(install_state_dir(), "logs", "sync.log")
 
 # Skip filters (must match install_module's full-tree verification block)
 SYNC_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", "dist", "build"}
@@ -78,7 +85,7 @@ def _now_iso():
 
 REMOTE_SIGNATURE_URL = REMOTE_REGISTRY_URL + ".sig"
 LOCAL_SIG_CACHE_PATH = LOCAL_CACHE_PATH + ".sig"
-LOCAL_VERSION_TRACKER = os.path.expanduser("~/.openclaw/erpclaw/.last_registry_version")
+LOCAL_VERSION_TRACKER = os.path.join(install_state_dir(), ".last_registry_version")
 
 
 class _RegistrySignatureError(Exception):
@@ -93,7 +100,7 @@ def _verify_registry_payload(raw_bytes, sig_hex, *, label):
     """
     # Late import so non-foundation paths (e.g., scripts that import
     # module_manager for testing) don't require the lib to be installed.
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     try:
         from erpclaw_lib.signing import (
             verify_registry_signature, REGISTRY_VERSION_FIELD, fingerprint,
@@ -940,7 +947,7 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
         try:
             # Set PYTHONPATH so init_db.py can find erpclaw_lib
             env = os.environ.copy()
-            lib_path = os.path.expanduser("~/.openclaw/erpclaw/lib")
+            lib_path = lib_dir()
             env["PYTHONPATH"] = lib_path + os.pathsep + env.get("PYTHONPATH", "")
             result = subprocess.run(
                 [sys.executable, init_db_path],
@@ -971,7 +978,7 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
         except sqlite3.Error:
             pass
         try:
-            data_db = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+            data_db = db_default()
             if os.path.isfile(data_db):
                 dconn = sqlite3.connect(data_db)
                 prefix = module_name.replace("-", "_") + "_"
@@ -1097,7 +1104,7 @@ def _run_module_migrations(module_name, install_path):
     spec = importlib.util.spec_from_file_location("migration_runner", runner_path)
     runner = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runner)
-    data_db = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+    data_db = db_default()
     res = runner.run_pending(data_db, migrations_dir=migrations_dir, module_name=module_name)
     if res.get("ok") is False:
         raise RuntimeError(
@@ -2003,7 +2010,7 @@ def update_foundation_action(args):
 
 def verify_trust_root_action(args):
     """Print embedded public key fingerprint(s) for out-of-band verification."""
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     try:
         from erpclaw_lib.signing import TRUSTED_KEYS, fingerprint
     except ImportError as e:

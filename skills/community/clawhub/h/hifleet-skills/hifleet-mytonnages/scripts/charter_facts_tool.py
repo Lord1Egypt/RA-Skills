@@ -17,6 +17,35 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
+try:
+    from extract_contacts import merge_contacts_into_parsed
+except ImportError:  # pragma: no cover
+    merge_contacts_into_parsed = None  # type: ignore
+
+try:
+    from imap_mail import build_preview_url, preview_token_for_message_id
+except ImportError:  # pragma: no cover
+    def build_preview_url(message_id: str, base_url: str | None = None) -> str:  # type: ignore
+        return ""
+
+    def preview_token_for_message_id(message_id: str) -> str:  # type: ignore
+        return ""
+
+try:
+    from mail_reply import build_reply_url
+except ImportError:  # pragma: no cover
+    def build_reply_url(preview_token: str, base_url: str | None = None) -> str:  # type: ignore
+        return ""
+
+try:
+    from webmail_locate import build_webmail_locate, build_webmail_locate_from_row
+except ImportError:  # pragma: no cover
+    def build_webmail_locate_from_row(row: dict[str, Any]) -> dict[str, Any]:  # type: ignore
+        return {}
+
+    def build_webmail_locate(**kwargs: Any) -> dict[str, Any]:  # type: ignore
+        return ""
+
 # 与 SKILL.md §2.4 JSON 键一致
 CARGO_FIELD_KEYS: tuple[str, ...] = (
     "客户名称",
@@ -375,15 +404,16 @@ class CharterFactsDB:
         self.init(conn)
         cur = conn.cursor()
         like = f"%{q}%"
-        out: list[dict[str, Any]] = []
+        plates: list[dict[str, Any]] = []
+        unknowns: list[dict[str, Any]] = []
 
         for table, ftype in (
             ("cargo_plate", "cargo"),
             ("openvessel_plate", "openvessel"),
         ):
             cur.execute(
-                f"SELECT * FROM {table} WHERE search_text LIKE ? ORDER BY email_date_utc DESC LIMIT ?",
-                (like, limit),
+                f"SELECT * FROM {table} WHERE search_text LIKE ? ORDER BY email_date_utc DESC",
+                (like,),
             )
             for row in cur.fetchall():
                 d = dict(row)
@@ -395,11 +425,11 @@ class CharterFactsDB:
                         d["payload"] = json.loads(pj)
                     except json.JSONDecodeError:
                         d["payload"] = None
-                out.append(d)
+                plates.append(d)
 
         cur.execute(
-            "SELECT * FROM mail_unknown WHERE search_text LIKE ? ORDER BY email_date_utc DESC LIMIT ?",
-            (like, limit),
+            "SELECT * FROM mail_unknown WHERE search_text LIKE ? ORDER BY email_date_utc DESC",
+            (like,),
         )
         for row in cur.fetchall():
             d = dict(row)
@@ -411,13 +441,94 @@ class CharterFactsDB:
                     d["intent"] = json.loads(ij)
                 except json.JSONDecodeError:
                     d["intent"] = None
-            out.append(d)
+            unknowns.append(d)
 
-        return out[:limit]
+        plates.sort(key=_email_date_sort_key, reverse=True)
+        plates = dedupe_plate_rows_for_display(plates)
+
+        unknown_seen: set[str] = set()
+        unknown_out: list[dict[str, Any]] = []
+        for d in unknowns:
+            mid = str(d.get("message_id") or "")
+            if mid and mid in unknown_seen:
+                continue
+            if mid:
+                unknown_seen.add(mid)
+            unknown_out.append(d)
+
+        return attach_preview_urls((plates + unknown_out)[:limit])
 
 
 def _row_index_key(message_id: str, row_index: Any, fact_type: str) -> str:
     return f"{message_id}:{row_index}:{fact_type}"
+
+
+_DEDUP_SENTINELS = frozenset({"null", "none", "未提及", "n/a", "na", "-", "tbn"})
+
+
+def _dedup_token(val: Any) -> str:
+    if val is None:
+        return ""
+    s = str(val).strip()
+    if not s or s.lower() in _DEDUP_SENTINELS:
+        return ""
+    return re.sub(r"[\s\-/+,，]+", "", s.lower())
+
+
+def _email_date_sort_key(row: dict[str, Any]) -> str:
+    return str(row.get("email_date_utc") or "")
+
+
+def _vessel_display_fingerprint(row: dict[str, Any]) -> str:
+    imo = _valid_imo_digits(row.get("IMO"))
+    name = _dedup_token(_clean_vessel_name(str(row.get("船名") or "")))
+    open_port = _dedup_token(row.get("OPEN位置"))
+    open_start = _dedup_token(row.get("OPEN开始日期"))
+    open_end = _dedup_token(row.get("OPEN结束日期"))
+    dwt = _dedup_token(row.get("载重吨"))
+    if imo:
+        core = f"imo:{imo}"
+    else:
+        core = f"name:{name}|dwt:{dwt}"
+    if not imo and not name:
+        return f"openvessel:{row.get('message_id')}:{row.get('row_index', 0)}"
+    return f"v:{core}|op:{open_port}|os:{open_start}|oe:{open_end}"
+
+
+def _cargo_display_fingerprint(row: dict[str, Any]) -> str:
+    parts = (
+        _dedup_token(row.get("客户名称")),
+        _dedup_token(row.get("货物种类")),
+        _dedup_token(row.get("装货港")),
+        _dedup_token(row.get("卸货港")),
+        _dedup_token(row.get("装港消约期开始日期")),
+        _dedup_token(row.get("装港消约期结束日期")),
+    )
+    if not any(parts):
+        return f"cargo:{row.get('message_id')}:{row.get('row_index', 0)}"
+    return "c:" + "|".join(parts)
+
+
+def _plate_display_fingerprint(row: dict[str, Any]) -> str:
+    ftype = row.get("_fact_type") or ""
+    if ftype == "openvessel":
+        return _vessel_display_fingerprint(row)
+    if ftype == "cargo":
+        return _cargo_display_fingerprint(row)
+    return f"other:{row.get('message_id')}:{row.get('row_index', 0)}"
+
+
+def dedupe_plate_rows_for_display(rows: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
+    """展示去重：同一船盘/货盘指纹（跨邮件、跨发件人）只保留排序后的第一条；库内仍保留全部行。"""
+    seen: set[str] = set()
+    out: list[dict[str, Any]] = []
+    for r in rows:
+        fp = _plate_display_fingerprint(r)
+        if fp in seen:
+            continue
+        seen.add(fp)
+        out.append(r)
+    return out
 
 
 def _clean_vessel_name(shipname: str) -> str:
@@ -708,6 +819,32 @@ def default_skill_dir() -> Path:
     if env_path:
         return Path(env_path).expanduser()
     return Path(__file__).resolve().parents[1]
+
+
+def attach_preview_urls(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """为检索结果附加 preview_url、webmail_url（供前端「查看原邮件」按钮）。"""
+    for row in rows:
+        if row.get("_error"):
+            continue
+        mid = str(row.get("message_id") or "").strip()
+        if mid:
+            row["preview_url"] = build_preview_url(mid)
+            row["reply_url"] = build_reply_url(preview_token_for_message_id(mid))
+        locate = build_webmail_locate_from_row(row)
+        if locate.get("webmail_url"):
+            row["webmail_url"] = locate["webmail_url"]
+        if locate.get("webmail_provider"):
+            row["webmail_provider"] = locate["webmail_provider"]
+        if locate.get("webmail_method"):
+            row["webmail_method"] = locate["webmail_method"]
+        if locate.get("webmail_hint"):
+            row["webmail_hint"] = locate["webmail_hint"]
+        tiers = locate.get("webmail_search_tiers")
+        if tiers:
+            row["webmail_search_tiers"] = tiers
+        if locate.get("webmail_fallback_count") is not None:
+            row["webmail_fallback_count"] = locate["webmail_fallback_count"]
+    return rows
 
 
 def resolve_charter_api_base(cfg_value: str | None = None) -> str:
@@ -1045,13 +1182,16 @@ def query_by_port(db_path: Path, port: str, limit: int = 50) -> list[dict[str, A
                     d["payload"] = None
             results.append(d)
 
+        # 稳定排序：先按邮件时间新→旧，再按 dist 升序；同 dist 时保留较新邮件
+        results.sort(key=_email_date_sort_key, reverse=True)
         results.sort(
             key=lambda x: (
                 x.get("dist") is None,
                 float(x.get("dist") if x.get("dist") is not None else 1e18),
             )
         )
-        return results[:limit]
+        results = dedupe_plate_rows_for_display(results)
+        return attach_preview_urls(results[:limit])
     finally:
         conn.close()
 
@@ -1063,6 +1203,10 @@ def cmd_save(args: argparse.Namespace) -> int:
         raw = sys.stdin.read()
     doc = json.loads(raw)
     parsed = doc.get("parsed") or doc
+    if isinstance(parsed, dict) and merge_contacts_into_parsed:
+        body = str(doc.get("body_text") or "")
+        if body:
+            merge_contacts_into_parsed(parsed, body)
     db = CharterFactsDB(Path(args.db) if args.db else default_db_path())
     conn = db.connect()
     try:
@@ -1106,6 +1250,53 @@ def cmd_query_by_port(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_preview_url(args: argparse.Namespace) -> int:
+    mid = (args.message_id or "").strip()
+    if not mid:
+        print(json.dumps({"ok": False, "error": "message_id required"}, ensure_ascii=False))
+        return 1
+    url = build_preview_url(mid)
+    payload: dict[str, Any] = {"ok": True, "message_id": mid, "preview_url": url}
+    locate = build_webmail_locate_from_row(
+        {
+            "message_id": mid,
+            "from_addr": args.from_addr or "",
+            "subject": args.subject or "",
+            "email_date_utc": args.email_date_utc or "",
+        }
+    )
+    payload.update(locate)
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_webmail_url(args: argparse.Namespace) -> int:
+    locate = build_webmail_locate(
+        message_id=args.message_id or "",
+        from_addr=args.from_addr or "",
+        subject=args.subject or "",
+        email_date_utc=args.email_date_utc or "",
+        tier=getattr(args, "tier", 0) or 0,
+    )
+    if not locate.get("webmail_url"):
+        print(json.dumps({"ok": False, **locate}, ensure_ascii=False, indent=2))
+        return 1
+    if args.open:
+        from webmail_locate import open_webmail_in_browser
+
+        result = open_webmail_in_browser(
+            message_id=args.message_id or "",
+            from_addr=args.from_addr or "",
+            subject=args.subject or "",
+            email_date_utc=args.email_date_utc or "",
+            tier=getattr(args, "tier", 0) or 0,
+        )
+        print(json.dumps({"ok": True, **result}, ensure_ascii=False, indent=2))
+        return 0
+    print(json.dumps({"ok": True, **locate}, ensure_ascii=False, indent=2))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="hifleet-mytonnages charter_facts SQLite 工具")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -1133,6 +1324,22 @@ def main(argv: list[str] | None = None) -> int:
     pq.add_argument("--port", required=True, help="查询港口名（英文或邮件中的写法）")
     pq.add_argument("--limit", type=int, default=50)
     pq.set_defaults(func=cmd_query_by_port)
+
+    pu = sub.add_parser("preview-url", help="生成原始邮件预览链接（供前端按钮）")
+    pu.add_argument("--message-id", required=True, help="邮件 Message-ID")
+    pu.add_argument("--from-addr", default="", help="发件人（用于附带 webmail_url）")
+    pu.add_argument("--subject", default="", help="主题（用于附带 webmail_url）")
+    pu.add_argument("--email-date-utc", default="", help="发件时间 UTC（用于附带 webmail_url）")
+    pu.set_defaults(func=cmd_preview_url)
+
+    pw = sub.add_parser("webmail-url", help="生成网页邮箱定位链接（在已登录浏览器中打开）")
+    pw.add_argument("--message-id", default="", help="邮件 Message-ID")
+    pw.add_argument("--from-addr", default="", help="发件人")
+    pw.add_argument("--subject", default="", help="主题")
+    pw.add_argument("--email-date-utc", default="", help="发件时间 UTC")
+    pw.add_argument("--tier", type=int, default=0, help="搜索档位 0=最精确")
+    pw.add_argument("--open", action="store_true", help="用系统默认浏览器打开")
+    pw.set_defaults(func=cmd_webmail_url)
 
     args = p.parse_args(argv)
     return int(args.func(args))

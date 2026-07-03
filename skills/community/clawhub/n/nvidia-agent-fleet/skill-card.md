@@ -1,5 +1,5 @@
 ## Description: <br>
-NVIDIA Agent Fleet routes prompts to a registry of NVIDIA-hosted model agents, including task analysis, single-agent dispatch, and optional multi-agent parallel execution. <br>
+Routes prompts to a fleet of NVIDIA API-backed model agents, with automatic task classification, single-agent dispatch, and optional parallel multi-agent execution. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and external users can use this skill to route coding, reasoning, writing, research, Chinese-language, and other prompt tasks to selected NVIDIA API models. It supports CLI and Python SDK workflows for listing agents, analyzing task fit, dispatching to a specified or recommended agent, and running multiple agents serially or in parallel. <br>
+Developers and agent users can use this skill to choose among specialized NVIDIA-hosted model agents for coding, reasoning, writing, Chinese-language, research, finance, vision, embedding, and quick-response tasks. It supports CLI and Python workflows for automatic routing, explicit agent selection, task analysis, and multi-agent comparison. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill automatically searches local credential stores and executes the user's shell startup file while looking for NVIDIA_API_KEY. <br>
-Mitigation: Set NVIDIA_API_KEY explicitly in the current environment and review or disable automatic credential discovery before installing in managed environments. <br>
-Risk: Normal use sends task content to NVIDIA's API. <br>
-Mitigation: Do not include secrets, private code, or regulated data in prompts unless the target environment and API terms permit that use. <br>
+Risk: Automatic credential discovery may execute a local shell startup file while looking for NVIDIA_API_KEY. <br>
+Mitigation: Set NVIDIA_API_KEY explicitly in the environment and avoid relying on shell startup file discovery. <br>
+Risk: The skill may read local OpenClaw configuration files while searching for NVIDIA credentials. <br>
+Mitigation: Review local configuration files before use and run the skill only in an environment where that credential lookup is acceptable. <br>
+Risk: Prompts are sent to NVIDIA API endpoints during dispatch. <br>
+Mitigation: Use the skill only with prompts and data that may be sent to NVIDIA APIs under your applicable policies. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/nvidia-agent-fleet) <br>
-- [NVIDIA API endpoint used by the dispatcher](https://integrate.api.nvidia.com/v1) <br>
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/nvidia-agent-fleet) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text from CLI runs and JSON-like Python dictionaries from SDK calls] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [CLI text output and Python return objects containing model content, usage metadata, selected agent details, and errors when calls fail.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected model and configured token limits; multi-agent mode returns one response per successful agent.] <br>
+**Other Properties Related to Output:** [May call NVIDIA API endpoints using NVIDIA_API_KEY; multi-agent mode can run selected agents in parallel with per-model timeouts.] <br>
 
 ## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+1.1.2 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

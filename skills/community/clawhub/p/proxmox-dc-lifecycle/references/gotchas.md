@@ -1,6 +1,6 @@
 # Gotchas — field-tested failure modes
 
-Each entry: the **signature** (what you'll see), the **cause**, and the **fix**. Skim before starting; jump here the instant something hangs or errors. These are real failures from DC rebuilds in this lab, not hypotheticals.
+Each entry: the **signature** (what you'll see), the **cause**, and the **fix**. Skim before starting; jump here the instant something hangs or errors. These are real failures from DC rebuilds, not hypotheticals.
 
 ## Demotion hangs "inside Test-ADDSDomainControllerUninstallation"
 - **Signature:** the demotion never gets to the uninstall; `Test-ADDSDomainControllerUninstallation` sits forever, or `qm guest exec` returns a `{pid}`.
@@ -20,10 +20,10 @@ Each entry: the **signature** (what you'll see), the **cause**, and the **fix**.
 ## LDAP error 58 during demote/promote
 - **Signature:** `Verification of user credential permissions failed ... LDAP connect/bind operation failed: error: 58`.
 - **Cause:** the cmdlet runs as `NT AUTHORITY\SYSTEM` (via QGA) but is handed a `-Credential`; SYSTEM has no real logon session for it.
-- **Fix:** run the cmdlet via a **scheduled task whose run-as principal is the domain admin** (`schtasks /create /ru ... /rp ...`), so it executes in a true logon session. Validate the credential separately with a `DirectoryEntry` bind to rule out a bad password.
+- **Fix (demote):** run the cmdlet via a **scheduled task whose run-as principal is the domain admin** (`schtasks /create /ru ... /rp *`, password via stdin), so it executes in a true logon session. (Promotion does NOT hit this — it self-authenticates; run it directly.) Validate the credential separately with a `DirectoryEntry` bind to rule out a bad password.
 
 ## WinRM/Remoting between DCs fails: 0x8009030e "A specified logon session does not exist"
-- **Signature:** remote demotion driven from DC1 → DC2 dies before remote execution.
+- **Signature:** remote demotion driven from one DC to another dies before remote execution.
 - **Cause:** SSPI/credential delegation across the remoting hop.
 - **Fix:** don't remote between DCs at all. Run the operation **locally in the target guest** via QGA. This skill is built around that.
 
@@ -51,13 +51,13 @@ Each entry: the **signature** (what you'll see), the **cause**, and the **fix**.
   2. On the target, `Reset-ComputerMachinePassword -Credential $cred` (binds local machine secret to the prestaged account).
   3. **Reboot the target** — netlogon rebuilds the secure channel on boot. After reboot, `Test-ComputerSecureChannel` returns `True` and `nltest /sc_query:<domain>` shows `Status = 0 NERR_Success`.
   4. Retry `Install-ADDSDomainController` — now succeeds from the properly-trusted member.
-- **Prevention:** for a fresh-wipe rebuild reusing a name whose computer object was deleted, do a clean **domain join + reboot** (establishing a valid computer account/trust) BEFORE promoting, rather than relying on `Install-ADDSDomainController` to join-and-promote a workgroup box in one shot. The one-shot path is what triggers this orphaned state.
+- **Prevention:** for a fresh-wipe rebuild reusing a name whose computer object was deleted, keep the computer object during cleanup (delete only the server-object shell), or do a clean **domain join + reboot** BEFORE promoting. The join-and-promote-a-workgroup-box-in-one-shot path is what triggers this orphaned state.
 
 ## Unattend installs the wrong edition (Datacenter instead of Standard)
 - **Signature:** post-install `(Get-WindowsEdition -Online).Edition` shows `ServerDatacenter*` when you specified Standard.
-- **Cause:** Setup ignored the unattend's image selection and defaulted to Datacenter. On these Server 2025 Eval media this happened with BOTH `/IMAGE/NAME` (name mismatch) AND a correct `/IMAGE/INDEX=1` (= SERVERSTANDARDCORE per `wiminfo`). So index selection alone is NOT a reliable fix here — Setup is choosing Datacenter regardless, likely due to an `ei.cfg`/`PID.txt` on the media or the `ImageInstall` block not being honored as expected for an eval WIM.
-- **What actually controls it:** to truly force Standard, you'd need to address the media-level default — e.g. remove/override `sources\ei.cfg`, or pre-`dism`-apply the specific index to the disk rather than relying on the unattend's `ImageInstall`. Not yet solved in this kit.
-- **Practical fix:** for a domain controller the edition is functionally irrelevant — **Datacenter Core is a licensing superset of Standard and behaves identically as a DC**. Both DC2 and DC3 ended up Datacenter Core and work perfectly. Accept it unless you specifically need Standard licensing; don't burn a reinstall over it. Still keep `/IMAGE/INDEX` in the unattend (it's the correct intent) and verify the result with `(Get-WindowsEdition -Online).Edition` + `InstallationType`.
+- **Cause:** Setup ignored the unattend's image selection and defaulted to Datacenter. On some Server 2025 Eval media this happened with BOTH `/IMAGE/NAME` (name mismatch) AND a correct `/IMAGE/INDEX=1` (= SERVERSTANDARDCORE per `wiminfo`). So index selection alone is NOT always sufficient — Setup may choose Datacenter regardless, likely due to an `ei.cfg`/`PID.txt` on the media or the `ImageInstall` block not being honored as expected for an eval WIM.
+- **What actually controls it:** to truly force Standard you'd address the media-level default — e.g. remove/override `sources\ei.cfg`, or pre-`dism`-apply the specific index to the disk rather than relying on the unattend's `ImageInstall`.
+- **Practical fix:** for a domain controller the edition is functionally irrelevant — **Datacenter Core is a licensing superset of Standard and behaves identically as a DC**. Accept it unless you specifically need Standard licensing; don't burn a reinstall over it. Still keep `/IMAGE/INDEX` in the unattend (it's the correct intent) and verify the result with `(Get-WindowsEdition -Online).Edition` + `InstallationType`.
 
 ## `Start-Job` inside a QGA call never runs (status stuck at launch)
 - **Signature:** you launch a long op (e.g. promotion) via `Start-Job` inside `qm guest exec` so the call returns fast, but the marker file only shows the pre-job line ("LAUNCHER start") and never progresses; `Get-Job` shows nothing.
@@ -65,7 +65,7 @@ Each entry: the **signature** (what you'll see), the **cause**, and the **fix**.
 - **Fix:** detach with a **classic scheduled task** (`schtasks /create /sc ONCE /st <future> ; schtasks /run`) — it's owned by the task scheduler, not your QGA call — or run a single **long synchronous** `qm guest exec` (`--timeout` up to ~280s). Never `Start-Job` to outlive a QGA call.
 
 ## scheduled task `/ru DOMAIN\user` fails on a non-member box: "trust relationship failed"
-- **Signature:** `schtasks /create /ru <DOMAIN>\Administrator /rp <pw> ...` errors "The trust relationship between this workstation and the primary domain failed."
+- **Signature:** `schtasks /create /ru <DOMAIN>\Administrator /rp * ...` errors "The trust relationship between this workstation and the primary domain failed."
 - **Cause:** the box isn't a domain member yet (fresh install, or trust broken), so Windows can't validate a *domain* principal for the task.
 - **Fix:** establish membership/trust first (join + reboot, or the prestage/reset/reboot sequence). Then the domain-principal task works. For promotion specifically you don't need a domain-principal task at all — run `Install-ADDSDomainController` directly as SYSTEM with `-Credential` (it self-authenticates). See `qga-execution.md` (DEMOTE vs PROMOTE).
 
@@ -79,7 +79,12 @@ Each entry: the **signature** (what you'll see), the **cause**, and the **fix**.
 - **Cause:** `cmd /c echo ... > C:\file` redirects inside `FirstLogonCommands` can misfire (tokenization/escaping in the unattend XML, or context/perms).
 - **Fix:** don't gate on the marker — use `ImageState=IMAGE_STATE_COMPLETE` as the authoritative signal. The template writes the marker with `powershell -Command "Set-Content ..."` (more robust than a cmd redirect) but treats it as secondary.
 
+## dcdiag SystemLog fails right after a rebuild
+- **Signature:** a freshly promoted/rebooted DC fails dcdiag's `SystemLog` test, citing recent System-log errors.
+- **Cause:** `SystemLog` flags any Error in the last ~60 minutes — and a box built minutes ago has reboot/promotion/trust-repair churn (netlogon errors during repair, DNS-not-up-yet at boot, a one-shot service start failure from a leftover agent). Also a stray third-party agent (RMM, etc.) failing once at first boot can trip it.
+- **Fix:** it's transient — the events age out of the window. Re-run dcdiag ~1 hour later; confirm `SystemLog` passes and DFSR reached `State=4`. Investigate only if *fresh, recurring* errors persist.
+
 ## Windows Setup can't see the virtio disk
 - **Signature:** unattended install fails / no disk found; or interactive Setup shows no drives.
 - **Cause:** missing virtio storage driver in WinPE.
-- **Fix:** inject the right one in the `windowsPE` pass — **viostor** for a `virtio0` (virtio-blk) disk, **vioscsi** for a `scsiN` disk on a virtio-scsi controller. Inject both to be safe, plus **NetKVM** for the NIC. Match the OS folder (`2k25` for Server 2025).
+- **Fix:** inject the right one in the `windowsPE` pass — **viostor** for a `virtio0` (virtio-blk) disk, **vioscsi** for a `scsiN` disk on a virtio-scsi controller. Inject both to be safe, plus **NetKVM** for the NIC. Match the OS folder (e.g. `2k25` for Server 2025).

@@ -1,4 +1,4 @@
 interface:
   display_name: "MaybeAI Sheet"
-  short_description: "Profile, inspect, edit, format, and export MaybeAI spreadsheets with SQL result-sheet support"
-  default_prompt: "Use $maybeai-sheet to profile or inspect this workbook, read or update worksheet data, preserve headers or formulas, trace cell formula lineage, write SQL result sheets, and handle spreadsheet operations in MaybeAI. For dashboard-first or chart-authoring workflows, use $sheet-dashboard."
+  short_description: "Profile, inspect, edit, import large PG-backed tables, format, and export MaybeAI spreadsheets"
+  default_prompt: "Use $maybeai-sheet to profile or inspect this workbook, import large table-like files through PG/SheetTable when row or cell counts are high, read or update worksheet data, preserve headers or formulas, trace cell formula lineage, write SQL result sheets, and handle spreadsheet operations in MaybeAI. For dashboard-first or chart-authoring workflows, use $sheet-dashboard."

@@ -1,3 +1,14 @@
+---
+name: yaoyaoya-memory
+description: "支持多层次记忆管理和标签分类，实现跨会话检索、持久化存储、定期整理及与IMA知识库双向同步。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 摇摇记忆系统
+
 # Skill: yaoyaoya-memory
 
 🦞 **Universal Memory System for AI Assistants** — with IMA by default

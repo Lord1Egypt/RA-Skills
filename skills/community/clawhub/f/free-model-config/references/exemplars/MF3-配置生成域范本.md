@@ -205,7 +205,7 @@ curl -X POST {接口地址} \
 | 智谱 BigModel | glm-4.7-flash | 文本生成模型 |
 | 商汤 SenseNova | sensenova-6.7-flash-lite | 文本生成模型 |
 | 小米 MIMO | mimo-v2.5-pro | 文本生成模型 |
-| 美团 LongCat | LongCat-2.0-Preview | 文本生成模型 |
+| 美团 LongCat | LongCat-2.0 | 文本生成模型 |
 
 2. **模型配置**：
 
@@ -329,8 +329,8 @@ curl -X POST {接口地址} \
     "useCustomProtocol": false
   },
   {
-    "id": "LongCat-2.0-Preview",
-    "name": "LongCat-2.0-Preview",
+    "id": "LongCat-2.0",
+    "name": "LongCat-2.0",
     "vendor": "Custom",
     "url": "https://api.longcat.chat/openai",
     "apiKey": "your_api_key_here",
@@ -414,7 +414,7 @@ curl -X POST https://apihub.agnes-ai.com/v1 \
 | 智谱 BigModel | glm-4.7-flash | POST https://open.bigmodel.cn/api/paas/v4/chat/completions | 文本生成 |
 | 商汤 SenseNova | sensenova-6.7-flash-lite | POST https://token.sensenova.cn/v1/chat/completions | 文本生成 |
 | 小米 MIMO | mimo-v2.5-pro | POST https://token-plan-cn.xiaomimimo.com/v1/chat/completions | 文本生成 |
-| 美团 LongCat | LongCat-2.0-Preview | POST https://api.longcat.chat/openai/chat/completions | 文本生成 |
+| 美团 LongCat | LongCat-2.0 | POST https://api.longcat.chat/openai/chat/completions | 文本生成 |
 
 2. **请求参数**：
 

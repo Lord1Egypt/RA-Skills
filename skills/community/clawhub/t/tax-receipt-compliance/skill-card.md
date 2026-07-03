@@ -1,5 +1,5 @@
 ## Description: <br>
-Tax Receipt Compliance helps agents process Chinese VAT receipts through local OCR, invoice verification handoffs, reimbursement form generation, and optional approval-system submission. <br>
+Helps agents run local invoice OCR, draft reimbursement data, prepare template-filled expense reports, and guide invoice verification or approval handoffs with enterprise-supplied configuration. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,20 +11,20 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Finance operations teams and enterprise developers use this skill to extract invoice fields, prepare reimbursement forms, and connect verification or approval workflows configured by the organization. It is a technical support tool and does not provide tax advice. <br>
+Finance employees and developers use this skill to extract structured data from Chinese VAT invoices, draft reimbursement files, and prepare verification or approval workflows that require human and enterprise-system confirmation. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Invoice images, OCR JSON, cache files, and reimbursement outputs may contain sensitive financial data. <br>
-Mitigation: Store outputs in restricted directories, limit access to finance users, and delete OCR JSON or cache files when no longer needed. <br>
-Risk: Verification and approval workflows can send invoice data or credentials to configured third-party or custom endpoints. <br>
-Mitigation: Use environment variables or a secrets manager for credentials, review endpoint configuration, and require human confirmation before sending invoice data outside the machine. <br>
-Risk: Installer scripts may install system packages or download a Windows Tesseract installer. <br>
-Mitigation: Run installer scripts manually, verify downloaded installers independently, and prefer a Python virtual environment for package installation. <br>
-Risk: Invoice verification results may be links, manual handoffs, or third-party responses rather than authoritative determinations. <br>
-Mitigation: Treat verification results as manual or third-party evidence unless the configured provider is confirmed to return authoritative responses. <br>
+Risk: Verification and approval features may be interpreted as completed invoice validation or submitted approvals. <br>
+Mitigation: Treat generated verification links, statuses, and approval responses as drafts or handoff artifacts; manually confirm tax-bureau checks and approval-system submissions. <br>
+Risk: The DingTalk setup path is flagged by security evidence as pointing to the wrong service. <br>
+Mitigation: Do not enter production DingTalk credentials through DuXiaoman-linked guidance; verify platform documentation and endpoints before configuring credentials. <br>
+Risk: config.yaml and platform setup can contain invoice, API, or approval-system secrets. <br>
+Mitigation: Protect configuration files, prefer environment variables or a secrets manager, restrict file permissions, and rotate credentials on a defined schedule. <br>
+Risk: External OCR components and installers affect the local processing environment. <br>
+Mitigation: Install Tesseract and related OCR dependencies only from trusted sources and verify the local environment before processing invoice data. <br>
 
 
 ## Reference(s): <br>
@@ -36,13 +36,13 @@ Mitigation: Treat verification results as manual or third-party evidence unless 
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Spreadsheet files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python commands, plus generated JSON and Excel files when scripts are run.] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with JSON examples, shell commands, Python scripts, YAML configuration, and generated local JSON or Excel artifacts] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process sensitive invoice data locally and may call configured verification or approval endpoints.] <br>
+**Other Properties Related to Output:** [Produces local OCR and reimbursement drafts; verification and approval results require manual or enterprise-system confirmation.] <br>
 
 ## Skill Version(s): <br>
-2.5.0 (source: server release evidence and skill frontmatter) <br>
+2.7.0 (source: server release metadata and skill frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

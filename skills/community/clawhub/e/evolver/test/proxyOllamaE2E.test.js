@@ -45,14 +45,14 @@ async function withServer(run) {
     'POST /api/generate': buildOllamaHandler({ ollamaProxy: mockOllama, apiPath: '/api/generate', logger: silent }),
   };
   const srv = new ProxyHttpServer(routes, { port: 0, logger: silent });
-  srv.token = 'e2e-token';
+  srv.token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
   srv.server = http.createServer((req, res) => srv._handleRequest(req, res));
   const port = await new Promise((resolve) => srv.server.listen(0, '127.0.0.1', () => resolve(srv.server.address().port)));
   srv.actualPort = port;
 
   const call = ({ reqPath, body }) => new Promise((resolve, reject) => {
     const req = http.request({ host: '127.0.0.1', port, path: reqPath, method: 'POST',
-      headers: { 'content-type': 'application/json', authorization: 'Bearer e2e-token', 'user-agent': 'ollama/0.5.1' } }, (res) => {
+      headers: { 'content-type': 'application/json', authorization: 'Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'user-agent': 'ollama/0.5.1' } }, (res) => {
       const chunks = [];
       res.on('data', (d) => chunks.push(d));
       res.on('end', () => resolve({ status: res.statusCode, bytes: Buffer.concat(chunks) }));

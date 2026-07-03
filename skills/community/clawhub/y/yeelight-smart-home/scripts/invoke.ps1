@@ -20,7 +20,7 @@ function Assert-RuntimeCompatible($RuntimeCommand) {
 if ($env:YEELIGHT_HOME_BIN) {
   if (Test-Path $env:YEELIGHT_HOME_BIN) {
     Assert-RuntimeCompatible $env:YEELIGHT_HOME_BIN
-    & $env:YEELIGHT_HOME_BIN invoke --stdin
+    & $env:YEELIGHT_HOME_BIN invoke --stdin @args
     exit $LASTEXITCODE
   }
   Write-Output '{"contractVersion":"1.0","requestId":"runtime-missing","status":"error","userMessage":"YEELIGHT_HOME_BIN 指向的 yeelight-home 不存在或不可执行。请将 YEELIGHT_HOME_BIN 设置为 yeelight-home 可执行文件的绝对路径，或取消该环境变量后使用 PATH 中公开安装的 yeelight-home。安装后先运行 yeelight-home auth status --json；若未登录，优先运行 yeelight-home auth login --qr；无法扫码时，可在你自己的终端通过安全输入管道运行 yeelight-home auth token set --stdin --region <region> 导入已获准的 token。houseId 是可选默认家庭，只有家庭内设备、房间、情景、自动化等操作需要选择。","error":{"code":"runtime_missing","message":"YEELIGHT_HOME_BIN is not executable"}}'
@@ -30,8 +30,28 @@ if ($env:YEELIGHT_HOME_BIN) {
 $Command = Get-Command yeelight-home -ErrorAction SilentlyContinue
 if ($Command) {
   Assert-RuntimeCompatible "yeelight-home"
-  & yeelight-home invoke --stdin
+  & yeelight-home invoke --stdin @args
   exit $LASTEXITCODE
+}
+
+$CandidatePaths = @()
+if ($env:ProgramFiles) {
+  $CandidatePaths += (Join-Path $env:ProgramFiles "Yeelight Home/yeelight-home.exe")
+  $CandidatePaths += (Join-Path $env:ProgramFiles "yeelight-home/yeelight-home.exe")
+}
+if (${env:ProgramFiles(x86)}) {
+  $CandidatePaths += (Join-Path ${env:ProgramFiles(x86)} "Yeelight Home/yeelight-home.exe")
+}
+if ($env:LOCALAPPDATA) {
+  $CandidatePaths += (Join-Path $env:LOCALAPPDATA "Programs/yeelight-home/yeelight-home.exe")
+  $CandidatePaths += (Join-Path $env:LOCALAPPDATA "Microsoft/WinGet/Packages/Yeelight.yeelight-home/yeelight-home.exe")
+}
+foreach ($Candidate in ($CandidatePaths | Select-Object -Unique)) {
+  if ($Candidate -and (Test-Path $Candidate)) {
+    Assert-RuntimeCompatible $Candidate
+    & $Candidate invoke --stdin @args
+    exit $LASTEXITCODE
+  }
 }
 
 Write-Output '{"contractVersion":"1.0","requestId":"runtime-missing","status":"error","userMessage":"Yeelight 本地 Runtime 未安装或不在 PATH 中。请从公开仓库 Yeelight/yeelight-home 的 GitHub Releases 安装 yeelight-home CLI，或使用当前已发布的 Homebrew、Scoop、npm 等包管理器渠道；也可以设置 YEELIGHT_HOME_BIN 指向 yeelight-home 可执行文件。安装后先运行 yeelight-home auth status --json；若未登录，优先运行 yeelight-home auth login --qr；无法扫码时，可在你自己的终端通过安全输入管道运行 yeelight-home auth token set --stdin --region <region> 导入已获准的 token。houseId 是可选默认家庭，只有家庭内设备、房间、情景、自动化等操作需要选择。","error":{"code":"runtime_missing","message":"yeelight-home CLI not found"}}'

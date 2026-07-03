@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Meta / Facebook 周期分析报告</title>
 
     <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
@@ -297,6 +297,132 @@
         color: var(--muted);
         font-size: 0.9rem;
         padding: 12px 0;
+      }
+
+
+
+      /* 移动端原生适配（≤768px，Meta 周期报告） */
+      @supports (padding: env(safe-area-inset-bottom)) {
+        body {
+          padding-left: env(safe-area-inset-left, 0);
+          padding-right: env(safe-area-inset-right, 0);
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+
+        body {
+          overflow-x: clip;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .wrap {
+          padding: max(12px, env(safe-area-inset-left, 0px))
+            max(12px, env(safe-area-inset-right, 0px))
+            max(40px, env(safe-area-inset-bottom, 0px));
+        }
+
+        .hero {
+          padding: 18px 16px;
+          border-radius: 14px;
+        }
+
+        .hero h1 {
+          font-size: clamp(1.1rem, 5vw, 1.35rem);
+          line-height: 1.4;
+          word-break: break-word;
+        }
+
+        .hero .sub {
+          font-size: 0.82rem;
+          line-height: 1.55;
+        }
+
+        .kpi-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .kpi {
+          padding: 12px 10px;
+          border-radius: 12px;
+        }
+
+        .kpi .v {
+          font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+        }
+
+        h2 {
+          font-size: clamp(1rem, 4.2vw, 1.15rem);
+        }
+
+        .card {
+          padding: 14px 12px;
+          border-radius: 12px;
+        }
+
+        .chart-box {
+          height: clamp(220px, 56vw, 260px);
+        }
+
+        .lifecycle {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .phase {
+          min-width: 100%;
+        }
+
+        .four-q,
+        .ab-grid,
+        .checklist {
+          grid-template-columns: 1fr !important;
+        }
+
+        .card:has(table) {
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .card:has(table)::before {
+          display: block;
+          text-align: center;
+          font-size: 12px;
+          color: var(--muted);
+          padding: 0 0 8px;
+          content: "左右滑动查看表格";
+        }
+
+        .card table {
+          min-width: 520px;
+          font-size: 0.82rem;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .card:has(table)::before {
+          display: none;
+          content: none;
+        }
+      }
+
+      @media print {
+        .card:has(table)::before {
+          display: none !important;
+          content: none !important;
+        }
       }
     </style>
   </head>

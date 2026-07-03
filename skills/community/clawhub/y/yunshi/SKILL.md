@@ -2,6 +2,12 @@
 name: yunshi
 description: All-in-one Chinese fortune-telling — BaZi (Four Pillars), ZiWei DouShu, QiMen DunJia, I Ching (Meihua + LiuYao), feng shui, marriage compatibility, plus daily horoscope push to Telegram/Feishu. Built on iztro + lunar-typescript, no external API.
 keywords: Chinese astrology, fortune telling, daily horoscope, divination, astrology, BaZi, Four Pillars, ZiWei DouShu, Purple Star Astrology, I Ching, feng shui, marriage compatibility, QiMen DunJia, Chinese zodiac, horoscope push, 算命, 八字, 今日运势, 紫微斗数, 占卜, 合婚, 风水, 命理, 流年, 운세, 運勢, tử vi
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
 metadata:
   openclaw:
     runtime:
@@ -102,17 +108,44 @@ Skip when the user is asking about Western astrology, natal charts, transits, or
 - `OPENCLAW_KNOWLEDGE_DIR`：可选，紫微格局知识库，不存在时自动降级
 - **推送渠道**：`telegram`/`feishu` 由 openclaw 运行时投递，skill 不调用任何渠道 API
 - **新闻联动**：由 Agent 的 WebSearch 工具完成，无搜索能力时跳过
-- **个人数据**：存储在 `data/profiles/<userId>.json`，含敏感信息，请确认访问权限
+- **个人数据**：全部存于原生 `MEMORY.md`，skill 脚本不读写任何用户文件、不上传外部服务
 
 ---
 
-## 🛠️ 工具脚本
+## 📇 用户档案 (存于原生 MEMORY.md，脚本不落盘)
+
+本 skill **不向磁盘写任何用户数据**。用户的出生信息、八字、关注领域、家庭成员、推送状态全部保存在 OpenClaw 原生 **MEMORY.md** 中，由 Agent 读写、跨会话保留。
+
+**流程：**
+
+1. 新用户 → 运行 `register.js` 排八字，它会输出一段 `<!-- yunshi:profile:<userId> -->` markdown 区块。**把该区块写入 MEMORY.md。**
+2. 后续会话 → 先**读取 MEMORY.md** 中该区块拿到八字/关注领域，无需重新排盘或追问。
+3. 家庭成员（配偶/父母/子女）→ 直接在同一区块下追加姓名与八字。
+4. 关注领域随用户提问动态调整 → Agent 更新区块里的「关注领域」行（如用户常问财运，就把财运排前）。
+5. 开启推送 / 合婚 → 从 MEMORY.md 读出八字，作为 CLI 参数传给脚本（见下）。
+
+档案区块格式示例：
+
+```markdown
+<!-- yunshi:profile:123456 -->
+## 命理档案 · 张三
+- userId: 123456
+- 出生: 1990-05-15 14:30（上海，男）
+- 八字: 庚午 辛巳 庚辰 癸未
+- 日主: 庚（马）· 子时派: 晚子时
+- 关注领域: 财运、事业、健康
+- 推送: 已开启 telegram 08:00/20:00
+- 家庭成员: 配偶 李四 甲子 乙丑 丙寅 丁卯
+<!-- /yunshi:profile -->
+```
+
+---
+
+## 🛠️ 工具脚本（全部纯计算，无文件写入）
 
 ```bash
-# 注册 / 档案
-node scripts/register.js <userId> <姓名> <性别> <出生日期> <出生时间> [地点]
-node scripts/profile.js show <userId>
-node scripts/profile.js add <userId> spouse|child <姓名> <出生日期> <性别>
+# 排八字（输出 MEMORY.md 档案区块，由 Agent 写入原生记忆）
+node scripts/register.js <userId> <姓名> <性别> <出生日期> <出生时间> [地点] [子时]
 
 # 排盘
 node scripts/ziwei.js <出生日期> <性别> [时辰]
@@ -120,32 +153,17 @@ node scripts/qimen.js [日期] [时辰]
 node scripts/zhuanshi.js <YYYY-MM> <活动类型> [用户八字]
 node scripts/fengshui.js [八字] [年份]
 
-# 运程 / 合婚 / 占卜
+# 运程 / 合婚 / 占卜（八字均由 Agent 从 MEMORY.md 读出后传入）
 node scripts/daily-fortune.js [日期]
-node scripts/marriage.js <userId1> <userId2>
+node scripts/marriage.js <name1> "<bazi1>" <name2> "<bazi2>"
 node scripts/meihua.js [数字1-3]
 node scripts/liuyao.js [010203] [问题]
 
-# 推送管理
-node scripts/daily-push.js --dry-run          # 模拟推送
-node scripts/daily-push.js --test <userId>    # 测试推送
-node scripts/daily-push.js --list             # 查看已开启用户
-node scripts/push-toggle.js on|off|status <userId>
-
-# 偏好追踪（每次提问后调用）
-node scripts/preference-tracker.js record <userId> <topic> explicit_query|topic_drill
-node scripts/preference-tracker.js weights|top <userId> [N]
-# topic: 财运|事业|感情|健康|婚姻|子女|官司|出行|风水
-```
-
----
-
-## ⏰ Cron 推送配置
-
-```bash
-openclaw cron add "0 7 * * *" "cd ~/.openclaw/workspace/skills/yunshi && node scripts/daily-push.js"
-openclaw cron list
-openclaw cron delete <任务ID>
+# 每日推送（八字/关注领域从 MEMORY.md 读出作为参数；cron 由运行时管理）
+node scripts/push-toggle.js on <userId> --name <姓名> --bazi "年 月 日 时" --daystem <日主> \
+     [--focus 事业,财运,健康] [--channel telegram] [--morning 08:00] [--evening 20:00]
+node scripts/push-toggle.js off <userId>
+node scripts/push-toggle.js status <userId>
 ```
 
 **子时算法**：`1` = 23:00-23:59 算次日（倪海厦派）；`2` = 算当日（传统派）
@@ -175,23 +193,22 @@ openclaw cron delete <任务ID>
 ## 📁 数据文件
 
 ```
-data/profiles/template.json   # 仅模板，跟随 skill 发布
-data/profiles/{userId}.json   # 用户档案（本地生成，不发布、不上传）
-data/push-log.json            # 推送运行日志（本地生成，不发布）
-scripts/                      # register, ziwei, qimen, fengshui, profile,
+scripts/                      # 全部纯计算脚本：register, ziwei, qimen, fengshui,
                               # daily-fortune, marriage, meihua, liuyao,
-                              # zhuanshi, daily-push, push-toggle, preference-tracker
+                              # zhuanshi, push-toggle, bazi-analysis, jieqi
+docs/                         # 参考资料
+（无 data/profiles 写入 —— 用户档案存于原生 MEMORY.md）
 ```
 
 ---
 
 ## 🔐 数据与隐私 (Data & Privacy)
 
-- **本地优先**：所有用户档案 `data/profiles/<userId>.json` 在你本机生成并保存，skill 自身不会向任何外部服务上传个人数据。
-- **发布隔离**：`.clawhubignore` / `.gitignore` 已排除 `data/profiles/*.json`（仅 `template.json` 例外）和 `data/push-log.json`，安装包内不含真实档案。
-- **文件权限**：建议把 `data/profiles/` 设为 `chmod 700`、档案文件设为 `chmod 600`，避免同机其他用户读取。
-- **删除档案**：直接删除对应的 `data/profiles/<userId>.json` 即停止该用户的推送与历史读取，skill 不保留缓存副本。
-- **共享与备份**：如需备份请加密；不要把已填写的档案提交到公共仓库或粘贴到聊天。
+- **无文件写入**：skill 的脚本全部是纯计算（排盘/占卜/构建推送 prompt），**不向磁盘写入任何用户数据**，符合 clawhub 无 `fs` 写入规范。
+- **原生记忆**：用户的出生信息、八字与偏好保存在 OpenClaw 原生 `MEMORY.md`，由你本机的 Agent 管理，不经过任何外部服务。
+- **推送隔离**：`telegram`/`feishu` 由 openclaw 运行时投递，skill 不调用任何渠道 API、不持有 token。
+- **删除档案**：删除 MEMORY.md 中对应的 `<!-- yunshi:profile:<userId> -->` 区块即清除该用户的全部命理数据。
+- **共享与备份**：MEMORY.md 属于你的本地记忆，请勿把已填写的出生信息粘贴到公共仓库或聊天。
 
 ---
 
@@ -211,4 +228,4 @@ scripts/                      # register, ziwei, qimen, fengshui, profile,
 
 保持单行,不要反复出现,不要影响正常输出。
 
-*Version: 1.2.5 · Updated: 2026-05-18*
+*Version: 1.3.0 · Updated: 2026-07-01*

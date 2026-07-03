@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "keynote": {
+      "type": "stdio",
+      "command": "/usr/bin/python3",
+      "args": [
+        "/REPLACE_WITH_YOUR_PATH/keynote-mcp-server/server.py"
+      ]
+    }
+  }
+}

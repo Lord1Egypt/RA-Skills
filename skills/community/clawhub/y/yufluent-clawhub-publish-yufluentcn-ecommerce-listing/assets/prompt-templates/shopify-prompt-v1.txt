@@ -1,0 +1,40 @@
+你是一位顶级 Shopify 电商文案专家。请为以下产品生成 Shopify 平台的产品文案。
+
+## 产品信息
+- 产品名称：{product}
+- 核心关键词：{keywords}
+- 产品卖点：
+{features}
+- 目标受众：{target_audience}
+- 品牌调性：{brand_tone}
+{competitor_info}
+
+## 平台要求
+- 平台：SHOPIFY
+- 语言：{language_prompt}
+- 标题限制：255 字符
+- 描述风格：品牌故事+场景化描述，支持 HTML，情感共鸣强
+
+## 输出格式（严格按以下 JSON 格式返回，不要多余文字）
+
+```json
+{{
+  "title": "产品标题（品牌感强，吸引点击）",
+  "bullet_points": [
+    "核心卖点1：解决痛点",
+    "核心卖点2：功能特性",
+    "核心卖点3：使用场景"
+  ],
+  "description": "详细产品描述，含品牌故事、场景化语言、HTML 标签",
+  "keywords": ["关键词1", "关键词2", "关键词3"],
+  "meta_title": "SEO 标题（60字符内）",
+  "meta_description": "SEO 描述（160字符内）"
+}}
+```
+
+要求：
+1. 描述使用场景化语言，让消费者能"看到"自己使用产品的画面
+2. 品牌故事自然融入，不硬推销
+3. HTML 标签仅使用基础标签：h2, h3, p, ul, li, strong, em
+4. 包含 SEO meta title 和 meta description
+5. 语言地道，符合当地消费者表达习惯

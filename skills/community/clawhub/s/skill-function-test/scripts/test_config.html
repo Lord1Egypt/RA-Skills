@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>skill-function-test 配置</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f3ff 0%, #e0f2fe 100%);
+    min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
+  }
+  .card {
+    background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    padding: 32px; max-width: 520px; width: 100%;
+  }
+  h1 { font-size: 20px; color: #1a1a2e; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 24px; }
+  .section { margin-bottom: 20px; }
+  .section-title { font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; font-size: 14px; color: #1e293b;
+  }
+  .toggle-row span:first-child { flex: 1; }
+  .slider {
+    position: relative; width: 40px; height: 22px; background: #cbd5e1;
+    border-radius: 11px; cursor: pointer; transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .slider::after {
+    content: ''; position: absolute; width: 18px; height: 18px;
+    background: white; border-radius: 50%; top: 2px; left: 2px;
+    transition: transform 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  input:checked + .slider { background: #7c3aed; }
+  input:checked + .slider::after { transform: translateX(18px); }
+  input[type="checkbox"] { display: none; }
+  .param-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0; font-size: 14px; color: #1e293b;
+  }
+  .param-row input[type="number"],
+  .param-row select {
+    width: 100px; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 8px;
+    font-size: 14px; text-align: center; outline: none;
+  }
+  .param-row input[type="number"]:focus,
+  .param-row select:focus { border-color: #7c3aed; }
+  .badge {
+    display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px;
+    background: #f1f5f9; color: #64748b; margin-left: 6px;
+  }
+  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+  .btn {
+    flex: 1; padding: 10px; border: none; border-radius: 10px;
+    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary { background: #7c3aed; color: white; }
+  .btn-primary:hover { background: #6d28d9; }
+  .btn-secondary { background: #e2e8f0; color: #475569; }
+  .btn-secondary:hover { background: #cbd5e1; }
+  .btn-danger { background: #fee2e2; color: #dc2626; }
+  .btn-danger:hover { background: #fecaca; }
+  .toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: white; padding: 10px 24px; border-radius: 8px;
+    font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>⚙️ skill-function-test 配置</h1>
+  <div class="subtitle">修改后点击「保存配置」直接写入磁盘</div>
+
+  <div class="section">
+    <div class="section-title">轮数</div>
+    <div class="param-row">
+      <span>场景/功能测试轮数 <span class="badge">S1-S3 / D1-D6</span></span>
+      <input type="number" id="rounds" value="3" min="1">
+    </div>
+    <div class="param-row">
+      <span>S4 独立轮数 <span class="badge">覆盖默认轮数</span></span>
+      <input type="number" id="s4_rounds" value="3" min="1">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">修复模式</div>
+    <div class="param-row">
+      <span>场景测试 <span class="badge">S1-S3</span></span>
+      <select id="fix_scenario">
+        <option value="0" selected>0 - 仅报告</option>
+        <option value="1" >1 - 尝试修复</option>
+      </select>
+    </div>
+    <div class="param-row">
+      <span>功能测试 <span class="badge">D1-D6</span></span>
+      <select id="fix_function">
+        <option value="0" selected>0 - 仅报告</option>
+        <option value="1" >1 - 直接修复</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">场景测试</div>
+    
+            <label class="toggle-row">
+              <span>S1 场景触发测试（LLM编写用例）</span>
+              <input type="checkbox" id="S1" checked data-group="scenarios">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>S2 核心能力测试（LLM编写用例）</span>
+              <input type="checkbox" id="S2" checked data-group="scenarios">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>S3 工作流测试（LLM编写用例）</span>
+              <input type="checkbox" id="S3" checked data-group="scenarios">
+              <span class="slider"></span>
+            </label>
+  </div>
+
+  <div class="section">
+    <div class="section-title">功能测试</div>
+    
+            <label class="toggle-row">
+              <span>D1 基础功能完整性</span>
+              <input type="checkbox" id="D1" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>D2 流程断点检测</span>
+              <input type="checkbox" id="D2" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>D3 数据污染检测</span>
+              <input type="checkbox" id="D3" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>D4 噪音/干扰检测</span>
+              <input type="checkbox" id="D4" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>D5 计算正确性</span>
+              <input type="checkbox" id="D5" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+            <label class="toggle-row">
+              <span>D6 边界鲁棒性</span>
+              <input type="checkbox" id="D6" checked data-group="functions">
+              <span class="slider"></span>
+            </label>
+  </div>
+
+  <div class="section">
+    <div class="section-title">S4 执行忠实度测试（LLM编写用例）</div>
+    <label class="toggle-row">
+      <span>S4 执行忠实度 <span class="badge">仅报告</span></span>
+      <input type="checkbox" id="S4" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+    <div class="btn-row" id="save_btn_row">
+    <button class="btn btn-secondary" onclick="resetUI()">重置为默认</button>
+    <button class="btn btn-primary" onclick="saveAndDone()">保存配置</button>
+  </div>
+  <div class="btn-row" id="done_btn_row" style="display:none">
+    <button class="btn btn-primary" onclick="finishSetup()" style="background:#059669;">✅ 完成配置</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+function showMsg(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function collectConfig() {
+  return {
+    version: "0.1.0",
+    rounds: parseInt(document.getElementById('rounds').value) || 3,
+    fix_mode: {
+      scenario: parseInt(document.getElementById('fix_scenario').value) || 0,
+      function: parseInt(document.getElementById('fix_function').value) || 0,
+    },
+    s4: {
+      enabled: document.getElementById('S4').checked,
+      rounds: parseInt(document.getElementById('s4_rounds').value) || 3,
+      fix_mode: 0,
+    },
+    scenarios: {
+      S1: { enabled: document.getElementById('S1').checked },
+      S2: { enabled: document.getElementById('S2').checked },
+      S3: { enabled: document.getElementById('S3').checked },
+    },
+    functions: {
+      D1: { enabled: document.getElementById('D1').checked },
+      D2: { enabled: document.getElementById('D2').checked },
+      D3: { enabled: document.getElementById('D3').checked },
+      D4: { enabled: document.getElementById('D4').checked },
+      D5: { enabled: document.getElementById('D5').checked },
+      D6: { enabled: document.getElementById('D6').checked },
+    },
+  };
+}
+
+function saveAndDone() {
+  const cfg = collectConfig();
+  const text = JSON.stringify(cfg, null, 2);
+  localStorage.setItem('test_config', text);
+
+  fetch('/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: text,
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      showMsg('✅ 配置已保存，点击「完成配置」关闭服务器');
+      document.getElementById('save_btn_row').style.display = 'none';
+      document.getElementById('done_btn_row').style.display = 'flex';
+    } else {
+      showMsg('❌ 保存失败: ' + (data.error || '未知错误'));
+    }
+  })
+  .catch(function() {
+    showMsg('⚠️ 服务器未响应');
+  });
+}
+
+function finishSetup() {
+  fetch('/done')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      showMsg('✅ 配置已完成，可关闭此页面');
+      document.getElementById('done_btn_row').style.display = 'none';
+    }
+  })
+  .catch(function() {
+    showMsg('⚠️ 服务器未响应');
+  });
+}
+
+function setUI(cfg) {
+  document.getElementById('rounds').value = cfg.rounds || 3;
+  document.getElementById('s4_rounds').value = (cfg.s4 && cfg.s4.rounds) || 3;
+  document.getElementById('fix_scenario').value = (cfg.fix_mode && cfg.fix_mode.scenario) || 0;
+  document.getElementById('fix_function').value = (cfg.fix_mode && cfg.fix_mode.function) || 0;
+  document.getElementById('S4').checked = cfg.s4 ? cfg.s4.enabled : true;
+  ['S1','S2','S3','D1','D2','D3','D4','D5','D6'].forEach(function(id) {
+    var group = id.startsWith('S') ? 'scenarios' : 'functions';
+    document.getElementById(id).checked = cfg[group] ? (cfg[group][id] ? cfg[group][id].enabled !== false : true) : true;
+  });
+}
+
+function resetUI() {
+  var def = {
+    version: "0.1.0",
+    rounds: 3,
+    fix_mode: { scenario: 0, function: 0 },
+    s4: { enabled: true, rounds: 3 },
+    scenarios: { S1:{enabled:true}, S2:{enabled:true}, S3:{enabled:true} },
+    functions: { D1:{enabled:true}, D2:{enabled:true}, D3:{enabled:true}, D4:{enabled:true}, D5:{enabled:true}, D6:{enabled:true} },
+  };
+  setUI(def);
+  showMsg('🔄 UI 已重置为默认，点击「保存配置」生效');
+}
+</script>
+</body>
+</html>

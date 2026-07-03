@@ -1,0 +1,150 @@
+skills:
+  - id: ZC01_opportunity_intake
+    name: 商机信息接收
+    purpose: 接收采购公告、信息源链接、截图或群消息，判定是否为有效商机。
+    inputs: [message_text, attachments, urls]
+    outputs: [opportunity_raw_record, source_type]
+
+  - id: ZC02_notice_summarizer
+    name: 采购公告摘要
+    purpose: 抽取项目名称、采购主体、预算、报名时间、递交截止、采购方式等信息。
+    inputs: [opportunity_raw_record]
+    outputs: [opportunity_brief]
+
+  - id: ZC03_document_parser
+    name: 采购文件解析
+    purpose: 解析采购文件结构、章节和核心要求。
+    inputs: [tender_document]
+    outputs: [document_outline, extracted_sections]
+
+  - id: ZC04_qualification_extractor
+    name: 资格条件提取
+    purpose: 提炼资质、业绩、人员、财务、信誉、联合体等资格门槛条件。
+    inputs: [extracted_sections]
+    outputs: [qualification_requirements]
+
+  - id: ZC05_scoring_extractor
+    name: 评审标准提取
+    purpose: 提炼商务、技术、价格、服务、案例等评审项及分值权重。
+    inputs: [extracted_sections]
+    outputs: [scoring_criteria]
+
+  - id: ZC06_submission_extractor
+    name: 呈交要求提取
+    purpose: 提炼递交截止时间、格式、签章、份数、电子平台、CA证书、保证金等要求。
+    inputs: [extracted_sections]
+    outputs: [submission_requirements]
+
+  - id: ZC07_bid_evaluator
+    name: 投标研判评估
+    purpose: 根据资格门槛、企业实力、预算、周期和风险判断是否建议参与应标。
+    inputs: [qualification_requirements, company_materials, project_context]
+    outputs: [bid_recommendation, risks, missing_capabilities]
+
+  - id: ZC08_material_matcher
+    name: 企业素材匹配
+    purpose: 匹配企业资质、案例、人员、方案素材和历史应答文件。
+    inputs: [requirements, company_materials]
+    outputs: [matched_materials, missing_materials]
+
+  - id: ZC09_task_decomposer
+    name: 应标任务分解
+    purpose: 输出应标任务清单、责任人、截止时间和协作节点。
+    inputs: [tender_analysis_report, submission_requirements]
+    outputs: [task_list, milestones]
+
+  - id: ZC10_outline_builder
+    name: 应答目录生成
+    purpose: 根据采购文件要求输出应标应答目录。
+    inputs: [tender_document_outline, scoring_criteria, submission_requirements]
+    outputs: [response_outline]
+
+  - id: ZC11_draft_writer
+    name: 应答文稿初稿生成
+    purpose: 基于采购要求、模板和案例素材产出应答方案章节初稿。
+    inputs: [response_outline, technical_materials, case_materials]
+    outputs: [technical_draft, sections_need_human_input]
+
+  - id: ZC12_business_checker
+    name: 商务材料核查
+    purpose: 核查营业执照、资质证书、人员、业绩、授权、承诺函等商务材料完整性。
+    inputs: [business_documents, qualification_requirements]
+    outputs: [business_check_result, missing_items]
+
+  - id: ZC13_compliance_reviewer
+    name: 应答文件合规审查
+    purpose: 对照采购文件检查缺项、格式、签章、页序、编码、材料次序等问题。
+    inputs: [bid_draft, tender_requirements]
+    outputs: [compliance_issues, review_summary]
+
+  - id: ZC14_deviation_analyzer
+    name: 应答偏离风险分析
+    purpose: 检查技术、商务、服务承诺是否存在应答偏离或前后矛盾。
+    inputs: [bid_draft, tender_requirements]
+    outputs: [deviation_risks, inconsistency_items]
+
+  - id: ZC15_clarification_generator
+    name: 澄清问题生成
+    purpose: 生成需向采购人或代理机构发出的澄清问题。
+    inputs: [tender_analysis_report, risks]
+    outputs: [clarification_questions]
+
+  - id: ZC16_retro_analyzer
+    name: 应标经验复盘
+    purpose: 根据应标过程和结果产出复盘报告，沉淀可复用素材。
+    inputs: [bid_result, process_records, review_report]
+    outputs: [retro_report, reusable_assets]
+
+  - id: ZC17_material_digitizer
+    name: 资料结构化核验
+    purpose: 将采购文件、技术规范、参考文件和行业知识库转为可检索文本，核验评审表、技术参数和关键数据的完整性。
+    inputs: [tender_documents, design_documents, sample_bids, knowledge_sources]
+    outputs: [digitized_material_index, missing_or_broken_sections, key_number_list]
+
+  - id: ZC18_score_model_builder
+    name: 评审模型构建
+    purpose: 抽取评审模块、分值权重、评分档次、否决性条款和客观分佐证材料，建立"凭什么得分"的应答模型。
+    inputs: [scoring_criteria, qualification_requirements, submission_requirements]
+    outputs: [score_model_table, objective_material_checklist, response_depth_suggestion]
+
+  - id: ZC19_requirement_indexer
+    name: 否决性条款无偏离索引
+    purpose: 将技术、商务、格式和呈交要求逐条映射到我方应答、偏离情况和对应章节，降低否决风险。
+    inputs: [tender_requirements, business_terms, technical_requirements]
+    outputs: [no_deviation_index, rejection_risk_items, required_confirmations]
+
+  - id: ZC20_sample_comparator
+    name: 参考文件对比分析
+    purpose: 对比参考应答文件和目标项目，识别可借鉴结构、不可继承内容、项目信息残留和须重写章节。
+    inputs: [sample_bid_text, target_project_profile, design_documents]
+    outputs: [borrowable_elements, conflict_items, rewrite_scope]
+
+  - id: ZC21_scheme_architect
+    name: 应答方案架构设计
+    purpose: 根据评审模型和技术规范产出应答方案完整章节结构、前置索引表、篇幅规划和章节写作锚点。
+    inputs: [score_model_table, no_deviation_index, design_documents, project_profile]
+    outputs: [service_scheme_structure, score_index_table, commitment_evidence_chain]
+
+  - id: ZC22_chapter_expander
+    name: 章节文稿展开
+    purpose: 按技术规范、行业标准和章节锚点产出项目化正文，展开专项执行细则、标准作业流程、月度分解计划、风险预案和验收资料包。
+    inputs: [service_scheme_structure, design_documents, knowledge_base, case_materials]
+    outputs: [chapter_drafts, sections_need_human_input, evidence_material_requests]
+
+  - id: ZC23_expression_polisher
+    name: 应答文件文稿润色
+    purpose: 检测并替换模板化机械表达、内部评审策略用语、夸张修辞和不符合政府采购文件规范的行文。
+    inputs: [bid_draft, taboo_word_list]
+    outputs: [cleanup_report, replacement_suggestions, remaining_risk_phrases]
+
+  - id: ZC24_chart_planner
+    name: 图表占位与图表索引
+    purpose: 根据应答方案章节产出图表占位索引、关键流程图/甘特图/组织架构图清单和图表放置位置。
+    inputs: [service_scheme_structure, chapter_drafts, score_model_table]
+    outputs: [chart_catalog, chart_placeholders, chart_generation_brief]
+
+  - id: ZC25_consistency_checker
+    name: 提交前一致性校验
+    purpose: 核验项目名称、编号、采购主体、关键数据、履约期限、参考残留、商务应答和否决风险是否一致。
+    inputs: [final_bid_draft, tender_documents, design_documents, no_deviation_index]
+    outputs: [consistency_check_report, fatal_risks, final_confirmation_items]

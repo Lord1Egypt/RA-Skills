@@ -1,0 +1,7 @@
+interface:
+  display_name: "MCP Third Party Publisher"
+  short_description: "Submit MCP servers with browser automation."
+  default_prompt: "Use $mcp-third-party-publisher to submit this MCP server to third-party directories with Computer Use."
+
+policy:
+  allow_implicit_invocation: true

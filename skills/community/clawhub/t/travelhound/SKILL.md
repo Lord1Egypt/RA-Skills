@@ -1,3 +1,19 @@
+---
+name: travelhound
+description: "TravelHound compares flights and hotels across Google Flights, Skyscanner, Kayak, Booking.com, Agoda, and Trip.com — with book-now-vs-wait timing, OTA coupon stacking, and destination intelligence (visa, FX trend, safety). One skill for the whole trip."
+keywords: flight comparison, cheap flights, flight deals, hotel comparison, book now or wait, airfare tracker, price forecast, travel planner, trip planner, OTA coupons, Google Flights, Skyscanner, Kayak, Booking.com, Agoda, Trip.com, destination guide, visa requirements, travel deals, 机票比价, 酒店比价, 特价机票, 旅行规划, 签证, 航班, 항공권, 航空券, vé máy bay, du lịch
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
+metadata:
+  openclaw:
+    runtime:
+      node: ">=18"
+---
+
 # TravelHound
 
 > Flight and hotel price comparison with booking timing analysis, OTA coupon stacking, and destination intelligence — all in one skill.

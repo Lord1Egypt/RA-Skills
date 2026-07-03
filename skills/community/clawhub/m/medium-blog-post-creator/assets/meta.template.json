@@ -1,0 +1,10 @@
+{
+  "title": "Full Post Title Goes Here",
+  "date": "YYYY-MM-DD",
+  "author": "<github-username-or-org>",
+  "description": "1-2 sentence summary of the post. Max 200 characters.",
+  "tags": ["example-tag", "second-tag"],
+  "status": "draft",
+  "medium_url": null,
+  "cover_image": "https://images.unsplash.com/photo-XXXXXXX?w=1200&q=80"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ry-drink2",
+  "version": "1.2.0",
+  "description": "瑞玥餐饮 API Skill。查询（门店/菜单/桌位/预约/会员/交易）与写入（预约/点餐/减餐）均须调用 Tool 拉取实时数据，禁止凭记忆或知识库回答业务数据。",
+  "author": "ruoyi",
+  "tags": ["dining", "appointment", "restaurant", "ry-drink2"],
+  "config": {
+    "apiBase": "http://192.168.0.66:9302"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "skills": {
+    "load": {
+      "extraDirs": []
+    },
+    "entries": {
+      "go-fs-mcp-skill": {
+        "enabled": true
+      }
+    }
+  }
+}

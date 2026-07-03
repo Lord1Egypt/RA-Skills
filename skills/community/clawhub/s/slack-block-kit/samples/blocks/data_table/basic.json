@@ -1,0 +1,165 @@
+[
+  {
+    "type": "data_table",
+    "caption": "Data table",
+    "rows": [
+      [
+        {
+          "type": "raw_text",
+          "text": "Name"
+        },
+        {
+          "type": "raw_text",
+          "text": "Account"
+        },
+        {
+          "type": "raw_text",
+          "text": "Stage"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Acme Expansion Deal"
+        },
+        {
+          "type": "raw_text",
+          "text": "Acme Inc."
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Negotiation",
+                  "style": {
+                    "bold": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Weather Forecast Integration"
+        },
+        {
+          "type": "raw_text",
+          "text": "Nimbus Corp."
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Waiting on "
+                },
+                {
+                  "type": "text",
+                  "text": "review",
+                  "style": {
+                    "italic": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Retail Partner Portal"
+        },
+        {
+          "type": "raw_text",
+          "text": "ShopCo Ltd."
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Closed Won",
+                  "style": {
+                    "bold": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Sustainable Materials Sourcing"
+        },
+        {
+          "type": "raw_text",
+          "text": "GreenTech"
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Qualification",
+                  "style": {
+                    "italic": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Global Distribution Network"
+        },
+        {
+          "type": "raw_text",
+          "text": "LogiFlow Inc."
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "$1.2M",
+                  "style": {
+                    "bold": true
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " proposal sent"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    ]
+  }
+]

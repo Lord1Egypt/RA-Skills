@@ -11,13 +11,13 @@
 
 用法：
   # 查询指定任务
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
 
   # 查询并输出完整 JSON 响应
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
 
   # 仅输出原始 JSON（方便管道处理）
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -38,7 +38,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -281,13 +281,13 @@ def main():
         epilog="""
 示例：
   # 查询指定任务
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
 
   # 查询并输出完整 JSON 响应
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
 
   # 仅输出原始 JSON（方便管道处理）
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   腾讯云 SecretId

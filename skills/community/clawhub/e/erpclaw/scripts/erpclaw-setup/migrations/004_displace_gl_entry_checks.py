@@ -33,7 +33,7 @@ import os
 import sqlite3
 import sys
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 # Self-contained snapshot of the canonical seeds (kept in sync with
 # init_schema.VOUCHER_TYPE_REGISTRY_SEED / PARTY_TYPE_REGISTRY_SEED).

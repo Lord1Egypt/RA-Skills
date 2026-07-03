@@ -19,10 +19,10 @@ Generates a new SR25519 wallet, derives the corresponding EVM address, displays 
 ### Import an existing wallet
 
 ```bash
-npx tsx auto-respawn.ts wallet import --name <name> --mnemonic "<12 words>"
+npx tsx auto-respawn.ts wallet import --name <name> --mnemonic-stdin < recovery-phrase.txt
 ```
 
-Creates a wallet from an existing recovery phrase. Derives and stores the EVM address alongside the consensus keypair.
+Creates a wallet from an existing recovery phrase, read from stdin (or an interactive prompt if you omit `--mnemonic-stdin`). Do not pass the phrase as a `--mnemonic` argument — it would be exposed via `ps` and shell history. Derives and stores the EVM address alongside the consensus keypair.
 
 ### List saved wallets
 

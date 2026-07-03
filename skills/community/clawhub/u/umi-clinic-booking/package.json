@@ -1,0 +1,12 @@
+{
+  "name": "umi-booking",
+  "version": "1.0.0",
+  "title": "明洞优美皮肤科预约助手",
+  "description": "明洞优美皮肤科 — 首尔明洞优美(UMI)皮肤科，专业皮肤护理与医美项目",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

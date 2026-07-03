@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogStudio — Sol AI Content Manager</title>
+    <meta property="og:site_name" content="Sol AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FDFBF7;
+            --bg-secondary: #F5F0E6;
+            --text-primary: #111111;
+            --text-secondary: #444444;
+            --text-muted: #888888;
+            --k-yellow: #FFD166;
+            --k-red: #E63946;
+            --k-ink: #111111;
+            --k-blue: #457B9D;
+            --k-white: #FFFFFF;
+            --k-green: #2A9D8F;
+            --k-stroke: 3px solid var(--k-ink);
+            --k-shadow: 5px 5px 0px var(--k-ink);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Comic Neue', cursive; font-weight: 700; background: var(--bg-primary); color: var(--text-primary); }
+        h1, h2, h3 { font-family: 'Bangers', cursive; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .app { display: flex; min-height: 100vh; }
+        .sidebar { width: 260px; background: var(--k-yellow); border-right: var(--k-stroke); padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
+        .main { flex: 1; margin-left: 260px; padding: 2rem; max-width: 900px; }
+        
+        .sidebar-logo { font-family: 'Bangers', cursive; font-size: 1.8rem; color: var(--k-ink); margin-bottom: 1.5rem; }
+        .sidebar-logo span { color: var(--k-red); }
+        .nav-section { margin-bottom: 1.5rem; }
+        .nav-title { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .nav-item { display: block; padding: 0.5rem 0.75rem; color: var(--k-ink); text-decoration: none; border: 2px solid transparent; margin-bottom: 0.25rem; cursor: pointer; }
+        .nav-item:hover { border: 2px solid var(--k-ink); background: var(--k-white); }
+        .nav-item.active { background: var(--k-ink); color: var(--k-white); }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: var(--k-stroke); }
+        .header h1 { font-size: 2rem; }
+        .btn { font-family: 'Bangers', cursive; padding: 0.5rem 1rem; border: var(--k-stroke); cursor: pointer; font-size: 0.9rem; letter-spacing: 1px; }
+        .btn-primary { background: var(--k-yellow); box-shadow: 3px 3px 0 var(--k-ink); }
+        .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--k-ink); }
+        .btn-success { background: var(--k-green); color: white; }
+        .btn-danger { background: var(--k-red); color: white; }
+        
+        .content-list { display: flex; flex-direction: column; gap: 1rem; }
+        .content-card { background: var(--k-white); border: var(--k-stroke); padding: 1.25rem; box-shadow: var(--k-shadow); cursor: pointer; }
+        .content-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--k-ink); }
+        .content-card h3 { margin-bottom: 0.25rem; }
+        .content-meta { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .editor { display: none; }
+        .editor.active { display: block; }
+        .editor-field { margin-bottom: 1.25rem; }
+        .editor-field label { display: block; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.25rem; text-transform: uppercase; }
+        .editor-field input, .editor-field textarea { width: 100%; padding: 0.75rem; border: 2px solid var(--k-ink); font-family: inherit; font-size: 0.95rem; }
+        .editor-field input:focus, .editor-field textarea:focus { outline: none; border-color: var(--k-red); }
+        .editor-field textarea { min-height: 300px; font-family: 'Consolas', monospace; }
+        
+        .status { position: fixed; bottom: 1rem; right: 1rem; padding: 0.75rem 1rem; background: var(--k-ink); color: var(--k-white); font-size: 0.8rem; }
+        .status.success { background: var(--k-green); }
+        .status.error { background: var(--k-red); }
+        .loading, .empty { text-align: center; padding: 2rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-logo">Blog<span>Studio</span></div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Content</div>
+                <div class="nav-item active" data-view="posts">📝 Blog Posts</div>
+                <div class="nav-item" data-view="guides">📖 Guides</div>
+                <div class="nav-item" data-view="analysis">📊 Analysis</div>
+                <div class="nav-item" data-view="pages">📄 Pages</div>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Actions</div>
+                <div class="nav-item" data-action="sync">🔄 Sync</div>
+                <div class="nav-item" data-action="new">✏️ New Post</div>
+                <div class="nav-item" data-action="schedule">📅 Schedule</div>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Live Site</div>
+                <div class="nav-item" data-action="site">🌐 View Site</div>
+                <div class="nav-item" data-action="blog">📝 Blog</div>
+                <div class="nav-item" data-action="guides">📖 Guides</div>
+            </div>
+        </aside>
+        
+        <main class="main">
+            <div class="header">
+                <h1 id="pageTitle">Blog Posts</h1>
+                <div>
+                    <button class="btn btn-outline" id="syncBtn">🔄 Sync</button>
+                    <button class="btn btn-primary" id="newPostBtn">+ New Post</button>
+                </div>
+            </div>
+            
+            <div id="contentList" class="content-list"></div>
+            
+            <div id="editor" class="editor">
+                <div class="editor-field">
+                    <label>Title</label>
+                    <input type="text" id="postTitle" placeholder="Post title">
+                    <button class="btn btn-outline" id="viewOnGithubBtn" style="display:none" onclick="viewOnGithub()">🔗 View on GitHub</button>
+                </div>
+                <div class="editor-field">
+                    <label>Date</label>
+                    <input type="date" id="postDate">
+                </div>
+                <div class="editor-field">
+                    <label>Tags</label>
+                    <input type="text" id="postTags" placeholder="technical, blog, ai">
+                </div>
+                <div class="editor-field">
+                    <label>Content (Markdown)</label>
+                    <textarea id="postContent" placeholder="Write in Markdown..."></textarea>
+                </div>
+                <div>
+                    <button class="btn btn-primary" id="saveDraftBtn">💾 Save Draft</button>
+                    <button class="btn btn-success" id="previewBtn">👁️ Preview</button>
+                    <button class="btn btn-danger" id="deletePostBtn" style="display:none">🗑️ Delete</button>
+                    <button class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="status" class="status" style="display:none;"></div>
+    
+    <script src="./app.js"></script>
+</body>
+</html>

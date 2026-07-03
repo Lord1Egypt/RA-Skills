@@ -1,0 +1,18 @@
+{
+  "scanId": "skill:li-wps-mod:1.0.0",
+  "sourceKind": "published",
+  "update": false,
+  "status": "succeeded",
+  "artifact": {
+    "displayName": "WPS Office AI Control",
+    "fileCount": 1,
+    "kind": "skill",
+    "sha256hash": "29a3472c50398e8910ce9fd74e4ed84754e563567af4848f16c8d0c2da08ef46",
+    "slug": "li-wps-mod",
+    "version": "1.0.0"
+  },
+  "createdAt": 1782819681498,
+  "updatedAt": 1782819681498,
+  "completedAt": 1782819679408,
+  "writtenBack": true
+}

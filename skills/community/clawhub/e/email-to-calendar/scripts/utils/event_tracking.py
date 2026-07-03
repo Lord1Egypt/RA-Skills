@@ -168,8 +168,8 @@ def lookup_events(
                             print(f"Orphaned event detected: {event_id} - removing from tracking", file=sys.stderr)
                             if script_dir:
                                 subprocess.run(
-                                    f'{script_dir}/delete_tracked_event.sh --event-id "{event_id}"',
-                                    shell=True, capture_output=True
+                                    [f"{script_dir}/delete_tracked_event.sh", "--event-id", event_id],
+                                    capture_output=True
                                 )
                     else:
                         # On error, assume event still exists

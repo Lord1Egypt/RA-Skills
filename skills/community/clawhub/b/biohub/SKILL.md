@@ -1,6 +1,6 @@
 ---
-name: openclaw-biohub
-description: Access the user's biohub — WHOOP, Oura, Fitbit, Apple Health, and Garmin biometrics (recovery, sleep, strain, HRV, SpO₂); blood-panel biomarkers; supplement stack and intake history; daily nutrition; body composition (calipers / scale / DEXA) and user-defined tracking phases (bulks, cuts, supplement courses). Use when the user asks about their recovery score, sleep quality, HRV trends, training readiness, blood-work results, supplement effects, body composition, fat loss, or wants a health status update grounded in their own biometric data. Multi-source design — queries on `daily_metrics` are source-agnostic. Not medical advice.
+name: biohub
+description: Access the user's biohub — WHOOP, Oura, Fitbit, Apple Health, and Garmin biometrics (recovery, sleep, strain, HRV, SpO₂); FreeStyle Libre continuous glucose (time-in-range, GMI); blood-panel biomarkers; supplement stack and intake history; daily nutrition; body composition (calipers / scale / DEXA) with a 3D anatomical simulator driven by FFMI + BF % + 7-site caliper data; a WHOOP-Age-style biological-age estimate; and user-defined tracking phases (bulks, cuts, supplement courses). Use when the user asks about their recovery score, sleep quality, HRV trends, training readiness, blood-work results, supplement effects, glucose / time-in-range, biological age, body composition, fat loss, what they would look like at a target body fat, or wants a health status update grounded in their own biometric data. Multi-source design — queries on `daily_metrics` are source-agnostic. Not medical advice.
 homepage: https://github.com/maxnau89/openclaw-biohub
 ---
 
@@ -47,9 +47,13 @@ SQLite databases under `$OPENCLAW_BIOHUB_HOME/data/`:
     `end_date IS NULL` = currently active. Categories drive default
     chip colors but are open-ended free text.
 - **Per-adapter raw DBs** — `whoop_raw.db`, `oura_raw.db`,
-  `fitbit_raw.db`, `apple_health_raw.db`, `garmin_raw.db`. Only the
-  ones the user has configured will exist (run `biohub list-adapters`
-  to see).
+  `fitbit_raw.db`, `apple_health_raw.db`, `garmin_raw.db`,
+  `libre_raw.db`. Only the ones the user has configured will exist
+  (run `biohub list-adapters` to see).
+  - `libre_raw.db.glucose_data` — FreeStyle Libre 3 / LibreView
+    continuous glucose (mg/dL) at ~15-min resolution. Sub-daily, so
+    it is NOT in `daily_metrics`; use `glucose_analytics.py` or query
+    `glucose_data` directly for time-in-range, GMI, and day/overnight means.
 
 The full schema lives in `db/schema.sql` in the openclaw-biohub repo.
 
@@ -116,19 +120,41 @@ sqlite3 "$HEALTH_DB" \
 
 ### Deeper analytics
 
-Three Python helpers in the openclaw-biohub repo's `pipeline/`
+Five Python helpers in the openclaw-biohub repo's `pipeline/`
 produce JSON output suitable for LLM consumption:
 
 - `blood_marker_analytics.py` — biomarker time series, correlations,
   category breakdowns, flagged markers.
 - `supplement_analytics.py` — partial Pearson correlations between
   supplement intake and recovery / HRV, controlling for sleep and strain.
+- `glucose_analytics.py` — CGM analytics from `libre_raw.db`: mean,
+  SD, CV %, GMI (estimated HbA1c), time-in-range / hypo / hyper, daily
+  day-vs-overnight means, and overnight-glucose ↔ next-day-recovery
+  correlation.
+- `physiological_age.py` — a WHOOP-Age-style biological-age estimate:
+  scores nine markers (sleep consistency/hours, HR-zone time, strength,
+  steps, VO₂max via Uth-Sørensen, resting HR, lean mass %) into a
+  chronological-age delta with a per-marker breakdown. Directional
+  wellness score, not clinical. Needs `date_of_birth` in the profile for
+  the absolute age; the delta + breakdown work without it.
 - `whoop_pattern_engine.py` — full insight bundle: pairwise
   correlations (sleep ↔ HRV ↔ recovery ↔ strain), IsolationForest
   anomaly detection, linear-regression recommendations. *(WHOOP-bound
   today; a v0.4 refactor will make it source-agnostic.)*
 
 Invoke any of these with `python3 pipeline/<name>.py` and parse the JSON.
+
+### Automated ingest (bulk history)
+
+Beyond the dashboard's one-off entry, two watch-folder importers ingest
+history in bulk (deduped, cron-safe):
+
+- `blood_panel_import.py --watch-dir <dir>` — parses dropped lab PDFs /
+  text into `blood_panels` + `blood_markers` (reference-range flags
+  included).
+- `supplement_import.py --watch-dir <dir>` — imports a
+  `date,supplement,dose_mg,...` CSV/JSON into `supplement_log`,
+  auto-creating unknown supplements.
 
 ### Connecting a new device
 
@@ -139,8 +165,18 @@ biohub connect <slug>
 ```
 
 …where `<slug>` is one of `whoop`, `oura`, `fitbit`, `apple-health`,
-or `garmin`. `biohub list-adapters` shows all options with their
-stability tier (Garmin is `EXPERIMENTAL`).
+`garmin`, or `libre`. `biohub list-adapters` shows all options with
+their stability tier (Garmin and Libre are `EXPERIMENTAL`). Libre is
+file-based: the user exports a LibreView CSV into a watch folder and
+`biohub sync libre` ingests it.
+
+**Apple Health live push:** after `biohub connect apple-health`, the
+user can run the receiver
+(`python3 -m adapters.apple_health.receiver`, binds `127.0.0.1:8894`,
+bearer-token auth printed on start) and point the *Health Auto Export*
+iOS app's REST automation at it. Pushed JSON/CSV lands in the watch
+folder and ingests live — no manual export needed. `HEALTHKIT_HOST=0.0.0.0`
+opens it to the LAN (only if the user asks).
 
 ### Logging body-composition entries and phases
 
@@ -160,6 +196,21 @@ for `training`, `diet`, `supplement`, `medication`, and `lifestyle`.
 When commenting on a body-comp datapoint, **always surface which
 tracking phases were active on that date** — the join is in the SQL
 recipe above.
+
+### 3D body simulator (v0.4)
+
+The dashboard's Body Comp tab renders a live anatomical mannequin
+(male / female toggle, CC0 MakeHuman base mesh) that deforms from
+the user's actual data:
+
+- **FFMI** (LBM / height²) → muscle morph
+- **BF %** → weight morph (+ dedicated breast morph for female bodies)
+- **7-site Jackson-Pollock caliper** → regional fat distribution
+
+Compare-mode shows current vs projected (from the Forward Sim
+sliders) side-by-side. When the user asks "what would I look like
+at X % BF" or "show me how I'd look after this cut", direct them
+to the Body Comp tab + Compare toggle. The answer is visual.
 
 ## Memory
 

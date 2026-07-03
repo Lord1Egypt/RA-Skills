@@ -29,7 +29,9 @@ npx -y socialdatax-skills@latest weibo comments --post-id "<post_id>" --all --in
 npx -y socialdatax-skills@latest weibo comments --post-url "<weibo_post_url_or_share_text>" --pretty
 npx -y socialdatax-skills@latest weibo replies --post-id "<post_id>" --comment-id "<comment_id>" --pretty
 npx -y socialdatax-skills@latest weibo likers --post-id "<post_id>" --pretty
+npx -y socialdatax-skills@latest weibo likers --post-url "<weibo_post_url_or_share_text>" --pretty
 npx -y socialdatax-skills@latest weibo reposts --post-id "<post_id>" --pretty
+npx -y socialdatax-skills@latest weibo reposts --post-url "<weibo_post_url_or_share_text>" --pretty
 npx -y socialdatax-skills@latest weibo user-info --user-id "<user_id>" --pretty
 npx -y socialdatax-skills@latest weibo user-info --profile-url "<profile_url_or_share_text>" --pretty
 npx -y socialdatax-skills@latest weibo user-posts --user-id "<user_id>" --pretty
@@ -46,7 +48,7 @@ For replies, use `post_id` together with the first-level `comment_id`.
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 
@@ -60,7 +62,9 @@ MCP tools matching the direct CLI commands above:
 - `weibo_get_post_comments_by_post_url`
 - `weibo_get_post_comment_replies_by_comment_id`
 - `weibo_get_post_liker_list_by_post_id`
+- `weibo_get_post_liker_list_by_post_url`
 - `weibo_get_post_repost_list_by_post_id`
+- `weibo_get_post_repost_list_by_post_url`
 - `weibo_get_user_info_by_user_id`
 - `weibo_get_user_info_by_profile_url`
 - `weibo_get_user_posts_by_user_id`

@@ -56,34 +56,34 @@
 
 ```bash
 # Football match highlight reel
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
 # Basketball match
-python scripts/mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+python3 scripts/mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
 # Short drama / TV series highlights
-python scripts/mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+python3 scripts/mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
 # VLOG panoramic camera
-python scripts/mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+python3 scripts/mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
 # Regular VLOG (specify max 10 output clips)
-python scripts/mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
+python3 scripts/mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
 
 # Custom scenario (with prompt and scenario)
-python scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
+python3 scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
     --scene custom --prompt "Skiing scenario, output character highlights" --scenario "skiing"
 
 # Custom scenario + specify clip count
-python scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
+python3 scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
     --scene custom --prompt "Skiing scenario" --scenario "skiing" --top-clip 8
 
 # Only submit task without waiting for results
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --no-wait
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --no-wait
 
 # Dry Run (preview request parameters)
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --dry-run
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --dry-run
 
 # Query task status
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 ```

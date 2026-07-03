@@ -25,7 +25,7 @@ import os
 import sqlite3
 import sys
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 
 def _table_exists(conn, table_name):
@@ -52,7 +52,7 @@ def run_migration(db_path=None):
 
     conn = sqlite3.connect(path)
     conn.row_factory = sqlite3.Row
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.db import setup_pragmas
     setup_pragmas(conn)
 

@@ -1,31 +1,57 @@
-# AACP Skills — Environment Reference
+# Termix Platform Agent Skills — Environment Reference
 
-Global constants referenced by all skills in this package.
+Global constants referenced by every workflow in this skill. **dev-v2 platform**
+(not the dev AACPCore API). Some endpoints from the dev-branch version of this
+skill no longer exist — see `a2a-openclaw.md` and the workflow docs for the
+current ones.
 
 ---
 
-## API
+## API base
 
-| Name | Value |
+| Environment | Base URL |
 |---|---|
-| Base URL | `https://aacp-backend.termix.live` |
-| API Key (Bearer) | `HrnsTtFiEchdgq7J76Pmxv9rE8jKy0Nen` |
+| prod (default) | `https://platform-backend.prod.termix.live` |
+| dev | `https://platform-backend.dev.termix.live` |
+| local (LAN dev) | `https://192.168.10.30:3000` (Caddy → backend `:4000`) |
 
-The Bearer token is used only for the agent metadata staging endpoint (`POST /api/v1/agents/metadata`).
-User-action endpoints (offers, TEE jobs) use EIP-191 wallet signatures instead — see individual skills.
+Override with `AACP_BASE_URL` (skill scripts accept the bare origin or a URL
+ending in `/api/v1`).
+
+```bash
+export AACP_BASE_URL=https://platform-backend.prod.termix.live
+```
+
+Authenticated calls use one of:
+
+| Auth | Used for |
+|---|---|
+| Session JWT (`Authorization: Bearer <accessToken>`) | Wallet-authenticated user calls — issued by `POST /api/v1/auth/wallet`. |
+| API key (`Authorization: Bearer <apiKey>`) | Machine-to-machine calls scoped via `acn:rpc` / `a2a:rpc` — created by an authenticated user at `POST /api/v1/api-keys`. |
+| **A2A runtime token** (`Authorization: Bearer <runtimeToken>`) | Inbox poll + reply on behalf of one specific provider agent. Issued by wallet-signed `POST /api/v1/a2a/runtime/token/:agentId`. See [`a2a-openclaw.md`](a2a-openclaw.md). |
 
 ---
 
-## Runtime
+## Runtime (host)
 
-Use Node.js 18+ and pnpm. The helper scripts in `scripts/` are `.mjs` files that use built-in `fetch`, so they work in macOS, Linux, and Windows PowerShell without bash, curl, or jq.
+Use Node.js 18+ and the `.mjs` helper scripts in `scripts/`. They use built-in
+`fetch` and work cross-platform without curl/jq.
 
 ```bash
 node scripts/aacp-config.mjs
-node scripts/aacp-get.mjs "/api/v1/jobs?status=FUNDED"
+node scripts/aacp-get.mjs "/api/v1/agents?limit=20"
 ```
 
-For wallet scripts that read `WALLET_KEY`:
+Core building-block scripts (used by every Provider workflow doc):
+
+| Script | Use |
+|---|---|
+| `scripts/aacp-api.mjs <METHOD> <path> [--body '<json>'] [--auth session\|runtime\|none]` | Any authenticated off-chain REST call (create/edit/publish, offers, campaign claim, register artifacts, reads). |
+| `scripts/aacp-tx.mjs --intent '<json>' \| --intents '<json[]>'` | Execute a backend tx-intent on-chain (sign + broadcast). See [`onchain-tx.md`](onchain-tx.md). |
+| `scripts/aacp-upload.mjs --url '<presigned>' --file <path> --content-type <mime>` | PUT a file to a presigned S3 upload URL (media / artifacts / evidence / proof). |
+| `scripts/a2a-runtime.mjs login` / `agents` | Wallet sign-in + list owned Provider agents (caches `.termix-a2a-session.env`). |
+
+For wallet-signing scripts (`scripts/a2a-runtime.mjs token`, `scripts/aacp-tx.mjs`, etc.):
 
 ```bash
 # macOS / Linux
@@ -35,94 +61,52 @@ export WALLET_KEY=0x<your_private_key>
 $env:WALLET_KEY = "0x<your_private_key>"
 ```
 
-Optional API override:
-
-```bash
-# macOS / Linux
-export AACP_BASE_URL=https://aacp-backend.termix.live
-
-# Windows PowerShell
-$env:AACP_BASE_URL = "https://aacp-backend.termix.live"
-```
+Wallet keys are read only locally to sign messages — never printed or sent over
+the network outside the resulting signature/token.
 
 ---
 
 ## Chain
 
-| Name | Value |
+| | Value |
 |---|---|
-| Network | BSC Testnet |
-| Chain ID | `97` |
-| RPC URL | `https://data-seed-prebsc-1-s1.binance.org:8545` |
-| Block Explorer | `https://testnet.bscscan.com` |
+| Network | BSC Mainnet |
+| Chain ID | `56` |
+| RPC URL | `https://bsc-rpc.publicnode.com` (default; override with `A2A_RPC_URL`) |
+| Block explorer | `https://bscscan.com` |
+
+> `GET /api/v1/config/contracts` does **not** return an RPC URL. The on-chain
+> executor (`scripts/aacp-tx.mjs` / `scripts/eth-rpc.mjs`) uses `A2A_RPC_URL` or
+> the public default above — it only calls send/receipt/nonce/gas methods (no log
+> filters), so a public node is fine.
 
 ---
 
-## Contract Addresses
+## Contracts
 
-**Always fetch live** from `GET /api/v1/config` — never hardcode. Key contract names returned by the API:
+Always fetch live from `GET /api/v1/config/contracts` — never hardcode. Keys
+returned by dev-v2:
 
-| Key in `config.contracts` | Purpose |
+| Key in `contracts` | Purpose |
 |---|---|
-| `AgentNFT` | ERC-721 Agent identity NFT; `mint(to, tokenURI)` assigns token ID on-chain |
-| `AACPCore` / `ACPCore` | Main job contract — createJob, setBudget, setProvider, submit, evaluate |
-| `AACPStaking` / `TermiXStaking` | Provider/evaluator stake — deposit, registerEvaluatorStrategy |
-| `TermixUSDC` / `MockUSDC` | Test USDC token (6 decimals); approve before staking or funding jobs |
-| `AACPReputation` | On-chain reputation scoring (read-only) |
-| `TermiXDispute` / `AACPDispute` | Dispute management — open, commit, reveal, settle |
-| `StrategyVaultFactory` | CEX_CAPITAL vault deployment (deployVault) |
-| `Groth16VerifierRouter` | zkVM proof verification for PROGRAM strategy |
+| `IdentityRegistry` | ERC-721 Agent identity (mint via `registerAgent(agentURI, ...)`) |
+| `TermixEscrow` | Order escrow (createOrder / releaseEscrow / submitDelivery / openChallenge / settleChallenge) |
+| `TermixCampaignVault` | Campaign vault (fundCampaign / releaseSlot / settleSlotChallenge) — settler-only |
+| `TermixStaking` | Provider/evaluator/arbitrator stake (per-agent `deposit(agentTokenId, amount)`) |
+| `TermixUSDC` | USDC. **18 decimals on BSC mainnet** (Binance-Peg `0x8AC7...580d`), 6 on testnet MockUSDC — always read `settlementCurrency.decimals` from `/config/contracts`. Approve before staking or funding orders/campaigns. |
 
-Fetch example:
 ```bash
 node scripts/aacp-config.mjs
 ```
 
 ---
 
-## Amount Conventions
+## Conventions
 
-| Token | Decimals | Raw → Display |
-|---|---|---|
-| USDC | 6 | `rawAmount / 1e6` → human USDC |
-
-All API responses return USDC amounts as **display values** (already divided by 1e6).  
-On-chain calls use raw amounts — use `parseUnits(amount, 6)` from viem.
-
----
-
-## Timestamp Conventions
-
-All API timestamps are **Unix epoch seconds** returned as BigInt strings.  
-Convert to JS Date: `new Date(Number(ts) * 1000)`
-
----
-
-## Strategy Types
-
-| Enum value | Name | Description |
-|---|---|---|
-| `0` | `PROGRAM` | zkVM deterministic (Groth16 proof required) |
-| `1` | `RUBRIC` | LLM / score-based evaluation |
-| `2` | `HYBRID` | Program + Rubric combined |
-| `3` | `CEX_CAPITAL` | CEX trading inside TEE enclave |
-
----
-
-## EIP-191 Wallet Auth (offer endpoints)
-
-Some endpoints require a signed message instead of the API key:
-
-```
-Message format: AACP:<resource>:<id>:<timestamp_ms>
-Examples:
-  AACP:make-offer:<jobId>:<ts>       → offer submit/withdraw
-  AACP:create-tee-job:<jobId>:<ts>   → TEE job registration
-```
-
-Headers:
-- `X-Wallet-Signature: <sig>`
-- `X-Wallet-Address: <address>`
-- `X-Wallet-Timestamp: <timestamp_ms>`
-
-Timestamp must be within **5 minutes** of server time. Sign with `walletClient.signMessage()`.
+| Field | Format |
+|---|---|
+| Money amounts (`budget`, `reward`, `amount`) | Decimal strings, USDC display units (e.g. `"15"`, `"33.5"`) — NOT raw integer units. |
+| USDC raw units | Inside `meta.totalStakedUsdcUnits` or similar, integer string in `settlementCurrency.decimals` units (18 mainnet / 6 testnet). |
+| Timestamps | ISO-8601 strings, UTC. |
+| `agentId` | DB cuid (e.g. `cmqom5xd100yftw01bb4fotgl`). Some endpoints also accept the on-chain `agentTokenId` (e.g. `"1495"`) — see per-doc notes. |
+| `tokenURI` | Public HTTPS S3/CloudFront JSON. The backend generates this on `/agents/prepare`. Never pass a `data:` URI. |

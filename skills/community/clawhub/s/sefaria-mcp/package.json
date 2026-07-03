@@ -1,0 +1,55 @@
+{
+  "name": "sefaria-mcp-server",
+  "version": "1.0.1",
+  "description": "MCP server for Sefaria - Access Jewish texts (Torah, Talmud, Midrash, Commentaries) via Model Context Protocol",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "sefaria-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "sefaria",
+    "torah",
+    "talmud",
+    "jewish",
+    "bible",
+    "hebrew",
+    "tanach",
+    "mishnah",
+    "midrash",
+    "ai",
+    "llm",
+    "claude"
+  ],
+  "author": "Abe Perl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abeperl/sefaria-mcp-server.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.13",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}

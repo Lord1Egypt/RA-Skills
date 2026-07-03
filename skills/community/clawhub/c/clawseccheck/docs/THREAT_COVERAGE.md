@@ -2,11 +2,13 @@
 
 Honest map of what ClawSecCheck checks today, what it does **not** yet check, and where
 the gaps are. `UNKNOWN` is never counted as `PASS`; gaps below are areas with no check at
-all (so they can't even surface as a finding). Updated 2026-06-27 for v1.23.0.
+all (so they can't even surface as a finding). Updated 2026-06-30 for v2.5.5.
 
-Current catalog: `A1, B1–B26, B30–B33, B38, B39, B41–B48, B50–B66, C3–C5`, plus the
-combinational risk engine `RISK-01..RISK-17`, the install-time vetters `--vet` (B13 on
-an uninstalled skill, now AST- and injection-aware) / `--vet-mcp`, and the **attestation
+Current catalog: A1 plus the B-series (B1–B79) and C-series (C3–C074) — 81 checks total;
+see `docs/CHECKS.md` for the full generated list, plus the
+combinational risk engine `RISK-01..RISK-17`, the install-time vetters `--vet` (B13 plus
+the content-security ring — B59–B67 / B74 / B42 — on an uninstalled skill; AST-, injection-,
+and capability-intent-aware) / `--vet-mcp`, and the **attestation
 layer** (`--ask` / `--attest`, with a guided interrogation protocol so the agent self-builds
 the report; `--attest -` reads stdin) that feeds the agent's self-report into B43/B44.
 
@@ -20,7 +22,7 @@ the report; `--attest -` reads stdin) that feeds the agent's self-report into B4
 | Execution sandbox present | B4 | Depth is partial — see gaps (B35) |
 | Bootstrap-file injection surface | B6 | Prompt-injection-prone directives in SOUL/AGENTS/TOOLS |
 | Trusted-output boundary policy | B21 | Is external content treated as data, not instructions |
-| Installed-skill malware (ClawHavoc class) | B13, `--vet` | curl\|sh, base64/PS-encoded, split-stage exfil, paste hosts; **AST obfuscation** (`exec(b64decode)`, `getattr(os,…)()`, `__import__(…).system`) + injection directives in skill prose (v0.21); **AST taint** cred-file→network (`CRED_EXFIL_FLOW`, v0.23) |
+| Installed-skill malware (ClawHavoc class) | B13, `--vet` | curl\|sh, base64/PS-encoded, split-stage exfil, paste hosts; **AST obfuscation** (`exec(b64decode)`, `getattr(os,…)()`, `__import__(…).system`) + injection directives in skill prose (v0.21) — ignore-instructions / hide-from-user plus **anti-refusal & system-prompt/tool-definition leak** directives (fence- and example-context dampened); **AST taint** cred-file→network (`CRED_EXFIL_FLOW`, v0.23) and env-var / agent-config→network body/URL (`ENV_EXFIL_FLOW`, WARN-first — auth headers excluded); **cross-file import-graph taint** — a decode-derived blob defined in one skill file and exec()'d in another (`CROSS_FILE_EXEC`); **bundled shell (`.sh`) pass** — credential-file read → outbound (`SHELL_CRED_EXFIL`), download piped into a non-shell interpreter (`SHELL_PIPE_INTERP`), decode-then-exec (`SHELL_DECODE_EXEC`), eval/source of a remote download (`SHELL_EVAL_REMOTE`), and a credential-shaped env var over a raw socket (`SHELL_ENV_EXFIL`); **bundled JS/TS (`.js`/`.ts`) pass** — eval/Function of a base64-decoded blob and remote fetch-then-exec (`JS_EVAL_DECODED` / `JS_EVAL_REMOTE`, crit) plus child_process-with-template and dynamic `require()` (`JS_CHILD_PROCESS_DYNAMIC` / `JS_DYNAMIC_REQUIRE`, WARN); parse failures surface UNKNOWN, not a silent skip |
 | Egress surface | B14 | Where the agent can reach out |
 | MCP server trust | B15, B24, `--vet-mcp` | Unpinned installs, plaintext transport, env/secret passthrough, broad scopes |
 | Threat monitoring present | B16, `--monitor` | Detects absence; **Agent Watch** (`--monitor`, v0.24) gives severity-tagged drift on skills/bootstrap/score **and connections** (new MCP server / channel / gateway-exposed / host-monitor lost) + a local event journal (`--watch-log`) |
@@ -58,12 +60,12 @@ OWASP Agentic (ASI) classes below, not stretched into a category they don't fit.
 
 | Code | Category | ClawSecCheck checks |
 |---|---|---|
-| LLM01 | Prompt Injection | A1, B2, B6, B21, B23, B26, B30, B48, B58, B60, B64, C074 |
-| LLM02 | Sensitive Information Disclosure | B1, B9, B11, B14, B19, B39, B41, B59, B61 |
-| LLM03 | Supply Chain | B5, B13, B15, B24, B25, B33, B42, C4, C5, C047 |
-| LLM04 | Data and Model Poisoning | B7, B20, B22 |
+| LLM01 | Prompt Injection | A1, B2, B6, B21, B23, B26, B30, B48, B56, B58, B59, B60, B61, B64, B67, B74, C074 |
+| LLM02 | Sensitive Information Disclosure | B1, B9, B11, B12, B14, B19, B39, B41, B59, B61, B67, C014, C015 |
+| LLM03 | Supply Chain | B5, B13, B15, B24, B25, B33, B42, B57, C4, C5, C047 |
+| LLM04 | Data and Model Poisoning | B7, B20, B22, B55 |
 | LLM05 | Improper Output Handling | B21, B47 |
-| LLM06 | Excessive Agency | A1, B3, B4, B8, B17, B18, B22, B23, B31, B32, B41, B43, B44, B45, B46, B47, B48, B68, B69, B71, B72 |
+| LLM06 | Excessive Agency | A1, B3, B4, B8, B17, B18, B22, B23, B31, B32, B41, B43, B44, B45, B46, B47, B48, B55, B57, B62, B63, B65, B66, B68, B69, B71, B72, B76, B79 |
 | LLM07 | System Prompt Leakage | B9 |
 | LLM08 | Vector and Embedding Weaknesses | — (no agent-config surface; RAG/embedding concern) |
 | LLM09 | Misinformation | — (model output / overreliance; out of scope) |
@@ -86,13 +88,13 @@ finding in `--json` (`"ast": [...]`).
 |---|---|---|
 | AST01 | Malicious Skills | B13, B60, B63, B65, C048 |
 | AST02 | Supply Chain Compromise | B5, B13, B15, B24, B25, B42, B57, C5, C047 |
-| AST03 | Over-Privileged Skills | B3, B8, B17, B18, B22, B23, B31, B32, B41, B43, B44, B45, B46, B47, B48, B55, B57, B68, B69, B71, B72 |
+| AST03 | Over-Privileged Skills | B3, B8, B17, B18, B22, B23, B31, B32, B41, B43, B44, B45, B46, B47, B48, B55, B57, B68, B69, B71, B72, B75, B76, B79 |
 | AST04 | Insecure Metadata | B6, B44, B62 |
-| AST05 | Untrusted External Instructions | B6, B7, B20, B21, B23, B26, B30, B58, B59, B61, B63, B64, B65, B66, B67, C074 |
-| AST06 | Weak Isolation | B4, B22, B39, B48, B70 |
+| AST05 | Untrusted External Instructions | B6, B7, B20, B21, B23, B26, B30, B58, B59, B60, B61, B63, B64, B65, B66, B67, B74, C074 |
+| AST06 | Weak Isolation | B4, B22, B38, B39, B48, B70, B73, C032 |
 | AST07 | Update Drift | B25, B33, C4, C6 |
 | AST08 | Poor Scanning | B16 |
-| AST09 | No Governance | B10, B16, B50, B51, B52, B53, B54 |
+| AST09 | No Governance | B10, B16, B50, B51, B52, B53, B54, B77, B78 |
 | AST10 | Cross-Platform Reuse | — (documented coverage gap: single-install scope) |
 
 **Coverage notes:**

@@ -1,0 +1,26 @@
+{
+  "name": "king-crypto-trader",
+  "version": "1.0.0",
+  "description": "AI-powered crypto trading intelligence: real-time signal scanning, 10x futures execution, automated risk management. \u2014 100% free. Enterprise custom: vip@kingai.work \u2014 \ud83d\ude80 Trade crypto: https://www.gate.com/zh/referral/earn-together/invite/UwMQUwwN?ref=UwMQUwwN | \ud83d\udcc8 US stocks: https://j.moomoo.com/0CrlDz",
+  "entry": "main.py",
+  "pricing": {
+    "free": {
+      "features": [
+        "Complete skill \u2014 100% free"
+      ]
+    }
+  },
+  "tags": [
+    "crypto",
+    "trading",
+    "futures",
+    "signals",
+    "risk-management",
+    "gate-io",
+    "bot",
+    "enterprise"
+  ],
+  "contact": {
+    "enterprise": "vip@kingai.work"
+  }
+}

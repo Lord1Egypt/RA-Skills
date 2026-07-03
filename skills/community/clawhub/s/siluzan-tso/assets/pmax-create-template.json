@@ -35,7 +35,10 @@
   "longHeadlines": ["Long headline text for performance max campaign asset group"],
   "descriptions": [
     "Description one text for the asset group here",
-    "Description two text for the asset group here"
+    "Description two text for the asset group here",
+    "Description three text for the asset group here",
+    "Description four text for the asset group here",
+    "Description five text for the asset group here"
   ],
   "imagePaths": {
     "marketing": "./REPLACE_marketing_1200x628.png",

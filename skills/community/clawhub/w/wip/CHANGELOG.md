@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/es6kr/skills/compare/wip-v0.3.2...wip-v0.3.3) (2026-06-30)
+
+
+### Bug Fixes
+
+* **skills:** add procedural guards + standardize description scalar ([#66](https://github.com/es6kr/skills/issues/66)) ([fcc921f](https://github.com/es6kr/skills/commit/fcc921fba3928aad7421ecff888d5dcee5ae5655))
+
 ## [0.3.2](https://github.com/es6kr/skills/compare/wip-v0.3.1...wip-v0.3.2) (2026-06-11)
 
 

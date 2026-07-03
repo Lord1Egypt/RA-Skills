@@ -1,5 +1,5 @@
 ## Description: <br>
-Miniprogram Development helps agents build, debug, preview, test, publish, and optimize WeChat Mini Program projects, including CloudBase workflows when explicitly relevant. <br>
+WeChat Mini Program development skill for building, debugging, previewing, testing, publishing, and optimizing mini program projects. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to guide agents through WeChat Mini Program project structure, page and component changes, configuration checks, preview/upload/publish workflows, and CloudBase integration when the project uses CloudBase. <br>
+Developers and engineers use this skill to create, modify, debug, preview, test, publish, and optimize WeChat Mini Program projects, including CloudBase integrations when the project explicitly uses CloudBase. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: CloudBase MCP configuration, npx commands, device-code login, or environment selection can affect cloud resources. <br>
-Mitigation: Review and approve MCP configuration, authentication flow, and target environment before execution; do not hard-code secrets. <br>
-Risk: Preview, upload, or publish workflows can affect the state of a WeChat Mini Program release. <br>
-Mitigation: Confirm project.config.json, appid, miniprogramRoot, and deployment readiness before preview, upload, or publish actions. <br>
-Risk: CloudBase-specific guidance can be misapplied to a non-CloudBase mini program or mixed with web authentication patterns. <br>
-Mitigation: Confirm the project uses CloudBase before applying wx.cloud patterns, and keep mini program authentication separate from web authentication. <br>
+Risk: Preview, upload, publish, or CloudBase MCP actions could target the wrong Mini Program appid or CloudBase environment. <br>
+Mitigation: Confirm project.config.json, appid, miniprogramRoot, CloudBase environment, and deployment checklist status before preview, upload, publish, or MCP calls. <br>
+Risk: Device-code authentication or MCP configuration changes may affect local CloudBase tooling access. <br>
+Mitigation: Review mcporter or MCP configuration changes and use interactive device-code authentication instead of embedding long-lived credentials. <br>
+Risk: Generated guidance could mix Web authentication patterns into WeChat Mini Program projects. <br>
+Mitigation: Use wx.cloud Mini Program APIs and server-side OPENID handling for CloudBase projects, and avoid Web SDK login flows unless the project scope is explicitly Web. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub Skill Page](https://clawhub.ai/binggg/skills/miniprogram-development) <br>
+- [Current Raw Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/miniprogram-development/SKILL.md) <br>
 - [CloudBase Mini Program Integration](references/cloudbase-integration.md) <br>
-- [Common Pitfalls in WeChat Mini Program Development](references/pitfalls.md) <br>
-- [CloudBase WeChat Pay Mini Program Docs](https://docs.cloudbase.net/integration/wechat-pay-miniprogram/index.md) <br>
+- [Common Pitfalls](references/pitfalls.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code, JSON, and shell command snippets] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+**Other Properties Related to Output:** [May propose file changes, preview/upload commands, CloudBase MCP setup, and Mini Program project configuration checks.] <br>
 
 ## Skill Version(s): <br>
-1.28.6 (source: server release metadata; artifact frontmatter version: 2.23.5) <br>
+1.28.7 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

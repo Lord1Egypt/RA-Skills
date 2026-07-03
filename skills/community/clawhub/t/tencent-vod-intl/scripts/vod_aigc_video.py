@@ -30,7 +30,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -46,13 +46,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -69,14 +72,16 @@ def get_client(region="ap-guangzhou"):
 
 # Model version mapping
 MODEL_VERSIONS = {
-    "GV": ["3.1", "3.1-fast"],
+    "GV": ["3.1", "3.1-fast", "3.1-lite"],
     "Hailuo": ["02", "2.3", "2.3-fast"],
-    "Kling": ["1.6", "2.0", "2.1", "2.5", "O1", "3.0-Omni"],
+    "Kling": ["1.6", "2.0", "2.1", "2.5", "O1", "2.6", "3.0", "3.0-Omni", "3.0-turbo"],
     "Jimeng": ["3.0pro"],
-    "Vidu": ["q2", "q2-pro", "q2-turbo", "q3-pro", "q3-turbo"],
-    "Hunyuan": ["1.5"],
+    "Vidu": ["q2", "q2-turbo", "q2-pro", "q3", "q3-pro", "q3-turbo", "q3-mix", "q3-drama"],
+    "Hunyuan": ["1.5", "3d_2.0"],
     "Mingmou": ["1.0"],
     "OS": ["2.0"],
+    "Seedance": ["1.0-pro", "1.0-lite-i2v", "1.0-pro-fast", "1.5-pro"],
+    "PixVerse": ["v5.6", "v6", "c1"],
 }
 
 MODEL_DEFAULT_VERSION = {
@@ -85,9 +90,11 @@ MODEL_DEFAULT_VERSION = {
     "Kling": "2.1",
     "Jimeng": "3.0pro",
     "Vidu": "q2",
-    "Hunyuan": "1.5",
+    "Hunyuan": "3d_2.0",
     "Mingmou": "1.0",
     "OS": "2.0",
+    "Seedance": "1.5-pro",
+    "PixVerse": "v6",
 }
 
 
@@ -130,6 +137,14 @@ def create_video_task(args):
         elif args.file_url:
             file_info.Type = "Url"
             file_info.Url = args.file_url
+        if args.file_category:
+            file_info.Category = args.file_category
+        if args.file_usage:
+            file_info.Usage = args.file_usage
+        if args.file_text:
+            file_info.Text = args.file_text
+        if args.reference_type:
+            file_info.ReferenceType = args.reference_type
         req.FileInfos = [file_info]
     elif args.file_infos:
         try:
@@ -144,6 +159,20 @@ def create_video_task(args):
                     file_info.Url = fi["Url"]
                 if fi.get("ObjectId"):
                     file_info.ObjectId = fi["ObjectId"]
+                if fi.get("Category"):
+                    file_info.Category = fi["Category"]
+                if fi.get("Usage"):
+                    file_info.Usage = fi["Usage"]
+                if fi.get("Text"):
+                    file_info.Text = fi["Text"]
+                if fi.get("ReferenceType"):
+                    file_info.ReferenceType = fi["ReferenceType"]
+                if fi.get("Base64"):
+                    file_info.Base64 = fi["Base64"]
+                if fi.get("VoiceId"):
+                    file_info.VoiceId = fi["VoiceId"]
+                if fi.get("KeepOriginalSound"):
+                    file_info.KeepOriginalSound = fi["KeepOriginalSound"]
                 file_infos.append(file_info)
             req.FileInfos = file_infos
         except json.JSONDecodeError as e:
@@ -284,7 +313,9 @@ def create_video_task(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
 
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -293,6 +324,32 @@ def create_video_task(args):
     except Exception as e:
         print(f"Failed to create video generation task: {e}")
         sys.exit(1)
+
+
+def print_task_outputs(result):
+    """Extract and print task outputs (video URL / FileId)."""
+    if not result:
+        return
+    task = result.get('AigcVideoTask') or result
+    output = task.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if not file_infos:
+        err_msg = task.get('Message') or task.get('ErrCodeExt')
+        if err_msg:
+            print(f"⚠️  Error: {err_msg}")
+        return
+
+    print(f"\n🎬 Output ({len(file_infos)} file(s)):")
+    for i, fi in enumerate(file_infos, 1):
+        url = fi.get('FileUrl') or fi.get('Url') or ''
+        fid = fi.get('FileId') or ''
+        prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+        if fid:
+            print(f"{prefix} FileId : {fid}")
+            print(f"     URL    : {url}")
+        else:
+            print(f"{prefix} URL: {url}")
 
 
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=1800):
@@ -342,57 +399,66 @@ def list_models(args):
 
 def main():
     check_sdk_version()
+    # Load .env early so that `argparse default=os.environ.get(...)` sees the values.
+    # Bug fix: previously SubAppId default was evaluated at add_argument time,
+    # but .env was loaded inside get_credential() — too late, causing SubAppId=None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD AIGC Video Generation Task Tool (CreateAigcVideoTask)',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
   # Text-to-video (using GV model)
-  python vod_aigc_video.py create --model GV --prompt "A puppy running on the grass"
+  python3 vod_aigc_video.py create --model GV --prompt "A puppy running on the grass"
 
   # Image-to-video (specify reference image FileId)
-  python vod_aigc_video.py create --model Kling --model-version 2.1 \\
+  python3 vod_aigc_video.py create --model Kling --model-version 2.1 \\
       --file-id 528548548798527148 --prompt "Make the person in the image start walking"
 
   # Image-to-video (specify reference image URL)
-  python vod_aigc_video.py create --model Vidu --model-version q2 \\
+  python3 vod_aigc_video.py create --model Vidu --model-version q2 \\
       --file-url "https://example.com/ref.jpg" --prompt "camera panning left"
 
   # First-and-last-frame video generation
-  python vod_aigc_video.py create --model GV \\
+  python3 vod_aigc_video.py create --model GV \\
       --file-url "https://example.com/first.jpg" \\
       --last-frame-url "https://example.com/last.jpg" \\
       --prompt "smooth transition"
 
   # Set output configuration (permanent storage, specify resolution and duration)
-  python vod_aigc_video.py create --model Hailuo --prompt "Scenic landscape video" \\
+  python3 vod_aigc_video.py create --model Hailuo --prompt "Scenic landscape video" \\
       --output-storage-mode Permanent --output-resolution 1080P --output-duration 5
 
   # Use scene type (Kling digital avatar)
-  python vod_aigc_video.py create --model Kling --model-version 2.1 \\
+  python3 vod_aigc_video.py create --model Kling --model-version 2.1 \\
       --file-id 528548548798527148 --scene-type avatar_i2v
 
   # Use custom subject (Kling 3.0-Omni/O1, specify ElementId directly)
-  python vod_aigc_video.py create --model Kling --model-version 3.0-Omni \\
+  python3 vod_aigc_video.py create --model Kling --model-version 3.0-Omni \\
       --prompt "<<<element_1>>> dancing" \\
       --element-ids 865750283577090106
 
   # Use custom subject (auto-read all subjects from elements.json)
-  python vod_aigc_video.py create --model Kling --model-version 3.0-Omni \\
+  python3 vod_aigc_video.py create --model Kling --model-version 3.0-Omni \\
       --prompt "<<<element_1>>> dancing" \\
       --elements-file mem/elements.json
 
   # Default: wait for task completion (video generation takes longer, default --max-wait 1800)
-  python vod_aigc_video.py create --model GV --prompt "A cat"
+  python3 vod_aigc_video.py create --model GV --prompt "A cat"
   
   # No wait, submit task only
-  python vod_aigc_video.py create --model GV --prompt "A cat" --no-wait
+  python3 vod_aigc_video.py create --model GV --prompt "A cat" --no-wait
 
   # List supported models
-  python vod_aigc_video.py models
+  python3 vod_aigc_video.py models
 
   # Preview request parameters
-  python vod_aigc_video.py create --model GV --prompt "test" --dry-run
+  python3 vod_aigc_video.py create --model GV --prompt "test" --dry-run
         '''
     )
 
@@ -417,7 +483,14 @@ Examples:
     create_parser.add_argument('--file-id', help='VOD FileId of the reference image / first frame')
     create_parser.add_argument('--file-url', help='URL of the reference image / first frame')
     create_parser.add_argument('--file-infos',
-                               help='JSON array of multiple reference images, format: [{"Type":"Url","Url":"..."}]')
+                               help='JSON array of multiple reference images, format: [{"Type":"Url","Url":"...","Category":"Image","Usage":"Reference","Text":"pic1","ReferenceType":"subject"}]; supports all SDK fields: Type/FileId/Url/Base64/Category/Usage/Text/ReferenceType/ObjectId/VoiceId/KeepOriginalSound')
+    create_parser.add_argument('--file-category', choices=['Image', 'Video'],
+                               help='Category of the single reference file (Image/Video); used by Kling motion_control/avatar_i2v scenes to distinguish image vs video')
+    create_parser.add_argument('--file-usage', choices=['FirstFrame', 'Reference'],
+                               help='Usage of the single reference file: FirstFrame / Reference; used by PixVerse, Vidu, Kling multi-mode disambiguation')
+    create_parser.add_argument('--file-text', help='Name/description of the single reference file (PixVerse multi-image subject reference only; used as @name in the Prompt)')
+    create_parser.add_argument('--reference-type', choices=['subject', 'background', 'mask'],
+                               help='Reference type of the single file: subject (PixVerse video edit) / background (PixVerse video edit) / mask; GV/Kling also applicable')
 
     # Fixed subjects
     create_parser.add_argument('--subject-infos',
@@ -429,7 +502,7 @@ Examples:
 
     # Scene type
     create_parser.add_argument('--scene-type',
-                               help='Scene type: Kling supports motion_control/avatar_i2v/lip_sync; Vidu supports template_effect/subject_reference')
+                               help='Scene type: Kling supports motion_control/avatar_i2v/lip_sync; Vidu supports template_effect/subject_reference; Hunyuan 3d_2.0 supports 3d_scene (generate 3D scene video)')
 
     # Output configuration
     create_parser.add_argument('--output-storage-mode', choices=['Permanent', 'Temporary'],
@@ -475,7 +548,7 @@ Examples:
     create_parser.add_argument('--sub-app-id', type=int,
                                default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
                                help='Sub-application ID; required for VOD accounts created after 2023-12-25')
-    create_parser.add_argument('--region', default='ap-guangzhou', help='Region, default ap-guangzhou')
+    create_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region, default ap-guangzhou')
     create_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     create_parser.add_argument('--max-wait', type=int, default=1800, help='Maximum wait time (seconds), default 1800')
     create_parser.add_argument('--json', action='store_true', help='Output full response in JSON format')

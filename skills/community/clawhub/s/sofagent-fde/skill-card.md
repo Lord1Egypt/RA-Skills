@@ -1,5 +1,5 @@
 ## Description: <br>
-Sofagent FDE guides deployment experts through enterprise AI deployment discovery, workflow mapping, AI node identification, value quantification, solution design, and handoff. <br>
+FDE helps an agent guide Forward Deployed Engineers through a 12-step enterprise AI deployment workflow for mapping business processes, identifying AI nodes, producing a deployment plan, and building a knowledge base. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External FDE consultants, enterprise CIOs, IT leads, and engineers use this skill to structure on-site AI deployment work, translate business conversations into implementation plans, and prepare deployment, knowledge-base, audit, and handoff materials. <br>
+Forward Deployed Engineers, enterprise IT staff, and CIO teams use this skill to guide an agent through enterprise AI deployment discovery, planning, handoff, and post-deployment checks. The skill helps capture enterprise context, classify workflow nodes, generate workflow configuration, and package deployment and knowledge-base deliverables. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can guide enterprise workflow automation that touches business systems, approvals, contracts, finance, legal, security, or customer-impacting outputs. <br>
-Mitigation: Require human review and approval before acting on sensitive or customer-impacting recommendations, and define checkpoint rates up to full review for high-sensitivity nodes. <br>
-Risk: Deployment documents and knowledge-base outputs may include secrets, personal data, regulated data, or confidential business information. <br>
-Mitigation: Redact sensitive data before generating or storing documents, restrict knowledge-base access to authorized users, and use least-privilege credentials for connected systems. <br>
-Risk: The README references installing an external sofagent package and script outside the submitted artifact. <br>
-Mitigation: Review the external install script, source repository, and dependency behavior before running installation commands in an enterprise environment. <br>
+Risk: Installer scripts can change local agent configuration and target-device setup. <br>
+Mitigation: Review the installer scripts before execution, verify file writes and overwrites, confirm whether persistent services are installed, and document uninstall or rollback steps. <br>
+Risk: The deployment workflow can produce inaccurate plans if enterprise context or workflow-node details are incomplete. <br>
+Mitigation: Require human confirmation of the enterprise profile, technical environment, five workflow-node elements, cost assumptions, and handoff checklist before deploying AI nodes. <br>
+Risk: Knowledge-base and audit outputs may store or publish enterprise operational details. <br>
+Mitigation: Confirm what data is stored in the knowledge base and webhook/audit outputs, restrict access to the enterprise-approved platform, and review sensitive content before sharing. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongfangxun/skills/sofagent-fde) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+- [FDE deployment manual](artifact/FDE.md) <br>
+- [FDE toolkit README](artifact/README.md) <br>
+- [12-step workflow template](artifact/workflow/template.yaml) <br>
+- [FDE agent role templates](artifact/agents/templates.md) <br>
+- [n8n-workflows reference](https://github.com/Zie619/n8n-workflows) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown prose, checklists, tables, and occasional shell command blocks] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with YAML configuration examples and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces enterprise profiles, platform inventories, workflow node maps, AI-node classifications, value tables, deployment plans, knowledge-base documents, audit/checkpoint guidance, and handoff checklists.] <br>
+**Other Properties Related to Output:** [Can produce deployment plans, workflow.yaml configuration, knowledge-base documents, checklists, and operational handoff guidance.] <br>
 
 ## Skill Version(s): <br>
-0.95.0 (source: server release metadata and SKILL.md frontmatter) <br>
+0.99.4 (source: release evidence and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,6 +1,10 @@
 ---
 name: auto-memory
+version: 1.1.0
+license: Apache-2.0
 description: Indestructible agent memory — permanently stored, never lost. Save decisions, identity, and context as a memory chain on the Autonomys Network. Rebuild your full history from a single CID, even after total state loss.
+compatibility: Requires curl, jq, and the file utility, plus outbound HTTPS to the Autonomys Auto Drive API (ai3.storage) and public gateway. Stored data is permanent and public — do not store secrets. Works with OpenClaw and Hermes agents on macOS and Linux.
+allowed-tools: Bash(curl:*) Bash(jq:*) Bash(file:*) Read Write
 metadata:
   openclaw:
     emoji: "🧬"
@@ -24,6 +28,15 @@ metadata:
         formula: file-formula
         bins: ["file"]
         label: "Install file (brew)"
+  hermes:
+    tags: [memory, storage, autonomys, resurrection]
+    category: memory
+    requires_toolsets: [terminal]
+required_environment_variables:
+  - name: AUTO_DRIVE_API_KEY
+    prompt: "Auto Drive API key"
+    help: "https://ai3.storage — sign in with Google/GitHub, then Developers → Create API Key"
+    required_for: [upload, save-memory, recall-chain]
 ---
 
 # Auto-Memory Skill
@@ -83,6 +96,8 @@ Then set the key via:
 The API key is required for uploading, saving memories, and recalling the memory chain. It is optional for general file downloads — without it, the public gateway is used and files are returned as stored (i.e. compressed files will not be decompressed).
 
 ## Core Operations
+
+> ⚠️ **Uploads are permanent and public.** Everything sent by `upload` and `save-memory` is written to a public, immutable decentralized network: it cannot be edited or truly deleted, and is retrievable by anyone who holds the CID. Never upload secrets, API keys, private keys, credentials, or sensitive personal/regulated data. Encrypt anything sensitive before upload if it must be stored at all.
 
 ### Upload a File
 

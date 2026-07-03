@@ -21,6 +21,9 @@ from pathlib import Path
 
 CONFIG_PATH = Path.home() / '.space-duck' / 'config.json'
 INBOX_DIR   = Path.home() / '.space-duck' / 'inbox'
+# 0.4.19 adaptive cadence: touched on every successful send so a poll-mode
+# peck_listener wakes immediately and holds fast cadence for the reply.
+POLL_WAKE   = Path.home() / '.space-duck' / 'poll_wake'
 SDID_RE = re.compile(r'^[0-9A-Fa-f]{16}$')
 
 # B5 (2026-06-24): default round cap for an initial peck that opens a chain but
@@ -349,6 +352,12 @@ def send_peck(cfg, target_id, message, purpose='connect', peck_type='notify',
                 print('   → Target advertises auto-reply. Reply expected.')
         if thint:
             print(f'   ⚠ {thint}')
+        # Wake a poll-mode listener: reply latency shouldn't ride the idle cadence.
+        try:
+            POLL_WAKE.parent.mkdir(parents=True, exist_ok=True)
+            POLL_WAKE.touch()
+        except OSError:
+            pass
         return resp
     except urllib.error.HTTPError as e:
         body = e.read().decode()

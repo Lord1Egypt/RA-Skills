@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "微信搜一搜文章搜索 - API出参",
+    "description": "微信搜一搜文章搜索实时搜索文章, API出参Schema详解",
+    "properties": {
+        "docid": {
+            "type": "string",
+            "description": "微信文章文档ID"
+        },
+        "desc": {
+            "type": "string",
+            "description": "微信文章描述"
+        },
+        "pubtime": {
+            "type": "number",
+            "description": "微信文章发布时间时间戳"
+        },
+        "url": {
+            "type": "string",
+            "description": "微信文章URL"
+        },
+        "image": {
+            "type": "string",
+            "description": "微信文章封面"
+        },
+        "author_name": {
+            "type": "string",
+            "description": "微信文章作者昵称"
+        },
+        "title": {
+            "type": "string",
+            "description": "微信文章标题"
+        }
+    }
+}

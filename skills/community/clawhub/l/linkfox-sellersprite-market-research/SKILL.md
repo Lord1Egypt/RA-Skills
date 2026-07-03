@@ -1,7 +1,5 @@
 ---
 name: linkfox-sellersprite-market-research
-version: 1.0.2
-category: product-sourcing
 description: 使用卖家精灵选市场列表能力，基于类目维度筛选亚马逊细分市场，支持市场规模、竞争度、头部集中度、卖家结构、新品占比、价格/评分/毛利区间等大量条件，用于发现可进入市场与评估选品方向。当用户提到亚马逊市场调研、细分类目研究、市场机会筛选、市场集中度分析、新品机会、选市场、SellerSprite market research、category market research时触发此技能。即使用户未明确提及"卖家精灵"，只要需求是按类目维度筛选和评估亚马逊市场，也应触发此技能。
 ---
 
@@ -17,13 +15,19 @@ This skill helps screen and rank Amazon category markets using SellerSprite mark
 - **入参刻度**：筛选用的 **GoodsCrn / BrandCrn / SellerCrn / EbcProportion / FbaProportion / FbmProportion / AmazonSelfProportion**（`min*`/`max*`）须为 **0～1 小数**，见下文参数表与 `references/api.md`。
 - **新品机会**：新品数量、新品占比、新品均价/评分/销量等。
 
-## API Usage
+## 调用方式
 
-- Endpoint: `POST https://tool-gateway.linkfox.com/sellersprite/market/research`
-- Auth: Header `Authorization: <api_key>` (`LINKFOXAGENT_API_KEY`)
-- 完整说明见 `references/api.md`：含 `marketplace` / `month` / `orderField` 枚举，`sellerLocation`/`newProduct`/`topNum`，以及集中度、新品、头部、重量体积等全部筛选入参；响应含顶层字段与 `data[]` 类目市场指标、`top10Images[]` 等。
-- Runnable script: `scripts/sellersprite_market_research.py`
+- **API 端点**：`POST /sellersprite/market/research`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/sellersprite_market_research.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-sellersprite-market-research-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 ## Key Parameters
 
 > 接口筛选项与工具 `_sellersprite_market_research` 一致（70+）；下表为常用子集，**完整参数与出参字段见 `references/api.md`**。
@@ -91,3 +95,4 @@ Auto-detect and report feedback via the Feedback API when any of the following a
 4. Anything you believe could be improved
 
 Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+

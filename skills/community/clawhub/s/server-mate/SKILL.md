@@ -1,6 +1,6 @@
 ---
 name: server-mate
-version: 1.5.1
+version: 1.6.1
 description: Build or extend a lightweight server monitoring and AI operations workflow for Linux hosts running Nginx or Apache, with optional centralized remote monitoring through the BT-Panel (Baota) HTTP API. Use when Codex needs to collect psutil metrics, parse access, error, or auth logs (locally OR pulled remotely from BT panels with no probe on the target host), design JSON payloads or APIs, add webhook alerts, generate PDF ops reports with SSL expiry summaries, answer natural-language monitoring questions, or implement guarded auto-ban and auto-heal behaviors.
 homepage: https://github.com/tankeito/server-mate
 metadata:
@@ -15,7 +15,7 @@ metadata:
 
 # Server Mate
 
-Version: `1.5.1`
+Version: `1.6.1`
 
 Use this skill to design or implement a two-plane monitoring system:
 - a Python agent that tails local logs OR pulls remote logs through the BT-Panel HTTP API (centralized, agentless), and samples host metrics
@@ -121,6 +121,23 @@ Use external scheduling for production unless the user explicitly wants an alway
   - Weekly PDF push every Monday at `01:10`.
   - Monthly PDF push on day `1` at `01:20`.
 - In multi-site mode, a single scheduled `report_generator.py` run should iterate over every configured site unless the user explicitly passes `--site`.
+
+## Release notes for 1.6.1
+
+- **Light/Dark/Auto Theme switcher**: Exposed a dropdown theme menu at the top right of the dashboard. Seamlessly switch between Light, Dark, and System Auto mode (bound to `prefers-color-scheme`). Toggling the theme dynamically adapts the Chart.js scales, grid lines, tick fonts, and legends for high-contrast viewing. Persists selection in `localStorage`.
+- **PC & Mobile Adaptive Layout**: Re-engineered SRE cards using viewport-relative layouts and media queries. Stacks metric rings in a 2x2 grid on tablets and 1x1 on mobile, shrinks margins and text sizes on narrow viewports, and wraps data tables in scrollable wrappers (`overflow-x: auto`) for smooth swipe operations.
+
+## Release notes for 1.6.0
+
+- **Built-in SRE Web Dashboard**: Integrated a lightweight HTTP server using Python's standard library (`http.server`). Serves a premium, visually stunning dark-themed real-time console at `/` featuring SVG circle meters, network rate cards, Top CPU processes, active alert cards, blocked firewall IP tables, and dynamic line charts (CPU & QPS history) using Chart.js.
+- **AI Security Shield (Dynamic Audit)**: Integrated LLM-driven traffic audit. Before banning candidate IPs detected by static heuristic thresholds, the Agent compiles request log sequences and queries the LLM for security classification, preventing crawler bans and logging block reasons. Uses caching (`llm_shield_cache`) in state to save tokens.
+- **Standalone API Key Configuration**: Allowed configuring `api_key` directly in `config.yaml` under `ai_analysis` settings. Enables standalone monitoring cycles and AI diagnosis without external environment dependencies.
+
+## Release notes for 1.5.2
+
+- **AI Diagnosis Caching (ai_cooldown_seconds)**: Added persistent caching in state for AI-driven alert diagnoses. Reuses cached diagnoses for the same alert within a 1-hour window (default `ai_cooldown_seconds: 3600`), reducing token consumption by up to 90%. Prints a `【AI: 缓存】` badge to inform the operator.
+- **Accurate CPU & Process Sampling**: Redesigned `collect_system_snapshot()` to use a two-pass CPU sampling method (base times calculation -> sleep -> delta calculation) with a 1.0s wait. Prevents python startup and log-parsing transients from causing false CPU warnings and enables correct process CPU percentage measurement.
+- **CPU-Spike Auto-Remediation (Auto-Ban)**: Integrated high-CPU warnings (`cpu_high` / `iowait_high`) with `auto_ban`. If CPU is exhausted, the Agent automatically checks for non-whitelisted client IPs driving requests above the rate threshold (`cpu_spike_rpm_threshold: 60.0`) and issues auto-ban commands (e.g. `iptables`) to mitigate CC/DDoS attacks on slow endpoints.
 
 ## Release notes for 1.5.1
 

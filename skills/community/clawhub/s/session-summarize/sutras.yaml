@@ -1,0 +1,56 @@
+# sutras.yaml — summarize skill metadata & configuration
+
+name: summarize
+version: "6.4.0"
+description: |
+  🛡️ 错误免疫系统: 自动收割错误→5维分类→多信号检索→规则自进化→采纳追踪→收敛预警
+  Error immune system: auto-harvest errors → 5D classification → multi-signal retrieval → self-evolving rules → adoption tracking → convergence alerts.
+
+author: ZCode (https://github.com/gtbwpkwjnb-alt)
+license: MIT
+repository: https://github.com/gtbwpkwjnb-alt/summarize-skill
+
+compatibility:
+  platforms: [zcode, claude-code, cursor, codex, windsurf]
+  note: "安装脚本自动检测目标平台并适配安装路径"
+  minVersion: "2.0.0"
+
+build:
+  include:
+    - SKILL.md
+    - README.md
+    - LICENSE
+    - VERSION
+    - install.sh
+    - install.ps1
+    - harvests/
+
+distribution:
+  tags:
+    - diagnostics
+    - session-management
+    - self-evolution
+    - productivity
+    - multi-platform
+    - agent-skill
+    - zcode
+    - claude-code
+    - cursor
+    - token-tracking
+    - skill-analytics
+    - reversible-compression
+    - cross-agent
+    - 3-tier-self-healing
+    - git-versioned
+    - error-immune
+    - error-prevention
+    - error-harvesting
+    - agent-memory
+    - convergence-alert
+  category: developer-tools
+  github:
+    owner: gtbwpkwjnb-alt
+    repo: summarize-skill
+  install:
+    bash: "curl -sL https://raw.githubusercontent.com/gtbwpkwjnb-alt/summarize-skill/master/scripts/install.sh | bash"
+    powershell: "iwr https://raw.githubusercontent.com/gtbwpkwjnb-alt/summarize-skill/master/scripts/install.ps1 | iex"

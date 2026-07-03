@@ -1,0 +1,32 @@
+{
+  "_doc": [
+    "Canonical netflag/netport body-orientation spec. The flag BODY must point",
+    "OUTWARD along the stub direction (顺着导线朝外); the wire enters from the",
+    "circuit side. This file is the SINGLE SOURCE OF TRUTH — never hand-edit the",
+    "12 numbers in frozenTable; they are DERIVED from rotationCycle + bodyAnchor.",
+    "Both consumers derive the same table:",
+    "  - skills/easyeda-agent/scripts/orient.py  (the linter's check)",
+    "  - extension/src/actions.ts deriveBodyRotation()  (what connect_pin writes)",
+    "tests/run.py asserts derive(cycle, anchors) == frozenTable, so the two",
+    "language copies can never drift. calibrate.js re-validates the 3 anchors +",
+    "cycle against live getPrimitivesBBox ground truth (run after importing a new",
+    ".eext). See docs/schematic-layout-conventions.md §3.5.",
+    "",
+    "2026-06-29 VERTICAL FIX: on the y-DOWN 2026-06 build (EasyEDA 3.2.149,",
+    "connector 0.5.21) a flag body renders with up/down FLIPPED vs the prior y-UP",
+    "cycle — confirmed by getPrimitivesBBox on REAL, settled, wired flags (a",
+    "connect_pin --direction down ground rendered its bars TOWARD the pin; power",
+    "--direction up the same). Horizontal (left/right) was unaffected. The old",
+    "table slipped through because calibrate.js read body direction in y-UP and so",
+    "could not see the vertical flip (fixed there too). Cycle reversed to",
+    "up->right->down->left with power/ground anchors swapped so ONLY the up/down",
+    "numbers move; every left/right number is byte-identical to before."
+  ],
+  "rotationCycle": ["up", "right", "down", "left"],
+  "bodyAnchorAtRot0": { "power": "down", "ground": "up", "port": "right" },
+  "frozenTable": {
+    "power":  { "up": 180, "left": 90,  "down": 0,   "right": 270 },
+    "ground": { "down": 180, "right": 90, "up": 0,    "left": 270 },
+    "port":   { "right": 0, "up": 270,   "left": 180, "down": 90  }
+  }
+}

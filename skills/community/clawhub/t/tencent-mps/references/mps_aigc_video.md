@@ -9,7 +9,7 @@
 |------|------|
 | `--prompt` | 视频描述文本（最多 2000 字符，未传图片时必填）|
 | `--model` | 模型：`Hunyuan`（默认）/ `Hailuo` / `Kling` / `Vidu` / `OS` / `GV` / `Mingmou` / `PixVerse` |
-| `--model-version` | 模型版本。Kling: `1.6`/`2.0`/`2.1`/`2.5`/`O1`/`2.6`/`3.0`/`3.0-Omni`；Hailuo: `02`/`2.3`/`2.3-fast`；Vidu: `q2`/`q2-pro`/`q2-turbo`/`q3`/`q3-pro`/`q3-turbo`/`q3-mix`；GV: `3.1`/`3.1-fast`；PixVerse: `v5.6`/`v6`/`c1` |
+| `--model-version` | 模型版本。Kling: `1.6`/`2.0`/`2.1`/`2.5`/`O1`/`2.6`/`3.0`/`3.0-Omni`；Hailuo: `02`/`2.3`/`2.3-fast`；Vidu: `q2`/`q2-pro`/`q2-turbo`/`q3`/`q3-pro`/`q3-turbo`/`q3-mix`；GV: `3.1`/`3.1-fast`；OS: `2.0`；PixVerse: `v5.6`/`v6`/`c1` |
 | `--scene-type` | 场景类型（严格模型映射）：`motion_control`（Kling 动作控制）/ `land2port`（Mingmou 横转竖）/ `template_effect`（Vidu 特效模板）/ `3d_scene`（Hunyuan 3D 场景，自动使用 ModelVersion=3d_2.0）|
 | `--multi-shot` | **Kling 专属**。启用分镜功能 |
 | `--multi-prompts-json` | **Kling 专属**。多分镜配置（JSON 数组），每个分镜含 `index`、`prompt`、`duration`。限制：1-6 个分镜，每个提示词最长 512 字符，所有时长之和必须等于总时长 |
@@ -31,7 +31,7 @@
 | `--ref-image-cos-region` | 多图参考所在 COS Region（可多次指定）|
 | `--ref-image-cos-key` | 多图参考的 COS Key（可多次指定）|
 | `--ref-image-local` | **多图参考本地图片路径**（可多次指定），自动上传 COS 后以 ImageUrl 传入。需配置 `TENCENTCLOUD_COS_BUCKET` 或 `--cos-bucket-name` |
-| `--duration` | 视频时长（秒）。各模型支持范围：<br>- Hunyuan: 默认 5s<br>- Hailuo: 6s（默认）/ 10s<br>- Kling: 5s / 10s，默认 5s<br>- Vidu: 1~10s，默认 4s<br>- OS: 5s / 10s，默认 5s<br>- GV: 5s / 10s，默认 5s<br>- **PixVerse: 1~15s 任意整数，默认 5s** |
+| `--duration` | 视频时长（秒）。各模型支持范围：<br>- Hunyuan: 默认 5s<br>- Hailuo: 6s（默认）/ 10s<br>- Kling: 5s / 10s，默认 5s<br>- Vidu: 1~10s，默认 4s<br>- OS: 4s / 8s / 12s，默认 8s<br>- GV: 5s / 10s，默认 5s<br>- **PixVerse: 1~15s 任意整数，默认 5s** |
 | `--resolution` | 分辨率：`720P` / `1080P` / `2K` / `4K` |
 | `--aspect-ratio` | 宽高比（如 `16:9`, `9:16`, `1:1`, `4:3`, `3:4`）。**PixVerse 支持 8 种**：`16:9` / `4:3` / `1:1` / `3:4` / `9:16` / `2:3` / `3:2` / `21:9` |
 | `--quality` | 视频画质（**仅 PixVerse 支持**）：`360p` / `540p` / `720p` / `1080p`。底层走 `ExtraParameters.Quality` 传给 MPS（MPS 后端会映射到 PixVerse 原生字段）|
@@ -82,7 +82,7 @@
 
 ```bash
 # COS 图生视频（脚本自动将 COS Key 转为预签名 URL 后传入 API）
-python scripts/mps_aigc_video.py --prompt "花朵随风摇曳" \
+python3 scripts/mps_aigc_video.py --prompt "花朵随风摇曳" \
     --image-cos-bucket mps-test-1234567 \
     --image-cos-region ap-guangzhou \
     --image-cos-key input/scene.jpg
@@ -92,12 +92,12 @@ python scripts/mps_aigc_video.py --prompt "花朵随风摇曳" \
 
 ### 单分镜模式（系统自动拆分）
 ```bash
-python scripts/mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
+python3 scripts/mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
 ```
 
 ### 多分镜模式（自定义每个分镜）
 ```bash
-python scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
+python3 scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
     --multi-prompts-json '[
       {"index": 1, "prompt": "日出时分，从酒店窗户看城市天际线", "duration": "3"},
       {"index": 2, "prompt": "在咖啡馆享用早餐，窗外街道行人", "duration": "4"},
@@ -111,61 +111,67 @@ python scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
 
 ```bash
 # 文生视频（Hunyuan 默认）
-python scripts/mps_aigc_video.py --prompt "一只猫在阳光下伸懒腰"
+python3 scripts/mps_aigc_video.py --prompt "一只猫在阳光下伸懒腰"
 
 # Kling 2.5 + 10秒 + 1080P + 16:9 + 去水印 + BGM
-python scripts/mps_aigc_video.py --prompt "赛博朋克城市" --model Kling --model-version 2.5 \
+python3 scripts/mps_aigc_video.py --prompt "赛博朋克城市" --model Kling --model-version 2.5 \
     --duration 10 --resolution 1080P --aspect-ratio 16:9 --no-logo --enable-bgm
 
 # 图生视频（首帧图片 + 描述）
-python scripts/mps_aigc_video.py --prompt "让画面动起来" \
+python3 scripts/mps_aigc_video.py --prompt "让画面动起来" \
     --image-url https://example.com/photo.jpg
 
 # 首尾帧生视频（GV 模型）
-python scripts/mps_aigc_video.py --prompt "过渡动画" --model GV \
+python3 scripts/mps_aigc_video.py --prompt "过渡动画" --model GV \
     --image-url https://example.com/start.jpg --last-image-url https://example.com/end.jpg
 
 # GV 多图参考生视频（支持 asset/style 参考类型）
-python scripts/mps_aigc_video.py --prompt "融合风格生成视频" --model GV \
+python3 scripts/mps_aigc_video.py --prompt "融合风格生成视频" --model GV \
     --ref-image-url https://example.com/img1.jpg --ref-image-type asset \
     --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
+# OS 文生视频（默认 8s，支持 4/8/12s）
+python3 scripts/mps_aigc_video.py --prompt "海边日落场景" --model OS --model-version 2.0
+
+# OS 长视频 12s + 开启音频生成
+python3 scripts/mps_aigc_video.py --prompt "夜市街头人流涌动" --model OS --duration 12 --enable-audio true
+
 # Kling 参考视频 + 保留原声
-python scripts/mps_aigc_video.py --prompt "将视频风格化" --model Kling --model-version O1 \
+python3 scripts/mps_aigc_video.py --prompt "将视频风格化" --model Kling --model-version O1 \
     --ref-video-url https://example.com/video.mp4 --ref-video-type base --keep-original-sound yes
 
 # Mingmou 横转竖（land2port 场景不需要输入视频文件，只需 prompt 描述即可生成竖屏视频）
-python scripts/mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
+python3 scripts/mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
 
 # COS 参考视频（自动生成预签名 URL）
-python scripts/mps_aigc_video.py --prompt "将视频风格化" --model Kling \
+python3 scripts/mps_aigc_video.py --prompt "将视频风格化" --model Kling \
     --ref-video-cos-bucket mybucket-125xxx --ref-video-cos-region ap-guangzhou \
     --ref-video-cos-key /input/video.mp4 --ref-video-type base --keep-original-sound yes
 
 # Vidu 错峰模式
-python scripts/mps_aigc_video.py --prompt "自然风景" --model Vidu --off-peak
+python3 scripts/mps_aigc_video.py --prompt "自然风景" --model Vidu --off-peak
 
 # === PixVerse 模型示例 ===
 # PixVerse v6 文生视频（电影宽屏 21:9，10 秒，1080p 画质）
-python scripts/mps_aigc_video.py --prompt "电影级城市天际线镜头" --model PixVerse --model-version v6 \
+python3 scripts/mps_aigc_video.py --prompt "电影级城市天际线镜头" --model PixVerse --model-version v6 \
     --duration 10 --aspect-ratio 21:9 --quality 1080p
 
 # PixVerse v6 文生视频 + 自动音效（雨夜氛围、环境音由模型生成）
-python scripts/mps_aigc_video.py --prompt "雨夜霓虹街道，行人独自漫步" --model PixVerse --model-version v6 \
+python3 scripts/mps_aigc_video.py --prompt "雨夜霓虹街道，行人独自漫步" --model PixVerse --model-version v6 \
     --duration 15 --aspect-ratio 16:9 --quality 720p --generate-audio true
 
 # PixVerse c1 图生视频（短视频 9:16，5 秒，540p 画质）
-python scripts/mps_aigc_video.py --prompt "人物缓步前行，微风吹过发丝" \
+python3 scripts/mps_aigc_video.py --prompt "人物缓步前行，微风吹过发丝" \
     --model PixVerse --model-version c1 \
     --image-url https://example.com/first-frame.jpg --duration 5 --aspect-ratio 9:16 --quality 540p
 
 # PixVerse c1 文生视频（正方形 1:1，3 秒，720p 画质）
-python scripts/mps_aigc_video.py --prompt "咖啡拉花特写" --model PixVerse --model-version c1 \
+python3 scripts/mps_aigc_video.py --prompt "咖啡拉花特写" --model PixVerse --model-version c1 \
     --duration 3 --aspect-ratio 1:1 --quality 720p
 
 # 仅提交任务不等待
-python scripts/mps_aigc_video.py --prompt "宣传片" --no-wait
+python3 scripts/mps_aigc_video.py --prompt "宣传片" --no-wait
 
 # 查询任务结果
-python scripts/mps_aigc_video.py --task-id abc123def456-aigc-video-20260328112000
+python3 scripts/mps_aigc_video.py --task-id abc123def456-aigc-video-20260328112000
 ```

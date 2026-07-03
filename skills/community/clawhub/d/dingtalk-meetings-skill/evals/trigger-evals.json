@@ -1,0 +1,65 @@
+{
+  "skill_name": "dingtalk-meetings-skill",
+  "evals": [
+    {
+      "query": "帮我创建一个明天下午的项目评审会议",
+      "should_trigger": true
+    },
+    {
+      "query": "查看我今天的会议安排",
+      "should_trigger": true
+    },
+    {
+      "query": "取消下午3点的产品讨论会",
+      "should_trigger": true
+    },
+    {
+      "query": "把王五加到明天的项目会议里",
+      "should_trigger": true
+    },
+    {
+      "query": "帮我看看明天下午有没有空，我想安排个会",
+      "should_trigger": true
+    },
+    {
+      "query": "初始化钉钉日历 MCP 配置",
+      "should_trigger": true
+    },
+    {
+      "query": "修改明天上午的会议时间，改到下午2点",
+      "should_trigger": true
+    },
+    {
+      "query": "查一下明天下午有哪些空闲会议室",
+      "should_trigger": true
+    },
+    {
+      "query": "帮我接受下午2点的需求评审会议邀请",
+      "should_trigger": true
+    },
+    {
+      "query": "看看我和张三、李四明天什么时候都有空",
+      "should_trigger": true
+    },
+    {
+      "query": "帮我在飞书日历上创建一个会议",
+      "should_trigger": false
+    },
+    {
+      "query": "帮我把这个文件推送到钉钉文档",
+      "should_trigger": false
+    },
+    {
+      "query": "给钉钉群里发一条消息通知大家开会",
+      "should_trigger": false
+    },
+    {
+      "query": "帮我查看 Google Calendar 上的日程",
+      "should_trigger": false
+    },
+    {
+      "query": "帮我编辑本地的会议记录 markdown 文件",
+      "should_trigger": false
+    }
+  ]
+}

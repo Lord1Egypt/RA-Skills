@@ -1,0 +1,24 @@
+{
+  "id": "skill5-scale-growth",
+  "name": "规模化增长",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "构建可复制的增长引擎，实现从1到N的规模化增长，同时保持一人运营的轻盈",
+  "stage": 5,
+  "stageName": "规模化期",
+  "graduationCondition": "月营收稳定增长 + 交付可规模化 + 增长引擎运转",
+  "triggers": ["规模化", "增长引擎", "自动化", "品牌", "复购", "体系化"],
+  "prerequisites": ["已有稳定付费用户（验证期通过）", "月营收>0且相对稳定"],
+  "dependencies": ["skill1-idea-feasibility", "skill2-mvp-design", "skill3-opc-compliance", "skill4-seed-coldstart"],
+  "outputs": [
+    "业务拆解与自动化方案",
+    "法务体系搭建方案",
+    "全面风险防控体系",
+    "产品线升级路径",
+    "渠道规模化方案"
+  ],
+  "files": {
+    "prompt": "prompt.md",
+    "code": "index.ts"
+  }
+}

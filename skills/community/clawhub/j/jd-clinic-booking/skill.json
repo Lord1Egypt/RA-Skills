@@ -1,0 +1,70 @@
+{
+  "name": "jd-booking",
+  "title": "JD皮肤科预约 JD Booking",
+  "version": "1.0.0",
+  "tags": [
+    "JD皮肤科",
+    "JD Clinic",
+    "韩国",
+    "皮肤科",
+    "首尔",
+    "江南",
+    "水光针",
+    "皮肤管理"
+  ],
+  "description": "JD皮肤科 — 韩国首尔江南区人气皮肤科，以水光针/皮肤管理/玻尿酸闻名。支持查看预约流程、一键预约、在线咨询、价格查询。通过 BeautsGO 平台完成预约。",
+  "permissions": {
+    "network": [
+      "https://api.yestokr.com/api/Appointment/saveFromSkill",
+      "https://i.beautsgo.com/*",
+      "https://apis.beise.com:50144/*"
+    ],
+    "filesystem": false
+  },
+  "privacy": {
+    "data_collected": [
+      "用户提供的手机号（联系方式），仅在用户明确同意后发送至 BeautsGO 预约接口"
+    ],
+    "data_sent_to": [
+      {
+        "name": "BeautsGO 预约接口",
+        "url": "https://api.yestokr.com/api/Appointment/saveFromSkill",
+        "purpose": "提交 JD皮肤科 预约申请",
+        "when": "仅当用户主动发起「帮我预约」并提供联系方式时"
+      }
+    ],
+    "no_data_stored": true,
+    "no_tracking": true
+  },
+  "runtime": {
+    "requires": {
+      "node": ">=16"
+    }
+  },
+  "entry": "api/skill.js",
+  "input": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "用户输入"
+      },
+      "lang": {
+        "type": "string",
+        "description": "语言代码 zh/en",
+        "default": "zh"
+      },
+      "context": {
+        "type": "object",
+        "description": "多轮对话上下文"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  },
+  "output": {
+    "type": "string",
+    "description": "预约指南/预约提交/价格查询等结果"
+  }
+}

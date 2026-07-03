@@ -1,7 +1,7 @@
 ---
 name: workspace-activity-reference-identifier
 description: Find the reference marker for a knowledge item.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: workspace-activity-reference-identifier

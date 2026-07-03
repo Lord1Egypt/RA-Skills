@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.13.3] - 2026-06-30
+
+### Added
+- **README.md**: Concise project README for the ClawHub listing and GitHub —
+  value proposition, feature overview, install/setup, transparency, and license.
+
+## [1.13.2] - 2026-06-29
+
+### Fixed
+- **Shell injection / quoting in `event_tracking.py`**: The orphan-cleanup path
+  used `subprocess.run(..., shell=True)` with an interpolated event ID — the last
+  instance of the shell-quoting bug class fixed across the other scripts in
+  v1.13.0/v1.13.1. Converted to safe list-form arguments. Also clears the
+  `code-execution` finding in ClawHub's static security scan.
+
+### Changed
+- **SKILL.md description + transparency**: Rewrote the frontmatter `description`
+  for clarity and discoverability (semantic search) and added a "What This Skill
+  Accesses" section that discloses every email/calendar action (reads Gmail,
+  manages Calendar, optional reminder emails, label changes, local-only state).
+  Improves ClawHub coherence scoring and user trust.
+- **Documentation cleanup ("spring cleaning")** — no behavior changes:
+  - `references/workflow-example.md`: Rewrote end-to-end. The old example was
+    built around the deleted `extract_events.py` and called `gog calendar create`
+    directly, contradicting CRITICAL RULE #1. Now uses the wrapper scripts
+    (`email_read.sh`, `add_pending.sh`, `lookup_event.sh`, `create_event.sh`).
+  - `references/extraction-patterns.md`: Reframed from "the extraction script"
+    to agent-direct extraction (the script no longer exists). Aligned the
+    duplicate-detection description with the actual `check_duplicate.sh` logic
+    and replaced the dead script's output schema / `Testing` section with a
+    pointer to the SKILL.md field list.
+  - `SETUP.md`: Fixed the "Full Schema" example — `email_handling.archive` was
+    `false`, contradicting the documented default (`true`); added the
+    `auto_dispose_calendar_replies` and `agent_name` keys for consistency.
+  - `CONTRIBUTING.md`: Updated test count (154 → 158); replaced the `pytest`
+    example (which contradicted "no pip install required") with the project's
+    own `run_tests.sh` / unittest invocations; refreshed the ClawHub publish
+    steps to the current CLI (`clawhub login` + `clawhub skill publish`).
+
+### Added
+- **LICENSE**: Added an explicit MIT `LICENSE` file (previously the license was
+  only declared in `package.json`).
+
+### Removed
+- **package.json**: Removed the vestigial package manifest. Nothing in the skill
+  read it; metadata now lives solely in the SKILL.md frontmatter (also removing
+  the two-place version bump). Its `openclaw` block additionally caused the
+  ClawHub CLI to classify the skill as a plugin and refuse to publish as a skill.
+
 ## [1.13.1] - 2026-02-05
 
 ### Fixed

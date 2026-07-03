@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>坤图_GIS V5.0 外业轻量版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f5f5f5;color:#333}
+.header{background:linear-gradient(135deg,#1a5276,#2980b9);color:#fff;padding:16px 20px;position:sticky;top:0;z-index:100}
+.header h1{font-size:18px;margin:0}.header .ver{font-size:12px;opacity:.8;margin-top:4px}
+.search-box{background:#fff;padding:12px 20px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.search-box input{width:100%;padding:10px 14px;border:2px solid #ddd;border-radius:6px;font-size:14px;outline:none}
+.search-box input:focus{border-color:#2980b9}
+.results{background:#fff;margin:10px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.result-item{padding:14px 16px;border-bottom:1px solid #eee;cursor:pointer;transition:background .15s}
+.result-item:hover{background:#f0f7ff}
+.result-item:last-child{border-bottom:none}
+.result-item h4{font-size:14px;color:#1a5276;margin-bottom:4px}
+.result-item .snippet{font-size:12px;color:#777;line-height:1.5}
+.result-item .meta{font-size:11px;color:#999;margin-top:4px}
+.result-item .tag{display:inline-block;background:#e8f4fd;color:#2980b9;padding:2px 6px;border-radius:3px;font-size:10px;margin-right:4px}
+.sidebar{background:#fff;margin:10px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:14px}
+.sidebar h3{font-size:14px;color:#1a5276;margin-bottom:10px}
+.sidebar a{display:block;padding:6px 0;font-size:13px;color:#555;text-decoration:none;border-bottom:1px solid #f0f0f0}
+.sidebar a:hover{color:#2980b9}
+.sidebar a:last-child{border-bottom:none}
+.detail-panel{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:200;overflow-y:auto;display:none}
+.detail-panel.active{display:block}
+.detail-panel .d-header{background:#1a5276;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.detail-panel .d-header button{background:none;border:1px solid #fff;color:#fff;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:14px}
+.detail-panel .d-content{padding:20px;max-width:800px;margin:0 auto;line-height:1.8}
+.detail-panel .d-content h1,.d-content h2,.d-content h3{color:#1a5276;margin:16px 0 8px}
+.detail-panel .d-content table{width:100%;border-collapse:collapse;margin:10px 0}
+.detail-panel .d-content td,.d-content th{border:1px solid #ddd;padding:8px;font-size:13px}
+.detail-panel .d-content th{background:#f0f7ff}
+.no-results{text-align:center;padding:40px;color:#999}
+.footer{text-align:center;padding:16px;font-size:11px;color:#aaa}
+.wm{position:fixed;bottom:10px;right:10px;font-size:10px;color:#ddd;opacity:.6;pointer-events:none}
+.progress-bar{height:3px;background:#2980b9;position:fixed;top:0;left:0;z-index:300;transition:width .3s}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+<div class="header">
+  <h1>坤图_GIS V5.0 外业轻量版</h1>
+  <div class="ver">离线检索 | 核心知识库 | 适用于野外无网络环境</div>
+</div>
+
+<!-- 搜索 -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="搜索知识库... (支持坐标系/软件/标准/格式/避坑等关键词)" oninput="doSearch()" autofocus>
+</div>
+
+<!-- 结果 -->
+<div class="results" id="searchResults">
+  <div class="no-results">🔍 输入关键词开始检索GIS知识库</div>
+</div>
+
+<!-- 分类导航 -->
+<div class="sidebar" id="categoryNav">
+  <h3>📚 知识群组</h3>
+</div>
+
+<!-- 详情面板 -->
+<div class="detail-panel" id="detailPanel">
+  <div class="d-header">
+    <span id="detailTitle">知识详情</span>
+    <button onclick="closeDetail()">✕ 关闭</button>
+  </div>
+  <div class="d-content" id="detailContent"></div>
+</div>
+
+<div class="footer">
+  坤图_GIS:V5.0 | 外业轻量离线版 | 支持离线全文检索 | 野外无网可用
+</div>
+<div class="wm">坤图_GIS:V5.0</div>
+
+<script>
+// ── 知识库数据 (嵌入的核心内容) ────────────────────────────────────────
+const KB_DATA = {
+  "coordinate": {
+    "title": "坐标系统与投影",
+    "group": "基础底座",
+    "content": [
+      { "id": "crs-cgcs2000", "title": "CGCS2000 国家大地坐标系", "tags": ["坐标系","CGCS2000","国家"], "text": "CGCS2000 (China Geodetic Coordinate System 2000) 是中国现行国家大地坐标系。椭球参数：长半轴 a=6378137.0m，扁率 f=1/298.257222101，地心引力常数 GM=3.986004418×10^14 m^3/s^2，自转角速度 ω=7.292115×10^-5 rad/s。与WGS84差异约0.1m(赤道)~0.5m(高纬度)。EPSG代码：4490(地理)、4479(3度带投影)、4524-4537(6度带投影)。" },
+      { "id": "crs-wgs84", "title": "WGS84 世界大地测量系统", "tags": ["坐标系","WGS84","GPS"], "text": "WGS84 (World Geodetic System 1984) 是GPS使用的坐标系。EPSG:4326(地理坐标)。注意：在中国测绘领域，WGS84与CGCS2000不可直接等同互换，需要通过七参数转换。" },
+      { "id": "crs-beijing54", "title": "北京54坐标系", "tags": ["坐标系","北京54","历史"], "text": "北京54坐标系基于克拉索夫斯基椭球，a=6378245m，f=1/298.3。已逐步被CGCS2000替代，但在历史数据中仍常见。EPSG:4214(地理坐标)。" },
+      { "id": "crs-xian80", "title": "西安80坐标系", "tags": ["坐标系","西安80","历史"], "text": "西安80坐标系基于1975年国际椭球，a=6378140m，f=1/298.257。EPSG:4610。同样已逐步被CGCS2000替代。" },
+      { "id": "proj-gk", "title": "高斯-克吕格投影", "tags": ["投影","高斯","6度带","3度带"], "text": "中国基本比例尺地形图主用投影。6度分带(1:2.5万-1:50万)：中央经线 L0=6n-3；3度分带(≥1:1万)：中央经线 L0=3n。带号n从0开始。中国境内3度带号24-45，6度带号13-23。" },
+      { "id": "proj-utm", "title": "UTM投影", "tags": ["投影","UTM","全球"], "text": "通用横轴墨卡托投影，全球分60带，每带经差6°。中央经线比例因子0.9996。坐标原点：赤道(北半球0m，南半球10000000m)。注意与高斯投影的中央经线比例因子(1.0)不同。" },
+      { "id": "proj-params", "title": "坐标转换参数体系", "tags": ["转换","七参数","四参数","三参数"], "text": "七参数(Bursa-Wolf): ΔX, ΔY, ΔZ, ωx, ωy, ωz, m (尺度)。四参数: ΔX, ΔY, α(旋转角), m(尺度)，适用于小区域。三参数(GPS差分): ΔX, ΔY, ΔZ，只平移。CGCS2000→WGS84七参数因区域而异，必须使用地方测绘部门实测参数。" },
+      { "id": "proj-cgcs2000-epsg", "title": "CGCS2000 EPSG/WKID 快速查询", "tags": ["EPSG","投影带","WKID"], "text": "CGCS2000 3度带投影EPSG: 25带=4513, 26带=4514,..., 45带=4533。CGCS2000 6度带投影EPSG: 13带=4523,..., 23带=4533。CGCS2000地理坐标: EPSG:4490。" }
+    ]
+  },
+  "standard": {
+    "title": "标准与规范速查",
+    "group": "标准规范",
+    "content": [
+      { "id": "std-gb13923", "title": "GB/T 13923-2022 基础地理信息要素分类与代码", "tags": ["国标","分类","代码"], "text": "定义基础地理信息要素的分类体系和编码规则。按门类-大类-中类-小类四级。门类包括：定位基础、水系、居民地及设施、交通、管线、境界与政区、地貌、植被与土质等。代码为6位数字。" },
+      { "id": "std-gb20257", "title": "GB/T 20257.1-2017 国家基本比例尺地图图式 第1部分", "tags": ["国标","图式","符号"], "text": "规定1:500、1:1000、1:2000地形图图式。含点状符号、线状符号、面状符号、注记等标准化定义。是制图输出和符号化渲染的核心依据。" },
+      { "id": "std-gb18316", "title": "GB/T 18316-2008 数字测绘成果质量检查与验收", "tags": ["国标","质检","验收"], "text": "规定数字线划图(DLG)、数字高程模型(DEM)、数字正射影像(DOM)、数字栅格地图(DRG)质量检查与验收方法。含位置精度、属性精度、逻辑一致性、完整性等检查项。" },
+      { "id": "std-gb17798", "title": "GB/T 17798-2007 地理空间数据交换格式", "tags": ["国标","数据交换","格式"], "text": "定义中国地理空间数据交换格式(GeoDBF)。支持矢量、栅格数据的跨平台交换。注意与国际标准OGC GML/GeoJSON的关系。" },
+      { "id": "std-ch1016", "title": "CH/T 1016-2008 测绘作业人员安全规范", "tags": ["行标","安全","外业"], "text": "测绘行业标准，规定外业测绘作业的安全要求。包含野外作业安全防护、特殊环境(高原/沙漠/水域)安全措施。" },
+      { "id": "std-gb35648", "title": "GB/T 35648-2017 地理信息兴趣点分类与编码", "tags": ["国标","POI","兴趣点"], "text": "POI分类标准，定义餐饮、住宿、购物、医疗、教育等兴趣点的分类体系和编码。" }
+    ]
+  },
+  "software": {
+    "title": "GIS软件工具速查",
+    "group": "软件工具",
+    "content": [
+      { "id": "sw-arcgis-pro", "title": "ArcGIS Pro 3.6", "tags": ["ArcGIS","Pro","Esri"], "text": "Esri新一代64位桌面GIS。Python环境：C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\envs\\arcgispro-py3\\python.exe。核心工具箱：Data Management、Analysis、Conversion、Cartography。支持2D/3D一体化。" },
+      { "id": "sw-qgis", "title": "QGIS 3.40", "tags": ["QGIS","开源","免费"], "text": "开源GIS桌面软件。处理工具箱(Processing Toolbox)提供GDAL/OGR/GRASS/SAGA算法。Python插件开发支持PyQGIS。可视化样式支持QML/SLD。坐标系转换基于PROJ 9.4。" },
+      { "id": "sw-fme", "title": "FME 2025", "tags": ["FME","ETL","数据转换"], "text": "Safe Software出品的数据ETL工具。支持500+数据格式转换。核心转换器：AttributeManager、FeatureMerger、CoordinateSystemSetter、GeometryFilter等。支持Server自动化。" },
+      { "id": "sw-cass", "title": "CASS 11.0", "tags": ["CASS","测绘","南方测绘"], "text": "南方测绘开发的测绘成图软件，基于AutoCAD平台。支持地形图绘制、地籍测量、土方计算、断面图生成。编码体系兼容GB/T 13923。输出格式：DWG/DXF。" },
+      { "id": "sw-supermap", "title": "SuperMap iDesktopX 11i", "tags": ["SuperMap","超图","国产"], "text": "超图桌面GIS平台。支持二三维一体化、AI GIS、大数据GIS。数据格式：UDB/UDBX。支持200+数据格式导入导出。" },
+      { "id": "sw-lidar360", "title": "LiDAR360 8.0", "tags": ["LiDAR","点云","数字绿土"], "text": "点云处理软件。功能：点云分类(地面/植被/建筑)、DEM/DSM生成、单木分割、电力线提取。格式支持：LAS/LAZ/PLY/XYZ。" },
+      { "id": "sw-glob", "title": "Global Mapper Pro 26", "tags": ["GlobalMapper","栅格","高程"], "text": "多功能GIS数据处理软件。优势：高程数据处理、3D可视化、LiDAR分析。支持Python脚本自动化。" }
+    ]
+  },
+  "pitfalls": {
+    "title": "常见避坑集锦",
+    "group": "实战避坑",
+    "content": [
+      { "id": "pit-crs-swap", "title": "CGCS2000 ≠ WGS84 不能互换", "tags": ["避坑","坐标系","严重"], "text": "严重错误！CGCS2000和WGS84的定义参数相同，但历元和框架不同。实测差异0.1m~0.5m。在大比例尺(≥1:2000)测绘中必须转换。只能用地方测绘部门实测的七参数转换，不可使用网络上的通用参数。" },
+      { "id": "pit-gk-zone", "title": "高斯投影带号越界", "tags": ["避坑","投影带","CRS"], "text": "跨带数据误用同一投影带号会导致坐标偏移数十甚至数百公里。合并跨带数据前必须先统一投影带。3度带跨越时坐标误差可达100+km。" },
+      { "id": "pit-shp-field", "title": "Shapefile字段名截断", "tags": ["避坑","Shapefile","字段"], "text": "Shapefile字段名最长10个字符(DBF限制)。'land_use_category'会被截断为'land_use_c'。解决方案：用File Geodatabase或GeoPackage替代。" },
+      { "id": "pit-encoding", "title": "Shapefile中文乱码", "tags": ["避坑","编码","中文"], "text": "Shapefile属性表中文乱码主因编码不一致。ArcGIS默认UTF-8(需.cpg文件)，QGIS默认System编码。解决方案：ArcGIS中用'Export Features'时勾选UTF-8；QGIS中用'另存为'→编码选UTF-8。" },
+      { "id": "pit-dwg-crs", "title": "DWG无坐标系导致GIS配准失败", "tags": ["避坑","DWG","坐标系"], "text": "AutoCAD DWG文件本身不存储坐标系信息。导入GIS时需手动指定坐标系。步骤：先确认原始测量坐标系→GIS中Define Projection→如需转换则Project。FME可自动检测DWG中的坐标标注。" },
+      { "id": "pit-multipart", "title": "多部件要素导致分析错误", "tags": ["避坑","几何","分析"], "text": "多部件(Multi-part)要素在空间分析中可能产生错误结果。如MultiPolygon的面积计算包含所有部件。处理前用Multipart to Singlepart工具拆分。" },
+      { "id": "pit-null-geom", "title": "空几何导致工具报错", "tags": ["避坑","几何","空值"], "text": "要素类中NULL/Empty几何体会导致大量GP工具报错。批量处理前用SelectLayerByAttribute选择并删除Shape IS NULL记录。" },
+      { "id": "pit-proj-on-the-fly", "title": "动态投影(On-the-Fly)的精度陷阱", "tags": ["避坑","投影","ArcGIS"], "text": "ArcGIS/QGIS的动态投影仅用于显示，不改变底层坐标系。测量面积/长度等计算基于原始坐标系。直接添加到不同CRS的数据后，测量值可能错误。建议：先Project到统一CRS再分析。" }
+    ]
+  },
+  "formats": {
+    "title": "数据格式速查",
+    "group": "基础底座",
+    "content": [
+      { "id": "fmt-shp", "title": "Shapefile (.shp)", "tags": ["格式","矢量","Shapefile"], "text": "最通用的矢量格式。必备文件：.shp(几何)、.shx(索引)、.dbf(属性)。可选：.prj(投影)、.cpg(编码)、.sbn/.sbx(空间索引)。限制：2GB文件大小、字段名10字符、255字段上限。建议用GeoPackage/FileGDB替代。" },
+      { "id": "fmt-gpkg", "title": "GeoPackage (.gpkg)", "tags": ["格式","矢量","栅格","OGC"], "text": "OGC标准格式，基于SQLite。单文件同时存储矢量和栅格数据。无字段名/大小限制。QGIS/ArcGIS原生支持。推荐作为Shapefile的现代替代。" },
+      { "id": "fmt-gdb", "title": "File Geodatabase (.gdb)", "tags": ["格式","矢量","Esri"], "text": "Esri文件地理数据库。目录形式存储。支持要素数据集、拓扑、网络数据集、关系类。字段名最长64字符。ArcGIS原生格式，QGIS需FileGDB驱动。" },
+      { "id": "fmt-geojson", "title": "GeoJSON", "tags": ["格式","Web","JSON"], "text": "Web地图常用矢量格式。WGS84坐标系。支持Point/LineString/Polygon/Multi等几何类型。适用于Web API传输、Leaflet/OpenLayers/Mapbox等前端渲染。" },
+      { "id": "fmt-geotiff", "title": "GeoTIFF (.tif)", "tags": ["格式","栅格","GeoTIFF"], "text": "带地理坐标的TIFF格式。支持DEM、DOM等栅格数据。COG(Cloud Optimized GeoTIFF)支持云端流式读取。压缩方式：LZW(无损)、JPEG(有损)。" },
+      { "id": "fmt-las", "title": "LAS/LAZ (.las/.laz)", "tags": ["格式","点云","LiDAR"], "text": "点云标准格式。LAS为二进制，LAZ为压缩格式。存储X/Y/Z坐标、分类、回波、强度、RGB等信息。分类标准：1=未分类，2=地面，3=低植被，4=中植被，5=高植被，6=建筑物，7=低噪点，9=水域。" }
+    ]
+  },
+  "conversion": {
+    "title": "坐标转换实操",
+    "group": "开发自动化",
+    "content": [
+      { "id": "conv-params", "title": "七参数转换公式", "tags": ["转换","七参数","公式"], "text": "Bursa-Wolf七参数模型: 平移(ΔX,ΔY,ΔZ)、旋转(ωx,ωy,ωz弧度)、尺度(m,ppm)。ArcGIS: CreateCustomGeoTransformation。FME: CsmapReprojector。GDAL: gdaltransform -s_srs EPSG:4326 -t_srs EPSG:4490。" },
+      { "id": "conv-arcpy", "title": "ArcPy坐标转换", "tags": ["ArcPy","Python","转换"], "text": "arcpy.management.Project(in_data, out_data, out_coor_system, transform_method), 其中transform_method为自定义地理变换名称。" },
+      { "id": "conv-gdal", "title": "GDAL坐标转换", "tags": ["GDAL","命令行","转换"], "text": "ogr2ogr -t_srs EPSG:4490 output.shp input.shp。gdalwarp -t_srs EPSG:4490 output.tif input.tif。批量转换: for f in *.shp; do ogr2ogr -t_srs EPSG:4490 out_$f $f; done" }
+    ]
+  }
+};
+
+// 扁平化为可搜索数组
+let ALL_ITEMS = [];
+for (let cat in KB_DATA) {
+  KB_DATA[cat].content.forEach(item => {
+    ALL_ITEMS.push({ ...item, category: cat, groupName: KB_DATA[cat].group });
+  });
+}
+
+// ── 搜索 ────────────────────────────────────────────────────────────────
+function doSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const container = document.getElementById('searchResults');
+
+  if (!q) {
+    container.innerHTML = '<div class="no-results">🔍 输入关键词开始检索GIS知识库</div>';
+    return;
+  }
+
+  const results = ALL_ITEMS.filter(item => {
+    const haystack = (item.title + ' ' + item.text + ' ' + item.tags.join(' ')).toLowerCase();
+    return q.split(/\s+/).every(term => haystack.includes(term));
+  });
+
+  if (results.length === 0) {
+    container.innerHTML = '<div class="no-results">未找到匹配内容，请尝试其他关键词</div>';
+    return;
+  }
+
+  container.innerHTML = results.map((item, i) => `
+    <div class="result-item" onclick="showDetail('${item.id}')">
+      <h4>${item.title}</h4>
+      <div class="snippet">${item.text.substring(0, 180)}...</div>
+      <div class="meta">
+        <span class="tag">${item.groupName}</span>
+        ${item.tags.slice(0,3).map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── 详情面板 ────────────────────────────────────────────────────────────
+function showDetail(id) {
+  const item = ALL_ITEMS.find(i => i.id === id);
+  if (!item) return;
+
+  document.getElementById('detailTitle').textContent = item.title;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="meta" style="margin-bottom:16px">
+      <span class="tag">${item.groupName}</span>
+      ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>
+    <p style="font-size:15px;line-height:1.9">${item.text}</p>
+    <hr style="margin:20px 0;border:none;border-top:1px solid #eee">
+    <div class="meta">📄 知识ID: ${item.id} | 坤图_GIS:V5.0 | 离线检索</div>
+  `;
+  document.getElementById('detailPanel').classList.add('active');
+  document.getElementById('progressBar').style.width = '100%';
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('active');
+  document.getElementById('progressBar').style.width = '0%';
+}
+
+// ── 分类导航 ────────────────────────────────────────────────────────────
+(function buildNav() {
+  const nav = document.getElementById('categoryNav');
+  let html = '<h3>📚 知识群组</h3>';
+  for (let cat in KB_DATA) {
+    html += `<a href="#" onclick="showCategory('${cat}');return false">📁 ${KB_DATA[cat].title} (${KB_DATA[cat].content.length}条)</a>`;
+  }
+  nav.innerHTML = html;
+})();
+
+function showCategory(cat) {
+  const items = KB_DATA[cat].content;
+  const container = document.getElementById('searchResults');
+  container.innerHTML = items.map(item => `
+    <div class="result-item" onclick="showDetail('${item.id}')">
+      <h4>${item.title}</h4>
+      <div class="snippet">${item.text.substring(0, 150)}...</div>
+      <div class="meta">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+// ── 键盘快捷键 ──────────────────────────────────────────────────────────
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDetail();
+  if (e.ctrlKey && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+});
+</script>
+</body>
+</html>

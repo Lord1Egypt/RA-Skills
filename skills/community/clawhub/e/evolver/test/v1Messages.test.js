@@ -242,7 +242,9 @@ describe('POST /v1/messages — router rewrite + egress', () => {
 
   it('accepts request without x-api-key when proxy has ANTHROPIC_API_KEY env (token mediation)', async () => {
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     process.env.ANTHROPIC_API_KEY = 'sk-proxy-env';
     delete process.env.ANTHROPIC_AUTH_TOKEN;
     try {
@@ -271,16 +273,61 @@ describe('POST /v1/messages — router rewrite + egress', () => {
       });
       assert.equal(res.status, 200, 'mediated request should not 401');
     } finally {
+      if (prevUpstreamKey === undefined) delete process.env.EVOMAP_ANTHROPIC_API_KEY;
+      else process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevKey === undefined) delete process.env.ANTHROPIC_API_KEY;
       else process.env.ANTHROPIC_API_KEY = prevKey;
       if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
     }
   });
 
-  it('returns 401 when x-api-key is missing and proxy has no env creds', async () => {
+  it('accepts request without x-api-key when proxy has EVOMAP_ANTHROPIC_API_KEY env', async () => {
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
     delete process.env.ANTHROPIC_API_KEY;
+    process.env.EVOMAP_ANTHROPIC_API_KEY = 'sk-upstream-env';
+    delete process.env.ANTHROPIC_AUTH_TOKEN;
+    try {
+      const u = new URL(`${baseUrl}/v1/messages`);
+      const payload = JSON.stringify({ model: 'global.anthropic.claude-opus-4-7', messages: [{ role: 'user', content: 'hi' }] });
+      const res = await new Promise((resolve, reject) => {
+        const req = http.request({
+          hostname: u.hostname,
+          port: u.port,
+          path: u.pathname,
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(payload),
+            'anthropic-version': '2023-06-01',
+          },
+        }, (resp) => {
+          const chunks = [];
+          resp.on('data', (c) => chunks.push(c));
+          resp.on('end', () => resolve({ status: resp.statusCode, body: Buffer.concat(chunks).toString() }));
+        });
+        req.on('error', reject);
+        req.write(payload);
+        req.end();
+      });
+      assert.equal(res.status, 200, 'upstream-only key should satisfy token mediation gate');
+    } finally {
+      if (prevKey === undefined) delete process.env.ANTHROPIC_API_KEY;
+      else process.env.ANTHROPIC_API_KEY = prevKey;
+      if (prevUpstreamKey === undefined) delete process.env.EVOMAP_ANTHROPIC_API_KEY;
+      else process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
+      if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
+    }
+  });
+
+  it('returns 401 when x-api-key is missing and proxy has no env creds', async () => {
+    const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
+    const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
+    delete process.env.ANTHROPIC_API_KEY;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_AUTH_TOKEN;
     try {
       const u = new URL(`${baseUrl}/v1/messages`);
@@ -309,6 +356,7 @@ describe('POST /v1/messages — router rewrite + egress', () => {
       assert.equal(JSON.parse(res.body).error, 'x-api-key required');
     } finally {
       if (prevKey !== undefined) process.env.ANTHROPIC_API_KEY = prevKey;
+      if (prevUpstreamKey !== undefined) process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
     }
   });

@@ -18,44 +18,44 @@ COS 存储约定：
 
 用法：
   # AI 剧分镜拆图（默认模式，model-sampling=0.1，擦除文字）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/storyboard.jpg"
 
   # 漫画分镜拆图（model-sampling=1.0）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/manga_page.jpg" \\
       --model-sampling 1.0
 
   # 电商宫格拆图（model-sampling=0.85，保留文字）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/ecommerce_grid.jpg" \\
       --model-sampling 0.85 --no-erase-text
 
   # 指定拆出第 0 张图片（0-based index）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/storyboard.jpg" \\
       --process-index 0
 
   # COS 路径输入
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --cos-input-key "/input/manga.jpg"
 
   # 本地文件输入（自动上传到 COS）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --local-file ./storyboard.png
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/storyboard.jpg" \\
       --no-wait
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/storyboard.jpg" \\
       --dry-run
 
   # 任务完成后自动下载结果到本地目录
-  python scripts/mps_image_split.py \\
+  python3 scripts/mps_image_split.py \\
       --url "https://example.com/storyboard.jpg" \\
       --download-dir ./output
 
@@ -98,7 +98,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -373,6 +373,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 本地文件自动上传到 COS
@@ -439,7 +445,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -453,7 +459,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

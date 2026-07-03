@@ -7,22 +7,22 @@
 
 用法：
   # 列出 Bucket 根目录下的所有文件（使用环境变量中的 bucket）
-  python mps_cos_list.py
+  python3 mps_cos_list.py
 
   # 列出指定路径下的文件
-  python mps_cos_list.py --prefix output/transcode/
+  python3 mps_cos_list.py --prefix output/transcode/
 
   # 搜索指定文件名的文件（模糊匹配）
-  python mps_cos_list.py --search video
+  python3 mps_cos_list.py --search video
 
   # 精确匹配文件名
-  python mps_cos_list.py --search "result.mp4" --exact
+  python3 mps_cos_list.py --search "result.mp4" --exact
 
   # 指定 bucket 和 region
-  python mps_cos_list.py --prefix input/ --bucket mybucket-125xxx --region ap-guangzhou
+  python3 mps_cos_list.py --prefix input/ --bucket mybucket-125xxx --region ap-guangzhou
 
   # 限制返回数量
-  python mps_cos_list.py --prefix output/ --limit 50
+  python3 mps_cos_list.py --prefix output/ --limit 50
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -31,6 +31,7 @@
   TENCENTCLOUD_COS_REGION  - COS Bucket 区域（必需）
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import os
 import sys
@@ -41,11 +42,6 @@ _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
 
 try:
-    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
-    _LOAD_ENV_AVAILABLE = True
-except ImportError:
-    _LOAD_ENV_AVAILABLE = False
-try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
@@ -54,7 +50,7 @@ except ImportError:
 try:
     from qcloud_cos import CosConfig, CosS3Client
 except ImportError:
-    print("错误：未安装腾讯云 COS SDK。请运行：pip install cos-python-sdk-v5", file=sys.stderr)
+    print("错误：未安装腾讯云 COS SDK。请运行：python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
     sys.exit(1)
 
 
@@ -66,19 +62,19 @@ def parse_args():
         epilog="""
 示例：
   # 列出 Bucket 根目录所有文件
-  python mps_cos_list.py
+  python3 mps_cos_list.py
 
   # 列出指定路径下的文件
-  python mps_cos_list.py --prefix output/transcode/
+  python3 mps_cos_list.py --prefix output/transcode/
 
   # 模糊搜索文件名包含 "video" 的文件
-  python mps_cos_list.py --search video
+  python3 mps_cos_list.py --search video
 
   # 精确匹配文件名 "result.mp4"
-  python mps_cos_list.py --search "result.mp4" --exact
+  python3 mps_cos_list.py --search "result.mp4" --exact
 
   # 列出前 50 个文件
-  python mps_cos_list.py --prefix output/ --limit 50
+  python3 mps_cos_list.py --prefix output/ --limit 50
         """
     )
     

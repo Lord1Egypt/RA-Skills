@@ -1,5 +1,5 @@
 ## Description: <br>
-Helps agents retrieve and summarize Douyin creator works, image/text posts, short-drama series, recent publishing activity, and related creator content data through SocialDataX. <br>
+用于抖音达人数据、抖音达人作品、作品列表、图文列表、短剧/合集列表、近期发布、内容调研和创作者内容分析。覆盖 Douyin creator works and series，来自 SocialDataX 社媒数据助手。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to fetch creator work lists or series data by profile URL or creator ID, then summarize publishing activity, media links, engagement counts, and author facts for content research and benchmarking. <br>
+External users, analysts, marketers, and developers use this skill to retrieve and summarize Douyin creator posts, image/text posts, short-drama series, and recent publishing activity through SocialDataX. It supports creator benchmarking, account tracking, and content research from a sec_user_id or profile URL. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uses SOCIALDATAX_API_KEY for external SocialDataX data calls. <br>
-Mitigation: Configure the API key only in the runtime environment and avoid placing secrets in prompts, files, or shared output. <br>
-Risk: Using unbounded pagination can return more creator content than intended. <br>
-Mitigation: Set page or item limits for exploratory work and preserve returned pagination tokens exactly when continuing a result chain. <br>
-Risk: Returned social media metadata, media links, and engagement counts may be incomplete or change over time. <br>
-Mitigation: Treat returned data as source evidence from the API response and review summaries before using them for decisions. <br>
+Risk: The skill uses the SocialDataX npm package with SOCIALDATAX_API_KEY for Douyin data queries. <br>
+Mitigation: Install and run it only when SocialDataX is trusted, keep the API key in the environment, and avoid exposing the key in prompts, logs, or shared output. <br>
+Risk: Unbounded pagination can fetch large creator histories and consume time or API quota. <br>
+Mitigation: Prefer bounded requests with --since-days, --pages, or --max-items unless the user explicitly needs a full history. <br>
 
 
 ## Reference(s): <br>
-- [SocialDataX API access](https://socialdatax.52choujiang.com/?from=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-douyin-creator-videos) <br>
+- [SocialDataX homepage](https://socialdatax.com/?from=clawhub) <br>
+- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/socialdatax-douyin-creator-videos) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and JSON API results] <br>
+**Output Type(s):** [Guidance, Shell commands, API Calls, Text] <br>
+**Output Format:** [Markdown guidance with shell commands and JSON data summaries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SOCIALDATAX_API_KEY and may include pagination tokens, creator identifiers, media links, interaction counts, and author facts returned by SocialDataX.] <br>
+**Other Properties Related to Output:** [Read-only Douyin creator results may include paginated items, interaction counts, media links, publish times, and series metadata.] <br>
 
 ## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+0.1.9 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

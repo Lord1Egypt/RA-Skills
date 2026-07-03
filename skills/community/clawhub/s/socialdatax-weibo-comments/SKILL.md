@@ -47,7 +47,7 @@ The command prints JSON with `platform`, `tool`, `arguments`, and `data`. Multi-
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 

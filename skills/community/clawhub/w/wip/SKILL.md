@@ -1,6 +1,6 @@
 ---
 name: wip
-description: >-
+description: |
   Track in-session work progress. Register steps for 3+ step tasks, update status per step, handle completion/abort.
   On /wip invocation, when remaining tasks exist, AskUserQuestion is required for the per-item direction (proceed / split / merge / hold / delete) — asking only about start priority is forbidden.
   After a compact, show prior-work summary then AskUserQuestion(multiSelect) for restore selection and re-register via TodoWrite.

@@ -7,6 +7,9 @@ Use this asset when the user sends their own copy, script, note draft, title lis
 - 改成小红书风格
 - 模仿某个对标账号
 - 按某条爆款公式写一版
+- 有固定框架，帮我填充内容
+- 吃一下这几篇对标文案，按类似风格写
+- 每次对标文案不一样，但我想稳定仿写
 - 帮我看看这段能不能发
 - 给我改 5 条 / 10 条内容
 
@@ -26,6 +29,7 @@ Output should help the user understand:
 - 标题/封面/开头/结构/收藏点怎么改
 - 文案写完后，10 个发布关键词应该怎么配，以及关键词有没有自然出现在标题、封面和正文开头
 - 如果是模仿对标账号，学的是结构、选题、情绪、标题，还是视觉表达
+- 如果用户给了对标文案或固定框架，先拆成结构、风格、槽位和不可照抄点，再填充用户自己的内容
 - 如果用户不知道怎么做图，要把内容转成 4 页或 7 页小红书图文结构
 - 发出去以后应该看什么数据
 - 下一步怎么继续回来复盘
@@ -62,6 +66,11 @@ If the user only asks for title, cover title, title optimization, or which title
 is more clickable, use `xhs-title-design-check.md`. Give only the 3 strongest
 title options by default, each with keyword anchor and click reason. Do not
 generate a 10-title pool unless the user explicitly asks for a title bank.
+
+If the user says they have a template, framework, benchmark copy, or several
+reference copies and wants Lingzao to "fill content", "仿写", "套框架", "风格差不多",
+or "不要每次重现同一个错误", do not rewrite directly. Use the benchmark-copy
+template extraction flow below first, then produce the adapted copy.
 
 ## Output Structure For One Draft
 
@@ -140,6 +149,85 @@ Separate:
 Good output pattern:
 
 这个对标不是让你学它的语气，而是学它的结构：先把一个用户熟悉的痛点说出来，再给一个具体场景，最后落到一个可收藏的方法。你这版目前只有观点，没有场景，所以用户看完会觉得“有道理”，但不会想收藏。
+
+## Benchmark Copy Template Extraction Flow
+
+Use this when the user provides one or more benchmark copies, viral-note bodies,
+sales scripts, caption templates, or a fixed writing framework and asks Lingzao
+to fill in new content with a similar style.
+
+Core rule:
+
+Do not jump straight into imitation. A weak model often repeats the same
+surface wording, copies phrases, or keeps making the same structural mistake
+because it never separated the template from the original content. Lingzao must
+first turn the reference into a reusable writing machine.
+
+Before writing, extract:
+
+1. 结构骨架
+   - Opening hook: pain, curiosity, identity, result, contradiction, or scene.
+   - Middle route: story, list, contrast, method, proof, or opinion chain.
+   - Ending action: save, comment, follow, product, link, or next-step prompt.
+2. 风格参数
+   - Tone: sharp, gentle, funny, teacher-like, intimate, observational, or
+     practical.
+   - Sentence shape: short punchy lines, long narrative paragraphs, numbered
+     dry goods, question-answer rhythm, or spoken pauses.
+   - Emotion level: calm, anxious, excited, self-deprecating, confident, or
+     comforting.
+3. 可替换槽位
+   - Industry, audience, product, city, life stage, pain, result, case,
+     proof, price, timeline, tools, personal experience, and CTA.
+   - Mark which slots are required and which are optional.
+4. 不能照抄的部分
+   - Unique life experience, creator identity, private data, exact sentences,
+     brand claims, exaggerated results, screenshots, comments, or numbers that
+     are not true for the user.
+5. 用户真实内容补全
+   - Use the user's own topic, account direction, product, experience,
+     customer pain, city, or examples.
+   - If missing, infer a safe default and state the assumption briefly instead
+     of blocking the rewrite.
+6. 质量闸门
+   - Not copied: no distinctive sentence from the benchmark remains.
+   - Not empty: each key paragraph has a concrete scene, example, or action.
+   - Not off-track: it fits the user's audience, account stage, and format.
+   - Not repetitive: it does not reproduce the same failed line, hook, or CTA
+     from previous attempts.
+   - Publishable: title, cover copy, opening, body, keyword direction, and next
+     step agree with each other.
+
+If the user gives only benchmark copy and no user material, ask at most one
+light question if possible:
+
+你想把这个框架套到什么主题/产品/账号方向上？如果你还没想好，我可以先用一个安全默认方向给你示范一版。
+
+If the user does not answer, produce a demonstration version and clearly label
+the assumption.
+
+User-facing output pattern:
+
+1. 我先把对标文案拆开，不直接照着写
+2. 模板骨架
+3. 风格参数
+4. 可替换槽位表
+5. 不能照抄的地方
+6. 你的版本：1-3 个 publishable drafts
+7. 自检：哪里像、哪里不像、哪里还需要用户补真实素材
+
+Slot table format:
+
+| 槽位 | 对标里怎么写 | 你的内容应该填什么 | 是否必须 |
+| --- | --- | --- | --- |
+| 用户痛点 | ... | ... | 必须 |
+| 具体场景 | ... | ... | 必须 |
+| 可信证据 | ... | ... | 建议 |
+| 结尾动作 | ... | ... | 必须 |
+
+Good user-facing explanation:
+
+可以，但我不会直接照着它仿写。直接仿写最容易只学到表面语气，最后变成每一版都像、但每一版都空。我会先把它拆成“结构骨架 + 风格参数 + 可替换槽位”，再把你的主题、产品或经历填进去。这样出来的东西会像它的打法，但不会变成抄它的句子。
 
 ## If User Sends Many Drafts
 

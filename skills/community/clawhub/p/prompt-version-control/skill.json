@@ -1,0 +1,37 @@
+{
+  "name": "Prompt Version Control",
+  "slug": "prompt-version-control",
+  "description": "Git-like version control for AI prompts: track changes, A/B test variants, measure metrics, rollback with confidence.",
+  "tags": ["prompt-engineering", "version-control", "ab-testing", "llm", "dev-tools", "git"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/prompt-vc.sh",
+    "description": "CLI script implementing all 9 workflow steps (init/add/diff/log/rollback/test/report)"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "config": "references/config.yaml"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Initialize Prompt Repository", "input": "prompt-vc.sh init [directory]", "output": ".prompt/ directory structure" },
+    { "step": 2, "name": "Register a New Prompt", "input": "prompt-vc.sh add <name>", "output": "prompts/<name>.yaml at v0.1.0" },
+    { "step": 3, "name": "Edit and Auto-Version", "input": "prompt-vc.sh edit <name>", "output": "Auto-incremented version (semver)" },
+    { "step": 4, "name": "Run A/B Test", "input": "prompt-vc.sh test <name>", "output": "A/B comparison table with quality/latency/tokens" },
+    { "step": 5, "name": "Diff Two Versions", "input": "prompt-vc.sh diff <name> v1 v2", "output": "Semantic-aware diff with text/structural/intent changes" },
+    { "step": 6, "name": "View Version History", "input": "prompt-vc.sh log <name>", "output": "Git-log-style history with metrics overlay" },
+    { "step": 7, "name": "Rollback", "input": "prompt-vc.sh rollback <name> --to vX", "output": "Restored version with rollback commit" },
+    { "step": 8, "name": "Remote Sync", "input": "prompt push / prompt pull", "output": "Synced to remote (GitHub/GitLab)" },
+    { "step": 9, "name": "Generate Iteration Report", "input": "prompt-vc.sh report <name>", "output": "Version history + quality/cost trends" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Run: prompt-vc.sh init ./my-prompts && prompt-vc.sh add hello",
+      "Run: prompt-vc.sh edit hello (edit prompt in editor, save, exit)",
+      "Run: prompt-vc.sh diff hello v0.1.0 v0.2.0 — see changes tracked instantly"
+    ]
+  }
+}

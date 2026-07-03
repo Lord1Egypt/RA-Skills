@@ -1,3 +1,14 @@
+---
+name: prediction-tendency
+description: "提供主流彩票历史开奖数据统计、冷热号分析与走势复盘，仅输出标准化数据报告，不含预测或购彩建议。"
+source: ClawHub
+version: 1.0.1
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# prediction-tendency
+
 # 每日彩票中奖号码统计及中奖走势分析Skill
 
 ## Skill基础信息

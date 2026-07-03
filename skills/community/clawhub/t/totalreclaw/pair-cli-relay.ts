@@ -48,8 +48,6 @@ import { validateMnemonic } from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english.js';
 
 import {
-  defaultPairPendingPath,
-  deletePairPendingFile,
   loadCredentialsJson,
   writeCredentialsJson,
   writeOnboardingState,
@@ -345,13 +343,6 @@ export async function runRelayPairCli(
             credentialsCreatedAt: new Date().toISOString(),
             version: opts.pluginVersion,
           });
-          // 3.3.13 — sentinel cleanup. The CLI flow shares the
-          // .pair-pending.json sentinel with the auto-pair-on-load flow
-          // (a user who runs `tr pair --json` after the plugin already
-          // auto-opened a session ends up with both surfaces pointing at
-          // the same credentials.json target). Delete the sentinel here
-          // so subsequent agent turns don't keep surfacing a stale URL.
-          deletePairPendingFile(defaultPairPendingPath(opts.credentialsPath));
           opts.logger.info(
             `pair-cli (relay): session ${session.token.slice(0, 8)}… completed; credentials written` +
               (registeredUserId ? ` (userId=${registeredUserId.slice(0, 8)}…)` : '') +

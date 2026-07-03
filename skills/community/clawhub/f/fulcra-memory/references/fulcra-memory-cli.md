@@ -1,18 +1,54 @@
 ---
 name: fulcra-memory-cli
-description: "CLI command references for executing the memory backup, restore, and cloning operations with Fulcra."
+description: "CLI command references for executing memory sync and progress reporting with Fulcra."
 ---
 
 # Fulcra Memory CLI Reference
 
-This reference dictates the exact shell commands required to execute the `fulcra-memory` skill's operations. Ensure all tar and CLI operations run in the agent's root workspace (`~/.openclaw/workspace`).
+This reference dictates the exact shell commands required to execute the `fulcra-memory` skill's operations. Ensure all CLI operations run in the agent's root workspace (`~/.openclaw/workspace`).
 
-## 1. Creating a Backup and Uploading
+## Authentication Note
+If you need to authenticate to Fulcra before running these commands, you must use the non-blocking two-step login process to prevent the CLI from hanging:
+1. `uv tool run fulcra-api auth login --get-auth-url` (present URL and code to user)
+2. `uv tool run fulcra-api auth login --device-code <DEVICE_CODE> --poll-timeout=5` (after user finishes flow)
 
-To back up the agent's memory, you must generate a `progress.md` summary, compress the core identity files, and upload both to Fulcra.
+## 1. Discovering Recent Memory Changes
+
+To quickly see what memory files were updated or new knowledge was added recently:
+
+```bash
+# Get a summary of files changed in the last 1 day
+uv tool run fulcra-api data-updates "1 day"
+
+# Example output:
+# {
+#   "data_types": {},
+#   "file_changes": [
+#     {
+#       "full_name": "/agent/treecle/memory/knowledge/programming/python.md",
+#       "uploaded_at": "2026-07-01T21:23:28.690719Z",
+#       "state": "uploaded",
+#       "...": "..."
+#     },
+#     {
+#       "full_name": "/agent/treecle/memory/session/20260701-120000_setup.md",
+#       "uploaded_at": "2026-07-01T21:23:28.690719Z",
+#       "state": "uploaded",
+#       "...": "..."
+#     }
+#   ]
+# }
+```
+
+*Note: The `file_changes` key is a list of file metadata objects. You can extract the `full_name` from each to see the file paths. If the summary shows that specific memory files were changed, you can then read those specific files to update your context.*
+
+## 2. Syncing Progress and OKF Files
+
+To keep the agent's memory in sync, generate a `progress.md` summary, ensure OKF files are updated, and upload them to Fulcra.
 
 **Step A: Create Progress Report and OKF Files**
 Generate a concise markdown file summarizing the work you have recently completed and what you plan to do next. It must include OKF YAML frontmatter. Do not include internal state or chain-of-thought. Also ensure `index.md` and `log.md` are created or updated.
+
 ```bash
 # Ensure you are in the workspace
 cd ~/.openclaw/workspace
@@ -31,7 +67,7 @@ EOF
 # 2. Update log.md
 DATE=$(date -u +"%Y-%m-%d")
 echo "## $DATE" >> memory/log.md
-echo "* **Backup**: Created memory snapshot and updated progress report." >> memory/log.md
+echo "* **Sync**: Updated progress report." >> memory/log.md
 
 # 3. Create index.md if it doesn't exist
 cat << 'EOF' > memory/index.md
@@ -42,110 +78,71 @@ cat << 'EOF' > memory/index.md
 EOF
 ```
 
-**Step B: Compress the files**
-Before compressing, create a `README.md` file that explains the archive's purpose and usage constraints. This ensures any agent or human inspecting the archive understands its contents and the rules for restoration.
-
-```bash
-# Generate the README.md
-cat << 'EOF' > README.md
-# Fulcra Agent Memory Archive
-
-This archive was created by the `fulcra-memory` skill. It contains an agent's core identity and memory state (e.g., `SOUL.md`, `IDENTITY.md`, `MEMORY.md`, and the `memory/` directory).
-
-## Usage
-The contents of this archive can be used to roll back an agent's memory or identity to a previous state, or to clone them to a new agent.
-
-## CRITICAL RULES FOR RESTORATION/CLONING
-1. **Explicit Permission Required:** The restoring/cloning agent MUST always get direct user permission and confirmation before overwriting its local files with the contents of this archive.
-2. **Verification Responsibility:** The backup may have been performed by a different harness or agent than the one restoring it. It is the active agent's responsibility to verify that it is overwriting or merging the correct files and to warn the user about any potential data loss.
-3. **Pre-Restore Backup:** Before performing the restore or clone operation, the active agent MUST make a local backup of its own current identity and memory files and inform the user of the backup's location so the operation can be undone if needed.
-EOF
-
-# Create a gzip tarball containing the essential memory files (ignore if some are missing)
-tar -czvf /tmp/memory.tar.gz README.md SOUL.md IDENTITY.md MEMORY.md memory/ 2>/dev/null || true
-```
-
-**Step C: Upload to Fulcra**
+**Step B: Upload to Fulcra**
 Upload the files using the standardized agent path convention. Determine the agent's name (lowercase) to use in the path.
 
 ```bash
 # Replace <agent_name> with the agent's actual name (e.g., treecle, wazir) in lowercase
-uv tool run fulcra-api file upload /tmp/memory.tar.gz "agent/<agent_name>/memory/artifact/memory.tar.gz"
-uv tool run fulcra-api file upload memory/progress.md "agent/<agent_name>/memory/progress.md"
-uv tool run fulcra-api file upload memory/log.md "agent/<agent_name>/memory/log.md"
-uv tool run fulcra-api file upload memory/index.md "agent/<agent_name>/memory/index.md"
+uv tool run fulcra-api file upload memory/progress.md "agent/<agent_name>/progress.md"
+uv tool run fulcra-api file upload memory/log.md "agent/<agent_name>/log.md"
+uv tool run fulcra-api file upload memory/index.md "agent/<agent_name>/index.md"
 ```
 
-## 2. Listing Memory History
-
-Because Fulcra versions files automatically, you can see all previous backups of the memory using the `stat` command.
+**Step C: Sync Identity & Role**
+If the agent's identity, duties, or standard operating procedures change, update the `role.md` file and upload it. Include OKF YAML frontmatter (`type: Role`).
 
 ```bash
-uv tool run fulcra-api file stat "agent/<agent_name>/memory/artifact/memory.tar.gz"
-```
-*(This command will output information about the file, including all previously uploaded versions and their UUIDs. Present these to the user so they can select a version to restore.)*
-
-## 3. Safe Restoration / Rollback
-
-**CRITICAL:** Before performing a restore, you MUST perform a fresh backup (Step 1 above) to ensure the current state isn't lost.
-
-Once the pre-restore backup is complete, use the Fulcra CLI to set the active version, then download and extract it.
-
-**Step A: Restore the version in Fulcra**
-```bash
-# Instruct Fulcra to make the older version the active file
-uv tool run fulcra-api file restore <version_id>
+uv tool run fulcra-api file upload memory/role.md "agent/<agent_name>/role.md"
 ```
 
-**Step B: Download the restored file**
-```bash
-uv tool run fulcra-api file download "agent/<agent_name>/memory/artifact/memory.tar.gz" /tmp/restored_memory.tar.gz
-```
+## 2. Saving Session Summaries
 
-**Step C: Inspect and Confirm**
-**STOP.** You MUST explicitly warn the user that extracting the archive will overwrite their current identity and memory files (`SOUL.md`, `IDENTITY.md`, `MEMORY.md`, and `memory/`). Before asking for confirmation, inspect the contents of the archive to ensure it looks safe and expected:
-```bash
-tar -ztvf /tmp/restored_memory.tar.gz
-```
-Share the list of files with the user and ask for their explicit confirmation before proceeding.
+When completing a spate of work or when asked to remember specific session context, generate a summary file in the `session/` directory and upload it.
 
-**Step D: Extract and overwrite local memory**
-```bash
-cd ~/.openclaw/workspace
-tar -xzvf /tmp/restored_memory.tar.gz
-```
-*(This will overwrite the local `SOUL.md`, `IDENTITY.md`, `MEMORY.md`, and the `memory/` directory with the state from the downloaded archive.)*
+**Step A: Create the Session Summary**
+Generate a concise markdown file capturing the session's context, decisions, and outcomes. Include OKF YAML frontmatter (`type: Session Summary`, `date: YYYY-MM-DD`). 
+- **Filename Convention:** Prefix the file with a timestamp (`YYYYMMDD-HHMMSS`) followed by an underscore and a short subject (e.g., `memory/session/20260623-180530_setup-dashboard.md`).
 
-## 4. Cloning Another Agent's Memory
-
-Cloning involves an "old" (source) agent and a "new" (destination) agent. The first step is to determine which role you are playing.
-
-**If you are the OLD agent:**
-1. Perform a full backup of your current state (Follow Step 1: Creating a Backup and Uploading).
-2. Stop and tell the user the exact Fulcra path where the backup was saved (e.g., `agent/<your_agent_name>/memory/artifact/memory.tar.gz`).
-3. Instruct the user to install the `fulcra-memory` skill on the new agent and ask it to clone from that path.
-
-**If you are the NEW agent:**
-1. Ask the user to confirm the old agent has recently backed itself up using the `fulcra-memory` skill. (Instruct them to have the old agent install the skill and back up if it hasn't already). Then, ask them for the specific Fulcra path to the old agent's memory archive.
-2. Download the target agent's memory using the path provided by the user:
+**Step B: Upload to Fulcra**
+Upload the file to the `session/` namespace using the agent's name.
 
 ```bash
-# Download the target agent's memory
-uv tool run fulcra-api file download "agent/<old_agent_path>/memory/artifact/memory.tar.gz" /tmp/restored_memory.tar.gz
+uv tool run fulcra-api file upload memory/session/20260623-180530_setup-dashboard.md "agent/<agent_name>/session/20260623-180530_setup-dashboard.md"
 ```
 
-**STOP.** You MUST explicitly warn the user that extracting the cloned archive will overwrite your current identity and memory files with the cloned agent's state. Before asking for confirmation, inspect the contents of the cloned archive:
+## 3. Managing Long-Running Tasks
+
+For longer-running tasks, create and periodically update a task tracking file in the `task/` directory.
+
+**Step A: Create or Update the Task File**
+Generate or update a markdown file with OKF YAML frontmatter (`type: Task`). Track the overall purpose, current state, and result of the task. Include references to any related artifacts or session summary files.
+- **Filename Convention:** Name the file directly after the task (e.g., `memory/task/setup-dashboard.md`). DO NOT prefix it with a timestamp.
+
+**Step B: Update the Task Index**
+Ensure `memory/task/index.md` is updated to include a link to the new or active task file.
+
+**Step C: Upload to Fulcra**
+Upload both the task file and the task index.
+
+uv tool run fulcra-api file upload memory/task/setup-dashboard.md "agent/<agent_name>/task/setup-dashboard.md"
+uv tool run fulcra-api file upload memory/task/index.md "agent/<agent_name>/task/index.md"
+```
+
+## 4. Personal Inbox Lifecycle
+
+Agents can receive files in their personal inbox (`inbox/`) from users or external triggers. Users can drop files here manually without needing strict timestamp formats.
+
+**Step A: Process and Archive**
+Read the file from the inbox. Once processed, you must upload it to the `archive/` directory. If the original file name doesn't start with a timestamp, you **must prepend one** (`YYYYMMDD-HHMMSS_`).
+
 ```bash
-tar -ztvf /tmp/restored_memory.tar.gz
+# Example for a file originally named "todo.md"
+uv tool run fulcra-api file upload memory/archive/20260624-153000_todo.md "agent/<agent_name>/archive/20260624-153000_todo.md"
 ```
-Share the list of files with the user and ask for their explicit confirmation before proceeding.
+
+**Step B: Delete from Inbox**
+Once safely archived, delete the original file from the inbox.
 
 ```bash
-# Extract locally (Only after user confirmation!)
-cd ~/.openclaw/workspace
-tar -xzvf /tmp/restored_memory.tar.gz
+uv tool run fulcra-api file delete "agent/<agent_name>/inbox/todo.md"
 ```
-
-**Step 3: Demonstrate Clone Success**
-After extraction, read your newly updated `IDENTITY.md` and `MEMORY.md` files. In your next message to the user, explicitly mention a few specific facts, past actions, or preferences you have just learned from those files to prove the cloning was successful.
-

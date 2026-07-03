@@ -1,0 +1,95 @@
+{
+  "transfer_id": "TRF-20260619-001",
+  "transfer_date": "2026-06-19",
+  "scout_id": "scout-hunter-01",
+  "project_info": {
+    "name": "耐高温纳米陶瓷涂层技术产业化项目",
+    "tech_domain": "航空新材料/热障涂层",
+    "current_trl": 4,
+    "source_channel": "高校院所对接会",
+    "team": "张明教授课题组（郑州某高校材料学院）",
+    "contact": "张明教授（微信/电话已添加）",
+    "core_tech_description": "耐高温纳米陶瓷涂层技术，基于YSZ体系+等离子喷涂工艺，最高工作温度1400°C，热循环寿命>1000次，热导率0.8-1.2 W/(m·K)，与基体结合强度>25MPa。已通过实验室小尺寸样品验证（10mm×10mm），完成高温氧化、热循环疲劳和初步力学性能测试。",
+    "industry_special": "航空发动机叶片热障涂层，涉及适航认证（CAAC/FAA）、NADCAP特种工艺认证、军工保密资质",
+    "patents": [
+      { "patent_id": "CN2023-1-XXX", "title": "一种耐高温纳米陶瓷涂层制备方法", "status": "granted" },
+      { "patent_id": "CN2023-2-XXX", "title": "纳米陶瓷涂层组合物及其应用", "status": "granted" },
+      { "patent_id": "CN2024-1-XXX", "title": "热障涂层制备工艺优化方法", "status": "granted" }
+    ]
+  },
+  "screening_report": {
+    "scores": {
+      "tech_feasibility": 8.5,
+      "market_demand": 9.0,
+      "conversion_potential": 7.0,
+      "ip_status": 8.0,
+      "team_background": 7.5
+    },
+    "total_score": 7.92,
+    "grade": "A",
+    "recommendation": "建议跟进，进入深度评估阶段。技术领先解决卡脖子问题，政策东风国产替代黄金期，市场刚需替代空间巨大。",
+    "strengths": [
+      "技术领先，达到国际先进水平",
+      "政策东风，国产替代黄金期",
+      "市场刚需，航空涂层市场80亿+，工业领域300亿+",
+      "团队学术功底扎实，院士弟子20年积累"
+    ],
+    "weaknesses": [
+      "工程化经验不足，偏学术团队",
+      "商业化能力欠缺，无商业化经历",
+      "中试资金缺口大，预估2000万",
+      "认证周期长，适航认证3-5年"
+    ]
+  },
+  "contact_notes": [
+    {
+      "date": "2026-06-18",
+      "type": "meeting",
+      "summary": "高校院所对接会首次接触张明教授",
+      "key_findings": [
+        "客户核心诉求：找投资方，产业化落地",
+        "底线要求：保留论文发表权，知识产权收益归课题组",
+        "时间窗口：6个月内完成首轮融资",
+        "信任度：建立中，需专业报告建立信任"
+      ]
+    },
+    {
+      "date": "2026-06-19",
+      "type": "phone",
+      "summary": "电话跟进，确认项目基本信息和合作意向",
+      "key_findings": [
+        "合作意向：中高",
+        "决策风格：谨慎型，需充分论证",
+        "核心顾虑：被低价转让、合作方不靠谱",
+        "建议7天内出具专业评估报告"
+      ]
+    }
+  ],
+  "scout_recommendations": {
+    "attention_points": [
+      "信任建立周期长，报告需专业详实",
+      "客户预期与市场现实有差距，需客观呈现",
+      "6个月时间窗口较紧，尽早启动",
+      "客户希望保留科研自主权，方案设计需考虑"
+    ],
+    "suggested_next_steps": [
+      { "step": "建立项目档案", "priority": "P0", "deadline": "2026-06-20" },
+      { "step": "协调评估师启动评估", "priority": "P0", "deadline": "2026-06-20" },
+      { "step": "预约张教授详细沟通", "priority": "P1", "deadline": "2026-06-23" },
+      { "step": "出具需求确认报告", "priority": "P1", "deadline": "2026-06-26" }
+    ],
+    "risk_alerts": [
+      { "risk": "客户信任建立周期长", "severity": "medium", "mitigation": "强化报告专业性，提供成功案例参考" },
+      { "risk": "客户预期与市场现实有差距", "severity": "medium", "mitigation": "评估报告中客观呈现市场现状" },
+      { "risk": "6个月时间窗口较紧", "severity": "high", "mitigation": "尽早启动，尽早对接资源" }
+    ]
+  },
+  "gate_0_request": {
+    "criteria_results": [
+      { "criterion": "五维综合分≥6", "actual": 7.92, "passed": true },
+      { "criterion": "信息完整性", "actual": "完整", "passed": true },
+      { "criterion": "客户合作意向", "actual": "中高", "passed": true }
+    ],
+    "auto_recommendation": "pass"
+  }
+}

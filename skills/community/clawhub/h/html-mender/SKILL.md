@@ -1,6 +1,6 @@
 ---
 name: html-mender
-description: HTML 编辑 / PPT 编辑 - HTML Mender is a visual editor for local or saved HTML files, especially HTML PPTs, AI-generated presentation pages, one-page web slide decks, and dynamic JavaScript slide pages. Use this skill for HTML编辑, PPT编辑, HTML PPT 编辑, 网页编辑, 演示稿编辑, 幻灯片编辑, making a local HTML editable, editing or modifying an HTML PPT, fixing text, adding text/images, replacing images, adjusting layout/position/size, or moving/scaling/resizing a title/image/card/block. It also fits phrases like “修改这个 HTML”, “HTML PPT 可编辑”, “标题往上一点”, “调整版面”, or “改宽高”. Clean export patches text/images/backgrounds/layout styles back into the original source HTML instead of saving runtime DOM. Do not use for live websites, authenticated online pages, generic source-code edits, or PPTX/PowerPoint files; ask for a saved local HTML copy first.
+description: HTML Mender is a visual editor for local or saved `.html` files only, including HTML-based PPT/deck pages, AI-generated slide HTML, and saved one-page presentation HTML. Use this skill when the user provides a local/saved HTML file and wants visual edits such as fixing text, adding text/images, replacing images, adjusting layout/position/size, or moving/scaling/resizing a title/image/card/block. Search phrases like “HTML 编辑”, “HTML editor”, “HTML editing”, “PPT 编辑”, “PPT editor”, “HTML PPT 编辑”, “网页 HTML 编辑”, “演示稿编辑”, and “幻灯片编辑” apply only when the target is a local/saved HTML file. Clean export patches text/images/backgrounds/layout styles back into the original source HTML instead of saving runtime DOM. Do not use for live websites, authenticated pages, generic source-code editing, or PPTX/PowerPoint files; ask for a saved local HTML copy first.
 metadata:
   openclaw:
     homepage: https://github.com/wuhaoyupku/html-mender
@@ -59,6 +59,10 @@ node scripts/inject-html-editor.mjs <input.html> \
 - If the editable page appears unstyled, regenerate it beside the original HTML so relative paths resolve.
 
 ## Version Notes
+
+### 0.1.16
+
+- Tightens the skill trigger wording around local or saved HTML files.
 
 ### 0.1.15
 

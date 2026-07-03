@@ -5,7 +5,7 @@ metadata:
 name: commit-tidy
 depends-on:
   - git-repo
-description: >-
+description: |
   Analyze staged/committed changes and recommend split, squash, or commit-message strategy.
   Topics — interactive-amend (worktree-based amend+rebase loop),
   soft-reset-amend (soft-reset top N + selective re-commit),

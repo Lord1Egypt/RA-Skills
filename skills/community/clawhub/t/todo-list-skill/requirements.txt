@@ -1,0 +1,46 @@
+﻿# todos/requirements.txt
+# todo-list Skill 依赖清单
+# 版本：v1.0 | 日期：2026-06-11
+
+# === 必需依赖 ===
+
+# 时间解析（补充标准库 datetime）
+# 参考：https://dateutil.readthedocs.io/
+python-dateutil>=2.8.0
+
+# === 可选依赖 ===
+
+# 中文分词（如不安装，NLP 解析使用纯正则替代，功能不变）
+jieba>=0.42.0
+
+
+# === 测试依赖（仅开发时使用）===
+# 安装方式：pip install -r requirements.txt --dev
+
+# 测试框架
+pytest>=7.0.0
+
+# 覆盖率报告
+pytest-cov>=4.0.0
+
+# 类型检查（可选）
+mypy>=1.0.0
+
+# 代码格式化
+black>=23.0.0
+
+# 注意：测试依赖仅在开发环境安装
+# 生产环境只需：pip install python-dateutil
+# 或：pip install -r requirements.txt（不含 --dev）
+
+
+# === 备注 ===
+
+# 本 skill 主要依赖 Python 标准库（sqlite3, datetime, re, json）
+# 其他依赖均为轻量库，无大型机器学习框架或网络爬虫
+#
+# 安装方式：
+#   pip install -r requirements.txt
+#
+# 仅安装必需依赖（不含测试）：
+#   pip install python-dateutil

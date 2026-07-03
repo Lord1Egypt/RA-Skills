@@ -1,5 +1,5 @@
 ## Description: <br>
-Builds formula-driven, multi-sheet Excel financial models for 3-statement models, DCF valuation, cap tables, scenario analysis, and financial projections. <br>
+Guides agents in building formula-driven Excel financial models with OfficeCLI, including 3-statement, DCF, LBO, SaaS unit economics, sensitivity, scenario, debt schedule, and fundraising models. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,29 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, analysts, and finance users use this skill to turn text assumptions into an Excel financial model with interconnected statements, optional valuation or scenario sheets, and built-in QA checks. <br>
+Developers, analysts, and finance teams use this skill to have an agent create auditable Excel financial models with separated inputs, calculations, outputs, formulas, validation gates, and OfficeCLI commands. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to download and run a live OfficeCLI installer or updater before use. <br>
-Mitigation: Install OfficeCLI through a trusted, pinned, verified process and avoid automatic installer or updater execution during normal workbook generation. <br>
+Risk: Setup instructions ask users or agents to run unverified remote installer code. <br>
+Mitigation: Verify the OfficeCLI installer source and prefer a pinned release, package-manager install, or manually downloaded binary with checksum or signature verification before execution. <br>
+Risk: Financial model formulas, cached values, or circular references can produce misleading workbook outputs if delivery gates are skipped. <br>
+Mitigation: Run the skill's balance, cache, hardcode, convergence, and visual audit gates before relying on generated workbook results. <br>
 
 
 ## Reference(s): <br>
-- [Complete financial model creation guide](creating.md) <br>
-- [ClawHub skill page](https://clawhub.ai/iceyliu/officecli-financial-model) <br>
+- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-financial-model) <br>
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Excel .xlsx workbook generated through Markdown-guided officecli commands] <br>
+**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
+**Output Format:** [Markdown guidance with bash and JSON command examples; generated workbook output is .xlsx.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a formula-driven workbook with 4-10 sheets, cross-sheet formulas, formatting conventions, charts, and validation checks.] <br>
+**Other Properties Related to Output:** [Focuses on a single formula-driven workbook with model-specific validation gates.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+1.0.3 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

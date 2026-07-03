@@ -1,0 +1,1414 @@
+{
+  "paths": {
+    "/v1/actions/create-missing-thumbnails": {
+      "post": {
+        "summary": "Create Missing Thumbnails",
+        "parameters": []
+      }
+    },
+    "/v1/actions/ensure-asset-ids": {
+      "post": {
+        "summary": "Ensure Asset IDs",
+        "parameters": []
+      }
+    },
+    "/v1/actions/ensure-import-refs": {
+      "post": {
+        "summary": "Ensures Import Refs",
+        "parameters": []
+      }
+    },
+    "/v1/actions/set-primary-photos": {
+      "post": {
+        "summary": "Set Primary Photos",
+        "parameters": []
+      }
+    },
+    "/v1/actions/zero-item-time-fields": {
+      "post": {
+        "summary": "Zero Out Time Fields",
+        "parameters": []
+      }
+    },
+    "/v1/assets/{id}": {
+      "get": {
+        "summary": "Get Item by Asset ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/currency": {
+      "get": {
+        "summary": "Currency",
+        "parameters": []
+      }
+    },
+    "/v1/groups": {
+      "get": {
+        "summary": "Get Group",
+        "parameters": []
+      },
+      "put": {
+        "summary": "Update Group",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.GroupUpdate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/groups/invitations": {
+      "post": {
+        "summary": "Create Group Invitation",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1.GroupInvitationCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/groups/statistics": {
+      "get": {
+        "summary": "Get Group Statistics",
+        "parameters": []
+      }
+    },
+    "/v1/groups/statistics/labels": {
+      "get": {
+        "summary": "Get Label Statistics",
+        "parameters": []
+      }
+    },
+    "/v1/groups/statistics/locations": {
+      "get": {
+        "summary": "Get Location Statistics",
+        "parameters": []
+      }
+    },
+    "/v1/groups/statistics/purchase-price": {
+      "get": {
+        "summary": "Get Purchase Price Statistics",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/items": {
+      "get": {
+        "summary": "Query All Items",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "labels",
+            "in": "query",
+            "type": "array"
+          },
+          {
+            "name": "locations",
+            "in": "query",
+            "type": "array"
+          },
+          {
+            "name": "parentIds",
+            "in": "query",
+            "type": "array"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Item",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.ItemCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/items/export": {
+      "get": {
+        "summary": "Export Items",
+        "parameters": []
+      }
+    },
+    "/v1/items/fields": {
+      "get": {
+        "summary": "Get All Custom Field Names",
+        "parameters": []
+      }
+    },
+    "/v1/items/fields/values": {
+      "get": {
+        "summary": "Get All Custom Field Values",
+        "parameters": []
+      }
+    },
+    "/v1/items/import": {
+      "post": {
+        "summary": "Import Items",
+        "parameters": [
+          {
+            "name": "csv",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}": {
+      "get": {
+        "summary": "Get Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.ItemUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.ItemPatch"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}/attachments": {
+      "post": {
+        "summary": "Create Item Attachment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "primary",
+            "in": "formData",
+            "type": "boolean"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}/attachments/{attachment_id}": {
+      "get": {
+        "summary": "Get Item Attachment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Item Attachment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.ItemAttachmentUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Item Attachment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}/duplicate": {
+      "post": {
+        "summary": "Duplicate Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.DuplicateOptions"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}/maintenance": {
+      "get": {
+        "summary": "Get Maintenance Log",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Maintenance Entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.MaintenanceEntryCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/items/{id}/path": {
+      "get": {
+        "summary": "Get the full path of an item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/labelmaker/assets/{id}": {
+      "get": {
+        "summary": "Get Asset label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "print",
+            "in": "query",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "/v1/labelmaker/item/{id}": {
+      "get": {
+        "summary": "Get Item label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "print",
+            "in": "query",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "/v1/labelmaker/location/{id}": {
+      "get": {
+        "summary": "Get Location label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "print",
+            "in": "query",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "/v1/labels": {
+      "get": {
+        "summary": "Get All Labels",
+        "parameters": []
+      },
+      "post": {
+        "summary": "Create Label",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.LabelCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/labels/{id}": {
+      "get": {
+        "summary": "Get Label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Label",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/locations": {
+      "get": {
+        "summary": "Get All Locations",
+        "parameters": [
+          {
+            "name": "filterChildren",
+            "in": "query",
+            "type": "boolean"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Location",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.LocationCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/locations/tree": {
+      "get": {
+        "summary": "Get Locations Tree",
+        "parameters": [
+          {
+            "name": "withItems",
+            "in": "query",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "/v1/locations/{id}": {
+      "get": {
+        "summary": "Get Location",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Location",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.LocationUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Location",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/maintenance": {
+      "get": {
+        "summary": "Query All Maintenance",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/maintenance/{id}": {
+      "put": {
+        "summary": "Update Maintenance Entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.MaintenanceEntryUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Maintenance Entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/notifiers": {
+      "get": {
+        "summary": "Get Notifiers",
+        "parameters": []
+      },
+      "post": {
+        "summary": "Create Notifier",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.NotifierCreate"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/notifiers/test": {
+      "post": {
+        "summary": "Test Notifier",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/notifiers/{id}": {
+      "put": {
+        "summary": "Update Notifier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.NotifierUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete a Notifier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/products/search-from-barcode": {
+      "get": {
+        "summary": "Search EAN from Barcode",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/qrcode": {
+      "get": {
+        "summary": "Create QR Code",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/reporting/bill-of-materials": {
+      "get": {
+        "summary": "Export Bill of Materials",
+        "parameters": []
+      }
+    },
+    "/v1/status": {
+      "get": {
+        "summary": "Application Info",
+        "parameters": []
+      }
+    },
+    "/v1/users/change-password": {
+      "put": {
+        "summary": "Change Password",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1.ChangePassword"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/users/login": {
+      "post": {
+        "summary": "User Login",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1.LoginForm"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v1/users/logout": {
+      "post": {
+        "summary": "User Logout",
+        "parameters": []
+      }
+    },
+    "/v1/users/refresh": {
+      "get": {
+        "summary": "User Token Refresh",
+        "parameters": []
+      }
+    },
+    "/v1/users/register": {
+      "post": {
+        "summary": "Register New User",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/services.UserRegistration"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/users/self": {
+      "get": {
+        "summary": "Get User Self",
+        "parameters": []
+      },
+      "put": {
+        "summary": "Update Account",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/repo.UserUpdate"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Account",
+        "parameters": []
+      }
+    }
+  },
+  "definitions": {
+    "currencies.Currency": [
+      "code",
+      "local",
+      "name",
+      "symbol"
+    ],
+    "ent.Attachment": [
+      "created_at",
+      "edges",
+      "id",
+      "mime_type",
+      "path",
+      "primary",
+      "title",
+      "type",
+      "updated_at"
+    ],
+    "ent.AttachmentEdges": [
+      "item",
+      "thumbnail"
+    ],
+    "ent.AuthRoles": [
+      "edges",
+      "id",
+      "role"
+    ],
+    "ent.AuthRolesEdges": [
+      "token"
+    ],
+    "ent.AuthTokens": [
+      "created_at",
+      "edges",
+      "expires_at",
+      "id",
+      "token",
+      "updated_at"
+    ],
+    "ent.AuthTokensEdges": [
+      "roles",
+      "user"
+    ],
+    "ent.Group": [
+      "created_at",
+      "currency",
+      "edges",
+      "id",
+      "name",
+      "updated_at"
+    ],
+    "ent.GroupEdges": [
+      "invitation_tokens",
+      "items",
+      "labels",
+      "locations",
+      "notifiers",
+      "users"
+    ],
+    "ent.GroupInvitationToken": [
+      "created_at",
+      "edges",
+      "expires_at",
+      "id",
+      "token",
+      "updated_at",
+      "uses"
+    ],
+    "ent.GroupInvitationTokenEdges": [
+      "group"
+    ],
+    "ent.Item": [
+      "archived",
+      "asset_id",
+      "created_at",
+      "description",
+      "edges",
+      "id",
+      "import_ref",
+      "insured",
+      "lifetime_warranty",
+      "manufacturer",
+      "model_number",
+      "name",
+      "notes",
+      "purchase_from",
+      "purchase_price",
+      "purchase_time",
+      "quantity",
+      "serial_number",
+      "sold_notes",
+      "sold_price",
+      "sold_time",
+      "sold_to",
+      "sync_child_items_locations",
+      "updated_at",
+      "warranty_details",
+      "warranty_expires"
+    ],
+    "ent.ItemEdges": [
+      "attachments",
+      "children",
+      "fields",
+      "group",
+      "label",
+      "location",
+      "maintenance_entries",
+      "parent"
+    ],
+    "ent.ItemField": [
+      "boolean_value",
+      "created_at",
+      "description",
+      "edges",
+      "id",
+      "name",
+      "number_value",
+      "text_value",
+      "time_value",
+      "type",
+      "updated_at"
+    ],
+    "ent.ItemFieldEdges": [
+      "item"
+    ],
+    "ent.Label": [
+      "color",
+      "created_at",
+      "description",
+      "edges",
+      "id",
+      "name",
+      "updated_at"
+    ],
+    "ent.LabelEdges": [
+      "group",
+      "items"
+    ],
+    "ent.Location": [
+      "created_at",
+      "description",
+      "edges",
+      "id",
+      "name",
+      "updated_at"
+    ],
+    "ent.LocationEdges": [
+      "children",
+      "group",
+      "items",
+      "parent"
+    ],
+    "ent.MaintenanceEntry": [
+      "cost",
+      "created_at",
+      "date",
+      "description",
+      "edges",
+      "id",
+      "item_id",
+      "name",
+      "scheduled_date",
+      "updated_at"
+    ],
+    "ent.MaintenanceEntryEdges": [
+      "item"
+    ],
+    "ent.Notifier": [
+      "created_at",
+      "edges",
+      "group_id",
+      "id",
+      "is_active",
+      "name",
+      "updated_at",
+      "user_id"
+    ],
+    "ent.NotifierEdges": [
+      "group",
+      "user"
+    ],
+    "ent.User": [
+      "activated_on",
+      "created_at",
+      "edges",
+      "email",
+      "id",
+      "is_superuser",
+      "name",
+      "role",
+      "superuser",
+      "updated_at"
+    ],
+    "ent.UserEdges": [
+      "auth_tokens",
+      "group",
+      "notifiers"
+    ],
+    "repo.BarcodeProduct": [
+      "barcode",
+      "imageBase64",
+      "imageURL",
+      "item",
+      "manufacturer",
+      "modelNumber",
+      "notes",
+      "search_engine_name"
+    ],
+    "repo.DuplicateOptions": [
+      "copyAttachments",
+      "copyCustomFields",
+      "copyMaintenance",
+      "copyPrefix"
+    ],
+    "repo.Group": [
+      "createdAt",
+      "currency",
+      "id",
+      "name",
+      "updatedAt"
+    ],
+    "repo.GroupStatistics": [
+      "totalItemPrice",
+      "totalItems",
+      "totalLabels",
+      "totalLocations",
+      "totalUsers",
+      "totalWithWarranty"
+    ],
+    "repo.GroupUpdate": [
+      "currency",
+      "name"
+    ],
+    "repo.ItemAttachment": [
+      "createdAt",
+      "id",
+      "mimeType",
+      "path",
+      "primary",
+      "thumbnail",
+      "title",
+      "type",
+      "updatedAt"
+    ],
+    "repo.ItemAttachmentUpdate": [
+      "primary",
+      "title",
+      "type"
+    ],
+    "repo.ItemCreate": [
+      "description",
+      "labelIds",
+      "locationId",
+      "name",
+      "parentId",
+      "quantity"
+    ],
+    "repo.ItemField": [
+      "booleanValue",
+      "id",
+      "name",
+      "numberValue",
+      "textValue",
+      "type"
+    ],
+    "repo.ItemOut": [
+      "archived",
+      "assetId",
+      "attachments",
+      "createdAt",
+      "description",
+      "fields",
+      "id",
+      "imageId",
+      "insured",
+      "labels",
+      "lifetimeWarranty",
+      "location",
+      "manufacturer",
+      "modelNumber",
+      "name",
+      "notes",
+      "parent",
+      "purchaseFrom",
+      "purchasePrice",
+      "purchaseTime",
+      "quantity",
+      "serialNumber",
+      "soldNotes",
+      "soldPrice",
+      "soldTime",
+      "soldTo",
+      "syncChildItemsLocations",
+      "thumbnailId",
+      "updatedAt",
+      "warrantyDetails",
+      "warrantyExpires"
+    ],
+    "repo.ItemPatch": [
+      "id",
+      "quantity"
+    ],
+    "repo.ItemPath": [
+      "id",
+      "name",
+      "type"
+    ],
+    "repo.ItemSummary": [
+      "archived",
+      "assetId",
+      "createdAt",
+      "description",
+      "id",
+      "imageId",
+      "insured",
+      "labels",
+      "location",
+      "name",
+      "purchasePrice",
+      "quantity",
+      "soldTime",
+      "thumbnailId",
+      "updatedAt"
+    ],
+    "repo.ItemUpdate": [
+      "archived",
+      "assetId",
+      "description",
+      "fields",
+      "id",
+      "insured",
+      "labelIds",
+      "lifetimeWarranty",
+      "locationId",
+      "manufacturer",
+      "modelNumber",
+      "name",
+      "notes",
+      "parentId",
+      "purchaseFrom",
+      "purchasePrice",
+      "purchaseTime",
+      "quantity",
+      "serialNumber",
+      "soldNotes",
+      "soldPrice",
+      "soldTime",
+      "soldTo",
+      "syncChildItemsLocations",
+      "warrantyDetails",
+      "warrantyExpires"
+    ],
+    "repo.LabelCreate": [
+      "color",
+      "description",
+      "name"
+    ],
+    "repo.LabelOut": [
+      "color",
+      "createdAt",
+      "description",
+      "id",
+      "name",
+      "updatedAt"
+    ],
+    "repo.LabelSummary": [
+      "color",
+      "createdAt",
+      "description",
+      "id",
+      "name",
+      "updatedAt"
+    ],
+    "repo.LocationCreate": [
+      "description",
+      "name",
+      "parentId"
+    ],
+    "repo.LocationOut": [
+      "children",
+      "createdAt",
+      "description",
+      "id",
+      "name",
+      "parent",
+      "totalPrice",
+      "updatedAt"
+    ],
+    "repo.LocationOutCount": [
+      "createdAt",
+      "description",
+      "id",
+      "itemCount",
+      "name",
+      "updatedAt"
+    ],
+    "repo.LocationSummary": [
+      "createdAt",
+      "description",
+      "id",
+      "name",
+      "updatedAt"
+    ],
+    "repo.LocationUpdate": [
+      "description",
+      "id",
+      "name",
+      "parentId"
+    ],
+    "repo.MaintenanceEntry": [
+      "completedDate",
+      "cost",
+      "description",
+      "id",
+      "name",
+      "scheduledDate"
+    ],
+    "repo.MaintenanceEntryCreate": [
+      "completedDate",
+      "cost",
+      "description",
+      "name",
+      "scheduledDate"
+    ],
+    "repo.MaintenanceEntryUpdate": [
+      "completedDate",
+      "cost",
+      "description",
+      "name",
+      "scheduledDate"
+    ],
+    "repo.MaintenanceEntryWithDetails": [
+      "completedDate",
+      "cost",
+      "description",
+      "id",
+      "itemID",
+      "itemName",
+      "name",
+      "scheduledDate"
+    ],
+    "repo.NotifierCreate": [
+      "isActive",
+      "name",
+      "url"
+    ],
+    "repo.NotifierOut": [
+      "createdAt",
+      "groupId",
+      "id",
+      "isActive",
+      "name",
+      "updatedAt",
+      "url",
+      "userId"
+    ],
+    "repo.NotifierUpdate": [
+      "isActive",
+      "name",
+      "url"
+    ],
+    "repo.PaginationResult-repo_ItemSummary": [
+      "items",
+      "page",
+      "pageSize",
+      "total"
+    ],
+    "repo.TotalsByOrganizer": [
+      "id",
+      "name",
+      "total"
+    ],
+    "repo.TreeItem": [
+      "children",
+      "id",
+      "name",
+      "type"
+    ],
+    "repo.UserOut": [
+      "email",
+      "groupId",
+      "groupName",
+      "id",
+      "isOwner",
+      "isSuperuser",
+      "name"
+    ],
+    "repo.UserUpdate": [
+      "email",
+      "name"
+    ],
+    "repo.ValueOverTime": [
+      "end",
+      "entries",
+      "start",
+      "valueAtEnd",
+      "valueAtStart"
+    ],
+    "repo.ValueOverTimeEntry": [
+      "date",
+      "name",
+      "value"
+    ],
+    "services.Latest": [
+      "date",
+      "version"
+    ],
+    "services.UserRegistration": [
+      "email",
+      "name",
+      "password",
+      "token"
+    ],
+    "v1.APISummary": [
+      "allowRegistration",
+      "build",
+      "demo",
+      "health",
+      "labelPrinting",
+      "latest",
+      "message",
+      "title",
+      "versions"
+    ],
+    "v1.ActionAmountResult": [
+      "completed"
+    ],
+    "v1.Build": [
+      "buildTime",
+      "commit",
+      "version"
+    ],
+    "v1.ChangePassword": [
+      "current",
+      "new"
+    ],
+    "v1.GroupInvitation": [
+      "expiresAt",
+      "token",
+      "uses"
+    ],
+    "v1.GroupInvitationCreate": [
+      "expiresAt",
+      "uses"
+    ],
+    "v1.ItemAttachmentToken": [
+      "token"
+    ],
+    "v1.LoginForm": [
+      "password",
+      "stayLoggedIn",
+      "username"
+    ],
+    "v1.TokenResponse": [
+      "attachmentToken",
+      "expiresAt",
+      "token"
+    ],
+    "v1.Wrapped": [
+      "item"
+    ],
+    "validate.ErrorResponse": [
+      "error",
+      "fields"
+    ]
+  }
+}

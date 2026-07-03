@@ -33,41 +33,41 @@ COS Storage Configuration (optional):
 
 Usage:
   # Text-to-Image: simplest usage (Hunyuan model)
-  python mps_aigc_image.py --prompt "A cute orange cat napping in the sunlight"
+  python3 mps_aigc_image.py --prompt "A cute orange cat napping in the sunlight"
 
   # Specify model and version
-  python mps_aigc_image.py --prompt "Cyberpunk city night scene" --model GEM --model-version 3.0
+  python3 mps_aigc_image.py --prompt "Cyberpunk city night scene" --model GEM --model-version 3.0
 
   # Text-to-Image + negative prompt
-  python mps_aigc_image.py --prompt "Beautiful landscape painting" --negative-prompt "people, animals, text"
+  python3 mps_aigc_image.py --prompt "Beautiful landscape painting" --negative-prompt "people, animals, text"
 
   # Text-to-Image + prompt enhancement
-  python mps_aigc_image.py --prompt "Sunset beach" --enhance-prompt
+  python3 mps_aigc_image.py --prompt "Sunset beach" --enhance-prompt
 
   # Image-to-Image: reference image + description
-  python mps_aigc_image.py --prompt "Turn this photo into an oil painting style" \
+  python3 mps_aigc_image.py --prompt "Turn this photo into an oil painting style" \
       --image-url https://example.com/photo.jpg
 
   # GEM multi-image reference (up to 3 images, supports asset/style reference types)
-  python mps_aigc_image.py --prompt "Blend these elements" --model GEM \
+  python3 mps_aigc_image.py --prompt "Blend these elements" --model GEM \
       --image-url https://example.com/img1.jpg --image-ref-type asset \
       --image-url https://example.com/img2.jpg --image-ref-type style
 
   # Specify aspect ratio and resolution
-  python mps_aigc_image.py --prompt "Panoramic landscape painting" --aspect-ratio 16:9 --resolution 2K
+  python3 mps_aigc_image.py --prompt "Panoramic landscape painting" --aspect-ratio 16:9 --resolution 2K
 
   # Store to COS
-  python mps_aigc_image.py --prompt "Product poster" \
+  python3 mps_aigc_image.py --prompt "Product poster" \
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou --cos-bucket-path aigc_output
 
   # Create task only (do not wait for result)
-  python mps_aigc_image.py --prompt "Starry sky" --no-wait
+  python3 mps_aigc_image.py --prompt "Starry sky" --no-wait
 
   # Query existing task result
-  python mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # Dry Run (only print request parameters, do not actually call the API)
-  python mps_aigc_image.py --prompt "Test image" --dry-run
+  python3 mps_aigc_image.py --prompt "Test image" --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -91,7 +91,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # COS SDK (optional, for generating temporary URLs)
@@ -182,7 +182,7 @@ def get_cos_presigned_url(bucket: str, region: str, key: str,
         Presigned URL, returns None on failure
     """
     if not _COS_SDK_AVAILABLE:
-        print("Warning: COS SDK is not installed, cannot generate temporary URL. Please install: pip install cos-python-sdk-v5",
+        print("Warning: COS SDK is not installed, cannot generate temporary URL. Please install: python3 -m pip install cos-python-sdk-v5",
               file=sys.stderr)
         return None
     
@@ -232,7 +232,7 @@ def upload_to_cos(local_path: str, bucket: str, region: str,
     import uuid as _uuid
 
     if not _COS_SDK_AVAILABLE:
-        print("❌ Error: COS SDK is not installed; cannot upload local file. Install with: pip install cos-python-sdk-v5",
+        print("❌ Error: COS SDK is not installed; cannot upload local file. Install with: python3 -m pip install cos-python-sdk-v5",
               file=sys.stderr)
         sys.exit(1)
 
@@ -795,7 +795,7 @@ def run(args):
 
         if args.no_wait:
             print(f"\nTip: Use the following command to query the task result:")
-            print(f"  python mps_aigc_image.py --task-id {task_id}")
+            print(f"  python3 mps_aigc_image.py --task-id {task_id}")
             return result
 
         # Automatically poll and wait for the result
@@ -846,37 +846,37 @@ def main():
         epilog="""
 Examples:
   # Text-to-image (default Hunyuan model)
-  python mps_aigc_image.py --prompt "A cute orange cat napping in the sunlight"
+  python3 mps_aigc_image.py --prompt "A cute orange cat napping in the sunlight"
 
   # Specify GEM model version 3.0
-  python mps_aigc_image.py --prompt "Cyberpunk city night scene" --model GEM --model-version 3.0
+  python3 mps_aigc_image.py --prompt "Cyberpunk city night scene" --model GEM --model-version 3.0
 
   # Text-to-image with negative prompt and prompt enhancement
-  python mps_aigc_image.py --prompt "A beautiful landscape painting" --negative-prompt "people, animals" --enhance-prompt
+  python3 mps_aigc_image.py --prompt "A beautiful landscape painting" --negative-prompt "people, animals" --enhance-prompt
 
   # Image-to-image (reference image + description)
-  python mps_aigc_image.py --prompt "Oil painting style" --image-url https://example.com/photo.jpg
+  python3 mps_aigc_image.py --prompt "Oil painting style" --image-url https://example.com/photo.jpg
 
   # GEM multi-image reference (up to 3 images, with reference types)
-  python mps_aigc_image.py --prompt "Blend elements" --model GEM \\
+  python3 mps_aigc_image.py --prompt "Blend elements" --model GEM \\
       --image-url https://example.com/img1.jpg --image-ref-type asset \\
       --image-url https://example.com/img2.jpg --image-ref-type style
 
   # Specify aspect ratio and resolution
-  python mps_aigc_image.py --prompt "Panoramic landscape painting" --aspect-ratio 16:9 --resolution 2K
+  python3 mps_aigc_image.py --prompt "Panoramic landscape painting" --aspect-ratio 16:9 --resolution 2K
 
   # Store result to COS
-  python mps_aigc_image.py --prompt "Product poster" \\
+  python3 mps_aigc_image.py --prompt "Product poster" \\
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou
 
   # Query task result
-  python mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # Create task without waiting
-  python mps_aigc_image.py --prompt "Starry sky" --no-wait
+  python3 mps_aigc_image.py --prompt "Starry sky" --no-wait
 
   # Dry Run (print request parameters only)
-  python mps_aigc_image.py --prompt "Test" --dry-run
+  python3 mps_aigc_image.py --prompt "Test" --dry-run
 
 Supported Models:
   Hunyuan     Tencent Hunyuan large model (default), supports --scene-type 3d_panorama (panoramic image)

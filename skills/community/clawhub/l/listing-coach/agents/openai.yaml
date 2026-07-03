@@ -1,0 +1,4 @@
+interface:
+  display_name: "Listing Coach"
+  short_description: "Return exact real estate listing script matches from the configured knowledge base."
+  default_prompt: "Use $listing-coach to retrieve listing coach scripts and paste the result exactly."

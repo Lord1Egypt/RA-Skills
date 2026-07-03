@@ -189,7 +189,7 @@ Based on the `CreateSceneAigcVideoTask` API, supports scene-based video generati
 
 #### Basic Product Showcase (Auto Camera)
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -198,7 +198,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Zoom-In Camera Effect
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -209,7 +209,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Zoom-Out Camera Effect
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -221,7 +221,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 #### Horizontal Pan Camera
 ```bash
 # GlideRight
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -229,7 +229,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
     --aspect-ratio 16:9
 
 # GlideLeft
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -239,7 +239,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Crane-Down Camera Effect
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -250,7 +250,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Using a URL Image
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "Url:https://example.com/product.jpg" \
@@ -260,7 +260,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Permanently Store the Generated Video
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -274,7 +274,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Specify Expiration Time
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -286,7 +286,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Add a Custom Prompt
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -302,20 +302,20 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### Basic Query
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-Aigc Video Task-abc123"
 ```
 
 #### Query with Specified Sub-application
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-Aigc Video Task-abc123" \
     --sub-app-id 251007502
 ```
 
 #### JSON Format Output
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-Aigc Video Task-abc123" \
     --json
 ```

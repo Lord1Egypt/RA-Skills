@@ -19,7 +19,7 @@ tencent-mps-video-dubbing :: 一站式视频译制 (video dubbing)
     • --subtitle-bbox LTX,LTY,RBX,RBY       （仅 --subtitle-area=custom 必填，4 点像素坐标）
 
 运维参数、ExtendedParameter 约束、费用确认规则与完整文档链接
-详见 `python mps_video_dubbing.py --help`
+详见 `python3 mps_video_dubbing.py --help`
 """
 from __future__ import annotations
 
@@ -34,6 +34,14 @@ from typing import Optional
 # ---------------------------------------------------------------------------
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+
+# 依赖自动检查/升级：必须在 tencentcloud / qcloud_cos / dotenv 首次 import 之前调用
+try:
+    from mps_auto_upgrade import check_sdk_version as _check_sdk_version
+    _check_sdk_version()
+except ImportError:
+    # 兼容：mps_auto_upgrade.py 缺失时不阻断（下面的 ImportError 兜底会给出提示）
+    pass
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -60,7 +68,7 @@ try:
     )
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -640,17 +648,17 @@ def build_parser() -> argparse.ArgumentParser:
 使用模式
 ────────────────────────────────────────────────────────────
 ① 交互向导：不传输入源参数即进入（或显式 --interactive）
-     python mps_video_dubbing.py
+     python3 mps_video_dubbing.py
 
 ② CLI 模式：必须显式传入输入源 + 核心业务参数
-     python mps_video_dubbing.py \\
+     python3 mps_video_dubbing.py \\
          -i https://xxx.com/a.mp4 \\
          --mode ocr --src-lang zh --dst-lang en --burn-subtitle \\
          --subtitle-area preset \\
          --confirm-charges
 
    OCR + 自定义字幕区域坐标（示例 lt_x=53, lt_y=741, rb_x=953, rb_y=922）：
-     python mps_video_dubbing.py \\
+     python3 mps_video_dubbing.py \\
          -i https://xxx.com/a.mp4 \\
          --mode ocr --src-lang zh --dst-lang en --burn-subtitle \\
          --subtitle-area custom --subtitle-bbox 53,741,953,922 \\
@@ -821,10 +829,10 @@ def main() -> None:
             for item in missing:
                 print(f"   • {item}", file=sys.stderr)
             print("\n   示例：", file=sys.stderr)
-            print("     python mps_video_dubbing.py -i <url> \\", file=sys.stderr)
+            print("     python3 mps_video_dubbing.py -i <url> \\", file=sys.stderr)
             print("         --mode ocr --src-lang zh --dst-lang en --burn-subtitle \\", file=sys.stderr)
             print("         --confirm-charges", file=sys.stderr)
-            print("\n   或不带参数运行，进入交互向导：python mps_video_dubbing.py\n", file=sys.stderr)
+            print("\n   或不带参数运行，进入交互向导：python3 mps_video_dubbing.py\n", file=sys.stderr)
             sys.exit(2)
         # 源目标语言不能相同（与向导一致的保护）
         if args.src_lang == args.dst_lang:

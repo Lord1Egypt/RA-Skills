@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "微信搜一搜文章搜索 - 命令行入参",
+    "description": "微信搜一搜文章搜索实时搜索文章, 命令行参数入参Schema详解",
+    "required": [
+        "keyword"
+    ],
+    "properties": {
+        "keyword": {
+            "type": "string",
+            "description": "搜索关键词",
+            "minLength": 2,
+            "maxLength": 50
+        },
+        "sort": {
+            "type": "number",
+            "description": "排序方式: 0=不限 , 1=最新 , 2=最热",
+            "default": 0,
+            "enum": [
+                0,
+                1,
+                2
+            ]
+        },
+        "publishTime": {
+            "type": "number",
+            "description": "发布时间: 0=不限 , 1=最近1天 , 2=最近7天, 3=最近半年",
+            "default": 0,
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ]
+        },
+        "limit": {
+            "type": "number",
+            "description": "搜索数量",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

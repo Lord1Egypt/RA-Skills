@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/es6kr/skills/compare/fix-v0.3.3...fix-v0.3.4) (2026-06-30)
+
+
+### Bug Fixes
+
+* **skills:** add procedural guards + standardize description scalar ([#66](https://github.com/es6kr/skills/issues/66)) ([fcc921f](https://github.com/es6kr/skills/commit/fcc921fba3928aad7421ecff888d5dcee5ae5655))
+
 ## [0.3.3](https://github.com/es6kr/skills/compare/fix-v0.3.2...fix-v0.3.3) (2026-06-25)
 
 

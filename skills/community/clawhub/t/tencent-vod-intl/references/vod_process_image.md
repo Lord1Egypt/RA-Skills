@@ -73,21 +73,21 @@
 
 ```bash
 # Default 2× advanced super-resolution (waits for completion automatically)
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id>
 
 # Fixed-resolution upscale to 1920x1080, JPEG output
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --mode fixed --width 1920 --height 1080 --output-format JPEG
 
 # 3× standard super-resolution, PNG output, with specified image quality
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --percent 3.0 --sr-type standard --output-format PNG --quality 90
 
 # No wait — return task ID immediately
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --json
 ```
@@ -96,21 +96,21 @@ python scripts/vod_process_image.py super-resolution \
 
 ```bash
 # Image understanding (default prompt)
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154
 
 # Image understanding with a custom prompt
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154 \
     --prompt "Describe the facial expressions and actions of the people in the image"
 
 # URL input + specify model
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --url "https://example.com/image.jpg" --sub-app-id 1500046154 \
     --model gemini-2.5-pro --prompt "Analyze the composition and color palette"
 
 # No wait (return task ID immediately)
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154 \
     --json
 ```

@@ -1,61 +1,156 @@
 #!/usr/bin/env python3
-"""MPS SDK 运行时版本检查与自动升级。
+"""MPS scripts runtime dependency check and auto-upgrade.
 
-所有 MPS 脚本在执行前导入此模块即可自动触发版本检查：
+All MPS scripts import this module before execution to trigger a dependency check:
     from mps_auto_upgrade import check_sdk_version
 
-若 tencentcloud-sdk-python 版本低于要求或未安装，会自动执行 pip 升级。
+The **single source of truth** for the dependency list is `requirements.txt` in the
+same directory:
+  - Both package names and minimum version constraints (e.g., `pkg>=X.Y.Z`) are
+    parsed from requirements.txt at runtime
+  - When bumping a dependency version, **only requirements.txt needs to change**
+  - This module parses that file at import time and exposes `_DEPENDENCIES` for
+    check_sdk_version() to use
+
+If any dependency is missing or below the minimum version, python3 -m pip install
+is automatically invoked to upgrade.
 """
 
+# Suppress the NotOpenSSLWarning from macOS system Python (LibreSSL) + urllib3 v2.
+# This warning is unrelated to MPS functionality; it is only an environment hint,
+# and users cannot easily fix it. Suppress it precisely without affecting other warnings.
+#
+# Note: The filter MUST be registered before urllib3 is first imported, because
+# urllib3 v2 emits warnings.warn(...) at top-level as a "one-shot" call — once
+# triggered, it cannot be undone. Therefore:
+#   1) First register the filter by message-string regex (do not import any urllib3 module)
+#   2) Then try to import the exception class as a secondary safeguard
+#      (urllib3's first load will be intercepted by the filter above)
+import warnings
+warnings.filterwarnings(
+    "ignore",
+    message=r".*urllib3 v2 only supports OpenSSL.*",
+)
+try:
+    from urllib3.exceptions import NotOpenSSLWarning
+    warnings.filterwarnings("ignore", category=NotOpenSSLWarning)
+except ImportError:
+    # urllib3 not installed / version too old to have this class: rely on message filter
+    pass
+
+import re
 import subprocess
 import sys
+from importlib.metadata import PackageNotFoundError, version as _pkg_version
+from pathlib import Path
 
-# 最低版本要求（与 requirements.txt 保持同步）
-MIN_SDK_VERSION = (3, 1, 107)
+
+def _load_dependencies_from_requirements():
+    """Parse the dependency list from the requirements.txt in the same directory.
+
+    Supported line formats:
+        pkg>=X.Y.Z   → ('pkg', (X, Y, Z))
+        pkg==X.Y.Z   → ('pkg', (X, Y, Z))  also treated as minimum version
+        pkg          → ('pkg', None)       presence check only
+
+    Empty lines, comment lines (starting with #), and unrecognized complex
+    constraints are skipped.
+    Returns [(pkg_name, min_ver_tuple_or_None), ...] preserving file order.
+    """
+    req_path = Path(__file__).parent / "requirements.txt"
+    if not req_path.exists():
+        # Fallback: at least check the core SDK when the file is missing
+        return [("tencentcloud-sdk-python", None)]
+
+    deps = []
+    line_pat = re.compile(
+        r"^\s*"
+        r"([A-Za-z][A-Za-z0-9_.\-]*)"       # package name
+        r"\s*(?:(?:>=|==)\s*"                # >= or ==
+        r"(\d+)\.(\d+)\.(\d+))?\s*$"          # X.Y.Z (optional)
+    )
+    for raw in req_path.read_text(encoding="utf-8").splitlines():
+        line = raw.split("#", 1)[0].strip()   # strip inline comments
+        if not line:
+            continue
+        m = line_pat.match(line)
+        if not m:
+            continue
+        pkg = m.group(1)
+        if m.group(2) is None:
+            deps.append((pkg, None))
+        else:
+            deps.append((pkg, (int(m.group(2)), int(m.group(3)), int(m.group(4)))))
+    return deps
 
 
-def _pip_install(min_ver_str):
-    """执行 pip install 升级 SDK。"""
-    cmd = [
-        sys.executable, "-m", "pip", "install",
-        f"tencentcloud-sdk-python>={min_ver_str}",
-        "--upgrade", "--quiet",
-    ]
-    print(f"⏳ 正在自动升级 tencentcloud-sdk-python >= {min_ver_str} ...", file=sys.stderr)
+# Dependency list (single source of truth: requirements.txt; this module just parses it at runtime)
+_DEPENDENCIES = _load_dependencies_from_requirements()
+
+# Backward compatibility: legacy code may reference MIN_SDK_VERSION constant (= first entry's min ver)
+MIN_SDK_VERSION = _DEPENDENCIES[0][1] if _DEPENDENCIES else None
+
+
+def _ver_tuple(ver_str):
+    """Parse a version string into a 3-tuple; missing parts default to 0; parse failures return (0, 0, 0)."""
+    try:
+        parts = (ver_str or "0").split(".")[:3]
+        return tuple(int(x) for x in parts) + (0,) * (3 - len(parts))
+    except (ValueError, AttributeError):
+        return (0, 0, 0)
+
+
+def _pip_install(specs):
+    """Run python3 -m pip install to install/upgrade a batch of dependencies at once.
+
+    specs: list[str], e.g., ["tencentcloud-sdk-python>=X.Y.Z", "cos-python-sdk-v5>=X.Y.Z"]
+    """
+    cmd = [sys.executable, "-m", "pip", "install", "--upgrade", "--quiet"] + specs
+    print(f"⏳ Auto-installing/upgrading missing dependencies: {', '.join(specs)}", file=sys.stderr)
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
         print(
-            f"❌ 自动升级失败，请手动执行:\n"
-            f"   pip install 'tencentcloud-sdk-python>={min_ver_str}' --upgrade\n"
-            f"   错误信息: {result.stderr.strip()}",
+            f"❌ Auto-install failed. Please run manually:\n"
+            f"   python3 -m pip install --upgrade {' '.join(repr(s) for s in specs)}\n"
+            f"   Error: {result.stderr.strip()}",
             file=sys.stderr,
         )
         sys.exit(1)
-    print(f"✅ 升级完成", file=sys.stderr)
+    print("✅ Install completed", file=sys.stderr)
 
 
 def check_sdk_version():
-    """检查 tencentcloud-sdk-python 版本，不足时自动升级。"""
-    min_ver_str = ".".join(map(str, MIN_SDK_VERSION))
-    need_upgrade = False
+    """Check all dependencies from requirements.txt; auto-install/upgrade if missing or too old.
 
-    try:
-        import tencentcloud
-        ver_str = getattr(tencentcloud, "__version__", "0.0.0")
-        ver_tuple = tuple(int(x) for x in ver_str.split(".")[:3])
-        if ver_tuple < MIN_SDK_VERSION:
+    The legacy function name is preserved for compatibility with existing script imports;
+    semantics have been extended to "check all dependencies".
+    Uses importlib.metadata to read exact pip package versions (does not rely on each
+    package exposing __version__).
+    """
+    to_install = []   # list[str]: pip specs to install
+
+    for pkg_name, min_ver in _DEPENDENCIES:
+        min_ver_str = ".".join(map(str, min_ver)) if min_ver else None
+        spec = f"{pkg_name}>={min_ver_str}" if min_ver_str else pkg_name
+
+        try:
+            installed_ver = _pkg_version(pkg_name)
+        except PackageNotFoundError:
+            print(f"⚠️  {pkg_name} not installed", file=sys.stderr)
+            to_install.append(spec)
+            continue
+
+        if min_ver and _ver_tuple(installed_ver) < min_ver:
             print(
-                f"⚠️  tencentcloud-sdk-python 版本过低: {ver_str}，需要 >= {min_ver_str}",
+                f"⚠️  {pkg_name} version too low: {installed_ver}, requires >= {min_ver_str}",
                 file=sys.stderr,
             )
-            need_upgrade = True
-    except ImportError:
-        print(f"⚠️  tencentcloud-sdk-python 未安装，需要 >= {min_ver_str}", file=sys.stderr)
-        need_upgrade = True
+            to_install.append(spec)
 
-    if need_upgrade:
-        _pip_install(min_ver_str)
-        # 升级后清除模块缓存，让后续 import 加载新版本
-        for key in list(sys.modules.keys()):
-            if key == "tencentcloud" or key.startswith("tencentcloud."):
-                del sys.modules[key]
+    if to_install:
+        _pip_install(to_install)
+        # After upgrade, clear possibly loaded stale module caches (so subsequent imports load new versions)
+        for prefix in ("tencentcloud", "qcloud_cos", "dotenv"):
+            for key in list(sys.modules.keys()):
+                if key == prefix or key.startswith(prefix + "."):
+                    del sys.modules[key]

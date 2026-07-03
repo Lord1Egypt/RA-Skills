@@ -29,41 +29,41 @@ COS 存储约定：
 
 用法：
   # 音色复刻（传入本地音频文件）
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
   # 音色复刻（传入音频 URL）
-  python mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
+  python3 mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
 
   # 短文本语音合成（指定音色 ID）
-  python mps_dubbing.py --mode tts --text "您好，欢迎使用腾讯云语音合成" --voice-id s1_2GSzVAf00hl
+  python3 mps_dubbing.py --mode tts --text "您好，欢迎使用腾讯云语音合成" --voice-id s1_2GSzVAf00hl
 
   # 短文本语音合成（指定音色 ID，保存到文件）
-  python mps_dubbing.py --mode tts --text "Hello, welcome!" --voice-id s1_xxx --output /tmp/output.wav
+  python3 mps_dubbing.py --mode tts --text "Hello, welcome!" --voice-id s1_xxx --output /tmp/output.wav
 
   # 音色复刻 + 语音合成（先用 clone 拿到 VoiceId，再用 tts 合成）
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
-  python mps_dubbing.py --mode tts --text "您好" --voice-id <上一步返回的 VoiceId>
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode tts --text "您好" --voice-id <上一步返回的 VoiceId>
 
   # 长文本转语音（异步，指定音色 ID）
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "这是一段很长的文本..." --voice-id clone_v1_Q03FBduA
 
   # 长文本转语音（异步，传入克隆视频 URL）
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "这是一段很长的文本..." \\
       --clone-video-url https://example.com/train.mp4
 
   # 语音转语音（异步，替换音色）
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 \\
       --clone-video-url https://example.com/train.mp4
 
   # 语音转语音（异步，使用系统音色 ID）
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 --voice-id s1_2GSzVAf00hl
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_dubbing.py --mode tts --text "您好" --voice-id s1_xxx --dry-run
+  python3 mps_dubbing.py --mode tts --text "您好" --voice-id s1_xxx --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -105,7 +105,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -718,7 +718,7 @@ def run_async_dubbing(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -748,41 +748,41 @@ def main():
 
 示例：
   # 音色复刻（传入本地音频，建议 10~20 秒清晰单人语音）
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
   # 音色复刻（传入音频 URL）
-  python mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
+  python3 mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
 
   # 短文本语音合成（指定系统音色 ID）
-  python mps_dubbing.py --mode tts --text "您好，欢迎使用腾讯云" --voice-id s1_2GSzVAf00hl
+  python3 mps_dubbing.py --mode tts --text "您好，欢迎使用腾讯云" --voice-id s1_2GSzVAf00hl
 
   # 短文本语音合成（自定义采样率 + 音调 + 输出文件）
-  python mps_dubbing.py --mode tts --text "Hello!" --voice-id s1_xxx \\
+  python3 mps_dubbing.py --mode tts --text "Hello!" --voice-id s1_xxx \\
       --sample-rate 44100 --pitch 2 --output /tmp/out.wav
 
   # 先复刻音色，再用拿到的 VoiceId 合成
-  python mps_dubbing.py --mode clone --audio-file voice.wav
-  python mps_dubbing.py --mode tts --text "您好" --voice-id <上一步返回的 VoiceId>
+  python3 mps_dubbing.py --mode clone --audio-file voice.wav
+  python3 mps_dubbing.py --mode tts --text "您好" --voice-id <上一步返回的 VoiceId>
 
   # 长文本转语音（异步，指定音色 ID）
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "这是一段超过 2000 字的长文本..." --voice-id clone_v1_Q03FBduA
 
   # 长文本转语音（异步，传入克隆视频 URL）
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "长文本..." --clone-video-url https://example.com/train.mp4
 
   # 语音转语音（异步，替换音色）
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 \\
       --clone-video-url https://example.com/train.mp4
 
   # 语音转语音（异步，使用指定音色 ID）
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 --voice-id s1_2GSzVAf00hl
 
   # Dry Run
-  python mps_dubbing.py --mode tts --text "您好" --voice-id s1_xxx --dry-run
+  python3 mps_dubbing.py --mode tts --text "您好" --voice-id s1_xxx --dry-run
 
 支持语种（--text-lang / --audio-lang / --src-lang / --clone-video-lang）：
   zh=中文  en=英语  ja=日语  ko=韩语  de=德语  fr=法语  es=西班牙语  it=意大利语

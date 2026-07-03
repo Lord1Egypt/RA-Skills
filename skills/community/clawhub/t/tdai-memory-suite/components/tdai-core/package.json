@@ -1,0 +1,127 @@
+{
+  "name": "@tencentdb-agent-memory/memory-tencentdb",
+  "version": "0.3.8",
+  "description": "Four-layer local memory system plugin for OpenClaw — auto-captures, structures, and profiles conversational knowledge using local LLM + SQLite vector search (L0→L1→L2→L3 pipeline)",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "bin": {
+    "migrate-sqlite-to-tcvdb": "./bin/migrate-sqlite-to-tcvdb.mjs",
+    "export-tencent-vdb": "./bin/export-tencent-vdb.mjs",
+    "read-local-memory": "./bin/read-local-memory.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:plugin && npm run build:scripts",
+    "build:plugin": "tsdown",
+    "build:scripts": "npm run build:migrate-sqlite-to-vdb && npm run build:export-tencent-vdb && npm run build:read-local-memory",
+    "prepack": "npm run build",
+    "build:migrate-sqlite-to-vdb": "tsc -p scripts/migrate-sqlite-to-tcvdb/tsconfig.json --noEmitOnError false",
+    "migrate-sqlite-to-tcvdb": "node ./bin/migrate-sqlite-to-tcvdb.mjs",
+    "build:export-tencent-vdb": "tsc --project scripts/export-tencent-vdb/tsconfig.json",
+    "export-tencent-vdb": "node ./bin/export-tencent-vdb.mjs",
+    "build:read-local-memory": "tsc --project scripts/read-local-memory/tsconfig.json",
+    "read-local-memory": "node ./bin/read-local-memory.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "postinstall": "bash scripts/openclaw-after-tool-call-messages.patch.sh 2>/dev/null || true"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "index.ts",
+    "scripts/migrate-sqlite-to-tcvdb/dist/",
+    "scripts/export-tencent-vdb/dist/",
+    "scripts/read-local-memory/dist/",
+    "scripts/memory-tencentdb-ctl.sh",
+    "scripts/install_hermes_memory_tencentdb.sh",
+    "scripts/README.memory-tencentdb-ctl.md",
+    "src/",
+    "scripts/openclaw-after-tool-call-messages.patch.sh",
+    "scripts/nomic_atlas_visualizer.py",
+    "scripts/setup-offload.sh",
+    "hermes-plugin/",
+    "openclaw.plugin.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "!src/**/*.test.ts",
+    "!src/**/*.spec.ts",
+    "!src/**/__tests__/"
+  ],
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "memory",
+    "ai-memory",
+    "long-term-memory",
+    "vector-search",
+    "sqlite-vec",
+    "llm",
+    "conversation",
+    "persona",
+    "scene-extraction",
+    "embedding"
+  ],
+  "author": "TencentDB Agent Memory Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.53",
+    "@node-rs/jieba": "^2.0.1",
+    "@tencentdb-agent-memory/tcvdb-text": "^0.1.1",
+    "ai": "^6.0.164",
+    "js-tiktoken": "^1.0.18",
+    "json5": "^2.2.3",
+    "sqlite-vec": "0.1.7-alpha.2",
+    "tsx": "^4.21.0",
+    "undici": "^8.1.0",
+    "yaml": "^2.8.3",
+    "zod": "^4.4.3"
+  },
+  "optionalDependencies": {
+    "opik": "^1.0.0"
+  },
+  "peerDependencies": {
+    "node-llama-cpp": "^3.16.2",
+    "openclaw": ">=2026.3.7"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    },
+    "node-llama-cpp": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.13",
+      "minGatewayVersion": ">=2026.3.13"
+    },
+    "build": {
+      "openclawVersion": "2026.3.13",
+      "pluginSdkVersion": "2026.3.13"
+    },
+    "bundle": {
+      "stageRuntimeDependencies": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@vitest/coverage-v8": "^4.1.2",
+    "tsdown": "^0.21.10",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  }
+}

@@ -6,7 +6,7 @@ Use explainable ranking rather than opaque numeric scoring. The final output sho
 
 Prioritize events using these factors:
 
-- Fit with `skills/event-scanner/assets/taste-profile.md`.
+- Fit with `<skill_dir>/assets/taste-profile.md`.
 - Strength of source evidence and event details.
 - Practicality for the requested location, or the configured default location when none is requested.
 - Novelty or surprise potential.

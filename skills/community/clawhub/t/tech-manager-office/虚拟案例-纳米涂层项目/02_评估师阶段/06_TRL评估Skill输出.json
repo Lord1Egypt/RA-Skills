@@ -1,0 +1,136 @@
+{
+  "assessment_id": "TRL-20260619-001",
+  "assessment_date": "2026-06-19",
+  "trl_result": {
+    "current_trl": 4,
+    "trl_name": "组件/子系统验证（实验室环境）",
+    "evidence": [
+      "3项核心专利已授权（C类：学术发表）",
+      "小尺寸样品（10mm×10mm）制备完成（E类：内部文件）",
+      "高温氧化环境测试通过（E类：内部文件）",
+      "热循环疲劳测试完成，>1000次@1200°C（E类：内部文件）",
+      "初步力学性能测试合格，结合强度>25MPa（E类：内部文件）",
+      "初步工艺参数窗口确定（E类：内部文件）",
+      "初步失效模式分析完成（E类：内部文件）"
+    ],
+    "confidence": "medium",
+    "key_gaps": [
+      "缺乏第三方检测报告（B类证据缺失）",
+      "测试数据量有限（每种测试3-5个样品），缺乏统计显著性",
+      "无长期稳定性数据",
+      "无中试报告（中国特色关键环节）",
+      "无官方认证文件（A类证据缺失）"
+    ]
+  },
+  "evidence_evaluation": {
+    "completeness": "partial",
+    "missing_items": [
+      "第三方检测报告（B类）",
+      "中试报告或中试基地证明",
+      "官方认证文件（A类）",
+      "客户试用协议（D类）",
+      "工程样机演示记录"
+    ],
+    "quality_assessment": "现有证据以E类（内部文件）为主，仅专利为C类较高可信度。缺乏B类及以上第三方验证，是定级置信度不高的主要原因。按就低原则，TRL 4判定合理但不排除实际已达TRL 5的可能。"
+  },
+  "gap_analysis": [
+    {
+      "from_trl": 4,
+      "to_trl": 5,
+      "gap_description": "从实验室组件验证到相关环境验证，需完成中试",
+      "required_evidence": [
+        "工程样机（50-100mm级）",
+        "相关环境测试报告",
+        "中试报告或中试基地证明",
+        "多批次一致性验证（≥10批次）",
+        "关键原材料供应商锁定",
+        "初步工艺包建立"
+      ],
+      "estimated_duration_months": 12,
+      "estimated_investment": 1000,
+      "key_bottleneck": "中试基地对接和工程化团队组建"
+    },
+    {
+      "from_trl": 5,
+      "to_trl": 6,
+      "gap_description": "从环境验证到系统原型演示",
+      "required_evidence": [
+        "系统原型（可演示，真实尺寸≥200mm）",
+        "原型演示视频或现场演示记录",
+        "示范应用合作协议",
+        "初步设计许用值"
+      ],
+      "estimated_duration_months": 12,
+      "estimated_investment": 1500,
+      "key_bottleneck": "主机厂合作建立，需要行业龙头参与"
+    },
+    {
+      "from_trl": 6,
+      "to_trl": 7,
+      "gap_description": "从原型演示到运行环境验证",
+      "required_evidence": [
+        "实际运行环境运行记录",
+        "客户试用反馈报告",
+        "安全/环保批复",
+        "NADCAP认证启动"
+      ],
+      "estimated_duration_months": 18,
+      "estimated_investment": 2500,
+      "key_bottleneck": "适航认证周期不可压缩，需3-5年"
+    }
+  ],
+  "conversion_path": {
+    "recommended_mode": "pilot_base",
+    "typical_partners": [
+      "国家级/省级中试基地",
+      "航空发动机主机厂（如中国航发）",
+      "航空产业园",
+      "产业投资基金（航空/新材料方向）"
+    ],
+    "funding_requirement": "500-2000万（中试阶段），总计4800-6500万（TRL4→7全流程）",
+    "key_actions": [
+      "对接国家级/省级中试基地，申请中试专项支持",
+      "组建工程化团队，补充产业化和市场人才",
+      "锁定2-3家关键原材料供应商",
+      "与主机厂签订技术合作框架协议",
+      "提前启动NADCAP认证准备工作",
+      "分阶段融资：天使轮/Pre-A→A轮→B轮"
+    ]
+  },
+  "risk_estimation": {
+    "composite_success_rate": 0.35,
+    "risk_level": "中高风险",
+    "major_risks": [
+      {
+        "risk": "中试环节失败率高达50%，工程化挑战巨大",
+        "probability": "高",
+        "impact": "致命——无法跨越TRL5",
+        "mitigation": "优先对接有经验的中试基地，引入工程化专家"
+      },
+      {
+        "risk": "主机厂配合度不足，资源有限优先级难保证",
+        "probability": "高",
+        "impact": "高——影响TRL6-7进展",
+        "mitigation": "提前锁定主机厂合作意向，签订排他性协议"
+      },
+      {
+        "risk": "适航认证周期3-5年不可压缩",
+        "probability": "中",
+        "impact": "高——影响商业化时间表",
+        "mitigation": "尽早启动认证准备，与监管机构提前沟通"
+      },
+      {
+        "risk": "中试资金缺口大（2000万+），融资困难",
+        "probability": "中",
+        "impact": "高——项目停滞",
+        "mitigation": "分阶段融资，里程碑付款，申请政府专项支持"
+      },
+      {
+        "risk": "团队工程化和商业化能力不足",
+        "probability": "高",
+        "impact": "中——影响执行效率",
+        "mitigation": "引入产业合伙人，组建互补团队"
+      }
+    ]
+  }
+}

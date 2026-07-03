@@ -186,6 +186,8 @@ Check for security-relevant issues.
 - If any security-sensitive code found (auth logic, input handling, crypto, payment): call `rune-sentinel.md` for deep scan
 - Sentinel escalation is mandatory — do not skip it for auth or crypto code
 
+**Optional cross-model second opinion** (security-critical / opus-escalated reviews only): a same-family reviewer shares blind spots with the author. For genuinely irreversible or attacker-facing changes (auth, crypto, payment, data migration), you MAY *offer* the user a different-architecture second pass via an external CLI (Gemini/Codex). This is opt-in and interactive-only — **offer, never auto-invoke**; skip in non-interactive runs (CI, `/loop`, scheduled) and announce the skip. If the user accepts, follow the safe transport in `../adversary/references/cross-model-escalation.md` (per-call authorization, read-only sandbox, stdin not inline args), pass the diff + the security contract (not your verdict), and reconcile the reply as data — not a ruling.
+
 ### Step 4.5: API Pit-of-Success Check
 
 For code that exposes APIs, shared utilities, or reusable interfaces, evaluate through 3 adversary personas:
@@ -624,7 +626,7 @@ Append to Code Review Report when invoked standalone. Suppress when called as su
 ```yaml
 chain_metadata:
   skill: "rune-review.md"
-  version: "1.0.0"
+  version: "1.2.0"
   status: "[DONE | DONE_WITH_CONCERNS]"
   domain: "[area reviewed]"
   files_changed: []  # review doesn't change files
@@ -672,7 +674,7 @@ chain_metadata:
 ~3000-6000 tokens input, ~1000-2000 tokens output. Sonnet default, opus for security-critical reviews. Runs once per implementation cycle.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

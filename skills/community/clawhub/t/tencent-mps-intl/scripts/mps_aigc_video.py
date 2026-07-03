@@ -39,20 +39,20 @@ COS Storage Configuration (optional):
 
 Usage:
   # Text-to-video: simplest usage (Hunyuan model)
-  python mps_aigc_video.py --prompt "A cute orange cat stretching in the sunlight"
+  python3 mps_aigc_video.py --prompt "A cute orange cat stretching in the sunlight"
 
   # Specify model and version
-  python mps_aigc_video.py --prompt "Cyberpunk city at night" --model Kling --model-version 2.5
+  python3 mps_aigc_video.py --prompt "Cyberpunk city at night" --model Kling --model-version 2.5
 
   # Image-to-video: first-frame image + description
-  python mps_aigc_video.py --prompt "Bring the scene to life" \
+  python3 mps_aigc_video.py --prompt "Bring the scene to life" \
       --image-url https://example.com/photo.jpg
 
   # Kling storyboard: single shot (automatic intelligent splitting)
-  python mps_aigc_video.py --prompt "Travel diary capturing beautiful moments" --model Kling --multi-shot
+  python3 mps_aigc_video.py --prompt "Travel diary capturing beautiful moments" --model Kling --multi-shot
 
   # Kling storyboard: multi-shot (custom per-shot prompts)
-  python mps_aigc_video.py --model Kling --multi-shot --duration 12 \
+  python3 mps_aigc_video.py --model Kling --multi-shot --duration 12 \
       --multi-prompts-json '[
         {"index": 1, "prompt": "City skyline viewed from a hotel window at sunrise", "duration": "3"},
         {"index": 2, "prompt": "Enjoying breakfast at a cafe, pedestrians outside the window", "duration": "4"},
@@ -60,52 +60,52 @@ Usage:
       ]'
 
   # First/last frame video (GV / Kling 2.1 / Vidu q2-pro)
-  python mps_aigc_video.py --prompt "Transition animation" --model GV \
+  python3 mps_aigc_video.py --prompt "Transition animation" --model GV \
       --image-url https://example.com/start.jpg \
       --last-image-url https://example.com/end.jpg
 
   # GV multi-image reference (up to 3 images, specify asset/style)
-  python mps_aigc_video.py --prompt "Blend elements" --model GV \
+  python3 mps_aigc_video.py --prompt "Blend elements" --model GV \
       --ref-image-url https://example.com/img1.jpg --ref-image-type asset \
       --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
   # Kling O1 reference video (source video to edit + preserve original audio)
-  python mps_aigc_video.py --prompt "Stylize the video" --model Kling --model-version O1 \
+  python3 mps_aigc_video.py --prompt "Stylize the video" --model Kling --model-version O1 \
       --ref-video-url https://example.com/video.mp4 --ref-video-type base --keep-original-sound yes
 
   # Mingmou landscape to portrait
-  python mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
+  python3 mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
 
   # Specify duration, resolution, and aspect ratio
-  python mps_aigc_video.py --prompt "Sunrise time-lapse" --model Kling --duration 10 \
+  python3 mps_aigc_video.py --prompt "Sunrise time-lapse" --model Kling --duration 10 \
       --resolution 1080P --aspect-ratio 16:9
 
   # Kling motion control scene
-  python mps_aigc_video.py --prompt "Character walking" --model Kling --scene-type motion_control
+  python3 mps_aigc_video.py --prompt "Character walking" --model Kling --scene-type motion_control
 
   # Remove watermark + generate audio + background music
-  python mps_aigc_video.py --prompt "Product showcase" --model Kling \
+  python3 mps_aigc_video.py --prompt "Product showcase" --model Kling \
       --no-logo --enable-audio true --enable-bgm
 
   # Vidu off-peak mode (generated within 48 hours)
-  python mps_aigc_video.py --prompt "Natural scenery" --model Vidu --off-peak
+  python3 mps_aigc_video.py --prompt "Natural scenery" --model Vidu --off-peak
 
   # Additional parameters (JSON format, e.g., camera control)
-  python mps_aigc_video.py --prompt "Fly over the city" --model Kling \
+  python3 mps_aigc_video.py --prompt "Fly over the city" --model Kling \
       --additional-params '{"camera_control":{"type":"simple"}}'
 
   # Store to COS
-  python mps_aigc_video.py --prompt "Promotional video" \
+  python3 mps_aigc_video.py --prompt "Promotional video" \
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou
 
   # Create task only (do not wait for result)
-  python mps_aigc_video.py --prompt "Time-lapse photography" --no-wait
+  python3 mps_aigc_video.py --prompt "Time-lapse photography" --no-wait
 
   # Query an existing task result
-  python mps_aigc_video.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_video.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # Dry run (print request parameters only, do not call the API)
-  python mps_aigc_video.py --prompt "Test video" --dry-run
+  python3 mps_aigc_video.py --prompt "Test video" --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -129,7 +129,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # COS SDK (optional, for generating temporary URLs)
@@ -235,7 +235,7 @@ def get_cos_presigned_url(bucket: str, region: str, key: str,
         Pre-signed URL, or None on failure
     """
     if not _COS_SDK_AVAILABLE:
-        print("Warning: COS SDK is not installed; cannot generate temporary URL. Install with: pip install cos-python-sdk-v5",  # NOCA:line-too-long(line cannot be shortened)
+        print("Warning: COS SDK is not installed; cannot generate temporary URL. Install with: python3 -m pip install cos-python-sdk-v5",  # NOCA:line-too-long(line cannot be shortened)
               file=sys.stderr)
         return None
 
@@ -285,7 +285,7 @@ def upload_to_cos(local_path: str, bucket: str, region: str,
     import uuid as _uuid
 
     if not _COS_SDK_AVAILABLE:
-        print("❌ Error: COS SDK is not installed; cannot upload local file. Install with: pip install cos-python-sdk-v5",
+        print("❌ Error: COS SDK is not installed; cannot upload local file. Install with: python3 -m pip install cos-python-sdk-v5",
               file=sys.stderr)
         sys.exit(1)
 
@@ -1373,7 +1373,7 @@ def run(args):
 
         if args.no_wait:
             print(f"\nTip: Use the following command to query the task result:")
-            print(f"  python mps_aigc_video.py --task-id {task_id}")
+            print(f"  python3 mps_aigc_video.py --task-id {task_id}")
             return result
 
         # Automatically poll and wait for result
@@ -1430,16 +1430,16 @@ def main():
         epilog="""
 Examples:
   # Text-to-video (default Hunyuan model)
-  python mps_aigc_video.py --prompt "A cute orange cat stretching in the sunlight"
+  python3 mps_aigc_video.py --prompt "A cute orange cat stretching in the sunlight"
 
   # Specify Kling model version 2.5 + 10-second duration
-  python mps_aigc_video.py --prompt "Cyberpunk" --model Kling --model-version 2.5 --duration 10
+  python3 mps_aigc_video.py --prompt "Cyberpunk" --model Kling --model-version 2.5 --duration 10
 
   # Kling multi-shot: single shot (automatic intelligent splitting)
-  python mps_aigc_video.py --prompt "Travel diary, capturing beautiful moments" --model Kling --multi-shot
+  python3 mps_aigc_video.py --prompt "Travel diary, capturing beautiful moments" --model Kling --multi-shot
 
   # Kling multi-shot: multiple shots (custom per shot)
-  python mps_aigc_video.py --model Kling --multi-shot --duration 12 \\
+  python3 mps_aigc_video.py --model Kling --multi-shot --duration 12 \\
       --multi-prompts-json '[
         {"index": 1, "prompt": "At sunrise, city skyline viewed from hotel window", "duration": "3"},
         {"index": 2, "prompt": "Having breakfast at a cafe, pedestrians on the street outside", "duration": "4"},
@@ -1447,62 +1447,62 @@ Examples:
       ]'
 
   # Image-to-video (first frame image URL)
-  python mps_aigc_video.py --prompt "Bring the image to life" --image-url https://example.com/photo.jpg
+  python3 mps_aigc_video.py --prompt "Bring the image to life" --image-url https://example.com/photo.jpg
 
   # Image-to-video (first frame image COS path)
-  python mps_aigc_video.py --prompt "Bring the image to life" \\
+  python3 mps_aigc_video.py --prompt "Bring the image to life" \\
       --image-cos-bucket mybucket-125xxx --image-cos-region ap-guangzhou --image-cos-key /input/photo.jpg
 
   # First-and-last frame video generation (GV model)
-  python mps_aigc_video.py --prompt "Transition" --model GV \\
+  python3 mps_aigc_video.py --prompt "Transition" --model GV \\
       --image-url https://example.com/start.jpg \\
       --last-image-url https://example.com/end.jpg
 
   # GV multi-image reference (URL)
-  python mps_aigc_video.py --prompt "Fusion" --model GV \\
+  python3 mps_aigc_video.py --prompt "Fusion" --model GV \\
       --ref-image-url https://example.com/img1.jpg --ref-image-type asset \\
       --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
   # GV multi-image reference (COS path)
-  python mps_aigc_video.py --prompt "Fusion" --model GV \\
+  python3 mps_aigc_video.py --prompt "Fusion" --model GV \\
       --ref-image-cos-bucket mybucket-125xxx --ref-image-cos-region ap-guangzhou --ref-image-cos-key /input/img1.jpg
       --ref-image-type asset \\
       --ref-image-cos-bucket mybucket-125xxx --ref-image-cos-region ap-guangzhou --ref-image-cos-key /input/img2.jpg
       --ref-image-type style
 
   # Kling reference video + keep original audio
-  python mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \\
+  python3 mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \\
       --ref-video-url https://example.com/video.mp4 \\
       --ref-video-type base --keep-original-sound yes
 
   # Kling reference video (COS path, auto-generates pre-signed URL)
-  python mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \\
+  python3 mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \\
       --ref-video-cos-bucket mybucket-125xxx --ref-video-cos-region ap-guangzhou --ref-video-cos-key /input/video.mp4 \\
       --ref-video-type base --keep-original-sound yes
 
   # Mingmou landscape to portrait
-  python mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
+  python3 mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
 
   # PixVerse v6 text-to-video (10s + 21:9 + 1080p quality)
-  python mps_aigc_video.py --prompt "Cinematic city skyline shot" --model PixVerse --model-version v6 \\
+  python3 mps_aigc_video.py --prompt "Cinematic city skyline shot" --model PixVerse --model-version v6 \\
       --duration 10 --aspect-ratio 21:9 --quality 1080p
 
   # PixVerse c1 image-to-video (short-form 9:16 + 540p quality)
-  python mps_aigc_video.py --prompt "Character walking forward" --model PixVerse --model-version c1 \\
+  python3 mps_aigc_video.py --prompt "Character walking forward" --model PixVerse --model-version c1 \\
       --image-url https://example.com/first-frame.jpg --duration 5 --aspect-ratio 9:16 --quality 540p
 
   # 1080P + 16:9 + remove watermark + audio + BGM
-  python mps_aigc_video.py --prompt "Product showcase" --model Kling \\
+  python3 mps_aigc_video.py --prompt "Product showcase" --model Kling \\
       --resolution 1080P --aspect-ratio 16:9 --no-logo --enable-audio true --enable-bgm
 
   # Vidu off-peak mode
-  python mps_aigc_video.py --prompt "Scenery" --model Vidu --off-peak
+  python3 mps_aigc_video.py --prompt "Scenery" --model Vidu --off-peak
 
   # Query task result
-  python mps_aigc_video.py --task-id 4-AigcVideo-c3b145ec76xxxx
+  python3 mps_aigc_video.py --task-id 4-AigcVideo-c3b145ec76xxxx
 
   # Dry Run (print request parameters only)
-  python mps_aigc_video.py --prompt "Test" --dry-run
+  python3 mps_aigc_video.py --prompt "Test" --dry-run
 
 Supported models:
   Hunyuan     Tencent Hunyuan large model (default)

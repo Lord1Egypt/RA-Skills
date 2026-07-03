@@ -1,0 +1,48 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-bar-negative",
+    "title": "Net headcount change",
+    "chart": {
+      "type": "bar",
+      "series": [
+        {
+          "name": "Delta",
+          "data": [
+            {
+              "label": "Mon",
+              "value": 4
+            },
+            {
+              "label": "Tue",
+              "value": -2
+            },
+            {
+              "label": "Wed",
+              "value": 6
+            },
+            {
+              "label": "Thu",
+              "value": -1
+            },
+            {
+              "label": "Fri",
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "axis_config": {
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "x_label": "Day",
+        "y_label": "People (delta)"
+      }
+    }
+  }
+]

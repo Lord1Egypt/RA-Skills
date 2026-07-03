@@ -1,7 +1,7 @@
 ---
 name: "fall-detection-video-analysis"
 description: "Detects whether anyone has fallen within a target area. Supports video stream analysis and is suitable for real-time safety monitoring of elderly people living alone. | 跌倒检测视频版技能，检测目标区域内是否有人跌倒，支持视频流检测，适用于独居老人居家安全监测"
-version: "1.0.4"
+version: "1.0.5"
 license: "MIT-0"
 ---
 

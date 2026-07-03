@@ -24,7 +24,7 @@ import argparse
 import os
 import sqlite3
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 # Order matters: bank_match_rule precedes bank_statement_line so the line's
 # match_rule_id FK target exists when Postgres creates it.

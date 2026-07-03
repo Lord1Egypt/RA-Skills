@@ -114,4 +114,3 @@ bash scripts/uninstall.sh
 - `pairing required` → approve pending device via `openclaw devices approve <requestId> --token <gateway-token>`.
 
 ces approve <requestId> --token <gateway-token>`.
-

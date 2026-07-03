@@ -1,0 +1,9 @@
+{
+  "promptInput": "",
+  "settingsButton": "button:has-text(\"Settings\")",
+  "createButton": "button:has-text(\"Create\")",
+  "saveButton": "",
+  "confirmYesButton": "",
+  "downloadButton": "",
+  "lastUpdated": "2026-06-21T02:16:21.346Z"
+}

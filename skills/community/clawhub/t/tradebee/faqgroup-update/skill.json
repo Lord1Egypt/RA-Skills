@@ -1,0 +1,109 @@
+{
+  "name": "faqgroup-update",
+  "description": "A FAQ group update skill based on the Tradebee Website Builder Open API. Before sending the update request, it automatically reads the current FAQ group and writes a local JSON backup file containing the pre-update backup bundle.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to update. First call `languages-get`, then copy one exact `language` value the user confirms."
+      },
+      "faqgroup": {
+        "type": "object",
+        "description": "Required. FAQ group fields to update. `faqgroup_id` is mandatory. Every other field is optional and should be omitted unless the user explicitly wants to change it.",
+        "properties": {
+          "faqgroup_id": {
+            "type": "integer",
+            "description": "Required. Existing FAQ group ID to update. First call `faqgroup-read`, then copy one exact `faqgroup_id`."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Optional. FAQ group name, up to 100 characters."
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. Short plain-text description, up to 300 characters."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. FAQ group page SEO fields."
+          }
+        },
+        "required": [
+          "faqgroup_id"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact FAQ group update request after seeing the final language and payload. That approval must also cover the automatic pre-update backup read and local backup file write before the update request is sent.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact FAQ group payload to be updated."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact FAQ group payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "faqgroup",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      },
+      "backup": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned automatic pre-update backup information."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "faqgroup.faqgroup_id": {
+      "skill": "faqgroup-read",
+      "field": "list[].faqgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select one existing FAQ group ID from `faqgroup-read` under the same language."
+    }
+  }
+}

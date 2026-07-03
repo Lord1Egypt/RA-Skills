@@ -1,305 +1,121 @@
-# clawfetch (ClawHub Skill)
+# clawfetch Skill
 
-**Languages:** English | [中文说明](README_zh.md)
+This directory is a thin OpenClaw/ClawHub skill wrapper for the published `clawfetch` npm CLI. It is not a standalone scraper project and does not copy clawfetch source code.
 
-`clawfetch` is a **web page → markdown scraper CLI** designed primarily for
-[OpenClaw](https://github.com/openclaw/openclaw) agents and skills.
+## Why It Exists
 
-This skill wraps the published `clawfetch` npm package so that OpenClaw can
-call it as a **trusted, inspectable tool** instead of shipping its own
-scraper logic.
+The skill lets Agents call clawfetch as a controlled tool for turning web pages, GitHub README pages, and Reddit threads into knowledge-base friendly markdown. The CLI remains the only implementation of scraping, runtime lifecycle, site-specific behavior, and error recovery.
 
-It runs especially well inside the patched OpenClaw Docker image
-`ernestyu/openclaw-patched`, and is mainly intended as a **front-end
-preprocessor for local knowledge bases** (e.g. `clawsqlite` / Clawkb):
+## First-Use Install Model
 
-- Take a URL → get normalized markdown with a small metadata header
-- Feed that markdown into SQLite-based KBs or other ingestion pipelines
-- Avoid running a full desktop browser or ad-hoc scrapers inside agents
+Installing this skill wrapper is not the same as installing a ready-to-run clawfetch environment. A first-time Agent must complete all stages below.
 
-Under the hood the CLI uses:
+1. Install or copy this skill wrapper directory.
+2. Enter the installed skill directory, the directory containing `SKILL.md` and `bootstrap_deps.sh`.
+3. Bootstrap the published npm CLI into this skill directory:
 
-- **Playwright** (headless Chromium)
-- **Mozilla Readability** (article extraction)
-- **Turndown** (HTML → markdown)
-- **Optional FlareSolverr backend** for Cloudflare / bot challenge pages (via `FLARESOLVERR_URL`)
+```bash
+cd <installed skill directory>
+sh bootstrap_deps.sh
+```
 
-Input: a single `http/https` URL
+4. Install the browser runtime through the CLI:
 
-Output: normalized markdown to stdout with an `--- METADATA ---` header, e.g.:
+```bash
+node node_modules/clawfetch/clawfetch.js runtime install
+```
+
+5. Check the runtime before fetching:
+
+```bash
+node node_modules/clawfetch/clawfetch.js runtime check
+```
+
+Only after step 5 succeeds should an Agent treat clawfetch as ready for browser-backed fetching.
+
+Optional smoke test:
+
+```bash
+node node_modules/clawfetch/clawfetch.js https://example.com
+```
+
+A successful smoke test prints `--- METADATA ---` and `--- MARKDOWN ---`.
+
+The bootstrap script installs the published `clawfetch` npm package into this skill directory as `node_modules/clawfetch` and verifies that `node_modules/clawfetch/clawfetch.js` exists before reporting success. It does not install the browser runtime, run `git clone`, download a source tree, modify global npm state, change system paths, or install unrelated tools.
+
+By default the script follows the version in the project root `package.json`. If the wrapper is distributed without the project root, it falls back to the pinned version recorded in the script. That fallback exists only because standalone ClawHub distribution cannot dynamically read the project root; keep it aligned with the current published CLI version.
+
+## Configuration
+
+This skill ships with a formal config file:
 
 ```text
---- METADATA ---
-Title: ...
-Author: ...
-Site: ...
-FinalURL: ...
-Extraction: readability|fallback-container|body-innerText|github-raw-fast-path|reddit-rss
-FallbackSelector: ...   # only when not readability
---- MARKDOWN ---
-<markdown>
+clawfetch.toml
 ```
 
-The goal is **not** to invent yet another generic web scraper, but to provide
-an **OpenClaw-focused, KB-friendly** fetcher with:
-
-- predictable output format
-- site-specific fast paths (GitHub README, Reddit RSS)
-- clear `NEXT:` hints on errors for agents
-
----
-
-## Cloudflare / bot challenge support
-
-For sites protected by Cloudflare or similar bot challenges (for example some Kaggle pages),
-`clawfetch` can use an external JS-capable backend such as FlareSolverr:
-
-- When the environment variable `FLARESOLVERR_URL` points to a FlareSolverr-compatible
-  service, the CLI can automatically call it when a bot-block page is detected.
-- You can also explicitly use `--via-flaresolverr` to force using that backend for a given URL:
-
-```bash
-FLARESOLVERR_URL=http://127.0.0.1:8191 \
-  node node_modules/clawfetch/clawfetch.js --via-flaresolverr 'https://www.kaggle.com/.../some-article'
-```
-
-If `clawfetch` detects a Cloudflare / bot challenge page in browser mode **and** no
-`FLARESOLVERR_URL` is configured, it will emit a `NEXT:` hint similar to:
+In the normal skill layout, the CLI entry is:
 
 ```text
-INFO: Detected possible bot-block / Cloudflare challenge page.
-NEXT: Configure FLARESOLVERR_URL to point to a FlareSolverr service, or open the URL in a full browser to pass the challenge manually.
+node_modules/clawfetch/clawfetch.js
 ```
 
-On normal sites (without such challenges), `clawfetch` still only uses Playwright or its
-fast-paths (GitHub / Reddit) and does not depend on FlareSolverr.
+That CLI resolves the fixed host config as this skill directory's `clawfetch.toml`.
+It does not search upward from the caller's current working directory. Keep
+long-lived FlareSolverr settings in this file, not inside
+`node_modules/clawfetch`, because `node_modules/clawfetch` is an npm install
+artifact that may be replaced during bootstrap, repair, or upgrade.
 
----
+Default config:
 
-## 1. Why this skill exists
+```toml
+[flaresolverr]
+enabled = false
+# url = "http://127.0.0.1:8191"
+max_timeout_ms = 60000
+```
 
-There are already countless scraping libraries, but in an OpenClaw + KB
-workflow we have some specific needs:
+To enable FlareSolverr, edit `clawfetch.toml`, set `enabled = true`, and provide
+a reachable `url`, for example `http://127.0.0.1:8191` or
+`http://flaresolverr:8191` in Docker/service-network setups. `FLARESOLVERR_URL`
+is still accepted as a compatibility or temporary override, but it is not the
+recommended primary configuration path.
 
-- Agents run inside Docker (often `ernestyu/openclaw-patched`)
-- We want **one standard CLI** for “URL → markdown + metadata”
-- We want clean, predictable markdown for ingestion, not raw HTML
-- We want safe, reviewable behavior — no hidden git clones or random scripts
+## Usage
 
-This skill:
-
-- Delegates heavy work to the **published `clawfetch` npm package**
-- Keeps the skill artifact itself very small and easy to audit
-- Makes it trivial for agents to call `clawfetch` from within the
-automatically installed skill directory
-
-If you are building anything around `clawsqlite` / Clawkb, this is the
-recommended way to fetch web pages into your KB.
-
----
-
-## 2. Installation in OpenClaw
-
-> **Note:** Older docs may mention `clawhub install clawfetch` and imply that
-> the npm dependencies are auto-installed. The current workflow is
-> **two explicit steps** using the `openclaw` CLI.
-
-### Step 1 — Install the skill shell into your workspace
-
-Use the OpenClaw skills CLI to download the skill into the active workspace:
+After bootstrap and a successful runtime check, call the local CLI:
 
 ```bash
-openclaw skills install clawfetch
+node node_modules/clawfetch/clawfetch.js https://example.com/article
+node node_modules/clawfetch/clawfetch.js https://github.com/owner/repo
+node node_modules/clawfetch/clawfetch.js https://www.reddit.com/r/example/comments/...
 ```
 
-This will create a directory like:
-
-```text
-~/.openclaw/workspace/skills/clawfetch
-```
-
-At this point the directory only contains the skill metadata and helper files
-(`SKILL.md`, `manifest.yaml`, `bootstrap_deps.sh`, READMEs, etc.).
-
-### Step 2 — Bootstrap the npm CLI (required once)
-
-Change into the skill directory and run the bootstrap script to install the
-actual `clawfetch` npm package locally:
+Runtime lifecycle commands also go through the CLI:
 
 ```bash
-cd ~/.openclaw/workspace/skills/clawfetch
-bash bootstrap_deps.sh
+node node_modules/clawfetch/clawfetch.js runtime install
+node node_modules/clawfetch/clawfetch.js runtime check
+node node_modules/clawfetch/clawfetch.js runtime repair
+node node_modules/clawfetch/clawfetch.js runtime upgrade
+node node_modules/clawfetch/clawfetch.js runtime diagnose --json
 ```
 
-This script is intentionally minimal and reviewable. It only does:
+The skill layer must not manage browser runtime directly. It should surface the CLI's `NEXT:` hints to the Agent or operator.
+
+The browser runtime install location and lifecycle are decided by the CLI/project itself. This wrapper does not participate in path selection, runtime repair logic, or version matching.
+
+If setup fails, run:
 
 ```bash
-npm install clawfetch@0.1.7
+node node_modules/clawfetch/clawfetch.js runtime diagnose --json
 ```
 
-There is **no** runtime git clone, no vendored source, and no extra packages
-beyond `clawfetch` and its declared dependencies.
+Then follow the CLI's `NEXT:` output instead of inventing a skill-layer workaround.
 
-After this completes, the CLI entrypoint will be available at:
+## Boundaries
 
-```text
-~/.openclaw/workspace/skills/clawfetch/node_modules/clawfetch/clawfetch.js
-```
+This skill does not implement scraping logic, browser launch logic, Playwright package resolution, browser runtime management, GitHub fast-paths, Reddit RSS handling, FlareSolverr support, or markdown conversion.
 
-From there, both humans and agents can call the CLI directly.
+This skill also does not hide downloads, clone repositories, perform unrelated filesystem operations, or act as a general shell tool.
 
----
-
-## 3. Runtime usage (from the skill directory)
-
-After installation + bootstrap, the CLI entrypoint lives under the skill directory:
-
-```bash
-cd ~/.openclaw/workspace/skills/clawfetch
-node node_modules/clawfetch/clawfetch.js <url> [--max-comments N] [--no-reddit-rss]
-```
-
-Typical patterns:
-
-### 3.1 General articles / docs
-
-```bash
-node node_modules/clawfetch/clawfetch.js https://example.com/some-article > article.md
-```
-
-- launches headless Chromium via Playwright;
-- waits for content to stabilize;
-- uses Readability to extract the main article;
-- falls back to common containers or `body.innerText` if needed.
-
-### 3.2 GitHub repositories
-
-```bash
-node node_modules/clawfetch/clawfetch.js https://github.com/owner/repo > repo-readme.md
-```
-
-For GitHub repo URLs, `clawfetch` treats them as **documentation entry
-points**:
-
-- First tries `raw.githubusercontent.com` candidates (e.g. `README.md`,
-  `README_zh.md`).
-  - On success:
-    - `Extraction: github-raw-fast-path`
-    - `FinalURL` is the raw README URL
-    - Markdown body is the README content
-- If all raw candidates fail, it falls back to browser mode.
-
-The CLI will also recommend using git for deeper code exploration, e.g.:
-
-```text
-NOTE:
-  This content only covers the repository README.
-  To inspect the full project or source code, use git:
-
-    git clone git@github.com:owner/repo.git
-    cd repo
-```
-
-### 3.3 Reddit threads
-
-```bash
-node node_modules/clawfetch/clawfetch.js \
-  "https://www.reddit.com/r/reinforcementlearning/comments/tsv55f/r_reinforcement_learning_in_finance_project/" \
-  --max-comments 5 > reddit-thread.md
-```
-
-For Reddit URLs, `clawfetch` **by default** uses an Atom/RSS fast-path:
-
-- Convert `<url>` to `<url>.rss` (e.g. add `.rss` to the thread URL).
-- Fetch the feed using a normal desktop browser User-Agent.
-- Parse the feed into a structured markdown thread:
-  - First entry → main post:
-
-    ```markdown
-    ## Post: ...
-    by /u/... at ...
-
-    <post body>
-    ```
-
-  - Subsequent entries → comments:
-
-    ```markdown
-    ---
-
-    ### Comment by /u/... at ...
-
-    <comment body>
-    ```
-
-- The number of comments is limited by `--max-comments` (default 50;
-  `0` means no limit).
-
-You can disable the RSS fast-path with `--no-reddit-rss` to force full
-browser scraping, but for most cases the feed-based path is more stable.
-
----
-
-## 4. Dependencies and behaviour around missing deps
-
-The skill itself never calls `npm` at runtime beyond the one-time
-bootstrap. All dependency management is:
-
-- One-time `npm install clawfetch@0.1.7` in `bootstrap_deps.sh`.
-- At run time, **only the `clawfetch` CLI** is allowed to decide what to do.
-
-Inside the CLI, `clawfetch` uses `require()` checks for:
-
-- `playwright-core` (or `playwright`)
-- `@mozilla/readability`
-- `jsdom`
-- `turndown`
-
-If these packages are missing **and `--auto-install` is not used** (in
-the upstream CLI, not inside this skill):
-
-- It prints a clear list of missing packages;
-- It prints recommended `npm install` commands (global or local);
-- It exits with a non-zero code.
-
-If `--auto-install` is passed:
-
-- `clawfetch` will attempt a one-shot local `npm install` for missing
-  packages in its own directory;
-- On failure it prints `NEXT:` hints and exits.
-
-The skill does **not** perform any implicit installs beyond the initial
-`bootstrap_deps.sh` hook. Do **not** create a `.env` inside the skill
-folder; configure env on the agent/host or in the upstream `clawfetch`
-project instead.
-
----
-
-## 5. Safety and trust model
-
-To keep ClawHub moderation happy and avoid “suspicious” flags, this skill
-follows a constrained model:
-
-- No vendored `clawfetch` source code inside the skill.
-- No runtime `git clone`.
-- No arbitrary `curl | bash` or shell scripting beyond a single
-  `npm install clawfetch@0.1.7` in `bootstrap_deps.sh`.
-- All heavy logic lives in the public npm package `clawfetch`, which is
-  itself Apache-2.0 licensed.
-
-This mirrors the approach used for `clawhealth-garmin` (PyPI package + thin
-wrapper skill) and keeps the actual skill artifact small, auditable, and
-predictable.
-
-If you need to review behaviour, you can:
-
-- Inspect `clawfetch` source in the main `ernestyu/clawfetch` repo;
-- Inspect this skill’s three files (`SKILL.md`, `manifest.yaml`,
-  `bootstrap_deps.sh`).
-
----
-
-## 6. License
-
-This skill is MIT-licensed, while the underlying `clawfetch` package is
-Apache-2.0 licensed. See their respective repositories for full details.
+ClawHub publishes skill content under its registry license policy. The `clawfetch` npm CLI package remains licensed separately under Apache-2.0.

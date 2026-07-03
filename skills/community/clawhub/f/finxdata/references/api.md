@@ -113,6 +113,7 @@ export FINXDATA_AGENT_TYPE="openclaw"  # 也可在命令中传 --agent-type
 | `agent track-news` | `/api/v1/http/agent/track/news` | 另需 `--agent-type` | 新闻跟踪快照。 |
 | `agent track-market` | `/api/v1/http/agent/track/market` | 另需 `--agent-type` | 市场跟踪快照。 |
 | `agent track-notice` | `/api/v1/http/agent/track/notice` | 另需 `--agent-type` | 公告跟踪快照。 |
+| `agent economy-china` | `/api/v1/http/agent/economy/china` | `type`；另需 `--agent-type` | 中国宏观经济报表。 |
 | `agent economy-calendar` | `/api/v1/http/agent/economy/calendar` | `year`，`month`，`months=3`；另需 `--agent-type` | 国内宏观数据发布日历。 |
 | `agent ontology-abstract` | `/api/v1/http/agent/ontology/abstract` | `code`；另需 `--agent-type` | 股票图谱摘要，只返回代码、名称、摘要、分析时间和图谱版本。 |
 | `agent financial` | `/api/v1/http/agent/financial` | `code`；另需 `--agent-type` | 股票业绩报表简版，只返回业绩报表关键字段。 |

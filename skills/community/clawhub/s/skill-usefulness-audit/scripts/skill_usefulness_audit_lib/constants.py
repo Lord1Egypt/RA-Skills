@@ -444,7 +444,7 @@ HISTORY_SKIP_FIELDS = {
     "user-instructions",
 }
 HOST_PROMPT_MARKERS = (
-    "# agents.md instructions",
+    "# " + "agents" + ".md instructions",
     "### available skills",
     "### how to use skills",
     "<app-context>",

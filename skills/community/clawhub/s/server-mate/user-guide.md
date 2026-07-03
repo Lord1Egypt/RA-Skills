@@ -1,6 +1,6 @@
 # Server-Mate User Guide
 
-Version: `1.3.1`
+Version: `1.6.1`
 
 ## 1. What This Guide Covers
 
@@ -840,3 +840,163 @@ sqlite3 ./metrics.db "SELECT site, ip_address, created_at, expires_at, lifted_at
 - Enable AI diagnosis for complex `error_event` alerts
 - Add GeoIP enrichment for country / region reports
 - Add signed or expiring report download URLs if the report host is public
+
+---
+
+## 14. Visual SRE Web Dashboard Deployment
+
+Server-Mate v1.6.x includes a built-in light/dark/auto adaptive SRE Dashboard console.
+
+### 14.1 Enabling the Dashboard
+
+In `config.yaml`, configure the `dashboard` block:
+
+```yaml
+dashboard:
+  enabled: true                       # Enable the visual console
+  port: 8000                          # Listening port (default: 8000)
+```
+
+Alternatively, you can enable the dashboard from the command line using the `--dashboard` flag:
+
+```bash
+python3 scripts/server_agent.py --config config.yaml --daemon --dashboard
+```
+
+### 14.2 Accessing the Dashboard
+
+Once the daemon starts, the dashboard will listen on `http://0.0.0.0:8000` (or your configured port). You can visit it directly in your web browser.
+
+---
+
+## 15. Nginx Reverse Proxy (反代) Configuration
+
+To safely expose your dashboard to the internet or embed it into your personal portal, we highly recommend deploying an Nginx reverse proxy.
+
+### 15.1 Direct Domain Proxy with SSL and Basic Auth
+
+This configuration binds a sub-domain (e.g., `dashboard.yourdomain.com`) to the local Server-Mate dashboard port (`8000`) and secures it with HTTP Basic Authentication and SSL.
+
+```nginx
+# Create htpasswd for HTTP Basic Authentication:
+# sudo apt-get install apache2-utils
+# htpasswd -c /etc/nginx/.htpasswd username
+
+server {
+    listen 80;
+    server_name dashboard.yourdomain.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name dashboard.yourdomain.com;
+
+    ssl_certificate /etc/nginx/ssl/dashboard.yourdomain.com.crt;
+    ssl_certificate_key /etc/nginx/ssl/dashboard.yourdomain.com.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # Basic Authentication to protect dashboard metrics
+    auth_basic "Server-Mate Private Dashboard";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        
+        proxy_read_timeout 60s;
+    }
+}
+```
+
+### 15.2 Subdirectory Proxy (e.g., `yourdomain.com/server-mate/`)
+
+To access the dashboard via a subpath on an existing website:
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    location /server-mate/ {
+        # Note: Server-Mate API paths are relative. Ensure the trailing slashes match.
+        proxy_pass http://127.0.0.1:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+---
+
+## 16. Quick Node & Site Integration ("一键接入" 部署指南)
+
+There are two ways to connect other websites and servers to Server-Mate.
+
+### 16.1 Method 1: Centrally Monitor Remote Sites Agentlessly (Recommended for BT-Panel/宝塔)
+
+If the target website runs on a server with Baota Panel (BT-Panel) installed, you **do not** need to install Server-Mate on that target server! The main Server-Mate Agent can pull logs and monitor certificate expiry remotely.
+
+1. **Enable API access** on the target Baota Panel and obtain the API key. Add the IP of the main Server-Mate server to the panel's API whitelist.
+2. In the main Server-Mate's `config.yaml`, define the remote panel:
+   ```yaml
+   remote_panels:
+     my-remote-node:
+       url: https://remote-ip-or-domain:8888
+       api_key: "YOUR_BT_API_KEY" # Or map to environment variable: api_key_env
+   ```
+3. Register the remote site in `sites:`:
+   ```yaml
+   sites:
+     - domain: remote-site.com
+       site_host: remote-site.com
+       enabled: true
+       panel_id: my-remote-node # References the remote panel above
+       access_log: /www/wwwlogs/remote-site.com.log # Absolute path on remote host
+       error_log: /www/wwwlogs/remote-site.com.error.log # Absolute path on remote host
+   ```
+4. Test connectivity:
+   ```bash
+   python3 scripts/server_agent.py --config config.yaml --once
+   ```
+
+### 16.2 Method 2: One-Key Bootstrap Script for a Standalone Agent Node
+
+If you want to monitor system metrics (CPU, Memory, Disk IOPS, TCP connection counts, systemd services) on another independent Linux server, you can deploy a standalone agent node using this quick shell one-liner:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/tankeito/server-mate/main/assets/bootstrap_node.sh | sudo bash
+```
+
+*(Or manual installation bootstrap)*:
+
+```bash
+# 1. Clone repo
+git clone https://github.com/tankeito/server-mate.git /opt/server-mate
+cd /opt/server-mate
+
+# 2. Install minimal packages
+python3 -m pip install --upgrade pip
+python3 -m pip install psutil pyyaml matplotlib requests
+
+# 3. Initialize config
+cp config.example.yaml config.yaml
+# (Modify host_id, sites list, and dashboard port in config.yaml)
+
+# 4. Install and enable systemd daemon
+python3 scripts/server_agent.py --config ./config.yaml --generate-service | sudo tee /etc/systemd/system/server-mate.service > /dev/null
+sudo systemctl daemon-reload
+sudo systemctl enable --now server-mate.service
+sudo systemctl status server-mate.service
+```

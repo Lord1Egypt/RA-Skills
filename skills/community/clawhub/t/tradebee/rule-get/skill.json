@@ -1,0 +1,65 @@
+{
+  "name": "rule-get",
+  "description": "Read the tenant-scoped HTML fragment generation rules for one exact language and one exact scene from the Tradebee Website Builder Open API. Use this before generating `blog.description`, `faq.answer`, `products.description`, `productsgroup.section.top`, `productsgroup.section.bottom`, or `custompage.content`.",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code. Select it from `languages-get` after user confirmation. Do not guess, translate, or invent this value."
+      },
+      "scene": {
+        "type": "string",
+        "enum": [
+          "blog.description",
+          "faq.answer",
+          "products.description",
+          "productsgroup.section.top",
+          "productsgroup.section.bottom",
+          "custompage.content"
+        ],
+        "description": "Required. Exact HTML rule scene. Use only one fixed supported value and do not shorten, translate, or rename it."
+      }
+    },
+    "required": [
+      "language",
+      "scene"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "array",
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "description": "Returned rule payload from the selected language and scene."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

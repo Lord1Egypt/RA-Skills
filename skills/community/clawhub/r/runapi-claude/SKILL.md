@@ -129,7 +129,7 @@ should always stream.
         { "type": "text", "text": "What is in this image?" },
         {
           "type": "image_url",
-          "image_url": { "url": "https://example.com/image.png" }
+          "image_url": { "url": "https://cdn.runapi.ai/public/samples/mask.png" }
         }
       ]
     }
@@ -239,6 +239,9 @@ Token counting remains specific to the Anthropic-compatible
 | `claude-opus-4-5-20251101` | Pin Opus 4.5 snapshot |
 | `claude-sonnet-4-5-20250929` | Pin Sonnet 4.5 snapshot (supports `include_thoughts`) |
 | `claude-haiku-4-5-20251001` | Highest throughput lightweight model |
+| `claude-opus-4-1-20250805` | Pin Opus 4.1 snapshot |
+| `claude-opus-4-20250514` | Pin Opus 4 snapshot |
+| `claude-sonnet-4-20250514` | Pin Sonnet 4 snapshot |
 
 Aliases auto-resolve to dated snapshots: `claude-opus-4-5`,
 `claude-sonnet-4-5`, `claude-haiku-4-5`.

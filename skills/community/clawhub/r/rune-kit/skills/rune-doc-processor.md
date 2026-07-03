@@ -259,7 +259,7 @@ Format-specific fields: `sheets` (XLSX), `pages` (PDF/DOCX), `slides` (PPTX), `r
 ~1000-3000 tokens input, ~500-2000 tokens output. Sonnet — document processing requires understanding format libraries and generating correct code, but not deep reasoning.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

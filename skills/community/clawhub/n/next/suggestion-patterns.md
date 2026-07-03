@@ -304,12 +304,22 @@ Instead, the **Recommended** option is always **the most actionable follow-up** 
 
 ### Option composition rules
 
+#### multiSelect — combinability check FIRST (HARD STOP)
+
+**Before applying the layout table below, decide `multiSelect` by whether the follow-up options can be performed *together*, NOT by copying the table's default.** If 2+ options are independent actions the user could reasonably want done in one go (e.g. "commit the changes" + "update the doc" + "deploy"), set **`multiSelect: true`**. The `false` rows below apply ONLY to the mutually-exclusive "pick ONE next action OR end session" model. Recurrence cause (repeated user feedback): blindly applying the table's `false` default without the combinability check on additive follow-ups.
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Apply `multiSelect: false` from the table without checking combinability | First ask yourself: "could the user want 2+ of these done together?" → Yes ⇒ `multiSelect: true` |
+| 2 | Treat every wrap-up ask as single-select because the table says `false` | Combinable follow-ups (commit / doc / deploy / verify) are additive ⇒ `true`. Mutually-exclusive (one path vs end) ⇒ `false` |
+| 3 | Include an "End session" option in a `multiSelect: true` ask | With `true`, selecting nothing = end. Drop the "End session" option |
+
 | Pending count | multiSelect | Option layout |
 |------------|-------------|----------|
 | 0 | — | Skip ask entirely (no actionable follow-up exists). Do not generate a single "End session" option |
 | 1 | false | `[Recommended: run helper skill OR run pending task, Defer to next session, Hold]` — quote task subject |
-| 2~3 | false | `[Recommended: run helper skill OR run highest-priority pending, Run-now options per remaining task, End session (last option, no Recommended marker)]` |
-| 4+ | false (max 4) | Top 3 by priority (Recommended at top) + `End session` (last, no marker) — note "carryover N items" in the End-session description |
+| 2~3 | **combinable ⇒ true** (independent actions doable together; no "End session" option) / false (mutually-exclusive paths) | true: additive options, not-selecting = end. false: `[Recommended, per-task run-now, End session last]` |
+| 4+ | **combinable ⇒ true** / false (max 4) | true: top combinable actions, no "End session". false: top 3 (Recommended top) + `End session` last (no marker), note "carryover N items" |
 
 **Helper-skill recommendation phrasing (skill name hidden)**:
 

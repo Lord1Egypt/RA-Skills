@@ -53,48 +53,48 @@
 
 #### Basic Pull Upload
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4"
 ```
 
 #### Specify Media Name
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --media-name "Pulled Video"
 ```
 
 #### Specify Media Type (when URL has no extension)
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video" \
     --media-type mp4
 ```
 
 #### Specify Cover Image
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --cover-url "https://example.com/cover.jpg"
 ```
 
 #### Automatically Trigger Task Flow After Pull Upload
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --procedure "My Procedure"
 ```
 
 #### Wait for Task Completion
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
 
 ```
 
 #### Wait for Task Completion (Custom Timeout)
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
  \
 
@@ -102,21 +102,21 @@ python scripts/vod_pull_upload.py \
 
 #### Set Task Priority
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --tasks-priority 5
 ```
 
 #### Deduplication Identifier (Prevent Duplicate Submissions)
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --session-id "my-unique-id-001"
 ```
 
 #### JSON Output (with Wait for Result)
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
  \
     --json
@@ -124,7 +124,7 @@ python scripts/vod_pull_upload.py \
 
 #### dry-run Preview Parameters
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --media-name "Pulled Video" \
  \
@@ -133,7 +133,7 @@ python scripts/vod_pull_upload.py \
 
 #### Pull HLS Stream
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.m3u8" \
     --media-name "HLS Stream"
 ```

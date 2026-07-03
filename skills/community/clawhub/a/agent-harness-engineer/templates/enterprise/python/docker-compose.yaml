@@ -1,0 +1,26 @@
+# ============================================
+# Docker Compose 配置 - Enterprise
+# ============================================
+#
+# ⚠ AI构建提示:
+# 根据需求生成以下服务:
+#   1. agent-api: FastAPI 应用 (源码挂载 + 热重载)
+#   2. agent-worker: Celery Worker (异步任务处理)
+#   3. redis: 会话缓存 + 消息队列
+#   4. postgres: 持久化存储
+#   5. prometheus: 指标收集
+#   6. grafana: 可视化仪表盘 (可选)
+#   7. jaeger: 分布式追踪 (可选)
+
+version: "3.8"
+
+# TODO: 生成完整 docker-compose 配置
+# services:
+#   agent-api:
+#     build: .
+#     ports: ["8000:8000"]
+#     volumes: ["./src:/app/src", "./config:/app/config"]
+#     environment: ...
+#   redis: ...
+#   postgres: ...
+pass

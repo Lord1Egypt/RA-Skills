@@ -333,7 +333,7 @@ project/
 ~10000-20000 tokens total (across all sub-skill invocations). Sonnet for orchestration — sub-skills use their own model selection (ba uses opus, git uses haiku, etc.). Most expensive L1 skill due to 9-phase pipeline, but runs rarely (project creation is infrequent).
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

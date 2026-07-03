@@ -1,3 +1,14 @@
+---
+name: btc-price-monitor
+description: "Fetches the current Bitcoin price from CoinGecko and sends it to Telegram, with optional alerts if price falls below a set threshold."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# BTC Price Monitor
+
 # BTC Price Monitor
 
 ## Description

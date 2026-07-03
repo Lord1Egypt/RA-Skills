@@ -89,12 +89,12 @@ Access levels: `view`, `edit`, `admin` (default: `view`).
 
 ## Billing
 
-Org billing is managed through Stripe. Owners/admins can create checkout and billing portal sessions.
+Org billing is managed through Stripe. Owners/admins can start self-serve billing flows and create billing portal sessions.
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/orgs/{id}/billing` | Get plan, status, usage, limits, and subscription summary |
-| POST | `/api/orgs/{id}/billing/checkout` | Create Stripe Checkout Session (`{ plan: "starter" \| "team" }`) |
+| GET | `/api/orgs/{id}/billing` | Get plan, status, usage, limits, and subscription summary; owner/admin read requests sync Stripe first and return `502` if that sync fails |
+| POST | `/api/orgs/{id}/billing/checkout` | Start Stripe billing flow (`{ plan: "starter" \| "team" \| "pro" }`); new subscribers use Checkout and existing active/trialing/past-due subscribers use Billing Portal update confirmation |
 | POST | `/api/orgs/{id}/billing/portal` | Create Stripe Billing Portal Session |
 
 Plan limits are enforced when creating projects, human members, agents/integrations, and active tasks. Limit errors return `402` with `code: "PLAN_LIMIT_REACHED"`.
@@ -106,7 +106,7 @@ Plan limits are enforced when creating projects, human members, agents/integrati
 | GET | `/api/orgs/{id}/issues` | List tasks (see filters below) |
 | POST | `/api/orgs/{id}/issues` | Create task |
 | GET | `/api/orgs/{id}/issues/{issueId}` | Get task detail |
-| PATCH | `/api/orgs/{id}/issues/{issueId}` | Update task |
+| PATCH | `/api/orgs/{id}/issues/{issueId}` | Update task; optional `comment_body` also adds a task comment in the same request |
 | DELETE | `/api/orgs/{id}/issues/{issueId}` | Delete task (admin/owner only) |
 | POST | `/api/orgs/{id}/issues/bulk` | Bulk create tasks (up to 50) |
 | GET | `/api/orgs/{id}/issues/search?q=...` | Search tasks by title |
@@ -120,7 +120,8 @@ Issue-centric initiative links follow task project permissions: reading links re
 - `status` -- `backlog`, `todo`, `in_progress`, `done`, `cancelled`
 - `priority` -- `0` (urgent), `1` (high), `2` (medium), `3` (low)
 - `projectId`, `assigneeId`, `teamId`, `milestoneId`
-- `q` -- search title and description (case-insensitive)
+- `q` -- full issue lists search title and description (case-insensitive)
+- Compact views (`view=board` or `view=list`) also support `assignee` (member ID or `unassigned`, including multi-assignee links), `initiativeId`, `scope` (`mine` or `blocked`), and `q` over title plus issue number
 - `includeArchived` -- `true` to include archived tasks
 - `orderBy` -- `created_at` (default), `updated_at`, `priority`, `due_date`, `title`, `status`
 - `orderDir` -- `asc` or `desc` (default)
@@ -148,6 +149,10 @@ Add with `{ "blockedByIssueId": "uuid" }` or `{ "blockingIssueId": "uuid" }`. Ci
 | POST | `/api/orgs/{id}/issues/{issueId}/comments` | Add comment (`{ body }`) |
 | PATCH | `/api/orgs/{id}/issues/{issueId}/comments/{commentId}` | Edit comment |
 | DELETE | `/api/orgs/{id}/issues/{issueId}/comments/{commentId}` | Delete comment |
+
+Issue comments inherit issue project permissions: listing comments requires access to the issue's project, comment writes (add, edit, delete) require write access to that project, edit/delete still require comment authorship, and guests cannot access comments on unprojected issues.
+
+Comment bodies accept Markdown/plain text or existing rich-text HTML. Atoll stores and returns comment bodies as sanitized HTML. If sanitization leaves no visible text or safe media, the request returns `400` with `body is required` for direct comments or `comment_body is required` for issue updates with `comment_body`.
 
 ## Subtasks
 
@@ -245,6 +250,19 @@ Create accepts `title` or legacy `name`, plus camelCase aliases `goalId`, `owner
 | GET | `.../initiatives/{id}/milestones` | List linked milestones |
 | POST | `.../initiatives/{id}/milestones` | Link milestone (`{ milestone_id }`) |
 | DELETE | `.../initiatives/{id}/milestones/{milestoneId}` | Unlink milestone |
+| GET | `.../initiatives/{id}/targets` | List initiative targets |
+| POST | `.../initiatives/{id}/targets` | Create target (`{ title, mode?, current_value?, target_value?, unit?, unit_label?, target_date?, due_soon_days? }`) |
+| GET | `.../initiatives/{id}/targets/{targetId}` | Get target |
+| PATCH | `.../initiatives/{id}/targets/{targetId}` | Update target |
+| DELETE | `.../initiatives/{id}/targets/{targetId}` | Delete target |
+| GET | `.../initiatives/{id}/targets/{targetId}/issues` | List target issue links |
+| POST | `.../initiatives/{id}/targets/{targetId}/issues` | Link issue to target (`{ issue_id }`) |
+| DELETE | `.../initiatives/{id}/targets/{targetId}/issues/{issueId}` | Unlink issue from target |
+| GET | `.../initiatives/{id}/targets/{targetId}/milestones` | List target milestone links |
+| POST | `.../initiatives/{id}/targets/{targetId}/milestones` | Link milestone to target (`{ milestone_id }`) |
+| DELETE | `.../initiatives/{id}/targets/{targetId}/milestones/{milestoneId}` | Unlink milestone from target |
+
+Targets are initiative-level commitments. Use `mode: "progress"` for normal output tracking and `mode: "gate"` for launch blockers or prerequisites where KPI pace language would be misleading. Targets do not create KPI snapshots.
 
 ## Strategy
 
@@ -260,7 +278,7 @@ Returns findings only (not the full graph). Use it for a high-level review — o
 |--------|----------|-------------|
 | GET | `/api/orgs/{id}/heartbeat` | Get heartbeat context for the authenticated agent |
 
-Returns computed briefing with goal status, KPI pace/trend, initiative progress, assigned work, and signals. The endpoint is org-scoped, but project-bound payload details are filtered by the caller's project access; non-guest members can also see unprojected org-level strategy, and shared initiatives can appear with counts and signals based only on accessible work.
+Returns computed briefing with goal status, KPI pace/trend, initiative progress, assigned work, direct `attention_items`, `attention_summary`, signals, and a deterministic `recommended_action` when Atoll can propose one concrete strategy-backed next action. The endpoint is org-scoped, but project-bound payload details are filtered by the caller's project access; non-guest members can also see unprojected org-level strategy, and shared initiatives can appear with counts and signals based only on accessible work.
 
 Signal types: `kpi_off_pace`, `kpi_stale`, `issue_stale`, `issue_blocked`, `milestone_overdue`, `initiative_stalled`, `webhook_failing`. Severity: `info`, `warning`, `critical`.
 
@@ -271,6 +289,8 @@ atoll heartbeat --json
 atoll heartbeat --signals-only
 atoll heartbeat --severity critical
 ```
+
+`atoll heartbeat --signals-only --json` returns filtered `signals`, direct `attention_items`, `attention_summary`, and `recommended_action` for polling agents.
 
 ## Activity
 
@@ -420,9 +440,15 @@ URL must be an HTTPS DNS hostname. IP literals, `localhost`, and `.local` hosts 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
+| GET | `/api/orgs/{id}/notifications` | List unread actionable notifications for current org member |
+| POST | `/api/orgs/{id}/notifications/{notificationId}/ack` | Acknowledge current-member notification |
+| GET | `/api/orgs/{id}/notifications/preferences` | Read current-member notification preferences, including default-on mention notifications |
+| POST | `/api/orgs/{id}/notifications/preferences` | Update current-member notification preferences, including mention opt-out and cleanup |
 | GET | `/api/notifications` | List notifications (last 50, unread first) |
 | POST | `/api/notifications/{id}/read` | Mark as read |
 | POST | `/api/notifications/read-all` | Mark all as read |
+
+Current-member notifications can include `mention.created`, `issue.assigned`, `comment.added`, and `issue.status_changed`. Notification preferences currently support mention opt-out for `mention.created`. Disabling in-app `mention.created` delivery also attempts to acknowledge that member's currently unread mention notifications; when cleanup succeeds, muted mentions leave both the bell and heartbeat `attention_items`.
 
 ## Agents
 

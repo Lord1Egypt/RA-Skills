@@ -28,7 +28,6 @@
 | `--labels` | 否 | `"原始" "增强后"` | 自定义左右标签，格式: `--labels "左标签" "右标签"` |
 | `-o` / `--output` | 否 | `evals/test_result/compare_<时间戳>.html` | 输出 HTML 文件路径 |
 | `--type` | 否 | 自动检测 | 强制指定媒体类型：`video` 或 `image` |
-| `--dry-run` | 否 | — | 模拟执行，不实际生成 |
 
 ## 对比能力
 
@@ -42,7 +41,7 @@
 ### 视频增强前后对比
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/video.mp4" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/video_enhanced.mp4" \
     --title "4K 增强效果对比" \
@@ -52,7 +51,7 @@ python scripts/mps_gen_compare.py \
 ### 图片超分前后对比
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/photo.jpg" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/photo_sr.jpg" \
     --title "图片超分效果对比" \
@@ -63,7 +62,7 @@ python scripts/mps_gen_compare.py \
 ### 去水印前后对比
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/video.mp4" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/video_erased.mp4" \
     --title "去水印效果对比" \
@@ -73,7 +72,7 @@ python scripts/mps_gen_compare.py \
 ### 多组对比
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --pairs \
     "https://xxx.cos/input1.mp4,https://xxx.cos/output1.mp4" \
     "https://xxx.cos/input2.jpg,https://xxx.cos/output2.jpg" \
@@ -83,7 +82,7 @@ python scripts/mps_gen_compare.py \
 ### 本地文件对比（自动上传 COS 生成链接）
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original /data/workspace/input.mp4 \
     --enhanced /data/workspace/output.mp4 \
     --title "处理效果对比"

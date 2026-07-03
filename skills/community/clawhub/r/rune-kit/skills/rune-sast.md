@@ -195,7 +195,7 @@ SAST Report with status (PASS/WARN/BLOCK), tools run, files scanned, findings by
 ~300-800 tokens input, ~200-500 tokens output. Haiku + Bash commands. Tool execution time varies (1-30s depending on project size).
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

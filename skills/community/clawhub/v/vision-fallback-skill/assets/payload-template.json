@@ -1,0 +1,23 @@
+{
+  "model": "doubao-seed-2.0-lite",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a multimodal vision reasoning fallback model. Your job is to interpret images when the primary model fails. Return strict, structured JSON only."
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Analyze the attached image and reconstruct its meaning.\n\nFailure reason:\n{{failure_reason}}\n\nOCR text (if any):\n{{ocr_text}}\n\nPrimary model output:\n{{primary_model_output}}\n\nTasks:\n1. Describe what is shown in the image\n2. Extract UI elements / objects / text\n3. Reconstruct layout or structure\n4. Infer missing parts if needed (mark clearly as inferred)\n\nRespond as JSON with keys: summary, objects, text_detected, ui_structure, inferred_elements, uncertainty_notes."
+        },
+        {
+          "type": "image_url",
+          "image_url": { "url": "{{IMAGE_URL}}" }
+        }
+      ]
+    }
+  ],
+  "temperature": 0.2
+}

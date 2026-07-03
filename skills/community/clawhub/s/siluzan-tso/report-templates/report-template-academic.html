@@ -10,7 +10,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>广告数据报告 — 学术风格版式参考</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,19 +56,83 @@
           display: none !important;
         }
       }
+
+
+
+      /* 移动端原生适配（≤768px，内联） */
+      @supports (padding: env(safe-area-inset-bottom)) {
+        body {
+          padding-left: env(safe-area-inset-left, 0);
+          padding-right: env(safe-area-inset-right, 0);
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+
+        body {
+          overflow-x: clip;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        main {
+          padding-left: max(12px, env(safe-area-inset-left, 0px));
+          padding-right: max(12px, env(safe-area-inset-right, 0px));
+        }
+
+        .mobile-scroll-hint {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 12px;
+          color: #94a3b8;
+          padding: 8px 4px 4px;
+        }
+
+        .overflow-x-auto {
+          margin-inline: -4px;
+          padding-inline: 4px 12px;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        [id$="Chart"],
+        .h-72,
+        .h-64 {
+          height: clamp(220px, 58vw, 288px) !important;
+          min-height: 220px;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .mobile-scroll-hint {
+          display: none !important;
+        }
+      }
+
+      @media print {
+        .mobile-scroll-hint {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body class="min-h-screen bg-stone-200 font-serif text-stone-900 antialiased leading-relaxed">
     <main
-      class="mx-auto my-6 max-w-3xl bg-white px-6 py-10 shadow-sm ring-1 ring-stone-300 sm:px-10 sm:py-12"
+      class="mx-auto my-4 max-w-3xl bg-white px-4 py-8 shadow-sm ring-1 ring-stone-300 sm:my-6 sm:px-10 sm:py-12"
     >
-      <header class="mb-10 border-b-2 border-stone-800 pb-6">
+      <header class="mb-8 border-b-2 border-stone-800 pb-5 sm:mb-10 sm:pb-6">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p class="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-stone-500">
               Technical Report · Siluzan
             </p>
-            <h1 class="mt-2 text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
+            <h1 class="mt-2 text-xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
               <i class="fa-solid fa-book-open mr-2 text-stone-600" aria-hidden="true"></i>
               数据报告标题
             </h1>
@@ -107,7 +171,7 @@
           总览类指标（消耗、展示、点击、转化及派生率）；环比以符号与脚注形式呈现，避免过度装饰。
         </p>
 
-        <div class="grid grid-cols-2 gap-3 font-sans lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-3 font-sans sm:grid-cols-2 lg:grid-cols-4">
           <article class="border border-stone-400 bg-stone-50/80 p-4">
             <div
               class="flex items-center justify-between text-xs font-medium uppercase tracking-wide text-stone-500"
@@ -296,6 +360,7 @@
           明细数据表
         </h2>
         <div class="overflow-x-auto border border-stone-800">
+          <p class="mobile-scroll-hint no-print font-sans">← 左右滑动查看更多列 →</p>
           <table class="min-w-[640px] w-full border-collapse text-left font-sans text-sm">
             <thead>
               <tr class="border-b border-stone-800 bg-stone-200">

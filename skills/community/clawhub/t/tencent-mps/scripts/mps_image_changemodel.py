@@ -14,54 +14,54 @@ COS 存储约定：
 
 用法：
   # 最简用法：原图 URL + 衣物图 URL（默认 hourglass 体型）
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg"
 
   # 指定体型为 pear（梨形）
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --body-shape pear
 
   # 指定体型为 plus-size + 提高精度
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --body-shape plus-size --precision-scale 1.5
 
   # 原图使用 COS 路径输入
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --cos-input-key "/input/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --body-shape rectangle
 
   # 衣物图使用 COS 路径输入
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-cos-key "/input/garment.jpg" \\
       --body-shape apple
 
   # 原图使用本地文件（自动上传 COS）
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --local-file ./model.jpg \\
       --garment-url "https://example.com/garment.jpg" \\
       --body-shape hourglass
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --no-wait
 
   # 预览请求体（不实际调用 API）
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --body-shape pear --dry-run
 
   # 完成后自动下载结果到本地目录
-  python scripts/mps_image_changemodel.py \\
+  python3 scripts/mps_image_changemodel.py \\
       --url "https://example.com/model.jpg" \\
       --garment-url "https://example.com/garment.jpg" \\
       --download-dir ./results/
@@ -105,7 +105,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -420,6 +420,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     cred = get_credentials()
@@ -481,7 +487,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -495,7 +501,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

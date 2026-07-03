@@ -30,7 +30,7 @@ from node_writer import write_node_with_llm, extract_key_conclusion
 from reviewer import review_node
 from state_manager_v2 import (
     outline_load, outline_save, outline_update_status, outline_get_node, outline_get_context,
-    WORKSPACE, _get_paper_dir, _get_outline_nodes
+    WORKSPACE, _get_paper_dir, _get_outline_nodes, _set_outline_nodes
 )
 from outline_parser import (
     insert_chapter_summary_nodes,
@@ -40,7 +40,10 @@ from outline_parser import (
     extract_content_hints,
     save_content_hints_to_outline,
     outline_parse,
+    extract_code_name_from_docx,
+    extract_keywords_from_docx,
 )
+from research_tools import get_session_llm_func
 
 from gatekeeper_integration import (
     notify_gatekeeper,
@@ -48,6 +51,13 @@ from gatekeeper_integration import (
     write_user_decision,
     clear_pending,
 )
+from phase_manager import (
+    PhaseManager,
+    CONTENT_TYPE_INTEGRATED,
+    CONTENT_TYPE_REVIEW,
+    CONTENT_TYPE_SUMMARY,
+)
+from state_manager_v2 import _get_paper_dir
 
 
 # ============================================================
@@ -161,8 +171,60 @@ from state_manager_v2 import (
     load_orchestrate_state,
     save_orchestrate_state,
     init_orchestrate_state,
+    reset_orchestrate_state,
     update_progress,
 )
+
+
+# ============================================================
+# PhaseManager 集成辅助函数
+# ============================================================
+
+def _get_pm(paper_name: str):
+    """获取 PhaseManager 实例（惰性创建）"""
+    if not hasattr(_get_pm, "_cache"):
+        _get_pm._cache = {}
+    if paper_name not in _get_pm._cache:
+        workspace = _get_paper_dir(paper_name)
+        _get_pm._cache[paper_name] = PhaseManager(paper_name, workspace)
+    return _get_pm._cache[paper_name]
+
+
+def _build_hil_result(paper_name: str, phase: float, next_phase: float = None,
+                       review_data: Dict = None,
+                       phase_result: Dict = None,
+                       sub_type: str = None) -> Dict[str, Any]:
+    """
+    Phase 完成后通用处理：保存产出到文件 + 生成 HIL 消息。
+
+    sub_type: 可选子类型，用于同一 phase 的不同操作区分文件写入。
+    目前用于 Phase 1.3: "submit" 写 review 文件，"confirm" 写 integrated 文件，
+    避免两次调用覆盖同一文件。
+    """
+    pm = _get_pm(paper_name)
+
+    if phase_result and "content" in phase_result:
+        pm.save_integrated(phase, phase_result["content"])
+    if review_data:
+        # Phase 1.3 confirm 时用 integrated 文件，避免覆盖 submit 的 review 文件
+        if phase == 1.3 and sub_type == "confirm":
+            # confirm 产出是 chapter_tree，存 integrated
+            pm.save_integrated(phase, phase_result.get("content", "") if phase_result else "")
+        else:
+            pm.save_review(phase, review_data)
+        # 注入到 phase_result 中供 build_key_metrics 使用
+        if phase_result is None:
+            phase_result = {}
+        phase_result["review_report"] = review_data
+
+    hil_msg = pm.generate_hil_message(phase=phase, next_phase=next_phase)
+
+    return {
+        "ok": True,
+        "phase": f"phase{phase}",
+        "hil_message": hil_msg,
+        "summary": pm.get_phase_summary_dict(phase),
+    }
 
 
 # ============================================================
@@ -208,7 +270,6 @@ def orchestrate_phase1_1(
     paper_name: str,
     input_type: str,
     input_data: str,
-    llm_func: Callable[[str], str] = None,
     docx_path: str = None
 ) -> Dict[str, Any]:
     """
@@ -224,7 +285,6 @@ def orchestrate_phase1_1(
       paper_name: 论文名
       input_type: "docx" | "text" (拍板 #3 禁用 auto)
       input_data: docx_path 或 outline_text(取决于 input_type)
-      llm_func: LLM 调用函数(可选,AI 兑底匹配标题)
       docx_path: 保留与 input_data 重复(兼容调用方习惯)
 
     返回:
@@ -308,6 +368,13 @@ def orchestrate_phase1_1(
     # 增强项1:在每个 L1 章节末尾插入虚拟摘要节点
     outline = insert_chapter_summary_nodes(outline)
 
+    # P2-1 fix: 初始化所有节点的 content_hint 字段为空字符串
+    # 统一字段存在性，避免 context_builder 读取时需区分"字段不存在"和"值为空"
+    outline_tree = outline.get("outline_tree", {})
+    for n in outline_tree.get("nodes", []):
+        if "content_hint" not in n:
+            n["content_hint"] = ""
+
     # 持久化 outline_state(包含虚拟节点)
     outline_save(paper_name, outline)
 
@@ -326,6 +393,20 @@ def orchestrate_phase1_1(
     state["last_updated"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     save_orchestrate_state(paper_name, state)
 
+    # PhaseManager:保存产出 + 生成 HIL 消息
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=1,
+        next_phase=1.3,
+        review_data={
+            "outline": outline,
+            "issues": result.get("issues", []),
+            "summary": result.get("summary", {}),
+            "input_type": input_type,
+        },
+        phase_result={"content": input_data if isinstance(input_data, str) else str(input_data)},
+    )
+
     return {
         "ok": True,
         "action": "review_outline",
@@ -334,17 +415,71 @@ def orchestrate_phase1_1(
         "outline": outline,
         "issues": result.get("issues", []),
         "summary": result.get("summary", {}),
+        "hil_message": hil_info["hil_message"],
+        "summary_phase": hil_info["summary"],
         "message": f"目录已解析(input_type={input_type}),请确认后进入 Phase 1.2"
     }
 
 
-def confirm_phase1(paper_name: str) -> Dict[str, Any]:
+def confirm_phase1(paper_name: str, user_input: str = None) -> Dict[str, Any]:
+    """
+    v2.1.2+:支持 HIL #1 公司映射决策路由。
+    user_input 格式:
+      - "[1] vivo" → 接受大纲,actual_name="vivo"
+      - "[1] 跳过" 或 "[2]" → 接受大纲,skip_mapping=true
+      - "[3]" → 取消(返回 error,不修改 state)
+      - None / 其他 → 接受大纲但不更新 actual_name(用于 v2.1.2 之前的兼容路径)
+    """
     state = load_orchestrate_state(paper_name)
     if not state:
         return {"ok": False, "error": "状态文件不存在"}
 
     if state.get("phase1_confirmed"):
         return {"ok": True, "message": "目录已确认"}
+
+    # 解析用户输入的 HIL #1 决策(v2.1.2 公司映射)
+    if user_input is not None:
+        decision_text = user_input.strip()
+        ci = dict(state.get("company_info") or {})  # v2.1.2 修复:创建副本,避免引用问题
+        if decision_text.startswith("[3]") or decision_text.lower() in ("cancel", "quit"):
+            return {
+                "ok": False,
+                "error": "用户取消 HIL #1 确认,phase1_confirmed 未更新",
+                "phase1_confirmed": False
+            }
+        if decision_text.startswith("[1]"):
+            # 提取 actual_name: "[1] vivo" → "vivo"
+            actual = decision_text[3:].strip()
+            # 处理 "[1] 跳过" 这种歧义输入:视为跳过
+            if actual in ("", "跳过", "skip", "无", "none"):
+                ci["skip_mapping"] = True
+                ci["actual_name"] = None
+            else:
+                ci["actual_name"] = actual
+                ci["skip_mapping"] = False
+        elif decision_text.startswith("[2]"):
+            ci["skip_mapping"] = True
+            ci["actual_name"] = None
+        # [其他]/空 → 保持原样(向后兼容 v2.1.2 之前的调用)
+
+        # v2.1.2 P0:强制校验公司映射
+        if not ci.get("actual_name") and not ci.get("skip_mapping"):
+            return {
+                "ok": False,
+                "error": (
+                    "公司映射未填写。请在 HIL #1 提供 actual_name(如 [1] vivo)或选择跳过([2])。"
+                    "该信息仅用于数据检索 + 写作锚定 + 脱敏校验,不会进入最终 Word 文档。"
+                ),
+                "phase1_confirmed": False,
+                "company_info": ci,
+                "hint": (
+                    "OpenClaw runtime 下,agent 应主动询问用户 actual_name 后再调用 confirm_phase1"
+                )
+            }
+
+        ci["confirmed"] = True
+        ci["confirmed_at"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
+        state["company_info"] = ci
 
     state["phase1_confirmed"] = True
     # 拍板 #1 强制 + #2 方案 B 枚举字段:
@@ -358,7 +493,13 @@ def confirm_phase1(paper_name: str) -> Dict[str, Any]:
         "ok": True,
         "phase": "phase1_2",
         "phase1_3_status": "pending",
-        "message": "目录已确认(Phase 1.2 完成)，请核对下方归因分析(Phase 1.3)"
+        "company_info": state.get("company_info"),
+        "hil_message": None,
+        "message": (
+            "目录已确认(Phase 1.2 完成)。"
+            f"公司映射:actual_name={state.get('company_info', {}).get('actual_name') or '(跳过)'}。"
+            "请核对下方归因分析(Phase 1.3)"
+        )
     }
 
 
@@ -368,11 +509,12 @@ def confirm_phase1(paper_name: str) -> Dict[str, Any]:
 
 def orchestrate_phase1_3(
     paper_name: str,
-    docx_path: str = None,
-    llm_func: Callable[[str], str] = None
+    docx_path: str = None
 ) -> Dict[str, Any]:
     """
     Phase 1.3: 开题报告归因(增强项4 content_hint 接入链路)
+
+    llm_func 内部从 session 获取，不再外部传参。
 
     流程:
       1. 检查 phase1_confirmed == True
@@ -399,6 +541,15 @@ def orchestrate_phase1_3(
         message: str
       }
     """
+    # 内部获取 llm_func（固化到内存，一次获取后续直接用）
+    try:
+        llm_func = get_session_llm_func()
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": f"无法获取 session LLM 配置，请确保从 OpenClaw session 内调用。详情: {e}"
+        }
+
     state = load_orchestrate_state(paper_name)
     if not state:
         return {"ok": False, "error": "状态文件不存在"}
@@ -443,13 +594,45 @@ def orchestrate_phase1_3(
             "error": proposal_result.get("error", "开题报告提取失败")
         }
 
-    # 3. extract_content_hints 提炼
+    # 3. extract_content_hints 提炼（复用 proposal_result，避免重复 LLM 调用）
     content_hints = extract_content_hints(
-        docx_path, outline_tree, llm_func=llm_func
+        docx_path, outline_tree, llm_func=llm_func, proposal_result=proposal_result
     )
 
     # 4. save_content_hints_to_outline 写入 state
     save_result = save_content_hints_to_outline(paper_name, content_hints)
+
+    # 4.1 提取去标识公司名（code_name）
+    code_name_result = extract_code_name_from_docx(docx_path, llm_func=llm_func)
+    if code_name_result.get("ok"):
+        # v2.1.2 修复:保留 HIL #1 confirm_phase1() 已写入的 actual_name/confirmed 字段
+        # 只在 company_info 尚未存在时初始化,避免覆盖用户在 HIL #1 填写的 actual_name
+        existing_ci = state.get("company_info") or {}
+        state["company_info"] = {
+            "code_name": code_name_result["code_name"],
+            "actual_name": existing_ci.get("actual_name"),  # 保留 HIL #1 填值
+            "skip_mapping": existing_ci.get("skip_mapping", False),
+            "confirmed": existing_ci.get("confirmed", False),
+            "confirmed_at": existing_ci.get("confirmed_at"),
+        }
+
+    # 4.2 生成各节点检索关键词（LLM 从开题报告提取，复用 proposal_result）
+    node_keywords = extract_keywords_from_docx(
+        docx_path, outline_tree, llm_func=llm_func, proposal_result=proposal_result
+    )
+    # 将关键词写入 outline_state 各节点
+    _outline_state = outline_load(paper_name)
+    if _outline_state:
+        _nodes = _get_outline_nodes(_outline_state)
+        _node_ids = {n["id"] for n in _nodes}
+        for _node_id, _kw_list in node_keywords.items():
+            if _node_id in _node_ids:
+                for _n in _nodes:
+                    if _n["id"] == _node_id:
+                        _n["research_keywords"] = _kw_list
+                        break
+        _set_outline_nodes(_outline_state, _nodes)
+        outline_save(paper_name, _outline_state)
 
     # 5. 组装细粒度 node_details(拍板 #5)
     # 修复 P1-2:重命名 matched_count → matched_paragraphs_total,matched_paragraphs → matched_paragraphs_preview
@@ -486,11 +669,24 @@ def orchestrate_phase1_3(
             "undecided_segments": len(proposal_result.get("undecided_segments", [])),
             "hints_written": save_result.get("written", 0),
             "hints_skipped": save_result.get("skipped", 0),
+            "code_name": code_name_result.get("code_name"),
+            "keywords_generated": sum(1 for v in node_keywords.values() if v),
         },
         "node_details": node_details,
     }
     state["last_updated"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     save_orchestrate_state(paper_name, state)
+
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=1.3,
+        next_phase=2,
+        review_data={
+            "summary": state["phase1_3_result"]["summary"],
+            "node_count": len(node_details),
+        },
+        phase_result={"content": docx_path},
+    )
 
     return {
         "ok": True,
@@ -499,6 +695,8 @@ def orchestrate_phase1_3(
         "summary": state["phase1_3_result"]["summary"],
         "node_details": node_details,
         "orphan_segments": proposal_result.get("orphan_segments", []),
+        "hil_message": hil_info["hil_message"],
+        "summary_phase": hil_info["summary"],
         "message": f"开题报告归因完成:{state['phase1_3_result']['summary']}"
     }
 
@@ -603,14 +801,28 @@ def confirm_phase1_3(paper_name: str) -> Dict[str, Any]:
     state["last_updated"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     save_orchestrate_state(paper_name, state)
 
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=1.3,
+        next_phase=2,
+        review_data={
+            "chapter_count": len(chapter_tree),
+            "node_count": len(node_details),
+            "summary": state.get("phase1_3_result", {}).get("summary", {}),
+        },
+        phase_result={"content": str(chapter_tree)},
+        sub_type="confirm",
+    )
+
     return {
         "ok": True,
         "phase": "phase2",
         "phase1_3_status": "confirmed",
         "current_node_id": first_node["id"] if first_node else None,
         "node_details": node_details,
-        "chapter_tree": chapter_tree,  # 含归因信息的完整章节树
-        "summary": state.get("phase1_3_result", {}).get("summary", {}),
+        "chapter_tree": chapter_tree,
+        "hil_message": hil_info["hil_message"],
+        "summary_phase": hil_info["summary"],
         "message": f"Phase 1.3 已确认,进入 Phase 2。"
                f"请核对下方章节树中每章/节/小节的 content_hint 是否与开题报告一致。"
     }
@@ -727,31 +939,26 @@ def get_next_writing_node(paper_name: str, state: Dict) -> Optional[str]:
 
 
 def write_single_node(paper_name: str, node_id: str,
-                     llm_func: Callable[[str], str],
                      bypass_scarcity: bool = False,
                      reviewer_func: Callable[[str], str] = None,
                      allow_self_review: bool = False) -> Dict[str, Any]:
     """
     执行单个节点的写作 + 评审流程
 
+    llm_func 内部从 session 获取，不再外部传参。
+
     参数:
       paper_name: 论文名
       node_id: 节点 ID
-      llm_func: LLM 调用函数(写作)
       bypass_scarcity: 是否跳过 Step 1.5 的 info_scarcity 检查(修复 B-1)
         - True: 跳过 scarcity 检查直接写作(用于 apply_user_decision 之后)
         - False: 默认,按原逻辑检查
       reviewer_func: 独立评审函数(v2.0.6 P1-2 新增)
-        - None: 默认使用 llm_func(self-review,警告)
+        - None: 默认使用内部 llm_func(self-review,警告)
         - callable: 独立 LLM 评审函数
       allow_self_review: 是否允许 self-review
         - False: 默认,llm_func == reviewer_func 时警告
         - True: 调试场景可设为 True
-
-    v2.0.6 P1-2 修复:独立 Reviewer
-      - 防止生成和评审使用同一个 LLM(自我审核)
-      - 默认要求 reviewer_func != llm_func
-      - allow_self_review=True 可调试
 
     返回:
       {
@@ -762,6 +969,18 @@ def write_single_node(paper_name: str, node_id: str,
         error: str
       }
     """
+    # 内部获取 llm_func（固化到内存，一次获取后续直接用）
+    try:
+        llm_func = get_session_llm_func()
+    except Exception as e:
+        return {
+            "ok": False,
+            "action": "error",
+            "node_id": node_id,
+            "review_result": None,
+            "error": f"无法获取 session LLM 配置，请确保从 OpenClaw session 内调用。详情: {e}"
+        }
+
     # v2.0.6 P1-2 修复:独立 Reviewer 警告
     if reviewer_func is None:
         if not allow_self_review:
@@ -895,33 +1114,57 @@ def write_single_node(paper_name: str, node_id: str,
     else:
         action = "pending_review"
 
+    # PhaseManager:记录节点写作状态（追加写入，不覆盖）
+    # v2.x.x 新增：评审详细文字（summary/strengths/weaknesses/suggestions）落盘
+    # 背景：之前只存元数据，用户看评审需要看聊天记录
+    # 修复：评审完整内容入 _phase2_review.json，便于 HIL 暂停时查文件路径
+    try:
+        pm = _get_pm(paper_name)
+        pm.append_node_review(
+            phase=2,
+            node_id=node_id,
+            node_data={
+                "status": "completed" if review_result.get("pass", False) else "pending_review",
+                "quality": review_result.get("quality", "unknown"),
+                "word_count": word_count,
+                "action": action,
+                # v2.x.x 新增：评审详细文字落盘
+                "summary": review_result.get("summary", ""),
+                "strengths": review_result.get("strengths", []),
+                "weaknesses": review_result.get("weaknesses", []),
+                "suggestions": review_result.get("suggestions", []),
+                "review_layer": review_result.get("layer", "ai"),
+            },
+        )
+    except Exception:
+        pass  # PhaseManager 失败不影响主流程
+
     return {
         "ok": True,
         "action": action,
         "node_id": node_id,
         "review_result": review_result,
         "chapter_summary": chapter_summary_result,
+        "word_count": word_count,
         "error": ""
     }
 
 
-def orchestrate_phase2(paper_name: str,
-                      llm_func: Optional[Callable[[str], str]] = None) -> Dict[str, Any]:
+def orchestrate_phase2(paper_name: str) -> Dict[str, Any]:
     """
     Phase 2: 逐节点写作 + 评审
 
-    支持断点续跑:从 current_node_id 继续
+    支持断点续跑:从 current_node_id 继续。
 
-    参数:
-      paper_name: 论文名
-      llm_func: LLM 调用函数(必传)。修复 P1-1:调用时校验,缺则返回友好错误而非 TypeError
+    llm_func 内部从 session 获取，不再外部传参。
     """
-    # 修复 P1-1:llm_func 缺则返回友好错误
-    if llm_func is None:
+    # 内部获取 llm_func（固化到内存，一次获取后续直接用）
+    try:
+        llm_func = get_session_llm_func()
+    except Exception as e:
         return {
             "ok": False,
-            "error": "llm_func 必传:Phase 2 需要调用 LLM 进行写作,请提供 llm_func(prompt) -> str",
-            "action": "input_required"
+            "error": f"无法获取 session LLM 配置，请确保从 OpenClaw session 内调用。详情: {e}"
         }
 
     state = load_orchestrate_state(paper_name)
@@ -967,7 +1210,7 @@ def orchestrate_phase2(paper_name: str,
         }
 
     # 执行当前节点
-    result = write_single_node(paper_name, next_node, llm_func)
+    result = write_single_node(paper_name, next_node)
 
     if not result["ok"]:
         return result
@@ -1104,6 +1347,21 @@ def orchestrate_phase3(paper_name: str) -> Dict[str, Any]:
     state["phase3_status"] = "awaiting_review"
     save_orchestrate_state(paper_name, state)
 
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=3,
+        next_phase=3.5,
+        review_data={
+            "guardrails_passed": True,
+            "guardrails_detail": "整合完成，待审核",
+            "summary": {
+                "completed_count": len(state["completed_nodes"]),
+                "failed_count": len(state.get("failed_nodes", [])),
+            }
+        },
+        phase_result={"content": full_content},
+    )
+
     return {
         "ok": True,
         "phase": "phase3",
@@ -1112,15 +1370,17 @@ def orchestrate_phase3(paper_name: str) -> Dict[str, Any]:
         "word_count": len(full_content),
         "completed_count": len(state["completed_nodes"]),
         "failed_count": len(state.get("failed_nodes", [])),
+        "hil_message": hil_info["hil_message"],
+        "summary": hil_info["summary"],
         "message": "论文已整合,请预览并提出修改意见"
     }
 
 
-def handle_phase3_feedback(paper_name: str,
-                          feedback: List[Dict[str, str]],
-                          llm_func: Callable[[str], str] = None) -> Dict[str, Any]:
+def handle_phase3_feedback(paper_name: str, feedback: List[Dict[str, str]]) -> Dict[str, Any]:
     """
     Phase 3: 处理用户修改意见
+
+    llm_func 内部从 session 获取，不再外部传参。
 
     feedback 格式:
     [
@@ -1130,6 +1390,15 @@ def handle_phase3_feedback(paper_name: str,
 
     返回:修改后的完整论文内容
     """
+    # 内部获取 llm_func（固化到内存，一次获取后续直接用）
+    try:
+        llm_func = get_session_llm_func()
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": f"无法获取 session LLM 配置，请确保从 OpenClaw session 内调用。详情: {e}"
+        }
+
     state = load_orchestrate_state(paper_name)
     if not state:
         return {"ok": False, "error": "状态文件不存在"}
@@ -1139,9 +1408,6 @@ def handle_phase3_feedback(paper_name: str,
 
     if not feedback:
         return {"ok": False, "error": "feedback 为空"}
-
-    if not llm_func:
-        return {"ok": False, "error": "修改需要提供 llm_func"}
 
     modified_count = 0
     for item in feedback:
@@ -1211,12 +1477,29 @@ def confirm_phase3_and_export(paper_name: str) -> Dict[str, Any]:
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(full_content)
 
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=3,
+        next_phase=3.5,
+        review_data={
+            "review_report": {
+                "summary": {
+                    "guardrails_passed": True,
+                    "guardrails_detail": f"已导出至 {output_path}",
+                }
+            }
+        },
+        phase_result={"content": full_content},
+    )
+
     return {
         "ok": True,
         "phase": "phase3",
         "sub_status": "exported",
         "output_path": output_path,
         "word_count": len(full_content),
+        "hil_message": hil_info["hil_message"],
+        "summary": hil_info["summary"],
         "message": f"论文已导出至 {output_path},请使用 md2docx_strict.py 转换为 Word"
     }
 
@@ -1235,7 +1518,7 @@ def _build_chapter_pattern(node_title: str) -> str:
     根据大纲节点标题构造定位正则。
 
     "第1章 研究背景与意义"
-      → r'^#+\s*第1章[^\n]*研究背景[^\n]*'m
+      → r'^#+\\s*第1章[^\\n]*研究背景[^\\n]*'m
 
     规则:
       - 强制保留:章节号(第1-7章)
@@ -1415,10 +1698,11 @@ def _get_p0_signature(p0_list: List[Dict]) -> set:
 # 对 Phase 3 整合版做二次审查,输出 P0/P1/P2 分级问题清单
 # ============================================================
 
-def orchestrate_phase3_5(paper_name: str,
-                         llm_func: Optional[Callable[[str], str]] = None) -> Dict[str, Any]:
+def orchestrate_phase3_5(paper_name: str) -> Dict[str, Any]:
     """
     Phase 3.5:深度学术评审(固定节点,不可跳过)
+
+    llm_func 内部从 session 获取（可选，获取失败时降级做纯格式检查）。
 
     输入:Phase 3 整合版论文
     输出:P0/P1/P2 分级问题清单
@@ -1428,6 +1712,13 @@ def orchestrate_phase3_5(paper_name: str,
           连续 2 轮无新 P0 → 通过
           超 3 轮 → HIL 暂停
     """
+    # 尝试内部获取 llm_func（可选，获取失败不阻断流程）
+    llm_func = None
+    try:
+        llm_func = get_session_llm_func()
+    except Exception:
+        pass  # 降级：纯格式检查，不依赖 LLM
+
     state = load_orchestrate_state(paper_name)
     if not state:
         return {"ok": False, "error": "状态文件不存在"}
@@ -1442,7 +1733,7 @@ def orchestrate_phase3_5(paper_name: str,
 
     # _split_by_chapter 需要 nodes 参数，从 outline 加载
     outline_state = outline_load(paper_name)
-    nodes = _get_outline_nodes(outline_state) if outline_state else []   
+    nodes = _get_outline_nodes(outline_state) if outline_state else []
 
 
     # 逐章深度评审(修复 8000 字截断 Bug)
@@ -1571,34 +1862,63 @@ def orchestrate_phase3_5(paper_name: str,
 
     save_orchestrate_state(paper_name, state)
 
+    # PhaseManager:保存产出 + 生成 HIL 消息
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=3.5,
+        next_phase=4,
+        review_data={
+            "review_round": review_round,
+            "consecutive_clean": state.get("phase3_5_consecutive_clean", 0),
+            "guardrails_passed": state["phase3_5_status"] == "passed",
+            "p0_list": review_result.get("p0", []),
+            "p1_list": review_result.get("p1", []),
+            "p2_list": review_result.get("p2", []),
+            "summary": {
+                "p0_issues": p0_count,
+                "p1_issues": p1_count,
+                "p2_issues": p2_count,
+                "text": review_result.get("summary", ""),
+            },
+        },
+        phase_result={"content": full_content},
+    )
+
     return {
         "ok": True,
         "phase": "phase3.5",
         "review_round": review_round,
-        "p0": review_result.get("p0", []),
-        "p1": review_result.get("p1", []),
-        "p2": review_result.get("p2", []),
         "p0_count": p0_count,
         "p1_count": p1_count,
         "p2_count": p2_count,
         "new_p0_count": len(new_p0),
         "consecutive_clean": state.get("phase3_5_consecutive_clean", 0),
-        "summary": review_result.get("summary", ""),
         "needs_hil": needs_hil,
         "status": state["phase3_5_status"],
+        "hil_message": hil_info["hil_message"],
+        "summary": hil_info["summary"],
         "message": f"深度评审第 {review_round} 轮:P0={p0_count}, P1={p1_count}, P2={p2_count}" + \
                    (",已达到通过标准" if state["phase3_5_status"] == "passed" else "") + \
                    (",超过3轮未收敛,需要您决策" if needs_hil else ""),
     }
 
 
-def auto_fix_p0_issues(paper_name: str,
-                       llm_func: Callable[[str], str]) -> Dict[str, Any]:
+def auto_fix_p0_issues(paper_name: str) -> Dict[str, Any]:
     """
     Phase 3.5 → Phase 4 自动衔接:修复 P0 问题
 
     读取 phase3_5_result 中的 P0 问题,逐个调用 LLM 修复。
+
+    llm_func 内部从 session 获取，不再外部传参。
     """
+    try:
+        llm_func = get_session_llm_func()
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": f"无法获取 session LLM 配置，请确保从 OpenClaw session 内调用。详情: {e}"
+        }
+
     state = load_orchestrate_state(paper_name)
     if not state:
         return {"ok": False, "error": "状态文件不存在"}
@@ -1671,8 +1991,7 @@ def auto_fix_p0_issues(paper_name: str,
 # Phase 4:整合 + 终审
 # ============================================================
 
-def orchestrate_phase4(paper_name: str,
-                       llm_func: Optional[Callable[[str], str]] = None) -> Dict[str, Any]:
+def orchestrate_phase4(paper_name: str) -> Dict[str, Any]:
     """
     Phase 4:整合 P0/P1 修复 + 终审
 
@@ -1801,12 +2120,26 @@ def orchestrate_phase4(paper_name: str,
     state["phase4_status"] = "completed"
     save_orchestrate_state(paper_name, state)
 
+    # PhaseManager:保存产出 + 生成 HIL 消息
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=4,
+        next_phase=5,
+        review_data={
+            "fixed_p0": fix_result["fixed_p0"],
+            "pending_p1": len(p1),
+        },
+        phase_result={"content": full_content},
+    )
+
     return {
         "ok": True,
         "phase": "phase4",
         "fixed_p0": fix_result["fixed_p0"],
         "pending_p1": len(p1),
         "word_count": len(full_content),
+        "hil_message": hil_info["hil_message"],
+        "summary": hil_info["summary"],
         "message": f"Phase 4 整合完成:已修复 {fix_result['fixed_p0']} 个 P0 问题,还有 {len(p1)} 个 P1 建议"
     }
 
@@ -1919,12 +2252,27 @@ def orchestrate_phase5(paper_name: str) -> Dict[str, Any]:
         msg += "(⚠️ Guardrails 校验未通过,请检查后重新导出)"
     msg += "\n如需 Word 文档,请运行:python3 scripts/md2docx_strict.py " + output_path
 
+    # PhaseManager:保存产出 + 生成 HIL 消息
+    hil_info = _build_hil_result(
+        paper_name=paper_name,
+        phase=5,
+        next_phase=None,
+        review_data={
+            "guardrails_pass": guardrails_result.get("pass", False),
+            "guardrails_detail": guardrails_result,
+            "output_path": output_path,
+        },
+        phase_result={"content": full_content, "docx_generated": True},
+    )
+
     return {
         "ok": True,
         "phase": "phase5",
         "guardrails_pass": guardrails_result.get("pass", False),
         "output_path": output_path,
         "word_count": len(full_content),
+        "hil_message": hil_info["hil_message"],
+        "summary": hil_info["summary"],
         "message": msg,
     }
 
@@ -1936,10 +2284,11 @@ def orchestrate_phase5(paper_name: str) -> Dict[str, Any]:
 def orchestrate(paper_name: str,
                phase: str = None,
                action: str = None,
-               llm_func: Callable[[str], str] = None,
                **kwargs) -> Dict[str, Any]:
     """
     统一入口
+
+    llm_func 由内部 get_session_llm_func() 固化获取，不再外部传参。
 
     phase:
       None / "auto": 根据当前状态自动判断
@@ -1958,11 +2307,15 @@ def orchestrate(paper_name: str,
       "phase3_feedback": 处理用户修改意见
       "phase3_export": 确认并导出 Word
 
-    llm_func: LLM 调用函数,Phase 1.3 submit / phase3_feedback 需要提供
-
     kwargs: 额外参数(如 docx_path, node_id, new_hint, feedback, decision 等)
     """
     state = load_orchestrate_state(paper_name)
+
+    # P1-3 修复：phase1 专属 action 应始终路由到 phase="phase1"
+    # 避免 state 中残留 phase1_confirmed=True / phase="phase2" 时误导路由
+    if action in ("phase1_1_init", "phase1_confirm", "phase1_3_submit",
+                  "phase1_3_update_hint", "phase1_3_confirm", "phase1_3_skip"):
+        phase = "phase1"
 
     if phase is None or phase == "auto":
         if not state:
@@ -2009,13 +2362,17 @@ def orchestrate(paper_name: str,
                 return {"ok": False, "error": "phase1_1_init 需要 input_type(docx 或 text)"}
             if not input_data:
                 return {"ok": False, "error": "phase1_1_init 需要 input_data(docx_path 或 outline_text)"}
-            return orchestrate_phase1_1(paper_name, input_type, input_data, llm_func, docx_path)
+            # P0-1 修复：收到新开题报告时强制重置 state，确保从 Phase 1.1 开始
+            # 运营指令：直接重置，不需要确认
+            reset_orchestrate_state(paper_name)
+            return orchestrate_phase1_1(paper_name, input_type, input_data, docx_path)
         elif action == "phase1_confirm":
-            return confirm_phase1(paper_name)
+            # v2.1.2:传递 user_input 用于 HIL #1 公司映射决策
+            return confirm_phase1(paper_name, user_input=kwargs.get("user_input"))
         elif action == "phase1_3_submit":
             # 修订 11.9:docx_path 从 state 读,不再要求传
             docx_path = kwargs.get("docx_path")  # 可选,仅用于覆盖
-            return orchestrate_phase1_3(paper_name, docx_path, llm_func)
+            return orchestrate_phase1_3(paper_name, docx_path)
         elif action == "phase1_3_update_hint":
             node_id = kwargs.get("node_id")
             new_hint = kwargs.get("new_hint")
@@ -2048,7 +2405,7 @@ def orchestrate(paper_name: str,
         # 所有 phase1 action 在此分支均合法（submit/confirm/update_hint）
         if action == "phase1_3_submit":
             docx_path = kwargs.get("docx_path")
-            return orchestrate_phase1_3(paper_name, docx_path, llm_func)
+            return orchestrate_phase1_3(paper_name, docx_path)
         elif action == "phase1_3_confirm":
             return confirm_phase1_3(paper_name)
         elif action == "phase1_3_update_hint":
@@ -2071,31 +2428,27 @@ def orchestrate(paper_name: str,
             }
 
     elif phase == "phase2":
-        if not llm_func:
-            return {"ok": False, "error": "phase2 需要提供 llm_func"}
-        return orchestrate_phase2(paper_name, llm_func)
+        return orchestrate_phase2(paper_name)
 
     elif phase == "phase3":
         if action == "phase3_feedback":
-            return handle_phase3_feedback(paper_name, llm_func=llm_func, **kwargs)
+            return handle_phase3_feedback(paper_name, **kwargs)
         elif action == "phase3_export":
             # 兼容旧调用:Phase 3 → 自动进入 Phase 3.5/4/5
-            return orchestrate_phase3_5(paper_name, llm_func)
+            return orchestrate_phase3_5(paper_name)
         else:
             return orchestrate_phase3(paper_name)
 
     elif phase == "phase3.5":
         if action == "auto_fix":
-            if not llm_func:
-                return {"ok": False, "error": "auto_fix 需要 llm_func"}
-            return auto_fix_p0_issues(paper_name, llm_func)
+            return auto_fix_p0_issues(paper_name)
         elif action == "rerun":
-            return orchestrate_phase3_5(paper_name, llm_func)
+            return orchestrate_phase3_5(paper_name)
         else:
-            return orchestrate_phase3_5(paper_name, llm_func)
+            return orchestrate_phase3_5(paper_name)
 
     elif phase == "phase4":
-        return orchestrate_phase4(paper_name, llm_func)
+        return orchestrate_phase4(paper_name)
 
     elif phase == "phase5":
         return orchestrate_phase5(paper_name)

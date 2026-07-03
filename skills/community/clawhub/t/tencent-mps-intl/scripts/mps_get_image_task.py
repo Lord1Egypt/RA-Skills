@@ -11,13 +11,13 @@ Features:
 
 Usage:
   # Query a specific task
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
 
   # Query and output the full JSON response
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
 
   # Output raw JSON only (convenient for pipeline processing)
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -38,7 +38,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -281,13 +281,13 @@ def main():
         epilog="""
 Examples:
   # Query a specific task
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
 
   # Query and output the full JSON response
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --verbose
 
   # Output raw JSON only (convenient for pipeline processing)
-  python mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a --json
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   Tencent Cloud SecretId

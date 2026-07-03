@@ -251,10 +251,16 @@ if (paymentUrl && !useMock) {
   console.log('[Mock mode] QR code generation skipped');
 }
 
-// === 打开网页 ===
-try {
-  execSync(`powershell -NoProfile -Command "Start-Process '${htmlPath}'"`, { stdio: 'pipe', timeout: 5000 });
-  console.log('Opened in browser:', htmlPath);
-} catch (e) {
+// === 打开网页（默认不自动打开，添加 --open 参数才会尝试） ===
+const shouldOpen = args.includes('--open');
+if (shouldOpen) {
+  try {
+    execSync(`powershell -NoProfile -Command "Start-Process '${htmlPath}'"`, { stdio: 'pipe', timeout: 5000 });
+    console.log('Opened in browser:', htmlPath);
+  } catch (e) {
+    console.log('Auto-open failed. Please open manually:', htmlPath);
+  }
+} else {
+  console.log('HTML saved. Use --open flag to auto-launch browser.');
   console.log('File path:', htmlPath);
 }

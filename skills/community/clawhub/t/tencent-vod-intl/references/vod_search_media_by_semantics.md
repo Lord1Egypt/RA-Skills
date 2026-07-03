@@ -54,43 +54,43 @@
 
 ```bash
 # Basic semantic search
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "beach video with a sunset"
 
 # Search by application name
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --app-name "Test App" --text "footage of someone running"
 
 # Filter by file type
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "amazing goals" --categories Video
 
 # Filter by tag
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "amazing goals" --tags "sports" "soccer"
 
 # Filter by person
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "interview video" --persons "Zhang San"
 
 # Specify number of results
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "meeting video" --limit 50
 
 # Filter by task type
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "product introduction" --task-types Ai Analysis.Description Task
 
 # Output in JSON format
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "video containing music" --json
 
 # Verbose mode
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "product demo" --verbose
 
 # Preview request parameters (without executing)
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "beach video with a sunset" --dry-run
 ```
 

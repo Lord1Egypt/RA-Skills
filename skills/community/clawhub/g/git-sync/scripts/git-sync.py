@@ -406,21 +406,45 @@ def step_sensitive_scan(skill_name: str, repo_skill_dir: Path,
         if len(finds) > 5:
             print(f"      ... 还有 {len(finds) - 5} 处未显示")
 
-    # ── HOOK-BLOCK：等待 LLM 判断 ─────────────────────────────────────────
-    # 扫描结果已保存到 scan_out，LLM 需审阅后手动创建决策文件
+    # ── 检查是否已有 LLM 决策 ─────────────────────────────────────────────
     decisions = SCRIPT_DIR / f".sensitive_scan_{skill_name}.json.decisions.json"
+    if decisions.exists():
+        log("4.5", 8, "发现 LLM 决策文件，执行脱敏...", "info")
+        desensitized_files = set()
+        for e in d:
+            desensitized_files.add(repo_skill_dir / e["file"])
+        run_python(scan_py, "apply", str(repo_skill_dir),
+                   "--decisions", str(decisions),
+                   "--scan-result", str(scan_out))
+        print(f"  ✅ 决策已执行，涉及 {len(desensitized_files)} 个文件")
+        scan_out.unlink(missing_ok=True)
+        decisions.unlink(missing_ok=True)
+        return desensitized_files
+
+    # ── 无决策文件 → HOOK-BLOCK：等待 LLM 判断 ──────────────────────────────
     print(f"\n{'='*60}")
     print(f"[HOOK-BLOCK] 发现 {total_findings} 处潜在敏感信息，需 LLM 判断")
     print(f"{'='*60}")
     print(f"  扫描结果: {scan_out}")
-    print(f"  请审阅上方 findings，逐个判断是否需要脱敏。")
+    print(f"")
+    for e in d:
+        file_rel = e["file"]
+        finds = e.get("findings", [])
+        if not finds:
+            continue
+        print(f"  📄 {file_rel}")
+        for f in finds:
+            label, match = f.get("label",""), f.get("match","")
+            print(f"      [{label}] \"{match}\"")
+    print(f"")
     print(f"  判断原则：邮箱/token/内网IP → 脱敏；公开署名/代名/示例路径 → 跳过")
     print(f"")
     print(f"  确认后，创建决策文件: {decisions}")
-    print(f"  决策文件格式: [{{\"file\":\"<相对路径>\",\"field\":\"<匹配文本>\",\"action\":\"sanitize|skip\"}},...]")
+    print(f"  格式: {{\"<file>\": \"keep\"|\"sanitize\"}}")
+    print(f"  示例: {{\"references/LICENSE.md\": \"keep\", \"secrets/config.py\": \"sanitize\"}}")
     print(f"  创建后重新运行 git-sync 继续。")
     print(f"{'='*60}\n")
-    sys.exit(1)  # HOOK-BLOCK：阻断管道
+    sys.exit(1)
 
 # ── 步骤 5：更新 README.md ─────────────────────────────────────────────────
 def step_update_readme(repo_name="workbuddy-skills"):

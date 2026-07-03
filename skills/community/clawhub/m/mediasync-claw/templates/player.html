@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing: {{ filename }}</title>
+    <!-- Socket.IO client — matches the Flask-SocketIO server version -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        video {
+            width: 100%;
+            max-width: 960px;
+            max-height: 80vh;
+            background: #111;
+            border-radius: 8px;
+        }
+        #status {
+            margin-top: 16px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+        }
+        #status.success { background: rgba(76,175,80,0.2); color: #81c784; }
+        #status.error   { background: rgba(244,67,54,0.2);  color: #e57373; }
+        #progress {
+            margin-top: 8px;
+            width: 100%;
+            max-width: 960px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+        #progress-bar {
+            height: 100%;
+            background: #4caf50;
+            width: 0%;
+            transition: width 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" controls autoplay muted playsinline></video>
+    <div id="progress"><div id="progress-bar"></div></div>
+    <div id="status">⏳ Initializing...</div>
+
+    <script>
+        const FILENAME = "{{ filename }}";
+        const video    = document.getElementById('video');
+        const status   = document.getElementById('status');
+        const progress = document.getElementById('progress');
+        const bar      = document.getElementById('progress-bar');
+
+        let fileSize   = 0;
+        let bytesRecv  = 0;
+
+        // ── Helper: update status text ──────────────────────────
+        function setStatus(text, cls) {
+            status.textContent = text;
+            status.className = cls || '';
+        }
+
+        // ── Main entry point ────────────────────────────────────
+        async function startPlayer() {
+            setStatus('🔌 Connecting to signaling server...');
+
+            // 1. Connect to Flask-SocketIO signaling (same origin, no extra port)
+            const socket = io();
+
+            // 2. Create WebRTC peer connection with STUN for NAT traversal
+            const pc = new RTCPeerConnection({
+                iceServers: [
+                    { urls: 'stun:stun.l.google.com:19302' },
+                    { urls: 'stun:stun1.l.google.com:19302' },
+                    { urls: 'stun:stun.cloudflare.com:3478' },
+                    { urls: 'stun:global.stun.twilio.com:3478'}
+                ]
+            });
+
+            // 3. Create ordered DataChannel for reliable media delivery
+            const dc = pc.createDataChannel('media', { ordered: true });
+            dc.binaryType = 'arraybuffer';
+
+            // 4. Collect binary chunks from DataChannel into a Blob
+            // Regular MP4 cannot be fed to MediaSource (requires fMP4).
+            // Instead we buffer the whole file, then hand it to the native
+            // <video> element via a blob URL.  The data still travels P2P
+            // over the WebRTC DataChannel — no FRPS relay cost.
+            let chunks   = [];
+            let mimeType = 'video/mp4';
+
+            // 5. Handle messages from the server via DataChannel
+            dc.onmessage = (event) => {
+                const data = event.data;
+
+                if (typeof data === 'string') {
+                    const msg = JSON.parse(data);
+                    if (msg.type === 'meta') {
+                        fileSize  = msg.size;
+                        bytesRecv = 0;
+                        chunks    = [];
+                        const mb  = (msg.size / 1024 / 1024).toFixed(1);
+                        setStatus(`📥 Downloading P2P: ${msg.name} (${mb} MB)...`);
+                        progress.style.display = 'block';
+                    } else if (msg.type === 'done') {
+                        // All chunks received → build Blob → play
+                        setStatus('🔄 Preparing playback...');
+                        const blob = new Blob(chunks, { type: mimeType });
+                        chunks = [];                       // free memory
+                        video.src = URL.createObjectURL(blob);
+                        video.muted = true;               // must mute before play() to satisfy autoplay policy
+                        video.play().then(() => {
+                            setStatus('✅ Playing via P2P — zero FRPS data cost!', 'success');
+                        }).catch(err => {
+                            setStatus('⚠️ Play failed: ' + err.message + ' — trying HTTP...', 'error');
+                            fallbackToHTTP();
+                        });
+                        bar.style.width = '100%';
+                    } else if (msg.error) {
+                        setStatus('❌ ' + msg.error, 'error');
+                    }
+                    return;
+                }
+
+                // Binary chunk → buffer it
+                chunks.push(new Uint8Array(data));
+                bytesRecv += data.byteLength;
+                if (fileSize > 0) {
+                    const pct = Math.min(100, (bytesRecv / fileSize * 100)).toFixed(1);
+                    bar.style.width = pct + '%';
+                }
+            };
+
+            dc.onopen = () => {
+                setStatus('🔗 P2P channel open — requesting file...');
+                dc.send('request:' + FILENAME);
+            };
+
+            // 6. WebRTC signaling via Socket.IO ──────────────────
+
+            // When Socket.IO is connected, create and send an SDP offer
+            socket.on('connect', async () => {
+                setStatus('🤝 Creating WebRTC offer...');
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                socket.emit('offer', { sdp: pc.localDescription.sdp });
+            });
+
+            // Receive SDP answer from the server
+            socket.on('answer', async (data) => {
+                await pc.setRemoteDescription(
+                    new RTCSessionDescription({ sdp: data.sdp, type: 'answer' })
+                );
+            });
+
+            // Relay ICE candidates: browser → server
+            pc.onicecandidate = (e) => {
+                if (e.candidate) {
+                    socket.emit('ice_candidate', { candidate: e.candidate });
+                }
+            };
+
+            // Relay ICE candidates: server → browser
+            socket.on('ice_candidate', async (data) => {
+                if (data.candidate) {
+                    try { await pc.addIceCandidate(data.candidate); } catch {}
+                }
+            });
+
+            // 7. Connection state monitoring ─────────────────────
+            pc.onconnectionstatechange = () => {
+                console.log('WebRTC state:', pc.connectionState);
+                switch (pc.connectionState) {
+                    case 'connected':
+                        setStatus('✅ P2P connected — downloading file...', 'success');
+                        break;
+                    case 'failed':
+                        setStatus('⚠️ P2P failed — falling back to HTTP...', 'error');
+                        fallbackToHTTP();
+                        break;
+                    case 'disconnected':
+                        setStatus('🔌 Disconnected');
+                        break;
+                }
+            };
+
+            // 8. Socket.IO connection error handling
+            socket.on('connect_error', () => {
+                setStatus('⚠️ Signaling error — falling back to HTTP...', 'error');
+                fallbackToHTTP();
+            });
+        }
+
+        // ── Fallback: if P2P fails (symmetric NAT), use HTTP via FRPS ──
+        function fallbackToHTTP() {
+            video.src = '/' + FILENAME;
+            progress.style.display = 'none';
+        }
+
+        // Go!
+        startPlayer();
+    </script>
+</body>
+</html>

@@ -12,8 +12,12 @@
 | `--class-id 10` | `--output-class-id 10` | **Image generation output class ID must use `--output-class-id`, not `--class-id`** |
 | `--file-ids id1,id2` | `--file-infos '[{"Type":"File","FileId":"id1"}]'` | Multiple reference images use `--file-infos` JSON array |
 | `--person-generation Disallowed` | `--output-person-generation Disallowed` | Disabling person generation uses the `output-` prefix |
+| `--num-images 4` or `-n 4` | `--output-image-count 4` | **Multi-image output (OG 1-8, Kling 1-9)**; uses the `output-` prefix |
+| `--format png` | `--output-format png` | **Specify output format (OG)**: `jpeg`/`png`; uses the `output-` prefix |
+| `--mask-url ...` or `--mask-file-id ...` | `--file-infos '[{"Type":"File","FileId":"src"},{"Type":"File","FileId":"mask","ReferenceType":"mask"}]'` | **OG mask editing**: first image is the source to edit, second is the mask (`ReferenceType="mask"`) |
 
 ## Parameter Description
+
 ### General Parameters
 
 | Parameter | Type | Description |
@@ -29,7 +33,7 @@
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| `--model` | string | ✅ | Model name (Hunyuan/Qwen/Vidu/Kling/MJ/GEM) |
+| `--model` | string | ✅ | Model name (Hunyuan/Qwen/Vidu/Kling/MJ/GG) |
 | `--model-version` | string | - | Model version (uses default version if not specified) |
 
 #### Prompt Parameters
@@ -46,11 +50,12 @@
 |------|------|------|------|
 | `--file-id` | string | - | FileId of the reference image (single image only; use `--file-infos` for multiple) |
 | `--file-url` | string | - | URL of the reference image (single image only; use `--file-infos` for multiple; mutually exclusive with `--file-id`) |
-| `--file-text` | string | - | Description of the reference image (only valid for GEM 2.5/3.0; only takes effect when using `--file-id` or `--file-url`; when using `--file-infos`, embed Text inside each JSON element) |
-| `--file-infos` | string | - | JSON array of multiple reference images, format: `[{"Type":"Url","Url":"...","Text":"description"}]` |
+| `--file-text` | string | - | Description of the reference image (only valid for GG 2.5/3.0; only takes effect when using `--file-id` or `--file-url`; when using `--file-infos`, embed Text inside each JSON element) |
+| `--reference-type` | string | - | Reference type for a single reference image (`mask`), used together with `--file-id`/`--file-url`. **Currently only used for GPT-Image2 (OG) mask editing**. For multiple reference images, embed `ReferenceType` inside `--file-infos` |
+| `--file-infos` | string | - | JSON array of multiple reference images, format: `[{"Type":"Url","Url":"...","Text":"description","ReferenceType":"mask"}]`; ReferenceType is used for OG mask editing |
 
 > **Reference Image Count Limits**:
-> - GEM 2.5/3.0: up to 3 images
+> - GG 2.5/3.0: up to 3 images
 > - Vidu q2: up to 7 images
 > - Other models: only 1 image or not supported
 
@@ -67,13 +72,16 @@
 | `--output-person-generation` | string | Whether to allow person or face generation (`AllowAdult`: allow, `Disallowed`: disallow) |
 | `--input-compliance-check` | string | Whether to enable compliance check on input content (Enabled/Disabled) |
 | `--output-compliance-check` | string | Whether to enable compliance check on output content (Enabled/Disabled) |
+| `--output-image-count` | int | Number of images to generate (**OG 1-8, Kling 1-9**, including Kling outpainting; not supported by other models) |
+| `--output-format` | string | Output image format (**only supported by GPT-Image2 / OG**): `jpeg` / `png` |
+| `--output-logo-add` | string | Whether to add logo watermark: `Enabled` / `Disabled` (only some models; OG behavior depends on the server) |
 
 #### Other Optional Parameters
 
 | Parameter | Type | Description |
 |------|------|------|
 | `--scene-type` | string | Scene type (when ModelName is Hunyuan: `3d_panorama` for panoramic image; not supported for other models) |
-| `--seed` | int | Model random seed (when specified, enables reproducible generation) |
+| `--seed` | int | Model random seed (specify to reproduce results) |
 | `--input-region` | string | Region information of the input file (Mainland: domestic, Oversea: overseas, default: Mainland) |
 | `--session-id` | string | Identifier for deduplication (max 50 characters; returns an error if duplicated within three days) |
 | `--session-context` | string | Source context for passing through user request information (max 1000 characters) |
@@ -103,14 +111,26 @@ This command has no parameters and is used to list all supported models, version
 
 ### Supported Model Features
 
+> 📌 All capabilities are confirmed via interface testing; max reference image counts, resolutions, and aspect ratios have all been verified by real interface submissions.
+
 | Model | Version | Aspect Ratio | Resolution | Reference Images | Features |
 |------|------|--------|--------|--------|------|
-| Hunyuan | 3.0 | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9 | 720P, 1080P, 2K, 4K | 1 image | Hunyuan model |
-| Qwen | 0925 | Not supported | Not supported | 1 image | Qwen model |
-| Vidu | q2 | 16:9, 9:16, 1:1, 3:4, 4:3, 21:9, 2:3, 3:2 | 1080p, 2K, 4K | 0–7 images | Vidu model |
-| Kling | 2.1, 3.0, 3.0-Omni | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9 | 1k, 2k | 1 image | Kling model |
-| MJ | v7 | - | - | - | Midjourney model |
-| GEM | 2.5, 3.0 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K, 2K, 4K | 0–3 images | Supports reference image Text description |
+| Hunyuan | 3.0, 3d_2.0 | AspectRatio not supported (3.0 uses ExtInfo `size`); 3d_2.0 panoramic image is fixed | 3.0: width and height in [512, 2048], product ≤ 1024×1024, **via ExtInfo `size`**, default 1024×1024; 3d_2.0 panoramic: 720P–4K | 0–3 images | Hunyuan model; **3.0 custom resolution example**: `--ext-info '{"AdditionalParameters": "{\"size\":\"728x1024\"}"}'`; **3d_2.0 + `--scene-type 3d_panorama` for 360° panoramic image** (Hunyuan World Model, both text-to and image-to) |
+| Qwen | 0925 | AspectRatio not supported | Free width/height, output pixels in [512×512, 2048×2048], default 1024×1024, **via ExtInfo `width`/`height`** | 0–1 image | Qwen model; **custom resolution example**: `--ext-info '{"AdditionalParameters": "{\"width\":1024, \"height\":1024}"}'` |
+| Vidu | q2 | 16:9, 9:16, 1:1, 3:4, 4:3, 21:9, 2:3, 3:2 | 1080P, 2K, 4K (default 1080P) | 0–7 images | Vidu model; text-to-image / reference-image generation |
+| Kling | 2.1 | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9 | 1K, 2K (default 1K) | 0–4 images | Kling 2.1 |
+| Kling | 3.0 | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9 | 1K, 2K (default 1K) | 0–1 image | Kling 3.0 |
+| Kling | 3.0-Omni | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, **auto** | 1K, 2K, **4K** (default 1K) | 0–10 images | Kling 3.0-Omni; **multi-subject generation supported**; output supports 1-9 images at once (`--output-image-count`) |
+| Kling | **O1** | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, **auto** | 1K, 2K, **4K** (default 1K) | 0–10 images | Kling O1; similar to 3.0-Omni; confirmed by interface testing |
+| MJ | v8.1, v7 | Specified in prompt (e.g. `--ar 16:9`) | Specified in prompt (e.g. `--q 2`) | 0–3 images | Midjourney model; **interface name is `MJ`** (`Midjourney` is rejected); v8.1 is the latest |
+| GG | 2.5 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K, 2K, 4K (default 1K) | 0–3 images | nano banana (GG 2.5); **interface name is `GG`; historical alias `GEM` is also accepted** |
+| GG | 3.0 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K, 2K, 4K (default 1K) | 0–14 images | nano banana pro (GG 3.0); supports outpainting |
+| GG | 3.1 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9, **1:4, 4:1, 1:8, 8:1** | **512**, 1K, 2K, 4K (default 1K) | 0–14 images | nano2 (GG 3.1); extra 512 resolution; extra 4 extreme aspect ratios |
+| SI | **4.0** | Specified in prompt | 1K, 2K, 4K (default 1K) | 0–14 images | Seedream 4.0; **multi-image output supported**: prompt specifies count + `--ext-info '{"AdditionalParameters": "{\"sequential_image_generation\":\"auto\"}"}'` |
+| SI | 4.5 | Specified in prompt | 2K, 4K (default 2K) | 0–14 images | Seedream 4.5 |
+| SI | 5.0-lite | Specified in prompt | 2K, **3K**, 4K (default 2K) | 0–14 images | Seedream 5.0-lite; extra 3K resolution |
+| OG | image2_low, image2_medium, image2_high | 1:1, 3:2, 2:3, 3:4, 4:3, 16:9, 9:16, 21:9, 9:21 | 1K, 2K, 4K (default 1K) | 0–16 images | **GPT-Image2**: strong multilingual text rendering; supports jpeg/png output (`--output-format`); supports 1–8 images per task (`--output-image-count`); supports mask editing (`ReferenceType=mask`); supports custom size (multiple of 16, via `--ext-info`); transparent background not supported; billed per input image |
+| Jimeng | 4.0 | AspectRatio not supported | Via ExtInfo `width`/`height`, range [1024×1024, 4096×4096] | 0–10 images | Jimeng 4.0; **custom resolution example**: `--ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}'`; strong stylized output |
 
 ### File Infos Parameter Structure
 
@@ -121,7 +141,8 @@ This command has no parameters and is used to list all supported models, version
 | `Type` | string | ✅ | Input type (File: VOD media file, Url: accessible URL) |
 | `FileId` | string | -* | Media file ID of the image file (required when Type=File) |
 | `Url` | string | -* | Accessible file URL (required when Type=Url) |
-| `Text` | string | - | Description of the input image (only valid for GEM 2.5/3.0) |
+| `Text` | string | - | Description of the input image (only valid for GG 2.5/3.0) |
+| `ReferenceType` | string | - | Reference type: `mask` indicates this image is used as a mask (**only used for GPT-Image2 / OG mask editing**) |
 
 ### Output Config Parameter Structure
 
@@ -138,6 +159,9 @@ This command has no parameters and is used to list all supported models, version
 | `PersonGeneration` | string | - | Whether to allow person generation (AllowAdult/Disallowed) |
 | `InputComplianceCheck` | string | - | Input compliance check (Enabled/Disabled) |
 | `OutputComplianceCheck` | string | - | Output compliance check (Enabled/Disabled) |
+| `OutputImageCount` | int | - | Number of images to generate (OG 1-8, Kling 1-9, including Kling outpainting) |
+| `OutputFormat` | string | - | Output format (only supported by GPT-Image2 / OG): jpeg / png |
+| `LogoAdd` | string | - | Whether to add logo watermark: Enabled / Disabled (only some models) |
 
 ### Task Status Description
 
@@ -170,19 +194,21 @@ This command has no parameters and is used to list all supported models, version
 ---
 
 ## Usage Examples
+
+
 ### 1 Basic Text-to-Image
 
 #### Hunyuan Model Image Generation
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "A cute little cat playing in a meadow under bright sunshine"
 ```
 
-#### GEM Model Image Generation (Specify Resolution and Aspect Ratio)
+#### GG Model Image Generation (Specify Resolution and Aspect Ratio)
 ```bash
-python scripts/vod_aigc_image.py create \
-    --model GEM \
+python3 scripts/vod_aigc_image.py create \
+    --model GG \
     --model-version 2.5 \
     --prompt "a beautiful sunset over the ocean" \
     --output-resolution 2K \
@@ -191,7 +217,7 @@ python scripts/vod_aigc_image.py create \
 
 #### Kling Model Image Generation (Permanent Storage)
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Kling \
     --model-version 2.1 \
     --prompt "Cyberpunk-style futuristic cityscape at night" \
@@ -204,7 +230,7 @@ python scripts/vod_aigc_image.py create \
 
 #### Using FileId as Reference Image
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "Change to a winter snow scene" \
     --file-id 3704211509819
@@ -212,7 +238,7 @@ python scripts/vod_aigc_image.py create \
 
 #### Vidu q2 Model + Reference Image FileId (Style Reference)
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Vidu \
     --model-version q2 \
     --prompt "Chinese ink painting style" \
@@ -221,32 +247,32 @@ python scripts/vod_aigc_image.py create \
 
 #### Using URL as Reference Image
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Kling \
     --model-version 2.1 \
     --prompt "Change the image style to watercolor painting" \
     --file-url "https://example.com/reference.jpg"
 ```
 
-#### GEM Multiple Reference Images (Up to 3)
+#### GG Multiple Reference Images (Up to 3)
 
 > 🚨 **Multiple reference images must use the `--file-infos` JSON array**. There is no `--file-ids` parameter; `--file-id` only supports a single image.
 
 ```bash
-python scripts/vod_aigc_image.py create \
-    --model GEM \
+python3 scripts/vod_aigc_image.py create \
+    --model GG \
     --model-version 3.0 \
     --prompt "Blend the styles of these three images" \
     --file-infos '[{"Type":"File","FileId":"3704211509819"},{"Type":"File","FileId":"3704211509820"},{"Type":"File","FileId":"3704211509821"}]'
 ```
 
-#### GEM Multiple Reference Images (With Text Descriptions)
+#### GG Multiple Reference Images (With Text Descriptions)
 
 > ⚠️ When using `--file-infos`, the `--file-text` parameter is invalid. Text descriptions must be embedded in the `"Text"` field of each JSON element.
 
 ```bash
-python scripts/vod_aigc_image.py create \
-    --model GEM \
+python3 scripts/vod_aigc_image.py create \
+    --model GG \
     --model-version 3.0 \
     --prompt "Blend the styles of these three images" \
     --file-infos '[{"Type":"File","FileId":"3704211509819","Text":"Style of the first image"},{"Type":"File","FileId":"3704211509820","Text":"Composition of the second image"},{"Type":"File","FileId":"3704211509821","Text":"Color tone of the third image"}]'
@@ -255,7 +281,7 @@ python scripts/vod_aigc_image.py create \
 ### 3 Enable Prompt Enhancement
 
 ```bash
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "landscape painting" \
     --enhance-prompt Enabled
@@ -265,12 +291,12 @@ python scripts/vod_aigc_image.py create \
 
 ```bash
 # Submit task and automatically wait for completion (default max wait: 600 seconds)
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "A puppy"
 
 # No wait, submit task only
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "A puppy" \
     --no-wait
@@ -280,10 +306,10 @@ python scripts/vod_aigc_image.py create \
 
 ```bash
 # Query and wait for task completion (default auto-wait)
-python scripts/vod_aigc_image.py query --task-id task_xxx
+python3 scripts/vod_aigc_image.py query --task-id task_xxx
 
 # Query current status only, no waiting
-python scripts/vod_aigc_image.py query --task-id task_xxx --no-wait
+python3 scripts/vod_aigc_image.py query --task-id task_xxx --no-wait
 ```
 
 ### 6 Disable Person Generation (output-person-generation)
@@ -292,14 +318,14 @@ python scripts/vod_aigc_image.py query --task-id task_xxx --no-wait
 
 ```bash
 # Disallow person generation
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "Beautiful mountain and river scenery" \
     --output-person-generation Disallowed \
     --sub-app-id 1500046725
 
 # Allow adult person generation
-python scripts/vod_aigc_image.py create \
+python3 scripts/vod_aigc_image.py create \
     --model Hunyuan \
     --prompt "Portrait of a person" \
     --output-person-generation AllowAdult
@@ -308,7 +334,437 @@ python scripts/vod_aigc_image.py create \
 ### 7 View Supported Models
 
 ```bash
-python scripts/vod_aigc_image.py models
+python3 scripts/vod_aigc_image.py models
+```
+
+---
+
+## 8 GPT-Image2 (OG) Advanced Features
+
+> 📌 **Mapping**: Skill `OG` model = GPT-Image2. The Tencent Cloud API uses `ModelName=OG` while the marketing name is GPT-Image2. Three quality tiers: `image2_low` / `image2_medium` / `image2_high`, in increasing quality / latency / cost.
+
+> 💪 **Core Capabilities**: multilingual text rendering (zh/en/ja/ko/ar), multi-image output (1-8), custom size (multiple of 16), jpeg/png output, mask editing, up to 16 reference images.
+
+> ⚠️ **Not Supported**: transparent background (downgrade to gpt-image-1.5 if required).
+
+### 8.1 Basic Text-to-Image (corresponds to doc 3.14.2)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "A futuristic city at sunset, photorealistic" \
+    --output-aspect-ratio 16:9 \
+    --output-resolution 2K \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 8.2 Multi-Image Output OutputImageCount (corresponds to doc 3.14.3)
+
+> ⚠️ **Range**: OG 1-8, Kling 1-9 (including Kling outpainting).
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_low \
+    --prompt "Cute cartoon corgi, multiple variations" \
+    --output-aspect-ratio 1:1 \
+    --output-image-count 4 \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+The length of `Output.FileInfos` array equals `OutputImageCount`.
+
+### 8.3 Custom size / auto mode (corresponds to doc 3.14.4, via `--ext-info`)
+
+> ⚠️ **size constraints**: width and height must be multiples of 16; longest edge ≤ 3840; total pixels between 655,360 and 8,294,400.
+> In auto mode the model decides the size; do NOT pass `auto` to `--output-aspect-ratio`.
+
+```bash
+# Custom size: 2000x1104
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "Wide cinematic banner" \
+    --ext-info '{"AdditionalParameters":"{\"size\":\"2000x1104\"}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+
+# auto mode
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "A scene that decides its own aspect ratio" \
+    --ext-info '{"AdditionalParameters":"{\"size\":\"auto\"}"}' \
+    --sub-app-id 1308104797
+```
+
+### 8.4 Mask Editing ReferenceType=mask (corresponds to doc 3.14.6)
+
+> 🚨 **Mandatory rule**: the first FileInfos element is the **source image to edit**, the second element is the **mask image** with `"ReferenceType":"mask"`. The mask is a PNG: white area = region to replace, transparent/black area = preserved.
+
+```bash
+# Multiple reference images + mask (recommended)
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "Replace the masked area with a bright red flower" \
+    --file-infos '[{"Type":"File","FileId":"<source_id>"},{"Type":"File","FileId":"<mask_id>","ReferenceType":"mask"}]' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+
+# Single reference image + mask (passing mask only)
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "Generate content matching this mask" \
+    --file-id <mask_id> --reference-type mask \
+    --sub-app-id 1308104797
+```
+
+### 8.5 Specify OutputFormat (corresponds to doc 3.14.7)
+
+```bash
+# jpeg
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_medium \
+    --prompt "A red apple on a wooden table" \
+    --output-format jpeg \
+    --sub-app-id 1308104797
+
+# png
+python3 scripts/vod_aigc_image.py create \
+    --model OG --model-version image2_high \
+    --prompt "Detailed product render" \
+    --output-format png \
+    --sub-app-id 1308104797
+```
+
+### 8.6 Transparent Layer (corresponds to doc 3.14.5)
+
+> ⚠️ **GPT-Image2 does not support transparent backgrounds** (the doc explicitly states: "downgrade to gpt-image-1.5 for transparent background"). The current VOD integration is the image2 series, so do NOT pass transparent-background requests to OG; the result will not be transparent. If you really need transparency, contact Tencent Cloud business team to confirm the image1.5 access path.
+
+### 8.7 Quality Tier Recommendation
+
+| Version | Speed | Cost | Recommended Scenarios |
+|------|------|------|---------|
+| `image2_low` | Fastest | Lowest | Quick drafts, prompt iteration, batch testing |
+| `image2_medium` | Mid | Mid | Most daily production / general design (recommended default) |
+| `image2_high` | Slowest | Highest | Final deliverables, print-ready, high-precision product images, complex text / small fonts |
+
+---
+
+## 9 Hunyuan 3D Panoramic Image (Hunyuan World Model)
+
+> 📌 **Capability**: Hunyuan `3d_2.0` together with `--scene-type 3d_panorama` generates **360° ERP panoramic images**, suitable for VR / AR, film backplates, virtual broadcast etc. Input can be plain text (text-to-3D) or a single reference image (image-to-3D). The video-side `3d_scene` (3D model / 3DGS / mesh) belongs to the video script and is out of scope here.
+
+### 9.1 Text-to-3D Panoramic Image
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Hunyuan --model-version 3d_2.0 \
+    --scene-type 3d_panorama \
+    --prompt "An ancient mountain temple courtyard, snow scene, golden hour" \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 9.2 Image-to-3D Panoramic Image (single reference image)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Hunyuan --model-version 3d_2.0 \
+    --scene-type 3d_panorama \
+    --prompt "Preserve the scene structure, expand to a 360° panorama" \
+    --file-url "https://example.com/photo.jpg" \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 9.3 Difference vs. plain Hunyuan 3.0
+
+| Dimension | Hunyuan 3.0 (default) | Hunyuan 3d_2.0 |
+|---|---|---|
+| Use case | General text-to-image / image-to-image | 360° panoramic image |
+| `--scene-type` | omit | **Required** `3d_panorama` |
+| Output | Regular image | ERP panoramic image |
+
+---
+
+## 10 Kling Advanced Features
+
+> 📌 **Capability**: Kling image-side supports plain text/image generation, **multi-image output (1-9)**, and **outpainting**. Kling motion control / digital human / lip sync / video edit belong to **video generation** and should use `vod_aigc_video.py`.
+
+### 10.1 Plain Text-to-Image / Image-to-Image
+
+```bash
+# Text-to-image
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version 2.1 \
+    --prompt "Cyberpunk futuristic city night scene" \
+    --output-resolution 2k --output-aspect-ratio 16:9 \
+    --sub-app-id 1308104797
+
+# Image-to-image (FileId or URL, pick one)
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version 3.0-Omni \
+    --file-id 5145403721231891303 \
+    --prompt "Change the style to watercolor" \
+    --sub-app-id 1308104797
+```
+
+### 10.2 Generate multiple images at once (OutputImageCount 1-9)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version 3.0 \
+    --prompt "Realistic landscape painting" \
+    --output-image-count 5 --output-aspect-ratio 16:9 \
+    --sub-app-id 1308104797
+```
+
+The length of `Output.FileInfos` array equals `OutputImageCount`.
+
+### 10.3 Kling Outpainting
+
+> 🚨 **Mandatory rule**: Kling outpainting is an **image-to-image** variant. **A single reference image is required** (`--file-id` or `--file-url`), and 4 directional expansion ratios must be passed via `--ext-info`. Use `--output-image-count` (1-9) for multi-image output.
+
+**ratio fields** (range `[0, 2]`; new image total area cannot exceed 3× the original):
+
+| Field | Meaning |
+|---|---|
+| `up_expansion_ratio` | Upward expansion as a multiplier of the original **height** |
+| `down_expansion_ratio` | Downward expansion as a multiplier of the original **height** |
+| `left_expansion_ratio` | Leftward expansion as a multiplier of the original **width** |
+| `right_expansion_ratio` | Rightward expansion as a multiplier of the original **width** |
+
+**Command template**:
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling \
+    --file-id <reference image FileId> \
+    --prompt "Fill the surrounding sky and sea (≤2500 chars)" \
+    --output-image-count 2 \
+    --ext-info '{"AdditionalParameters":"{\"up_expansion_ratio\":0.2,\"down_expansion_ratio\":0.2,\"left_expansion_ratio\":0.3,\"right_expansion_ratio\":0.3}"}' \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **Undocumented field**: the Tencent Cloud API doc does not specify the exact mounting location of the ratio fields; the current implementation passes them through `ExtInfo.AdditionalParameters`. If the server returns "parameter not recognized", contact the Tencent Cloud business team for the correct format.
+
+### 10.4 Multi-Subject Generation (3.0-Omni / O1, up to 10 reference images)
+
+Kling 3.0-Omni and O1 support **up to 10 reference images** for multi-subject generation, passed via `--file-infos` JSON array:
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version 3.0-Omni \
+    --prompt "Combine these characters into a family portrait, photorealistic style" \
+    --file-infos '[
+        {"Type":"Url","Url":"https://e.com/p1.jpg"},
+        {"Type":"Url","Url":"https://e.com/p2.jpg"},
+        {"Type":"Url","Url":"https://e.com/p3.jpg"}
+    ]' \
+    --output-resolution 4K --output-aspect-ratio auto \
+    --sub-app-id 1308104797
+```
+
+> Interface tested: 3.0-Omni and O1 both support 4K + `auto` aspect ratio + up to 10 reference images.
+
+### 10.5 Kling 4K Output (3.0-Omni / O1 only)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version 3.0-Omni \
+    --prompt "Sunrise over snow mountains, ultra-realistic photography" \
+    --output-resolution 4K \
+    --output-aspect-ratio 16:9 \
+    --sub-app-id 1308104797
+```
+
+| Version | 1K | 2K | 4K |
+|---|---|---|---|
+| 2.1 / 3.0 | ✅ | ✅ | ❌ |
+| **3.0-Omni / O1** | ✅ | ✅ | **✅** |
+
+### 10.6 Kling O1 (flagship version, similar to 3.0-Omni)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version O1 \
+    --prompt "Cinematic portrait" \
+    --output-resolution 4K \
+    --output-aspect-ratio auto \
+    --sub-app-id 1308104797
+```
+
+> Interface tested: O1 and 3.0-Omni share identical resolution / aspect ratio / reference image support; consider them complementary flagship versions.
+
+---
+
+## 11 Vidu Advanced Features
+
+> 📌 **Capability**: Vidu q2 image-side supports **up to 7 reference images for fusion**, **4K high resolution**, and **multiple aspect ratios**. Vidu fixed-subject capability (CreateAigcSubject) is a separate API and is out of scope here.
+
+### 11.1 Plain Text-to-Image (high resolution)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Vidu --model-version q2 \
+    --prompt "Ink-wash mountain and water" \
+    --output-resolution 4K --output-aspect-ratio 16:9 \
+    --sub-app-id 1308104797
+```
+
+### 11.2 Single reference (style)
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Vidu --model-version q2 \
+    --file-id 5145403721231891303 \
+    --prompt "Keep the composition but change to autumn color tone" \
+    --sub-app-id 1308104797
+```
+
+### 11.3 Multi-image reference (up to 7, fuse styles)
+
+> 🚨 **Multiple reference images must use `--file-infos`** with a JSON array. `--file-id` / `--file-url` only supports a single image.
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Vidu --model-version q2 \
+    --file-infos '[
+        {"Type":"Url","Url":"https://e.com/a.jpg"},
+        {"Type":"Url","Url":"https://e.com/b.jpg"},
+        {"Type":"Url","Url":"https://e.com/c.jpg"},
+        {"Type":"Url","Url":"https://e.com/d.jpg"}
+    ]' \
+    --prompt "Fuse the styles of these images" \
+    --sub-app-id 1308104797
+```
+
+### 11.4 Vidu q2 Resolution and Aspect Ratio
+
+| Dimension | Values |
+|---|---|
+| Resolution | `1080p`, `2K`, `4K` |
+| Aspect Ratio | 16:9, 9:16, 1:1, 3:4, 4:3, 21:9, 2:3, 3:2 |
+| Reference Images | 0–7 |
+
+---
+
+## 12 SI (Seedream) Advanced Features
+
+### 12.1 SI 4.0 Multi-Image Output (sequential_image_generation)
+
+SI 4.0 supports generating multiple images per task, requiring two conditions:
+
+1. **Specify the number of images in the Prompt** (e.g., "output 3 images")
+2. **Pass `sequential_image_generation: auto` via ExtInfo**
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model SI --model-version 4.0 \
+    --prompt "Chinese-style illustration, cranes and pines, output 3 images" \
+    --ext-info '{"AdditionalParameters": "{\"sequential_image_generation\":\"auto\"}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **SI 4.0 only**: SI 4.5 / SI 5.0-lite do not support this sequential multi-image output.
+
+### 12.2 SI Version Resolution Comparison
+
+| Version | Resolution Tiers | Default | Reference Images |
+|---|---|---|---|
+| SI 4.0 | 1K, 2K, 4K | 1K | 0–14 |
+| SI 4.5 | 2K, 4K | 2K | 0–14 |
+| SI 5.0-lite | 2K, 3K, 4K | 2K | 0–14 |
+
+> SI series specifies aspect ratio via Prompt (describe 16:9, 9:16, etc. in the text), not via the `--output-aspect-ratio` parameter.
+
+---
+
+## 13 Custom Resolution (ExtInfo width/height/size)
+
+Some models do not support the standard `--output-resolution` / `--output-aspect-ratio` parameters and require custom resolution via `--ext-info`.
+
+### 13.1 Hunyuan 3.0 Custom size
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Hunyuan --model-version 3.0 \
+    --prompt "Chinese ink landscape, vertical composition" \
+    --ext-info '{"AdditionalParameters": "{\"size\":\"728x1024\"}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+**Constraints**: width and height in [512, 2048], product ≤ 1024×1024 pixels, default 1024×1024.
+
+### 13.2 Qwen 0925 Custom width/height
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Qwen --model-version 0925 \
+    --prompt "Futuristic sci-fi city night view" \
+    --ext-info '{"AdditionalParameters": "{\"width\":1024, \"height\":1024}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+**Constraints**: output pixels in [512×512, 2048×2048], default 1024×1024.
+
+### 13.3 Jimeng 4.0 Custom width/height
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Jimeng --model-version 4.0 \
+    --prompt "Chinese-style illustration" \
+    --ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+**Constraints**: resolution range [1024×1024, 4096×4096].
+
+### 13.4 ExtInfo Custom Resolution vs OutputConfig
+
+| Model | Standard `--output-resolution` / `--output-aspect-ratio` | ExtInfo Custom Resolution |
+|---|---|---|
+| **Hunyuan 3.0** | ❌ Not supported | ✅ `size` |
+| **Qwen 0925** | ❌ Not supported | ✅ `width`/`height` |
+| **Jimeng 4.0** | ❌ Not supported | ✅ `width`/`height` |
+| **OG (GPT-Image2)** | ✅ Supported + custom | ✅ Arbitrary size (multiple of 16) |
+| Other models (Kling/GG/SI/Vidu/MJ) | ✅ Supported | — |
+
+---
+
+## 14 Key Constraints Discovered via Interface Testing
+
+> All constraints verified via real interface submissions (2026-06-30)
+
+### 14.1 ModelName Aliases
+
+| ModelName | Interface Result | Notes |
+|---|---|---|
+| `GG` | ✅ Accepted | **Current skill usage** (product-side standard name) |
+| `GEM` | ✅ Accepted | Historical alias, also accepted by the interface |
+| `MJ` | ✅ Accepted | Current skill usage |
+| `Midjourney` | ❌ **Rejected**: `ModelName Midjourney is invalid` | Not usable |
+
+### 14.2 GG 3.1 Extreme Aspect Ratios (verified)
+
+GG 3.1 supports the following "extreme aspect ratios" (most other models don't):
+
+| AspectRatio | Use Case |
+|---|---|
+| `1:4`, `4:1` | Ultra-narrow / ultra-wide panoramic images |
+| `1:8`, `8:1` | Long banners, e-commerce / web banners |
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model GG --model-version 3.1 \
+    --prompt "E-commerce web banner, long horizontal layout" \
+    --output-aspect-ratio 8:1 \
+    --output-resolution 4K \
+    --sub-app-id 1308104797
 ```
 
 ---

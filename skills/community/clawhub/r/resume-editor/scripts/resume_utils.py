@@ -7,7 +7,9 @@ from __future__ import annotations
 
 import copy
 import re
+from html import escape as html_escape
 from pathlib import Path
+from urllib.parse import urlsplit
 
 BUILTIN_THEMES = ["modern", "classic", "minimal", "creative"]
 SUPPORTED_THEMES = BUILTIN_THEMES
@@ -261,10 +263,46 @@ def coerce_string(value):
     return ""
 
 
-def resolve_photo_src(photo_value, resume_json_path=None):
-    """Resolve a personal.photo value into an HTML img src.
+def sanitize_external_url(url_value, allowed_schemes, allow_relative=False):
+    """Return a normalized URL/path if its scheme is allowed, else ""."""
+    text = coerce_string(url_value)
+    if not text:
+        return ""
 
-    - data:, http://, https://, file:// — returned as-is.
+    try:
+        parsed = urlsplit(text)
+    except Exception:
+        return ""
+
+    scheme = parsed.scheme.lower()
+    if scheme:
+        if scheme not in allowed_schemes:
+            return ""
+        return text
+
+    if text.startswith("//"):
+        return ""
+
+    if allow_relative:
+        return text
+
+    return ""
+
+
+def escape_html_attr(value):
+    """Escape text for safe HTML attribute embedding."""
+    return html_escape(coerce_string(value), quote=True)
+
+
+def resolve_profile_url(url_value):
+    """Return a safe profile URL for rendered links or "" when invalid."""
+    return sanitize_external_url(url_value, {"https"})
+
+
+def resolve_photo_src(photo_value, resume_json_path=None):
+    """Resolve a personal.photo value into a safe HTML img src.
+
+    - data:, https://, file:// — returned as-is.
     - Absolute filesystem path — converted to a file:// URL (local preview only).
     - Relative path — returned as-is, so it resolves relative to the HTML's
       location. This keeps the HTML portable: write the HTML next to the photo
@@ -275,14 +313,16 @@ def resolve_photo_src(photo_value, resume_json_path=None):
     photo = coerce_string(photo_value)
     if not photo:
         return ""
-    lowered = photo.lower()
-    if lowered.startswith(("data:", "http://", "https://", "file://")):
-        return photo
+    if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", photo) and not photo.lower().startswith(("data:", "https://", "file://")):
+        return ""
+    sanitized = sanitize_external_url(photo, {"data", "https", "file"}, allow_relative=True)
+    if sanitized and urlsplit(sanitized).scheme:
+        return sanitized
     if Path(photo).is_absolute():
         try:
             return Path(photo).expanduser().resolve().as_uri()
         except Exception:
-            return photo
+            return ""
     # Relative path — keep as-is for portability
     return photo
 
@@ -445,6 +485,18 @@ def validate_resume_data(resume_data):
     email = coerce_string(personal.get("email"))
     if email and not is_valid_email(email):
         errors.append(f"Invalid email format: {email}")
+
+    linkedin = coerce_string(personal.get("linkedin"))
+    if linkedin and not resolve_profile_url(linkedin):
+        errors.append("Invalid LinkedIn URL: must use https://")
+
+    github = coerce_string(personal.get("github"))
+    if github and not resolve_profile_url(github):
+        errors.append("Invalid GitHub URL: must use https://")
+
+    photo = coerce_string(personal.get("photo"))
+    if photo and not resolve_photo_src(photo):
+        errors.append("Invalid photo source: use a relative path, absolute file path, file://, https://, or data:")
 
     return errors
 

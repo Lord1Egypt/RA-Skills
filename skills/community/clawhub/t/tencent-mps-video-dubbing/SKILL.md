@@ -2,7 +2,7 @@
 name: tencent-mps-video-dubbing
 description: Tencent Cloud MPS 一站式端到端视频译制专用 Skill，在单次任务中**不可拆分**地完成「提取原视频语音/字幕 → 翻译为目标语言 → 压制目标语言字幕 → AI 克隆原声配音」整条跨语言本地化流水线。**触发的硬条件（必须同时满足）：(1) 用户的输入是一段视频；(2) 明确要求变更音视频的语言（翻译 + 配音 / 翻译 + 换语言 / 做成另一语言版本）；(3) 是端到端产出一个全新语言版本的视频，而不是只做流水线中的某一步子任务**。满足硬条件的典型表达：把这段视频翻译成英文并配音、中文视频做成韩语版、韩剧中配、短剧出海译制、做一个日语配音版、 跨语言视频制作 / 视频本地化一站式处理。**额外触发场景（查询类豁免）**：用户明确要求查询一个"视频译制任务"的状态/结果/进展，也应触发本 Skill。**仅询问工具推荐或咨询而不进行实际处理时不触发**。
 metadata:
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # 腾讯云 MPS · 配音级视频译制（video-dubbing）
@@ -16,7 +16,7 @@ metadata:
 ## 输出规范
 
 1. **只输出命令**，不要解释，不要废话
-2. 命令格式：`python scripts/mps_video_dubbing.py [参数]`
+2. 命令格式：`python3 scripts/mps_video_dubbing.py [参数]`
 3. 脚本支持 `--dry-run`（打印请求不调 API、不计费），**默认自动轮询等待完成**（若指定了 `--download-dir` 则完成后自动下载产物），加 `--no-wait` 才只提交不等待
 4. 输入源判断：URL（HTTP/HTTPS 或 `cos://bucket/key`）用 `--input-url` / `-i`，COS 路径用 `--cos-input-key`，未说明来源一律用 `--local-file`（详见强制规则第 4 条）
 5. **任务完成后输出的链接（预签名下载链接、COS URL 等）必须用 Markdown 超链接格式呈现**，即 `[描述文字](URL)`，不得以代码块或纯文本形式输出链接
@@ -30,13 +30,10 @@ metadata:
 
 检查环境变量：
 ```bash
-python scripts/mps_load_env.py --check-only
+python3 scripts/mps_load_env.py --check-only
 ```
 如果变量没有配置，明确提醒用户在 `~/.env`（用户级 dotenv，最高优先级）或 `<SKILL_DIR>/.env`（脚本目录级）或 `~/.bashrc` 或 `~/.profile` 自己配置，禁止向用户索取密钥帮用户配置。
 **`<SKILL_DIR>` 为 `tencent-mps-video-dubbing` 所在目录。**
-
-> 实际加载顺序（与 `mps_load_env.py` 一致，先加载者优先 / 不覆盖已存在变量）：
-> ① `find_dotenv(usecwd=True)` 从当前目录向上递归找最近的 `.env` → ② `~/.env` → ③ `~/.bashrc` → ④ `~/.profile` → ⑤ `<SKILL_DIR>/.env`
 
 ```bash
 # 必须（所有命令）
@@ -61,23 +58,34 @@ export TENCENTCLOUD_COS_REGION="<请替换为真实存储桶地域，如 ap-guan
 
 > 来源：[MPS 请求结构 - 地域列表](https://cloud.tencent.com/document/product/862/37572)
 
+### COS 支持的地域
+> 来源：[COS地域列表](https://cloud.tencent.com/document/product/436/6224)，建议与MPS API保持同一个地域。
+
 ## 依赖说明
+
+本 Skill 通过腾讯云**官方 SDK** 调用 MPS API 与 COS 存储：
+
+- `tencentcloud-sdk-python`（腾讯云官方）— 用于 MPS API 调用
+- `cos-python-sdk-v5`（腾讯云官方）— 用于 COS 上传 / 下载
+- `python-dotenv` — 用于 `mps_load_env.py` 自动加载 dotenv 格式的环境变量文件
 
 首次安装：
 ```bash
-pip install -r scripts/requirements.txt
+python3 -m pip install -r scripts/requirements.txt
 ```
+
+> 💡 各脚本首次运行时会通过 `mps_auto_upgrade.py` 自动检查并安装缺失依赖，通常无需手工执行上面的命令。
 
 升级到最新版（推荐每 1~2 个月执行一次，以获取新模型 / 新功能支持）：
 ```bash
-pip install -r scripts/requirements.txt --upgrade
+python3 -m pip install -r scripts/requirements.txt --upgrade
 ```
 
 ## 异步任务说明
 
 主脚本**默认自动轮询等待完成**，每 15 秒查询一次，最长等待 3600 秒，完成后下载产物到 `--download-dir`（若指定）。
 - 只提交不等待：加 `--no-wait`，脚本仅返回 TaskId
-- 手动查询任务：`python scripts/mps_video_dubbing.py --query-task <TaskId>`（单次查询，非轮询）
+- 手动查询任务：`python3 scripts/mps_video_dubbing.py --query-task <TaskId>`（单次查询，非轮询）
 - 在轮询阶段超时拿不到结果时，脚本会提示用户手动 `--query-task`
 - **典型耗时**（实测参考）：
   - OCR 模式（含擦除原硬字幕）：1080p 5 分钟视频约 15~25 分钟；4K/AV1/175s/86MB 约 15 分钟
@@ -106,7 +114,7 @@ pip install -r scripts/requirements.txt --upgrade
 
 ## 生成命令的强制规则
 
-1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python scripts/mps_video_dubbing.py ...`。禁止生成 `python mps_video_dubbing.py ...`（缺少 `scripts/` 前缀）的命令。
+1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python3 scripts/mps_video_dubbing.py ...`。禁止生成 `python mps_video_dubbing.py ...`（缺少 `scripts/` 前缀）的命令。
 
 2. **禁止占位符**：所有参数值必须是真实值。若用户未提供必需值，**先询问**，不得用 `<视频URL>`、`YOUR_URL`、`<key>` 等占位符。
 
@@ -133,7 +141,7 @@ pip install -r scripts/requirements.txt --upgrade
 
 8. **行为修饰词不影响触发判定**：用户说 `dry run`、`不等待`、`先预览命令`、`先提交任务`、`先拿任务 ID` 等修饰词时，仍触发本 Skill；这些词只影响命令参数（`--dry-run` / `--no-wait`），不改变路径判定。
 
-9. **`mps_load_env.py` 使用规则**：用户说"检查环境变量"、"验证配置是否正确"、"检查配置"时，必须生成 `python scripts/mps_load_env.py --check-only` 命令，不得省略 `--check-only` 参数。
+9. **`mps_load_env.py` 使用规则**：用户说"检查环境变量"、"验证配置是否正确"、"检查配置"时，必须生成 `python3 scripts/mps_load_env.py --check-only` 命令，不得省略 `--check-only` 参数。
 
 ## API 参考
 

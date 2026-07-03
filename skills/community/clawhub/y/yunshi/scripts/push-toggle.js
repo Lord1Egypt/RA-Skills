@@ -1,20 +1,17 @@
 #!/usr/bin/env node
 /**
- * 每日运势推送开关
- * 开启时自动创建用户专属 cron job，关闭时删除
+ * 每日运势推送开关（无文件写入版）
+ *
+ * 档案存放在原生 MEMORY.md 中，由 Agent 维护；本脚本不读写任何文件。
+ * 开启推送所需的八字 / 关注领域由 Agent 从 MEMORY.md 读取后作为参数传入，
+ * cron 任务通过 openclaw 运行时协议（__OPENCLAW_CRON_ADD__）创建，运行时负责持久化。
  *
  * 用法:
- *   node push-toggle.js on <userId>                开启推送（默认早8点+晚8点）
- *   node push-toggle.js off <userId>               关闭推送（删除 cron）
- *   node push-toggle.js status <userId>            查看状态
- *   node push-toggle.js on <userId> --morning 08:00 --evening 20:00
+ *   node push-toggle.js on <userId> --name <姓名> --bazi "年 月 日 时" --daystem <日主> \
+ *        [--focus 事业,财运,健康] [--channel telegram] [--morning 08:00] [--evening 20:00]
+ *   node push-toggle.js off <userId>
+ *   node push-toggle.js status <userId>
  */
-
-const fs = require('fs');
-const path = require('path');
-const { getTopTopics } = require('./preference-tracker');
-
-const PROFILES_DIR = path.join(__dirname, '../data/profiles');
 
 // 各领域深度分析模板
 const TOPIC_EXPANDED = {
@@ -64,69 +61,23 @@ const NEWS_FORTUNE_MAPPING = `新闻与命理映射规则（识别今日新闻�
   - 社会冲突/司法/法律法规变动 → 官司/是非风险
   - 科技突破/国际贸易/地缘政治 → 事业/财运双向影响分析`;
 
-function loadProfile(userId) {
-  const filePath = path.join(PROFILES_DIR, `${userId}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
-function saveProfile(userId, profile) {
-  const filePath = path.join(PROFILES_DIR, `${userId}.json`);
-  profile.updatedAt = new Date().toISOString().split('T')[0];
-  fs.writeFileSync(filePath, JSON.stringify(profile, null, 2), 'utf8');
-}
-
 /**
- * 创建用户专属 cron job
- * 返回 cron job id，失败返回 null
+ * 创建用户专属 cron job（输出协议供 openclaw 运行时处理，脚本不落盘）
  */
 function createCronJob(userId, name, cronExpr, message, channel) {
   const sessionKey = `agent:main:${channel}:direct:${userId}`;
-  const args = [
-    'cron', 'add',
-    '--name', name,
-    '--cron', cronExpr,
-    '--tz', 'Asia/Shanghai',
-    '--session', 'isolated',
-    '--session-key', sessionKey,
-    '--channel', channel,
-    '--to', userId,
-    '--announce',
-    '--timeout-seconds', '120',
-    '--message', message,
-    '--json'
-  ];
-
-  try {
-    // openclaw cron 由运行时管理，输出配置供运行时处理
-    const cronConfig = { name, cronExpr, tz: 'Asia/Shanghai', session: 'isolated', sessionKey, channel, to: userId, announce: true, timeoutSeconds: 120, message };
-    console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(cronConfig)}`);
-    return `cron:${name}:${userId}`;
-  } catch (e) {
-    console.error('创建 cron 失败:', e.message);
-    return null;
-  }
+  const cronConfig = { name, cronExpr, tz: 'Asia/Shanghai', session: 'isolated', sessionKey, channel, to: userId, announce: true, timeoutSeconds: 120, message };
+  console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(cronConfig)}`);
+  return `cron:${name}:${userId}`;
 }
 
-/**
- * 删除 cron job
- */
 function removeCronJob(cronId) {
-  try {
-    console.log(`__OPENCLAW_CRON_RM__:${cronId}`);
-    return true;
-  } catch (e) {
-    console.error(`删除 cron ${cronId} 失败:`, e.message);
-    return false;
-  }
+  console.log(`__OPENCLAW_CRON_RM__:${cronId}`);
+  return true;
 }
 
-/**
- * 构建早晨推送 prompt（今日运程）— 含偏好权重 + 新闻整合
- */
 function buildMorningMessage(profile, topTopics) {
-  const bazi = profile.bazi || {};
-  const baziStr = `${bazi.year} ${bazi.month} ${bazi.day} ${bazi.hour}`;
+  const baziStr = profile.baziStr;
   const name = profile.name || '用户';
   const userId = profile.userId;
   const top1 = topTopics[0] || '事业';
@@ -135,7 +86,7 @@ function buildMorningMessage(profile, topTopics) {
   const expandedSection = TOPIC_EXPANDED[top1] || '';
 
   return `请为${name}生成今日命理运程报告。
-用户八字：${baziStr}，日主：${bazi.dayStem}
+用户八字：${baziStr}，日主：${profile.dayStem}
 用户重点关注（按偏好排序）：${top1} > ${top2} > ${top3}
 
 步骤：
@@ -143,7 +94,7 @@ function buildMorningMessage(profile, topTopics) {
 2) 搜索今日重要新闻（财经、政策、社会、国际各一条）
    ${NEWS_FORTUNE_MAPPING}
 3) 结合八字与新闻做个性化分析，重点展开【${top1}】领域深度分析
-4) 完成后运行：node scripts/preference-tracker.js record ${userId} ${top1} morning_push
+4) 如用户回应了本次推送，请在 MEMORY.md 中更新其关注领域权重
 
 输出格式：
 🌅 【私人命理顾问】今日完整日期（含星期）
@@ -168,20 +119,15 @@ ${expandedSection}
 💡 今日一句（命理格言或人生启示）`;
 }
 
-/**
- * 构建晚间推送 prompt（明日预告）— 含偏好权重 + 新闻整合
- */
 function buildEveningMessage(profile, topTopics) {
-  const bazi = profile.bazi || {};
-  const baziStr = `${bazi.year} ${bazi.month} ${bazi.day} ${bazi.hour}`;
+  const baziStr = profile.baziStr;
   const name = profile.name || '用户';
-  const userId = profile.userId;
   const top1 = topTopics[0] || '事业';
   const top2 = topTopics[1] || '财运';
   const expandedSection = TOPIC_EXPANDED[top1] || '';
 
   return `请为${name}生成明日命理预告（今晚提前推送明日运势）。
-用户八字：${baziStr}，日主：${bazi.dayStem}
+用户八字：${baziStr}，日主：${profile.dayStem}
 用户重点关注（按偏好排序）：${top1} > ${top2}
 
 步骤：
@@ -189,7 +135,6 @@ function buildEveningMessage(profile, topTopics) {
 2) 搜索今日晚间重要新闻，预判对明日的影响
    ${NEWS_FORTUNE_MAPPING}
 3) 重点展开【${top1}】明日深度预告
-4) 完成后运行：node scripts/preference-tracker.js record ${userId} ${top1} evening_push
 
 输出格式：
 🌙 【明日预告】明日完整日期（含星期）
@@ -199,7 +144,7 @@ function buildEveningMessage(profile, topTopics) {
 
 🎨 明日幸运色：xxx
 
-${expandedSection.replace('今日', '明日')}
+${expandedSection.replace(/今日/g, '明日')}
 
 💼 明日宜忌
    ✅ 宜：xxx、xxx
@@ -217,128 +162,52 @@ ${expandedSection.replace('今日', '明日')}
 // ─────────────────────────────────────────────
 
 function enablePush(userId, options = {}) {
-  const profile = loadProfile(userId);
-  if (!profile) {
-    console.log(`❌ 用户档案不存在: ${userId}，请先注册`);
+  if (!options.baziStr || !options.baziStr.trim()) {
+    console.log('❌ 缺少八字参数 --bazi "年 月 日 时"。请先让 Agent 从 MEMORY.md 读取档案，或运行 register.js 排盘。');
     return false;
   }
 
   const morningTime = options.morning || '08:00';
   const eveningTime = options.evening || '20:00';
-  const channel = options.channel || (profile.preferences?.channels?.[0]) || 'telegram';
+  const channel = options.channel || 'telegram';
+  const topTopics = (options.focus || '事业,财运,健康').split(',').map(s => s.trim()).filter(Boolean);
 
   const [mHour, mMin] = morningTime.split(':');
   const [eHour, eMin] = eveningTime.split(':');
   const morningCron = `${mMin} ${mHour} * * *`;
   const eveningCron = `${eMin} ${eHour} * * *`;
 
-  console.log(`\n⏳ 正在为 ${profile.name}(${userId}) 创建推送计划...\n`);
+  const profile = { userId, name: options.name || '用户', baziStr: options.baziStr, dayStem: options.daystem || '' };
 
-  // 读取用户偏好权重
-  const topTopics = getTopTopics(userId, 3);
-  console.log(`  关注领域：${topTopics.join(' > ')}`);
+  console.log(`\n⏳ 正在为 ${profile.name}(${userId}) 创建推送计划...`);
+  console.log(`  关注领域：${topTopics.join(' > ')}\n`);
 
-  // 如果已有 cron，先删除旧的
-  const existing = profile.push?.cronIds || {};
-  if (existing.morning) { removeCronJob(existing.morning); }
-  if (existing.evening) { removeCronJob(existing.evening); }
+  const morningId = createCronJob(userId, `yunshi-morning-${userId}`, morningCron, buildMorningMessage(profile, topTopics), channel);
+  const eveningId = createCronJob(userId, `yunshi-evening-${userId}`, eveningCron, buildEveningMessage(profile, topTopics), channel);
 
-  // 创建早晨 cron
-  const morningId = createCronJob(
-    userId,
-    `yunshi-morning-${userId}`,
-    morningCron,
-    buildMorningMessage(profile, topTopics),
-    channel
-  );
-
-  // 创建晚间 cron
-  const eveningId = createCronJob(
-    userId,
-    `yunshi-evening-${userId}`,
-    eveningCron,
-    buildEveningMessage(profile, topTopics),
-    channel
-  );
-
-  // 保存到档案
-  if (!profile.preferences) profile.preferences = {};
-  profile.preferences.pushEnabled = true;
-  profile.preferences.pushMorning = true;
-  profile.preferences.pushEvening = true;
-  profile.preferences.morningTime = morningTime;
-  profile.preferences.eveningTime = eveningTime;
-  profile.preferences.channels = [channel];
-  profile.push = {
-    cronIds: {
-      morning: morningId,
-      evening: eveningId
-    },
-    createdAt: new Date().toISOString()
-  };
-
-  saveProfile(userId, profile);
-
-  console.log(`✅ 推送已开启！\n`);
-  console.log(`  用户: ${profile.name} (${userId})`);
-  console.log(`  渠道: ${channel}`);
-  console.log(`  🌅 早晨运程: 每天 ${morningTime}  ${morningId ? `(id: ${morningId})` : '⚠️ 创建失败'}`);
-  console.log(`  🌙 晚间预告: 每天 ${eveningTime}  ${eveningId ? `(id: ${eveningId})` : '⚠️ 创建失败'}`);
-  console.log('');
+  console.log(`\n✅ 推送已开启！`);
+  console.log(`  用户: ${profile.name} (${userId}) · 渠道: ${channel}`);
+  console.log(`  🌅 早晨运程: 每天 ${morningTime} (id: ${morningId})`);
+  console.log(`  🌙 晚间预告: 每天 ${eveningTime} (id: ${eveningId})`);
+  console.log(`\n💡 请在 MEMORY.md 的档案区块记下：推送已开启（${channel}，${morningTime}/${eveningTime}）。`);
   return true;
 }
 
 function disablePush(userId) {
-  const profile = loadProfile(userId);
-  if (!profile) {
-    console.log(`❌ 用户档案不存在: ${userId}`);
-    return false;
-  }
-
-  // 删除 cron job
-  const cronIds = profile.push?.cronIds || {};
-  let removed = 0;
-  if (cronIds.morning) { if (removeCronJob(cronIds.morning)) removed++; }
-  if (cronIds.evening) { if (removeCronJob(cronIds.evening)) removed++; }
-
-  if (!profile.preferences) profile.preferences = {};
-  profile.preferences.pushEnabled = false;
-  profile.preferences.pushMorning = false;
-  profile.preferences.pushEvening = false;
-  profile.push = { cronIds: {}, disabledAt: new Date().toISOString() };
-
-  saveProfile(userId, profile);
-
-  console.log(`\n✅ 推送已关闭（删除了 ${removed} 个定时任务）\n`);
+  // cron 名称可由 userId 推导，无需读取档案
+  removeCronJob(`cron:yunshi-morning-${userId}:${userId}`);
+  removeCronJob(`cron:yunshi-evening-${userId}:${userId}`);
+  console.log(`\n✅ 推送已关闭（已请求删除 ${userId} 的早晚定时任务）`);
+  console.log(`💡 请在 MEMORY.md 的档案区块记下：推送已关闭。`);
   return true;
 }
 
 function showStatus(userId) {
-  const profile = loadProfile(userId);
-  if (!profile) {
-    console.log(`❌ 用户档案不存在: ${userId}`);
-    return;
-  }
-
-  const pref = profile.preferences || {};
-  const enabled = pref.pushEnabled ?? pref.pushMorning ?? false;
-  const cronIds = profile.push?.cronIds || {};
-
-  console.log(`
-👤 用户: ${profile.name} (${userId})
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🧮 八字: ${profile.bazi?.year} ${profile.bazi?.month} ${profile.bazi?.day} ${profile.bazi?.hour}
-📅 出生: ${profile.profile?.birthDate} ${profile.profile?.birthTime}
-🔔 推送: ${enabled ? '✅ 已开启' : '❌ 已关闭'}
-⏰ 早晨: ${pref.morningTime || '08:00'} ${cronIds.morning ? `(cron: ${cronIds.morning})` : ''}
-🌙 晚间: ${pref.eveningTime || '20:00'} ${cronIds.evening ? `(cron: ${cronIds.evening})` : ''}
-📡 渠道: ${(pref.channels || ['telegram']).join(', ')}
-📆 推送创建: ${profile.push?.createdAt?.split('T')[0] || '未设置'}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`);
+  console.log(`\n🔔 推送状态由 MEMORY.md 档案记录 —— 请读取 MEMORY.md 中 <!-- yunshi:profile:${userId} --> 区块查看开启/时间/渠道。`);
+  console.log(`   如需重新开启：node scripts/push-toggle.js on ${userId} --name ... --bazi "..." --daystem ... --focus ...\n`);
 }
 
-module.exports = { enablePush, disablePush, showStatus };
+module.exports = { enablePush, disablePush, showStatus, buildMorningMessage, buildEveningMessage };
 
 // ─────────────────────────────────────────────
 // 命令行入口
@@ -350,32 +219,37 @@ const args = process.argv.slice(2);
 const command = args[0];
 const userId = args[1];
 
+function flag(name) {
+  const i = args.indexOf(name);
+  return (i !== -1 && args[i + 1]) ? args[i + 1] : undefined;
+}
+
 if (!userId) {
   console.log(`
-🔔 每日运势推送管理
+🔔 每日运势推送管理（无文件写入版）
 
 用法:
-  node push-toggle.js on <userId>                  开启推送（早8点+晚8点）
-  node push-toggle.js off <userId>                 关闭推送
-  node push-toggle.js status <userId>              查看状态
-  node push-toggle.js on <userId> --morning 08:00 --evening 20:00
-  node push-toggle.js on <userId> --channel feishu
+  node push-toggle.js on <userId> --name <姓名> --bazi "年 月 日 时" --daystem <日主> \\
+       [--focus 事业,财运,健康] [--channel telegram] [--morning 08:00] [--evening 20:00]
+  node push-toggle.js off <userId>
+  node push-toggle.js status <userId>
 
 说明:
-  开启后自动创建两个定时任务：
-  - 每天早晨推送当日运程（默认 08:00）
-  - 每天晚间推送明日预告（默认 20:00）
+  档案存于原生 MEMORY.md，由 Agent 维护并在开启推送时把八字/关注领域作为参数传入。
+  开启后创建两个定时任务：早晨推当日运程，晚间推明日预告。
 `);
   process.exit(1);
 }
 
-const options = {};
-const morningIdx = args.indexOf('--morning');
-if (morningIdx !== -1 && args[morningIdx + 1]) options.morning = args[morningIdx + 1];
-const eveningIdx = args.indexOf('--evening');
-if (eveningIdx !== -1 && args[eveningIdx + 1]) options.evening = args[eveningIdx + 1];
-const channelIdx = args.indexOf('--channel');
-if (channelIdx !== -1 && args[channelIdx + 1]) options.channel = args[channelIdx + 1];
+const options = {
+  name: flag('--name'),
+  baziStr: flag('--bazi'),
+  daystem: flag('--daystem'),
+  focus: flag('--focus'),
+  channel: flag('--channel'),
+  morning: flag('--morning'),
+  evening: flag('--evening'),
+};
 
 switch (command) {
   case 'on':  enablePush(userId, options); break;

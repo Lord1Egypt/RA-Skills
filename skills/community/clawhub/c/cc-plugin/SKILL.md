@@ -3,7 +3,7 @@ metadata:
   author: es6kr
   version: "0.1.0"
 name: cc-plugin
-description: >-
+description: |
   Claude Code plugin lifecycle management.
   cache - clean old plugin cache versions (cleanup only — NOT for cache miss/error diagnosis) [cache.md],
   create - plugin authoring guide (structure, plugin.json, components) [create.md],

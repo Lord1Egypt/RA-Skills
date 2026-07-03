@@ -8,22 +8,22 @@ Features:
 
 Usage:
   # List all files in the Bucket root directory (using bucket from environment variables)
-  python mps_cos_list.py
+  python3 mps_cos_list.py
 
   # List files under a specified path
-  python mps_cos_list.py --prefix output/transcode/
+  python3 mps_cos_list.py --prefix output/transcode/
 
   # Search for files by filename (fuzzy match)
-  python mps_cos_list.py --search video
+  python3 mps_cos_list.py --search video
 
   # Exact match filename
-  python mps_cos_list.py --search "result.mp4" --exact
+  python3 mps_cos_list.py --search "result.mp4" --exact
 
   # Specify bucket and region
-  python mps_cos_list.py --prefix input/ --bucket mybucket-125xxx --region ap-guangzhou
+  python3 mps_cos_list.py --prefix input/ --bucket mybucket-125xxx --region ap-guangzhou
 
   # Limit the number of results
-  python mps_cos_list.py --prefix output/ --limit 50
+  python3 mps_cos_list.py --prefix output/ --limit 50
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -32,6 +32,7 @@ Environment Variables:
   TENCENTCLOUD_COS_REGION  - COS Bucket region (default: ap-guangzhou)
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import os
 import sys
@@ -42,11 +43,6 @@ _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
 
 try:
-    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
-    _LOAD_ENV_AVAILABLE = True
-except ImportError:
-    _LOAD_ENV_AVAILABLE = False
-try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
@@ -55,7 +51,7 @@ except ImportError:
 try:
     from qcloud_cos import CosConfig, CosS3Client
 except ImportError:
-    print("Error: Tencent Cloud COS SDK is not installed. Please run: pip install cos-python-sdk-v5", file=sys.stderr)
+    print("Error: Tencent Cloud COS SDK is not installed. Please run: python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
     sys.exit(1)
 
 
@@ -67,19 +63,19 @@ def parse_args():
         epilog="""
 Examples:
   # List all files in the Bucket root directory
-  python mps_cos_list.py
+  python3 mps_cos_list.py
 
   # List files under a specified path
-  python mps_cos_list.py --prefix output/transcode/
+  python3 mps_cos_list.py --prefix output/transcode/
 
   # Fuzzy search for files with "video" in the filename
-  python mps_cos_list.py --search video
+  python3 mps_cos_list.py --search video
 
   # Exact match filename "result.mp4"
-  python mps_cos_list.py --search "result.mp4" --exact
+  python3 mps_cos_list.py --search "result.mp4" --exact
 
   # List the first 50 files
-  python mps_cos_list.py --prefix output/ --limit 50
+  python3 mps_cos_list.py --prefix output/ --limit 50
         """
     )
 

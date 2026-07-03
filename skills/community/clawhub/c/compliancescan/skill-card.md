@@ -1,5 +1,5 @@
 ## Description: <br>
-Run a GDPR/DSGVO website compliance scan via the compliancescan.eu API; report the 0-100 score and findings, check credits, and list past scans. <br>
+Scans public websites for GDPR/DSGVO compliance from the terminal and reports a 0-100 score plus key findings such as trackers, cookies, consent banner status, pre-consent tracking, fonts, and third-party transfers. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to run compliancescan.eu GDPR/DSGVO website scans, review compliance scores and findings, check available credits, and retrieve prior scan details from an agent session. <br>
+Developers, site operators, and compliance reviewers use this skill to run a limited public Quick-Scan or authenticated full scan for GDPR/DSGVO, cookie, tracker, consent-banner, external-font, and related website compliance signals. The result is an automated technical indication and should not be treated as legal advice. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive compliancescan.eu API key. <br>
-Mitigation: Require COMPLIANCESCAN_API_KEY from the environment and do not ask for, print, or log the key or Authorization header. <br>
-Risk: Starting a full compliance scan can consume account credits or plan allowance. <br>
-Mitigation: Start exactly one scan per invocation, avoid automatic retries after most failures, and check in-flight or latest scans after timeouts. <br>
-Risk: Operational steps may affect accounts, billing, or production scan history. <br>
-Mitigation: Review commands before approving account-impacting actions and use the documented read-only account and scan-list endpoints when a write is not needed. <br>
-Risk: API responses can omit or expose unreliable fields for tracker, issue, or security-header results. <br>
-Mitigation: Report only fields present in the API response, use the stored scan detail endpoint for authoritative tracker lists, and state unavailable fields instead of inventing values. <br>
+Risk: Scan output is an automated technical indication and can be incomplete or stale, especially for cached Quick-Scan results. <br>
+Mitigation: State scan scope and cache status when present, report only fields returned by the API, and direct users to a full scan or legal review for decisions. <br>
+Risk: The skill sends target URLs to an external scanning service and anonymous scans are rate limited. <br>
+Mitigation: Validate the target URL, start only one scan per invocation, respect retry and rate-limit guidance, and avoid scanning private or internal addresses. <br>
+Risk: Authenticated full scans use an API key and may consume credits or expose account-scoped capabilities. <br>
+Mitigation: Use the key only when configured, never print credentials or authorization headers, and avoid automatic retries for write operations. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/2g4y1/compliancescan) <br>
-- [Publisher Profile](https://clawhub.ai/user/2g4y1) <br>
-- [compliancescan.eu](https://compliancescan.eu) <br>
-- [compliancescan.eu dashboard](https://compliancescan.eu/dashboard) <br>
+- [Compliancescan ClawHub skill page](https://clawhub.ai/2g4y1/skills/compliancescan) <br>
+- [Compliancescan homepage](https://compliancescan.eu) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Concise Markdown with compliance scores, findings, account status, scan history, and guarded curl/jq command examples.] <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Concise Markdown with terminal commands and scan-result summaries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses COMPLIANCESCAN_API_KEY, curl, and jq; starting a full scan is a write action that can consume one scan credit.] <br>
+**Other Properties Related to Output:** [Replies in the user's language; Quick-Scan output is limited to fields returned by the public scan API, and authenticated full scans require COMPLIANCESCAN_API_KEY.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+2.0.0 (source: frontmatter and release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

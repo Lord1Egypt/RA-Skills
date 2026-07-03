@@ -11,34 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to search Xiaohongshu / XHS / RedNote notes for topic discovery, content planning, competitor research, market observation, and trend scanning through SocialDataX. <br>
+External analysts, marketers, researchers, and content teams use this skill to search Xiaohongshu / XHS / RedNote notes for keyword research, topic discovery, content planning, competitor research, market observation, and trend scanning. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party SocialDataX service and npm package. <br>
-Mitigation: Confirm the user trusts the SocialDataX service and the socialdatax-skills npm package before installation or use. <br>
-Risk: The skill requires a SOCIALDATAX_API_KEY for data calls. <br>
-Mitigation: Provide only the intended API key through the SOCIALDATAX_API_KEY environment variable and avoid exposing it in prompts, logs, or shared output. <br>
-Risk: Returned note URLs can include xsec_token-bearing links that may be private or sensitive. <br>
-Mitigation: Avoid publicly sharing returned note URLs when those token-bearing links should remain private. <br>
+Risk: Search keywords and the SOCIALDATAX_API_KEY are sent to SocialDataX tooling. <br>
+Mitigation: Install and run the skill only when SocialDataX is a trusted service for the intended use case, and provide the API key through the documented SOCIALDATAX_API_KEY environment variable. <br>
+Risk: Returned note URLs may contain xsec_token query parameters that could be sensitive if broadly shared or logged. <br>
+Mitigation: Avoid unnecessary redistribution or logging of full returned note URLs, and share results only with audiences authorized to receive those links. <br>
+Risk: Recent-topic findings may not represent complete platform coverage beyond fetched pages. <br>
+Mitigation: Use bounded page and recency parameters such as --pages and --since-days, and describe findings as observations from the fetched result set. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-search) <br>
+- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-search) <br>
 - [SocialDataX homepage](https://socialdatax.com/?from=clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/devinchen2014) <br>
+- [ClawHub publisher profile](https://clawhub.ai/user/devinchen2014) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, MCP tool guidance, and summarized search findings] <br>
+**Output Format:** [Markdown guidance with inline shell commands and summarized XHS search evidence] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include note URLs with xsec_token query parameters that should be preserved exactly when traceability is needed.] <br>
+**Other Properties Related to Output:** [Preserve returned note URLs and pagination tokens exactly; recent topic research is bounded by fetched pages.] <br>
 
 ## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+0.1.10 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

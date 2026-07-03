@@ -9,7 +9,7 @@
 // or cannot sandbox-execute will simply skip and try again next cycle.
 'use strict';
 
-const { getNodeId, buildHubHeaders } = require('../a2aProtocol');
+const { getNodeId, buildHubHeaders, buildNodeScopedHubHeaders } = require('../a2aProtocol');
 const { hubFetch } = require('../hubFetch');
 const { runInSandbox, runPreflight } = require('./sandboxExecutor');
 const { buildReportPayload, submitReport } = require('./reporter');
@@ -19,6 +19,11 @@ const { resolveHubUrl: resolveDefaultHubUrl } = require('../../config');
 
 const FETCH_TIMEOUT_MS = Number(process.env.EVOLVER_VALIDATOR_FETCH_TIMEOUT_MS) || 8_000;
 const MAX_TASKS_PER_CYCLE = Math.max(1, Number(process.env.EVOLVER_VALIDATOR_MAX_TASKS_PER_CYCLE) || 2);
+
+function buildValidatorHubHeaders() {
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
+  return buildHeaders();
+}
 
 // Three-tier resolution:
 //   1. Local env (highest priority - user escape hatch). Both ON and OFF are honored.
@@ -80,7 +85,7 @@ async function fetchValidationTasks() {
   try {
     const res = await hubFetch(url, {
       method: 'POST',
-      headers: buildHubHeaders(),
+      headers: buildValidatorHubHeaders(),
       body: JSON.stringify(msg),
       signal: controller.signal,
     });

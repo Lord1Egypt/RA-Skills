@@ -44,6 +44,34 @@ function writeInstallPkg(version) {
   );
 }
 
+function makeFailingExecTracker(message) {
+  const calls = [];
+  const stub = function (bin, args) {
+    calls.push({ bin, args: Array.isArray(args) ? args.slice() : [] });
+    throw new Error(message);
+  };
+  stub.calls = calls;
+  return stub;
+}
+
+function commandName(bin) {
+  return String(bin || '').split(/[\\/]/).pop().toLowerCase();
+}
+
+function isNpxCommand(bin) {
+  const name = commandName(bin);
+  return name === 'npx' || name === 'npx.cmd';
+}
+
+function isChannel1DegitCall(call) {
+  const args = Array.isArray(call.args) ? call.args.map(String) : [];
+  return isNpxCommand(call.bin) && args.includes('degit');
+}
+
+function countDegitCalls(execStub) {
+  return execStub.calls.filter(isChannel1DegitCall).length;
+}
+
 describe('executeForceUpdate: idempotency short-circuit', () => {
   before(() => {
     installRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-fu-idem-'));
@@ -60,6 +88,17 @@ describe('executeForceUpdate: idempotency short-circuit', () => {
     // Reset install dir between tests so a wipe in one test doesn't bleed.
     try { fs.rmSync(installRoot, { recursive: true, force: true }); } catch (_) {}
     fs.mkdirSync(installRoot, { recursive: true });
+  });
+
+  it('test helper counts Windows npx.cmd Channel 1 degit calls', () => {
+    const stub = {
+      calls: [
+        { bin: 'npx.cmd', args: ['-y', 'degit', '--force', 'EvoMap/evolver#v1.88.0', installRoot] },
+        { bin: 'npx', args: ['-y', 'eslint'] },
+      ],
+    };
+
+    assert.equal(countDegitCalls(stub), 1, 'Windows npx.cmd degit call is counted exactly once');
   });
 
   it('exact match: returns FORCE_UPDATE_NOOP sentinel without invoking degit', () => {
@@ -143,18 +182,15 @@ describe('executeForceUpdate: idempotency short-circuit', () => {
 
   it('required version with leading v: normalizes and still upgrades older installs', () => {
     writeInstallPkg('1.88.2');
-    let execFileCalls = 0;
-    const stub = function () {
-      execFileCalls++;
-      throw new Error('simulated degit failure');
-    };
+    const stub = makeFailingExecTracker('simulated degit failure');
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
 
     const result = executeForceUpdate({ required_version: '>=v1.88.3' });
 
     assert.equal(result.ok, false, 'older current version must not skip a leading-v required floor');
-    assert.equal(result.code, 'degit_failed', 'degit throw classified as degit_failed');
-    assert.equal(execFileCalls, 1, 'Channel 1 (degit) was attempted exactly once');
+    assert.equal(result.code, 'fallback_download_incomplete',
+      'fallback terminal failure is the aggregation prefix');
+    assert.equal(countDegitCalls(stub), 1, 'Channel 1 (degit) was attempted exactly once');
   });
 
   it('newer prerelease with hyphen identifier: returns FORCE_UPDATE_NOOP and does not downgrade', () => {
@@ -189,18 +225,15 @@ describe('executeForceUpdate: idempotency short-circuit', () => {
 
   it('older prerelease current version: compares oversized numeric identifiers without Number precision loss', () => {
     writeInstallPkg('1.0.0-9007199254740992');
-    let execFileCalls = 0;
-    const stub = function () {
-      execFileCalls++;
-      throw new Error('simulated degit failure');
-    };
+    const stub = makeFailingExecTracker('simulated degit failure');
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
 
     const result = executeForceUpdate({ required_version: '>=1.0.0-9007199254740993' });
 
     assert.equal(result.ok, false, 'older oversized prerelease must fall through to the upgrade path');
-    assert.equal(result.code, 'degit_failed', 'degit throw classified as degit_failed');
-    assert.equal(execFileCalls, 1, 'Channel 1 (degit) was attempted exactly once');
+    assert.equal(result.code, 'fallback_download_incomplete',
+      'fallback terminal failure is the aggregation prefix');
+    assert.equal(countDegitCalls(stub), 1, 'Channel 1 (degit) was attempted exactly once');
   });
 
   it('older current version: compares oversized major/minor/patch without Number precision loss', () => {
@@ -221,18 +254,15 @@ describe('executeForceUpdate: idempotency short-circuit', () => {
 
     for (const [currentVersion, requiredVersion] of cases) {
       writeInstallPkg(currentVersion);
-      let execFileCalls = 0;
-      const stub = function () {
-        execFileCalls++;
-        throw new Error('simulated degit failure');
-      };
+      const stub = makeFailingExecTracker('simulated degit failure');
       const { executeForceUpdate } = freshRequireForceUpdate(stub);
 
       const result = executeForceUpdate({ required_version: requiredVersion });
 
       assert.equal(result.ok, false, 'older oversized core semver must fall through to the upgrade path');
-      assert.equal(result.code, 'degit_failed', 'degit throw classified as degit_failed');
-      assert.equal(execFileCalls, 1, 'Channel 1 (degit) was attempted exactly once');
+      assert.equal(result.code, 'fallback_download_incomplete',
+        'fallback terminal failure is the aggregation prefix');
+      assert.equal(countDegitCalls(stub), 1, 'Channel 1 (degit) was attempted exactly once');
     }
   });
 
@@ -253,39 +283,33 @@ describe('executeForceUpdate: idempotency short-circuit', () => {
 
   it('version mismatch: falls through to normal upgrade path', () => {
     writeInstallPkg('1.87.5');
-    let execFileCalls = 0;
     // Simulate degit failure so we can confirm the upgrade path was entered
     // without actually performing fs replacement. If the short-circuit
-    // wrongly returned true, execFileCalls would remain 0 AND the result
-    // would be true. If it correctly falls through, execFileCalls > 0
+    // wrongly returned true, Channel 1 calls would remain 0 AND the result
+    // would be true. If it correctly falls through, Channel 1 calls > 0
     // (Channel 1 attempt) and the function returns false (degit failed).
-    const stub = function () {
-      execFileCalls++;
-      throw new Error('simulated degit failure');
-    };
+    const stub = makeFailingExecTracker('simulated degit failure');
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
 
     const result = executeForceUpdate({ required_version: '1.88.0' });
 
     assert.equal(result.ok, false, 'no short-circuit; degit failure -> structured failure');
-    assert.equal(result.code, 'degit_failed', 'degit throw classified as degit_failed');
-    assert.equal(execFileCalls, 1, 'Channel 1 (degit) was attempted exactly once');
+    assert.equal(result.code, 'fallback_download_incomplete',
+      'fallback terminal failure is the aggregation prefix');
+    assert.equal(countDegitCalls(stub), 1, 'Channel 1 (degit) was attempted exactly once');
   });
 
   it('prerelease below stable floor: falls through to normal upgrade path', () => {
     writeInstallPkg('1.88.0-rc.5');
-    let execFileCalls = 0;
-    const stub = function () {
-      execFileCalls++;
-      throw new Error('simulated degit failure');
-    };
+    const stub = makeFailingExecTracker('simulated degit failure');
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
 
     const result = executeForceUpdate({ required_version: '>=1.88.0' });
 
     assert.equal(result.ok, false, 'prerelease must not satisfy stable force-update floor');
-    assert.equal(result.code, 'degit_failed', 'degit throw classified as degit_failed');
-    assert.equal(execFileCalls, 1, 'Channel 1 (degit) was attempted exactly once');
+    assert.equal(result.code, 'fallback_download_incomplete',
+      'fallback terminal failure is the aggregation prefix');
+    assert.equal(countDegitCalls(stub), 1, 'Channel 1 (degit) was attempted exactly once');
   });
 
   it('malformed current version: does not satisfy a lower-looking force-update floor', () => {

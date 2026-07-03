@@ -1,5 +1,5 @@
 ## Description: <br>
-Domain Lookup helps agents retrieve domain registration information using RDAP with WHOIS fallback through a third-party API. <br>
+一个提供全面域名研究工具（包括RDAP、WHOIS和DNS查询功能）的模型上下文协议（MCP）服务器。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, security analysts, and domain researchers use this skill to look up domain registration details, nameservers, contacts, status, and optional raw RDAP or WHOIS response data after providing an API key. <br>
+Developers and external users use this skill to query domain registration, nameserver, contact, and status information through RDAP or WHOIS lookup after configuring a XiaoBenYang API key. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends domain lookup queries to xiaobenyang.com, a third-party service. <br>
-Mitigation: Use it only when the queried domains can be shared with that service and review returned data before relying on it. <br>
-Risk: The skill saves the provided API key in a local .env file. <br>
-Mitigation: Treat the .env file as sensitive, keep it out of commits and shared archives, and rotate the key if it is exposed. <br>
-Risk: Some artifact text appears copied from an unrelated school-search skill, which may confuse setup or review. <br>
-Mitigation: Use the documented domain_lookup function and required domain parameters as the source of truth during operation. <br>
+Risk: The skill collects and stores the XiaoBenYang API key in plaintext. <br>
+Mitigation: Prefer setting XBY_APIKEY through an environment variable or secret manager, avoid committing .env, and rotate the key if it is exposed. <br>
+Risk: Domain queries and API credentials are sent to the XiaoBenYang backend. <br>
+Mitigation: Install only when the backend is trusted for the intended use case and avoid submitting sensitive domains unless that data sharing is acceptable. <br>
+Risk: Raw WHOIS or RDAP results may include contact or registration details. <br>
+Mitigation: Review raw results before sharing them and redact sensitive registration details when needed. <br>
+Risk: Stale unrelated instructions make the skill's data flow harder to trust. <br>
+Mitigation: Review the prompt instructions and the active domain_lookup tool behavior before enabling the skill in production workflows. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Domain Lookup listing](https://clawhub.ai/alinklab/domain-lookup) <br>
-- [XiaoBenYang API key provider](https://xiaobenyang.com) <br>
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/domain-lookup) <br>
+- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown summary with structured JSON-derived domain lookup data] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown summary with optional raw JSON from RDAP or WHOIS API responses] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and may include raw RDAP or WHOIS response data when requested.] <br>
+**Other Properties Related to Output:** [Requires XBY_APIKEY; raw lookup data may be included when include_raw is true.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+1.0.1 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

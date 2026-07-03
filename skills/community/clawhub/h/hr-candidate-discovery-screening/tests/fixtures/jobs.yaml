@@ -1,0 +1,29 @@
+jobs:
+  - id: cv-researcher
+    title: 计算机视觉研究员
+    active: true
+    responsibilities: [研发多模态视觉算法]
+    required_skills: [深度学习, 计算机视觉]
+    preferred_skills: [视觉语言模型]
+    education_hard:
+      allowed_statuses: [博士在读, 博士后, 高校教师]
+    education_preferred: [博士学位]
+    research_areas: [多模态, 图像理解]
+    application_scenarios: [工业视觉]
+    locations: [北京]
+    outreach:
+      team_intro: 负责前沿视觉算法研发
+  - id: nlp-researcher
+    title: 自然语言处理研究员
+    active: true
+    responsibilities: [研发大语言模型应用]
+    required_skills: [自然语言处理, 深度学习]
+    preferred_skills: [检索增强生成]
+    education_hard:
+      allowed_statuses: [博士在读, 博士后, 高校教师]
+    education_preferred: [博士学位]
+    research_areas: [大语言模型, 信息检索]
+    application_scenarios: [智能助手]
+    locations: [上海]
+    outreach:
+      team_intro: 负责语言模型研发

@@ -37,25 +37,31 @@ def calculate_title_quality(title: str) -> int:
     return max(0, score)
 
 
-def calculate_relevance_score(article: TrendingArticle, keyword: str) -> float:
+def calculate_relevance_score(article: TrendingArticle, keyword: str) -> tuple:
     """
     Calculate content relevance score (0-15).
-    Based on keyword matching with title/summary.
+    Based on keyword matching with title/summary/content.
 
     Scoring:
     - Title match: +6 points
     - Summary match: +3 points
-    - Multiple keywords: +1 each (max +6)
+    - Content match: +1 points
+    - Multiple keywords bonus: +2 each (max +6)
+
+    Returns: (score, matched_keyword_count)
     """
     if not keyword:
-        return 0.0
+        return 0.0, 0
 
     keywords = [k.strip() for k in keyword.split(',') if k.strip()]
     if not keywords:
-        return 0.0
+        return 0.0, 0
 
     title_lower = article.title.lower()
     summary_lower = article.summary[:200].lower() if article.summary else ''
+    content_lower = ''
+    if hasattr(article, 'content') and article.content:
+        content_lower = article.content[:500].lower()
 
     score = 0.0
     matched_keywords = 0
@@ -68,12 +74,15 @@ def calculate_relevance_score(article: TrendingArticle, keyword: str) -> float:
         elif kw_lower in summary_lower:
             matched_keywords += 1
             score += 3
+        elif kw_lower in content_lower:
+            matched_keywords += 1
+            score += 1
 
     # Multi-keyword bonus (max +6)
     if matched_keywords > 1:
         score += min(6.0, (matched_keywords - 1) * 2)
 
-    return min(15.0, score)
+    return min(15.0, score), matched_keywords
 
 
 def calculate_data_score(article: TrendingArticle, cat_key: str, keyword: str = '') -> float:
@@ -139,7 +148,7 @@ def calculate_data_score(article: TrendingArticle, cat_key: str, keyword: str = 
     score = score * (title_quality / 100) * 1.0 + (title_quality / 100) * 20
 
     # 4. Content relevance
-    relevance = calculate_relevance_score(article, keyword)
+    relevance, _ = calculate_relevance_score(article, keyword)
     score += relevance
 
     # Category bonus
@@ -159,9 +168,11 @@ def score_article(article: TrendingArticle, keyword: str, cat_key: str) -> Score
     """
     Score a single article and return ScoredArticle.
     """
+    relevance_score, matched_count = calculate_relevance_score(article, keyword)
     return ScoredArticle(
         article=article,
         data_score=calculate_data_score(article, cat_key, keyword),
-        relevance_score=calculate_relevance_score(article, keyword),
-        title_quality=calculate_title_quality(article.title or '')
+        relevance_score=relevance_score,
+        title_quality=calculate_title_quality(article.title or ''),
+        matched_keyword_count=matched_count
     )

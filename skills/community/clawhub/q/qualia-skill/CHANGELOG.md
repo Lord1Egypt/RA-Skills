@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.1 (2026-06-29)
+
+Install and setup documentation hardening.
+
+- Documented the working OpenClaw install command: `openclaw skills install qualia-skill`
+- Added warnings that owner-qualified slugs such as `@fabbe1999/qualia-skill` or `fabbe1999/qualia-skill` may fail on current installers
+- Added explicit OpenClaw config example for `skills.entries.qualia.env.QUALIA_API_KEY`
+- Clarified that the ClawHub slug is `qualia-skill` but the loaded skill name/config key is `qualia`
+- Added post-install verification and troubleshooting steps so a silent inactive install is easier to diagnose
+
 ## 2.1.0 (2026-06-10)
 
 Agent-native release. Built for AI agents driving the CLI programmatically.

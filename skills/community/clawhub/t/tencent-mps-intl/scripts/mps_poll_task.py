@@ -14,10 +14,21 @@ Usage (imported by other scripts):
     result = poll_image_task(task_id, region="ap-guangzhou", interval=5, max_wait=300)
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import json
 import os
 import sys
 import time
+
+# Environment variable loader (same directory); used only when run directly from CLI, not affecting module import
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+try:
+    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
+    _LOAD_ENV_AVAILABLE = True
+except ImportError:
+    _LOAD_ENV_AVAILABLE = False
 
 try:
     from tencentcloud.common import credential
@@ -26,7 +37,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -242,7 +253,7 @@ def poll_video_task(task_id, region="ap-guangzhou", interval=10, max_wait=1800, 
         elapsed += interval
 
     print(f"\n⚠️  Timed out (waited {max_wait}s), the task may still be processing.")
-    print(f"   You can query manually: python scripts/mps_get_video_task.py --task-id {task_id}")
+    print(f"   You can query manually: python3 scripts/mps_get_video_task.py --task-id {task_id}")
     return None
 
 
@@ -306,7 +317,7 @@ def poll_image_task(task_id, region="ap-guangzhou", interval=5, max_wait=300, ve
         elapsed += interval
 
     print(f"\n⚠️  Timed out (waited {max_wait}s), the task may still be processing.")
-    print(f"   You can query manually: python scripts/mps_get_image_task.py --task-id {task_id}")
+    print(f"   You can query manually: python3 scripts/mps_get_image_task.py --task-id {task_id}")
     return None
 # ─── Local file auto-upload ──────────────────────────────────────────────────────────
 
@@ -343,7 +354,7 @@ def auto_upload_local_file(local_path, cos_key=None, verbose=False):
         return None
 
     if not _COS_SDK_AVAILABLE:
-        print("Error: Local file upload requires the COS SDK: pip install cos-python-sdk-v5", file=sys.stderr)
+        print("Error: Local file upload requires the COS SDK: python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
         return None
 
     # Auto-generate cos_key
@@ -506,7 +517,7 @@ def auto_download_outputs(task_result, download_dir=".", verbose=False):
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
 
     if not _COS_SDK_AVAILABLE:
-        print("⚠️  COS SDK not installed, skipping auto-download (pip install cos-python-sdk-v5)", file=sys.stderr)
+        print("⚠️  COS SDK not installed, skipping auto-download (python3 -m pip install cos-python-sdk-v5)", file=sys.stderr)
         return []
 
     os.makedirs(download_dir, exist_ok=True)
@@ -624,7 +635,13 @@ def auto_gen_compare(task_result, input_url, media_type="video", title=None, out
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == '__main__':
-    import argparse
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+        import argparse
 
     parser = argparse.ArgumentParser(
         description='Tencent Cloud MPS Task Polling Tool - Supports Audio/Video and Image Tasks',
@@ -632,16 +649,16 @@ if __name__ == '__main__':
         epilog="""
 Usage Examples:
   # Poll audio/video task
-  python mps_poll_task.py --task-id 1234567890 --type video
+  python3 mps_poll_task.py --task-id 1234567890 --type video
 
   # Poll image task
-  python mps_poll_task.py --task-id 1234567890 --type image
+  python3 mps_poll_task.py --task-id 1234567890 --type image
 
   # Specify region and polling parameters
-  python mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
+  python3 mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
 
   # Verbose output mode
-  python mps_poll_task.py --task-id 1234567890 --verbose
+  python3 mps_poll_task.py --task-id 1234567890 --verbose
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID    - Tencent Cloud SecretId (required)
@@ -656,8 +673,8 @@ Environment Variables:
     )
     parser.add_argument(
         '--region',
-        default='ap-guangzhou',
-        help='MPS service region (default: ap-guangzhou)'
+        default=os.environ.get('TENCENTCLOUD_API_REGION', 'ap-guangzhou'),
+        help='MPS service region (reads TENCENTCLOUD_API_REGION env var first, default: ap-guangzhou)'
     )
     parser.add_argument(
         '--type',

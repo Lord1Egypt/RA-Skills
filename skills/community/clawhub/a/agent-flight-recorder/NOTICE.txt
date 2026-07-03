@@ -1,0 +1,14 @@
+Cryptowerk Skill
+Copyright 2026 Cryptowerk Corp.
+https://www.cryptowerk.com
+
+This Skill is distributed under the MIT No Attribution license (MIT-0).
+See the accompanying LICENSE file for the full license text.
+
+The MIT-0 license does not require recipients to preserve this notice.
+This file is informational only.
+
+Additional notices regarding the use of this Skill with autonomous
+AI agents — including disclaimers of liability for agent-initiated
+actions — are provided in the accompanying DISCLAIMER.md file. Those
+notices are informational and do not modify the terms of the License.

@@ -44,7 +44,7 @@ curl -s "https://aacp-backend.termix.live/api/v1/config" \
 ```typescript
 import { createWalletClient, createPublicClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 const ACP_CORE    = "<AACPCore>"   as `0x${string}`;  // from config (key: "AACPCore")
 const RPC_URL     = "<chain.rpcUrl>";                  // from /api/v1/config
@@ -53,8 +53,8 @@ const PROVIDER_ID = BigInt("$provider_id");
 
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const ABI = [{
   name: "setProvider", type: "function",

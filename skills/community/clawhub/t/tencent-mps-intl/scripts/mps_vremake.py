@@ -20,26 +20,26 @@ Supported creation modes (--mode):
 
 Usage:
   # Face swap mode (automatically waits for completion by default)
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
       --dst-faces https://example.com/dst.png
 
   # Character swap mode
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapCharacter \\
       --src-character https://example.com/src_person.png \\
       --dst-character https://example.com/dst_person.png
 
   # Video interleaving (AB mode)
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode AB
 
   # Async submission (no waiting)
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
@@ -47,10 +47,10 @@ Usage:
       --no-wait
 
   # Query existing task result
-  python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # dry-run preview (including Extended Parameter)
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
@@ -87,7 +87,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Tencent Cloud SDK not installed. Please run: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Tencent Cloud SDK not installed. Please run: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:

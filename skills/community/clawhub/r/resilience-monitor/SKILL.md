@@ -14,7 +14,7 @@ clawhub login
 
 # 1. 安装插件（必须带 --dangerously-force-unsafe-install）
 # 原因：插件会使用 open 包打开浏览器、启动本地 HTTP server (默认 18765)、
-# 注册 model_call_ended / agent_end 等敏感 hook、读写 ~/.openclaw/plugins/resilience/ 下的日志和配置。
+# 注册 model_call_ended / agent_end / after_tool_call 等敏感 hook、读写 ~/.openclaw/plugins/resilience/ 下的日志和配置。
 # ClawHub 安全扫描因此标记为 "suspicious"（这是正常行为，不是恶意代码）。
 openclaw plugins install clawhub:@leiJack-lo/resilience --dangerously-force-unsafe-install
 
@@ -50,6 +50,7 @@ Use it to:
 - Configure retry strategies
 - Generate error reports
 - Track task recovery status
+- Track agent session and tool failure recovery queues
 - Configure automatic session recovery prompts in Chinese or English
 
 ## Tools
@@ -65,6 +66,7 @@ Open the live web dashboard in your browser for real-time error stats and retry 
 - Live error overview (today / hour / active retries)
 - Model breakdown table
 - Recent errors feed
+- Session/tool recovery queue summary
 - Retry strategy cards — set default, adjust max retries
 - Auto-refresh: **5s**, **60s**, **5min**, **1h**, or off
 
@@ -122,12 +124,19 @@ View, add, update, or reset retry strategies.
 **Parameters:**
 - `action`: `"list"` (default) | `"add"` | `"update"` | `"reset"`
 - `strategyName`: Strategy name (required for add/update)
-- `updates`: Fields to update (for add/update)
+- `updates`: Fields to update (for add/update). Use these shapes:
+  - `type`: `"fixed"` | `"exponential"` | `"custom"`
+  - `maxRetries`: number or numeric string, e.g. `3` or `"3"`
+  - `intervals`: millisecond numbers or duration strings, e.g. `[60000, 300000]`, `["30s", "2m"]`, or `"30s, 2m, 5分钟"`
+  - `cooldownMs`: millisecond number or duration string, e.g. `10000`, `"10s"`, `"10秒"`
+  - `retryOn`: array or comma-separated string of error categories
+  - `models`: array or comma-separated string of model names
 
 **Examples:**
 - "查看当前所有策略配置" → `resilience_strategies({ action: "list" })`
 - "修改超时重试策略为指数退避" → `resilience_strategies({ action: "update", strategyName: "default-exponential", updates: { type: "exponential" } })`
-- "添加一个自定义重试策略" → `resilience_strategies({ action: "add", strategyName: "my-strategy", updates: { type: "custom", maxRetries: 3, intervals: [60000, 300000, 600000] } })`
+- "添加一个自定义重试策略" → `resilience_strategies({ action: "add", strategyName: "my-strategy", updates: { type: "custom", maxRetries: 3, intervals: ["1m", "5分钟", "10m"], cooldownMs: "10s" } })`
+- "把默认策略间隔改成 30 秒、2 分钟、5 分钟" → `resilience_strategies({ action: "update", strategyName: "default-exponential", updates: { intervals: "30s, 2m, 5分钟" } })`
 - "重置策略为默认" → `resilience_strategies({ action: "reset" })`
 
 ### resilience_report
@@ -165,6 +174,18 @@ View or update automatic session recovery settings. Use this when the user wants
 - "把继续任务话术改成英文" → `resilience_recovery({ action: "update", language: "en" })`
 - "修改继续任务话术为：任务完成了吗？如果没完成请继续完成任务" → `resilience_recovery({ action: "update", language: "zh", prompt: "任务完成了吗？如果没完成请继续完成任务。" })`
 - "关闭会话自动恢复" → `resilience_recovery({ action: "update", enabled: false })`
+
+### resilience_sessions
+
+View agent session and tool failure recovery records. These are separate from LLM API errors and are stored per OpenClaw instance.
+
+**Parameters:**
+- `action`: `"summary"` (default) | `"list"`
+- `limit`: maximum records to return
+
+**Examples:**
+- "查看会话和工具失败恢复队列" → `resilience_sessions({ action: "summary" })`
+- "列出最近的会话恢复记录" → `resilience_sessions({ action: "list", limit: 20 })`
 
 ## Error Categories
 
@@ -210,6 +231,7 @@ Per-instance data: `~/.openclaw/plugins/resilience/instances/<instance-id>/` (st
 ├── strategies.json
 ├── recovery-settings.json
 ├── active-retries.json
+├── session-retries.json
 ├── logs/YYYY-MM-DD.jsonl
 └── tasks/
 ```

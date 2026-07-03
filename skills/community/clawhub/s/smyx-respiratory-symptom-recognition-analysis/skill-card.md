@@ -1,5 +1,5 @@
 ## Description: <br>
-Based on computer vision, this skill analyzes videos or video URLs to detect coughing, phlegm, wheezing, and related respiratory symptom frequency for early health anomaly alerts. <br>
+Analyzes respiratory symptom media with cloud computer-vision services to detect coughing, sputum-clearing, and wheezing frequency, then returns structured monitoring results, health alerts, care suggestions, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to submit respiratory monitoring videos, receive symptom counts, risk levels, health warnings, and medical suggestions, and list prior cloud-generated reports associated with the current session identity. The results are health-monitoring support and do not replace professional medical diagnosis. <br>
+External users and care-support agents use this skill to submit respiratory monitoring videos or video URLs, receive symptom frequency counts and risk signals, and retrieve prior cloud-generated reports. Results are for health monitoring support and do not replace professional medical diagnosis or emergency care. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive health videos, video URLs, and report history may be sent to remote services. <br>
-Mitigation: Use only media appropriate for the service's privacy and retention practices, and avoid submitting private medical videos unless the service is trusted. <br>
-Risk: The skill can silently create or reuse an account-linked identity and store tokens in a local workspace database. <br>
-Mitigation: Run the skill in a separate workspace without shared secrets and review local token storage before deployment. <br>
-Risk: Historical report listing can fetch account-linked health reports from cloud APIs. <br>
-Mitigation: Require confirmation before listing report history and review returned report links before sharing them. <br>
+Risk: Sensitive respiratory videos or provided video URLs may be sent to a cloud service for analysis. <br>
+Mitigation: Use only with informed user consent and after confirming appropriate privacy, retention, deletion, and account-scoping controls for health media. <br>
+Risk: The skill may create or reuse an internal identity and persist API tokens in a local SQLite database. <br>
+Mitigation: Restrict workspace access, review token storage and rotation practices, and clear local stored identity data when it is no longer needed. <br>
+Risk: Health alerts and care suggestions may be mistaken for medical diagnosis. <br>
+Mitigation: Present outputs as monitoring support only, and direct users to professional medical care for diagnosis, treatment decisions, severe symptoms, or emergencies. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-respiratory-symptom-recognition-analysis) <br>
-- [Respiratory symptom recognition API documentation](references/api_doc.md) <br>
-- [SMYX analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [Respiratory analysis API documentation](references/api_doc.md) <br>
+- [Common analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, Markdown tables, and structured JSON] <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
+**Output Format:** [Markdown or JSON report text with structured symptom counts, risk level, health warnings, care suggestions, and report links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report links, symptom counts, risk scores, risk levels, warnings, and medical suggestions.] <br>
+**Other Properties Related to Output:** [Can save output to a requested file and can list prior cloud-generated reports as structured text.] <br>
 
 ## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+1.0.8 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

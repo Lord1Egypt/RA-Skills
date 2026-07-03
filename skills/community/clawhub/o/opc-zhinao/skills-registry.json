@@ -1,0 +1,82 @@
+{
+  "name": "opc-skills",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "OPC智脑五阶段创业诊断Skills - 一人创业者(One Person Company)的全栈创业诊断专家",
+  "license": "MIT",
+  "persona": "prompts/system-persona.md",
+  "hub": "prompts/core-hub.md",
+  "skills": [
+    {
+      "id": "skill1-idea-feasibility",
+      "name": "Idea可行性研判",
+      "stage": 1,
+      "stageName": "构思期",
+      "dir": "skills/skill1-idea-feasibility",
+      "triggers": ["创业Idea", "想法", "点子", "可行性", "需求验证"]
+    },
+    {
+      "id": "skill2-mvp-design",
+      "name": "MVP精益设计",
+      "stage": 2,
+      "stageName": "原型期",
+      "dir": "skills/skill2-mvp-design",
+      "triggers": ["MVP", "产品设计", "功能裁剪", "交付成本", "首单"]
+    },
+    {
+      "id": "skill3-opc-compliance",
+      "name": "OPC合规落地",
+      "stage": 3,
+      "stageName": "实体期",
+      "dir": "skills/skill3-opc-compliance",
+      "triggers": ["注册公司", "个体户", "合规", "财税", "经营范围", "合同"]
+    },
+    {
+      "id": "skill4-seed-coldstart",
+      "name": "种子用户冷启动",
+      "stage": 4,
+      "stageName": "验证期",
+      "dir": "skills/skill4-seed-coldstart",
+      "triggers": ["获客", "种子用户", "冷启动", "定价", "付费验证"]
+    },
+    {
+      "id": "skill5-scale-growth",
+      "name": "规模化增长",
+      "stage": 5,
+      "stageName": "规模化期",
+      "dir": "skills/skill5-scale-growth",
+      "triggers": ["规模化", "增长引擎", "自动化", "品牌", "复购"]
+    },
+    {
+      "id": "feasibility-scoring",
+      "name": "可行度打分系统",
+      "stage": null,
+      "stageName": "通用（跨阶段）",
+      "dir": "skills/feasibility-scoring",
+      "triggers": ["可行度", "打分", "评分"]
+    },
+    {
+      "id": "report-export",
+      "name": "报告导出",
+      "stage": null,
+      "stageName": "通用（跨阶段）",
+      "dir": "skills/report-export",
+      "triggers": ["导出", "报告", "下载"]
+    },
+    {
+      "id": "user-feedback",
+      "name": "用户反馈收集",
+      "stage": null,
+      "stageName": "通用（跨阶段）",
+      "dir": "skills/user-feedback",
+      "triggers": ["反馈", "评价", "建议"]
+    }
+  ],
+  "stages": [
+    { "stage": 1, "name": "构思期", "scoreRange": [0, 20], "skill": "skill1-idea-feasibility" },
+    { "stage": 2, "name": "原型期", "scoreRange": [21, 40], "skill": "skill2-mvp-design" },
+    { "stage": 3, "name": "实体期", "scoreRange": [41, 60], "skill": "skill3-opc-compliance" },
+    { "stage": 4, "name": "验证期", "scoreRange": [61, 80], "skill": "skill4-seed-coldstart" },
+    { "stage": 5, "name": "规模化期", "scoreRange": [81, 100], "skill": "skill5-scale-growth" }
+  ]
+}

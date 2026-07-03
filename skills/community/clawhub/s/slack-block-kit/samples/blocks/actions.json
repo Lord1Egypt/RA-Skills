@@ -1,0 +1,30 @@
+[
+  {
+    "type": "actions",
+    "block_id": "deployment_actions",
+    "elements": [
+      {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Approve",
+          "emoji": true
+        },
+        "style": "primary",
+        "value": "approve_deploy",
+        "action_id": "approve_deploy"
+      },
+      {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Hold",
+          "emoji": true
+        },
+        "style": "danger",
+        "value": "hold_deploy",
+        "action_id": "hold_deploy"
+      }
+    ]
+  }
+]

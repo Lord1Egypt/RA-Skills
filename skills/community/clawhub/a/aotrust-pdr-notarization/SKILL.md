@@ -8,7 +8,7 @@ description: >
 license: MIT
 metadata:
   author: aotrust
-  version: "3.6.1"
+  version: "3.6.2"
   mcp-endpoint: https://api.aotrust.link/mcp
   http-endpoint: https://api.aotrust.link/notarize
   verification-endpoint: https://api.aotrust.link/v1/pdr/verify
@@ -112,6 +112,7 @@ Hash your artifact with SHA-256. This is what gets notarized — not the artifac
 curl -X POST https://api.aotrust.link/notarize \
   -H "Content-Type: application/json" \
   -d '{"work_hash":"YOUR_SHA256_HEX","agent_sig":"","agent_pubkey":""}'
+  # agent_sig/agent_pubkey optional — include for Bilateral Signature (v0x04)
 ```
 
 **Response (HTTP 402):**
@@ -174,6 +175,21 @@ curl -X POST https://api.aotrust.link/notarize \
 ```
 
 `pdr_b64` is your 239-byte cryptographic proof (base64-encoded).
+
+### Bilateral Signature (optional, v0x04)
+
+If you want the PDR to cryptographically bind the agent's signature into the record:
+
+1. Sign your `work_hash` with your Ed25519 private key using NEP-413 (same as Full Chain)
+2. Include `agent_sig` (base64) and `agent_pubkey` (hex) in the POST `/notarize` body
+3. The notary will produce a v0x04 PDR with a **Binding Hash**: `payload_hash = sha256(work_hash + sig_A + agent_pubkey)`
+4. The PDR is still 239 bytes, same price ($0.01), same verification flow
+
+Without `agent_sig` → ordinary v0x03 PDR (`payload_hash = work_hash`).
+
+**Verify response** now includes `binding_hash` (boolean) and `payload_hash` (replaces `work_hash`):
+- v0x03: `binding_hash=false`, `payload_hash=work_hash`
+- v0x04: `binding_hash=true`, `payload_hash=binding_hash`
 
 ### Step 4: Verify Your PDR
 
@@ -308,4 +324,5 @@ The standard PDR workflow remains unchanged and does not require client signatur
 
 ## Changelog
 
+- v3.6.2 — Bilateral Signature (v0x04): agent_sig + agent_pubkey → binding hash PDR. Verify response: payload_hash + binding_hash fields.
 - v3.6.1 — Added "What to Hash" examples (Step 1), common mistakes section

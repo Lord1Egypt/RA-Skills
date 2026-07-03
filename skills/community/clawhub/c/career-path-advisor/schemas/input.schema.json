@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Career Path Advisor Input",
+  "description": "Input schema for the career path advisor workflow.",
+  "type": "object",
+  "required": ["current_role", "years", "location"],
+  "properties": {
+    "current_role": {
+      "type": "string",
+      "description": "Current job title.",
+      "examples": ["Java后端", "前端开发", "产品经理"]
+    },
+    "years": {
+      "type": "integer",
+      "description": "Years of professional experience.",
+      "minimum": 0,
+      "maximum": 50,
+      "examples": [5, 3, 8]
+    },
+    "skills": {
+      "type": "array",
+      "description": "Core technical or professional skills.",
+      "items": { "type": "string" },
+      "examples": [["Spring Boot", "MySQL", "Redis"]]
+    },
+    "target": {
+      "type": "string",
+      "description": "Target role or direction. Leave empty for exploration mode.",
+      "examples": ["AI工程师", "技术管理", ""]
+    },
+    "location": {
+      "type": "string",
+      "description": "City or region for salary benchmarking.",
+      "examples": ["上海", "北京", "杭州"]
+    },
+    "industry": {
+      "type": "string",
+      "description": "Current industry sector.",
+      "examples": ["互联网金融", "跨境电商", "制造业"]
+    },
+    "education": {
+      "type": "string",
+      "description": "Education and certifications.",
+      "examples": ["本科 计算机", "硕士 AI方向"]
+    },
+    "company_tier": {
+      "type": "string",
+      "enum": ["大厂", "中厂", "创业公司"],
+      "description": "Preferred company tier.",
+      "default": "中厂"
+    }
+  },
+  "additionalProperties": false
+}

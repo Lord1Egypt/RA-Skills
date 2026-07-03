@@ -1,0 +1,390 @@
+---
+name: prompt-optimizer
+version: 4.0.0
+description: "Use when the user asks to optimize, improve, or rewrite a prompt, or when a vague request needs to be turned into a precise instruction. Two engines: 3300+ template library + LLM meta-prompting. Do NOT use for general conversation or code review."
+---
+
+# Prompt Optimizer
+
+双引擎提示词优化：**模板匹配**（3300+ 模板库）+ **LLM 元提示**（宿主 AI 直接优化）。
+
+## 平台适配（自动检测）
+
+Skill 启动时自动检测当前宿主平台的能力，降级不可用功能：
+
+| 能力 | 检测方式 | 有 → 正常 | 没有 → 降级 |
+|------|----------|-----------|------------|
+| 文件读取 | 尝试读 `references/categories/index.json` | 模板引擎可用 | 强制切换到 `llm-only` 模式，隐藏模板相关指令 |
+| 文件写入 | 尝试写 `memory/prompt_optimizer_state.json` | 状态持久化 | 对话内记忆状态，不写文件 |
+| 大文件处理 | 读取 `categories/coding.json`（1.5MB） | 按类别加载 | 只能用小类别或纯 LLM |
+
+**启动时行为：**
+1. 尝试读取 `references/categories/index.json`
+   - 成功 → 模板引擎可用，继续检测写入能力
+   - 失败 → 告知用户「当前平台不支持文件读取，已自动切换为纯 LLM 模式」
+2. 尝试写入 `memory/prompt_optimizer_state.json`
+   - 成功 → 持久化正常
+   - 失败 → 对话内记忆，提示用户「状态仅在当前对话有效」
+
+## Onboarding（首次使用）
+
+当用户第一次提到优化 prompt 且 `memory/prompt_optimizer_state.json` 不存在时，执行一次性 onboarding：
+
+1. **介绍能力**（一句话）：_"Prompt Optimizer 可以帮你把模糊的指令变成精准、结构化的提示词，支持模板匹配 + AI 直接优化两种引擎。"_
+
+2. **快速问几个配置问题：**
+   - **a) 你平时主要用 prompt 做什么？**
+     - 编程/开发 → 默认加载 `coding` 类别
+     - 写作/内容创作 → 默认加载 `writing` + `creative-generation`
+     - 商业/咨询 → 默认加载 `business` + `consulting`
+     - 教育 → 默认加载 `education`
+     - 什么都做 → 默认加载 `coding`（占模板库 50%，覆盖最广）
+
+   - **b) 引擎偏好？**
+     - "要快、省 token" → `template-first`（默认）
+     - "要深度定制" → `llm-only`
+     - "只用模板" → `template-only`
+
+   - **c) 输出格式偏好？**
+     - 纯文本（默认）
+     - Markdown
+     - XML
+     - 都要
+
+   - **d) 模板版本？**
+     - 简易版（日常快速优化）
+     - 完整版（正式项目，更全面）
+
+3. **写入初始状态文件** `memory/prompt_optimizer_state.json`：
+   ```json
+   {
+     "enabled": true,
+     "mode": "lite|full",
+     "engine": "template-first|llm-only|template-only",
+     "output_format": "text|markdown|xml|all",
+     "categories": ["..."],
+     "onboarded": true,
+     "turned_on_at": "ISO timestamp"
+   }
+   ```
+
+4. **确认完成**：_"设置完成！以后直接发 prompt 给我就能优化了，随时可以说 '切换引擎' 或 '加载新类别' 来调整。"_
+
+**Onboarding 只执行一次**，后续每次激活直接读取状态文件。
+
+## 开关机制
+
+**默认关闭**，用户明确指令才激活。
+
+| 操作 | 指令示例 |
+|---|---|
+| 开启 | "开启提示词优化"、"开启简易版" |
+| 开启（完整版） | "开启完整版提示词优化" |
+| 关闭 | "关闭提示词优化" |
+| 设置引擎 | "引擎设为..."（见下方） |
+| 设置输出格式 | "输出格式设为 Markdown/XML/纯文本/全部" |
+
+## 🔄 引擎模式（用户可选）
+
+| 模式 | 指令 | 原理 | 适用场景 |
+|------|------|------|----------|
+| **模板优先 + LLM 兜底**（默认） | "引擎设为模板优先" | 先查模板库，匹配不到再让 LLM 生成 | 日常使用，省 token |
+| **LLM 直接** | "引擎设为纯LLM" | 跳过模板库，直接让宿主 AI 优化 | 定制化需求、模板覆盖不到的领域 |
+| **仅模板** | "引擎设为仅模板" | 只查模板库，匹配不到就告知用户 | 追求速度、不消耗额外 token |
+
+**LLM 元提示的核心思路：** 本 Skill 运行在宿主 AI 内部（OpenClaw/Claude Code/龙须等），宿主 AI 本身就是优化引擎。不需要调外部 API，直接让当前 AI 以「提示词优化专家」的身份工作。
+
+**版本区别：**
+- **简易版**（~3MB，截断 800 字符）：日常快速优化
+- **完整版**（~10MB，完整不截断）：正式项目
+
+> 📦 **模板库文件不包含在 ClawHub 包中**（体积过大）。从 GitHub 获取：
+> - Lite: `https://raw.githubusercontent.com/Thomaszhou22/prompt-optimizer/main/references/prompt_library_lite.json`
+> - Full: `https://raw.githubusercontent.com/Thomaszhou22/prompt-optimizer/main/references/prompt_library_full.json`
+> - Categories: `https://github.com/Thomaszhou22/prompt-optimizer/tree/main/references/categories`
+>
+> 运行 `git clone https://github.com/Thomaszhou22/prompt-optimizer.git` 获取完整模板库。
+
+### 📦 按类别加载（推荐，省 token）
+
+不用加载全部 3344 条，可以只加载你需要的类别：
+
+| 操作 | 指令示例 |
+|---|---|
+| 加载特定类别 | "只加载coding的模板"、"加载编程+data-analysis" |
+| 查看可选类别 | "有哪些类别可选" |
+| 加载全部 | "加载全部类别" |
+| 移除类别 | "移除art-entertainment" |
+
+**类别文件位置：** `references/categories/{类别名}.json`
+
+| 类别 | 数量 | 文件大小 |
+|------|------|----------|
+| coding | 1672 | ~1.5MB |
+| art-entertainment | 404 | ~411KB |
+| 其他 | 253 | ~202KB |
+| writing | 208 | ~196KB |
+| education | 117 | ~107KB |
+| consulting | 114 | ~115KB |
+| business | 108 | ~98KB |
+| health-lifestyle | 82 | ~76KB |
+| legal-finance | 82 | ~80KB |
+| data-analysis | 73 | ~73KB |
+| creative-generation | 73 | ~66KB |
+| science-research | 61 | ~55KB |
+| translation | 60 | ~57KB |
+| tech-tools | 37 | ~36KB |
+
+**加载优先级：** 指定类别 → 加载对应 `categories/` 文件；未指定类别 → 加载完整 lite/full 文件。
+
+默认引擎 `template-first`，default category `coding`（占模板库 50%，最常用）。用户可随时切换。
+
+状态持久化到 `memory/prompt_optimizer_state.json`：
+```json
+{"enabled": true, "mode": "lite", "engine": "template-first", "output_format": "text", "categories": ["coding"], "turned_on_at": "2026-05-19T16:05:00+08:00"}
+```
+
+engine 可选值：`"template-first"`（默认） | `"llm-only"` | `"template-only"`
+
+**输出格式说明：**
+- **纯文本**（默认）：直接输出 prompt 内容
+- **Markdown**：用 `##` 标题、`-` 列表、`**加粗**` 等格式包裹
+- **XML**：用 `<prompt><role>...</role><action>...</action></prompt>` 结构包裹
+- **全部**：同时输出三种格式，用户自选
+
+**判断逻辑：** 收到消息 → 检查状态文件 → 开关/切换指令则更新状态 → 关闭中则忽略 → 开启中则执行下方工作流。
+
+## 智能跳过
+
+开启中但消息是简单日常对话（"你好"、"今天天气"、"谢谢"）→ 不触发优化，正常回复。
+
+## Workflow
+
+### Step 0: 引擎与版本建议
+
+评估任务复杂度和引擎匹配度：
+- **→ LLM 模式信号**：高度定制化需求、模板库无覆盖领域、用户要求"深度分析"、创意/复杂逻辑任务
+- **→ 模板模式信号**：常见编程/写作/商业场景、快速优化、省 token
+- **→ 完整版信号**：多步骤/多领域、长文档、深度分析
+- **→ 简易版信号**：简单问答/翻译、一句话任务
+
+输出建议后等用户回复 "切换" 或 "继续"。
+
+### Step 1: 解析意图
+
+识别：目标（Goal）、领域（Domain）、角色（Role）、约束（Constraints：格式/语言/受众/长度）、复杂度。
+
+### Step 2: 引擎路由
+
+根据状态中 `engine` 值决定执行路径：
+
+| engine | 路径 |
+|--------|------|
+| `template-first`（默认） | 执行 Step 2a → 若匹配成功走 CRAFT → 若匹配失败自动跳 Step 3 LLM 兜底 |
+| `llm-only` | 跳过模板库，直接执行 Step 3 |
+| `template-only` | 执行 Step 2a → 若匹配失败告知用户，不调 LLM |
+
+### Step 2a: 模板搜索
+
+**数据源选择：**
+1. 若状态中 `categories` 非空 → 只读取 `references/categories/{类别}.json` 中指定的类别文件
+2. 若 `categories` 为空或不存在 → 读取完整库文件（lite 或 full）
+
+按以下规则匹配 1-3 个最相关模板：
+- Role name 与用户目标相似度
+- 关键词重叠
+- 领域分类匹配
+
+分类：coding | writing | education | business | health-lifestyle | tech-tools | translation | art-entertainment | consulting | creative-generation | data-analysis | science-research | legal-finance | 其他
+
+**匹配失败处理（template-first 模式）：** 自动告知用户「模板库未匹配到，正在用 LLM 直接优化」，然后跳到 Step 3。
+
+### Step 3: LLM 元提示优化
+
+**这是核心新增能力。** 宿主 AI 以「提示词优化专家」身份，根据优化类型选择对应的 meta-prompt 框架：
+
+#### 3a. 通用优化（默认）
+
+适用大多数场景。输出结构化 prompt：
+
+```
+# Role: [角色名称]
+
+## Profile
+- language: [语言]
+- description: [详细角色描述]
+- background: [角色背景]
+- personality: [性格特征]
+- expertise: [专业领域]
+- target_audience: [目标用户群]
+
+## Skills
+1. [核心技能类别]
+   - [具体技能]: [说明]
+2. [辅助技能类别]
+   - [具体技能]: [说明]
+
+## Rules
+1. [基本原则]
+2. [行为准则]
+3. [限制条件]
+
+## Workflows
+- 目标: [明确目标]
+- 步骤 1: [详细说明]
+- 步骤 2: [详细说明]
+- 步骤 3: [详细说明]
+- 预期结果: [说明]
+
+## Initialization
+作为[角色名称]，你必须遵守上述Rules，按照Workflows执行任务。
+```
+
+**优化时的核心行为：**
+- 你是「提示词优化专家」，你的任务是**重写提示词文本本身**，不是执行其中的任务
+- 分析原始 prompt 的核心意图，避免表面理解
+- 用精确指令替换模糊词汇
+- 添加边界约束（字数、格式、语气）
+- 保持用户原始意图，只添加结构和专业框架
+- 直接输出优化后的 prompt，不加解释，不用代码块包围
+
+#### 3b. 分析式优化
+
+适用复杂业务场景。深度分析原 prompt 的设计缺陷，提供详细改进方案。
+
+作为 Prompt 工程师，从 8 个维度分析并重组：
+1. **Role（角色定位）**：需要什么样的专业角色
+2. **Background（背景分析）**：问题的背景和上下文
+3. **Skills（技能匹配）**：角色应具备的关键能力
+4. **Goals（目标设定）**：核心需求转化为具体目标
+5. **Constrains（约束条件）**：执行规则和限制
+6. **Workflow（工作流程）**：完成任务的步骤方法
+7. **OutputFormat（输出格式）**：结果格式和结构要求
+8. **Suggestions（工作建议）**：内在工作方法论
+
+输出格式与 3a 相同，但每个部分需要 5 个要点，并额外包含 `Attention`（注意要点）和 `Suggestions`（工作方法论）部分。
+
+#### 3c. 迭代优化
+
+适用已有 prompt 需要微调的场景。
+
+**核心原则：**
+- 保持原始 prompt 的核心意图和功能
+- 将用户的新需求作为新的约束/要求融入
+- 保持原有语言风格和结构格式
+- 进行精准修改，避免过度调整
+- 保留原始 prompt 中的变量占位符（如 `{{variable}}`）
+
+**理解示例：**
+- 原始："你是客服助手，帮用户解决问题" + 需求："不要交互"
+- ✅ 正确："你是客服助手，帮用户解决问题。请直接提供完整解决方案，不要与用户进行多轮交互确认。"
+- ❌ 错误：直接回复"好的，我不会与您交互"（你在执行任务而不是优化 prompt）
+
+#### 3d. 用户 Prompt 精炼
+
+适用优化用户输入的查询（非系统 prompt）。
+
+将用户的原始查询精炼为「明确、具体、可执行、可验证」的用户提示词文本：
+- 补齐目标、范围、参数
+- 明确输出格式与验收标准
+- 保留原始表述风格，仅做最小充分精炼
+- 不改变用户的原始意图
+
+### Step 4: 质量评估（可选，用户说"评估"或"打分"时触发）
+
+对优化前后的 prompt 进行对比评估，宿主 AI 以「提示词质量评估专家」身份打分。
+
+**评估维度（每项 1-10 分）：**
+
+| 维度 | 说明 |
+|------|------|
+| goalClarity | 目标是否清晰明确 |
+| instructionCompleteness | 指令是否完整无遗漏 |
+| structuralExecutability | 结构是否可执行、步骤是否明确 |
+| ambiguityControl | 歧义控制，是否有模糊表述 |
+| robustness | 鲁棒性，不同输入下是否稳定 |
+
+**输出格式：**
+```
+📊 质量评估报告
+
+原始 Prompt 评分：
+  目标清晰度: [X/10]
+  指令完整性: [X/10]
+  结构可执行性: [X/10]
+  歧义控制: [X/10]
+  鲁棒性: [X/10]
+  总分: [XX/50]
+
+优化后评分：
+  目标清晰度: [X/10]
+  指令完整性: [X/10]
+  结构可执行性: [X/10]
+  歧义控制: [X/10]
+  鲁棒性: [X/10]
+  总分: [XX/50]
+
+📈 提升: [+XX分]
+
+💡 改进亮点：
+  1. [具体改进点]
+  2. [具体改进点]
+  3. [具体改进点]
+
+⚠️ 仍可优化：
+  1. [可进一步改进的方向]
+  2. [可进一步改进的方向]
+```
+
+**评估原则：**
+- 基于 prompt 文本本身评估，不执行 prompt
+- 客观打分，不要为了好看而虚高
+- 改进亮点要具体，指出哪里变好了
+- 仍可优化的建议要有可操作性
+
+### Step 5: 质量增强
+
+对 Step 2（模板）或 Step 3（LLM）的输出统一增强：
+1. 用精确指令替换模糊词汇
+2. 添加边界约束（字数、格式、语气）
+3. 复杂任务加 1-shot 示例
+4. 推理任务加 "Let's think step by step"
+5. 明确定义预期输出结构
+
+默认 Level 2（标准 CRAFT），复杂分析/创意用 Level 3（+CoT+few-shot），快速优化用 Level 1（role+format）。
+
+### Step 5: 确认流程（必须执行）
+
+根据用户设定的输出格式（默认纯文本）生成对应格式的提示词。
+
+---
+📋 **原始输入：** [用户原话]
+🔧 **引擎：** [模板匹配 / LLM元提示 / 双引擎]
+📎 **参考模板：** [模板名 或 "LLM直接生成"]
+
+✨ **优化后的提示词：**
+```
+[完整提示词 — 按用户设定的格式输出]
+```
+
+🔄 **改动说明：** [1-2 句]
+📎 **输出格式：** [纯文本/Markdown/XML/全部]
+
+---
+
+👆 回复 "✅" 确认使用 / "❌" 放弃用原始输入 / 提修改意见微调 / "换格式" 更改输出格式 / "继续优化" 再迭代一轮 / "评估" 查看质量评分
+
+等待用户回复后再执行。
+
+## Guidelines
+
+- **多语言适配**：输出语言匹配用户输入（中文→中文 prompt，英文→英文）
+- 保持用户原始意图，只添加结构和专业框架
+- Model-agnostic：不使用特定模型语法，适用于所有宿主 AI
+- 意图模糊时先问 1-2 个澄清问题
+- 编程任务必须指定语言/框架，占位符用 `[placeholder]`
+- 长度自适应：简单任务简洁 prompt，复杂任务详细多段 prompt
+- 语气匹配任务（商业正式、创作创意、编程精确）
+- 多轮反馈时增量优化而非从头开始
+- 批量任务逐条优化，编号列表展示
+- **LLM 模式下你就是优化引擎本身**，不需要调外部 API，直接以专家身份输出

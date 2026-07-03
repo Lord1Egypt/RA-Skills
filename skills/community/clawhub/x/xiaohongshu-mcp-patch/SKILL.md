@@ -1,3 +1,14 @@
+---
+name: xiaohongshu-mcp-patch
+description: "自动检测并修复小红书MCP部署常见问题，包括端口占用、cookie路径、服务状态及超时等待。"
+source: ClawHub
+version: 1.0.0
+tags: [fix, mcp, patch, xiaohongshu]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 小红书MCP补丁包
+
 # 小红书 MCP 补丁包
 
 部署小红书 MCP 时常见问题的自动化修复方案。

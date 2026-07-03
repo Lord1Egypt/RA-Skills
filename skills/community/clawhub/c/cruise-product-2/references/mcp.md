@@ -1,0 +1,28 @@
+# MCP Server 接入
+
+探索各种邮轮产品，轻松找到适合您的旅行需求。通过多维度过滤，快速筛选出理想的邮轮。
+
+## 平台网关 Remote URL
+
+```
+https://cruise-mcp.olavacations.com/api/gw/mcp/3ae0fa3d-2c56-4d01-be01-14ee8463cf04
+```
+
+## server.json
+
+```json
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/cruise-product-2",
+  "description": "探索各种邮轮产品，轻松找到适合您的旅行需求。通过多维度过滤，快速筛选出理想的邮轮。",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/3ae0fa3d-2c56-4d01-be01-14ee8463cf04"
+    }
+  ]
+}
+```
+
+安装本 Skill 后，在 OpenClaw 配置中将 MCP remotes 指向上述 URL。

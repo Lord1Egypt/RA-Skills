@@ -1,0 +1,25 @@
+{
+  "id": "skill3-opc-compliance",
+  "name": "OPC合规落地",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "完成主体注册、财税规划、商用模板准备、商标注册，实现低成本合规落地",
+  "stage": 3,
+  "stageName": "实体期",
+  "graduationCondition": "主体注册完成 + 财税规划落地 + 商用模板齐备",
+  "triggers": ["注册公司", "个体户", "合规", "财税", "经营范围", "合同", "商标"],
+  "prerequisites": ["MVP已设计完成（Skill2输出）"],
+  "dependencies": ["skill1-idea-feasibility", "skill2-mvp-design"],
+  "outputs": [
+    "主体选型决策",
+    "经营范围推荐",
+    "财税规划方案",
+    "商用模板清单",
+    "商标注册指引",
+    "版权登记指引"
+  ],
+  "files": {
+    "prompt": "prompt.md",
+    "code": "index.ts"
+  }
+}

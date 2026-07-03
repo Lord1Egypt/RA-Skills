@@ -14,6 +14,7 @@ reviewer.py - 节点内容评审器 v1.0
   result = review_node(paper_name, node_id, content)
 """
 
+import json
 import re
 import sys
 from typing import Any, Dict, List, Optional

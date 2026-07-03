@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/sql-buddy/output.schema.json",
+  "title": "SQL Buddy Output",
+  "description": "Structured output from sql-buddy skill",
+  "type": "object",
+  "properties": {
+    "natural_query": { "type": "string" },
+    "generated_sql": { "type": "string" },
+    "dialect": { "type": "string", "enum": ["sqlite", "postgresql", "mysql", "mssql"] },
+    "executed": { "type": "boolean" },
+    "rows_returned": { "type": "integer" },
+    "results": { "type": "array" },
+    "columns": { "type": "array", "items": { "type": "string" } },
+    "explain_plan": {
+      "type": "object",
+      "properties": {
+        "raw": { "type": "string" },
+        "summary": { "type": "string" },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "suggested_indexes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "table": { "type": "string" },
+          "columns": { "type": "array", "items": { "type": "string" } },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "optimized_sql": { "type": "string" },
+    "schema": { "type": "object" },
+    "insight": { "type": "string" },
+    "execution_time_ms": { "type": "integer" },
+    "error": { "type": "string" }
+  }
+}

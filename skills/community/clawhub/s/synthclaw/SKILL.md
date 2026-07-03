@@ -2,7 +2,7 @@
 name: synthclaw
 license: MIT
 metadata:
-  version: 0.2.3
+  version: 0.2.5
 description: Render Blender files with agent-controlled procedural parameters for synthetic data generation. A key capability of this skill is returning dynamic quality metrics (Naturalness and LPIPS) upon generation and measuring dataset-wide diversity (Shannon entropy), allowing agents to be guided by the metric results to iteratively optimize parameter ranges and improve synthetic data usefulness. Supports CYCLES (production) and EEVEE (fast testing) render engines.
 ---
 
@@ -15,6 +15,9 @@ description: Render Blender files with agent-controlled procedural parameters fo
 > 3. **Prohibition of Direct CLI Calls**: Do NOT execute raw `blender` commands directly in the shell (e.g. `blender -b -P ...`). Always use the designated tool calls.
 > 4. **Mandatory Discovery Phase**: You MUST call `analyze_blend` first before attempting to render any `.blend` file. This is required to discover the exact names of the available Value Nodes, materials, objects, and collections in the scene.
 > 5. **Handling Heavy Scenes & Timeouts**: For heavy scenes with complex compositing pipelines or large file sizes (e.g. over 200 MB), EEVEE may time out. If EEVEE runs exceed the 60-second limit, pass a custom, larger `timeout` argument to `render_procedural_scene` or run production Cycles rendering (which automatically configures Metal GPU on macOS and CUDA elsewhere).
+> 6. **Multi-Pass Compositing and Missing Composite Output Nodes**: When rendering complex multi-pass blend files (like `plaque_plate.blend`) that utilize compositor `File Output` nodes but lack the standard `Composite` node:
+>    * The skill automatically detects the missing output node and dynamically creates/links a `Composite` fallback node (fully compatible with Blender 4.x and Blender 5.0+ group outputs) so that standard single-frame renders (`render_procedural_scene`) correctly write the fully fused image to the main output file rather than an empty base plate.
+>    * Relative output paths (e.g., `../output/masks/`) configured in the compositor are automatically cleaned and routed under the target `output_dir`.
 
 ## When to Use
 
@@ -114,11 +117,15 @@ Convenience function for production Cycles rendering. Same as `render_procedural
 
 Generates a procedural dataset from any `.blend` file by applying dynamic randomization rules frame-by-frame and routing compositor file outputs automatically.
 
+> [!NOTE]
+> **Compositor Path Preservation**: The skill automatically detects and preserves any relative output paths configured in the `.blend` file's Compositor `File Output` nodes (e.g. `images/`, `masks/well_masks/`, or `../output/masks/plaque_masks/`), stripping parent traversal prefixes and routing them cleanly under the user-defined `output_dir`.
+
 **Parameters:**
 - `blend_file` (string, required): Absolute path to the .blend file
 - `output_dir` (string, required): Absolute path where generated images/masks will be saved
 - `num_images` (integer, optional): Number of images to render (default: 2)
-- `randomizations` (array of objects, optional): List of randomization rules specifying target elements and distribution parameters
+- `randomizations` (array of objects, optional): List of randomization rules.
+  * Supported distributions: `"uniform"`, `"int_range"`, `"boolean"`, `"choice"`, and `"sequence"` (cycles through the provided list of range/choices frame-by-frame).
 - `engine` (string, optional): `"CYCLES"` (default) or `"EEVEE"`
 - `samples` (integer, optional): Cycles samples per frame (default: 128)
 

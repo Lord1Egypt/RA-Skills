@@ -28,6 +28,37 @@ Screen refresh policy: always design K10 display code around partial redraws. Fu
 
 Before uploading code, ensure your Arduino environment is configured correctly.
 
+### Windows Self-Contained Offline Installer
+
+For Windows machines with no Arduino tooling installed, use the self-contained offline installer first. The installer bundles `arduino-cli.exe`, the UNIHIKER K10 BSP, required ESP32-S3 tools, and local libraries.
+
+Known install locations to check, in order:
+
+```text
+C:\K10A
+%USERPROFILE%\K10A
+%LOCALAPPDATA%\K10A
+%LOCALAPPDATA%\K10Arduino
+```
+
+When one of these directories exists and contains `arduino-cli.exe` plus `arduino-cli.local.yaml`, use that local environment instead of assuming `arduino-cli` is on `PATH`:
+
+```powershell
+cd C:\K10A
+.\setup-config.bat
+.\arduino-cli.exe --config-file .\arduino-cli.local.yaml core list
+.\arduino-cli.exe --config-file .\arduino-cli.local.yaml compile --fqbn UNIHIKER:esp32:k10 .\examples\Blink
+```
+
+For user sketches, prefer:
+
+```powershell
+C:\K10A\compile-sketch.bat "C:\path\to\SketchFolder"
+C:\K10A\upload-sketch.bat "C:\path\to\SketchFolder" COM3
+```
+
+If the short-path installer is present, do not ask the user to download BSP/toolchains again unless required files are missing.
+
 ### Windows 快速安装 (推荐)
 
 在Windows上，skill目录已包含预下载的 `arduino-cli.exe`，可直接使用：

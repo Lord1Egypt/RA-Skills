@@ -1,13 +1,13 @@
 # 船货盘富化与距离排序接口（路由 A · 邮件 SQLite）
 
-本文件为 **hifleet-mytonnages** 中 **路由 A** 在 **2.4.1 写入 SQLite 之后** 的**数据富化**与**按距离排序查询**约定；**路由 B（班轮船期）不适用本文**。
+本文件为 **hifleet-mytonnages** 中 **路由 A** 的约定；**路由 C（预抵）不适用本文**。
 
 ---
 
 ## 分发模式
 
 1. 船舶档案、港口 ID、港间距离由 **HiFleet `api.hifleet.com`** 提供；助手在环境中发 **HTTPS** 请求，**不得**臆造 IMO 档案字段或 `portid`。  
-2. 密钥与路由 B 相同：`hifleet_api_key`（`config.json`）或 `HIFLEET_API_KEY`（环境变量）；各接口 Query 参数 **`api_key`** = 该串，**勿在对话中完整暴露**。  
+2. 密钥：`hifleet_api_key`（`config.json`）或 `HIFLEET_API_KEY`（环境变量）；各接口 Query 参数 **`api_key`** = 该串，**勿在对话中完整暴露**。  
 3. **写入顺序（硬性）**：定时任务 **2.4** 解析 → **2.4.1** `save` → **2.4.2** 富化（顺序见下节）→ 用户提问时 **2.3** 只读库检索。
 
 ---

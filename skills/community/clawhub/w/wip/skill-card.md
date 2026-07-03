@@ -1,5 +1,5 @@
 ## Description: <br>
-Tracks in-session work progress for multi-step tasks by registering steps, updating task status, handling cleanup, and guiding task resumption after context changes. <br>
+Track in-session work progress by registering multi-step tasks, updating task status, and guiding cleanup or resume workflows across supported agent environments. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,36 @@ MIT <br>
 
 
 ## Use Case: <br>
-Developers and coding agents use this skill to keep multi-step work visible, update task state during execution, clean stale work items, and resume remaining work with explicit per-item decisions. <br>
+Developers and agent operators use this skill to keep multi-step work visible, preserve in-progress state, and resume remaining tasks after interruptions or context compaction. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can direct agents to update or delete task state during cleanup and resume workflows. <br>
-Mitigation: Review remaining work before acting on it, keep durable checklist or commit records for important in-progress work, and confirm per-item direction before changing active tasks. <br>
-Risk: The skill can cause agents to run GitHub, deploy, SSH, or curl checks in sessions where credentials or production systems may be reachable. <br>
-Mitigation: Use it only in repositories and sessions where those checks are intended, prefer read-only status checks, and require explicit human approval before any command that could change external state. <br>
-Risk: Broad activation phrases and shared Claude hook/cache behavior may affect workflows beyond simple task tracking. <br>
-Mitigation: Review the installed Claude cache and hook behavior before use, and narrow or disable activation patterns in sensitive environments. <br>
+Risk: The skill can clean or delete task state automatically, which may remove useful work-tracking context. <br>
+Mitigation: Review pending and completed task state before installation, and require explicit confirmation before deleting task records or home-directory state. <br>
+Risk: The skill may run external verification commands based on task text. <br>
+Mitigation: Review proposed shell, network, repository, and deployment checks before execution and scope them to the current task. <br>
+Risk: The ClawHub security scan classified the release as suspicious because task-state cleanup and external checks are not sufficiently scoped by the skill text. <br>
+Mitigation: Deploy only after security review, and prefer a version that requires explicit user confirmation for shell or network checks and destructive state changes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drumrobot/wip) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Resume workflow](artifact/resume.md) <br>
-- [Claude Code WIP guide](artifact/claude.md) <br>
-- [Antigravity WIP tracking](artifact/antigravity.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+- [WIP skill overview](SKILL.md) <br>
+- [Resume workflow](resume.md) <br>
+- [Claude Code WIP guide](claude.md) <br>
+- [Antigravity WIP tracking](antigravity.md) <br>
+- [ClawHub skill page](https://clawhub.ai/drumrobot/skills/wip) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command and API-call examples] <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
+**Output Format:** [Markdown guidance with task checklists, tool-call patterns, and command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task-list updates, per-item decision prompts, checklist edits, and external status checks.] <br>
+**Other Properties Related to Output:** [May produce or update task tracking artifacts such as TodoWrite entries, task.md, checklist.md, fix_plan.md, or WIP commit guidance.] <br>
 
 ## Skill Version(s): <br>
-0.3.2 (source: server release metadata and CHANGELOG, released 2026-06-11) <br>
+0.3.3 (source: server release metadata and CHANGELOG, released 2026-06-30) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

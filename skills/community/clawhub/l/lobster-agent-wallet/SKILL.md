@@ -1,3 +1,14 @@
+---
+name: lobster-agent-wallet
+description: "Manage a USDC wallet for AI agents on Base, supporting balance checks and secure x402 payments with configurable network and key settings."
+source: ClawHub
+version: 0.1.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Agent Wallet (Lobster)
+
 # 🦞 Agent Wallet Skill
 
 USDC wallet for AI agents on Base with x402 payment protocol support.

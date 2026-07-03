@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const zlib = require('zlib');
 
 // Verifies the structured failure taxonomy added to executeForceUpdate.
 //
@@ -48,19 +49,112 @@ function writeInstallPkg(version, name) {
   );
 }
 
+function writeStrongEvolverMarkers() {
+  fs.mkdirSync(path.join(installRoot, 'src', 'gep'), { recursive: true });
+  fs.writeFileSync(
+    path.join(installRoot, 'src', 'forceUpdate.js'),
+    'function executeForceUpdate() {}\nconst FORCE_UPDATE_FAIL_CODES = {};\n',
+    'utf8',
+  );
+  fs.writeFileSync(
+    path.join(installRoot, 'src', 'gep', 'paths.js'),
+    'function getRepoRoot() {}\nfunction getEvolverInstallRoot() {}\n',
+    'utf8',
+  );
+  fs.writeFileSync(
+    path.join(installRoot, 'src', 'gep', 'a2aProtocol.js'),
+    '// GEP A2A Protocol\nfunction reportForceUpdateOutcome() {}\n',
+    'utf8',
+  );
+  fs.writeFileSync(
+    path.join(installRoot, 'index.js'),
+    "const evolve = require('./src/evolve');\n// proxy-token\n",
+    'utf8',
+  );
+}
+
 // Fake degit that "downloads" a package.json (+ a code file) of the given
 // version into TMP_TARGET (the last positional arg degit receives).
-function makeSuccessfulDegit(version) {
-  return function (_bin, args) {
+function makeDegitPackage(version, name) {
+  return function (bin, args) {
+    if (!String(bin).includes('npx')) throw new Error('unexpected fallback call');
     const tmpTarget = args[args.length - 1];
     fs.mkdirSync(tmpTarget, { recursive: true });
     fs.writeFileSync(
       path.join(tmpTarget, 'package.json'),
-      JSON.stringify({ name: '@evomap/evolver', version }),
+      JSON.stringify({ name: name || '@evomap/evolver', version }),
       'utf8',
     );
     fs.writeFileSync(path.join(tmpTarget, 'index.js'), '// v' + version, 'utf8');
+    fs.mkdirSync(path.join(tmpTarget, 'src'), { recursive: true });
+    fs.writeFileSync(path.join(tmpTarget, 'src', 'evolve.js'), '// src v' + version, 'utf8');
   };
+}
+
+function makeSuccessfulDegit(version) {
+  return makeDegitPackage(version, '@evomap/evolver');
+}
+
+function makeTarHeader(name, size, type, mode) {
+  const header = Buffer.alloc(512);
+  header.write(name, 0, Math.min(Buffer.byteLength(name), 100), 'utf8');
+  header.write((mode || 0o644).toString(8).padStart(7, '0') + '\0', 100, 'ascii');
+  header.write('0000000\0', 108, 'ascii');
+  header.write('0000000\0', 116, 'ascii');
+  header.write(size.toString(8).padStart(11, '0') + '\0', 124, 'ascii');
+  header.write('00000000000\0', 136, 'ascii');
+  header.fill(0x20, 148, 156);
+  header.write(type || '0', 156, 'ascii');
+  header.write('ustar\0', 257, 'ascii');
+  header.write('00', 263, 'ascii');
+  let sum = 0;
+  for (const byte of header) sum += byte;
+  header.write(sum.toString(8).padStart(6, '0') + '\0 ', 148, 'ascii');
+  return header;
+}
+
+function makeTarGzBuffer(entries) {
+  const chunks = [];
+  for (const entry of entries) {
+    const content = Buffer.isBuffer(entry.content)
+      ? entry.content
+      : Buffer.from(entry.content || '', 'utf8');
+    const type = entry.type || '0';
+    const size = type === '0' ? content.length : 0;
+    chunks.push(makeTarHeader(entry.name, size, type, entry.mode));
+    if (size > 0) {
+      chunks.push(content);
+      const padding = (512 - (size % 512)) % 512;
+      if (padding) chunks.push(Buffer.alloc(padding));
+    }
+  }
+  chunks.push(Buffer.alloc(1024));
+  return zlib.gzipSync(Buffer.concat(chunks));
+}
+
+function makeReleaseTarball(version, extraEntries) {
+  return makeTarGzBuffer([
+    { name: 'evolver-' + version + '/package.json', content: JSON.stringify({ name: '@evomap/evolver', version }) },
+    { name: 'evolver-' + version + '/index.js', content: '// tarball v' + version, mode: 0o755 },
+    { name: 'evolver-' + version + '/src/evolve.js', content: '// tarball src v' + version },
+  ].concat(extraEntries || []));
+}
+
+function makeDegitFailureThenTarballSuccess(version) {
+  const calls = [];
+  const stub = function (bin, args) {
+    calls.push({ bin, args: Array.isArray(args) ? args.slice() : [] });
+    if (bin === process.execPath) {
+      fs.writeFileSync(args[3], makeReleaseTarball(version));
+      return '';
+    }
+    throw Object.assign(new Error('degit unavailable'), {
+      status: 128,
+      stderr: 'fatal: could not read from remote repository\n',
+    });
+  };
+  stub.calls = calls;
+  return stub;
 }
 
 // Like makeSuccessfulDegit, but the "downloaded" package.json is parseable yet
@@ -68,7 +162,8 @@ function makeSuccessfulDegit(version) {
 // `tmpPkg.version` is falsy -> download_incomplete (a malformed/incomplete
 // download, distinct from a present-but-wrong-version tag mismatch).
 function makeVersionlessDegit() {
-  return function (_bin, args) {
+  return function (bin, args) {
+    if (!String(bin).includes('npx')) throw new Error('unexpected fallback call');
     const tmpTarget = args[args.length - 1];
     fs.mkdirSync(tmpTarget, { recursive: true });
     fs.writeFileSync(
@@ -101,6 +196,7 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
 
   it('install_guard_name_mismatch: install root package.json has the wrong name', () => {
     writeInstallPkg('1.0.0', 'some-other-package');
+    writeStrongEvolverMarkers();
     let execCalls = 0;
     const { executeForceUpdate } = freshRequireForceUpdate(() => { execCalls++; });
     const r = executeForceUpdate({ required_version: '1.88.3' });
@@ -118,6 +214,31 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     assert.equal(r.ok, false);
     assert.equal(r.code, 'install_guard_unreadable');
     assert.equal(execCalls, 0, 'guard fires before degit');
+  });
+
+  it('bootstrap recovery: strong evolver markers allow missing package.json to reach tarball fallback', () => {
+    writeStrongEvolverMarkers();
+    const execStub = makeDegitFailureThenTarballSuccess('1.88.3');
+    const { executeForceUpdate } = freshRequireForceUpdate(execStub);
+    const r = executeForceUpdate({ required_version: '1.88.3' });
+    assert.equal(r, true, 'strong markers permit bootstrap recovery through fallback');
+    assert.ok(execStub.calls.some((c) => c.bin === process.execPath), 'tarball downloader was reached');
+    assert.equal(execStub.calls.some((c) => c.bin === 'tar'), false,
+      'tarball fallback uses the Node extractor, not system tar');
+    const restoredPkg = JSON.parse(fs.readFileSync(path.join(installRoot, 'package.json'), 'utf8'));
+    assert.equal(restoredPkg.name, '@evomap/evolver');
+    assert.equal(restoredPkg.version, '1.88.3');
+  });
+
+  it('bootstrap recovery: strong evolver markers allow malformed package.json to be replaced', () => {
+    writeStrongEvolverMarkers();
+    fs.writeFileSync(path.join(installRoot, 'package.json'), '{not json', 'utf8');
+    const { executeForceUpdate } = freshRequireForceUpdate(makeSuccessfulDegit('1.88.3'));
+    const r = executeForceUpdate({ required_version: '1.88.3' });
+    assert.equal(r, true, 'strong markers permit bootstrap recovery through the install path');
+    const restoredPkg = JSON.parse(fs.readFileSync(path.join(installRoot, 'package.json'), 'utf8'));
+    assert.equal(restoredPkg.name, '@evomap/evolver');
+    assert.equal(restoredPkg.version, '1.88.3');
   });
 
   it('bad_required_version: required_version is not a concrete semver', () => {
@@ -145,41 +266,57 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
 
   // --- Channel 1: degit-spawn branch (phase 'degit') ---
 
-  it('npx_not_found: degit spawn throws ENOENT (npx binary absent)', () => {
+  it('fallback download failure reports fallback terminal telemetry with primary npx context first', () => {
     writeInstallPkg('1.0.0');
-    const stub = function () { throw Object.assign(new Error('spawnSync npx ENOENT'), { code: 'ENOENT' }); };
+    const stub = function (bin) {
+      if (bin === process.execPath) throw Object.assign(new Error('fallback download failed'), { code: 'ETIMEDOUT' });
+      throw Object.assign(new Error('spawnSync npx ENOENT'), { code: 'ENOENT' });
+    };
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'npx_not_found', 'ENOENT on the spawn is npx-missing, NOT a missing download file');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'terminal telemetry aggregates by the terminal fallback failure');
+    assert.match(r.detail, /^primary_failed=npx_not_found \| fallback_failed=download_incomplete: .*fallback download failed/,
+      'detail starts with primary and fallback context before any truncation');
   });
 
-  it('degit_timeout: the 60s timeout kills degit with SIGTERM', () => {
+  it('fallback download failure reports fallback terminal telemetry with primary timeout context first', () => {
     writeInstallPkg('1.0.0');
-    const stub = function () { throw Object.assign(new Error('killed'), { killed: true, signal: 'SIGTERM' }); };
+    const stub = function (bin) {
+      if (bin === process.execPath) throw Object.assign(new Error('fallback download failed'), { code: 'ETIMEDOUT' });
+      throw Object.assign(new Error('killed'), { killed: true, signal: 'SIGTERM' });
+    };
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'degit_timeout');
+    assert.equal(r.code, 'fallback_download_incomplete');
+    assert.match(r.detail, /^primary_failed=degit_timeout \| fallback_failed=download_incomplete: .*fallback download failed/);
   });
 
-  it('degit_timeout: a bare ETIMEDOUT (no killed/signal) is still a timeout', () => {
+  it('fallback download failure preserves bare ETIMEDOUT timeout telemetry', () => {
     // review #5: some platforms surface the 60s execFileSync timeout as a plain
     // ETIMEDOUT error with neither .killed nor .signal set. The classifier's
     // third disjunct (e.code === 'ETIMEDOUT') must cover this, otherwise it
     // would fall through to the generic degit_failed bucket and lose the timeout
     // signal. This pins the ETIMEDOUT-only variant the SIGTERM case above misses.
     writeInstallPkg('1.0.0');
-    const stub = function () { throw Object.assign(new Error('etimedout'), { code: 'ETIMEDOUT' }); };
+    const stub = function (bin) {
+      if (bin === process.execPath) throw Object.assign(new Error('fallback download failed'), { code: 'ETIMEDOUT' });
+      throw Object.assign(new Error('etimedout'), { code: 'ETIMEDOUT' });
+    };
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'degit_timeout', 'ETIMEDOUT without killed/signal is a timeout, not a generic degit_failed');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'terminal telemetry aggregates by the terminal fallback failure');
+    assert.match(r.detail, /^primary_failed=degit_timeout \| fallback_failed=download_incomplete: .*fallback download failed/);
   });
 
-  it('degit_failed: generic degit failure keeps a tail of stderr in detail', () => {
+  it('fallback download failure reports fallback terminal telemetry with generic degit context first', () => {
     writeInstallPkg('1.0.0');
-    const stub = function () {
+    const stub = function (bin) {
+      if (bin === process.execPath) throw Object.assign(new Error('fallback download timeout'), { code: 'ETIMEDOUT' });
       throw Object.assign(new Error('Command failed'), {
         status: 128,
         stderr: 'fatal: could not read from remote repository\n',
@@ -188,43 +325,46 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'degit_failed');
-    assert.match(r.detail, /could not read from remote repository/, 'stderr tail preserved for drill-down');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'terminal telemetry aggregates by the terminal fallback failure');
+    assert.match(r.detail, /^primary_failed=degit_failed \| fallback_failed=download_incomplete: .*fallback download timeout/,
+      'fallback detail is preserved for drill-down');
   });
 
-  it('degit_failed: stderr in detail is redacted of secrets and stripped of control chars', () => {
-    // FIX 2+3: the degit_failed detail embeds a tail of degit's stderr, which can
-    // contain a leaked credential (e.g. a token echoed in a clone URL) and raw
-    // ANSI/control bytes. Before it is recorded the stderr must be (a) run through
-    // redactString so secrets become [REDACTED], and (b) have control chars
-    // /[\x00-\x1f\x7f]/ replaced with spaces — so neither a live token nor an
-    // ESC byte reaches the hub.
+  it('fallback terminal failure does not return the original degit stderr', () => {
     writeInstallPkg('1.0.0');
-    // Secret: ghp_ + 36 alphanumerics. Matches sanitize.js REDACT_PATTERNS
-    // /ghp_[A-Za-z0-9]{36,}/g (GitHub personal-access-token), so redactString
-    // replaces the whole token with [REDACTED].
     const SECRET = 'ghp_' + 'A'.repeat(36);
-    // Control bytes: a CR, plus an ANSI SGR colour sequence (ESC = \x1b). All of
-    // ESC/CR are in /[\x00-\x1f\x7f]/ and must be scrubbed to spaces. Kept short
-    // and at the tail so the detail's .slice(-300) cannot truncate it away.
     const stderr = 'fatal: clone failed\r auth \x1b[31mtok=' + SECRET + '\x1b[0m';
-    const stub = function () {
-      // No ENOENT / killed / SIGTERM / ETIMEDOUT -> generic degit_failed, phase='degit'.
+    const stub = function (bin) {
+      if (bin === process.execPath) throw Object.assign(new Error('fallback download failed'), { code: 'ETIMEDOUT' });
       throw Object.assign(new Error('Command failed'), { status: 128, stderr });
     };
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'degit_failed');
-    // Secret never appears in plaintext; it is collapsed to the redactor marker.
-    assert.ok(!r.detail.includes(SECRET), 'raw secret must not survive into detail');
-    assert.match(r.detail, /\[REDACTED\]/, 'redactString replaced the leaked token with its marker');
-    // No control characters survive: assert specifically the ESC byte is gone,
-    // and broadly that nothing in /[\x00-\x1f\x7f]/ remains. (The SGR parameter
-    // text like "[31m" is ordinary printable bytes and may remain — only the
-    // ESC/control bytes are scrubbed.)
-    assert.ok(!r.detail.includes('\x1b'), 'ESC byte stripped from detail');
-    assert.doesNotMatch(r.detail, /[\x00-\x1f\x7f]/, 'no control characters remain in detail');
+    assert.equal(r.code, 'fallback_download_incomplete');
+    assert.match(r.detail, /^primary_failed=degit_failed \| fallback_failed=download_incomplete: .*fallback download failed/);
+    assert.ok(!r.detail.includes(SECRET), 'original degit stderr must not be returned after fallback fails');
+  });
+
+  it('fallback archive extraction failure reports fallback terminal telemetry', () => {
+    writeInstallPkg('1.0.0');
+    const stub = function (bin, args) {
+      if (bin === process.execPath) {
+        fs.writeFileSync(args[3], 'fake tarball bytes', 'utf8');
+        return '';
+      }
+      throw Object.assign(new Error('Command failed'), {
+        status: 128,
+        stderr: 'fatal: could not read from remote repository\n',
+      });
+    };
+    const { executeForceUpdate } = freshRequireForceUpdate(stub);
+    const r = executeForceUpdate({ required_version: '1.88.3' });
+    assert.equal(r.ok, false);
+    assert.equal(r.code, 'fallback_download_incomplete');
+    assert.match(r.detail,
+      /^primary_failed=degit_failed \| fallback_failed=download_incomplete: .*(incorrect header|gzip)/i);
   });
 
   // --- Channel 1: post-download branches (phase 'parse' / version check) ---
@@ -236,7 +376,9 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     const { executeForceUpdate } = freshRequireForceUpdate(stub);
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'download_incomplete', 'a readFileSync ENOENT at phase=parse is NOT npx_not_found');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'fallback failure becomes the aggregation prefix');
+    assert.match(r.detail, /^primary_failed=download_incomplete \| fallback_failed=download_incomplete:/);
   });
 
   it('download_incomplete: degit exits 0 with a parseable package.json that has no version field', () => {
@@ -248,19 +390,30 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     const { executeForceUpdate } = freshRequireForceUpdate(makeVersionlessDegit());
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'download_incomplete',
-      'a parseable package.json with no version is an incomplete download, not a mismatch');
-    assert.match(r.detail, /no version field/, 'detail explains the package.json had no version field');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'fallback failure becomes the aggregation prefix');
+    assert.match(r.detail, /^primary_failed=download_incomplete \| fallback_failed=download_incomplete: .*unexpected fallback call/,
+      'detail keeps both the malformed primary download and fallback terminal failure');
   });
 
-  it('downloaded_version_mismatch: degit fetched a different version than requested', () => {
+  it('fallback failure reports fallback terminal telemetry with version mismatch context', () => {
     writeInstallPkg('1.0.0');
     const { executeForceUpdate } = freshRequireForceUpdate(makeSuccessfulDegit('2.0.0'));
     const r = executeForceUpdate({ required_version: '1.88.3' });
     assert.equal(r.ok, false);
-    assert.equal(r.code, 'downloaded_version_mismatch');
-    assert.match(r.detail, /2\.0\.0/, 'detail records the downloaded version');
-    assert.match(r.detail, /1\.88\.3/, 'detail records the expected version');
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'terminal telemetry aggregates by the terminal fallback failure');
+    assert.match(r.detail, /^primary_failed=downloaded_version_mismatch \| fallback_failed=download_incomplete: .*unexpected fallback call/);
+  });
+
+  it('fallback failure reports fallback terminal telemetry with package-name mismatch context', () => {
+    writeInstallPkg('1.0.0');
+    const { executeForceUpdate } = freshRequireForceUpdate(makeDegitPackage('1.88.3', 'some-other-package'));
+    const r = executeForceUpdate({ required_version: '1.88.3' });
+    assert.equal(r.ok, false);
+    assert.equal(r.code, 'fallback_download_incomplete',
+      'terminal telemetry aggregates by the terminal fallback failure');
+    assert.match(r.detail, /^primary_failed=downloaded_package_name_mismatch \| fallback_failed=download_incomplete: .*unexpected fallback call/);
   });
 
   // --- Channel 1: copy branch (phase 'copy') ---
@@ -279,7 +432,38 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     }
     assert.equal(r.ok, false);
     assert.equal(r.code, 'copy_failed');
-    assert.match(r.detail, /index\.js|package\.json/, 'detail names the entry that failed to copy');
+    assert.match(r.detail, /src|index\.js|package\.json/, 'detail names the entry that failed to copy');
+  });
+
+  it('fallback install copy failure is preserved under the primary degit telemetry', () => {
+    writeInstallPkg('1.0.0');
+    const stub = function (bin, args) {
+      if (bin === process.execPath) {
+        fs.writeFileSync(args[3], makeReleaseTarball('1.88.3'));
+        return '';
+      }
+      throw Object.assign(new Error('Command failed'), {
+        status: 128,
+        stderr: 'fatal: could not read from remote repository\n',
+      });
+    };
+    const { executeForceUpdate } = freshRequireForceUpdate(stub);
+    const origCpSync = fs.cpSync;
+    fs.cpSync = function (src, dst, opts) {
+      if (path.basename(String(src)) === 'src') {
+        throw Object.assign(new Error('no space left on device'), { code: 'ENOSPC' });
+      }
+      return origCpSync(src, dst, opts);
+    };
+    let r;
+    try {
+      r = executeForceUpdate({ required_version: '1.88.3' });
+    } finally {
+      fs.cpSync = origCpSync;
+    }
+    assert.equal(r.ok, false);
+    assert.equal(r.code, 'fallback_copy_failed');
+    assert.match(r.detail, /^primary_failed=degit_failed \| fallback_failed=copy_failed: src/);
   });
 
   // --- contract / helper sanity ---
@@ -310,7 +494,10 @@ describe('executeForceUpdate: structured failure taxonomy', () => {
     for (const expected of [
       'install_guard_name_mismatch', 'install_guard_unreadable', 'bad_required_version',
       'current_version_unparsable', 'npx_not_found', 'degit_timeout', 'degit_failed',
-      'download_incomplete', 'downloaded_version_mismatch', 'copy_failed', 'all_channels_exhausted',
+      'download_incomplete', 'downloaded_package_name_mismatch', 'downloaded_version_mismatch',
+      'fallback_download_incomplete', 'fallback_delete_failed', 'fallback_copy_failed',
+      'fallback_downloaded_package_name_mismatch', 'fallback_downloaded_version_mismatch',
+      'copy_failed', 'all_channels_exhausted',
     ]) {
       assert.ok(codes.includes(expected), 'taxonomy includes ' + expected);
     }

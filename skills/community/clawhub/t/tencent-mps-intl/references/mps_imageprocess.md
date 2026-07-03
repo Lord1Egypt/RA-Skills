@@ -96,62 +96,62 @@
 
 ```bash
 # Super-resolution 2x upscale
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
 # Advanced super-resolution to 4K
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
 
 # Denoising + color enhancement + detail enhancement
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg \
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg \
     --denoise weak --color-enhance normal --sharp-enhance 0.8
 
 # Comprehensive enhancement (overall quality improvement)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance normal
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance normal
 
 # Comprehensive enhancement + super-resolution (heavy restoration for low-quality images)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong --super-resolution
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong --super-resolution
 
 # Beauty (whitening + face slimming + eye enlargement)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg \
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg \
     --beauty Whiten:50 --beauty BeautyThinFace:30 --beauty EnlargeEye:40
 
 # Auto erase watermark
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
 # Add blind watermark
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "MPS"
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "MPS"
 
 # Convert to WebP format + quality 80
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
 # Filter (light film style, strength 70)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
 # Resize (aspect-fit within 800x600)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
 
 # Resize (set long side to 1920, aspect ratio preserved)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-long-side 1920
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-long-side 1920
 
 # === Orchestration Scenarios (console preset AI capabilities, only image + schedule-id required) ===
 # AI Image Understanding (30200)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
 
 # AI Cutout (30030)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
 
 # AI Image Restoration (30040, old photo / scratch repair)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
 # AI Foreground Extraction (30031)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
 
 # AI Outpainting (30010)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
 
 # AI Text Watermark Erasure (30000)
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
 # Query image processing task status
-python scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a
 ```

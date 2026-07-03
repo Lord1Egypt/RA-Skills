@@ -1,8 +1,8 @@
 ---
 name: html-mark
-version: 1.1.1
+version: 1.2.0
 title: HTML Mark — Click-to-annotate overlay for HTML prototypes
-description: Drop coral-gradient pins on any HTML page, write feedback in an inline glass note popup, copy out as Markdown / Plain / JSON for design review. Glass-morphism aesthetic, keyboard-friendly, self-contained single file.
+description: Drop coral-gradient pins on any HTML page, write feedback in an inline glass note popup, copy out as Markdown / Plain / JSON — or a For-AI format (unique CSS selector + HTML snapshot per pin) built to paste into Claude Code for one-pass fixes. Pins anchor to their elements and persist in localStorage. Glass-morphism aesthetic, keyboard-friendly, self-contained single file.
 author: xuxinmaxen
 type: agent
 category: productivity
@@ -68,11 +68,15 @@ A single-file self-contained runtime (`html-mark.js`). After injection it gives 
 - A glass **Annotations panel** floats bottom-right — draggable, collapsible to a single-row badge. Lists every pin's note + element label.
 - **Hover a panel item** → corresponding pin scales up, target element gets a coral outline (visual cross-reference).
 - Clicking a panel item or the pin itself re-opens the note popup for editing.
-- **"Copy all"** supports three formats — note is the body, element description goes to a sub-line of meta:
+- **Hover preview** — while marking, the element a click *would* annotate shows a dashed coral outline, so "what will I pin?" is answered before the click.
+- **Pins anchor to their target element** (position stored as a fraction of the element's box) — they survive window resizes and responsive reflows.
+- **Annotations persist in `localStorage` per page** and restore on reload, with a "Restored N annotations" toast. `Clear` empties storage too, and shows a 5-second **Undo** toast.
+- **"Copy all"** supports four formats — note is the body, element description goes to a sub-line of meta:
   ```markdown
   **1.** This copy needs to be shorter — 8 chars max
      <sub>Button · "Get Started Free" · `button.btn-primary`</sub>
   ```
+  The fourth format, **For AI**, emits one block per pin with the reviewer note, a *unique* CSS path (`#pricing > div:nth-of-type(2) > a`), and an HTML snapshot of the element at review time — paste it into Claude Code and every note gets applied in one pass.
 - Keyboard: `M` toggle, `Esc` exit / close popup, `Backspace` delete last pin, `Enter` save note, `Shift+Enter` newline.
 - A pin with a saved note wears a coral light-dot on its top-right corner.
 - Panel: `−` collapses, `Clear` empties all, `×` (on hover) removes one item.
@@ -143,6 +147,9 @@ After injection, ask the user to open the HTML and confirm:
 6. Click `Copy all` (default Markdown) → dark glass toast `✓ N annotations copied as MD`, clipboard contains formatted Markdown.
 7. Press `Esc` → mark mode off; press `Backspace` while ON → deletes the most recent pin.
 8. Drag the panel header → panel moves; click `−` → collapses to a single-row badge.
+9. While marking, move the mouse around → the element a click would annotate shows a dashed coral outline.
+10. Reload the page → pins come back with a "Restored N annotations" toast; resize the window → pins stay glued to their elements.
+11. Click `Clear` → toast offers **Undo** for 5 seconds; clicking it brings every pin back.
 
 ## Version history
 
@@ -152,6 +159,7 @@ After injection, ask the user to open the HTML and confirm:
 - **2026-05-19 (v1.0.0)**: Increased contrast on toggle and serial badges (deeper coral, more saturation). First public release on ClawHub under slug `mark-mode`.
 - **2026-05-19 (slug rename)**: Renamed slug `mark-mode` → `html-mark` for clearer scope. GitHub repo `xuxinmaxen/html-mark` created. CSS class prefix `.mm-*` kept unchanged (implementation detail, decoupled from public slug).
 - **2026-05-19 (v1.1.0)**: Added demo screenshots, translated all docs to English. No runtime changes.
+- **2026-07-03 (v1.2.0)**: Review-loop hardening release. (1) **Element-anchored pins** — position stored as a fraction of the target's box, recomputed on resize/reflow via rAF + ResizeObserver, so pins stop drifting. (2) **localStorage persistence per page** with restore-on-reload toast. (3) **Hover preview** — dashed outline on the would-be-annotated element while marking. (4) **Unique CSS path per pin** (`cssPath`) stored alongside the human label. (5) **For AI export format** — selector + HTML snapshot per item, built to paste into Claude Code for one-pass fixes. (6) **Undo toast for Clear**. Verified end-to-end in headless Chrome (interaction script + cold-reload restore).
 - **2026-05-19 (v1.1.1)**: Moved screenshot embeds into SKILL.md (the page ClawHub renders) using absolute GitHub raw URLs so images are visible on both GitHub and ClawHub. Swap screenshot filenames so they match their content.
 
 ## Consistency notes

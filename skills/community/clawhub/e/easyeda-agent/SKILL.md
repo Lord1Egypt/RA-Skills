@@ -1,0 +1,62 @@
+---
+name: easyeda-agent
+description: "Community EasyEDA Agent automation skill for EasyEDA Pro schematic and PCB work through the local easyeda-agent CLI/daemon/connector. Use when designing a board from scratch, editing or inspecting schematics, placing/wiring real LCSC/JLC library parts, syncing schematic changes into PCB, laying out PCB components, running EasyEDA DRC/check/layout-lint, exporting BOM/netlists/artifacts, or using the bundled EasyEDA scripts and design conventions. This is the merged public skill replacing easyeda-schematic, easyeda-pcb, easyeda-design-flow, and easyeda-conventions."
+---
+
+# EasyEDA Agent
+
+Use the local `easyeda` CLI and daemon to operate EasyEDA Pro through typed,
+observable actions. This is the community `easyeda-agent` workflow, not an official
+EasyEDA skill; the suffix is intentional so users can distinguish it from upstream
+EasyEDA tooling.
+
+## Core Rules
+
+1. Run `easyeda health` before any window-scoped action.
+2. Use typed `easyeda` actions. Use raw `debug.exec_js` only when a typed action is
+   missing and the user explicitly accepts a debug path.
+3. Inspect before mutating: read docs/pages, components, pins, board/layers/nets, and
+   relevant rules before placing, moving, wiring, syncing, or saving.
+4. Confirm before destructive operations such as clear/delete/import bulk changes.
+5. For non-trivial boards, follow the gated flow: pre-analysis, sheet/page plan,
+   module grouping, group placement, channel routing, DRC/check/layout-lint, adjust,
+   save checkpoints.
+6. Persist good checkpoints with explicit `easyeda sch save` / PCB save workflows;
+   debounced autosave is only a safety net.
+7. Judge correctness from data (`list`, `check`, `drc`, `layout-lint`), not screenshots.
+   Screenshots can be stale after API edits.
+
+## What To Read
+
+- Whole board, from scratch, or >~10 parts: read `references/design-flow.md` first.
+- Schematic work: read `references/schematic.md` and `references/actions.md`.
+- PCB work: read `references/pcb.md`.
+- Schematic layout rules: read `references/schematic-layout-conventions.md`.
+- PCB placement/routing rules: read `references/pcb-layout-conventions.md`.
+- CLI placement/routing hard pits and auto-layout/autoconnect SOP: read
+  `references/auto-layout-sop.md`.
+- Part selection, JLC/LCSC ranking, and standardization: read
+  `references/part-selection.md` and use `references/standard-parts.json`.
+- Netflag/netport rotation truth: use `references/orientation.json`; never hand-edit
+  derived rotation tables.
+- Sheet/title-block geometry conventions: read `references/sheet-templates.json`.
+
+## Bundled Scripts
+
+Scripts live in `scripts/` and are intended to be run directly when useful:
+
+- `scripts/lint.sh <project>`: live schematic lint with optional diff baseline.
+- `scripts/tests/run.py`: linter rule-trust harness; run after changes to
+  `orientation.json`, linter rules, fixtures, or connector orientation facts.
+- `scripts/bom-enrich.py <bom.tsv/csv>`: fill EasyEDA BOM Supplier Part values from
+  `standard-parts.json`.
+- `scripts/parts-add.py`: append resolved library parts into `standard-parts.json`.
+- `scripts/parts-select.py`: deterministic part-selection helper.
+- `scripts/calibrate.js`: live bbox calibration for netflag/netport orientation after
+  importing a new connector build.
+
+## Deliverables
+
+Summarize changed primitives, commands run, DRC/check/lint status, saved checkpoints,
+and artifact paths. If a gate cannot pass, stop at the failing data, explain the next
+repair step, and do not claim the design is complete.

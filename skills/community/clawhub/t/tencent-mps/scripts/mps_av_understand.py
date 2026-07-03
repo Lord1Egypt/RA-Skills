@@ -16,45 +16,45 @@
 
 用法：
   # 基础：视频内容理解
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video \\
       --prompt "请分析这个视频的主要内容、场景和关键信息"
 
   # 音频模式（上传视频时自动提取音频）
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode audio \\
       --prompt "请对这段音频进行语音识别，输出完整文字内容"
 
   # 对比分析（两段音视频）
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video1.mp4 \\
       --extend-url https://example.com/video2.mp4 \\
       --mode audio \\
       --prompt "请对比这两段音频，分析演奏水平的差异"
 
   # COS输入（推荐，使用 --cos-input-key）
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --cos-input-key /input/video.mp4 \\
       --mode video \\
       --prompt "总结视频内容"
 
   # 异步模式（只提交任务，不等待）
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "分析视频内容" --no-wait
 
   # 查询已有任务结果
-  python scripts/mps_av_understand.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_av_understand.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # JSON 格式输出
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "分析视频内容" --json
 
   # dry-run 模式（预览参数，不调用 API）
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "分析视频内容" --dry-run
 """
@@ -88,7 +88,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误: 未安装腾讯云 SDK，请运行: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误: 未安装腾讯云 SDK，请运行: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -171,6 +171,9 @@ def create_understand_task(
     prompt: str = "",
     extend_urls: list = None,
     region: str = DEFAULT_REGION,
+    output_bucket: str = None,
+    output_region: str = None,
+    output_dir: str = "/output/av_understand/",
 ) -> str:
     """
     提交音视频理解任务，返回 TaskId。
@@ -203,6 +206,26 @@ def create_understand_task(
         sys.exit(1)
 
     req.InputInfo = input_info
+
+    # ── OutputStorage ──
+    # SDK 契约：InputInfo.Type == "URL" 时必填；Type == "COS" 时可省略（默认继承输入位置）
+    out_bucket = output_bucket or os.environ.get("TENCENTCLOUD_COS_BUCKET", "")
+    out_region = output_region or os.environ.get("TENCENTCLOUD_COS_REGION", region)
+    if input_info.Type == "URL" and not out_bucket:
+        print(
+            "错误: URL 输入时必须指定输出 Bucket，请通过 --output-bucket 或 TENCENTCLOUD_COS_BUCKET 环境变量指定",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    if out_bucket:
+        output_storage = models.TaskOutputStorage()
+        output_storage.Type = "COS"
+        cos_output = models.CosOutputStorage()
+        cos_output.Bucket = out_bucket
+        cos_output.Region = out_region
+        output_storage.CosOutputStorage = cos_output
+        req.OutputStorage = output_storage
+        req.OutputDir = output_dir if output_dir.startswith("/") else f"/{output_dir}"
 
     # ── AiAnalysisTask ──
     ai_task = models.AiAnalysisTaskInput()
@@ -363,7 +386,11 @@ def main():
     # 输出控制
     parser.add_argument("--no-wait",    action="store_true", help="异步模式：只提交任务，不等待结果")
     parser.add_argument("--json",       action="store_true", dest="json_output", help="JSON 格式输出")
-    parser.add_argument("--output-dir", help="将结果 JSON 保存到指定目录")
+    parser.add_argument("--output-dir", help="将结果 JSON 保存到本地指定目录")
+    parser.add_argument("--output-bucket", help="API 输出 COS Bucket（默认读 TENCENTCLOUD_COS_BUCKET）")
+    parser.add_argument("--output-region", help="API 输出 COS Region（默认读 TENCENTCLOUD_COS_REGION）")
+    parser.add_argument("--output-cos-dir", default="/output/av_understand/",
+                        help="API 输出 COS 目录（默认 /output/av_understand/）")
     parser.add_argument("--dry-run",    action="store_true", help="只打印参数预览，不调用 API")
 
     parser.add_argument("-v", "--verbose", action="store_true", help="显示详细日志信息")
@@ -485,6 +512,9 @@ def main():
             prompt=args.prompt,
             extend_urls=args.extend_urls,
             region=args.region,
+            output_bucket=args.output_bucket,
+            output_region=args.output_region,
+            output_dir=args.output_cos_dir,
         )
         print("✅ 音视频理解任务提交成功！")
         print(f"   TaskId: {task_id}")

@@ -1,3 +1,14 @@
+---
+name: taste-baroque
+description: "Aesthetic skill for AI agents — Baroque visual language. Style tokens, anti-tokens, and creative direction distilled from 6,034 works spanning Caravaggio, Re..."
+source: ClawHub
+version: 1.0.1
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Taste Baroque
+
 # Baroque — Aesthetic Movement
 
 > Light and shadow in their most dramatic form — Baroque art commands attention through emotional intensity, theatrical staging, and the interplay of darkness and illumination that makes the sacred feel physically present.

@@ -4,7 +4,7 @@
 
 Real-time local dashboard for monitoring MiniMax API package usage — quota tracking, on-demand rate probing, weekly usage, and 24h history.
 
-> **Current Version: v1.6.2** | [CHANGELOG](CHANGELOG.md) | [License](LICENSE)
+> **Current Version: v1.7.0** | [CHANGELOG](CHANGELOG.md) | [License](LICENSE)
 
 ![Dashboard](demo.png)
 
@@ -12,7 +12,7 @@ Real-time local dashboard for monitoring MiniMax API package usage — quota tra
 
 ---
 
-## Features (v1.6.2)
+## Features (v1.7.0)
 
 ### Quota Monitoring
 
@@ -27,7 +27,7 @@ Real-time local dashboard for monitoring MiniMax API package usage — quota tra
 
 ### Security
 
-- 🔒 **Credential loaded on demand** — Server does **not** auto-read `~/.mmx/config.json`. Dashboard's "加载本地凭证" button + `confirm()` triggers `POST /api/load_cred`, key stored in server process memory only
+- 🔒 **Credential loaded on demand, never cached** — Server does **not** auto-read `~/.mmx/config.json` and does **not** cache the key in process memory (v1.7.0+). Dashboard's "加载本地凭证" button + `confirm()` triggers `POST /api/load_cred` which authorizes the server to re-read the key from disk on every request. `lldb memory find` on the server process shows no key in writable memory regions.
 - 🔒 **`/api/load_cred` response excludes the full key** — returns `keyLength` + `keyPrefix` (first 6 chars) only
 - 🔒 **`/api/load_cred` rejects empty `Referer`** — must come from a local-origin page (`127.0.0.1 / localhost / file://`)
 - 🔒 **CORS allowlist** — only `127.0.0.1 / localhost / file://` can reach the local server
@@ -54,7 +54,7 @@ open http://127.0.0.1:9877/
 
 ### Load API Key
 
-After the page loads, click **"加载本地凭证"** button → confirm → key loads from `~/.mmx/config.json` into server process memory. Or paste your key directly into the input box.
+After the page loads, click **"加载本地凭证"** button → confirm → server is authorized to read `~/.mmx/config.json` on demand. The key is read fresh on every `/api/token_plan` / `/api/probe` call, used, then discarded by GC (never cached in process memory). Or paste your key directly into the input box for `--allow-header-key` mode.
 
 ---
 
@@ -75,9 +75,9 @@ node mmx-monitor-server.js --no-probe
 
 ## Configuration
 
-### mmx Local Config (loaded on demand)
+### mmx Local Config (on-demand, never cached)
 
-The backend **does not auto-read** `~/.mmx/config.json`. Use the dashboard's **"加载本地凭证"** button to explicitly load the API key into server process memory. The key is held only in memory (not written to disk, not returned in HTTP responses), and is cleared on server restart.
+The backend **does not auto-read** `~/.mmx/config.json` and **does not cache** the key in process memory. Use the dashboard's **"加载本地凭证"** button to authorize on-demand reads of `~/.mmx/config.json` (read on every request, used, discarded). The key is never held in process memory and is never written to disk or returned in HTTP responses.
 
 ### Environment Variable (fallback)
 
@@ -96,7 +96,7 @@ MINIMAX_API_KEY=sk-cp-…here           # MiniMax API Key (Token Plan type)
 
 **This service, by default, will**:
 
-1. **Load local credentials on demand** — Dashboard's "加载本地凭证" button triggers `POST /api/load_cred` which reads `~/.mmx/config.json` into server process memory (not browser, not disk). Server restart clears it. Endpoints requiring key return 401 until loaded.
+1. **Load local credentials on demand, never cached** — Dashboard's "加载本地凭证" button triggers `POST /api/load_cred` which authorizes the server to read `~/.mmx/config.json` fresh on every credentialed request (v1.7.0+). The key is never held in process memory between calls — verified by `lldb memory find` showing no key in the server process. Not returned in any HTTP response.
 2. **Poll MiniMax API every 60s** — `https://www.minimaxi.com/v1/token_plan/remains` for quota data.
 3. **Write local usage samples** — `<skill-dir>/history.jsonl` is appended on each quota poll (24h ring buffer, contains usage percentages only, no credentials).
 4. **Run inference probe on user demand only** — Dashboard button + `confirm()` triggers `/api/probe` (5 chat completion requests, ~180 tokens).
@@ -104,6 +104,7 @@ MINIMAX_API_KEY=sk-cp-…here           # MiniMax API Key (Token Plan type)
 **This service will NOT**:
 
 - Auto-read `~/.mmx/config.json` on startup.
+- Cache the API key in process memory between requests (v1.7.0+).
 - Return the API key in any HTTP response body.
 - Accept empty `Referer` for credential-loading requests.
 - Allow cross-origin web pages to reach the local server.
@@ -115,9 +116,9 @@ MINIMAX_API_KEY=sk-cp-…here           # MiniMax API Key (Token Plan type)
 
 | Endpoint | Description |
 |----------|-------------|
-| `POST /api/load_cred` | Load API key from `~/.mmx/config.json` (user-clicks-button, confirm dialog required) |
-| `GET /api/token_plan` | Fetch quota from MiniMax official (requires loaded key) |
-| `GET /api/probe` | On-demand API latency probe (user-clicks-button, confirm dialog, requires loaded key) |
+| `POST /api/load_cred` | Authorize server to read `~/.mmx/config.json` on demand (user-clicks-button, confirm dialog required; does NOT cache key in memory) |
+| `GET /api/token_plan` | Fetch quota from MiniMax official (reads key fresh from disk on each call) |
+| `GET /api/probe` | On-demand API latency probe (user-clicks-button, confirm dialog, reads key fresh from disk) |
 | `GET /api/history?hours=24` | 24h usage history from local ring buffer |
 | `GET /health` | Health check |
 

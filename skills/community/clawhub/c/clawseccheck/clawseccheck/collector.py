@@ -17,6 +17,7 @@ import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 from .safeio import walk_dir_safely, is_safe_tar_member
+from .textnorm import obfuscation_signals
 
 # Bootstrap / prompt files injected into the system prompt as "trusted context".
 # The native `openclaw security audit` does not inspect these files; checks
@@ -69,6 +70,8 @@ class Context:
     include_host: bool = False                      # host-filesystem scanning enabled (audit(include_host=True) / not --no-host)
     installed_skills: dict = field(default_factory=dict)  # skill name -> concatenated text
     installed_skill_py: dict = field(default_factory=dict)  # skill name -> [(relpath, source)] for AST
+    installed_skill_shell: dict = field(default_factory=dict)  # skill name -> [(relpath, source)] for .sh/.bash
+    installed_skill_js: dict = field(default_factory=dict)  # skill name -> [(relpath, source)] for .js/.ts
     attestation: dict = field(default_factory=dict)  # agent self-report (--attest); see attest.py
     _collected_skill_files: dict[str, list[dict]] = field(default_factory=dict)
 
@@ -82,11 +85,14 @@ class Context:
     mismatches: list[str] = field(default_factory=list)
     polyglots: list[str] = field(default_factory=list)
     binary_files: list[str] = field(default_factory=list)
+    stowaway_files: list[str] = field(default_factory=list)  # F-054: native executables bundled in a skill
     total_files_inspected: int = 0
     excluded_binary_files_count: int = 0
     archives_unpacked: int = 0
     path_traversal_violations: list[str] = field(default_factory=list)
     file_manifest: dict[str, str] = field(default_factory=dict)  # file relpath -> status
+    symlink_skips: list[str] = field(default_factory=list)        # F-061: skipped symlinks / path-escapes
+    filename_obfuscations: list[str] = field(default_factory=list)  # F-061: homoglyph/RTL/zero-width filenames
 
     @property
     def bootstrap_blob(self) -> str:
@@ -549,7 +555,18 @@ def collect_skill_files(skill_dir: Path, ctx: Context | None = None) -> list[dic
         if cached is not None:
             return cached
 
-    files = walk_dir_safely(skill_dir, exclude_pycache=True, max_files=_MAX_FILES_PER_SKILL)
+    _skips: list = []
+    files = walk_dir_safely(skill_dir, exclude_pycache=True, max_files=_MAX_FILES_PER_SKILL, skips=_skips)
+    if ctx is not None and _skips:
+        # F-061: a skill shipping `data -> ~/.ssh/id_rsa` or `-> ../../openclaw.json` used to
+        # be skipped silently. Record the skip + its target so it surfaces as a WARN.
+        for spath, reason in _skips:
+            try:
+                rel = str(Path(spath).relative_to(skill_dir))
+            except (ValueError, OSError):
+                rel = spath
+            ctx.symlink_skips.append(f"{rel}: {reason}")
+            ctx.file_manifest.setdefault(rel, "skipped:" + reason.split(" ", 1)[0])
     collected = []
     
     for f in files:
@@ -620,6 +637,11 @@ def collect_skill_files(skill_dir: Path, ctx: Context | None = None) -> list[dic
                 if ctx is not None:
                     ctx.excluded_binary_files_count += 1
                     ctx.binary_files.append(sub_relpath)
+                    # F-054: a native executable (ELF/PE/Mach-O/JVM class) bundled inside a
+                    # skill is a stowaway — skills are text/config; a compiled binary the
+                    # prose doesn't need has no business here. Recorded for a WARN.
+                    if sub_fmt in ("ELF", "PE", "class") or (sub_fmt or "").startswith("Mach-O"):
+                        ctx.stowaway_files.append(f"{sub_relpath} ({sub_fmt})")
             
             # Map statuses here!
             if ctx is not None:
@@ -639,6 +661,13 @@ def collect_skill_files(skill_dir: Path, ctx: Context | None = None) -> list[dic
                 "format": sub_fmt,
             })
 
+    # F-061: flag filenames carrying homoglyph / RTL-override / zero-width obfuscation
+    # (e.g. a Cyrillic-lookalike `helper.py`). Same detector used for MCP server names.
+    if ctx is not None:
+        for item in collected:
+            if obfuscation_signals(item["relpath"]):
+                ctx.filename_obfuscations.append(item["relpath"])
+
     if ctx is not None:
         ctx._collected_skill_files[str(skill_dir)] = collected
 
@@ -651,19 +680,31 @@ def _read_skill_text(skill_dir: Path, ctx: Context | None = None) -> str:
     parts = []
     total = 0
     file_count = 0
-    
+    truncated = False
+
     for item in collected:
         if total >= _MAX_BYTES_PER_SKILL or file_count >= _MAX_FILES_PER_SKILL:
+            truncated = True  # B-074: more content existed than we scanned
             break
         if item["classification"] != "TEXT":
             continue
-            
+
         text = item["content"].decode(encoding="utf-8", errors="replace")
+        if len(text) > _MAX_BYTES_PER_SKILL - total:
+            truncated = True  # this file was sliced — its tail is unscanned
         chunk = text[: _MAX_BYTES_PER_SKILL - total]
         parts.append(f"# file: {Path(item['relpath']).name}\n{chunk}")
         total += len(chunk)
         file_count += 1
-        
+
+    # B-074: silent truncation reads as "fully covered" and lets a payload padded past the
+    # cap escape. Record the cap hit so check_installed_skills surfaces UNKNOWN, not PASS.
+    if truncated and ctx is not None:
+        ctx.limit_hits.append(
+            f"text scan of skill '{skill_dir.name}' hit the "
+            f"{_MAX_BYTES_PER_SKILL // 1000}KB/{_MAX_FILES_PER_SKILL}-file cap — "
+            "content beyond the cap was NOT scanned")
+
     return "\n".join(parts)
 
 
@@ -676,20 +717,96 @@ def read_skill_python(skill_dir: Path, ctx: Context | None = None) -> list[tuple
     out: list[tuple[str, str]] = []
     total = 0
     file_count = 0
-    
+    truncated = False
+
     for item in collected:
         if total >= _MAX_PY_BYTES_PER_SKILL or file_count >= _MAX_FILES_PER_SKILL:
+            truncated = True
             break
         if item["classification"] != "TEXT":
             continue
         if not item["relpath"].lower().endswith(".py"):
             continue
-            
+
         text = item["content"].decode(encoding="utf-8", errors="replace")
         out.append((item["relpath"], text))
         total += len(text)
         file_count += 1
-        
+
+    # B-074: record when Python collection was capped so the AST/taint layer's blind spot
+    # (unscanned .py beyond the cap) surfaces as UNKNOWN rather than a clean PASS.
+    if truncated and ctx is not None:
+        ctx.limit_hits.append(
+            f"Python scan of skill '{skill_dir.name}' hit the "
+            f"{_MAX_PY_BYTES_PER_SKILL // 1000}KB/{_MAX_FILES_PER_SKILL}-file cap — "
+            ".py content beyond the cap was NOT analyzed")
+
+    return out
+
+
+def read_skill_shell(skill_dir: Path, ctx: Context | None = None) -> list[tuple[str, str]]:
+    """Collect the shell source files (.sh/.bash/.zsh) of one skill for a read-only
+    regex/token pass (F-050). Returns a list of (relative-path, source) pairs. Same byte /
+    file caps as the Python collector so a padded bundle can't blow up the scan."""
+    collected = collect_skill_files(skill_dir, ctx)
+    out: list[tuple[str, str]] = []
+    total = 0
+    file_count = 0
+    truncated = False
+    for item in collected:
+        if total >= _MAX_PY_BYTES_PER_SKILL or file_count >= _MAX_FILES_PER_SKILL:
+            truncated = True
+            break
+        if item["classification"] != "TEXT":
+            continue
+        if not item["relpath"].lower().endswith((".sh", ".bash", ".zsh")):
+            continue
+        text = item["content"].decode(encoding="utf-8", errors="replace")
+        out.append((item["relpath"], text))
+        total += len(text)
+        file_count += 1
+
+    # B-074: record when shell collection was capped so a padded shell payload beyond the
+    # cap surfaces as UNKNOWN rather than a clean PASS (mirrors read_skill_python).
+    if truncated and ctx is not None:
+        ctx.limit_hits.append(
+            f"shell scan of skill '{skill_dir.name}' hit the "
+            f"{_MAX_PY_BYTES_PER_SKILL // 1000}KB/{_MAX_FILES_PER_SKILL}-file cap — "
+            "shell content beyond the cap was NOT scanned")
+
+    return out
+
+
+def read_skill_js(skill_dir: Path, ctx: Context | None = None) -> list[tuple[str, str]]:
+    """Collect the JS/TS source files (.js/.ts/.mjs/.cjs) of one skill for a read-only
+    lexical pass (F-064). Returns a list of (relative-path, source) pairs. Same byte /
+    file caps as the Python and shell collectors so a padded bundle can't blow up the scan."""
+    collected = collect_skill_files(skill_dir, ctx)
+    out: list[tuple[str, str]] = []
+    total = 0
+    file_count = 0
+    truncated = False
+    for item in collected:
+        if total >= _MAX_PY_BYTES_PER_SKILL or file_count >= _MAX_FILES_PER_SKILL:
+            truncated = True
+            break
+        if item["classification"] != "TEXT":
+            continue
+        if not item["relpath"].lower().endswith((".js", ".ts", ".mjs", ".cjs")):
+            continue
+        text = item["content"].decode(encoding="utf-8", errors="replace")
+        out.append((item["relpath"], text))
+        total += len(text)
+        file_count += 1
+
+    # B-074: record when JS collection was capped so a padded JS payload beyond the cap
+    # surfaces as UNKNOWN rather than a clean PASS (mirrors read_skill_python/read_skill_shell).
+    if truncated and ctx is not None:
+        ctx.limit_hits.append(
+            f"js scan of skill '{skill_dir.name}' hit the "
+            f"{_MAX_PY_BYTES_PER_SKILL // 1000}KB/{_MAX_FILES_PER_SKILL}-file cap — "
+            "js content beyond the cap was NOT scanned")
+
     return out
 
 
@@ -713,6 +830,8 @@ def _read_installed_skills(home: Path, ctx: Context) -> None:
             try:
                 ctx.installed_skills[key] = _read_skill_text(sd, ctx)
                 ctx.installed_skill_py[key] = read_skill_python(sd, ctx)
+                ctx.installed_skill_shell[key] = read_skill_shell(sd, ctx)
+                ctx.installed_skill_js[key] = read_skill_js(sd, ctx)
             except OSError as exc:
                 ctx.errors.append(f"could not read skill {key}: {exc}")
 
@@ -742,17 +861,32 @@ def collect(home: Path | str = "~/.openclaw") -> Context:
     else:
         ctx.errors.append(f"config not found: {cfg_path}")
 
-    for ws in WORKSPACE_DIRS:
-        wdir = home / ws
+    # Scan the home root first, then workspace sub-directories.  The root is
+    # included so bootstrap files that live outside the three named workspace
+    # dirs are not invisible (§6: never hardcode one layout).
+    # Resolved paths are tracked so a symlink from a workspace dir back to a
+    # root file is not read twice.
+    _seen_bootstrap: set[Path] = set()
+    for _ws in [""] + list(WORKSPACE_DIRS):
+        wdir = home if _ws == "" else home / _ws
         if not wdir.is_dir():
             continue
         for name in BOOTSTRAP_FILES:
             f = wdir / name
-            if f.is_file():
-                try:
-                    ctx.bootstrap[f"{ws}/{name}"] = f.read_text(encoding="utf-8")
-                except OSError as exc:
-                    ctx.errors.append(f"could not read {f}: {exc}")
+            if not f.is_file():
+                continue
+            try:
+                real = f.resolve()
+            except OSError:
+                real = f
+            if real in _seen_bootstrap:
+                continue
+            _seen_bootstrap.add(real)
+            key = name if _ws == "" else f"{_ws}/{name}"
+            try:
+                ctx.bootstrap[key] = f.read_text(encoding="utf-8")
+            except OSError as exc:
+                ctx.errors.append(f"could not read {f}: {exc}")
 
     _read_installed_skills(home, ctx)
     return ctx

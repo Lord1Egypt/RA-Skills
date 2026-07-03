@@ -1,278 +1,278 @@
-# 云防火墙 ACL 规则知识库
+# Cloud Firewall ACL Rule Knowledge Base
 
-本文档是规则配置咨询场景的参考知识，覆盖互联网防火墙、VPC 边界防火墙和 NAT 边界防火墙。
+This document is a reference for rule configuration consultation scenarios, covering Internet Firewall, VPC Boundary Firewall, and NAT Boundary Firewall.
 
-## 策略匹配原理
+## Policy Matching Principles
 
-### 匹配项
+### Match Fields
 
-云防火墙将以下字段作为匹配项，与流量报文逐一比对：
-- 源地址
-- 目的地址
-- 目的端口
-- 传输协议
-- 应用层协议（仅互联网防火墙严格模式）
-- 域名（仅互联网防火墙严格模式出向）
+Cloud Firewall uses the following fields as match items and compares them with traffic packets one by one:
+- Source address
+- Destination address
+- Destination port
+- Transport protocol
+- Application-layer protocol (Internet Firewall strict mode only)
+- Domain name (Internet Firewall strict mode outbound only)
 
-**不参与匹配的字段**：Description（描述）仅作备注用途，不影响匹配逻辑。
+**Fields that do NOT participate in matching**: `Description` is for remarks only and does not affect matching logic.
 
-### 匹配流程
+### Matching Flow
 
 ```
-流量进入 → 按 Order 从小到大逐条匹配规则
-  ├─ 命中 → 执行该规则动作 (accept/drop/log)，结束
-  ├─ 未命中 → 继续匹配下一条
-  └─ 全部未命中 → 默认放行
+Traffic enters → Rules are matched one by one in ascending Order
+  ├─ Match → Execute the rule action (accept/drop/log), end
+  ├─ No match → Continue to the next rule
+  └─ No match for all rules → Default allow
 ```
 
-### 宽松模式 vs 严格模式
+### Loose Mode vs Strict Mode
 
-| 维度 | 宽松模式 | 严格模式 |
+| Dimension | Loose Mode | Strict Mode |
 |------|----------|----------|
-| 匹配项 | 四元组：源IP + 目的IP + 目的端口 + 传输协议 | 七元组：四元组 + 应用层协议 + 域名 |
-| ApplicationName | 不参与匹配，仅作标记 | 参与匹配 |
-| 域名 | 不参与匹配 | 参与匹配 |
-| 适用场景 | 基础的IP/端口级别控制 | 需要精细化应用层控制 |
-| 四元组匹配但应用不匹配 | 直接命中（不检查应用） | 跳过，继续匹配下一条 |
-| **互联网防火墙** | `EngineMode=loose`（资产级别） | `EngineMode=strict`（资产级别） |
-| **NAT 防火墙** | `StrictMode=0`（防火墙级别） | `StrictMode=1`（防火墙级别） |
-| **VPC 防火墙** | **始终为宽松模式**（不支持严格模式） | **不支持** |
+| Match fields | 4-tuple: source IP + destination IP + destination port + transport protocol | 7-tuple: 4-tuple + application protocol + domain |
+| ApplicationName | Does not participate in matching, tag only | Participates in matching |
+| Domain name | Does not participate in matching | Participates in matching |
+| Applicable scenario | Basic IP/port-level control | Fine-grained application-layer control |
+| 4-tuple match but application mismatch | Direct match (does not check application) | Skip and continue to the next rule |
+| **Internet Firewall** | `EngineMode=loose` (asset-level) | `EngineMode=strict` (asset-level) |
+| **NAT Firewall** | `StrictMode=0` (firewall-level) | `StrictMode=1` (firewall-level) |
+| **VPC Firewall** | **Always loose mode** (strict mode not supported) | **Not supported** |
 
-**实际影响举例**：
+**Practical impact example**:
 
-宽松模式下，假设有两条规则：
+In loose mode, suppose there are two rules:
 1. Order=1, Source=any, Dest=10.0.0.1, Port=443, Proto=TCP, App=HTTPS, Action=**drop**
 2. Order=2, Source=any, Dest=10.0.0.1, Port=443, Proto=TCP, App=SSL, Action=**accept**
 
-一个 SSL（非HTTPS）的 443 端口请求进来：
-- 宽松模式：命中规则1（四元组匹配即命中，不管 App），被 **drop**
-- 严格模式：规则1四元组匹配但 App 不匹配(HTTPS != SSL)，跳过；命中规则2，被 **accept**
+An SSL (non-HTTPS) request to port 443 comes in:
+- Loose mode: Matches Rule 1 (4-tuple matches regardless of App), gets **dropped**
+- Strict mode: Rule 1 4-tuple matches but App mismatch (HTTPS != SSL), skip; matches Rule 2, gets **accepted**
 
-## 互联网防火墙规则配置
+## Internet Firewall Rule Configuration
 
-### 入向规则 (in)
+### Inbound Rules (in)
 
-控制从互联网到云内资产的流量。
+Control traffic from the Internet to cloud assets.
 
-| 配置项 | 支持的类型 |
+| Configuration Item | Supported Types |
 |--------|-----------|
-| 源地址 | IP/CIDR、地址簿、区域 |
-| 目的地址 | IP/CIDR、地址簿（**不支持域名和区域**） |
+| Source address | IP/CIDR, address book, region |
+| Destination address | IP/CIDR, address book (**domain and region not supported**) |
 
-### 出向规则 (out)
+### Outbound Rules (out)
 
-控制从云内资产到互联网的流量。
+Control traffic from cloud assets to the Internet.
 
-| 配置项 | 支持的类型 |
+| Configuration Item | Supported Types |
 |--------|-----------|
-| 源地址 | IP/CIDR、地址簿 |
-| 目的地址 | IP/CIDR、地址簿、域名、区域 |
+| Source address | IP/CIDR, address book |
+| Destination address | IP/CIDR, address book, domain name, region |
 
-### 防护对象确定
+### Protected Asset Determination
 
-根据规则方向确定被防护的对象（即云内资产）：
-- **入向规则**：被防护对象 = Destination（目的地址）
-- **出向规则**：被防护对象 = Source（源地址）
+Determine the protected asset (i.e., the cloud asset) based on the rule direction:
+- **Inbound rule**: Protected asset = Destination
+- **Outbound rule**: Protected asset = Source
 
-### 特殊值含义
+### Special Value Meanings
 
-| 值 | 含义 |
+| Value | Meaning |
 |----|------|
-| `0.0.0.0/0` | 所有 IPv4 地址 |
-| `::/0` | 所有 IPv6 地址 |
-| `0/0` (端口) | 所有端口 |
-| `ANY` (协议) | 所有传输协议 |
-| `ANY` (应用) | 所有应用层协议 |
+| `0.0.0.0/0` | All IPv4 addresses |
+| `::/0` | All IPv6 addresses |
+| `0/0` (port) | All ports |
+| `ANY` (protocol) | All transport protocols |
+| `ANY` (application) | All application-layer protocols |
 
-## VPC 边界防火墙规则配置
+## VPC Boundary Firewall Rule Configuration
 
-### 概述
+### Overview
 
-VPC 边界防火墙防护通过云企业网（CEN）或高速通道连接的 VPC 之间的流量。
+VPC Boundary Firewall protects traffic between VPCs connected through Cloud Enterprise Network (CEN) or Express Connect.
 
-### 规则特点
+### Rule Characteristics
 
-| 特性 | 说明 |
+| Feature | Description |
 |------|------|
-| **Direction** | **无 Direction 参数**，规则单向（Source → Destination） |
-| **严格模式** | **不支持**，始终为 4 层匹配 |
-| **域名规则** | **不支持**，目的地址只能是 IP/CIDR/地址簿 |
-| **FirewallId** | 需要 `VpcFirewallId` 参数定位防火墙实例 |
-| **防护对象** | VPC 网段 / 云企业网实例 |
+| **Direction** | **No Direction parameter**, rules are unidirectional (Source → Destination) |
+| **Strict mode** | **Not supported**, always Layer 4 matching |
+| **Domain rules** | **Not supported**, destination address can only be IP/CIDR/address book |
+| **FirewallId** | Requires `VpcFirewallId` parameter to locate the firewall instance |
+| **Protected asset** | VPC CIDR / Cloud Enterprise Network instance |
 
-### 源/目的地址
+### Source/Destination Addresses
 
-| 配置项 | 支持的类型 |
+| Configuration Item | Supported Types |
 |--------|-----------|
-| 源地址 | VPC 网段（CIDR）、地址簿 |
-| 目的地址 | VPC 网段（CIDR）、地址簿 |
+| Source address | VPC CIDR, address book |
+| Destination address | VPC CIDR, address book |
 
-### 典型场景
+### Typical Scenarios
 
-| 场景 | 配置思路 |
-|------|----------|
-| VPC-A 访问 VPC-B 的特定服务 | Source=VPC-A网段, Dest=VPC-B服务IP, Port=服务端口 |
-| 禁止某些 VPC 互访 | Source=VPC-A网段, Dest=VPC-B网段, Action=drop |
-| 允许所有 VPC 互访（默认） | 不配置规则（默认放行）或配置宽泛 accept 规则 |
-
-## NAT 边界防火墙规则配置
-
-### 概述
-
-NAT 边界防火墙防护通过 NAT 网关出入的流量（SNAT 出向 / DNAT 入向）。
-
-### 规则特点
-
-| 特性 | 说明 |
+| Scenario | Configuration Idea |
 |------|------|
-| **Direction** | **无 Direction 参数**，规则单向（Source → Destination） |
-| **严格模式** | **支持**，通过 `StrictMode` 字段控制（0=宽松，1=严格） |
-| **域名规则** | **支持**（需要严格模式 StrictMode=1） |
-| **FirewallId** | 需要 `NatFirewallId` 参数定位防火墙实例 |
-| **防护对象** | NAT 网关 / NAT 后端的云资源 |
-| **ACL引擎模式** | **防火墙级别**（firewall-level），一个实例下所有规则共享同一模式 |
+| VPC-A accesses a specific service in VPC-B | Source=VPC-A CIDR, Dest=VPC-B service IP, Port=service port |
+| Prohibit certain VPC mutual access | Source=VPC-A CIDR, Dest=VPC-B CIDR, Action=drop |
+| Allow all VPC mutual access (default) | Do not configure rules (default allow) or configure a broad accept rule |
 
-### 源/目的地址
+## NAT Boundary Firewall Rule Configuration
 
-| 配置项 | 支持的类型 |
+### Overview
+
+NAT Boundary Firewall protects traffic passing through NAT Gateway (SNAT outbound / DNAT inbound).
+
+### Rule Characteristics
+
+| Feature | Description |
+|------|------|
+| **Direction** | **No Direction parameter**, rules are unidirectional (Source → Destination) |
+| **Strict mode** | **Supported**, controlled by the `StrictMode` field (`0`=loose, `1`=strict) |
+| **Domain rules** | **Supported** (requires strict mode `StrictMode=1`) |
+| **FirewallId** | Requires `NatFirewallId` parameter to locate the firewall instance |
+| **Protected asset** | NAT Gateway / cloud resources behind NAT |
+| **ACL engine mode** | **Firewall-level**, all rules under one instance share the same mode |
+
+### Source/Destination Addresses
+
+| Configuration Item | Supported Types |
 |--------|-----------|
-| 源地址 | VPC 网段（CIDR）、地址簿（NAT 后端私网 IP） |
-| 目的地址 | IP/CIDR、地址簿、区域（互联网 IP 或特定目标网段） |
+| Source address | VPC CIDR, address book (private IP behind NAT) |
+| Destination address | IP/CIDR, address book, region (Internet IP or specific destination CIDR) |
 
-### 典型场景
+### Typical Scenarios
 
-| 场景 | 配置思路 |
-|------|----------|
-| NAT 后资产只允许访问特定外网 IP | Source=NAT后网段, Dest=允许的外网IP, Action=accept + 兜底 drop |
-| NAT 后资产禁止访问某些外网 | Source=NAT后网段, Dest=禁止的外网IP, Action=drop |
-| NAT 后资产访问所有外网（默认） | 不配置规则（默认放行）或配置宽泛 accept 规则 |
+| Scenario | Configuration Idea |
+|------|------|
+| Assets behind NAT are only allowed to access specific external IPs | Source=NAT backend CIDR, Dest=allowed external IP, Action=accept + final drop |
+| Assets behind NAT are prohibited from accessing certain external IPs | Source=NAT backend CIDR, Dest=prohibited external IP, Action=drop |
+| Assets behind NAT access all external IPs (default) | Do not configure rules (default allow) or configure a broad accept rule |
 
-## 规则配置最佳实践
+## Rule Configuration Best Practices
 
-### 放行特定流量同时拦截其他
+### Allow Specific Traffic While Blocking Other Traffic
 
 ```
-规则1 (Order小=高优先级): 放行目标流量
-  Source: 需要放行的IP
+Rule 1 (smaller Order = higher priority): Allow target traffic
+  Source: IP that needs to be allowed
   AclAction: accept
 
-规则2 (Order大=低优先级): 拦截其余流量
+Rule 2 (larger Order = lower priority): Block remaining traffic
   Source: 0.0.0.0/0
   AclAction: drop
 ```
 
-**关键**：放行规则的 Order 值必须小于拦截规则。
+**Key**: The Order value of the allow rule must be smaller than that of the block rule.
 
-### 按域名控制出向流量（仅互联网防火墙）
+### Control Outbound Traffic by Domain Name (Internet Firewall only)
 
 ```
-规则1: 允许访问特定域名
+Rule 1: Allow access to a specific domain
   Direction: out
   Destination: *.example.com
   DestinationType: domain
   AclAction: accept
 
-规则2: 拒绝所有其他出向
+Rule 2: Deny all other outbound traffic
   Direction: out
   Destination: 0.0.0.0/0
   DestinationType: net
   AclAction: drop
 ```
 
-注意：域名类型规则仅在**严格模式**下域名才参与匹配。宽松模式下域名规则实际只按四元组匹配。
+Note: Domain-type rules only participate in matching when the engine is in **strict mode**. In loose mode, domain rules are matched only by the 4-tuple.
 
-### 使用地址簿管理多IP
+### Use Address Books to Manage Multiple IPs
 
-当需要对多个 IP 执行相同策略时，创建地址簿统一管理：
+When the same policy needs to be applied to multiple IPs, create an address book for unified management:
 - `SourceType: group` / `DestinationType: group`
-- 地址簿支持 IP/CIDR 列表
-- 修改地址簿内容自动影响引用它的所有规则
+- Address books support IP/CIDR lists
+- Modifying address book content automatically affects all rules that reference it
 
-### 观察模式验证规则
+### Verify Rules in Monitor Mode
 
-新规则上线前可先设置 `AclAction: log`（观察），确认命中情况正确后再改为 `accept` 或 `drop`。
+Before new rules go live, you can first set `AclAction: log` (monitor) to confirm that the hit situation is correct, and then change it to `accept` or `drop`.
 
-## 常见问题 FAQ
+## Frequently Asked Questions (FAQ)
 
-**Q: 规则生效有延迟吗？**
-A: 有。规则修改后需要几秒到十几秒生效。如果刚修改就测试可能看不到效果。
+**Q: Is there a delay before rules take effect?**
+A: Yes. It takes a few seconds to tens of seconds for rules to take effect after modification. If tested immediately after modification, the effect may not be visible.
 
-**Q: 入向规则的目的地址为什么不能选域名？**
-A: 入向流量的目的地址是云内资产的公网 IP，不存在域名解析环节，所以不支持域名类型。
+**Q: Why can't domain names be selected for the destination address of inbound rules?**
+A: The destination address of inbound traffic is the public IP of the cloud asset. There is no domain name resolution step, so domain-type destination addresses are not supported.
 
-**Q: 规则数量有上限吗？**
-A: 有。不同版本上限不同，企业版和旗舰版的规则数量上限不一样。可在控制台查看剩余配额。
+**Q: Is there an upper limit on the number of rules?**
+A: Yes. Different editions have different upper limits. Enterprise Edition and Ultimate Edition have different rule quantity limits. You can view the remaining quota in the console.
 
-**Q: 宽松模式下配置了域名规则有效果吗？**
-A: 四元组层面仍然会匹配（IP+端口+协议），但域名本身不参与匹配判断。如果需要域名精确匹配，必须使用严格模式。
+**Q: Do domain rules take effect in loose mode?**
+A: They still match at the 4-tuple level (IP + port + protocol), but the domain name itself does not participate in matching. If precise domain matching is required, strict mode must be used.
 
-**Q: 地址簿修改后规则会立即生效吗？**
-A: 地址簿修改后，引用该地址簿的规则会自动更新，但同样存在几秒的生效延迟。
+**Q: Do rules take effect immediately after an address book is modified?**
+A: After an address book is modified, rules that reference that address book are automatically updated, but there is also a delay of a few seconds before they take effect.
 
-**Q: HitTimes 字段为 0 说明什么？**
-A: 说明该规则从未被任何流量命中过。如果规则是新建的或者匹配条件过于严格都可能导致 HitTimes 为 0。
+**Q: What does a `HitTimes` field of 0 indicate?**
+A: It indicates that the rule has never been matched by any traffic. This may be because the rule is newly created or the matching conditions are too strict.
 
-**Q: VPC/NAT 防火墙支持域名规则吗？**
-A: **VPC 不支持**，**NAT 支持**（需要 StrictMode=1 严格模式）。VPC 边界防火墙只有 4 层匹配能力，目的地址只能是 IP/CIDR 或地址簿。NAT 边界防火墙支持 7 层匹配，但必须开启严格模式。
+**Q: Do VPC/NAT Firewalls support domain rules?**
+A: **VPC does not support**, **NAT supports** (requires `StrictMode=1` strict mode). VPC Boundary Firewall only has Layer 4 matching capability, and the destination address can only be IP/CIDR or address book. NAT Boundary Firewall supports Layer 7 matching, but strict mode must be enabled.
 
-**Q: VPC/NAT 防火墙有入向/出向的概念吗？**
-A: **没有**。VPC/NAT 防火墙规则没有 Direction 参数，规则方向由 Source → Destination 隐含确定。
+**Q: Do VPC/NAT Firewalls have the concept of inbound/outbound?**
+A: **No**. VPC/NAT Firewall rules have no Direction parameter; rule direction is implicitly determined by Source → Destination.
 
-## 排查清单
+## Troubleshooting Checklists
 
-### 互联网防火墙
+### Internet Firewall
 
-当规则不生效时，按以下顺序逐项检查：
+When a rule does not take effect, check the following in order:
 
-1. **Release 是否为 true** — 规则开关是否打开
-2. **ProtectStatus 是否为 open** — 对应资产的防火墙防护是否开启 ⚠️ **最常见问题**
-3. **Direction 是否正确** — 入向/出向是否匹配流量方向
-4. **Order 优先级** — 是否被更高优先级的规则先匹配
-5. **EngineMode 引擎模式** — 宽松/严格影响应用层协议是否参与匹配 ⚠️ **域名规则必需严格模式**
-6. **Source/Destination 范围** — 地址是否覆盖实际流量的 IP
-7. **DestPort 端口范围** — 是否包含实际流量的端口
-8. **Proto 协议** — 是否匹配实际流量的传输协议
-9. **地址簿内容** — 如果用了地址簿，展开后的 CIDR 列表是否包含目标 IP
-10. **生效延迟** — 规则是否刚修改，需等待几秒
+1. **Is `Release` true?** — Is the rule switch turned on?
+2. **Is `ProtectStatus` open?** — Is firewall protection enabled for the corresponding asset? ⚠️ **Most common issue**
+3. **Is the `Direction` correct?** — Does inbound/outbound match the traffic direction?
+4. **Order priority** — Is a higher-priority rule matched first?
+5. **EngineMode** — Loose/strict affects whether the application-layer protocol participates in matching. ⚠️ **Domain rules require strict mode**
+6. **Source/Destination range** — Does the address cover the actual traffic IP?
+7. **DestPort port range** — Does it include the actual traffic port?
+8. **Protocol** — Does it match the transport protocol of the actual traffic?
+9. **Address book content** — If an address book is used, does the expanded CIDR list include the target IP?
+10. **Activation delay** — Was the rule just modified? Wait a few seconds.
 
-### VPC 边界防火墙
+### VPC Boundary Firewall
 
-当规则不生效时，按以下顺序逐项检查：
+When a rule does not take effect, check the following in order:
 
-1. **VpcFirewallId 是否正确** — 通过 `DescribeVpcFirewallList` 确认
-2. **Release 是否为 true** — 规则开关是否打开
-3. **Order 优先级** — 是否被更高优先级的规则先匹配
-4. **Source/Destination 范围** — VPC 网段是否覆盖实际流量
-5. **DestPort 端口范围** — 是否包含实际流量的端口
-6. **Proto 协议** — 是否匹配实际流量的传输协议
-7. **CEN/高速通道状态** — 网络连接是否正常
-8. **生效延迟** — 规则是否刚修改，需等待几秒
+1. **Is the `VpcFirewallId` correct?** — Confirm through `DescribeVpcFirewallList`
+2. **Is `Release` true?** — Is the rule switch turned on?
+3. **Order priority** — Is a higher-priority rule matched first?
+4. **Source/Destination range** — Does the VPC CIDR cover the actual traffic?
+5. **DestPort port range** — Does it include the actual traffic port?
+6. **Protocol** — Does it match the transport protocol of the actual traffic?
+7. **CEN/Express Connect status** — Is the network connection normal?
+8. **Activation delay** — Was the rule just modified? Wait a few seconds.
 
-### NAT 边界防火墙
+### NAT Boundary Firewall
 
-当规则不生效时，按以下顺序逐项检查：
+When a rule does not take effect, check the following in order:
 
-1. **NatFirewallId 是否正确** — 通过 `DescribeNatFirewallList` 确认
-2. **NAT 防火墙是否开启** — 查询 NatFirewallList，确认实例状态 ⚠️ **必须先开启**
-3. **Release 是否为 true** — 规则开关是否打开
-4. **StrictMode 引擎模式** — 宽松/严格影响应用层协议是否参与匹配 ⚠️ **域名规则必需严格模式**
-5. **Order 优先级** — 是否被更高优先级的规则先匹配
-6. **Source/Destination 范围** — 地址是否覆盖实际流量
-7. **SNAT 实际 IP** — 确认测试服务器经过 SNAT 后的真实源 IP ⚠️ **常见问题**
-8. **DestPort 端口范围** — 是否包含实际流量的端口
-9. **Proto 协议** — 是否匹配实际流量的传输协议
-10. **NAT 网关状态** — NAT 网关是否正常运行
-11. **SNAT/DNAT 规则** — 流量是否经过 NAT 转换
-12. **生效延迟** — 规则是否刚修改，需等待几秒
+1. **Is the `NatFirewallId` correct?** — Confirm through `DescribeNatFirewallList`
+2. **Is the NAT Firewall enabled?** — Query `NatFirewallList` and confirm the instance status. ⚠️ **Must be enabled first**
+3. **Is `Release` true?** — Is the rule switch turned on?
+4. **StrictMode engine mode** — Loose/strict affects whether the application-layer protocol participates in matching. ⚠️ **Domain rules require strict mode**
+5. **Order priority** — Is a higher-priority rule matched first?
+6. **Source/Destination range** — Does the address cover the actual traffic?
+7. **SNAT actual IP** — Confirm the real source IP after the test server passes through SNAT. ⚠️ **Common issue**
+8. **DestPort port range** — Does it include the actual traffic port?
+9. **Protocol** — Does it match the transport protocol of the actual traffic?
+10. **NAT Gateway status** — Is the NAT Gateway running normally?
+11. **SNAT/DNAT rules** — Does the traffic pass through NAT translation?
+12. **Activation delay** — Was the rule just modified? Wait a few seconds.
 
-## 配置建议
+## Configuration Recommendations
 
-> **永远不要假设资产防护已开启（互联网防火墙）** — 实际场景中大量资产 ProtectStatus=closed
+> **Never assume asset protection is enabled (Internet Firewall)** — In real scenarios, many assets have `ProtectStatus=closed`.
 
-> **永远不要假设是严格模式（互联网防火墙）** — 默认创建的资源通常是宽松模式
+> **Never assume strict mode is enabled (Internet Firewall)** — Default created resources are usually in loose mode.
 
-> **VPC/NAT 防火墙必须提供正确的 FirewallId** — 否则 API 会直接报错
+> **VPC/NAT Firewall must provide the correct FirewallId** — Otherwise, the API will directly report an error.
 
-> **VPC/NAT 防火墙没有 Direction 参数** — 不要把 `--Direction` 传给 VPC/NAT 防火墙的创建接口
+> **VPC/NAT Firewall has no Direction parameter** — Do NOT pass `--Direction` to the VPC/NAT firewall creation interface.
 
-> **配置完成后必须提醒** — 规则有生效延迟，立即测试可能看不到效果
+> **After configuration is complete, always remind the user** — Rules have an activation delay, and testing immediately may not show results.

@@ -1,5 +1,5 @@
 /**
- * Tests that the 4 QR-pairing HTTP routes are registered:
+ * Tests that the QR-pairing HTTP routes are registered:
  *   1. With the correct `auth: 'plugin'` literal (rc.4 fix, preserved in rc.5).
  *   2. **Synchronously** during `plugin.register(api)` — never inside an async
  *      IIFE or other microtask-deferred construct (rc.5 fix).
@@ -26,6 +26,12 @@
  *     synchronous body of `register(api)`. The `completePairing` callback
  *     remains async (it does disk I/O) — that's fine, `registerHttpRoute`
  *     accepts async handlers; only the REGISTRATION must be synchronous.
+ *   - 3.3.14 adds a 5th route, `/pair/init` (in-process pair WS — the
+ *     30s-subprocess-kill 502 fix). It is registered the same way as the
+ *     other 4: synchronously inside `register(api)`, with `auth: 'plugin'`.
+ *     This test was updated to expect 5 routes when the bundle carries an
+ *     `initPath` (i.e. when `relayBaseUrl` is wired, which production
+ *     always does via `CONFIG.pairRelayUrl`).
  *
  * The plugin's own `logger.info('registered ...')` still fires whether or
  * not the routes actually land in the gateway's registry, so this unit
@@ -40,20 +46,20 @@
  *
  * Test matrix:
  *   SIMULATION (mirror of the index.ts call pattern)
- *     1. registerHttpRoute is called exactly 4 times when api provides it.
+ *     1. registerHttpRoute is called exactly 5 times when api provides it.
  *     2. Each call receives an `auth` field.
  *     3. Each `auth` value equals `'plugin'` (NOT `'gateway'`).
  *     4. Each call includes a `path` containing the '/pair/' prefix.
  *     5. Each call includes a `handler` function.
  *     6. When api does NOT provide registerHttpRoute, no call is made + no throw.
- *     7. The 4 paths cover finish, start, respond, status (by substring).
+ *     7. The 5 paths cover finish, start, respond, status, init (by substring).
  *     8. `'gateway'` is NOT accidentally used (regression guard against rc.3).
  *
  *   SYNCHRONY (rc.5 regression guard — calls happen inside register())
- *     9. plugin.register(mockApi) synchronously calls registerHttpRoute 4 times
+ *     9. plugin.register(mockApi) synchronously calls registerHttpRoute 5 times
  *        BEFORE control returns to the caller (no await, no tick wait needed).
- *    10. All 4 auth literals are `'plugin'` when invoked through register().
- *    11. All 4 paths contain '/pair/' when invoked through register().
+ *    10. All 5 auth literals are `'plugin'` when invoked through register().
+ *    11. All 5 paths contain '/pair/' when invoked through register().
  */
 
 import fs from 'node:fs';
@@ -98,7 +104,9 @@ interface RouteCall {
 
 /**
  * Build a minimal pair-route bundle using a temp sessions dir, then simulate
- * exactly what index.ts does with it: 4 `api.registerHttpRoute(...)` calls.
+ * exactly what index.ts does with it: 5 `api.registerHttpRoute(...)` calls
+ * (the 4 original routes + the 3.3.14 in-process `/pair/init` route, which
+ * is present when `relayBaseUrl` is wired — production always wires it).
  * Returns the recorded call args so tests can assert on them.
  */
 function buildAndRegister(): { calls: RouteCall[] } {
@@ -116,12 +124,18 @@ function buildAndRegister(): { calls: RouteCall[] } {
   const bundle: PairRouteBundle = buildPairRoutes({
     sessionsPath,
     apiBase: '/plugin/totalreclaw/pair',
+    // 3.3.14 — wiring relayBaseUrl makes buildPairRoutes expose the
+    // in-process /pair/init route (bundle.initPath + handlers.init),
+    // mirroring how index.ts wires CONFIG.pairRelayUrl in production.
+    relayBaseUrl: 'wss://api-staging.totalreclaw.xyz',
+    initPairMode: 'either',
     logger,
     validateMnemonic: () => true,
     completePairing: async () => ({ state: 'active' }),
   });
 
-  // Simulate the 4 registration calls from index.ts (the rc.5 synchronous version).
+  // Simulate the registration calls from index.ts (the rc.5 synchronous
+  // version, extended in 3.3.14 with the conditional 5th /pair/init call).
   const calls: RouteCall[] = [];
   const registerHttpRoute = (params: RouteCall): void => {
     calls.push(params);
@@ -131,6 +145,9 @@ function buildAndRegister(): { calls: RouteCall[] } {
   registerHttpRoute({ path: bundle.startPath, handler: bundle.handlers.start, auth: 'plugin' });
   registerHttpRoute({ path: bundle.respondPath, handler: bundle.handlers.respond, auth: 'plugin' });
   registerHttpRoute({ path: bundle.statusPath, handler: bundle.handlers.status, auth: 'plugin' });
+  if (bundle.initPath && bundle.handlers.init) {
+    registerHttpRoute({ path: bundle.initPath, handler: bundle.handlers.init, auth: 'plugin' });
+  }
 
   return { calls };
 }
@@ -188,8 +205,8 @@ function buildMockApi(): {
 {
   const { calls } = buildAndRegister();
 
-  // 1. Exactly 4 calls
-  assertEq(calls.length, 4, 'SIM: registerHttpRoute is called exactly 4 times');
+  // 1. Exactly 5 calls (4 original + the 3.3.14 in-process /pair/init)
+  assertEq(calls.length, 5, 'SIM: registerHttpRoute is called exactly 5 times');
 
   // 2–3. auth field present and equals 'plugin' on every call
   for (let i = 0; i < calls.length; i++) {
@@ -255,7 +272,7 @@ function buildMockApi(): {
   const { calls } = buildAndRegister();
   const paths = calls.map((c) => c.path);
 
-  for (const segment of ['finish', 'start', 'respond', 'status']) {
+  for (const segment of ['finish', 'start', 'respond', 'status', 'init']) {
     assert(
       paths.some((p) => p.includes(segment)),
       `SIM: a registered path includes '${segment}'`,
@@ -283,13 +300,13 @@ function buildMockApi(): {
   plugin.register(mock.api as Parameters<typeof plugin.register>[0]);
 
   // IMMEDIATELY after register() returns — no tick wait, no microtask flush.
-  // If the 4 calls are NOT visible now, we've regressed to rc.4 behaviour
+  // If the 5 calls are NOT visible now, we've regressed to rc.4 behaviour
   // (async IIFE deferring the pushes past the SDK's registry-activation
   // boundary).
   assertEq(
     mock.registerHttpRouteCallCount(),
-    4,
-    'SYNC: register(api) synchronously calls registerHttpRoute 4 times',
+    5,
+    'SYNC: register(api) synchronously calls registerHttpRoute 5 times',
   );
 
   // All 4 auth literals must be 'plugin'.
@@ -305,9 +322,9 @@ function buildMockApi(): {
     );
   }
 
-  // Path coverage: finish / start / respond / status all present.
+  // Path coverage: finish / start / respond / status / init all present.
   const paths = mock.calls.map((c) => c.path);
-  for (const segment of ['finish', 'start', 'respond', 'status']) {
+  for (const segment of ['finish', 'start', 'respond', 'status', 'init']) {
     assert(
       paths.some((p) => p.includes(segment)),
       `SYNC: a registered path includes '${segment}'`,

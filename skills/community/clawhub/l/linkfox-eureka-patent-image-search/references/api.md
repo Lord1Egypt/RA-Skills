@@ -2,9 +2,9 @@
 
 ## 调用规范
 
-- **请求地址**：`https://tool-gateway.linkfox.com/eureka/patentImageSearch`
+- **请求地址**：`${LINKFOX_TOOL_GATEWAY}/tool-eureka/patentImageSearch`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
 
 ## 请求参数
 
@@ -91,7 +91,7 @@ POST Body（JSON）：
 
 ```bash
 # 外观设计智能关联搜索
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentImageSearch \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentImageSearch \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -105,7 +105,7 @@ curl -X POST https://tool-gateway.linkfox.com/eureka/patentImageSearch \
 
 ```bash
 # 实用新型形状匹配搜索（带日期和法律状态过滤）
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentImageSearch \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentImageSearch \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -120,7 +120,7 @@ curl -X POST https://tool-gateway.linkfox.com/eureka/patentImageSearch \
 
 ```bash
 # 外观设计搜索（按洛迦诺分类过滤）
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentImageSearch \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentImageSearch \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

@@ -1,0 +1,19 @@
+{
+  "name": "li_maestro_evaluate",
+  "display_name": "MAESTRO 威胁建模评估 (Threat Modeling & Risk Assessment)",
+  "description": "Interactive Q&A threat modeling for agentic AI systems and OpenCode Skills. Generates .md/.docx/.xlsx risk reports with AI risk classification per 《人工智能安全治理框架》2.0. | 交互式问答威胁建模评估，输出多格式风险评估报告。 | インタラクティブなQ&A脅威モデリング評価。 | 대화형 Q&A 위협 모델링 평가. | Интерактивная Q&A оценка моделирования угроз. | Evaluación interactiva de modelado de amenazas. | Évaluation interactive de modélisation des menaces. | تقييم تفاعلي لنمذجة التهديدات.",
+  "version": "1.0.3",
+  "analysis_modes": ["mvtm_checklist", "full_assessment"],
+  "template_languages": ["english", "chinese"],
+  "compatibility": "all",
+  "target_type": ["agentic_ai_systems", "opencode_skills"],
+  "output_formats": [".md", ".docx", ".xlsx"],
+  "frameworks": ["CSA MAESTRO", "OWASP ASI", "《人工智能安全治理框架》2.0"],
+  "categories": ["security", "ai", "threat-modeling"],
+  "tags": ["threat-modeling", "maestro", "ai-security", "risk-assessment", "opencode"],
+  "languages": ["zh-CN", "en", "ja", "ko", "ru", "es", "fr", "ar"],
+  "requires_python": true,
+  "python_dependencies": ["python-docx>=1.1.0", "openpyxl>=3.1.0"],
+  "author": "北京老李（BeijingLL）",
+  "license": "CC BY-NC-SA 4.0"
+}

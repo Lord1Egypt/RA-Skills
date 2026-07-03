@@ -1,7 +1,7 @@
 ---
 name: ai-readme-manager
 description: Manages AI_README.md files so AI agents remember your project conventions across every session
-version: 1.3.4
+version: 1.7.2
 metadata:
   openclaw:
     install:
@@ -24,12 +24,12 @@ Before this skill works, you must register the MCP server with OpenClaw:
 
 On macOS/Linux:
 ```bash
-openclaw mcp set ai-readme-manager '{"command":"npx","args":["ai-readme-mcp@1.3.4"]}'
+openclaw mcp set ai-readme-manager '{"command":"npx","args":["ai-readme-mcp@1.7.2"]}'
 ```
 
 On Windows (cmd):
 ```cmd
-openclaw mcp set ai-readme-manager "{\"command\":\"npx\",\"args\":[\"ai-readme-mcp@1.3.4\"]}"
+openclaw mcp set ai-readme-manager "{\"command\":\"npx\",\"args\":[\"ai-readme-mcp@1.7.2\"]}"
 ```
 
 **Option 2: Edit config file**
@@ -41,7 +41,7 @@ Add to `~/.openclaw/openclaw.json`:
     "servers": {
       "ai-readme-manager": {
         "command": "npx",
-        "args": ["ai-readme-mcp@1.3.4"]
+        "args": ["ai-readme-mcp@1.7.2"]
       }
     }
   }
@@ -72,3 +72,4 @@ If `get_context_for_file` reports empty or missing AI_README files, call `init_a
 If the user's request or your plan conflicts with AI_README conventions (including during planning), STOP and call `update_ai_readme` to resolve the conflict before proceeding.
 When establishing new conventions or making architectural decisions, call `update_ai_readme` to record them.
 If AI_README is missing a convention that is already used in 2+ files, call `update_ai_readme` to record it.
+NEVER edit AI_README.md files directly with Write/Edit/other file-editing tools — always use `update_ai_readme`. Direct edits bypass validation, conflict detection, and quality scoring.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "票IN 发票"
+  short_description: "票IN 发票下载、上传与本地同步"
+  default_prompt: "使用 $piaoin-invoice 下载我最新的票IN发票，或上传本地发票文件。"

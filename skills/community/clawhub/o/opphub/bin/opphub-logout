@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# 路径解析（兼容容器/K8s/多环境）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../lib/opphub-paths.sh"
+opphub_init_home
+# 偶合 OppHub · 登出（调 logout API 真注销 jti，不只是删本地）
+set -e
+
+OPPHUB_HOME="${OPPHUB_HOME:-}"  # ← 由 lib/opphub-paths.sh 解析后填入
+API_BASE="${OPPHUB_API_BASE:-https://api.opphub.ruiplus.cn}"
+
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+ok()   { echo -e "${GREEN}✓ $1${NC}"; }
+warn() { echo -e "${YELLOW}⚠ $1${NC}"; }
+fail() { echo -e "${RED}✗ $1${NC}"; }
+
+STATE="$OPPHUB_HOME/state.json"
+
+if [ ! -f "$STATE" ]; then
+  warn "未登录（state.json 不存在）"
+  exit 0
+fi
+
+# 读 jti + opcId
+JTI=$(grep -o '"jti":"[^"]*"' "$STATE" | cut -d'"' -f4)
+OPC_ID=$(grep -o '"opc_id":"[^"]*"' "$STATE" | cut -d'"' -f4)
+
+if [ -z "$JTI" ] && [ -z "$OPC_ID" ]; then
+  warn "state.json 无 jti/opc_id，只清本地"
+  rm -f "$STATE"
+  ok "已登出（仅本地）"
+  exit 0
+fi
+
+# 调 API 真注销
+RESP=$(curl -s -X POST "$API_BASE/api/auth/logout" \
+  -H "Content-Type: application/json" \
+  -d "{\"jti\":\"$JTI\",\"opcId\":\"$OPC_ID\"}")
+
+if echo "$RESP" | grep -q '"ok":true'; then
+  ok "服务端已注销"
+else
+  ERR=$(echo "$RESP" | grep -o '"error":"[^"]*"' | head -1 | cut -d'"' -f4)
+  warn "服务端注销返回：$ERR（但本地会清）"
+fi
+
+rm -f "$STATE"
+ok "已登出（state.json 已删除）"

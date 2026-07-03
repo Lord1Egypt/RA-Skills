@@ -1,0 +1,73 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-line-multi",
+    "title": "Weekly active users by platform",
+    "chart": {
+      "type": "line",
+      "series": [
+        {
+          "name": "Desktop",
+          "data": [
+            {
+              "label": "Mon",
+              "value": 800
+            },
+            {
+              "label": "Tue",
+              "value": 920
+            },
+            {
+              "label": "Wed",
+              "value": 880
+            },
+            {
+              "label": "Thu",
+              "value": 1010
+            },
+            {
+              "label": "Fri",
+              "value": 1120
+            }
+          ]
+        },
+        {
+          "name": "Mobile",
+          "data": [
+            {
+              "label": "Mon",
+              "value": 400
+            },
+            {
+              "label": "Tue",
+              "value": 530
+            },
+            {
+              "label": "Wed",
+              "value": 500
+            },
+            {
+              "label": "Thu",
+              "value": 590
+            },
+            {
+              "label": "Fri",
+              "value": 600
+            }
+          ]
+        }
+      ],
+      "axis_config": {
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "x_label": "Day",
+        "y_label": "Users"
+      }
+    }
+  }
+]

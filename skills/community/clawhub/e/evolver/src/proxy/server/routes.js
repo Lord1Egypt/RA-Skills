@@ -80,6 +80,16 @@ function buildRoutes(store, proxyHandlers, taskMonitor, extensions) {
       return { body: result };
     },
 
+    // Reuse-attribution report: the agent declares which fetched assets it
+    // actually reused. Forwarded flat (not enveloped) to the hub's
+    // /a2a/memory/record; the proxy stamps its own node as sender_id and the
+    // hub cross-verifies against AssetFetcher. Best-effort — never throws on a
+    // hub error so a report failure can't break the calling agent.
+    'POST /asset/report-reuse': async ({ body }) => {
+      const result = await proxyHandlers.reportReuse(body || {});
+      return { body: result };
+    },
+
     'POST /asset/search': async ({ body }) => {
       const result = await proxyHandlers.assetSearch(body);
       return { body: result };

@@ -1,0 +1,13 @@
+{
+  "name": "趋势监控报告",
+  "description": "趋势监控特色报告 — 监控摘要卡片 + 滚动统计 + 预警信息",
+  "type": "report",
+  "tags": ["trend", "monitoring", "forecast", "alert"],
+  "report": {
+    "title": "趋势监控分析报告",
+    "sections": [
+      {"type": "trend_summary_card", "source": "%监控看板%", "title": "监控摘要"},
+      {"type": "alert_section", "source": "%预测预警%", "title": "预警信息"}
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+id: smart_procurement_navigator
+name: 智慧招采通
+nickname: 招采智囊
+version: "2.0.0"
+owner: 招采/商务负责人
+deployment:
+  workstation: "default"
+  folder: "smart-procurement-navigator"
+  channel: 协作平台
+  platform: "通用智能代理平台"
+
+mission: >
+  通过协作平台接收采购公告、采购文件和应标素材，调用智能代理能力
+  完成商机摘要、投标研判、采购文件解读、评审模型构建、应标任务分解、
+  应答方案架构设计、章节初稿生成、文稿润色、图表占位、合规审查、终审放行和经验沉淀。
+
+users:
+  - 市场拓展人员
+  - 商务管理人员
+  - 标书编制人员
+  - 方案策划人员
+  - 投标决策人
+  - 经营管理层
+
+scenarios:
+  opportunity_intake:
+    name: 商机甄别
+    description: 接收公告、信息源或截图，输出商机摘要和重要时间节点提醒。
+    workflow: workflows.md#一商机甄别
+  bid_feasibility:
+    name: 投标研判
+    description: 判断是否满足资格条件，识别应标风险。
+    workflow: workflows.md#二投标研判
+  tender_analysis:
+    name: 采购文件解读
+    description: 提炼资格门槛、评审标准、格式规范和否决风险。
+    workflow: workflows.md#三采购文件解读
+  material_digitization:
+    name: 资料结构化处理
+    description: 将采购文件、技术规范、参考文件和知识库资料转为可检索文本，核验表格和关键数据完整性。
+    workflow: workflows.md#四资料结构化处理
+  score_modeling:
+    name: 评审模型构建
+    description: 建立评审项、否决性条款、客观分材料和应答章节之间的映射关系。
+    workflow: workflows.md#五评审模型构建
+  bid_task_split:
+    name: 应标任务分解
+    description: 输出资料清单、责任人和截止时间。
+    workflow: workflows.md#六应标任务分解
+  service_scheme_design:
+    name: 应答方案架构设计
+    description: 输出应答方案目录、前置索引表、章节锚点和篇幅规划。
+    workflow: workflows.md#七应答方案架构设计
+  bid_writing:
+    name: 应答文稿生成
+    description: 按评审项、技术规范和知识库输出应答目录、章节初稿和专项执行细则。
+    workflow: workflows.md#八应答文稿生成
+  expression_cleanup:
+    name: 文稿润色与可视化增强
+    description: 清除模板化表达和内部策略用语，输出图表占位索引和关键图表清单。
+    workflow: workflows.md#九文稿润色与可视化增强
+  bid_review:
+    name: 合规性审查
+    description: 检查缺项、条款偏离、格式规范、关键数据、参考残留和否决风险。
+    workflow: workflows.md#十合规性审查
+  final_check:
+    name: 呈交终审
+    description: 最终呈交前逐项核验签章、证书、电子文档和保证金。
+    workflow: workflows.md#十一呈交终审
+  bid_retro:
+    name: 经验沉淀与知识复用
+    description: 提炼应标结果、问题和可复用素材。
+    workflow: workflows.md#十二经验沉淀与知识复用
+
+common_skills:
+  - ZC01_message_router
+  - ZC02_file_receiver
+  - ZC03_permission_verifier
+  - ZC04_intent_classifier
+  - ZC05_document_parser
+  - ZC07_structured_extraction
+  - ZC08_knowledge_retrieval
+  - ZC09_rule_engine
+  - ZC10_template_renderer
+  - ZC11_table_exporter
+  - ZC12_task_decomposer
+  - ZC13_human_approval_gate
+  - ZC14_deadline_reminder
+  - ZC15_audit_logger
+  - ZC16_result_archiver
+  - ZC17_sensitive_masker
+  - ZC18_demo_runner
+
+domain_skills:
+  - ZC01_opportunity_intake
+  - ZC02_notice_summarizer
+  - ZC03_document_parser
+  - ZC04_qualification_extractor
+  - ZC05_scoring_extractor
+  - ZC06_submission_extractor
+  - ZC07_bid_evaluator
+  - ZC08_material_matcher
+  - ZC09_task_decomposer
+  - ZC10_outline_builder
+  - ZC11_draft_writer
+  - ZC12_business_checker
+  - ZC13_compliance_reviewer
+  - ZC14_deviation_analyzer
+  - ZC15_clarification_generator
+  - ZC16_retro_analyzer
+  - ZC17_material_digitizer
+  - ZC18_score_model_builder
+  - ZC19_requirement_indexer
+  - ZC20_sample_comparator
+  - ZC21_scheme_architect
+  - ZC22_chapter_expander
+  - ZC23_expression_polisher
+  - ZC24_chart_planner
+  - ZC25_consistency_checker
+
+approval_policy:
+  requires_human_confirmation:
+    - 是否参与投标
+    - 报价策略
+    - 商务承诺
+    - 资质材料真实性
+    - 最终应答文件
+    - 签章和提交
+    - 联合体协议书
+    - 投标保证金
+  can_auto_generate:
+    - 商机摘要
+    - 采购文件解读报告
+    - 资格门槛清单
+    - 评审项明细
+    - 应标任务清单
+    - 应答目录草案
+    - 评审模型表
+    - 前置索引表
+    - 应答方案完整章节结构
+    - 图表占位索引
+    - 合规审查报告
+    - 审查问题清单
+    - 终审核对表
+  must_not_do:
+    - 自主决定参与投标
+    - 自主报价
+    - 伪造资质或业绩
+    - 擅自承诺交付范围
+    - 替代决策人确认最终应答文件
+    - 在正式文件中保留内部评审策略或高分评述
+    - 直接套用参考文件中的项目名称、地点、特定型号、工期或报价
+
+knowledge_sources:
+  - knowledge/README.md
+  - 企业资质库
+  - 项目案例库
+  - 历史应答文件库
+  - 应答模板库
+  - 商务条款库
+  - 技术方案素材库
+  - 应答文件写作方法论
+  - 评审模型模板
+  - 应答方案完整章节结构
+  - 应答文件表达禁用词库
+  - 合规审查清单
+  - 政府采购法规库
+
+templates:
+  opportunity_brief: templates/opportunity_brief.md
+  tender_analysis_report: templates/tender_analysis_report.md
+  score_model: templates/score_model.md
+  response_outline: templates/response_outline.md
+  service_scheme_structure: templates/service_scheme_structure.md
+  review_report: templates/review_report.md
+  consistency_check_report: templates/consistency_check_report.md
+
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

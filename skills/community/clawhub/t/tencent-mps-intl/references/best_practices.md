@@ -44,19 +44,19 @@
 **Typical scenarios**:
 
 1. I have a 1.2 GB MOV video shot on my phone and want to compress it into MP4 to send to a colleague over WeChat — please handle it.
-   → `python scripts/mps_transcode.py --url <video URL> --codec h264 --format MP4`
+   → `python3 scripts/mps_transcode.py --url <video URL> --codec h264 --format MP4`
 2. Compress the video `input/my_video.mp4` on COS, convert it to H.264 with a bitrate of 2000 kbps.
-   → `python scripts/mps_transcode.py --cos-input-key input/my_video.mp4 --codec h264 --bitrate 2000`
+   → `python3 scripts/mps_transcode.py --cos-input-key input/my_video.mp4 --codec h264 --bitrate 2000`
 3. I want to convert the video to MP4 but I don't want to wait for the result — just submit the task.
-   → `python scripts/mps_transcode.py --url <video URL> --format MP4 --no-wait`
+   → `python3 scripts/mps_transcode.py --url <video URL> --format MP4 --no-wait`
 4. Transcode this video to H.265: `https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/evanxia/mps/vivienyao/test_video_01.mp4`
-   → `python scripts/mps_transcode.py --url <URL> --codec h265`
+   → `python3 scripts/mps_transcode.py --url <URL> --codec h265`
 5. Convert the video to H.264 at 1280x720 resolution and 30 fps.
-   → `python scripts/mps_transcode.py --url <URL> --codec h264`
+   → `python3 scripts/mps_transcode.py --url <URL> --codec h264`
 6. Local video `/home/user/video.mp4` needs H.265 transcoding (full pipeline: upload to COS first, then transcode, then download).
-   → `python scripts/mps_transcode.py --local-file /home/user/video.mp4 --codec h265`
+   → `python3 scripts/mps_transcode.py --local-file /home/user/video.mp4 --codec h265`
 7. I have a local video `/data/my_video.mp4` — please transcode it to H.265 (full three-step pipeline).
-   → `python scripts/mps_transcode.py --local-file /data/my_video.mp4 --codec h265`
+   → `python3 scripts/mps_transcode.py --local-file /data/my_video.mp4 --codec h265`
 
 ---
 
@@ -67,25 +67,25 @@
 **Typical scenarios**:
 
 1. Enhance the video quality to 1080P. The video is real-person footage.
-   → `python scripts/mps_enhance.py --url <URL> --template 327003` (real-person 1080P template)
+   → `python3 scripts/mps_enhance.py --url <URL> --template 327003` (real-person 1080P template)
 2. This is an old anime video — upscale it to 4K.
-   → `python scripts/mps_enhance.py --url <URL> --template 327008` (anime 4K template)
+   → `python3 scripts/mps_enhance.py --url <URL> --template 327008` (anime 4K template)
 3. The video is a bit shaky — apply shake stabilization and enhance to 2K.
-   → `python scripts/mps_enhance.py --cos-input-key input/shaky.mp4 --template 327011` (shake-stabilization 2K template)
+   → `python3 scripts/mps_enhance.py --cos-input-key input/shaky.mp4 --template 327011` (shake-stabilization 2K template)
 4. Enhance the animated-drama video to 2K.
-   → `python scripts/mps_enhance.py --url <URL> --template 327006` (animated-drama 2K template)
+   → `python3 scripts/mps_enhance.py --url <URL> --template 327006` (animated-drama 2K template)
 5. Enhance the video to 720P, real-person scene.
-   → `python scripts/mps_enhance.py --cos-input-key input/low_res.mp4 --template 327001` (real-person 720P template)
+   → `python3 scripts/mps_enhance.py --cos-input-key input/low_res.mp4 --template 327001` (real-person 720P template)
 6. Face-fidelity enhancement to 1080P.
-   → `python scripts/mps_enhance.py --url <URL> --template 327018` (face-fidelity 1080P template)
+   → `python3 scripts/mps_enhance.py --url <URL> --template 327018` (face-fidelity 1080P template)
 7. Strongest detail-enhancement mode, upscale to 4K.
-   → `python scripts/mps_enhance.py --url <URL> --template 327016` (max-detail 4K template)
+   → `python3 scripts/mps_enhance.py --url <URL> --template 327016` (max-detail 4K template)
 8. Shake-stabilization 720P enhancement.
-   → `python scripts/mps_enhance.py --cos-input-key input/shaky720.mp4 --template 327009 --no-wait`
+   → `python3 scripts/mps_enhance.py --cos-input-key input/shaky720.mp4 --template 327009 --no-wait`
 9. Real-person live-action video enhanced to 1080P.
-   → `python scripts/mps_enhance.py --cos-input-key input/real_person.mp4 --template 327003`
+   → `python3 scripts/mps_enhance.py --cos-input-key input/real_person.mp4 --template 327003`
 10. Local video, enhance to 1080P real-person scene (must upload to COS first).
-    → `python scripts/mps_enhance.py --local-file /home/user/input.mp4 --template 327003`
+    → `python3 scripts/mps_enhance.py --local-file /home/user/input.mp4 --template 327003`
 
 ---
 
@@ -96,19 +96,19 @@
 **Typical scenarios**:
 
 1. Extract the vocals (vocal separation) from this video: `https://vivien-1256342427.cos.ap-nanjing.myqcloud.com/MPS/QZ3jiuY4CrUA.mp4`
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate vocal`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate vocal`
 2. I love the background music in this video — can you pull out the pure BGM and save it as a standalone MP3?
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate background`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate background`
 3. For short-video re-creation, I need to remove the original vocals and keep only ambient sound + BGM.
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
 4. Give me a vocals-removed accompaniment of this interview video — I'll record a new voice-over.
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
 5. Make a karaoke version: remove the vocals from this live performance, keeping only the accompaniment.
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate accompaniment`
 6. The video has both vocals and background music — extract the vocals (vocal separation).
-   → `python scripts/mps_enhance.py --url <URL> --audio-separate vocal`
+   → `python3 scripts/mps_enhance.py --url <URL> --audio-separate vocal`
 7. Separate the vocals and background music of the video, and at the same time transcode the video to H.264.
-   → `python scripts/mps_enhance.py --cos-input-key input/music_video.mp4 --audio-separate vocal` + `mps_transcode.py --cos-input-key input/music_video.mp4 --codec h264`
+   → `python3 scripts/mps_enhance.py --cos-input-key input/music_video.mp4 --audio-separate vocal` + `mps_transcode.py --cos-input-key input/music_video.mp4 --codec h264`
 
 ---
 
@@ -119,25 +119,25 @@
 **Typical scenarios**:
 
 1. Extract subtitles from this video: `https://vivien-1256342408.cos.ap-nanjing.myqcloud.com/DEMO/trailer.mp4`
-   → `python scripts/mps_subtitle.py --url <URL>`
+   → `python3 scripts/mps_subtitle.py --url <URL>`
 2. Translate the subtitles of this English video into Chinese.
-   → `python scripts/mps_subtitle.py --url <URL> --translate`
+   → `python3 scripts/mps_subtitle.py --url <URL> --translate`
 3. I have a Chinese video — extract its subtitles and translate them into English.
-   → `python scripts/mps_subtitle.py --cos-input-key input/chinese.mp4 --translate`
+   → `python3 scripts/mps_subtitle.py --cos-input-key input/chinese.mp4 --translate`
 4. Run speech recognition on this video and output the text.
-   → `python scripts/mps_subtitle.py --url <URL>`
+   → `python3 scripts/mps_subtitle.py --url <URL>`
 5. This video has burned-in subtitles — use OCR to recognize and extract them.
-   → `python scripts/mps_subtitle.py --url <URL> --process-type ocr`
+   → `python3 scripts/mps_subtitle.py --url <URL> --process-type ocr`
 6. Use OCR to recognize this video's subtitles and translate them into English.
-   → `python scripts/mps_subtitle.py --url <URL> --process-type ocr --translate en`
+   → `python3 scripts/mps_subtitle.py --url <URL> --process-type ocr --translate en`
 7. The video has fancy subtitles at the bottom — use OCR but only on the bottom 30% of the frame.
-   → `python scripts/mps_subtitle.py --url <URL> --process-type ocr --ocr-area`
+   → `python3 scripts/mps_subtitle.py --url <URL> --process-type ocr --ocr-area`
 8. Extract the on-screen text from the video; the video is bilingual Chinese/English.
-   → `python scripts/mps_subtitle.py --url <URL> --process-type ocr --src-lang zh_en`
+   → `python3 scripts/mps_subtitle.py --url <URL> --process-type ocr --src-lang zh_en`
 9. The video has burned-in hard subtitles — use OCR to extract them and translate into Japanese.
-   → `python scripts/mps_subtitle.py --cos-input-key input/hardcoded_subtitle.mp4 --process-type ocr --translate ja`
+   → `python3 scripts/mps_subtitle.py --cos-input-key input/hardcoded_subtitle.mp4 --process-type ocr --translate ja`
 10. Extract subtitles from the video without waiting for the task to finish.
-    → `python scripts/mps_subtitle.py --url <URL> --no-wait`
+    → `python3 scripts/mps_subtitle.py --url <URL> --no-wait`
 
 ---
 
@@ -148,19 +148,19 @@
 **Typical scenarios**:
 
 1. Remove the subtitles from this video: `https://lily-1256342427.cos.ap-nanjing.myqcloud.com/mps_autotest/subtitle/subtitle.mkv`
-   → `python scripts/mps_erase.py --url <URL> --template 101` (subtitle-removal template)
+   → `python3 scripts/mps_erase.py --url <URL> --template 101` (subtitle-removal template)
 2. There's a watermark in the video — please apply the advanced watermark-removal template.
-   → `python scripts/mps_erase.py --url <URL> --template 201` (advanced watermark-removal template)
+   → `python3 scripts/mps_erase.py --url <URL> --template 201` (advanced watermark-removal template)
 3. There are faces in this video — apply face blurring.
-   → `python scripts/mps_erase.py --cos-input-key input/faces.mp4 --template 301` (face-blur template)
+   → `python3 scripts/mps_erase.py --cos-input-key input/faces.mp4 --template 301` (face-blur template)
 4. The video contains both faces and license plates — both need to be blurred.
-   → `python scripts/mps_erase.py --url <URL> --template 302` (face + license-plate blur template)
+   → `python3 scripts/mps_erase.py --url <URL> --template 302` (face + license-plate blur template)
 5. Remove the subtitles from the video and also extract the subtitle text via OCR.
-   → `python scripts/mps_erase.py --url <URL> --template 102` (subtitle-removal + OCR template)
+   → `python3 scripts/mps_erase.py --url <URL> --template 102` (subtitle-removal + OCR template)
 6. There's a watermark in the top-left of the video — please remove it.
-   → `python scripts/mps_erase.py --cos-input-key input/watermark.mp4 --template 201`
+   → `python3 scripts/mps_erase.py --cos-input-key input/watermark.mp4 --template 201`
 7. Real-person live-action video has a watermark in the top-left — remove it and at the same time apply 1080P enhancement.
-   → `python scripts/mps_erase.py --cos-input-key input/watermark.mp4 --template 201` + `mps_enhance.py --cos-input-key input/watermark.mp4 --template 327003`
+   → `python3 scripts/mps_erase.py --cos-input-key input/watermark.mp4 --template 201` + `mps_enhance.py --cos-input-key input/watermark.mp4 --template 327003`
 
 ---
 
@@ -171,21 +171,21 @@
 **Typical scenarios**:
 
 1. Apply super-resolution to this image: `https://lily-1256342427.cos.ap-nanjing.myqcloud.com/mps_autotest/pic.jpeg`
-   → `python scripts/mps_imageprocess.py --url <URL>` (default image super-resolution)
+   → `python3 scripts/mps_imageprocess.py --url <URL>` (default image super-resolution)
 2. This portrait photo needs beautification (skin smoothing and whitening).
-   → `python scripts/mps_imageprocess.py --cos-input-key input/portrait.jpg --process-type beautify`
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/portrait.jpg --process-type beautify`
 3. The image is noisy — apply denoising.
-   → `python scripts/mps_imageprocess.py --url <URL> --process-type denoise`
+   → `python3 scripts/mps_imageprocess.py --url <URL> --process-type denoise`
 4. Image super-resolution, no wait, COS path: `input/lowres.jpg`.
-   → `python scripts/mps_imageprocess.py --cos-input-key input/lowres.jpg --no-wait`
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/lowres.jpg --no-wait`
 5. There's a logo watermark in the bottom-right of the image — erase it.
-   → `python scripts/mps_imageprocess.py --cos-input-key input/logo.jpg --process-type erase` (use this script for image erasure)
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/logo.jpg --process-type erase` (use this script for image erasure)
 6. I want to add invisible watermarks to a batch of images for copyright tracing.
-   → `python scripts/mps_imageprocess.py --cos-input-key input/batch/ --process-type blind-watermark`
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/batch/ --process-type blind-watermark`
 7. Convert this PNG to JPEG and resize it to 1920×1080.
-   → `python scripts/mps_imageprocess.py --cos-input-key input/photo.png --process-type resize --target-format JPEG --width 1920 --height 1080`
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/photo.png --process-type resize --target-format JPEG --width 1920 --height 1080`
 8. A batch of source images is a bit blurry — run a comprehensive enhancement (super-resolution + denoising + color).
-   → `python scripts/mps_imageprocess.py --cos-input-key input/batch/ --process-type enhance`
+   → `python3 scripts/mps_imageprocess.py --cos-input-key input/batch/ --process-type enhance`
 
 ---
 
@@ -196,19 +196,19 @@
 **Typical scenarios**:
 
 1. Generate a model image with AI, then make her wear this T-shirt.
-   → `python scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <garment URL>`
+   → `python3 scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <garment URL>`
 2. We launched a batch of new dresses on our e-commerce site — instead of re-shooting model photos, can you put the new dresses on the original model?
-   → `python scripts/mps_image_tryon.py --model-cos-key input/model.jpg --cloth-cos-key input/dress.jpg`
+   → `python3 scripts/mps_image_tryon.py --model-cos-key input/model.jpg --cloth-cos-key input/dress.jpg`
 3. This is a flat-lay white-background image from the apparel supply chain — composite it onto a standard model to generate the main listing image.
-   → `python scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <flat-lay URL>`
+   → `python3 scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <flat-lay URL>`
 4. We are a lingerie brand and want a virtual try-on; only the top lingerie piece needs to be replaced.
-   → `python scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <lingerie URL> --schedule-id 30101`
+   → `python3 scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <lingerie URL> --schedule-id 30101`
 5. Limited budget for product photography — let's try AI try-on first to generate the main image for the detail page.
-   → `python scripts/mps_image_tryon.py --model-cos-key input/model.jpg --cloth-cos-key input/cloth.jpg`
+   → `python3 scripts/mps_image_tryon.py --model-cos-key input/model.jpg --cloth-cos-key input/cloth.jpg`
 6. Same model pose — please try on 5 SKUs of clothing in batch and output 5 different model images.
-   → `python scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <garment 1 URL>` × 5 times
+   → `python3 scripts/mps_image_tryon.py --model-url <model URL> --cloth-url <garment 1 URL>` × 5 times
 7. Local image try-on. Model image: `/data/model.jpg`, garment image: `/data/cloth.jpg`.
-   → `python scripts/mps_image_tryon.py --local-file /data/model.jpg /data/cloth.jpg` (or upload to COS first, then try on)
+   → `python3 scripts/mps_image_tryon.py --local-file /data/model.jpg /data/cloth.jpg` (or upload to COS first, then try on)
 
 ---
 
@@ -219,21 +219,21 @@
 **Typical scenarios**:
 
 1. Run background fusion. Product image: `<URL>`, background image: `<URL>`.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <product URL> --bg-url <background URL>`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <product URL> --bg-url <background URL>`
 2. This is a white-background product image — replace it with a natural outdoor-grass background to create a spring/summer outdoor-style main image.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "outdoor grass natural light spring/summer style"`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "outdoor grass natural light spring/summer style"`
 3. I only have a cut-out of the product and no suitable background asset — generate a background from a prompt.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "Nordic-style living room with wooden floor and afternoon sunlight"`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "Nordic-style living room with wooden floor and afternoon sunlight"`
 4. AI background replacement. Subject is on COS at `input/product.jpg`, background image: `<URL>`.
-   → `python scripts/mps_image_bg_fusion.py --subject-cos-key input/product.jpg --bg-url <background URL>`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-cos-key input/product.jpg --bg-url <background URL>`
 5. Background fusion — both subject and background are on COS. Subject: `input/product.jpg`, background: `input/bg.jpg`.
-   → `python scripts/mps_image_bg_fusion.py --subject-cos-key input/product.jpg --bg-cos-key input/bg.jpg`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-cos-key input/product.jpg --bg-cos-key input/bg.jpg`
 6. Product-image background replacement. Subject: `<URL>`, background: `<URL>`. Fusion requirement: add warm-tone lighting.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <subject URL> --bg-url <background URL> --prompt "warm-tone lighting"`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <subject URL> --bg-url <background URL> --prompt "warm-tone lighting"`
 7. E-commerce background generation. Product image: `<URL>`. Background description: outdoor lawn in bright sunshine, fixed random seed 42.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "outdoor lawn bright sunshine" --random-seed 42`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "outdoor lawn bright sunshine" --random-seed 42`
 8. Background generation. Product image: `<URL>`. Background description: modern minimalist living room. Output in PNG format at 4K size.
-   → `python scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "modern minimalist living room" --format PNG --image-size 4K`
+   → `python3 scripts/mps_image_bg_fusion.py --subject-url <product URL> --prompt "modern minimalist living room" --format PNG --image-size 4K`
 
 ---
 
@@ -244,25 +244,25 @@
 **Typical scenarios**:
 
 1. Generate an image with AI. Description: a golden retriever running on the grass in bright sunshine.
-   → `python scripts/mps_aigc_image.py --prompt "a golden retriever running on the grass in bright sunshine"`
+   → `python3 scripts/mps_aigc_image.py --prompt "a golden retriever running on the grass in bright sunshine"`
 2. Use this image as a reference and generate a new image in a similar style. Description: seaside at sunset.
-   → `python scripts/mps_aigc_image.py --prompt "seaside at sunset" --image-url <reference URL>`
+   → `python3 scripts/mps_aigc_image.py --prompt "seaside at sunset" --image-url <reference URL>`
 3. AIGC image, reference image is on COS: bucket=`mps-test-1234567`, region=`ap-guangzhou`, key=`input/ref.jpg`. Prompt: city night view.
-   → `python scripts/mps_aigc_image.py --prompt "city night view" --image-cos-bucket mps-test-1234567 --image-cos-region ap-guangzhou --image-cos-key input/ref.jpg`
+   → `python3 scripts/mps_aigc_image.py --prompt "city night view" --image-cos-bucket mps-test-1234567 --image-cos-region ap-guangzhou --image-cos-key input/ref.jpg`
 4. Generate 4 poster images from the prompt "cyberpunk-style Hong Kong street, neon lights on a rainy night".
-   → `python scripts/mps_aigc_image.py --prompt "cyberpunk-style Hong Kong street, neon lights on a rainy night"`
+   → `python3 scripts/mps_aigc_image.py --prompt "cyberpunk-style Hong Kong street, neon lights on a rainy night"`
 5. Use this cat photo as a reference and create a watercolor-style version via image-to-image.
-   → `python scripts/mps_aigc_image.py --prompt "watercolor-style cat" --image-url <cat photo URL>`
+   → `python3 scripts/mps_aigc_image.py --prompt "watercolor-style cat" --image-url <cat photo URL>`
 6. AIGC image, dry-run the command first. Prompt: city night view with neon lights.
-   → `python scripts/mps_aigc_image.py --prompt "city night view with neon lights" --dry-run`
+   → `python3 scripts/mps_aigc_image.py --prompt "city night view with neon lights" --dry-run`
 7. Generate a "Spring-Festival red-themed gift-box packaging visual" for the e-commerce home banner.
-   → `python scripts/mps_aigc_image.py --prompt "Spring-Festival red-themed gift-box packaging visual"`
+   → `python3 scripts/mps_aigc_image.py --prompt "Spring-Festival red-themed gift-box packaging visual"`
 8. Use Kling 3.0 to generate a realistic landscape painting.
-   → `python scripts/mps_aigc_image.py --prompt "realistic landscape painting" --model Kling --model-version 3.0`
+   → `python3 scripts/mps_aigc_image.py --prompt "realistic landscape painting" --model Kling --model-version 3.0`
 9. Use OG high-quality mode to generate a city night scene.
-   → `python scripts/mps_aigc_image.py --prompt "city night view with neon lights" --model OG --model-version image2_high`
+   → `python3 scripts/mps_aigc_image.py --prompt "city night view with neon lights" --model OG --model-version image2_high`
 10. Use Hunyuan to generate a 3D panoramic image of a tropical rainforest.
-    → `python scripts/mps_aigc_image.py --prompt "tropical rainforest panorama, lush and vibrant" --model Hunyuan --scene-type 3d_panorama`
+    → `python3 scripts/mps_aigc_image.py --prompt "tropical rainforest panorama, lush and vibrant" --model Hunyuan --scene-type 3d_panorama`
 
 ---
 
@@ -273,19 +273,19 @@
 **Typical scenarios**:
 
 1. Generate a video with AI. Text description: a cat sunbathing by the window, lazily stretching.
-   → `python scripts/mps_aigc_video.py --prompt "a cat sunbathing by the window, lazily stretching"`
+   → `python3 scripts/mps_aigc_video.py --prompt "a cat sunbathing by the window, lazily stretching"`
 2. Generate a video from this image. Image URL: `<URL>`. Description: a breeze rustling the leaves.
-   → `python scripts/mps_aigc_video.py --prompt "a breeze rustling the leaves" --image-url <image URL>`
+   → `python3 scripts/mps_aigc_video.py --prompt "a breeze rustling the leaves" --image-url <image URL>`
 3. Use the Kling model to generate a multi-shot storyboard, total 10 seconds, 2 shots: first 5s sunrise, second 5s sunset.
-   → `python scripts/mps_aigc_video.py --prompt "sunrise" --multi-shot --multi-prompts-json '[{"prompt":"sunrise","duration":5},{"prompt":"sunset","duration":5}]'`
+   → `python3 scripts/mps_aigc_video.py --prompt "sunrise" --multi-shot --multi-prompts-json '[{"prompt":"sunrise","duration":5},{"prompt":"sunset","duration":5}]'`
 4. AI video generation, no wait — just give me the task ID. Prompt: snow-mountain sunrise.
-   → `python scripts/mps_aigc_video.py --prompt "snow-mountain sunrise" --no-wait`
+   → `python3 scripts/mps_aigc_video.py --prompt "snow-mountain sunrise" --no-wait`
 5. Use Kling to generate a 5-second video from "seaside sunrise, waves crashing on rocks, slow push-in".
-   → `python scripts/mps_aigc_video.py --prompt "seaside sunrise, waves crashing on rocks, slow push-in"`
+   → `python3 scripts/mps_aigc_video.py --prompt "seaside sunrise, waves crashing on rocks, slow push-in"`
 6. I have a static product image — turn it into a 3-second camera-movement video pushing in from far to near.
-   → `python scripts/mps_aigc_video.py --prompt "camera pushing in from far to near on the product" --image-url <product image URL>`
+   → `python3 scripts/mps_aigc_video.py --prompt "camera pushing in from far to near on the product" --image-url <product image URL>`
 7. AIGC video dry-run. Prompt: stormy sea.
-   → `python scripts/mps_aigc_video.py --prompt "stormy sea" --dry-run`
+   → `python3 scripts/mps_aigc_video.py --prompt "stormy sea" --dry-run`
 
 ---
 
@@ -296,19 +296,19 @@
 **Typical scenarios**:
 
 1. Analyze the content of this video — identify the main scenes and key information.
-   → `python scripts/mps_av_understand.py --url <URL> --mode video --prompt "Analyze the video content and key information"`
+   → `python3 scripts/mps_av_understand.py --url <URL> --mode video --prompt "Analyze the video content and key information"`
 2. Comparatively analyze the differences between these two audio tracks.
-   → `python scripts/mps_av_understand.py --url <video 1 URL> --extend-url <video 2 URL> --mode compare --prompt "Compare the differences between the two audio tracks"`
+   → `python3 scripts/mps_av_understand.py --url <video 1 URL> --extend-url <video 2 URL> --mode compare --prompt "Compare the differences between the two audio tracks"`
 3. Video content understanding, COS path `input/meeting.mp4` — summarize the key points of the meeting.
-   → `python scripts/mps_av_understand.py --cos-input-key input/meeting.mp4 --mode video --prompt "Summarize the key points of the meeting"`
+   → `python3 scripts/mps_av_understand.py --cos-input-key input/meeting.mp4 --mode video --prompt "Summarize the key points of the meeting"`
 4. Run picture-quality QC on this video to check for blurring or screen artifacts (note: QC is handled by `mps_qualitycontrol.py`; here it is content understanding).
-   → `python scripts/mps_av_understand.py --url <URL> --mode video --prompt "Describe the visual content of the video"`
+   → `python3 scripts/mps_av_understand.py --url <URL> --mode video --prompt "Describe the visual content of the video"`
 5. Understand this video's content — give me a summary and key information; don't wait for the result.
-   → `python scripts/mps_av_understand.py --url <URL> --mode video --prompt "Summary and key information" --no-wait`
+   → `python3 scripts/mps_av_understand.py --url <URL> --mode video --prompt "Summary and key information" --no-wait`
 6. Compare the narration differences between the two videos.
-   → `python scripts/mps_av_understand.py --url <video 1 URL> --extend-url <video 2 URL> --mode compare --prompt "Compare narration differences"`
+   → `python3 scripts/mps_av_understand.py --url <video 1 URL> --extend-url <video 2 URL> --mode compare --prompt "Compare narration differences"`
 7. Video content understanding — describe the video content.
-   → `python scripts/mps_av_understand.py --cos-input-key input/ocean.mp4 --mode video --prompt "Describe the video content"`
+   → `python3 scripts/mps_av_understand.py --cos-input-key input/ocean.mp4 --mode video --prompt "Describe the video content"`
 
 ---
 
@@ -319,19 +319,19 @@
 **Typical scenarios**:
 
 1. Do a video face swap. Source face: `<URL>`, target face: `<URL>`, video: `<URL>`.
-   → `python scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <source face URL> --dst-faces <target face URL>`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <source face URL> --dst-faces <target face URL>`
 2. Video character swap. Source character image: `<URL>`, target character image: `<URL>`, video: `<URL>`. Wait for the result.
-   → `python scripts/mps_vremake.py --url <video URL> --mode SwapCharacter --src-character <source character URL> --dst-character <target character URL>`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode SwapCharacter --src-character <source character URL> --dst-character <target character URL>`
 3. Run AB-interleave video re-creation.
-   → `python scripts/mps_vremake.py --url <video URL> --mode AB`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode AB`
 4. Face swap — replace the person in the video with the face from this image; no wait.
-   → `python scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <face URL> --dst-faces <target face URL> --no-wait`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <face URL> --dst-faces <target face URL> --no-wait`
 5. Video re-creation with face swap, but I haven't decided which mode to use — please introduce the available modes.
    → AI introduces `SwapFace` / `SwapCharacter` / `VideoInterleave` / `AB` modes and asks the user to choose.
 6. Video re-creation with face swap — replace the host's face with the 2D cartoon mascot.
-   → `python scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <host face URL> --dst-faces <mascot URL>`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <host face URL> --dst-faces <mascot URL>`
 7. The endorser in this old commercial needs to be swapped with a new endorser's face — keep the original lines and motion.
-   → `python scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <old endorser URL> --dst-faces <new endorser URL>`
+   → `python3 scripts/mps_vremake.py --url <video URL> --mode SwapFace --src-faces <old endorser URL> --dst-faces <new endorser URL>`
 
 ---
 
@@ -342,19 +342,19 @@
 **Typical scenarios**:
 
 1. Apply picture-in-picture de-duplication to the video.
-   → `python scripts/mps_dedupe.py --url <URL>` (defaults to PicInPic)
+   → `python3 scripts/mps_dedupe.py --url <URL>` (defaults to PicInPic)
 2. The video needs video-extension de-duplication, horizontal-fill mode.
-   → `python scripts/mps_dedupe.py --url <URL> --mode HorizontalExtend`
+   → `python3 scripts/mps_dedupe.py --url <URL> --mode HorizontalExtend`
 3. Video de-duplication, vertical-fill mode.
-   → `python scripts/mps_dedupe.py --cos-input-key input/vertical.mp4 --mode VerticalExtend`
+   → `python3 scripts/mps_dedupe.py --cos-input-key input/vertical.mp4 --mode VerticalExtend`
 4. The same episode of a short drama is being distributed to multiple platforms with strict duplicate detection — please run de-duplication.
-   → `python scripts/mps_dedupe.py --cos-input-key input/drama.mp4 --mode PicInPic`
+   → `python3 scripts/mps_dedupe.py --cos-input-key input/drama.mp4 --mode PicInPic`
 5. Extend the video frame, filling top/bottom/left/right to the target resolution.
-   → `python scripts/mps_dedupe.py --url <URL> --mode BackgroundExtend`
+   → `python3 scripts/mps_dedupe.py --url <URL> --mode BackgroundExtend`
 6. Video de-duplication, wait for the result, picture-in-picture mode.
-   → `python scripts/mps_dedupe.py --url <URL> --mode PicInPic` (waiting is the default behavior)
+   → `python3 scripts/mps_dedupe.py --url <URL> --mode PicInPic` (waiting is the default behavior)
 7. I need to upload the same asset to 5 accounts — please de-duplicate so each version has a different hash.
-   → `python scripts/mps_dedupe.py --url <URL> --mode PicInPic`
+   → `python3 scripts/mps_dedupe.py --url <URL> --mode PicInPic`
 
 ---
 
@@ -365,19 +365,19 @@
 **Typical scenarios**:
 
 1. Generate a football-match highlight reel. COS path: `input/football_game.mp4`.
-   → `python scripts/mps_highlight.py --cos-input-key input/football_game.mp4 --scene football`
+   → `python3 scripts/mps_highlight.py --cos-input-key input/football_game.mp4 --scene football`
 2. Basketball-game video — extract highlight clips.
-   → `python scripts/mps_highlight.py --url <URL> --scene basketball`
+   → `python3 scripts/mps_highlight.py --url <URL> --scene basketball`
 3. Extract highlights from a vlog video shot with a 360 panoramic camera.
-   → `python scripts/mps_highlight.py --url <URL> --scene vlog-panorama`
+   → `python3 scripts/mps_highlight.py --url <URL> --scene vlog-panorama`
 4. Extract highlights from a short drama.
-   → `python scripts/mps_highlight.py --cos-input-key input/drama_highlight.mp4 --scene short-drama`
+   → `python3 scripts/mps_highlight.py --cos-input-key input/drama_highlight.mp4 --scene short-drama`
 5. Skiing video — extract highlight clips, custom scene, focus on highlight actions of people.
-   → `python scripts/mps_highlight.py --url <URL> --scene custom --prompt "Focus on highlight actions of people"`
+   → `python3 scripts/mps_highlight.py --url <URL> --scene custom --prompt "Focus on highlight actions of people"`
 6. Vlog highlight extraction — output the top 10 most-exciting clips.
-   → `python scripts/mps_highlight.py --url <URL> --scene vlog --top-clip 10`
+   → `python3 scripts/mps_highlight.py --url <URL> --scene vlog --top-clip 10`
 7. Highlight reel dry-run test, football scene.
-   → `python scripts/mps_highlight.py --url <URL> --scene football --dry-run`
+   → `python3 scripts/mps_highlight.py --url <URL> --scene football --dry-run`
 
 ---
 
@@ -388,19 +388,19 @@
 **Typical scenarios**:
 
 1. Generate AI narration for this short-drama video; the video has burned-in subtitles.
-   → `python scripts/mps_narrate.py --url <URL> --scene short-drama`
+   → `python3 scripts/mps_narrate.py --url <URL> --scene short-drama`
 2. The video has no subtitles — generate AI narration for re-creation.
-   → `python scripts/mps_narrate.py --url <URL> --scene short-drama-no-erase`
+   → `python3 scripts/mps_narrate.py --url <URL> --scene short-drama-no-erase`
 3. I have three episodes of a short drama to be merged and narrated.
-   → `python scripts/mps_narrate.py --url <episode 1 URL> --extra-urls <episode 2 URL>,<episode 3 URL> --scene short-drama`
+   → `python3 scripts/mps_narrate.py --url <episode 1 URL> --extra-urls <episode 2 URL>,<episode 3 URL> --scene short-drama`
 4. Short-drama narration — output 3 different versions.
-   → `python scripts/mps_narrate.py --url <URL> --scene short-drama --output-count 3`
+   → `python3 scripts/mps_narrate.py --url <URL> --scene short-drama --output-count 3`
 5. Transcode the short drama on COS to H.265 and at the same time generate AI narration; the video has burned-in subtitles.
-   → `python scripts/mps_narrate.py --cos-input-key input/episode.mp4 --scene short-drama` + `mps_transcode.py --cos-input-key input/episode.mp4 --codec h265`
+   → `python3 scripts/mps_narrate.py --cos-input-key input/episode.mp4 --scene short-drama` + `mps_transcode.py --cos-input-key input/episode.mp4 --codec h265`
 6. The short-drama video has burned-in subtitles — generate AI narration and at the same time extract the subtitles and translate them into English.
-   → `python scripts/mps_narrate.py --cos-input-key input/drama_ep1.mp4 --scene short-drama` + `mps_subtitle.py --cos-input-key input/drama_ep1.mp4 --translate en`
+   → `python3 scripts/mps_narrate.py --cos-input-key input/drama_ep1.mp4 --scene short-drama` + `mps_subtitle.py --cos-input-key input/drama_ep1.mp4 --translate en`
 7. AI narration dry-run, short-drama video with subtitles.
-   → `python scripts/mps_narrate.py --url <URL> --scene short-drama --dry-run`
+   → `python3 scripts/mps_narrate.py --url <URL> --scene short-drama --dry-run`
 
 ---
 
@@ -411,19 +411,19 @@
 **Typical scenarios**:
 
 1. Run picture-quality QC on the video — check for blur or screen artifacts.
-   → `python scripts/mps_qualitycontrol.py --url <URL> --definition 60`
+   → `python3 scripts/mps_qualitycontrol.py --url <URL> --definition 60`
 2. Detect this video's playback compatibility and check for stutter.
-   → `python scripts/mps_qualitycontrol.py --url <URL> --definition 70`
+   → `python3 scripts/mps_qualitycontrol.py --url <URL> --definition 70`
 3. Run audio QC on this audio file.
-   → `python scripts/mps_qualitycontrol.py --url <URL> --definition 50`
+   → `python3 scripts/mps_qualitycontrol.py --url <URL> --definition 50`
 4. Check the video's picture quality, no wait.
-   → `python scripts/mps_qualitycontrol.py --cos-input-key input/video_check.mp4 --no-wait`
+   → `python3 scripts/mps_qualitycontrol.py --cos-input-key input/video_check.mp4 --no-wait`
 5. Video picture-quality detection — check for visual damage, no wait.
-   → `python scripts/mps_qualitycontrol.py --cos-input-key input/damaged.mp4 --definition 60 --no-wait`
+   → `python3 scripts/mps_qualitycontrol.py --cos-input-key input/damaged.mp4 --definition 60 --no-wait`
 6. This batch of videos must pass QC before being ingested into the official media library.
-   → `python scripts/mps_qualitycontrol.py --cos-input-key input/batch/ --definition 60`
+   → `python3 scripts/mps_qualitycontrol.py --cos-input-key input/batch/ --definition 60`
 7. The audio track looks problematic — please run audio QC to check for sustained silence, clipping, or abnormal bitrate.
-   → `python scripts/mps_qualitycontrol.py --url <URL> --definition 50`
+   → `python3 scripts/mps_qualitycontrol.py --url <URL> --definition 50`
 
 ---
 
@@ -434,19 +434,19 @@
 **Typical scenarios**:
 
 1. Query my MPS usage statistics for the last 30 days.
-   → `python scripts/mps_usage.py --days 30`
+   → `python3 scripts/mps_usage.py --days 30`
 2. Query MPS usage for January 2026.
-   → `python scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31`
+   → `python3 scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31`
 3. Query usage statistics for transcoding and quality enhancement, last 7 days.
-   → `python scripts/mps_usage.py --type Transcode Enhance --days 7`
+   → `python3 scripts/mps_usage.py --type Transcode Enhance --days 7`
 4. Query usage of all MPS types, last 30 days.
-   → `python scripts/mps_usage.py --all-types --days 30`
+   → `python3 scripts/mps_usage.py --all-types --days 30`
 5. Check whether MPS total call volume had any abnormal spikes last week.
-   → `python scripts/mps_usage.py --days 7`
+   → `python3 scripts/mps_usage.py --days 7`
 6. Query AIGC usage and image-processing usage, last 7 days.
-   → `python scripts/mps_usage.py --type AIGC ImageProcess --days 7`
+   → `python3 scripts/mps_usage.py --type AIGC ImageProcess --days 7`
 7. Query AI quality-control usage, last 30 days.
-   → `python scripts/mps_usage.py --type AiQualityControl --days 30`
+   → `python3 scripts/mps_usage.py --type AiQualityControl --days 30`
 
 ---
 
@@ -455,49 +455,49 @@
 ### 18.1 Upload / Download / List (`mps_cos_upload.py` / `mps_cos_download.py` / `mps_cos_list.py`)
 
 1. Upload the local file `/home/user/video.mp4` to COS.
-   → `python scripts/mps_cos_upload.py --local-file /home/user/video.mp4`
+   → `python3 scripts/mps_cos_upload.py --local-file /home/user/video.mp4`
 2. Download the file `output/result.mp4` on COS to local `/tmp/result.mp4`.
-   → `python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file /tmp/result.mp4`
+   → `python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file /tmp/result.mp4`
 3. List all files under the `input/` directory in the COS bucket.
-   → `python scripts/mps_cos_list.py input/`
+   → `python3 scripts/mps_cos_list.py input/`
 4. List all `.mp4` files on COS.
-   → `python scripts/mps_cos_list.py .mp4`
+   → `python3 scripts/mps_cos_list.py .mp4`
 5. List all files under `output/` on COS, showing file URLs.
-   → `python scripts/mps_cos_list.py output/ --show-url`
+   → `python3 scripts/mps_cos_list.py output/ --show-url`
 6. Batch-upload all videos under the local `videos/` directory to the COS path `batch/`.
-   → `python scripts/mps_cos_upload.py --local-file videos/ --cos-input-key batch/`
+   → `python3 scripts/mps_cos_upload.py --local-file videos/ --cos-input-key batch/`
 
 ### 18.2 Task Status Query (`mps_get_video_task.py` / `mps_get_image_task.py`)
 
 1. Query video-processing task status. Task ID: `2600011633-WorkflowTask-abc123`.
-   → `python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-abc123`
+   → `python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-abc123`
 2. Query image-processing task status. Task ID: `2600011633-ImageTask-xyz789`.
-   → `python scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-xyz789`
+   → `python3 scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-xyz789`
 3. I submitted this transcoding task with `--no-wait` — please poll for the final result.
-   → `python scripts/mps_get_video_task.py --task-id <TaskId>`
+   → `python3 scripts/mps_get_video_task.py --task-id <TaskId>`
 4. Query the status of a try-on task (try-on tasks use the image-task query API).
-   → `python scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-tryon001`
+   → `python3 scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-tryon001`
 5. Query the status of a background-fusion task (do NOT use the video-task query API).
-   → `python scripts/mps_get_image_task.py --task-id 2600007696-WorkflowTask-abc123`
+   → `python3 scripts/mps_get_image_task.py --task-id 2600007696-WorkflowTask-abc123`
 6. Get image-task details in JSON format.
-   → `python scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-img001 --json`
+   → `python3 scripts/mps_get_image_task.py --task-id 2600011633-ImageTask-img001 --json`
 7. Query AI-narration task status.
-   → `python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-narrate001`
+   → `python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-narrate001`
 
 ### 18.3 Environment-Variable Check (`mps_load_env.py`)
 
 1. Check whether the environment-variable configuration is correct.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 2. I rotated to a new key set — verify the current configuration can call MPS normally.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 3. Check whether the COS configuration is complete before running a task.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 4. New machine deployment is done — check that the MPS environment variables are in effect.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 5. Suspect SecretKey has expired — please confirm with the env-check script.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 6. Verify that the MPS configuration is correct.
-   → `python scripts/mps_load_env.py --check-only`
+   → `python3 scripts/mps_load_env.py --check-only`
 
 ---
 
@@ -508,19 +508,19 @@
 **Typical scenarios**:
 
 1. Compare the before/after enhancement effect of the video. Original: `<URL>`, enhanced: `<URL>`.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <enhanced URL>`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <enhanced URL>`
 2. Generate a before/after comparison page for image super-resolution. Original: `<URL>`, processed: `<URL>`.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <processed URL> --type image`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <processed URL> --type image`
 3. I want to see the watermark-removal effect — make a before/after comparison.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <processed URL> --title "Watermark-removal comparison"`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <processed URL> --title "Watermark-removal comparison"`
 4. Quality enhancement is done — generate an HTML before/after comparison page with slider support.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <enhanced URL>`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <enhanced URL>`
 5. Image super-resolution is done — make a side-by-side comparison page of the original and the upscaled image.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <upscaled URL> --type image`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <upscaled URL> --type image`
 6. Before/after effect of subtitle removal — generate an HTML comparison file.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <subtitle-removed URL>`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <subtitle-removed URL>`
 7. Two enhancement templates were applied to the same video (real-person vs. anime) — generate a 3-way comparison page.
-   → `python scripts/mps_gen_compare.py --original <original URL> --enhanced <real-person enhanced URL> --enhanced2 <anime enhanced URL>`
+   → `python3 scripts/mps_gen_compare.py --original <original URL> --enhanced <real-person enhanced URL> --enhanced2 <anime enhanced URL>`
 
 ---
 

@@ -23,11 +23,11 @@ Use this step only for explicit user requests to add a specific suggested event 
 8. Use the calendar's default reminders unless the user asks otherwise.
 9. Do not create recurring events unless the user asks.
 10. Report the created event title, date/time, and location/link back to the user.
-11. After the event is created, read or check `skills/event-scanner/assets/sources.md` and `skills/event-scanner/assets/taste-profile.md`.
+11. After the event is created, read or check `<skill_dir>/assets/sources.md` and `<skill_dir>/assets/taste-profile.md`.
 12. Always send a chat-only `Post-add learning check`.
 13. In that check, include source and taste-profile suggestions only when the evidence is strong:
-    - Suggest adding a new primary source only if the added event came from a source not covered in `skills/event-scanner/assets/sources.md`.
-    - Suggest adding a new taste-profile interest only if the added event reveals a recurring preference not already covered in `skills/event-scanner/assets/taste-profile.md`.
+    - Suggest adding a new primary source only if the added event came from a source not covered in `<skill_dir>/assets/sources.md`.
+    - Suggest adding a new taste-profile interest only if the added event reveals a recurring preference not already covered in `<skill_dir>/assets/taste-profile.md`.
 14. If neither a source nor taste-profile update should be suggested, write exactly: `Post-add learning check: no new suggestions`.
 15. Do not justify the absence of suggestions.
 16. Do not write these suggestions to run notes or reference files unless the user explicitly approves the edit.

@@ -1,6 +1,7 @@
 ---
-name: event-scanner
+name: local-event-scanner
 description: Use when the user wants to discover real-world events and gatherings in a specific city, area, or region, within an upcoming date range. Also triggers when the user asks to scan, shortlist, or find events matched to their interests. Does not handle meeting planning.
+version: 1.1.4
 metadata:
   short-description: Find and shortlist events for the user
 ---
@@ -11,17 +12,18 @@ Use this skill when the user wants event suggestions or asks what's happening in
 
 ## Procedure
 
-1. Follow the boot sequence in `skills/event-scanner/references/operating-model.md`.
-2. Create a new empty run note in `skills/event-scanner/runs/` before discovery starts.
-3. Add `event-scanner` to the run note's `Skills used` list immediately.
+0. Locate the root directory of this skill in the workspace (which may be `.agents/skills/local-event-scanner/`, `skills/local-event-scanner/`, or another path containing this `SKILL.md`). In this document, we refer to this path as `<skill_dir>`.
+1. Follow the boot sequence in `<skill_dir>/references/operating-model.md`.
+2. Create a new empty run note in `<skill_dir>/runs/` before discovery starts.
+3. Add `local-event-scanner` to the run note's `Skills used` list immediately.
 4. Apply these pipeline steps in order:
-   - `skills/event-scanner/steps/step-1-discovery.md`
-   - `skills/event-scanner/steps/step-2-scoring.md`
-   - `skills/event-scanner/steps/step-3-calendar-review.md`
-   - `skills/event-scanner/steps/step-4-shortlist-review.md`
+   - `<skill_dir>/steps/step-1-discovery.md`
+   - `<skill_dir>/steps/step-2-scoring.md`
+   - `<skill_dir>/steps/step-3-calendar-review.md`
+   - `<skill_dir>/steps/step-4-shortlist-review.md`
 5. Produce the ranked shortlist.
 
-For explicit requests to add a specific suggested event to Google Calendar, follow `skills/event-scanner/steps/step-5-add-to-calendar.md`.
+For explicit requests to add a specific suggested event to Google Calendar, follow `<skill_dir>/steps/step-5-add-to-calendar.md`.
 
 Read and write only within this skill's folder.
 
@@ -65,4 +67,4 @@ Pass this run note path through the rest of the scan. Do not wait until the end 
 
 ## Output
 
-When invoked, explicitly say: "[Using event-scanner skill]"
+When invoked, explicitly say: "[Using local-event-scanner skill]"

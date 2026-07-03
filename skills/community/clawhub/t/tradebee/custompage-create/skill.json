@@ -1,0 +1,118 @@
+{
+  "name": "custompage-create",
+  "description": "A custom page creation skill based on the Tradebee Website Builder Open API. It is used to create and publish a new custom page under a specified site language, with support for title, HTML content, and SEO fields.",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "custompage": {
+        "type": "object",
+        "description": "Required. Complete custom page payload for a new custom page. Treat this as the custom page that will actually be published.",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Required. Custom page title shown to users, up to 100 characters."
+          },
+          "content": {
+            "type": "string",
+            "description": "Required. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `custompage.content`. Do not guess, translate, normalize, shorten, or rename either `language` or `scene`. The fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO metadata for the custom page detail page.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact custom page creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact custom page payload to be created. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact custom page payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "custompage",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "custompage_id": {
+            "type": "integer",
+            "description": "Created custom page ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the created custom page. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "custompage_id",
+          "url"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

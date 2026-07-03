@@ -1,3 +1,9 @@
+## [1.35.3] - 2026-06-29
+
+### 修复
+- **[P0] context_loader 写作命题 fallback 导致双模板问题** — 砍掉 `_auto_generate_prompt()` 自动合成机制，改为 HARD-BLOCK。writing_prompt 缺失时不再自动从摘要+tone 合成 fallback，而是打印清晰错误+sys.exit(1)，强制从 plan-chapter 补全。同步修复 `execution_standards.md` 情绪示例缺 writing_prompt 的旧模板残留、`next-step` 输出误导性文案。
+- **根因**：context_loader 有 `_auto_generate_prompt()` 落点，让缺 writing_prompt 的子结构仍能通过 context_loader 进入写作阶段，形成"plan-chapter 拦、context_loader 放水"的软硬两套标准。
+
 ## [1.35.2] - 2026-06-29
 
 ### 修复

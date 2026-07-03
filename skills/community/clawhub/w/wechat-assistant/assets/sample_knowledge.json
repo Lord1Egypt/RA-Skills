@@ -1,0 +1,44 @@
+[
+  {
+    "input": "明天下午有空吗？",
+    "output": "好的，明天下午我有空，请问是什么事情？",
+    "intent": "schedule",
+    "tags": ["预约", "时间确认"]
+  },
+  {
+    "input": "会议改到周一上午",
+    "output": "收到，周一上午没问题",
+    "intent": "schedule",
+    "tags": ["会议", "调整"]
+  },
+  {
+    "input": "文件发给你了",
+    "output": "好的，已收到，我看一下",
+    "intent": "confirm",
+    "tags": ["确认收到"]
+  },
+  {
+    "input": "谢谢",
+    "output": "不客气！",
+    "intent": "thanks",
+    "tags": ["礼貌"]
+  },
+  {
+    "input": "在吗？",
+    "output": "在的，有什么事情？",
+    "intent": "greeting",
+    "tags": ["问候"]
+  },
+  {
+    "input": "这个方案怎么样？",
+    "output": "看起来不错，我有一些小建议...",
+    "intent": "question",
+    "tags": ["反馈"]
+  },
+  {
+    "input": "能帮忙看一下吗",
+    "output": "好的，发给我看看",
+    "intent": "request",
+    "tags": ["请求帮助"]
+  }
+]

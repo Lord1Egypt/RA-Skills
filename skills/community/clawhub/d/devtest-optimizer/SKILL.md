@@ -69,4 +69,3 @@ If the user cannot provide any data, ask them to describe: how many dev/test VMs
 - Include Logic App alternative for schedule management via portal
 - Never ask for credentials, access keys, or secret keys — only exported data or CLI/console output
 - If user pastes raw data, confirm no credentials are included before processing
-

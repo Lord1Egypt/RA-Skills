@@ -23,6 +23,7 @@
 import { getSubgraphConfig } from './subgraph-store.js';
 import { CONFIG } from './config.js';
 import { buildRelayHeaders } from './relay-headers.js';
+import { relayFetch } from './relay.js';
 
 export interface SubgraphSearchFact {
   id: string;
@@ -56,7 +57,8 @@ async function gqlQuery<T>(
       overrides['Authorization'] = `Bearer ${authKeyHex}`;
     }
     const headers = buildRelayHeaders(overrides);
-    const response = await fetch(endpoint, {
+    const response = await relayFetch({
+      url: endpoint,
       method: 'POST',
       headers,
       body: JSON.stringify({ query, variables }),

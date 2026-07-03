@@ -17,7 +17,7 @@
             ┌────────────┼────────────┐
             ▼            ▼            ▼
     ┌──────────┐  ┌──────────┐  ┌──────────┐
-    │能力级json│  │能力级json│  │能力级json│  ← 原子单元
+    │能力级 json│  │能力级 json│  │能力级 json│  ← 原子单元
     └──────────┘  └──────────┘  └──────────┘
 ```
 
@@ -54,10 +54,10 @@
 {
   "id": "make_product_ppt_v1",
   "type": "capability",
-  "name": "制作产品介绍PPT",
+  "name": "制作产品介绍 PPT",
   "version": "1.0.0",
   "created_at": "2026-05-22",
-  "description": "从零制作一份产品介绍PPT的完整步骤，通用化版本",
+  "description": "从零制作一份产品介绍 PPT 的完整步骤，通用化版本",
   "generic_params": ["[产品名称]", "[核心参数]", "[截止时间]", "[目标格式]", "[目标受众]"],
   "steps": [
     {
@@ -74,7 +74,7 @@
     {
       "id": "s2",
       "name": "设计大纲",
-      "action": "根据资料设计PPT结构与章节",
+      "action": "根据资料设计 PPT 结构与章节",
       "parallel_group": null,
       "milestone": true,
       "dependency_heat": 9,
@@ -106,8 +106,8 @@
     },
     {
       "id": "s3c",
-      "name": "AI生成备选视觉方案",
-      "action": "用AI工具生成3个不同风格的视觉草稿供选择",
+      "name": "AI 生成备选视觉方案",
+      "action": "用 AI 工具生成3个不同风格的视觉草稿供选择",
       "parallel_group": "pg1",
       "milestone": false,
       "dependency_heat": 4,
@@ -117,7 +117,7 @@
     },
     {
       "id": "s4",
-      "name": "审核修改",
+      "name": "审核更新",
       "action": "检查内容准确性与视觉一致性",
       "parallel_group": null,
       "milestone": true,
@@ -126,7 +126,7 @@
     },
     {
       "id": "s5",
-      "name": "导出PPT",
+      "name": "导出 PPT",
       "action": "导出为[目标格式]",
       "parallel_group": null,
       "milestone": false,
@@ -180,17 +180,17 @@
 {
   "id": "rule_ppt_v1",
   "type": "rule",
-  "name": "PPT类任务规则",
+  "name": "PPT 类任务规则",
   "version": "1.0.0",
   "created_at": "2026-05-22",
-  "description": "统合所有PPT相关能力级json，提炼核心思考链",
+  "description": "统合所有 PPT 相关能力级 json，提炼核心思考链",
   "source_capability_count": 5,
   "capability_refs": [
-    { "id": "make_product_ppt_v1", "name": "制作产品介绍PPT" },
-    { "id": "make_tech_ppt_v1",    "name": "制作技术方案PPT" },
+    { "id": "make_product_ppt_v1", "name": "制作产品介绍 PPT" },
+    { "id": "make_tech_ppt_v1",    "name": "制作技术方案 PPT" },
     { "id": "design_slide_v1",     "name": "设计幻灯片" },
-    { "id": "export_ppt_v1",       "name": "导出PPT" },
-    { "id": "review_ppt_v1",       "name": "审核PPT" }
+    { "id": "export_ppt_v1",       "name": "导出 PPT" },
+    { "id": "review_ppt_v1",       "name": "审核 PPT" }
   ],
   "condensed_steps": [
     {
@@ -245,7 +245,7 @@
 | `name` | ✅ | 步骤名称 |
 | `milestone` | ✅ | 是否为里程碑 |
 | `parallel_group` | ✅ | 并行组标识，`null` 表示串行 |
-| `maps_to` | ✅ | 映射到哪些能力级的具体步骤（格式：`{能力级id}.{步骤id}`） |
+| `maps_to` | ✅ | 映射到哪些能力级的具体步骤（格式：`{能力级 id}.{步骤 id}`） |
 | `load_capability_if_detail_needed` | ✅ | 需要细节时加载的能力级 json id |
 
 ---

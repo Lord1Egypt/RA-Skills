@@ -67,7 +67,7 @@
 # ===== 换脸 =====
 
 # 换脸模式（--src-faces 和 --dst-faces 一一对应，自动等待完成）
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src1.png https://example.com/src2.png \
     --dst-faces https://example.com/dst1.jpg https://example.com/dst2.jpg
@@ -75,30 +75,30 @@ python scripts/mps_vremake.py --url https://example.com/video.mp4 \
 # ===== 换人 =====
 
 # 换人模式（正面全身图）
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapCharacter \
     --src-character https://example.com/src_fullbody.png \
     --dst-character https://example.com/dst_fullbody.png
 
 # ===== 视频交错（AB） =====
 
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode AB
 
 # ===== 通用 =====
 
 # 异步提交（加 --no-wait 只提交不等待）
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src.png \
     --dst-faces https://example.com/dst.png \
     --no-wait
 
 # 查询已有任务结果
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 
 # dry-run 预览
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src.png \
     --dst-faces https://example.com/dst.png \

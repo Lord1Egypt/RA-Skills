@@ -1,5 +1,5 @@
 name: driver_license_ocr
-version: 1.0.0
+version: 1.0.1
 description: 支持识别驾驶证主/副页，从主页提取姓名、证号、准驾车型、初次领证日期及有效期等。从副页提取驾驶证副页，提取档案编号、姓名、证号、以及记录信息。
 author: SCNet
 license: MIT

@@ -2,36 +2,45 @@
 
 ## 调用规范
 
-- **请求地址**：`https://tool-gateway.linkfox.com/sellersprite/productSearch`
+- **请求地址**：`${LINKFOX_TOOL_GATEWAY}/sellersprite/productSearch`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
 
 ## 请求参数
 
-POST Body（JSON）：
+POST Body（JSON）。以下字段与工具网关当前登记的「卖家精灵-选产品」入参 schema 一致（同步日期 2026-04-30）。
+
+### 会话 / 网关（可选）
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| chatId | string | 否 | 对话 id，`maxLength` 1000 |
+| uid | string | 否 | 用户 id，`maxLength` 1000 |
+| requestId | string | 否 | 推送 id，`maxLength` 1000 |
+| teamId | string | 否 | 团队 id，`maxLength` 1000 |
 
 ### 搜索与关键词
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| keyword | string | 否 | 搜索关键词；请尽量翻译为对应国家的语言，比如美国用英语关键词，德国用德语关键词等 |
+| keyword | string | 否 | 搜索关键词；请尽量翻译为对应国家的语言，比如美国用英语关键词，德国用德语关键词等；`maxLength` 10240 |
 | matchType | integer | 否 | 匹配方式：1=词组匹配（默认），2=模糊匹配，3=精准匹配 |
-| excludeKeywords | string | 否 | 排除关键词 |
-| marketplace | string | 否 | 市场站点代码，默认 `US`。可选值：US、UK、DE、FR、JP、CA、IT、ES、MX、IN |
+| excludeKeywords | string | 否 | 排除关键词；`maxLength` 10240 |
+| marketplace | string | 否 | 市场站点代码，默认 `US`。**仅允许** `US`、`UK`、`DE`、`FR`、`JP`、`CA`、`IT`、`ES`、`MX`、`IN`（须符合该枚举，不含 AU、TR 等未列出站点） |
 
 ### 类目筛选
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nodeLabel | string | 否 | 亚马逊类目名称 |
-| nodeIdPath | string | 否 | 亚马逊类目节点ID |
-| filterSubNode | boolean | 否 | 是否筛选子类目节点；仅在 nodeLabel 或 nodeIdPath 有值时生效 |
+| nodeLabel | string | 否 | 亚马逊类目名称；`maxLength` 1000 |
+| nodeIdPath | string | 否 | 亚马逊类目节点 ID；`maxLength` 1000 |
+| filterSubNode | boolean | 否 | 是否筛选子类目节点；仅在 nodeLabel 或 nodeIdPath 有值时生效；传 JSON 布尔值 `true` / `false` |
 
 ### 数据快照
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| dataSnapshotMonth | string | 否 | 商品数据快照年月，格式 `yyyyMM`（如 `202412` 表示2024年12月的数据快照），或 `nearly` 表示最近30天实时数据。默认值：`nearly`。用于历史分析和同期对比，仅支持已存在的历史快照，不支持未来日期 |
+| dataSnapshotMonth | string | 否 | 商品数据快照年月，格式 `yyyyMM`（如 `202412` 表示2024年12月的数据快照），或 `nearly` 表示最近30天实时数据。默认值：`nearly`。用于历史分析和同期对比，仅支持已存在的历史快照，不支持未来日期；`maxLength` 1000 |
 
 ### 价格与利润
 
@@ -52,6 +61,8 @@ POST Body（JSON）：
 |------|------|------|------|
 | minUnits | integer | 否 | 最低月销量（>= 0） |
 | maxUnits | integer | 否 | 最高月销量（>= 0） |
+| minAmzUnit | integer | 否 | 最低子体近 30 日销量（**仅** `dataSnapshotMonth` 为「近 30 日」类查询时支持）；`minimum` 0 |
+| maxAmzUnit | integer | 否 | 最高子体近 30 日销量（**仅**近 30 日查询支持）；`minimum` 0 |
 | minUnitsGrowthRate | number | 否 | 月销量最低增长率，单位 % |
 | maxUnitsGrowthRate | number | 否 | 月销量最高增长率，单位 % |
 | minBsr | integer | 否 | 大类BSR最低排名 |
@@ -96,39 +107,30 @@ POST Body（JSON）：
 | badgeBestSeller | string | 否 | Best Seller 标识筛选：`Y`、`N` 或留空（全部） |
 | badgeAmazonsChoice | string | 否 | Amazon's Choice 标识筛选：`Y`、`N` 或留空（全部） |
 | badgeNewRelease | string | 否 | New Release 标识筛选：`Y`、`N` 或留空（全部） |
-| fulfillment | string | 否 | 配送方式：AMZ、FBA、FBM，多条件用逗号隔开 |
+| fulfillment | string | 否 | 配送方式：单选 `AMZ` / `FBA` / `FBM`，或多选如 `AMZ,FBA`、`FBA,FBM`、`AMZ,FBA,FBM` 等；多条件用英文逗号；留空表示不限制 |
 | showVariation | string | 否 | 是否查询变体：`Y` 或 `N`，默认 `N` |
 | hideUnlistedProduct | boolean | 否 | 是否隐藏已下架商品，默认 `true` |
-| listedWithinLastMonths | integer | 否 | 上架时间范围（月），仅支持枚举值：1、3、6、12、24 |
+| listedWithinLastMonths | integer | 否 | 上架时间范围（月），**仅**允许：`1`、`3`、`6`、`12`、`24`（与枚举含义一致，勿传其他整数） |
 
 ### 卖家与品牌
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | sellerNation | string | 否 | 卖家所属地代码（如 US、CN、HK），多条件用逗号隔开，默认不限制 |
-| includeSellers | string | 否 | 包含卖家 |
-| excludeSellers | string | 否 | 排除卖家 |
-| includeBrands | string | 否 | 包含品牌 |
-| excludeBrands | string | 否 | 排除品牌 |
+| includeSellers | string | 否 | 包含卖家；`maxLength` 10240 |
+| excludeSellers | string | 否 | 排除卖家；`maxLength` 10240 |
+| includeBrands | string | 否 | 包含品牌；`maxLength` 10240 |
+| excludeBrands | string | 否 | 排除品牌；`maxLength` 10240 |
 
 ### 排序与分页
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| order | object | 否 | 排序配置，包含 `field` 和 `desc` 两个属性 |
-| order.field | string | 否 | 排序字段：total_units（月销量）、total_amount（月销售额）、bsr_rank（BSR排名）、price（价格）、rating（评分）、reviews（评分数）、profit（毛利率）、reviews_rate（留评率）、available_date（上架时间）、questions（Q&A）、total_units_growth（月销量增长率）、total_amount_growth（月销售额增长率）、reviews_increasement（月新增评分数）、bsr_rank_cv（近7天BSR增长数）、bsr_rank_cr（近7天BSR增长率）、amz_unit（子体销量）。默认：`total_units` |
-| order.desc | string | 否 | `true` 为降序，`false` 为升序，默认 `true` |
+| order | object | 否 | 排序配置；若传入，建议同时提供 `field` 与 `desc`（子 schema 中二者为 required） |
+| order.field | string | 否 | 排序字段：`total_units`（月销量）、`total_amount`（月销售额）、`bsr_rank`、`price`、`rating`、`reviews`、`profit`、`reviews_rate`、`available_date`、`questions`、`total_units_growth`、`total_amount_growth`、`reviews_increasement`、`bsr_rank_cv`、`bsr_rank_cr`、`amz_unit`（子体销量）。默认 `total_units`。传空字符串 `""` 表示不按上述业务字段排序（查询全部排序语义由服务端处理） |
+| order.desc | string | 否 | `"true"` 降序，`"false"` 升序；默认 `"true"`；`maxLength` 1000 |
 | page | integer | 否 | 页码，从1开始，默认 1 |
 | size | integer | 否 | 每页条数（10-100），默认 20 |
-
-### 系统字段（可忽略）
-
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| uid | string | 用户ID，由系统自动处理 |
-| chatId | string | 对话ID，由系统自动处理 |
-| requestId | string | 推送ID，由系统自动处理 |
-| teamId | string | 团队ID，由系统自动处理 |
 
 ## 响应结构
 
@@ -156,7 +158,7 @@ POST Body（JSON）：
 | imageUrl | string | 商品图片URL |
 | price | number | 当前价格 |
 | averagePrice | number | 平均价格 |
-| primePrice | number | Prime价格 |
+| primePrice | number | Prime价格，-1表示没有 |
 | currency | string | 币种 |
 | monthlySalesUnits | integer | 月销量 |
 | monthlySalesRevenue | number | 月销售额 |
@@ -188,7 +190,7 @@ POST Body（JSON）：
 | dimensionsType | string | 尺寸类型 |
 | packageDimensionType | string | 包装尺寸类型 |
 | listingQualityScore | number | Listing质量得分 |
-| deliveryPrice | number | 卖家运费 |
+| deliveryPrice | number | 卖家运费，-1表示没有 |
 | nodeLabelPath | string | 类目路径 |
 | nodeIdPath | string | 节点ID路径 |
 | nodeId | integer | 节点ID |
@@ -268,7 +270,7 @@ POST Body（JSON）：
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析 `products` 等业务字段 |
-| 401 | 认证失败 | 检查 `Authorization` Header 是否正确传入 API Key |
+| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key；API Key 申请方式请参考上述[调用规范](#调用规范)下的认证方式。|
 | 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
 
 错误响应示例：

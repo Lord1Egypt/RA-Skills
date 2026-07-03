@@ -1,28 +1,75 @@
 ---
 name: lingzao
-description: Use Lingzao creator-content tools for Xiaohongshu/XHS, Douyin, and WeChat official-account public content, including note search, creator search, profile lookup, recent posts, deep profile copy/subtitle analysis, note/article detail, post comments, article stats, related articles, short-video copy extraction, and prompt-based creator image generation.
+description: 灵造是给 WorkBuddy、OpenClaw、Codex 等 Agent 使用的小红书/抖音创作者研究与自媒体运营 Skill。安装免费，可先做选题、标题、封面、账号诊断、发布检查和复盘；查询公开内容、评论、短视频文案、公众号文章数据或生成图片时需要灵造积分和 API Key。
 ---
 
-# Lingzao
+# 灵造：小红书/抖音创作者研究与自媒体运营 Skill
 
-Lingzao helps agents research public creator content from Xiaohongshu, Douyin,
-and WeChat official-account articles.
+灵造是一个主 Skill，不需要拆成标题、封面、账号诊断、图片生成等多个 Skill。
+安装后，WorkBuddy、OpenClaw、Codex 等 Agent 会先把你的问题路由到合适的
+创作者运营 playbook；只有当你需要查询公开内容、读取评论、提取短视频文案、
+查看公众号文章数据或生成图片时，才需要灵造积分和 API Key。
 
-Use this skill when the user asks to:
+## 从这里开始
 
-- Search Xiaohongshu notes by keyword.
-- Get Xiaohongshu search suggestions or popular recommendations.
-- Search public creators by keyword.
-- Look up a creator profile.
-- Read a creator's recent public posts.
-- Get recent post copy, subtitles, covers, metrics, and commercial signals from a creator profile.
-- Get details for a Xiaohongshu or Douyin post.
-- Get top-level public comments for one Xiaohongshu or Douyin post.
-- Get one WeChat official-account article's public detail and text.
-- Get public metrics for one WeChat official-account article.
-- Get related public WeChat official-account articles.
-- Extract spoken copy or transcript from a public short-video link.
-- Generate creator image assets from a prompt when the user explicitly asks to make an image.
+| 你现在想做 | 可以直接这样问 Agent |
+| --- | --- |
+| 找内容方向 | “用灵造帮我围绕这个关键词做小红书/抖音选题，给我 10 个可发方向。” |
+| 找对标账号 | “帮我找这个赛道值得学习的对标账号，并说明每个账号适合学什么。” |
+| 拆一条笔记或视频 | “分析这条内容为什么有效，拆成标题、封面、结构、评论需求和可复用模板。” |
+| 改标题和封面 | “基于我的草稿，给我 3 个最强标题和 5 个小红书封面方向。” |
+| 做发布前检查 | “发布前帮我检查标题、封面、前 3 行、关键词和用户点击理由。” |
+| 做发布后复盘 | “根据这条内容的数据和评论，帮我判断下次要调整什么。” |
+| 做图片素材 | “先帮我设计封面/配图方向；如果需要生成图片，再确认积分后调用图片生成。” |
+| 保存长结果 | “把这份分析整理成 Word、网页预览或知识库 Markdown 版本。” |
+
+## 免费能做什么
+
+不配置 API Key 时，灵造仍然可以作为创作者运营路由和 playbook 使用。适合：
+
+- 判断账号定位、赛道难度、内容主线和商业路径。
+- 设计小红书标题、封面方向、发布关键词和图文结构。
+- 改写草稿、拆解用户已经提供的内容材料、做发布前检查。
+- 根据用户提供的数据截图或复盘信息，输出下一步实验建议。
+- 把长分析整理成 Word、网页预览或知识库 Markdown 结构。
+
+## 什么时候需要 API Key 和积分
+
+当 Agent 需要让灵造服务实际查询或生成内容时，需要到
+<https://lingzao.atian.vip> 配置积分和 API Key，包括：
+
+- 搜索小红书/抖音公开笔记和公开创作者；获取小红书关键词建议。
+- 查看创作者主页、近期公开内容、主页深度分析和对标账号证据。
+- 打开小红书/抖音单条公开内容详情，读取一级公开评论。
+- 打开公众号公开文章详情，查看公开文章数据，扩展相关文章。
+- 提取公开短视频口播文案、字幕或 transcript。
+- 根据提示词和参考图生成创作者封面、配图或海报素材。
+
+每次付费查询前，先确认任务范围和预计积分消耗。不要把多个深度查询、评论翻页、
+批量账号分析或图片生成静默合并成一次请求。
+
+## 常见问题
+
+**我没有 API Key，还能用吗？**
+可以。先用灵造做选题判断、标题封面、账号诊断、草稿修改、发布检查和复盘。
+等需要查公开内容、评论、短视频文案、公众号文章数据或生成图片时，再配置 API Key。
+
+**为什么 SkillHub 里显示需要 API Key？**
+因为灵造包含付费公开内容查询和图片生成能力。安装主 Skill 免费，但深度查询和
+生成动作需要积分，这是为了让 Agent 明确付费边界。
+
+**WorkBuddy 用户应该怎么用？**
+优先安装这一个 `lingzao` 主 Skill。装好后直接把任务说给 WorkBuddy，例如
+“帮我找对标账号”“帮我拆这条笔记”“帮我做发布前检查”。需要查公开数据时，
+再按灵造网页教程配置 API Key。
+
+**灵造能保证爆款、涨粉或变现吗？**
+不能。灵造只做公开内容研究、运营判断和工作流辅助。输出用于帮助你做判断和
+复盘，不是保证结果，也不能用于复制他人内容。
+
+**网络或服务失败怎么办？**
+先保留当前问题和链接，不要重复扩大查询范围。检查 `doctor`、API Key、余额和
+网络状态；图片生成或短视频文案提取这类异步任务可能需要等待轮询完成。
 
 ## Agent Playbooks
 
@@ -52,6 +99,13 @@ Use these playbooks when relevant:
   into publishable Xiaohongshu content packages with selected references,
   topic angles, titles, cover copy, graphic-note structure, spoken scripts,
   Vlog storyboards, body direction, and publishing keywords.
+- `brand-brief-to-content-workflow.md`: turn an advertising, brand cooperation,
+  campaign, product, or content Brief into creator content. Use it when users
+  say "拆 Brief", "品牌 Brief 发来了", "这个商单怎么写", or "Brief 进去后帮我出
+  选题/标题/封面/正文". It extracts brand goals, required points, forbidden
+  claims, audience, creator fit, and deliverables, then searches recent public
+  references when confirmed, chooses content angles, produces Xiaohongshu
+  graphic-note/spoken/Vlog packages, and checks brand-delivery/compliance risk.
 - `mother-content-cross-platform-distribution.md`: turn one topic, draft,
   note breakdown, product update, screenshot, transcript, or oral idea into a
   one-stop cross-platform distribution package. When users say "一条龙",
@@ -119,7 +173,9 @@ Use these playbooks when relevant:
 - `comparable-account-breakdown-report-template.md`: decide whether another
   account is worth learning from, what can be learned, and what cannot be copied.
 - `draft-rewrite-and-benchmark-workflow.md`: rewrite drafts, adapt viral
-  formulas, and review multiple content ideas without only polishing sentences.
+  formulas, extract benchmark-copy templates into structure/style/slot
+  frameworks, fill the user's own content into those frameworks, and review
+  multiple content ideas without only polishing sentences.
 - `reference-image-graphic-note-workflow.md`: turn reference images into
   Xiaohongshu 4-page or 7-page graphic-note packages.
 - `visual-generation-and-cover-workflow.md`: route Xiaohongshu covers, graphic

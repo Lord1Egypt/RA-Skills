@@ -77,51 +77,51 @@ Applicable scenarios: image captioning, OCR text extraction, visual Q&A, product
 
 ```bash
 # Simplest usage: describe image content
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "Describe the content of this image"
 
 # OCR text extraction
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/document.jpg" \
     --prompt "Extract all text from the image"
 
 # Visual question answering
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --local-file /tmp/product.jpg \
     --prompt "What are the brand and price of this product?"
 
 # Specify model by definition
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "Describe the image content" \
     --definition 10004
 
 # Specify model by name
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "Describe the image content" \
     --model-name "Google/gemini-2.5-flash"
 
 # Adjust sampling parameters
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/creative.jpg" \
     --prompt "Describe this image in poetic language" \
     --temperature 0.8 --top-p 0.9
 
 # COS path input
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --cos-input-key "/input/receipt.jpg" \
     --prompt "Extract the amount and date from this invoice"
 
 # Submit task only without waiting for result
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "Describe the image content" \
     --no-wait
 
 # Manually query image comprehension task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

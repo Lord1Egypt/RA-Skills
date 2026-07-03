@@ -1,0 +1,96 @@
+{
+  "name": "faq-read",
+  "description": "A FAQ list retrieval skill based on the Tradebee Website Builder Open API. It is used to retrieve FAQ data configured on the website. It supports filtering by language, exact FAQ ID, FAQ group ID, field selection, and paginated retrieval.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. It must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "faq_id": {
+        "type": "integer",
+        "description": "Optional. Exact FAQ filter. Omit this field to read all FAQs. If provided, it must be one positive integer (`> 0`). `faq_id` and `faqgroup_id` are mutually exclusive."
+      },
+      "faqgroup_id": {
+        "type": "integer",
+        "description": "Optional. FAQ group filter. Omit this field to read FAQs from all FAQ groups. If provided, it must be one positive integer (`> 0`) selected from `faqgroup-read`. `faq_id` and `faqgroup_id` are mutually exclusive."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. If omitted, all supported FAQ fields are returned.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10."
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    },
+    "required": [
+      "language"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "faqgroup_id": {
+      "skill": "faqgroup-read",
+      "field": "list[].faqgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select a FAQ group ID from `faqgroup-read` under the same language."
+    }
+  }
+}

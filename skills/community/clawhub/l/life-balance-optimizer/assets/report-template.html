@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人生轮盘 · 生活平衡报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+  --accent: #6366f1;
+  --accent-light: #eef2ff;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --dim-1: #6366f1; --dim-2: #8b5cf6; --dim-3: #ec4899; --dim-4: #f43f5e;
+  --dim-5: #f97316; --dim-6: #eab308; --dim-7: #22c55e; --dim-8: #06b6d4;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px; max-width: 960px; margin: 0 auto; }
+
+.header { text-align: center; padding: 32px 0; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header .date { color: var(--text-secondary); font-size: 14px; }
+.header .score-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light); color: var(--accent); padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; margin-top: 12px; }
+
+.card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 20px; border: 1px solid var(--border); }
+.card h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.card h2 .icon { font-size: 20px; }
+
+.chart-container { max-width: 420px; margin: 0 auto; }
+
+.dimensions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.dim-card { background: var(--card-bg); border-radius: 12px; padding: 16px; border: 1px solid var(--border); border-left-width: 4px; transition: box-shadow .2s; }
+.dim-card:hover { box-shadow: var(--shadow); }
+.dim-card .dim-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.dim-card .dim-score { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.dim-card .dim-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.dim-card .dim-bar-fill { height: 100%; border-radius: 3px; transition: width .5s ease; }
+
+.gap-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .gap-section { grid-template-columns: 1fr; } }
+
+.gap-list { list-style: none; }
+.gap-list li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 8px; }
+.gap-list li:last-child { border-bottom: none; }
+.gap-list .rank { font-weight: 700; font-size: 14px; min-width: 24px; }
+
+.priority-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.p0 { background: #fef2f2; color: #dc2626; }
+.p1 { background: #fffbeb; color: #d97706; }
+.p2 { background: #f0fdf4; color: #16a34a; }
+
+.action-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.action-item:last-child { border-bottom: none; }
+.action-item .dim-color { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.action-item .action-content { flex: 1; }
+.action-item .action-title { font-weight: 600; font-size: 14px; }
+.action-item .action-desc { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+
+.burnout-signals { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.burnout-signal { padding: 12px; border-radius: 10px; border: 1px solid var(--border); text-align: center; font-size: 13px; }
+.burnout-signal.triggered { background: #fef2f2; border-color: #fecaca; color: #dc2626; font-weight: 600; }
+.burnout-signal.safe { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
+
+.reflection-block { margin-bottom: 16px; }
+.reflection-block .q { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--accent); }
+.reflection-block .a { color: var(--text-secondary); font-size: 14px; padding-left: 12px; border-left: 3px solid var(--accent-light); }
+
+.history-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.history-table th, .history-table td { padding: 8px 12px; text-align: center; border-bottom: 1px solid var(--border); }
+.history-table th { background: #f8fafc; font-weight: 600; font-size: 12px; color: var(--text-secondary); }
+.history-table .trend-up { color: var(--success); }
+.history-table .trend-down { color: var(--danger); }
+
+.footer { text-align: center; padding: 32px; color: var(--text-secondary); font-size: 13px; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .card { box-shadow: none; break-inside: avoid; }
+}
+
+/* ====== INTERACTIVE INPUT MODE ====== */
+.input-mode { display: none; }
+.input-mode.active { display: block; }
+.input-group { margin-bottom: 16px; }
+.input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.input-group .slider-row { display: flex; align-items: center; gap: 12px; }
+.input-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.input-group .slider-val { font-weight: 700; font-size: 18px; min-width: 28px; text-align: center; }
+.input-group textarea { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px; font: inherit; font-size: 14px; resize: vertical; min-height: 60px; }
+.btn { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+.btn:hover { opacity: .9; }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-row { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<!-- 报告头部 -->
+<div class="header">
+  <h1>🌟 人生轮盘 · 生活平衡报告</h1>
+  <div class="date">{{REPORT_DATE}}</div>
+  <div class="score-badge">综合平衡分：{{OVERALL_SCORE}} / 10</div>
+</div>
+
+<!-- 人生轮盘雷达图 -->
+<div class="card">
+  <h2><span class="icon">🎯</span>人生轮盘</h2>
+  <div class="chart-container">
+    <canvas id="radarChart"></canvas>
+  </div>
+</div>
+
+<!-- 各维度详情 -->
+<div class="card">
+  <h2><span class="icon">📊</span>维度评分详情</h2>
+  <div class="dimensions-grid" id="dimCards"></div>
+</div>
+
+<!-- 优势与短板 -->
+<div class="gap-section">
+  <div class="card">
+    <h2><span class="icon">💪</span>优势维度 TOP 3</h2>
+    <ul class="gap-list" id="strengths"></ul>
+  </div>
+  <div class="card">
+    <h2><span class="icon">🎯</span>改善优先 TOP 3</h2>
+    <ul class="gap-list" id="weaknesses"></ul>
+  </div>
+</div>
+
+<!-- 行动建议 -->
+<div class="card" id="actionCard">
+  <h2><span class="icon">🚀</span>行动计划</h2>
+  <div id="actions"></div>
+</div>
+
+<!-- 倦怠预警 -->
+<div class="card" id="burnoutCard">
+  <h2><span class="icon">⚡</span>倦怠预警检查</h2>
+  <div class="burnout-signals" id="burnoutSignals"></div>
+  <div id="burnoutSummary" style="margin-top: 16px; font-weight: 600;"></div>
+</div>
+
+<!-- 季度反思 -->
+<div class="card" id="reflectionCard">
+  <h2><span class="icon">📝</span>季度反思</h2>
+  <div id="reflections"></div>
+</div>
+
+<!-- 历史对比 -->
+<div class="card" id="historyCard">
+  <h2><span class="icon">📈</span>历史趋势</h2>
+  <div style="overflow-x: auto;">
+    <table class="history-table" id="historyTable"></table>
+  </div>
+</div>
+
+<!-- 评分输入区（初始隐藏） -->
+<div class="card input-mode active" id="inputSection">
+  <h2><span class="icon">✏️</span>为每个维度打分（1-10）</h2>
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">
+    诚实面对自己，不需要完美答案。想想"最近一个月"的状态。
+  </p>
+  <div id="inputFields"></div>
+  <div class="btn-row">
+    <button class="btn" onclick="generateReport()">生成报告</button>
+    <button class="btn btn-secondary" onclick="resetAll()">重置</button>
+  </div>
+</div>
+
+<div class="footer">
+  Life Balance Optimizer · 每季度做一次，看见成长轨迹<br>
+  这份报告的真正价值，在于你采取了哪些行动
+</div>
+
+<script>
+// ============ 数据定义 ============
+const DIMENSIONS = [
+  { id: 'health',    name: '身体健康',   short: '健康', color: 'var(--dim-1)', emoji: '💪' },
+  { id: 'mental',    name: '心理情绪',   short: '心理', color: 'var(--dim-2)', emoji: '🧠' },
+  { id: 'relations', name: '人际关系',   short: '关系', color: 'var(--dim-3)', emoji: '🤝' },
+  { id: 'career',    name: '工作事业',   short: '事业', color: 'var(--dim-4)', emoji: '💼' },
+  { id: 'finance',   name: '财务状况',   short: '财务', color: 'var(--dim-5)', emoji: '💰' },
+  { id: 'learning',  name: '学习成长',   short: '学习', color: 'var(--dim-6)', emoji: '📚' },
+  { id: 'leisure',   name: '休闲娱乐',   short: '休闲', color: 'var(--dim-7)', emoji: '🎮' },
+  { id: 'living',    name: '生活环境',   short: '环境', color: 'var(--dim-8)', emoji: '🏠' },
+];
+
+const IMPROVEMENT_TIPS = {
+  health:    ['每天固定时间入睡起床', '每周3次30分钟运动', '记录一周饮食日记', '预约一次全面体检', '午休不超30分钟，避免咖啡因'],
+  mental:    ['每天10分钟正念冥想', '写情绪日记记录波动', '减少社交媒体到30分钟/天', '预约一次心理咨询', '建立每日"第三空间"时间'],
+  relations: ['每周给重要的人打个电话', '参加一个线下兴趣社群', '练习非暴力沟通表达需求', '减少消耗型社交', '安排一次伴侣/家人专属时间'],
+  career:    ['明确3个月内的成长小目标', '主动争取一个挑战性任务', '每天留1小时深度工作时间', '更新简历和LinkedIn', '找一位行业前辈聊聊'],
+  finance:   ['开始用App记账追踪支出', '建立3个月生活应急金', '开始每月定投指数基金', '审视并取消不必要订阅', '学习一门理财课程'],
+  learning:  ['每天阅读30分钟', '报名一门感兴趣的在线课程', '加入一个学习打卡社群', '每周输出一篇学习笔记', '尝试一个全新领域的知识'],
+  leisure:   ['每周安排半天"自己的时间"', '重新拾起童年的爱好', '每月尝试一件没做过的事', '计划一次短途旅行', '工作日安排微休息'],
+  living:    ['花半天做断舍离整理', '增加室内绿植/鲜花', '每周去一次公园/绿地', '优化家里的功能分区', '审视是否要考虑新社区'],
+};
+
+const BURNOUT_SIGNALS = [
+  { id: 'exhaustion',  label: '😫 起床就累',        key: 'exhaustion',  desc: '情绪耗竭' },
+  { id: 'cynicism',    label: '😐 变得冷漠',         key: 'cynicism',    desc: '去人格化' },
+  { id: 'inefficacy',  label: '😞 做事没意义',       key: 'inefficacy',  desc: '成就感下降' },
+  { id: 'sleep',       label: '😵 睡眠紊乱',          key: 'sleep',       desc: '入睡困难或嗜睡' },
+  { id: 'physical',    label: '🤒 身体不适频发',      key: 'physical',    desc: '头痛/胃痛/易感冒' },
+  { id: 'withdraw',    label: '🙈 不想社交',          key: 'withdraw',    desc: '社交退缩' },
+  { id: 'focus',       label: '🤯 难以专注',          key: 'focus',       desc: '注意力涣散' },
+];
+
+// ============ 从 URL/脚本注入获取数据 ============
+let REPORT_DATA = null;
+
+// 尝试从 data-report 属性或内联脚本获取数据
+try {
+  const el = document.getElementById('report-data');
+  if (el && el.textContent) REPORT_DATA = JSON.parse(el.textContent);
+} catch(e) {}
+
+// ============ 构建输入表单 ============
+function buildInputs(scores, notes) {
+  const container = document.getElementById('inputFields');
+  container.innerHTML = '';
+  DIMENSIONS.forEach(d => {
+    const val = scores ? scores[d.id] : 5;
+    const note = notes ? (notes[d.id] || '') : '';
+    const div = document.createElement('div');
+    div.className = 'input-group';
+    div.innerHTML = `
+      <label>${d.emoji} ${d.name}</label>
+      <div class="slider-row">
+        <input type="range" min="1" max="10" value="${val}" id="slider-${d.id}" oninput="updateSlider('${d.id}')" style="accent-color: ${d.color}">
+        <span class="slider-val" id="val-${d.id}" style="color: ${d.color}">${val}</span>
+      </div>
+      <textarea placeholder="这一维度的感受或想法（可选）" id="note-${d.id}">${note}</textarea>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function updateSlider(id) {
+  document.getElementById('val-' + id).textContent = document.getElementById('slider-' + id).value;
+}
+
+// ============ 雷达图 ============
+let radarChart = null;
+function drawRadar(scores) {
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  if (radarChart) radarChart.destroy();
+  radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: DIMENSIONS.map(d => d.short),
+      datasets: [{
+        label: '当前评分',
+        data: DIMENSIONS.map(d => scores[d.id]),
+        backgroundColor: 'rgba(99,102,241,0.15)',
+        borderColor: 'rgba(99,102,241,0.8)',
+        borderWidth: 2,
+        pointBackgroundColor: DIMENSIONS.map(d => d.color),
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 10,
+          min: 0,
+          ticks: { stepSize: 2, backdropColor: 'transparent', font: { size: 11 } },
+          pointLabels: { font: { size: 13, weight: '600' } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+        }
+      },
+      plugins: {
+        legend: { display: false },
+      }
+    }
+  });
+}
+
+// ============ 维度卡片 ============
+function buildDimCards(scores) {
+  const container = document.getElementById('dimCards');
+  container.innerHTML = '';
+  DIMENSIONS.forEach(d => {
+    const s = scores[d.id];
+    const pct = s * 10;
+    const level = s >= 8 ? '🟢' : s >= 6 ? '🟡' : s >= 4 ? '🟠' : '🔴';
+    const card = document.createElement('div');
+    card.className = 'dim-card';
+    card.style.borderLeftColor = d.color;
+    card.innerHTML = `
+      <div class="dim-name">${d.emoji} ${d.name} ${level}</div>
+      <div class="dim-score" style="color: ${d.color}">${s}</div>
+      <div class="dim-bar"><div class="dim-bar-fill" style="width: ${pct}%; background: ${d.color};"></div></div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ============ 优劣势 ============
+function buildGaps(scores) {
+  const sorted = DIMENSIONS.map(d => ({ ...d, score: scores[d.id] })).sort((a, b) => b.score - a.score);
+  const strengths = sorted.slice(0, 3);
+  const weaknesses = sorted.slice(-3).reverse();
+
+  const sEl = document.getElementById('strengths');
+  sEl.innerHTML = strengths.map((d, i) => `
+    <li><span class="rank" style="color: ${d.color}">#${i+1}</span>
+    <span>${d.emoji} ${d.name} — <strong style="color: ${d.color}">${d.score}分</strong></span></li>
+  `).join('');
+
+  const wEl = document.getElementById('weaknesses');
+  wEl.innerHTML = weaknesses.map((d, i) => `
+    <li><span class="rank" style="color: ${d.color}">#${sorted.length-i}</span>
+    <span>${d.emoji} ${d.name} — <strong style="color: ${d.color}">${d.score}分</strong></span></li>
+  `).join('');
+}
+
+// ============ 行动计划 ============
+function buildActions(scores) {
+  const sorted = DIMENSIONS
+    .map(d => ({ ...d, score: scores[d.id] }))
+    .sort((a, b) => a.score - b.score);
+
+  const container = document.getElementById('actions');
+  container.innerHTML = sorted.slice(0, 5).map((d, i) => {
+    const tips = IMPROVEMENT_TIPS[d.id] || [];
+    const priority = d.score <= 4 ? 'p0' : d.score <= 6 ? 'p1' : 'p2';
+    const priorityLabel = priority === 'p0' ? 'P0-紧急' : priority === 'p1' ? 'P1-重要' : 'P2-优化';
+    return `
+      <div class="action-item">
+        <div class="dim-color" style="background: ${d.color};"></div>
+        <div class="action-content">
+          <div class="action-title">
+            <span class="priority-badge ${priority}">${priorityLabel}</span>
+            ${d.emoji} ${d.name} (${d.score}分) — ${tips[0] || '开始改善'}
+          </div>
+          <div class="action-desc">建议：${tips.slice(1, 3).join(' | ') || '先从一个小目标开始，持续21天'}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ============ 倦怠预警 ============
+function buildBurnout(burnoutSignals) {
+  if (!burnoutSignals || Object.keys(burnoutSignals).length === 0) {
+    document.getElementById('burnoutCard').style.display = 'none';
+    return;
+  }
+  const container = document.getElementById('burnoutSignals');
+  let triggeredCount = 0;
+  container.innerHTML = BURNOUT_SIGNALS.map(bs => {
+    const isTriggered = !!burnoutSignals[bs.key];
+    if (isTriggered) triggeredCount++;
+    return `
+      <div class="burnout-signal ${isTriggered ? 'triggered' : 'safe'}">
+        ${bs.label}<br><small>${bs.desc}</small>
+      </div>
+    `;
+  }).join('');
+
+  const summary = document.getElementById('burnoutSummary');
+  if (triggeredCount >= 4) {
+    summary.innerHTML = '⚠️ <span style="color: var(--danger);">高风险：已触发 ' + triggeredCount + ' 个倦怠信号，建议尽快调整节奏，必要时寻求专业帮助。</span>';
+  } else if (triggeredCount >= 2) {
+    summary.innerHTML = '⚡ <span style="color: var(--warning);">中风险：已触发 ' + triggeredCount + ' 个倦怠信号，注意休息和自我关怀。</span>';
+  } else if (triggeredCount === 1) {
+    summary.innerHTML = '✅ <span style="color: var(--success);">低风险：仅触发 1 个倦怠信号，适当关注即可。</span>';
+  } else {
+    summary.innerHTML = '🎉 <span style="color: var(--success);">状态良好：未触发倦怠信号，继续保持！</span>';
+  }
+}
+
+// ============ 季度反思 ============
+function buildReflections(reflections) {
+  if (!reflections || reflections.length === 0) {
+    document.getElementById('reflectionCard').style.display = 'none';
+    return;
+  }
+  const questions = [
+    '本季度最有成就感的事',
+    '本季度最大的遗憾或未完成',
+    '进步最大的维度及原因',
+    '退步/停滞的维度及原因',
+    '下季度最想改善的方向',
+    '停止 / 开始 / 继续',
+  ];
+  const container = document.getElementById('reflections');
+  container.innerHTML = reflections.map((r, i) => `
+    <div class="reflection-block">
+      <div class="q">Q${i+1}: ${questions[i] || ''}</div>
+      <div class="a">${r}</div>
+    </div>
+  `).join('');
+}
+
+// ============ 历史对比 ============
+function buildHistory(history) {
+  if (!history || history.length === 0) {
+    document.getElementById('historyCard').style.display = 'none';
+    return;
+  }
+  const table = document.getElementById('historyTable');
+  const header = `<tr><th>时间</th>${DIMENSIONS.map(d => `<th>${d.short}</th>`).join('')}<th>均分</th></tr>`;
+  const rows = [...history].reverse().map((h, idx, arr) => {
+    const prev = arr[idx + 1];
+    const avg = (DIMENSIONS.reduce((s, d) => s + h[d.id], 0) / 8).toFixed(2);
+    return `<tr>
+      <td>${h.date || ''}</td>
+      ${DIMENSIONS.map(d => {
+        const cur = h[d.id];
+        if (!prev) return `<td>${cur}</td>`;
+        const diff = cur - prev[d.id];
+        if (diff > 0) return `<td>${cur} <span class="trend-up">↑${diff}</span></td>`;
+        if (diff < 0) return `<td>${cur} <span class="trend-down">↓${Math.abs(diff)}</span></td>`;
+        return `<td>${cur}</td>`;
+      }).join('')}
+      <td><strong>${avg}</strong></td>
+    </tr>`;
+  }).join('');
+  table.innerHTML = header + rows;
+}
+
+// ============ 主报告生成 ============
+function generateReport() {
+  const scores = {};
+  const notes = {};
+  DIMENSIONS.forEach(d => {
+    scores[d.id] = parseInt(document.getElementById('slider-' + d.id).value);
+    notes[d.id] = document.getElementById('note-' + d.id).value.trim();
+  });
+
+  const overall = (Object.values(scores).reduce((a, b) => a + b, 0) / 8).toFixed(2);
+  document.querySelector('.score-badge').textContent = '综合平衡分：' + overall + ' / 10';
+  document.getElementById('inputSection').classList.remove('active');
+
+  drawRadar(scores);
+  buildDimCards(scores);
+  buildGaps(scores);
+  buildActions(scores);
+  buildBurnout({});
+  buildReflections([]);
+  buildHistory([]);
+
+  // Save to localStorage
+  const history = JSON.parse(localStorage.getItem('life_balance_history') || '[]');
+  history.push({ date: new Date().toISOString().slice(0, 10), ...scores, notes });
+  if (history.length > 12) history.shift();
+  localStorage.setItem('life_balance_history', JSON.stringify(history));
+}
+
+function resetAll() {
+  DIMENSIONS.forEach(d => {
+    document.getElementById('slider-' + d.id).value = 5;
+    document.getElementById('val-' + d.id).textContent = '5';
+    document.getElementById('note-' + d.id).value = '';
+  });
+}
+
+// ============ 初始化 ============
+function init() {
+  if (REPORT_DATA && REPORT_DATA.scores) {
+    // 有预置数据，直接渲染报告
+    document.getElementById('inputSection').classList.remove('active');
+    const scores = REPORT_DATA.scores;
+    const overall = (Object.values(scores).reduce((a, b) => a + b, 0) / 8).toFixed(2);
+    document.querySelector('.score-badge').textContent = '综合平衡分：' + overall + ' / 10';
+    drawRadar(scores);
+    buildDimCards(scores);
+    buildGaps(scores);
+    buildActions(scores);
+    buildBurnout(REPORT_DATA.burnout || {});
+    buildReflections(REPORT_DATA.reflections || []);
+    buildHistory(REPORT_DATA.history || []);
+  } else {
+    // 交互模式：显示输入表单
+    buildInputs(null, null);
+
+    // 尝试加载上次数据
+    const history = JSON.parse(localStorage.getItem('life_balance_history') || '[]');
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      buildInputs(last, last.notes);
+      buildHistory(history);
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

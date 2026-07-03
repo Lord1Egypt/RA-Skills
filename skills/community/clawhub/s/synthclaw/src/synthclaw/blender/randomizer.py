@@ -25,6 +25,13 @@ def apply_scene_randomizations(rules, sync_values):
                 val = random.uniform(r[0], r[1])
             elif dist == "choice":
                 val = random.choice(rule.get("range", []))
+            elif dist == "sequence":
+                seq = rule.get("range", [])
+                if seq:
+                    frame_idx = bpy.context.scene.frame_current
+                    val = seq[frame_idx % len(seq)]
+                else:
+                    val = None
             else:
                 continue
             

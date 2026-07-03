@@ -1,11 +1,13 @@
 import { execFileSync } from "child_process";
 import path from "path";
 import process from "process";
+import { fileURLToPath } from "url";
 
-const testsDir = path.dirname(new URL(import.meta.url).pathname);
+const testsDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(testsDir, "..");
 
 const commands = [
+  ["node", [path.join(root, "scripts", "verify_cli_bundle.mjs")]],
   ["node", [path.join(root, "tests", "run_structure_tests.mjs")]],
   ["node", [path.join(root, "tests", "run_behavior_tests.mjs")]],
   ["node", [path.join(root, "tests", "run_decision_tests.mjs")]],

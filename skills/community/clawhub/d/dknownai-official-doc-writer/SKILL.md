@@ -111,6 +111,8 @@ https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC5
 python3 scripts/dkag_search.py "搜索词" --area 地域 --time 时间 --clean --output result_地域.json
 ```
 
+未指定目录的搜索结果文件会保存到 `official-docs/search-results/`；合并搜索结果时也只能读取和写入本 Skill 的 `official-docs/input/`、`official-docs/output/`、`official-docs/search-results/` 工作目录。
+
 `--time` 只用于 `2025年`、`2025年08月`、`2025年08月15日` 这类单个明确时间点；不要传 `2023-2025` 这类范围。没有明确时间点时省略 `--time`。
 
 本 skill 的搜索脚本固定使用 `segmentCount=2`，每篇材料最多返回 2 个相关段落；同时固定 `simplified=false`，避免写作场景下过度剔除材料。调用时不要额外传段落数量或精简参数。
@@ -166,10 +168,10 @@ python3 scripts/merge_search_results.py result1.json result2.json --output merge
 普通 Word：
 
 ```bash
-python3 scripts/format_document.py /tmp/official_doc_content.txt
+python3 scripts/format_document.py official-docs/input/official_doc_content.txt
 ```
 
-调用前先把正文写入临时正文文件。默认保存到 `config/format.json` 的 `output.dir`；如用户明确要求保存到指定位置，再传入 `--output 指定路径`。只有一句话以内的极短文本才允许使用 `--text`；多行正文不得直接通过命令行参数传入，避免换行被破坏后整篇文档变成一个段落。
+调用前先把正文写入本 Skill 工作目录下的 `official-docs/input/` 临时正文文件。默认保存到 `config/format.json` 的 `output.dir`，且输出只能位于 `official-docs/output/`；脚本默认从正文标题生成正式文件名，并在同名文件已存在时追加 `_v1`、`_v2`。如用户明确要求保存文件名，可传入 `--output 文件名.docx`。只有一句话以内的极短文本才允许使用 `--text`；多行正文不得直接通过命令行参数传入，避免换行被破坏后整篇文档变成一个段落。
 
 红头 Word：
 

@@ -1,0 +1,79 @@
+{
+  "name": "faq-delete",
+  "description": "A FAQ deletion skill based on the Tradebee Website Builder Open API. It is used to move one or more FAQs under a specified site language to the recycle bin and supports batch deletion by FAQ ID list.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Enabled site language. It must be selected from `languages-get` after user confirmation."
+      },
+      "id_list": {
+        "type": "array",
+        "description": "Required. FAQ ID list, up to 100 items. Matching FAQs will be moved to the recycle bin.",
+        "items": {
+          "type": "integer",
+          "description": "FAQ ID"
+        }
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Records the explicit user approval shown before moving FAQs to the recycle bin.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact FAQ IDs."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation summary that restates the language and exact FAQ IDs shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "id_list",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  },
+  "notes": [
+    "This delete action moves FAQs to the recycle bin instead of permanently removing them."
+  ]
+}

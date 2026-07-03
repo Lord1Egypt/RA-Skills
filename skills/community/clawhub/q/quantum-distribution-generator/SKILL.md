@@ -1,7 +1,7 @@
 ---
 name: quantum-distribution-generator
 description: "Quantum Distribution Generator: Sample from probability distributions (exponential, Poisson, binomial, beta, gamma) with Monte Carlo and. Use when an agent needs quantum distribution generator, monte carlo simulations for risk analysis and option pricing, queuing theory modeling with poisson and exponential distributions, a/b testing and conversion rate analysis using binomial and beta distributions, stochastic process simulation, beta, source, count through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/quantum-distribution-generator
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/quantum-distribution-generator"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Quantum Distribution Generator
 
 ## Freshness
-Last updated: `2026-06-10`.
+Last updated: `2026-06-29`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -19,203 +19,44 @@ Statistical distribution sampling and stochastic simulation powered by quantum o
 ## Product Instructions
 ### Quantum Distribution Generator
 
-Generate random values from statistical probability distributions and perform Monte Carlo simulations and random walks, powered by quantum or standard randomness sources.
+Generate statistical distribution samples, Monte Carlo samples, and random walks. Use the product action name in `action`; the backend also accepts legacy `operation` for compatibility.
 
 #### Actions
 
 ##### exponential
-
-Generate values from an exponential distribution, commonly used for modeling wait times and decay processes.
-
-**Required Fields:**
-- `operation` (string): `"exponential"`
-
-**Optional Fields:**
-- `source` (string): Random source — `"quantum"` (default) or `"standard"`
-- `count` (integer): Number of values to generate, 1–10000 (default: 1)
-- `rate` (number): Rate parameter, must be > 0 (default: 1.0)
-
-**Example:**
-```json
-{
-  "operation": "exponential",
-  "count": 5,
-  "rate": 2.5
-}
-```
-
----
+Required: `action:"exponential"`.
+Optional: `source:"quantum"|"standard"` default `quantum`, `count` 1-10000 default 1, `rate` > 0 default 1.0.
+Example: `{"action":"exponential","count":5,"rate":2.5}`
 
 ##### poisson
-
-Generate values from a Poisson distribution, used for modeling count-based events (e.g., arrivals per hour).
-
-**Required Fields:**
-- `operation` (string): `"poisson"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `count` (integer): Number of values, 1–10000 (default: 1). When using quantum source, max 200.
-- `lambda_param` (number): Expected rate (lambda), must be > 0 (default: 1.0)
-
-**Example:**
-```json
-{
-  "operation": "poisson",
-  "count": 10,
-  "lambda_param": 4.5
-}
-```
-
----
+Required: `action:"poisson"`.
+Optional: `source`, `count` default 1, `lambda_param` > 0 default 1.0. Quantum source max count: 200.
+Example: `{"action":"poisson","count":10,"lambda_param":4.5}`
 
 ##### binomial
-
-Generate values from a binomial distribution, modeling the number of successes in a fixed number of trials.
-
-**Required Fields:**
-- `operation` (string): `"binomial"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `count` (integer): Number of values, 1–10000 (default: 1). When using quantum source, max 200.
-- `n_trials` (integer): Number of trials per sample, 1–10000 (default: 10). When using quantum source, max 50.
-- `p_success` (number): Probability of success per trial, 0–1 (default: 0.5)
-
-**Example:**
-```json
-{
-  "operation": "binomial",
-  "count": 20,
-  "n_trials": 10,
-  "p_success": 0.3
-}
-```
-
----
+Required: `action:"binomial"`.
+Optional: `source`, `count`, `n_trials` default 10, `p_success` 0-1 default 0.5. Quantum source max count 200 and max n_trials 50.
+Example: `{"action":"binomial","count":20,"n_trials":10,"p_success":0.3}`
 
 ##### beta
-
-Generate values from a beta distribution, useful for modeling probabilities and proportions.
-
-**Required Fields:**
-- `operation` (string): `"beta"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `count` (integer): Number of values, 1–10000 (default: 1). When using quantum source, max 50.
-- `alpha` (number): Alpha shape parameter, must be > 0 (default: 1.0)
-- `beta` (number): Beta shape parameter, must be > 0 (default: 1.0)
-
-**Example:**
-```json
-{
-  "operation": "beta",
-  "count": 10,
-  "alpha": 2.0,
-  "beta": 5.0
-}
-```
-
----
+Required: `action:"beta"`.
+Optional: `source`, `count`, `alpha` > 0 default 1.0, `beta_param` > 0 default 1.0.
+Example: `{"action":"beta","count":10,"alpha":2.0,"beta_param":5.0}`
 
 ##### gamma
-
-Generate values from a gamma distribution, used for modeling wait times and skewed data.
-
-**Required Fields:**
-- `operation` (string): `"gamma"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `count` (integer): Number of values, 1–10000 (default: 1). When using quantum source, max 75.
-- `shape` (number): Shape parameter, must be > 0 (default: 1.0)
-- `scale` (number): Scale parameter, must be > 0 (default: 1.0)
-
-**Example:**
-```json
-{
-  "operation": "gamma",
-  "count": 15,
-  "shape": 2.0,
-  "scale": 1.5
-}
-```
-
----
+Required: `action:"gamma"`.
+Optional: `source`, `count`, `shape` > 0 default 1.0, `scale` > 0 default 1.0.
+Example: `{"action":"gamma","count":15,"shape":2.0,"scale":1.5}`
 
 ##### montecarlo_sample
-
-Generate multi-dimensional Monte Carlo samples from uniform or normal distributions.
-
-**Required Fields:**
-- `operation` (string): `"montecarlo_sample"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `samples` (integer): Number of samples, 1–1000000 (default: 1000)
-- `dimensions` (integer): Number of dimensions per sample, 1–100 (default: 1)
-- `distribution` (string): `"uniform"` (default) or `"normal"`
-
-**Example:**
-```json
-{
-  "operation": "montecarlo_sample",
-  "samples": 500,
-  "dimensions": 3,
-  "distribution": "normal"
-}
-```
-
----
+Required: `action:"montecarlo_sample"`.
+Optional: `source`, `samples` 1-1000000 default 1000, `dimensions` 1-100 default 1, `distribution_type:"uniform"|"normal"` default `uniform`.
+Example: `{"action":"montecarlo_sample","samples":500,"dimensions":3,"distribution_type":"normal"}`
 
 ##### randomwalk
-
-Simulate a random walk in one or more dimensions, starting from the origin.
-
-**Required Fields:**
-- `operation` (string): `"randomwalk"`
-
-**Optional Fields:**
-- `source` (string): `"quantum"` (default) or `"standard"`
-- `steps` (integer): Number of steps, 1–10000 (default: 100). When using quantum source, max 80.
-- `dimensions` (integer): Number of dimensions, 1–100 (default: 1)
-- `step_size` (number): Size of each step, must be > 0 (default: 1.0)
-
-**Example:**
-```json
-{
-  "operation": "randomwalk",
-  "steps": 50,
-  "dimensions": 2,
-  "step_size": 0.5
-}
-```
-
----
-
-#### Common Workflows
-
-##### Risk Simulation
-Generate exponential or Poisson samples to model event timing and frequency, then use Monte Carlo sampling for multi-factor analysis.
-
-##### A/B Test Modeling
-Use beta distributions to model conversion rate probabilities for two variants, then compare the resulting distributions.
-
-##### Stock Price Path Simulation
-Use `randomwalk` with `dimensions: 1` and an appropriate `step_size` to simulate asset price movements over time.
-
-##### Bayesian Parameter Estimation
-Combine `beta` or `gamma` distributions to sample prior/posterior distributions for parameter estimation tasks.
-
----
-
-#### Important Notes
-
-- **Quantum vs Standard source**: The `"quantum"` source uses true quantum randomness but has lower count/step limits for certain distributions. The `"standard"` source uses cryptographic randomness and supports the full range of counts.
-- **Quantum source limits**: Poisson max 200 count, Binomial max 200 count and 50 trials, Beta max 50 count, Gamma max 75 count, Random Walk max 80 steps. Use `"standard"` source for larger quantities.
-- **All parameters have defaults**: Only `operation` is strictly required for any action. All other parameters fall back to sensible defaults.
-- **Return format**: Each action returns the generated values along with metadata (count, parameters used, source type).
+Required: `action:"randomwalk"`.
+Optional: `source`, `steps` 1-10000 default 100, `dimensions` 1-100 default 1, `step_size` > 0 default 1.0. Quantum source max steps: 80.
+Example: `{"action":"randomwalk","steps":50,"dimensions":2,"step_size":0.5}`
 
 ## When To Use
 - Use this skill for `Quantum Distribution Generator` on AgentPMT.

@@ -48,6 +48,24 @@ stock_tracker.py ─── 主入口，协调各模块
 | `--prune` | 清理无正文的空记录 |
 | `--source` | eastmoney（默认）或 cninfo |
 
+### 新增模块（2026-06-14）
+
+**dependencies.py（依赖管理）**：
+- 统一管理模块间依赖
+- 使用延迟导入避免循环依赖
+- 提供 `get_db()`、`get_llm_judge()` 等函数
+
+**error_handler.py（错误处理）**：
+- 定义异常类层次结构
+- `StockTrackerError` 基类
+- `DatabaseError`、`APIError`、`ConfigError`、`CookieError`、`DataError` 子类
+- `handle_error()` 统一错误处理函数
+
+**config_manager.py（配置管理）**：
+- 使用 `dataclass` 定义类型安全的配置类
+- `LLMConfig`、`NotifyConfig`、`AppConfig` 数据类
+- `ConfigManager` 类统一管理配置加载、保存和 API Key
+
 **执行流程：**
 1. 解析参数 → 执行子命令（stats/list/clean/prune/fetch-content）或完整运行
 2. 完整运行：获取自选股列表 → 获取公告列表 → 过滤已见 → 获取全文 → 入库

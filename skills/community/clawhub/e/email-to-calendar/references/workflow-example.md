@@ -1,8 +1,17 @@
 # Email-to-Calendar Workflow Example
 
+A complete walk-through of processing one email, using the wrapper scripts.
+
+> **Reminder:** NEVER call `gog` directly. ALL email and calendar operations go
+> through the wrapper scripts in `scripts/` (see SKILL.md CRITICAL RULES).
+
+```bash
+SCRIPTS_DIR="$HOME/.openclaw/workspace/skills/email-to-calendar/scripts"
+CONFIG_FILE="$HOME/.config/email-to-calendar/config.json"
+```
+
 ## Scenario: User Forwards an Email
 
-**User sends:**
 ```
 ---------- Forwarded message ----------
 From: Sarah <sarah@client.com>
@@ -12,7 +21,8 @@ To: team@company.com
 
 Hi everyone,
 
-Let's schedule a kickoff meeting for the new website project on Thursday February 5 at 3:00 PM in Conference Room B.
+Let's schedule a kickoff meeting for the new website project on Thursday
+February 5 at 3:00 PM in Conference Room B.
 
 Action items before the meeting:
 - Review the requirements document
@@ -23,151 +33,114 @@ Thanks!
 Sarah
 ```
 
-## Step 1: Detect Forwarded Email
+## Step 1: Read the Email
 
-You recognize the forwarded email patterns:
-- Subject starts with "Fwd:" (implied)
-- Contains "---------- Forwarded message ----------"
-- Has email headers (From:, Date:, Subject:, To:)
+Get the full body via the wrapper script:
 
-## Step 2: Extract Items
-
-Run extraction:
 ```bash
-python3 scripts/extract_events.py email.txt
+"$SCRIPTS_DIR/email_read.sh" --email-id "$EMAIL_ID"
 ```
 
-**Result:**
-```json
-{
-  "events": [
-    {
-      "type": "event",
-      "title": "kickoff meeting for the new website project",
-      "date": {"month": "February", "day": 5, "year": 2026, "month_num": 2},
-      "time": {"hour": 15, "minute": 0},
-      "is_full_day": false
-    }
-  ],
-  "actions": [
-    {
-      "type": "action",
-      "text": "Review the requirements document",
-      "deadline": null
-    },
-    {
-      "type": "action",
-      "text": "Prepare your team's capacity estimates",
-      "deadline": null
-    },
-    {
-      "type": "action",
-      "text": "Submit any questions by Wednesday",
-      "deadline": {"month": "February", "day": 4, "year": 2026, "month_num": 2}
-    }
-  ]
-}
-```
+## Step 2: Extract Events (Agent does this directly)
 
-## Step 3: Store to Memory
+There is no extraction script — you read the email and extract events using
+natural language understanding. For this email you identify:
 
-Save to dated file:
-```bash
-EXTRACTION_FILE="memory/email-extractions/2026-02-02-143022.json"
-python3 scripts/extract_events.py email.txt > "$EXTRACTION_FILE"
-```
+- **title:** Kickoff meeting - Website Project
+- **date:** 2026-02-05 (**day_of_week:** Thursday)
+- **time:** 3:00 PM (default end 4:00 PM)
+- **location:** Conference Room B
+- **confidence:** high
+- **deadline:** "Submit any questions by Wednesday" → 2026-02-04
 
-Update index:
-```json
-{
-  "extractions": [
-    {
-      "file": "memory/email-extractions/2026-02-02-143022.json",
-      "date": "2026-02-02T14:30:22",
-      "status": "pending_review"
-    }
-  ]
-}
-```
+See [extraction-patterns.md](extraction-patterns.md) for the date/time and
+deadline patterns to look for.
 
-## Step 4: Present to User
+## Step 3: Present to User and WAIT
 
-**Your response:**
-> I found 1 event and 3 action items in that email:
+Apply `ignore_patterns` / `auto_create_patterns` from config, then present:
+
+> I found the following potential event:
 >
-> **Events:**
-> 1. **Kickoff meeting for the new website project** - Thursday February 5 at 3:00 PM - Conference Room B
+> 1. **Kickoff meeting - Website Project** (Thursday, Feb 5 at 3:00 PM, Conference Room B)
+>    - Deadline: submit questions by Wednesday, Feb 4
 >
-> **Action Items:**
-> 1. **Review the requirements document** - No deadline
-> 2. **Prepare your team's capacity estimates** - No deadline
-> 3. **Submit any questions by Wednesday** - Due February 4
->
-> Which events should I create calendar entries for? Reply with numbers (e.g., "1") or "all" or "none".
+> Reply with numbers to create (e.g., '1'), 'all', or 'none'.
 
-## Step 5: User Responds
-
-**User replies:** "1"
-
-## Step 6: Check for Duplicates
+Record it as a pending invite for follow-up reminders:
 
 ```bash
-bash scripts/check_duplicate.sh "$CALENDAR_ID" \
-  "kickoff meeting for the new website project" \
-  "February 5, 2026" \
-  "3:00 PM"
+"$SCRIPTS_DIR/add_pending.sh" \
+    --email-id "$EMAIL_ID" \
+    --email-subject "Project kickoff meeting" \
+    --events-json '[{"title":"Kickoff meeting - Website Project","date":"2026-02-05","time":"15:00","status":"pending"}]'
 ```
 
-**Result:** `null` (no duplicate found)
+**STOP AND WAIT for the user's response.** (User replies: "1")
 
-## Step 7: Create Calendar Event
+## Step 4: Check for Duplicates
+
+Check local tracking first (fast), then fall back to a calendar search:
 
 ```bash
-# Read attendees from config
-CONFIG_FILE="$HOME/.config/email-to-calendar/config.json"
-ATTENDEE_EMAILS=$(jq -r '.attendees.emails | join(",")' "$CONFIG_FILE")
+# Tracked by email ID?
+TRACKED=$("$SCRIPTS_DIR/lookup_event.sh" --email-id "$EMAIL_ID")
+
+# Or by title?
+TRACKED=$("$SCRIPTS_DIR/lookup_event.sh" --summary "Kickoff meeting")
+
+# Fall back to calendar search around the date
+"$SCRIPTS_DIR/calendar_search.sh" \
+    --calendar-id "$CALENDAR_ID" \
+    --from "2026-02-05T00:00:00" --to "2026-02-05T23:59:59"
+```
+
+## Step 5: Create the Event
+
+`create_event.sh` handles date parsing, tracking, changelog, attribution, and
+email disposition automatically:
+
+```bash
 CALENDAR_ID=$(jq -r '.calendar_id' "$CONFIG_FILE")
+ATTENDEE_EMAILS=$(jq -r 'if .attendees.enabled then (.attendees.emails | join(",")) else "" end' "$CONFIG_FILE")
 
-gog calendar create "$CALENDAR_ID" \
-  --summary "Kickoff meeting - Website Project" \
-  --from "2026-02-05T15:00:00" \
-  --to "2026-02-05T16:00:00" \
-  --description "Kickoff meeting for the new website project
+"$SCRIPTS_DIR/create_event.sh" \
+    "$CALENDAR_ID" \
+    "Kickoff meeting - Website Project" \
+    "February 5, 2026" \
+    "3:00 PM" \
+    "4:00 PM" \
+    "Event Link: (none)
 
+Kickoff meeting for the new website project
 Location: Conference Room B
 From: Sarah <sarah@client.com>
 
-Action items to complete before meeting:
+Action items before the meeting:
 - Review the requirements document
 - Prepare your team's capacity estimates
 - Submit any questions by Wednesday February 4" \
-  --attendees "$ATTENDEE_EMAILS" \
-  --send-updates all
+    "$ATTENDEE_EMAILS" \
+    "" \
+    "$EMAIL_ID"
 ```
 
-## Step 8: Confirm and Update Status
+## Step 6: Confirm
 
-**Your response:**
 > Created calendar event:
 > - **Title:** Kickoff meeting - Website Project
-> - **Date:** Thursday, February 5, 2026
-> - **Time:** 3:00 PM - 4:00 PM
-> - **Description:** Full details including location and action items
+> - **When:** Thursday, February 5, 2026, 3:00 PM - 4:00 PM
+> - **Location:** Conference Room B
 > - **Attendees:** Invited as configured
+>
+> You can undo this within 24 hours with `undo.sh last`.
 
-Update extraction status:
-```json
-{
-  "file": "memory/email-extractions/2026-02-02-143022.json",
-  "date": "2026-02-02T14:30:22",
-  "status": "processed",
-  "events_created": ["event_id_123"]
-}
-```
+`create_event.sh` already tracked the event, updated the pending invite to
+`created`, logged the change for undo, and dispositioned the email per config.
 
 ## Alternative: Duplicate Found
 
-If check_duplicate.sh returns an existing event:
+If lookup or search returns an existing event:
 
 ```json
 {
@@ -177,28 +150,18 @@ If check_duplicate.sh returns an existing event:
 }
 ```
 
-**Your response:**
-> I found an existing event "Website Project Kickoff" on February 5 at 3:00 PM. Should I:
+> I found an existing event "Website Project Kickoff" on Thursday, February 5 at
+> 3:00 PM. Should I:
 > 1. Update it with new information from this email
 > 2. Skip (keep existing event as-is)
 > 3. Create a separate event anyway
 
-If user chooses "1", update the existing event with the new event ID.
+If the user chooses "1", update by passing the existing event ID as the 8th
+argument to `create_event.sh`.
 
-## Reviewing Pending Items
+## Deadlines
 
-Later, user asks: "What emails do I need to review?"
-
-Check index file and present any pending extractions:
-
-> You have 1 pending email extraction from February 2:
->
-> **Events:**
-> 1. **Kickoff meeting** - February 5 at 3:00 PM
->
-> **Action Items:**
-> 1. Review requirements document
-> 2. Prepare capacity estimates
-> 3. Submit questions by Wednesday
->
-> Should I create the calendar event for item 1?
+This email has a soft deadline ("submit questions by Wednesday"). When an email
+contains an RSVP / registration / ticket deadline, also create a separate
+`DEADLINE:` reminder event and optionally send a notification email — see
+SKILL.md "Creating Deadline Events".

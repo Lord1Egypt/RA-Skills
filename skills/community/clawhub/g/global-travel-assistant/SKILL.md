@@ -1,142 +1,130 @@
 ---
 name: global-travel-assistant
-display_name: "全球旅游助手"
-description: "零配置即装即用，提供全球旅游一站式全链路服务，支持搜索国际机票和酒店并获取含佣金预订链接、查询签证要求和材料清单、查看目的地安全评级和风险提示、查询插头类型电压标准和转换器推荐、计算购物退税金额含手续费明细、实时汇率换算、查询航班座位布局和选座价格、查询航班行李额度和超重费用、查看酒店房型价格和退改政策、紧急求助电话和使领馆联系方式，基于RG云端代理和本地知识数据库"
-tags: [全球旅游, 旅行助手, global-travel, 签证, 安全, 退税, 汇率, 机票, 酒店]
-features: "搜索国际机票和酒店并获取含佣金预订链接;查询签证要求和材料清单;查看目的地安全评级和风险提示;查询插头类型电压标准和转换器推荐;计算购物退税金额含手续费明细;实时汇率换算;查询航班座位布局和选座价格;查询航班行李额度和超重费用;查看酒店房型价格和退改政策;紧急求助电话和使领馆联系方式"
-examples: "6月20号北京飞东京的机票;泰国旅游需要签证吗;日本安全吗去旅游;去英国需要带什么转换插头;在日本买了5万日元的东西能退多少税;1000人民币换多少日元;CA1234航班的座位图;北京飞曼谷可以带多少行李;东京希尔顿的房型和价格;在泰国护照丢了怎么办"
-limitations: "签证政策随时变动请以使领馆最新公告为准;预订链接需用户自行完成支付;安全评级仅供参考不构成出行建议;退税金额为估算实际以退税公司为准;汇率实时波动换算结果仅供参考"
-tips: "搜索机票时建议提供具体日期和城市三字码;搜索酒店时建议提供城市名加入住离店日期;签证查询结果请与使领馆官网二次确认;紧急求助请优先拨打当地紧急电话;退税时保留所有购物小票和退税单"
+display_name: 全球旅游助手
+description: 国内旅行一站式助手，飞猪+高德双引擎驱动，10个工具覆盖行程规划、火车票、机票、酒店、景点门票、极速搜索、万豪酒店、美食推荐、市内交通含打车，零配置即装即用。
+tags: [国内旅行, 行程规划, 飞猪旅行, 酒店机票, 景点门票]
 tools:
-  - name: search_flights
-    description: 搜索国际机票，输入出发城市、到达城市和日期，返回航班信息和含佣金预订链接
-    primaryEnv: PROXY_TOKEN
+  - name: plan_trip
+    description: AI行程规划，输入目的地和天数，返回推荐行程安排
     env:
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: search_hotels
-    description: 搜索酒店，输入城市、入住和离店日期，返回酒店信息和含佣金预订链接
-    primaryEnv: PROXY_TOKEN
+  - name: search_train
+    description: 火车票查询，输入出发地、目的地和日期，返回车次、余票和票价
     env:
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: flight_seats
-    description: 查询航班座位布局和选座价格，输入航班号和日期
-    primaryEnv: PROXY_TOKEN
+  - name: search_flight
+    description: 机票查询，输入出发城市、到达城市和日期，返回航班号、价格和时刻
     env:
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: flight_baggage
-    description: 查询航班行李额度和超重费用，输入航班号和日期
-    primaryEnv: PROXY_TOKEN
+  - name: search_hotel
+    description: 酒店搜索，输入目的地和入住离店日期，返回酒店信息和预订链接
     env:
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: hotel_detail
-    description: 查看酒店房型价格和退改政策，输入酒店ID和入住离店日期
-    primaryEnv: PROXY_TOKEN
+  - name: search_poi
+    description: 景点门票查询，输入关键词或城市，返回景点信息和购票链接
     env:
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: check_visa
-    description: 查询签证要求和材料清单，输入目的地和出行目的，覆盖34个出境游热门国家
-    primaryEnv: PROXY_TOKEN
+  - name: search_fast
+    description: 飞猪极速搜索，快速查询景点、酒店、门票等商品
     env:
       - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用本地数据，无需Token）
+        description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: check_safety
-    description: 查看目的地安全评级和风险提示，返回5维评分和出行建议，覆盖34个国家
-    primaryEnv: PROXY_TOKEN
+  - name: search_marriott_hotel
+    description: 万豪酒店搜索，搜索万豪集团旗下酒店含价格和预订链接
     env:
       - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用本地数据，无需Token）
+        description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: check_plug
-    description: 查询插头类型电压标准和转换器推荐，覆盖34个出境游热门国家
-    primaryEnv: PROXY_TOKEN
+  - name: get_marriott_hotel_info
+    description: 万豪酒店详情，获取酒店设施、评分、房型等详细信息
     env:
       - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用本地数据，无需Token）
+        description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: emergency_help
-    description: 紧急求助电话和使领馆联系方式，支持7大紧急场景行动指南，覆盖护照丢失、航班取消、医疗急救、被盗被抢、自然灾害、交通事故、法律纠纷
-    primaryEnv: PROXY_TOKEN
+  - name: search_food
+    description: 美食推荐，基于位置搜索周边餐厅，返回名称、评分、人均消费和地址
     env:
       - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用本地数据，无需Token）
+        description: 代理认证Token（自动配置，无需手动设置）
         required: false
-  - name: calc_tax_refund
-    description: 计算购物退税金额含手续费明细，覆盖15个退税热门国家
-    primaryEnv: PROXY_TOKEN
+  - name: search_transport
+    description: 市内交通，查询打车预估费用、公交地铁路线，并生成高德打车一键唤端链接
     env:
       - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用本地数据，无需Token）
-        required: false
-  - name: exchange_rate
-    description: 实时汇率换算，基于免费汇率API，无需Token
-    primaryEnv: PROXY_TOKEN
-    env:
-      - name: PROXY_TOKEN
-        description: 代理认证Token（本工具使用免费API，无需Token）
+        description: 代理认证Token（自动配置，无需手动设置）
         required: false
 ---
 
-# 全球旅游助手
+# 全球旅游助手 — 飞猪+高德双引擎，10个工具覆盖国内旅行全链路
 
-全球旅游一站式全链路助手，11个工具覆盖从签证到退税的完整出境需求。
+> 从行程规划到订票订房到市内打车，飞猪8个工具+高德2个工具，零配置即装即用。
+
+🔥 **核心亮点：**
+- **双引擎驱动** — 飞猪旅行+高德地图，覆盖从规划到出行的完整链路
+- **AI行程规划** — 输入目的地和天数，一键生成推荐行程
+- **10个工具全覆盖** — 火车票/机票/酒店/景点/美食/交通/打车，应有尽有
+- **高德打车** — 一键生成打车链接，打开高德地图直接叫车
+- **零配置** — 免申请Key，装上就能用
+
+## 快速入门
+
+**3个开场白示例，复制即用：**
+
+1. "帮我规划3天成都游"
+2. "北京到上海明天的高铁"
+3. "杭州西湖附近酒店"
+
+## 核心能力
+
+1. **AI行程规划** — 输入目的地和天数，生成推荐行程安排
+2. **火车票查询** — 输入出发地/目的地/日期，返回车次、余票和票价
+3. **机票查询** — 输入城市对和日期，返回航班号、价格和时刻
+4. **酒店搜索** — 输入目的地和入住离店日期，返回酒店信息和预订链接
+5. **景点门票** — 查询景点信息和购票链接，支持关键词搜索
+6. **美食推荐** — 基于位置搜索周边餐厅，返回评分、人均消费和地址
+7. **万豪酒店** — 搜索万豪集团旗下酒店含详情和预订链接
+8. **市内交通** — 打车预估+公交地铁路线+高德打车一键唤端
 
 ## 能做什么
 
-- **search_flights**：搜索国际机票，输入出发城市、到达城市和日期，返回航班号、出发到达时间、价格和含佣金预订链接
-- **search_hotels**：搜索酒店，输入城市和入住离店日期，返回酒店名、星级、最低价和含佣金预订链接
-- **flight_seats**：查询航班座位布局和选座价格，输入航班号和日期
-- **flight_baggage**：查询航班行李额度和超重费用，输入航班号和日期
-- **hotel_detail**：查看酒店房型价格和退改政策，输入酒店ID和入住离店日期
-- **check_visa**：查询签证要求和材料清单，覆盖34个出境游热门国家
-- **check_safety**：查看目的地安全评级和风险提示，返回5维评分（犯罪、恐怖、自然灾害、健康、交通）和出行建议
-- **check_plug**：查询插头类型、电压标准和转换器推荐，覆盖34个国家
-- **emergency_help**：紧急求助电话和使领馆联系方式，支持7大紧急场景行动指南
-- **calc_tax_refund**：计算购物退税金额含手续费明细，覆盖15个退税热门国家
-- **exchange_rate**：实时汇率换算，输入源币种、目标币种和金额
+- 规划国内旅行行程，覆盖200+城市
+- 查询火车票、机票实时余票和价格
+- 搜索酒店并获取预订链接
+- 查询景点门票信息和购票链接
+- 搜索周边美食餐厅
+- 规划市内交通路线并生成打车链接
 
 ## 不能做什么
 
-- 签证政策随时变动请以使领馆最新公告为准
-- 预订链接需用户自行完成支付
-- 安全评级仅供参考不构成出行建议
-- 退税金额为估算实际以退税公司为准
-- 汇率实时波动换算结果仅供参考
-
-## 使用示例
-
-1. "6月20号北京飞东京的机票" → search_flights
-2. "泰国旅游需要签证吗" → check_visa
-3. "日本安全吗去旅游" → check_safety
-4. "去英国需要带什么转换插头" → check_plug
-5. "在日本买了5万日元的东西能退多少税" → calc_tax_refund
-6. "1000人民币换多少日元" → exchange_rate
-7. "CA1234航班的座位图" → flight_seats
-8. "北京飞曼谷可以带多少行李" → flight_baggage
-9. "东京希尔顿的房型和价格" → hotel_detail
-10. "在泰国护照丢了怎么办" → emergency_help
-
-## 注意事项
-
-- 机票和酒店搜索（search_flights/search_hotels/flight_seats/flight_baggage/hotel_detail）通过RG云端代理获取实时数据，需要PROXY_TOKEN环境变量
-- 签证、安全、插头、紧急求助和退税计算使用本地知识数据库，无需网络请求
-- 汇率查询使用免费公开API（open.er-api.com），无需Token
-- **数据流向**：RG代理工具通过云端代理转发到API，代理不存储用户数据；本地数据工具纯本地运行，无数据外传
+- 行程规划仅供参考需根据实际调整
+- 不支持直接下单（提供预订链接跳转平台完成）
+- 仅覆盖国内旅行，出境游请使用出境游旅行助手
+- 打车费用为预估值，实际以网约车平台为准
 
 ## 使用提示
 
-- 搜索机票时建议提供具体日期和城市三字码
-- 搜索酒店时建议提供城市名加入住离店日期
-- 签证查询结果请与使领馆官网二次确认
-- 紧急求助请优先拨打当地紧急电话
-- 退税时保留所有购物小票和退税单
+- 行程规划建议提供目的地和天数，越具体越好
+- 火车票查询建议提供具体日期，余票实时变动以12306为准
+- 酒店搜索建议提供入住和离店日期
+- 市内交通结果自动生成高德打车链接，点击即可唤起高德地图APP
+
+## 🔗 搭配使用
+
+- **铁路12306火车票** — 专项火车票查询，更详细的余票信息
+- **高德地图全能版** — 更全面的地图能力，含路线规划和POI搜索
+- **景点智能推荐** — AI智能推荐景点，适合不知道去哪玩的场景
+
+## 数据流向
+
+飞猪工具通过飞猪SCF代理获取实时数据，高德工具通过高德SCF代理获取数据，代理服务不存储用户数据。

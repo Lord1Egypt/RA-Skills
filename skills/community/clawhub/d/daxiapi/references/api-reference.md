@@ -247,6 +247,7 @@ fetch('/coze/get_bk_data', {
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | code | string / string[] | 是 | 股票代码，支持单个代码或多个代码。 |
+| mode | string | 否 | 数据模式。默认盘后；`intraday` 表示盘中快照。 |
 
 **请求示例:**
 
@@ -257,7 +258,7 @@ fetch('/coze/get_stock_data', {
         Authorization: 'Bearer YOUR_TOKEN',
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({code: ['000001', '600031']})
+    body: JSON.stringify({code: ['000001', '600031'], mode: 'intraday'})
 });
 ```
 
@@ -282,7 +283,7 @@ fetch('/coze/get_stock_data', {
 | hy_name / hy | 所属行业 | - |
 | gainian | 所属概念 | - |
 
-**CLI 对应命令:** `daxiapi stock info <codes...>`
+**CLI 对应命令:** `daxiapi stock info <codes...>`，盘中快照使用 `daxiapi stock info <code> --mode intraday`
 
 ---
 
@@ -684,6 +685,7 @@ fetch('/coze/query_stock_data', {
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | pattern | string | 是 | 技术形态编码 |
+| mode | string | 否 | 选股模式。默认盘后；`intraday` 表示盘中选股。 |
 
 **请求示例:**
 
@@ -694,7 +696,7 @@ fetch('/coze/get_pattern_stocks', {
         Authorization: 'Bearer YOUR_TOKEN',
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({pattern: 'vcp'})
+    body: JSON.stringify({pattern: 'vcp', mode: 'intraday'})
 });
 ```
 
@@ -739,7 +741,7 @@ fetch('/coze/get_pattern_stocks', {
 - RPS、SCTR、CS 等强度指标
 - 所属板块、概念等补充信息
 
-**CLI 对应命令:** `daxiapi stock pattern <pattern>`
+**CLI 对应命令:** `daxiapi stock pattern <pattern>`，盘中选股使用 `daxiapi stock pattern <pattern> --mode intraday`
 
 ---
 

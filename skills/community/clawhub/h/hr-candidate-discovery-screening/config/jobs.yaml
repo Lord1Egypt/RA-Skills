@@ -1,0 +1,31 @@
+# Add one mapping per approved recruitment position.
+# Required fields: id, title, active, responsibilities, required_skills,
+# preferred_skills, education_hard, education_preferred, research_areas,
+# application_scenarios, locations, and outreach.
+#
+# Example:
+# - id: multimodal-researcher
+#   title: 多模态算法研究员
+#   active: true
+#   responsibilities:
+#     - 研发多模态理解与生成模型
+#   required_skills:
+#     - 深度学习
+#     - 多模态学习
+#   preferred_skills:
+#     - 大模型训练
+#   education_hard:
+#     - 博士在读
+#     - 博士后
+#   education_preferred:
+#     - 计算机视觉或自然语言处理方向
+#   research_areas:
+#     - vision-language model
+#   application_scenarios:
+#     - 企业级人工智能产品
+#   locations:
+#     - 北京
+#     - 上海
+#   outreach:
+#     role_summary: 负责多模态模型研发与落地
+jobs: []

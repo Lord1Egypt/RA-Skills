@@ -1,0 +1,196 @@
+{
+  "name": "products-create",
+  "description": "A product creation skill based on the Tradebee Website Builder Open API. It is used to create a new product under a specified site language and product group, with support for images, attributes, tags, product descriptions, and SEO data.",
+  "version": "2.0.1",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "products": {
+        "type": "object",
+        "description": "Required. Complete product payload for a new product. Treat this as the product that will actually be published.",
+        "properties": {
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Required. Leaf product group ID for the new product. First call `productsgroup-read`, then copy one exact `productsgroup_id` where `is_leaf === true`. Do not use parent group IDs and do not use `0`."
+          },
+          "product_name": {
+            "type": "string",
+            "description": "Required. Product title shown to users, up to 300 characters."
+          },
+          "model": {
+            "type": "string",
+            "description": "Optional. Product model, up to 50 characters."
+          },
+          "upload_images": {
+            "type": "array",
+            "description": "Required. Provide 1 to 5 images. The first image becomes the main image shown for the product.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Image file label used to identify this image inside the payload."
+                },
+                "base64": {
+                  "type": "string",
+                  "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`. Each image must be 500 kB or smaller."
+                }
+              },
+              "required": [
+                "name",
+                "base64"
+              ]
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "description": "Optional. Visible product attribute list, up to 15 items, for values like material, size, or color.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Attribute name, up to 100 characters"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Attribute value, up to 100 characters"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            }
+          },
+          "tags": {
+            "type": "array",
+            "description": "Required in practice. Provide 1 to 6 unique search keyword tags. Each tag must contain 3 to 50 characters.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Required. Short plain-text summary, up to 127 characters."
+          },
+          "description": {
+            "type": "string",
+            "description": "Required. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `products.description`. Do not guess, translate, normalize, shorten, or rename either `language` or `scene`. The fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO metadata for search engines.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        },
+        "required": [
+          "productsgroup_id",
+          "product_name",
+          "upload_images",
+          "tags",
+          "brief_description",
+          "description"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact product creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact product payload to be created. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact product payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "products",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "products_id": {
+            "type": "integer",
+            "description": "Created product ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the created product. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "products_id",
+          "url"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "products.productsgroup_id": {
+      "skill": "productsgroup-read",
+      "field": "list[].productsgroup_id",
+      "mode": "select",
+      "filter": {
+        "is_leaf": true
+      },
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select a leaf group ID from `productsgroup-read` where `is_leaf === true`. Parent groups and `0` are not allowed."
+    }
+  }
+}

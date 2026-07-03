@@ -1,0 +1,7 @@
+interface:
+  display_name: "Typed Ontology Workflow Helper"
+  short_description: "Design entity types, relations, schemas, and validation rules for knowledge workflows."
+  default_prompt: "Use $work-productivity-ontology-typed-workflow-helper to turn my notes or domain objects into a typed ontology with examples and validation rules."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Career Path Advisor Output",
+  "description": "Output schema for the career path advisor result.",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "profile": {
+      "type": "object",
+      "description": "Processed career profile.",
+      "properties": {
+        "current_role": { "type": "string" },
+        "years": { "type": "integer" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "target": { "type": "string" },
+        "location": { "type": "string" },
+        "industry": { "type": "string" },
+        "education": { "type": "string" }
+      }
+    },
+    "exploration": {
+      "type": "object",
+      "description": "Exploration menu (if no target provided).",
+      "properties": {
+        "current_role": { "type": "string" },
+        "years": { "type": "integer" },
+        "directions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" },
+              "difficulty": { "type": "string", "enum": ["Easy", "Moderate", "Hard"] },
+              "timeline": { "type": "string" },
+              "salary_impact": { "type": "string" },
+              "match": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          }
+        },
+        "top_pick": { "type": "string" }
+      }
+    },
+    "gap_analysis": {
+      "type": "object",
+      "description": "Gap analysis results.",
+      "properties": {
+        "target_role": { "type": "string" },
+        "market": {
+          "type": "object",
+          "properties": {
+            "open_positions": { "type": "integer" },
+            "salary_range": { "type": "string" },
+            "city": { "type": "string" }
+          }
+        },
+        "gap_matrix": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "skill": { "type": "string" },
+              "your_level": { "type": "integer", "minimum": 0, "maximum": 5 },
+              "demand": { "type": "string" },
+              "gap": { "type": "string", "enum": ["none", "small", "moderate", "large", "missing"] }
+            }
+          }
+        },
+        "gap_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "priority_gaps": { "type": "array", "items": { "type": "string" } },
+        "estimated_timeline": { "type": "string" }
+      }
+    },
+    "paths": {
+      "type": "array",
+      "description": "Recommended career paths.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "timeline": { "type": "string" },
+          "gap": { "type": "string" },
+          "milestones": { "type": "array", "items": { "type": "string" } },
+          "resources": { "type": "array", "items": { "type": "string" } },
+          "recommended": { "type": "boolean" }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Any warnings or flags.",
+      "items": { "type": "string" }
+    }
+  }
+}

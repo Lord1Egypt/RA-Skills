@@ -1,5 +1,5 @@
 ## Description: <br>
-Searches and filters Amazon products through Sorftime across multiple marketplaces to help sellers discover products, compare competitors, and explore market opportunities. <br>
+Guides agents in searching and filtering Amazon products with Sorftime data across marketplaces, query types, and historical monthly snapshots. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External Amazon sellers and e-commerce analysts use this skill to search products, filter by marketplace and product attributes, compare competitors, explore categories or brands, and review supported historical snapshots. <br>
+Amazon sellers, e-commerce operators, and market researchers use this skill to discover products, compare competitors, inspect category or brand portfolios, and query historical product snapshots across supported Amazon marketplaces. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Amazon product-search queries and API credentials are sent to LinkFox/Sorftime. <br>
-Mitigation: Use a dedicated LinkFox API key, avoid including sensitive business data beyond the required search parameters, and rotate or revoke the key if exposure is suspected. <br>
-Risk: The skill asks agents to send free-form feedback to a separate LinkFox endpoint without clear consent. <br>
-Mitigation: Require explicit approval before submitting feedback and remove personal, confidential, proprietary, or full conversation details from feedback content. <br>
+Risk: Amazon product queries, user-derived feedback, and the LinkFox API key may be sent to LinkFox services. <br>
+Mitigation: Use only with data approved for LinkFox processing, supervise or disable automatic feedback submission where possible, and avoid confidential prompts or business context. <br>
+Risk: Large API responses can be written to local JSON files and may contain sensitive commercial data. <br>
+Mitigation: Write response files outside git working trees, inspect only needed fields, and delete persisted files when the task is complete. <br>
 
 
 ## Reference(s): <br>
-- [Sorftime Product Search API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-sorftime-product-search) <br>
-- [LinkFox Sorftime productQuery API](https://tool-gateway.linkfox.com/sorftime/amazon/productQuery) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+- [Sorftime Product Search API Reference](artifact/references/api.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-sorftime-product-search) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, JSON request examples, and optional shell command examples] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown guidance with JSON API parameters, shell command examples, and tabular result summaries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses LinkFox API responses to present product-search results, pagination notes, ranking caveats, and error explanations.] <br>
+**Other Properties Related to Output:** [May persist large API responses to local JSON files for later field extraction.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.1 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

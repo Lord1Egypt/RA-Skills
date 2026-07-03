@@ -118,6 +118,44 @@ export async function resolvePassphrase(passphrase?: string): Promise<string> {
   )
 }
 
+// Read all of stdin, trimmed — used for secret input so it never appears in argv.
+async function readStdin(): Promise<string> {
+  const chunks: Buffer[] = []
+  for await (const chunk of process.stdin) {
+    chunks.push(Buffer.from(chunk))
+  }
+  return Buffer.concat(chunks).toString('utf-8').trim()
+}
+
+// Resolve a recovery phrase for `wallet import` without exposing it in argv.
+export async function resolveMnemonic(mnemonic?: string, useStdin = false): Promise<string> {
+  // Deprecated flag path; caller emits an argv-exposure warning.
+  if (mnemonic) return mnemonic
+
+  if (useStdin) {
+    const fromStdin = await readStdin()
+    if (fromStdin) return fromStdin
+    throw new Error('No mnemonic received on stdin.')
+  }
+
+  if (process.stdin.isTTY) {
+    return new Promise<string>((resolve, reject) => {
+      const rl = createInterface({ input: process.stdin, output: process.stderr })
+      rl.question('Recovery phrase: ', (answer) => {
+        rl.close()
+        const trimmed = answer.trim()
+        if (!trimmed) reject(new Error('No mnemonic provided'))
+        else resolve(trimmed)
+      })
+    })
+  }
+
+  throw new Error(
+    'No mnemonic provided. Pipe the recovery phrase via stdin with --mnemonic-stdin ' +
+      '(e.g. `... wallet import --name <name> --mnemonic-stdin < phrase.txt`), or run interactively.',
+  )
+}
+
 /**
  * Encrypt both keys (consensus + EVM) and persist the wallet file.
  *

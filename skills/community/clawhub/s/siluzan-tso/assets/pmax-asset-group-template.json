@@ -16,7 +16,13 @@
   "finalUrls": ["https://www.example.com/landing"],
   "headlines": ["Headline one ok", "Headline two ok", "Headline three ok"],
   "longHeadlines": ["Long headline for performance max"],
-  "descriptions": ["Description one ok", "Description two ok"],
+  "descriptions": [
+    "Description one ok",
+    "Description two ok",
+    "Description three ok",
+    "Description four ok",
+    "Description five ok"
+  ],
   "imagePaths": {
     "marketing": "./images/marketing.jpg",
     "square": "./images/square.jpg"

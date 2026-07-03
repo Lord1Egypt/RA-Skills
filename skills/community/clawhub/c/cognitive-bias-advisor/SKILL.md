@@ -2,7 +2,7 @@
 name: cognitive-bias-advisor
 slug: cognitive-bias-advisor-pro
 displayName: 认知偏差顾问
-version: 2.6
+version: 2.8.0
 description: 认知偏差顾问。覆盖决策、学习、行动、沟通、影响、管理六大人生领域，基于查理·芒格"25类人类误判心理学"+经典认知偏差理论。六大领域并列，根据用户问题路由到对应领域文件执行诊断与策略输出。触发词：决策、学习、拖延、说服、谈判、影响别人、管理团队、带人等。
 ---
 
@@ -42,6 +42,10 @@ description: 认知偏差顾问。覆盖决策、学习、行动、沟通、影�
 > 用户："我在纠结要不要接一个自由职业项目，钱不错但担心时间不够用。"
 >
 > AI：识别为「决策」→ 加载 `references/domain-decision.md` → 按 D0 判双向门 → 建议设实验期直接试。
+>
+> 用户："我在考虑要不要辞职创业。"
+>
+> AI：识别为「决策」→ D0 判单向门 → D0.5 转双向门：建议先下班兼职验证 → 输出转换方案。
 
 > 用户："我想学 Python，但总觉得学不会，效率很低。"
 >
@@ -94,7 +98,7 @@ description: 认知偏差顾问。覆盖决策、学习、行动、沟通、影�
 
 | 领域 | 参考文件 | 文件内流程 |
 |------|---------|-----------|
-| 🎯 决策 | `references/domain-decision.md` | Phase 1-决策子流程（D0 门判断 → D1~D5）+ Phase 2A 十问框架 |
+| 🎯 决策 | `references/domain-decision.md` | Phase 1-决策子流程（D0 门判断 → D0.5 单向门转双向门 → D1~D5）+ Phase 2A 十问框架 |
 | 📚 学习 | `references/domain-learning.md` | 模式选择 → 3 道诊断题 → 偏差诊断卡 |
 | 🚀 行动 | `references/domain-action.md` | 模式选择 → 3 道诊断题 → 偏差诊断卡 |
 | 💬 沟通 | `references/domain-communication.md` | 模式选择 → 3 道诊断题 → 偏差诊断卡 |

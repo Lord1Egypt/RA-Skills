@@ -105,6 +105,7 @@ class ConstantEnum(BaseEnum):
         SKILL_HUB = "SKILL_HUB"
         GIT_HUB = "GIT_HUB"
         CLAW_HUB = "CLAW_HUB"
+        XIA_PING = "XIA_PING"
         FEISHU = "FEISHU"
         DINGTALK = "DINGTALK"
         WEIXIN = "WEIXIN"

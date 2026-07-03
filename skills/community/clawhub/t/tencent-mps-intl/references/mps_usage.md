@@ -19,28 +19,28 @@
 
 ```bash
 # Query usage for the last 7 days (default)
-python scripts/mps_usage.py
+python3 scripts/mps_usage.py
 
 # Query all types for the last 30 days
-python scripts/mps_usage.py --days 30 --all-types
+python3 scripts/mps_usage.py --days 30 --all-types
 
 # Query a specific date range
-python scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31
+python3 scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31
 
 # Query multiple task types
-python scripts/mps_usage.py --type Transcode Enhance AIGC
+python3 scripts/mps_usage.py --type Transcode Enhance AIGC
 
 # Query large model audio/video understanding usage (belongs to AIAnalysis type)
-python scripts/mps_usage.py --days 30 --type AIAnalysis
+python3 scripts/mps_usage.py --days 30 --type AIAnalysis
 
 # Query digital watermark related usage
-python scripts/mps_usage.py --type AddBlindWatermark AddNagraWatermark ExtractBlindWatermark
+python3 scripts/mps_usage.py --type AddBlindWatermark AddNagraWatermark ExtractBlindWatermark
 
 # Query usage across multiple regions
-python scripts/mps_usage.py --region ap-guangzhou ap-hongkong
+python3 scripts/mps_usage.py --region ap-guangzhou ap-hongkong
 
 # JSON format output
-python scripts/mps_usage.py --days 7 --all-types --json
+python3 scripts/mps_usage.py --days 7 --all-types --json
 ```
 
 ## Mandatory Rules

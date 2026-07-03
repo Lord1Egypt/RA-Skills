@@ -126,7 +126,7 @@ module-generation or auto-deploy code paths.
 
 <sub>Current build:
 <!-- SYNC:facts:start -->
-ERPClaw v4.8.0 | 46 modules (46 active + 0 preview) | 3,169 actions
+ERPClaw v4.11.0 | 46 modules (46 active + 0 preview) | 3,169 actions
 <!-- SYNC:facts:end -->
 </sub>
 

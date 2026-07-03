@@ -1,7 +1,7 @@
 ---
 name: project-code-notes-identifier
 description: Identify the project handle from an intake note.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: project-code-notes-identifier

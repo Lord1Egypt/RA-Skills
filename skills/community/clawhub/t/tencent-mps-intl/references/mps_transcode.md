@@ -50,38 +50,38 @@
 
 ```bash
 # Simplest usage: URL input + default template (TESHD-H265-MP4-1080P)
-python scripts/mps_transcode.py --url https://example.com/video.mp4
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4
 
 # COS path input (recommended, use after local upload)
-python scripts/mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
+python3 scripts/mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
     --cos-input-key /input/video.mp4
 
 # Custom parameters: H265 codec + 1080P + 3000kbps + 30fps
-python scripts/mps_transcode.py --url https://example.com/video.mp4 \
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 \
     --codec h265 --width 1920 --height 1080 --bitrate 3000 --fps 30
 
 # Maximum compression (ultra_compress): maximize bitrate reduction, ideal for bandwidth-sensitive scenarios
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
 
 # HLS segmentation (for streaming playback)
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --container hls
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --container hls
 
 # Overall optimal (standard_compress): balance between quality and bitrate
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type standard_compress
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type standard_compress
 
 # Bitrate priority (high_compress): minimize bitrate while maintaining acceptable quality
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type high_compress
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type high_compress
 
 # Quality priority (low_compress): moderate compression while preserving quality, ideal for archival
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
 
 # Extract audio (convert to MP3)
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --container mp3
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --container mp3
 
 # Extract audio (convert to M4A, high quality)
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --container m4a --audio-bitrate 192
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --container m4a --audio-bitrate 192
 
 # Async submission then query task status
-python scripts/mps_transcode.py --url https://example.com/video.mp4 --no-wait
-python scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
+python3 scripts/mps_transcode.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
 ```

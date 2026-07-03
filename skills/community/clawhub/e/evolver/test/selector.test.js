@@ -105,6 +105,25 @@ describe('selectGene', () => {
     } finally { Math.random = orig; }
   });
 
+  it('selects a forced gene even when another candidate scores higher', () => {
+    const result = selectGene(GENES, ['error', 'exception', 'failed'], {
+      forcedGeneId: 'gene_optimize',
+    });
+    assert.equal(result.selected.id, 'gene_optimize');
+    assert.equal(result.driftMode, 'forced_gene');
+    assert.ok(result.alternatives.some(g => g.id === 'gene_repair'));
+  });
+
+  it('does not select a banned forced gene', () => {
+    const result = selectGene(GENES, ['error', 'exception', 'failed'], {
+      forcedGeneId: 'gene_optimize',
+      bannedGeneIds: new Set(['gene_optimize']),
+    });
+    assert.ok(result.selected);
+    assert.equal(result.selected.id, 'gene_repair');
+    assert.notEqual(result.driftMode, 'forced_gene');
+  });
+
   it('matches gene via baseName:snippet signal (user_feature_request:snippet)', () => {
     const result = selectGene(GENES, ['user_feature_request:add a dark mode toggle to the settings'], {});
     assert.ok(result.selected);
@@ -204,6 +223,68 @@ describe('selectGeneAndCapsule', () => {
     assert.equal(typeof result.memoryUsed, 'boolean');
     assert.equal(typeof result.memoryEvidence, 'number');
     assert.ok(result.selector.selectionPath);
+  });
+
+  it('marks forced gene selection separately from memory preference', () => {
+    const result = selectGeneAndCapsule({
+      genes: GENES,
+      capsules: CAPSULES,
+      signals: ['error', 'exception', 'failed'],
+      memoryAdvice: { bannedGeneIds: new Set(), preferredGeneId: 'gene_repair', totalAttempts: 1 },
+      driftEnabled: false,
+      forcedGeneId: 'gene_optimize',
+    });
+    assert.ok(result.selectedGene);
+    assert.equal(result.selectedGene.id, 'gene_optimize');
+    assert.equal(result.selectionPath, 'forced_gene');
+    assert.equal(result.selector.selectionPath, 'forced_gene');
+    assert.equal(result.memoryUsed, false);
+    assert.equal(result.selector.memoryUsed, false);
+    assert.ok(result.selector.reason.some(r => r.includes('forced_gene_selected: gene_optimize')));
+  });
+
+  it('does not let memoryAdvice forced gene bypass an array ban', () => {
+    const originalRandom = Math.random;
+    Math.random = () => 0.99;
+    try {
+      const result = selectGeneAndCapsule({
+        genes: GENES,
+        capsules: CAPSULES,
+        signals: ['error', 'exception', 'failed'],
+        memoryAdvice: {
+          bannedGeneIds: ['gene_optimize'],
+          forcedGeneId: 'gene_optimize',
+          preferredGeneId: null,
+          totalAttempts: 1,
+        },
+        driftEnabled: false,
+      });
+
+      assert.ok(result.selectedGene);
+      assert.equal(result.selectedGene.id, 'gene_repair');
+      assert.notEqual(result.selectionPath, 'forced_gene');
+      assert.equal(result.selector.selected, 'gene_repair');
+      assert.ok(!result.selector.reason.some(r => r.includes('forced_gene_selected: gene_optimize')));
+    } finally {
+      Math.random = originalRandom;
+    }
+  });
+
+  it('does not let a forced gene bypass a structured ban_gene signal', () => {
+    const result = selectGeneAndCapsule({
+      genes: GENES,
+      capsules: CAPSULES,
+      signals: ['error', 'exception', 'failed', 'ban_gene:gene_optimize'],
+      memoryAdvice: { bannedGeneIds: new Set(), preferredGeneId: null, totalAttempts: 0 },
+      driftEnabled: false,
+      forcedGeneId: 'gene_optimize',
+    });
+
+    assert.ok(result.selectedGene);
+    assert.equal(result.selectedGene.id, 'gene_repair');
+    assert.notEqual(result.selectionPath, 'forced_gene');
+    assert.equal(result.selector.selected, 'gene_repair');
+    assert.ok(!result.selector.reason.some(r => r.includes('forced_gene_selected: gene_optimize')));
   });
 });
 
@@ -541,5 +622,29 @@ describe('selectGene filters epigenetically suppressed genes (regression)', () =
     const result = selectGene([onlyOne], ['error'], {});
     assert.equal(result.selected, null,
       'all suppressed -> selector returns null so the caller can mutate a new gene');
+  });
+
+  it('does not select an epigenetically suppressed forced gene', () => {
+    const suppressed = {
+      type: 'Gene',
+      id: 'gene_repair_suppressed',
+      category: 'repair',
+      signals_match: ['error', 'exception', 'failed', 'crash'],
+      epigenetic_marks: [{ context: envContext, boost: -0.4, reason: 'suppressed_by_failure', created_at: new Date().toISOString() }],
+      validation: ['node -e "true"'],
+    };
+    const fallback = {
+      type: 'Gene',
+      id: 'gene_repair_fallback',
+      category: 'repair',
+      signals_match: ['error'],
+      validation: ['node -e "true"'],
+    };
+    const result = selectGene([suppressed, fallback], ['error', 'exception', 'failed', 'crash'], {
+      forcedGeneId: 'gene_repair_suppressed',
+    });
+    assert.ok(result.selected);
+    assert.equal(result.selected.id, 'gene_repair_fallback');
+    assert.notEqual(result.driftMode, 'forced_gene');
   });
 });

@@ -3,7 +3,7 @@
 """
 VOD AIGC Image Generation Task Script
 Uses the CreateAigcImageTask API to create AIGC image generation tasks
-Supported models: Hunyuan, Qwen, Vidu, Kling, MJ (Midjourney), GEM
+Supported models: Hunyuan, Qwen, Vidu, Kling, MJ (Midjourney), GG, SI, OG, Jimeng
 """
 
 import os
@@ -13,8 +13,8 @@ import argparse
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from vod_auto_upgrade import check_sdk_version
 
+from vod_auto_upgrade import check_sdk_version
 
 try:
     from vod_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -30,7 +30,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -46,13 +46,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -70,11 +73,14 @@ def get_client(region="ap-guangzhou"):
 # Model version mapping
 MODEL_VERSIONS = {
     "Qwen": ["0925"],
-    "Hunyuan": ["3.0"],
+    "Hunyuan": ["3.0", "3d_2.0"],
     "Vidu": ["q2"],
-    "Kling": ["2.1", "3.0", "3.0-Omni"],
-    "MJ": ["v7"],
-    "GEM": ["2.5", "3.0"],
+    "Kling": ["2.1", "3.0", "3.0-Omni", "O1"],
+    "MJ": ["v8.1", "v7"],
+    "GG": ["2.5", "3.0", "3.1"],
+    "SI": ["4.0", "4.5", "5.0-lite"],
+    "OG": ["image2_low", "image2_medium", "image2_high"],
+    "Jimeng": ["4.0"],
 }
 
 # Model default versions
@@ -83,8 +89,11 @@ MODEL_DEFAULT_VERSION = {
     "Hunyuan": "3.0",
     "Vidu": "q2",
     "Kling": "2.1",
-    "MJ": "v7",
-    "GEM": "2.5",
+    "MJ": "v8.1",
+    "GG": "2.5",
+    "SI": "5.0-lite",
+    "OG": "image2_medium",
+    "Jimeng": "4.0",
 }
 
 
@@ -129,6 +138,8 @@ def create_image_task(args):
             file_info.Url = args.file_url
         if args.file_text:
             file_info.Text = args.file_text
+        if args.reference_type:
+            file_info.ReferenceType = args.reference_type
         req.FileInfos = [file_info]
     elif args.file_infos:
         # Support multiple file infos in JSON format
@@ -144,6 +155,8 @@ def create_image_task(args):
                     file_info.Url = fi["Url"]
                 if fi.get("Text"):
                     file_info.Text = fi["Text"]
+                if fi.get("ReferenceType"):
+                    file_info.ReferenceType = fi["ReferenceType"]
                 file_infos.append(file_info)
             req.FileInfos = file_infos
         except json.JSONDecodeError as e:
@@ -153,7 +166,8 @@ def create_image_task(args):
     # Output configuration
     if any([args.output_storage_mode, args.output_media_name, args.output_class_id,
             args.output_expire_time, args.output_resolution, args.output_aspect_ratio,
-            args.output_person_generation, args.input_compliance_check, args.output_compliance_check]):
+            args.output_person_generation, args.input_compliance_check, args.output_compliance_check,
+            args.output_image_count, args.output_format, args.output_logo_add]):
         output_config = models.AigcImageOutputConfig()
         if args.output_storage_mode:
             output_config.StorageMode = args.output_storage_mode
@@ -173,6 +187,12 @@ def create_image_task(args):
             output_config.InputComplianceCheck = args.input_compliance_check
         if args.output_compliance_check:
             output_config.OutputComplianceCheck = args.output_compliance_check
+        if args.output_image_count is not None:
+            output_config.OutputImageCount = args.output_image_count
+        if args.output_format:
+            output_config.OutputFormat = args.output_format
+        if args.output_logo_add:
+            output_config.LogoAdd = args.output_logo_add
         req.OutputConfig = output_config
 
     if args.scene_type:
@@ -206,7 +226,9 @@ def create_image_task(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query later: python scripts/vod_aigc_image.py query --task-id {result['TaskId']}")
+                print(f"📋 You can query later: python3 scripts/vod_aigc_image.py query --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
 
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -215,6 +237,37 @@ def create_image_task(args):
     except Exception as e:
         print(f"Failed to create image generation task: {e}")
         sys.exit(1)
+
+
+def print_task_outputs(result):
+    """Extract and print task outputs (image URL / FileId).
+
+    Compatible with two return structures:
+    - DescribeTaskDetail root response (containing AigcImageTask sub-object)
+    - Already-unwrapped AigcImageTask object
+    """
+    if not result:
+        return
+    task = result.get('AigcImageTask') or result
+    output = task.get('Output') or {}
+    file_infos = output.get('FileInfos') or []
+
+    if not file_infos:
+        err_msg = task.get('Message') or task.get('ErrCodeExt')
+        if err_msg:
+            print(f"⚠️  Error: {err_msg}")
+        return
+
+    print(f"\n📷 Output ({len(file_infos)} image(s)):")
+    for i, fi in enumerate(file_infos, 1):
+        url = fi.get('FileUrl') or fi.get('Url') or ''
+        fid = fi.get('FileId') or ''
+        prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+        if fid:
+            print(f"{prefix} FileId : {fid}")
+            print(f"     URL    : {url}")
+        else:
+            print(f"{prefix} URL: {url}")
 
 
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=600, poll_interval=10):
@@ -274,6 +327,8 @@ def query_task(args):
         result = wait_for_task(client, args.task_id, args.sub_app_id, args.max_wait, args.poll_interval)
         if result is None:
             print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
+        else:
+            print_task_outputs(result)
     else:
         req = models.DescribeTaskDetailRequest()
         req.TaskId = args.task_id
@@ -284,6 +339,8 @@ def query_task(args):
             result = json.loads(resp.to_json_string())
             status = result.get('Status', 'N/A')
             print(f"Task status: {status}")
+            if status in ('FINISH', 'FAIL'):
+                print_task_outputs(result)
         except Exception as e:
             print(f"Query failed: {e}")
             sys.exit(1)
@@ -294,40 +351,49 @@ def query_task(args):
 
 def main():
     check_sdk_version()
+    # Load .env early so that `argparse default=os.environ.get(...)` sees the values.
+    # Bug fix: previously SubAppId default was evaluated at add_argument time,
+    # but .env was loaded inside get_credential() — too late, causing SubAppId=None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD AIGC Image Generation Task Tool (CreateAigcImageTask)',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
   # Generate image using Hunyuan model (text-to-image)
-  python vod_aigc_image.py create --model Hunyuan --prompt "A cute kitten playing in the grass"
+  python3 vod_aigc_image.py create --model Hunyuan --prompt "A cute kitten playing in the grass"
 
   # Use Qwen model with a specified version
-  python vod_aigc_image.py create --model Qwen --model-version 0925 --prompt "a beautiful sunset"
+  python3 vod_aigc_image.py create --model Qwen --model-version 0925 --prompt "a beautiful sunset"
 
   # Image-to-image (specify reference image FileId)
-  python vod_aigc_image.py create --model GEM --model-version 2.5 \\
+  python3 vod_aigc_image.py create --model GG --model-version 2.5 \\
       --file-id 528548548798527148 --prompt "Change the image style to watercolor painting"
 
   # Image-to-image (specify reference image URL)
-  python vod_aigc_image.py create --model Kling --model-version 2.1 \\
+  python3 vod_aigc_image.py create --model Kling --model-version 2.1 \\
       --file-url "https://example.com/ref.jpg" --prompt "Keep the subject, change the background to a starry sky"
 
   # Set output configuration (permanent storage, specify resolution and aspect ratio)
-  python vod_aigc_image.py create --model Hunyuan --prompt "landscape painting" \\
+  python3 vod_aigc_image.py create --model Hunyuan --prompt "landscape painting" \\
       --output-storage-mode Permanent --output-resolution 2K --output-aspect-ratio 16:9
 
   # Enable prompt enhancement
-  python vod_aigc_image.py create --model GEM --prompt "cat" --enhance-prompt Enabled
+  python3 vod_aigc_image.py create --model GG --prompt "cat" --enhance-prompt Enabled
 
   # Wait for task completion by default (add --no-wait to skip waiting)
-  python vod_aigc_image.py create --model Hunyuan --prompt "a dog"
+  python3 vod_aigc_image.py create --model Hunyuan --prompt "a dog"
 
   # List supported models
-  python vod_aigc_image.py models
+  python3 vod_aigc_image.py models
 
   # Preview request parameters
-  python vod_aigc_image.py create --model Hunyuan --prompt "test" --dry-run
+  python3 vod_aigc_image.py create --model Hunyuan --prompt "test" --dry-run
         '''
     )
 
@@ -339,7 +405,7 @@ Examples:
     # Model parameters (required)
     create_parser.add_argument('--model', required=True,
                                choices=list(MODEL_VERSIONS.keys()),
-                               help='Model name (required): Hunyuan/Qwen/Vidu/Kling/MJ/GEM')
+                               help='Model name (required): Hunyuan/Qwen/Vidu/Kling/MJ/GG/SI/OG/Jimeng')
     create_parser.add_argument('--model-version', help='Model version; uses default version if not specified')
 
     # Content parameters
@@ -351,8 +417,10 @@ Examples:
     # Input files (reference image, choose one of three)
     create_parser.add_argument('--file-id', help='VOD FileId of the reference image (mutually exclusive with --file-url)')
     create_parser.add_argument('--file-url', help='URL of the reference image (mutually exclusive with --file-id)')
-    create_parser.add_argument('--file-text', help='Description of the reference image (only valid for GEM 2.5/3.0)')
-    create_parser.add_argument('--file-infos', help='JSON array of multiple reference images, format: [{"Type":"Url","Url":"..."}]')
+    create_parser.add_argument('--file-text', help='Description of the reference image (only valid for GG 2.5/3.0)')
+    create_parser.add_argument('--file-infos', help='JSON array of multiple reference images, format: [{"Type":"Url","Url":"..."}]; you may add "ReferenceType":"mask" inside an element (GPT-Image2 mask editing)')
+    create_parser.add_argument('--reference-type', choices=['mask'],
+                               help='Reference type for a single reference image; currently used only for GPT-Image2 (OG) mask editing. For multiple reference images use --file-infos with embedded ReferenceType')
 
     # Output configuration
     create_parser.add_argument('--output-storage-mode', choices=['Permanent', 'Temporary'],
@@ -361,7 +429,7 @@ Examples:
     create_parser.add_argument('--output-class-id', type=int, help='Output file category ID, default 0')
     create_parser.add_argument('--output-expire-time', help='Output file expiration time in ISO 8601 format')
     create_parser.add_argument('--output-resolution',
-                               help='Generated image resolution, e.g. 1K/2K/4K (GEM), 1080p/2K/4K (Vidu), 720P/1080P/2K/4K (Hunyuan)')
+                               help='Generated image resolution, e.g. 1K/2K/4K (GG), 1080p/2K/4K (Vidu), 720P/1080P/2K/4K (Hunyuan)')
     create_parser.add_argument('--output-aspect-ratio',
                                help='Image aspect ratio, e.g. 16:9, 9:16, 1:1, 4:3, 3:4, etc.')
     create_parser.add_argument('--output-person-generation',
@@ -371,11 +439,17 @@ Examples:
                                help='Whether to enable input content compliance check')
     create_parser.add_argument('--output-compliance-check', choices=['Enabled', 'Disabled'],
                                help='Whether to enable output content compliance check')
+    create_parser.add_argument('--output-image-count', type=int,
+                               help='Number of images to generate: OG 1-8, Kling 1-9 (including outpainting); not supported by other models')
+    create_parser.add_argument('--output-format', choices=['jpeg', 'png'],
+                               help='Output image format: jpeg/png (supported by GPT-Image2 OG)')
+    create_parser.add_argument('--output-logo-add', choices=['Enabled', 'Disabled'],
+                               help='Whether to enable logo watermark: Enabled/Disabled (only some models; OG behavior depends on the server)')
 
     # Other parameters
     create_parser.add_argument('--scene-type',
                                help='Scene type (when ModelName is Hunyuan: 3d_panorama for panoramic image; not supported for other models)')
-    create_parser.add_argument('--seed', type=int, help='Model random seed')
+    create_parser.add_argument('--seed', type=int, help='Model random seed (specify to reproduce results)')
     create_parser.add_argument('--input-region', choices=['Mainland', 'Oversea'],
                                help='Input file region: Mainland (default) / Oversea (use for overseas addresses)')
     create_parser.add_argument('--session-id', help='Deduplication identifier; returns an error for the same ID within three days, max 50 characters')
@@ -385,7 +459,7 @@ Examples:
     create_parser.add_argument('--sub-app-id', type=int,
                                default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
                                help='Sub-application ID, required for customers who activated VOD after 2023-12-25')
-    create_parser.add_argument('--region', default='ap-guangzhou', help='Region, default ap-guangzhou')
+    create_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region, default ap-guangzhou')
     create_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     create_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds), default 600')
     create_parser.add_argument('--json', action='store_true', help='Output full response in JSON format')
@@ -400,7 +474,7 @@ Examples:
     query_parser.add_argument('--sub-app-id', type=int,
                               default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
                               help='Sub-application ID')
-    query_parser.add_argument('--region', default='ap-guangzhou', help='Region, default ap-guangzhou')
+    query_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region, default ap-guangzhou')
     query_parser.add_argument('--no-wait', action='store_true', help='Query status only, do not wait for completion')
     query_parser.add_argument('--poll-interval', type=int, default=10, help='Polling interval (seconds), default 10')
     query_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds), default 600')

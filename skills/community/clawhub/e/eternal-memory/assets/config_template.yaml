@@ -1,0 +1,26 @@
+memory:
+  archive:
+    enabled: true
+    hash_algo: "sha256"
+    hash_file: "memory/archive_hashes.json"
+  vector:
+    engine: "auto"  # auto|tfidf|onnx
+    dim: 512
+  search:
+    fts5_enabled: true
+    graph_enabled: true
+    vector_min_results: 5
+    rrf_k: 60
+    mmr_lambda: 0.7
+  verification:
+    enabled: true
+    hash_check: true
+    semantic_check: true
+    topology_check: true
+  topology:
+    recency_weight: 0.35
+    hot_days: 7
+    warm_days: 30
+    cold_days: 90
+  daemon:
+    scan_interval_minutes: 5

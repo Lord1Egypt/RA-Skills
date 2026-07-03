@@ -1,0 +1,73 @@
+[
+  {
+    "type": "table",
+    "rows": [
+      [
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Header 1",
+                  "style": {
+                    "bold": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Header 2",
+                  "style": {
+                    "bold": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Datum 1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Datum 2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    ]
+  }
+]

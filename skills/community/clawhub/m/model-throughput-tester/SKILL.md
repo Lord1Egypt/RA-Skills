@@ -7,20 +7,11 @@ description_zh: AI 模型速度对比工具。一句话测出哪个模型更快�
 triggerWords:
   - 模型 哪个快
   - 模型 速度 测试
-  - 模型 性能 对比
-  - AI 速度 测评
-  - LLM 速度 测试
-  - token 速度
   - tokens/s 对比
   - 吞吐率 测试
   - 延迟 测试
-  - 响应 速度 对比
-  - 模型 延迟 排行
-  - DeepSeek GPT 哪个快
-  - AI 模型 基线
   - 模型 换哪个
   - 测一下 模型 速度
-  - 跑个 测试
   - throughput test
   - tokens/s
   - speed test
@@ -64,8 +55,6 @@ python3 throughput.py --auto --model "<current session model>"
 ## Core Features
 
 ### 1. Auto Mode (No Key, Recommended)
-
-Auto-detects the current session model and benchmarks throughput, zero configuration needed.
 
 ```bash
 python3 throughput.py --auto
@@ -201,3 +190,11 @@ python3 throughput.py --auto \
 - Auto mode token count is estimated, API mode is precise
 - English prompts recommended for more accurate token estimation
 - Anti-cache: random seed suffix appended to each iteration
+
+## Testing
+
+```bash
+python3 tests/test_throughput.py
+```
+
+26 unit tests covering: token estimation (EN/ZH/mixed/empty), language detection threshold, provider/model parsing, URL handling (`/v1`, `/v4`, full path, trailing slash), markdown report generation (ok/timeout/cache_hit/multi-model/empty), CSV output, and config loading. **No network requests** — tests cover pure logic only.

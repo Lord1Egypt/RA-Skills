@@ -1,3 +1,14 @@
+---
+name: mind-layer
+description: "基于科学记忆法构建六层分层记忆，实现情感优先和多维联想的 AI 记忆系统优化技能。"
+source: ClawHub
+version: 1.1.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 我的脑子
+
 # Mind Layer - AI 记忆系统优化技能
 
 > 基于科学记忆法与记忆分类理论的 AI 记忆系统

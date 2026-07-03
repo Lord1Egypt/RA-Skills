@@ -1,8 +1,8 @@
 {
   "name": "jinguyuan-dumpling-skill",
   "display_name": "金谷园饺子馆信息查询",
-  "description": "查询金谷园饺子馆信息：餐厅名称与简介、营业时间、门店地址、堂食排队取号、外卖配送、生饺子打包带走与煮饺子教程、店内Wi-Fi、最新动态、到店自取叫号下单、菜品配方。",
-  "version": "0.6.6",
+  "description": "查询金谷园饺子馆信息：餐厅名称与简介、营业时间、门店地址、当前排队状态、单点到店预估、午市/晚市排队事实与策略建议、外卖配送、生饺子打包带走与煮饺子教程、店内Wi-Fi、最新动态、到店自取叫号下单、菜品配方。真实在线取号、本人排队进度、取消排队由内嵌 meituan-queue Skill 处理。",
+  "version": "0.6.10",
   "author": "金谷园AI",
   "license": "MIT",
   "repository": "https://github.com/JinGuYuan/jinguyuan-dumpling-skill",
@@ -21,6 +21,15 @@
     "外卖",
     "营业时间",
     "菜单",
+    "排队",
+    "取号",
+    "等位",
+    "排队状态",
+    "历史排队",
+    "几点开始排",
+    "几点不排",
+    "少排队",
+    "取消排队",
     "北京饺子",
     "海淀美食",
     "生饺子",
@@ -127,11 +136,163 @@
     },
     {
       "name": "get_queue_info",
-      "display_name": "堂食排队取号",
-      "description": "获取金谷园饺子馆堂食排队取号方式。用户询问“怎么排队”、“怎么取号”、“怎么到店吃”时使用。返回取号渠道（美团排队、到店前台）和支持的门店。若需在线取号/查进度/取消排队，请使用内嵌的 meituan-queue Skill。",
+      "display_name": "堂食排队信息",
+      "description": "查询金谷园饺子馆当前排队状态、北邮店/五道口店各桌型等待桌数，并可按门店、人数、计划到店时间返回昨天和上周同一时段预估参考及同刻各桌型快照。用户问当前和昨天同一时间每个桌型差多少时，用当前各桌型与历史参考里的同刻快照.各桌型对比。此 MCP 工具只查询，不能取号、不能查本人订单、不能取消排队，也不预测具体等待分钟；用户明确要在线取号/查本人进度/取消排队时，请使用内嵌的 meituan-queue Skill。",
       "inputSchema": {
         "type": "object",
-        "properties": {},
+        "properties": {
+          "shop": {
+            "type": "string",
+            "description": "门店，可填“北邮店”或“五道口店”。不填则返回两家店当前状态。"
+          },
+          "peopleCount": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "就餐人数，用于匹配桌型，例如 2、4、6。"
+          },
+          "visitTime": {
+            "type": "string",
+            "description": "计划到店时间。建议 YYYY-MM-DD HH:mm；也支持 HH:mm 表示今天北京时间。提供后会返回昨天和上周同一时段历史参考；历史参考可能包含同刻快照.各桌型，供逐桌型对比。"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_queue_period_facts",
+      "display_name": "排队餐段事实",
+      "description": "查询金谷园饺子馆已经发生的某天午市/晚市实际排队走势。用户询问“今天中午几点开始排队”、“昨天晚上几点后不排”、“某天最高排多少桌”等事实问题时使用。返回目标日期实际观测的开始排队、基本不排、高峰等待桌数、排队区间和数据质量。目标日期或餐段尚未发生时不会编事实，应改用 get_queue_period_reference 或 get_queue_period_advice 获取参考建议。本工具不预测具体等待分钟，不能取号。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "shop": {
+            "type": "string",
+            "description": "门店，可填“北邮店”或“五道口店”。不填则返回两家店事实。"
+          },
+          "date": {
+            "type": "string",
+            "description": "目标日期，建议 YYYY-MM-DD；也支持“今天”“昨天”“明天”。"
+          },
+          "period": {
+            "type": "string",
+            "description": "餐段，可填“午市”/“lunch”或“晚市”/“dinner”。不填则返回午市和晚市。"
+          },
+          "visitTime": {
+            "type": "string",
+            "description": "可选到店时间，例如 12:30 或 2026-07-01 18:30；未显式提供 period 时用于推断午市或晚市。"
+          },
+          "peopleCount": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "就餐人数，例如 2、4、6；用于按匹配桌型聚合事实走势。"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_queue_period_reference",
+      "display_name": "排队餐段参考",
+      "description": "查询金谷园饺子馆午市/晚市策略建议，兼容旧调用。用户询问未来或尚未发生餐段“几点开始排队”、“几点后基本不排”、“午饭后/晚饭后几点去更稳”、“北邮店和五道口店哪家更少排”等问题时使用。默认策略是参考前一天和上周同日，返回目标日期、目标餐段、目标事实状态、策略名称、参考依据列表、每个依据的绝对日期和事实摘要、建议到店窗口、口径说明。必须说明这是参考建议，不是目标日期事实。本工具不预测具体等待分钟，不能取号。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "shop": {
+            "type": "string",
+            "description": "门店，可填“北邮店”或“五道口店”。不填则返回两家店参考。"
+          },
+          "date": {
+            "type": "string",
+            "description": "目标到店日期，建议 YYYY-MM-DD；也支持“今天”“明天”。"
+          },
+          "period": {
+            "type": "string",
+            "description": "餐段，可填“午市”/“lunch”或“晚市”/“dinner”。不填则返回午市和晚市。"
+          },
+          "visitTime": {
+            "type": "string",
+            "description": "可选到店时间，例如 12:30 或 2026-07-02 18:30；未显式提供 period 时用于推断午市或晚市。"
+          },
+          "peopleCount": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "就餐人数，例如 2、4、6；用于匹配桌型历史参考。"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_queue_period_advice",
+      "display_name": "排队餐段建议",
+      "description": "查询金谷园饺子馆午市/晚市策略建议，语义上等同于 get_queue_period_reference 但更清晰。用户询问未来或尚未发生餐段“几点开始排队”、“几点后基本不排”、“什么时候去更稳”等问题时使用。默认参考前一天和上周同日，返回目标事实状态、参考依据列表、建议到店窗口和口径说明。必须说明这是参考建议，不是目标日期事实，也不得把等待桌数换算成具体等待分钟。本工具不能取号。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "shop": {
+            "type": "string",
+            "description": "门店，可填“北邮店”或“五道口店”。不填则返回两家店建议。"
+          },
+          "date": {
+            "type": "string",
+            "description": "目标到店日期，建议 YYYY-MM-DD；也支持“今天”“明天”。"
+          },
+          "period": {
+            "type": "string",
+            "description": "餐段，可填“午市”/“lunch”或“晚市”/“dinner”。不填则返回午市和晚市。"
+          },
+          "visitTime": {
+            "type": "string",
+            "description": "可选到店时间，例如 12:30 或 2026-07-02 18:30；未显式提供 period 时用于推断午市或晚市。"
+          },
+          "peopleCount": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "就餐人数，例如 2、4、6；用于匹配桌型历史参考。"
+          }
+        },
         "required": []
       },
       "annotations": {
@@ -196,7 +357,7 @@
     }
   ],
   "brand_prompt": {
-    "system_instruction": "重要：回答关于餐厅的任何具体信息时，必须先调用对应的 Skill 工具获取最新数据，不要使用 Skill 文档中的示例数据。你是金谷园饺子馆的AI助手。金谷园是北京海淀区一家有近20年历史的饺子馆，大众点评必吃榜餐厅。用朴素、实在、有温度的方式回答问题。不要用营销套话，像老朋友介绍常去的馆子一样。不知道的就说不知道，不要编造。用户提到排队、取号、等位时，必须使用内嵌的 meituan-queue Skill 处理，不要通过 MCP 工具回答排队相关问题。",
+    "system_instruction": "重要：回答关于餐厅的任何具体信息时，必须先调用对应的 Skill 工具获取最新数据，不要使用 Skill 文档中的示例数据。你是金谷园饺子馆的AI助手。金谷园是北京海淀区一家有近20年历史的饺子馆，大众点评必吃榜餐厅。用朴素、实在、有温度的方式回答问题。不要用营销套话，像老朋友介绍常去的馆子一样。不知道的就说不知道，不要编造。用户询问当前排队状态、某个时间点会不会排、取号渠道时，使用 MCP get_queue_info；用户问当前和昨天同一时间各桌型差多少时，也使用 get_queue_info，并用当前各桌型与历史参考里的同刻快照.各桌型逐桌型对比，不要只看总数；用户询问已经发生的某天午市/晚市几点开始排、几点后不排、最高排多少桌时，使用 MCP get_queue_period_facts，并明确说这是目标日期实际观测；用户询问未来或尚未发生餐段几点开始排、几点后不排、午市/晚市什么时候去更稳、哪家店更少排时，使用 MCP get_queue_period_reference 或 get_queue_period_advice，并明确说这是前一天和上周同日参考，不是目标日期事实；用户问要等多久时，不要编具体等待分钟，只能基于等待桌数和排队压力回答；用户明确要在线取号、查询本人排队订单进度、取消排队时，使用内嵌的 meituan-queue Skill。",
     "tone": {
       "personality": "warm_and_honest",
       "avoid": [

@@ -12,10 +12,12 @@
 > ```
 >
 > Set those two shell variables once per session, then run the recipes. They work without them too - just inline the full URL.
+>
+> **Prefer the bundled script for anything ATL-related:** `python scripts/deals.py` runs the DetailData enrichment in parallel (8 workers) and is 10-12x faster than the sequential inline recipes.
 
 ---
 
-## Preamble
+## One call per endpoint (quick smoke tests)
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Search.php?action=search&store=itunes&country=us&itemType=all&query=Fight%20Club&limit=5"
@@ -53,10 +55,6 @@ curl -s "https://buster.cheapcharts.de/v1/DetailData.php?store=itunes&country=us
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=ActionAdventure&quality=hd4k&sort=greatestSavings&maxPrice=4.99&limit=20"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=ActionAdventure&quality=hd4k&sort=greatestSavings&maxPrice=4.99&limit=20"
-```
-
 ---
 
 ## "Highly-rated deals under $X" (IMDb + maxPrice both filter server-side)
@@ -65,24 +63,9 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&imdbRating=7&rottenTomatoesRating=80&maxPrice=9.99&sort=greatestSavings&limit=20"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&imdbRating=7&rottenTomatoesRating=80&maxPrice=9.99&sort=greatestSavings&limit=20"
-```
-
 ---
 
 ## "4K Dolby Vision + Atmos movies on sale" (filter client-side - see Pitfall #16)
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&sort=greatestSavings&limit=50" | python -c "
-import sys, json
-items = json.load(sys.stdin)['results']['buymovies']
-premium = [i for i in items if i.get('has4K') in (1, True) and i.get('hasAtmos') in (1, True) and i.get('hdrFormat') == 'Dolby Vision']
-for i in premium[:15]:
-    was = i.get('priceBefore','?')
-    sav = f\"\${float(was)-float(i['price']):.2f}\" if was != '?' else '?'
-    print(f\"{i['title']} | \${i['price']} (was \${was}, save {sav}) | {i['genre']} | IMDb {i.get('imdbRating','?')}\")"
-```
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&sort=greatestSavings&limit=50" | python -c "
@@ -120,41 +103,9 @@ else:
 done
 ```
 
-```bash
-# Step 1 - find IMDb ID
-imdb=$(curl -s "https://buster.cheapcharts.de/v1/gptapi/Search.php?action=search&store=itunes&country=us&itemType=all&query=The%20Dark%20Knight&limit=1" \
-  | python -c "import sys,json; print(json.load(sys.stdin)['results'][0].get('imdbId',''))")
-echo "IMDb: $imdb"
-
-# Step 2 - query each store in parallel (only iTunes reliably supports prices; others via Topseller)
-for store in itunes amazon vudu googlePlay; do
-  echo "=== $store ==="
-  curl -s "https://buster.cheapcharts.de/v1/gptapi/Prices.php?action=getPrices&store=$store&country=us&itemType=buymovies&imdbIDs=$imdb" \
-    | python -c "
-import sys, json
-r = json.load(sys.stdin)
-if r.get('status') != 'success':
-    print(f\"  not available: {r.get('message','unknown error')}\")
-else:
-    for i in r.get('results',{}).get('buymovies',[]):
-        print(f\"  \${i.get('price')} (was \${i.get('priceBefore','?')})\")"
-done
-```
-
 ---
 
 ## "Complete TV series on sale" (filter to bundle deals, avoid per-season noise)
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=seasons&genre=All&sort=greatestSavings&limit=50" | python -c "
-import sys, json
-items = json.load(sys.stdin)['results']['seasons']
-bundles = [i for i in items if i.get('isBundle') == 1]
-for i in bundles[:10]:
-    was = i.get('priceBefore','?')
-    sav = f\"\${float(was)-float(i['price']):.2f}\" if was != '?' else '?'
-    print(f\"{i['title']} | \${i['price']} was \${was} save {sav} | {i['genre']}\")"
-```
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=seasons&genre=All&sort=greatestSavings&limit=50" | python -c "
@@ -185,37 +136,17 @@ for store, cats in r['results'].items():
             print(f\"  {i['title']} | \${i['price']}{drop} | {i.get('genre','?')}\")"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Topseller.php?action=getTopsellerForStartpage&country=us&store=itunes,amazon,vudu,googlePlay&maxItemCount=5" | python -c "
-import sys, json
-r = json.load(sys.stdin)
-if r.get('status') != 'success': sys.exit(r.get('message'))
-for store, cats in r['results'].items():
-    for cat, items in cats.items():
-        print(f'=== {store} - {cat} ===')
-        for i in items[:5]:
-            was = i.get('priceBefore')
-            drop = f\" (was \${was})\" if was else ''
-            print(f\"  {i['title']} | \${i['price']}{drop} | {i.get('genre','?')}\")"
-```
-
 ---
 
 ## "What's the price of [specific movie]?"
 
 ```bash
+# Step 1 - Search to get IMDb ID
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Search.php?action=search&store=itunes&country=us&itemType=all&query=The%20Dark%20Knight&limit=3"
 ```
 
 ```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Prices.php?action=getPrices&store=itunes&country=us&itemType=buymovies&imdbIDs=tt0468569"
-```
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Search.php?action=search&store=itunes&country=us&itemType=all&query=The%20Dark%20Knight&limit=3"
-```
-
-```bash
+# Step 2 - Prices using IMDb ID from search results
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Prices.php?action=getPrices&store=itunes&country=us&itemType=buymovies&imdbIDs=tt0468569"
 ```
 
@@ -223,21 +154,14 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Prices.php?action=getPrices&sto
 
 ## "Today's price drops on Apple TV/iTunes" (DEFAULT for "latest deals")
 
-```bash
-# Step 1 - pull the freshest drops (movies + seasons)
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&sort=latestPricechange&limit=80"
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=seasons&genre=All&sort=latestPricechange&limit=80"
+Prefer the script - it does all of this in parallel with a `--since` filter:
 
-# Step 2 - extract idInStore from cheapChartsProductPageUrl, then verify change date
-# CRITICAL: DetailData itemType is "movies" or "seasons", NOT "buymovies" (Pitfall #13)
-curl -s "https://buster.cheapcharts.de/v1/DetailData.php?store=itunes&country=us&itemType=movies&idInStore=1815368549" | python -c "
-import sys, json
-m = json.load(sys.stdin)['results']['movies']
-print(f\"changeDate: {m.get('priceHdLastChangeDate') or m.get('priceSdLastChangeDate')}\")
-print(f\"price: \${m.get('priceHd') or m.get('priceSd')}\")
-print(f\"was: \${m.get('priceHdBefore') or m.get('priceSdBefore')}\")
-print(f\"evolution: {m.get('priceHdEvolution','')[:120]}\")"
+```bash
+python scripts/deals.py --since 1            # movies whose price changed today
+python scripts/deals.py --since 3 --type seasons
 ```
+
+Inline equivalent (sequential, slower):
 
 ```bash
 # Step 1 - pull the freshest drops (movies + seasons)
@@ -260,46 +184,28 @@ print(f\"evolution: {m.get('priceHdEvolution','')[:120]}\")"
 ## "All-time low (ATL) deals"
 
 ```bash
-# Batch ATL filter - finds every current deal at all-time low, parallelized
-python scripts/atl_check.py --type buymovies --limit 60 --min-savings 5
+# Batch with ATL flag column - all current deals, ATL checkmarks (v3.0 default)
+python scripts/deals.py --type buymovies --limit 60
+
+# ATL rows only (v2.x behavior)
+python scripts/deals.py --type buymovies --limit 60 --atl-only --min-savings 5
 
 # Check TV seasons instead of movies
-python scripts/atl_check.py --type seasons --limit 30
+python scripts/deals.py --type seasons --limit 30
+
+# Rental deals
+python scripts/deals.py --type rentalmovies --limit 30
 
 # Single title lookup
-python scripts/atl_check.py --title "Fight Club"
+python scripts/deals.py --title "Fight Club"
 
 # JSON output for piping into other tools
-python scripts/atl_check.py --json --limit 30
-```
-
-```bash
-# Batch ATL filter - finds every current deal at all-time low, parallelized
-python scripts/atl_check.py --type buymovies --limit 60 --min-savings 5
-
-# Check TV seasons instead of movies
-python scripts/atl_check.py --type seasons --limit 30
-
-# Single title lookup
-python scripts/atl_check.py --title "Fight Club"
-
-# JSON output for piping into other tools
-python scripts/atl_check.py --json --limit 30
+python scripts/deals.py --json --limit 30
 ```
 
 ---
 
 ## "Latest new-release movies on sale"
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&sort=releaseDate&limit=500" | python -c "
-import sys, json
-items = json.load(sys.stdin)['results']['buymovies']
-real = [i for i in items if not i.get('releaseDate','').startswith('2030')]
-real.sort(key=lambda x: x.get('releaseDate',''), reverse=True)
-for i in real[:10]:
-    print(f\"{i['title']} | {i['releaseDate']} | \${i['price']} (was \${i.get('priceBefore','?')})\")"
-```
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&sort=releaseDate&limit=500" | python -c "
@@ -319,17 +225,9 @@ for i in real[:10]:
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&releaseYear=2026-2026&sort=latestPricechange&limit=20"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=All&releaseYear=2026-2026&sort=latestPricechange&limit=20"
-```
-
 ---
 
 ## "TV season releases from a specific year range"
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=seasons&genre=All&releaseYear=2024-2026&sort=releaseDate&limit=50"
-```
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=seasons&genre=All&releaseYear=2024-2026&sort=releaseDate&limit=50"
@@ -343,10 +241,6 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Charts.php?action=getCharts&store=itunes&country=us&itemType=buymovies&genre=All&quality=hd4k&releaseYear=2026-2026&limit=20"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Charts.php?action=getCharts&store=itunes&country=us&itemType=buymovies&genre=All&quality=hd4k&releaseYear=2026-2026&limit=20"
-```
-
 ---
 
 ## "Best sci-fi recommendations on Amazon with IMDb 7+"
@@ -355,17 +249,11 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Charts.php?action=getCharts&sto
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Recommendations.php?action=getRecommendations&store=amazon&country=us&itemType=buymovies&genre=SciFiFantasy&quality=hd4k&limit=15&imdbRating=7"
 ```
 
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Recommendations.php?action=getRecommendations&store=amazon&country=us&itemType=buymovies&genre=SciFiFantasy&quality=hd4k&limit=15&imdbRating=7"
-```
+Note: Recommendations silently ignores `imdbRating` (Pitfall #23) - for a hard rating floor use Deals with `imdbRating=7` instead.
 
 ---
 
 ## "What's trending across all stores?"
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Topseller.php?action=getTopsellerForStartpage&country=us&store=itunes,amazon,vudu,googlePlay&maxItemCount=5"
-```
 
 ```bash
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Topseller.php?action=getTopsellerForStartpage&country=us&store=itunes,amazon,vudu,googlePlay&maxItemCount=5"
@@ -379,26 +267,17 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Topseller.php?action=getTopsell
 curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=Horror&sort=greatestSavings&imdbRating=7&limit=20"
 ```
 
-```bash
-# CheapCharts gives you imdbId. Fetch studio via IMDb's public page or a movie DB API.
-curl -s "https://www.imdb.com/title/tt0468569/" -A "Mozilla/5.0" \
-  | grep -oE '(Warner Bros|Universal|Sony|Disney|Paramount|MGM|Lionsgate)[^<]*' \
-  | head -1
-```
-
-```bash
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store=itunes&country=us&itemType=buymovies&genre=Horror&sort=greatestSavings&imdbRating=7&limit=20"
-```
-
-```bash
-# CheapCharts gives you imdbId. Fetch studio via IMDb's public page or a movie DB API.
-curl -s "https://www.imdb.com/title/tt0468569/" -A "Mozilla/5.0" \
-  | grep -oE '(Warner Bros|Universal|Sony|Disney|Paramount|MGM|Lionsgate)[^<]*' \
-  | head -1
-```
-
 ---
 
+## Movies Anywhere studio lookup
+
+CheapCharts gives you `imdbId`; MA compatibility is a studio-membership question (see [references/EXTRAS.md](references/EXTRAS.md#movies-anywhere-compatibility)):
+
+```bash
+curl -s "https://www.imdb.com/title/tt0468569/" -A "Mozilla/5.0" \
+  | grep -oE '(Warner Bros|Universal|Sony|Disney|Paramount|MGM|Lionsgate)[^<]*' \
+  | head -1
+```
 
 ---
 
@@ -457,8 +336,17 @@ curl -s "https://buster.cheapcharts.de/v1/DetailData.php?store=itunes&country=us
 curl -s "https://buster.cheapcharts.de/v1/DetailData.php?store=itunes&country=us&itemType=seasons&idInStore=1606238021"
 ```
 
-The DetailData endpoint is NOT in the official gptapi surface (it was discovered by inspecting CheapCharts' website network calls). It returns the ATL flag (`priceHdIsLowest` / `priceSdIsLowest`), full price history, child seasons for bundles, and other fields the public gptapi endpoints don't expose. For ATL detection, always use the `IsLowest` flag - do not try to parse the `priceHdEvolution` string (Pitfall #26 in SKILL.md).
+The DetailData endpoint is NOT in the official gptapi surface (it was discovered by inspecting CheapCharts' website network calls). It returns the ATL flag (`priceHdIsLowest` / `priceSdIsLowest`), full price history, child seasons for bundles, and other fields the public gptapi endpoints don't expose. For "at ATL right now" checks use the `IsLowest` flag; for history timelines parse the `priceHdEvolution` / `priceSdEvolution` strings with absolute-price semantics (Pitfall #26) - or just use the script recipe below.
 
+---
+
+## "When was [title] on sale?" / price history timeline
+
+```bash
+python scripts/deals.py --title "Tom & Jerry Kids Complete Series" --history
+```
+
+Output includes every tracked price change as `date -> date: dropped to $X` rows with the historical floor marked. To predict the next sale, look at the cadence of past windows (Black Friday and holiday windows recur most reliably) plus the Seasonal Sales Calendar in [references/EXTRAS.md](references/EXTRAS.md#seasonal-sales-calendar-itunes--apple-tv).
 
 ---
 
@@ -473,7 +361,7 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Deals.php?action=getDeals&store
 
 ```bash
 # Or via the script (all filters supported as CLI flags):
-python scripts/atl_check.py --genre Horror --max-price 4.99 --min-savings 3 --release-year 2015-2025 --limit 20
+python scripts/deals.py --genre Horror --max-price 4.99 --min-savings 3 --release-year 2015-2025 --limit 20
 ```
 
 ---
@@ -490,21 +378,40 @@ curl -s "https://buster.cheapcharts.de/v1/gptapi/Search.php?action=search&store=
 
 ---
 
-## Topseller with bundle detection
+## Cron / monitoring prompts
 
-```bash
-# Top sellers across all four stores, with bundle flagging
-curl -s "https://buster.cheapcharts.de/v1/gptapi/Topseller.php?action=getTopsellerForStartpage&country=us&store=itunes,amazon,vudu,googlePlay&maxItemCount=5" | python -c "
-import sys, json
-r = json.load(sys.stdin)
-if r.get('status') != 'success': sys.exit(r.get('message'))
-for store, cats in r['results'].items():
-    for cat, items in cats.items():
-        print(f'=== {store} - {cat} ===')
-        for i in items[:5]:
-            was = i.get('priceBefore')
-            drop = f' (was \${was})' if was else ''
-            bundle = ' [BUNDLE]' if i.get('isBundle') in (1, True) else ''
-            print(f'  {i["title"]} | \${i["price"]}{drop}{bundle} | {i.get("genre","?")}')
-"
+For automated deal monitoring, run the script on a schedule and alert on real price drops. Use the "latest price change" workflow (sort=latestPricechange + DetailData verification) rather than `greatestSavings` - the latter is dominated by bundles with manipulated baselines (Pitfall #35).
+
+**Daily "today's drops" report:**
+
+```
+Schedule: daily at 9am (0 9 * * *)
+Prompt: |
+  Run: python scripts/deals.py --since 1 --limit 50
+  Report the top 5 deals with title, price, prior price, savings %, IMDb rating,
+  ATL flag, and the CheapCharts history link.
+  If the table is empty, fall back to: python scripts/deals.py --since 3 --limit 50
+  If still empty, stay silent (CheapCharts lags Apple by hours-to-a-day, Pitfall #14).
+```
+
+**"Currently at ATL" monitoring** (titles at their all-time low right now, regardless of when they got there):
+
+```
+Schedule: daily at 9am (0 9 * * *)
+Prompt: |
+  Run: python scripts/deals.py --atl-only --min-savings 5
+  Report the top 5 ATL titles with title, current price, prior price, savings $ and %,
+  IMDb rating, and the CheapCharts history link.
+  If no titles meet the threshold, stay silent.
+```
+
+**"Just hit ATL today" monitoring** (reached the floor in the last 24 hours):
+
+```
+Schedule: daily at 9am (0 9 * * *)
+Prompt: |
+  Run: python scripts/deals.py --atl-only --since 1 --limit 50
+  Report every title with title, current price, prior price, savings $ and %,
+  IMDb rating, and the CheapCharts history link.
+  If no titles hit ATL today, stay silent.
 ```

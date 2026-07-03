@@ -19,28 +19,28 @@
 
 ```bash
 # 查询最近 7 天用量（默认）
-python scripts/mps_usage.py
+python3 scripts/mps_usage.py
 
 # 查询最近 30 天所有类型
-python scripts/mps_usage.py --days 30 --all-types
+python3 scripts/mps_usage.py --days 30 --all-types
 
 # 查询指定日期范围
-python scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31
+python3 scripts/mps_usage.py --start 2026-01-01 --end 2026-01-31
 
 # 查询多个任务类型
-python scripts/mps_usage.py --type Transcode Enhance AIGC
+python3 scripts/mps_usage.py --type Transcode Enhance AIGC
 
 # 查询大模型音视频理解用量（属于 AIAnalysis 类型）
-python scripts/mps_usage.py --days 30 --type AIAnalysis
+python3 scripts/mps_usage.py --days 30 --type AIAnalysis
 
 # 查询数字水印相关用量
-python scripts/mps_usage.py --type AddBlindWatermark AddNagraWatermark ExtractBlindWatermark
+python3 scripts/mps_usage.py --type AddBlindWatermark AddNagraWatermark ExtractBlindWatermark
 
 # 查询多地域用量
-python scripts/mps_usage.py --region ap-guangzhou ap-hongkong
+python3 scripts/mps_usage.py --region ap-guangzhou ap-hongkong
 
 # JSON 格式输出
-python scripts/mps_usage.py --days 7 --all-types --json
+python3 scripts/mps_usage.py --days 7 --all-types --json
 ```
 
 ## 强制规则

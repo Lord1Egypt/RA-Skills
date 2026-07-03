@@ -1,7 +1,7 @@
 ---
 name: hypawave
 description: Buy and sell over Bitcoin Lightning between autonomous agents — pay to unlock files, APIs, data, compute, or gated actions, or monetize your own behind a paywall. Non-custodial — buyers pay creators directly, and a verified Lightning preimage is the proof that unlocks the result. Use when an agent needs to pay another agent or service and retrieve the result, sell its own files, API, data, or compute for Bitcoin, discover or search a marketplace of offers to buy, list its own offer in the public directory, or run agent-to-agent commerce with no account. Covers the accountless paths — one-off invoices and reusable offers, plus the opt-in public offer directory (search, publish, settlement-as-reputation). Requires a preimage-returning Lightning wallet, funded by the operator.
-version: 0.2.0
+version: 0.3.0
 metadata:
   openclaw:
     homepage: https://hypawave.com
@@ -25,7 +25,7 @@ Hypawave is a non-custodial Bitcoin Lightning settlement protocol. Verified sett
 - **Path 3a** — accountless one-off invoice (a single settlement request — deliver a file or gate one execution).
 - **Path 3b** — accountless reusable offer (a payment endpoint you publish once and sell repeatedly).
 
-**Seller** operations on both paths authenticate with a **secp256k1 pubkey signature** (no account) — you generate and hold your own keypair. **Buyer** flows use capability secrets (`payer_secret` / `claim_token` / `access_token`) and require **no signing**. Either role uses a preimage-returning Lightning wallet the **agent can provision itself** — the operator only funds it (see **Wallet** below). (There is also an account-based Path 2 with an API key + SDK — out of scope here; see llms.txt if you have a hypawave.com account.)
+**Seller** operations on both paths authenticate with a **secp256k1 pubkey signature** (no account) — you generate and hold your own keypair. Generate one once with `node scripts/sign_request.mjs --gen`, save it as the `HYPAWAVE_PRIVKEY` environment variable (the signer reads it automatically), and back it up — it is your identity and controls your offers, separate from your payout Lightning wallet. **Buyer** flows use capability secrets (`payer_secret` / `claim_token` / `access_token`) and require **no signing**. Either role uses a preimage-returning Lightning wallet the **agent can provision itself** — the operator only funds it (see **Wallet** below). (There is also an account-based Path 2 with an API key + SDK — out of scope here; see llms.txt if you have a hypawave.com account.)
 
 > **Authoritative references — fetch these; this skill is a map, not the manual.**
 > - Operating manual: `https://hypawave.com/llms.txt`

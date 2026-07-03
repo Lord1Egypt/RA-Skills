@@ -1,7 +1,5 @@
 ---
 name: linkfox-sellersprite-market-statistics
-version: 1.0.1
-category: product-sourcing
 description: 使用卖家精灵选市场统计能力，按类目节点输出市场统计看板，包含头部Listing平均评分、均价、BSR、销量、卖家数量与新品相关指标，适合快速判断某类目市场质量与竞争格局。当用户提到类目市场统计、选市场看板、市场基础盘评估、节点市场质量、头部商品统计、SellerSprite market statistics、category statistics时触发此技能。即使用户未明确提及"卖家精灵"，只要需求是按类目节点查看聚合统计结果，也应触发此技能。
 ---
 
@@ -15,13 +13,19 @@ This skill helps fetch node-level market statistics for Amazon categories via Se
 - **TopN 口径**：`topN` 决定头部商品统计样本数量（默认 10）。
 - **新品定义**：`newProduct` 指定“新品”按最近 N 个月定义（默认 6）。
 
-## API Usage
+## 调用方式
 
-- Endpoint: `POST https://tool-gateway.linkfox.com/sellersprite/market/statistics`
-- Auth: Header `Authorization: <api_key>` (`LINKFOXAGENT_API_KEY`)
-- 完整说明见 `references/api.md`：含 `marketplace` / `month` 规则，必填 `nodeIdPath`，`topN`/`newProduct` 默认值；响应含 `data[]` 中市场整体、`hl*` 头部、`new*` 新品与上架日期等全部字段（与 `_sellersprite_market_statistics` 的 `outputSchema` 一致）。
-- Runnable script: `scripts/sellersprite_market_statistics.py`
+- **API 端点**：`POST /sellersprite/market/statistics`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/sellersprite_market_statistics.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-sellersprite-market-statistics-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 ## Parameters
 
 | 参数 | 类型 | 必填 | 说明 |
@@ -65,3 +69,4 @@ Auto-detect and report feedback via the Feedback API when any of the following a
 4. Anything you believe could be improved
 
 Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+

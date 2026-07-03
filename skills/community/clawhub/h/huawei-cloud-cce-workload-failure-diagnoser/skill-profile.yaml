@@ -1,0 +1,30 @@
+﻿name: huawei-cloud-cce-workload-failure-diagnoser
+level: L3
+domain: diagnosis-remediation
+description: Diagnose CCE workload rollout failures, stuck rolling updates, unavailable replicas, and probe-related readiness failures.
+tools:
+  - huawei_workload_rollout_diagnose
+  - huawei_get_workload_rollout_context
+  - huawei_pod_failure_diagnose
+  - huawei_get_cce_pods
+  - huawei_get_cce_events
+  - huawei_get_pod_logs
+  - huawei_get_cce_pod_metrics
+  - huawei_get_cce_pod_metrics_topN
+  - huawei_get_cce_pvcs
+  - huawei_get_cce_pvs
+  - huawei_node_diagnose
+  - huawei_network_diagnose
+references:
+  - references/workflow.md
+  - references/output-schema.md
+  - references/risk-rules.md
+  - references/verification-method.md
+cross_skill_refs:
+  pod-failure-diagnoser: huawei-cloud-cce-pod-failure-diagnoser
+  node-failure-diagnoser: huawei-cloud-cce-node-failure-diagnoser
+  root-cause-analyzer: huawei-cloud-cce-root-cause-analyzer
+  auto-remediation-runner: huawei-cloud-cce-auto-remediation-runner
+  alarm-correlation-engine: huawei-cloud-cce-alarm-correlation-engine
+guardrails:
+  max_auto_risk: R1

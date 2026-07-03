@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 /**
- * english-daily — 用户注册脚本
+ * english-daily — 用户注册脚本（无文件写入版）
+ *
+ * 档案存放在原生 MEMORY.md 中，由 Agent 维护；本脚本不读写任何文件。
+ * 它只做纯计算并输出一段 <!-- english-daily:profile:<userId> --> 区块，
+ * 由 Agent 写入 MEMORY.md，跨会话保留。
  *
  * 用法:
  *   node register.js <userId> <name> [level] [dailyGoal]
@@ -18,11 +22,7 @@
 
 'use strict';
 
-const fs   = require('fs');
-const path = require('path');
-const { getWordsByLevel, getNewWordsForUser } = require('./wordbank');
-
-const USERS_DIR = path.join(__dirname, '../data/users');
+const { getNewWordsForUser, renderMemoryBlock } = require('./wordbank');
 
 const VALID_LEVELS = ['A1', 'A2', 'B1', 'B2'];
 
@@ -35,30 +35,6 @@ function sanitizeId(value) {
   }
   return value;
 }
-
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ 非法路径');
-    process.exit(1);
-  }
-  return resolved;
-}
-
-// ── I/O helpers ───────────────────────────────────────────────────────────────
-
-function saveUser(userId, data) {
-  fs.mkdirSync(USERS_DIR, { recursive: true });
-  fs.writeFileSync(safeUserPath(userId), JSON.stringify(data, null, 2), 'utf8');
-}
-
-function loadUser(userId) {
-  const f = safeUserPath(userId);
-  if (!fs.existsSync(f)) return null;
-  return JSON.parse(fs.readFileSync(f, 'utf8'));
-}
-
-// ── Target level map ──────────────────────────────────────────────────────────
 
 function nextLevel(level) {
   const idx = VALID_LEVELS.indexOf(level);
@@ -116,14 +92,6 @@ if (rawGoal !== undefined) {
   }
 }
 
-// Check existing
-const existing = loadUser(userId);
-if (existing) {
-  console.log(`⚠️  用户 ${userId} 已存在（${existing.name}，等级 ${existing.level}）`);
-  console.log('如需更新，请直接修改 data/users/<userId>.json 或重新注册（将覆盖原有进度）。');
-  process.exit(0);
-}
-
 const now = new Date().toISOString();
 
 const profile = {
@@ -147,13 +115,11 @@ const profile = {
   createdAt: now
 };
 
-saveUser(userId, profile);
-
-// Count available words at their level
+// Count available words at their level (pure compute)
 const availableWords = getNewWordsForUser(profile, 9999).length;
 
 console.log(`
-✅ 注册成功！
+✅ 学习档案已生成！
 
 用户ID：${userId}
 姓名：  ${name}
@@ -161,12 +127,19 @@ console.log(`
 每日目标：${dailyGoal} 个新单词
 
 📚 当前等级可学单词：${availableWords} 个
-
-💡 下一步：
-   查看今日学习  → node scripts/daily-push.js ${userId}
-   开始测验      → node scripts/quiz.js ${userId}
-   查看进度      → node scripts/progress.js ${userId}
-   开启每日推送  → node scripts/push-toggle.js on ${userId}
 `);
 
-module.exports = { saveUser, loadUser, sanitizeId, safeUserPath };
+// 输出 MEMORY.md 区块，供 Agent 写入原生记忆（脚本不落盘，符合 clawhub 无文件写入规范）
+console.log('📇 请将以下档案写入 MEMORY.md（原生记忆，跨会话保留）：');
+console.log('```markdown');
+console.log(renderMemoryBlock(profile));
+console.log('```');
+console.log(`
+💡 下一步（把 MEMORY.md 中的 等级/每日目标/SRS进度 作为参数传入脚本）：
+   查看今日学习  → node scripts/daily-push.js ${userId} --level ${level} --goal ${dailyGoal} --progress '{}'
+   开始测验      → node scripts/quiz.js ${userId} --level ${level} --progress '{}'
+   查看进度      → node scripts/progress.js ${userId} --name "${name}" --level ${level} --progress '{}'
+   开启每日推送  → node scripts/push-toggle.js on ${userId} --level ${level} --goal ${dailyGoal}
+`);
+
+module.exports = { nextLevel };

@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, with versions tracked in a practical project-oriented style.
 
+## [2.2.0] - 2026-04-28
+
+### Added
+- **Intellectual Heritage section** in `SKILL.md`: traces each of the five lenses back to its pre-Qin source — Huangdi, Jiang Ziya, Sun Wu, Wu Qi, and Duke Huan of Qi
+- **Enhanced lens prompts**: each lens now includes historical heritage annotations and 2-3 additional check-questions drawn from the relevant ancient thinker
+- Updated descriptions in `README.md` and `package.json` to reflect the five-master synthesis
+
 ## [2.1.0] - 2026-04-28
 
 ### Changed

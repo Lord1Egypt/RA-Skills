@@ -1,0 +1,7 @@
+== 概览 ==  parts=1 flags=1 wires=0 sheets=0 nets≈1
+
+🔴 标识与引脚重叠 (DRC fatal) (1):
+  - netflag +3V3 @(100,100) 与引脚 U1.1(VCC) 重叠 → DRC fatal
+
+🟠 标识无导线 (1):
+  - netflag +3V3 @(100, 100) 没有 wire 连到它（悬空标识）

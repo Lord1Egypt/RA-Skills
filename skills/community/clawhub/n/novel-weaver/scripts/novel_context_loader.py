@@ -80,19 +80,25 @@ def _format_emotions(sub: dict) -> str:
     return line
 
 
-def _auto_generate_prompt(sub: dict, chapter_overview: str) -> str:
-    """从摘要+情绪+章概述自动合成写作命题（当 writing_prompt 缺失时的 fallback）"""
-    summary = sub.get("summary", "")
-    tone = sub.get("tone", "")
-    title = sub.get("title", "")
-    emotions = sub.get("emotions", [])
-    parts = [f"本子结构需要撰写：{title}"]
-    parts.append(f"")
-    parts.append(f"核心剧情：{summary}")
-    parts.append(f"章概述参考：{chapter_overview[:60]}...")
-    parts.append(f"")
-    parts.append(f"请围绕以上核心事件展开叙事。场景建立 → 事件发展 → 情绪收束，保持角色言行一致。")
-    return "\n".join(parts)
+def _check_writing_prompt(sub: dict, chapter: str, sub_key: str) -> None:
+    """检查 writing_prompt 是否齐全，缺失则 HARD-BLOCK（不再自动合成 fallback）"""
+    wp = sub.get("writing_prompt", "")
+    if wp and isinstance(wp, str) and len(wp) >= 50:
+        return
+    print(f"\n{'='*50}")
+    print(f"[HOOK-BLOCK] {chapter}{sub_key} 缺少 writing_prompt")
+    print(f"{'='*50}")
+    print(f"  writing_prompt（≥50字符）是必填字段，规划阶段必须编写详细剧情指令。")
+    print(f"  缺失原因：该子结构在 novel_state.json 中没有 writing_prompt 或长度不足。")
+    print(f"")
+    print(f"  [修复方案] 重新通过 plan-chapter 注册子结构（含 writing_prompt）：")
+    print(f"    1. 编辑子结构 JSON 文件，为 {sub_key} 补全 writing_prompt（≥50字符）")
+    print(f"    2. python novel_workflow_engine.py plan-chapter <state_path> <L##> @<file>")
+    print(f"    3. 重新运行 context_loader")
+    print(f"")
+    print(f"  [存量兼容] 已完成章节（status=completed）的子结构不受影响，不会被重新加载。")
+    print(f"{'='*50}\n")
+    sys.exit(1)
 
 
 def _find_characters_in_chapter(data: dict, chapter_id: str, sub_key: str) -> list:
@@ -273,25 +279,16 @@ def load_context(state_path, chapter, sub_key):
         print(f"  atomic_writer 代码级阻断，写入即报错")
     print(f"{'='*50}\n")
 
-    # ── [硬性] 写作命题框（必填，新规划预编；旧规划自动补）──
+    # ── [硬性] 写作命题框（必填，缺失则 HARD-BLOCK） ──
+    _check_writing_prompt(subs[sub_key], chapter, sub_key)
     wp = subs[sub_key].get("writing_prompt", "")
-    if wp and isinstance(wp, str) and len(wp) >= 50:
-        _is_auto_wp = False
-    else:
-        wp = _auto_generate_prompt(subs[sub_key], ch_info.get("overview", ""))
-        _is_auto_wp = True
-    wp_label = "自动补（未预编）" if _is_auto_wp else "规划阶段预先编写"
     print(f"\n{'='*50}")
-    print(f"[硬性] 写作命题框（{wp_label} — 硬性约束）")
+    print(f"[硬性] 写作命题框（规划阶段预先编写 — 硬性约束）")
     print(f"{'='*50}")
     print(wp)
     print(f"\n  {'─'*40}")
-    if _is_auto_wp:
-        print(f"  提示: 该子结构未预编写作命题，已从概述+情绪自动合成")
-        print(f"  提示: 建议在规划阶段补全 writing_prompt 以获得更精确的剧情指令")
-    else:
-        print(f"  提示: 命题框为规划阶段编制的核心剧情指令，必须遵循")
-        print(f"  提示: 在遵循命题框的前提下可自由发挥文笔、对话和细节")
+    print(f"  提示: 命题框为规划阶段编制的核心剧情指令，必须遵循")
+    print(f"  提示: 在遵循命题框的前提下可自由发挥文笔、对话和细节")
     print(f"{'='*50}\n")
 
     # ── [参考] 叙事节奏参考 ──

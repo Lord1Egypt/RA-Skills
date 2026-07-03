@@ -88,6 +88,7 @@ class ScoredArticle:
     data_score: float = 0.0
     relevance_score: float = 0.0
     title_quality: int = 100
+    matched_keyword_count: int = 0  # 多关键词模式下记录匹配了多少个关键词
 
     @property
     def final_score(self) -> float:

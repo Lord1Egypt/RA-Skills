@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """拼多多精选 - 搜索/详情/逛好价"""
 
+import os
 import sys
 import json
 import urllib.request
 import urllib.error
 
-PROXY_URL = "https://1439498936-1iog1h3lb1.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
-TIMEOUT = 60
+PROXY_URL = os.environ.get("PROXY_URL", "https://1439498936-1iog1h3lb1.ap-guangzhou.tencentscf.com")
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
+TIMEOUT = 30
 
 CHANNEL_MAP = {
     "销量榜": 1, "相似推荐": 3, "热销榜": 5, "秒杀": 4,
@@ -32,8 +33,15 @@ def call_proxy(rtype, params):
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        err = ""
+        try:
+            err = e.read().decode("utf-8", errors="replace")[:300]
+        except Exception:
+            pass
+        return {"ok": False, "error": "proxy error {}: {}".format(e.code, err)}
     except Exception as e:
-        return {"ok": False, "error": str(e)}
+        return {"ok": False, "error": "request error: {}".format(e)}
 
 
 def format_search_results(data):
@@ -216,13 +224,13 @@ if __name__ == "__main__":
 
     tool = sys.argv[1]
     try:
-        args = json.loads(sys.argv[2]) if len(sys.argv) > 2 else {}
+        args = json.loads(sys.argv[2])
     except json.JSONDecodeError as e:
-        print(json.dumps({"error": f"参数JSON解析失败: {e}"}, ensure_ascii=False))
+        print(json.dumps({"error": "参数JSON解析失败: {}".format(e)}, ensure_ascii=False))
         sys.exit(1)
 
     if tool not in TOOLS:
-        print(json.dumps({"error": f"未知工具: {tool}，可用工具: {', '.join(TOOLS.keys())}"}, ensure_ascii=False))
+        print(json.dumps({"error": "未知工具: {}，可用工具: {}".format(tool, ", ".join(TOOLS.keys()))}, ensure_ascii=False))
         sys.exit(1)
 
     try:

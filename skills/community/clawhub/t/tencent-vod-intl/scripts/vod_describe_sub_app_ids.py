@@ -27,11 +27,11 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
-DEFAULT_REGION = "ap-guangzhou"
+DEFAULT_REGION = os.getenv("TENCENTCLOUD_REGION", "ap-guangzhou")
 MAX_LIMIT = 200
 
 
@@ -47,13 +47,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -214,16 +217,16 @@ def create_parser():
         epilog="""
 Examples:
   # Query all sub-applications
-  python vod_describe_sub_app_ids.py
+  python3 vod_describe_sub_app_ids.py
 
   # Filter by application name
-  python vod_describe_sub_app_ids.py --name MyAppName
+  python3 vod_describe_sub_app_ids.py --name MyAppName
 
   # Filter by tags
-  python vod_describe_sub_app_ids.py --tag env=prod --tag team=media
+  python3 vod_describe_sub_app_ids.py --tag env=prod --tag team=media
 
   # Paginated query with JSON output
-  python vod_describe_sub_app_ids.py --offset 0 --limit 20 --json
+  python3 vod_describe_sub_app_ids.py --offset 0 --limit 20 --json
         """,
     )
 

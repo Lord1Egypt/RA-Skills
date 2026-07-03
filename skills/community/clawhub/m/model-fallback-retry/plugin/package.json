@@ -1,0 +1,17 @@
+{
+  "name": "@openclaw/model-fallback-retry",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI model fallback retry - captures LLM output for quota/limit analysis",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  }
+}

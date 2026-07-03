@@ -1,28 +1,11 @@
 ---
 name: atoll-api
-description: Interact with the Atoll project management API for managing tasks, projects, goals, KPIs, initiatives, milestones, comments, members, teams, labels, dependencies, automation, and webhooks. Use when the user asks to make HTTP requests to atollhq.com, work with Atoll issues/tasks, create or update projects, manage team workflows, track goals and KPIs, or build integrations with the Atoll platform.
-version: 1.0.12
-metadata:
-  openclaw:
-    requires:
-      env:
-        - ATOLL_API_KEY
-        - ATOLL_ORG_ID
-      bins:
-        - curl
-    primaryEnv: ATOLL_API_KEY
-    envVars:
-      - name: ATOLL_API_KEY
-        required: true
-        description: Atoll API key generated in Agents or Settings > Members > Create API Key.
-      - name: ATOLL_ORG_ID
-        required: true
-        description: UUID of the Atoll organization the API key belongs to.
-    emoji: "🏝️"
-    homepage: https://atollhq.com
+description: Legacy compatibility alias for the Atoll skill. Prefer installing the `atoll` skill for new OpenClaw / ClawHub setups. This alias still provides Atoll project management API and CLI guidance for tasks, projects, goals, KPIs, initiatives, milestones, comments, members, teams, labels, dependencies, automation, and webhooks.
 ---
 
 # Atoll API
+
+This ClawHub listing is kept as a compatibility alias for existing `atoll-api` installs. For new installs, prefer the `atoll` skill and configure `skills.entries.atoll` in `~/.openclaw/openclaw.json`.
 
 Base URL: `https://atollhq.com`
 
@@ -39,23 +22,22 @@ Goals (directional objectives with deadlines)
 
 This means an agent can reason: "We're off pace on paying_customers → the Content Pipeline initiative should drive signups but has stalled issues → unblocking those is the highest-leverage action right now."
 
-Agents and integrations use normal org-scoped API keys. Their permissions come from the Atoll member or integration that owns the key.
-
-## Safety Rules
-
-- Only call Atoll when the user asks for Atoll work or when the current task clearly depends on Atoll data.
-- Treat `$ATOLL_API_KEY` as secret. Never print it, store it in files, send it to any host except `https://atollhq.com`, or include it in comments or issues.
-- Default to read-only requests until the user asks to create or update records.
-- Before destructive actions, confirm with the user. Prefer archive endpoints over permanent delete when removing issues.
-- Do not run a background heartbeat loop unless the user explicitly asks for a recurring check or automation.
+Agents are org members with the same API, same permissions, same ability to create goals, update KPIs, propose initiatives, and execute work. The system does not distinguish between human and agent actions.
 
 ## Authentication
 
 All requests require: `Authorization: Bearer sk_atoll_<key>`
 
-API keys are generated in **Agents** (for agents) or **Settings > Members > Create API Key** (for integrations). Each key is scoped to one org.
+API keys are generated in **Agents** (for agents) or **Settings > Members > Create API Key** (for integrations). Each key is scoped to one org. Store both values as env vars:
 
-For OpenClaw, prefer skill-scoped config in `~/.openclaw/openclaw.json` over global shell exports:
+```bash
+export ATOLL_API_KEY="sk_atoll_..."
+export ATOLL_ORG_ID="..."          # UUID of the org the key belongs to
+```
+
+For OpenClaw / ClawHub, prefer skill-scoped config in `~/.openclaw/openclaw.json` instead of global shell exports:
+
+If you are intentionally staying on this legacy alias, keep the `atoll-api` entry:
 
 ```json5
 {
@@ -73,14 +55,7 @@ For OpenClaw, prefer skill-scoped config in `~/.openclaw/openclaw.json` over glo
 }
 ```
 
-`apiKey` maps to this skill's primary env var, `ATOLL_API_KEY`. Put optional defaults such as `ATOLL_PROJECT`, `ATOLL_TEAM`, and `ATOLL_BASE_URL` under `env` too. OpenClaw injects `skills.entries.*.env` and `apiKey` into the host process for an agent run; sandboxed skill execution needs sandbox env configured separately.
-
-For raw shell usage, store both values as env vars:
-
-```bash
-export ATOLL_API_KEY="sk_atoll_..."
-export ATOLL_ORG_ID="..."          # UUID of the org the key belongs to
-```
+`apiKey` maps to `ATOLL_API_KEY`; optional defaults such as `ATOLL_PROJECT`, `ATOLL_TEAM`, and `ATOLL_BASE_URL` belong under `env`.
 
 **Sanity check** — exercises the org-scoped issues endpoint, not just `/api/auth/me`:
 
@@ -140,6 +115,7 @@ atoll agent-context
 # List tasks
 atoll issue list --json
 atoll issue list --status todo --priority 1 --limit 25
+atoll issue list --scope blocked --initiative initiative-uuid --order-by due_date --order-dir asc
 
 # View a task
 atoll issue get ATOLL-42
@@ -147,11 +123,13 @@ atoll issue view ATOLL-42   # alias kept for humans
 
 # Create a task
 atoll issue create --title "Fix login bug" --status todo --priority 1
+atoll issue create --title "Weekly status review" --due-date 2026-07-06 --recurrence weekly
 atoll issue upsert --match-title --project <project-id> --title "Fix login bug" --status todo
 atoll issue bulk-create --file ./issues.json --continue-on-error
 
 # Update a task
 atoll issue update ATOLL-42 --status in_progress
+atoll issue update ATOLL-42 --status in_progress --comment-body "Starting this because the activation KPI is off pace."
 atoll issue upsert ATOLL-42 --status in_progress
 atoll issue bulk-update --file ./updates.json --dry-run
 
@@ -161,6 +139,17 @@ atoll issue assign ATOLL-42 --to self
 
 # Comments
 atoll comment add ATOLL-42 --body "Working on this now"
+
+# Labels, notifications, subtasks, activity
+atoll label list
+atoll label add ATOLL-42 bug
+atoll notification list --json
+atoll notification ack notification-uuid
+atoll subtask create ATOLL-42 --title "Verify recurrence"
+atoll activity issue ATOLL-42
+
+# Read-only API fallback for uncommon inspection gaps
+atoll api get /api/orgs/$ATOLL_ORG_ID/labels --json
 
 # Dependencies
 atoll dependency bulk-add --file ./dependencies.json --continue-on-error
@@ -190,6 +179,9 @@ atoll kpi create --name paying_customers --goal "Reach 100 paying customers by Q
 atoll kpi create --name mvp_tasks_done --goal "Launch MVP" --internal-task-completion
 atoll initiative create --title "Content pipeline" --goal "Reach 100 paying customers by Q2" --status active
 atoll initiative kpi link "Content pipeline" paying_customers --impact "+30 customers/mo"
+atoll initiative target create "Content pipeline" --title "Publish 10 comparison posts" --mode progress --target 10 --current 0 --unit count --unit-label posts
+atoll initiative target create "Retailer coverage" --title "Get 5 retailers live by July 5" --mode gate --target 5 --current 0 --unit count --unit-label retailers --target-date 2026-07-05 --due-soon-days 7
+atoll initiative target issue link "Retailer coverage" "Get 5 retailers live by July 5" ATOLL-42
 atoll kpi snapshot add paying_customers --value 42 --initiative "Content pipeline" --note "End-of-week Stripe check"
 
 # Audit the strategy chain for gaps (orphaned initiatives, goals with no KPI, etc.)
@@ -208,12 +200,12 @@ CLI JSON conventions:
 - Diagnostics and errors go to stderr.
 - Interactive CLI update notices also go to stderr and are suppressed for JSON/non-TTY/CI/completion flows.
 - `atoll agent-context` returns a versioned command/flag manifest, available profile context, and structured `cli.update_available` metadata.
-- `atoll heartbeat --json` includes the same structured `cli` update metadata for agents.
+- `atoll heartbeat --json` includes the same structured `cli` update metadata for agents, plus `attention_items`, `attention_summary`, and `recommended_action` when Atoll can propose one concrete strategy-backed next action. `atoll heartbeat --signals-only --json` preserves filtered `signals`, `attention_items`, `attention_summary`, and `recommended_action` for short polling. Handle direct attention items first, then call each handled item's `ack_endpoint`. Follow `recommended_action.usage_guidance`: prefer `suggested_write.operation` when it still matches the board, preserve KPI/initiative/initiative_target/why-now/expected-impact/first-step/success-criteria evidence, and avoid copying deferred busywork into issue or comment payloads. If a `start_work` recommendation uses `issue.update` with a body, update the issue status and preserve that body as an issue comment; `PATCH /issues/{issueId}` accepts `comment_body` for this same-request progress note.
 - `atoll plan validate/apply` consumes `schemaVersion: "atoll.plan.v1"` files with `milestones`, `issues`, `dependencies`, `initiativeLinks`, and `milestoneLinks`; local `key` values can be referenced by `milestoneKey`, `issueKey`, `dependsOn`, `blockedBy`, or `blocks`.
 
 ## KPI HTTP Sync Drafts
 
-When a human asks you to help automate a KPI from a third-party API, use this Atoll skill. If the current agent environment does not have the `atoll-api` skill installed, tell the user to install it before continuing or use the Atoll CLI/MCP tools directly if they are available.
+When a human asks you to help automate a KPI from a third-party API, use this Atoll skill. If the current agent environment does not have the `atoll` skill or this legacy `atoll-api` alias installed, tell the user to install the `atoll` skill before continuing or use the Atoll CLI/MCP tools directly if they are available.
 
 Agents may create draft syncs and validate proposed configs only after a human admin has allowlisted the exact destination host in Atoll. Human admins must create or review the draft in Settings > Integrations > KPI syncs, edit supported request/extraction fields and secrets through structured UI, dry-run, publish, disable, or run-now with snapshot writing.
 
@@ -321,7 +313,11 @@ Keep it practical. I want the smallest strategy layer that would help an AI agen
 
 ## Quick Start — API (for advanced use)
 
-All CLI commands map to REST endpoints. Use the API directly when the CLI doesn't cover a specific operation.
+All CLI commands map to REST endpoints. Use `atoll api get` for GET-only inspection gaps when a typed command does not exist yet. The CLI blocks `/api/internal/*`, billing, and KPI sync admin routes because some GET endpoints can run jobs, synchronize external state, or require human-admin review. Use direct API calls for writes only when the CLI does not cover a specific operation and the workflow is not human-admin-gated.
+
+```bash
+atoll api get "/api/orgs/$ATOLL_ORG_ID/issues?status=todo" --json
+```
 
 ```bash
 # Prereq: both env vars exported (see Authentication above)
@@ -342,14 +338,18 @@ The primary pattern for autonomous agents. Prefer `atoll heartbeat --json` when 
 
 - **Goal status** with days remaining
 - **KPI pace**: `pace_needed` vs `pace_actual`, trend (`accelerating`/`decelerating`/`flat`), staleness
-- **Initiative progress**: total/completed/stalled/blocked issue counts, expected KPI impacts
+- **Initiative progress**: total/completed/stalled/blocked issue counts, expected KPI impacts, and initiative targets
 - **Assigned work** for this agent
 - **Project context**: relevant board columns, including optional descriptions that explain stage criteria for agents
 - **Signals** sorted by severity — the agent's prioritized to-do list
+- **Attention items**: direct current-member notifications such as mentions, assignments, assignee comments, and creator-visible status changes, with an `ack_endpoint` to call after handling
+- **Recommended action**: one deterministic strategy-backed next action when Atoll has enough evidence (`create_work`, `start_work`, `escalate_blocker`, or `refresh_metric`), including why-now, expected impact, first step, success criteria, quality warnings, and any suggested write.
 
 Heartbeat is org-scoped, but project-bound payload details are filtered by the caller's project access. Owners/admins receive full org context; members/guests only receive project-bound strategy, work health, assigned work, milestone signals, and board context for accessible projects. Non-guest members can also see unprojected org-level strategy. Shared initiatives can appear with counts and signals based only on accessible work.
 
-Signal types: `kpi_off_pace`, `kpi_stale`, `issue_stale`, `issue_blocked`, `milestone_overdue`, `initiative_stalled`, `webhook_failing`. Severity: `info`, `warning`, `critical`.
+Signal types: `kpi_off_pace`, `kpi_stale`, `issue_stale`, `issue_blocked`, `milestone_overdue`, `initiative_stalled`, `initiative_target_due_soon`, `initiative_target_overdue`, `initiative_target_blocked`, `webhook_failing`. Severity: `info`, `warning`, `critical`.
+
+Targets under initiatives are commitments, not business KPIs. KPIs measure business outcomes such as MRR, traffic, paying customers, or onboarding success. Use progress targets for initiative outputs such as "publish 10 comparison posts." Use gate targets for launch prerequisites such as "get 5 retailers live by July 5." Gate targets emit stateful due/blocked messages and should not be converted into fractional KPI pace such as "0.07 retailers/day."
 
 Useful CLI forms:
 
@@ -362,10 +362,12 @@ atoll heartbeat --json
 
 **The agent loop:**
 1. Call heartbeat
-2. Read signals (highest severity first)
-3. Reason about highest-leverage action given KPI pace and initiative state
-4. Execute (unblock issues, update KPIs, create work, report progress)
-5. Repeat
+2. Handle direct `attention_items` that need a reply, task update, or blocker follow-up
+3. Call each handled item's `ack_endpoint`
+4. Read remaining signals (highest severity first)
+5. Reason about highest-leverage action given direct attention, gate targets, KPI pace, and initiative state
+6. Execute (unblock issues, update KPIs, create work, report progress)
+7. Repeat
 
 ## Other Common Workflows
 
@@ -374,7 +376,7 @@ atoll heartbeat --json
 ```bash
 atoll heartbeat --signals-only                        # orient first
 atoll issue list --status todo --assignee self --json # find assigned work
-atoll issue update ATOLL-42 --status in_progress      # start work
+atoll issue update ATOLL-42 --status in_progress --comment-body "Starting because the linked KPI is off pace." # start work with durable context
 atoll comment add ATOLL-42 --body "Progress update…"  # report progress
 atoll issue update ATOLL-42 --status done              # complete
 ```
@@ -386,7 +388,8 @@ atoll issue update ATOLL-42 --status done              # complete
 3. `POST /api/orgs/{id}/kpis/{kpiId}/snapshots` -- record measurement (auto-updates `current_value`)
 4. `POST /api/orgs/{id}/initiatives` -- create initiative linked to goal
 5. `POST /api/orgs/{id}/initiatives/{id}/kpi-impacts` -- declare expected KPI impact
-6. Link issues and milestones to the initiative
+6. `POST /api/orgs/{id}/initiatives/{id}/targets` -- create progress or gate targets for initiative commitments
+7. Link issues and milestones to the initiative and to specific targets when the work exists to satisfy that target
 
 CLI equivalent:
 
@@ -395,6 +398,8 @@ atoll goal create --title "Reach 100 paying customers by Q2" --target-date 2026-
 atoll kpi create --name paying_customers --goal "Reach 100 paying customers by Q2" --unit count --target 100 --current 34
 atoll initiative create --title "Content pipeline" --goal "Reach 100 paying customers by Q2" --status active
 atoll initiative kpi link "Content pipeline" paying_customers --impact "+30 customers/mo"
+atoll initiative target create "Content pipeline" --title "Publish 10 comparison posts" --mode progress --target 10 --current 0 --unit count --unit-label posts
+atoll initiative target create "Retailer coverage" --title "Get 5 retailers live by July 5" --mode gate --target 5 --current 0 --unit count --unit-label retailers --target-date 2026-07-05 --due-soon-days 7
 atoll kpi snapshot add paying_customers --value 42 --initiative "Content pipeline" --note "End-of-week Stripe check"
 ```
 
@@ -415,7 +420,7 @@ atoll strategy audit --json     # findings[] for programmatic remediation
 
 1. `atoll strategy audit --json` to get findings.
 2. For each finding, apply its `suggested_fix`, e.g.:
-   - `initiative_orphaned` → `atoll initiative update "<initiative>" --goal "<goal>"`
+   - `initiative_orphaned` → `atoll initiative update "<initiative>" --goal "<goal>"` (or `PATCH .../initiatives/{id} { goal_id }`)
    - `goal_missing_kpi` → `atoll kpi create --goal "<goal>" --name ... --target ...`
    - `kpi_missing_target` → `atoll kpi update <kpi> --target ... --direction increase`
    - `kpi_unrecorded` / `kpi_stale` → `atoll kpi snapshot add <kpi> --value ...`
@@ -441,7 +446,7 @@ Delivery rows expose `delivery_id`, `status`, and `next_retry_at`. Network failu
 
 ### Billing and plan limits
 
-Owners/admins can read billing state with `GET /api/orgs/{id}/billing` and start Stripe checkout with `POST /api/orgs/{id}/billing/checkout` using `{ "plan": "starter" }` or `{ "plan": "team" }`.
+Owners/admins can read billing state with `GET /api/orgs/{id}/billing` and start a self-serve Stripe billing flow with `POST /api/orgs/{id}/billing/checkout` using `{ "plan": "starter" }`, `{ "plan": "team" }`, or `{ "plan": "pro" }`. Owner/admin read requests sync Stripe first and return `502` with `Stripe billing sync failed` if that sync cannot complete, rather than serving stale local billing state. New subscribers use Checkout; existing active, trialing, or past-due subscribers use a Billing Portal update confirmation.
 
 Creation endpoints can return `402` with `code: "PLAN_LIMIT_REACHED"` when an org reaches limits for humans, agents/integrations, active projects, or active issues.
 
@@ -468,6 +473,10 @@ Full endpoint tables and field schemas:
 Initiative create accepts `title` or legacy `name`, plus camelCase aliases `goalId`, `ownerId`, and `targetDate`.
 
 All endpoints are under `/api/orgs/{orgId}/...`.
+
+Issue comments inherit issue project permissions: listing comments requires access to the issue's project, comment writes (add, edit, delete) require write access to that project, edit/delete still require comment authorship, and guests cannot access comments on unprojected issues.
+
+Comment bodies accept Markdown/plain text or existing rich-text HTML. Atoll stores and returns comment bodies as sanitized HTML. If sanitization leaves no visible text or safe media, the request returns `400` with `body is required` for direct comments or `comment_body is required` for issue updates with `comment_body`.
 
 † `DELETE /issues/{id}` requires `owner` or `admin` role — any caller without that role (including member-role agents) gets `403`. If you just need to remove a task, use `POST /api/orgs/{orgId}/issues/{issueId}/archive` (soft delete, no role gate); reverse with `DELETE` on the same path (unarchive). In the CLI, prefer `atoll issue archive <id>`. Permanent `atoll issue delete <id>` requires `--force` and supports `--dry-run`.
 
@@ -517,7 +526,7 @@ atoll feedback resend fb_123
 ## Notes
 
 - Request bodies accept camelCase; responses use snake_case
-- Descriptions and comments support Markdown
+- Descriptions support Markdown; comment bodies accept Markdown/plain text or rich-text HTML and are stored as sanitized HTML
 - All timestamps are ISO 8601 UTC
 - Board statuses are customizable per project -- query `/board-columns` for available values and optional column descriptions
 - API changes appear in real-time on the web board

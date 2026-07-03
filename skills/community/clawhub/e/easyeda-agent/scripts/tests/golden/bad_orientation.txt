@@ -1,0 +1,4 @@
+== 概览 ==  parts=2 flags=3 wires=3 sheets=0 nets≈3
+
+🟡 朝向不顺导线 (1):
+  - netflag      +3V3 @(100, 230)  rot= 90 应为 180  (导线朝down, body应朝up, power)

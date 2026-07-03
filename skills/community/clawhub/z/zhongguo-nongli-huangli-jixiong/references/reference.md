@@ -29,6 +29,6 @@ export HUANGLI_BASE="https://api.nongli.skill.4glz.com"
 
 ## 常见错误
 
-- `401`：Token 无效或过期
+- `401`：Token 无效（通常是已退出登录、已解绑设备，或 token 被手动重置）
 - `429`：配额超限，登录控制台手动重置后继续（重置次数不限制）
 - `404`：日期超出可用数据范围

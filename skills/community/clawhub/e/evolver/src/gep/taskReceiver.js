@@ -6,13 +6,14 @@
 //     matching via memory graph history.
 // ---------------------------------------------------------------------------
 
-const { getNodeId, buildHubHeaders } = require('./a2aProtocol');
+const { getNodeId, buildHubHeaders, buildNodeScopedHubHeaders } = require('./a2aProtocol');
 const { resolveHubUrl } = require('../config');
 const { hubFetch } = require('./hubFetch');
 const { createTask, validateTask } = require('./schemas/task');
 
 function buildAuthHeaders() {
-  return buildHubHeaders();
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
+  return buildHeaders();
 }
 
 const TASK_STRATEGY = String(process.env.TASK_STRATEGY || 'balanced').toLowerCase();

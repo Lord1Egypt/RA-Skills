@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes baby-monitor images or video to classify infant sleep posture, detect mouth or nose occlusion, and return visual risk alerts and reports without providing medical diagnosis. <br>
+Analyzes crib camera videos or URLs to detect infant sleep posture, face occlusion, risk level, and alert or report information. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and operators use this skill to analyze crib camera media for visual sleep-posture and mouth-or-nose occlusion signals, return low-to-critical risk levels, and retrieve prior monitoring reports. It is an auxiliary monitoring aid and should not be used as the sole real-time infant safety alarm. <br>
+External caregivers, childcare staff, and developers can submit crib camera video files or URLs to obtain structured visual assessments of infant posture, mouth/nose occlusion, risk level, and related report links. The skill is an auxiliary monitoring aid and does not provide medical diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive infant-monitor footage or URLs are sent to a cloud service and historical reports can be retrieved. <br>
-Mitigation: Use only with guardian consent, trusted publisher and cloud endpoints, and appropriate privacy controls for child-monitoring media. <br>
-Risk: The skill creates or reuses an internal identity and may persist backend tokens locally. <br>
-Mitigation: Review identity and token handling before installation, restrict access to local configuration and report data, and avoid exposing internal identity values in user-facing output. <br>
-Risk: Life-safety alert claims are not clearly bounded by the release evidence. <br>
-Mitigation: Treat outputs as auxiliary visual risk signals and require adult supervision and independent safety checks for high-risk alerts. <br>
+Risk: Infant sleep videos or video URLs may be sent to remote services for analysis. <br>
+Mitigation: Use only footage you are authorized to share, and review the provider's privacy, retention, and deletion practices before using real child or home-monitor footage. <br>
+Risk: The skill may silently create or reuse account identity and store tokens locally. <br>
+Mitigation: Run the skill in an isolated environment, review token storage and rotation practices, and clear local state when the skill is no longer needed. <br>
+Risk: Visual risk results can influence infant safety decisions. <br>
+Mitigation: Treat results as an auxiliary monitoring signal, verify alerts with responsible adult supervision, and do not use the skill as a medical diagnosis tool. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-infant-suffocation-risk-detection-analysis) <br>
 - [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [API interface documentation](artifact/references/api_doc.md) <br>
+- [Analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown reports and JSON structured analysis, with shell commands for agent execution] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown report with JSON-backed structured fields and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk levels, posture classification, occlusion status, event time, snapshot or report links, alert text, and historical report tables.] <br>
+**Other Properties Related to Output:** [Remote video analysis; supports history and report retrieval.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,7 +1,7 @@
 ---
 name: "unaccompanied-monitoring-analysis"
 description: "Determines when elderly people living alone have no interaction or visitors for extended periods, and actively pushes care reminders to family members, suitable for remote care scenarios for elderly people living alone at home. | 无人陪伴监测技能，判定独居老人长时间无人互动来访，主动推送关怀提醒给家属，适用于居家独居老人远程关怀场景"
-version: "1.0.5"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

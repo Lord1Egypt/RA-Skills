@@ -1,5 +1,5 @@
 ## Description: <br>
-OKKI Go helps agents perform B2B prospect discovery and outreach through the Okki Go platform, including company search, contact email discovery, cold outreach, email status checks, and credit or plan queries. <br>
+B2B lead prospecting and outreach via the Okki Go platform. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,43 +11,40 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Sales, business development, and growth users use this skill to find target companies, review prospect results, unlock company details, find decision-maker contact emails, draft or send outreach, and check email or credit status through Okki Go. <br>
+External users and sales teams use this skill to search for B2B prospect companies, find decision-maker contact emails, draft or send outbound outreach, check delivery status, and view credit or quota balance through Okki Go. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill handles an Okki Go API key. <br>
-Mitigation: Use only a user-approved secure save path, avoid printing or logging keys, and keep the default HTTPS endpoint. <br>
-Risk: Some actions consume paid credits or EDM quota. <br>
-Mitigation: Require explicit user confirmation before paid unlocks, contact searches, or email sending. <br>
-Risk: Email workflows can send real outbound messages. <br>
-Mitigation: Review recipient lists and email content carefully before confirming send actions. <br>
-Risk: Local batches or artifacts may contain contact lists, email bodies, or company details. <br>
-Mitigation: Periodically delete saved raw batches and artifacts that contain sensitive prospect or outreach data. <br>
-Risk: Optional update notifications install a recurring OpenClaw cron reminder. <br>
-Mitigation: Enable update notifications only when recurring local reminders are desired. <br>
+Risk: The skill can use real credits for company unlocks and contact searches, and can send outbound email. <br>
+Mitigation: Verify credit prompts before paid unlocks or contact searches, and confirm recipients plus content before any email send. <br>
+Risk: The skill handles contact data, outbound email content, and saved local lead or status files. <br>
+Mitigation: Protect saved files or delete them when no longer needed, and use compact outputs that avoid exposing raw identifiers and unnecessary detail. <br>
+Risk: Installer and update notification scripts can configure local credentials or recurring update checks. <br>
+Mitigation: Review installer commands, approve API-key storage deliberately, and enable recurring update notifications only when wanted. <br>
 
 
 ## Reference(s): <br>
-- [OKKI Go skill page](https://clawhub.ai/okki-op/skills/okki-go) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Authentication](references/authentication.md) <br>
-- [Output Contracts](references/output-contracts.md) <br>
-- [Paid Actions](references/paid-actions.md) <br>
-- [Search Fast Path](references/search-fast-path.md) <br>
+- [ClawHub skill release](https://clawhub.ai/okki-op/skills/okki-go) <br>
+- [Publisher profile](https://clawhub.ai/user/okki-op) <br>
 - [Okki Go](https://go.okki.ai) <br>
-- [Okki Go Pricing](https://go.okki.ai/pricing) <br>
+- [Okki Go pricing](https://go.okki.ai/pricing) <br>
+- [Authentication and API Key Setup](artifact/references/authentication.md) <br>
+- [Paid Actions](artifact/references/paid-actions.md) <br>
+- [Context Firewall](artifact/references/context-firewall.md) <br>
+- [Output Contracts](artifact/references/output-contracts.md) <br>
+- [API Reference](artifact/references/api-reference.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown responses with script-rendered tables, JSON payloads, and shell command invocations.] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown with script-rendered tables, compact status summaries, and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local batch or detail artifacts and uses Okki Go API credentials for authenticated requests.] <br>
+**Other Properties Related to Output:** [May save raw lead, contact, email status, or unlock detail files while keeping normal responses compact and user-facing.] <br>
 
 ## Skill Version(s): <br>
-1.3.2 (source: server release evidence; target metadata agrees) <br>
+1.3.3 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

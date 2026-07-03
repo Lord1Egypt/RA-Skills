@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-hand-tremor-detection-analysis"
 description: "Using a fixed home camera to record video of an elderly person's hand at rest (placed on a table or armrest with no voluntary movement), AI video-motion analysis detects periodic shaking, extracts tremor frequency (Hz) and amplitude (pixel displacement), and identifies the presence of resting tremor (commonly associated with Parkinson's disease and other neurological conditions). | 通过家庭固定摄像头拍摄老年人手部（置于桌面或自然静止）的视频，利用AI视频分析技术检测手部在静止状态下的周期性抖动频率（Hz）和幅度（像素位移），识别是否存在静止性震颤（常见于帕金森病等神经系统疾病）。该技能可作为早期筛查工具，提示家属或护理人员关注老年人神经系统健康，及时就医。"
-version: "1.0.2"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

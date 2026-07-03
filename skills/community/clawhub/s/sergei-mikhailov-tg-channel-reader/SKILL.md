@@ -1,6 +1,6 @@
 ---
 name: sergei-mikhailov-tg-channel-reader
-description: Read posts and comments from Telegram channels via MTProto (Pyrogram or Telethon). Fetch recent messages and discussion replies from public or private channels by time window.
+description: Let your agent read and monitor Telegram channels: fetch posts, captions, link previews, and comments from public or private channels and turn them into daily digests, summaries, and alerts. JSON or text output, unread tracking, via MTProto (Pyrogram or Telethon).
 metadata: {"openclaw": {"emoji": "📡", "requires": {"bins": ["tg-reader", "tg-reader-check"], "env": ["TG_API_ID", "TG_API_HASH"]}, "primaryEnv": "TG_API_HASH"}}
 ---
 
@@ -83,6 +83,9 @@ tg-reader fetch @channel_name --since 24h
 tg-reader-check
 tg-reader-check --config-file /path/to/config.json
 tg-reader-check --session-file /path/to/session
+
+# Also verify the session is actually AUTHORIZED (connects to Telegram, never prompts)
+tg-reader-check --online
 ```
 
 Returns JSON with `"status": "ok"` or `"status": "error"` plus a `problems` array.
@@ -92,6 +95,9 @@ Verifies:
 - Session file exists on disk (with size, modification date)
 - At least one MTProto backend installed (Pyrogram or Telethon)
 - Detects stale sessions (config points to older file while a newer one exists)
+- Whether another tg-reader process currently holds the session lock (`lock_held`)
+- Last-known-good session backup metadata, when one exists (`last_good_backup`)
+- With `--online`: whether the session file holds an authorized user (`authorization` section) — this is the only reliable way to tell an authorized session file from an empty one. A file merely *existing* (or being newest) proves nothing.
 
 ### `tg-reader info` — Channel Info
 
@@ -152,7 +158,28 @@ tg-reader fetch @channel_name --since 24h --state-file /path/to/state.json
 tg-reader auth
 ```
 
-Creates a session file. Only needed once.
+Creates a session file. Only needed once. If a session file already exists it is
+backed up first (timestamped `.bak-*`, last 3 kept), and the fresh session is
+verified with `get_me()`.
+
+**Interactive only** — Telegram sends a login code to the user. Never run `auth`
+from a scheduled/background task.
+
+### `tg-reader restore-session` — Recover a Broken Session
+
+```bash
+tg-reader restore-session
+```
+
+After every successful authorized run the skill snapshots the session file to
+`{session}.session.last-good` (with a manifest recording when it was verified and
+for which user). If the live session file gets emptied, corrupted, or overwritten,
+this command puts the last-good copy back: the broken file is moved aside to a
+timestamped `.bak-*` (never deleted), the backup is checksum-verified before
+install, and the restored session is verified against Telegram (`get_me()`).
+
+Run it only interactively, with the user's confirmation — never from a
+scheduled/background task (see Session Safety Rules below).
 
 ---
 
@@ -385,21 +412,42 @@ Errors include an `error_type` and `action` field to help agents decide what to 
 | `flood_wait` | Telegram rate limit | `wait_Ns` — waits ≤ 60 s are retried automatically; longer waits return this error |
 | `comments_multi_channel` | `--comments` used with multiple channels | `remove_extra_channels_or_drop_comments` — use one channel at a time |
 
+### Session Errors
+
+| `error_type` | Meaning | `action` |
+|--------------|---------|----------|
+| `not_authorized` | Session file holds no authorized user — empty, corrupted, overwritten, or (only when the message names a specific Telegram error like `AuthKeyUnregistered`/`SessionRevoked`) actually rejected by Telegram | `offer_restore` when a last-good backup exists (propose `tg-reader restore-session` to the user), otherwise `run_auth_interactive` (interactive `tg-reader auth` — needs the user) |
+| `busy` | Another tg-reader process holds the session lock | `retry_later` |
+| `network` | Could not reach Telegram — says **nothing** about session validity | `retry_later` — do NOT treat as an auth problem |
+
+**Never invent causes.** Do not tell the user the session "expired" or "was
+revoked by Telegram" unless the error message names a concrete Telegram error
+(`AuthKeyUnregistered`, `SessionRevoked`, ...). A `not_authorized` on a local
+file usually means the *file* is bad, while the session on Telegram's side is
+still alive — recoverable via `restore-session` without a new login.
+
+### Session Safety Rules (agents, read carefully)
+
+1. **Never delete, move, rename, or overwrite session files.** Recovery goes
+   through `tg-reader restore-session` (which preserves the broken file) or
+   interactive `tg-reader auth` — nothing else.
+2. **From a scheduled/background run:** on `not_authorized` or `busy`, notify
+   the user and exit. No auth attempts, no restore, no config edits, no file
+   surgery. Auth needs a login code only the user can receive.
+3. **Never switch `--session-file` to another found file blindly** — verify it
+   first: `tg-reader-check --online --session-file <path>`. An existing or
+   newer file may be an empty, never-authorized session.
+4. **One session path everywhere.** All cron/background commands must use the
+   same `--session-file` (or the same default). Concurrent access is guarded
+   by a lock (`busy` error), but path drift creates orphan sessions.
+
 ### System Errors
 
 | Error | Action |
 |-------|--------|
-| `Session file not found` | Run `tg-reader-check` — use the `suggestion` from output |
+| `Session file not found` | Run `tg-reader-check` — if other session files were found, verify with `tg-reader-check --online --session-file <path>` before switching |
 | `Missing credentials` | Guide user through Setup (Step 1-2 below) |
 | `tg-reader: command not found` | Run `bash setup-tg-reader.sh` from the skill directory, or manually: `pip install .` Fallback: `python3 -m tg_reader_unified` |
-| `AUTH_KEY_UNREGISTERED` | Session expired — delete and re-auth (see below) |
-
-### Session Expired
-
-```bash
-rm -f ~/.tg-reader-session.session
-tg-reader auth
-```
 
 ### Auth Code Not Arriving
 
@@ -576,5 +624,6 @@ Both flags work with all subcommands and both backends.
 ## Security
 
 - Session file (`~/.tg-reader-session.session`) grants **full account access** — keep it safe
+- The skill maintains sibling files next to the session: `.session.lock` (concurrency guard), `.session.last-good` + `.session.last-good.json` (verified backup + no-secrets manifest), `.session.bak-*` (timestamped backups, last 3 kept). The backup copies grant the same full account access as the session itself — all are created with `0600` permissions and must never be shared or committed
 - Never share or commit `TG_API_HASH` or session files
 - `TG_API_HASH` is a secret — store in env vars or config file, never in git

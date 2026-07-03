@@ -29,23 +29,23 @@ COS Storage Convention:
 
 Usage:
   # Football match highlights
-  python mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+  python3 mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
   # Short drama/TV series highlights
-  python mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # VLOG panoramic camera
-  python mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+  python3 mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
   # Custom scene (large model version)
-  python mps_highlight.py --url https://example.com/skiing.mp4 \
+  python3 mps_highlight.py --url https://example.com/skiing.mp4 \
       --scene custom --prompt "skiing scene, output character highlights" --scenario "skiing"
 
   # Basketball match
-  python mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+  python3 mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
   # Dry Run (only prints request parameters, does not actually call API)
-  python mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
+  python3 mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -82,7 +82,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -198,12 +198,18 @@ def get_credentials():
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        print("❌ TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not found", file=sys.stderr)
-        print("   Please configure them in ~/.env or <SKILL_DIR>/.env", file=sys.stderr)
         if _LOAD_ENV_AVAILABLE:
-            from mps_load_env import _print_setup_hint
-            _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-        sys.exit(1)
+            print("[load_env] Environment variables not set, attempting to auto-load from system files...", file=sys.stderr)
+            _ensure_env_loaded(verbose=True)
+            secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
+            secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
+        if not secret_id or not secret_key:
+            print("❌ TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not found", file=sys.stderr)
+            print("   Please configure them in ~/.env or <SKILL_DIR>/.env", file=sys.stderr)
+            if _LOAD_ENV_AVAILABLE:
+                from mps_load_env import _print_setup_hint
+                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
+            sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
@@ -476,7 +482,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\nTip: Task is processing in background, you can use the following command to check progress:")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -494,26 +500,26 @@ def main():
         epilog="""
 Examples:
   # Football match highlight reel
-  python mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+  python3 mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
   # Short drama/video highlight
-  python mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # VLOG panoramic camera
-  python mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+  python3 mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
   # Custom scene (large model version)
-  python mps_highlight.py --url https://example.com/skiing.mp4 \\
+  python3 mps_highlight.py --url https://example.com/skiing.mp4 \\
       --scene custom --prompt "Skiing scene, output character highlights" --scenario "Skiing"
 
   # Basketball match
-  python mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+  python3 mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
   # Specify output clip count (only vlog/vlog-panorama/custom supported)
-  python mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
+  python3 mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
 
   # Dry Run (only print request parameters)
-  python mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
+  python3 mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
 
 Preset scenes (--scene):
   vlog          VLOG, scenery, drone footage (large model version)
@@ -688,8 +694,11 @@ Environment variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (environment variable): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     print(f"Scene: {args.scene} ({preset.get('version', '')})")

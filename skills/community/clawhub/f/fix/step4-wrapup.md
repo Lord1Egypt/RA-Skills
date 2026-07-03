@@ -82,6 +82,20 @@ If fix-2 (Resume Original Work) contains outstanding work, **separate by medium 
 
 **After reporting + outstanding-work separation verified, delete all `fix-*` TODO items created in Step 0** — fix TODOs are temporary session-level tracking only; outstanding work is preserved in separate tasks while only `fix-*` are cleaned up.
 
+## fa-record ⟺ rule/skill-edit symmetry gate (HARD STOP)
+
+A fix produces TWO independent deliverables that must **both** exist (or neither, when nothing was strengthened): (a) the prevention-medium edit (rule / skill / hook / memory), and (b) the failed-attempts.md HOT case-body record (per the Step 2 escalation matrix — recorded at every stage). Completing only one side is a recurring asymmetry, in both directions.
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Strengthen a rule/skill body and skip the fa HOT case record | If any rule/skill/hook was edited this fix, verify the case body is in failed-attempts.md HOT. Record it before pruning |
+| 2 | Record the case in fa HOT but leave the owning skill/rule procedure defect unfixed | Both directions: case in fa + structural fix in the owning skill/rule |
+| 3 | Treat "rule edited" (or "ad-hoc rule edit without /fix") as the whole fix | Rule edit = prevention; fa record = case history. Separate deliverables, both mandatory. A behavior correction done **outside** /fix still owes both — re-enter the fix flow |
+
+**Self-check (before deleting fix-3)**: Did this fix (or this session's preceding ad-hoc correction) edit any rule/skill/hook? → If yes, `grep` failed-attempts.md HOT for this case's keyword. Absent = record the case body now, before pruning.
+
+> See `step2-improvement.md` "Case history medium" + `fix/SKILL.md` for the full `failed-attempts.md` HOT path. Consumers who installed only `fix/` (without the owning skill that hosts `failed-attempts.md` HOT) must wire the path via their environment.
+
 **[Measure 3] Status-based pruning of completed tasks (MANDATORY — HARD STOP)**:
 
 The cleanup-step prune target is **status-based, not prefix-based**. Cleaning up only `fix-*` and leaving the original-work tasks behind is a violation.

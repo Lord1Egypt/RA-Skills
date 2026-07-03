@@ -1,7 +1,7 @@
 ---
 name: qualia
 description: "Fine-tune robot foundation models (VLA, vision-language-action) on cloud GPUs: pi0, pi0.5 (π0.5), GR00T N1.5, ACT, SmolVLA, SARM reward models. Robotics and robot training with LeRobot-format HuggingFace datasets. Launch, monitor, and cancel fine-tune jobs from the CLI. Agent-native: --json output and stable exit codes."
-version: 2.1.0
+version: 2.1.1
 metadata:
   openclaw:
     emoji: "🤖"
@@ -22,14 +22,48 @@ metadata:
 
 Fine-tune Vision-Language-Action (VLA) models for robotics on cloud GPUs.
 
-## Setup
+## Install and setup
+
+### Install from ClawHub / OpenClaw
+
+Use the short slug:
+
+```bash
+openclaw skills install qualia-skill
+```
+
+If `@fabbe1999/qualia-skill` or `fabbe1999/qualia-skill` fails, retry with `qualia-skill`. Some OpenClaw installer versions only resolve the short slug even though the public ClawHub URL is `https://clawhub.ai/fabbe1999/qualia-skill`.
+
+### Configure API key
 
 1. Sign up at [app.qualiastudios.dev](https://app.qualiastudios.dev/)
-2. Create an API key (Settings → API Keys)
-3. Set the env var:
+2. Create an API key (Settings -> API Keys)
+3. Set the env var for local shell use:
    ```bash
    export QUALIA_API_KEY="your-api-key"
    ```
+
+For OpenClaw, prefer configuring the key in `~/.openclaw/openclaw.json` so agent runs receive it:
+
+```json5
+{
+  skills: {
+    entries: {
+      qualia: {
+        enabled: true,
+        env: {
+          QUALIA_API_KEY: "your-api-key"
+        }
+      }
+    }
+  }
+}
+```
+
+Notes for agents:
+- The skill name is `qualia`, even though the ClawHub install slug is `qualia-skill`.
+- `openclaw skills install` places files in the workspace `skills/` folder. Start a fresh agent turn/session after installing so skills are reloaded.
+- If the skill is installed but inactive, check `skills.entries.qualia.enabled` is not `false` and `QUALIA_API_KEY` is available.
 
 ## Verify your install
 

@@ -89,6 +89,16 @@
     "speed": "快",
     "max_tokens": 4096
   },
+  "stock-analyst": {
+    "model": "qwen/qwen3.5-122b-a10b",
+    "name": "股票分析助手",
+    "emoji": "📊",
+    "specialty": "A股分析、六维框架、股票诊断",
+    "system_prompt": "你是专业的A股股票分析助手。请使用六维分析框架（基本面、技术面、消息面、资金面、心理面、宏观面）对股票进行全面分析。给出具体的指标数据和操作建议。注意中国A股市场的特点。",
+    "strength": 0.88,
+    "speed": "快",
+    "max_tokens": 2048
+  },
   "llama-3-3-70b": {
     "model": "meta/llama-3.3-70b-instruct",
     "name": "Llama 3.3 70B",

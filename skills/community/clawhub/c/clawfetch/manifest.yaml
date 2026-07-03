@@ -1,17 +1,15 @@
 name: clawfetch
-version: 0.1.8
-description: Web page → Markdown scraper skill that wraps the clawfetch Node CLI to fetch articles, GitHub READMEs, and Reddit threads into normalized markdown with metadata.
+version: 1.0.12
+description: Thin OpenClaw and ClawHub wrapper for the published clawfetch npm CLI.
 author: Ernest Yu
-license: MIT
-permissions:
-  - network
+license: MIT-0
 entry: SKILL.md
 tags:
-  - web
-  - scraper
+  - clawfetch
+  - web-fetch
   - markdown
-  - cli
+  - playwright
+  - openclaw
+  - clawhub
 models:
-  - gpt-*
-  - claude-*
-  - gemini-*
+  - "*"

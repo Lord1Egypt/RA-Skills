@@ -96,8 +96,15 @@ def sanitize_sensitive_response(value):
             normalized = _normalized_key(k)
             if normalized in {_normalized_key(item) for item in SENSITIVE_RESPONSE_KEYS}:
                 cleaned[k] = "[REDACTED_RUNTIME_ONLY]"
-            elif normalized in {"openid", "account", "userid", "phone"} and is_probably_sensitive_identifier(v):
-                cleaned[k] = "[敏感账户已隐藏]"
+            elif normalized in {"openid", "account", "userid", "phone"}:
+                # 对于 User_xxx 格式的账户，完整显示不脱敏
+                if v and str(v).startswith("User_"):
+                    cleaned[k] = str(v)
+                # 其他敏感标识符格式的账户才脱敏
+                elif is_probably_sensitive_identifier(v):
+                    cleaned[k] = "[敏感账户已隐藏]"
+                else:
+                    cleaned[k] = sanitize_sensitive_response(v)
             else:
                 cleaned[k] = sanitize_sensitive_response(v)
         return cleaned
@@ -193,12 +200,15 @@ def notify_recharge_order(phone: str = None, amount: float = 0, trade_no: str = 
         return f"通知订单异常：{str(e)}"
 
 
-def get_recharge_packages(show_test_package: bool | None = None) -> list:
+from typing import Optional
+
+def get_recharge_packages(show_test_package: Optional[bool] = None) -> list:
     """获取当前会话可展示/可选择的充值套餐。默认隐藏测试套餐。"""
-    return get_selectable_packages(show_test_package)
+    from .package_config import get_display_packages
+    return get_display_packages(show_test_package)
 
 
-def display_packages(show_test_package: bool | None = None) -> str:
+def display_packages(show_test_package: Optional[bool] = None) -> str:
     """生成套餐展示文本。"""
     packages = get_display_packages(show_test_package)
     selectable_ids = "/".join(str(pkg.get("id")) for pkg in get_recharge_packages(show_test_package))
@@ -218,7 +228,7 @@ def display_packages(show_test_package: bool | None = None) -> str:
     return "\n".join(lines)
 
 
-def get_amount_options(show_test_package: bool | None = None) -> list:
+def get_amount_options(show_test_package: Optional[bool] = None) -> list:
     """
     获取充值金额档位选项。默认隐藏测试套餐。
     """

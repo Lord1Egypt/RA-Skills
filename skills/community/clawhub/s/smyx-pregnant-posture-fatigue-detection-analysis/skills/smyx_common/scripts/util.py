@@ -251,6 +251,129 @@ class CommonUtil(BaseUtil):
             return True
 
 
+class AgentContextUtil(BaseUtil):
+    """Agent 上下文检测与工作区定位工具。
+
+    自动检测当前运行在哪一个 Agent 的工作区，实现：
+    1. 自动识别当前 Agent 的身份（main agent 还是子 agent）
+    2. 定位正确的工作区根目录和 data 目录
+    3. 技能安装默认使用当前 Agent 自己的工作区，不污染 main agent
+    """
+
+    @staticmethod
+    def detect_current_agent_workspace():
+        """检测当前 Agent 的工作区根目录。
+
+        检测逻辑：
+        1. 检查环境变量 OPENCLAW_WORKSPACE
+        2. 检查 __file__ 路径中是否包含 .arkclaw-team/packs/ 模式
+        3. 向上查找包含 skills/ 目录的最近工作区
+        4. 兜底使用当前脚本所在的工作区
+
+        Returns:
+            dict: {"workspace_root": str, "agent_id": str|None, "is_main_agent": bool}
+        """
+        import os
+
+        # 1. 环境变量优先
+        env_workspace = os.environ.get("OPENCLAW_WORKSPACE")
+        if env_workspace:
+            is_main = ".arkclaw-team" not in env_workspace
+            return {
+                "workspace_root": env_workspace,
+                "agent_id": None,
+                "is_main_agent": is_main
+            }
+
+        # 2. 通过当前脚本路径检测
+        current_file = os.path.abspath(__file__)
+
+        # 检测是否在子 Agent 工作区：.arkclaw-team/packs/{pack}/agents/{agent}/workspace/
+        arkclaw_pattern = os.sep + ".arkclaw-team" + os.sep + "packs" + os.sep
+        if arkclaw_pattern in current_file:
+            # 提取子 Agent 工作区路径
+            parts = current_file.split(arkclaw_pattern)
+            if len(parts) >= 2:
+                pack_and_rest = parts[1]
+                # 找到 agents/ 后面的 agent_id
+                agent_parts = pack_and_rest.split(os.sep + "agents" + os.sep)
+                if len(agent_parts) >= 2:
+                    # 提取 agent_id 和 workspace 路径
+                    rest_parts = agent_parts[1].split(os.sep)
+                    if len(rest_parts) >= 1:
+                        agent_id = rest_parts[0]
+                        # 构建子 Agent 的 workspace 根目录
+                        workspace_idx = current_file.find(os.sep + "workspace" + os.sep + "skills")
+                        if workspace_idx > 0:
+                            agent_workspace = current_file[:workspace_idx + len(os.sep + "workspace")]
+                            return {
+                                "workspace_root": agent_workspace,
+                                "agent_id": agent_id,
+                                "is_main_agent": False
+                            }
+
+        # 3. 🔴 核心算法：第一个 /skills/ 之前就是工作区根目录
+        #    无论工作区叫什么名字（workspace 或其他），只要有 skills/ 目录
+        #    第一个 /skills/ 之前的路径就是工作区根目录！
+        skills_marker = os.sep + "skills" + os.sep  # "/skills/"
+        if skills_marker in current_file:
+            # ✅ 找到第一个 "/skills/" 的位置，截取之前的路径就是工作区根目录
+            first_skills_idx = current_file.find(skills_marker)
+            workspace_root = current_file[:first_skills_idx]
+            # 确保路径不以 / 结尾（规范化）
+            if workspace_root.endswith(os.sep):
+                workspace_root = workspace_root[:-1]
+            return {
+                "workspace_root": workspace_root,
+                "agent_id": "main",
+                "is_main_agent": True
+            }
+
+        # 4. 最后兜底：向上回溯找到包含 skills/ 的目录
+        check_path = os.path.dirname(current_file)
+        while check_path and check_path != os.sep:
+            if os.path.isdir(os.path.join(check_path, "skills")):
+                return {
+                    "workspace_root": check_path,
+                    "agent_id": "main",
+                    "is_main_agent": ".arkclaw-team" not in check_path
+                }
+            check_path = os.path.dirname(check_path)
+
+        # 极端情况兜底
+        return {
+            "workspace_root": os.path.dirname(os.path.dirname(os.path.dirname(current_file))),
+            "agent_id": None,
+            "is_main_agent": True
+        }
+
+    @staticmethod
+    def get_agent_data_dir():
+        """获取当前 Agent 的 data 目录路径。
+
+        Returns:
+            str: 当前 Agent 的 data 目录绝对路径
+        """
+        context = AgentContextUtil.detect_current_agent_workspace()
+        data_dir = os.path.join(context["workspace_root"], "data")
+        os.makedirs(data_dir, exist_ok=True)
+        return data_dir
+
+    @staticmethod
+    def get_agent_skills_dir():
+        """获取当前 Agent 的 skills 目录路径。
+
+        技能安装默认到此目录，保证每个 Agent 独立的技能环境。
+
+        Returns:
+            str: 当前 Agent 的 skills 目录绝对路径
+        """
+        context = AgentContextUtil.detect_current_agent_workspace()
+        skills_dir = os.path.join(context["workspace_root"], "skills")
+        os.makedirs(skills_dir, exist_ok=True)
+        return skills_dir
+
+
 class OpenIdUtil(BaseUtil):
     """open-id 初始化与缺省用户分配工具。
 

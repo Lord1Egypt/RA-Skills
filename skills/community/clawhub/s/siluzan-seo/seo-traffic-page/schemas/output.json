@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SEO Traffic Page Generator Output",
+  "type": "object",
+  "required": ["pages"],
+  "properties": {
+    "pages": {
+      "type": "array",
+      "description": "生成的页面列表，数量与输入关键词数量一致，顺序一一对应",
+      "items": {
+        "type": "object",
+        "required": ["Title", "Content", "TDK"],
+        "properties": {
+          "Title": {
+            "type": "string",
+            "description": "该页面的关键词"
+          },
+          "Content": {
+            "type": "string",
+            "description": "纯文本，包含全部 7 个模块（优势/案例/产品/文本/FAQ/评价/亮点），按顺序连续输出，模块间空行分隔，禁止 Markdown 和 HTML，内容必须与其他页面完全不重复"
+          },
+          "TDK": {
+            "type": "object",
+            "required": ["seo_title", "seo_description", "seo_keywords"],
+            "properties": {
+              "seo_title": {
+                "type": "string",
+                "maxLength": 120,
+                "description": "SEO 标题，不超过 120 个字符，含核心关键词"
+              },
+              "seo_description": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "SEO 描述，不超过 500 个字符，含关键词和行动引导"
+              },
+              "seo_keywords": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "SEO 关键词，固定 3 个"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

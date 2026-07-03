@@ -48,7 +48,7 @@ When the request includes a known destination, `scripts/plan.sh` now emits `sugg
 
 ## Day-Plan Continuity
 
-For known destinations with enough ranked highlights, `scripts/plan.sh` emits `day_plan_continuity`: a morning/afternoon/evening sequencing scaffold with zones, coordinates, continuity reasons, and transition rationale. This gives operators a compact first pass that reduces avoidable backtracking before a full itinerary or route export is finalized, and `scripts/export-gmaps.sh` can now route directly from that scaffold when no explicit `days` itinerary exists yet.
+For known destinations with enough ranked highlights, `scripts/plan.sh` emits `day_plan_continuity`: a morning/afternoon/evening sequencing scaffold with zones, continuity reasons, and transition rationale. This gives operators a compact first pass that reduces avoidable backtracking before a full itinerary or route export is finalized.
 
 ## Risk + Fallback Warnings
 
@@ -57,6 +57,10 @@ When constraints make a first-pass plan fragile, `scripts/plan.sh` emits `risk_f
 ## Destination Comparison Support
 
 When a request asks to compare 2-3 options, `scripts/plan.sh` emits `destination_comparison` with per-option budget benchmarks, best months, fit factors, tradeoffs, a decision matrix, best-for bullets, watch-outs, an operator summary, and a clear `recommended_option`. If the user names a month or season, the comparison highlights matching or risky timing so operators can explain the decision before committing to a destination-specific itinerary.
+
+## Compact Presentation Markdown
+
+For output polish, `output_polish.presentation_markdown` provides a ready-to-adapt Markdown draft with four compact sections: Recommendation, Why this fits, Watch-outs, and Next step. It preserves the structured JSON fields while giving operators a user-visible response scaffold with clear rationale and the single next action. `output_polish.decision_badges` also exposes compact readiness, next-owner, fallback-count, and decision-mode labels so UIs and operators can scan the plan state without parsing the full rationale. `output_polish.handoff_brief` adds a copy-ready operator transfer note with the decision, rationale bullets, watch-out, next action owner, and evidence drivers for smoother planning handoffs.
 
 ## Scripts
 

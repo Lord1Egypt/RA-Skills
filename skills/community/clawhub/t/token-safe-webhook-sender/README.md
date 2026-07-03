@@ -12,7 +12,7 @@ This skill provides a pattern for managing webhook tokens securely:
 ## Prerequisites
 
 - Python 3.10+
-- pip install mgc-blackbox
+- pip install mgc-blackbox (recommended 1.4.6+)
 - MGC service running
 
 > **Important:** For AI agents, use **MCP tools**. CLI may have port conflicts.
@@ -57,11 +57,13 @@ Create `webhook_token.json` with your platform-specific token:
 
 > **Important:** Use **MCP tools** for AI agents. CLI may have port conflicts.
 
-**Recommended (MCP):** Use `mgc_save` tool
-**Alternative (CLI):**
-```bash
-mgc_save info_type=config info_owner=my_webhook < webhook_token.json
-```
+**Recommended (WebUI):** Store tokens manually via WebUI
+1. Open: http://127.0.0.1:57218
+2. Enter info_type: "webhook", info_owner: "your_webhook_name"
+3. Enter token content
+4. Click Save
+
+**Alternative (MCP):** Use `mgc_get` tool to retrieve tokens
 
 ### 4. Use in Your Script
 

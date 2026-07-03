@@ -1,28 +1,33 @@
 ---
 name: ry-drink
 description: >-
-  瑞玥餐饮 API Skill。门店、预约、点餐（含减餐/追加/查单）。Tool 后台静默执行；
-  禁止展示 Skill/Tool 调用过程、编号与单号；回复须完整句子，禁止半句话。
+  瑞玥餐饮 API Skill。查询类（门店/菜单/桌位/预约/会员/交易）与写入类（预约/点餐/减餐）均须先调用 Tool 再回复；
+  禁止凭记忆、知识库或编造回答业务数据。Tool 后台静默执行。
 ---
 
 # 商客Claw 餐饮 Skill
 
 ## 何时使用
 
-- **用户问门店信息、菜单、桌号、预约、会员、交易记录时，必须先调用对应 Tool，禁止凭记忆回答**
-- 预约订座、改预约、取消预约
-- 查桌号、看菜单、**点餐 / 追加点餐 / 减餐 / 查点餐 / 取消点餐**
+**查询与写入都必须调 Tool**：只要涉及门店、菜单、桌位、预约、会员、交易、点餐等业务数据，**无论只读查询还是下单/预订**，均须先调用对应 Tool，禁止凭记忆、知识库或编造回答。
 
-### 查询类 Tool 强制规则
+- **用户问门店信息、菜单、桌号、预约、会员、交易记录时，必须先调用对应 Tool**
+- 预约订座、改预约、取消预约（写入）
+- 查桌号、看菜单、**点餐 / 追加点餐 / 减餐 / 查点餐 / 取消点餐**（查询+写入）
 
-| 用户意图 | 必须调用 |
-|----------|----------|
-| 门店信息/地址/电话/营业时间 | `getShopInfo` |
-| 菜单/菜品/价格 | `getMenu` |
-| 桌号/空桌 | `getTables` |
-| 我的预约 | `listMyAppointments` |
-| 会员/储值 | `getMemberInfo` |
-| 消费记录 | `getTransactions` |
+### 查询类 Tool 强制规则（只读也必须调接口）
+
+| 用户意图 | 必须调用 | 禁止行为 |
+|----------|----------|----------|
+| 门店在哪/叫什么/电话/营业时间/介绍 | `getShopInfo` | 禁止用知识库或自我介绍代替 |
+| 菜单/有什么菜/价格/推荐菜/招牌菜 | `getMenu` | 禁止凭记忆列菜名价格 |
+| 有哪些桌/空桌/几人间 | `getTables` | 禁止编造桌号 |
+| 我的预约/订了没/预约记录 | `listMyAppointments` | 禁止编造预约状态 |
+| 我的点餐/点了什么/订单清单/查看点餐信息 | `listMyAppointments` + `listOrders` + `getOrderDetail` + `getMenu` | 禁止编造已点菜品；禁止用对话记忆代替接口 |
+| 会员/储值/积分/余额 | `getMemberInfo` | 禁止编造余额 |
+| 消费记录/历史订单 | `getTransactions` | 禁止编造交易 |
+
+**触发示例（均须先调 Tool）：**「你们几点开门」「有什么推荐的」「看看菜单」「还有空桌吗」「我订了哪桌」「查一下我的预约」「查看点餐信息」「我点了什么」
 
 未调用 Tool 前禁止回答上述问题；Tool 失败时说「暂时无法查询，请联系门店前台」，禁止编造。
 
@@ -165,16 +170,19 @@ listMyAppointments → 获取 reserveId
 - `bookTable` 返回 `tableTaken: true` 或 `action: table_taken` 时，**禁止**说预约成功。
 - 静默再次 `getTables`，换另一张 `tableCode`（勿重复 HH-A01 等已失败桌号），再 `bookTable`。
 - 向用户说明：「该时段此桌已被预约，已为您安排 XX 桌」或「请换一个时段」。
-- 查桌位只用 **`getTables`**（`/merchant/{shopId}/tables`），勿用 `/aiemployees/appointment/tables` 或 tool/invoke 的 `get_tables`。
+- 查桌位只用 **`getTables`**（`GET /aiemployees/appointment/tables?shopId=`），勿用 tool/invoke 的 `get_tables` 或自行拼 `/merchant/{id}/tables`。
 
 ### 查看点餐
 
 ```
 listMyAppointments → reserveId
-→ listOrders(reserveId)
+→ listOrders(reserveId)          // 返回 orderId 列表（Handler 内会逐单调 detail 接口）
+→ getOrderDetail(orderId)        // 每个有效 orderId 必须再调一次，以 detail 为准
 → getMenu 映射菜名
 → 只展示菜名清单，不展示订单号/预约号
 ```
+
+**「查看点餐信息」「我点了什么」「当前点餐清单」等问法：禁止凭对话记忆或上次 placeOrder 的 chatHint 回答，必须按上述链路实时查库。**
 
 ### 减餐（用户说「不要汤了」「去掉虾饺」等）
 
@@ -203,6 +211,32 @@ listOrders(reserveId) → orderId
 listOrders → 用户确认 → cancelOrder(orderId)
 ```
 
+### 买单 / 付款 / 结账
+
+用户说「买单」「付款」「结账」「支付」「我要付钱」等时，**必须调用 `buildPaymentLink`** 生成付款链接，**禁止**口头说「无法提供链接」或让用户自行找前台（除非 Tool 返回失败）。
+
+```
+listMyAppointments → reserveId
+→ buildPaymentLink(reserveId)   // 调用 POST /aiemployees/dining/payment/link
+→ 将返回的 paymentLink 完整发给用户（可点击 URL）
+```
+
+**禁止**自行拼接或猜测其他 API 路径（如 `/payment/link`、`/buildPaymentLink` 等）；**仅**使用 `buildPaymentLink` Tool 或 `POST /aiemployees/dining/payment/link`。
+
+**付款链接格式：**
+
+```
+https://claw.jscitylife.cn:43003/link/yshop/order/{orderNo}?merchantId={shopId}&tenantId={tenantId}
+```
+
+| 占位符 | 来源 | 说明 |
+|--------|------|------|
+| `orderNo` | `getOrderDetail` 的 **thirdOrderId**（优先） | yshop 订单号，如 `2072273301043937280` |
+| `merchantId` | **shopId**（`RY_DRINK_FORCED_SHOP_ID`） | 商家编号 |
+| `tenantId` | **tenantId**（`RY_DRINK_PLATFORM_TENANT_ID`） | 租客编号 |
+
+若用户指定某笔订单，可传 `orderId` 或 `thirdOrderId` 后直接 `buildPaymentLink`。多笔待付订单时返回多条链接，须全部发给用户。
+
 ---
 
 ## 系统注入参数
@@ -216,12 +250,12 @@ listOrders → 用户确认 → cancelOrder(orderId)
 
 **双 ID 规则（重要）：**
 
-- **tenantId** = 租客 ID（`t_merchant.id`），会话 URL `/store/6` 中的 `6`；`getShopInfo` / `getMenu` 的 `/merchant/{tenantId}/info` 路径用此值。
-- **shopId** = 商家编号（`t_store_sync.id`），如 `9`；`getTables`、`bookTable`、点餐等 API 的 `shopId` 参数用此值。
-- 后端在 chat.send 时注入 `RY_DRINK_PLATFORM_TENANT_ID` 与 `RY_DRINK_FORCED_SHOP_ID`；Handler 会自动选用正确 ID，LLM 传参时两个都带上即可。
-- **禁止**写死或改用其他门店 ID；未配置环境变量时不会回退默认值。
+- **tenantId** = 租客 ID（`t_merchant.id`）；`getShopInfo` / `getMenu` 路径 `/merchant/{tenantId}/menus` 用此值（注意是 **menus** 复数）。
+- **shopId** = 商家编号（`t_store_sync.id`）；`getTables`、`bookTable`、点餐等 API 用此值。
+- **saasId** = `t_store_sync.saas_id`，由 user-system 每次 chat.send 按当前门店从库解析写入 `RY_DRINK_SAAS_ID`，**不在 Nacos 固定配置**。
+- 后端在 chat.send 时注入 `RY_DRINK_PLATFORM_TENANT_ID` 与 `RY_DRINK_FORCED_SHOP_ID`；Handler 会自动选用正确 ID。
 
-API 基址：`http://192.168.0.66:8080/user-biz`（Tool 内部，勿告知用户；环境变量 `RY_DRINK_API_BASE`）
+API 基址：`http://10.200.100.32:9302`（内网直连 user-biz，Tool 内部；环境变量 `RY_DRINK_API_BASE` 可覆盖）
 
 ---
 
@@ -229,16 +263,20 @@ API 基址：`http://192.168.0.66:8080/user-biz`（Tool 内部，勿告知用户
 
 | Tool | 用途 |
 |------|------|
-| getMenu | 菜单与 goodsId→菜名映射 |
-| getTables | 桌号 |
-| listMyAppointments | 查预约 reserveId |
-| bookTable / changeAppointment / cancelAppointment | 预约 |
+| **getShopInfo** | **【必调-查询】** 门店名称/地址/电话/营业时间 |
+| **getMenu** | **【必调-查询】** 菜单、价格、推荐菜 |
+| **getTables** | **【必调-查询】** 桌号/空桌 |
+| **listMyAppointments** | **【必调-查询】** 我的预约、reserveId |
+| **getMemberInfo** | **【必调-查询】** 会员/储值/积分 |
+| **getTransactions** | **【必调-查询】** 消费/交易记录 |
+| **listOrders** | **【必调-查询】** 已点餐清单（按 reserveId） |
+| **getOrderDetail** | **【必调-查询】** 单笔点餐详情（查看点餐/减餐/追加点餐前必调） |
+| **buildPaymentLink** | **【必调】** 买单/付款/结账时生成付款超链接 |
+| bookTable / changeAppointment / cancelAppointment | 预约写入 |
 | placeOrder | 首次点餐 |
 | appendOrder | 追加 |
 | **reduceOrder** | **减餐（单道菜）** |
 | cancelOrder | 取消整单 |
-| listOrders | 查点餐列表 |
-| getOrderDetail | 单笔详情（内部） |
 
 完整 Schema：[tools.json](./tools.json)
 
@@ -248,10 +286,19 @@ API 基址：`http://192.168.0.66:8080/user-biz`（Tool 内部，勿告知用户
 
 | Tool | 方法 | 路径 |
 |------|------|------|
+| getShopInfo | GET | `/merchant/{tenantId}/info?storeId={shopId}` |
+| getMenu | GET | `/merchant/{tenantId}/menus?storeId={shopId}` |
+| getTables | GET | `/aiemployees/appointment/tables?shopId=` |
+| getMemberInfo | GET | `/member/{memberId}` |
+| getTransactions | GET | `/transaction/list` |
+| listMyAppointments | GET | `/aiemployees/appointment/list` |
+| changeAppointment | POST | `/aiemployees/appointment/change` |
+| cancelAppointment | POST | `/aiemployees/appointment/cancel` |
 | placeOrder | POST | `/aiemployees/dining/order` |
 | appendOrder | POST | `/aiemployees/dining/append` |
 | reduceOrder | POST | `/aiemployees/dining/reduce` |
 | cancelOrder | POST | `/aiemployees/dining/cancel` |
 | listOrders | POST | `/aiemployees/dining/tool/invoke` (dining_order_list) |
 | getOrderDetail | POST | `/aiemployees/dining/detail` |
+| buildPaymentLink | POST | `/aiemployees/dining/payment/link` |
 | bookTable | POST | `/aiemployees/appointment/booking` |

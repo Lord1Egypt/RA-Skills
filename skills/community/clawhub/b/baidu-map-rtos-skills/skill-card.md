@@ -1,5 +1,5 @@
 ## Description: <br>
-Baidu Map RTOS SDK (mapsdk-rtos) application-layer integration guidance and code generation for initialization, authentication, map control, overlays, search, route planning, offline maps, navigation, and Canvas adapter work. <br>
+Helps developers integrate Baidu Map RTOS SDK (mapsdk-rtos) application layers by producing guidance and code for authentication, map component setup, overlays, search, navigation, offline maps, Canvas adapters, and mapAPP demos. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to integrate Baidu Map RTOS SDK public APIs into RTOS or macOS simulator applications. It helps produce guidance, C/C++ examples, shell commands, and configuration steps for authentication, map rendering, overlays, search, navigation, offline maps, and platform Canvas adapters. <br>
+Developers and engineers use this skill to build or troubleshoot RTOS map applications against the public mapsdk-rtos APIs. It supports initialization and authentication, Canvas adapter implementation, map controls and overlays, POI and route search, offline maps, navigation, and macOS simulator demo extension. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generated code may handle AK or license values, location data, offline map downloads, file paths, or SDK delete/download APIs. <br>
-Mitigation: Install only when authorized to use Baidu mapsdk-rtos materials, and review generated code before running it in an SDK or device environment. <br>
-Risk: Application-layer examples may need platform-specific adaptation for RTOS, macOS simulator, Canvas, threading, storage, and networking behavior. <br>
-Mitigation: Validate generated C/C++ against the target platform adapter, UI-thread rendering path, cache paths, and SDK callback behavior before deployment. <br>
+Risk: Generated integration code may handle license keys, authentication flow, local paths, UI-thread callbacks, and map rendering state incorrectly if applied without review. <br>
+Mitigation: Review generated code against the initialization order, Canvas binding, callback-thread, and troubleshooting guidance before use, and provide credentials only when clearly required. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/baidu-maps/skills/baidu-map-rtos-skills) <br>
-- [README_EN.md](README_EN.md) <br>
-- [SKILL.md](SKILL.md) <br>
+- [Skill definition](SKILL.md) <br>
 - [Initialization, authentication, and Canvas adapter](references/init-auth.md) <br>
 - [Platform Adapter and Canvas implementation](references/adapter-build.md) <br>
-- [Map control and overlays](references/overlay-map-control.md) <br>
+- [Map state, overlays, and touch](references/overlay-map-control.md) <br>
 - [Search, navigation, offline maps, and mapAPP demos](references/search-navi-offline.md) <br>
-- [End-to-end runnable examples](references/demo.md) <br>
+- [End-to-end demo examples](references/demo.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with C/C++ code blocks and shell commands] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown with C/C++ code blocks and command snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated code should be reviewed before use.] <br>
+**Other Properties Related to Output:** [Produces agent guidance and code examples for application-layer integration; it does not directly execute SDK APIs.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+1.0.1 (source: release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

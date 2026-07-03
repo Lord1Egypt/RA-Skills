@@ -1,7 +1,7 @@
 ---
 name: "basic-object-detection-analysis"
 description: "Detects people, vehicles, non-motorized vehicles, pets, and parcels appearing in the target area. Supports video stream and image detection, suitable for general security surveillance scenarios. | 基础目标检测技能，检测出目标区域内出现的人、车、非机动车、宠物、包裹，支持视频流和图片检测，适用于通用安防监控场景"
-version: "1.0.5"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

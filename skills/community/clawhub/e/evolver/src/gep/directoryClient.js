@@ -4,7 +4,7 @@
 // fetches agent profiles including skills, reputation, and load status.
 // ---------------------------------------------------------------------------
 
-const { getNodeId, buildHubHeaders } = require('./a2aProtocol');
+const { getNodeId, buildHubHeaders, buildNodeScopedHubHeaders } = require('./a2aProtocol');
 const { resolveHubUrl } = require('../config');
 const { hubFetch } = require('./hubFetch');
 
@@ -20,11 +20,13 @@ async function searchByQuery(query, opts) {
   if (!query) return null;
   try {
     const params = new URLSearchParams({ q: query });
+    const nodeId = getNodeId();
+    if (nodeId) params.set('node_id', nodeId);
     if (opts?.limit) params.set('limit', String(opts.limit));
 
     const url = `${resolveHubUrl().replace(/\/+$/, '')}/a2a/directory/search?${params}`;
     const res = await hubFetch(url, {
-      headers: buildHubHeaders(),
+      headers: buildNodeScopedHubHeaders(),
       signal: AbortSignal.timeout(DIRECTORY_TIMEOUT_MS),
     });
     if (!res.ok) return null;
@@ -46,11 +48,13 @@ async function searchBySignals(signals, opts) {
   if (!Array.isArray(signals) || signals.length === 0) return null;
   try {
     const params = new URLSearchParams({ signals: signals.join(',') });
+    const nodeId = getNodeId();
+    if (nodeId) params.set('node_id', nodeId);
     if (opts?.limit) params.set('limit', String(opts.limit));
 
     const url = `${resolveHubUrl().replace(/\/+$/, '')}/a2a/directory/search?${params}`;
     const res = await hubFetch(url, {
-      headers: buildHubHeaders(),
+      headers: buildNodeScopedHubHeaders(),
       signal: AbortSignal.timeout(DIRECTORY_TIMEOUT_MS),
     });
     if (!res.ok) return null;

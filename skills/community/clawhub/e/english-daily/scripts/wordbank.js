@@ -128,6 +128,52 @@ function getWordStats(profile) {
   return { total, due, mastered, learning };
 }
 
+// ── MEMORY.md profile block (no fs — agent stores/reads this) ───────────────────
+
+/**
+ * Parse a wordProgress JSON string passed on the CLI (from MEMORY.md).
+ * Accepts undefined / '' / '{}' and returns a plain object. Never throws.
+ */
+function parseProgressArg(raw) {
+  if (!raw || typeof raw !== 'string') return {};
+  try {
+    const obj = JSON.parse(raw);
+    return (obj && typeof obj === 'object') ? obj : {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Render a user profile as a MEMORY.md block for the agent to persist.
+ * The wordProgress SRS map is serialized to compact JSON inside the block so
+ * downstream runs can pass it back via --progress.
+ * @param {Object} profile
+ * @returns {string}
+ */
+function renderMemoryBlock(profile) {
+  const p = profile.preferences || {};
+  const learned = Object.keys(profile.wordProgress || {}).length;
+  const progressJson = JSON.stringify(profile.wordProgress || {});
+  const push = p.pushEnabled
+    ? `已开启 ${p.channel || 'telegram'} ${p.morningTime || '08:00'}`
+    : '未开启';
+  return `<!-- english-daily:profile:${profile.userId} -->
+## 英语学习档案 · ${profile.name}
+- userId: ${profile.userId}
+- 姓名: ${profile.name}
+- 母语: ${profile.nativeLanguage || 'zh'}
+- 等级: ${profile.level} → 目标: ${profile.targetLevel || profile.level}
+- 每日目标: ${p.dailyGoal || 5} 个新单词
+- 连续学习: ${profile.streak || 0}天（最长 ${profile.longestStreak || 0}天）
+- 上次学习: ${profile.lastStudyDate || '（尚未开始）'}
+- 总积分: ${profile.totalPoints || 0}
+- 已学单词: ${learned}
+- 推送: ${push}
+- SRS进度(勿手改): ${progressJson}
+<!-- /english-daily:profile -->`;
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Returns today's date as YYYY-MM-DD string (Asia/Shanghai local time) */
@@ -155,6 +201,8 @@ module.exports = {
   getDueWords,
   updateWordProgress,
   getWordStats,
+  parseProgressArg,
+  renderMemoryBlock,
   todayStr,
   addDays
 };

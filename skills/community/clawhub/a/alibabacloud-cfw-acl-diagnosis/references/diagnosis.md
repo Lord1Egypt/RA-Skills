@@ -97,7 +97,7 @@ All layers must pass for rules to take effect.
 
 ### Policy Split Mechanism
 
-When you configure a Layer 7 policy (with domain) in strict mode, Cloud Firewall **splits it at底层** into multiple rules:
+When you configure a Layer 7 policy (with domain) in strict mode, Cloud Firewall **splits it at the underlying layer** into multiple rules:
 
 ```
 User configures one rule:
@@ -208,21 +208,21 @@ curl -k "https://example.com"
 aliyun cloudfw describe-asset-list \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query ACL rules (outbound)
 aliyun cloudfw describe-control-policy \
   --Direction out \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query ACL rules (inbound)
 aliyun cloudfw describe-control-policy \
   --Direction in \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query traffic logs
 aliyun cloudfw describe-traffic-log \
@@ -233,7 +233,7 @@ aliyun cloudfw describe-traffic-log \
   --Direction <in|out> \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ### VPC Boundary Firewall
@@ -243,14 +243,14 @@ aliyun cloudfw describe-traffic-log \
 aliyun cloudfw describe-vpc-firewall-list \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query ACL rules
 aliyun cloudfw describe-vpc-firewall-control-policy \
   --VpcFirewallId <VpcFirewallId> \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query traffic logs
 aliyun cloudfw describe-traffic-log \
@@ -260,7 +260,7 @@ aliyun cloudfw describe-traffic-log \
   --FirewallType VpcFirewall \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ### NAT Boundary Firewall
@@ -270,14 +270,14 @@ aliyun cloudfw describe-traffic-log \
 aliyun cloudfw describe-nat-firewall-list \
   --PageNo 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query ACL rules
 aliyun cloudfw describe-nat-firewall-control-policy \
   --NatFirewallId <NatFirewallId> \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # Query traffic logs
 aliyun cloudfw describe-traffic-log \
@@ -287,7 +287,7 @@ aliyun cloudfw describe-traffic-log \
   --FirewallType NatFirewall \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ---

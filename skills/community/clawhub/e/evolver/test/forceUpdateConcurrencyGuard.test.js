@@ -152,8 +152,10 @@ describe('executeForceUpdate: module-level concurrency guard', () => {
       're-entrant call MUST NOT reach degit (mutex short-circuit before _executeForceUpdateInner)');
     assert.equal(outerResult.ok, false,
       'outer call still returns its normal failure result (structured fail on degit failure)');
-    assert.equal(outerResult.code, 'degit_failed',
-      'outer failure carries the degit_failed code (was a bare false before structured failures)');
+    assert.equal(outerResult.code, 'fallback_download_incomplete',
+      'outer failure aggregates by the terminal fallback failure');
+    assert.match(outerResult.detail, /^primary_failed=degit_failed \| fallback_failed=download_incomplete:/,
+      'outer failure carries primary and fallback detail up front');
     assert.ok(outerExecCalls >= 1,
       'outer call did reach degit at least once');
   });
@@ -167,17 +169,18 @@ describe('executeForceUpdate: module-level concurrency guard', () => {
     };
     const mod = freshRequireForceUpdate(stub);
 
-    // First call: enters _executeForceUpdateInner, fails at degit, returns a
-    // structured { ok:false, code:'degit_failed' } (was a bare false).
+    // First call: enters _executeForceUpdateInner, fails at degit, then returns
+    // the structured primary failure (was a bare false before structured failures).
     const r1 = mod.executeForceUpdate({ required_version: '1.88.0' });
     assert.equal(r1.ok, false);
-    assert.equal(r1.code, 'degit_failed', 'degit throw classified as degit_failed');
-    assert.equal(execCalls, 1, 'first call reached degit');
+    assert.equal(r1.code, 'fallback_download_incomplete',
+      'fallback terminal failure is the aggregation prefix');
+    assert.equal(execCalls, 2, 'first call reached degit and the tarball fallback downloader');
 
     // Second call AFTER first completes: must NOT be blocked by a stuck mutex.
     const r2 = mod.executeForceUpdate({ required_version: '1.88.0' });
     assert.equal(r2.ok, false, 'mutex released; second call ran normally');
-    assert.equal(execCalls, 2, 'second call also reached degit (no stale BUSY)');
+    assert.equal(execCalls, 4, 'second call also reached degit and fallback (no stale BUSY)');
   });
 
   it('mutex resets even when _executeForceUpdateInner throws (finally semantics)', () => {

@@ -1,6 +1,6 @@
 ---
 name: domainkits
-description: Check availability. Search related domains. Find more possibilities. Explore connections. Turn AI into your domain agent. 
+description: Check domain availability. Search domains by keyword across the full lifecycle, from newly registered to expired and deleted. Analyze keyword value and trends. Turn AI into your domain agent. domainkits.com
 homepage: https://domainkits.com/mcp
 metadata: {"openclaw":{"emoji":"🌐","primaryEnv":"DOMAINKITS_API_KEY"}}
 
@@ -58,9 +58,9 @@ With API key:
 ## Tools
 
 Search
-- `nrds` — Newly registered domains
+- `nrds` — Newly registered domains, by keyword or browse a gTLD
 - `aged` — Domains with 5-20+ years history
-- `expired` — Domains entering deletion cycle
+- `expired` — Domains entering deletion cycle, by keyword or browse a gTLD
 - `deleted` — Just-dropped domains, available now
 - `active` — Live sites and for-sale listings
 - `ns_reverse` — Domains on a specific nameserver
@@ -77,6 +77,7 @@ Query
 - `market_price` — Secondary market listings and price estimates
 
 Analysis (requires account)
+- `backlink_summary` — SEO backlink profile analysis
 - `keyword_data` — Google Ads keyword data
 
 Trends

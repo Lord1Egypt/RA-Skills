@@ -1,0 +1,120 @@
+[
+  {
+    "type": "data_table",
+    "caption": "Data table",
+    "rows": [
+      [
+        {
+          "type": "raw_text",
+          "text": "Name"
+        },
+        {
+          "type": "raw_text",
+          "text": "Account"
+        },
+        {
+          "type": "raw_text",
+          "text": "Stage"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Acme Expansion Deal"
+        },
+        {
+          "type": "raw_text",
+          "text": "Acme Inc."
+        },
+        {
+          "type": "raw_text",
+          "text": "Negotiation"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Weather Forecast Integration"
+        },
+        {
+          "type": "raw_text",
+          "text": "Nimbus Corp."
+        },
+        {
+          "type": "raw_text",
+          "text": "Discovery"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Retail Partner Portal"
+        },
+        {
+          "type": "raw_text",
+          "text": "ShopCo Ltd."
+        },
+        {
+          "type": "raw_text",
+          "text": "Closed Won"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Sustainable Materials Sourcing"
+        },
+        {
+          "type": "raw_text",
+          "text": "GreenTech"
+        },
+        {
+          "type": "raw_text",
+          "text": "Qualification"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Global Distribution Network"
+        },
+        {
+          "type": "raw_text",
+          "text": "LogiFlow Inc."
+        },
+        {
+          "type": "raw_text",
+          "text": "Proposal"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Cloud Migration Project"
+        },
+        {
+          "type": "raw_text",
+          "text": "CloudFirst"
+        },
+        {
+          "type": "raw_text",
+          "text": "Prospecting"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Data Analytics Platform"
+        },
+        {
+          "type": "raw_text",
+          "text": "DataViz Co."
+        },
+        {
+          "type": "raw_text",
+          "text": "Contract"
+        }
+      ]
+    ]
+  }
+]

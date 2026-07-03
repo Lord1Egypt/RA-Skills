@@ -1,5 +1,5 @@
 ## Description: <br>
-Uses fixed-camera image or video inputs to detect prolonged standing, bending, and related pregnancy fatigue-risk signals, then returns structured reminders and report links for health-reference use. <br>
+Uses fixed home-camera images or video to detect prolonged standing, bending, and related posture for pregnancy fatigue reminders, producing health-reference reports rather than medical diagnosis. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and operators of home, prenatal school, community health, or smart-home workflows use this skill to submit fixed-camera pregnancy activity footage, receive posture and fatigue-risk summaries, and retrieve historical analysis reports. It is for health-reference reminders, not medical diagnosis. <br>
+External users and developers use this skill to analyze pregnancy activity-area camera footage, generate posture and fatigue-risk reports, and retrieve historical report lists. It is intended for wellness reminders in homes, prenatal schools, community health centers, smart-home systems, or pregnancy-management apps, not clinical diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+Risk: The skill processes sensitive pregnancy-related home-camera footage and cloud report history through external services. <br>
+Mitigation: Use it only with informed consent from the pregnant person and any bystanders, minimize private household footage, and prefer privacy-preserving silhouette or ROI modes when available. <br>
+Risk: The skill may create or reuse a local identity and store service tokens in the workspace data directory. <br>
+Mitigation: Run it only in a trusted workspace, restrict filesystem access, and rotate or delete local tokens when access is no longer needed. <br>
+Risk: Fatigue reminders or posture results could be mistaken for medical advice. <br>
+Mitigation: Present outputs as wellness reminders based on visual posture statistics and direct users to qualified medical care for symptoms, diagnosis, or treatment decisions. <br>
+
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pregnant-posture-fatigue-detection-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/smyx-sunjinhui) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pregnant-posture-fatigue-detection-analysis) <br>
+- [Pregnant Posture Fatigue API Documentation](references/api_doc.md) <br>
+- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text containing structured JSON analysis, reminder guidance, and report/export links; command examples are bash.] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown or JSON/text report with optional shell commands and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles sensitive pregnancy-related home-camera footage through publisher cloud APIs with automatic account association and local token storage. Obtain explicit consent from the monitored person, avoid private-room or bystander footage, and confirm retention, deletion, and report-access controls before use.] <br>
+**Other Properties Related to Output:** [May include posture statistics, alert type, reminder text, recommended action, cloud report links, and an optional saved output file.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

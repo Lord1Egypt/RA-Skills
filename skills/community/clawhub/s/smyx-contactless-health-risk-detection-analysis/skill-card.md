@@ -1,5 +1,5 @@
 ## Description: <br>
-Combines frontal facial image or video capture with multimodal physiological signal analysis to provide early risk screening alerts for conditions including heart attack, stroke, hypertension, and hyperlipidemia. <br>
+Combines frontal facial image capture with multimodal physiological feature analysis to provide early risk screening and alerts for chronic and acute conditions such as heart attack, stroke, hypertension, and hyperlipidemia. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, caregivers, and operators can use this skill to submit frontal face images or videos for non-contact health-risk screening and to retrieve prior screening reports. Results are screening guidance only and do not replace professional medical diagnosis. <br>
+External users and care-support workflows can use this skill to submit frontal face images or short videos for non-contact early health risk screening and report lookup. Results are screening references and should not replace professional medical diagnosis or clinical examination. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive face images or videos and health-risk results to the LifeEmergence service. <br>
-Mitigation: Use only consented media, avoid third-party media URLs you do not control, and review applicable data-handling requirements before deployment. <br>
-Risk: The skill can create or reuse remote identity state and stores auth-related state locally. <br>
-Mitigation: Review and manage the local data directory before use, run the skill in an isolated workspace when appropriate, and clear stored state according to local policy. <br>
-Risk: The output may be mistaken for medical diagnosis. <br>
-Mitigation: Present results as early screening information only and direct users to professional medical care for high-risk or concerning findings. <br>
+Risk: Face images, videos, remote media URLs, identity metadata, and report-history queries may be sent to the lifeemergence cloud service. <br>
+Mitigation: Use the skill only with consent, avoid submitting third-party faces or private videos without authorization, and use a dedicated test account or workspace when evaluating it. <br>
+Risk: The skill can silently create or reuse a local identity, store tokens locally, and link health-screening reports to that identity. <br>
+Mitigation: Review or clear the local data directory when identity reuse is not desired, and avoid using shared environments for sensitive screening sessions. <br>
+Risk: Health-risk results are screening references and may be incomplete or misleading if treated as diagnosis. <br>
+Mitigation: Treat outputs as early risk-screening guidance only and seek professional medical diagnosis or urgent care for high-risk results or symptoms. <br>
 
 
 ## Reference(s): <br>
-- [API Interface Documentation](references/api_doc.md) <br>
 - [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-contactless-health-risk-detection-analysis) <br>
-- [Network Video Demo](https://www.coze.cn/s/RrbFGxWFu5c/) <br>
-- [Uploaded Video Demo](https://www.coze.cn/s/ZVfuVAmFK1A/) <br>
-- [Historical Report Demo](https://www.coze.cn/s/wZpc5KC83LY/) <br>
+- [API Documentation](references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON report payloads, report links, and shell command examples] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown or JSON analysis reports with risk findings, recommendations, report links, and history tables] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local face image/video files or media URLs; documented supported formats include jpg, jpeg, png, mp4, avi, and mov, with a 10MB maximum input size.] <br>
+**Other Properties Related to Output:** [May call a remote cloud API for analysis and report-history retrieval.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter says 1.0.5) <br>
+1.0.5 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

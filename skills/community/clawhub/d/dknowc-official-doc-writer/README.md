@@ -46,7 +46,7 @@ https://open.dknowc.cn/dependable/search/
 
 ## 版本说明
 
-当前 Clawhub Public 版基于 `3.0.20`。
+当前 Clawhub Public 版基于 `3.0.25`。
 
 ## 常用测试
 
@@ -65,13 +65,13 @@ python3 scripts/format_document.py official-docs/input/dknowc-test.md --output d
 红头 Word 生成：
 
 ```bash
-python3 scripts/template_generator.py 通知 --input dknowc-test.docx --org "广东省政务服务和数据管理局" --doc-number "粤政数〔2026〕1号" --output dknowc-test-red.docx
+python3 scripts/template_generator.py 通知 --input dknowc-test.docx --org "XX单位" --doc-number "XX〔2026〕1号" --output dknowc-test-red.docx
 ```
 
 搜索结果保存：
 
 ```bash
-python3 scripts/dkag_search.py "留学人才来粤服务政策" --area 广东省 --clean --output result_gd.json
+python3 scripts/dkag_search.py "人才服务政策" --area 某省 --clean --output result_gd.json
 ```
 
 多次搜索合并：

@@ -1,0 +1,24 @@
+{
+  "simple": [
+    {"query": "有哪些表", "description": "List all tables"},
+    {"query": "users表有那些字段", "description": "Show columns of users table"},
+    {"query": "总共多少用户", "description": "Count total users"},
+    {"query": "每种状态有多少用户", "description": "Group users by status"}
+  ],
+  "aggregate": [
+    {"query": "最近7天注册了多少用户", "description": "Count users in last 7 days"},
+    {"query": "统计上个月的总销售额", "description": "Sales last month"},
+    {"query": "每个品类的平均价格", "description": "Average price per category"},
+    {"query": "查询销售额最高的前10个产品", "description": "Top 10 products by sales"}
+  ],
+  "join": [
+    {"query": "查询每个用户的最近订单", "description": "Latest order per user"},
+    {"query": "每个品类上月的销售额", "description": "Sales per category last month"},
+    {"query": "下单最多的前20个用户", "description": "Top 20 users by order count"}
+  ],
+  "time_range": [
+    {"query": "今天有多少新注册", "description": "Today's new registrations"},
+    {"query": "按月的用户增长趋势", "description": "Monthly user growth trend"},
+    {"query": "本季度各月销售额", "description": "Monthly sales this quarter"}
+  ]
+}

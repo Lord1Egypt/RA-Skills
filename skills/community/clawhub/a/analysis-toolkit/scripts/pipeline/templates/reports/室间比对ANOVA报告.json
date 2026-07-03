@@ -1,0 +1,15 @@
+{
+  "name": "室间比对ANOVA报告",
+  "description": "室间比对特色报告 — ANOVA结果卡片 + 各组均值对比图 + Z值分析表",
+  "type": "report",
+  "tags": ["interlab", "ANOVA", "Z_score", "comparison"],
+  "report": {
+    "title": "室间比对 / ANOVA 分析报告",
+    "sections": [
+      {"type": "anova_summary", "source": "%ANOVA分析%", "title": "ANOVA方差分析"},
+      {"type": "group_means_chart", "source": "%ANOVA分析%", "title": "各组均值对比"},
+      {"type": "data_table", "source": "%ANOVA分析%", "title": "ANOVA详细统计",
+       "fields": ["ssb", "ssw", "sst", "dfb", "dfw", "msb", "msw", "f_value", "f_critical"]}
+    ]
+  }
+}

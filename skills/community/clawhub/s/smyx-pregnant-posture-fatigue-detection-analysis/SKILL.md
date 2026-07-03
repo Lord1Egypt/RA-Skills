@@ -1,7 +1,7 @@
 ---
 name: "smyx-pregnant-posture-fatigue-detection-analysis"
 description: "Uses a fixed home camera to detect prolonged standing, bending, and related posture of a pregnant woman, track standing duration and bending frequency, and assess fatigue risk. It sends rest reminders via speaker or app when tiring behavior is found. Suitable for homes, prenatal schools, community health centers, and smart-home or pregnancy apps. For health reference only, not medical diagnosis. | 通过家庭固定摄像头识别孕妇久站、弯腰等姿态，统计连续站立时长和弯腰频次，评估孕期劳累风险。发现久站、频繁弯腰或疑似重体力活动时，生成休息提醒，并可通过智能音箱或手机App推送。适用于家庭、孕妇学校、社区健康中心，可接入智能家居或孕期管理应用；结果仅供健康参考，不替代医生诊断。"
-version: "1.0.3"
+version: "1.0.5"
 license: "MIT-0"
 ---
 

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Email Agent — 监控看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #f5f7fa;
+  --card-bg: #fff;
+  --text: #1a1a2e;
+  --text-secondary: #6b7280;
+  --primary: #4f46e5;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* Header */
+.header { background: linear-gradient(135deg, var(--primary), #7c3aed); color: #fff; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 20px rgba(79,70,229,.25); }
+.header h1 { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.header .status { display: flex; align-items: center; gap: 8px; font-size: .9rem; opacity: .9; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+.refresh-info { font-size: .8rem; opacity: .7; }
+
+/* Grid */
+.dashboard { max-width: 1400px; margin: 0 auto; padding: 24px; }
+.cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.card { background: var(--card-bg); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.stat-card { text-align: center; }
+.stat-value { font-size: 2.2rem; font-weight: 800; line-height: 1.2; }
+.stat-value.large { font-size: 2.8rem; }
+.stat-label { font-size: .85rem; color: var(--text-secondary); margin-top: 4px; }
+.stat-sub { font-size: .75rem; color: var(--text-secondary); margin-top: 2px; }
+
+.charts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.chart-card { background: var(--card-bg); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.chart-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary); }
+.chart-wrap { position: relative; height: 250px; }
+.chart-wrap canvas { width: 100% !important; height: 100% !important; }
+
+/* Tables */
+.table-card { background: var(--card-bg); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; overflow-x: auto; }
+.table-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary); }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+th { text-align: left; padding: 10px 12px; background: #f9fafb; font-weight: 600; color: var(--text-secondary); border-bottom: 2px solid var(--border); white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:hover { background: #f8fafc; }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .75rem; font-weight: 600; }
+.badge-p0 { background: #fef2f2; color: #dc2626; }
+.badge-p1 { background: #fffbeb; color: #d97706; }
+.badge-p2 { background: #eff6ff; color: #2563eb; }
+.badge-green { background: #ecfdf5; color: #059669; }
+.badge-yellow { background: #fffbeb; color: #d97706; }
+.badge-red { background: #fef2f2; color: #dc2626; }
+.badge-gray { background: #f3f4f6; color: #6b7280; }
+.badge-blue { background: #eff6ff; color: #2563eb; }
+
+.sla-bar { display: inline-block; height: 8px; border-radius: 4px; min-width: 60px; }
+.sla-good { background: linear-gradient(90deg, #10b981, #34d399); }
+.sla-warn { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.sla-bad { background: linear-gradient(90deg, #ef4444, #f87171); }
+
+.empty-state { text-align: center; padding: 40px; color: var(--text-secondary); }
+.loading { text-align: center; padding: 20px; color: var(--text-secondary); }
+.error-state { color: var(--danger); text-align: center; padding: 20px; }
+
+@media (max-width: 768px) {
+  .cards-row { grid-template-columns: repeat(2, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+  .header { flex-direction: column; gap: 8px; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🤖 AI Email Agent <span style="font-weight:400;opacity:.8;font-size:1rem;">监控看板</span></h1>
+  <div class="status">
+    <span class="status-dot"></span>
+    <span>运行中</span>
+    <span class="refresh-info" id="refreshTime">—</span>
+  </div>
+</div>
+
+<div class="dashboard">
+
+  <!-- 概览卡片 -->
+  <div class="cards-row" id="overviewCards">
+    <div class="card stat-card">
+      <div class="stat-value large text-primary" id="statTotal">—</div>
+      <div class="stat-label">今日接收</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value large" style="color:var(--success)" id="statAuto">—</div>
+      <div class="stat-label">自动回复</div>
+      <div class="stat-sub" id="statAutoRate">—</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value large" style="color:var(--warning)" id="statEsc">—</div>
+      <div class="stat-label">升级人工</div>
+      <div class="stat-sub" id="statEscRate">—</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value large" style="color:var(--text-secondary)" id="statArch">—</div>
+      <div class="stat-label">静默归档</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value large" style="color:var(--primary)" id="statPend">—</div>
+      <div class="stat-label">待处理</div>
+    </div>
+  </div>
+
+  <!-- 图表行 -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>📂 分类分布</h3>
+      <div class="chart-wrap"><canvas id="chartCategory"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>💬 情感分布</h3>
+      <div class="chart-wrap"><canvas id="chartSentiment"></canvas></div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>📈 7 天趋势</h3>
+      <div class="chart-wrap"><canvas id="chartTrend"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>⏱️ SLA 健康度</h3>
+      <div class="chart-wrap" style="display:flex;align-items:center;justify-content:center;">
+        <canvas id="chartSLA" style="max-width:200px;max-height:200px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- 升级工单列表 -->
+  <div class="table-card">
+    <h3>🚨 今日升级工单</h3>
+    <table>
+      <thead>
+        <tr><th>工单号</th><th>客户</th><th>分类</th><th>情感</th><th>紧急度</th><th>级别</th><th>原因</th><th>时间</th></tr>
+      </thead>
+      <tbody id="escalatedTable">
+        <tr><td colspan="8" class="loading">加载中...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 最近工单 -->
+  <div class="table-card">
+    <h3>📋 最近工单</h3>
+    <table>
+      <thead>
+        <tr><th>工单号</th><th>客户</th><th>主题</th><th>分类</th><th>状态</th><th>紧急度</th><th>时间</th></tr>
+      </thead>
+      <tbody id="recentTable">
+        <tr><td colspan="7" class="loading">加载中...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// ===== 数据获取 =====
+async function fetchStats() {
+  try {
+    const res = await fetch('/api/stats');
+    if (!res.ok) throw new Error('API error');
+    return await res.json();
+  } catch(e) {
+    console.error('获取统计失败:', e);
+    return null;
+  }
+}
+
+async function fetchTickets(status = 'all', limit = 50) {
+  try {
+    const res = await fetch(`/api/tickets?status=${status}&limit=${limit}`);
+    if (!res.ok) throw new Error('API error');
+    return await res.json();
+  } catch(e) {
+    console.error('获取工单失败:', e);
+    return [];
+  }
+}
+
+// ===== 图表实例 =====
+let chartCategory, chartSentiment, chartTrend, chartSLA;
+
+const COLORS = {
+  consultation: '#4f46e5',
+  complaint: '#ef4444',
+  return_refund: '#f59e0b',
+  cooperation: '#10b981',
+  spam: '#9ca3af',
+  positive: '#10b981',
+  neutral: '#6b7280',
+  negative: '#f59e0b',
+  angry: '#ef4444',
+};
+
+const CATEGORY_LABELS = {
+  consultation: '咨询', complaint: '投诉', return_refund: '退换货',
+  cooperation: '合作', spam: '垃圾',
+};
+const SENTIMENT_LABELS = {
+  positive: '正面', neutral: '中性', negative: '负面', angry: '愤怒',
+};
+
+// ===== 渲染 =====
+async function refresh() {
+  const data = await fetchStats();
+  if (!data) {
+    document.getElementById('refreshTime').textContent = '数据加载失败';
+    return;
+  }
+
+  const overview = data.overview || {};
+  const total = overview.total || 0;
+  const auto = overview.auto_replied || 0;
+  const esc = overview.escalated || 0;
+  const arch = overview.archived || 0;
+  const pend = overview.pending || 0;
+
+  // 概览卡片
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statAuto').textContent = auto;
+  document.getElementById('statAutoRate').textContent = total ? `${(auto/total*100).toFixed(1)}%` : '—';
+  document.getElementById('statEsc').textContent = esc;
+  document.getElementById('statEscRate').textContent = total ? `${(esc/total*100).toFixed(1)}%` : '—';
+  document.getElementById('statArch').textContent = arch;
+  document.getElementById('statPend').textContent = pend;
+
+  // 分类分布图表
+  const catDist = data.category_dist || {};
+  updateCategoryChart(catDist);
+
+  // 情感分布图表
+  const sentDist = data.sentiment_dist || {};
+  updateSentimentChart(sentDist);
+
+  // 趋势图
+  const trend = data.trend || [];
+  updateTrendChart(trend);
+
+  // SLA
+  const sla = data.sla_health || {};
+  updateSLAChart(sla);
+
+  // 升级工单列表
+  const tickets = await fetchTickets('ESCALATED', 20);
+  renderEscalatedTable(tickets);
+
+  // 最近工单
+  const recent = await fetchTickets('all', 20);
+  renderRecentTable(recent);
+
+  document.getElementById('refreshTime').textContent =
+    `最后更新: ${new Date().toLocaleTimeString('zh-CN')}`;
+}
+
+function updateCategoryChart(dist) {
+  const labels = Object.keys(dist).map(k => CATEGORY_LABELS[k] || k);
+  const values = Object.values(dist);
+  const colors = Object.keys(dist).map(k => COLORS[k] || '#9ca3af');
+
+  if (chartCategory) chartCategory.destroy();
+  const ctx = document.getElementById('chartCategory').getContext('2d');
+  chartCategory = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'right', labels: { padding: 16, usePointStyle: true, pointStyleWidth: 10 } } }
+    }
+  });
+}
+
+function updateSentimentChart(dist) {
+  const labels = Object.keys(dist).map(k => SENTIMENT_LABELS[k] || k);
+  const values = Object.values(dist);
+  const colors = Object.keys(dist).map(k => COLORS[k] || '#9ca3af');
+
+  if (chartSentiment) chartSentiment.destroy();
+  const ctx = document.getElementById('chartSentiment').getContext('2d');
+  chartSentiment = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels, datasets: [{ data: values, backgroundColor: colors, borderRadius: 6, borderSkipped: false }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+    }
+  });
+}
+
+function updateTrendChart(trend) {
+  const labels = trend.map(t => t.day?.slice(5) || '');
+  const autoData = trend.map(t => t.auto_replied || 0);
+  const escData = trend.map(t => t.escalated || 0);
+  const totalData = trend.map(t => t.total || 0);
+
+  if (chartTrend) chartTrend.destroy();
+  const ctx = document.getElementById('chartTrend').getContext('2d');
+  chartTrend = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: '总量', data: totalData, borderColor: '#6b7280', backgroundColor: 'transparent', tension: .3, borderDash: [4,4] },
+        { label: '自动回复', data: autoData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.1)', tension: .3, fill: true },
+        { label: '升级', data: escData, borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,.1)', tension: .3, fill: true },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+}
+
+function updateSLAChart(sla) {
+  const met = sla.met_pct || 0;
+  const breached = sla.breached_pct || 0;
+  const unchecked = Math.max(0, 100 - met - breached);
+
+  if (chartSLA) chartSLA.destroy();
+  const ctx = document.getElementById('chartSLA').getContext('2d');
+  chartSLA = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['达标', '超时', '待处理'],
+      datasets: [{ data: [met, breached, unchecked], backgroundColor: ['#10b981', '#ef4444', '#e5e7eb'], borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toFixed(1)}%` } }
+      }
+    }
+  });
+}
+
+function renderEscalatedTable(tickets) {
+  const tbody = document.getElementById('escalatedTable');
+  if (!tickets.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">暂无升级工单 🎉</td></tr>';
+    return;
+  }
+  tbody.innerHTML = tickets.map(t => {
+    const levelBadge = t.escalation_level === 'P0' ? 'badge-p0' :
+                       t.escalation_level === 'P1' ? 'badge-p1' : 'badge-p2';
+    const sentBadge = t.sentiment === 'angry' ? 'badge-red' :
+                      t.sentiment === 'negative' ? 'badge-yellow' : 'badge-gray';
+    return `<tr>
+      <td><code>${t.ticket_id}</code></td>
+      <td>${t.from_name || t.from_addr}</td>
+      <td><span class="badge badge-blue">${CATEGORY_LABELS[t.category] || t.category}</span></td>
+      <td><span class="badge ${sentBadge}">${SENTIMENT_LABELS[t.sentiment] || t.sentiment}</span></td>
+      <td>${'🔴'.repeat(t.urgency_level || 0)}${'⚪'.repeat(5 - (t.urgency_level || 0))}</td>
+      <td><span class="badge ${levelBadge}">${t.escalation_level}</span></td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.escalation_reason || ''}</td>
+      <td style="white-space:nowrap">${(t.created_at || '').slice(11,16)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderRecentTable(tickets) {
+  const tbody = document.getElementById('recentTable');
+  if (!tickets.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">暂无工单</td></tr>';
+    return;
+  }
+  tbody.innerHTML = tickets.map(t => {
+    const statusBadge = t.status === 'AUTO_REPLIED' ? 'badge-green' :
+                        t.status === 'ESCALATED' ? 'badge-red' :
+                        t.status === 'RESOLVED' ? 'badge-blue' :
+                        t.status === 'ARCHIVED' ? 'badge-gray' : 'badge-yellow';
+    const statusLabels = {'PENDING':'待处理','AUTO_REPLIED':'自动回复','ESCALATED':'已升级','RESOLVED':'已解决','ARCHIVED':'已归档'};
+    return `<tr>
+      <td><code>${t.ticket_id}</code></td>
+      <td>${t.from_name || t.from_addr}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.subject || ''}</td>
+      <td><span class="badge badge-blue">${CATEGORY_LABELS[t.category] || t.category}</span></td>
+      <td><span class="badge ${statusBadge}">${statusLabels[t.status] || t.status}</span></td>
+      <td>${t.urgency_level || '-'}/5</td>
+      <td style="white-space:nowrap">${(t.created_at || '').slice(5,16)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== 页面周期 =====
+refresh();
+setInterval(refresh, 30000);  // 每 30s 刷新
+</script>
+</body>
+</html>

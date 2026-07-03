@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 {{PLANT_NAME}} - 花卉识别与养护报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #43a047;
+  --primary-light: #81c784;
+  --primary-dark: #2e7d32;
+  --bg: #f1f8e9;
+  --card-bg: #ffffff;
+  --text: #333333;
+  --text-light: #666666;
+  --text-muted: #999999;
+  --border: #e8f5e9;
+  --danger: #e53935;
+  --warning: #ff9800;
+  --success: #4caf50;
+  --info: #2196f3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  background: linear-gradient(160deg, #e8f5e9 0%, #c8e6c9 30%, #f1f8e9 60%, #fff9c4 100%);
+  min-height:100vh;padding:16px;color:var(--text);
+  background-attachment: fixed;
+}
+.container{max-width:720px;margin:0 auto}
+
+/* Header Card */
+.hero{
+  background: linear-gradient(135deg, #2e7d32 0%, #43a047 40%, #66bb6a 100%);
+  border-radius: 20px;padding:32px 24px;text-align:center;color:#fff;
+  box-shadow: 0 8px 32px rgba(46,125,50,.25);position:relative;overflow:hidden;
+  margin-bottom:16px;
+}
+.hero::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);animation:heroShine 8s ease-in-out infinite}
+@keyframes heroShine{0%,100%{transform:translate(0,0)}50%{transform:translate(-10%,-10%)}}
+.hero *{position:relative;z-index:1}
+.hero .plant-icon{font-size:56px;display:block;margin-bottom:8px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.hero .sci-name{font-size:15px;opacity:.85;font-style:italic;margin-bottom:12px}
+.hero .health-badge{display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.2);padding:6px 16px;border-radius:20px;font-size:13px;margin:0 4px}
+.hero .meta-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hero .meta-tags span{background:rgba(255,255,255,.18);
+  padding:4px 12px;border-radius:20px;font-size:12px;backdrop-filter:blur(4px)}
+
+/* Photo Section */
+.photo-section{background:var(--card-bg);border-radius:16px;padding:16px;text-align:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.photo-section img{max-width:100%;max-height:400px;border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);object-fit:contain}
+.photo-section .desc{font-size:14px;color:var(--text-light);margin-top:12px;line-height:1.6}
+
+/* Section Title */
+.section-title{font-size:17px;font-weight:700;color:var(--primary-dark);
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:0 4px}
+.section-title .icon{font-size:22px}
+
+/* Care Cards Grid */
+.care-section{background:var(--card-bg);border-radius:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.care-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.care-grid{grid-template-columns:1fr}}
+.care-card{
+  background:#f8faf8;border-radius:12px;padding:14px;
+  border-left:4px solid var(--primary);transition:transform .2s,box-shadow .2s
+}
+.care-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.care-card .card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.care-card .card-icon{font-size:22px}
+.care-card .card-title{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.care-card .card-main{font-size:13px;color:var(--text);line-height:1.5;font-weight:500}
+.care-card .card-sub{font-size:12px;color:var(--text-light);margin-top:2px}
+.care-card .card-note{font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic;line-height:1.4}
+
+/* Difficulty Bar */
+.difficulty-bar{display:flex;align-items:center;gap:10px;margin-top:8px}
+.difficulty-label{font-size:11px;color:var(--text-muted);white-space:nowrap}
+.difficulty-track{flex:1;height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.difficulty-fill{height:100%;border-radius:3px;transition:width 1.5s ease}
+
+/* Diseases Section */
+.disease-section{background:var(--card-bg);border-radius:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.disease-card{
+  background:#fff8e1;border-radius:10px;padding:14px;margin-bottom:10px;
+  border-left:4px solid var(--warning);transition:box-shadow .2s
+}
+.disease-card:hover{box-shadow:0 2px 8px rgba(255,152,0,.12)}
+.disease-card:last-child{margin-bottom:0}
+.disease-name{font-weight:600;font-size:14px;color:#e65100;margin-bottom:6px}
+.disease-detail{font-size:12px;color:var(--text-light);margin:3px 0;line-height:1.5}
+
+/* Tips Section */
+.tips-section{background:var(--card-bg);border-radius:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.tip-item{
+  background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:10px;
+  padding:12px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;
+  transition:transform .2s
+}
+.tip-item:hover{transform:translateX(4px)}
+.tip-item:last-child{margin-bottom:0}
+.tip-num{
+  background:var(--primary);color:#fff;min-width:24px;height:24px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0
+}
+.tip-text{font-size:13px;color:var(--text);line-height:1.6}
+
+/* Radar Chart */
+.chart-section{background:var(--card-bg);border-radius:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.chart-container{position:relative;height:300px}
+
+/* Footer */
+.footer{text-align:center;padding:20px;color:var(--text-muted);font-size:12px}
+.footer .brand{font-weight:600;color:var(--primary)}
+
+/* Empty State */
+.empty-hint{text-align:center;color:var(--text-muted);padding:24px;font-size:14px}
+.empty-hint .empty-icon{font-size:32px;display:block;margin-bottom:8px}
+
+/* Animation */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card-animate{animation:fadeInUp .5s ease both}
+.card-animate:nth-child(2){animation-delay:.1s}
+.card-animate:nth-child(3){animation-delay:.2s}
+.card-animate:nth-child(4){animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <span class="plant-icon">{{PLANT_TYPE_ICON}}</span>
+  <h1>{{PLANT_NAME}}</h1>
+  <div class="sci-name">{{SCIENTIFIC_NAME}}</div>
+  <div>
+    <span class="health-badge">{{HEALTH_ICON}} 健康：{{HEALTH_STATUS}}</span>
+    <span class="health-badge">📊 难度：{{DIFFICULTY}}</span>
+  </div>
+  <div class="meta-tags">
+    <span>📝 {{FAMILY}}</span>
+    <span>🌿 {{PLANT_TYPE}}</span>
+  </div>
+  <div class="difficulty-bar" style="margin-top:14px;max-width:300px;margin-left:auto;margin-right:auto">
+    <span class="difficulty-label" style="color:rgba(255,255,255,.7)">养护难度</span>
+    <div class="difficulty-track" style="background:rgba(255,255,255,.2)">
+      <div class="difficulty-fill" style="width:{{DIFFICULTY_PCT}}%;background:#fff"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Photo -->
+<div class="photo-section card-animate">
+  <img src="{{IMAGE_SRC}}" alt="{{PLANT_NAME}}">
+  <div class="desc">{{DESCRIPTION}}</div>
+</div>
+
+<!-- Health Alert -->
+<div id="healthAlert" style="display:none"></div>
+
+<!-- Care Guide -->
+<div class="care-section card-animate">
+  <div class="section-title"><span class="icon">🌿</span> 养护指南</div>
+  <div class="care-grid" id="careGrid"></div>
+</div>
+
+<!-- Diseases -->
+<div class="disease-section card-animate">
+  <div class="section-title"><span class="icon">🛡️</span> 病虫害防治</div>
+  <div id="diseaseContent">{{DISEASES_HTML}}</div>
+</div>
+
+<!-- Tips -->
+<div class="tips-section card-animate">
+  <div class="section-title"><span class="icon">💡</span> 养护贴士</div>
+  <div id="tipsContent">{{TIPS_HTML}}</div>
+</div>
+
+<!-- Radar Chart -->
+<div class="chart-section card-animate">
+  <div class="section-title"><span class="icon">📊</span> 养护关注度雷达图</div>
+  <div class="chart-container"><canvas id="careChart"></canvas></div>
+</div>
+
+<div class="footer">
+  <span class="brand">🌸 AI花卉识别与养护</span> · {{TIMESTAMP}}<br>
+  <span style="font-size:11px">基于 DashScope 多模态大模型 | 养护知识仅供参考</span>
+</div>
+
+</div>
+
+<script>
+// Plant type icon mapping
+(function(){
+  var typeIcon = document.querySelector('.plant-icon');
+  var typeMap = {'观花植物':'🌸','观叶植物':'🌿','多肉植物':'🌵','水生植物':'🪷','藤本植物':'🌱','木本植物':'🌳'};
+  var plantType = '{{PLANT_TYPE}}';
+  typeIcon.textContent = typeMap[plantType] || '🌺';
+})();
+
+// Health alert
+(function(){
+  var status = '{{HEALTH_STATUS}}';
+  var note = '{{HEALTH_NOTE}}';
+  var alert = document.getElementById('healthAlert');
+  if (status === '较差'){
+    alert.style.display = 'block';
+    alert.style.cssText = 'background:#fff3e0;border-radius:12px;padding:14px 20px;margin-bottom:16px;border-left:4px solid #e53935;font-size:13px;color:#c62828;box-shadow:0 2px 8px rgba(229,57,53,.1)';
+    alert.innerHTML = '⚠️ <b>健康预警：</b>'+note+' — 请及时检查并调整养护方式';
+  } else if (status === '一般'){
+    alert.style.display = 'block';
+    alert.style.cssText = 'background:#fff8e1;border-radius:12px;padding:14px 20px;margin-bottom:16px;border-left:4px solid #ff9800;font-size:13px;color:#e65100;box-shadow:0 2px 8px rgba(255,152,0,.1)';
+    alert.innerHTML = '🔔 <b>健康提示：</b>'+note+' — 注意观察，适当调整养护';
+  }
+})();
+
+// Care cards
+(function(){
+  var cards = [
+    {icon:'💧',title:'浇水',main:'{{WATER_FREQ}}',sub:'{{WATER_METHOD}}',note:'{{WATER_NOTE}}'},
+    {icon:'☀️',title:'光照',main:'{{LIGHT_FREQ}}',sub:'{{LIGHT_METHOD}}',note:'{{LIGHT_NOTE}}'},
+    {icon:'🌡️',title:'温度',main:'{{TEMP_FREQ}}',sub:'{{TEMP_METHOD}}',note:'{{TEMP_NOTE}}'},
+    {icon:'🪴',title:'土壤',main:'{{SOIL_FREQ}}',sub:'{{SOIL_METHOD}}',note:'{{SOIL_NOTE}}'},
+    {icon:'🧪',title:'施肥',main:'{{FERT_FREQ}}',sub:'{{FERT_METHOD}}',note:'{{FERT_NOTE}}'},
+  ];
+  document.getElementById('careGrid').innerHTML = cards.map(function(c){
+    return '<div class="care-card">'+
+      '<div class="card-header"><span class="card-icon">'+c.icon+'</span><span class="card-title">'+c.title+'</span></div>'+
+      '<div class="card-main">'+c.main+'</div>'+
+      (c.sub ? '<div class="card-sub">'+c.sub+'</div>' : '')+
+      (c.note ? '<div class="card-note">'+c.note+'</div>' : '')+
+    '</div>';
+  }).join('');
+})();
+
+// Radar chart
+(function(){
+  var careData = {{CARE_CHART_DATA}};
+  new Chart(document.getElementById('careChart'),{
+    type:'radar',
+    data:{
+      labels: careData.map(function(d){return d.icon+' '+d.name}),
+      datasets:[{
+        label:'养护关注度',
+        data: careData.map(function(d){return Math.max(0.05, d.value)}),
+        backgroundColor: 'rgba(67,160,71,0.12)',
+        borderColor: '#43a047',
+        borderWidth: 2.5,
+        pointBackgroundColor: careData.map(function(d){return d.color}),
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      scales:{r:{min:0,max:1,ticks:{stepSize:0.2,display:false,backdropColor:'transparent'},grid:{color:'rgba(0,0,0,.06)'},angleLines:{color:'rgba(0,0,0,.06)'},pointLabels:{font:{size:11,family:"'PingFang SC','Microsoft YaHei',sans-serif"},color:'#555'}}},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(0,0,0,.75)',padding:12,titleFont:{size:13},bodyFont:{size:12},callbacks:{label:function(ctx){return '关注度: '+(ctx.raw*100).toFixed(0)+'%'}}}}
+    }
+  });
+})();
+</script>
+</body>
+</html>

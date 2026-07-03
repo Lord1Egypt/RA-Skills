@@ -130,7 +130,9 @@ describe('EvoMapProxy._proxyAnthropic', () => {
   it('substitutes env ANTHROPIC_API_KEY as x-api-key when client omits it', async () => {
     captured.length = 0;
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_AUTH_TOKEN;
     process.env.ANTHROPIC_API_KEY = 'sk-from-env';
     try {
@@ -142,16 +144,46 @@ describe('EvoMapProxy._proxyAnthropic', () => {
       assert.equal(captured[0].headers['x-api-key'], 'sk-from-env');
       assert.equal(captured[0].headers['authorization'], undefined);
     } finally {
+      if (prevUpstreamKey === undefined) delete process.env.EVOMAP_ANTHROPIC_API_KEY;
+      else process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevKey === undefined) delete process.env.ANTHROPIC_API_KEY;
       else process.env.ANTHROPIC_API_KEY = prevKey;
       if (prevTok !== undefined) process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
     }
   });
 
+  it('prefers preserved EVOMAP_ANTHROPIC_API_KEY for upstream x-api-key', async () => {
+    captured.length = 0;
+    const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
+    const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
+    process.env.ANTHROPIC_API_KEY = 'proxy-token-should-stay-local';
+    process.env.EVOMAP_ANTHROPIC_API_KEY = 'sk-upstream-from-settings';
+    delete process.env.ANTHROPIC_AUTH_TOKEN;
+    try {
+      const res = await proxy._proxyAnthropic('/v1/messages', { model: 'm' }, {
+        inboundHeaders: { 'anthropic-version': '2023-06-01' },
+      });
+      assert.equal(res.status, 200);
+      assert.equal(captured.length, 1);
+      assert.equal(captured[0].headers['x-api-key'], 'sk-upstream-from-settings');
+      assert.equal(captured[0].headers['authorization'], undefined);
+    } finally {
+      if (prevKey === undefined) delete process.env.ANTHROPIC_API_KEY;
+      else process.env.ANTHROPIC_API_KEY = prevKey;
+      if (prevUpstreamKey === undefined) delete process.env.EVOMAP_ANTHROPIC_API_KEY;
+      else process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
+      if (prevTok === undefined) delete process.env.ANTHROPIC_AUTH_TOKEN;
+      else process.env.ANTHROPIC_AUTH_TOKEN = prevTok;
+    }
+  });
+
   it('substitutes env ANTHROPIC_AUTH_TOKEN as Authorization Bearer when no x-api-key in env', async () => {
     captured.length = 0;
     const prevKey = process.env.ANTHROPIC_API_KEY;
+    const prevUpstreamKey = process.env.EVOMAP_ANTHROPIC_API_KEY;
     const prevTok = process.env.ANTHROPIC_AUTH_TOKEN;
+    delete process.env.EVOMAP_ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_API_KEY;
     process.env.ANTHROPIC_AUTH_TOKEN = 'sk-bearer-from-env';
     try {
@@ -163,6 +195,8 @@ describe('EvoMapProxy._proxyAnthropic', () => {
       assert.equal(captured[0].headers['authorization'], 'Bearer sk-bearer-from-env');
       assert.equal(captured[0].headers['x-api-key'], undefined);
     } finally {
+      if (prevUpstreamKey === undefined) delete process.env.EVOMAP_ANTHROPIC_API_KEY;
+      else process.env.EVOMAP_ANTHROPIC_API_KEY = prevUpstreamKey;
       if (prevKey !== undefined) process.env.ANTHROPIC_API_KEY = prevKey;
       if (prevTok === undefined) delete process.env.ANTHROPIC_AUTH_TOKEN;
       else process.env.ANTHROPIC_AUTH_TOKEN = prevTok;

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$comment": "广东省政务服务和数据管理局公文格式标准（试行）",
+  "$comment": "通用党政机关公文格式配置",
   "output": {
     "dir": "official-docs/output",
     "$comment": "Word 默认输出目录，相对路径基于 Skill 安装目录解析（与调用时 cwd 无关）。--output 仅传文件名时写入此目录；传绝对路径时优先使用 --output。"
@@ -10,10 +10,10 @@
     "width_mm": 210,
     "height_mm": 297,
     "margin_top_mm": 37,
-    "margin_bottom_mm": 33,
+    "margin_bottom_mm": 35,
     "margin_left_mm": 28,
     "margin_right_mm": 26,
-    "$comment": "页面：A4；页边距按规范（上37mm 下33mm 左28mm 右26mm）"
+    "$comment": "页面：A4；页边距按 GB/T 9704 版心（上37mm 下35mm 左28mm 右26mm）"
   },
   "title": {
     "font": "方正小标宋简体",
@@ -50,10 +50,10 @@
   "heading3": {
     "font": "仿宋_GB2312",
     "size_pt": 16,
-    "bold": true,
+    "bold": false,
     "first_line_indent_chars": 2,
     "pattern": "^\\d+[\\.\\、]",
-    "$comment": "三级标题：仿宋加黑，三号字，首行缩进2字符"
+    "$comment": "三级标题：仿宋，三号字，首行缩进2字符"
   },
   "attachment": {
     "font": "仿宋_GB2312",

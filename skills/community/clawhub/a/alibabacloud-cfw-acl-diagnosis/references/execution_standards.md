@@ -22,7 +22,7 @@ This document defines mandatory execution standards for all diagnosis operations
 
 ```bash
 # CORRECT format
-aliyun cloudfw describe-control-policy --direction in --page-size 50 --current-page 1 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+aliyun cloudfw describe-control-policy --direction in --page-size 50 --current-page 1 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # WRONG format (will cause 'bad flag format' error)
 aliyun cloudfw describe-control-policy --direction in --page-size 50 --current-page 1 --output json

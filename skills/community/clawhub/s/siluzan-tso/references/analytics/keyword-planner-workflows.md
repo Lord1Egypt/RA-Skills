@@ -62,6 +62,31 @@
 | 7   | 否词或否词根落地：`ad keyword-negative-create` 等                               | §4 + `references/google-ads/google-ads.md` |
 | 8   | Campaign → AdGroup → JSON：`ad campaign-validate` → `ad campaign-create`        | §6                              |
 | 9   | 拓词结果导出：`keyword … --json-out`，供脚本消费                                | §7                              |
+| 10  | **URL/文章 + 多核心词 + 搜索量/竞争度筛选**（B2B 典型）                         | §8                              |
+
+---
+
+## §8 · URL/文章 + 多核心词 + 搜索量/竞争度（§零·C 典型）
+
+**适用**：用户给 **官网/文章 URL** + **一列英文核心词**，要求 Google Ads **长尾词表**，并指定 **月搜索量区间、竞争度**（如「约 3000、竞争中低」），输出 **英文 + 中文 + 核心词 + 搜索量 + 竞争度**。
+
+**路由**：`intent-routing.md` **§零·C** → 本工作流 **W5**（≠ P8 网站诊断、≠ P9 市场报告、≠ W3 campaign 方案）。
+
+**执行**：
+
+1. （可选）WebFetch 用户 URL，提取产品语境与同义词，**补充** `-k` 种子；**禁止**用文章臆测搜索量。
+2. 将核心词 **分批**（每批 3–8 个）调用：
+   ```bash
+   siluzan-tso keyword -k "fish gelatin,porcine gelatin,..." --url "https://example.com/" --geo 2840 --google-only --json-out ./snap-kw-batch1
+   ```
+   - 目标市场未指定时默认 `--geo 2840`（美国）并在交付说明中写明；要其它市场先 `keyword geo-list`。
+3. 脚本读各批 `items[]`：
+   - 按 `montlySearch` 过滤（如 1500–6000 视为「约 3000」区间）；
+   - 按 `competition` / `competitionV2` 筛「中低」（LOW / MEDIUM 或数值阈值，以当次 outline 为准）；
+   - 每个核心词保留 Top N（用户指定如 30 条）；不足时扩大 `-k` 变体或放宽阈值并在说明中标注。
+4. 交付 Markdown/表格：**英文关键词 | 中文翻译 | 核心词 | 月搜索量 | 竞争度**；首行注明 **Google Keyword Planner（`keywordidea/google`）**。
+
+**禁止**：纯 WebSearch/WebFetch 输出带「月搜索量」的终稿；禁止跳过 `keyword` CLI。
 
 ---
 

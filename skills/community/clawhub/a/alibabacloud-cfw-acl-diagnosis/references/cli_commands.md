@@ -34,7 +34,7 @@ aliyun configure get --profile default
 **Alibaba Cloud CLI (aliyun)**:
 - **Do NOT use `--profile` parameter**, rely on default credential chain
 - **Do NOT explicitly pass credentials**
-- All commands MUST include `--user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis`
+- All commands MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"`
 
 ---
 
@@ -46,7 +46,7 @@ aliyun configure get --profile default
 aliyun cloudfw describe-asset-list \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Key Response Fields**:
@@ -61,7 +61,7 @@ aliyun cloudfw describe-control-policy \
   --Direction out \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ### 1.3 Query ACL Rules (Inbound)
@@ -71,7 +71,7 @@ aliyun cloudfw describe-control-policy \
   --Direction in \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Key Response Fields**:
@@ -96,7 +96,7 @@ aliyun cloudfw describe-traffic-log \
   --Direction out \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Key Response Fields**:
@@ -115,7 +115,7 @@ aliyun cloudfw describe-traffic-log \
 aliyun cloudfw describe-vpc-firewall-list \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Key Response Fields**:
@@ -130,7 +130,7 @@ aliyun cloudfw describe-vpc-firewall-control-policy \
   --VpcFirewallId vfw-xxx \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ### 2.3 Query Traffic Logs
@@ -146,7 +146,7 @@ aliyun cloudfw describe-traffic-log \
   --DstPort 443 \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ---
@@ -159,7 +159,7 @@ aliyun cloudfw describe-traffic-log \
 aliyun cloudfw describe-nat-firewall-list \
   --PageNo 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Key Response Fields**:
@@ -173,7 +173,7 @@ aliyun cloudfw describe-nat-firewall-control-policy \
   --NatFirewallId nfw-xxx \
   --CurrentPage 1 \
   --PageSize 50 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ### 3.3 Query Traffic Logs
@@ -189,7 +189,7 @@ aliyun cloudfw describe-traffic-log \
   --DstPort 80 \
   --CurrentPage 1 \
   --PageSize 10 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 ---
@@ -212,5 +212,5 @@ aliyun cloudfw describe-traffic-log \
 2. **FlowType**: **Do NOT set**, keep empty, setting it may cause no logs found
 3. **Time Conversion**: `date -d "2026-04-01 11:25:00" +%s`
 4. **Pagination**: Always check `TotalCount`, use `--CurrentPage 2` if needed
-5. **User-Agent**: ALL commands MUST include `--user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis`
+5. **User-Agent**: ALL Alibaba Cloud service commands MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"` as declared in `SKILL.md` Observability section. Replace `{{SESSION_ID}}` with the workflow session ID.
 6. **No Profile**: NEVER use `--profile` parameter in any command

@@ -1,0 +1,4 @@
+interface:
+  display_name: "EasyEDA Agent"
+  short_description: "Automate EasyEDA schematic and PCB workflows"
+  default_prompt: "Use $easyeda-agent to design, inspect, or safely modify an EasyEDA schematic/PCB through easyeda-agent."

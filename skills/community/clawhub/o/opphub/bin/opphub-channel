@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+# 路径解析（兼容容器/K8s/多环境）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../lib/opphub-paths.sh"
+opphub_init_home
+# 偶合 OppHub · IM 通道管理
+# 老板 11:41 修正：5 通道独立（feishu/dingtalk/wecom/sms/email）
+
+set -e
+
+OPPHUB_HOME="${OPPHUB_HOME:-}"  # ← 由 lib/opphub-paths.sh 解析后填入
+API_BASE="${OPPHUB_API_BASE:-https://api.opphub.ruiplus.cn}"
+
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+step() { echo -e "${BLUE}━━━ $1 ━━━${NC}"; }
+ok()   { echo -e "${GREEN}✓ $1${NC}"; }
+warn() { echo -e "${YELLOW}⚠ $1${NC}"; }
+fail() { echo -e "${RED}✗ $1${NC}"; exit 1; }
+
+STATE="$OPPHUB_HOME/state.json"
+[ ! -f "$STATE" ] && fail "未登录，请先 opphub login"
+
+TOKEN=$(grep -o '"opphub_token":"[^"]*"' "$STATE" | cut -d'"' -f4)
+
+ACTION="${1:-list}"
+
+case "$ACTION" in
+  list|ls)
+    step "IM 通道列表"
+    echo ""
+    curl -s "$API_BASE/api/channel/list" \
+      -H "Authorization: Bearer $TOKEN" | python3 -m json.tool
+    ;;
+
+  add|bind)
+    step "绑定新通道"
+    echo ""
+    echo "通道类型："
+    echo "  1) feishu     飞书"
+    echo "  2) dingtalk   钉钉（V1.0+）"
+    echo "  3) wecom      企业微信（V1.0+）"
+    echo "  4) sms        短信 +86"
+    echo "  5) email      邮件"
+    echo ""
+    read -p "选择 [1-5]: " TYPE_ID
+    case "$TYPE_ID" in
+      1) CTYPE="feishu" ;;
+      2) CTYPE="dingtalk" ;;
+      3) CTYPE="wecom" ;;
+      4) CTYPE="sms" ;;
+      5) CTYPE="email" ;;
+      *) fail "请输入 1-5" ;;
+    esac
+
+    if [ "$CTYPE" = "feishu" ]; then
+      STATE_ID=$(grep -o '"opc_id":"[^"]*"' "$STATE" | cut -d'"' -f4)
+      echo ""
+      echo "👉 打开浏览器访问："
+      echo "   https://open.feishu.cn/oauth/opphub?state=$STATE_ID"
+      echo ""
+      read -p "绑定完成后按回车继续..."
+      CHANNEL_ID="pending"
+    else
+      read -p "请输入 $([ "$CTYPE" = "sms" ] && echo "手机号" || echo "地址"): " CHANNEL_ID
+    fi
+
+    curl -s -X POST "$API_BASE/api/channel/bind" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{\"channelType\":\"$CTYPE\",\"channelId\":\"$CHANNEL_ID\"}"
+    ok "通道已绑定"
+    ;;
+
+  rm|remove|delete)
+    step "删除通道"
+    read -p "通道 ID: " CHANNEL_ID
+    curl -s -X DELETE "$API_BASE/api/channel/$CHANNEL_ID" \
+      -H "Authorization: Bearer $TOKEN"
+    ok "已删除"
+    ;;
+
+  *)
+    fail "用法: opphub channel [list|add|rm]"
+    ;;
+esac

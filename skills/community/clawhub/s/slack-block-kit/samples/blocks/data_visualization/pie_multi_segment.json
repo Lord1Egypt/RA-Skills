@@ -1,0 +1,28 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-pie-multi",
+    "title": "Plan distribution by tier",
+    "chart": {
+      "type": "pie",
+      "segments": [
+        {
+          "label": "Free",
+          "value": 4200
+        },
+        {
+          "label": "Pro",
+          "value": 2300
+        },
+        {
+          "label": "Business+",
+          "value": 1100
+        },
+        {
+          "label": "Enterprise",
+          "value": 480
+        }
+      ]
+    }
+  }
+]

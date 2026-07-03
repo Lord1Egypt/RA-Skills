@@ -1,6 +1,6 @@
-# API3 Data Feed Purchase
+# Api3 Data Feed Purchase
 
-Helper skill for buying API3 data feed subscriptions from market.api3.org.
+Helper skill for buying Api3 data feed subscriptions from market.api3.org.
 
 ## Requirements
 

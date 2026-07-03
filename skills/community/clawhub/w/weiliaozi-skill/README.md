@@ -1,8 +1,8 @@
 # 尉缭子分析法 Skill
 
-An English-described structured analysis skill using the Wei Liaozi five-lens framework: Essence → Conditions → Gains-Losses → Sequence → Opponent.
+An English-described structured analysis skill using the Wei Liaozi five-lens framework — a synthesis of pre-Qin strategic thought from Huangdi, Jiang Ziya, Sun Wu, Wu Qi, and Duke Huan of Qi. Framework: Essence → Conditions → Gains-Losses → Sequence → Opponent.
 
-Version: 2.1.0
+Version: 2.2.0
 
 License: MIT
 
@@ -400,7 +400,7 @@ git push -u origin main
 
 ## 变更日志
 
-最新版本：`2.1.0`（2026-04-28）
+最新版本：`2.2.0`（2026-04-28）
 
 - **v2.0.0 重构**：为满足 ClawHub 合规要求进行整体调整。
   - 运行方式改为 subagent 模式，工具列表限定为只读工具（read_file, search_content, search_files, get_symbols, web_search, web_fetch）

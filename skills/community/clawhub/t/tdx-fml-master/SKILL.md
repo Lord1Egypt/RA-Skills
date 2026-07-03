@@ -4,14 +4,15 @@ description: "通达信选股/指标公式大师：金叉放量突破龙头识�
 metadata:
   openclaw:
     emoji: "📈"
-    version: "2.0.1"
+    version: "2.2.1"
     author: "墨鱼精@g1776933879"
     tags: ["stock", "tdx", "formula", "finance", "china"]
 ---
 
 # 📈 TDX Formula Master — 通达信公式大师
 
-> **slug**: `tdx-formula-master` | **安装**: `clawhub install @g1776933879/tdx-formula-master`
+> **slug**: `tdx-fml-master` | **安装**: `clawhub install @g1776933879/tdx-fml-master`
+> **一键部署**: `bash install.sh` （无需外部依赖，开箱即用）
 
 ## 核心能力
 

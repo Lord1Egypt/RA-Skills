@@ -27,22 +27,22 @@ Supported Regions (--region parameter):
 
 Usage:
   # Query transcoding usage for the last 7 days (default)
-  python scripts/mps_usage.py
+  python3 scripts/mps_usage.py
 
   # Query a specific date range
-  python scripts/mps_usage.py --start 2024-01-01 --end 2024-01-31
+  python3 scripts/mps_usage.py --start 2024-01-01 --end 2024-01-31
 
   # Query multiple task types
-  python scripts/mps_usage.py --type Transcode Enhance AIGC
+  python3 scripts/mps_usage.py --type Transcode Enhance AIGC
 
   # Query specific regions
-  python scripts/mps_usage.py --region ap-guangzhou ap-hongkong
+  python3 scripts/mps_usage.py --region ap-guangzhou ap-hongkong
 
   # Output in JSON format (convenient for programmatic processing)
-  python scripts/mps_usage.py --json
+  python3 scripts/mps_usage.py --json
 
   # Query all types for the last 30 days
-  python scripts/mps_usage.py --days 30 --all-types
+  python3 scripts/mps_usage.py --days 30 --all-types
 """
 
 import sys
@@ -69,7 +69,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("❌ Missing dependency, please run: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("❌ Missing dependency, please run: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # All supported task types

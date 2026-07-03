@@ -1,6 +1,6 @@
 ---
 name: calendar-extractor
-description: Extract calendar events from recent recording and keyboard transcripts and push them to your iOS chat as one markdown card per event, each landing in its own Agent Chat thread. Use on demand when the user asks for "today's meetings" / "calendar extract" / "今日会议" / "提取日历", and fetch the last 24 hours of transcript data by default. The javis-server session dispatcher also AUTO-RUNS this skill (no approve-to-run card) when a completed unit matches the calendar route, passing a deliverable hint in the run prompt that the agent may use alongside the transcript; extracted events are written PENDING and become solid only when the user taps Confirm in the iOS calendar table. If the user asks for "today's meetings", use the local day defined by the fetched reference_date field. Triggers: 'today's meetings', 'calendar extract', '今日会议', '提取日历'.
+description: Extract calendar events from recent recording and keyboard transcripts and push them to your iOS chat as one markdown card per event, each landing in its own Agent Chat thread. Use on demand when the user asks for "today's meetings" / "calendar extract" / "今日会议" / "提取日历", and fetch the last 24 hours of transcript data by default. The javis-server dispatcher also invokes this skill directly for every completed unit — no classifier, no route matching; this skill's own agent decides relevance itself, using this SKILL.md, and may use a deliverable hint passed in the run prompt alongside the transcript; extracted events are written PENDING and become solid only when the user taps Confirm in the iOS calendar table. If the user asks for "today's meetings", use the local day defined by the fetched reference_date field. Triggers: 'today's meetings', 'calendar extract', '今日会议', '提取日历'.
 keywords: today's meetings, calendar extract, 今日会议, 提取日历, calendar-extractor
 metadata:
   openclaw:
@@ -24,7 +24,7 @@ metadata:
 - "calendar extract"
 - "今日会议"
 - "提取日历"
-- Automatically, when the javis-server session dispatcher **auto-runs** this skill after a completed unit matches the calendar route — no approve-to-run card (see "How this skill is invoked").
+- Automatically, when the javis-server dispatcher invokes this skill directly after a completed voice/keyboard unit — no classifier, no route matching. This skill's own agent decides for itself, using this `SKILL.md`, whether the unit is worth acting on; if not, it does nothing (see "How this skill is invoked").
 
 ## Core commands
 
@@ -181,27 +181,32 @@ This skill has **two triggers** (dispatcher auto-run and manual).
 
 1. **Dispatcher auto-run (automatic).** When a unit of input completes (an audio
    session ends or a keyboard input is saved), the javis-server **session dispatcher**
-   classifies the transcript. If it finds scheduling content and an enabled `calendar`
-   route matches, the server claims run-once (`DispatchRouteExecuted (user, unit,
-   route)`) and **AUTO-RUNS this skill directly — there is no approve-to-run proposal
-   card**. It runs in the user's container with a prompt of the form
-   `Run /calendar-extractor for <unit>. Deliverable: …`, where the deliverable text is
-   the dispatcher's classification carried as an **advisory HINT** — the agent may use
-   it alongside the transcript, but should still read the unit transcript for full
-   detail (time, attendees). The agent parses `<unit>` (`audio:<session_id>` or
-   `kbd:<keyboard_input.id>`), runs `fetch --session <id>` / `fetch --kbd-input <id>`,
-   extracts events, and pushes them. **The human gate is not running the skill — it is
-   Confirm/Discard on the produced events:** every extracted event is written
-   **PENDING** to the calendar table (greyed/dashed with **Confirm · Discard**) and
-   becomes solid only when the user taps **Confirm** (Discard deletes it). **The skill
-   does not self-gate** — the server owns run-once.
+   invokes this skill's agent directly, alongside every other enabled, `risk: low`
+   skill — no classifier, no route matching. The server claims run-once
+   (`DispatchSkillInvoked (user_id, unit_key, skill)`) and **AUTO-RUNS this skill
+   directly — there is no approve-to-run proposal card**. It runs in the user's
+   container with a prompt of the form `Run /calendar-extractor for <unit>.
+   Deliverable: …`, where the deliverable text is an **advisory HINT**, not a
+   classification — the agent may use it alongside the transcript, but should still
+   read the unit transcript for full detail (time, attendees), and **this skill's own
+   agent decides for itself, using this `SKILL.md`, whether the unit is worth acting
+   on; if not, it does nothing.** When it does act, it parses `<unit>`
+   (`audio:<session_id>` or `kbd:<keyboard_input.id>`), runs `fetch --session <id>` /
+   `fetch --kbd-input <id>`, extracts events, and pushes them. **The human gate is not
+   running the skill — it is Confirm/Discard on the produced events:** every extracted
+   event is written **PENDING** to the calendar table (greyed/dashed with
+   **Confirm · Discard**) and becomes solid only when the user taps **Confirm**
+   (Discard deletes it). **The skill does not self-gate on Confirm/Discard** — the
+   server owns run-once (whether to invoke at all), while the skill's own agent owns
+   relevance (whether to act once invoked).
 2. **Manual ("today's meetings").** On demand, the agent runs the windowed
    `fetch` (last 24h by default) → extracts → pushes. Repeating the ask re-runs
    extraction on the window; the `seen` map still prevents duplicate delivery.
    Manual writes are also **PENDING** (consistent "confirm to keep").
 
-The route contract the javis-server team must satisfy (RouteRegistry row,
-`classify_and_route` deliverable shape, prompt contract) is declared in this file's
+The auto-dispatch contract the javis-server team must satisfy (eligibility seeded
+from this file's `metadata.routes` block, collapsed server-side to a single
+skill-level `risk`, plus the run prompt shape) is declared in this file's
 `metadata.routes` block and documented in `references/route-contract.md`.
 
 ## Notes

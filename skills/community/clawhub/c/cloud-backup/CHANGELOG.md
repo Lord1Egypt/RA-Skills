@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.2 — 2026-07-02
+
+### Changed
+
+- Lean filter now excludes `agents/*/qmd/xdg-cache/**` (qmd embedding caches:
+  downloaded GGUF models and `index.sqlite`). Both are rebuildable from the
+  indexed sources and had inflated full archives from ~170 MB to ~1.17 GB once
+  qmd started caching local embedding models under agent state.
+
 ## 2.0.1 — 2026-06-11
 
 ### Changed

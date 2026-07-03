@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-腾讯云 MPS 图片换装脚本
+腾讯云 MPS 图片换装脚本（AI 试衣）
 
 功能：
-  基于模特图与服装图，调用 MPS ProcessImage 接口发起 AI 换装任务，
-  并通过 DescribeImageTaskDetail 轮询等待结果，返回输出 COS 路径。
+  基于模特图与服装图，调用 MPS ProcessImage 接口发起 AI 换装任务（ImageTask.AiTryOnConfig），
+  并通过 DescribeImageTaskDetail 轮询等待结果，返回输出路径。
 
-  支持的换装场景（通过 --schedule-id 指定）：
-    - 30100：普通衣物换装（默认，支持 1-2 张服装图）
-    - 30101：内衣换装（仅支持 1 张服装图）
+  支持的换装模型：
+    - WAND-tryon-1.0-lite：轻量版
+    - WAND-tryon-1.0-flash：快速版（默认）
+    - WAND-tryon-1.0-pro：专业版
 
 COS 存储约定：
   通过环境变量 TENCENTCLOUD_COS_BUCKET 指定输出 COS Bucket 名称。
@@ -16,53 +17,52 @@ COS 存储约定：
 
 用法：
   # 最简用法：模特图 + 服装图（URL，默认等待结果）
-  python scripts/mps_image_tryon.py \\
+  python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg"
 
+  # 指定模型
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --model WAND-tryon-1.0-pro
+
   # 模特图使用 COS 路径输入
-  python scripts/mps_image_tryon.py \\
+  python3 scripts/mps_image_tryon.py \\
       --model-cos-key "/input/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg"
 
   # 模特图 + 服装图均使用 COS 路径输入
-  python scripts/mps_image_tryon.py \\
+  python3 scripts/mps_image_tryon.py \\
       --model-cos-key "/input/model.jpg" \\
       --cloth-cos-key "/input/cloth.jpg"
 
-  # 服装图使用 COS，指定非默认 Bucket
-  python scripts/mps_image_tryon.py \\
-      --model-url "https://example.com/model.jpg" \\
-      --cloth-cos-key "/input/cloth.jpg" \\
-      --cloth-cos-bucket mybucket-125xxx --cloth-cos-region ap-shanghai
-
-  # 多张服装图（正面 + 背面）
-  python scripts/mps_image_tryon.py \\
+  # 多张服装图（1-4 张）
+  python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth-front.jpg" \\
       --cloth-url "https://example.com/cloth-back.jpg"
 
-  # 内衣场景（只支持 1 张服装图）
-  python scripts/mps_image_tryon.py \\
-      --model-url "https://example.com/model.jpg" \\
-      --cloth-url "https://example.com/underwear.jpg" \\
-      --schedule-id 30101
-
-  # 附加提示词 + 随机种子
-  python scripts/mps_image_tryon.py \\
+  # 附加提示词
+  python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg" \\
-      --ext-prompt "衬衫扣子打开" \\
-      --random-seed 48
+      --prompt "将衬衫换为红色"
+
+  # 指定输出分辨率
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --resolution 4K
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_tryon.py \\
+  python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg" \\
       --no-wait
 
   # 指定输出 Bucket 和目录
-  python scripts/mps_image_tryon.py \\
+  python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg" \\
       --output-bucket mybucket-125xxx --output-region ap-shanghai \\
@@ -107,18 +107,17 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
 # =============================================================================
 # 默认参数
 # =============================================================================
-DEFAULT_SCHEDULE_ID = 30100
+DEFAULT_MODEL = "WAND-tryon-1.0-flash"
+MODEL_CHOICES = ["WAND-tryon-1.0-lite", "WAND-tryon-1.0-flash", "WAND-tryon-1.0-pro"]
 DEFAULT_OUTPUT_DIR = "/output/tryon/"
-DEFAULT_FORMAT = "JPEG"
-DEFAULT_IMAGE_SIZE = "2K"
-DEFAULT_QUALITY = 85
+DEFAULT_RESOLUTION = "1K"
 DEFAULT_POLL_INTERVAL = 10
 DEFAULT_TIMEOUT = 600
 
@@ -212,79 +211,57 @@ def build_media_input(url=None, cos_key=None, cos_bucket=None, cos_region=None, 
 
 
 def build_request_payload(args):
-    """组装 ProcessImage 请求体。"""
-    # 收集服装图列表（url 和 cos-key 合并，按顺序）
+    """组装 ProcessImage 请求体。AiTryOnConfig 部分使用 SDK 原生模型序列化。"""
+    # 收集服装图列表
     cloth_inputs = []
     for url in (args.cloth_url or []):
-        cloth_inputs.append(build_url_input(url))
+        cloth_inputs.append({"Image": build_url_input(url)})
     for key in (args.cloth_cos_key or []):
-        cloth_inputs.append(build_cos_input(key, args.cloth_cos_bucket, args.cloth_cos_region))
+        cloth_inputs.append({"Image": build_cos_input(key, args.cloth_cos_bucket, args.cloth_cos_region)})
 
     if not cloth_inputs:
         print("错误：请至少指定一张服装图（--cloth-url 或 --cloth-cos-key）", file=sys.stderr)
         sys.exit(1)
 
-    if args.schedule_id == 30101 and len(cloth_inputs) != 1:
-        print("错误：内衣场景（--schedule-id 30101）当前仅支持 1 张服装图片", file=sys.stderr)
+    if len(cloth_inputs) > 4:
+        print("错误：最多支持 4 张服装图，当前传入了 {} 张".format(len(cloth_inputs)), file=sys.stderr)
         sys.exit(1)
 
-    addon_parameter = {
-        "ImageSet": [{"Image": inp} for inp in cloth_inputs],
-        "OutputConfig": {
-            "Format": args.format,
-            "ImageSize": args.image_size,
-            "Quality": args.quality,
-        },
-    }
+    # AiTryOnConfig
+    ai_tryon_config = {"Model": args.model, "Resolution": args.resolution}
+    if args.prompt:
+        ai_tryon_config["Prompt"] = args.prompt
 
-    if args.ext_prompt:
-        addon_parameter["ExtPrompt"] = [{"Prompt": p} for p in args.ext_prompt]
+    payload = {
+        "InputInfo": build_media_input(
+            url=args.model_url,
+            cos_key=args.model_cos_key,
+            cos_bucket=args.model_cos_bucket,
+            cos_region=args.model_cos_region,
+            label="模特图",
+        ),
+        "OutputDir": args.output_dir,
+        "ImageTask": {"AiTryOnConfig": ai_tryon_config},
+        "AddOnParameter": {"ImageSet": cloth_inputs},
+    }
 
     output_bucket = args.output_bucket or get_cos_bucket()
     output_region = args.output_region or get_cos_region()
-
     if not output_bucket:
         print(
             "错误：缺少输出 Bucket，请传入 --output-bucket 或设置 TENCENTCLOUD_COS_BUCKET",
             file=sys.stderr,
         )
         sys.exit(1)
-
-    # 构造模特图输入
-    model_input = build_media_input(
-        url=args.model_url,
-        cos_key=args.model_cos_key,
-        cos_bucket=args.model_cos_bucket,
-        cos_region=args.model_cos_region,
-        label="模特图",
-    )
-
-    payload = {
-        "InputInfo": model_input,
-        "OutputStorage": {
-            "Type": "COS",
-            "CosOutputStorage": {
-                "Bucket": output_bucket,
-                "Region": output_region,
-            },
-        },
-        "OutputDir": args.output_dir,
-        "ScheduleId": args.schedule_id,
-        "AddOnParameter": addon_parameter,
+    payload["OutputStorage"] = {
+        "Type": "COS",
+        "CosOutputStorage": {"Bucket": output_bucket, "Region": output_region},
     }
 
     if args.output_path:
         payload["OutputPath"] = args.output_path
-
     if args.resource_id:
         payload["ResourceId"] = args.resource_id
-
-    if args.random_seed is not None:
-        payload["StdExtInfo"] = json.dumps(
-            {"ModelConfig": {"RandomSeed": args.random_seed}},
-            ensure_ascii=False,
-            separators=(",", ":"),
-        )
 
     return payload
 
@@ -294,11 +271,7 @@ def submit_process_image(client, payload):
     req = models.ProcessImageRequest()
     req.from_json_string(json.dumps(payload, ensure_ascii=False))
     resp = client.ProcessImage(req)
-    result = json.loads(resp.to_json_string())
-    # 兼容 SDK 返回格式
-    if "Response" in result:
-        result = result["Response"]
-    return result
+    return {"TaskId": resp.TaskId, "RequestId": resp.RequestId}
 
 
 # =============================================================================
@@ -307,7 +280,7 @@ def submit_process_image(client, payload):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="腾讯云 MPS 图片换装（ProcessImage ScheduleId=30100/30101）",
+        description="腾讯云 MPS 图片换装（ProcessImage ImageTask.AiTryOnConfig）",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -331,14 +304,14 @@ def parse_args():
         "--model-cos-region",
         help="模特图 COS Region（默认读取 TENCENTCLOUD_COS_REGION）",
     )
-    # 服装图（URL 或 COS，至少一个，可混用）
+    # 服装图（URL 或 COS，1-4 张，可混用）
     input_group.add_argument(
         "--cloth-url", action="append", default=[],
-        help="服装图 URL，可重复传入 1-2 次；与 --cloth-cos-key 可混用",
+        help="服装图 URL，可重复传入 1-4 次；与 --cloth-cos-key 可混用",
     )
     input_group.add_argument(
         "--cloth-cos-key", action="append", default=[],
-        help="服装图 COS 对象 Key，可重复传入 1-2 次；与 --cloth-url 可混用",
+        help="服装图 COS 对象 Key，可重复传入 1-4 次；与 --cloth-url 可混用",
     )
     input_group.add_argument(
         "--cloth-cos-bucket",
@@ -352,16 +325,12 @@ def parse_args():
     # 换装参数
     tryon_group = parser.add_argument_group("换装参数")
     tryon_group.add_argument(
-        "--schedule-id", type=int, default=DEFAULT_SCHEDULE_ID,
-        help="换装场景 ID：30100=普通衣物（默认），30101=内衣",
+        "--model", choices=MODEL_CHOICES, default=DEFAULT_MODEL,
+        help="换装模型：WAND-tryon-1.0-lite（轻量）/ WAND-tryon-1.0-flash（快速，默认）/ WAND-tryon-1.0-pro（专业）",
     )
     tryon_group.add_argument(
-        "--ext-prompt", action="append",
-        help="附加提示词，可重复传入多次（如 '衬衫扣子打开'）",
-    )
-    tryon_group.add_argument(
-        "--random-seed", type=int,
-        help="随机种子（StdExtInfo.ModelConfig.RandomSeed），固定种子可获得稳定风格",
+        "--prompt",
+        help="换装指令（可选，为空时使用内置默认指令）",
     )
     tryon_group.add_argument(
         "--resource-id",
@@ -370,6 +339,10 @@ def parse_args():
 
     # 输出参数
     output_group = parser.add_argument_group("输出参数")
+    output_group.add_argument(
+        "--resolution", choices=["1K", "2K", "4K"], default=DEFAULT_RESOLUTION,
+        help="输出分辨率（默认 1K）",
+    )
     output_group.add_argument(
         "--output-bucket",
         help="输出 COS Bucket（默认读取 TENCENTCLOUD_COS_BUCKET）",
@@ -386,24 +359,16 @@ def parse_args():
         "--output-path",
         help="自定义输出路径（需带文件后缀，如 /output/tryon/result.jpg）",
     )
-    output_group.add_argument(
-        "--format", choices=["JPEG", "PNG"], default=DEFAULT_FORMAT,
-        help="输出格式（默认 JPEG）",
-    )
-    output_group.add_argument(
-        "--image-size", choices=["1K", "2K", "4K"], default=DEFAULT_IMAGE_SIZE,
-        help="输出尺寸（默认 2K）",
-    )
-    output_group.add_argument(
-        "--quality", type=int, default=DEFAULT_QUALITY,
-        help="输出质量 1-100（默认 85）",
-    )
 
     # 任务控制
     task_group = parser.add_argument_group("任务控制")
     task_group.add_argument(
         "--no-wait", action="store_true",
         help="只提交任务，不等待结果（返回 TaskId 后退出）",
+    )
+    task_group.add_argument(
+        "--dry-run", action="store_true",
+        help="仅打印请求参数，不实际调用 API",
     )
     task_group.add_argument(
         "--poll-interval", type=int, default=DEFAULT_POLL_INTERVAL,
@@ -445,6 +410,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 命令行传入的 secret 覆盖环境变量
@@ -475,7 +446,14 @@ def main():
         bucket = args.cloth_cos_bucket or get_cos_bucket()
         print(f"   服装图 {idx}: COS - {bucket}:{key}")
         idx += 1
-    print(f"   场景 ScheduleId: {args.schedule_id}")
+    print(f"   模型: {args.model}")
+    if args.prompt:
+        print(f"   Prompt: {args.prompt}")
+
+    if args.dry_run:
+        print("\n【dry-run】请求体预览：")
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
 
     try:
         submit_result = submit_process_image(client, payload)
@@ -497,7 +475,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -511,7 +489,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

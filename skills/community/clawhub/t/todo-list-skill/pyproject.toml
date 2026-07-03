@@ -1,0 +1,59 @@
+# todos/pyproject.toml
+# PEP 621 项目元数据
+# 版本：v1.5 | 日期：2026-06-11
+# 业界参考：https://peps.python.org/pep-0621/
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "todo-list-skill"
+version = "1.5.0"
+description = "TODO 列表管理工具 - 单用户 SQLite + CLI 入口"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "福猫管家"},
+]
+keywords = ["todo", "sqlite", "cli", "skill"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Office/Business",
+]
+
+dependencies = [
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+# 安装后可直接用 `todos` 命令（无需 python3 -m src.cli）
+todos = "src.cli:main"
+
+[project.urls]
+"Source" = "https://gitee.com/ccq/todo-list-skill"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

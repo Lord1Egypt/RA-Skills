@@ -1,14 +1,15 @@
 // ATP Service Helper -- wraps marketplace service publishing for merchant agents.
 
-const { getNodeId, buildHubHeaders, getHubUrl } = require('../gep/a2aProtocol');
+const { getNodeId, buildHubHeaders, buildNodeScopedHubHeaders, getHubUrl } = require('../gep/a2aProtocol');
 const { hubFetch } = require('../gep/hubFetch');
 const { HTTP_TRANSPORT_TIMEOUT_MS } = require('../config');
 
 async function postService(endpoint, body) {
   try {
+    const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
     const res = await hubFetch(endpoint, {
       method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, buildHubHeaders() || {}),
+      headers: Object.assign({ 'Content-Type': 'application/json' }, buildHeaders() || {}),
       body: JSON.stringify(body),
       signal: AbortSignal.timeout(HTTP_TRANSPORT_TIMEOUT_MS),
     });

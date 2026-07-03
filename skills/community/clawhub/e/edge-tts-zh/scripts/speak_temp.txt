@@ -1,0 +1,16 @@
+﻿    size = os.path.getsize(output_path)
+    print(f"✅ 已生成：{output_path} ({size/1024:.1f}KB)", file=sys.stderr)
+    
+    # 自动播放（后台静默播放，不弹窗）
+    try:
+        subprocess.run(
+        ["powershell", "-Command", f'Start-Process "{output_path}" -WindowStyle Hidden'],
+        capture_output=True,
+        timeout=5
+        )
+        print(f"🔊 正在播放...", file=sys.stderr)
+    except Exception as e:
+        print(f"⚠️  播放失败：{e}", file=sys.stderr)
+    
+    print(output_path)  # stdout 输出文件路径
+    return True

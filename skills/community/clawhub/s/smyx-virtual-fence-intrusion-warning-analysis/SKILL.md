@@ -1,7 +1,7 @@
 ---
 name: "virtual-fence-intrusion-warning-analysis"
 description: "Customizes safety zones, identifies babies crawling out or approaching dangerous areas such as bedsides/windowsills, and immediately alerts to protect baby safety. | 虚拟围栏越界预警技能，自定义安全区域，识别婴儿爬出、靠近床边/窗台危险区域立即报警，守护宝宝安全"
-version: "1.0.5"
+version: "1.0.7"
 license: "MIT-0"
 ---
 

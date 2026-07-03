@@ -43,22 +43,22 @@
 
 ```bash
 # COS image-to-image (script auto-converts COS Key to presigned URL before passing to API)
-python scripts/mps_aigc_image.py --prompt "city night scene" \
+python3 scripts/mps_aigc_image.py --prompt "city night scene" \
     --image-cos-bucket mps-test-1234567 \
     --image-cos-region ap-guangzhou \
     --image-cos-key input/ref.jpg
 
 # Local file image-to-image (auto-uploaded to COS then passed to API)
-python scripts/mps_aigc_image.py --prompt "city night scene" \
+python3 scripts/mps_aigc_image.py --prompt "city night scene" \
     --image-local /tmp/ref.jpg
 
 # Local file with ref-type
-python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
+python3 scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
     --prompt "generate with style reference" \
     --image-local /tmp/style.jpg --image-ref-type style
 
 # Multiple local files (GEM supports up to 3)
-python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
+python3 scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
     --prompt "blend styles" \
     --image-local /tmp/a.jpg --image-ref-type asset \
     --image-local /tmp/b.jpg --image-ref-type style
@@ -68,39 +68,39 @@ python scripts/mps_aigc_image.py --model GEM --model-version 3.0 \
 
 ```bash
 # Text-to-image (Hunyuan default)
-python scripts/mps_aigc_image.py --prompt "a cute orange tabby cat napping in the sunshine"
+python3 scripts/mps_aigc_image.py --prompt "a cute orange tabby cat napping in the sunshine"
 
 # GEM 3.1 + negative prompt + 16:9 + 2K
-python scripts/mps_aigc_image.py --prompt "cyberpunk city night scene" --model GEM --model-version 3.1 \
+python3 scripts/mps_aigc_image.py --prompt "cyberpunk city night scene" --model GEM --model-version 3.1 \
     --negative-prompt "people" --aspect-ratio 16:9 --resolution 2K
 
 # Vidu q2 text-to-image
-python scripts/mps_aigc_image.py --prompt "lake reflection under a starry sky" --model Vidu --model-version q2
+python3 scripts/mps_aigc_image.py --prompt "lake reflection under a starry sky" --model Vidu --model-version q2
 
 # Kling 3.0 text-to-image
-python scripts/mps_aigc_image.py --prompt "cyberpunk city night with neon lights" --model Kling --model-version 3.0
+python3 scripts/mps_aigc_image.py --prompt "cyberpunk city night with neon lights" --model Kling --model-version 3.0
 
 # OG image2_high text-to-image (high quality)
-python scripts/mps_aigc_image.py --prompt "realistic landscape painting" --model OG --model-version image2_high
+python3 scripts/mps_aigc_image.py --prompt "realistic landscape painting" --model OG --model-version image2_high
 
 # OG image2_low text-to-image (fast generation)
-python scripts/mps_aigc_image.py --prompt "cartoon style kitten" --model OG --model-version image2_low
+python3 scripts/mps_aigc_image.py --prompt "cartoon style kitten" --model OG --model-version image2_low
 
 # Hunyuan 3D panoramic image
-python scripts/mps_aigc_image.py --prompt "tropical rainforest panorama" --model Hunyuan --scene-type 3d_panorama
+python3 scripts/mps_aigc_image.py --prompt "tropical rainforest panorama" --model Hunyuan --scene-type 3d_panorama
 
 # Image-to-image (reference image + description)
-python scripts/mps_aigc_image.py --prompt "transform this photo into an oil painting style" \
+python3 scripts/mps_aigc_image.py --prompt "transform this photo into an oil painting style" \
     --image-url https://example.com/photo.jpg
 
 # GEM multi-image reference (supports asset/style reference types)
-python scripts/mps_aigc_image.py --prompt "blend these elements" --model GEM \
+python3 scripts/mps_aigc_image.py --prompt "blend these elements" --model GEM \
     --image-url https://example.com/img1.jpg --image-ref-type asset \
     --image-url https://example.com/img2.jpg --image-ref-type style
 
 # Submit task only without waiting
-python scripts/mps_aigc_image.py --prompt "product poster" --no-wait
+python3 scripts/mps_aigc_image.py --prompt "product poster" --no-wait
 
 # Query task result
-python scripts/mps_aigc_image.py --task-id abc123def456-aigc-image-20260328112000
+python3 scripts/mps_aigc_image.py --task-id abc123def456-aigc-image-20260328112000
 ```

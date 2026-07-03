@@ -8,13 +8,13 @@ Adjust event practicality using calendar availability context.
 - Event date/time and expected duration.
 - Calendar availability context, when available or provided by the user.
 - Google Calendar availability lookup, when the connector is available.
-- `skills/event-scanner/references/privacy-and-access.md`.
-- `skills/event-scanner/references/availability-rules.md`.
-- `skills/event-scanner/references/scoring-rubric.md`.
+- `<skill_dir>/references/privacy-and-access.md`.
+- `<skill_dir>/references/availability-rules.md`.
+- `<skill_dir>/references/scoring-rubric.md`.
 
 ## Procedure
 
-1. Add `event-scanner-calendar-review` to the current run note's `Skills used` list before calendar review starts.
+1. Add `local-event-scanner-calendar-review` to the current run note's `Skills used` list before calendar review starts.
 2. If Google Calendar is available, use availability lookup for only the requested scan window and calendar IDs needed, usually `primary`.
 3. Prefer busy/free windows. Do not read event details unless the user explicitly asks.
 4. If no calendar context is available, write that calendar review was skipped because no availability context was provided.

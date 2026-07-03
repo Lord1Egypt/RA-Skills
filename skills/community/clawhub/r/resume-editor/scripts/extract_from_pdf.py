@@ -15,7 +15,7 @@ from resume_utils import normalize_resume_data
 try:
     import fitz
 except ImportError:
-    print("Error: PyMuPDF (fitz) not installed. Run: pip install pymupdf")
+    print("Error: PyMuPDF (fitz) not installed. Run: pip install pymupdf==1.26.5")
     sys.exit(1)
 
 

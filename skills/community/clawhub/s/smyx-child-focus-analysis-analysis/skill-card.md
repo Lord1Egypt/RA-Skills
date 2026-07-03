@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes child study-area video from a smart desk lamp or tabletop camera to estimate per-minute focus scores, identify distraction periods, and summarize focus reports. <br>
+Analyzes camera footage of a child's study area to estimate per-minute focus scores, identify distraction events, generate structured reports, and retrieve cloud-stored report history. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, parents, teachers, and agent operators use this skill to submit child study-area videos or video URLs for focus scoring, distraction-event reporting, and history lookup. It is intended as a visual behavior analysis aid, not a replacement for human educational judgment. <br>
+External users and developers use this skill to analyze child study-area video files or URLs for focus scores, distraction periods, structured reports, and historical report retrieval. Parents and teachers can use the results as auxiliary study-behavior indicators, not as a substitute for direct supervision or educational judgment. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Child study videos, video URLs, and user identifiers are sent to the publisher's remote service. <br>
-Mitigation: Use the skill only with guardian consent, share the minimum necessary media and identifiers, and confirm the publisher's retention and deletion practices before deployment. <br>
-Risk: Cloud report history can be queried and may expose prior analysis records. <br>
-Mitigation: Limit use to authorized accounts, verify who can access report history, and avoid running history queries in shared or untrusted environments. <br>
-Risk: Login tokens may be stored locally as part of account handling. <br>
-Mitigation: Review local token storage and account handling before installation, use dedicated credentials where possible, and rotate or revoke credentials if a workstation is shared or compromised. <br>
+Risk: The skill sends children's study videos or video URLs to a Life Emergence cloud service. <br>
+Mitigation: Use only with appropriate guardian consent and review retention, deletion, export, and access policies before processing minors' video. <br>
+Risk: Reports are linked to a silently managed persistent local identity. <br>
+Mitigation: Verify identity linkage, access control, and who can retrieve historical reports before deployment. <br>
+Risk: Focus scores and distraction labels can be overinterpreted as definitive educational or behavioral judgments. <br>
+Mitigation: Present results as auxiliary visual indicators and require parent or teacher review for decisions. <br>
 
 
 ## Reference(s): <br>
-- [Child focus analysis API documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-child-focus-analysis-analysis) <br>
+- [Child Focus Analysis API Documentation](references/api_doc.md) <br>
+- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON text, with shell command examples for invoking the analysis and history-query scripts.] <br>
+**Output Type(s):** [Text, Markdown, JSON, Files] <br>
+**Output Format:** [Markdown text with structured JSON report content and optional saved output file] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include focus scores, per-minute score series, distraction events, report links, and persisted result files when an output path is provided.] <br>
+**Other Properties Related to Output:** [May include cloud report export links and historical report lists.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact frontmatter is 1.0.0) <br>
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

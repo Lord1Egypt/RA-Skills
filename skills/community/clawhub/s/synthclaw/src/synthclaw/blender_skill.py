@@ -216,8 +216,12 @@ def render_procedural_scene(
             "samples": samples if engine == "CYCLES" else None,
             "metrics": metrics
         }
-    except subprocess.TimeoutExpired:
-        return {"status": "error", "message": f"Render timed out after {timeout} seconds"}
+    except subprocess.TimeoutExpired as e:
+        return {
+            "status": "error", 
+            "message": f"Render timed out after {timeout} seconds",
+            "log": (e.output[-1000:] if e.output else "") + (e.stderr[-1000:] if e.stderr else "")
+        }
     except subprocess.CalledProcessError as e:
         return {"status": "error", "message": e.stderr}
 
@@ -390,8 +394,12 @@ def render_procedural_dataset(
             "images_generated": num_images,
             "log": stdout[-500:]
         }
-    except subprocess.TimeoutExpired:
-        return {"status": "error", "message": f"Render dataset timed out after {timeout} seconds"}
+    except subprocess.TimeoutExpired as e:
+        return {
+            "status": "error", 
+            "message": f"Render dataset timed out after {timeout} seconds",
+            "log": (e.output[-1000:] if e.output else "") + (e.stderr[-1000:] if e.stderr else "")
+        }
     except subprocess.CalledProcessError as e:
         return {"status": "error", "message": e.stderr or e.stdout}
     finally:

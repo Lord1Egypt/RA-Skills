@@ -1,5 +1,5 @@
 ## Description: <br>
-A curated OpenClaw skill catalog covering AI tools, productivity, marketing, frontend, mobile, backend, DevOps, and related agent workflows. <br>
+A curated, weekly updated catalog of OpenClaw skills covering AI tools, productivity, marketing, frontend, mobile, backend, DevOps, and related agent workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,30 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and OpenClaw users use this catalog to discover and install agent skills across common work categories. <br>
+External users and agent developers use this skill as a catalog to discover and install OpenClaw skills across common agent tasks rather than as a single executable workflow. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The catalog should not be treated as approval of every linked skill. <br>
-Mitigation: Review each linked skill before cloning or copying it, especially skills involving credentials, messaging, browser or desktop automation, memory, auto-updates, finance, or public posting. <br>
+Risk: The package is a large catalog of other OpenClaw skills, so installing it does not prove that every listed skill is safe for a user's environment. <br>
+Mitigation: Review and scan individual skills before installing or enabling them, especially skills involving browser automation, memory, email, messaging, desktop control, credentials, auto-updates, or account actions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leoyeai/openclaw-master-skills) <br>
 - [Install guide](references/install-guide.md) <br>
-- [MyClaw.ai](https://myclaw.ai) <br>
+- [ClawHub skill page](https://clawhub.ai/leoyeai/skills/openclaw-master-skills) <br>
+- [GitHub source listed by the skill](https://github.com/LeoYeAI/openclaw-master-skills) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown documentation with install commands and reference links] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown catalog with install commands and links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only catalog; individual linked skills require separate review before use.] <br>
+**Other Properties Related to Output:** [No executable code is included in this release artifact.] <br>
 
 ## Skill Version(s): <br>
-0.17.0 (source: server release metadata) <br>
+0.18.0 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

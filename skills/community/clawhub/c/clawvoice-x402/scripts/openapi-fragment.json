@@ -1,0 +1,22 @@
+{
+  "info": {
+    "title": "ForgeMesh x402 Agent Voice",
+    "version": "0.1.0",
+    "contact": {
+      "email": "clawdbotworker@gmail.com"
+    },
+    "x-guidance": "Use this service when an agent needs local voice setup, ForgeMesh Voice fallback, or spend-capped x402 payment access. Check wallet funding and policy caps before making paid calls."
+  },
+  "x-payment-info-example": {
+    "price": {
+      "mode": "fixed",
+      "currency": "USD",
+      "amount": "0.005000"
+    },
+    "protocols": [
+      {
+        "x402": {}
+      }
+    ]
+  }
+}

@@ -85,7 +85,7 @@
    - `summary`: 模糊概述（20-40字，描述该段核心内容）
    - `tone`: **情绪提示**（如"紧张"、"宁静"、"悬疑"、"温馨"等）— 保证跨子结构情绪连贯性
    - `emotions`: **可选** 混合情绪数组 — 每项 `{"type":"愤怒","intensity":0.8}`，强度 0.0-1.0，多维度表达复杂情绪
-   - `writing_prompt`: **必填** 预编写作命题（≥50字符）— 规划阶段必须为该子结构编写详细剧情指令。包含场景建立、核心事件、情绪弧等完整 beat。context_loader 将其作为 `[硬性] 写作命题框` 输出，是 LLM 写作的核心依据。缺失则 plan-chapter HOOK-BLOCK 拒绝注册。存量旧子结构无此字段时，context_loader 自动从 summary+tone+emotions 合成 fallback 命题。
+   - `writing_prompt`: **必填** 预编写作命题（≥50字符）— 规划阶段必须为该子结构编写详细剧情指令。包含场景建立、核心事件、情绪弧等完整 beat。缺失则 plan-chapter HOOK-BLOCK 拒绝注册，context_loader 也 HARD-BLOCK 拒绝加载。必须在规划阶段补全，不可绕过。
 3. 用 workflow_engine.py 批量注册：
    ```
    python novel_workflow_engine.py plan-chapter <state_path> <L##> '<json_array>'
@@ -164,7 +164,7 @@ v1.33.0 重构：按注意力优先级排列输出块：
   [硬性] 字数约束     ← 埋在中段 → 移至头部
   [硬性] 文风约束     ← 同上
   [硬性] 署名约束     ← 同上
-  [硬性] 写作命题框  ← 有预编则输出，无则自动合成 fallback
+  [硬性] 写作命题框  ← 有预编则输出，缺失则 HARD-BLOCK
   [参考] 叙事节奏参考
 
 区块B（参考数据）：
@@ -336,7 +336,7 @@ python novel_state_manager.py add-char <state_path> <name> <role> <first_appeara
 子结构注册时在 JSON 中加入 `emotions` 数组：
 
 ```json
-{"s_key":"S01","title":"...","summary":"...","tone":"紧张",
+{"s_key":"S01","title":"...","summary":"...","tone":"紧张","writing_prompt":"...（≥50字符）",
  "emotions":[
    {"type":"愤怒","intensity":0.8},
    {"type":"恐惧","intensity":0.3}

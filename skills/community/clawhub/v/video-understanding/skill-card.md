@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyze videos with Google Gemini multimodal AI, including downloading from supported video URLs and returning transcripts, descriptions, summaries, and answers to questions about video content. <br>
+Analyzes video URLs and local video files with Google Gemini to produce transcripts, visual descriptions, summaries, speaker lists, and answers to targeted questions. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -7,34 +7,35 @@ This skill is ready for commercial/non-commercial use. <br>
 [bill492](https://clawhub.ai/user/bill492) <br>
 
 ### License/Terms of Use: <br>
+MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to inspect video URLs, generate structured transcripts and visual descriptions, summarize video content, and answer targeted questions about what appears in a video. <br>
+Developers, support teams, and agents use this skill when they need to understand, summarize, transcribe, inspect, or ask follow-up questions about a video URL or local video file. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Video URLs or downloaded video content are sent to Google Gemini for processing. <br>
-Mitigation: Use the skill only when third-party processing by Google Gemini is acceptable; avoid confidential, private, regulated, or access-restricted videos unless that processing is approved. <br>
-Risk: The skill can download media from user-provided URLs for non-YouTube sources. <br>
-Mitigation: Review the target URL before execution and keep size limits appropriate for the environment. <br>
+Risk: Video content and sometimes the video URL are sent to Google Gemini for analysis. <br>
+Mitigation: Avoid confidential recordings, private links, and regulated data unless the Gemini account, retention settings, and organizational policy are acceptable. <br>
+Risk: Follow-up sessions can reuse Gemini File API uploads or CachedContent, which may keep remote handles active for later questions. <br>
+Mitigation: Use cache reuse only when appropriate for the content, and run the skill's cache purge option after sensitive sessions. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub Skill Page](https://clawhub.ai/bill492/skills/video-understanding) <br>
 - [yt-dlp Supported Sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bill492/video-understanding) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [Structured JSON by default, raw text when requested, or an MP4 file for download-only mode] <br>
+**Output Type(s):** [Text, Guidance] <br>
+**Output Format:** [JSON by default, with optional raw text output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default JSON includes transcript, description, summary, duration_seconds, speakers, and optionally answer.] <br>
+**Other Properties Related to Output:** [Default JSON includes transcript, description, summary, duration_seconds, speakers, and an optional answer field for targeted questions.] <br>
 
 ## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+1.3.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

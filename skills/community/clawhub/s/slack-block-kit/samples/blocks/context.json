@@ -1,0 +1,16 @@
+[
+  {
+    "type": "context",
+    "elements": [
+      {
+        "type": "image",
+        "image_url": "https://api.slack.com/img/blocks/bkb_template_images/notificationsWarningIcon.png",
+        "alt_text": "warning"
+      },
+      {
+        "type": "mrkdwn",
+        "text": "Checked at <!date^1782882571^{date_short_pretty} {time}|2026-07-01 01:09 EDT>"
+      }
+    ]
+  }
+]

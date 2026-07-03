@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { connectApi, disconnectApi, disconnectEvmProvider, resolveNetwork, isMainnet } from './lib/network.js'
-import { createWallet, importWallet, listWallets, loadWallet, getWalletInfo, loadEvmAddress, loadEvmPrivateKey } from './lib/wallet.js'
+import { createWallet, importWallet, resolveMnemonic, listWallets, loadWallet, getWalletInfo, loadEvmAddress, loadEvmPrivateKey } from './lib/wallet.js'
 import { queryBalance } from './lib/balance.js'
 import { queryEvmBalance } from './lib/evm-balance.js'
 import { transferTokens } from './lib/transfer.js'
@@ -22,6 +22,14 @@ function error(message: string, code = 1): never {
   process.exit(code)
 }
 
+// Warn that passing a secret via a CLI flag exposes it (ps/proc, shell history).
+function warnSecretArgv(flag: string): void {
+  console.error(
+    `Warning: passing a secret via ${flag} exposes it in process listings (ps), /proc, ` +
+      'and shell history. Prefer --mnemonic-stdin, the AUTO_RESPAWN_PASSPHRASE env var, or a passphrase file.',
+  )
+}
+
 /**
  * Validate an amount, exiting on failure.
  * Wraps the throwing validateAmount from lib/cli.ts.
@@ -38,6 +46,7 @@ async function handleWallet(subcommand: string | undefined, flags: Record<string
   switch (subcommand) {
     case 'create': {
       const name = flags.name || 'default'
+      if (flags.passphrase) warnSecretArgv('--passphrase')
       const result = await createWallet(name, flags.passphrase)
       // Output mnemonic to stderr so it's visible to the user but separable from JSON output
       console.error('')
@@ -62,9 +71,23 @@ async function handleWallet(subcommand: string | undefined, flags: Record<string
 
     case 'import': {
       const name = flags.name
-      const mnemonic = flags.mnemonic
       if (!name) error('--name is required for wallet import')
-      if (!mnemonic) error('--mnemonic is required for wallet import')
+      if (flags.mnemonic) warnSecretArgv('--mnemonic')
+      if (flags.passphrase) warnSecretArgv('--passphrase')
+      // Reject (don't silently ignore) an attached value — it would sit in argv.
+      const stdinFlag = flags['mnemonic-stdin']
+      if (stdinFlag !== undefined && stdinFlag !== 'true') {
+        error(
+          '--mnemonic-stdin takes no value; it reads the recovery phrase from standard input. ' +
+            'The value you passed is exposed in process listings and shell history — remove it and pipe the phrase via stdin instead.',
+        )
+      }
+      let mnemonic: string
+      try {
+        mnemonic = await resolveMnemonic(flags.mnemonic, stdinFlag === 'true')
+      } catch (err) {
+        error(err instanceof Error ? err.message : String(err))
+      }
       const result = await importWallet(name, mnemonic, flags.passphrase)
       output(result)
       break
@@ -365,7 +388,7 @@ function printUsage(): void {
 
 Commands:
   wallet create [--name <name>]                          Create a new wallet
-  wallet import --name <name> --mnemonic "<words>"       Import from recovery phrase
+  wallet import --name <name> [--mnemonic-stdin]         Import from recovery phrase (stdin or prompt)
   wallet list                                            List saved wallets
   wallet info [--name <name>]                            Show wallet addresses (consensus + EVM)
 

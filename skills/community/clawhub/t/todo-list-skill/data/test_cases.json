@@ -1,0 +1,169 @@
+[
+  {
+    "id": 1,
+    "input": "提醒我明天下午3点检查止损",
+    "expected": {
+      "action": "add",
+      "content_contains": "检查止损",
+      "due_at_contains": "15:00",
+      "priority": "medium"
+    }
+  },
+  {
+    "id": 2,
+    "input": "加个待办：写报告",
+    "expected": {
+      "action": "add",
+      "content_contains": "写报告"
+    }
+  },
+  {
+    "id": 3,
+    "input": "完成检查止损",
+    "expected": {
+      "action": "done",
+      "content_contains": "检查止损"
+    }
+  },
+  {
+    "id": 4,
+    "input": "我的待办",
+    "expected": {
+      "action": "list"
+    }
+  },
+  {
+    "id": 5,
+    "input": "紧急修复515070止损 #etf",
+    "expected": {
+      "action": "add",
+      "content_contains": "515070",
+      "priority": "high",
+      "tags_contains": ["etf"]
+    }
+  },
+  {
+    "id": 6,
+    "input": "明天 14:00 提交报告",
+    "expected": {
+      "action": "add",
+      "content_contains": "提交",
+      "due_at_contains": "14:00"
+    }
+  },
+  {
+    "id": 7,
+    "input": "urgent: 写日报 tag:work",
+    "expected": {
+      "action": "add",
+      "content_contains": "日报",
+      "priority": "high",
+      "tags_contains": ["work"]
+    }
+  },
+  {
+    "id": 8,
+    "input": "删除任务X",
+    "expected": {
+      "action": "delete",
+      "content_contains": "任务X"
+    }
+  },
+  {
+    "id": 9,
+    "input": "明天 9 点开会",
+    "expected": {
+      "action": "add",
+      "content_contains": "开会",
+      "due_at_contains": "09:00"
+    }
+  },
+  {
+    "id": 10,
+    "input": "明早 6:30 起床",
+    "expected": {
+      "action": "add",
+      "content_contains": "起床",
+      "due_at_contains": "06:30"
+    }
+  },
+  {
+    "id": 11,
+    "input": "今晚 8 点看电影",
+    "expected": {
+      "action": "add",
+      "content_contains": "看",
+      "due_at_contains": "20:00"
+    }
+  },
+  {
+    "id": 12,
+    "input": "不急的：写日记",
+    "expected": {
+      "action": "add",
+      "priority": "low"
+    }
+  },
+  {
+    "id": 13,
+    "input": "改 1 优先级为高",
+    "expected": {
+      "action": "update"
+    }
+  },
+  {
+    "id": 14,
+    "input": "查所有待办",
+    "expected": {
+      "action": "list"
+    }
+  },
+  {
+    "id": 15,
+    "input": "空字符串",
+    "expected": {
+      "action": "unknown"
+    }
+  },
+  {
+    "id": 16,
+    "input": "已完成 5 个待办",
+    "expected": {
+      "action": "unknown"
+    }
+  },
+  {
+    "id": 17,
+    "input": "明天下午3点 写日报 tag:work",
+    "expected": {
+      "action": "add",
+      "content_contains": "日报",
+      "due_at_contains": "15:00",
+      "tags_contains": ["work"]
+    }
+  },
+  {
+    "id": 18,
+    "input": "下周一 9 点开会",
+    "expected": {
+      "action": "add",
+      "content_contains": "开会"
+    }
+  },
+  {
+    "id": 19,
+    "input": "复盘 ETF 持仓",
+    "expected": {
+      "action": "add",
+      "content_contains": "复盘"
+    }
+  },
+  {
+    "id": 20,
+    "input": "今天 25:00 起床",
+    "expected": {
+      "action": "add",
+      "due_at": null
+    }
+  }
+]

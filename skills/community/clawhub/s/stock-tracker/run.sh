@@ -37,8 +37,8 @@ if ! python3 scripts/stock_tracker.py --group "$GROUP" --source "$SOURCE" --days
     exit 1
 fi
 
-# 第二步：生成单条公告摘要 + 输出 digest
-log "生成摘要..."
+# 第二步：输出 digest（摘要已集成到 --fetch-content，此步兜底补漏 + 输出摘要列表）
+log "输出 digest..."
 if ! python3 scripts/daily_summary.py --group "$GROUP" --digest 2>/dev/null; then
     echo "ERROR:摘要生成失败"
     exit 1

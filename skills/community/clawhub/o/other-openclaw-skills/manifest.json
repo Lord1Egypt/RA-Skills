@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "type": "skill",
+  "name": "other-openclaw-skills",
+  "displayName": "美图AI技能包",
+  "version": "1.0.0",
+  "author": "flp516",
+  "authorId": "u-d2d5487defd0d010",
+  "description": "美图AI图像处理技能包。包括：海报生成、贴纸/表情制作、虚拟试穿与肖像、产品照片替换、舞蹈视频生成、图像超分辨率、AI美颜增强、证件照、背景去除、轮播图生成、适配小红书/抖音/微信等不同平台的图像适配。",
+  "tags": [
+    "javascript",
+    "github-import"
+  ],
+  "category": "JavaScript",
+  "installedFrom": "openclawmp",
+  "registryId": "s-efb275d88aebfb7a",
+  "hasPackage": true
+}

@@ -1,6 +1,6 @@
 ---
 name: api3-data-feed-purchase
-description: Purchases API3 data feed subscriptions from market.api3.org.
+description: Purchases Api3 data feed subscriptions from market.api3.org.
 metadata:
   version: 0.1.0
   clawdis:
@@ -31,8 +31,9 @@ metadata:
 
 # Rules
 - **NEVER** read .env files or ask for secrets such as WALLET_MNEMONIC.
+- **NEVER** read, list, or search inside `node_modules/`, `pnpm-lock.yaml`, or `pnpm-workspace.yaml`,they are not needed for this skill nor relevant to the user.
 - **ALWAYS** use the `exec` tool to run commands. Never use Bash or shell directly.
-- **ALWAYS** run scripts in skill's directory, which is referenced as `{baseDir}` variable and name is given in this file's name field at top. Prefix every command with `cd {baseDir} &&` to ensure it runs from the correct directory.
+- **ALWAYS** run scripts from the skill's directory, referenced as `{baseDir}` (the directory named by the `name` field at the top of this file). Prefix every command with `cd {baseDir} &&` to ensure it runs from the correct directory.
 - **ALWAYS** substitute actual variable values into every `exec` command before running it.
 - **ALWAYS** after asking any question, stop and wait for the user's response. Do not assume a response or continue until the user has replied.
 - **ALWAYS** complete the current phase fully before moving to the next. Never skip a phase or assume it is already done.
@@ -54,13 +55,13 @@ metadata:
 - **You must always run this step. Do not skip it, even if you think packages are already installed.**
 - Inform the user that before any scripts can run, the required packages must be installed. Show them the list:
   - `@api3/dapi-management`
+  - `@openzeppelin/merkle-tree`
   - `dotenv`
   - `ethers`
 - Ask for approval to run `pnpm install`. Wait for an affirmative response. Once approved, run the command regardless of whether packages may already be installed:
 ```
 exec command="cd {baseDir} && pnpm install"
 ```
-- If the output contains `[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: unrs-resolver...`, this is expected and not a real failure — the ignored build script is not needed for this skill. Treat it as success and continue.
 - If the command fails for any other reason, inform the user and ask what to do. This step cannot be skipped.
 
 ---
@@ -77,10 +78,10 @@ exec command="cd {baseDir} && pnpm install"
 ### Part 2.2
 - Run `get-dapis.ts` and `get-chains.ts` to fetch the list of available feeds and supported chains:
 ```
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/get-dapis.ts"
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/get-chains.ts"
+exec command="cd {baseDir} && ts-node scripts/get-dapis.ts"
+exec command="cd {baseDir} && ts-node scripts/get-chains.ts"
 ```
-- If script fails, let user know about the problem and ask what to do. This data is necessary for validating their input, so skipping is not an option.
+- If the script fails, let the user know about the problem and ask what to do. This data is necessary for validating their input, so skipping is not an option.
 
 ### Part 2.3
 - Validate `DAPI_NAME`:
@@ -115,12 +116,12 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/get-chains.ts"
 - Explain to the user that before continuing, you'll show them the live value each data provider is currently reporting for this feed, so they can sanity-check the data before paying for it.
 - Run `explore-data-feeds.ts`, which fetches each provider's Signed API data and decodes the live value for this feed directly:
 ```
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/explore-data-feeds.ts <DAPI_NAME>"
+exec command="cd {baseDir} && ts-node scripts/explore-data-feeds.ts <DAPI_NAME>"
 ```
 - If the script fails, let the user know about the problem and ask what to do.
 
 ### Part 3.2
-- The script prints, for each provider: API Alias, Data Feed ID, Signed API URL, Value, and Timestamp (or an explanation if no value could be retrieved).
+- The script prints, for each provider: API Alias, Data Feed ID, Signed API URL, Homepage, Value, and Timestamp (or an explanation if no value could be retrieved).
 - Show the user a summary table of these fields for each provider exactly as reported by the script — do not re-fetch or re-derive any of these values yourself.
 - Proceed to Phase 4.
 
@@ -131,20 +132,23 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/explore-data-feeds.ts <D
 ### Part 4.1
 - Run `quote.ts` to fetch the live subscription price for the selected feed, chain, and deviation:
 ```
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/quote.ts <DAPI_NAME> <CHAIN_ALIAS> <DEVIATION>"
+exec command="cd {baseDir} && ts-node scripts/quote.ts <CHAIN_ID> <DAPI_NAME> <DEVIATION>"
 ```
-- If script fails, let user know about the problem and ask what to do.
+- If the script fails, let the user know about the problem and ask what to do.
 
 ### Part 4.2
 - Extract and show these fields from the output:
 | Field | Label to show |
 |---|---|
-| `Feed Name` | Feed |
+| `dAPI` | Feed |
 | `Chain` | Chain |
-| `Heartbeat Interval` | Heartbeat Interval (seconds) |
-| `Deviation Threshold` | Deviation Threshold |
-| `Subscription Duration` | Subscription Duration (seconds) |
-| `Price (ETH)` | Price (ETH) |
+| `Deviation` | Deviation Threshold |
+| `Duration` | Subscription Duration (seconds) |
+| `Price` | Subscription Price (ETH) |
+| `Amount to send` | Amount to Send (ETH) |
+| `Sponsor wallet` | Sponsor Wallet |
+
+- If the amount to send is lower than the subscription price, explain that the sponsor wallet already holds funds, so only the difference needs to be sent.
 
 - Ask the user to confirm that they want to proceed with these options. If yes, proceed to Phase 5. If no, ask the user what they want to do.
 
@@ -153,18 +157,19 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/quote.ts <DAPI_NAME> <CH
 ## Phase 5: Execute Purchase
 
 ### Part 5.1
-- Explain user that you are ready to complete the purchase. You will run `buy.ts`, which will execute a blockchain transaction to purchase the subscription.
+- Explain to the user that you are ready to complete the purchase. You will run `buy.ts`, which will execute a blockchain transaction to purchase the subscription.
 - Explain this script will use the `WALLET_MNEMONIC` environment variable to sign the transaction. Make sure the user has WALLET_MNEMONIC set in `.env` file in the root of this skill.
 - Ask if the `.env` file is ready with the correct mnemonic and if they want you to run the purchase script. Wait for an affirmative response before proceeding. Then run the following command if answer is affirmative:
 
 (substitute actual variable values when running):
 ```
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/buy.ts <DAPI_NAME> <CHAIN_ALIAS> <DEVIATION>"
+exec command="cd {baseDir} && ts-node scripts/buy.ts <CHAIN_ID> <DAPI_NAME> <DEVIATION>"
 ```
-- If script fails, let user know about the problem and ask what to do.
+- If the script fails with an `Invalid root` error, this means the `@api3/dapi-management` package is out of date. Tell the user to get the latest version of this skill, then stop.
+- If the script fails for any other reason, let the user know about the problem and ask what to do.
 
 ### Part 5.2
-- Extract the `hash` value from the output and show the purchase summary: feed, chain, deviation, subscription duration, and transaction hash.
+- Extract the transaction hash from the `Confirmed:` line of the output and show the purchase summary: feed, chain, deviation, subscription duration, and transaction hash.
 - Proceed to Phase 6.
 
 ---
@@ -172,7 +177,7 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/buy.ts <DAPI_NAME> <CHAI
 ## Phase 6: Read the Data Feed
 
 ### Part 6.1
-- Ask user if they want to read the data feed now. If yes, proceed. If no, inform the user the subscription is active, but its always better to check and stop.
+- Ask the user if they want to read the data feed now. If yes, proceed. If no, inform the user that the subscription is active (though it's always better to verify the feed) and stop here.
 - Ask the user to retrieve their Reader Proxy address by:
   - Going to https://market.api3.org/<CHAIN_ALIAS>/<DAPI_NAME lowercased, with `/` replaced by `-`>/integrate
   - Copying the proxy contract address and sharing it here.
@@ -186,8 +191,8 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/buy.ts <DAPI_NAME> <CHAI
 ### Part 6.2
 - Run `read-data-feed.ts` to fetch the latest value and timestamp from the proxy contract:
 ```
-exec command="cd {baseDir} && ts-node {baseDir}/scripts/read-data-feed.ts <PROXY_ADDRESS> <CHAIN_ALIAS>"
+exec command="cd {baseDir} && ts-node scripts/read-data-feed.ts <PROXY_ADDRESS> <CHAIN_ALIAS>"
 ```
-- If script fails, let user know about the problem and ask what to do.
+- If the script fails, let the user know about the problem and ask what to do.
 - Extract and show the value and timestamp from the output.
 - Inform the user the feed is active and readable and congratulate them on successfully purchasing an Api3 data feed subscription!

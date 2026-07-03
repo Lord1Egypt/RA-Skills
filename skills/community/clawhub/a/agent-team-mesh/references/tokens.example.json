@@ -1,0 +1,9 @@
+{
+  "_comment": "Example tokens.json — copy to ${XDG_CONFIG_HOME:-~/.config}/agent-team-mesh/tokens.json and chmod 600",
+  "_warning": "Keep this file OUT of git. Add .gitignore rule.",
+  "tokens": {
+    "alice": "REPLACE_WITH_ALICE_GATEWAY_TOKEN",
+    "bob": "REPLACE_WITH_BOB_GATEWAY_TOKEN",
+    "carol": "REPLACE_WITH_CAROL_GATEWAY_TOKEN"
+  }
+}

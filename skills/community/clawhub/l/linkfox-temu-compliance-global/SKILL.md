@@ -1,7 +1,5 @@
 ---
 name: linkfox-temu-compliance-global
-version: 1.0.0
-category: product-sourcing
 description: Temu 全球站电商合规（Compliance）API，经 LinkFox 网关转发 Partner Global 合规相关 OpenAPI（bg.compliance.*、bg.arbok.open.*、bg.flash.open.* 等，共 9 个接口）。当用户提到 Temu Global 合规、商品资质、GPSR、治理属性、实拍图、资质上传、bg.compliance.edit、arbok cert、site=global 合规 时触发。
 ---
 
@@ -28,7 +26,21 @@ description: Temu 全球站电商合规（Compliance）API，经 LinkFox 网关�
 | 促销 | `linkfox-temu-promotion-global` |
 | 网关与 Temu token | 本 skill `scripts/` |
 
-## API Usage
+## 调用方式
+
+- **API 端点**：`POST /temu/proxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## API 文档
 
 | 文档 | 内容 |
 |------|------|
@@ -75,3 +87,4 @@ python scripts/global_compliance_metadata_get.py '<JSON>'  # bg.compliance.metad
 ## 网关与授权脚本
 
 授权说明：[references/access-token.md](./references/access-token.md)
+

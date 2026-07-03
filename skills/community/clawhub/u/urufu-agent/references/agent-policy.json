@@ -1,0 +1,45 @@
+{
+  "$schema": "urufu-agent-policy-v1",
+  "description": "Default safety timers for urufu gēmu agents. Agents MUST persist last-run timestamps locally and enforce these before any write.",
+  "claim": {
+    "minIntervalMs": 21600000,
+    "minIntervalHuman": "6 hours",
+    "minTotalClaimableUruWei": "1000000000000000",
+    "minTotalClaimableUruHuman": "0.001 URU",
+    "maxTokenIdsPerBatch": 25,
+    "onlyWhenYieldPositive": true,
+    "on429BackoffMs": 3600000,
+    "onZeroYieldSkip": true
+  },
+  "mint": {
+    "autoMintAllowed": false,
+    "requireExplicitUserCommand": true,
+    "minIntervalMs": 86400000,
+    "minIntervalHuman": "24 hours",
+    "maxPerDay": 1,
+    "gaslessPaymentOnly": 0
+  },
+  "swap": {
+    "autoSwapAllowed": false,
+    "minIntervalMs": 3600000,
+    "requireExplicitUserCommand": true
+  },
+  "meadow": {
+    "maxWsMessagesPerSecond": 2,
+    "autoJoinAllowed": false,
+    "maxConcurrentRooms": 1
+  },
+  "read": {
+    "statsPollMinIntervalMs": 300000
+  },
+  "serverLimits": {
+    "gaslessClaimMaxPerWindow": 12,
+    "gaslessClaimWindowSeconds": 60,
+    "claimIntentMaxTtlSeconds": 300,
+    "note": "Server rejects zero-yield claims and rate-limits per IP+wallet. Agent timers must be stricter than server limits."
+  },
+  "stateFile": {
+    "defaultPath": "~/.urufu-agent/state.json",
+    "fields": ["lastClaimAtMs", "lastMintAtMs", "lastSwapAtMs", "lastStatsAtMs", "lastClaimTxHash", "consecutiveErrors"]
+  }
+}

@@ -14,6 +14,12 @@ The key idea is that `beginner`, `intermediate`, and `advanced` control **move s
 - Optionally write a board recognition overlay image for visual checking.
 - Continue a no-capture sequence without re-shooting by adding numbered AI-recommended and user-entered move overlays.
 
+## Recommended Feishu Image Bot
+
+For repeated photo analysis, prefer the [Feishu image bot](./integrations/feishu/README.md). It uses Feishu's long-connection bot mode: the machine running KataGo connects out to Feishu, receives board photos, and replies with the recommended move and marked result image. It does not require a public webhook service or tunnel.
+
+You can try the hosted Weiqi advisor bot here: [https://applink.feishu.cn/T97DbgVIGt1W](https://applink.feishu.cn/T97DbgVIGt1W)
+
 ## Requirements
 
 - Python 3.10+

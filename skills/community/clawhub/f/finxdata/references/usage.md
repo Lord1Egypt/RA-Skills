@@ -43,6 +43,7 @@
 | Agent 看新闻跟踪 | `python3 scripts/finxdata.py agent track-news --agent-type hermes` | 免费零扣费；后台会按来源头统计调用来源和频率。 |
 | Agent 看市场跟踪 | `python3 scripts/finxdata.py agent track-market --agent-type hermes` | 免费零扣费；适合 Agent 客户端默认行情摘要。 |
 | Agent 看公告跟踪 | `python3 scripts/finxdata.py agent track-notice --agent-type hermes` | 免费零扣费；适合整理近期公告事项。 |
+| Agent 查中国宏观指标 | `python3 scripts/finxdata.py agent economy-china --type cpi --agent-type opencode` | 免费零扣费；返回中国宏观经济报表。 |
 | Agent 看宏观发布日历 | `python3 scripts/finxdata.py agent economy-calendar --year 2026 --month 6 --months 1 --agent-type opencode` | 免费零扣费；返回国内宏观数据发布日历。 |
 
 ## 更新节奏

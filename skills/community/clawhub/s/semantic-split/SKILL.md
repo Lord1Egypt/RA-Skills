@@ -1,200 +1,190 @@
 ---
 name: semantic-split
-description: 语义拆分与智能规划技能。将自然语言拆分为结构化需求块，基于5W2H维度提取与约束标注增强语义理解，双视角推理整合为单一执行步骤，支持自增强json沉淀机制。
-version: "2.5.0"
+slug: semantic-split
+displayName: semantic-split
+description: 语义拆分与智能规划。将自然语言拆分为结构化需求块，三管线协同调度（正则结构分析→bge 语义匹配→bge-reranker 重排序），5W2H提取与约束标注增强语义理解，双视角推理整合为单一执行步骤，自增强闭环自动沉淀能力级 JSON 模板，10门禁钩子系统管控流程。
+trigger: ['帮我做', '我需要', '交给你了', '帮我分析', '需求拆分']
+license: MIT
+data_dir: .standardization/semantic-split/data
+version: 3.1.1
 author: wUwproject
-tags:
-  - semantic-split
-  - task-planning
-  - json-accumulation
-  - progressive-loading
-  - 5w2h
-  - constraint-annotation
+tags: ['semantic-split', 'task-planning', 'json-accumulation', 'progressive-loading', '5w2h', 'constraint-annotation', 'self-reinforcing-loop']
+trigger_negative: true
+external_data_dir: true
+sensitive_access: false
+critical_write: false
+permission_weight: MEDIUM
+meta_field_sync: true
+create_permissions_md: true
+faq_quality: improve_qa
+h1_position: true
+trigger_quality: refine_triggers
 ---
+# semantic-split
 
-# semantic-split — 语义拆分与智能规划
+> 语义拆分与智能规划。三管线递进调度 + 自增强闭环沉淀。
 
-将自然语言拆分为结构化需求块，基于 5W2H 维度提取与约束标注增强语义理解，双视角推理整合为单一执行步骤。
+## 触发条件
 
-## 触发场景
+**正向触发：**
+- [需求拆分] "帮我把这个需求拆开" / "拆分一下这个任务"
+- [语义规划] "帮我规划一下怎么做" / "整理一下思路"
+- [5W2H分析] "帮我分析这个需求" / "5W2H分析一下"
+- [JSON 管理] "管理 json 文件" / "json_manager"
+- [渐进匹配] "加载规则" / "匹配 json"
 
-- 用户提出任务请求："帮我做..."、"我需要..."、"交给你了..."
-- 用户描述问题寻求帮助、表达需求、委托工作
-- 简单问答和闲聊无需拆分
+**否定条件（不触发）：**
+- 简单问答、闲聊、问候
+- 单步任务
+
 
 ## 核心能力
 
+> 📚 **渐进式加载**：本技能采用渐进式 MD 体系，`SKILL.md` 为入口（≤230行），详细内容拆分到 `references/*.md` 按需加载。
+
 | # | 功能 | 说明 |
-|---|------|------|
-| 1 | **语义拆分** | 识别主语 → 划分块 → 提取目的/行为/动机 |
-| 2 | **5W2H维度提取** | 自动抽取7维度 + 缺失维度填默认值（按任务类型映射表） |
-| 3 | **约束强度标注** | 硬约束🔴/软约束🟡/无约束⚪ 三级标注 + 注意力锚定 |
-| 4 | **双视角推理** | 聚焦（保守）+ 发散（创新）内部推理 → 整合为单一执行步骤 |
-| 5 | **结构化输出** | 统一格式输出拆分结果（含约束标注），含确认询问 |
-| 6 | **渐进式加载** | 规则级/能力级 json 渐进匹配，未命中时模型思考 |
-| 7 | **自增强闭环** | 一次使用 → 沉淀 json → 下次复用 |
+| --- |------| ------ |
+| 1 | **Pipeline B 结构分析** | 纯正则（5W2H/主语/约束/分块/注意力锚定），零外部依赖 |
+| 2 | **Pipeline A 语义匹配** | 正则→bge-small(embedding)→bge-reranker(CrossEncoder)|
+| 3 | **Pipeline C 智能体推理** | 结构分析 + 模板参考 喂给智能体 → 增强思考 → 生成步骤 |
+| 4 | **覆盖率阈值路由** | 正则层覆盖率≥80% 直接通过，<80% 升级到 bge 语义层 |
+| 5 | **自增强闭环** | 执行 → 通用化 → 保存为 JSON 模板 → 下次命中 → 0 LLM |
+| 6 | **模板库扫描** | 每次请求自动扫描 capabilities/ 库，命中≥0.6 则作为 few-shot 参考或直接复用 |
+| 7 | **10 道门禁钩子** | input_valid → b_pipeline_done → a_scan_done → decision_made → llm_generated → **focus_reasoning → divergent_reasoning → integration_reasoning** → template_saved → wp_done |
 | 8 | **json 管理工具** | `json_manager.py` CLI 统一管理能力级/规则级 json |
+
+> 📚 渐进式体系：`SKILL.md` 为入口，详细内容按需加载见下方索引。
+
+### 渐进式文件索引
+
+| 文件名 | 分类 | 包含内容 | 审计关联 |
+| ----- |------| ---------- |----------|
+| `references/LICENSE.md` | 许可协议 | 开源许可证声明（MIT） | R-26 |
+| `references/changelog.md` | 版本管理 | 版本更新日志 | R-24 |
+| `references/attribution.md` | 版权声明 | 第三方组件与模型版权归属说明 | 无 |
+| `references/json_schema.md` | 参考 | 能力级/规则级 JSON 格式定义 | 无 |
+| `references/loading_decision_tree.md` | 参考 | 渐进加载决策流程（含自增强闭环） | 无 |
+| `references/planning_rules.md` | 规则 | 双视角推理与规划生成规则 | 无 |
+| `references/split_rules.md` | 规则 | 语义拆分规则 | 无 |
+| `references/constraint_annotation.md` | 规范 | 约束标注规则与注意力锚定 | 无 |
+| `references/examples.md` | 示例 | 各功能输出格式示例 | R-25 C-17 |
+| `references/faq.md` | FAQ | 常见问题与排错 | R-19 |
+| `references/permissions.md` | 权限 | 权限扫描与风险评估 | R-15 |
+| `references/task_type_defaults.md` | 参考 | 5W2H 任务类型默认值映射 | 无 |
+| `references/antipatterns.md` | 规范指南 | skill 编写中的常见反模式 | R-18 |
+| `references/automation_tasks.md` | 参考 | 自动任务配置列表 | 无 |
+
+---
 
 ## 快速开始
 
+**场景：语义拆分**
+用户需求：帮我用公司模板做一份PPT，下周五前交给客户
+系统执行：
 ```bash
-python scripts/json_manager.py scan --keywords 制作 PPT 产品    # 扫描匹配
-python scripts/json_manager.py categorize --threshold 5        # 归类统计
-python scripts/json_manager.py create --type capability --name my_task_v1  # 创建
-python scripts/json_manager.py generalize --input <path> --params "具体值=[占位符]"  # 通用化
+python scripts/semantic_pipeline.py --text "帮我用公司模板做一份PPT，下周五前交给客户" --hooks
 ```
+  - **输出**: 10道门禁全部通过，输出步骤列表+WP分解
 
-> 知识库 JSON 存放于 `skills/.standardization/semantic-split/data/`（铁律4：产出物不嵌入技能目录）
+**场景：模板扫描**
+用户需求：查找已有PPT相关模板
+系统执行：
+```bash
+python scripts/json_manager.py scan --keywords 制作 PPT 产品
+```
+  - **输出**: 匹配结果列表+相似度分数
 
+**场景：归类**
+用户需求：按频次归类任务模板
+系统执行：
+```bash
+python scripts/json_manager.py categorize --threshold 5
+```
+  - **输出**: 模板被分组为高频/中频/低频三类
 ## 工作流程
 
-### 语义拆分规则（摘要）
-
-> 详细规则见 `references/split_rules.md`
-
-**核心流程**：识别主语 → 划分块 → 提取目的/行为/动机 → 5W2H维度 + 约束强度标注
-
-| 主语类型 | 块标记 | 块内元素 |
-|---------|--------|---------|
-| 用户（"我"） | `块1：用户` | 目的 / 行为(诉求) / 动机 |
-| AI助手（"你"） | `块2：执行者` | 同上 |
-| 第三方 | `块3：第三方-N` | 同上 |
-
-**边界情况速查**：
-
-| 关键情况 | 处理 |
-|---------|------|
-| 约束强度冲突 | 按最高强度处理（🔴>🟡🔴>🟡>⚪） |
-| 举例内容干扰 | 「比如/例如」后内容 → [EXAMPLE]，不作为核心约束 |
-| json 库为空 | 跳过①②，直接进入③模型思考 |
-
-### 完整执行流程
-
-**步骤 1-2**：接收输入 → 识别主语 & 划分块
-
-接收用户原文 → 扫描识别主语代词（我/你/他/她/它/名称），每个独立主语 = 一个块
-
-**步骤 2.5**：任务类型识别与 5W2H 初始化
-
-> 内部执行，不输出。首次执行时读取 `references/task_type_defaults.md` + `references/constraint_annotation.md`
-
-1. **任务类型识别**：制作PPT / 填写周报 / 安排行程 / 写邮件 / 策划活动 / 其他
-2. **5W2H 维度初始化**：按任务类型从默认映射表填入默认值
-3. **约束强度预标注**：🔴硬约束 / 🟡软约束 / ⚪无约束
-
-**步骤 3**：提取块内元素（增强版）
-
-**注意力锚定**（内部执行，不输出，详见 `references/constraint_annotation.md` 第三节）：
-1. `[CRITICAL]` — 硬约束，后续不可违反
-2. `[CORE]` — 核心目标（动词+宾语）
-3. `[ENTITY]` — 数字、时间、人名
-4. `[EXAMPLE]` — 举例内容，降权不作为约束
-5. `[RESISTANCE]` — 「但是/担心/难」后内容
-6. 核心句重构：「[主语] 要 [CORE] 于 [时间/场景]」（≤20字）
-
-逐句提取目的/行为/动机 + 5W2H维度 + 约束强度（详见 `references/split_rules.md` 第五节）
-
-**步骤 4**：结构化输出（增强版）
-
-```
-【拆分结果】
-
-## 块 N：[主语名称]
-  角色：[用户/执行者/第三方]
-  目的：[核心目标]
-  诉求：
-    1. [核心交付物] 🔴  2. [支撑信息] 🟡  3. [附加要求] ⚪
-  动机：[背景/原因/情绪]
-  5W2H：Why/What/Who/Where/When/How/How much — [值] 🔴/🟡/⚪
-  阻力：[描述]（如有）
-  📌 核心句：[主语] 要 [CORE] 于 [时间/场景]
-
-【确认询问】拆分是否完整准确？
+```json
+输入文本
+    │
+    ▼
+[钩子1] input_valid → 输入校验
+    │
+    ▼
+[钩子2] b_pipeline_done → Pipeline B：正则层
+    │  5W2H 提取 / 主语识别 / 约束标注 / 分块
+    │  （零模型，纯 regex）
+    │
+    ▼
+[钩子3] a_scan_done → Pipeline A：模板库扫描
+    │  bge-small: embedding 编码 → 余弦相似度匹配
+    │  bge-reranker: CrossEncoder 重排序
+    │  （仅模板匹配，不参与结构分析）
+    │  ┌─ 命中 ≥0.6 → 模板作为 few-shot 参考
+    │  └─ 未命中   → 空
+    │
+    ▼
+[钩子4] decision_made → 渐进决策
+    │  ┌─ 模板命中 ≥0.6 → 直接复用（0 智能体调用）
+    │  └─ 未命中       → 传递 结构分析结果 + 模板参考 给智能体
+    │
+    ▼
+[钩子5] llm_generated → Pipeline C：智能体推理
+    │  拿到: 5W2H + 约束 + 结构分析 + 模板参考(few-shot)
+    │
+    ▼
+[钩子6] focus_reasoning → 聚焦推理（保守方案）
+    │  智能体必须执行: 生成安全可靠的执行方案
+    │
+    ▼
+[钩子7] divergent_reasoning → 发散推理（创新方案）
+    │  智能体必须执行: 生成创新大胆的执行方案
+    │
+    ▼
+[钩子8] integration_reasoning → 整合推理
+    │  智能体必须执行: 聚焦方案(骨架) + 发散方案(创新点) → 最终方案
+    │  输出: 步骤列表
+    │
+    ▼
+[钩子9] template_saved → 自动保存为能力级 JSON
+    │  步骤通用化 → 写入 capabilities/{task}_v1.json
+    │
+    ▼
+[钩子10] wp_done → WP 分解完成
+    │
+    ▼
+输出 JSON
 ```
 
-**步骤 4.5**：自我反查（内部执行，不输出）
+---
 
-> 展示前强制执行（详见 `references/constraint_annotation.md` 第三节）：
+## 输入输出
 
-| 反查 | 检查内容 | 修正 |
-|------|---------|------|
-| 1 | 硬约束遗漏：`[CRITICAL]` 是否全在结果中？ | 补充 |
-| 2 | 约束误判：🟡 词被标为 🔴？ | 修正 |
-| 2b | 隐式升级：🟡 约束属组织规范/法律/安全？→ 🟡🔴 或 🔴 | 升级 |
-| 3 | 举例干扰：`[EXAMPLE]` 被当核心诉求？ | 降级 |
-| 4 | 5W2H 缺失：有明显可推断维度？ | 补充 `[推断]` |
+- **输入**：≤2000 字纯文本（任务描述）
+- **输出**：JSON 结构化需求块（含步骤列表、WP 分解、钩子门禁状态）
+- **依赖**：sentence-transformers（embedding + rerank）
 
-**步骤 5**：用户确认
+## 三管线职责
 
-- 如有遗漏 → 用户补充 → 更新结构
-- 如全部正确 → 进入步骤 6
+| 管线 | 方法 | 模型 | 产出 |
+| :---- |:----| :----: |:----|
+| **B 结构分析** | 纯正则 | **无** | 5W2H七维 / 主语 / 约束等级 / 分块 / 注意力锚定 |
+| **A 语义匹配** | 正则 → embedding → rerank | bge-small + bge-reranker ✅ | 模板库扫描 / 相似度匹配 / 约束分类 |
+| **C 智能体推理** | 智能体原生推理 | — | 步骤列表 / WP 分解 / 模板沉淀 |
 
-**步骤 6**：渐进加载与规划生成（增强版）
+> Pipeline B 的 5W2H / 主语 / 约束提取不需要模型，纯正则完成。
+> 正则词表覆盖常见动词/主语/时间/地点/数量词，边界 case 由 Pipeline C（LLM）推理补全。
+> bge-small / bge-reranker 不参与结构分析，只做模板库语义匹配。
 
-> 加载：`references/loading_decision_tree.md`（必须）+ `references/planning_rules.md` + `references/constraint_annotation.md` + `references/json_schema.md`（按需）
+## 模型清单
 
-按决策树执行：
-1. 扫描规则级 json → 命中则加载并展示
-2. 不命中则扫描能力级 json → 命中则加载并展示
-3. 均不命中则**模型思考**（需加载 `planning_rules.md`）
-4. 展示规划 → 询问用户是否执行
+| 模型 | 管线 | 大小 | 协议 |
+| :---- |:----| :---: |:----:|
+| BAAI/bge-small-zh-v1.5 | Pipeline A 嵌入层 | 92MB | MIT |
+| BAAI/bge-reranker-base | Pipeline A 重排序层 | 1.1GB | MIT |
+| **合计** |  | **~1.2GB** | **全部商业友好** |
 
-**【模型思考：双视角推理→整合】**（详见 `references/planning_rules.md` 第六节，不输出双方案）
-
-a) **聚焦方案**（内部）：5W2H取最窄值；守🔴硬约束；已验证方法；步骤≤30min
-b) **发散方案**（内部）：5W2H取最宽值；🔴可轻微突破（标注风险）；引入非惯用工具
-c) **整合**（输出）：聚焦为骨架 + 发散创新点→🌟增强步骤 → **单一执行步骤** + 工作包分解
-
-展示给用户的规划格式（详细规则见 `references/planning_rules.md` 第六节）：
-
-```
-📌 任务：[名称] ｜🔴 硬约束：[列表] ｜🟡 软约束：[列表]
-
-执行步骤：
-  步骤 N: [名称] ── serial ── milestone: ✅/❌
-    action: [操作] | depends_on: [依赖] | constraint_level: 🔴/🟡/⚪
-  步骤 N🌟: [名称]（增强：来自发散方案）
-    ⚠️ 风险：[说明]（如涉及🔴突破）
-
-工作包：WP1: [描述](耗时, 前置) → 📍 检查点：[里程碑]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-来源：[规则级json / 能力级json / 模型思考（双视角整合）]
-```
-
-**步骤 7**：执行与 json 生成
-
-- 用户确认执行 → 执行任务
-- 分支③（不命中+确认执行）→ 完成后生成通用化能力级 json（加载 `json_schema.md`）
-- 其他分支 → 不生成新 json（除非用户主动要求）
-
-## 注意事项
-
-1. **双方案是内部推理，不输出给用户**：聚焦+发散仅在模型内部执行，最终整合为单一执行步骤
-2. **约束强度不能只看关键词**：需上下文推断（如"尽量用公司模板"属组织规范，应升级为🟡🔴）
-3. **注意力锚定在步骤3前强制执行**：[CRITICAL]/[CORE]/[ENTITY]/[EXAMPLE]/[RESISTANCE] 标记不可跳过
-4. **自我反查在展示前强制执行**：4项检查+反查2b（隐式约束升级），全部通过才进入用户确认
-
-## 脚本工具
-
-`json_manager.py` — 管理能力级/规则级 json 的 CLI 工具（零外部依赖）
-
-| 子命令 | 功能 |
-|--------|------|
-| `scan` / `categorize` | 按关键词扫描 / 按 tags 归类统计 |
-| `create` / `validate` | 创建 json 骨架 / 验证格式 |
-| `generalize` / `rule-gen` | 字段通用化 / 从能力级生成规则级 |
-| `list` / `info` | 列出所有 json / 显示详情 |
-
-## 参考文档（渐进加载）
-
-| 文件 | 加载时机 |
-|------|---------|
-| `split_rules.md` | 步骤 2、3 首次 |
-| `loading_decision_tree.md` | 步骤 6 **必须** |
-| `planning_rules.md` | 模型思考时 |
-| `json_schema.md` | 生成 json 时 |
-| `constraint_annotation.md` | 步骤 2.5 / 3 / 6 |
-| `task_type_defaults.md` | 步骤 2.5 首次 |
-| `examples.md` | 参考格式时 |
-
-**v2.5.0** — 5W2H维度提取 · 约束强度标注(🔴🟡⚪) · 注意力锚定 · 双视角推理整合 · 工作包分解
+> Pipeline B 为纯正则实现，零模型依赖。
+>
+> **能力边界**: 单次输入 ≤2000 字，输出 JSON。单任务，建议 ≤10 并发。模型加载约 30 秒。
+> **能力边界**：单次输入 ≤2000 字，输出 JSON 结构步骤。单任务处理，建议不超过 10 个并发。Pipeline A 模型加载完毕约需 30 秒（1.2GB）。
+> 无外部 API 调用，无 LLM 配置需求。Pipeline C 由智能体原生推理。

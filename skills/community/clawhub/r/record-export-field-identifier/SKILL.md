@@ -1,7 +1,7 @@
 ---
 name: record-export-field-identifier
 description: Prepare a customer record field for reporting.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: record-export-field-identifier

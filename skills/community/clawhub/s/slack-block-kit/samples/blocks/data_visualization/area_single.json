@@ -1,0 +1,48 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-area-single",
+    "title": "Concurrent users this week",
+    "chart": {
+      "type": "area",
+      "series": [
+        {
+          "name": "Concurrent users",
+          "data": [
+            {
+              "label": "Mon",
+              "value": 4200
+            },
+            {
+              "label": "Tue",
+              "value": 4500
+            },
+            {
+              "label": "Wed",
+              "value": 5100
+            },
+            {
+              "label": "Thu",
+              "value": 4800
+            },
+            {
+              "label": "Fri",
+              "value": 5300
+            }
+          ]
+        }
+      ],
+      "axis_config": {
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "x_label": "Day",
+        "y_label": "Users"
+      }
+    }
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-bar-single",
+    "title": "Messages sent this week",
+    "chart": {
+      "type": "bar",
+      "series": [
+        {
+          "name": "Messages",
+          "data": [
+            {
+              "label": "Mon",
+              "value": 2300
+            },
+            {
+              "label": "Tue",
+              "value": 2150
+            },
+            {
+              "label": "Wed",
+              "value": 2620
+            },
+            {
+              "label": "Thu",
+              "value": 2480
+            },
+            {
+              "label": "Fri",
+              "value": 1980
+            }
+          ]
+        }
+      ],
+      "axis_config": {
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "x_label": "Day",
+        "y_label": "Messages"
+      }
+    }
+  }
+]

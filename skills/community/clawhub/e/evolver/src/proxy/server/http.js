@@ -3,6 +3,11 @@
 const crypto = require('crypto');
 const http = require('http');
 const { writeSettings, readSettings, clearSettings, clearIfStale } = require('./settings');
+const {
+  isValidReusableProxyToken,
+  readReusableClientProxyToken,
+  syncClaudeProxySettings,
+} = require('../clientSettings');
 
 const MAX_PORT_ATTEMPTS = 100;
 const DEFAULT_PORT = 19820;
@@ -93,13 +98,14 @@ function tryListen(server, port) {
 }
 
 class ProxyHttpServer {
-  constructor(routes, { port, logger } = {}) {
+  constructor(routes, { port, logger, clientSettings } = {}) {
     this.routes = routes;
     this.basePort = port || Number(process.env.EVOMAP_PROXY_PORT) || DEFAULT_PORT;
     this.actualPort = null;
     this.logger = logger || console;
     this.server = null;
     this.token = null;
+    this.clientSettings = clientSettings || null;
   }
 
   async start() {
@@ -109,16 +115,22 @@ class ProxyHttpServer {
     // already exported into long-lived shells (the .bashrc auto-source only
     // runs once per terminal).
     const priorProxy = readSettings().proxy || {};
-    const previous = typeof priorProxy.token === 'string' ? priorProxy.token : null;
+    const previous = isValidReusableProxyToken(priorProxy.token) ? priorProxy.token.trim() : null;
     // settings.json is operator-edited; previous_tokens may contain non-strings
     // (numbers, booleans, objects) that would later crash Buffer.from(cand, 'utf8')
     // in _handleRequest as ERR_INVALID_ARG_TYPE — an unhandled rejection that
     // takes the daemon down under default --unhandled-rejections=throw.
     const priorPreviousTokens = Array.isArray(priorProxy.previous_tokens)
-      ? priorProxy.previous_tokens.filter((t) => typeof t === 'string' && t.length > 0)
+      ? priorProxy.previous_tokens
+        .map((t) => (typeof t === 'string' ? t.trim() : ''))
+        .filter((t) => isValidReusableProxyToken(t))
       : [];
     clearIfStale();
-    this.token = previous || crypto.randomBytes(32).toString('hex');
+    const clientSettingsOpts = this.clientSettings || {};
+    const clientToken = this.clientSettings
+      ? readReusableClientProxyToken({ ...clientSettingsOpts, port: this.basePort })
+      : null;
+    this.token = previous || clientToken || crypto.randomBytes(32).toString('hex');
     this._priorPreviousTokens = priorPreviousTokens;
     this.server = http.createServer((req, res) => this._handleRequest(req, res));
 
@@ -138,6 +150,24 @@ class ProxyHttpServer {
           proxyBlock.previous_tokens = this._priorPreviousTokens;
         }
         writeSettings({ proxy: proxyBlock });
+        if (this.clientSettings) {
+          try {
+            const syncResult = syncClaudeProxySettings({
+              ...clientSettingsOpts,
+              url,
+              port: this.basePort,
+              token: this.token,
+              runtimeEnv: process.env,
+            });
+            if (syncResult.synced && syncResult.changed) {
+              this.logger.log(`[proxy] Synced Claude client settings at ${syncResult.file}`);
+            } else if (syncResult.reason === 'invalid_settings_json') {
+              this.logger.warn?.(`[proxy] Skipped Claude client settings sync because ${syncResult.file} is not valid JSON`);
+            }
+          } catch (err) {
+            this.logger.warn?.('[proxy] Claude client settings sync failed: ' + (err && err.message ? err.message : err));
+          }
+        }
         this.logger.log(`[proxy] HTTP server listening on ${url}`);
         return { port, url, token: this.token };
       }
@@ -171,9 +201,13 @@ class ProxyHttpServer {
     // and unhandled-reject through the auth path.
     const previous = readSettings().proxy?.previous_tokens;
     const extras = Array.isArray(previous)
-      ? previous.filter((t) => typeof t === 'string' && t.length > 0)
+      ? previous
+        .map((t) => (typeof t === 'string' ? t.trim() : ''))
+        .filter((t) => isValidReusableProxyToken(t))
       : [];
-    const candidates = [this.token, ...extras].filter((t) => typeof t === 'string' && t.length > 0);
+    const candidates = [this.token, ...extras]
+      .filter((t) => isValidReusableProxyToken(t))
+      .map((t) => t.trim());
     let valid = false;
     for (const cand of candidates) {
       const expBuf = Buffer.from(cand, 'utf8');

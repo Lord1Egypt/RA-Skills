@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/prompt-version-control/input.schema.json",
+  "title": "Prompt Version Control Input",
+  "description": "Schema for prompt YAML file used by Prompt Version Control",
+  "type": "object",
+  "required": ["name", "version", "system"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique prompt name (lowercase, kebab-case)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version (x.y.z)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": { "type": "string", "description": "Human-readable prompt description" },
+    "model": { "type": "string", "description": "LLM model identifier", "default": "gpt-4" },
+    "temperature": { "type": "number", "description": "Model temperature", "minimum": 0, "maximum": 2, "default": 0.3 },
+    "system": { "type": "string", "description": "System prompt text", "minLength": 1 },
+    "user_template": { "type": "string", "description": "User message template with {{variable}} placeholders" },
+    "variables": {
+      "type": "array", "description": "Template variables",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["string", "number", "boolean", "enum"] },
+          "required": { "type": "boolean", "default": false },
+          "enum": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "test_cases": {
+      "type": "array", "description": "Test cases for A/B testing",
+      "items": {
+        "type": "object",
+        "required": ["input"],
+        "properties": {
+          "input": { "type": "string" },
+          "expected_category": { "type": "string" },
+          "expected_output": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object", "description": "Performance metrics for latest version",
+      "properties": {
+        "quality_score": { "type": "number", "minimum": 0, "maximum": 10 },
+        "avg_latency_ms": { "type": "number", "minimum": 0 },
+        "avg_tokens": { "type": "number", "minimum": 0 },
+        "total_runs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" }
+  },
+  "additionalProperties": false
+}

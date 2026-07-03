@@ -68,7 +68,7 @@
 ### 使用方式
 
 - **创建链时**：用户在意图中描述定时需求（如「每天早上6点跑这个链」），AI 自动填充 `schedule` 字段
-- **已有链**：通过 `chain_manager.py schedule --name <链名> --cron "0 6 * * *" --desc "每天6点"` 添加/更新
+- **已有链**：通过 `chain_manager.py schedule --name <链名> --cron "0 6 * * *" --desc "每天6点"` 添加/修改
 - **平台侧**：读取 `chain_data.schedule`，按 `type` + `expression` 注册定时任务
 
 ---

@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes source-code logic, generates Mermaid flowcharts or SVG architecture diagrams, and renders high-resolution PNG images with themes, visual styles, semantic shapes, and product icons. <br>
+Analyzes source code logic, generates Mermaid flowcharts or SVG architecture diagrams, and renders them as PNG images with multiple themes, visual styles, semantic shapes, and product icons. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,33 @@ MIT <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to inspect a source file or codebase and produce Chinese Markdown explanations, Mermaid or SVG diagram source, and rendered PNG diagrams for documentation, architecture review, and onboarding. <br>
+Developers and engineers use this skill to inspect code structure and produce human-readable diagrams, Markdown documentation, and rendered PNG assets for flows, architectures, classes, states, and data models. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill reads the code selected for diagramming, which may include proprietary or sensitive implementation details. <br>
-Mitigation: Run it only on code the user intends to analyze and review generated Markdown and diagrams before sharing them. <br>
-Risk: Rendering depends on local Node and system tools, including beautiful-mermaid, rsvg-convert, and an optional mmdc fallback that may use npx. <br>
-Mitigation: Review and pin dependencies in the deployment environment, and install mmdc explicitly if automatic npx fallback is not acceptable. <br>
-Risk: Generated Markdown and PNG files may preserve sensitive names, flows, or architecture details from the input code. <br>
-Mitigation: Write outputs to a controlled directory and inspect them for sensitive content before publication. <br>
+Risk: The security scan reports that the skill can automatically run external npm tooling during rendering. <br>
+Mitigation: Review before installing, run npm install from the included lockfile, pin or preinstall mmdc instead of relying on npx fallback, and use the skill only on code intended for diagramming. <br>
+Risk: Generated diagrams and explanations may omit or misstate code behavior if the analyzed code path is incomplete. <br>
+Mitigation: Review generated Markdown, Mermaid or SVG source, and PNG output against the source code before using the diagrams for design or operational decisions. <br>
 
 
 ## Reference(s): <br>
-- [code-to-diagram README](README.md) <br>
-- [Style Diagram Matrix](references/style-diagram-matrix.md) <br>
-- [Semantic Shapes and Product Icons](references/icons.md) <br>
-- [Optimization Plan](docs/optimization-plan.md) <br>
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/code-to-diagram) <br>
 - [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouchang1988/code-to-diagram) <br>
+- [icons.md](references/icons.md) <br>
+- [style-diagram-matrix.md](references/style-diagram-matrix.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown explanation with Mermaid or SVG source, rendered PNG files, and renderer path metadata.] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files] <br>
+**Output Format:** [Markdown with Mermaid or SVG code blocks, rendered PNG files, and terminal JSON containing generated file paths.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated locally from user-selected source files and diagram inputs.] <br>
+**Other Properties Related to Output:** [Uses Mermaid or SVG rendering paths and may invoke local npm-based tooling and rsvg-convert during diagram rendering.] <br>
 
 ## Skill Version(s): <br>
-2.2.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
+2.2.1 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

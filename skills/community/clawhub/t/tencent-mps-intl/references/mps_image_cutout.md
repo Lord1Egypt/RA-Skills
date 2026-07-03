@@ -64,40 +64,40 @@ Applicable scenarios: product cutout, portrait cutout, ID photo background remov
 
 ```bash
 # Simplest usage: URL input, wait for result
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg"
 
 # Local file input
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --local-file /tmp/photo.jpg
 
 # COS path input
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --cos-input-key "/input/model.jpg"
 
 # Fine-edge cutout (suitable for hair and other details)
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/portrait.jpg" \
     --edge-sampling-step 2
 
 # Adjust transparency thresholds
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --transparency-threshold 20 \
     --opaque-threshold 150
 
 # Submit task only without waiting for result
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --download-dir /tmp/results/
 
 # Manually query cutout task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

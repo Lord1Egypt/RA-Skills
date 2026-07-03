@@ -1,0 +1,247 @@
+{
+  "name": "inquiry-read",
+  "description": "Perform statistical analysis on inquiry data from the Tradebee Website Builder platform and generate a structured analysis report. Inquiry data may include privacy-sensitive fields such as contact details, IP addresses, message content, and attachment URLs, so prefer explicit minimal field selection and request sensitive fields only when clearly needed for the stated Tradebee inquiry task.",
+  "version": "2.0.4",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Optional. If provided, it must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "recent_days": {
+        "type": "integer",
+        "description": "Optional. Returns inquiry data from the most recent specified number of days, with a range of 0-36500. The default value is 0, meaning no time limit and all inquiries are returned."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. If omitted, all supported inquiry fields are returned. Inquiry data may include personal or business-sensitive content such as IP addresses, contact details, attachment links, and freeform message content, so prefer an explicit minimal field list whenever possible. Request `ip`, `contact`, `attachment`, or `content` only when the user clearly needs those exact fields for the stated Tradebee inquiry task.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1. Pagination must follow the server-returned `pagination.has_next_page` and `pagination.next_page`. Do not infer pages from `total_page` or manually increment `current_page`. When `has_next_page=true`, `next_page` must be used as the next request page number. When `has_next_page=false`, pagination requests must stop."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10"
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    },
+    "required": []
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure",
+        "properties": {
+          "pagination": {
+            "type": "object",
+            "description": "Pagination result",
+            "properties": {
+              "current_page": {
+                "type": "integer",
+                "description": "Current page number"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Items per page"
+              },
+              "total_page": {
+                "type": "integer",
+                "description": "Total number of pages"
+              },
+              "total_count": {
+                "type": "integer",
+                "description": "Total number of records"
+              },
+              "has_next_page": {
+                "type": "boolean",
+                "description": "Whether a next page exists"
+              },
+              "next_page": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Next page number, or `null` if there is no next page"
+              }
+            },
+            "required": [
+              "current_page",
+              "page_size",
+              "total_page",
+              "total_count",
+              "has_next_page",
+              "next_page"
+            ]
+          },
+          "list": {
+            "type": "array",
+            "description": "Inquiry data list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "inquiry_id": {
+                  "type": "integer",
+                  "description": "Unique identifier"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "From the site language"
+                },
+                "is_read": {
+                  "type": "boolean",
+                  "description": "Whether it has been read. `true` means read and `false` means unread."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Inquiry title"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Inquiry content. May contain freeform personal or business-sensitive text."
+                },
+                "country_code": {
+                  "type": "string",
+                  "description": "Country code (ISO 3166-1)"
+                },
+                "ip": {
+                  "type": "string",
+                  "description": "IPv4 / IPv6. Privacy-sensitive field; request only when clearly needed."
+                },
+                "contact": {
+                  "type": "object",
+                  "description": "Contact information. May include personal or business-sensitive identifiers; request only when clearly needed.",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Contact name"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "description": "Email address. Privacy-sensitive field."
+                    },
+                    "tel": {
+                      "type": "string",
+                      "description": "Contact phone. Privacy-sensitive field."
+                    },
+                    "address": {
+                      "type": "string",
+                      "description": "Contact address. Privacy-sensitive field."
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "email",
+                    "tel",
+                    "address"
+                  ]
+                },
+                "source": {
+                  "type": "string",
+                  "description": "Inquiry source, such as Natural traffic, Tradevv, Google Ads, Facebook Ads, Bing Ads, Yanjie Kesi, Douyin Ads, Baidu Ads, and LinkedIn Ads."
+                },
+                "target_products": {
+                  "type": "array",
+                  "description": "Target product list",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "products_id": {
+                        "type": "integer",
+                        "description": "Product ID"
+                      },
+                      "product_name": {
+                        "type": "string",
+                        "description": "Product name"
+                      },
+                      "products_url": {
+                        "type": "string",
+                        "description": "Product URL"
+                      }
+                    },
+                    "required": [
+                      "products_id",
+                      "product_name",
+                      "products_url"
+                    ]
+                  }
+                },
+                "attachment": {
+                  "type": "array",
+                  "description": "Inquiry attachment list. May expose uploaded files or linked personal/business data; request only when clearly needed.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file_name": {
+                        "type": "string",
+                        "description": "Original uploaded file name"
+                      },
+                      "file_url": {
+                        "type": "string",
+                        "description": "Attachment download URL"
+                      }
+                    },
+                    "required": [
+                      "file_name",
+                      "file_url"
+                    ]
+                  }
+                },
+                "create_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Creation time in ISO 8601 date-time format"
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

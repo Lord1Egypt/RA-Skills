@@ -1,7 +1,5 @@
 ---
 name: linkfox-ehunt-temu-category-search
-version: 1.0.0
-category: product-sourcing
 description: 通过 EHunt Temu 品类检索（网关路由 `ehunt/temu/temuCategorySearch`）在已同步到本地库的 EHunt Temu 类目数据中按关键词检索类目中文名、英文名与类目 id，用于商品/店铺筛选的类目 id。当用户提到 EHunt Temu 类目、Temu category id、Temu 类目树、Temu 后台类目、temu 品类、syncTemuCategory（Temu 品类同步）后查类目、Temu category search 时触发。即使用户未写 EHunt，只要在本地已同步的 Temu 类目库里按关键词找类目 id，也应触发此技能。
 ---
 
@@ -27,27 +25,3 @@ description: 通过 EHunt Temu 品类检索（网关路由 `ehunt/temu/temuCateg
 
 入参/出参表见 [references/api.md](references/api.md)。
 
-<!-- LF_LARGE_RESPONSE_BLOCK -->
-## Handling Large Responses
-
-To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
-
-```
-python scripts/response_io.py run --script scripts/ehunt_temu_category_search.py --out-dir <DIR> '<params>'
-python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
-```
-
-> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data — do not commit them. Files are not auto-deleted; clean up when the task is done.
-
-`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
-
-**When to prefer this pattern** — apply your judgment based on the response characteristics, e.g.:
-- High field count per record, or fields you don't need
-- Batch/paginated results (multiple items per call)
-- Long-text fields (descriptions, reviews, HTML, time series)
-- Output reused across later steps rather than consumed immediately
-
-For small, single-use responses, calling the main script directly is fine.
-
-⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
-<!-- /LF_LARGE_RESPONSE_BLOCK -->

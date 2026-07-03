@@ -1,7 +1,5 @@
 ---
 name: linkfox-mpstats-ozon-seller-products
-version: 1.0.0
-category: product-sourcing
 description: MPSTATS Ozon 俄罗斯站按卖家 ID 下钻商品列表。返回该卖家下全部 SKU 的销量、销售额、价格、评分、库存、周转、损失销售额等完整指标，支持多维数值筛选、排序、货币换算。用于店铺结构分析、卖家爆款拆解、竞争对手店铺对标。当用户提到 Ozon 卖家商品、Ozon 店铺分析、Ozon 卖家下钻、Ozon 卖家 SKU、Ozon 店铺爆款、Ozon 竞争店铺、MPSTATS seller, Ozon seller drill-down, Ozon shop audit, Russian marketplace seller SKUs, Ozon store structure 时触发此技能。即使用户未明确说"MPSTATS"，只要意图是按 Ozon 卖家 ID 看该店铺下全部商品的销售表现，也应触发此技能。
 ---
 
@@ -43,10 +41,19 @@ Each `filters` entry: `{"field": "<snake_case>", "op": "<OP>", "value": <num>, "
 
 **Operators**: `GTE`, `LTE`, `GT`, `LT`, `EQ`, `NOT_EQ`, `BETWEEN` (requires `value2`).
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, response structure, and error codes. You can also execute `scripts/mpstats_ozon_seller_products.py` directly for ad-hoc queries.
+- **API 端点**：`POST /mpstats/ozon/sellerProducts`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/mpstats_ozon_seller_products.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-mpstats-ozon-seller-products-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 ## Usage Examples
 
 **1. Seller's top-100 by sales**

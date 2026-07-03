@@ -1,0 +1,27 @@
+{
+  "id": "skill2-mvp-design",
+  "name": "MVP精益设计",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "设计MVP、确定三层产品体系、测算交付成本、完成首单冷交付",
+  "stage": 2,
+  "stageName": "原型期",
+  "graduationCondition": "MVP可交付 + 首单冷交付成功 + 交付成本可控",
+  "triggers": ["MVP", "产品设计", "功能裁剪", "交付成本", "首单", "产品体系"],
+  "prerequisites": ["需求已通过可行性验证（Skill1输出可行性≥可行）"],
+  "dependencies": ["skill1-idea-feasibility"],
+  "outputs": [
+    "MVP极简裁剪方案",
+    "三层产品体系设计",
+    "交付成本测算",
+    "首单冷交付方案",
+    "首单合同模板",
+    "版权声明模板",
+    "隐私政策模板",
+    "用户协议模板"
+  ],
+  "files": {
+    "prompt": "prompt.md",
+    "code": "index.ts"
+  }
+}

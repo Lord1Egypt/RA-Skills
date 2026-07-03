@@ -35,11 +35,12 @@ Optional arguments:
 - `--publish-time-range <all|day|week|half_year>`: optional publish-time filter; default is `all`.
 - `--pages <n>`: fetch and merge N search pages from the current starting point.
 - `--max-items <n>`: stop after collecting N search results.
+- `--since-days <1-365>`: keep only search results whose public `publish_time` is within the last N days; search remains bounded by `--pages`.
 - `--pretty`: output formatting only; it does not change the research topic or results.
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 
@@ -57,3 +58,4 @@ Continue pagination only when `next_page_token` is not empty, and pass the compl
 Summarize visible evidence separately from interpretation. Focus on topic patterns, content angles, audience reactions, creator positioning, and useful examples when the user needs traceability.
 For XHS search results, in every use of a returned `note_url`, such as final answers, display, references, storage, output, or forwarding, preserve it exactly as the full URL, including `xsec_token` query parameters. Do not modify, truncate, redact, mask, normalize, rebuild, or synthesize the URL from `note_id`.
 For XHS `note_id`, copy the complete 24-character lowercase hexadecimal ID exactly; do not pass or display only a prefix.
+When the user asks for recent topic research, prefer CLI `--since-days 7` or another user-specified day window; do not claim complete platform coverage beyond the fetched pages.

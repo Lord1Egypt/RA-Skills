@@ -1,0 +1,18 @@
+{
+  "name": "测量不确定度报告",
+  "description": "不确定度评定特色报告 — 分量柱状图 + A类/B类明细",
+  "type": "report",
+  "tags": ["uncertainty", "GUM", "JJF1059"],
+  "report": {
+    "title": "测量不确定度评定报告 (GUM法)",
+    "sections": [
+      {"type": "measurement_uncertainty", "title": "不确定度分量与合成",
+       "uc_source": "%合成不确定度%", "ue_source": "%扩展不确定度%",
+       "components_source": "%input.components_meta%", "k": "%input.k%"},
+      {"type": "data_table", "source": "%A类评定%", "title": "A类评定明细",
+       "fields": ["value"]},
+      {"type": "data_table", "source": "%input%", "title": "输入参数",
+       "fields": ["bias", "distribution", "half_width", "k"]}
+    ]
+  }
+}

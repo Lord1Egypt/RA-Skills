@@ -1,0 +1,7 @@
+interface:
+  display_name: "EasyEDA Schematic"
+  short_description: "Automate EasyEDA schematic workflows"
+  default_prompt: "Use $easyeda-schematic to inspect and safely modify the active EasyEDA schematic."
+
+policy:
+  allow_implicit_invocation: true

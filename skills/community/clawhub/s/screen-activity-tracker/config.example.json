@@ -1,0 +1,18 @@
+{
+  "backend": "local",
+  "local": {
+    "output_dir": "~/screen-activity",
+    "keep_days": 7
+  },
+  "siyuan": {
+    "url": "http://127.0.0.1:6806",
+    "token": "YOUR_API_TOKEN",
+    "notebook_id": "YOUR_NOTEBOOK_ID"
+  },
+  "mlx_url": "http://192.168.1.198:18000/v1",
+  "analysis_mode": "simple",
+  "analysis_prompt": "",
+  "interval_minutes": 5,
+  "idle_detection": true,
+  "app_blacklist": ["银行", "密码", "支付宝", "微信支付", "登录"]
+}

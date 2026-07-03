@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name="sergei-mikhailov-tg-channel-reader",
-    version="0.9.4",
+    version="0.10.0",
     description="OpenClaw skill: read Telegram channels via MTProto",
     author="Sergey Mikhailov",
     url="https://github.com/bzSega/sergei-mikhailov-tg-channel-reader",
     license="MIT",
-    py_modules=["reader", "reader_telethon", "tg_reader_unified", "tg_check", "tg_state"],
+    py_modules=["reader", "reader_telethon", "tg_reader_unified", "tg_check", "tg_state", "tg_session_guard"],
     install_requires=[
         # pyrofork is a drop-in replacement for pyrogram with current TL schema.
         # The pyrogram package on PyPI is pinned at 2.0.106 (Aug 2023) and silently

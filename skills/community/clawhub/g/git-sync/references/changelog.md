@@ -1,3 +1,8 @@
+## [2.24.1] - 2026-07-02
+
+### 修复
+- **_paths.py WORK_REPO 路径错误** — `Path.home() / ".workbuddy" / "workbuddy-skills"` 指向不存在目录，导致 git-sync 静默退出。修正为 `Path.home() / "WorkBuddy" / "workbuddy-skills"` 指向实际仓库。同时修复 git-sync.py QUIET_MODE 调试后还原
+
 ## [2.24.0] - 2026-06-29
 
 ### 变更

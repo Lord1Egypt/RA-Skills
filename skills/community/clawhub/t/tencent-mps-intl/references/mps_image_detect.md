@@ -68,49 +68,49 @@ Applicable scenarios: product localization, object recognition and description i
 
 ```bash
 # Simplest usage: prompt-based detection
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "cat"
 
 # Multi-object detection (multiple prompts)
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "cat" \
     --prompt "dog"
 
 # Point-based detection
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --point "320,240"
 
 # Multiple points
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --point "100,200" \
     --point "500,300"
 
 # Increase return count and lower confidence threshold
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/crowd.jpg" \
     --prompt "person" \
     --top-k 10 \
     --confidence-threshold 0.3
 
 # Enable object description
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/product.jpg" \
     --prompt "product" \
     --describe \
     --description-language en
 
 # Enable cutout output
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "car" \
     --return-cutout
 
 # Local file + full parameters
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --local-file /tmp/photo.jpg \
     --prompt "face" \
     --top-k 5 \
@@ -120,13 +120,13 @@ python scripts/mps_image_detect.py \
     --description-language en
 
 # Submit task only without waiting for result
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "cat" \
     --no-wait
 
 # Manually query detection task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

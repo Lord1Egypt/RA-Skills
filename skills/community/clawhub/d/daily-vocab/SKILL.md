@@ -22,6 +22,16 @@ keywords:
   - English learning
   - etymology
   - flashcard
+  - vocabulary quiz
+  - IELTS vocabulary
+  - TOEFL vocabulary
+  - 영어 단어
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
 metadata:
   openclaw:
     runtime:

@@ -1,0 +1,18 @@
+{
+  "name": "tradebee",
+  "version": "26.6.26",
+  "description": "A unified Tradebee Website Builder Open API skill that exposes multiple Tradebee operations through a single action-based entrypoint, including tenant HTML rule retrieval, blog create/read/update/delete, blog group create/read/update/delete, FAQ create/read/update/delete, FAQ group create/read/update/delete, custom page create/read/update/delete, product group create/read/update/delete, product create/read/update/delete, inquiry reads, recent visitor reads, and keyword ranking analytics. Update actions also read the current record and write a local JSON backup file before sending the Tradebee update request.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "keywords": [
+    "tradebee",
+    "products",
+    "blog",
+    "faq",
+    "custompage",
+    "inquiries",
+    "visitors",
+    "keywords"
+  ],
+  "main": "index.js"
+}

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{PROJECT_NAME}"
+version = "0.1.0"
+description = "{PROJECT_DESCRIPTION}"
+requires-python = ">=3.10"
+
+# ⚠ AI构建提示: 根据用户选择的LLM供应商填充实际依赖
+dependencies = [
+    # "openai>=1.0",          # OpenAI SDK
+    # "anthropic>=0.39",      # Anthropic SDK
+    # "httpx>=0.27",          # HTTP 客户端
+    # "pyyaml>=6.0",          # YAML 配置解析
+    # "python-dotenv>=1.0",   # 环境变量加载
+    # "pydantic>=2.0",        # 数据模型验证
+]
+
+[project.optional-dependencies]
+dev = [
+    # "pytest>=8.0",
+    # "pytest-asyncio>=0.24",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

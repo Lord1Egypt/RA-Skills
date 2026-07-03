@@ -1,7 +1,7 @@
 ---
 name: "package-detection-analysis"
 description: "Detects the presence of delivery packages within the target surveillance area; suitable for inventory checks and unattended alerts at community stations, residential entrances, and office building lobbies. | 包裹检测技能，检测目标监控区域内是否出现快递包裹，适用于社区驿站、小区门口、写字楼前台快递盘点和无人值守提醒"
-version: "1.0.4"
+version: "1.0.5"
 license: "MIT-0"
 ---
 

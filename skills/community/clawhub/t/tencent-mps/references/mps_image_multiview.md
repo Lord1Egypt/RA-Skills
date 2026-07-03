@@ -65,51 +65,51 @@
 
 ```bash
 # 最简用法：默认参数（正面视角）
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg"
 
 # 水平旋转 45 度
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 45
 
 # 俯视角度（垂直旋转 30 度）
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --vertical-angle 30
 
 # 组合旋转 + 近景
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle -90 \
     --vertical-angle 15 \
     --zoom close
 
 # 远景视角
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --local-file /tmp/shoe.jpg \
     --horizontal-angle 180 \
     --zoom wide
 
 # COS 路径输入
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --cos-input-key "/input/bag.jpg" \
     --horizontal-angle 60
 
 # 只提交任务，不等待结果
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 45 \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 90 \
     --download-dir /tmp/results/
 
 # 手动查询多视角任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

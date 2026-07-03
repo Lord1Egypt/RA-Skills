@@ -1,0 +1,64 @@
+# himalaya email client configuration
+# ================================================================
+# Install: brew install himalaya
+# Docs: https://github.com/soywod/himalaya
+#
+# This is a TEMPLATE. Copy to ~/.config/himalaya/config.toml
+# and fill in your actual email address and app-specific password.
+#
+# To generate an app-specific password:
+#   iCloud:  appleid.apple.com → Sign In → App-Specific Passwords
+#   Gmail:   myaccount.google.com → Security → App passwords
+#   Other:   Check your provider's docs
+
+[[accounts]]
+# Display name shown in the terminal prompt
+name    = "icloud"
+
+# IMAP settings (for reading email)
+[accounts.icloud.imap]
+# IMAP host — varies by provider
+# iCloud:    imap.mail.me.com
+# Gmail:     imap.gmail.com
+# Outlook:   outlook.office365.com
+host    = "imap.mail.me.com"
+port    = 993
+# Your full email address
+username = "yourname@icloud.com"
+# App-specific password (NOT your regular password)
+password = "xxxx-xxxx-xxxx-xxxx"
+# SSL/TLS — always use this for port 993
+ssl      = true
+
+# SMTP settings (for sending email)
+[accounts.icloud.smtp]
+host     = "smtp.mail.me.com"
+port     = 587
+username = "yourname@icloud.com"
+password = "xxxx-xxxx-xxxx-xxxx"
+# STARTTLS on port 587 (preferred)
+starttls = true
+
+# Local email storage (Maildir format)
+# himalaya downloads emails here so they're available offline
+[accounts.icloud.storage]
+# Path relative to home, or absolute
+path     = "~/.mail/icloud"
+# Format: maildir (standard), mbox, or both
+format   = "maildir"
+
+# Default sender identity
+[accounts.icloud.identity]
+# From name in sent emails
+display_name = "Your Name"
+# Reply-to address (optional)
+# reply_to = "yourname@icloud.com"
+# Email signature (appended to sent emails, optional)
+# signature = "Sent from my terminal"
+
+# ── Editor ────────────────────────────────────────────────────────────────
+# himalaya opens $EDITOR for composing emails
+# Default is whatever $EDITOR is set to, or vim/nano
+#
+# To set a default editor:
+# himalaya config set editor "vim"

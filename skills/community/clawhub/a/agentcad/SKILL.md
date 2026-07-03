@@ -7,7 +7,7 @@ description: 'CAD tool for AI agents. Use when the user asks you to design, mode
   '
 compatibility: Requires Python 3.10-3.12 and agentcad installed (pip install agentcad).
 allowed-tools: Bash(agentcad:*)
-version: 0.2.4
+version: 0.3.1
 metadata:
   openclaw:
     requires:
@@ -70,7 +70,28 @@ agentcad --help   # Read this — it is your complete operational briefing
    agentcad inspect v1_label/output.step
    ```
 
-6. **Iterate.** Fix the script, run with a new `--output` label. Use
+6. **Measure feature sizes.** For dimensions beyond top-level metrics:
+   ```bash
+   agentcad measure v1_label/output.step
+   ```
+   Use this for hole diameters, cylindrical boss diameters, edge lengths,
+   face areas, and full per-feature measurements with `--features`.
+
+7. **Check explicit feature requirements.** If the prompt names measurable
+   holes, bores, or cylindrical bosses, write them into `spec.json` before
+   final handoff:
+   ```json
+   {"features":[{"name":"bolt_holes","type":"cylinder","diameter_mm":6,"count":4}]}
+   ```
+   Then run:
+   ```bash
+   agentcad check-spec v1_label/output.step spec.json
+   ```
+   Revise the CAD if `passed` is false. `status: success` only means the
+   comparison ran; `passed` is the actual spec-check result. If you include
+   `axis`, copy it from `agentcad measure`'s `cylindrical_features[].axis`.
+
+8. **Iterate.** Fix the script, run with a new `--output` label. Use
    `agentcad diff 1 2` to compare versions.
 
 ## Script writing rules
@@ -80,7 +101,14 @@ agentcad --help   # Read this — it is your complete operational briefing
   build123d primitives like `Box`, `Cylinder`, `Sphere`, `Plane`, plus
   `show_object`, `load_step`, `pick_face`, `pick_edge`, `fillet_edges`,
   `chamfer_edges`, `shell_faces`, `cut_pocket`, `boss`, `split_by_plane`,
-  and `replace_face`.
+  `replace_face`, `annular_boss`, and `raise_annulus`.
+- For imported STEP annular edits, use the non-fuse workflow:
+  ```python
+  raw = load_step_shape("v1_vendor/output.step")
+  result = raise_annulus(raw, center=(0, 0), inner_diameter=40,
+                         outer_diameter=80, height=7, z=5)
+  show_object(Compound(result))
+  ```
 - CadQuery remains supported. Use `import cadquery as cq`, initialize with
   `agentcad init --runtime cadquery`, or pass `--runtime cadquery`.
 - CadQuery helper paths operate on `TopoDS_Shape`. Bridge with `.val().wrapped`:
@@ -109,10 +137,14 @@ agentcad --help   # Read this — it is your complete operational briefing
 | `agentcad run ... --params k=v,k=v` | Override script parameters |
 | `agentcad render STEP --view SPEC` | Post-hoc renders with camera control |
 | `agentcad export STEP --format stl,glb` | Post-hoc mesh export |
+| `agentcad measure STEP` | Dimensional report (overall metrics + feature sizes) |
+| `agentcad check-spec STEP spec.json` | Pass/fail checklist against intended cylindrical features |
 | `agentcad inspect STEP` | Topology report (validity, free edges) |
+| `agentcad parts list REF` | List parts captured for a version |
+| `agentcad parts show REF ID` | Show one versioned part by stable id |
 | `agentcad diff REF1 REF2` | Compare versions |
 | `agentcad context` | Project state |
-| `agentcad docs [SECTION]` | Deep-dive docs (16 sections) |
+| `agentcad docs [SECTION]` | Deep-dive docs (17 sections) |
 | `agentcad view FILE` | **Run this after every successful build** — opens GLB/STEP in the user's browser |
 
 ## Debugging playbook
@@ -121,9 +153,12 @@ agentcad --help   # Read this — it is your complete operational briefing
 2. **Read `preview.png`** — the 4-view composite. Fastest way to spot obvious problems.
 3. **Read `diff.side_by_side`** if iterating — confirms your change did what you intended.
 4. **Negative volume?** Wire winding is backwards (CW instead of CCW).
-5. **is_valid: false?** Run `agentcad inspect` — check `free_edge_count` and shell status.
-6. **Hollow shape?** `free_edge_count > 0` means open shell.
-7. **Complex profiles (gears, splines)?** Use subtractive construction — cut from
+5. **Need a hole diameter or edge length?** Run `agentcad measure output.step`.
+6. **Need to verify explicit hole/bore counts?** Write `spec.json`, then run
+   `agentcad check-spec output.step spec.json`.
+7. **is_valid: false?** Run `agentcad inspect` — check `free_edge_count` and shell status.
+8. **Hollow shape?** `free_edge_count > 0` means open shell.
+9. **Complex profiles (gears, splines)?** Use subtractive construction — cut from
    a blank cylinder/box instead of building up. See `agentcad docs patterns`.
 
 ## Patterns
@@ -134,5 +169,6 @@ agentcad --help   # Read this — it is your complete operational briefing
   `.union()` for boolean fuse into one solid.
 - **Parametric scripts:** Top-level variable assignments become overridable via
   `--params`. Use this for iteration.
-- **Named parts:** `show_object(shape, name="wheel", options={"color": "red"})`
-  for per-part metrics and colored GLB export.
+- **Named parts:** `show_object(shape, id="wheel_left", name="Left wheel",
+  options={"color": "red"})` for stable part handles, per-part metrics, and
+  colored GLB export.

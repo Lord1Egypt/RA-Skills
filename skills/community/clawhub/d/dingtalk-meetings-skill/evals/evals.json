@@ -1,0 +1,65 @@
+{
+  "skill_name": "dingtalk-meetings-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我创建一个明天下午2点到3点的项目评审会议，邀请张三和李四参加。",
+      "expected_output": "解析用户意图为创建日程，计算明天 14:00-15:00 的 ISO-8601 时间。如需查找张三李四的 userId，先调用通讯录 MCP 的 search_user_by_key_word。展示确认摘要（标题、时间、参与人），用户确认后调用 create_calendar_event MCP 工具，返回日程创建结果。",
+      "files": [],
+      "assertions": [
+        "调用了 create_calendar_event MCP 工具",
+        "时间格式为 ISO-8601 且包含时区偏移（+08:00）",
+        "执行前展示了确认摘要并等待用户确认",
+        "如果不知道参会人 userId，通过通讯录 MCP 查找而非猜测"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "查看我今天有哪些会议。",
+      "expected_output": "计算今天起止时间的毫秒级时间戳，调用 list_calendar_events 并传入时间范围，返回当天的日程列表（标题、时间、地点等）。",
+      "files": [],
+      "assertions": [
+        "调用了 list_calendar_events MCP 工具",
+        "传入了正确的毫秒级时间戳时间范围",
+        "输出展示了日程列表或说明当天没有日程"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我把下午的产品会议取消。",
+      "expected_output": "先调用 list_calendar_events 找到下午的产品日程获取 eventId，展示确认摘要（明确说明组织者删除将通知所有参与者），用户确认后调用 delete_calendar_event 删除日程，返回删除结果。",
+      "files": [],
+      "assertions": [
+        "先调用了 list_calendar_events 定位目标日程",
+        "确认摘要中明确说明删除的影响（通知参与者）",
+        "用户确认后才调用 delete_calendar_event",
+        "没有跳过确认步骤直接删除"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我配置钉钉日历 MCP，我是第一次用。",
+      "expected_output": "输出初始化引导步骤：提供 aihub.dingtalk.com 开通链接（mcpId=1050）、说明需要登录并开通服务、说明复制 StreamableHttp URL、说明后续写入 MCP 配置、可选配置通讯录 MCP。不调用任何日历 MCP 工具。",
+      "files": [],
+      "assertions": [
+        "输出包含 aihub.dingtalk.com 开通链接且 mcpId=1050",
+        "说明需要复制 StreamableHttp URL",
+        "提到需要重启 Agent",
+        "没有尝试直接调用 create_calendar_event 等日历操作工具",
+        "可选提及通讯录 MCP（mcpId=2400）的配置"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "帮我看看明天下午2点到4点有没有空闲会议室，有的话预定一个，然后创建一个需求评审会议。",
+      "expected_output": "先用毫秒级时间戳调用 query_available_meeting_room 查询明天 14:00-16:00 的空闲会议室，展示可用选项给用户选择。用户选择后，展示确认摘要（会议室+会议信息），确认后先调用 create_calendar_event 创建日程，再调用 add_meeting_room 预定会议室。",
+      "files": [],
+      "assertions": [
+        "调用了 query_available_meeting_room 查询空闲会议室",
+        "使用了毫秒级时间戳而非 ISO-8601",
+        "展示了可用会议室列表供用户选择",
+        "创建日程和预定会议室都经过了确认步骤"
+      ]
+    }
+  ]
+}

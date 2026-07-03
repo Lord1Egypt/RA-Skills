@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Google Ads 账户诊断报告</title>
     <style>
       * {
@@ -1909,8 +1909,44 @@
       }
 
       @media (max-width: 768px) {
+        html {
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+
+        body {
+          overflow-x: clip;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        #report-root {
+          padding: max(8px, env(safe-area-inset-left, 0px))
+            max(8px, env(safe-area-inset-right, 0px))
+            max(28px, env(safe-area-inset-bottom, 0px));
+          max-width: 100%;
+        }
+
         .report-header {
-          padding: 28px 24px;
+          padding: 18px 16px;
+          border-radius: 14px;
+        }
+
+        .report-title {
+          font-size: clamp(1.125rem, 5.2vw, 1.375rem);
+          line-height: 1.35;
+          word-break: break-word;
+        }
+
+        .report-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 13px;
+        }
+
+        .report-submeta {
+          font-size: 13px;
+          line-height: 1.55;
         }
 
         .header-top {
@@ -1918,18 +1954,57 @@
           align-items: stretch;
         }
 
+        .diagnosis-navigation {
+          top: env(safe-area-inset-top, 0px);
+          margin-top: 8px;
+          margin-inline: -2px;
+          padding: 12px 12px 10px;
+          border-radius: 14px;
+        }
+
+        .diagnosis-navigation .nav-title {
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+
+        .diagnosis-navigation .nav-tags {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x mandatory;
+          scroll-padding-inline: 8px;
+          gap: 8px;
+          padding-bottom: 4px;
+          margin-inline: -4px;
+          padding-inline: 4px;
+        }
+
+        .diagnosis-navigation .nav-tag {
+          flex: 0 0 auto;
+          scroll-snap-align: start;
+          min-height: 44px;
+          padding: 10px 14px;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+
         .report-main {
-          margin-top: 24px;
-          gap: 16px;
+          margin-top: 16px;
+          gap: 14px;
         }
 
         .section-header {
-          padding: 15px 15px 10px;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 14px 16px;
+          scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 92px);
         }
 
         .section-title {
-          font-size: 22px;
+          font-size: clamp(1.05rem, 4.8vw, 1.25rem);
           gap: 10px;
+          flex-wrap: wrap;
         }
 
         .section-title::after {
@@ -1937,7 +2012,7 @@
         }
 
         .section-subtitle {
-          font-size: 16px;
+          font-size: 15px;
           gap: 10px;
         }
 
@@ -1949,6 +2024,41 @@
           width: 28px;
           height: 28px;
           font-size: 14px;
+        }
+
+        .content-wrapper[data-section-id] {
+          padding: 12px;
+          margin-bottom: 18px;
+        }
+
+        .table-block {
+          position: relative;
+          margin-inline: -4px;
+          border-radius: 10px;
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .kpi-section .table-block {
+          overflow-x: visible;
+          margin-inline: 0;
+        }
+
+        .table-block:not(.kpi-section .table-block) .data-table {
+          min-width: 520px;
+        }
+
+        .chart-card canvas,
+        .chart-container canvas {
+          max-width: 100%;
+        }
+
+        .insights-container,
+        .targeting-layout,
+        .ad-creative-section .rules-content,
+        .gold-rules-info .rules-grid {
+          grid-template-columns: 1fr !important;
         }
 
         .content-wrapper[data-section-id] .info-table .table-row {
@@ -2002,6 +2112,7 @@
           font-size: 13px;
         }
       }
+
     </style>
     <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/chart.umd.min.js"></script>
   </head>
@@ -3688,24 +3799,39 @@
           const list = Array.isArray(items) ? items.slice() : [];
           const placeholder =
             '<tr><td colspan="5" class="empty-row">暂无出价策略问题，所有系列符合推荐规则</td></tr>';
+          const formatBiddingDuration = (item) => {
+            const raw = item?.duration;
+            if (typeof raw === "string" && raw.trim()) return raw.trim();
+            const days = Number(raw);
+            if (Number.isFinite(days) && days > 0) {
+              return `${formatNumber(days, 0)} 天`;
+            }
+            return "—";
+          };
+          const resolveStrategyCorrect = (item) => {
+            if (typeof item?.isCorrect === "boolean") return item.isCorrect;
+            const status = String(item?.status ?? "");
+            if (/匹配|正常|达标/.test(status)) return true;
+            if (/优化|需/.test(status)) return false;
+            return false;
+          };
           const rowBuilder = (item) => {
             const campaign = escapeHtml(
               String(item?.campaignName || "未命名系列"),
             );
-            const duration = escapeHtml(
-              `${formatNumber(item?.duration, 0)} 天`,
-            );
+            const duration = escapeHtml(formatBiddingDuration(item));
             const currentStrategy = buildStrategyTag(
-              item?.biddingStrategyType,
+              item?.biddingStrategyType ?? item?.currentStrategy,
               false,
             );
             const recommended = buildRecommendedStrategyCell(
               item?.recommendedStrategy,
               item?.recommendationReason,
             );
-            const status = Boolean(item?.isCorrect)
+            const isCorrect = resolveStrategyCorrect(item);
+            const status = isCorrect
               ? '<span class="status-tag status-qualified">策略匹配</span>'
-              : `<span class="status-tag status-unqualified" style="cursor: help;" title="${escapeHtml(item?.recommendationReason || "")}">
+              : `<span class="status-tag status-unqualified" style="cursor: help;" title="${escapeHtml(item?.recommendationReason || item?.status || "")}">
                   需优化
                   <span style="margin-left:4px;cursor:pointer;color:#64748b;">?</span>
                 </span>
@@ -3893,6 +4019,18 @@
           };
         };
 
+        const resolveFeatureEnabled = (item) => {
+          const raw = item?.accountStatus;
+          if (typeof raw === "boolean") return raw;
+          const text = String(raw ?? "")
+            .trim()
+            .toLowerCase();
+          if (!text) return false;
+          if (/未启用|disabled|false|否/.test(text)) return false;
+          if (/已启用|enabled|true|是/.test(text)) return true;
+          return Boolean(raw);
+        };
+
         const buildNewFeaturesRows = (items) => {
           const list = (Array.isArray(items) ? items : []).filter(
             (item) => String(item?.strategy ?? "") !== "AiMax",
@@ -3901,16 +4039,22 @@
             '<tr><td colspan="3" class="empty-row">暂无新产品应用数据</td></tr>';
           const rowBuilder = (item) => {
             const name = escapeHtml(
-              String(item?.strategyName || item?.strategy || "未命名功能"),
+              String(
+                item?.strategyName ||
+                  item?.feature ||
+                  item?.strategy ||
+                  "未命名功能",
+              ),
             );
-            const status = Boolean(item?.accountStatus)
+            const enabled = resolveFeatureEnabled(item);
+            const status = enabled
               ? '<span class="feature-status is-enabled"><span class="feature-icon">✅</span>已启用</span>'
               : '<span class="feature-status is-disabled"><span class="feature-icon">❌</span>未启用</span>';
             const recommendation = String(
               item?.optimizerRecommendation || "",
             ).trim();
             const recommendationHtml = recommendation
-              ? `<span class="recommendation-text${item?.accountStatus ? " is-excellent" : ""}">${escapeHtml(
+              ? `<span class="recommendation-text${enabled ? " is-excellent" : ""}">${escapeHtml(
                   recommendation,
                 )}</span>`
               : '<span class="recommendation-text">暂无建议</span>';
@@ -4185,6 +4329,75 @@
             const labels = items.map((item, index) =>
               formatDateLabel(item?.date, index),
             );
+            const totalConversions = items.reduce(
+              (sum, item) => sum + (Number(item?.conversions) || 0),
+              0,
+            );
+            // 零转化账户：CPA/转化折线全为 0 视觉上像空图，改展示消耗 + 点击按日趋势
+            const useCostClickTrend = totalConversions === 0;
+
+            if (useCostClickTrend) {
+              const costData = items.map((item) => Number(item?.cost) || 0);
+              const clicksData = items.map((item) => Number(item?.clicks) || 0);
+              return {
+                type: "line",
+                data: {
+                  labels,
+                  datasets: [
+                    {
+                      label: "消耗",
+                      data: costData,
+                      borderColor: "#3b82f6",
+                      backgroundColor: "rgba(59, 130, 246, 0.12)",
+                      tension: 0.3,
+                      yAxisID: "y1",
+                      pointRadius: 3,
+                    },
+                    {
+                      label: "点击次数",
+                      data: clicksData,
+                      borderColor: "#10b981",
+                      backgroundColor: "rgba(16, 185, 129, 0.12)",
+                      tension: 0.3,
+                      yAxisID: "y2",
+                      pointRadius: 3,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  interaction: { mode: "index", intersect: false },
+                  stacked: false,
+                  plugins: {
+                    legend: { labels: { font: { size: 12 } } },
+                  },
+                  scales: {
+                    y1: {
+                      type: "linear",
+                      position: "left",
+                      beginAtZero: true,
+                      ticks: { font: { size: 11 } },
+                      title: { display: true, text: "消耗", font: { size: 12 } },
+                    },
+                    y2: {
+                      type: "linear",
+                      position: "right",
+                      beginAtZero: true,
+                      ticks: { font: { size: 11 } },
+                      grid: { drawOnChartArea: false },
+                      title: {
+                        display: true,
+                        text: "点击次数",
+                        font: { size: 12 },
+                      },
+                    },
+                    x: { ticks: { font: { size: 11 } } },
+                  },
+                },
+              };
+            }
+
             const cpaData = items.map((item) => Number(item?.cpa) || 0);
             const conversionsData = items.map((item) =>
               Number(item?.conversions ?? 0),
@@ -4288,6 +4501,40 @@
               },
             },
           };
+        };
+
+        const buildConversionCostDailyTableHtml = (items) => {
+          const rows = Array.isArray(items) ? items : [];
+          if (!rows.length) {
+            return '<tr><td colspan="5" class="empty-row">暂无按日趋势数据</td></tr>';
+          }
+          return rows
+            .map((item) => {
+              const rawDate = item?.date;
+              let dateLabel = rawDate;
+              const parsed = new Date(rawDate);
+              if (!Number.isNaN(parsed.getTime())) {
+                dateLabel = parsed.toISOString().slice(0, 10);
+              }
+              const cost = Number(item?.cost);
+              const clicks = Number(item?.clicks);
+              const conversions = Number(item?.conversions ?? 0);
+              const cpa = Number(item?.cpa);
+              const cpaDisplay =
+                conversions > 0 && Number.isFinite(cpa)
+                  ? formatNumber(cpa, 2)
+                  : "—";
+              return `
+                <tr>
+                  <td data-label="日期">${escapeHtml(String(dateLabel || "—"))}</td>
+                  <td data-label="消耗">${escapeHtml(formatNumber(cost, 2))}</td>
+                  <td data-label="点击">${escapeHtml(formatNumber(clicks, 0))}</td>
+                  <td data-label="转化">${escapeHtml(formatNumber(conversions, 0))}</td>
+                  <td data-label="CPA">${escapeHtml(cpaDisplay)}</td>
+                </tr>
+              `;
+            })
+            .join("");
         };
 
         const createAccountInfoSection = () => {
@@ -4772,17 +5019,47 @@
           const conversionTrendSuggestionsList = toArray(
             conversionCost.suggestions,
           ).map((item) => `<li class="insight-item">${escapeHtml(item)}</li>`);
+          const conversionCostDailyItems = Array.isArray(conversionCost.items)
+            ? conversionCost.items
+            : [];
+          const conversionDailyTableHtml = buildConversionCostDailyTableHtml(
+            conversionCostDailyItems,
+          );
           const conversionTrendContent =
             (chartConfig ||
+              conversionCostDailyItems.length ||
               conversionTrendAnalysisList.length ||
               conversionTrendSuggestionsList.length) &&
             `
               <div class="analysis-dimension conversion-trend-section">
                 <h4 class="dimension-title">转化成本与转化趋势优化</h4>
                 <div class="dimension-content">
+                  <div class="table-block" data-table-key="conversion-cost-daily">
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th>日期</th>
+                          <th>消耗</th>
+                          <th>点击</th>
+                          <th>转化</th>
+                          <th>CPA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${conversionDailyTableHtml}
+                      </tbody>
+                    </table>
+                  </div>
                   ${
                     chartConfig
                       ? `
+                          <p class="conversion-trend-chart-note" style="margin:12px 0 8px;font-size:13px;color:#64748b;">${
+                            conversionCostDailyItems.every(
+                              (item) => !(Number(item?.conversions) > 0),
+                            ) && conversionCostDailyItems.length
+                              ? "本期无转化记录，下图展示消耗与点击按日趋势。"
+                              : "下图展示 CPA 与转化次数按日趋势。"
+                          }</p>
                           <div class="chart-card conversion-trend-chart">
                             <div style="height: 280px;">
                               <canvas id="${chartId}" height="260"></canvas>

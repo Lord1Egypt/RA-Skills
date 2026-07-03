@@ -35,51 +35,51 @@ COS 存储约定：
 
 用法：
   # 最简用法：ASR 识别字幕（源语言字幕，自动识别语言）
-  python mps_subtitle.py --url https://example.com/video.mp4
+  python3 mps_subtitle.py --url https://example.com/video.mp4
 
   # 指定视频源语言为中文
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh
 
   # ASR 识别 + 翻译为英文（双语字幕）
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
   # ASR 识别 + 翻译为英文，仅输出翻译语言字幕
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
 
   # ASR 识别 + 同时翻译为英文和日文（多语言翻译）
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
   # OCR 识别字幕（适合硬字幕、花字等场景）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
 
   # OCR 识别 + 翻译为英文
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
   # OCR 识别 + 自定义识别区域（底部30%区域）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
       --ocr-area 0,0.7,1,1
 
   # 纯字幕翻译（翻译已有字幕文件）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
 
   # 输出 SRT 格式字幕
-  python mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
 
   # 使用预设模板
-  python mps_subtitle.py --url https://example.com/video.mp4 --template 110167
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --template 110167
 
   # COS 输入（推荐，使用 --cos-input-key）
-  python mps_subtitle.py --cos-input-key /input/video/test.mp4
+  python3 mps_subtitle.py --cos-input-key /input/video/test.mp4
 
   # 自定义输出路径
-  python mps_subtitle.py --url https://example.com/video.mp4 \\
+  python3 mps_subtitle.py --url https://example.com/video.mp4 \\
       --output-object-path /output/{inputName}_subtitle.{format}
 
   # ASR 热词库（提升专业术语识别准确率）
-  python mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_subtitle.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -116,7 +116,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -657,7 +657,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -674,50 +674,50 @@ def main():
         epilog="""
 示例：
   # ASR 识别字幕（最简用法，默认中文 + VTT 格式）
-  python mps_subtitle.py --url https://example.com/video.mp4
+  python3 mps_subtitle.py --url https://example.com/video.mp4
 
   # 指定源语言为英语
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang en
 
   # ASR 识别 + 翻译为英文（默认输出双语字幕）
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
   # ASR 识别 + 翻译为英文，仅输出翻译字幕
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
 
   # ASR 识别 + 多语言翻译（英文和日文）
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
   # OCR 识别字幕（硬字幕场景）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
 
   # OCR + 自定义区域（只识别画面底部30%区域的字幕）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
       --ocr-area 0,0.7,1,1
 
   # OCR + 翻译为英文
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
   # 纯字幕翻译（翻译已有字幕文件，不做识别）
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
 
   # 输出 SRT 格式
-  python mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
 
   # 使用预设模板（字幕模板 ID 请在控制台查看）
-  python mps_subtitle.py --url https://example.com/video.mp4 --template 110167
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --template 110167
 
   # ASR 热词库（提高专业术语识别准确率）
-  python mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
 
   # COS路径输入（推荐，本地上传后使用）
-  python mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
+  python3 mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_subtitle.py --cos-input-key /input/video/test.mp4
+  python3 mps_subtitle.py --cos-input-key /input/video/test.mp4
 
   # Dry Run（仅打印请求参数）
-  python mps_subtitle.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --dry-run
 
 处理类型说明（--process-type）：
   asr         ASR 语音识别字幕（默认）— 通过语音识别提取字幕
@@ -846,6 +846,17 @@ OCR 识别源语言（--src-lang）：
                              help="任务完成后自动下载结果到指定目录（默认：不下载；指定路径后自动下载）")
 
     args = parser.parse_args()
+
+    # 自动加载环境变量（入口处立即执行，确保后续所有函数都能拿到变量）
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  自动加载 env 失败：{e}", file=sys.stderr)
+
     # --url 本地路径自动转换为本地上传模式
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -940,8 +951,11 @@ OCR 识别源语言（--src-lang）：
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     if args.template and not has_custom_params(args):

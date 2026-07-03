@@ -9,7 +9,7 @@
 |-----------|-------------|
 | `--prompt` | Video description text (max 2000 characters, required when no image is provided) |
 | `--model` | Model: `Hunyuan` (default) / `Hailuo` / `Kling` / `Vidu` / `OS` / `GV` / `Mingmou` / `PixVerse` |
-| `--model-version` | Model version. Kling: `1.6`/`2.0`/`2.1`/`2.5`/`O1`/`2.6`/`3.0`/`3.0-Omni`; Hailuo: `02`/`2.3`/`2.3-fast`; Vidu: `q2`/`q2-pro`/`q2-turbo`/`q3`/`q3-pro`/`q3-turbo`/`q3-mix`; GV: `3.1`/`3.1-fast`; PixVerse: `v5.6`/`v6`/`c1` |
+| `--model-version` | Model version. Kling: `1.6`/`2.0`/`2.1`/`2.5`/`O1`/`2.6`/`3.0`/`3.0-Omni`; Hailuo: `02`/`2.3`/`2.3-fast`; Vidu: `q2`/`q2-pro`/`q2-turbo`/`q3`/`q3-pro`/`q3-turbo`/`q3-mix`; GV: `3.1`/`3.1-fast`; OS: `2.0`; PixVerse: `v5.6`/`v6`/`c1` |
 | `--scene-type` | Scene type (strict model mapping): `motion_control` (Kling motion control) / `land2port` (Mingmou landscape-to-portrait) / `template_effect` (Vidu effect template) / `3d_scene` (Hunyuan 3D scene, automatically uses ModelVersion=3d_2.0) |
 | `--multi-shot` | **Kling exclusive**. Enable multi-shot storyboard mode |
 | `--multi-prompts-json` | **Kling exclusive**. Multi-shot configuration (JSON array), each shot contains `index`, `prompt`, `duration`. Limits: 1–6 shots, max 512 characters per prompt, total duration of all shots must equal the overall duration |
@@ -31,7 +31,7 @@
 | `--ref-image-cos-region` | COS Region for multi-image reference (can be specified multiple times) |
 | `--ref-image-cos-key` | COS Key for multi-image reference (can be specified multiple times) |
 | `--ref-image-local` | **Local multi-image reference path** (can be specified multiple times), auto-uploaded to COS then passed as ImageUrl. Requires `TENCENTCLOUD_COS_BUCKET` or `--cos-bucket-name` |
-| `--duration` | Video duration (seconds). Supported ranges per model:<br>- Hunyuan: default 5s<br>- Hailuo: 6s (default) / 10s<br>- Kling: 5s / 10s, default 5s<br>- Vidu: 1~10s, default 4s<br>- OS: 5s / 10s, default 5s<br>- GV: 5s / 10s, default 5s<br>- **PixVerse: any integer from 1~15s, default 5s** |
+| `--duration` | Video duration (seconds). Supported ranges per model:<br>- Hunyuan: default 5s<br>- Hailuo: 6s (default) / 10s<br>- Kling: 5s / 10s, default 5s<br>- Vidu: 1~10s, default 4s<br>- OS: 4s / 8s / 12s, default 8s<br>- GV: 5s / 10s, default 5s<br>- **PixVerse: any integer from 1~15s, default 5s** |
 | `--resolution` | Resolution: `720P` / `1080P` / `2K` / `4K` |
 | `--aspect-ratio` | Aspect ratio (e.g., `16:9`, `9:16`, `1:1`, `4:3`, `3:4`). **PixVerse supports 8**: `16:9` / `4:3` / `1:1` / `3:4` / `9:16` / `2:3` / `3:2` / `21:9` |
 | `--quality` | Video quality (**PixVerse only**): `360p` / `540p` / `720p` / `1080p`. Passed via `ExtraParameters.Quality`; MPS backend maps it to PixVerse's native quality field |
@@ -82,7 +82,7 @@
 
 ```bash
 # COS image-to-video (script auto-converts COS Key to presigned URL before passing to API)
-python scripts/mps_aigc_video.py --prompt "Flowers swaying in the wind" \
+python3 scripts/mps_aigc_video.py --prompt "Flowers swaying in the wind" \
     --image-cos-bucket mps-test-1234567 \
     --image-cos-region ap-guangzhou \
     --image-cos-key input/scene.jpg
@@ -92,12 +92,12 @@ python scripts/mps_aigc_video.py --prompt "Flowers swaying in the wind" \
 
 ### Single-Shot Mode (System Auto-Split)
 ```bash
-python scripts/mps_aigc_video.py --prompt "Travel diary, capturing beautiful moments" --model Kling --multi-shot
+python3 scripts/mps_aigc_video.py --prompt "Travel diary, capturing beautiful moments" --model Kling --multi-shot
 ```
 
 ### Multi-Shot Mode (Custom Per Shot)
 ```bash
-python scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
+python3 scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
     --multi-prompts-json '[
       {"index": 1, "prompt": "At sunrise, viewing the city skyline from the hotel window", "duration": "3"},
       {"index": 2, "prompt": "Enjoying breakfast at a café, pedestrians on the street outside", "duration": "4"},
@@ -111,61 +111,67 @@ python scripts/mps_aigc_video.py --model Kling --multi-shot --duration 12 \
 
 ```bash
 # Text-to-video (Hunyuan default)
-python scripts/mps_aigc_video.py --prompt "A cat stretching lazily in the sunlight"
+python3 scripts/mps_aigc_video.py --prompt "A cat stretching lazily in the sunlight"
 
 # Kling 2.5 + 10s + 1080P + 16:9 + no watermark + BGM
-python scripts/mps_aigc_video.py --prompt "Cyberpunk city" --model Kling --model-version 2.5 \
+python3 scripts/mps_aigc_video.py --prompt "Cyberpunk city" --model Kling --model-version 2.5 \
     --duration 10 --resolution 1080P --aspect-ratio 16:9 --no-logo --enable-bgm
 
 # Image-to-video (first-frame image + description)
-python scripts/mps_aigc_video.py --prompt "Bring the scene to life" \
+python3 scripts/mps_aigc_video.py --prompt "Bring the scene to life" \
     --image-url https://example.com/photo.jpg
 
 # First & last frame video generation (GV model)
-python scripts/mps_aigc_video.py --prompt "Transition animation" --model GV \
+python3 scripts/mps_aigc_video.py --prompt "Transition animation" --model GV \
     --image-url https://example.com/start.jpg --last-image-url https://example.com/end.jpg
 
 # GV multi-image reference video generation (supports asset/style reference types)
-python scripts/mps_aigc_video.py --prompt "Generate video with blended styles" --model GV \
+python3 scripts/mps_aigc_video.py --prompt "Generate video with blended styles" --model GV \
     --ref-image-url https://example.com/img1.jpg --ref-image-type asset \
     --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
-# Kling reference video + keep original audio
-python scripts/mps_aigc_video.py --prompt "Stylize the video" --model Kling --model-version O1 \
+# OS text-to-video (default 8s, supports 4/8/12s)
+python3 scripts/mps_aigc_video.py --prompt "Sunset scene at the beach" --model OS --model-version 2.0
+
+# OS long video 12s + audio generation enabled
+python3 scripts/mps_aigc_video.py --prompt "Bustling night market crowds" --model OS --duration 12 --enable-audio true
+
+# Kling reference video + keep original sound
+python3 scripts/mps_aigc_video.py --prompt "Stylize the video" --model Kling --model-version O1 \
     --ref-video-url https://example.com/video.mp4 --ref-video-type base --keep-original-sound yes
 
 # Mingmou landscape to portrait (land2port scene does NOT require an input video file — just provide a prompt description)
-python scripts/mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
+python3 scripts/mps_aigc_video.py --prompt "Landscape to portrait conversion" --model Mingmou --scene-type land2port
 
 # Kling reference video (COS path, auto-generates pre-signed URL)
-python scripts/mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \
+python3 scripts/mps_aigc_video.py --prompt "Stylization" --model Kling --model-version O1 \
     --ref-video-cos-bucket mybucket-125xxx --ref-video-cos-region ap-guangzhou --ref-video-cos-key /input/video.mp4 \
     --ref-video-type base --keep-original-sound yes
 
 # Vidu off-peak mode
-python scripts/mps_aigc_video.py --prompt "Natural scenery" --model Vidu --off-peak
+python3 scripts/mps_aigc_video.py --prompt "Natural scenery" --model Vidu --off-peak
 
 # === PixVerse model examples ===
 # PixVerse v6 text-to-video (cinematic 21:9, 10 seconds, 1080p quality)
-python scripts/mps_aigc_video.py --prompt "Cinematic city skyline shot" --model PixVerse --model-version v6 \
+python3 scripts/mps_aigc_video.py --prompt "Cinematic city skyline shot" --model PixVerse --model-version v6 \
     --duration 10 --aspect-ratio 21:9 --quality 1080p
 
 # PixVerse v6 text-to-video + auto-generated sound effects (rainy night ambience)
-python scripts/mps_aigc_video.py --prompt "Rainy neon street, solitary walker" --model PixVerse --model-version v6 \
+python3 scripts/mps_aigc_video.py --prompt "Rainy neon street, solitary walker" --model PixVerse --model-version v6 \
     --duration 15 --aspect-ratio 16:9 --quality 720p --generate-audio true
 
 # PixVerse c1 image-to-video (short-form 9:16, 5 seconds, 540p quality)
-python scripts/mps_aigc_video.py --prompt "Character walking slowly, hair blowing in the wind" \
+python3 scripts/mps_aigc_video.py --prompt "Character walking slowly, hair blowing in the wind" \
     --model PixVerse --model-version c1 \
     --image-url https://example.com/first-frame.jpg --duration 5 --aspect-ratio 9:16 --quality 540p
 
 # PixVerse c1 text-to-video (square 1:1, 3 seconds, 720p quality)
-python scripts/mps_aigc_video.py --prompt "Close-up of coffee latte art" --model PixVerse --model-version c1 \
+python3 scripts/mps_aigc_video.py --prompt "Close-up of coffee latte art" --model PixVerse --model-version c1 \
     --duration 3 --aspect-ratio 1:1 --quality 720p
 
 # Submit task only without waiting
-python scripts/mps_aigc_video.py --prompt "Promotional video" --no-wait
+python3 scripts/mps_aigc_video.py --prompt "Promotional video" --no-wait
 
 # Query task result
-python scripts/mps_aigc_video.py --task-id abc123def456-aigc-video-20260328112000
+python3 scripts/mps_aigc_video.py --task-id abc123def456-aigc-video-20260328112000
 ```

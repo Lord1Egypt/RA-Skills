@@ -47,72 +47,72 @@ COS 存储约定：
 
 用法：
   # 最简用法：使用 URL 输入 + 默认预设模板 101（自动擦除中下部字幕）
-  python mps_erase.py --url https://example.com/video.mp4
+  python3 mps_erase.py --url https://example.com/video.mp4
 
   # COS路径输入（推荐，本地上传后使用）
-  python mps_erase.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
+  python3 mps_erase.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_erase.py --cos-input-key /input/video/test.mp4
+  python3 mps_erase.py --cos-input-key /input/video/test.mp4
 
   # 去字幕并提取OCR字幕（模板 102）
-  python mps_erase.py --url https://example.com/video.mp4 --template 102
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 102
 
   # 去水印-高级版（模板 201）
-  python mps_erase.py --url https://example.com/video.mp4 --template 201
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 201
 
   # 人脸模糊（模板 301）
-  python mps_erase.py --url https://example.com/video.mp4 --template 301
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 301
 
   # 人脸和车牌模糊（模板 302）
-  python mps_erase.py --url https://example.com/video.mp4 --template 302
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 302
 
   # 强力擦除模式（区域模型，擦除面积更大，适合花体/阴影/动效字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --model area
+  python3 mps_erase.py --url https://example.com/video.mp4 --model area
 
   # 字幕在视频上半屏（使用位置预设）
-  python mps_erase.py --url https://example.com/video.mp4 --position top-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position top-half
 
   # 字幕在视频下半屏（使用位置预设）
-  python mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
   # 字幕在视频左侧（竖排字幕场景）
-  python mps_erase.py --url https://example.com/video.mp4 --position left
+  python3 mps_erase.py --url https://example.com/video.mp4 --position left
 
   # 字幕在视频右侧（竖排字幕场景）
-  python mps_erase.py --url https://example.com/video.mp4 --position right
+  python3 mps_erase.py --url https://example.com/video.mp4 --position right
 
   # 字幕在视频顶部（自定义自动擦除区域：画面顶部0~25%的区域）
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
   # 多区域擦除（顶部 + 底部都有字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
   # 指定区域擦除（字幕位置固定，指定时间段+区域直接擦除）
-  python mps_erase.py --url https://example.com/video.mp4 \\
+  python3 mps_erase.py --url https://example.com/video.mp4 \\
       --method custom --custom-area 0,0,0,0.8,0.99,0.95
 
   # 指定时间段+区域擦除（前10秒内擦除底部区域）
-  python mps_erase.py --url https://example.com/video.mp4 \\
+  python3 mps_erase.py --url https://example.com/video.mp4 \\
       --method custom --custom-area 0,10000,0,0.8,0.99,0.95
 
   # 去字幕 + OCR提取字幕文件
-  python mps_erase.py --url https://example.com/video.mp4 --ocr
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr
 
   # 去字幕 + OCR提取 + 翻译为英文（短剧出海场景）
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
 
   # 去字幕 + OCR提取 + 翻译为日文
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
 
   # OCR识别多语种字幕
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-lang multi
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-lang multi
 
   # 输出字幕格式为 SRT
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-format srt
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-format srt
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_erase.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_erase.py --url https://example.com/video.mp4 --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -149,7 +149,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -681,7 +681,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -698,63 +698,63 @@ def main():
         epilog="""
 示例：
   # URL输入 + 默认模板（去字幕 101），输出到 TENCENTCLOUD_COS_BUCKET/output/erase/
-  python mps_erase.py --url https://example.com/video.mp4
+  python3 mps_erase.py --url https://example.com/video.mp4
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_erase.py --cos-input-key /input/video/test.mp4
+  python3 mps_erase.py --cos-input-key /input/video/test.mp4
 
   # 去字幕并提取OCR字幕（模板 102）
-  python mps_erase.py --url https://example.com/video.mp4 --template 102
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 102
 
   # 去水印-高级版（模板 201）
-  python mps_erase.py --url https://example.com/video.mp4 --template 201
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 201
 
   # 人脸模糊（模板 301）
-  python mps_erase.py --url https://example.com/video.mp4 --template 301
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 301
 
   # 人脸和车牌模糊（模板 302）
-  python mps_erase.py --url https://example.com/video.mp4 --template 302
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 302
 
   # 强力擦除（区域模型，适合花体/阴影/动效等特殊字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --model area
+  python3 mps_erase.py --url https://example.com/video.mp4 --model area
 
   # 字幕在上半屏（使用位置预设）
-  python mps_erase.py --url https://example.com/video.mp4 --position top-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position top-half
 
   # 字幕在下半屏（使用位置预设）
-  python mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
   # 字幕在左侧（竖排字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --position left
+  python3 mps_erase.py --url https://example.com/video.mp4 --position left
 
   # 字幕在右侧（竖排字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --position right
+  python3 mps_erase.py --url https://example.com/video.mp4 --position right
 
   # 自定义字幕区域（画面顶部0~25%区域）
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
   # 多区域擦除（顶部+底部都有字幕）
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
   # 指定区域擦除（字幕位置固定，整个视频底部区域直接擦除）
-  python mps_erase.py --url https://example.com/video.mp4 \\
+  python3 mps_erase.py --url https://example.com/video.mp4 \\
       --method custom --custom-area 0,0,0,0.8,0.99,0.95
 
   # 指定时间段内擦除（前10秒内擦除底部区域）
-  python mps_erase.py --url https://example.com/video.mp4 \\
+  python3 mps_erase.py --url https://example.com/video.mp4 \\
       --method custom --custom-area 0,10000,0,0.8,0.99,0.95
 
   # 去字幕 + OCR提取字幕文件
-  python mps_erase.py --url https://example.com/video.mp4 --ocr
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr
 
   # 去字幕 + OCR提取 + 翻译为英文（短剧出海）
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
 
   # 去字幕 + OCR提取 + 翻译为日文
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
 
   # Dry Run（仅打印请求参数）
-  python mps_erase.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_erase.py --url https://example.com/video.mp4 --dry-run
 
 预设模板（--template）：
   101   去字幕（默认）              — 自动擦除 + 标准模型
@@ -898,6 +898,17 @@ def main():
                              help="任务完成后自动下载结果到指定目录（默认：不下载；指定路径后自动下载）")
 
     args = parser.parse_args()
+
+    # 自动加载环境变量（入口处立即执行，确保后续所有函数都能拿到变量）
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  自动加载 env 失败：{e}", file=sys.stderr)
+
     # --url 本地路径自动转换为本地上传模式
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -1008,8 +1019,11 @@ def main():
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     template_id = get_template_id(args)

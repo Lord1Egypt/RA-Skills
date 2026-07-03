@@ -2,7 +2,7 @@
 name: own-style-writer
 description: |
   通用自有文风写作 skill。用于用户要求“按我的文章风格写”“学习某个目录里的文风”“把风格素材和本次写作素材分开处理”“从本地 PDF/DOCX/PPTX/Excel/HTML/文本等素材提炼文风并写文章”时。它会主动询问哪些目录用于学习写作风格、哪些材料只用于本次写作内容，优先在用户同意上传后用 MinerU 转换文档，也可回退内置 MarkItDown 离线转换；默认先生成风格画像、素材摘要和文章大纲，待确认后才写正文。
-version: 1.2.0
+version: 1.3.0
 metadata:
   openclaw:
     requires:
@@ -45,6 +45,7 @@ Inspired by khazix-writer, but contains no khazix-writer persona, corpus, prompt
 3. 本次写作需求是什么：主题、目标读者、篇幅、输出语言、观点倾向、是否先给大纲？
 4. 是否允许把本地文档上传到 MinerU 做高质量解析？
 5. 是否已经设置 `MINERU_API_KEY`？
+6. 是否已有历史 `写作复盘.md`，需要这次写作前读取？
 
 如果用户没有 MinerU key，提示：
 
@@ -128,6 +129,7 @@ python3 scripts/prepare_writing_workspace.py \
 - `outline_review.md`：结合文风画像和写作素材生成待确认大纲。
 - `draft.md`：用户确认大纲后才生成。
 - `quality_report.md`：检查文风贴合、素材使用和事实风险。
+- `写作复盘.md`：根据用户后续修改意见沉淀可复用避错规则。
 
 ## Workflow
 
@@ -137,9 +139,11 @@ python3 scripts/prepare_writing_workspace.py \
 4. 阅读 `style/corpus.md`，参考 `references/style_profile_template.md` 生成 `style_profile.md`。
 5. 阅读 `content/corpus.md`，参考 `references/content_brief_template.md` 生成 `content_brief.md`。
 6. 阅读 `references/writing_principles.md`，把通用章法原则翻译成当前题材可用的结构建议。
-7. 参考 `references/outline_review_template.md` 生成 `outline_review.md`，展示给用户确认。
-8. 用户确认后，再根据 `style_profile.md`、`content_brief.md` 和已确认大纲写 `draft.md`。
-9. 参考 `references/quality_check_template.md` 生成 `quality_report.md`。
+7. 如果输出目录或用户提供路径中已有 `写作复盘.md`，先读取并提取本次需要避免的问题。
+8. 参考 `references/outline_review_template.md` 生成 `outline_review.md`，展示给用户确认。
+9. 用户确认后，再根据 `style_profile.md`、`content_brief.md`、`写作复盘.md` 和已确认大纲写 `draft.md`。
+10. 参考 `references/quality_check_template.md` 生成 `quality_report.md`。
+11. 如果用户后续提出修改意见，参考 `references/写作复盘模板.md` 更新 `写作复盘.md`。
 
 默认停在大纲确认阶段，不要第一轮直接写完整正文，除非用户明确说“跳过大纲确认，直接写”。
 
@@ -155,6 +159,18 @@ python3 scripts/prepare_writing_workspace.py \
 - 文风是否做到短、新、实、特：简短、有新意、具体实在、有辨识度。
 
 这些原则是写作质量建议，不是固定文风。不要把所有文章写成机关文稿；要把原则转译为当前题材、用户需求和风格语料适用的表达方式。如果风格语料故意采用特殊结构，优先尊重用户风格，同时在大纲或质检里提示它可能带来的结构风险。
+
+## Writing Review Memory
+
+`写作复盘.md` 是用户自己的长期避错清单。它用于记录“这次哪里写得不好、用户怎么改、下次如何避免”，帮助后续写作不重复犯错。
+
+- 如果用户提供了 `写作复盘.md`，生成大纲和正文前必须先读。
+- 如果当前输出目录里已经有 `写作复盘.md`，默认读取它。
+- 如果没有复盘文件，但用户在改稿时给了明确修改意见，创建 `写作复盘.md`。
+- 复盘只记录可复用问题，例如标题空泛、开头绕、事实没用足、语气不像、段落太散、观点不够鲜明。
+- 不要把一次性素材、私人信息、客户未公开要求或完整正文大量写入复盘；只记录抽象后的避错规则。
+- 复盘不能覆盖当次风格素材。如果复盘规则与当前风格语料冲突，在 `outline_review.md` 里说明冲突，让用户确认。
+- `references/写作复盘模板.md` 是模板；实际复盘文件应放在用户的输出目录或长期写作目录中。
 
 ## Style Extraction
 

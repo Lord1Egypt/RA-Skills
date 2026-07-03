@@ -1,0 +1,116 @@
+# Device Registry — Dual Platform (Mijia + HomeKit)
+# platform: "mijia" | "homekit"
+# Run --discover to list all devices with DIDs/accessory IDs
+
+# === Mijia Devices ===
+
+sensors:
+  - entity_id: "sensor.occupy_living_room"
+    name: "客厅人体传感器"
+    platform: "mijia"
+    did: "1100470123"
+    model: "zywjw.sensor_occupy.c01"
+    siid: 2
+    piid: 1
+    type: "occupancy"
+
+  - entity_id: "sensor.occupy_bedroom"
+    name: "卧室人体传感器"
+    platform: "mijia"
+    did: "blt.3.1jvqone644k00"
+    model: "linp.sensor_occupy.es2"
+    siid: 2
+    piid: 1
+    type: "occupancy"
+
+  - entity_id: "binary_sensor.door_main"
+    name: "门窗传感器"
+    platform: "mijia"
+    did: "blt.3.1k0g9i904c800"
+    model: "linp.magnet.m1"
+    siid: 2
+    piid: 1
+    type: "binary_sensor"
+
+lights:
+  - entity_id: "light.living_room"
+    name: "客厅灯"
+    platform: "mijia"
+    did: "947837037"
+    model: "xiaomi.switch.w2"
+    siid: 3
+    piid: 1
+    type: "switch"
+
+  - entity_id: "light.living_room_window"
+    name: "窗灯"
+    platform: "mijia"
+    did: "947837037"
+    model: "xiaomi.switch.w2"
+    siid: 3
+    piid: 2
+    type: "switch"
+
+  - entity_id: "light.bedroom"
+    name: "卧室灯"
+    platform: "mijia"
+    did: "2000975948"
+    model: "xiaomi.switch.w2"
+    siid: 3
+    piid: 1
+    type: "switch"
+
+switches:
+  - entity_id: "switch.smart_plug"
+    name: "智能排插"
+    platform: "mijia"
+    did: "482398196"
+    model: "cuco.plug.sp5"
+    siid: 2
+    piid: 1
+    type: "switch"
+
+climate:
+  - entity_id: "climate.living_room_ac"
+    name: "豆喵空调"
+    platform: "mijia"
+    did: "334116919"
+    model: "lumi.acpartner.mcn02"
+    siid: 2
+    piid: 1
+    type: "climate"
+
+scenes:
+  - entity_id: "scene.music_mode"
+    name: "音乐模式"
+    scene_id: "1980558905461579776"
+
+  - entity_id: "scene.home"
+    name: "回家"
+    scene_id: "1946519611638173696"
+
+  - entity_id: "scene.away"
+    name: "离家"
+    scene_id: "1936629803860905984"
+
+  - entity_id: "scene.sleep"
+    name: "睡觉"
+    scene_id: "1942612466086195200"
+
+# === HomeKit Devices ===
+# Add your HomeKit accessories here, or let the plugin auto-register from Homebridge.
+# accessory_id: the uniqueId from Homebridge API (run --discover-homekit to list)
+
+# lights:
+#   - entity_id: "light.hallway_homekit"
+#     name: "走廊灯"
+#     platform: "homekit"
+#     accessory_id: "acc-1"
+#     type: "light"
+#
+# switches:
+#   - entity_id: "switch.fan_homekit"
+#     name: "风扇"
+#     platform: "homekit"
+#     accessory_id: "acc-2"
+#     type: "switch"

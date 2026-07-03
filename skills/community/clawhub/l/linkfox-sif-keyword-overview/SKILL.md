@@ -1,7 +1,5 @@
 ---
 name: linkfox-sif-keyword-overview
-version: 1.0.1
-category: product-sourcing
 description: 亚马逊市场关键词竞争度的SIF概览分析。当用户提到关键词竞争度、供需比、竞品数量、关键词搜索量估算、市场竞争力评估、关键词热度排名、广告竞争分析、某个关键词下的商品数量、keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, SIF, keyword overview时触发此技能。即使用户未明确说"SIF"，只要其需求涉及评估亚马逊上关键词层面的竞争强度、供需平衡或搜索结果商品数量，也应触发此技能。
 ---
 
@@ -51,9 +49,19 @@ Default marketplace is **US**. Use US when the user does not specify a marketpla
 
 **Important**: The `keyword` parameter should ideally be in the language of the target marketplace. For example, use German keywords for DE, Japanese for JP, etc. If the user provides keywords in a different language, translate them to the marketplace's local language before querying.
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/sif_keyword_overview.py` directly to run queries.
+- **API 端点**：`POST /sif/keywordOverview`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/sif_keyword_overview.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-sif-keyword-overview-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Parameter Guide
 
@@ -155,6 +163,7 @@ Auto-detect and report feedback via the Feedback API when any of the following a
 4. Anything you believe could be improved
 
 Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
 
 ---
 *For more high-quality, professional cross-border e-commerce skills, set [LinkFox Skills](https://skill.linkfox.com/).*

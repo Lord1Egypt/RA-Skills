@@ -1,3 +1,14 @@
+---
+name: solana-dev
+description: "Develop Solana dApps with React/Next.js, manage wallet connections, build and test programs using Anchor or Pinocchio, and apply SDKs and testing tools per S..."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Solana Dev
+
 # Solana Development Skill (framework-kit-first)
 
 **Source**: https://solana.com/SKILL.md  

@@ -1,3 +1,14 @@
+---
+name: file-manager-secure
+description: "Perform safe file operations with path validation, dry-run previews, recoverable trash deletes, batch confirmations, and audit logging to prevent data loss."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# File Manager Secure
+
 # File Manager Secure
 
 name: file-manager-secure
@@ -173,4 +184,3 @@ file-secure restore important.csv.bak
 ### references/
 - `security_model.md` — Complete security architecture
 - `recovery_guide.md` — How to restore deleted files
-

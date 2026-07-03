@@ -20,7 +20,16 @@ Instead of predicting demand (which is hard), focus on supply constraints (which
 
 ### Framework Development
 
-This framework was extracted from **839 tweets** (2025-12-26 to 2026-06-24) posted by Serenity on X.com. The analysis was done WITHOUT relying on third-party interpretations.
+This framework was extracted from **3,704 tweets** (2025-07-02 to 2026-06-25) posted by Serenity on X.com, plus a comprehensive Grok summary. The analysis was done WITHOUT relying on third-party interpretations.
+
+**v2.1 Updates (2026-07-02):**
+- Added Red-team/Blue-team methodology
+- Added specific OSINT data sources (a16z, pitchbook, SMM prices)
+- Added $RPI case study
+- Added Margin usage details (~1.4x)
+- Added "Suitable Investor Types" section
+- Added "Limitations" section
+- Added online analysis functionality for any stock/sector/industry
 
 ### How to Use This Framework
 

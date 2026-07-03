@@ -1,7 +1,5 @@
 ---
 name: linkfox-eureka-abstract-translated
-version: 1.0.1
-category: product-sourcing
 description: 通过Eureka专利数据平台获取专利标题和摘要的翻译版本。当用户要求专利摘要翻译、专利标题翻译、翻译后的专利摘要、其他语言的专利内容、中文/英文/日文的专利摘要，或需要通过专利ID或公开号查询特定专利的摘要、标题、Eureka专利摘要、patent abstract translation, patent title translation, Eureka patent, patent translation, abstract lookup时触发此技能。当用户提到Eureka或专利摘要查询时也应触发，即使未明确说"翻译"。
 ---
 
@@ -86,9 +84,19 @@ Parameters: `patentNumber = "CN112345678A"`, `lang = "cn"`, `replaceByRelated = 
 4. **Long abstracts**: For very long abstracts, display the full text without truncation so users can review the complete content.
 5. **Error handling**: When a query fails or returns no results, explain the likely cause (e.g., invalid patent number, patent not found in database) and suggest corrections.
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/eureka_abstract_translated.py` directly to run queries.
+- **API 端点**：`POST /tool-eureka/abstractDataTranslated`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/eureka_abstract_translated.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-eureka-abstract-translated-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Important Limitations
 

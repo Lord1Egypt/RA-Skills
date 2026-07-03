@@ -4,6 +4,7 @@
 零配置即装即用，通过SCF代理调用途牛+高德+飞猪API
 4个工具：游轮船票查询、市内交通、景点推荐、酒店推荐
 """
+import os
 import json
 import re
 import urllib.request
@@ -14,7 +15,7 @@ from datetime import datetime, timedelta
 TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 30
 
 # 游轮热门关键词提示

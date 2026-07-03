@@ -1,3 +1,14 @@
+---
+name: btceth-dulwin-engine
+description: "提供BTC/ETH期权双币赢策略分析，包含市场数据、决策分析及1-3天期操作建议。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 双币赢分析
+
 # 双币赢分析 (BTCETH DualWin Engine)
 
 ## 功能描述

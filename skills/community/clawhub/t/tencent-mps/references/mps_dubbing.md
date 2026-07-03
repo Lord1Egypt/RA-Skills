@@ -148,42 +148,42 @@
 # ── 音色复刻（clone）─────────────────────────────────────────────────────────
 
 # 传入本地音频文件复刻音色（建议 10~20 秒，单人清晰语音）
-python scripts/mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
 # 传入音频 URL 复刻音色
-python scripts/mps_dubbing.py --mode clone --audio-url https://example.com/voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-url https://example.com/voice.wav
 
 # 传入音频 URL，指定音频语言
-python scripts/mps_dubbing.py --mode clone \
+python3 scripts/mps_dubbing.py --mode clone \
     --audio-url https://example.com/voice.mp4 --audio-lang en
 
 # ── 短文本语音合成（tts）─────────────────────────────────────────────────────
 
 # 最简调用（使用系统音色）
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "您好，欢迎使用腾讯云语音合成服务！" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..."
 
 # 指定输出文件路径
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello, welcome!" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output /tmp/output.wav
 
 # 调整采样率和音调
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "您好" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --sample-rate 44100 --pitch 2 --output /tmp/out.wav
 
 # 英文合成
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Artificial intelligence changes the world." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --text-lang en
 
 # 长文本自动切换为异步（无需手动改 --mode）
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "这是一段超过 2000 字符的超长文本..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --download-dir ./output/
@@ -191,17 +191,17 @@ python scripts/mps_dubbing.py --mode tts \
 # ── 先复刻音色，再合成语音 ────────────────────────────────────────────────────
 
 # 第一步：复刻音色，记录返回的 VoiceId
-python scripts/mps_dubbing.py --mode clone --audio-file voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-file voice.wav
 
 # 第二步：用拿到的 VoiceId 合成
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "您好，这是复刻的声音" \
     --voice-id "v1_<上一步返回的VoiceId>"
 
 # ── 长文本转语音（async-tts）─────────────────────────────────────────────────
 
 # 指定音色 ID，输出结果到 COS，完成后下载到本地
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "这是一段超长的文本，适合使用异步接口处理..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --url "https://<bucket>.cos.ap-guangzhou.myqcloud.com/input/placeholder.wav" \
@@ -209,14 +209,14 @@ python scripts/mps_dubbing.py --mode async-tts \
     --download-dir ./output/
 
 # 使用 COS 文件作为输入，克隆视频指定音色
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "长文本..." \
     --clone-video-url https://example.com/train.mp4 \
     --cos-input-key /input/placeholder.wav \
     --output-dir /output/tts/
 
 # 仅提交任务，不等待（后续手动查询）
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "长文本..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --url "https://example.com/any_accessible.mp4" \
@@ -225,20 +225,20 @@ python scripts/mps_dubbing.py --mode async-tts \
 # ── 语音转语音（async-sts）───────────────────────────────────────────────────
 
 # 对视频做音色替换（使用指定音色 ID）
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --url https://example.com/video.mp4 \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output-dir /output/sts/ \
     --download-dir ./output/
 
 # 对视频做音色替换（现场克隆音色，指定克隆源视频）
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --url https://example.com/video.mp4 \
     --clone-video-url https://example.com/train.mp4 \
     --output-dir /output/sts/
 
 # 使用 COS 输入文件
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --cos-input-key /input/video.mp4 \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output-dir /output/sts/ \
@@ -247,12 +247,12 @@ python scripts/mps_dubbing.py --mode async-sts \
 # ── 其他 ──────────────────────────────────────────────────────────────────────
 
 # 查询已有任务结果
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
 
 # 查询任务并下载结果到本地
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
 
 # Dry Run（只打印请求参数，不调用 API）
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "您好" --voice-id "v1_xxx..." --dry-run
 ```

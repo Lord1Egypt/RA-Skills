@@ -1,0 +1,29 @@
+{
+  "title": "SkillFlowChart",
+  "subtitle": "AI 提取语义，脚本计算几何",
+  "nodes": [
+    {"id": "entry",        "type": "entry",    "label": "用户触发",               "role": "ai"},
+    {"id": "find_skill",   "type": "process",  "label": "定位 SKILL.md",          "subtitle": "查找路径 / 询问用户", "role": "ai"},
+    {"id": "skill_found",  "type": "decision", "label": "SKILL.md 存在？",        "role": "decision"},
+    {"id": "ask_path",     "type": "process",  "label": "询问路径",               "role": "ai"},
+    {"id": "extract",      "type": "process",  "label": "AI 提取 nodes.json",     "subtitle": "语义理解 → 结构化数据", "role": "ai"},
+    {"id": "validate",     "type": "decision", "label": "校验通过？",             "subtitle": "id 唯一 / 引用合法 / role 合法", "role": "script"},
+    {"id": "report_err",   "type": "terminal", "label": "输出校验错误",           "role": "terminal"},
+    {"id": "render",       "type": "process",  "label": "脚本渲染 HTML",          "subtitle": "坐标计算 + SVG + CSS", "role": "script"},
+    {"id": "output",       "type": "output",   "label": "输出流程图",             "subtitle": "自包含 HTML · 零依赖", "role": "output"}
+  ],
+  "edges": [
+    {"from": "entry",        "to": "find_skill",   "label": "",     "side": "bottom"},
+    {"from": "find_skill",   "to": "skill_found",  "label": "",     "side": "bottom"},
+    {"from": "skill_found",  "to": "ask_path",     "label": "否",   "side": "left"},
+    {"from": "skill_found",  "to": "extract",      "label": "是",   "side": "bottom"},
+    {"from": "ask_path",     "to": "extract",      "label": "",     "side": "bottom"},
+    {"from": "extract",      "to": "validate",     "label": "",     "side": "bottom"},
+    {"from": "validate",     "to": "report_err",   "label": "失败", "side": "left"},
+    {"from": "validate",     "to": "render",       "label": "通过", "side": "bottom"},
+    {"from": "render",       "to": "output",       "label": "",     "side": "bottom"}
+  ],
+  "branches": [],
+  "loops": [],
+  "legend": []
+}

@@ -1,0 +1,39 @@
+name: feishu-video-message
+version: 1.0.2
+description: 飞书视频发送器 — 上传视频并以媒体消息发送到飞书聊天中，自动抽取首帧封面、探测时长，支持播放。| Feishu Video Message — Upload & send videos via Feishu OpenAPI with auto cover & duration, in-chat playback.
+author:
+  name: vivila-yxx
+license: MIT
+type: utility
+
+runtime:
+  requires_binaries: true
+  requires_credentials: true
+  requires_network: true
+
+runtime_binaries:
+  required:
+    - python3
+    - ffmpeg
+    - ffprobe
+
+runtime_credentials:
+  required:
+    - OpenClaw config: ~/.openclaw/openclaw.json
+  notes:
+    - Reads channels.feishu.accounts.*.appId (or channels.feishu.appId)
+    - Reads channels.feishu.accounts.*.appSecret (or channels.feishu.appSecret)
+
+security:
+  install_time_executes_code: false
+  runtime_agent_executes_code: true
+  runtime_agent_network_access: true
+  reads_local_config: true
+
+tags:
+  - feishu
+  - video
+  - media
+  - upload
+  - openapi
+  - messaging

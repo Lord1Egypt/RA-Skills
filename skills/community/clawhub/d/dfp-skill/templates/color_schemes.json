@@ -1,0 +1,383 @@
+{
+  "name": "Keynote 发布会配色方案库",
+  "version": "2.0",
+  "description": "专为 Keynote 发布会设计的配色方案集合。v2.0 新增 '数智财务' SAP 企业级深色风格，支持超宽屏 3:1 版式。",
+  "schemes": {
+    "classic": {
+      "name": "经典 Apple 风格",
+      "description": "深色背景 + 极简设计 + Apple 官方强调色。最适合产品发布会。",
+      "aspect_ratio": "16:9",
+      "layout_style": "minimal",
+      "background": {
+        "hex": "#000000",
+        "rgb": [0, 0, 0],
+        "name": "纯黑"
+      },
+      "background_gradient": null,
+      "text_primary": {
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "name": "纯白"
+      },
+      "text_secondary": {
+        "hex": "#BFBFBF",
+        "rgb": [191, 191, 191],
+        "name": "浅灰"
+      },
+      "accents": {
+        "blue": {
+          "hex": "#007AFF",
+          "rgb": [0, 122, 255],
+          "name": "Apple Blue"
+        },
+        "green": {
+          "hex": "#34C759",
+          "rgb": [52, 199, 89],
+          "name": "Apple Green"
+        },
+        "orange": {
+          "hex": "#FF9500",
+          "rgb": [255, 149, 0],
+          "name": "Apple Orange"
+        },
+        "red": {
+          "hex": "#FF3B30",
+          "rgb": [255, 59, 48],
+          "name": "Apple Red"
+        },
+        "purple": {
+          "hex": "#AF52DE",
+          "rgb": [175, 82, 222],
+          "name": "Apple Purple"
+        }
+      },
+      "use_cases": ["产品发布", "科技主题", "高端品牌", "新品介绍"],
+      "distribution": {
+        "background": "70%",
+        "text": "20%",
+        "accents": "10%"
+      }
+    },
+    "tech": {
+      "name": "科技发布会风格",
+      "description": "深蓝黑背景 + 霓虹强调色。适合 AI、游戏、未来感主题。",
+      "aspect_ratio": "16:9",
+      "layout_style": "tech-neon",
+      "background": {
+        "hex": "#0A0A0F",
+        "rgb": [10, 10, 15],
+        "name": "深蓝黑"
+      },
+      "background_gradient": null,
+      "text_primary": {
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "name": "纯白"
+      },
+      "text_secondary": {
+        "hex": "#8E8E93",
+        "rgb": [142, 142, 147],
+        "name": "深灰"
+      },
+      "accents": {
+        "blue": {
+          "hex": "#00D4FF",
+          "rgb": [0, 212, 255],
+          "name": "霓虹蓝"
+        },
+        "green": {
+          "hex": "#00FF88",
+          "rgb": [0, 255, 136],
+          "name": "霓虹绿"
+        },
+        "orange": {
+          "hex": "#FF6B00",
+          "rgb": [255, 107, 0],
+          "name": "活力橙"
+        },
+        "red": {
+          "hex": "#FF2D55",
+          "rgb": [255, 45, 85],
+          "name": "霓虹红"
+        },
+        "purple": {
+          "hex": "#5E5EFF",
+          "rgb": [94, 94, 255],
+          "name": "电子紫"
+        }
+      },
+      "use_cases": ["AI发布", "游戏发布", "科技峰会", "开发者大会"],
+      "distribution": {
+        "background": "70%",
+        "text": "20%",
+        "accents": "10%"
+      }
+    },
+    "brand": {
+      "name": "品牌发布会风格",
+      "description": "白色背景 + 深色文本 + 品牌色。适合企业品牌、金融、教育。",
+      "aspect_ratio": "16:9",
+      "layout_style": "clean-white",
+      "background": {
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "name": "纯白"
+      },
+      "background_gradient": null,
+      "text_primary": {
+        "hex": "#1D1D1F",
+        "rgb": [29, 29, 31],
+        "name": "近黑"
+      },
+      "text_secondary": {
+        "hex": "#6E6E73",
+        "rgb": [110, 110, 115],
+        "name": "深灰"
+      },
+      "accents": {
+        "blue": {
+          "hex": "#0066CC",
+          "rgb": [0, 102, 204],
+          "name": "品牌蓝"
+        },
+        "green": {
+          "hex": "#34C759",
+          "rgb": [52, 199, 89],
+          "name": "积极绿"
+        },
+        "orange": {
+          "hex": "#FF9500",
+          "rgb": [255, 149, 0],
+          "name": "温暖橙"
+        },
+        "red": {
+          "hex": "#FF3B30",
+          "rgb": [255, 59, 48],
+          "name": "警示红"
+        },
+        "purple": {
+          "hex": "#5856D6",
+          "rgb": [88, 86, 214],
+          "name": "创意紫"
+        }
+      },
+      "use_cases": ["品牌升级", "企业战略", "金融发布", "教育产品"],
+      "distribution": {
+        "background": "70%",
+        "text": "20%",
+        "accents": "10%"
+      }
+    },
+    "feature": {
+      "name": "功能发布风格",
+      "description": "浅灰背景 + 清晰对比。适合功能对比、技术规格页面。",
+      "aspect_ratio": "16:9",
+      "layout_style": "functional",
+      "background": {
+        "hex": "#F5F5F7",
+        "rgb": [245, 245, 247],
+        "name": "浅灰"
+      },
+      "background_gradient": null,
+      "text_primary": {
+        "hex": "#1D1D1F",
+        "rgb": [29, 29, 31],
+        "name": "近黑"
+      },
+      "text_secondary": {
+        "hex": "#6E6E73",
+        "rgb": [110, 110, 115],
+        "name": "深灰"
+      },
+      "accents": {
+        "blue": {
+          "hex": "#007AFF",
+          "rgb": [0, 122, 255],
+          "name": "功能蓝"
+        },
+        "green": {
+          "hex": "#34C759",
+          "rgb": [52, 199, 89],
+          "name": "通过绿"
+        },
+        "orange": {
+          "hex": "#FF9500",
+          "rgb": [255, 149, 0],
+          "name": "注意橙"
+        },
+        "red": {
+          "hex": "#FF3B30",
+          "rgb": [255, 59, 48],
+          "name": "缺失红"
+        },
+        "purple": {
+          "hex": "#5856D6",
+          "rgb": [88, 86, 214],
+          "name": "创新紫"
+        }
+      },
+      "use_cases": ["功能对比", "技术规格", "参数展示", "配置对比"],
+      "distribution": {
+        "background": "70%",
+        "text": "20%",
+        "accents": "10%"
+      }
+    },
+    "digital-finance": {
+      "name": "数智财务 SAP 企业级深色风格",
+      "description": "3:1 超宽屏专用。深蓝→深红渐变背景 + 红色卡片边框 + 金色光带点缀。SAP企业级发布会风格，适合财务、数字化转型、企业峰会。",
+      "aspect_ratio": "3:1 超宽屏",
+      "layout_style": "ultra-wide-cards",
+      "background": {
+        "hex": "#12244D",
+        "rgb": [18, 36, 77],
+        "name": "深蓝"
+      },
+      "background_gradient": {
+        "type": "diagonal_radial",
+        "stops": [
+          {"position": "top", "hex": "#0A1838", "rgb": [10, 24, 56], "name": "深海军蓝"},
+          {"position": "middle", "hex": "#5A0F25", "rgb": [90, 15, 37], "name": "暗红"},
+          {"position": "bottom", "hex": "#8B0029", "rgb": [139, 0, 41], "name": "深邃红"}
+        ],
+        "light_beam": {
+          "hex": "#F2B84B",
+          "rgb": [242, 184, 75],
+          "position": "horizontal center-lower",
+          "style": "金色横向光带"
+        },
+        "decorative_elements": [
+          {"type": "人群剪影", "position": "底部 footer"},
+          {"type": "烟花放射光斑", "position": "中心区域"},
+          {"type": "角落光晕", "position": "左上+右上"}
+        ]
+      },
+      "card_style": {
+        "description": "深红细边框圆角卡片，深蓝内底，白色标题条",
+        "border_color": "#B8003A",
+        "border_width_px": 10,
+        "card_fill": "#0F2050",
+        "card_title_bar": "#FFFFFF",
+        "card_corner_radius": 20
+      },
+      "text_primary": {
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "name": "纯白"
+      },
+      "text_secondary": {
+        "hex": "#E8ECF5",
+        "rgb": [232, 236, 245],
+        "name": "冷调浅蓝"
+      },
+      "accents": {
+        "gold": {
+          "hex": "#F2B84B",
+          "rgb": [242, 184, 75],
+          "name": "装饰金色",
+          "usage": ["光带", "序号徽标", "数字强调", "装饰线条"]
+        },
+        "red_brand": {
+          "hex": "#B8003A",
+          "rgb": [184, 0, 58],
+          "name": "SAP 品牌红",
+          "usage": ["卡片边框", "标题底条", "问题标注"]
+        },
+        "cyan": {
+          "hex": "#25B7E0",
+          "rgb": [37, 183, 224],
+          "name": "青色科技蓝",
+          "usage": ["矩阵背景", "数字面板", "流程节点"]
+        },
+        "purple": {
+          "hex": "#5E3FBE",
+          "rgb": [94, 63, 190],
+          "name": "深紫",
+          "usage": ["AI 模块", "Joule 助手", "创新要素"]
+        },
+        "green": {
+          "hex": "#2FA472",
+          "rgb": [47, 164, 114],
+          "name": "财务绿",
+          "usage": ["流程节点背景", "正向数据", "提升标记"]
+        },
+        "orange": {
+          "hex": "#E6A817",
+          "rgb": [230, 168, 23],
+          "name": "橙金",
+          "usage": ["百分比数字", "强调标注"]
+        },
+        "sap_blue": {
+          "hex": "#0070D2",
+          "rgb": [0, 112, 210],
+          "name": "SAP 官方蓝",
+          "usage": ["品牌 Logo", "官方按钮"]
+        }
+      },
+      "special_elements": {
+        "huge_number": {
+          "hex": "#FFD700",
+          "font_size": "60-120pt",
+          "style": "金色/白色超大加粗数字，用于放大数据对比"
+        },
+        "hexagon_matrix": {
+          "description": "六边形蜂群矩阵，用于 6-8 要素并列展示，中心为主题圆",
+          "border_color": "#F2B84B",
+          "fill_color": "#1A2F5C"
+        },
+        "timeline_circle": {
+          "description": "产品/历史演进时间轴圆形节点，年份在节点顶部，橙金色",
+          "year_color": "#F2B84B"
+        },
+        "dashboard_style": {
+          "description": "深色 BI 仪表盘风格：深蓝底 + 青蓝/紫色折线柱图 + 金色高亮数字",
+          "chart_fill_colors": ["#25B7E0", "#5E3FBE", "#2FA472", "#F2B84B"]
+        },
+        "radial_architecture": {
+          "description": "中央多层环形架构图：中心主题 + 多层圆环 + 周围功能图标",
+          "center_color": "#F2B84B",
+          "ring_colors": ["#0070D2", "#5E3FBE"]
+        }
+      },
+      "use_cases": ["数智财务发布", "企业数字化转型", "SAP方案发布", "财务AI", "ESG碳管理", "企业级峰会"],
+      "distribution": {
+        "background": "65%",
+        "card_background": "15%",
+        "text": "15%",
+        "accents": "5%"
+      },
+      "layout_hints": {
+        "slide_ratio": "3:1（超宽）",
+        "content_layout": "横向三栏分段：背景信息 → 核心视觉 → 延伸说明",
+        "title_position": "顶部15%-20%高度处，居中或左对齐",
+        "card_gap": "20-30px 卡片间留白",
+        "margins": "上下8%-10%，左右6%-8%",
+        "no_page_number": true
+      }
+    }
+  },
+  "usage_rules": {
+    "max_accents_per_slide": 3,
+    "min_contrast_ratio": "4.5:1",
+    "color_distribution": {
+      "background": "70%",
+      "text": "20%",
+      "accent": "10%"
+    },
+    "ultra_wide_rules": {
+      "notes": [
+        "超宽屏(21:9 / 3:1)每页信息承载量是常规16:9的1.5-1.8倍",
+        "超宽屏适合横向三段式布局：左-中-右 / 左图-中流程-右数据",
+        "超宽屏适合时间轴、演进图、横向流程",
+        "超宽屏不适合单列长文本，应始终采用横向分布的多栏布局"
+      ]
+    },
+    "notes": [
+      "单张幻灯片最多使用 3 种强调色（不含黑白灰）",
+      "保持文本与背景的最低对比度 4.5:1",
+      "避免纯红+纯绿的配色组合（色盲友好）",
+      "同一演示文稿使用同一配色方案",
+      "数智财务风格的超宽版式建议用于企业大会/路演大屏"
+    ]
+  }
+}

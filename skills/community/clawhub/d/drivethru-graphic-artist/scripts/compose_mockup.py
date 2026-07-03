@@ -154,6 +154,20 @@ def compose(
 
     target_w = max(1, int(round(bb_w * width_ratio)))
     target_h = max(1, int(round(target_w * (src_h / src_w))))
+
+    # Optional height cap: some locations have a fixed print box (e.g. a
+    # hoodie full-front must clear the pocket, ~9"). If the aspect-locked
+    # height exceeds max_height_ratio * bbox height, scale both dims down so
+    # the print fits the box — aspect ratio preserved, smaller dimension wins.
+    max_height_ratio = rule.get("max_height_ratio")
+    height_capped = False
+    if max_height_ratio is not None:
+        max_h = max(1, int(round(bb_h * float(max_height_ratio))))
+        if target_h > max_h:
+            target_h = max_h
+            target_w = max(1, int(round(target_h * (src_w / src_h))))
+            height_capped = True
+
     scaled = decoration.resize((target_w, target_h), Image.BICUBIC)
 
     # Rotate around center; expand so corners aren't clipped.
@@ -191,6 +205,9 @@ def compose(
             "width_delta_pct": width_delta_pct,
             "offset_x_pct": offset_x_pct,
             "offset_y_pct": offset_y_pct,
+            "max_height_ratio": max_height_ratio,
+            "height_capped": height_capped,
+            "effective_width_ratio": target_w / bb_w,
         },
         "decoration_size_px": [rot_w, rot_h],
         "paste_top_left_px": [paste_x, paste_y],

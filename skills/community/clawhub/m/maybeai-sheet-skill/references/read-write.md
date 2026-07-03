@@ -118,6 +118,15 @@ Best when:
 - the target is non-tabular
 - you are making a small manual cell edit
 
+Value handling:
+
+- `update_range` defaults to `RAW`; numeric-looking strings such as `"5.53%"` and `"9,007,000"` stay strings.
+- Use `value_input_option=USER_ENTERED` only when you want Excel-like parsing of formulas, dates, numbers, and percentages.
+- Read the response `message` after writes:
+  - `parse_result=NOT_REQUESTED` means `RAW` kept numeric-looking strings as text; inspect `preserved_values`.
+  - `parse_result=PASS` means `USER_ENTERED` parsed the submitted numeric-looking strings; inspect `parsed_values`.
+  - `parse_result=PARTIAL` means values in `parsed_values` parsed, while values in `preserved_text_values` may stay text unless the target cells are numeric-formatted.
+
 ### `clear_range`
 
 Best when:

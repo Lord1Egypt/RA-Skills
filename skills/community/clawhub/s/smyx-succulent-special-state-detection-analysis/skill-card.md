@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes succulent images or videos to identify black rot, leaf melting, stretching, or healthy state, then returns severity, affected areas, confidence, and report links for history queries. <br>
+This skill analyzes HD succulent images or videos from cameras, smartphones, local files, or URLs to detect black rot, melting, and stretching, then returns anomaly type, severity, confidence, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, greenhouse operators, flower shops, and developers use this skill to run succulent special-state detection on plant images or videos and to retrieve account-linked analysis history. <br>
+External users such as home growers, greenhouse staff, and flower shop operators use this skill to screen succulent images or videos for black rot, melting, and stretching. Agents can also use it to query cloud-hosted historical analysis reports linked to the current workspace account identity. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uploads plant images or videos to a configured external service and links analyses to an open-id, username, or phone number. <br>
-Mitigation: Use it only where this account-linked upload workflow is acceptable, and avoid submitting sensitive media or personal identifiers. <br>
-Risk: Server security evidence flags token persistence, hardcoded/shared identifiers, and broad API helpers that are not tightly scoped to plant analysis. <br>
-Mitigation: Review configuration before installation, remove or rotate shared credentials, and install only in environments where local token storage is acceptable. <br>
-Risk: History retrieval can expose prior account-linked analysis records through the configured cloud service. <br>
-Mitigation: Limit open-id sharing, verify the account context before listing reports, and avoid using shared accounts for private records. <br>
+Risk: The skill uploads local media or submitted URLs to a third-party cloud analysis service. <br>
+Mitigation: Use only images, videos, and URLs that are appropriate to share with the service, and confirm the service's data handling terms before installation. <br>
+Risk: The skill can silently create or reuse an internal account identity and query account-linked report history. <br>
+Mitigation: Install and run it only in the intended workspace/account context, and avoid shared workspaces when report history should remain separate. <br>
+Risk: Service tokens and account identifiers may be stored in the workspace data directory. <br>
+Mitigation: Restrict access to the workspace data directory and remove or rotate stored credentials after use when the workspace is shared or disposable. <br>
 
 
 ## Reference(s): <br>
-- [API interface documentation](artifact/references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-succulent-special-state-detection-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-succulent-special-state-detection-analysis) <br>
+- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API interface documentation](references/api_doc.md) <br>
+- [Common analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or JSON text returned from command-line/API workflows] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
+**Output Format:** [Markdown text with structured JSON analysis results and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a plant image or video, or a history-list query, plus an open-id for report storage and retrieval.] <br>
+**Other Properties Related to Output:** [Supports basic, standard, and json detail modes; can save output to a file when an output path is supplied.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+1.0.3 (source: frontmatter and server-resolved release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

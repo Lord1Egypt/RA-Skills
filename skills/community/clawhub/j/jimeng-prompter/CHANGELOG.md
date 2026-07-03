@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## v3.1.0 (2026-07-01)
+
+### 🐛 Bug Fix
+- **Created missing `PRIVACY.md`**: SKILL.md referenced PRIVACY.md in multiple sections (Phase 0, Phase 4, Security & Privacy header) but the file did not exist. Created comprehensive PRIVACY.md covering data collection, storage, retention (90 days), deletion controls, consent mechanism, and GDPR compliance.
+
+### 🔤 2026 Visual Fatigue Word Expansion
+- Added 10 new global fatigue words for 2026 AI image/video models (Midjourney V7, DALL-E 4, Flux 2, SD4):
+  - `ultra-detailed/hyper-detailed` → fine brushstrokes, visible texture grain
+  - `professional photography/grade` → editorial color grading
+  - `8K/16K resolution` → 2K resolution (Jimeng doesn't support 8K+)
+  - `trending on artstation/instagram` → platform-specific style descriptions
+  - `octane render/unreal engine 5` → physically based rendering
+  - `dreamy/ethereal/magical` → specific light and atmosphere descriptions
+  - `ray tracing/global illumination` → natural light bounce
+  - `insanely detailed/mind-blowing` → restrained texture words
+  - `perfect composition/lighting` → rule of thirds, golden ratio
+  - `gorgeous/magnificent/splendid` → concrete sensory descriptions
+
+### 📁 Files Changed
+- `SKILL.md` — v3.1.0 frontmatter + 2026 fatigue words
+- `PRIVACY.md` — NEW (was referenced but missing)
+- `CHANGELOG.md` — this entry
+
 ## v3.0.1 (2026-06-18)
 
 ### 🔒 Security & Privacy Hardening

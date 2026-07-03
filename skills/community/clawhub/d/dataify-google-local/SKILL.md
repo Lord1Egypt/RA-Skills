@@ -1,4 +1,4 @@
-﻿---
+---
 name: dataify-google-local
 description: When the user requests "call Google Local" or "local search/nearby search/place search", or explicitly mentions the local search field, the dataify-google-local skill is triggered.
 ---
@@ -124,5 +124,3 @@ Common mappings:
 - Google place CID -> `ludocid`
 - advanced search filters -> `tbs`
 - bypass/no cache -> `no_cache: "true"`
-
-

@@ -1,0 +1,28 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-pie-dominant",
+    "title": "Active sessions by client (one dominant)",
+    "chart": {
+      "type": "pie",
+      "segments": [
+        {
+          "label": "Desktop",
+          "value": 8500
+        },
+        {
+          "label": "Mobile",
+          "value": 1200
+        },
+        {
+          "label": "Web",
+          "value": 600
+        },
+        {
+          "label": "Other",
+          "value": 100
+        }
+      ]
+    }
+  }
+]

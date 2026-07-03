@@ -1,3 +1,14 @@
+---
+name: webchat-image-support
+description: "Enables agents to detect and analyze images sent via WebChat or other channels using vision-capable models or fallback media processing."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# WebChat Image Support
+
 # webchat-image-support
 
 Universal image understanding enhancement for OpenClaw. This skill enables image understanding across all channels (WebChat, Discord, Slack, etc.) and works with any model that supports image input.

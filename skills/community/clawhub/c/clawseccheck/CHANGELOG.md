@@ -3,6 +3,660 @@
 All notable changes to ClawSecCheck are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/); versions use [SemVer](https://semver.org/).
 
+## [3.7.0] — 2026-07-03
+
+Four new skill-vet checks (B87–B90) that close documented supply-chain evasions, plus the
+first real entries in the pre-download known-bad catalog. Every check is advisory
+(`scored=False`) so the A–F grade is untouched, and each is zero-false-positive by
+construction — verified against our own SKILL.md and the shipped fixtures.
+
+### Added
+- **B87 — symlink escape to a sensitive host path (TAM-07).** Flags a skill/workspace
+  symlink whose `realpath` resolves into a credential/secret store (`~/.ssh`, `~/.aws`,
+  keychains, browser profiles, `.env`, credential files). F-061 already traversed such
+  links *safely* (never followed); B87 turns the link itself into a verdict —
+  FAIL (sensitive target) / WARN (escapes the tree) / PASS (intra-tree) / UNKNOWN (dangling).
+  Catches directory symlinks too, which the file-walk skip-list missed. OWASP-AST AST06.
+- **B88 — SKILL.md frontmatter authoring hygiene.** Flags an HTML/XML-tag-shaped value in
+  the frontmatter (a metadata-injection surface) and cross-skill trigger-squatting in the
+  description ("use this skill instead of other skills"). Coordinates with B58 (invisible
+  unicode) and F-051 (broad-trigger family) so nothing double-reports. OWASP-AST AST04.
+- **B89 — dormant-capability skill.** WARN when a skill is unreachable by BOTH the user
+  (`user-invocable: false`) AND the model (`disable-model-invocation: true`) yet still ships
+  executable code — inert code nobody can trigger, staged for later activation. Reads both
+  the top-level and nested `metadata.openclaw` invocation-flag forms. OWASP-AST AST01.
+- **B90 — cross-file split base64 payload.** Closes the documented ClawHavoc split-by-file
+  evasion: a base64 payload broken across string literals in different files and decoded
+  only at runtime. B90 reassembles the pure-base64 literals across a skill's sources and
+  fires only when a reassembly decodes to a mostly-printable shell/download payload AND the
+  skill carries a base64-decode sink. OWASP-AST AST01.
+- **Pre-download known-bad catalog seeded with real IOCs (C-145).** `vet_source`'s known-bad
+  pools, empty by design, now carry primary-source-verified indicators from the Koi Security
+  ClawHavoc (2026-02-01) and Palo Alto Unit 42 (2026-06-23) advisories — malicious ClawHub
+  slugs (`omnicogg`, `money-radar`, `letssendit`, the two `tradingview` skills) and
+  infrastructure hosts (`91.92.242.30`, `laosji.net`, `letssendit.fun`), each with a source
+  comment. A point-in-time snapshot, not a feed.
+
+### Changed
+- **`vet_source` now also matches a vetted URL's host** (incl. subdomains) against the
+  `url`/`any` known-bad pools — so a source served straight off known-bad C2 infrastructure
+  (e.g. a bare-IP C2) returns KNOWN-BAD, not merely the generic bare-IP WARN.
+
+## [3.6.0] — 2026-07-03
+
+Two new bundled-code semantic passes plus the first defensibility-axis check — the
+installed-skill vet (B13) now reads JavaScript/TypeScript, catches more obfuscated shell,
+and flags import-path hijack surface. All additions are zero-false-positive by
+construction: crit rules fire only on unambiguous obfuscated-RCE / exfil shapes, softer
+signals land in WARN buckets.
+
+### Added
+- **B86 — import-path hijack surface (defensibility axis D1).** Flags a skill whose import
+  resolution can pull code from a writable directory (`IMPORT_FROM_WRITABLE`) — a
+  supply-chain tamper surface (cf. B5). First check on the new defensibility axis.
+- **`analyze_javascript` — bundled JS/TS semantic pass (F-064).** The vet was Python+shell
+  only; `.js`/`.ts`/`.mjs`/`.cjs` had no semantic pass. Hybrid severity: `JS_EVAL_DECODED`
+  (eval/Function of a base64-decoded blob) and `JS_EVAL_REMOTE` (dynamic `import()` of a
+  URL, `fetch(...).then(eval)`) are **crit → FAIL**; `JS_CHILD_PROCESS_DYNAMIC`
+  (child_process with an interpolated command) and `JS_DYNAMIC_REQUIRE` (require of a
+  non-literal) are **WARN**. Comments are masked (URLs preserved) so documented examples
+  don't fire.
+- **`analyze_shell` extended (F-050)** with three crit rules: `SHELL_DECODE_EXEC`
+  (base64/xxd/openssl `-d` piped into a shell/interpreter), `SHELL_EVAL_REMOTE`
+  (`eval`/`source` of a remote download), and `SHELL_ENV_EXFIL` (a credential-shaped env
+  var sent over a raw socket — `nc`//dev/tcp; auth headers to curl/wget stay silent).
+
+### Fixed
+- **B13 false positive** — a subprocess argv passed as a variable list
+  (`cmd = [prog, *args]; subprocess.run(cmd)`) is no longer escalated to
+  command-injection grade absent a credential/exfil signal.
+
+## [3.5.0] — 2026-07-03
+
+Incident-readiness check (B85) — turns the trajectory sidecar from a "proven tool use"
+source (v3.3.0) into an on-disk audit-trail integrity check, closing E-014 S3 / C-093.
+
+### Added
+- **B85 — incident readiness: tool-use trail present and tamper-resistant** (advisory,
+  HIGH confidence). OpenClaw's per-session trajectory sidecar
+  (`agents/<agent>/sessions/*.trajectory.jsonl`) is the closest thing OpenClaw has to an
+  attributable, on-disk audit log of tool calls (grounded in recon §9.1). B85 answers two
+  filesystem questions and **never reads call contents** (§8, `stat()` only):
+  *present?* — is tool use recorded at all; *tamper-resistant?* — are the sidecar files or
+  their `sessions/` directory group/world-writable, so a local user (or the agent itself)
+  could rewrite/delete the trail. **PASS** = present + tight perms; **WARN** = present but
+  group/world-writable; **UNKNOWN** = non-POSIX, or no sidecar (disabled via
+  `OPENCLAW_TRAJECTORY=0`, relocated to `OPENCLAW_TRAJECTORY_DIR`, or no runs yet) — never a
+  false FAIL. Scored=`False`, so it never moves the A–F grade. Mapped to AST09 (No
+  Governance), no clean OWASP-LLM analog (mirrors B50). `tests/test_b85_incident_readiness.py`.
+- `trajectory.find_trajectory_files()` — a read-only, DoS-bounded glob of the grounded
+  sidecar layout, now shared by both `read_proven_tools()` (B84) and B85.
+
+### Changed
+- This supersedes the 2026-06-27 C-093 verdict ("no audit-log surface → infeasible"): the
+  static presence + tamper legs are now answerable from the trajectory sidecar, without any
+  new config field (no `dig()` path added; `test_schema_grounding` unaffected). The pure
+  log-*content* retention/attribution leg stays config-UNKNOWN — no `audit.file` exists.
+  Recon §9.1 updated accordingly; `docs/CHECKS.md` regenerated; README §checks updated.
+
+## [3.4.0] — 2026-07-03
+
+A two-phase multi-turn taint harness — the persistent-poisoning self-test the single-turn
+canary/dry-run couldn't cover.
+
+### Added
+- **`--multiturn` — two-phase plant→trigger taint harness** (`clawseccheck/multiturn.py`,
+  E-014 S2). Phase 1 plants a poisoned standing-order rule into agent memory as untrusted
+  input; phase 2 fires an innocent later-turn trigger; the run is VULNERABLE iff the
+  trigger-turn transcript shows a dangerous tool invoked with the planted fake secret (the
+  rule fired across turns). Deterministic scaffold — no LLM calls, no network — driven live
+  by the host agent per SKILL.md, like the existing canary/dry-run/red-team tests. Fake
+  secrets are synthetic (`CLAWSECCHECK_FAKE_` prefix, assembled from fragments — no real
+  credential). Folded into `--self-test` and the shared `self_test` freshness clock, and
+  listed in the all-functions palette.
+
+## [3.3.0] — 2026-07-03
+
+B84's "proven tool use" is now sourced from real OpenClaw logs, not just self-report.
+
+### Added
+- **Log-observed proven tool use (`clawseccheck/trajectory.py`).** A read-only reader for
+  the OpenClaw trajectory sidecar (`<home>/agents/*/sessions/*.trajectory.jsonl`, on by
+  default) extracts the set of tool verbs the agent *actually invoked* from `tool.call`
+  records' `data.name`, version-gated on `traceSchema=openclaw-trajectory` /
+  `schemaVersion=1`. Grounded against a live install (recon §9.1).
+
+### Changed
+- **B84 now prefers log-observed evidence over the agent's self-report.** When a trajectory
+  sidecar is present, B84's "proven" column comes from the log at **HIGH** confidence
+  (upgraded from `ATTESTED`); it falls back to the attested `proven_tools` self-report when
+  no log exists, and stays UNKNOWN when neither is available. This closes the log-observed
+  leg of the declared-vs-effective-vs-proven diff (Pulse C-090) that earlier recon had
+  marked blocked — the real surface is the trajectory sidecar, not `logging.file` /
+  `cacheTrace` (which carry no discrete tool-call record).
+
+### Security
+- The trajectory reader reads **only** `data.name` (the tool identity, not a secret) — it
+  never touches `data.arguments` / `output` / `result` (the sensitive call/return payloads),
+  and bounds files/bytes scanned as a DoS guard. Read-only, local, no network.
+
+## [3.2.0] — 2026-07-03
+
+Adds the first runtime-evidence check (B84) and clears a Unicode false positive (B58).
+
+### Added
+- **B84 — declared-vs-effective-vs-proven tool use** (runtime-evidence layer, first
+  slice). Extends B44 with a third column: **proven** behaviour. A new `proven_tools`
+  attestation field lets the agent cite verbs it has LOG/TRACE evidence it *actually
+  invoked*. B84 WARNs when a proven high-blast verb fired with an ungated approval posture
+  — "the agent did, ungated," not merely "could." UNKNOWN by default (no `--attest` / no
+  proven evidence cited), `scored=False`, `ATTESTED` confidence — it never moves the A–F
+  grade.
+
+### Fixed
+- **B58 no longer WARNs on whole-script multilingual (i18n) content.** The "confusable
+  characters folded to ASCII" signal fired on any Cyrillic/Greek prose (e.g. `Привет`,
+  `Ελληνικά` fold partially), so legitimate i18n skills WARNed once B58 joined the `--vet`
+  ring in 3.1.2. B58 now flags confusables only when they sit in **ASCII-Latin context** — a
+  homoglyph swapped into an otherwise-Latin word (`іgnore`, `оriginally`) — via a new
+  `textnorm.confusable_in_ascii_context()` token check. Whole-script non-Latin runs are
+  benign i18n and PASS; invisible / bidi / hidden-markup / base64 signals still WARN; a
+  homoglyph that folds into an injection pattern still FAILs.
+
+## [3.1.2] — 2026-07-03
+
+`--vet` content-ring parity + truncation transparency (E-018 first slice).
+
+### Changed
+- **`--vet` now runs B58 (Unicode / hidden-text de-obfuscation).** B58 reads skill
+  content but sat outside `SKILL_CONTENT_RING`, so the full audit ran it while the
+  pre-install `--vet` path silently skipped it. It is now a ring member, closing the last
+  content-ring parity gap between the two engines. A new anti-drift test asserts the ring
+  is *complete* — any check that reads installed-skill content must be in the ring (or an
+  explicit audit-level exemption), so this can't silently regress again.
+
+### Fixed
+- **Shell-reader truncation is now recorded.** `read_skill_shell` capped large/padded
+  shell bundles like its text/Python siblings but did not append to `ctx.limit_hits`, so a
+  payload padded past the cap was dropped silently as a clean PASS. It now records the cap
+  hit, and `check_installed_skills` surfaces UNKNOWN instead of a false all-clear.
+
+## [3.1.1] — 2026-07-02
+
+Two false-positive fixes in the skill/MCP checks, upholding the zero-false-positive doctrine.
+
+### Fixed
+- **B-071 (`--vet-mcp`)** — a loopback plaintext-HTTP MCP endpoint (`http://localhost`,
+  `http://127.0.0.1`) is no longer flagged as DANGEROUS. Loopback traffic never leaves the
+  host, so there is no clear-text exfiltration risk; `_vet_mcp_server` now reuses the same
+  `_mcp_url_is_local` helper C047 uses, so the two checks agree. Remote plaintext HTTP is
+  still flagged.
+- **B61 (cross-agent config snooping)** — a first-party skill that merely *mentions* its own
+  `~/.openclaw/...` path with no read/exfil verb no longer raises a bare-mention WARN (it is
+  normal self-configuration, not cross-agent theft). A `~/.openclaw` path *with* a read/exfil
+  verb still FAILs, and foreign-agent paths (`.claude`/`.codex`/`.gemini`) are unchanged.
+
+## [3.1.0] — 2026-07-02
+
+Four new advisory checks close DoS / exposure gaps, the B33 CVE gate catches three more
+confirmed OpenClaw advisories, and the chat/badge rendering path is hardened so a host
+agent stops substituting its own broken image for the real badge.
+
+### Added
+- **B80** — gateway auth without rate limiting on a non-loopback bind: WARN when
+  `gateway.auth.mode` is `token`/`password` and the bind is exposed but no
+  `gateway.auth.rateLimit` is set (credential brute-force surface). Advisory.
+- **B81** — subagent spawn limits raised beyond the safe defaults
+  (`agents.defaults.subagents.maxSpawnDepth`/`maxChildrenPerAgent`/`maxConcurrent`) while
+  an untrusted channel can reach the agent (fork-bomb / cost-exhaustion). Advisory.
+- **B82** — `logging.cacheTrace` transcript file persisted without
+  `logging.redactSensitive:"tools"` — full prompt/response transcripts (incl. secrets) at
+  rest. Advisory.
+- **B83** — `tools.web.fetch.maxRedirects` set high — redirect-chain SSRF toward
+  private/internal targets. Advisory.
+
+### Fixed
+- **B33 CVE gate** now covers three more confirmed advisories in addition to the existing
+  one: GHSA-mc68-q9jw-2h3v (Docker sandbox command injection, fixed 2026.1.29),
+  GHSA-g6q9-8fvw-f7rf (Gateway tool SSRF, fixed 2026.2.14) and GHSA-cv7m-c9jx-vg7q (browser
+  upload path traversal, fixed 2026.2.14). Unverified advisories are deliberately excluded.
+
+### Changed
+- **Badge delivery** — the `--badge` success message and the guided share-grade step now
+  instruct the host agent to attach the generated SVG file as-is and explicitly *not* to
+  redraw or rasterize its own badge image (a host that improvises loses the grade/score).
+- **Chat menus** — SKILL.md now tells the host to render menus as ordinary text rather than
+  wrapping them in a monospace code fence.
+- **Branding** — the `🦞 ClawSecCheck` header is now emitted on the shareable card and the
+  score-trend view (dropped under `--ascii`), so branding survives host recomposition.
+- **Docs** — `references/design-system.md` and `README.md` now state that chat output is
+  best-effort/host-composed and the canonical artifacts are the saved files (`--save`,
+  `--html`, `--badge grade.svg`); host avatar/name and inline-SVG rendering are out of the
+  skill's control.
+
+## [3.0.0] — 2026-07-02
+
+Vet-by-type: `--vet` now covers skills, plugins **and** MCP servers behind one
+autodetecting entry point, plus a pre-download reputation gate. Major because the
+human report is now reports-only — all remediation surfaces were removed from the
+rendered output (machine/SARIF consumers that parsed fix text must migrate).
+
+### Added
+- `vet_plugin()` + `--vet-plugin` — a container-dispatcher pre-install vet for OpenClaw
+  plugins: `openclaw.plugin.json` manifest sanity, npm lifecycle scripts, floating
+  dependency versions, native-executable stowaways, and skills entries escaping the
+  plugin root; bundled skills dispatch to the skill engine (they auto-load via
+  `~/.openclaw/plugin-skills/`) and embedded MCP specs to the MCP engine. JS/TS runtime
+  code depth and the `node_modules` exclusion are disclosed as coverage notes; a capped
+  sweep downgrades to UNKNOWN rather than a silent PASS.
+- `--vet` type autodetect — classifies its target by content (plugin manifest / MCP
+  server-spec / skill) and prints `detected type: …` on stderr; `--vet-skill` and
+  `--vet-plugin` force a specific engine. Existing `--vet <skill>` behaviour is
+  unchanged.
+- `--vet-source` — pre-download reputation gate: judges a source's identity
+  (`clawhub:` / `npm:` / `pypi:` / `git:` / URL / bare name) with zero network and
+  nothing fetched — known-compromised catalog, typosquat, paste/bare-IP host, unpinned
+  git ref. Verdicts KNOWN-BAD / SUSPICIOUS / no-known-bad-record; never PASS, since an
+  identity check cannot prove unseen code safe.
+
+### Fixed
+- Typosquat precision: `_levenshtein` now uses Optimal String Alignment so an adjacent
+  transposition counts as one edit, and short names (≤6 chars) require a single edit —
+  `canvas` is no longer flagged as a squat of `pandas`, while real short-name
+  transposition squats still fire.
+
+### Changed
+- **Breaking:** human reports are now reports-only — remediation/fix surfaces were
+  removed from the rendered output. The audit names what is wrong and why; fixing is
+  the operator's decision.
+- `--dashboard` card is now deterministic (severity dots, family emoji, FIX-FIRST
+  ordering).
+
+## [Unreleased]
+
+### Added
+
+- **Deterministic chat Dashboard card (`--dashboard`):** one code-rendered paste for the chat
+  Dashboard's Sections 1-3 — the 🦞 grade-card header with score-bar and issue count, the
+  `▶ FIX FIRST` block with an *estimated* grade projection, and the framed findings block.
+  Live testing showed host LLMs silently drop the mascot, projection, and family frame when
+  asked to compose those sections from `--json`; now they paste instead
+  (`--dashboard-findings` still prints the findings block alone).
+- **`▶ FIX FIRST` in the CLI report:** `render_report` now shows the single
+  highest-leverage fix and its estimated projection (`scoring.project()`) before the
+  findings list — the terminal and chat views tell one story.
+
+### Changed
+
+- **Severity dots on issue lines:** FAIL/WARN findings now lead with a severity dot
+  (🔴 CRITICAL · 🟠 HIGH · 🟡 MEDIUM · ⚪ LOW) instead of the status icon + bracketed
+  severity (`⛔ [CRITICAL]`), in both the CLI report and the chat paste — one glyph
+  language, per the design-system mock. `--ascii` folds the dot+word to `[CRITICAL]`-style
+  brackets; PASS/UNKNOWN roster lines keep their ✅/❔ status icons.
+- **Family emoji in the chat paste:** the chat Dashboard's family headers now carry the
+  7 grounded icons (🌐 🔑 📦 📝 🔒 🛰️ 🔧) promised by the SKILL.md Step-3 table; the CLI
+  report's family headers stay emoji-less by design.
+- **No duplicated evidence under `why:`:** an evidence bullet already quoted verbatim
+  inside the finding's `why:` line is dropped as pure duplication; bullets render only
+  when they add something the why line doesn't literally contain. Cuts the report's
+  vertical bulk with zero information loss.
+- **🦞 header on the CLI report:** the mascot now opens the terminal report too
+  (dropped under `--ascii`), consistent with the menu, palette, and onboarding screens.
+
+## [2.8.0] — 2026-07-02
+
+The largest release of the 2.x line: a full **presentation redesign** — the conversational
+Dashboard, the CLI text report, the standalone HTML report, a new capability palette, and a
+first-run onboarding screen — alongside a major expansion of the **supply-chain vetting engine**
+(`--vet`) into a cross-file, content-aware scanner. Deterministic scan and scoring are unchanged;
+every new surface is presentation or a read-only detection. No breaking changes.
+
+### Added
+
+**Presentation & discovery**
+- **Welcome / capability menu (`--menu`):** a pre-scan entry screen — the four common things you
+  can do, plus a last-check age and an offline staleness nudge.
+- **Terminal Dashboard (`report.py`):** the CLI text report gained a **score-bar** in the grade
+  header (`████░░`; `--ascii` → `[####----]`), an honest OpenClaw-surface **coverage map**
+  (checked / partial-UNKNOWN / not-checkable, grounded in the coverage engine), and an **opt-in
+  ANSI colour** layer (new `clawseccheck/ansi.py`) — grade, score-bar and severity icons are
+  painted only for an interactive TTY, honour `--no-color` / `NO_COLOR` / `FORCE_COLOR`, and are
+  stripped back to plain text for `--save` files and pipes.
+- **Capability palette (`--functions`, Screen 12):** the full list of everything the skill can do
+  as speakable prompts grounded to their real flags (`clawseccheck/palette.py`); a drift-guard
+  test keeps it in lock-step with the CLI's mode table.
+- **First-run onboarding (Screen 13):** a bare run against a missing or empty `~/.openclaw` prints
+  a friendly "point me at your config" welcome instead of a wall of UNKNOWNs. Any machine/CI/
+  artifact flag (`--json`, `--fail-under`, `--save`, `--full`, `--badge`, …) still runs the real
+  audit, so nothing is silently dropped.
+- **Deterministic chat-Dashboard frames (`--dashboard-findings`):** an agent-facing flag that
+  prints only the framed Section-3 Findings block (`report.py:render_dashboard_findings`), so
+  SKILL.md Step 3 pastes it verbatim instead of the host LLM re-composing (and un-framing) it.
+- **Grouped HTML report (`--html`):** findings grouped by the seven OpenClaw surface families with
+  a per-group jump nav and counts, a score progress bar and per-severity summary strip, and dark
+  mode via `prefers-color-scheme` — still a single self-contained file with **no external assets**.
+
+**Supply-chain vetting (`--vet`)**
+- **Full content ring on every bundled file** (not just B13), with **cross-file import-graph taint**
+  that catches payloads split across a skill's files, and a semantic pass over bundled shell (`.sh`)
+  scripts.
+- New content detections: anti-refusal / system-prompt-leak directives, forged role markers,
+  XOR-loop and other obfuscated payloads, code-level time-bomb / sandbox-evasion gating, env-var /
+  agent-config secret exfiltration to the network, native-executable stowaways, trigger-abuse /
+  local instruction-chain / IOC signals, skill-manifest least-privilege gaps (granted vs declared
+  tools), and skipped symlinks / path-escapes / obfuscated filenames — with source-to-sink trace
+  evidence in the verdict.
+
+### Changed
+- **Report honesty (L1/L2 framing):** the report now states a static audit bounds what your agent
+  *can* do, not how it *behaves* at runtime — a high grade means "not statically lethal-capable",
+  not "runtime-proof". Framing only; no scoring change.
+- **Dashboard grouping:** findings group under the seven surface families with an open 3-sided
+  frame header (`┌─ / │ label / └─`, open on the right so variable-width emoji can't misalign it);
+  the Lethal Trifecta is folded into Privilege & Execution rather than a standalone headline.
+  `--ascii` keeps the `[Family] — N to fix` bracket form. Applies to the chat Dashboard, the CLI
+  text report, and the HTML report; `references/design-system.md` documents all 14 screens.
+- **HTML finding cards:** bordered cards with a severity-tinted accent, a severity pill, and clearer
+  `Why:`/`Fix:` typography, replacing the flat rows. Content, escaping, and the private-owner-view
+  contract are unchanged.
+
+### Fixed
+- **First-run / CI correctness:** onboarding no longer turns a missing-home `--fail-under` gate
+  green or swallows `--save`/`--full` (B-075); an unreadable home is a controlled plain-language
+  error, not a raw traceback (B-076).
+- **`--vet` false-negatives → UNKNOWN, not silent PASS:** AST parse failures and truncated skill
+  scans now surface as UNKNOWN instead of a clean pass (B-074); subprocess argv-list injection is
+  classified as argument- not command-injection; a B65 false positive is fixed.
+- **Machine output & flag coherence:** the invalid-attestation warning goes to stderr so
+  `--attest bad.json --json` stays valid JSON (B-070); a winning primary mode now names dropped
+  `--full`/`--attest` (B-068); a mode-drift guard test ties `_PRIMARY_MODES` to `main()` (C-129).
+- **`--verify-self`:** the engine digest excludes lint/type/test caches and `.git`.
+- **HTML private-warning line breaks:** the "must **NOT** be shared" sentence renders as one
+  flowing line again.
+
+## [2.7.1] — 2026-06-30
+
+The CLI no longer silently drops a second mode flag or a modifier the chosen mode can't
+use — it names what was ignored — plus a cleanup of leftover i18n references.
+
+### Added
+- **Flag-coherence notes (B-066/B-067):** when more than one mode is selected, or a global
+  modifier the resolved mode can't honor is passed, ClawSecCheck prints a `note: …` to
+  **stderr** naming what was ignored and continues. Notes go to stderr so machine-readable
+  stdout (`--json`/`--sarif`) stays clean; no mode's behavior or exit code changes.
+- **`--vet` records a coverage-ledger run (C-128):** symmetric with `--vet-mcp`. The
+  freshness advisory has no `vet` threshold, so this adds no staleness nudge — it just keeps
+  the two vet modes consistent.
+
+### Fixed
+- **B-066 — global modifiers no longer silently ignored by side modes:** `--json` with
+  `--fix`/`--next`/`--prompts`, `--save` with a non-report mode, and `--exit-code` with
+  `--sarif` each now emit a `note: … has no effect with …`. `--no-history` is honored on the
+  default path and noted (not silently dropped) under `--trend`/`--monitor`, which record a
+  score point as part of their job. `--vet`/`--vet-mcp` still honor `--json` (primary) and
+  `--sarif` (side output) with no note.
+- **B-067 — mutually-exclusive mode flags no longer silently override each other:** e.g.
+  `--card --json` → `note: --card ignored (running --json)`; `--vet X --redteam` →
+  `note: --redteam ignored (running --vet)`.
+
+### Changed
+- **Removed leftover i18n references after the v2.0.0 de-i18n:** a stale `--lang he` line in
+  `references/cli-flags.md` (a flag that no longer exists), orphaned `Hebrew localization`
+  section dividers in 10 test files, and dead Hebrew-renderer comments in
+  `checks.py`/`report.py`/`sar.py`/`risk.py`. The Hebrew-block guard in `textnorm.py`
+  (U+0590–05FF must never be confusable-folded) and RTL content-analysis logic are unchanged.
+
+## [2.7.0] — 2026-06-30
+
+The least-privilege check now says "I can't tell" instead of a falsely-reassuring "pass"
+when a config declares no tool surface at all.
+
+### Changed
+- **B3 (least privilege) hedges to UNKNOWN on an undeclared surface (B-065):** B3
+  previously returned **PASS** whenever no over-broad elevated grant / profile / plugin
+  escalation was *declared* — including on a config that declares **nothing** (no
+  `tools.elevated.allowFrom`, no `tools.profile`, no plugins, no recognized tool surface,
+  no `--attest` roster). That is "absence of evidence = evidence of safety": runtime-
+  granted tools are invisible to a static config audit, so there is nothing to verify as
+  constrained. B3 now returns **UNKNOWN** in that case, mirroring A1's
+  `_meaningful_tool_surface` thin-surface guard (the B-033 doctrine). A **declared-and-
+  clean** surface (a small `allowFrom`, a `minimal` profile, allow-listed plugins, or any
+  recognized `tools.allow` capability such as `exec`/`web_fetch`) still **PASSes** — the
+  gate is deliberately narrow.
+  - **Scoring impact:** UNKNOWN is excluded from scoring, so a thin config no longer banks
+    a free HIGH PASS for B3. `home_safe` is unaffected (A/93 — it declares
+    `tools.elevated.allowFrom` + `tools.profile`); `home_vuln` unaffected (F, capped).
+    Five internal fixtures with no declared privilege surface tighten one letter
+    (`bad_c015_home_secrets`, `bad`/`clean_c032_proxy_headers`, `bad`/`clean_b79_sessions`:
+    B → C) — an honesty gain, not a regression: §5 holds (UNKNOWN is never a FAIL; zero
+    `clean_*`/`home_safe` FAILs). Completes the B3 fix begun in v2.6.1 (wording).
+
+## [2.6.2] — 2026-06-30
+
+§5 hotfix: a configured sandbox no longer inflates the lethal-trifecta count, plus a
+batch of missing test coverage.
+
+### Fixed
+- **A sandbox no longer infers an exec leg (B-064):** a config that declares **no**
+  exec/shell tool but sets a defensive `agents.defaults.sandbox.mode` (anything but
+  `off`) was scored as a **3/3 lethal trifecta (A1 FAIL, grade F)** when it should be
+  2/3 — a hardening control *raised* the trifecta count. Root cause: the shared
+  `_enabled_tools()` infers a synthetic `"exec"` from `sandbox.mode != "off"` (correct
+  for B4's posture reasoning, wrong for A1), and the v2.6.0 B-061 sensitive-leg predicate
+  treated that phantom exec as ungated. A1 now derives the exec capability from a new
+  `_real_exec_enabled()` — a **declared** exec signal only (`tools.exec.*`, a powerful
+  `tools.profile`, or an `exec`/`shell` name in `tools.allow`/`gateway.tools.allow`) —
+  never from the sandbox inference. Measured: the false 3/3 drops to a correct 2/3; six
+  sandbox-only fixtures tighten 2/3→1/3 (all still PASS); `home_vuln` and `bad_c014`
+  (real ungated exec) stay FAIL; zero `clean_*`/`home_safe` FAILs. A sandbox-as-
+  containment relaxation was considered and **rejected** — it would mask a genuinely
+  escapable sandbox (`docker.sock` + `network:host`) + ungated exec as a false negative.
+  New test `test_a1_sandbox_without_exec_not_lethal`.
+
+### Added
+- **Test coverage backfill (B-034…B-040):** B11 private-IP-no-TLS WARN + loopback-clean
+  control; B16 no-monitoring-skill WARN; C3 backup-present PASS; B15 legacy `mcpServers`
+  with restrictions PASS; C4 version-absent UNKNOWN; B6 bootstrap-absent UNKNOWN; and a
+  B14 characterization test. (B14 has no PASS branch by design — OpenClaw exposes no
+  egress-allowlist field it could verify — so the B14 case asserts the current WARN and
+  flags the gap rather than forcing a PASS; tracked separately.)
+
+## [2.6.1] — 2026-06-30
+
+§5 false-positive sweep: a channel marked `enabled: false` no longer drives any
+"reachable by untrusted senders" verdict, and the least-privilege check stops claiming
+it verified something it cannot see.
+
+### Fixed
+- **Disabled channels no longer trigger false positives (B-041):** the two channel
+  resolvers that feed FAIL/WARN checks — `_open_channels` and `_external_input_channels`
+  — were not skipping channels marked `enabled: false`, unlike the enabled-aware
+  `_active_channels` / `_untrusted_input_channels`. A disabled channel ingests nothing,
+  so counting it produced **§5 hard-FAIL false positives** and spurious WARNs across
+  several checks. Both resolvers now skip `enabled: false` channels (and B30 assesses
+  only live channels). Concretely fixed:
+  - **B2** (gateway auth) — a loopback+token gateway with only a *disabled* open channel
+    no longer FAILs "anyone can command it".
+  - **B39** (session visibility) — `dmScope:"main"` + only a *disabled* allowlist/paired
+    channel no longer FAILs "cross-user contamination" (it also no longer contradicts A1).
+  - **B55** (broad fs-write) — `fs_write` reachable only via a *disabled* open channel no
+    longer hard-FAILs.
+  - **B30** (sender identity) — a *disabled* channel's `dangerouslyAllowNameMatching` /
+    group-history flag is no longer reported as a live bypass.
+  - **B41** (credential blast radius) and **B46** (multi-agent exposure) — a *disabled*
+    untrusted channel no longer raises a spurious WARN; the combinational risk engine
+    (`risk.py`) and the host-posture WARNs likewise stop counting disabled ingress.
+  - The fix only *narrows* matches, so it can never create a new FAIL/WARN (no §5
+    regression); enabled channels are unaffected. New regression coverage:
+    `tests/test_disabled_channel_b041.py`.
+
+### Changed
+- **B3 (least privilege) no longer overclaims (B-042):** its PASS message said "Elevated
+  tools are restricted and tool reachability is constrained" even on a thin config and
+  even with `exec`/`web_fetch`/`fs_read` granted — runtime-granted tools aren't visible
+  to static config audit. The PASS now states only what it verified: "No over-broad
+  elevated-tool grant or profile/plugin escalation in config (runtime-granted tools are
+  not visible to static config audit)." (A follow-up task tracks hedging this to UNKNOWN
+  when the privilege surface is entirely undeclared, mirroring A1's thin-surface guard.)
+
+## [2.6.0] — 2026-06-30
+
+A1 lethal-trifecta engine sharpens its read of `exec` and tells you how close a 2/3
+config is to becoming lethal — both grounded against the real OpenClaw schema and
+guarded so no safe config gains a spurious FAIL.
+
+### Added
+- **A1 "distance to trifecta" (F-036):** for a config with exactly **2 of 3** legs
+  active, the A1 detail now names the single missing leg and the concrete config toggle
+  that would complete the lethal set (e.g. *"the missing leg is 'sensitive data'. Avoid
+  enabling … ungated exec (tools.exec.mode='full') …"*). The capability union is
+  monotonic, so this is the actionable warning: *you are one step from lethal — do not
+  enable X*. Purely additive — no scoring change for already-3/3 (FAIL) or for <2/3.
+
+### Fixed
+- **A1 counts ungated `exec` as two legs, not one (B-061):** arbitrary code execution
+  can both read any private file (**sensitive data**) and exfiltrate it (**outbound
+  actions**). Previously `exec` raised only the outbound leg, so an `exec` + untrusted-
+  input config under-counted to 2/3 and **passed** — a false negative on the single most
+  dangerous capability. Ungated `exec` (`tools.exec.mode='full'`) now raises the
+  sensitive leg as well.
+  - **§5 guard:** the new sensitive leg is gated on `not _has_approval_gate` — approval-
+    gated exec (`mode` deny/allowlist/ask/auto, `security` deny/ask, `ask` on-miss/always)
+    is **not** autonomous (a human signs each call), so it does **not** raise sensitive.
+    This keeps every clean fixture and real safe config FAIL-free; only a genuine
+    untrusted-input + ungated-exec + outbound config reaches a true-positive 3/3.
+
+### Changed
+- A1 leg computation (`_trifecta_legs`) now derives the exec capability from a single
+  `exec_enabled` predicate shared by the sensitive and outbound legs, so the engine
+  speaks with one voice on `exec`. The per-agent attestation leg model (`_agent_legs`,
+  used by B45/B47) is unchanged — config-level signals stay out of per-agent reasoning.
+
+## [2.5.7] — 2026-06-30
+
+Final detector scanner-hygiene step. No change to audit behavior, checks, scores, or
+findings.
+
+### Changed
+- **Scanner hygiene (`skillast.py`):** the last three contiguous `exec`/`eval` string
+  literals in the parse-only AST taint detector — an `os.exec*`/`spawn*` sink-name
+  check and the two taint effect-labels — are now assembled from fragments, matching
+  the existing `_EXEC_NAMES` idiom. The module now contains no contiguous `exec`/`eval`
+  literal or call syntax, so naive `dynamic_code_execution` keyword scanners have
+  nothing to match. Runtime values and detection (including the external-input→eval
+  taint rule) are unchanged.
+
+## [2.5.6] — 2026-06-30
+
+Documentation and detector-hygiene release. No change to audit behavior, checks,
+scores, or findings.
+
+### Changed
+- **Scanner hygiene (`skillast.py`):** the parse-only AST taint detector (`--vet` /
+  B13) no longer spells out `exec()`/`eval()` call syntax in its own comments,
+  docstring, and finding messages, so naive `dynamic_code_execution` keyword scanners
+  stop false-positiving on ClawSecCheck's own analyzer. Detection logic is unchanged —
+  the module still parses with `ast.parse` (it never executes), and the `exec`/`eval`
+  name set was already assembled from fragments.
+- **`docs/THREAT_COVERAGE.md`:** re-synced the OWASP LLM and Agentic-Skills coverage
+  tables with `catalog.OWASP_MAP` / `AST_MAP` — the hand-maintained tables had drifted
+  behind several recently-mapped checks (B12, B38, B55–B57, B60, B62, B63, B65–B67,
+  B73–B79, C014, C015, C032). Also refreshed the stale header and the truncated
+  catalog-span line.
+
+## [2.5.5] — 2026-06-29
+
+Sharper, more precise lethal-trifecta (A1) detection plus a batch of schema-variant
+and threat-mapping fixes. A1 now reads real capability surfaces it previously missed
+(e.g. web fetch), so some setups that genuinely hold all three legs may now correctly
+FAIL where they were a "cannot determine" WARN before — while several false positives
+are closed (approval-gated group bots; a gateway password miscounted as agent data).
+
+### Added
+- A1 detects an enabled web fetch/browse tool (`tools.web.fetch.enabled`) as both
+  an untrusted-input surface (untrusted remote content) and an outbound surface
+  (exfiltration via request URLs).
+- Regression coverage (clean + bad) for the core checks B1–B12.
+
+### Fixed
+- **A1 false positive (group bots):** the untrusted-input leg now keys off the
+  documented untrusted-policy allowlist (`open`/`allowlist`/`paired`) only. An
+  owner-approved group bot (`groupPolicy: "ask"`, per-message approval) is no
+  longer flagged as untrusted input, matching the engine's DM behaviour.
+- **A1 PASS-wash:** a no-op `tools.allow` entry no longer flips the
+  "cannot determine" thin-surface WARN to PASS; only a recognized capability (a
+  tool hint, web fetch, a powerful `tools.profile`, `tools.elevated.allowFrom`, or
+  a real `--attest` roster) resolves the leg.
+- **A1:** a channel marked `enabled: false` no longer raises the input/outbound
+  legs (it ingests and sends nothing).
+- **A1 false positive (gateway password):** `gateway.auth.password` no longer counts
+  toward the sensitive-data leg — it is the gateway's own auth secret, not data the
+  agent can read, so "web fetch + a gateway password" no longer reaches a spurious
+  3/3. Real data access (a data tool, `fs_read`, or a credentials dir) still raises
+  the leg; B1 still flags the password as a plaintext secret.
+- **B39:** reads an accounts-nested DM allowlist under `session.dmScope: "main"`
+  (previously a false PASS).
+- **B33 / C6:** read the root-level `lastTouchedVersion` alias so the version/CVE
+  gate is no longer silently UNKNOWN.
+- **B25:** reads the legacy flat plugin/skill shape (`plugins.<name>` without an
+  `entries` wrapper).
+- **B48:** reads per-account break-glass webhook flags
+  (`channels.<provider>.accounts.<id>.*`).
+- Python 3.9 compatibility for new test helpers (deferred-annotation imports for
+  PEP 604 unions); CI runs on 3.9 and 3.12.
+
+### Changed
+- **Threat mapping:** B63/B65/B66 no longer map to OWASP LLM09 (Misinformation,
+  out of scope); they map to LLM06 (Excessive Agency). Previously unmapped checks
+  are now tied to OWASP LLM and Agentic-Skills classes (B12, B74, B76, B79, C014,
+  C015 → LLM; B38, B73, B74, B76, B77, B78, B79, C032 → AST).
+
+## [2.5.4] — 2026-06-29
+
+Follow-up to the v2.5.3 capability-graph audit: align B46 multi-agent exposure with the
+trifecta input-leg definition of untrusted ingress, and lock the deliberately-narrower B55
+FAIL boundary so a future "consistency" refactor can't turn it into a false positive.
+
+### Fixed
+- **B46 multi-agent exposure** now counts **allowlist/paired** ingress, not just fully-open
+  channels, in its partial-trifecta branch — matching the trifecta input leg
+  (`_external_input_channels`). An `allowlist channel + elevated sender scope + subagents`
+  setup previously slipped through as `PASS`; it now correctly `WARN`s. B46 stays WARN-capped,
+  so this adds **no new FAIL** on real configs.
+
+### Changed
+- **B55 fs-write exposure** keeps `_open_channels` (open-only) at its **FAIL** gate **by
+  design** — an allowlist/paired channel stays `WARN`, never a hard `FAIL`. The boundary is
+  now documented in-code and locked with explicit regression tests (no behavior change).
+
+## [2.5.3] — 2026-06-29
+
+Cross-agent audit fixes — multi-agent session posture, bootstrap-root discovery,
+capability-graph/A1 consistency, and stricter CLI exit codes. Surfaced by independent
+testing of the skill on separate setups, each fix verified against current code and
+locked with regression tests.
+
+### Fixed
+- **B79 session approval-policy** is now evaluated across **all** agents (per-agent
+  worst-case), not just `agents/main`. A non-`main` agent running `approval_policy="never"`
+  was previously invisible, so the check under-reported auto-approval risk.
+- **Bootstrap discovery** now includes the home **root**, not only `workspace-*` dirs, so
+  root-level `SOUL.md`/`AGENTS.md`/`TOOLS.md`/`HEARTBEAT.md` no longer fall to a false
+  `UNKNOWN` in B6 and related content checks (symlink-deduped).
+- **Capability graph** (`--json`) derives its input surface from `_external_input_channels`
+  (open + allowlist + paired), consistent with the A1 Lethal-Trifecta verdict — fixing
+  self-contradictory output (3/3 trifecta but an empty input surface) on allowlist/paired ingress.
+
+### Changed
+- **CLI exit codes now reflect operational failures.** `--badge`/`--html`/`--sarif`/`--save`
+  exit non-zero when the write fails, and `--vet` on a non-existent target exits non-zero (a
+  valid target that vets `UNKNOWN` still exits `0`). Previously all returned `0`, which let
+  automation read a silent failure as success.
+
+### Security
+- Removed hardcoded personal filesystem paths from the test suite (privacy/cleanliness; the
+  fleet regression tests now run against repo fixtures instead of machine-specific paths).
+
 ## [2.5.2] — 2026-06-29
 
 Documentation/transparency accuracy: align the tool's stated local-write surface with what

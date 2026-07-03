@@ -22,123 +22,123 @@ COS 存储约定：
 
 用法：
   # 最简用法：仅指定输入图片（不做任何处理，用于测试连通性）
-  python mps_imageprocess.py --url https://example.com/image.jpg
+  python3 mps_imageprocess.py --url https://example.com/image.jpg
 
   # === 图片编码（转格式） ===
   # 转为 PNG 格式
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
 
   # 转为 WebP 格式 + 指定质量80
-  python mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
   # === 图片增强 ===
   # 超分辨率（2倍放大）
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
   # 高级超分（指定目标宽高）
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
 
   # 高级超分（倍率模式，3倍放大）
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
 
   # 降噪（强力）
-  python mps_imageprocess.py --url https://example.com/image.jpg --denoise strong
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --denoise strong
 
   # 综合增强（强力）
-  python mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong
 
   # 色彩增强
-  python mps_imageprocess.py --url https://example.com/image.jpg --color-enhance normal
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --color-enhance normal
 
   # 细节增强（强度0.8）
-  python mps_imageprocess.py --url https://example.com/image.jpg --sharp-enhance 0.8
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --sharp-enhance 0.8
 
   # 人脸增强（强度0.5）
-  python mps_imageprocess.py --url https://example.com/image.jpg --face-enhance 0.5
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --face-enhance 0.5
 
   # 低光照增强
-  python mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
 
   # 组合：降噪 + 超分 + 色彩增强
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --color-enhance normal
 
   # === 图片擦除 ===
   # 自动检测并擦除图标和文字
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
 
   # 自动检测并擦除水印
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
   # 指定区域擦除（像素坐标）
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
 
   # 指定区域擦除（百分比坐标）
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
 
   # === 盲水印 ===
   # 添加盲水印
-  python mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
 
   # 提取盲水印
-  python mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
 
   # 移除盲水印
-  python mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
 
   # === 美颜 ===
   # 美白（强度50）
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
 
   # 磨皮 + 瘦脸
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --beauty Smooth:60 --beauty BeautyThinFace:40
 
   # 口红（指定颜色）
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --beauty 'FaceFeatureLipsLut:50:#ff0000'
 
   # === 滤镜 ===
   # 轻胶片滤镜（强度70）
-  python mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
   # === 图片缩放 ===
   # 百分比缩放（2倍放大）
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
 
   # 等比缩放到指定宽高（较小矩形）
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600  # NOCA:line-too-long(long SDK parameter or URL string)
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600  # NOCA:line-too-long(long SDK parameter or URL string)
 
   # 固定尺寸缩放
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode fixed --resize-width 1920 --resize-height 1080  # NOCA:line-too-long(long SDK parameter or URL string)
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode fixed --resize-width 1920 --resize-height 1080  # NOCA:line-too-long(long SDK parameter or URL string)
 
   # === 组合使用 ===
   # 降噪 + 超分 + 美颜 + 转格式
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --beauty Whiten:30 --beauty Smooth:40 \\
       --format PNG --quality 90
 
   # === 编排场景（ScheduleId，腾讯云控制台预置能力） ===
   # AI 图片理解（30200）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
 
   # AI 抠图（30030）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
 
   # AI 图片修复（30040）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
   # AI 前景提取（30031）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
 
   # AI 扩图（30010，图片扩展）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
 
   # AI 文字水印擦除（30000）
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -176,7 +176,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -1033,7 +1033,7 @@ def process_image(args):
                                  title="图片处理效果对比", output_path=compare_path)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_image_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_image_task.py --task-id {task_id}")
 
         return result
 
@@ -1051,79 +1051,79 @@ def main():
 示例：
   # === 输入方式 ===
   # URL输入
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
   
   # COS路径输入（推荐，本地上传后使用）
-  python mps_imageprocess.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/image.jpg --format PNG
+  python3 mps_imageprocess.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/image.jpg --format PNG
   
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_imageprocess.py --cos-input-key /input/image/test.jpg --format PNG
+  python3 mps_imageprocess.py --cos-input-key /input/image/test.jpg --format PNG
 
   # === 格式转换 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
-  python mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
   # === 图片增强 ===
   # 超分辨率（2倍放大）
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
   # 高级超分（指定目标尺寸）
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
 
   # 高级超分（倍率模式）
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
 
   # 降噪 + 色彩增强
-  python mps_imageprocess.py --url https://example.com/image.jpg --denoise strong --color-enhance normal
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --denoise strong --color-enhance normal
 
   # 低光照增强
-  python mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
 
   # === 图片擦除 ===
   # 自动检测擦除图标和文字
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
 
   # 自动检测擦除水印
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
   # 指定区域擦除（像素坐标）
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
 
   # 指定区域擦除（百分比坐标）
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
 
   # === 盲水印 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
-  python mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
-  python mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
 
   # === 美颜 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Smooth:60 --beauty BeautyThinFace:40
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty 'FaceFeatureLipsLut:50:#ff0000'
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Smooth:60 --beauty BeautyThinFace:40
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty 'FaceFeatureLipsLut:50:#ff0000'
 
   # === 滤镜 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
   # === 缩放 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
 
   # === 组合使用 ===
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --beauty Whiten:30 --format PNG
 
   # === 编排场景（ScheduleId，控制台预置能力） ===
   # AI 图片理解 / AI 抠图 / AI 图片修复 / AI 前景提取 / AI 扩图 / AI 文字水印擦除
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
   # Dry Run（仅打印请求参数）
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
 
 处理能力说明：
   1. 图片编码   格式转换（JPEG/PNG/BMP/WebP）、质量调整
@@ -1409,8 +1409,11 @@ def main():
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     # 处理摘要

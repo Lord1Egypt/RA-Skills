@@ -3,6 +3,7 @@
 # Usage: export MAYBEAI_API_TOKEN=your_token_here
 #        export BASE_URL=https://play-be.omnimcp.ai   (or your self-hosted URL)
 #        export EXCEL_FILE_PATH=/absolute/path/to/file.xlsx
+#        export IMPORT_ENGINE=postgres  # recommended for table-like files >10K rows or >100K cells
 #        export UPLOAD_USER_ID=demo-user   # optional compatibility field
 #        export UPLOAD_ONLY=1   # optional, stop after upload test
 #        bash 01-file-management.sh
@@ -12,6 +13,7 @@ set -u
 BASE_URL="${BASE_URL:-https://play-be.omnimcp.ai}"
 TOKEN="${MAYBEAI_API_TOKEN:?Please set MAYBEAI_API_TOKEN}"
 EXCEL_FILE_PATH="${EXCEL_FILE_PATH:-./sample.xlsx}"
+IMPORT_ENGINE="${IMPORT_ENGINE:-}"
 UPLOAD_USER_ID="${UPLOAD_USER_ID:-}"
 UPLOAD_ONLY="${UPLOAD_ONLY:-0}"
 
@@ -27,18 +29,29 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# ── Upload Excel File ────────────────────────────────────────────────────────
+# ── Upload / Import Excel File ───────────────────────────────────────────────
 # Returns: { "document_id": "...", "uri": "...", ... }
 # Build request URIs as https://www.maybe.ai/docs/spreadsheets/d/$DOC_ID for subsequent calls.
-echo "=== Upload Excel File ==="
+if [ "$IMPORT_ENGINE" = "postgres" ] || [ "$IMPORT_ENGINE" = "pg" ]; then
+  echo "=== Import Excel File via SheetTable/PG ==="
+  UPLOAD_ENDPOINT="$BASE_URL/api/v1/excel/import"
+else
+  echo "=== Upload Excel File via Excelize ==="
+  UPLOAD_ENDPOINT="$BASE_URL/api/v1/excel/upload"
+fi
+
 UPLOAD_CURL_ARGS=(
   -sS
   -o "$UPLOAD_RESP_FILE"
   -w "%{http_code}"
-  -X POST "$BASE_URL/api/v1/excel/upload"
+  -X POST "$UPLOAD_ENDPOINT"
   -H "Authorization: Bearer $TOKEN"
   -F "file=@${EXCEL_FILE_PATH}"
 )
+
+if [ "$IMPORT_ENGINE" = "postgres" ] || [ "$IMPORT_ENGINE" = "pg" ]; then
+  UPLOAD_CURL_ARGS+=(-F "engine=postgres")
+fi
 
 if [ -n "$UPLOAD_USER_ID" ]; then
   UPLOAD_CURL_ARGS+=(-F "user_id=${UPLOAD_USER_ID}")
@@ -54,11 +67,11 @@ if [ "$UPLOAD_HTTP_CODE" -ge 400 ]; then
 fi
 
 DOC_ID=$(
-  jq -r '.document_id // ((.uri // "") | split("/d/") | last | split("?") | first)' \
+  jq -r '.document_id // .documentId // ((.uri // .fileUri // "") | split("/d/") | last | split("?") | first)' \
     "$UPLOAD_RESP_FILE"
 )
 DOC_URI=$(
-  jq -r '.uri // empty' "$UPLOAD_RESP_FILE"
+  jq -r '.uri // .fileUri // empty' "$UPLOAD_RESP_FILE"
 )
 
 if [ -z "$DOC_ID" ] || [ "$DOC_ID" = "null" ]; then

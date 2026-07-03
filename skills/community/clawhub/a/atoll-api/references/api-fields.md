@@ -43,7 +43,7 @@ Request bodies accept **camelCase** (`assigneeId`, `projectId`). Snake_case also
 }
 ```
 
-All fields work on both POST (create) and PATCH (update).
+Most fields work on both POST (create) and PATCH (update). `labelIds` is accepted on task create and bulk create. For existing tasks, use the label endpoints or `atoll label add/remove`.
 
 - **Multiple assignees**: Use `assigneeIds` (array). Legacy `assigneeId` (single) still works. Responses include `assignees` array with `id`, `display_name`, `type`, `avatar_url`.
 - **Start date**: Sets when work begins. Combined with `dueDate`, defines the Gantt time span.
@@ -201,6 +201,27 @@ Use `title` for create/update requests; create also accepts legacy `name`. Atoll
 
 Add/remove projects with `{ "project_id": "uuid" }`.
 
+## Initiative Target Fields
+
+Targets attach to initiatives and track commitments separately from business KPIs. Use `mode: "progress"` for initiative outputs and `mode: "gate"` for hard launch prerequisites. Gate target heartbeat signals use stateful copy such as `0/5 retailers complete`; agents must not convert them into fractional KPI pace.
+
+```json
+{
+  "title": "Get 5 retailers live by July 5",
+  "description": "Prerequisite before price comparison launch",
+  "mode": "gate",
+  "unit": "count",
+  "unit_label": "retailers",
+  "current_value": 0,
+  "target_value": 5,
+  "target_direction": "increase",
+  "target_date": "2026-07-05",
+  "due_soon_days": 7
+}
+```
+
+Target work links use `{ "issue_id": "issue-uuid" }` at `.../targets/{targetId}/issues` and `{ "milestone_id": "milestone-uuid" }` at `.../targets/{targetId}/milestones`. Target response rows include linked `issueIds` and `milestoneIds` when returned by the target list/get endpoints.
+
 ## Automation Rule Fields
 
 ```json
@@ -233,7 +254,7 @@ Add/remove projects with `{ "project_id": "uuid" }`.
 
 ## Board Context Response
 
-`GET /api/orgs/{id}/projects/{projectId}/board-context` returns the strategy data used by the board context rail:
+`GET /api/orgs/{id}/projects/{projectId}/board-context` returns the strategy data used by the board filter toolbar:
 
 ```json
 {
@@ -333,7 +354,20 @@ Proposal JSON currently supports at most one item in each collection: `projects`
       "total_issues": 8,
       "completed_issues": 3,
       "stalled_issues": 2,
-      "blocked_issues": 1
+      "blocked_issues": 1,
+      "project_ids": ["..."],
+      "linked_issues": [{
+        "id": "...",
+        "title": "Publish comparison page",
+        "status": "todo",
+        "priority": 1,
+        "assignee_id": "...",
+        "project_id": "...",
+        "milestone_id": null,
+        "number": 42,
+        "blocked": false,
+        "updated_at": "2026-03-28T12:00:00Z"
+      }]
     }]
   }],
   "standalone_kpis": [...],
@@ -349,11 +383,58 @@ Proposal JSON currently supports at most one item in each collection: `projects`
   }],
   "signals": [
     { "type": "kpi_off_pace", "severity": "warning", "message": "..." }
-  ]
+  ],
+  "recommended_action": {
+    "id": "create_work:...",
+    "action_type": "create_work",
+    "title": "Create Content pipeline work for paying_customers",
+    "target_type": "initiative",
+    "target_id": "...",
+    "goal_id": "...",
+    "kpi_id": "...",
+    "initiative_id": "...",
+    "source_signal_ids": ["kpi_off_pace:..."],
+    "why_now": "paying_customers is off pace, and Content pipeline has no active linked issue.",
+    "expected_impact": "Create the missing execution path for the initiative expected to move paying_customers: +30 signups/mo.",
+    "evidence": ["KPI \"paying_customers\" is off pace..."],
+    "first_step": "Open Content pipeline and define the smallest task that can move paying_customers.",
+    "success_criteria": ["Create or update concrete follow-up actions tied to paying_customers."],
+    "suggested_write": {
+      "operation": "issue.create",
+      "title": "Create Content pipeline work for paying_customers",
+      "body": "<h2>Why now</h2>...",
+      "status": "todo",
+      "priority": 1,
+      "project_id": "...",
+      "initiative_id": "...",
+      "kpi_id": "...",
+      "initiative_target_id": "..."
+    },
+    "confidence": "high",
+    "caveats": [],
+    "quality_checks": [{ "id": "kpi_link", "status": "pass", "message": "Recommendation includes a KPI link." }],
+    "usage_guidance": {
+      "instructions": [
+        "Prefer suggested_write.operation when it matches the current board state and the recommendation is still current.",
+        "Preserve goal, KPI, initiative, initiative target, why-now, expected impact, first step, suggested_write, and success criteria evidence in any issue, status update, KPI refresh, or comment you create.",
+        "Do not copy deferred busywork, unrelated tasks, or caveat text into write payloads unless it is directly needed for the recommended action."
+      ],
+      "preserve_fields": ["goal_id", "kpi_id", "initiative_id", "initiative_target_id", "why_now", "expected_impact", "first_step", "success_criteria", "suggested_write"],
+      "avoid_payload_sources": ["deferred_busywork", "unrelated_assigned_issues", "stale_recommendations_after_board_change"]
+    }
+  }
 }
 ```
 
 Heartbeat is org-scoped, but project-bound goals, KPIs, initiatives, issue health, milestone signals, assigned work, and `project_context` are filtered by the caller's project access. Non-guest members can also see unprojected org-level strategy. Shared initiatives can appear with counts and signals based only on accessible work.
+
+Heartbeat also includes `attention_items` for direct current-member notifications such as mentions, assignments, assignee comments, and creator-visible status changes. Each attention item includes `id`, `source`, `event_type`, `severity`, `action_kind`, resource fields, `target_path`, `created_at`, and `ack_endpoint`; after handling the referenced item, call `ack_endpoint` so the notification is acknowledged and removed from later heartbeat attention results. `attention_summary` includes counts such as `mentions`, `assignments`, `blockers`, and `total_unread`.
+
+Current-member notifications can use `event_type` values such as `mention.created`, `issue.assigned`, `comment.added`, and `issue.status_changed`. Notification preferences use `event_type` (currently `mention.created`), `channel` (currently `in_app`), and `enabled` for current-member mention opt-out. Setting `enabled: false` for in-app `mention.created` also attempts to acknowledge that member's currently unread mention notifications; when cleanup succeeds, they no longer appear in notification lists or heartbeat `attention_items`.
+
+Agents should follow `recommended_action.usage_guidance`: prefer `suggested_write.operation` when it still matches the board, preserve KPI/initiative/initiative-target/why-now/expected-impact/first-step/success-criteria evidence in any write, and avoid copying deferred busywork or unrelated assigned tasks into issue or comment payloads. When `start_work` uses `suggested_write.operation: "issue.update"` with a body, apply the status update and preserve that body as an issue comment; `PATCH /issues/{issueId}` accepts `comment_body` for this same-request progress note.
+
+`recommended_action` is a deterministic strategy-backed next action built from heartbeat context. MVP action types are `create_work`, `start_work`, `escalate_blocker`, and `refresh_metric`; suggested writes may prefill issue creation, issue status updates, blocker comments, or KPI refresh requests. Issue-create bodies are HTML for Atoll's rich-text issue description; blocker/comment and metric-refresh bodies are plain text.
 
 ## Strategy Audit Response
 
@@ -376,11 +457,11 @@ Heartbeat is org-scoped, but project-bound goals, KPIs, initiatives, issue healt
 }
 ```
 
-Each finding carries whichever entity ids apply: `goal_id`, `kpi_id`, `initiative_id`, `issue_id`, `milestone_id`, `project_id`. Finding `type` values:
+Each finding carries whichever entity ids apply: `goal_id`, `kpi_id`, `initiative_id`, `initiative_target_id`, `issue_id`, `milestone_id`, `project_id`. Finding `type` values:
 
 - Structural: `initiative_orphaned`, `kpi_orphaned`, `goal_missing_kpi`, `goal_missing_initiative`, `dangling_initiative_project`, `dangling_initiative_issue`, `dangling_initiative_milestone`
 - KPI health: `kpi_unrecorded`, `kpi_missing_target`, `kpi_stale`, `kpi_off_pace`
-- Initiative health: `initiative_missing_impact`, `initiative_missing_execution`, `initiative_stalled`
+- Initiative health: `initiative_missing_impact`, `initiative_missing_execution`, `initiative_stalled`, `initiative_target_missing_execution`, `initiative_target_overdue`, `initiative_target_blocked`
 - Execution: `issue_blocked`, `issue_overdue`, `milestone_overdue`
 
 ## Analytics Response
@@ -403,6 +484,7 @@ Each finding carries whichever entity ids apply: `goal_id`, `kpi_id`, `initiativ
 | Task | `status` | `backlog`, `todo`, `in_progress`, `done`, `cancelled` (custom per project via board-columns) |
 | Board column | `description` | Optional stage criteria or agent guidance |
 | Task | `priority` | `0` (urgent), `1` (high), `2` (medium), `3` (low) |
+| Task update request | `comment_body` | Optional Markdown/plain text or rich-text HTML comment body created with the issue update; stored and returned as sanitized HTML |
 | Task | `recurrenceType` | `daily`, `weekly`, `monthly`, `yearly` |
 | Goal | `status` | `active`, `achieved`, `missed`, `paused`, `cancelled` |
 | KPI | `unit` | `count`, `percentage`, `currency`, `duration`, `ratio`, `custom` |
@@ -417,7 +499,7 @@ Each finding carries whichever entity ids apply: `goal_id`, `kpi_id`, `initiativ
 | Member | `role` | `owner`, `admin`, `member`, `guest` |
 | Project member | `accessLevel` | `view`, `edit`, `admin` |
 | Automation | `trigger_event` | `issue.created`, `issue.status_changed`, `issue.assigned`, `issue.priority_changed` |
-| Heartbeat signal | `type` | `kpi_off_pace`, `kpi_stale`, `issue_stale`, `issue_blocked`, `milestone_overdue`, `initiative_stalled`, `webhook_failing` |
+| Heartbeat signal | `type` | `kpi_off_pace`, `kpi_stale`, `issue_stale`, `issue_blocked`, `milestone_overdue`, `initiative_stalled`, `initiative_target_due_soon`, `initiative_target_overdue`, `initiative_target_blocked`, `webhook_failing` |
 | Heartbeat signal | `severity` | `info`, `warning`, `critical` |
 | Custom view | `display_mode` | `board`, `list` |
 
@@ -430,7 +512,7 @@ REST list responses use resource-specific keys by default. Main list endpoints s
 ## Notes
 
 - All timestamps are ISO 8601 in UTC
-- Description and comment fields support Markdown
+- Descriptions support Markdown; comment bodies accept Markdown/plain text or rich-text HTML and are stored as sanitized HTML
 - Board columns (statuses) are customizable per project -- query `/board-columns` for available statuses and optional descriptions
 - Default statuses for new projects: `backlog`, `todo`, `in_progress`, `done`
 - `cancelled` is always valid but not shown on the board

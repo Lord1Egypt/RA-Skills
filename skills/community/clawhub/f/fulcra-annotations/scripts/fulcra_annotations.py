@@ -10,7 +10,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import shlex
 import subprocess
 import sys
 import urllib.error
@@ -22,7 +21,9 @@ from pathlib import Path
 from typing import Any
 
 
-API_BASE = os.environ.get("FULCRA_API_BASE", "https://api.fulcradynamics.com").rstrip("/")
+DEFAULT_API_BASE = "https://api.fulcradynamics.com"
+API_BASE = os.environ.get("FULCRA_API_BASE", DEFAULT_API_BASE).rstrip("/")
+ALLOWED_API_HOSTS = {"api.fulcradynamics.com"}
 DEFAULT_AGENT_SOURCE = os.environ.get("FULCRA_AGENT_SOURCE", "com.fulcra.agent")
 PROCESS_HOME = os.environ.get("HOME") or str(Path.home())
 DEFAULT_HOME = os.environ.get("FULCRA_HOME") or PROCESS_HOME
@@ -49,6 +50,29 @@ def fail(message: str, code: int = 1) -> None:
     raise SystemExit(code)
 
 
+def validated_api_base() -> str:
+    parsed = urllib.parse.urlparse(API_BASE)
+    if parsed.scheme != "https" or parsed.hostname not in ALLOWED_API_HOSTS:
+        fail("Refusing to send Fulcra credentials to an untrusted FULCRA_API_BASE.")
+    return API_BASE
+
+
+def fulcra_cli_token_command() -> list[str]:
+    command = os.environ.get("FULCRA_CLI_COMMAND", "uv tool run fulcra-api").strip()
+    allowed = {
+        "uv tool run fulcra-api": ["uv", "tool", "run", "fulcra-api"],
+        "fulcra-api": ["fulcra-api"],
+    }
+    if command in allowed:
+        return [*allowed[command], "auth", "print-access-token"]
+
+    path = Path(command).expanduser()
+    if path.name == "fulcra-api" and path.is_absolute():
+        return [str(path), "auth", "print-access-token"]
+
+    fail("Refusing untrusted FULCRA_CLI_COMMAND. Use 'uv tool run fulcra-api', 'fulcra-api', or an absolute path ending in fulcra-api.")
+
+
 def bearer_value() -> str:
     env_token = os.environ.get("FULCRA_ACCESS_TOKEN")
     if env_token:
@@ -60,8 +84,7 @@ def bearer_value() -> str:
         env.setdefault("UV_TOOL_DIR", str(Path(PROCESS_HOME) / ".local" / "share" / "uv" / "tools"))
         env.setdefault("UV_CACHE_DIR", str(Path(PROCESS_HOME) / ".cache" / "uv"))
 
-    command = os.environ.get("FULCRA_CLI_COMMAND", "uv tool run fulcra-api")
-    candidates = [[*shlex.split(command), "auth", "print-access-token"]]
+    candidates = [fulcra_cli_token_command()]
     for cmd in candidates:
         try:
             token = subprocess.check_output(
@@ -84,7 +107,7 @@ def request(method: str, path: str, payload: Any | None = None) -> tuple[int, st
     if payload is not None:
         data = json.dumps(payload).encode()
         headers["Content-Type"] = "application/json"
-    req = urllib.request.Request(API_BASE + path, data=data, headers=headers, method=method)
+    req = urllib.request.Request(validated_api_base() + path, data=data, headers=headers, method=method)
     try:
         with urllib.request.urlopen(req, timeout=30) as response:
             body = response.read()

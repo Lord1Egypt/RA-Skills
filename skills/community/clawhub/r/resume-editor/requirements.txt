@@ -1,8 +1,5 @@
 # PDF import (required for scripts/extract_from_pdf.py)
-pymupdf
+pymupdf==1.26.5
 
-# PDF export — install at least one of the following:
-# Option 1: pdfkit (requires wkhtmltopdf system package)
-pdfkit
-# Option 2: playwright (requires chromium browser)
-# playwright
+# PDF export (requires a follow-up browser install: playwright install chromium)
+playwright==1.60.0

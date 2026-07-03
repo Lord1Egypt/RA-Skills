@@ -1,14 +1,12 @@
 ---
-name: zhipu-tools-coding-plan
-description: |
-  智谱 Coding Plan 免费工具：网络搜索、网页读取、GitHub 仓库文档搜索、文件解析、视觉理解(GLM-4.6V)。
-  优先于内置 web_search 使用，节省配额。全部功能当前均免费使用。
+name: "zhipu-tools-coding-plan"
+description: "智谱 Coding Plan 免费工具：网络搜索、网页读取、GitHub 仓库文档搜索、文件解析、视觉理解(GLM-4.6V)、额度查询。"
 license: MIT
 ---
 
 # 智谱工具 Coding Plan (Zhipu Tools)
 
-> **TL;DR**: 网络搜索 → `web_search`，网页读取 → `web_reader`，仓库搜索 → `zread`，视觉理解 → `vision`。全部通过 Coding Plan 免费额度调用。
+> **TL;DR**: 网络搜索 → `web_search`，网页读取 → `web_reader`，仓库搜索 → `zread`，视觉理解 → `vision`，额度查询 → `balance`。全部通过 Coding Plan 免费额度调用。
 
 ## Agent 调用指南
 
@@ -26,6 +24,9 @@ python3 $SKILL/scripts/zhipu_tool.py zread search "owner/repo" "关键词"
 
 # 视觉理解（图片/视频）
 python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述内容"
+
+# 额度/余额查询
+python3 $SKILL/scripts/zhipu_tool.py balance
 ```
 
 **注意**：
@@ -48,6 +49,7 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
 | "读一下xxx仓库的README" | `zread read` | `zread read "openai/openai" "README.md"` |
 | "分析这张图片/看看截图" | `vision` (自动识别 image) | `vision /path/to/img.png --prompt "描述内容"` |
 | "看看这个视频" | `vision` (自动识别 video) | `vision /path/to/vid.mp4 --prompt "关键动作"` |
+| "查一下智谱余额/额度/配额还剩多少" | `balance` | `balance` |
 
 ### 输出格式参考
 
@@ -59,6 +61,18 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
 **标题**: xxx
 **链接**: https://...
 **摘要**: xxx
+```
+
+**balance 输出**：
+```
+套餐等级: max
+MCP 月度配额: 141/4000 (已用 3%), 剩余 3859
+  - search-prime: 102
+  - web-reader: 38
+  - zread: 1
+Token 用量:
+  - 5小时窗口: 55%
+  - 每周窗口: 50%
 ```
 
 ## Agent 决策指南
@@ -73,7 +87,8 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
   ├─ 读取指定网页 → web_reader
   ├─ GitHub 仓库文档 → zread
   ├─ 本地文档(PDF/Word等) → file_parser
-  └─ 图片/视频分析 → vision
+  ├─ 图片/视频分析 → vision
+  └─ 查询套餐额度/余额 → balance
 ```
 
 ### 必须确认的检查点
@@ -86,6 +101,7 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
 | **MCP 连接失败** | ⚠️ 不自动切换 | **不自动 fallback 到 Legacy**，直接报错并建议用内置工具 |
 | **内容安全拦截** | 不自动重试 | 告知用户搜索词可能触发安全策略，建议修改关键词 |
 | **大文件上传** | 超限时提示 | 视频超过 8MB 时告知用户限制，建议压缩或用 URL 方式 |
+| **额度查询失败** | 不自动重试 | API Key 无效/网络问题时直接报错，提示用户检查 ZHIPU_API_KEY |
 
 ### 自动处理的场景（无需确认）
 
@@ -105,10 +121,13 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
 | **仓库文件读取** | `read_file` | `/zread/mcp` | 读取 GitHub 仓库指定文件 |
 | **视觉理解** | — | Coding Plan 免费 | GLM-4.6V 图像/视频分析（当前免费） |
 | **文件解析** | — | Legacy API | 解析 PDF/Word/Excel/PPT 等 |
+| **额度查询** | — | `open.bigmodel.cn/api/monitor/usage/quota/limit` | 查询套餐等级、MCP月度配额、Token限速窗口用量 |
 
-> 前五项通过 Coding Plan MCP 端点免费调用，视觉理解、视频分析和文件解析通过旧版 API 调用。
+> 前五项通过 Coding Plan MCP 端点免费调用，视觉理解、视频分析和文件解析通过旧版 API 调用；额度查询走 bigmodel.cn 的用量监控接口（GET 请求，不消耗 Coding Plan 调用次数）。
 >
 > 视觉理解（vision）通过逆向分析智谱官方 `@z_ai/mcp-server` npm 包实现。从包源码中提取了底层 API 调用方式（`open.bigmodel.cn/api/paas/v4/chat/completions` + `glm-4.6v` 模型）。**当前走 Coding Plan 免费额度，不产生费用。**后续智谱可能调整计费策略，届时需要重新评估。
+>
+> 额度查询（balance）接口来源于 cc-switch 项目公开的用量查询脚本示例（GitHub farion1231/cc-switch#1588），非官方文档记录接口，字段含义按社区经验解读，若智谱调整返回格式需相应更新。
 
 ## 配置
 
@@ -139,6 +158,20 @@ python3 $SKILL/scripts/zhipu_tool.py vision /path/to/image.png --prompt "描述�
 > 如需使用 Legacy 模式，必须**显式设置**环境变量 `ZHIPU_USE_MCP=false`。
 
 ## 使用方式
+
+### 额度查询 (balance)
+
+```bash
+python3 scripts/zhipu_tool.py balance
+python3 scripts/zhipu_tool.py balance --raw   # 输出原始 JSON
+```
+
+查询内容：
+- **套餐等级**（lite/pro/max）
+- **MCP 月度配额**：总量、已用次数、剩余次数、按工具（search-prime/web-reader/zread）拆分明细
+- **Token 用量限速窗口**：5小时窗口和每周窗口的百分比使用量
+
+接口为 GET 请求（`open.bigmodel.cn/api/monitor/usage/quota/limit`），使用与其他 Legacy 调用相同的 `ZHIPU_API_KEY`，但认证头是裸 key（`Authorization: <API_KEY>`），不带 `Bearer ` 前缀。不消耗 Coding Plan 的月度调用次数。
 
 ### 视觉理解 (vision)
 
@@ -274,7 +307,7 @@ Headers: `Authorization: Bearer $API_KEY`, `Content-Type: application/json`, `Ac
 | **Pro** | 1,000 次 | 免费 |
 | **Max** | 4,000 次 | 免费 |
 
-额度次月自动重置。
+额度次月自动重置。用 `balance` 命令可实时查看当月已用/剩余次数。
 
 ## 优先使用规则
 
@@ -299,6 +332,7 @@ Headers: `Authorization: Bearer $API_KEY`, `Content-Type: application/json`, `Ac
 | 文件不存在 | FileNotFoundError | — | 直接报错，提示检查路径 |
 | 视频超 8MB | ValueError | — | 告知用户限制，建议压缩或用 URL |
 | 搜索无结果 | 返回空列表 | — | 告知用户并建议换关键词，可用内置工具 |
+| 额度查询失败 | HTTP 401/网络错误 | **不自动重试** | 告知用户检查 ZHIPU_API_KEY 是否有效 |
 
 ### 前置条件
 
@@ -306,7 +340,7 @@ Headers: `Authorization: Bearer $API_KEY`, `Content-Type: application/json`, `Ac
 - **API Key** 已配置（环境变量 `ZHIPU_API_KEY` 或 `.env` 文件）
 - `scripts/` 目录下工具脚本存在且可执行
 - MCP 端点可访问：`api.z.ai`（搜索/网页/仓库）
-- Legacy 端点可访问：`open.bigmodel.cn`（视觉/文件解析）— ⚠️ 部分网络环境可能不可用
+- Legacy 端点可访问：`open.bigmodel.cn`（视觉/文件解析/额度查询）— ⚠️ 部分网络环境可能不可用
 
 ## 注意事项
 
@@ -316,3 +350,4 @@ Headers: `Authorization: Bearer $API_KEY`, `Content-Type: application/json`, `Ac
 - MCP 搜索 recency/domain 通过注入 query 模拟
 - MCP 内容安全策略可能拦截敏感搜索
 - Legacy 429 是 Coding Plan 用户预期行为，不影响 MCP 功能
+- 额度查询（balance）接口非官方文档记录，来自社区逆向（cc-switch 项目），字段格式若智谱调整需同步更新

@@ -472,7 +472,7 @@ def test_phase2_rejects_unconfirmed_phase1_3():
     with open(_get_orchestrate_state_path(TEST_PAPER), "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
-    r = orchestrate_phase2(TEST_PAPER, llm_func=lambda p: "x")
+    r = orchestrate_phase2(TEST_PAPER)
 
     assert r["ok"] is False
     assert "Phase 1.3" in r["error"]

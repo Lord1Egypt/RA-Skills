@@ -22,22 +22,22 @@
 
 #### Query all sub-applications under the current account
 ```bash
-python scripts/vod_describe_sub_app_ids.py
+python3 scripts/vod_describe_sub_app_ids.py
 ```
 
 #### Filter by name
 ```bash
-python scripts/vod_describe_sub_app_ids.py --name "My App Name"
+python3 scripts/vod_describe_sub_app_ids.py --name "My App Name"
 ```
 
 #### Output in JSON format
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json
+python3 scripts/vod_describe_sub_app_ids.py --json
 ```
 
 #### dry-run to preview request parameters
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --name "My App Name" \
     --tag env=prod \
     --dry-run
@@ -45,26 +45,26 @@ python scripts/vod_describe_sub_app_ids.py \
 
 #### Filter by a single tag
 ```bash
-python scripts/vod_describe_sub_app_ids.py --tag env=prod
+python3 scripts/vod_describe_sub_app_ids.py --tag env=prod
 ```
 
 #### Filter by multiple tags (AND logic)
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --tag env=prod \
     --tag team=media
 ```
 
 #### Paginate and retrieve the first 20 records
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --offset 0 \
     --limit 20
 ```
 
 #### Combined query with name, tags, and pagination
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --name "My App Name" \
     --tag env=prod \
     --tag owner=video-team \
@@ -74,23 +74,23 @@ python scripts/vod_describe_sub_app_ids.py \
 
 #### Save results to a JSON file
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json > sub_apps.json
+python3 scripts/vod_describe_sub_app_ids.py --json > sub_apps.json
 ```
 
 #### Use jq to extract the list of sub-application IDs
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json | jq -r '.Sub AppId Info Set[].Sub AppId'
+python3 scripts/vod_describe_sub_app_ids.py --json | jq -r '.Sub AppId Info Set[].Sub AppId'
 ```
 
 #### Use jq to extract names of enabled sub-applications
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json | \
+python3 scripts/vod_describe_sub_app_ids.py --json | \
     jq -r '.Sub AppId Info Set[] | select(.Status == "On") | .Sub AppId Name'
 ```
 
 #### Query all sub-applications bound to a specific tag and extract region info
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --tag env=prod \
     --json | jq -r '.Sub AppId Info Set[] | {name: .Sub AppId Name, regions: .StorageRegions}'
 ```

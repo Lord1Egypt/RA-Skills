@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-oral-snapshot-gum-redness-analysis"
 description: "Triggers when a user provides an oral snapshot image/video of a pet (usually auto-captured during yawning, lip-licking or mouth-opening moments) for analysis; supports local uploads or network URLs to call server-side APIs for oral health recognition, evaluating gum color (pink / bright red / dark red) and tartar coverage area, outputting standardized oral health observations to help early discovery of periodontal disease (without diagnosing diseases). Application scenarios: pet cameras, smart pet products, pet health management platforms. | 当用户提供宠物口腔抓拍图像/视频（通常在宠物打哈欠、舔嘴、张嘴时自动触发抓拍）时，触发本技能进行口腔健康识别；支持通过上传本地文件或网络URL，调用服务端API分析牙龈颜色（粉红、鲜红、暗红）与牙结石覆盖面积，输出标准化口腔健康观察结果，帮助早期发现牙周病等问题（不诊断疾病）。应用场景：宠物摄像头、智能宠物用品、宠物健康管理平台。"
-version: "1.0.2"
+version: "1.0.3"
 license: "MIT-0"
 ---
 

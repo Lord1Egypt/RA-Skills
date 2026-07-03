@@ -19,55 +19,45 @@ import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Any, Optional
 
 from datetime import datetime, timedelta
 
 import requests
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import db
-from llm_judge import _load_env_key
+from dependencies import get_db, get_llm_judge
+from config_manager import ConfigManager
 
-logger = logging.getLogger("daily_summary")
-SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BATCH_SIZE = 1  # 每批处理的公告数
+db = get_db()
 
-
-def load_config() -> dict:
-    path = os.path.join(SKILL_DIR, "config.json")
-    default = {"notify": {"type": "terminal"}}
-    if os.path.exists(path):
-        try:
-            with open(path) as f:
-                default.update(json.load(f))
-        except (OSError, json.JSONDecodeError):
-            pass
-    return default
+logger: logging.Logger = logging.getLogger("daily_summary")
+SKILL_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BATCH_SIZE: int = 1  # 每批处理的公告数
 
 
-def get_unsummarized_announcements(hours: int = None, stock_codes: list[str] = None) -> list[dict]:
+def get_unsummarized_announcements(hours: Optional[int] = None, stock_codes: Optional[list[str]] = None) -> list[dict[str, Any]]:
     """获取没有摘要的公告"""
-    conn = db._get_conn()
+    conn: Any = db._get_conn()
     try:
-        sql = (
+        sql: str = (
             "SELECT ann_id, stock_code, stock_name, title, ann_date, clean_text, ann_type_tag, ann_type_category "
             "FROM announcements WHERE (summary IS NULL OR summary = '') "
             "AND clean_text IS NOT NULL AND clean_text != ''"
         )
-        params = []
+        params: list[Any] = []
 
         if hours:
-            since = (datetime.now() - timedelta(hours=hours)).strftime("%Y-%m-%d %H:%M:%S")
+            since: str = (datetime.now() - timedelta(hours=hours)).strftime("%Y-%m-%d %H:%M:%S")
             sql += " AND first_seen_at >= ?"
             params.append(since)
 
         if stock_codes:
-            placeholders = ",".join("?" for _ in stock_codes)
+            placeholders: str = ",".join("?" for _ in stock_codes)
             sql += f" AND stock_code IN ({placeholders})"
             params.extend(stock_codes)
 
         sql += " ORDER BY ann_date DESC"
-        rows = conn.execute(sql, params).fetchall()
+        rows: list[Any] = conn.execute(sql, params).fetchall()
         return [
             {
                 "ann_id": r[0], "stock_code": r[1], "stock_name": r[2],
@@ -82,7 +72,7 @@ def get_unsummarized_announcements(hours: int = None, stock_codes: list[str] = N
 
 
 # 不同公告类型的摘要提取重点
-TYPE_FOCUS = {
+TYPE_FOCUS: dict[str, str] = {
     # 回购类
     "回购股权": "累计回购金额、回购股数、占总股本比例、回购计划总额及完成进度",
     # 人事变动
@@ -160,9 +150,9 @@ TYPE_FOCUS = {
 }
 
 
-def build_summary_prompt(announcements: list[dict]) -> str:
+def build_summary_prompt(announcements: list[dict[str, Any]]) -> str:
     """构建批量摘要 prompt"""
-    lines = [
+    lines: list[str] = [
         "你是专业的财经分析师。请为以下每条公告生成一段精炼但信息完整的摘要。",
         "",
         "摘要要求（按优先级严格执行）：",
@@ -179,11 +169,11 @@ def build_summary_prompt(announcements: list[dict]) -> str:
     ]
 
     for i, ann in enumerate(announcements):
-        text = ann.get("clean_text", "")[:3000]
-        tag = ann.get("ann_type_tag", "")
-        category = ann.get("ann_type_category", "")
-        type_display = f"{category}-{tag}" if category else tag
-        focus = TYPE_FOCUS.get(tag, "公告核心内容和关键数字")
+        text: str = ann.get("clean_text", "")[:3000]
+        tag: str = ann.get("ann_type_tag", "")
+        category: str = ann.get("ann_type_category", "")
+        type_display: str = f"{category}-{tag}" if category else tag
+        focus: str = TYPE_FOCUS.get(tag, "公告核心内容和关键数字")
         lines.append(f"[{i+1}] ann_id={ann['ann_id']}")
         lines.append(f"    股票: {ann['stock_name']}({ann['stock_code']})")
         lines.append(f"    标题: {ann['title']}")
@@ -197,18 +187,18 @@ def build_summary_prompt(announcements: list[dict]) -> str:
 
 def call_llm(prompt: str, max_tokens: int = 10000, json_mode: bool = False, retries: int = 2) -> str:
     """调用 LLM"""
-    api_key = _load_env_key("LLM_API_KEY")
+    config_manager: ConfigManager = ConfigManager()
+    api_key: Optional[str] = config_manager.get_llm_api_key()
     if not api_key:
         logger.warning("LLM_API_KEY 未配置")
         return ""
 
-    config = load_config()
-    llm_cfg = config.get("llm", {})
-    base_url = llm_cfg.get("base_url", "https://opencode.ai/zen/go/v1")
-    model = llm_cfg.get("model", "deepseek-v4-flash")
-    timeout = llm_cfg.get("timeout", 60)
+    config: AppConfig = config_manager.load()
+    base_url: str = config.llm.base_url
+    model: str = config.llm.model
+    timeout: int = config.llm.timeout
 
-    payload = {
+    payload: dict[str, Any] = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.3,
@@ -219,7 +209,7 @@ def call_llm(prompt: str, max_tokens: int = 10000, json_mode: bool = False, retr
 
     for attempt in range(retries + 1):
         try:
-            resp = requests.post(
+            resp: requests.Response = requests.post(
                 f"{base_url}/chat/completions",
                 headers={
                     "Authorization": f"Bearer {api_key}",
@@ -229,9 +219,9 @@ def call_llm(prompt: str, max_tokens: int = 10000, json_mode: bool = False, retr
                 timeout=timeout,
             )
             resp.raise_for_status()
-            msg = resp.json()["choices"][0]["message"]
+            msg: dict[str, Any] = resp.json()["choices"][0]["message"]
             # 推理模型可能把输出放在 reasoning_content 而非 content
-            content = msg.get("content") or msg.get("reasoning_content") or ""
+            content: str = msg.get("content") or msg.get("reasoning_content") or ""
             return content
         except (requests.RequestException, json.JSONDecodeError) as e:
             logger.warning("LLM 调用失败 (attempt %d/%d): %s", attempt + 1, retries + 1, e)
@@ -258,10 +248,10 @@ def parse_summaries(text: str) -> dict[str, str]:
 
     # 尝试 1：直接提取 JSON 数组
     try:
-        start = text.find("[")
-        end = text.rfind("]") + 1
+        start: int = text.find("[")
+        end: int = text.rfind("]") + 1
         if start >= 0 and end > start:
-            items = json.loads(text[start:end])
+            items: list[dict[str, str]] = json.loads(text[start:end])
             return {item["ann_id"]: item["summary"] for item in items if "ann_id" in item and "summary" in item}
     except (json.JSONDecodeError, KeyError):
         pass
@@ -271,8 +261,8 @@ def parse_summaries(text: str) -> dict[str, str]:
         start = text.find("[")
         end = text.rfind("]") + 1
         if start >= 0 and end > start:
-            raw = text[start:end]
-            fixed = re.sub(
+            raw: str = text[start:end]
+            fixed: str = re.sub(
                 r'("summary"\s*:\s*"[^"]*)"([^"]*)"([^"]*")',
                 lambda m: m.group(1) + '\u201c' + m.group(2) + '\u201d' + m.group(3),
                 raw,
@@ -283,13 +273,13 @@ def parse_summaries(text: str) -> dict[str, str]:
         pass
 
     # 回退：逐行匹配 ann_id=xxx 格式
-    result = {}
-    current_id = None
+    result: dict[str, str] = {}
+    current_id: Optional[str] = None
     for line in text.split("\n"):
-        id_match = re.search(r'ann_id[=:]\s*["\']?([a-f0-9]+)', line)
+        id_match: Optional[re.Match[str]] = re.search(r'ann_id[=:]\s*["\']?([a-f0-9]+)', line)
         if id_match:
             current_id = id_match.group(1)
-        summary_match = re.search(r'summary[=:]\s*["\'](.+?)["\']', line)
+        summary_match: Optional[re.Match[str]] = re.search(r'summary[=:]\s*["\'](.+?)["\']', line)
         if summary_match and current_id:
             result[current_id] = summary_match.group(1)
             current_id = None
@@ -297,19 +287,19 @@ def parse_summaries(text: str) -> dict[str, str]:
 
 
 # 需要跳过 LLM 的类型（定期报告/财报类，正文太长且内容标准化）
-SKIP_LLM_TYPES = {"业绩预告", "业绩快报", "季度报告", "半年报告", "年度报告", "补充更正"}
+SKIP_LLM_TYPES: set[str] = {"业绩预告", "业绩快报", "季度报告", "半年报告", "年度报告", "补充更正"}
 
 
-def generate_summaries(announcements: list[dict], max_workers: int = 5) -> int:
+def generate_summaries(announcements: list[dict[str, Any]], max_workers: int = 5) -> int:
     """批量生成公告摘要并存入 DB，返回成功数量"""
-    total = 0
+    total: int = 0
 
     # Phase 1: 分离需要 LLM 的 和 可以直接写固定摘要的
-    llm_anns = []
+    llm_anns: list[dict[str, Any]] = []
     for ann in announcements:
-        tag = ann.get("ann_type_tag", "")
+        tag: str = ann.get("ann_type_tag", "")
         if tag in SKIP_LLM_TYPES:
-            fixed = f"【{tag}】{ann['title']}"
+            fixed: str = f"【{tag}】{ann['title']}"
             db.update_summary(ann["ann_id"], fixed)
             total += 1
             logger.info("跳过 LLM: %s %s -> %s", ann["stock_name"], tag, ann["title"][:40])
@@ -320,17 +310,17 @@ def generate_summaries(announcements: list[dict], max_workers: int = 5) -> int:
         return total
 
     # Phase 2: 并发调用 LLM 生成摘要
-    batches = [llm_anns[i:i + BATCH_SIZE] for i in range(0, len(llm_anns), BATCH_SIZE)]
+    batches: list[list[dict[str, Any]]] = [llm_anns[i:i + BATCH_SIZE] for i in range(0, len(llm_anns), BATCH_SIZE)]
     logger.info("LLM 并发生成摘要: %d 条公告, %d 批 (workers=%d)", len(llm_anns), len(batches), max_workers)
 
-    batch_results = []   # [(batch, summaries_dict), ...]
+    batch_results: list[tuple[list[dict[str, Any]], dict[str, str]]] = []   # [(batch, summaries_dict), ...]
 
-    def _process_batch(batch):
-        prompt = build_summary_prompt(batch)
-        response = call_llm(prompt, max_tokens=10000, json_mode=True)
+    def _process_batch(batch: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, str]]:
+        prompt: str = build_summary_prompt(batch)
+        response: str = call_llm(prompt, max_tokens=10000, json_mode=True)
         if not response:
             return batch, {}
-        summaries = parse_summaries(response)
+        summaries: dict[str, str] = parse_summaries(response)
         if not summaries:
             logger.warning("解析失败，LLM 返回前 500 字: %s", response[:500])
         return batch, summaries
@@ -343,10 +333,10 @@ def generate_summaries(announcements: list[dict], max_workers: int = 5) -> int:
             logger.info("  批次完成 (%d/%d)", len(batch_results), len(batches))
 
     # Phase 3: 顺序保存到数据库
-    failed = []
+    failed: list[dict[str, Any]] = []
     for batch, summaries in batch_results:
         for ann in batch:
-            summary = summaries.get(ann["ann_id"], "")
+            summary: str = summaries.get(ann["ann_id"], "")
             if summary:
                 db.update_summary(ann["ann_id"], summary)
                 total += 1
@@ -363,17 +353,17 @@ def generate_summaries(announcements: list[dict], max_workers: int = 5) -> int:
     return total
 
 
-def format_digest(announcements: list[dict]) -> str:
+def format_digest(announcements: list[dict[str, Any]]) -> str:
     """将有摘要的公告格式化为编号列表，供 agent 读取 stdout 转发"""
     if not announcements:
         return ""
 
-    lines = [f"DIGEST_TOTAL:{len(announcements)}"]
+    lines: list[str] = [f"DIGEST_TOTAL:{len(announcements)}"]
     for i, ann in enumerate(announcements, 1):
-        code = ann["stock_code"]
-        name = ann.get("stock_name", "")
-        title = ann.get("title", "")
-        summary = ann.get("summary", "")
+        code: str = ann["stock_code"]
+        name: str = ann.get("stock_name", "")
+        title: str = ann.get("title", "")
+        summary: str = ann.get("summary", "")
         lines.append(f"{i}.")
         lines.append(f"【{code}{name}】-【{title}】")
         lines.append(summary)
@@ -382,13 +372,13 @@ def format_digest(announcements: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def main():
-    parser = argparse.ArgumentParser(description="每日公告摘要")
+def main() -> None:
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(description="每日公告摘要")
     parser.add_argument("--hours", type=int, default=None, help="回溯小时数（不指定则处理所有未摘要的公告）")
     parser.add_argument("--group", default=None, help="只处理指定分组")
     parser.add_argument("--digest", action="store_true", help="输出过去24小时有价值公告摘要列表")
     parser.add_argument("--workers", type=int, default=20, help="LLM 并发数（默认 20）")
-    args = parser.parse_args()
+    args: argparse.Namespace = parser.parse_args()
 
     logging.basicConfig(
         level=logging.INFO,
@@ -397,11 +387,11 @@ def main():
     )
 
     # 获取分组的股票代码
-    stock_codes = None
+    stock_codes: Optional[list[str]] = None
     if args.group:
         from eastmoney_api import get_stocks
-        cookie_path = os.path.join(SKILL_DIR, "cookie.txt")
-        group_stocks = get_stocks(cookie_path, group_name=args.group)
+        cookie_path: str = os.path.join(SKILL_DIR, "cookie.txt")
+        group_stocks: list[dict[str, Any]] = get_stocks(cookie_path, group_name=args.group)
         if group_stocks:
             stock_codes = [s["code"] for s in group_stocks]
             logger.info("分组 [%s]: %d 只股票", args.group, len(stock_codes))
@@ -409,25 +399,25 @@ def main():
             logger.warning("分组 [%s] 未获取到股票", args.group)
 
     # 第一步：为没有摘要的公告生成单条摘要
-    unsummarized = get_unsummarized_announcements(hours=args.hours, stock_codes=stock_codes)
+    unsummarized: list[dict[str, Any]] = get_unsummarized_announcements(hours=args.hours, stock_codes=stock_codes)
     if unsummarized:
         logger.info("发现 %d 条未摘要的公告，开始生成...", len(unsummarized))
-        count = generate_summaries(unsummarized, max_workers=args.workers)
+        count: int = generate_summaries(unsummarized, max_workers=args.workers)
         logger.info("摘要生成完成：成功 %d/%d 条", count, len(unsummarized))
     else:
         logger.info("所有公告已有摘要，跳过生成")
 
     # 第二步（可选）：输出有价值公告摘要列表
     if args.digest:
-        days = min(args.hours // 24 + 1, 7) if args.hours else 1
-        anns = db.get_announcements_with_summary(stock_codes=stock_codes, days=days)
+        days: int = min(args.hours // 24 + 1, 7) if args.hours else 1
+        anns: list[dict[str, Any]] = db.get_announcements_with_summary(stock_codes=stock_codes, days=days)
 
         if anns:
-            digest = format_digest(anns)
+            digest: str = format_digest(anns)
             print(digest)
             logger.info("Digest: %d 条有价值公告", len(anns))
         else:
-            group_hint = f"{args.group}板块" if args.group else ""
+            group_hint: str = f"{args.group}板块" if args.group else ""
             print(f"DIGEST_EMPTY:最近{days}天{group_hint}无高价值公告")
             logger.info("Digest: 无有价值公告摘要")
 

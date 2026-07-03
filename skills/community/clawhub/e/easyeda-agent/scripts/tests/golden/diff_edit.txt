@@ -1,0 +1,16 @@
+== diff vs baseline ==  🔴 本次改动引入 2 个新问题——必看
+变更图元: +2 added  -0 removed  ~1 modified
+  + part U3 @(800,800)  [u3]
+  + netflag '+5V' @(800,800)  [f3]
+  ~ netflag '+3V3' @(100,230) rotated  [f1]
+
+🔴 NEW 本次引入 (2):
+  - [🔴 标识与引脚重叠 (DRC fatal)] netflag +5V @(800,800) 与引脚 U3.1(P) 重叠 → DRC fatal
+  - [🟠 标识无导线] netflag +5V @(800, 800) 没有 wire 连到它（悬空标识）
+
+✅ FIXED 本次修复 (1):
+  - [🟡 朝向不顺导线] netflag      +3V3 @(100, 230)  rot= 90 应为 180  (导线朝down, body应朝up, power)
+
+🔵 PRE-EXISTING 未变 (2):
+  - [🟠 悬空引脚] U2.1(IO) @(500, 200) 悬空（无导线/标识）
+  - [🟠 单引脚孤网 (空连)] 引脚 U2.1(IO) 所在网络只有它自己、且无电源/地/标识 → 空连

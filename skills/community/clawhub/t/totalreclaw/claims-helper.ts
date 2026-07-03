@@ -30,6 +30,7 @@ import {
   VALID_MEMORY_VOLATILITIES,
   VALID_MEMORY_TYPES_V1,
 } from './extractor.js';
+import { envStringLower } from './entry.js';
 
 // Lazy-load WASM. We use createRequire so this module loads cleanly under
 // both the OpenClaw runtime (CJS-ish tsx) and bare Node ESM (used by tests).
@@ -640,7 +641,7 @@ export type AutoResolveMode = 'active' | 'off' | 'shadow';
  * @internal Not public config — emergency kill-switch only.
  */
 export function resolveAutoResolveMode(): AutoResolveMode {
-  const raw = (process.env.TOTALRECLAW_AUTO_RESOLVE_MODE ?? '').trim().toLowerCase();
+  const raw = envStringLower('TOTALRECLAW_AUTO_RESOLVE_MODE');
   if (raw === 'off') return 'off';
   if (raw === 'shadow') return 'shadow';
   return 'active';

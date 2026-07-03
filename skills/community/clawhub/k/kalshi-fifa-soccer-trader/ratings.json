@@ -1,0 +1,6996 @@
+{
+  "_meta": {
+    "source": "EA Sports FC 26 (WC 2026 screenshots, Jun 15 2026)",
+    "note": "OVR/ATT/MID/DEF from SoFIFA WC 2026 pages. Player OVRs verified against EA.com + SoFIFA via dynamic workflow (Jun 15 2026). top11_avg_ovr recomputed from verified starter XI.",
+    "last_updated": "2026-06-15"
+  },
+  "teams": [
+    {
+      "name": "Argentina",
+      "ovr": 88,
+      "att": 88,
+      "mid": 85,
+      "def": 82,
+      "top11_avg_ovr": 82.9,
+      "aliases": [
+        "ARG",
+        "argentina",
+        "albiceleste"
+      ],
+      "players": [
+        {
+          "name": "L. Messi",
+          "ovr": 86,
+          "position": "RW"
+        },
+        {
+          "name": "E. Fernández",
+          "ovr": 85,
+          "position": "CDM"
+        },
+        {
+          "name": "C. Romero",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "J. Alvarez",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "R. De Paul",
+          "ovr": 84,
+          "position": "CM"
+        },
+        {
+          "name": "L. Martínez",
+          "ovr": 88,
+          "position": "ST"
+        },
+        {
+          "name": "N. Molina",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "N. Tagliafico",
+          "ovr": 78,
+          "position": "LB"
+        },
+        {
+          "name": "A. Mac Allister",
+          "ovr": 87,
+          "position": "CM"
+        },
+        {
+          "name": "G. Montiel",
+          "ovr": 78,
+          "position": "RB"
+        },
+        {
+          "name": "L. Díaz",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "E. Martínez",
+          "ovr": 87,
+          "position": "GK"
+        },
+        {
+          "name": "L. Paredes",
+          "ovr": 80,
+          "position": "CDM"
+        },
+        {
+          "name": "P. Dybala",
+          "ovr": 86,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Almada",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "G. Lo Celso",
+          "ovr": 80,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "France",
+      "ovr": 84,
+      "att": 84,
+      "mid": 83,
+      "def": 83,
+      "top11_avg_ovr": 85.0,
+      "aliases": [
+        "FRA",
+        "france",
+        "les bleus"
+      ],
+      "players": [
+        {
+          "name": "K. Mbappé",
+          "ovr": 91,
+          "position": "ST"
+        },
+        {
+          "name": "A. Tchouaméni",
+          "ovr": 85,
+          "position": "CDM"
+        },
+        {
+          "name": "W. Saliba",
+          "ovr": 85,
+          "position": "CB"
+        },
+        {
+          "name": "A. Rabiot",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "O. Giroud",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "T. Hernández",
+          "ovr": 84,
+          "position": "LB"
+        },
+        {
+          "name": "J. Konaté",
+          "ovr": 86,
+          "position": "CB"
+        },
+        {
+          "name": "O. Dembélé",
+          "ovr": 90,
+          "position": "RW"
+        },
+        {
+          "name": "A. Griezmann",
+          "ovr": 85,
+          "position": "CAM"
+        },
+        {
+          "name": "B. Pavard",
+          "ovr": 82,
+          "position": "RB"
+        },
+        {
+          "name": "M. Maignan",
+          "ovr": 85,
+          "position": "GK"
+        },
+        {
+          "name": "K. Benzema",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "E. Camavinga",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "K. Coman",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "M. Thuram",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "Y. Fofana",
+          "ovr": 82,
+          "position": "CDM"
+        }
+      ]
+    },
+    {
+      "name": "Brazil",
+      "ovr": 85,
+      "att": 86,
+      "mid": 84,
+      "def": 83,
+      "top11_avg_ovr": 83.6,
+      "aliases": [
+        "BRA",
+        "brazil",
+        "brasil",
+        "seleção",
+        "selecao"
+      ],
+      "players": [
+        {
+          "name": "Vinícius Jr.",
+          "ovr": 91,
+          "position": "LW"
+        },
+        {
+          "name": "Rodrygo",
+          "ovr": 85,
+          "position": "RW"
+        },
+        {
+          "name": "Casemiro",
+          "ovr": 80,
+          "position": "CDM"
+        },
+        {
+          "name": "Marquinhos",
+          "ovr": 85,
+          "position": "CB"
+        },
+        {
+          "name": "Militão",
+          "ovr": 85,
+          "position": "CB"
+        },
+        {
+          "name": "L. Paquetá",
+          "ovr": 80,
+          "position": "CAM"
+        },
+        {
+          "name": "Raphinha",
+          "ovr": 89,
+          "position": "RW"
+        },
+        {
+          "name": "Alisson",
+          "ovr": 89,
+          "position": "GK"
+        },
+        {
+          "name": "Danilo",
+          "ovr": 75,
+          "position": "RB"
+        },
+        {
+          "name": "A. Telles",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "F. Gomes",
+          "ovr": 82,
+          "position": "CM"
+        },
+        {
+          "name": "Neymar",
+          "ovr": 83,
+          "position": "LW"
+        },
+        {
+          "name": "Endrick",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "G. Martinelli",
+          "ovr": 83,
+          "position": "LW"
+        },
+        {
+          "name": "B. Guimarães",
+          "ovr": 84,
+          "position": "CM"
+        },
+        {
+          "name": "Éder Militão",
+          "ovr": 85,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "England",
+      "ovr": 84,
+      "att": 83,
+      "mid": 84,
+      "def": 83,
+      "top11_avg_ovr": 84.8,
+      "aliases": [
+        "ENG",
+        "england",
+        "three lions"
+      ],
+      "players": [
+        {
+          "name": "J. Bellingham",
+          "ovr": 89,
+          "position": "CAM"
+        },
+        {
+          "name": "B. Saka",
+          "ovr": 87,
+          "position": "RW"
+        },
+        {
+          "name": "H. Kane",
+          "ovr": 90,
+          "position": "ST"
+        },
+        {
+          "name": "P. Foden",
+          "ovr": 85,
+          "position": "LW"
+        },
+        {
+          "name": "D. Rice",
+          "ovr": 87,
+          "position": "CDM"
+        },
+        {
+          "name": "T. Alexander-Arnold",
+          "ovr": 85,
+          "position": "RB"
+        },
+        {
+          "name": "M. Salah",
+          "ovr": 90,
+          "position": "RW"
+        },
+        {
+          "name": "J. Maguire",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "L. Dunk",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "L. Shaw",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "J. Pickford",
+          "ovr": 82,
+          "position": "GK"
+        },
+        {
+          "name": "O. Watkins",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "A. Gordon",
+          "ovr": 81,
+          "position": "LW"
+        },
+        {
+          "name": "C. Palmer",
+          "ovr": 87,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Konsa",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "N. Henderson",
+          "ovr": 79,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Portugal",
+      "ovr": 84,
+      "att": 85,
+      "mid": 83,
+      "def": 82,
+      "top11_avg_ovr": 83.5,
+      "aliases": [
+        "POR",
+        "portugal",
+        "a seleção"
+      ],
+      "players": [
+        {
+          "name": "C. Ronaldo",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "B. Silva",
+          "ovr": 84,
+          "position": "CAM"
+        },
+        {
+          "name": "R. Leão",
+          "ovr": 86,
+          "position": "LW"
+        },
+        {
+          "name": "F. Conceição",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "V. Horta",
+          "ovr": 80,
+          "position": "CM"
+        },
+        {
+          "name": "N. Mendes",
+          "ovr": 84,
+          "position": "LB"
+        },
+        {
+          "name": "R. Dias",
+          "ovr": 87,
+          "position": "CB"
+        },
+        {
+          "name": "D. Dalot",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "J. Palhinha",
+          "ovr": 85,
+          "position": "CDM"
+        },
+        {
+          "name": "P. Neves",
+          "ovr": 85,
+          "position": "CM"
+        },
+        {
+          "name": "D. Costa",
+          "ovr": 85,
+          "position": "GK"
+        },
+        {
+          "name": "R. Felix",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "G. Ramos",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "O. Dier",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "M. Bento",
+          "ovr": 82,
+          "position": "GK"
+        },
+        {
+          "name": "J. Cancelo",
+          "ovr": 83,
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "name": "Spain",
+      "ovr": 84,
+      "att": 83,
+      "mid": 84,
+      "def": 84,
+      "top11_avg_ovr": 84.6,
+      "aliases": [
+        "ESP",
+        "spain",
+        "españa",
+        "espana",
+        "la roja"
+      ],
+      "players": [
+        {
+          "name": "L. Yamal",
+          "ovr": 87,
+          "position": "RW"
+        },
+        {
+          "name": "P. Pedri",
+          "ovr": 88,
+          "position": "CM"
+        },
+        {
+          "name": "F. Torres",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "M. Merino",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "A. García",
+          "ovr": 83,
+          "position": "LW"
+        },
+        {
+          "name": "R. Le Normand",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "A. Laporte",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "D. Carvajal",
+          "ovr": 83,
+          "position": "RB"
+        },
+        {
+          "name": "M. Cucurella",
+          "ovr": 82,
+          "position": "LB"
+        },
+        {
+          "name": "R. Rodri",
+          "ovr": 91,
+          "position": "CDM"
+        },
+        {
+          "name": "U. Simón",
+          "ovr": 85,
+          "position": "GK"
+        },
+        {
+          "name": "M. Oyarzabal",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "J. Navas",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "F. Ruiz",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "A. Morata",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "N. Williams",
+          "ovr": 84,
+          "position": "LW"
+        }
+      ]
+    },
+    {
+      "name": "Germany",
+      "ovr": 83,
+      "att": 83,
+      "mid": 83,
+      "def": 82,
+      "top11_avg_ovr": 84.1,
+      "aliases": [
+        "GER",
+        "germany",
+        "deutschland",
+        "die mannschaft"
+      ],
+      "players": [
+        {
+          "name": "K. Havertz",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "J. Kimmich",
+          "ovr": 88,
+          "position": "CM"
+        },
+        {
+          "name": "T. Müller",
+          "ovr": 80,
+          "position": "CAM"
+        },
+        {
+          "name": "I. Gündoğan",
+          "ovr": 85,
+          "position": "CM"
+        },
+        {
+          "name": "L. Goretzka",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "A. Rüdiger",
+          "ovr": 85,
+          "position": "CB"
+        },
+        {
+          "name": "D. Schlotterbeck",
+          "ovr": 85,
+          "position": "CB"
+        },
+        {
+          "name": "B. Pavard",
+          "ovr": 82,
+          "position": "RB"
+        },
+        {
+          "name": "D. Raum",
+          "ovr": 81,
+          "position": "LB"
+        },
+        {
+          "name": "M. ter Stegen",
+          "ovr": 87,
+          "position": "GK"
+        },
+        {
+          "name": "J. Musiala",
+          "ovr": 87,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Werner",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "S. Gnabry",
+          "ovr": 82,
+          "position": "RW"
+        },
+        {
+          "name": "K. Adeyemi",
+          "ovr": 81,
+          "position": "LW"
+        },
+        {
+          "name": "R. Gosens",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "N. Füllkrug",
+          "ovr": 79,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Netherlands",
+      "ovr": 82,
+      "att": 82,
+      "mid": 81,
+      "def": 82,
+      "top11_avg_ovr": 82.7,
+      "aliases": [
+        "NED",
+        "netherlands",
+        "holland",
+        "dutch",
+        "oranje"
+      ],
+      "players": [
+        {
+          "name": "V. van Dijk",
+          "ovr": 88,
+          "position": "CB"
+        },
+        {
+          "name": "C. Gakpo",
+          "ovr": 84,
+          "position": "LW"
+        },
+        {
+          "name": "M. de Ligt",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "T. Depay",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "F. de Jong",
+          "ovr": 86,
+          "position": "CM"
+        },
+        {
+          "name": "X. Simons",
+          "ovr": 84,
+          "position": "CAM"
+        },
+        {
+          "name": "D. Dumfries",
+          "ovr": 82,
+          "position": "RB"
+        },
+        {
+          "name": "D. Blind",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "S. de Vrij",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "R. Koopmeiners",
+          "ovr": 81,
+          "position": "CM"
+        },
+        {
+          "name": "B. Flekken",
+          "ovr": 78,
+          "position": "GK"
+        },
+        {
+          "name": "T. Reijnders",
+          "ovr": 86,
+          "position": "CM"
+        },
+        {
+          "name": "W. Weghorst",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "N. Maatsen",
+          "ovr": 80,
+          "position": "LB"
+        },
+        {
+          "name": "J. Schouten",
+          "ovr": 80,
+          "position": "CDM"
+        },
+        {
+          "name": "B. Timber",
+          "ovr": 80,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Belgium",
+      "ovr": 83,
+      "att": 84,
+      "mid": 82,
+      "def": 81,
+      "top11_avg_ovr": 80.0,
+      "aliases": [
+        "BEL",
+        "belgium",
+        "belgique",
+        "red devils"
+      ],
+      "players": [
+        {
+          "name": "K. De Bruyne",
+          "ovr": 87,
+          "position": "CAM"
+        },
+        {
+          "name": "R. Lukaku",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "T. Hazard",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "Y. Carrasco",
+          "ovr": 81,
+          "position": "LW"
+        },
+        {
+          "name": "A. Trossard",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "T. Alderweireld",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "J. Vertonghen",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "T. Meunier",
+          "ovr": 76,
+          "position": "RB"
+        },
+        {
+          "name": "T. Castagne",
+          "ovr": 76,
+          "position": "LB"
+        },
+        {
+          "name": "A. Onana",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "K. Casteels",
+          "ovr": 82,
+          "position": "GK"
+        },
+        {
+          "name": "D. Origi",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "L. Trossard",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "J. Theate",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "O. Doku",
+          "ovr": 80,
+          "position": "RW"
+        },
+        {
+          "name": "A. Saelemaekers",
+          "ovr": 79,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Colombia",
+      "ovr": 82,
+      "att": 83,
+      "mid": 81,
+      "def": 80,
+      "top11_avg_ovr": 77.7,
+      "aliases": [
+        "COL",
+        "colombia"
+      ],
+      "players": [
+        {
+          "name": "L. Díaz",
+          "ovr": 85,
+          "position": "LW"
+        },
+        {
+          "name": "J. Cuadrado",
+          "ovr": 76,
+          "position": "RW"
+        },
+        {
+          "name": "R. Falcao",
+          "ovr": 70,
+          "position": "ST"
+        },
+        {
+          "name": "J. Lerma",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "W. Barrios",
+          "ovr": 80,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Arias",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "Y. Mina",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "D. Sánchez",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "J. Mojica",
+          "ovr": 78,
+          "position": "LB"
+        },
+        {
+          "name": "J. Rodríguez",
+          "ovr": 80,
+          "position": "CAM"
+        },
+        {
+          "name": "D. Ospina",
+          "ovr": 76,
+          "position": "GK"
+        },
+        {
+          "name": "L. Sinisterra",
+          "ovr": 75,
+          "position": "LW"
+        },
+        {
+          "name": "C. Cuesta",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "M. Cabal",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "R. Arias",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "E. Hinestroza",
+          "ovr": 72,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Croatia",
+      "ovr": 81,
+      "att": 80,
+      "mid": 82,
+      "def": 81,
+      "top11_avg_ovr": 79.1,
+      "aliases": [
+        "CRO",
+        "croatia",
+        "hrvatska",
+        "vatreni"
+      ],
+      "players": [
+        {
+          "name": "L. Modrić",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "M. Brozović",
+          "ovr": 81,
+          "position": "CDM"
+        },
+        {
+          "name": "I. Perišić",
+          "ovr": 83,
+          "position": "LW"
+        },
+        {
+          "name": "M. Gvardiol",
+          "ovr": 84,
+          "position": "CB"
+        },
+        {
+          "name": "J. Stanišić",
+          "ovr": 80,
+          "position": "RB"
+        },
+        {
+          "name": "D. Vida",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "B. Sosa",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "M. Pašalić",
+          "ovr": 82,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Rebić",
+          "ovr": 72,
+          "position": "RW"
+        },
+        {
+          "name": "B. Petković",
+          "ovr": 76,
+          "position": "ST"
+        },
+        {
+          "name": "D. Livaković",
+          "ovr": 82,
+          "position": "GK"
+        },
+        {
+          "name": "A. Kramarić",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "N. Vlašić",
+          "ovr": 80,
+          "position": "CAM"
+        },
+        {
+          "name": "M. Orsić",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "L. Šutalo",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "I. Gvardiol",
+          "ovr": 84,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Morocco",
+      "ovr": 79,
+      "att": 79,
+      "mid": 78,
+      "def": 79,
+      "top11_avg_ovr": 80.5,
+      "aliases": [
+        "MAR",
+        "morocco",
+        "maroc",
+        "atlas lions"
+      ],
+      "players": [
+        {
+          "name": "H. Ziyech",
+          "ovr": 78,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Ounahi",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "S. Amrabat",
+          "ovr": 78,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Hakimi",
+          "ovr": 89,
+          "position": "RB"
+        },
+        {
+          "name": "N. Aguerd",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "R. Saïss",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "N. Mazraoui",
+          "ovr": 82,
+          "position": "LB"
+        },
+        {
+          "name": "Y. En-Nesyri",
+          "ovr": 81,
+          "position": "ST"
+        },
+        {
+          "name": "S. Benoun",
+          "ovr": 78,
+          "position": "CB"
+        },
+        {
+          "name": "Y. Jabrane",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "Y. Bono",
+          "ovr": 84,
+          "position": "GK"
+        },
+        {
+          "name": "S. Dari",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "I. Diaz",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "B. Banou",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "A. Ezzalzouli",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "I. Ezzalzouli",
+          "ovr": 79,
+          "position": "LW"
+        }
+      ]
+    },
+    {
+      "name": "Uruguay",
+      "ovr": 80,
+      "att": 80,
+      "mid": 79,
+      "def": 80,
+      "top11_avg_ovr": 80.3,
+      "aliases": [
+        "URU",
+        "uruguay"
+      ],
+      "players": [
+        {
+          "name": "L. Suárez",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "E. Cavani",
+          "ovr": 76,
+          "position": "ST"
+        },
+        {
+          "name": "F. Valverde",
+          "ovr": 89,
+          "position": "CM"
+        },
+        {
+          "name": "R. Bentancur",
+          "ovr": 80,
+          "position": "CM"
+        },
+        {
+          "name": "J. Giménez",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "D. Godín",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "M. Cáceres",
+          "ovr": 78,
+          "position": "RB"
+        },
+        {
+          "name": "M. Olivera",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "G. Varela",
+          "ovr": 78,
+          "position": "RW"
+        },
+        {
+          "name": "L. Torreira",
+          "ovr": 81,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Rochet",
+          "ovr": 80,
+          "position": "GK"
+        },
+        {
+          "name": "D. Núñez",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "M. Ugarte",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Vidal",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "J. Nández",
+          "ovr": 76,
+          "position": "RB"
+        },
+        {
+          "name": "F. Torres",
+          "ovr": 78,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Switzerland",
+      "ovr": 80,
+      "att": 79,
+      "mid": 80,
+      "def": 80,
+      "top11_avg_ovr": 78.2,
+      "aliases": [
+        "SUI",
+        "switzerland",
+        "suisse",
+        "schweiz"
+      ],
+      "players": [
+        {
+          "name": "X. Shaqiri",
+          "ovr": 78,
+          "position": "CAM"
+        },
+        {
+          "name": "G. Xhaka",
+          "ovr": 84,
+          "position": "CM"
+        },
+        {
+          "name": "M. Akanji",
+          "ovr": 84,
+          "position": "CB"
+        },
+        {
+          "name": "R. Elvedi",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "S. Zuber",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "L. Embolo",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "D. Ndoye",
+          "ovr": 80,
+          "position": "RW"
+        },
+        {
+          "name": "M. Seferovic",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "S. Widmer",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "R. Rodríguez",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "Y. Sommer",
+          "ovr": 86,
+          "position": "GK"
+        },
+        {
+          "name": "R. Vargas",
+          "ovr": 75,
+          "position": "LW"
+        },
+        {
+          "name": "S. Mvogo",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "N. Amdouni",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "F. Frei",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "F. Schär",
+          "ovr": 82,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Austria",
+      "ovr": 78,
+      "att": 77,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": 75.7,
+      "aliases": [
+        "AUT",
+        "austria"
+      ],
+      "players": [
+        {
+          "name": "D. Alaba",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "M. Arnautović",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "M. Sabitzer",
+          "ovr": 82,
+          "position": "CM"
+        },
+        {
+          "name": "K. Laimer",
+          "ovr": 81,
+          "position": "CM"
+        },
+        {
+          "name": "N. Wimmer",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "P. Lainer",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "A. Ullmann",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "P. Grillitsch",
+          "ovr": 76,
+          "position": "CDM"
+        },
+        {
+          "name": "C. Baumgartner",
+          "ovr": 79,
+          "position": "CAM"
+        },
+        {
+          "name": "P. Pentz",
+          "ovr": 72,
+          "position": "GK"
+        },
+        {
+          "name": "M. Wöber",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "A. Gregoritsch",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "F. Querfeld",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "N. Seiwald",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "P. Wimmer",
+          "ovr": 77,
+          "position": "LB"
+        },
+        {
+          "name": "C. Trimmel",
+          "ovr": 76,
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "name": "Japan",
+      "ovr": 79,
+      "att": 79,
+      "mid": 79,
+      "def": 78,
+      "top11_avg_ovr": 74.9,
+      "aliases": [
+        "JPN",
+        "japan",
+        "samurai blue"
+      ],
+      "players": [
+        {
+          "name": "T. Minamino",
+          "ovr": 78,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Tomiyasu",
+          "ovr": 77,
+          "position": "RB"
+        },
+        {
+          "name": "M. Endo",
+          "ovr": 82,
+          "position": "CDM"
+        },
+        {
+          "name": "K. Itakura",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "K. Yoshida",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "H. Sakai",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "Y. Nagatomo",
+          "ovr": 71,
+          "position": "LB"
+        },
+        {
+          "name": "D. Kamada",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "J. Ito",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "T. Ueda",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "S. Gonda",
+          "ovr": 69,
+          "position": "GK"
+        },
+        {
+          "name": "R. Doan",
+          "ovr": 80,
+          "position": "LW"
+        },
+        {
+          "name": "S. Mitoma",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "A. Tanaka",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "W. Endo",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "K. Asano",
+          "ovr": 75,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Mexico",
+      "ovr": 78,
+      "att": 78,
+      "mid": 77,
+      "def": 77,
+      "top11_avg_ovr": 76.2,
+      "aliases": [
+        "MEX",
+        "mexico",
+        "méxico",
+        "el tri"
+      ],
+      "players": [
+        {
+          "name": "H. Lozano",
+          "ovr": 78,
+          "position": "RW"
+        },
+        {
+          "name": "C. Vela",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "A. Guardado",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "H. Herrera",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "E. Álvarez",
+          "ovr": 78,
+          "position": "LB"
+        },
+        {
+          "name": "E. Moreno",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "C. Salcedo",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "J. Sánchez",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "R. Jiménez",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "G. Ochoa",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "O. Pineda",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "J. Corona",
+          "ovr": 81,
+          "position": "RW"
+        },
+        {
+          "name": "U. Antuna",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "S. Giménez",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "J. Gallardo",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "R. Alvarado",
+          "ovr": 78,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Senegal",
+      "ovr": 78,
+      "att": 78,
+      "mid": 77,
+      "def": 77,
+      "top11_avg_ovr": 78.6,
+      "aliases": [
+        "SEN",
+        "senegal",
+        "lions of teranga"
+      ],
+      "players": [
+        {
+          "name": "S. Mané",
+          "ovr": 84,
+          "position": "LW"
+        },
+        {
+          "name": "K. Coulibaly",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "I. Gueye",
+          "ovr": 81,
+          "position": "CDM"
+        },
+        {
+          "name": "K. Kouyaté",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "A. Sarr",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "S. Diallo",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "K. Koulibaly",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "M. Wagué",
+          "ovr": 78,
+          "position": "RB"
+        },
+        {
+          "name": "F. Mendy",
+          "ovr": 70,
+          "position": "LB"
+        },
+        {
+          "name": "E. Mendy",
+          "ovr": 80,
+          "position": "GK"
+        },
+        {
+          "name": "B. Diatta",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "B. Badji",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "M. Sarr",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "P. Gueye",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "I. Thiam",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "N. Ndiaye",
+          "ovr": 78,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Norway",
+      "ovr": 79,
+      "att": 80,
+      "mid": 78,
+      "def": 77,
+      "top11_avg_ovr": 79.4,
+      "aliases": [
+        "NOR",
+        "norway",
+        "norge"
+      ],
+      "players": [
+        {
+          "name": "E. Haaland",
+          "ovr": 91,
+          "position": "ST"
+        },
+        {
+          "name": "M. Ødegaard",
+          "ovr": 88,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Sørloth",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "M. Aursnes",
+          "ovr": 80,
+          "position": "LM"
+        },
+        {
+          "name": "S. Berge",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Strandberg",
+          "ovr": 78,
+          "position": "CB"
+        },
+        {
+          "name": "L. Balogun",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "O. Pedersen",
+          "ovr": 77,
+          "position": "RB"
+        },
+        {
+          "name": "B. Meling",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "Ø. Nyland",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "M. Thorsby",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "A. Elyounoussi",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "J. Strand Larsen",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "P. Piroe",
+          "ovr": 75,
+          "position": "LW"
+        },
+        {
+          "name": "B. Henriksen",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "O. Nusa",
+          "ovr": 76,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Turkey",
+      "ovr": 79,
+      "att": 79,
+      "mid": 80,
+      "def": 79,
+      "top11_avg_ovr": 79.2,
+      "aliases": [
+        "TUR",
+        "turkey",
+        "türkiye",
+        "turkiye"
+      ],
+      "players": [
+        {
+          "name": "H. Çal...",
+          "ovr": 84,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Güler",
+          "ovr": 83,
+          "position": "CAM"
+        },
+        {
+          "name": "K. Yıldız",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "F. Kadıoğlu",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "M. Demiral",
+          "ovr": 78,
+          "position": "CB"
+        },
+        {
+          "name": "Ö. Kökcü",
+          "ovr": 81,
+          "position": "CM"
+        },
+        {
+          "name": "Z. Çelik",
+          "ovr": 76,
+          "position": "RB"
+        },
+        {
+          "name": "Şöyüncü",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "K. Aksür...",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "B. Yılmaz",
+          "ovr": 80,
+          "position": "RW"
+        },
+        {
+          "name": "C. Uzun",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "A. Bayindır",
+          "ovr": 75,
+          "position": "GK"
+        },
+        {
+          "name": "U. Çakır",
+          "ovr": 79,
+          "position": "GK"
+        },
+        {
+          "name": "A. Bardako...",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "M. Müldür",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "İ. Yıkses",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "Y. Akgün",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "O. Gül",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "E. Elmalı",
+          "ovr": 77,
+          "position": "LB"
+        }
+      ]
+    },
+    {
+      "name": "South Korea",
+      "ovr": 78,
+      "att": 78,
+      "mid": 77,
+      "def": 77,
+      "top11_avg_ovr": 77.5,
+      "aliases": [
+        "KOR",
+        "south korea",
+        "korea",
+        "korea republic",
+        "taeguk warriors"
+      ],
+      "players": [
+        {
+          "name": "H. Son",
+          "ovr": 85,
+          "position": "LW"
+        },
+        {
+          "name": "J. Lee",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "I. Hwang",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "K. Kim",
+          "ovr": 82,
+          "position": "CB"
+        },
+        {
+          "name": "Y. Kim",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "T. Lee",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "J. Kwon",
+          "ovr": 77,
+          "position": "RB"
+        },
+        {
+          "name": "J. Moon",
+          "ovr": 76,
+          "position": "LB"
+        },
+        {
+          "name": "S. Hwang",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "S. Cho",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "C. Lim",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "B. Hwang",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "J. Cho",
+          "ovr": 78,
+          "position": "CAM"
+        },
+        {
+          "name": "K. Na",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "K. Jung",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "H. Lee",
+          "ovr": 78,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "USA",
+      "ovr": 77,
+      "att": 77,
+      "mid": 78,
+      "def": 77,
+      "top11_avg_ovr": 77.2,
+      "aliases": [
+        "USA",
+        "united states",
+        "usmnt",
+        "us",
+        "u.s.",
+        "u.s.a.",
+        "team usa"
+      ],
+      "players": [
+        {
+          "name": "C. Pulisic",
+          "ovr": 84,
+          "position": "RW"
+        },
+        {
+          "name": "T. Adams",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "M. Tillman",
+          "ovr": 81,
+          "position": "CM"
+        },
+        {
+          "name": "W. McKe...",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "M. Turner",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "A. Robins...",
+          "ovr": 82,
+          "position": "LB"
+        },
+        {
+          "name": "T. Ream",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "C. Richards",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "S. Dest",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "B. Aarons...",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "S. Bierhal...",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "F. Balogun",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "M. Freese",
+          "ovr": 69,
+          "position": "GK"
+        },
+        {
+          "name": "A. Trus...",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "T. Weah",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "G. Regi",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "C. Rolden",
+          "ovr": 78,
+          "position": "RW"
+        },
+        {
+          "name": "J. Scally",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "M. Arfsten",
+          "ovr": 67,
+          "position": "LW"
+        }
+      ]
+    },
+    {
+      "name": "Canada",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 76.5,
+      "aliases": [
+        "CAN",
+        "canada",
+        "canucks",
+        "canadian men"
+      ],
+      "players": [
+        {
+          "name": "A. Davies",
+          "ovr": 85,
+          "position": "LB"
+        },
+        {
+          "name": "J. David",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "T. Buchanan",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "A. Larin",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "S. Osorio",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "K. Adekugbe",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "K. Henry",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "J. Vitória",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "I. Kone",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "M. Borjan",
+          "ovr": 79,
+          "position": "GK"
+        },
+        {
+          "name": "J. Eustaquio",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "C. Cavallini",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "R. Johnston",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "D. Miller",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "Z. Brault-Guillard",
+          "ovr": 64,
+          "position": "RB"
+        },
+        {
+          "name": "T. Corbeanu",
+          "ovr": 68,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Ecuador",
+      "ovr": 74,
+      "att": 74,
+      "mid": 73,
+      "def": 73,
+      "top11_avg_ovr": 76.1,
+      "aliases": [
+        "ECU",
+        "ecuador",
+        "la tri"
+      ],
+      "players": [
+        {
+          "name": "E. Valencia",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "L. Estupiñán",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "P. Hincapié",
+          "ovr": 83,
+          "position": "CB"
+        },
+        {
+          "name": "J. Plata",
+          "ovr": 78,
+          "position": "RW"
+        },
+        {
+          "name": "M. Caicedo",
+          "ovr": 88,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Méndez",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "N. Arce",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "J. Cifuentes",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "A. Preciado",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "H. Galíndez",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "J. Minda",
+          "ovr": 72,
+          "position": "LW"
+        },
+        {
+          "name": "J. Ibarra",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "D. Palacios",
+          "ovr": 74,
+          "position": "CAM"
+        },
+        {
+          "name": "K. Caicedo",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "G. Torres",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "G. Arboleda",
+          "ovr": 74,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Sweden",
+      "ovr": 77,
+      "att": 78,
+      "mid": 77,
+      "def": 76,
+      "top11_avg_ovr": 77.0,
+      "aliases": [
+        "SWE",
+        "sweden",
+        "sverige",
+        "blågult"
+      ],
+      "players": [
+        {
+          "name": "V. Gyökeres",
+          "ovr": 87,
+          "position": "ST"
+        },
+        {
+          "name": "V. Lindelöf",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "L. Bergvall",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "L. Hien",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "A. Elanga",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "J. Karlström",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "G. Gudmundsson",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "V. Johansson",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "D. Svensson",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "H. Johansson",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "E. Stroud",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "A. Isak",
+          "ovr": 88,
+          "position": "ST"
+        },
+        {
+          "name": "C. Olsson",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "A. Jansson",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "K. Olsson",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "S. Larsson",
+          "ovr": 72,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Scotland",
+      "ovr": 76,
+      "att": 75,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 76.2,
+      "aliases": [
+        "SCO",
+        "scotland"
+      ],
+      "players": [
+        {
+          "name": "A. Robertson",
+          "ovr": 83,
+          "position": "LB"
+        },
+        {
+          "name": "S. McTominay",
+          "ovr": 85,
+          "position": "CM"
+        },
+        {
+          "name": "R. Christie",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "J. McGinn",
+          "ovr": 81,
+          "position": "CM"
+        },
+        {
+          "name": "C. Adams",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "K. Tierney",
+          "ovr": 76,
+          "position": "LB"
+        },
+        {
+          "name": "G. Hanley",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "J. Hendry",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "A. Hickey",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "C. Gordon",
+          "ovr": 67,
+          "position": "GK"
+        },
+        {
+          "name": "B. Gilmour",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "L. Ferguson",
+          "ovr": 76,
+          "position": "ST"
+        },
+        {
+          "name": "T. McKenna",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "M. Johnston",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "S. Fleck",
+          "ovr": 63,
+          "position": "CM"
+        },
+        {
+          "name": "L. Patterson",
+          "ovr": 73,
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "name": "Czech Republic",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 76.0,
+      "aliases": [
+        "CZE",
+        "czech republic",
+        "czechia",
+        "czech"
+      ],
+      "players": [
+        {
+          "name": "T. Souček",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "P. Schick",
+          "ovr": 85,
+          "position": "ST"
+        },
+        {
+          "name": "V. Coufal",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "O. Čelůstka",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "T. Kalas",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "M. Kadeřábek",
+          "ovr": 75,
+          "position": "RB"
+        },
+        {
+          "name": "J. Bořil",
+          "ovr": 75,
+          "position": "LB"
+        },
+        {
+          "name": "V. Darida",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "M. Trávník",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "T. Vaclík",
+          "ovr": 78,
+          "position": "GK"
+        },
+        {
+          "name": "L. Provod",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "M. Havel",
+          "ovr": 71,
+          "position": "LB"
+        },
+        {
+          "name": "J. Lingr",
+          "ovr": 72,
+          "position": "LW"
+        },
+        {
+          "name": "P. Jurasek",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "D. Jurásek",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "V. Jurečka",
+          "ovr": 70,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Algeria",
+      "ovr": 81,
+      "att": 82,
+      "mid": 80,
+      "def": 79,
+      "top11_avg_ovr": 79.0,
+      "aliases": [
+        "ALG",
+        "algeria",
+        "algerie",
+        "algérie",
+        "fennecs",
+        "les verts"
+      ],
+      "players": [
+        {
+          "name": "R. Mahrez",
+          "ovr": 84,
+          "position": "RW"
+        },
+        {
+          "name": "R. Aït-Nouri",
+          "ovr": 81,
+          "position": "LB"
+        },
+        {
+          "name": "I. Bennacer",
+          "ovr": 80,
+          "position": "CDM"
+        },
+        {
+          "name": "M. Amoura",
+          "ovr": 80,
+          "position": "LW"
+        },
+        {
+          "name": "R. Bensebaini",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "A. Gouiri",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "A. Zorgane",
+          "ovr": 78,
+          "position": "CDM"
+        },
+        {
+          "name": "H. Boudaoui",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "H. Aouar",
+          "ovr": 77,
+          "position": "CAM"
+        },
+        {
+          "name": "N. Bentaleb",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Benrahma",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "H. Abdelli",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "A. Hadj-Moussa",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "A. Mandi",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "B. Bouanani",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "I. Kebbal",
+          "ovr": 75,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Iran",
+      "ovr": 74,
+      "att": 73,
+      "mid": 73,
+      "def": 74,
+      "top11_avg_ovr": 71.8,
+      "aliases": [
+        "IRN",
+        "iran",
+        "team melli"
+      ],
+      "players": [
+        {
+          "name": "S. Azmoun",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "A. Jahanbakhsh",
+          "ovr": 69,
+          "position": "RW"
+        },
+        {
+          "name": "M. Taremi",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "E. Hajsafi",
+          "ovr": 70,
+          "position": "LB"
+        },
+        {
+          "name": "R. Rezaeian",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "A. Pouraliganji",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "S. Hosseini",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "M. Nourmohammadi",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "A. Noorollahi",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "B. Beiranvand",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "K. Ghoddos",
+          "ovr": 67,
+          "position": "LW"
+        },
+        {
+          "name": "M. Karimi",
+          "ovr": 76,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Hajipur",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "H. Shojae",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "M. Mohammadi",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "A. Ansarifard",
+          "ovr": 72,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Egypt",
+      "ovr": 75,
+      "att": 76,
+      "mid": 74,
+      "def": 73,
+      "top11_avg_ovr": 75.6,
+      "aliases": [
+        "EGY",
+        "egypt",
+        "pharaohs"
+      ],
+      "players": [
+        {
+          "name": "M. Salah",
+          "ovr": 90,
+          "position": "RW"
+        },
+        {
+          "name": "T. Mohamed",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "A. Hegazy",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "O. Gaber",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "A. Fathi",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "A. El-Sayed",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "M. El-Shenawy",
+          "ovr": 75,
+          "position": "GK"
+        },
+        {
+          "name": "T. Hamed",
+          "ovr": 74,
+          "position": "CDM"
+        },
+        {
+          "name": "A. El-Neny",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "R. Sobhi",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "A. Abdel-Shafi",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "O. Marmoush",
+          "ovr": 84,
+          "position": "LW"
+        },
+        {
+          "name": "K. Afsha",
+          "ovr": 74,
+          "position": "CAM"
+        },
+        {
+          "name": "M. Sherif",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "M. Hany",
+          "ovr": 73,
+          "position": "RW"
+        },
+        {
+          "name": "M. Magdi",
+          "ovr": 73,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "ovr": 73,
+      "att": 76,
+      "mid": 70,
+      "def": 72,
+      "top11_avg_ovr": 71.2,
+      "aliases": [
+        "BIH",
+        "bosnia",
+        "bosnia and herzegovina",
+        "bosnia & herzegovina",
+        "zmajevi"
+      ],
+      "players": [
+        {
+          "name": "E. Džeko",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "E. Bajrak...",
+          "ovr": 67,
+          "position": "RW"
+        },
+        {
+          "name": "E. Demiro...",
+          "ovr": 80,
+          "position": "RW"
+        },
+        {
+          "name": "I. Šunjić",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "N. Mujkić",
+          "ovr": 67,
+          "position": "LB"
+        },
+        {
+          "name": "A. Dedić",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "D. Burnić",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "L. Bušić",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "A. Memić",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "K. Alajbeg...",
+          "ovr": 61,
+          "position": "LW"
+        },
+        {
+          "name": "J. Lukić",
+          "ovr": 64,
+          "position": "ST"
+        },
+        {
+          "name": "M. Zlomlić",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "T. Muhar...",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "N. Katić",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "A. Hadžić",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "J. Tabak...",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "N. Vasiljl",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "G. Radijević",
+          "ovr": 72,
+          "position": "LB"
+        }
+      ]
+    },
+    {
+      "name": "Australia",
+      "ovr": 76,
+      "att": 75,
+      "mid": 75,
+      "def": 76,
+      "top11_avg_ovr": 73.1,
+      "aliases": [
+        "AUS",
+        "australia",
+        "socceroos"
+      ],
+      "players": [
+        {
+          "name": "M. Leckie",
+          "ovr": 70,
+          "position": "RW"
+        },
+        {
+          "name": "A. Mooy",
+          "ovr": 79,
+          "position": "CM"
+        },
+        {
+          "name": "M. Jedinak",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Behich",
+          "ovr": 67,
+          "position": "LB"
+        },
+        {
+          "name": "B. Wright",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "T. Ryan",
+          "ovr": 79,
+          "position": "GK"
+        },
+        {
+          "name": "H. Souttar",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "K. Rowles",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "N. Atkinson",
+          "ovr": 68,
+          "position": "RB"
+        },
+        {
+          "name": "J. Irvine",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "R. Baccus",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "D. Nisbet",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "C. Goodwin",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "F. Suta",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "O. Zilic",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "C. Grant",
+          "ovr": 71,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Ghana",
+      "ovr": 72,
+      "att": 72,
+      "mid": 71,
+      "def": 70,
+      "top11_avg_ovr": 74.3,
+      "aliases": [
+        "GHA",
+        "ghana",
+        "black stars"
+      ],
+      "players": [
+        {
+          "name": "T. Partey",
+          "ovr": 83,
+          "position": "CDM"
+        },
+        {
+          "name": "M. Kudus",
+          "ovr": 82,
+          "position": "CAM"
+        },
+        {
+          "name": "J. Ayew",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "A. Ayew",
+          "ovr": 71,
+          "position": "RW"
+        },
+        {
+          "name": "K. Amartey",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "A. Djiku",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "A. Baba",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "A. Acheampong",
+          "ovr": 71,
+          "position": "LW"
+        },
+        {
+          "name": "I. Sulemana",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "L. Ati-Zigi",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "O. Tetteh",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "J. Mensah",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "F. Forson",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "D. Ghansah",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "I. Osman",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "K. Acquah",
+          "ovr": 72,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Ivory Coast",
+      "ovr": 76,
+      "att": 77,
+      "mid": 75,
+      "def": 74,
+      "top11_avg_ovr": 75.1,
+      "aliases": [
+        "CIV",
+        "ivory coast",
+        "cote d'ivoire",
+        "côte d'ivoire",
+        "elephants"
+      ],
+      "players": [
+        {
+          "name": "S. Haller",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "W. Zaha",
+          "ovr": 77,
+          "position": "RW"
+        },
+        {
+          "name": "N. Pépe",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "A. Sangaré",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "E. Bailly",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "S. Badé",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "S. Aurier",
+          "ovr": 76,
+          "position": "RB"
+        },
+        {
+          "name": "G. Konan",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "J. Gbamin",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "Y. Konaté",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "A. Gbohouo",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "I. Sangaré",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "C. Kessié",
+          "ovr": 82,
+          "position": "CM"
+        },
+        {
+          "name": "J. Dié",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "M. Bamba",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "A. Gadji",
+          "ovr": 72,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Tunisia",
+      "ovr": 73,
+      "att": 73,
+      "mid": 73,
+      "def": 72,
+      "top11_avg_ovr": 74.5,
+      "aliases": [
+        "TUN",
+        "tunisia",
+        "eagles of carthage"
+      ],
+      "players": [
+        {
+          "name": "Y. Msakni",
+          "ovr": 78,
+          "position": "CAM"
+        },
+        {
+          "name": "F. Ben Mustapha",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "E. Skhiri",
+          "ovr": 79,
+          "position": "CDM"
+        },
+        {
+          "name": "D. Bronn",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "A. Maaloul",
+          "ovr": 76,
+          "position": "LB"
+        },
+        {
+          "name": "M. Talbi",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "O. Valery",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "A. Laïdouni",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "S. Ben Slimane",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "H. Jebali",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "A. Ben Romdhane",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "W. Khazri",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "K. Ghandri",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "F. Chaalali",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "Z. Machach",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "N. Sliti",
+          "ovr": 73,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Saudi Arabia",
+      "ovr": 74,
+      "att": 74,
+      "mid": 73,
+      "def": 73,
+      "top11_avg_ovr": 70.1,
+      "aliases": [
+        "KSA",
+        "saudi arabia",
+        "saudi",
+        "green falcons"
+      ],
+      "players": [
+        {
+          "name": "S. Al-Dawsari",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "Y. Al-Shahrani",
+          "ovr": 66,
+          "position": "LB"
+        },
+        {
+          "name": "A. Al-Amri",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "A. Al-Bulayhi",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "S. Al-Ghannam",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "M. Al-Owais",
+          "ovr": 76,
+          "position": "GK"
+        },
+        {
+          "name": "M. Al-Burayk",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "H. Bahebri",
+          "ovr": 63,
+          "position": "CM"
+        },
+        {
+          "name": "F. Al-Brakan",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "M. Al-Nemer",
+          "ovr": 58,
+          "position": "CB"
+        },
+        {
+          "name": "N. Al-Aqidi",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "F. Al-Ghaddaf",
+          "ovr": 73,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Al-Hamdan",
+          "ovr": 64,
+          "position": "ST"
+        },
+        {
+          "name": "S. Al-Najei",
+          "ovr": 63,
+          "position": "RW"
+        },
+        {
+          "name": "Y. Al-Ghamdi",
+          "ovr": 71,
+          "position": "LW"
+        },
+        {
+          "name": "H. Al-Tambakti",
+          "ovr": 73,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Paraguay",
+      "ovr": 72,
+      "att": 71,
+      "mid": 71,
+      "def": 72,
+      "top11_avg_ovr": 73.5,
+      "aliases": [
+        "PAR",
+        "paraguay",
+        "albirroja"
+      ],
+      "players": [
+        {
+          "name": "J. Benítez",
+          "ovr": 75,
+          "position": "LW"
+        },
+        {
+          "name": "M. Almiron",
+          "ovr": 76,
+          "position": "CAM"
+        },
+        {
+          "name": "R. Cardozo",
+          "ovr": 72,
+          "position": "CDM"
+        },
+        {
+          "name": "J. Alderete",
+          "ovr": 78,
+          "position": "CB"
+        },
+        {
+          "name": "G. Arzamendia",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "D. Alonso",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "J. Espínola",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "A. Velázquez",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "R. Sánchez",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "A. Silva",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "P. Gómez",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "R. Santa Cruz",
+          "ovr": 69,
+          "position": "ST"
+        },
+        {
+          "name": "J. Romero",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "C. González",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "D. Lezcano",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "J. Villarreal",
+          "ovr": 72,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "South Africa",
+      "ovr": 70,
+      "att": 70,
+      "mid": 69,
+      "def": 70,
+      "top11_avg_ovr": 71.4,
+      "aliases": [
+        "RSA",
+        "south africa",
+        "bafana bafana"
+      ],
+      "players": [
+        {
+          "name": "T. Mokoena",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "O. Apollis",
+          "ovr": 73,
+          "position": "RW"
+        },
+        {
+          "name": "R. Willi...",
+          "ovr": 76,
+          "position": "GK"
+        },
+        {
+          "name": "K. Zwane",
+          "ovr": 72,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Modiba",
+          "ovr": 71,
+          "position": "LB"
+        },
+        {
+          "name": "M. Mbokan...",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "K. Mudau",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "S. Sithele",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "T. Moremi",
+          "ovr": 64,
+          "position": "LW"
+        },
+        {
+          "name": "L. Foster",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "G. Apollis",
+          "ovr": 71,
+          "position": "RW"
+        },
+        {
+          "name": "S. Chaine",
+          "ovr": 70,
+          "position": "GK"
+        },
+        {
+          "name": "S. Kabini",
+          "ovr": 65,
+          "position": "LB"
+        },
+        {
+          "name": "G. Croon...",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "G. Okon",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "S. Matuludi",
+          "ovr": 63,
+          "position": "RB"
+        },
+        {
+          "name": "T. Mbatha",
+          "ovr": 60,
+          "position": "CM"
+        },
+        {
+          "name": "T. Adams",
+          "ovr": 70,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Miseako",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "T. Magu...",
+          "ovr": 70,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Panama",
+      "ovr": 70,
+      "att": 69,
+      "mid": 69,
+      "def": 70,
+      "top11_avg_ovr": 69.4,
+      "aliases": [
+        "PAN",
+        "canaleros",
+        "panama"
+      ],
+      "players": [
+        {
+          "name": "A. Murillo",
+          "ovr": 76,
+          "position": "RB"
+        },
+        {
+          "name": "L. Mejía",
+          "ovr": 72,
+          "position": "GK"
+        },
+        {
+          "name": "A. Quintero",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "O. Mosquera",
+          "ovr": 70,
+          "position": "GK"
+        },
+        {
+          "name": "E. Guerrero",
+          "ovr": 70,
+          "position": "ST"
+        },
+        {
+          "name": "A. Godoy",
+          "ovr": 70,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Andrade",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "J. Fajardo",
+          "ovr": 68,
+          "position": "ST"
+        },
+        {
+          "name": "J. Córdoba",
+          "ovr": 68,
+          "position": "ST"
+        },
+        {
+          "name": "C. Harvey",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "L. Heráldez",
+          "ovr": 64,
+          "position": "CM"
+        },
+        {
+          "name": "O. Valencia",
+          "ovr": 59,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Congo DR",
+      "ovr": 74,
+      "att": 74,
+      "mid": 71,
+      "def": 72,
+      "top11_avg_ovr": 72.6,
+      "aliases": [
+        "COD",
+        "congo dr",
+        "dr congo",
+        "democratic republic of congo",
+        "leopards"
+      ],
+      "players": [
+        {
+          "name": "A. Masua...",
+          "ovr": 75,
+          "position": "RW"
+        },
+        {
+          "name": "G. Kalulu",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "E. Kayem...",
+          "ovr": 71,
+          "position": "CAM"
+        },
+        {
+          "name": "G. Kakuta",
+          "ovr": 72,
+          "position": "CAM"
+        },
+        {
+          "name": "Y. Wasa",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "C. Mbo...",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "A. Wan-B...",
+          "ovr": 80,
+          "position": "RB"
+        },
+        {
+          "name": "N. Mbuku",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "N. Sadiki",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "M. Ella",
+          "ovr": 70,
+          "position": "RW"
+        },
+        {
+          "name": "L. Mpasi",
+          "ovr": 67,
+          "position": "GK"
+        },
+        {
+          "name": "J. Kayembe",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "A. Tuenze...",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "G. Batubi...",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "B. Cipenga",
+          "ovr": 66,
+          "position": "LW"
+        },
+        {
+          "name": "C. Mfutu...",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "N. Mukau",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "G. A. Tshib...",
+          "ovr": 64,
+          "position": "CM"
+        },
+        {
+          "name": "S. Renza",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "M. Epolo",
+          "ovr": 75,
+          "position": "GK"
+        },
+        {
+          "name": "S. Kagwa...",
+          "ovr": 72,
+          "position": "LB"
+        }
+      ]
+    },
+    {
+      "name": "Iraq",
+      "ovr": 65,
+      "att": 63,
+      "mid": 66,
+      "def": 64,
+      "top11_avg_ovr": 64.6,
+      "aliases": [
+        "IRQ",
+        "iraq",
+        "mesopotamia lions"
+      ],
+      "players": [
+        {
+          "name": "T. Shat...",
+          "ovr": 64,
+          "position": "CB"
+        },
+        {
+          "name": "H. Al Babi...",
+          "ovr": 67,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Rafidain",
+          "ovr": 69,
+          "position": "GK"
+        },
+        {
+          "name": "B. Al Fura...",
+          "ovr": 62,
+          "position": "ST"
+        },
+        {
+          "name": "H. Diyalawi",
+          "ovr": 65,
+          "position": "GK"
+        },
+        {
+          "name": "A. Dijawi",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "Q. Qaysi",
+          "ovr": 60,
+          "position": "LB"
+        },
+        {
+          "name": "K. Anb...",
+          "ovr": 65,
+          "position": "CB"
+        },
+        {
+          "name": "N. Al Hab...",
+          "ovr": 61,
+          "position": "CB"
+        },
+        {
+          "name": "A. Al Jazr...",
+          "ovr": 65,
+          "position": "RB"
+        },
+        {
+          "name": "M. Al Jazr...",
+          "ovr": 65,
+          "position": "RB"
+        },
+        {
+          "name": "K. Moslawi",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "Y. Al Nahr...",
+          "ovr": 62,
+          "position": "CM"
+        },
+        {
+          "name": "M. Bayrani",
+          "ovr": 68,
+          "position": "CAM"
+        },
+        {
+          "name": "H. Al Qar...",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "M. Habbani",
+          "ovr": 65,
+          "position": "ST"
+        },
+        {
+          "name": "F. Al Anb...",
+          "ovr": 62,
+          "position": "ST"
+        },
+        {
+          "name": "K. Al May...",
+          "ovr": 65,
+          "position": "RW"
+        },
+        {
+          "name": "W. Al Bibi...",
+          "ovr": 62,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Jordan",
+      "ovr": 70,
+      "att": 70,
+      "mid": 69,
+      "def": 69,
+      "top11_avg_ovr": 69.9,
+      "aliases": [
+        "JOR",
+        "jordan",
+        "nashama"
+      ],
+      "players": [
+        {
+          "name": "M. Al Tamari",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "Y. Al Arab",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "G. Al Muqaddam",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "T. Ibn Fayhan",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "Q. Bannoura",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "N. Rousani",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "O. Sakka",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "N. Maarouf",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "R. Tayibeen",
+          "ovr": 67,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Uzbekistan",
+      "ovr": 69,
+      "att": 68,
+      "mid": 68,
+      "def": 69,
+      "top11_avg_ovr": 69.5,
+      "aliases": [
+        "UZB",
+        "uzbekistan",
+        "white wolves"
+      ],
+      "players": [
+        {
+          "name": "A. Khusanov",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "E. Shomurodov",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "U. Yusupov",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "D. Khamdamov",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "J. Masharipov",
+          "ovr": 69,
+          "position": "RW"
+        },
+        {
+          "name": "O. Shukurov",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "R. Ashurmatov",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "I. Sergeev",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "A. Nematov",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "K. Alijonov",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "O. Urunov",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "O. Hamrobekov",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "A. Fayzullaev",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "K. Alikulov",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "A. Abdullaev",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "J. Iskanderov",
+          "ovr": 65,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Cabo Verde",
+      "ovr": 70,
+      "att": 69,
+      "mid": 69,
+      "def": 71,
+      "top11_avg_ovr": 70.8,
+      "aliases": [
+        "CPV",
+        "cabo verde",
+        "cape verde",
+        "sharks"
+      ],
+      "players": [
+        {
+          "name": "Jamiro M...",
+          "ovr": 69,
+          "position": "CAM"
+        },
+        {
+          "name": "Sidny Ca...",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "Stopira",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "Ryan Men...",
+          "ovr": 72,
+          "position": "RW"
+        },
+        {
+          "name": "Vizinha",
+          "ovr": 71,
+          "position": "GK"
+        },
+        {
+          "name": "Roberto L...",
+          "ovr": 66,
+          "position": "CB"
+        },
+        {
+          "name": "L. Costa",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "Wagner P...",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "Willy Sem...",
+          "ovr": 71,
+          "position": "LM"
+        },
+        {
+          "name": "Kevin Len...",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "Telmo Ar...",
+          "ovr": 71,
+          "position": "CAM"
+        },
+        {
+          "name": "Daiion Liv...",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "Márcio R...",
+          "ovr": 70,
+          "position": "GK"
+        },
+        {
+          "name": "V. Moreira",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "Deroy Di...",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "João Paulo",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "Gerry Ilis...",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "Larros Du...",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "Num-dia...",
+          "ovr": 74,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Haiti",
+      "ovr": 69,
+      "att": 70,
+      "mid": 69,
+      "def": 69,
+      "top11_avg_ovr": 68.9,
+      "aliases": [
+        "HAI",
+        "haiti",
+        "grenadiers"
+      ],
+      "players": [
+        {
+          "name": "J. Belleg...",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "J. Plac...",
+          "ovr": 71,
+          "position": "GK"
+        },
+        {
+          "name": "H. Delcroix",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "J. Jean J...",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "J. Casimir",
+          "ovr": 71,
+          "position": "RW"
+        },
+        {
+          "name": "W. Isidor",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "F. Pierrot",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "M. Expér...",
+          "ovr": 62,
+          "position": "LB"
+        },
+        {
+          "name": "D. Lacroix",
+          "ovr": 70,
+          "position": "LB"
+        },
+        {
+          "name": "R. Adé",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "W. Paugain",
+          "ovr": 55,
+          "position": "CB"
+        },
+        {
+          "name": "C. Arcus",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "D. Ettiene...",
+          "ovr": 66,
+          "position": "LW"
+        },
+        {
+          "name": "R. Provid...",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "L. Pierre",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "D. Nazon",
+          "ovr": 70,
+          "position": "ST"
+        },
+        {
+          "name": "D. Louické...",
+          "ovr": 65,
+          "position": "ST"
+        },
+        {
+          "name": "A. Pierre",
+          "ovr": 62,
+          "position": "GK"
+        }
+      ]
+    },
+    {
+      "name": "Qatar",
+      "ovr": 73,
+      "att": 72,
+      "mid": 73,
+      "def": 73,
+      "top11_avg_ovr": 71.5,
+      "aliases": [
+        "QAT",
+        "qatar",
+        "maroon"
+      ],
+      "players": [
+        {
+          "name": "H. Al-Haydos",
+          "ovr": 71,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Afif",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "K. Boutaib",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "B. Al-Rawi",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "T. Salman",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "P. Correia",
+          "ovr": 68,
+          "position": "RB"
+        },
+        {
+          "name": "A. Hassan",
+          "ovr": 70,
+          "position": "LB"
+        },
+        {
+          "name": "A. Al Haydos",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "K. Al-Ghannam",
+          "ovr": 73,
+          "position": "CDM"
+        },
+        {
+          "name": "M. Al-Sheeb",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "A. Al-Haidos",
+          "ovr": 72,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "Curaçao",
+      "ovr": 68,
+      "att": 68,
+      "mid": 68,
+      "def": 69,
+      "top11_avg_ovr": 69.5,
+      "aliases": [
+        "CUW",
+        "curaçao",
+        "curacao",
+        "curaçao",
+        "real curazao"
+      ],
+      "players": [
+        {
+          "name": "R. van Rool",
+          "ovr": 72,
+          "position": "CDM"
+        },
+        {
+          "name": "D. Nigellas",
+          "ovr": 71,
+          "position": "CAM"
+        },
+        {
+          "name": "J. Rafaela",
+          "ovr": 65,
+          "position": "GK"
+        },
+        {
+          "name": "R. Heimers",
+          "ovr": 67,
+          "position": "LB"
+        },
+        {
+          "name": "R. Alexan...",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "K. Martis",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "J. Albertus",
+          "ovr": 70,
+          "position": "RB"
+        },
+        {
+          "name": "J. Anasta...",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "L. Macks",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "R. Rosam...",
+          "ovr": 66,
+          "position": "ST"
+        },
+        {
+          "name": "G. Manuel",
+          "ovr": 70,
+          "position": "RW"
+        },
+        {
+          "name": "J. Amelia",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "J. Schotten",
+          "ovr": 63,
+          "position": "CM"
+        },
+        {
+          "name": "S. Apolonia",
+          "ovr": 65,
+          "position": "CDM"
+        },
+        {
+          "name": "R. Schoop",
+          "ovr": 65,
+          "position": "CAM"
+        },
+        {
+          "name": "S. Apolonia",
+          "ovr": 69,
+          "position": "ST"
+        },
+        {
+          "name": "R. Eustacia",
+          "ovr": 64,
+          "position": "GK"
+        },
+        {
+          "name": "E. Meulens",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "L. Bernar...",
+          "ovr": 68,
+          "position": "LW"
+        },
+        {
+          "name": "C. Meren...",
+          "ovr": 68,
+          "position": "RW"
+        }
+      ]
+    },
+    {
+      "name": "New Zealand",
+      "ovr": 67,
+      "att": 66,
+      "mid": 66,
+      "def": 67,
+      "top11_avg_ovr": 69.6,
+      "aliases": [
+        "NZL",
+        "new zealand",
+        "all whites",
+        "aotearoa"
+      ],
+      "players": [
+        {
+          "name": "C. Wood",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "B. Rufer",
+          "ovr": 67,
+          "position": "LW"
+        },
+        {
+          "name": "C. Rojas",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "M. McGlinchey",
+          "ovr": 68,
+          "position": "CAM"
+        },
+        {
+          "name": "T. James",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "T. Doyle",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "M. Jones",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "T. Smeltz",
+          "ovr": 67,
+          "position": "ST"
+        },
+        {
+          "name": "S. Payne",
+          "ovr": 71,
+          "position": "GK"
+        },
+        {
+          "name": "N. Durante",
+          "ovr": 66,
+          "position": "LB"
+        },
+        {
+          "name": "D. Bell",
+          "ovr": 74,
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "name": "Italy",
+      "ovr": 82,
+      "att": 81,
+      "mid": 82,
+      "def": 83,
+      "top11_avg_ovr": 82.3,
+      "aliases": [
+        "ITA",
+        "italy",
+        "italia",
+        "azzurri"
+      ],
+      "players": [
+        {
+          "name": "G. Donnarumma",
+          "ovr": 90,
+          "position": "GK"
+        },
+        {
+          "name": "L. Pellegrini",
+          "ovr": 82,
+          "position": "CM"
+        },
+        {
+          "name": "N. Barella",
+          "ovr": 86,
+          "position": "CM"
+        },
+        {
+          "name": "M. Verratti",
+          "ovr": 83,
+          "position": "CDM"
+        },
+        {
+          "name": "G. Di Lorenzo",
+          "ovr": 82,
+          "position": "RB"
+        },
+        {
+          "name": "A. Bastoni",
+          "ovr": 86,
+          "position": "CB"
+        },
+        {
+          "name": "G. Chiellini",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "E. Chiesa",
+          "ovr": 83,
+          "position": "RW"
+        },
+        {
+          "name": "C. Immobile",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "F. Spinazzola",
+          "ovr": 78,
+          "position": "LB"
+        },
+        {
+          "name": "F. Bernardeschi",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "M. Raspadori",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "D. Frattesi",
+          "ovr": 82,
+          "position": "CM"
+        },
+        {
+          "name": "M. Locatelli",
+          "ovr": 82,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Tonali",
+          "ovr": 86,
+          "position": "CM"
+        },
+        {
+          "name": "F. Acerbi",
+          "ovr": 84,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Denmark",
+      "ovr": 80,
+      "att": 79,
+      "mid": 80,
+      "def": 80,
+      "top11_avg_ovr": 79.0,
+      "aliases": [
+        "DEN",
+        "denmark"
+      ],
+      "players": [
+        {
+          "name": "C. Eriksen",
+          "ovr": 77,
+          "position": "CAM"
+        },
+        {
+          "name": "P. Hojbjerg",
+          "ovr": 84,
+          "position": "CM"
+        },
+        {
+          "name": "A. Christensen",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "J. Vestergaard",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "S. Kjaer",
+          "ovr": 81,
+          "position": "CB"
+        },
+        {
+          "name": "M. Agger",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "H. Maehle",
+          "ovr": 79,
+          "position": "LB"
+        },
+        {
+          "name": "A. Bah",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "M. Dolberg",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "K. Schmeichel",
+          "ovr": 80,
+          "position": "GK"
+        },
+        {
+          "name": "M. Braithwaite",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "R. Hojlund",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "A. Skov Olsen",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "S. Poulsen",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "Y. Poulsen",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "J. Wind",
+          "ovr": 78,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Serbia",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 79.3,
+      "aliases": [
+        "SRB",
+        "serbia",
+        "orlovi"
+      ],
+      "players": [
+        {
+          "name": "A. Mitrović",
+          "ovr": 83,
+          "position": "ST"
+        },
+        {
+          "name": "D. Vlahović",
+          "ovr": 84,
+          "position": "ST"
+        },
+        {
+          "name": "N. Milinković-Savić",
+          "ovr": 84,
+          "position": "CM"
+        },
+        {
+          "name": "D. Tadić",
+          "ovr": 82,
+          "position": "CAM"
+        },
+        {
+          "name": "N. Matvić",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "S. Pavlović",
+          "ovr": 77,
+          "position": "LB"
+        },
+        {
+          "name": "M. Kostić",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "F. Kostić",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "A. Živković",
+          "ovr": 77,
+          "position": "RW"
+        },
+        {
+          "name": "V. Milinković-Savić",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "S. Babić",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "D. Joveljić",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "M. Lukić",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "M. Nastasić",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "A. Gudelj",
+          "ovr": 76,
+          "position": "CDM"
+        },
+        {
+          "name": "N. Radonjić",
+          "ovr": 77,
+          "position": "LW"
+        }
+      ]
+    },
+    {
+      "name": "Poland",
+      "ovr": 78,
+      "att": 78,
+      "mid": 77,
+      "def": 77,
+      "top11_avg_ovr": 77.4,
+      "aliases": [
+        "POL",
+        "poland",
+        "polska",
+        "biało-czerwoni"
+      ],
+      "players": [
+        {
+          "name": "R. Lewandowski",
+          "ovr": 90,
+          "position": "ST"
+        },
+        {
+          "name": "P. Zieliński",
+          "ovr": 80,
+          "position": "CM"
+        },
+        {
+          "name": "A. Milik",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "G. Krychowiak",
+          "ovr": 75,
+          "position": "CDM"
+        },
+        {
+          "name": "B. Piszczek",
+          "ovr": 78,
+          "position": "RB"
+        },
+        {
+          "name": "M. Glik",
+          "ovr": 65,
+          "position": "CB"
+        },
+        {
+          "name": "J. Bednarek",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "B. Zalewski",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "P. Wszołek",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "W. Szczęsny",
+          "ovr": 83,
+          "position": "GK"
+        },
+        {
+          "name": "K. Piątek",
+          "ovr": 79,
+          "position": "ST"
+        },
+        {
+          "name": "K. Linetty",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "R. Moder",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "S. Skrzypczak",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "M. Klich",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "T. Augustyniak",
+          "ovr": 67,
+          "position": "CDM"
+        }
+      ]
+    },
+    {
+      "name": "Ukraine",
+      "ovr": 77,
+      "att": 77,
+      "mid": 77,
+      "def": 76,
+      "top11_avg_ovr": 76.5,
+      "aliases": [
+        "UKR",
+        "ukraine",
+        "zbirna"
+      ],
+      "players": [
+        {
+          "name": "A. Yarmolenho",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "R. Yaremchuk",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "M. Mudryk",
+          "ovr": 82,
+          "position": "LW"
+        },
+        {
+          "name": "T. Stepanenko",
+          "ovr": 73,
+          "position": "CDM"
+        },
+        {
+          "name": "M. Malinovskyi",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "S. Kryvtsov",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "I. Zabarnyi",
+          "ovr": 80,
+          "position": "CB"
+        },
+        {
+          "name": "Y. Konoplya",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "V. Mykolenko",
+          "ovr": 78,
+          "position": "LB"
+        },
+        {
+          "name": "G. Bushchan",
+          "ovr": 77,
+          "position": "GK"
+        },
+        {
+          "name": "M. Shaparenko",
+          "ovr": 78,
+          "position": "CM"
+        },
+        {
+          "name": "V. Tsygankov",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "Y. Yarmolenko",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "A. Zubkov",
+          "ovr": 77,
+          "position": "RW"
+        },
+        {
+          "name": "V. Leshchuk",
+          "ovr": 77,
+          "position": "ST"
+        },
+        {
+          "name": "D. Dovbyk",
+          "ovr": 81,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Romania",
+      "ovr": 73,
+      "att": 73,
+      "mid": 72,
+      "def": 72,
+      "top11_avg_ovr": 73.4,
+      "aliases": [
+        "ROU",
+        "romania",
+        "tricolorii"
+      ],
+      "players": [
+        {
+          "name": "N. Stanciu",
+          "ovr": 79,
+          "position": "CAM"
+        },
+        {
+          "name": "F. Coman",
+          "ovr": 76,
+          "position": "RW"
+        },
+        {
+          "name": "A. Drăguș",
+          "ovr": 72,
+          "position": "ST"
+        },
+        {
+          "name": "V. Chipciu",
+          "ovr": 69,
+          "position": "LW"
+        },
+        {
+          "name": "V. Radu",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "R. Marin",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "I. Nedelcearu",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "A. Ioniță",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "A. Crețu",
+          "ovr": 68,
+          "position": "CDM"
+        },
+        {
+          "name": "A. Rus",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "A. Rațiu",
+          "ovr": 79,
+          "position": "RB"
+        },
+        {
+          "name": "G. Pușcaș",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "E. Man",
+          "ovr": 76,
+          "position": "RW"
+        },
+        {
+          "name": "D. Baluta",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "M. Sorescu",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "A. Burcă",
+          "ovr": 72,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Hungary",
+      "ovr": 74,
+      "att": 73,
+      "mid": 73,
+      "def": 74,
+      "top11_avg_ovr": 77.0,
+      "aliases": [
+        "HUN",
+        "hungary",
+        "magyarok"
+      ],
+      "players": [
+        {
+          "name": "D. Szoboszlai",
+          "ovr": 84,
+          "position": "CAM"
+        },
+        {
+          "name": "R. Sallai",
+          "ovr": 78,
+          "position": "RW"
+        },
+        {
+          "name": "P. Gulácsi",
+          "ovr": 85,
+          "position": "GK"
+        },
+        {
+          "name": "A. Lang",
+          "ovr": 76,
+          "position": "CB"
+        },
+        {
+          "name": "W. Orban",
+          "ovr": 84,
+          "position": "CB"
+        },
+        {
+          "name": "G. Botka",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "A. Fiola",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "A. Schäfer",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "N. Nego",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "P. Szalai",
+          "ovr": 70,
+          "position": "ST"
+        },
+        {
+          "name": "M. Kerkez",
+          "ovr": 82,
+          "position": "LB"
+        },
+        {
+          "name": "A. Varga",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "R. Gazdag",
+          "ovr": 75,
+          "position": "CM"
+        },
+        {
+          "name": "L. Nego",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "B. Dárdai",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "C. Dárdai",
+          "ovr": 70,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Nigeria",
+      "ovr": 77,
+      "att": 78,
+      "mid": 76,
+      "def": 75,
+      "top11_avg_ovr": 76.4,
+      "aliases": [
+        "NGA",
+        "nigeria",
+        "super eagles"
+      ],
+      "players": [
+        {
+          "name": "V. Osimhen",
+          "ovr": 87,
+          "position": "ST"
+        },
+        {
+          "name": "P. Nwachukwu",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "A. Iwobi",
+          "ovr": 81,
+          "position": "CAM"
+        },
+        {
+          "name": "F. Onyeka",
+          "ovr": 74,
+          "position": "CDM"
+        },
+        {
+          "name": "K. Awaziem",
+          "ovr": 70,
+          "position": "CB"
+        },
+        {
+          "name": "L. Troost-Ekong",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "O. Aina",
+          "ovr": 80,
+          "position": "RB"
+        },
+        {
+          "name": "Z. Sanusi",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "J. Aribo",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "F. Uzoho",
+          "ovr": 75,
+          "position": "GK"
+        },
+        {
+          "name": "S. Chukwueze",
+          "ovr": 79,
+          "position": "RW"
+        },
+        {
+          "name": "C. Chisom",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "P. Kanu",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "K. Ndidi",
+          "ovr": 76,
+          "position": "CDM"
+        },
+        {
+          "name": "T. Awoniyi",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "G. Balogun",
+          "ovr": 79,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Cameroon",
+      "ovr": 75,
+      "att": 75,
+      "mid": 74,
+      "def": 73,
+      "top11_avg_ovr": 76.2,
+      "aliases": [
+        "CMR",
+        "cameroon",
+        "indomitable lions"
+      ],
+      "players": [
+        {
+          "name": "V. Aboubakar",
+          "ovr": 80,
+          "position": "ST"
+        },
+        {
+          "name": "A. Ekambi",
+          "ovr": 79,
+          "position": "LW"
+        },
+        {
+          "name": "M. Anguissa",
+          "ovr": 83,
+          "position": "CM"
+        },
+        {
+          "name": "J. Kunde",
+          "ovr": 77,
+          "position": "CDM"
+        },
+        {
+          "name": "N. Nkoulou",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "M. Tolo",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "C. Fai",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "A. Tolo",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "C. Mabouka",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "D. Ondoa",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "J. Ngamaleu",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "H. Choupo-Moting",
+          "ovr": 75,
+          "position": "ST"
+        },
+        {
+          "name": "G. Mbida",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "B. Fondjock",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "E. Choupo-Moting",
+          "ovr": 75,
+          "position": "CAM"
+        },
+        {
+          "name": "P. Nkoulou",
+          "ovr": 73,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Chile",
+      "ovr": 73,
+      "att": 73,
+      "mid": 73,
+      "def": 72,
+      "top11_avg_ovr": 73.4,
+      "aliases": [
+        "CHI",
+        "chile",
+        "la roja",
+        "roja"
+      ],
+      "players": [
+        {
+          "name": "A. Sánchez",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "G. Medel",
+          "ovr": 71,
+          "position": "CB"
+        },
+        {
+          "name": "C. Aranguiz",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "E. Vargas",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "N. Castillo",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "G. Isla",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "J. Sagal",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "O. Bürge",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "M. Fuenzalida",
+          "ovr": 74,
+          "position": "CAM"
+        },
+        {
+          "name": "P. Díaz",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "J. Contreras",
+          "ovr": 73,
+          "position": "CDM"
+        },
+        {
+          "name": "L. Pulgar",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "I. Palacios",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "L. Aránguiz",
+          "ovr": 73,
+          "position": "RW"
+        },
+        {
+          "name": "E. Pulgar",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "G. Aguilera",
+          "ovr": 72,
+          "position": "LW"
+        }
+      ]
+    },
+    {
+      "name": "Wales",
+      "ovr": 77,
+      "att": 76,
+      "mid": 77,
+      "def": 76,
+      "top11_avg_ovr": 78,
+      "aliases": [
+        "WAL",
+        "wales",
+        "cymru",
+        "dragons"
+      ]
+    },
+    {
+      "name": "Greece",
+      "ovr": 74,
+      "att": 73,
+      "mid": 73,
+      "def": 74,
+      "top11_avg_ovr": 74.0,
+      "aliases": [
+        "GRE",
+        "greece",
+        "ethnikh"
+      ],
+      "players": [
+        {
+          "name": "A. Bakasetas",
+          "ovr": 77,
+          "position": "CAM"
+        },
+        {
+          "name": "C. Mavropanos",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "G. Masouras",
+          "ovr": 74,
+          "position": "LW"
+        },
+        {
+          "name": "T. Baldock",
+          "ovr": 74,
+          "position": "RW"
+        },
+        {
+          "name": "P. Retsos",
+          "ovr": 77,
+          "position": "CB"
+        },
+        {
+          "name": "A. Tziolis",
+          "ovr": 73,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Donis",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "G. Tzavellas",
+          "ovr": 72,
+          "position": "LB"
+        },
+        {
+          "name": "C. Tasios",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "S. Paschalakis",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "G. Zivkovic",
+          "ovr": 72,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Slovakia",
+      "ovr": 75,
+      "att": 74,
+      "mid": 75,
+      "def": 75,
+      "top11_avg_ovr": 74.4,
+      "aliases": [
+        "SVK",
+        "slovakia"
+      ],
+      "players": [
+        {
+          "name": "M. Hamšík",
+          "ovr": 80,
+          "position": "CM"
+        },
+        {
+          "name": "R. Mak",
+          "ovr": 75,
+          "position": "LW"
+        },
+        {
+          "name": "M. Duda",
+          "ovr": 75,
+          "position": "CAM"
+        },
+        {
+          "name": "T. Šúrek",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "D. Kucka",
+          "ovr": 77,
+          "position": "CM"
+        },
+        {
+          "name": "M. Šuster",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "N. Šatka",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "P. Pekarík",
+          "ovr": 73,
+          "position": "RB"
+        },
+        {
+          "name": "T. Štetina",
+          "ovr": 73,
+          "position": "CB"
+        },
+        {
+          "name": "D. Rodák",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "M. Weiss",
+          "ovr": 75,
+          "position": "RW"
+        },
+        {
+          "name": "D. Haraslín",
+          "ovr": 78,
+          "position": "LW"
+        },
+        {
+          "name": "I. Schranz",
+          "ovr": 75,
+          "position": "RW"
+        },
+        {
+          "name": "L. Pauschek",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "J. Lobotka",
+          "ovr": 83,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Strelec",
+          "ovr": 74,
+          "position": "ST"
+        }
+      ]
+    },
+    {
+      "name": "Peru",
+      "ovr": 72,
+      "att": 72,
+      "mid": 71,
+      "def": 71,
+      "top11_avg_ovr": 72.7,
+      "aliases": [
+        "PER",
+        "peru",
+        "blanquirrojas"
+      ],
+      "players": [
+        {
+          "name": "P. Guerrero",
+          "ovr": 72,
+          "position": "ST"
+        },
+        {
+          "name": "C. Cueva",
+          "ovr": 70,
+          "position": "CAM"
+        },
+        {
+          "name": "Y. Yotún",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "A. Carrillo",
+          "ovr": 77,
+          "position": "LW"
+        },
+        {
+          "name": "R. Trauco",
+          "ovr": 73,
+          "position": "LB"
+        },
+        {
+          "name": "L. Abram",
+          "ovr": 69,
+          "position": "CB"
+        },
+        {
+          "name": "A. Callens",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "L. Advíncula",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "R. Tapia",
+          "ovr": 76,
+          "position": "CDM"
+        },
+        {
+          "name": "P. Gallese",
+          "ovr": 74,
+          "position": "GK"
+        },
+        {
+          "name": "C. Polo",
+          "ovr": 73,
+          "position": "RW"
+        },
+        {
+          "name": "G. Lapadula",
+          "ovr": 71,
+          "position": "ST"
+        },
+        {
+          "name": "S. Peña",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "J. Quispe",
+          "ovr": 70,
+          "position": "CAM"
+        },
+        {
+          "name": "A. Rodríguez",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "M. Cevasco",
+          "ovr": 72,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Venezuela",
+      "ovr": 73,
+      "att": 74,
+      "mid": 72,
+      "def": 71,
+      "top11_avg_ovr": 71.0,
+      "aliases": [
+        "VEN",
+        "venezuela",
+        "vinotinto"
+      ],
+      "players": [
+        {
+          "name": "S. Soteldo",
+          "ovr": 76,
+          "position": "LW"
+        },
+        {
+          "name": "J. Murillo",
+          "ovr": 72,
+          "position": "CB"
+        },
+        {
+          "name": "J. Machís",
+          "ovr": 75,
+          "position": "RW"
+        },
+        {
+          "name": "T. Bello",
+          "ovr": 70,
+          "position": "LW"
+        },
+        {
+          "name": "Y. Rincon",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "J. Osorio",
+          "ovr": 72,
+          "position": "ST"
+        },
+        {
+          "name": "R. Hernández",
+          "ovr": 67,
+          "position": "LB"
+        },
+        {
+          "name": "A. Rosales",
+          "ovr": 71,
+          "position": "RB"
+        },
+        {
+          "name": "J. Chancellor",
+          "ovr": 66,
+          "position": "CB"
+        },
+        {
+          "name": "A. Angulo",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "W. Faríñez",
+          "ovr": 70,
+          "position": "GK"
+        },
+        {
+          "name": "J. Aramburu",
+          "ovr": 77,
+          "position": "RW"
+        },
+        {
+          "name": "E. Machis",
+          "ovr": 70,
+          "position": "CM"
+        },
+        {
+          "name": "F. Novoa",
+          "ovr": 73,
+          "position": "CDM"
+        },
+        {
+          "name": "S. Castillo",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "L. González",
+          "ovr": 72,
+          "position": "CB"
+        }
+      ]
+    },
+    {
+      "name": "Ireland",
+      "ovr": 74,
+      "att": 74,
+      "mid": 73,
+      "def": 73,
+      "top11_avg_ovr": 75,
+      "aliases": [
+        "IRL",
+        "ireland",
+        "republic of ireland",
+        "boys in green"
+      ]
+    },
+    {
+      "name": "Slovenia",
+      "ovr": 73,
+      "att": 73,
+      "mid": 72,
+      "def": 72,
+      "top11_avg_ovr": 72.5,
+      "aliases": [
+        "SVN",
+        "slovenia"
+      ],
+      "players": [
+        {
+          "name": "J. Mlakar",
+          "ovr": 67,
+          "position": "LW"
+        },
+        {
+          "name": "A. Čerin",
+          "ovr": 76,
+          "position": "CM"
+        },
+        {
+          "name": "A. Bajrić",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "I. Bijol",
+          "ovr": 75,
+          "position": "CB"
+        },
+        {
+          "name": "M. Karničnik",
+          "ovr": 74,
+          "position": "RB"
+        },
+        {
+          "name": "A. Janza",
+          "ovr": 69,
+          "position": "LB"
+        },
+        {
+          "name": "T. Elšnik",
+          "ovr": 73,
+          "position": "CM"
+        },
+        {
+          "name": "A. Stojanović",
+          "ovr": 69,
+          "position": "RW"
+        },
+        {
+          "name": "Ž. Senica",
+          "ovr": 72,
+          "position": "GK"
+        },
+        {
+          "name": "L. Šporar",
+          "ovr": 74,
+          "position": "ST"
+        },
+        {
+          "name": "S. Verbič",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "B. Šeško",
+          "ovr": 82,
+          "position": "ST"
+        },
+        {
+          "name": "A. Vipotnik",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "J. Domen",
+          "ovr": 72,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Bolivia",
+      "ovr": 67,
+      "att": 66,
+      "mid": 66,
+      "def": 67,
+      "top11_avg_ovr": 68.0,
+      "aliases": [
+        "BOL",
+        "bolivia",
+        "verde"
+      ],
+      "players": [
+        {
+          "name": "C. Lampe",
+          "ovr": 72,
+          "position": "GK"
+        },
+        {
+          "name": "G. Viscarra",
+          "ovr": 72,
+          "position": "GK"
+        },
+        {
+          "name": "C. Melgar",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "J. Sagredo",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "G. Villamíl",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "A. Terrazas",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "E. Saavedra",
+          "ovr": 67,
+          "position": "LB"
+        },
+        {
+          "name": "L. Justiniano",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "S. Galindo",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "D. Hoyos",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "A. Torrico",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "E. Junior Sánchez",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "R. Cordano",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "S. Mustafá",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "L. Pavia",
+          "ovr": 66,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Costa Rica",
+      "ovr": 69,
+      "att": 68,
+      "mid": 68,
+      "def": 69,
+      "top11_avg_ovr": 68.7,
+      "aliases": [
+        "CRC",
+        "costa rica",
+        "los ticos"
+      ],
+      "players": [
+        {
+          "name": "R. Rodríguez",
+          "ovr": 76,
+          "position": "LB"
+        },
+        {
+          "name": "P. Gilmar Sequeira",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "A. Martínez",
+          "ovr": 70,
+          "position": "ST"
+        },
+        {
+          "name": "B. Aguilera",
+          "ovr": 69,
+          "position": "CM"
+        },
+        {
+          "name": "C. Mora",
+          "ovr": 68,
+          "position": "RW"
+        },
+        {
+          "name": "F. Calvo",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "R. Leal",
+          "ovr": 68,
+          "position": "LW"
+        },
+        {
+          "name": "J. Alcócer",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "J. Cascante",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "A. Lassiter",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "J. Mitchell",
+          "ovr": 66,
+          "position": "CM"
+        },
+        {
+          "name": "K. Vargas",
+          "ovr": 65,
+          "position": "CM"
+        },
+        {
+          "name": "G. Vivi",
+          "ovr": 59,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Honduras",
+      "ovr": 68,
+      "att": 68,
+      "mid": 67,
+      "def": 67,
+      "top11_avg_ovr": 67.9,
+      "aliases": [
+        "HON",
+        "bicolor",
+        "honduras"
+      ],
+      "players": [
+        {
+          "name": "K. Arriaga",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "R. Quioto",
+          "ovr": 73,
+          "position": "LW"
+        },
+        {
+          "name": "A. Najar",
+          "ovr": 72,
+          "position": "RB"
+        },
+        {
+          "name": "L. Palma",
+          "ovr": 71,
+          "position": "LW"
+        },
+        {
+          "name": "B. Acosta",
+          "ovr": 69,
+          "position": "CDM"
+        },
+        {
+          "name": "J. Rosales",
+          "ovr": 68,
+          "position": "CM"
+        },
+        {
+          "name": "D. Flores",
+          "ovr": 67,
+          "position": "CB"
+        },
+        {
+          "name": "R. Rivas",
+          "ovr": 65,
+          "position": "ST"
+        },
+        {
+          "name": "D. Ruiz",
+          "ovr": 64,
+          "position": "CM"
+        },
+        {
+          "name": "E. Arzú",
+          "ovr": 56,
+          "position": "CM"
+        }
+      ]
+    },
+    {
+      "name": "Albania",
+      "ovr": 71,
+      "att": 71,
+      "mid": 70,
+      "def": 70,
+      "top11_avg_ovr": 73.5,
+      "aliases": [
+        "ALB",
+        "albania",
+        "shqiponjat"
+      ],
+      "players": [
+        {
+          "name": "A. Broja",
+          "ovr": 72,
+          "position": "ST"
+        },
+        {
+          "name": "K. Asllani",
+          "ovr": 74,
+          "position": "CM"
+        },
+        {
+          "name": "M. Daku",
+          "ovr": 73,
+          "position": "ST"
+        },
+        {
+          "name": "R. Gjimsiti",
+          "ovr": 79,
+          "position": "CB"
+        },
+        {
+          "name": "E. Hysaj",
+          "ovr": 74,
+          "position": "LB"
+        },
+        {
+          "name": "L. Ismajli",
+          "ovr": 74,
+          "position": "CB"
+        },
+        {
+          "name": "I. Bare",
+          "ovr": 72,
+          "position": "CM"
+        },
+        {
+          "name": "N. Lenjani",
+          "ovr": 72,
+          "position": "LW"
+        },
+        {
+          "name": "T. Berisha",
+          "ovr": 73,
+          "position": "GK"
+        },
+        {
+          "name": "E. Uzuni",
+          "ovr": 73,
+          "position": "RW"
+        },
+        {
+          "name": "A. Gjimshiti",
+          "ovr": 72,
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "name": "Mali",
+      "ovr": 74,
+      "att": 74,
+      "mid": 73,
+      "def": 73,
+      "top11_avg_ovr": 75,
+      "aliases": [
+        "MLI",
+        "mali",
+        "eagles"
+      ]
+    },
+    {
+      "name": "Jamaica",
+      "ovr": 67,
+      "att": 68,
+      "mid": 66,
+      "def": 65,
+      "top11_avg_ovr": 69.7,
+      "aliases": [
+        "JAM",
+        "jamaica",
+        "reggae boyz"
+      ],
+      "players": [
+        {
+          "name": "L. Bailey",
+          "ovr": 80,
+          "position": "LW"
+        },
+        {
+          "name": "D. Junior",
+          "ovr": 71,
+          "position": "CM"
+        },
+        {
+          "name": "M. Antonio",
+          "ovr": 78,
+          "position": "ST"
+        },
+        {
+          "name": "K. Charles",
+          "ovr": 69,
+          "position": "RW"
+        },
+        {
+          "name": "D. Morrison",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "A. Reid",
+          "ovr": 68,
+          "position": "CB"
+        },
+        {
+          "name": "S. Antonio",
+          "ovr": 68,
+          "position": "LB"
+        },
+        {
+          "name": "K. Lee",
+          "ovr": 66,
+          "position": "RB"
+        },
+        {
+          "name": "R. Taylor",
+          "ovr": 66,
+          "position": "GK"
+        },
+        {
+          "name": "C. Williams",
+          "ovr": 67,
+          "position": "CM"
+        },
+        {
+          "name": "J. Brown",
+          "ovr": 66,
+          "position": "CDM"
+        }
+      ]
+    },
+    {
+      "name": "Burkina Faso",
+      "ovr": 72,
+      "att": 72,
+      "mid": 71,
+      "def": 71,
+      "top11_avg_ovr": 73,
+      "aliases": [
+        "BFA",
+        "burkina faso",
+        "étalons"
+      ]
+    },
+    {
+      "name": "Manchester City",
+      "ovr": 88,
+      "att": 88,
+      "mid": 87,
+      "def": 87,
+      "top11_avg_ovr": 89,
+      "aliases": [
+        "manchester city",
+        "man city",
+        "MCFC",
+        "city"
+      ]
+    },
+    {
+      "name": "Real Madrid",
+      "ovr": 88,
+      "att": 88,
+      "mid": 87,
+      "def": 87,
+      "top11_avg_ovr": 89,
+      "aliases": [
+        "real madrid",
+        "madrid",
+        "RMCF",
+        "los blancos",
+        "merengues"
+      ]
+    },
+    {
+      "name": "Bayern Munich",
+      "ovr": 87,
+      "att": 87,
+      "mid": 86,
+      "def": 86,
+      "top11_avg_ovr": 88,
+      "aliases": [
+        "bayern munich",
+        "bayern",
+        "FCB",
+        "fc bayern",
+        "die roten"
+      ]
+    },
+    {
+      "name": "PSG",
+      "ovr": 86,
+      "att": 87,
+      "mid": 85,
+      "def": 84,
+      "top11_avg_ovr": 87,
+      "aliases": [
+        "psg",
+        "paris saint-germain",
+        "paris st-germain",
+        "paris",
+        "les parisiens"
+      ]
+    },
+    {
+      "name": "Liverpool",
+      "ovr": 86,
+      "att": 87,
+      "mid": 85,
+      "def": 84,
+      "top11_avg_ovr": 87,
+      "aliases": [
+        "liverpool",
+        "LFC",
+        "the reds",
+        "pool"
+      ]
+    },
+    {
+      "name": "Arsenal",
+      "ovr": 85,
+      "att": 86,
+      "mid": 84,
+      "def": 83,
+      "top11_avg_ovr": 86,
+      "aliases": [
+        "arsenal",
+        "AFC",
+        "the gunners",
+        "gooners"
+      ]
+    },
+    {
+      "name": "Barcelona",
+      "ovr": 85,
+      "att": 86,
+      "mid": 85,
+      "def": 83,
+      "top11_avg_ovr": 86,
+      "aliases": [
+        "barcelona",
+        "barça",
+        "barca",
+        "blaugrana"
+      ]
+    },
+    {
+      "name": "Inter Milan",
+      "ovr": 84,
+      "att": 83,
+      "mid": 83,
+      "def": 84,
+      "top11_avg_ovr": 85,
+      "aliases": [
+        "inter milan",
+        "inter",
+        "internazionale",
+        "FC internazionale",
+        "nerazzurri"
+      ]
+    },
+    {
+      "name": "Chelsea",
+      "ovr": 83,
+      "att": 84,
+      "mid": 82,
+      "def": 82,
+      "top11_avg_ovr": 84,
+      "aliases": [
+        "chelsea",
+        "CFC",
+        "the blues"
+      ]
+    },
+    {
+      "name": "Atletico Madrid",
+      "ovr": 83,
+      "att": 82,
+      "mid": 82,
+      "def": 84,
+      "top11_avg_ovr": 84,
+      "aliases": [
+        "atletico madrid",
+        "atlético madrid",
+        "atletico",
+        "atleti",
+        "colchoneros"
+      ]
+    },
+    {
+      "name": "Bayer Leverkusen",
+      "ovr": 83,
+      "att": 83,
+      "mid": 83,
+      "def": 82,
+      "top11_avg_ovr": 84,
+      "aliases": [
+        "bayer leverkusen",
+        "leverkusen",
+        "die werkself",
+        "neverkusen"
+      ]
+    },
+    {
+      "name": "Borussia Dortmund",
+      "ovr": 83,
+      "att": 84,
+      "mid": 82,
+      "def": 81,
+      "top11_avg_ovr": 84,
+      "aliases": [
+        "borussia dortmund",
+        "dortmund",
+        "BVB",
+        "die schwarzgelben"
+      ]
+    },
+    {
+      "name": "AC Milan",
+      "ovr": 83,
+      "att": 83,
+      "mid": 82,
+      "def": 82,
+      "top11_avg_ovr": 84,
+      "aliases": [
+        "ac milan",
+        "milan",
+        "rossoneri"
+      ]
+    },
+    {
+      "name": "Napoli",
+      "ovr": 82,
+      "att": 83,
+      "mid": 82,
+      "def": 80,
+      "top11_avg_ovr": 83,
+      "aliases": [
+        "napoli",
+        "SSC napoli",
+        "partenopei",
+        "gli azzurri"
+      ]
+    },
+    {
+      "name": "Juventus",
+      "ovr": 82,
+      "att": 82,
+      "mid": 81,
+      "def": 81,
+      "top11_avg_ovr": 83,
+      "aliases": [
+        "juventus",
+        "juve",
+        "bianconeri",
+        "la vecchia signora"
+      ]
+    },
+    {
+      "name": "Manchester United",
+      "ovr": 82,
+      "att": 82,
+      "mid": 81,
+      "def": 81,
+      "top11_avg_ovr": 83,
+      "aliases": [
+        "manchester united",
+        "man utd",
+        "man united",
+        "MUFC",
+        "red devils"
+      ]
+    },
+    {
+      "name": "RB Leipzig",
+      "ovr": 82,
+      "att": 82,
+      "mid": 81,
+      "def": 81,
+      "top11_avg_ovr": 83,
+      "aliases": [
+        "rb leipzig",
+        "leipzig",
+        "die roten bullen"
+      ]
+    },
+    {
+      "name": "Benfica",
+      "ovr": 82,
+      "att": 82,
+      "mid": 81,
+      "def": 81,
+      "top11_avg_ovr": 83,
+      "aliases": [
+        "benfica",
+        "SLB",
+        "sport lisboa e benfica",
+        "the eagles",
+        "as águias"
+      ]
+    },
+    {
+      "name": "Tottenham",
+      "ovr": 81,
+      "att": 82,
+      "mid": 80,
+      "def": 80,
+      "top11_avg_ovr": 82,
+      "aliases": [
+        "tottenham",
+        "spurs",
+        "THFC",
+        "tottenham hotspur"
+      ]
+    },
+    {
+      "name": "PSV",
+      "ovr": 81,
+      "att": 82,
+      "mid": 80,
+      "def": 79,
+      "top11_avg_ovr": 82,
+      "aliases": [
+        "psv",
+        "psv eindhoven",
+        "boeren"
+      ]
+    },
+    {
+      "name": "Porto",
+      "ovr": 81,
+      "att": 81,
+      "mid": 80,
+      "def": 80,
+      "top11_avg_ovr": 82,
+      "aliases": [
+        "porto",
+        "FC porto",
+        "os dragões",
+        "dragons",
+        "portistas"
+      ]
+    },
+    {
+      "name": "Ajax",
+      "ovr": 80,
+      "att": 80,
+      "mid": 80,
+      "def": 79,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "ajax",
+        "AFC ajax",
+        "de amsterdammers",
+        "godenzonen"
+      ]
+    },
+    {
+      "name": "Marseille",
+      "ovr": 80,
+      "att": 81,
+      "mid": 79,
+      "def": 79,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "marseille",
+        "OM",
+        "olympique de marseille"
+      ]
+    },
+    {
+      "name": "Sporting CP",
+      "ovr": 80,
+      "att": 80,
+      "mid": 80,
+      "def": 79,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "sporting cp",
+        "sporting",
+        "sporting lisbon",
+        "leões"
+      ]
+    },
+    {
+      "name": "Sevilla",
+      "ovr": 80,
+      "att": 79,
+      "mid": 79,
+      "def": 80,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "sevilla",
+        "FC sevilla",
+        "sevillistas"
+      ]
+    },
+    {
+      "name": "Real Sociedad",
+      "ovr": 80,
+      "att": 79,
+      "mid": 81,
+      "def": 79,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "real sociedad",
+        "la real",
+        "txuri-urdin"
+      ]
+    },
+    {
+      "name": "AS Roma",
+      "ovr": 80,
+      "att": 80,
+      "mid": 79,
+      "def": 79,
+      "top11_avg_ovr": 81,
+      "aliases": [
+        "as roma",
+        "roma",
+        "giallorossi",
+        "i lupi"
+      ]
+    },
+    {
+      "name": "Lyon",
+      "ovr": 79,
+      "att": 80,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "lyon",
+        "OL",
+        "olympique lyonnais"
+      ]
+    },
+    {
+      "name": "Monaco",
+      "ovr": 79,
+      "att": 80,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "monaco",
+        "AS monaco"
+      ]
+    },
+    {
+      "name": "Lazio",
+      "ovr": 79,
+      "att": 79,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "lazio",
+        "SS lazio",
+        "biancocelesti"
+      ]
+    },
+    {
+      "name": "Fiorentina",
+      "ovr": 79,
+      "att": 79,
+      "mid": 78,
+      "def": 77,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "fiorentina",
+        "la viola"
+      ]
+    },
+    {
+      "name": "Villarreal",
+      "ovr": 79,
+      "att": 79,
+      "mid": 79,
+      "def": 78,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "villarreal",
+        "yellow submarine",
+        "el submarino amarillo"
+      ]
+    },
+    {
+      "name": "Eintracht Frankfurt",
+      "ovr": 79,
+      "att": 79,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "eintracht frankfurt",
+        "frankfurt",
+        "SGE",
+        "die adler"
+      ]
+    },
+    {
+      "name": "Celtic",
+      "ovr": 79,
+      "att": 79,
+      "mid": 78,
+      "def": 77,
+      "top11_avg_ovr": 80,
+      "aliases": [
+        "celtic",
+        "celtic fc",
+        "the bhoys",
+        "hoops"
+      ]
+    },
+    {
+      "name": "River Plate",
+      "ovr": 78,
+      "att": 78,
+      "mid": 77,
+      "def": 77,
+      "top11_avg_ovr": 79,
+      "aliases": [
+        "river plate",
+        "river",
+        "millonarios",
+        "los millonarios"
+      ]
+    },
+    {
+      "name": "Flamengo",
+      "ovr": 78,
+      "att": 79,
+      "mid": 77,
+      "def": 76,
+      "top11_avg_ovr": 79,
+      "aliases": [
+        "flamengo",
+        "rubro-negro",
+        "mengão"
+      ]
+    },
+    {
+      "name": "Rangers",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 78,
+      "aliases": [
+        "rangers",
+        "rangers fc",
+        "the gers"
+      ]
+    },
+    {
+      "name": "Boca Juniors",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 78,
+      "aliases": [
+        "boca juniors",
+        "boca",
+        "xeneizes"
+      ]
+    },
+    {
+      "name": "Palmeiras",
+      "ovr": 77,
+      "att": 77,
+      "mid": 76,
+      "def": 76,
+      "top11_avg_ovr": 78,
+      "aliases": [
+        "palmeiras",
+        "verdão",
+        "porco"
+      ]
+    }
+  ]
+}

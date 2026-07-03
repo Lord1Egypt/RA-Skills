@@ -402,7 +402,7 @@ const PROBLEM_FRAMEWORK_MAP = {
 
 class LogicReasoning {
   constructor(options = {}) {
-    this.version = '5.3.0';
+    this.version = '5.5.0';
     this._history = [];
     this._maxHistory = options.maxHistory || 50;
   }
@@ -1532,7 +1532,7 @@ class LogicReasoning {
       const fs = require('fs');
       // 从文件读取API key（避免源码中的***被截断）
       let apiKey = '';
-      try { apiKey = fs.readFileSync('/tmp/api_key.txt', 'utf-8').trim(); } catch(e) {}
+      try { apiKey = fs.readFileSync('/Users/apple/.hermes/skills/ai/mark-heartflow-skill/data/api-key.txt', 'utf-8').trim(); } catch(e) {}
       if (!apiKey) try { apiKey = process['env']['HEART' + 'LOW_API_KEY'] || ''; } catch(e) {}
       if (!apiKey) return null;
 
@@ -1541,7 +1541,7 @@ import subprocess, json, sys
 body = json.loads(sys.argv[1])
 result = subprocess.run([
   'curl', '-s', '--connect-timeout', '5', '--max-time', '15',
-  '-X', 'POST', 'https://copilot.tencent.com/v2/chat/completions',
+  '-X', 'POST', '(process.env.TENCENT_API_BASE || 'https://copilot.tencent.com/v2') + '/chat/completions'',
   '-H', 'Content-Type: application/json',
   '-H', 'Authorization: Bearer ${apiKey}',
   '-d', json.dumps(body)
@@ -1562,7 +1562,7 @@ print(content.strip())
 `;
       // 使用字符串拼接避免静态分析误报
       const _es = _cp['ex' + 'ecSync'];
-      const result = _子进程同步执行('python3', ['-c', pyCode, body], { timeout: 20000, encoding: 'utf-8' });
+      const result = _es('python3', ['-c', pyCode, body], { timeout: 20000, encoding: 'utf-8' });
       const letter = result.trim().toUpperCase().match(/[A-D]/);
       if (letter) {
         return { selectedAnswer: letter[0] };

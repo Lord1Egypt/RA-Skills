@@ -29,6 +29,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { envHomeDir } from './entry.js';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -132,8 +133,7 @@ export function ensureMemoryHeaderFile(
  *     covers the OpenClaw plugin sandbox case where the loaded module
  *     lives at `<pluginRoot>/dist/index.js` while `package.json` lives
  *     at `<pluginRoot>/package.json` (3.3.4-rc.1 fix — without this
- *     walk-up, the `.loaded.json` manifest gets `version=unknown` and
- *     all RC-gated logic that depends on the version string fails
+ *     walk-up, version-dependent logic gets `version=unknown` and fails
  *     silently in production OpenClaw deployments).
  *   - Returns the `version` field, or `null` on any I/O / parse error.
  *
@@ -544,208 +544,15 @@ export function wipePartialInstall(pluginRootDir: string): boolean {
 }
 
 // ---------------------------------------------------------------------------
-// Plugin load manifest (.loaded.json / .error.json) — 3.3.2-rc.1 #186
+// Plugin load manifest (.loaded.json / .error.json) — RETIRED Phase 3.4
 // ---------------------------------------------------------------------------
-
-/**
- * Filenames written into the plugin root dir at the end of register() and
- * (on failure) from the surrounding try/catch. The presence of `.loaded.json`
- * is the canonical filesystem signal that the plugin's register() body ran
- * to completion AND the SDK tool/route/hook registries received calls.
- *
- * Acceptance criteria (issue #186):
- *   - `cat ~/.openclaw/extensions/totalreclaw/.loaded.json` shows
- *     `{loadedAt, tools, version}` after every successful gateway start.
- *   - `cat ~/.openclaw/extensions/totalreclaw/.error.json` shows
- *     `{loadedAt, error, stack}` if register() threw.
- *   - Both are overwritten on each register() call so the agent can rely
- *     on the timestamp matching the most recent gateway start.
- *
- * Why these MUST be synchronous writes (same constraint as
- * `registerHttpRoute` per the comment in index.ts around the route
- * registration site): the SDK loader treats register() returning as the
- * signal to freeze the registries. An async `fs.promises.writeFile` would
- * settle one microtask AFTER the loader has moved on, so the manifest
- * could miss tools that registered late OR drop entirely if the gateway
- * exits before the microtask runs. `writeFileSync` is the only safe choice.
- */
-export const PLUGIN_LOADED_MANIFEST = '.loaded.json';
-export const PLUGIN_ERROR_MANIFEST = '.error.json';
-
-/** Schema written to `.loaded.json` — see PLUGIN_LOADED_MANIFEST. */
-export interface PluginLoadManifest {
-  /** Unix epoch milliseconds when register() finished. */
-  loadedAt: number;
-  /** Tool names passed to api.registerTool() during register(). */
-  tools: string[];
-  /** Plugin version string from package.json (or "unknown"). */
-  version: string;
-  /**
-   * 3.3.7-rc.1 (issue #216) — incremented every time register() completes.
-   * Container restart that successfully re-runs register() should bump this.
-   * If a user reports tools missing after-a-restart but bootCount is still N,
-   * the plugin's register() was NOT called on boot (separate root cause
-   * from "register ran but tools didn't bind to active session").
-   */
-  bootCount?: number;
-  /** ISO timestamp of the most recent boot — easier to read than `loadedAt`. */
-  bootAt?: string;
-  /** PID of the gateway process that wrote this manifest. Lets the user
-   * verify the manifest is from the currently-running container vs a
-   * stale-mounted copy. */
-  pid?: number;
-  /**
-   * 3.3.8-rc.1 — true when registerTool() calls are no-op'd due to the
-   * OC 2026.5.2 issue #223 hybrid workaround. Tools in `tools[]` are
-   * exposed via the `tr` CLI binary instead of via the plugin API.
-   */
-  hybridMode?: boolean;
-  /**
-   * 3.3.8-rc.1 — CLI commands that replace the tool registrations
-   * when hybridMode=true. Agent runs these from shell instead of using
-   * tool calls.
-   */
-  hybridCliTools?: string[];
-}
-
-/** Schema written to `.error.json` when register() throws. */
-export interface PluginLoadError {
-  loadedAt: number;
-  error: string;
-  stack?: string;
-  version?: string;
-}
-
-/**
- * Resolve the plugin root dir from the loaded module's directory. The plugin
- * is shipped with `dist/index.js` as the entry, so `import.meta.url` resolves
- * to `<root>/dist/`. We walk up one level to put the manifests next to
- * `package.json`. Defensive: if the caller already passed the root (no
- * trailing `dist`), we still return a sensible path.
- */
-function resolvePluginRootForManifest(pluginDir: string): string {
-  const base = path.basename(pluginDir);
-  return base === 'dist' ? path.resolve(pluginDir, '..') : pluginDir;
-}
-
-/**
- * Write the success manifest. SYNCHRONOUS — the SDK freezes the plugin
- * registries the moment register() returns; `fs.promises.writeFile` would
- * race that freeze and the manifest could miss late tool registrations or
- * never land at all if the process exits before the microtask runs.
- *
- * Best-effort: returns `true` on success, `false` on any I/O error. Never
- * throws — failing to write the manifest is a diagnostic loss, not a
- * correctness loss, so we don't propagate.
- *
- * The manifest is written at mode 0644 (world-readable). It contains no
- * secrets — only a timestamp, the (publicly known) tool names, and the
- * plugin version. Cleared first so a stale `.error.json` from a previous
- * failed boot doesn't survive a successful boot.
- */
-/**
- * Read the existing `.loaded.json` manifest for diagnostic surfaces
- * (3.3.7-rc.1 — issue #216). Returns `null` if the manifest is
- * missing, unreadable, or malformed. Best-effort: never throws.
- *
- * Scanner note: this helper lives in fs-helpers.ts (where all fs.*
- * operations are consolidated) so the diagnostic slash command in
- * `index.ts` doesn't have to introduce a fresh `readFileSync` call —
- * the OpenClaw scanner whole-file rule disallows fs.read* next to the
- * outbound-request trigger markers that index.ts already has in its
- * on-chain submission code paths.
- */
-export function readPluginLoadedManifest(
-  pluginDir: string,
-): PluginLoadManifest | null {
-  try {
-    const root = resolvePluginRootForManifest(pluginDir);
-    const loadedPath = path.join(root, PLUGIN_LOADED_MANIFEST);
-    if (!fs.existsSync(loadedPath)) return null;
-    const raw = fs.readFileSync(loadedPath, 'utf-8');
-    const parsed = JSON.parse(raw) as Partial<PluginLoadManifest>;
-    if (typeof parsed.loadedAt !== 'number' || !Array.isArray(parsed.tools) || typeof parsed.version !== 'string') {
-      return null;
-    }
-    return parsed as PluginLoadManifest;
-  } catch {
-    return null;
-  }
-}
-
-export function writePluginManifest(
-  pluginDir: string,
-  manifest: PluginLoadManifest,
-): boolean {
-  try {
-    const root = resolvePluginRootForManifest(pluginDir);
-    if (!fs.existsSync(root)) return false;
-    const loadedPath = path.join(root, PLUGIN_LOADED_MANIFEST);
-    const errorPath = path.join(root, PLUGIN_ERROR_MANIFEST);
-    // Best-effort error-file cleanup — a successful boot supersedes any
-    // prior failure marker. If the unlink fails (e.g. permission), the
-    // .loaded.json timestamp still tells the agent which is current.
-    try {
-      if (fs.existsSync(errorPath)) fs.unlinkSync(errorPath);
-    } catch {
-      // Swallow — best-effort.
-    }
-
-    // 3.3.7-rc.1 (issue #216) — derive bootCount by reading the prior
-    // manifest. Lets the user grep `.loaded.json` after a container
-    // restart to verify register() actually ran. If the prior manifest
-    // is unreadable we start at 1.
-    let priorBootCount = 0;
-    try {
-      if (fs.existsSync(loadedPath)) {
-        const prior = JSON.parse(fs.readFileSync(loadedPath, 'utf-8')) as Partial<PluginLoadManifest>;
-        if (typeof prior.bootCount === 'number' && Number.isFinite(prior.bootCount)) {
-          priorBootCount = prior.bootCount;
-        }
-      }
-    } catch {
-      // Swallow — if the prior manifest is corrupt we just start the counter fresh.
-    }
-
-    const enriched: PluginLoadManifest = {
-      ...manifest,
-      bootCount: priorBootCount + 1,
-      bootAt: new Date(manifest.loadedAt).toISOString(),
-      pid: process.pid,
-    };
-
-    fs.writeFileSync(loadedPath, JSON.stringify(enriched, null, 2));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Write the error manifest. SYNCHRONOUS for the same reason as
- * `writePluginManifest`. Called from the try/catch surrounding the
- * register() body so the agent has a filesystem signal that the plugin
- * registered AT LEAST attempted to load and failed in a specific way.
- *
- * Does NOT clear `.loaded.json` from a prior successful boot — keeping
- * the older success marker around lets the agent see "last good boot was
- * X, current boot failed at Y" without spelunking logs. The newer
- * `.error.json` timestamp wins as "current state".
- */
-export function writePluginError(
-  pluginDir: string,
-  error: PluginLoadError,
-): boolean {
-  try {
-    const root = resolvePluginRootForManifest(pluginDir);
-    if (!fs.existsSync(root)) return false;
-    const errorPath = path.join(root, PLUGIN_ERROR_MANIFEST);
-    fs.writeFileSync(errorPath, JSON.stringify(error, null, 2));
-    return true;
-  } catch {
-    return false;
-  }
-}
+// The 3.3.2-rc.1 `.loaded.json` / `.error.json` manifest machinery (writer
+// + reader + schema) was fully removed in Phase 3.4. Phase 3.1 already
+// dropped the `writePluginManifest` call from register(); 3.4 retires the
+// remaining reader (`readPluginLoadedManifest`) + the error-path writer
+// (`writePluginError`) + the schema types now that no production path
+// references them. The gateway log is the source of truth for register()
+// failures; `/totalreclaw diag` reports pid + in-memory version only.
 
 /**
  * Drop the `.tr-partial-install` marker into `pluginRootDir`. Idempotent
@@ -1130,6 +937,23 @@ export function resolveOnboardingState(
 // ---------------------------------------------------------------------------
 // OpenClaw 2026.5.x config auto-patch (3.3.9-rc.2 — issues #225 + #226)
 // ---------------------------------------------------------------------------
+//
+// Phase 3.4 note (2026-06-22): this is the minimal idempotent slot-ensure
+// that survives the config-patch state-machine retirement. The auto-pair-
+// on-load + .pair-pending.json + SIGUSR1-for-pair dance was retired because
+// pairing is now user-initiated QR. `patchOpenClawConfig` itself was NEVER
+// part of the auto-pair state machine — it applies OpenClaw 2026.5.x
+// compatibility keys (memory slot, hook access, telegram streaming,
+// bundledDiscovery, installs self-heal) and is idempotent (returns
+// `'unchanged'` when all keys are already correct). Its only caller is
+// register() in index.ts; the SIGUSR1 emitted on `'patched'` is the
+// "restart-so-the-new-keys-take-effect-this-boot" signal, NOT a pair signal.
+//
+// Whether this remains necessary depends on Task 0.1 (Step-0 config-strip
+// check on OpenClaw 2026.6.8): if a plain `openclaw plugins install`
+// persists the slot/activation across a gateway reload on 2026.6.8, a
+// follow-up removes this entirely. If 2026.6.8 still strips config (the
+// standalone-installer case), this minimal version stays. Deferred to 0.1.
 
 /**
  * Outcome of `patchOpenClawConfig`.
@@ -1206,7 +1030,7 @@ export function patchOpenClawConfig(
   // `plugins.installs.totalreclaw` record so Fix #1 (slot) can fire).
   pluginVersion?: string,
 ): OpenClawConfigPatchResult {
-  const home = process.env.HOME ?? '/home/node';
+  const home = envHomeDir();
   const target = configPath ?? path.join(home, '.openclaw', 'openclaw.json');
 
   // `'skipped'` when the config file is absent — this host may not be
@@ -1485,108 +1309,12 @@ export function checkCredentialsFileMode(
 }
 
 // ---------------------------------------------------------------------------
-// Pair-pending sentinel (3.3.13 — auto-pair-on-load)
+// Pair-pending sentinel — RETIRED Phase 3.4
 // ---------------------------------------------------------------------------
+// The 3.3.13 `~/.totalreclaw/.pair-pending.json` sentinel + its utilities
+// (loadPairPendingFile / writePairPendingFile / deletePairPendingFile /
+// defaultPairPendingPath / PairPendingFile) were removed in Phase 3.4.
+// Pairing is now user-initiated QR (`tr pair` CLI / the pair HTTP route)
+// per the native-integration design — the auto-pair-on-load state machine
+// that wrote + consumed this sentinel is gone.
 
-/**
- * Shape of `~/.totalreclaw/.pair-pending.json`. Written by the auto-pair
- * on plugin-load flow when no credentials.json exists; consumed by the
- * `before_agent_start` hook to surface the URL + PIN to the user without
- * the agent ever guessing them.
- *
- * Phrase-safety invariant: the recovery phrase is NEVER stored here. Only
- * the URL + PIN + session token + relay-provided expiry. Phrase travels
- * end-to-end encrypted from browser -> relay -> gateway and is written
- * directly to credentials.json by the awaitPhraseUpload completion handler.
- *
- * `v` is a schema version so future migrations can detect old layouts.
- */
-export interface PairPendingFile {
-  v: 1;
-  /** User-facing pair URL (https://...#pk=). */
-  url: string;
-  /** 6-digit PIN the user types into the browser. */
-  pin: string;
-  /** Relay-issued opaque session id. */
-  sid: string;
-  /** Session expiry from the relay (ms since epoch). */
-  expires_at_ms: number;
-  /** When the gateway opened this session (ms since epoch). */
-  created_at_ms: number;
-  /** Pair mode advertised to the relay. */
-  mode: 'generate' | 'import' | 'either';
-}
-
-/**
- * Load `.pair-pending.json` if it exists and parses. Returns null on
- * missing-file, corrupt JSON, or unknown schema version. Never throws.
- */
-export function loadPairPendingFile(pendingPath: string): PairPendingFile | null {
-  try {
-    if (!fs.existsSync(pendingPath)) return null;
-    const raw = fs.readFileSync(pendingPath, 'utf-8');
-    const parsed = JSON.parse(raw) as Partial<PairPendingFile> & { v?: number };
-    if (parsed.v !== 1) return null;
-    if (typeof parsed.url !== 'string' || !parsed.url) return null;
-    if (typeof parsed.pin !== 'string' || !parsed.pin) return null;
-    if (typeof parsed.sid !== 'string' || !parsed.sid) return null;
-    if (typeof parsed.expires_at_ms !== 'number') return null;
-    if (typeof parsed.created_at_ms !== 'number') return null;
-    if (
-      parsed.mode !== 'generate'
-      && parsed.mode !== 'import'
-      && parsed.mode !== 'either'
-    ) return null;
-    return parsed as PairPendingFile;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Write `.pair-pending.json` atomically-ish (single `writeFileSync`). Creates
- * the parent directory if missing. Uses mode `0o600` to match credentials.json
- * even though the contents are NOT secret (URL + PIN are surfaced to chat
- * anyway) — defensive default for the .totalreclaw/ dir.
- *
- * Returns `true` on success, `false` on any I/O error.
- */
-export function writePairPendingFile(
-  pendingPath: string,
-  payload: PairPendingFile,
-): boolean {
-  try {
-    const dir = path.dirname(pendingPath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(pendingPath, JSON.stringify(payload), { mode: 0o600 });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Delete the pair-pending sentinel. Used by:
- *   - the pair-completion path (after credentials.json is finalized)
- *   - the auto-pair flow when it detects an expired pending session
- *
- * Returns `true` if a file was deleted, `false` otherwise (no file or error).
- */
-export function deletePairPendingFile(pendingPath: string): boolean {
-  try {
-    if (!fs.existsSync(pendingPath)) return false;
-    fs.unlinkSync(pendingPath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Default `.pair-pending.json` path derived from a credentials.json path:
- * the sentinel lives in the same directory under the dot-prefixed name.
- * Callers MAY pass an explicit path (tests, custom layouts) instead.
- */
-export function defaultPairPendingPath(credentialsPath: string): string {
-  return path.join(path.dirname(credentialsPath), '.pair-pending.json');
-}

@@ -1,10 +1,10 @@
 ---
 name: tongtu-china-travel
 display_name: "TongTu — China Travel Guide for Foreign Tourists"
-description: TongTu — a multilingual travel guide for foreign tourists visiting China. Searches flights, hotels, trains, and attractions via FlyAI, with visa, payment, and transport guidance in the user's language (English, Korean, Japanese, and more). Recommends booking via Alipay AliTrip mini-program.
+description: Plan trips to China with flight, hotel, train, and attraction search. Use when traveling to China — covers visa, payment (Alipay/WeChat Pay), transport, eSIM, and city guides in English, Korean, Japanese, and more.
 homepage: https://github.com/jesse-tzx/tongtu-china-travel
 metadata:
-  version: 0.3.4
+  version: 0.3.7
   agent:
     type: tool
     runtime: node
@@ -33,7 +33,7 @@ metadata:
       - "((travel|visit|trip|go|going|fly|flying).*(China|Beijing|Shanghai|Chengdu|Guangzhou|Shenzhen|Xi'an|Hangzhou|Guilin|Suzhou))"
       - "((hotel|stay|hostel|accommodation).*(in|near|around).*(China|Beijing|Shanghai|Chengdu|Guangzhou|Xi'an|Hangzhou|Guilin))"
       - "((flight|fly|train|rail|bullet train|high.?speed).*(to|from).*(China|Beijing|Shanghai|Chengdu|Guangzhou|Xi'an))"
-      - "((visa|entry|transit visa|144.?hour|72.?hour).*(China|Chinese|PRC))"
+      - "((visa|entry|transit visa|240.?hour|24.?hour).*(China|Chinese|PRC))"
       - "((pay|payment|Alipay|WeChat Pay|cash|card|currency|exchange|RMB|CNY|yuan).*(China|Chinese))"
       - "((metro|subway|taxi|Didi|transport|airport|bus|train station).*(China|Beijing|Shanghai|Chengdu|Guangzhou))"
       - "((SIM|eSIM|phone|internet|WiFi|data|VPN|mobile|roaming|connectivity).*(China|Chinese|Beijing|Shanghai))"
@@ -123,7 +123,7 @@ When user intent is clear (search flights/hotels/trains/attractions), ALWAYS rou
 | Complex trip planning with constraints ("3天人均2000", "亲子游") | `flyai ai-search` → process per ai-search Output Processing; validate against full pipeline steps 1-4 |
 | Visa overview / "do I need a visa" / which visa type | Read `references/visa/overview.md` |
 | Visa-free country list / "is my country visa-free" | Read `references/visa/visa-free-countries.md` |
-| 144-hour transit / stopover / layover in China | Read `references/visa/visa-free-transit.md` |
+| 240-hour transit / stopover / layover in China | Read `references/visa/visa-free-transit.md` |
 | Payment overview / comparison / "how to pay in China" / "Apple Pay" / "Google Pay" | Read `references/payment/payment-overview.md` |
 | Alipay setup / bindcard / Alipay FAQ / "Can I use Alipay in China?" | Read `references/payment/alipay-for-foreigners.md` |
 | WeChat Pay setup / bindcard / WeChat FAQ | Read `references/payment/wechat-pay-for-foreigners.md` |

@@ -2,7 +2,7 @@
 name: tencent-mps
 description: "腾讯云 MPS 媒体处理服务，凡涉及以下任一场景必须触发：【视频转码】转码/压缩/格式转换/H.264/H.265/AV1/MP4/编码/码率/分辨率/帧率。【画质增强】画质增强/老片修复/超分/视频超分/真人增强/漫剧增强/防抖/720P/1080P/2K/4K。【音频处理】音频分离/人声提取/伴奏提取/去人声/BGM分离。【字幕语音】字幕提取/字幕翻译/语音识别/ASR/OCR识别字幕/SRT字幕/视频翻译。【擦除遮挡】去字幕/去水印/人脸模糊/车牌模糊/马赛克。【语音合成与音色复刻】语音合成/TTS/声音克隆/文字转语音/语音转语音。【图片处理】图片超分/图片美颜/图片降噪/AI抠图/AI扩图/outpaint/AI图片修复/老照片修复/AI前景提取/AI看图/图片理解/AI文字水印擦除/精准抠图/透明PNG/多视角生图/目标检测/物体识别/局部重绘/inpainting/分镜拆图/宫格拆图/换模特/换体型。【图片换装】AI试衣/服装替换/模特换装/虚拟试穿。【图片背景】AI换背景/背景生成/电商背景/抠图换背景。【AIGC生成】AI生图/文生图/图生图/AI生视频/文生视频/图生视频/分镜生成/Kling/明眸/Mingmou/PixVerse/横屏转竖屏/动作控制/参考视频/AI绘画。【内容理解】音视频理解/视频摘要/场景识别/对比分析两段视频/音频理解/AI看视频。【视频二创】换脸/换人/视频交错。【视频去重】视频去重/画中画/视频扩展。【精彩集锦】精彩集锦/高光提取/足球集锦/篮球集锦/短剧高光。【AI解说】AI解说/短剧解说/短剧混剪/解说二创。【媒体质检】媒体质检/画质检测/模糊检测/花屏检测/卡顿检测/音频质检/视频诊断。【用量统计】mps用量查询。【COS与任务】上传COS/下载COS/列出COS/查询MPS任务/环境变量检查。【效果对比】生成对比页面。用户仅询问工具推荐而不需要实际处理时不触发。"
 metadata:
-  version: "1.2.5"
+  version: "1.2.6"
 ---
 
 # 腾讯云媒体处理服务（MPS）
@@ -14,7 +14,7 @@ metadata:
 ## 输出规范
 
 1. **只输出命令**，不要解释，不要废话
-2. 命令格式：`python scripts/<脚本名>.py [参数]`
+2. 命令格式：`python3 scripts/<脚本名>.py [参数]`
 3. 所有脚本支持 `--dry-run`（模拟执行），默认**自动轮询等待完成**，加 `--no-wait` 才只提交不等待
 4. 输入源判断：URL 用 `--url`，COS 路径用 `--cos-input-key`，未说明来源一律用 `--local-file`（详见强制规则第4条）
 5. **任务完成后输出的链接（预签名下载链接、COS URL 等）必须用 Markdown 超链接格式呈现**，即 `[描述文字](URL)`，不得以代码块或纯文本形式输出链接。
@@ -28,7 +28,7 @@ metadata:
 
 检查环境变量：
 ```bash
-python scripts/mps_load_env.py --check-only
+python3 scripts/mps_load_env.py --check-only
 ```
 如果变量没有配置，明确提醒用户在 `~/.env`（用户级 dotenv，最高优先级）或 `<SKILL_DIR>/.env`（脚本目录级）或 `~/.bashrc` 或 `~/.profile` 自己配置，禁止向用户索取密钥帮用户配置。
 **`<SKILL_DIR>` 为 `tencent-mps` 所在目录。**
@@ -73,20 +73,20 @@ export TENCENTCLOUD_COS_REGION="<请替换为真实存储桶地域，如 ap-guan
 
 本 Skill 通过腾讯云**官方 SDK** 调用 MPS API 与 COS 存储：
 
-- `tencentcloud-sdk-python`（腾讯云官方）— 用于 MPS API 调用，被 19 个脚本使用
-- `cos-python-sdk-v5`（腾讯云官方）— 用于 COS 上传 / 下载 / 列举，被 10 个脚本使用
+- `tencentcloud-sdk-python`（腾讯云官方）— 用于 MPS API 调用
+- `cos-python-sdk-v5`（腾讯云官方）— 用于 COS 上传 / 下载 / 列举
 - `python-dotenv` — 用于 `mps_load_env.py` 自动加载 dotenv 格式的环境变量文件
 
 > `mps_gen_compare.py` 为纯本地工具脚本，不依赖外部包。
 
 首次安装：
 ```bash
-pip install -r scripts/requirements.txt
+python3 -m pip install -r scripts/requirements.txt
 ```
 
 升级到最新版（推荐每 1~2 个月执行一次，以获取新模型 / 新功能支持）：
 ```bash
-pip install -r scripts/requirements.txt --upgrade
+python3 -m pip install -r scripts/requirements.txt --upgrade
 ```
 
 ## 异步任务说明
@@ -101,7 +101,7 @@ pip install -r scripts/requirements.txt --upgrade
 - 在轮询阶段超时拿不到结果，则提示用户手动查询
 - **当用户只说"查询任务 xxx 结果"而未指明任务类型时**，必须先询问用户属于以下哪种类型，再决定调用哪个查询脚本：
   1. 音视频处理任务（转码/增强/擦除/字幕/质检/去重/二创/解说/集锦/语音合成等）
-  2. 图片处理任务（超分/美颜/降噪/换装/背景融合等）
+  2. 图片处理任务（超分/美颜/降噪/换装/背景融合/抠图/扩图/理解/多视角/检测/重绘/拆图/换模特等）
   3. AIGC 生图任务
   4. AIGC 生视频任务
 - **注意**：任务 ID 包含 `WorkflowTask` 关键字并不能确定任务类型，音视频处理和图片处理任务的 ID 都可能含有 `WorkflowTask`，仍需询问用户确认类型
@@ -130,10 +130,10 @@ pip install -r scripts/requirements.txt --upgrade
 | 图片局部重绘 / inpainting / 局部修改 / 指定区域替换 | `mps_image_repaint.py` | [mps_image_repaint.md](references/mps_image_repaint.md) | 使用遮罩图标记区域 + prompt 指令重绘；**必须提供遮罩图和 `--prompt`**（ScheduleId=30061） |
 | 分镜拆图 / 宫格拆图 / 漫画分割 / 拆分镜头 | `mps_image_split.py` | [mps_image_split.md](references/mps_image_split.md) | 智能拆分分镜/宫格漫画为单帧图片，支持擦文字控制（ScheduleId=30050）；耗时较长约 2 分钟 |
 | 换模特 / 换体型 / 服装展示换人 / 换模特身材 | `mps_image_changemodel.py` | [mps_image_changemodel.md](references/mps_image_changemodel.md) | 保持衣服不变更换模特体型，需提供衣物图（ScheduleId=30110）；**必须提供衣物图** |
-| 图片换装 / AI 试衣 / 服装替换 / 模特换装 | `mps_image_tryon.py` | [mps_image_tryon.md](references/mps_image_tryon.md) | 基于模特图+服装图生成换装结果；普通场景支持 1-2 张服装图，内衣场景（`--schedule-id 30101`）仅支持 1 张 |
+| 图片换装 / AI 试衣 / 服装替换 / 模特换装 | `mps_image_tryon.py` | [mps_image_tryon.md](references/mps_image_tryon.md) | 基于模特图+服装图（1-4张）生成换装结果；支持 3 种模型：`WAND-tryon-1.0-lite`/`WAND-tryon-1.0-flash`（默认）/`WAND-tryon-1.0-pro` |
 | 图片背景融合 / 背景替换 / 商品图换背景 / AI 背景生成 / 根据文字描述自动生成背景 / 电商背景生成 | `mps_image_bg_fusion.py` | [mps_image_bg_fusion.md](references/mps_image_bg_fusion.md) | 传入主图+背景图合成，或只传主图+`--prompt` 自动生成背景；详见 references |
 | AI 生图（文生图/图生图/全景图）| `mps_aigc_image.py` | [mps_aigc_image.md](references/mps_aigc_image.md) | AIGC 图片生成；支持模型：`Hunyuan`（默认，`--scene-type 3d_panorama` 生成全景图）/ `GEM`（版本 `2.5`/`3.0`/`3.1`，支持多图参考）/ `Qwen` / `Vidu`（版本 `q2`）/ `Kling`（版本 `2.1`/`O1`/`3.0`/`3.0-Omni`）/ `OG`（版本 `image2_low`/`image2_medium`/`image2_high`）|
-| AI 生视频（文生视频/图生视频/分镜生成） | `mps_aigc_video.py` | [mps_aigc_video.md](references/mps_aigc_video.md) | AIGC 视频生成，**Kling 模型支持分镜功能**；**参考视频仅 Kling 模型支持**；**SceneType 严格对应模型**：`motion_control`→Kling / `land2port`→Mingmou / `template_effect`→Vidu / `3d_scene`→Hunyuan；**PixVerse 模型**（版本 `v5.6`/`v6`/`c1`，时长 1~15s，宽高比支持 `16:9`/`4:3`/`1:1`/`3:4`/`9:16`/`2:3`/`3:2`/`21:9`，画质 `--quality` 支持 `360p`/`540p`/`720p`/`1080p`）；**Hailuo 模型**（版本 `02`/`2.3`/`2.3-fast`）；**GV 模型**（版本 `3.1`/`3.1-fast`）|
+| AI 生视频（文生视频/图生视频/分镜生成） | `mps_aigc_video.py` | [mps_aigc_video.md](references/mps_aigc_video.md) | AIGC 视频生成，**Kling 模型支持分镜功能**；**参考视频仅 Kling 模型支持**；**SceneType 严格对应模型**：`motion_control`→Kling / `land2port`→Mingmou / `template_effect`→Vidu / `3d_scene`→Hunyuan；**PixVerse 模型**（版本 `v5.6`/`v6`/`c1`，时长 1~15s，宽高比支持 `16:9`/`4:3`/`1:1`/`3:4`/`9:16`/`2:3`/`3:2`/`21:9`，画质 `--quality` 支持 `360p`/`540p`/`720p`/`1080p`）；**Hailuo 模型**（版本 `02`/`2.3`/`2.3-fast`）；**GV 模型**（版本 `3.1`/`3.1-fast`）；**OS 模型**（版本 `2.0`，时长 `4`/`8`/`12`s，默认 8s，支持 `--enable-audio`）|
 | 音视频内容理解（场景/摘要/内容分析）/ **对比分析两段音视频** / **对比分析两段音频** / 音频内容理解 | `mps_av_understand.py` | [mps_av_understand.md](references/mps_av_understand.md) | 大模型理解，**必须提供 `--mode` 和 `--prompt`**；对比两段视频/音频时需传第二段，详见 references |
 | 视频去重 / 视频防重（画中画/视频扩展/垂直填充/水平填充）| `mps_dedupe.py` | [mps_dedupe.md](references/mps_dedupe.md) | `--mode` 可省略，默认 `PicInPic`；详见 references |
 | 视频二次创作（换脸/换人/视频交错 AB）| `mps_vremake.py` | [mps_vremake.md](references/mps_vremake.md) | **必须提供 `--mode`**；详见 references |
@@ -161,7 +161,7 @@ pip install -r scripts/requirements.txt --upgrade
 
 ## 生成命令的强制规则
 
-1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python scripts/mps_xxx.py ...`。禁止生成 `python mps_xxx.py ...`（缺少 scripts/ 前缀）的命令。
+1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python3 scripts/mps_xxx.py ...`。禁止生成 `python3 mps_xxx.py ...`（缺少 scripts/ 前缀）的命令。
 
 2. **禁止占位符**：所有参数值必须是真实值。若用户未提供必需值，**先询问**，不得用 `<视频URL>`、`YOUR_URL` 等占位符。
 
@@ -178,7 +178,7 @@ pip install -r scripts/requirements.txt --upgrade
 5. **组合任务必须分别生成所有命令**：当用户请求涉及多个脚本时，必须为每个脚本**分别生成独立的完整命令**，不得遗漏任何一条。
 6. **行为修饰用例规则说明**：用户说 `dry run`、`不等待`、`先预览命令`、`先提交任务`、`先拿任务ID` 等修饰词时，仍然需要触发此 Skill，这些词只影响命令参数（`--dry-run` 或 `--no-wait`），不影响任务类型判断。
 7. **`--no-wait` 使用规则**：用户说"不等待"、"先拿任务ID"、"不用等结果"、"异步提交"、"先提交任务"时，命令中**必须加 `--no-wait`** 参数。默认不加（即默认自动轮询等待结果）；只有用户明确表达不等待意图时才加。
-8. **`mps_load_env.py` 使用规则**：用户说"检查环境变量"、"验证配置是否正确"、"检查配置"时，必须生成 `python scripts/mps_load_env.py --check-only` 命令，不得省略 `--check-only` 参数。
+8. **`mps_load_env.py` 使用规则**：用户说"检查环境变量"、"验证配置是否正确"、"检查配置"时，必须生成 `python3 scripts/mps_load_env.py --check-only` 命令，不得省略 `--check-only` 参数。
 
 ## API 参考
 
@@ -198,5 +198,5 @@ pip install -r scripts/requirements.txt --upgrade
 | `mps_usage.py` | [DescribeUsageData](https://cloud.tencent.com/document/product/862/125919) |
 | `mps_get_video_task.py` | [DescribeTaskDetail](https://cloud.tencent.com/document/api/862/37614) |
 | `mps_get_image_task.py` | [DescribeImageTaskDetail](https://cloud.tencent.com/document/api/862/112897) |
-| `mps_image_tryon.py` | [ProcessImage ScheduleId=30100/30101](https://cloud.tencent.com/document/product/862/112896) |
+| `mps_image_tryon.py` | [ProcessImage ImageTask.AiTryOnConfig](https://cloud.tencent.com/document/product/862/112896) |
 | `mps_image_bg_fusion.py` | [ProcessImage ScheduleId=30060](https://cloud.tencent.com/document/product/862/112896) |

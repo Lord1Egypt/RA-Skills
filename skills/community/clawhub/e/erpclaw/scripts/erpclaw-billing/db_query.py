@@ -20,7 +20,7 @@ from decimal import Decimal, ROUND_HALF_UP
 # Shared library
 # ---------------------------------------------------------------------------
 try:
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.db import get_connection, ensure_db_exists, DEFAULT_DB_PATH  # noqa: E402
     from erpclaw_lib.decimal_utils import to_decimal, round_currency  # noqa: E402
     from erpclaw_lib.naming import get_next_name  # noqa: E402

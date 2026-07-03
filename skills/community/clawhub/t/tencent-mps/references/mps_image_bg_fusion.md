@@ -80,65 +80,65 @@
 
 ```bash
 # 背景融合：主图 + 背景图（URL，等待结果）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-url "https://example.com/background.jpg"
 
 # 背景融合 + 附加 Prompt（对融合结果的额外需求）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-url "https://example.com/background.jpg" \
     --prompt "将背景中的树叶替换为黄色"
 
 # 背景生成：只有主图 + Prompt（无背景图）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "简约白色大理石桌面，柔和自然光"
 
 # 主图使用 COS 路径输入
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-cos-key "/input/product.jpg" \
     --bg-url "https://example.com/background.jpg"
 
 # 主图 + 背景图均使用 COS 路径输入（使用环境变量中的默认 Bucket）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-cos-key "/input/product.jpg" \
     --bg-cos-key "/input/background.jpg"
 
 # 背景图 COS 输入，指定非默认 Bucket
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-cos-key "/input/bg.jpg" \
     --bg-cos-bucket mybucket-125xxx --bg-cos-region ap-shanghai
 
 # 背景生成 + 固定随机种子（可复现结果）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "现代简约家居客厅背景" \
     --random-seed 42
 
 # 指定输出格式和尺寸
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "户外草坪，阳光明媚" \
     --format PNG --image-size 4K
 
 # 只提交任务，不等待结果（返回 TaskId）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "简约白色大理石桌面" \
     --no-wait
 
 # 手动查询背景融合/生成任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 
 # 背景融合完成后下载结果到本地
 # 第一步：执行背景融合任务（结果保存到 COS 输出路径）
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "简约白色大理石桌面"
 # 第二步：从 COS 下载结果到本地文件
-python scripts/mps_cos_download.py \
+python3 scripts/mps_cos_download.py \
     --cos-input-key /output/bgfusion/result.jpeg \
     --local-file /tmp/bgfusion_result.jpg
 ```

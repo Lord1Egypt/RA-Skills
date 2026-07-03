@@ -134,6 +134,7 @@ notifications:
     enabled: true
     minimum_severity: warning
     cooldown_seconds: 300
+    ai_cooldown_seconds: 3600           # 大模型诊断缓存时间（秒），防止重复告警高频消耗 Token
     channels: [dingtalk, feishu, telegram]
   reports:
     report_language: zh
@@ -147,6 +148,7 @@ notifications:
       endpoint: https://api.openai.com/v1
       base_url: https://api.openai.com/v1
       model: gpt-4o-mini
+      api_key: ""                       # （可选）直接在此处配置大模型 API Key（独立运行时使用，无需配置环境变量）
       api_key_env: OPENAI_API_KEY
       timeout_seconds: 20
     daily:
@@ -174,6 +176,13 @@ notifications:
       report_export_dir: ""
       public_base_url: ""
 
+# 网页指标仪表盘服务（Dashboard Console）
+# 开启后，Agent将在后台运行一个极轻量网页服务器，提供直观的指标折线图和安全日志。
+# 用户可直接在浏览器中访问，或使用 Nginx 反代嵌入个人站点。
+dashboard:
+  enabled: false                      # 是否启用网页仪表盘
+  port: 8000                          # 仪表盘服务监听端口
+
 automation:
   dry_run: true
   auto_ban:
@@ -195,6 +204,10 @@ automation:
     max_active_bans: 200
     command_template: "iptables -I INPUT -s {ip} -j DROP"
     unban_command_template: "iptables -D INPUT -s {ip} -j DROP"
+    ban_on_cpu_spike: true              # 当 CPU 或 IOwait 告警触发且某 IP 访问速率极高时，自动将其封禁
+    cpu_spike_rpm_threshold: 60.0       # 联动封禁的 RPM 阈值。若高负载下某 IP 平均 RPM >= 此值，则自动执行 ban
+    use_llm_shield: false               # 是否启用大模型动态安全审计，防止误封正常蜘蛛，审计真实攻击特征
+    shield_trigger_rpm: 20.0            # 触发 AI 安全防线审计的最低访问速率 (RPM)
   auto_heal:
     enabled: false
     channels: [dingtalk]

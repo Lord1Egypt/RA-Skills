@@ -23,14 +23,15 @@ Implementation:
                                   set to mps.intl.tencentcloudapi.com for international site)
 
 Usage (called from other scripts):
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
     from mps_load_env import ensure_env_loaded
     ensure_env_loaded()
 
 Diagnostic mode (standalone):
-    python mps_load_env.py                   # Load and print results
-    python mps_load_env.py --check-only      # Check current env var status only
-    python mps_load_env.py --dry-run         # Dry run (no actual loading)
-    python mps_load_env.py --verbose         # Show verbose loading logs
+    python3 mps_load_env.py                   # Load and print results
+    python3 mps_load_env.py --check-only      # Check current env var status only
+    python3 mps_load_env.py --dry-run         # Dry run (no actual loading)
+    python3 mps_load_env.py --verbose         # Show verbose loading logs
 """
 
 import os
@@ -77,7 +78,7 @@ def load_env_files(verbose: bool = False) -> dict:
         if verbose:
             print(
                 "[load_env] python-dotenv not installed, cannot load .env files."
-                "Run: pip install -r scripts/requirements.txt",
+                "Run: python3 -m pip install -r scripts/requirements.txt",
                 file=sys.stderr,
             )
         return {}
@@ -179,7 +180,7 @@ COS bucket management:   https://console.cloud.tencent.com/mps/workflows/buckets
     export TENCENTCLOUD_SECRET_KEY=<Your SecretKey>
 
 ⚠️  Security: configure credentials securely. Do not commit to repositories.
-   To install python-dotenv:pip install -r scripts/requirements.txt
+   To install python-dotenv:python3 -m pip install -r scripts/requirements.txt
 
 After configuration, restart the conversation.
 """
@@ -312,7 +313,7 @@ if __name__ == "__main__":
     print("=== Loading dotenv files ===", flush=True)
     if not _DOTENV_AVAILABLE:
         print(
-            "❌ python-dotenv not installed. Run: pip install -r scripts/requirements.txt",
+            "❌ python-dotenv not installed. Run: python3 -m pip install -r scripts/requirements.txt",
             file=sys.stderr,
         )
         sys.exit(1)

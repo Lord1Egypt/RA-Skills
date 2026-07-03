@@ -1,0 +1,55 @@
+{
+  "name": "方法验证标准曲线",
+  "description": "标准曲线拟合 → 检出限/定量限 → 曲线不确定度 → 校准曲线图",
+  "tags": [
+    "方法验证",
+    "标准曲线",
+    "LOD",
+    "LOQ",
+    "不确定度"
+  ],
+  "default_report": "方法验证报告",
+  "steps": [
+    {
+      "name": "标准曲线",
+      "target": "scenarios.method_validation.calibration_curve",
+      "params": {
+        "x": "%input.x%",
+        "y": "%input.y%",
+        "force_zero": false,
+        "degree": 1
+      },
+      "description": "线性拟合，获取斜率、截距、Sy/x"
+    },
+    {
+      "name": "检出限定量限",
+      "target": "scenarios.method_validation.calc_lod_loq",
+      "params": {
+        "calibration_data": "%标准曲线%",
+        "standard": "gbt27417",
+        "sigma_source": "curve"
+      },
+      "description": "LOD=3σ/b, LOQ=9σ/b (GB/T 27417)"
+    },
+    {
+      "name": "曲线不确定度",
+      "target": "scenarios.method_validation.curve_uncertainty",
+      "params": {
+        "calibration_data": "%标准曲线%",
+        "sample_responses": "%input.y_sample%"
+      },
+      "description": "EURACHEM/CITAC 标准曲线分量"
+    },
+    {
+      "name": "校准曲线图",
+      "target": "scenarios.method_validation.calibration_plot",
+      "params": {
+        "x": "%input.x%",
+        "y": "%input.y%",
+        "result": "%标准曲线%",
+        "title": "标准曲线"
+      },
+      "description": "拟合图 + 残差图"
+    }
+  ]
+}

@@ -1,9 +1,48 @@
 # CHANGELOG - v2.x 新框架
 
 > v2.x 是 **v2 框架**（outline-anchored 重构 + 9 HIL 节点 + 真实 CLI 入口）的活跃开发分支。
-> 当前 latest: **v2.0.14**
+> 当前 latest: **v2.1.2-beta.1**
 > ClawHub Slug: `thesis-workflow-v2`（独立仓库）
 > 详见 [CHANGELOG.md](./CHANGELOG.md) 的版本线索引。
+
+## [v2.1.2-beta.1] - 2026-07-02
+
+### P0 修复：Tavily MCP 平台集成 + 公司映射强制采集
+
+**问题来源：** 用户在 2026-07-02 跑 v2 时发现 2 个 P0 问题（详见反思文档）。
+
+#### 1. Tavily MCP pre-flight 与 OpenClaw 集成不匹配
+
+- **问题**：v2 脚本假定 `mcporter` CLI 存在，但 OpenClaw 通过内置 MCP bridge 暴露 Tavily，`mcporter` 不存在
+- **修复**：
+  - 新增 `_detect_openclaw_platform()`：检测 `OPENCLAW_RUNTIME` env 或 openclaw CLI
+  - 新增 `_check_openclaw_tavily_bridge()`：通过 `openclaw skills list --json` 验证 tavily-mcp 注册
+  - `_check_tavily_mcp()` 改造：OpenClaw 走内置桥接，Hermes 降级到 mcporter
+  - Tavily Dependency `install_category` 从 `needs_ai` 改为 `none`（truly optional）
+- **影响**：OpenClaw runtime 下不再需要 `~/.local/bin/mcporter` mock wrapper
+- **向后兼容**：Hermes 仍走 mcporter 路径
+
+#### 2. HIL #1 缺公司映射强制采集
+
+- **问题**：`state['company_info']['actual_name']` 永远是 null，但 v2 设计上要求用户在 HIL #1 填
+- **修复**：
+  - `confirm_phase1()` 新增 `user_input` 参数，解析 `[1] vivo` / `[2]` / `[3]` 决策
+  - 强制校验：`actual_name=null && skip_mapping=false` → 返回 error
+  - HIL #1 prompt 扩展：3 选项（接受+填actual_name / 跳过映射 / 取消）
+  - 状态字段完整化：`company_info` 包含 `actual_name` / `skip_mapping` / `confirmed` / `confirmed_at`
+- **HIL 总数**：仍 9（公司映射合并入 #1，不新增节点）
+- **安全约束**：`actual_name` 不会进入最终 Word 文档
+
+#### 文档同步
+
+- `SKILL.md`：HIL #1 描述更新 + 公司映射章节 + Tavily 平台适配章节
+- `README.md` / `README_EN.md`：OpenClaw 平台说明 + 公司映射章节
+- `metadata.version`: 2.1.1 → 2.1.2-beta.1
+
+#### 验收
+
+- e2e 测试见 `~/.openclaw/workspace/memory/2026-07-02_thesis-v2-phase1-reflect.md`
+- 跑通 `python3 scripts/run_workflow.py A公司_互联网分发 --phase phase1` 验证
 
 ## ⚠️ Alpha 阶段说明
 
@@ -19,6 +58,83 @@ v1.7.4 / v1.7.5 / v1.7.6 / v1.7.7 **实际为 v2 框架的早期 alpha 开发**�
 - v2.0.14 = v2 当前 latest
 
 **Commit hash 已保留，可在 git history 中追溯。**
+
+## [v2.1.1-beta.3] - 2026-06-30
+
+### 修复：L3 节点 MECE 检测
+
+- 删除 L3 早期返回逻辑（之前错误跳过了 L3 节点的互斥检测）
+- 删除未使用的 current_l3 变量
+- 修复 build_prompt_package_text() 多余尾部 
+
+
+## [v2.1.1-beta.2] - 2026-06-30
+
+### 新增：同级章节横向上下文注入（MECE 保障）
+
+- 新增 `build_sibling_chapter_context()` 函数（`context_builder.py`）：
+  - 列出同父节点下所有同级章节的 `node_id`、`title`、`content_hint`
+  - 无 `content_hint` 的章节仅标注标题
+  - 自动生成【本章范围界定】，明确 ✅ 负责内容和 ❌ 不应重复的内容
+- 新增 `_infer_scope_boundary()` 辅助函数，基于语义关键词对（MECE 互斥检测）
+- `build_prompt_package()` 接入 `sibling_context` 字段
+- `build_prompt_package_text()` 输出同级章节预览块
+- SKILL.md 新增「同级章节横向上下文注入」章节
+
+## [v2.1.1-beta.1] - 2026-06-30
+
+### 版本管理策略（v2.1 新增）
+
+**目的**：避免历史数据和中间版本对待写论文产生污染。每次新任务或重新开始时，物理隔离旧数据。
+
+**核心规则**：
+- Workspace 根路径：`~/.openclaw/workspace/`
+- 版本目录命名：`{论文题目}_v{n}.0/`（每次新任务 +1）
+- Orchestrator 只读取无后缀的 md 文件；`*.md.bak` / `*_v2.md` 不参与写作流程
+- 答辩通过后：保留最终答辩稿，删除所有中间目录
+
+**新文件**：
+- `scripts/release.py`（262行）：统一发布脚本，SSOT 版本管理，beta/release 双模式
+- `requirements-optional.txt`：可选向量加速依赖（BGE-small-zh）
+
+**改动文件**：
+- `SKILL.md`：新增版本管理策略章节，frontmatter SSOT 版本字段
+- `requirements.txt`：移除 sentence-transformers（重型依赖移至 optional）
+- `install.sh`：移除 Hermes 检测（仅支持 OpenClaw）
+- `config.template`：移除 USER_EMAIL/SENDER_EMAIL/HERMES_BIN 遗留字段
+
+### P0 修复：AI 评审链全失效根因
+
+**问题**：reviewer.py 缺少 `import json`，导致 AI 评审全链路失效。
+
+**修复**：
+- `scripts/reviewer.py`：新增 `import json`
+- `scripts/orchestrator_v2.py`：docstring invalid escape `\s` → `\\s`
+
+### P0 修复：RuntimeLLM session 精确限定
+
+**问题**：background 场景下 `_get_session_info` 使用 `--all-agents` 导致静默失败。
+
+**修复**：
+- `RuntimeLLM.__init__`：保存传入的 `agent_id`
+- `_get_session_info`：优先用 `--agent <agent_id>` 精确限定
+- `get_runtime_llm()`：新增 `agent_id` 参数，全局单例透传
+
+### Phase 测试断言同步
+
+- `test_orchestrator.py`：phase 断言同步至 `phase1_1` / `phase1_2`
+
+### 版本记录
+
+| Tag | Commit | 说明 |
+|-----|--------|------|
+| v2.1.0-beta.1 | 1182613 | release.py + SSOT 版本字段 |
+| v2.1.0-beta.2 | 90ca4f0 | 版本 bump |
+| v2.1.0-beta.3 | 3382dae | 版本 bump，latest tag 指向 beta |
+| v2.1.0-beta.4 | 1425766 | 版本 bump |
+| v2.1.0 | 7c32ca0~HEAD | P0 修复 + 版本管理策略 + 清理遗留依赖 |
+
+---
 
 ## [v2.0.13] - 2026-06-28
 

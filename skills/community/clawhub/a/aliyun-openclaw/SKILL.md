@@ -1,3 +1,14 @@
+---
+name: aliyun-openclaw
+description: "提供阿里云服务器上OpenClaw网关的远程部署、SSH隧道连接、设备配对及日常管理全流程支持。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Aliyun Openclaw
+
 # aliyun_openclaw Skill
 
 阿里云 OpenClaw 远程部署与管理技能。提供远程服务器上的 OpenClaw 网关部署、SSH 隧道连接、设备配对和日常管理的完整流程。

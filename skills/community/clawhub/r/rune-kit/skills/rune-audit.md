@@ -698,7 +698,7 @@ Report saved to: AUDIT-REPORT.md
 ~8000-20000 tokens input, ~3000-6000 tokens output. Sonnet orchestrating; sentinel (sonnet/opus) and autopsy (opus) are the expensive sub-calls. Full audit runs 4 sub-skills. Most thorough L2 skill — run on demand, not on every cycle.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

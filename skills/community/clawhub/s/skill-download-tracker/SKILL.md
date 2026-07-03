@@ -1,11 +1,11 @@
 ---
 name: clawhub-download-tracker
-description: Monitor download counts for your ClawHub-published skills. Track changes over time with automated alerts.
+description: Monitor download counts for your ClawHub-published skills. Track changes over time, generate daily/weekly/monthly reports, and push notifications via Feishu.
 triggerWords:
   - clawhub download
   - download tracker
   - download monitoring
-  - download report
+  - clawhub stats
 metadata:
   openclaw:
     requires:
@@ -36,67 +36,108 @@ metadata:
 
 ## Overview
 
-Track download counts for skills published on ClawHub. This tool fetches official stats via `clawhub inspect <slug> --json`, stores history in local CSV, and supports scheduled checks, daily/weekly/monthly reports with Feishu push notifications.
+A CLI tool that fetches official download counts for skills published on ClawHub, stores history in local CSV, and pushes snapshots/reports via Feishu.
 
-## File Structure
+**Use when:** User wants to monitor their ClawHub skill downloads, set up automated tracking, or generate trend reports.
+
+**Do NOT use for:** Real-time analytics (this is periodic snapshots, not streaming), other registries (only ClawHub), individual user analytics (skill-level only).
+
+## Quick Commands
+
+```bash
+# Snapshot (collect + Feishu push)
+python3 ~/.openclaw/workspace/skills/clawhub-download-tracker/clawhub_tracker.py
+
+# Reports
+python3 .../clawhub_tracker.py report daily
+python3 .../clawhub_tracker.py report weekly
+python3 .../clawhub_tracker.py report monthly
+
+# Manage monitor list
+python3 .../clawhub_tracker.py add <slug> [note]
+python3 .../clawhub_tracker.py remove <slug>
+python3 .../clawhub_tracker.py list
+```
+
+## Workflow
+
+### Snapshot collection
 
 ```
-~/.openclaw/workspace/skills/clawhub-download-tracker/
-├── SKILL.md                  # This file
-├── clawhub_tracker.py        # Main script: collection + report + Feishu
-├── clawhub_tracker.sh        # launchd wrapper (sets PATH)
-└── test_clawhub_tracker.py   # Tests (mock data, 19 test cases)
+1. Load skills.csv (managed by add/remove)
+2. For each slug: clawhub inspect <slug> --json → extract stats.downloads
+3. Compare to last_state.json
+4. If delta ≠ 0 → append to checklog.csv + update last_state
+5. Build summary text
+6. Archive to reports/YYYY-MM.md
+7. Push to Feishu (if configured)
+```
 
-~/.openclaw/workspace/data/clawhub-tracker/
-├── skills.csv                # Monitored skills: slug,note
-├── checklog.csv              # History: timestamp,slug,downloads,delta
-└── reports/                  # Report archive (monthly .md files)
+### Report generation
+
+```
+1. Read checklog.csv (only delta ≠ 0 records)
+2. Filter by date range (last 1d / 7d / month-to-date)
+3. Build report with: per-skill start→end, cumulative delta, peak time, total
+4. Print + archive + Feishu push
+```
+
+### Add/remove skills
+
+```
+add <slug>     → append to skills.csv (auto-create with header if missing)
+remove <slug>  → remove from skills.csv (historical checklog preserved)
+list           → show monitor list with last known download counts
 ```
 
 ## Prerequisites
 
-- `clawhub` CLI installed (auto-detected via `shutil.which` with fallbacks)
+- `clawhub` CLI installed (auto-detected via `shutil.which` with fallback to `/opt/homebrew/bin/clawhub`)
 - Python 3 (built-in on macOS)
-- Feishu 凭证（**必须配置**，无硬编码 fallback）：
+- Feishu credentials (only needed for push notifications):
   - `CLAWHUB_FEISHU_APP_ID`
   - `CLAWHUB_FEISHU_APP_SECRET`
   - `CLAWHUB_FEISHU_USER_OPEN_ID`
 
-  **配置方式（任选其一）：**
-  1. 环境变量：`export CLAWHUB_FEISHU_APP_ID=cli_xxx`
-  2. `.env` 文件：在 `~/.openclaw/workspace/data/clawhub-tracker/.env` 中写入 `KEY=VALUE` 格式
+  Configure via env vars or `~/.openclaw/workspace/data/clawhub-tracker/.env`
 
-## Usage
+## Storage Strategy
 
-### 1. Collect Current Downloads (Snapshot + Feishu Push)
+- `checklog.csv` — only records with `delta ≠ 0` (sparse, keeps file small)
+- `last_state.json` — latest snapshot per slug (avoids re-scanning checklog on each run)
+- `reports/YYYY-MM.md` — monthly archive of all outputs
+- `tracker.log` — run history with errors
+- File locking via `fcntl.flock` — safe under concurrent launchd triggers
 
-```
-python3 ~/.openclaw/workspace/skills/clawhub-download-tracker/clawhub_tracker.py
-```
-
-Iterates all slugs in `skills.csv`, fetches latest download counts, computes deltas, writes to `checklog.csv`, archives to `reports/`, and sends Feishu notifications.
-
-### 2. Reports
+## Data Files
 
 ```
-python3 ~/.openclaw/workspace/skills/clawhub-download-tracker/clawhub_tracker.py report daily   # Today's report
-python3 ~/.openclaw/workspace/skills/clawhub-download-tracker/clawhub_tracker.py report weekly  # Last 7 days
-python3 ~/.openclaw/workspace/skills/clawhub-download-tracker/clawhub_tracker.py report monthly # Current month
+~/.openclaw/workspace/data/clawhub-tracker/
+├── skills.csv         # slug,note
+├── checklog.csv       # timestamp,slug,downloads,delta
+├── last_state.json    # {slug: {downloads, ts}}
+├── reports/           # YYYY-MM.md archives
+├── tracker.log        # Run logs
+└── .tracker.lock      # File lock (transient)
 ```
-
-Generates reports from `checklog.csv` history, including:
-- Per-slug start → end download counts and cumulative deltas
-- Sample count and peak time windows
-- Total new downloads and current totals
-
-Reports are printed to stdout, archived to `reports/YYYY-MM.md`, and pushed to Feishu.
-
-### 3. Add / Remove Monitored Skills
-
-Edit `~/.openclaw/workspace/data/clawhub-tracker/skills.csv` directly. Format: `slug,note`
 
 ## Data Source
 
-Fetches the official `stats.downloads` field via `clawhub inspect <slug> --json`. Data comes directly from the ClawHub registry — **no third-party APIs involved**.
+Fetches official `stats.downloads` via `clawhub inspect <slug> --json`. Direct from ClawHub registry — **no third-party APIs**.
 
-The current monitor list is maintained dynamically in `~/.openclaw/workspace/data/clawhub-tracker/skills.csv`.
+## Edge Cases
+
+| Scenario | Behavior |
+|----------|----------|
+| Slug not found in ClawHub | Mark as fetch failed, skip |
+| Invalid slug format | Reject (regex validation, prevents injection) |
+| Missing .env | Skip Feishu push, continue with local files |
+| Empty skills.csv | Send "no skills to monitor" notice to Feishu, exit |
+| Concurrent runs | Second instance detects lock, exits gracefully |
+| checklog missing (e.g. migration) | Fall back to last_state.json for delta |
+
+## See Also
+
+- `README.md` — full user-facing docs (installation, launchd setup, security)
+- `README.zh.md` — Chinese version
+- `test_clawhub_tracker.py` — test suite

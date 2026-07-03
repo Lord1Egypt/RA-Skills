@@ -1,6 +1,6 @@
 ---
 name: javis-brainstorming
-description: Turn a brainstorm-worthy voice/keyboard unit into a generic "to-do card" whose ready-to-paste prompt hands off to Claude's content-brainstorming skill (with javis_mcp pulling the source transcript). This skill does NO brainstorming itself — it composes a hand-off prompt and writes a type="todo" card stamped with the source session's start/end times (journal semantics). Use on demand when the user asks to "brainstorm this" / "整理成簡報" / "帮我腦力激盪", and fetch the last 24 hours of transcript data by default. The javis-server session dispatcher also AUTO-RUNS this skill (no approve-to-run card) when a completed unit matches the brainstorm route, passing a deliverable hint in the run prompt that the agent may use alongside the transcript; the card is written PENDING and a markdown digest of it is delivered to the Agent Chat via POST /api/agent/push (the chat shows [push:javis-brainstorming] + the card summary); the human gate is Confirm/Discard in the iOS Calendar tab (Confirm saves the card on the calendar as a solid event; tapping the card body opens its Agent Chat session). Triggers: 'brainstorm this', '整理成簡報', '帮我腦力激盪'.
+description: Turn a brainstorm-worthy voice/keyboard unit into a generic "to-do card" whose ready-to-paste prompt hands off to Claude's content-brainstorming skill (with javis_mcp pulling the source transcript). This skill does NO brainstorming itself — it composes a hand-off prompt and writes a type="todo" card stamped with the source session's start/end times (journal semantics). Use on demand when the user asks to "brainstorm this" / "整理成簡報" / "帮我腦力激盪", and fetch the last 24 hours of transcript data by default. The javis-server dispatcher also invokes this skill directly for every completed unit — no classifier, no route matching — passing a deliverable hint in the run prompt that the agent may use alongside the transcript; this skill's own agent decides for itself whether the unit is worth acting on, and if not, does nothing. The card is written PENDING and a markdown digest of it is delivered to the Agent Chat via POST /api/agent/push (the chat shows [push:javis-brainstorming] + the card summary); the human gate is Confirm/Discard in the iOS Calendar tab (Confirm saves the card on the calendar as a solid event; tapping the card body opens its Agent Chat session). Triggers: 'brainstorm this', '整理成簡報', '帮我腦力激盪'.
 keywords: brainstorm this, brainstorm, 整理成簡報, 帮我腦力激盪, content-brainstorming, todo card, brainstorming
 metadata:
   openclaw:
@@ -32,7 +32,7 @@ metadata:
 - "整理成簡報" (organize this into a presentation)
 - "帮我腦力激盪" (help me brainstorm)
 - A natural ask like "help me organize my thoughts on X" or "turn this into a deck".
-- Automatically, when the javis-server session dispatcher **auto-runs** this skill after a completed unit matches the `brainstorm` route — no approve-to-run card (see "How this skill is invoked").
+- Automatically, when the javis-server dispatcher invokes this skill directly after a completed voice/keyboard unit — no classifier, no route matching. This skill's own agent decides for itself, using this `SKILL.md`, whether the unit is worth acting on; if not, it does nothing (see "How this skill is invoked").
 
 ## Core commands
 
@@ -146,17 +146,19 @@ This skill has **two triggers** (dispatcher auto-run and manual).
 
 1. **Dispatcher auto-run (automatic).** When a unit of input completes (an audio
    session ends or a keyboard input is saved), the javis-server **session dispatcher**
-   classifies the transcript. If it finds brainstorm-worthy content (ideation,
-   "help me organize", presentation/deck planning) and an enabled `brainstorm`
-   route matches, the server claims run-once (`DispatchRouteExecuted (user, unit,
-   route)`) and **AUTO-RUNS this skill directly — there is no approve-to-run proposal
-   card**. It runs in the user's container with a prompt of the form
-   `Run /javis-brainstorming for <unit>. Deliverable: …`, where the deliverable text is the
-   dispatcher's classification carried as an **advisory HINT**. The agent parses
-   `<unit>` (`audio:<session_id>` or `kbd:<keyboard_input.id>`), runs
-   `fetch --session <id>` / `fetch --kbd-input <id>`, composes the card, and pushes it.
-   **The human gate is not running the skill — it is Confirm/Discard on the produced
-   to-do card.** **The skill does not self-gate** — the server owns run-once.
+   invokes this skill's agent directly — **no classifier, no route matching**. Every
+   enabled low-risk skill, including this one, is run against every completed unit;
+   there is no server-side decision about whether the content is brainstorm-worthy.
+   **This skill's own agent decides for itself**, by reading this `SKILL.md`, whether
+   the unit is worth acting on — if not, it does nothing (silence is a valid outcome;
+   there is no approve-to-run proposal card either way). It runs in the user's
+   container with a prompt of the form `Run /javis-brainstorming for <unit>.
+   Deliverable: …`, where the deliverable text is an **advisory HINT** the agent may
+   use alongside the transcript. The agent parses `<unit>` (`audio:<session_id>` or
+   `kbd:<keyboard_input.id>`), runs `fetch --session <id>` / `fetch --kbd-input <id>`,
+   and — only if it judges the unit brainstorm-worthy — composes the card and pushes
+   it. **The human gate is not running the skill — it is Confirm/Discard on the
+   produced to-do card.**
 2. **Manual ("brainstorm this").** On demand, the agent runs the windowed `fetch`
    (last 24h by default) → composes → pushes. Repeating the ask re-runs composition on
    the window; the `seen` map still prevents writing the same card twice.

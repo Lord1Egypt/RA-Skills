@@ -1,0 +1,29 @@
+database_path: data/recruitment.db
+retention_days: 180
+
+deepseek:
+  base_url: https://api.deepseek.com
+  model: deepseek-v4-pro
+  api_key_env: DEEPSEEK_API_KEY
+  thinking_enabled: true
+  reasoning_effort: medium
+  timeout_seconds: 120
+  max_attempts: 3
+
+openalex:
+  mailto_env: OPENALEX_MAILTO
+  per_page: 100
+
+outreach:
+  mailbox: ""
+  company_team_intro: ""
+  sender_signature: ""
+
+workflow:
+  followup_days:
+    - 7
+    - 21
+  allowed_match_classes:
+    - 高度匹配
+    - 可能匹配
+  review_match_class: 信息不足

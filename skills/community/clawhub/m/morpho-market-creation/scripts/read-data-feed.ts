@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
-import { api3Contracts, findChainByAlias } from '@api3/dapi-management';
+import { api3Contracts } from '@api3/dapi-management';
+import { findChainByAlias } from './utils.ts';
 
 const { Api3ReaderProxyV1__factory } = api3Contracts;
 

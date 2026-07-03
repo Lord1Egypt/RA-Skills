@@ -1,0 +1,7 @@
+# Fixed clawfetch skill configuration.
+# This file belongs to the skill host directory, not node_modules/clawfetch.
+
+[flaresolverr]
+enabled = false
+# url = "http://127.0.0.1:8191"
+max_timeout_ms = 60000

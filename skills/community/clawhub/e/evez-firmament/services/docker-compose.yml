@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+  consciousness_engine:
+    build: .
+    command: python3 /app/consciousness_engine.py
+    ports:
+      - "9111:9111"
+    hostname: consciousness_engine
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9111/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  daw_agent:
+    build: .
+    command: python3 /app/daw_agent.py
+    ports:
+      - "9112:9112"
+    hostname: daw_agent
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9112/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  machine_voice:
+    build: .
+    command: python3 /app/machine_voice.py
+    ports:
+      - "9113:9113"
+    hostname: machine_voice
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9113/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  cross_domain:
+    build: .
+    command: python3 /app/cross_domain.py
+    ports:
+      - "9114:9114"
+    hostname: cross_domain
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9114/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  invariance:
+    build: .
+    command: python3 /app/invariance.py
+    ports:
+      - "9115:9115"
+    hostname: invariance
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9115/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  event_spine:
+    build: .
+    command: python3 /app/event_spine.py
+    ports:
+      - "9116:9116"
+    hostname: event_spine
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9116/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  mesh_health:
+    build: .
+    command: python3 /app/mesh_health.py
+    ports:
+      - "9117:9117"
+    hostname: mesh_health
+    depends_on:
+      - consciousness_engine
+      - daw_agent
+      - machine_voice
+      - cross_domain
+      - invariance
+      - event_spine
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9117/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3

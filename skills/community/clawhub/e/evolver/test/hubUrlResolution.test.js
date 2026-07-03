@@ -17,6 +17,12 @@ function freshConfig() {
   return require(resolved);
 }
 
+function freshModule(modulePath) {
+  const resolved = require.resolve(modulePath);
+  delete require.cache[resolved];
+  return require(resolved);
+}
+
 describe('config.resolveHubUrl', () => {
   const savedEnv = {};
   const envKeys = [
@@ -91,6 +97,30 @@ describe('config.resolveHubUrl', () => {
     assert.equal(resolveHubUrl(), 'https://evomap.ai');
   });
 
+  // #580 Bug 1: a `.env` value with surrounding whitespace (common with a
+  // quoted entry like A2A_HUB_URL="https://evomap.ai ") must be trimmed.
+  // Otherwise the trailing space survives `hubUrl.replace(/\/+$/, '')` at
+  // endpoint construction and produces "https://evomap.ai /a2a/events/poll",
+  // which fails hubFetch URL validation.
+  it('trims surrounding whitespace from the hub URL (#580)', () => {
+    process.env.A2A_HUB_URL = '  https://evomap.ai  ';
+    const { resolveHubUrl } = freshConfig();
+    const url = resolveHubUrl();
+    assert.equal(url, 'https://evomap.ai');
+    // The exact failure mode from the issue: base + path must not contain a space.
+    assert.equal(url.replace(/\/+$/, '') + '/a2a/events/poll',
+      'https://evomap.ai/a2a/events/poll');
+  });
+
+  it('treats a whitespace-only env var the same as unset (#580)', () => {
+    process.env.A2A_HUB_URL = '   ';
+    process.env.EVOMAP_HUB_URL = 'https://fallback.example.com';
+    const { resolveHubUrl } = freshConfig();
+    // Whitespace-only A2A_HUB_URL must fall through to EVOMAP_HUB_URL, not be
+    // picked as a "truthy" value.
+    assert.equal(resolveHubUrl(), 'https://fallback.example.com');
+  });
+
   // --- https-only enforcement (C1 PR-2 Step 1) ---
 
   it('throws on http:// URL by default (MITM guard)', () => {
@@ -138,4 +168,49 @@ describe('config.resolveHubUrl', () => {
     const { resolveHubUrl } = freshConfig();
     assert.throws(() => resolveHubUrl(), /https:\/\//);
   });
+});
+
+describe('Search-First hub URL helpers', () => {
+  const savedEnv = {};
+  const envKeys = [
+    'A2A_HUB_URL',
+    'EVOMAP_HUB_URL',
+  ];
+
+  beforeEach(() => {
+    for (const k of envKeys) {
+      savedEnv[k] = process.env[k];
+      delete process.env[k];
+    }
+  });
+
+  afterEach(() => {
+    for (const k of envKeys) {
+      if (savedEnv[k] === undefined) {
+        delete process.env[k];
+      } else {
+        process.env[k] = savedEnv[k];
+      }
+    }
+  });
+
+  for (const [label, modulePath] of [
+    ['hubSearch.getHubUrl', '../src/gep/hubSearch'],
+    ['hubReview.getHubUrl', '../src/gep/hubReview'],
+  ]) {
+    it(label + ' trims surrounding whitespace before endpoint construction', () => {
+      process.env.A2A_HUB_URL = '  https://evomap.ai/  ';
+      const { getHubUrl } = freshModule(modulePath);
+      const url = getHubUrl();
+      assert.equal(url, 'https://evomap.ai');
+      assert.equal(url.replace(/\/+$/, '') + '/a2a/fetch', 'https://evomap.ai/a2a/fetch');
+    });
+
+    it(label + ' falls back to EVOMAP_HUB_URL when A2A_HUB_URL is whitespace-only', () => {
+      process.env.A2A_HUB_URL = '   ';
+      process.env.EVOMAP_HUB_URL = 'https://fallback.example.com';
+      const { getHubUrl } = freshModule(modulePath);
+      assert.equal(getHubUrl(), 'https://fallback.example.com');
+    });
+  }
 });

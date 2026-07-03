@@ -33,6 +33,9 @@ siluzan-tso google-ads-diagnosis render \
 | `collect` | 拉 google-analysis + 可选 Lighthouse；输出 `google-ads-diagnosis-collect.json` |
 | `render`  | 读取 Agent 产出的 `google-ads-diagnosis.json`，注入 `GoogleAdsDiagnosisReport.html` |
 
+- **render 自动合并（默认开启）**：若同目录存在 `google-ads-diagnosis-collect.json`，且 Agent 改坏了 `campaigns` / `geographic` / `keywords` 的 `items`（缺 `title`/`currentCost` 或环比写成字符串），CLI **自动从 collect.reportData 恢复 items**，保留 Agent 的 `analysis`/`suggestions`。可用 `--no-merge-collect` 关闭；`--collect <file>` 指定 collect 路径。
+- **render 硬校验**：合并后对比表仍不完整则 **exit 1**（避免 HTML 表体全空）。
+
 - **禁止**在 `collect` 阶段生成或写入 `analysis` / `suggestions` / `diagnosisOverview` / `summary` 等建议性文案。
 - **禁止**跳过 Agent 直接 `render` collect 产物（`render` 会校验全部叙事 / 建议字段；调试可加 `--lenient`）。
 - JSON 顶层结构须与 MarkAI `sectionData.js` / `fetchData` 输出一致（见下文各 `section-*` 数据对象）。
@@ -204,6 +207,7 @@ siluzan-tso google-ads-diagnosis render \
 - 指标列：花费(上期/本期/环比)、点击(上期/本期/环比)、转化率(上期/本期/环比)
 - **数据**：`campaigns.items`（`title`、`previousCost`、`currentCost`、`costRateChange`、`previousClicks`、`currentClicks`、`clicksRateChange`、`previousCvr`、`currentCvr`、`cvrRateChange`）
 - **分析 / 建议**：`campaigns.analysis`、`campaigns.suggestions`
+- **Agent 禁止改写 `items` 行**（须原样保留 collect `reportData`）；`render` 会从同目录 collect 自动恢复被改坏的 items
 
 #### 国家地区分析
 
@@ -347,6 +351,8 @@ siluzan-tso google-ads-diagnosis render \
 **区块 ID**：`section-bidding-strategy`  
 **数据**：`biddingStrategy.items`（仅「有问题」的系列进入表格；无数据时页面为「出价策略配置良好」）
 
+**items 行字段（collect 事实，Agent 禁止改写）**：`campaignName`、`duration`（**天数 number**，如 `34`，勿写 `"2026-05-28 至今"` 文案）、`biddingStrategyType`（如 `MANUAL_CPC`，勿用 `currentStrategy` 替代）、`recommendedStrategy`、`recommendationReason`、`isCorrect`
+
 | 广告系列 | 投放时长 | 当前出价策略 | 推荐出价策略 | 状态 |
 | -------- | -------- | ------------ | ------------ | ---- |
 |          |          |              |              |      |
@@ -377,7 +383,12 @@ siluzan-tso google-ads-diagnosis render \
 ## 11 新产品应用
 
 **区块 ID**：`section-new-features`  
-**数据**：`newFeatures.items`
+**数据**：`newFeatures.items`（collect 来自 campaign-types；过滤 `strategy === "AiMax"` 的行）
+
+**items 行字段**：
+- collect 事实（勿改）：`strategy`（如 `PerformanceMax`）、`strategyName`（如 `效果最大化`）、`accountStatus`（**boolean**，`true`=已启用）
+- Agent 只填：`optimizerRecommendation`
+- **禁止**用 `feature` 替代 `strategyName`（render 模板会兜底读 `feature`，但 collect 合并校验会告警）
 
 | 策略/功能 (Strategy/Feature) | 账户状态 (Account Status) | 优化师建议 (Senior Optimizer Recommendation) |
 | ---------------------------- | ------------------------- | -------------------------------------------- |

@@ -4,7 +4,7 @@
 
 <p align="center">
   <b>🦞 A free, local, read-only security self-audit for your own OpenClaw agent.</b><br>
-  <sub><i>The claw that checks your claws — scores you A–F, finds the holes, hands you copy-paste fixes.</i></sub>
+  <sub><i>The claw that checks your claws — scores you A–F and reports the holes. Reports only, never touches anything.</i></sub>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 ---
 
 A one-command security self-audit for *your own* OpenClaw agent. It scores your setup
-**A–F**, surfaces the most urgent holes in plain language, and gives copy-paste fixes —
+**A–F** and surfaces the most urgent holes in plain language — reports only, it never fixes or changes anything —
 plus a **shareable grade badge**.
 
 Because you run it on your own agent, there's no "scanning someone else" problem: no
@@ -221,6 +221,18 @@ The built-in `openclaw security audit` and tools like Trent/ClawSec are good —
   C5 flags a group/world-writable openclaw binary dir, its install-tree ancestors (e.g. the npm
   package root — a binary-replacement vector), and writable PATH dirs before it. Sticky dirs like
   `/tmp` are exempt (the sticky bit blocks cross-owner replacement).
+- **B80–B83 — DoS / exposure hardening (advisory):** **B80** flags token/password gateway auth on a
+  non-loopback bind with no `gateway.auth.rateLimit` (brute-force surface); **B81** flags subagent
+  spawn limits raised past the safe defaults (`maxSpawnDepth`/`maxChildrenPerAgent`/`maxConcurrent`)
+  while an untrusted channel can reach the agent (fork-bomb / cost-exhaustion); **B82** flags a
+  `logging.cacheTrace` transcript file persisted without `redactSensitive:"tools"` (secrets at rest);
+  **B83** flags a high `tools.web.fetch.maxRedirects` ceiling (redirect-chain SSRF).
+- **B85 — incident readiness (advisory, HIGH-confidence):** checks OpenClaw's per-session
+  **trajectory sidecar** (`agents/<agent>/sessions/*.trajectory.jsonl`) — the on-disk,
+  attributable record of tool calls — for *presence* (is tool use recorded at all?) and
+  *tamper-resistance* (are the files or their `sessions/` dir group/world-writable, so the
+  incident trail could be rewritten/deleted?). `stat()`-only — it never reads call contents.
+  UNKNOWN when no sidecar exists (disabled/relocated/no runs yet), never a false FAIL.
 - Plus your platform's own **`openclaw security audit`**, run for you and merged in.
 
 **Mapped to OWASP.** Each check is tagged with its **OWASP Top 10 for LLM Applications (2025)**
@@ -267,7 +279,7 @@ The **only** external command it can run is your own, fixed and read-only:
 openclaw security audit --json
 ```
 
-No shell, never `--fix`, with a timeout; skip it entirely with `--no-native`. The entire
+No shell, read-only mode only, with a timeout; skip it entirely with `--no-native`. The entire
 source is in [`clawseccheck/`](clawseccheck/) — read it before you trust it. Amid the ClawHavoc
 malicious-skill wave, an audit skill should prove its own safety; this one does.
 
@@ -295,11 +307,19 @@ Or run the bundled script directly (Linux/macOS):
 
 ```bash
 python3 audit.py                 # human report + shareable card
+python3 audit.py --menu          # the Welcome menu (four common modes)
+python3 audit.py --functions     # the full capability palette (everything it can do)
 python3 audit.py --json          # machine-readable
 python3 audit.py --card          # just the badge
 python3 audit.py --ascii         # plain output (no unicode icons/box)
+python3 audit.py --no-color      # disable ANSI colour (see below)
 python3 audit.py --home ~/.openclaw
 ```
+
+The terminal report is colourised (grade, score-bar, severity icons) **only** when output is
+an interactive terminal. Colour is switched off automatically when the output is piped or
+redirected, by `--no-color`, or by the [`NO_COLOR`](https://no-color.org) environment variable;
+`FORCE_COLOR` forces it on. Saved reports (`--save`) are always written as plain text.
 
 On **Windows** use `python` (or `py`); the script auto-detects consoles that can't render
 unicode and falls back to ASCII, or force it with `--ascii`:
@@ -378,21 +398,14 @@ python3 audit.py --next          # print the next-steps block only (after runnin
 python3 audit.py --json          # includes a "next_actions" array in the JSON envelope
 ```
 
-The recommendations are driven by your actual results — open FAIL findings surface `--prompts`
-first; unvetted third-party skills surface `--vet`; no monitoring detected surfaces `--monitor`;
-and so on. When there is nothing urgent, the block tells you so and suggests the lighter follow-ups
-(trend tracking, grade sharing).
+The recommendations are driven by your actual results — unvetted third-party skills surface
+`--vet`; no monitoring detected surfaces `--monitor`; trifecta exposure surfaces the live
+injection tests; and so on. Every suggestion is a further **check** — never remediation.
 
-**ClawSecCheck never applies a fix or changes your config.** For every open finding, `--prompts`
-gives you a ready copy-paste prompt to hand to your agent (or apply yourself); the change is
-yours to make. Everything stays local.
-
-**`--fix` — paste-ready remediation.** Prints the exact, copy-paste fixes for your current
-FAIL/WARN findings: safe shell commands (e.g. `chmod 600 ~/.openclaw/openclaw.json`) and
-config guidance (`set tools.exec.mode → "ask"`). It is **output only** — ClawSecCheck does not
-apply anything; you review and run it. Config fixes are given as *set this dotted path to this
-value* guidance (so you edit your own `openclaw.json`), never a paste-over JSON blob that could
-clobber your other keys. Also surfaced per finding in `--json` (`"remediation"`) and SARIF (`fixes`).
+**ClawSecCheck is reports-only: it never fixes, suggests fixes, or changes your config.**
+The human report states what is wrong and why; acting on it is yours. For machine consumers,
+each finding still carries structured `"fix"`/`"remediation"` data in `--json` and SARIF —
+data for your own tooling, not something ClawSecCheck renders or offers.
 
 ---
 
@@ -401,13 +414,20 @@ clobber your other keys. Also surfaced per finding in `--json` (`"remediation"`)
 When you run the skill inside OpenClaw, the agent executes `audit.py`, captures its output,
 and shows it to you **right there in the chat** — no terminal, no setup. You see:
 
-1. your **Score / Grade / Lethal Trifecta** ratio,
-2. the **fix list, most urgent first**, in plain language, and
+1. your **Score / Grade**,
+2. **findings grouped by area** (network, privilege, supply chain, secrets, …), most urgent
+   first within each — the Lethal Trifecta shows up here too, as a Privilege & Execution
+   finding, not a separate headline, and
 3. a **shareable card** — grade + score + Lethal Trifecta ratio, safe to post (the findings stay
    private; `--badge` writes the same grade + score as an SVG).
 
 To keep a copy, add `--save report.txt` and ClawSecCheck writes the full report to that file
 (written only when you ask). For automation, `--json` gives a machine-readable result.
+
+Chat rendering is best-effort — the host agent relays and re-composes that text over its own
+channel. The **canonical, deterministic output is always a saved file**: `--save`, `--html`,
+or `--badge grade.svg`. If you need something you can rely on byte-for-byte (or attach as a
+real image, in the badge's case), use the saved file, not the chat paste.
 
 ---
 
@@ -502,10 +522,11 @@ preserving backward compatibility.
 |---|---|
 | Human report | `clawseccheck` |
 | JSON / SARIF output | `clawseccheck --json` · `clawseccheck --sarif results.sarif` |
-| Paste-ready fixes | `clawseccheck --fix` |
 | Highest-risk chains | `clawseccheck --risk-paths` |
-| Vet a skill before install | `clawseccheck --vet ./skill` |
+| Vet anything before install (type autodetected) | `clawseccheck --vet ./target` |
+| Vet a skill / a plugin explicitly | `clawseccheck --vet-skill ./skill` · `clawseccheck --vet-plugin ./plugin` |
 | Vet connected MCP servers | `clawseccheck --vet-mcp` |
+| Reputation gate before download | `clawseccheck --vet-source clawhub:some-skill` |
 | Active injection self-test | `clawseccheck --canary` · `clawseccheck --redteam` · `clawseccheck --dryrun` |
 | Monitor drift / view timeline | `clawseccheck --monitor` · `clawseccheck --watch-log` |
 | Attestation template / feed it back | `clawseccheck --ask` · `clawseccheck --attest attest.json` |
@@ -519,16 +540,18 @@ preserving backward compatibility.
 
 ```bash
 python3 audit.py --next                    # print the "What you can do next" guidance block only
-python3 audit.py --vet ./some-skill        # vet a skill (dir or SKILL.md) BEFORE installing it
+python3 audit.py --vet ./some-target       # vet a skill / plugin / MCP spec BEFORE installing it (type autodetected)
+python3 audit.py --vet-skill ./some-skill  # force the skill engine (dir or SKILL.md)
+python3 audit.py --vet-plugin ./some-plugin # force the plugin engine (root dir or openclaw.plugin.json)
 python3 audit.py --vet ./some-skill --json # same, machine-readable (verdict + findings); --sarif PATH for CI
 python3 audit.py --vet-mcp                 # vet connected MCP servers for supply-chain risk BEFORE trusting them
+python3 audit.py --vet-source npm:some-pkg # reputation gate on a slug/URL/package spec BEFORE anything is fetched
 python3 audit.py --canary                   # active prompt-injection self-test (battle-tested)
 python3 audit.py --redteam                   # a multi-scenario adversarial payload suite (incl. tool-poisoning, MCP-response injection, memory-poisoning, multi-agent, approval-bypass, dirty-to-exfil)
 python3 audit.py --dryrun                     # runtime behavioral test (fake secret + fake tools; sources: email, web, MCP response, memory, subagent)
 python3 audit.py --badge badge.svg          # write a shareable SVG grade badge
 python3 audit.py --html report.html         # standalone HTML report (private — owner view)
 python3 audit.py --verify-self               # SHA-256 of ClawSecCheck's own source (anti-tamper)
-python3 audit.py --prompts                   # a copy-paste "ask your agent to fix it" per finding
 python3 audit.py --trend                     # print local score trend (stored in ~/.clawseccheck/history.jsonl)
 python3 audit.py --percentile                # show where your score sits vs. an offline reference profile
 python3 audit.py --history ~/.clawseccheck/history.jsonl  # custom history file path (default shown)
@@ -541,11 +564,32 @@ python3 audit.py --log audit.log            # also write log to a local file
   first, then shows only the prioritised next-steps list. Same content as the block appended to
   the default report; useful if you want to re-check recommendations without re-reading the full
   report.
-- **`--vet PATH`** runs the B13 malware scan on a skill *before* you install it (point it at a
+- **`--vet TARGET`** vets *anything* before you install it: the artifact type is autodetected by
+  content (a plugin manifest → plugin engine; an MCP server-spec JSON or configured server name →
+  MCP engine; otherwise the skill engine) and printed to stderr as `detected type: …`.
+  `--vet-skill` / `--vet-plugin` / `--vet-mcp` force a specific engine. For a skill it runs the
+  full skill-content security scan —
+  the B13 malware scan **plus** the content-security ring (capability-intent mismatch, cross-agent
+  snooping, silent-instruction / jailbreak / forged-provenance directives) the full audit runs on
+  installed skills (point it at a
   downloaded folder or `SKILL.md`; for a URL, clone it first, then vet the local copy). Verdict:
   SAFE / SUSPICIOUS / DANGEROUS. Add `--json` for a machine-readable verdict + findings (no score —
   vetting isn't a scored audit), or `--sarif PATH` to drop a SARIF file for CI / code scanning;
   exit code is `1` on SUSPICIOUS/DANGEROUS so `--vet … || fail` gates an install pipeline.
+- **`--vet-plugin PATH`** vets an OpenClaw plugin (root dir, `openclaw.plugin.json`, or an
+  installed wrapper project) *before* you install it: manifest sanity, npm lifecycle scripts,
+  floating dependency versions, native-executable stowaways, and skills entries escaping the
+  plugin root — then dispatches bundled skills to the skill engine (they auto-load via
+  `~/.openclaw/plugin-skills/`) and embedded MCP specs to the MCP engine. Plugin runtime code is
+  JS/TS and is disclosed as outside this vet's static depth — review entry files before trusting.
+- **`--vet-source SLUG|URL|PKG`** is the pre-download reputation gate: it judges a source's
+  *identity* — `clawhub:<slug>`, `npm:<pkg>`, `pypi:<pkg>`, `git:host/owner/repo[@ref]`, or a
+  URL — with zero network and nothing fetched. Exact match in the bundled known-compromised
+  catalog → KNOWN-BAD (do not fetch, exit 1); typosquat of a well-known name / raw paste or
+  bare-IP host / plaintext http / unpinned git ref → SUSPICIOUS (fetch only into an isolated
+  quarantine, exit 1); otherwise the honest answer is *no known-bad record* (exit 0) — an
+  identity check can never prove unseen code safe, so proceed via quarantine and run `--vet`
+  on the fetched copy before installing.
 - **`--vet-mcp`** vets every MCP server listed under `mcp.servers.*` for supply-chain risk
   *before* you trust it. Flags unpinned installs (`npx @latest`, unversioned packages), `curl|sh`
   bootstrap, plaintext-HTTP remote transports, env-variable secret passthrough, and overly broad
@@ -556,7 +600,6 @@ python3 audit.py --log audit.log            # also write log to a local file
   agent — if the agent echoes the token, it obeyed an injection (**VULNERABLE**), otherwise
   **RESISTANT**. This is the live "battle-tested" complement to the passive checks.
 - **`--badge PATH`** writes a shields-style SVG (grade + score only) for your README / posts.
-- **`--prompts`** turns every finding into a ready prompt you paste into your agent to fix it.
 - **`--trend`** records the current audit result to a local append-only history file and prints
   a table of past scores with per-run arrows. History stays on your machine only.
 - **`--percentile`** compares your score against a bundled offline reference profile — no network,
@@ -643,12 +686,14 @@ positives on real configs.
 
 ## 🧪 Tests
 
-A security tool should be heavily tested — so it is. The suite is **134 test files / 2,700+ tests**, run on **Python 3.9 and 3.12** in CI alongside `ruff`. Tests are **offline and read-only** (no network, nothing written outside the test's temp dir); every check ships a **clean fixture** (no finding) *and* a **bad fixture** (the finding fires) plus explicit `UNKNOWN`-path coverage; and the release bar is **zero false-positive FAILs on real configs**.
+A security tool should be heavily tested — so it is. The suite is **140+ test files / 2,400+ tests**, run on **Python 3.9 and 3.12** in CI alongside `ruff`. Tests are **offline and read-only** (no network, nothing written outside the test's temp dir); every check ships a **clean fixture** (no finding) *and* a **bad fixture** (the finding fires) plus explicit `UNKNOWN`-path coverage; and the release bar is **zero false-positive FAILs on real configs**.
 
 ```bash
 python3 -m pytest -q       # full suite
 ruff check .               # lint
 ```
+
+The test suite and fixtures live in the [GitHub repo](https://github.com/gl0di/clawseccheck) — they are not bundled in the installed skill package.
 
 ---
 

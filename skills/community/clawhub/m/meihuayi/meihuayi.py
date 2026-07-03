@@ -118,21 +118,21 @@ MONTH_LUNAR = {
     7:"申", 8:"酉", 9:"戌", 10:"亥", 11:"子", 12:"丑",
 }
 
-# 五行旺衰表：直接按月份硬编码，保证准确
-# 规则：同我者旺，我生者相，生我者休，克我者囚，我克者死
+# 五行旺衰表：规则「同我者旺，我生者相，生我者休，克我者囚，我克者死」
+# 逐月推导，键=地支名，顺序：木火土金水
 WX_MONTH_STATE = {
-    1:  {"木":"旺", "火":"相", "土":"死", "金":"囚", "水":"休"},  # 正月 寅
-    2:  {"木":"旺", "火":"相", "土":"死", "金":"囚", "水":"休"},  # 二月 卯
-    3:  {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 三月 辰
-    4:  {"木":"死", "火":"旺", "土":"相", "金":"囚", "水":"休"},  # 四月 巳
-    5:  {"木":"死", "火":"旺", "土":"相", "金":"囚", "水":"休"},  # 五月 午
-    6:  {"木":"死", "火":"休", "土":"旺", "金":"相", "水":"囚"},  # 六月 未
-    7:  {"木":"死", "火":"囚", "土":"休", "金":"旺", "水":"相"},  # 七月 申
-    8:  {"木":"死", "火":"囚", "土":"休", "金":"旺", "水":"相"},  # 八月 酉
-    9:  {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 九月 戌
-    10: {"木":"相", "火":"死", "土":"囚", "金":"休", "水":"旺"},  # 十月 亥
-    11: {"木":"相", "火":"死", "土":"囚", "金":"休", "水":"旺"},  # 十一月 子
-    12: {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 十二月 丑
+    "寅": {"木":"旺", "火":"相", "土":"死", "金":"囚", "水":"休"},  # 寅月(木)
+    "卯": {"木":"旺", "火":"相", "土":"死", "金":"囚", "水":"休"},  # 卯月(木)
+    "辰": {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 辰月(土)
+    "巳": {"木":"休", "火":"旺", "土":"相", "金":"死", "水":"囚"},  # 巳月(火)
+    "午": {"木":"休", "火":"旺", "土":"相", "金":"死", "水":"囚"},  # 午月(火)
+    "未": {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 未月(土)
+    "申": {"木":"死", "火":"囚", "土":"休", "金":"旺", "水":"相"},  # 申月(金)
+    "酉": {"木":"死", "火":"囚", "土":"休", "金":"旺", "水":"相"},  # 酉月(金)
+    "戌": {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 戌月(土)
+    "亥": {"木":"相", "火":"死", "土":"囚", "金":"休", "水":"旺"},  # 亥月(水)
+    "子": {"木":"相", "火":"死", "土":"囚", "金":"休", "水":"旺"},  # 子月(水)
+    "丑": {"木":"囚", "火":"休", "土":"旺", "金":"相", "水":"死"},  # 丑月(土)
 }
 
 # 时辰对照表：地支 → 时辰序号（子=1 ... 亥=12）
@@ -195,39 +195,97 @@ class PlumBlossom:
         return find_trigram(bian_gua_lines[3:]), find_trigram(bian_gua_lines[:3])
 
     def _wuxing_relation(self, body_elem: str, use_elem: str) -> Tuple[str, str]:
-        if OVERCOMING.get(body_elem) == use_elem: return '用克体', '凶'
+        if OVERCOMING.get(body_elem) == use_elem: return '体克用', '吉'  # 体克用
         if GENERATING.get(use_elem) == body_elem: return '用生体', '吉'
         if GENERATING.get(body_elem) == use_elem: return '体生用', '耗'
         if body_elem == use_elem:                  return '体用比和', '吉'
-        return '体克用', '吉'
+        return '用克体', '凶'  # 用克体
 
     def _get_ganzhi(self, year: int, month: int, day: int, hour: int) -> Dict:
+        """干支推算（精准版）。日干支基于 2000-01-07 甲子日迭代；月支用节气校正。"""
         gan = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸']
         zhi = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥']
-        year_g  = gan[(year - 4) % 10]
-        year_z  = zhi[(year - 4) % 12]
-        month_g = gan[(year * 2 + month + 2) % 10]
-        month_z = zhi[(month + 1) % 12]
-        day_num = (year - 2000) * 365 + month * 30 + day
-        day_g   = gan[(day_num + 6) % 10]
-        day_z   = zhi[(day_num + 4) % 12]
-        hour_g  = gan[(day_num * 2 + hour + 2) % 10]
-        hour_z  = zhi[hour % 12]
+
+        # ── 年干支 ──
+        year_g = gan[(year - 4) % 10]
+        year_z = zhi[(year - 4) % 12]
+
+        # ── 月支（节气校正） ──
+        # 月支以节气为界，立春→寅月，惊蛰→卯月，…小寒→丑月
+        # 节气用近似日（±1天误差可接受）
+        _SOLAR_TERMS = [  # (月, 日, 地支名)
+            (1, 5, '丑'), (2, 4, '寅'), (3, 5, '卯'), (4, 5, '辰'),
+            (5, 5, '巳'), (6, 5, '午'), (7, 7, '未'), (8, 7, '申'),
+            (9, 7, '酉'), (10, 8, '戌'), (11, 7, '亥'), (12, 7, '子'),
+        ]
+        month_zhi = None
+        for i, (st_m, st_d, zhi_name) in enumerate(_SOLAR_TERMS):
+            next_st = _SOLAR_TERMS[(i + 1) % 12]
+            if (month == st_m and day >= st_d) or \
+               (month == next_st[0] and day < next_st[1]):
+                month_zhi = zhi_name
+                month_branch_idx = zhi.index(month_zhi)
+                break
+        if month_zhi is None:
+            # fallback（极少触发）
+            month_branch_idx = (month + 1) % 12
+            month_zhi = zhi[month_branch_idx]
+
+        # ── 月干 ──
+        # 甲/己年正月丙寅, 乙/庚年正月戊寅, 丙/辛年正月庚寅, 丁/壬年壬寅, 戊/癸年甲寅
+        year_stem_idx = (year - 4) % 10   # 0=甲…4=戊, 5=己…9=癸
+        month_stem_start = ((year_stem_idx % 5) * 2 + 2) % 10  # 寅月起始干
+        # 寅月 branch_idx=2 → offset 0
+        month_offset = (zhi.index(month_zhi) - 2) % 12
+        month_g = gan[(month_stem_start + month_offset) % 10]
+
+        # ── 日干支（精确：从 2000-01-07 甲子日起算）──
+        from datetime import date
+        ref = date(2000, 1, 7)  # 甲子日
+        target = date(year, month, day)
+        delta = (target - ref).days
+        day_g = gan[delta % 10]
+        day_z = zhi[delta % 12]
+
+        # ── 时干支 ──
+        shichen_zhi, shichen_num = _get_shichen(hour)
+        day_stem_idx = delta % 10
+        # 甲/己日起甲子, 乙/庚日起丙子, 丙/辛日起戊子, 丁/壬日起庚子, 戊/癸日起壬子
+        hour_stem_start = (day_stem_idx % 5) * 2
+        hour_g = gan[(hour_stem_start + shichen_num - 1) % 10]
+
         return {
             'year':  year_g  + year_z,
-            'month': month_g + month_z,
+            'month': month_g + month_zhi,
             'day':   day_g   + day_z,
-            'hour':  hour_g  + hour_z,
+            'hour':  hour_g  + shichen_zhi,
         }
 
     # ── 两种起卦方式 ──────────────────────────
     def time_divination(self, year: int, month: int, day: int, hour: int) -> Dict:
-        """① 时间起卦：年月日之和除以8取余→上卦，年月日时之和除以8取余→下卦，年月日时之和除以6取余→动爻"""
-        upper = self._mod8(year + month + day)
-        lower = self._mod8(year + month + day + hour)
-        mv    = self._mod6(year + month + day + hour)
+        """① 时间起卦（月日数用农历）：
+        上卦:(年支数+农历月+农历日)÷8
+        下卦:(年支数+农历月+农历日+时支数)÷8
+        动爻:(年支数+农历月+农历日+时支数)÷6
+        """
+        from zhdate import ZhDate
+        from datetime import datetime as dt
+        greg = dt(year, month, day)
+        lunar = ZhDate.from_datetime(greg)
+        lunar_year  = lunar.lunar_year
+        lunar_month = lunar.lunar_month
+        lunar_day   = lunar.lunar_day
+
+        year_zhi = (lunar_year - 4) % 12 + 1   # 农历年支：子=1 … 亥=12
+        _, shichen_num = _get_shichen(hour)     # 时辰序数
+
+        upper = self._mod8(year_zhi + lunar_month + lunar_day)
+        lower = self._mod8(year_zhi + lunar_month + lunar_day + shichen_num)
+        mv    = self._mod6(year_zhi + lunar_month + lunar_day + shichen_num)
+
+        # ganzhi / 旺衰 仍用公历计算
         return self._build_result(upper, lower, mv,
-            "时间", None,
+            "时间", f"农历{lunar_month}月{lunar_day}日",
             month, year, month, day, hour)
 
     def number_divination(self, number: int, month: int = None) -> Dict:
@@ -247,17 +305,18 @@ class PlumBlossom:
         upper = self._mod8(d1)
         lower = self._mod8(d2 + d3)
 
-        now = datetime.datetime.now()
-        _, shichen_num = _get_shichen(now.hour)
+        bjt = datetime.datetime.now(
+            datetime.timezone(datetime.timedelta(hours=8)))
+        _, shichen_num = _get_shichen(bjt.hour)
         mv = self._mod6(d1 + d2 + d3 + shichen_num)
 
         if month is None:
-            month = now.month
+            month = bjt.month
 
         return self._build_result(
             upper, lower, mv,
             "数字", str(number),
-            month, now.year, now.month, now.day, now.hour
+            month, bjt.year, bjt.month, bjt.day, bjt.hour
         )
 
     def _build_result(self, upper: int, lower: int, mv: int,
@@ -290,7 +349,7 @@ class PlumBlossom:
 
         return {
             'method': method, 'method_detail': method_detail,
-            'month': month, 'year': year, 'month2': month2,
+            'month': ganzhi['month'][-1], 'year': year, 'month2': month2,
             'day': day, 'hour': hour,
             'ben':  {'upper': ben_upper, 'lower': ben_lower,
                      'mv': mv, 'gua': (upper, lower)},
@@ -352,7 +411,11 @@ class PlumBlossom:
         bian_sym       = get_gua_symbol(bian_u, bian_l)
         bian_full_name = get_gua_full_name(bian_u, bian_l)
         bian_ci        = get_gua_ci(bian_u, bian_l)
-        bian_rel, _    = self._wuxing_relation(bi['upper']['element'], bi['lower']['element'])
+        # 变卦体用：动爻在下卦(mv≤3)则体=上卦用=下卦，动爻在上卦(mv≥4)则体=下卦用=上卦
+        if b['mv'] <= 3:
+            bian_rel, _ = self._wuxing_relation(bi['upper']['element'], bi['lower']['element'])
+        else:
+            bian_rel, _ = self._wuxing_relation(bi['lower']['element'], bi['upper']['element'])
         lines.append(f"[变卦] {bian_sym} {bian_full_name}（{bian_rel}）")
         lines.append(f"        「{bian_ci}」")
 
@@ -372,13 +435,13 @@ class PlumBlossom:
 if __name__ == '__main__':
     import sys
     pb  = PlumBlossom()
-    now = datetime.datetime.now()
+    bjt = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
 
     if len(sys.argv) >= 2:
         cmd = sys.argv[1]
         if cmd == 'time':
             question = sys.argv[2] if len(sys.argv) >= 3 else ""
-            r = pb.time_divination(now.year, now.month, now.day, now.hour)
+            r = pb.time_divination(bjt.year, bjt.month, bjt.day, bjt.hour)
             print(pb.format_output(r, question))
         elif cmd == 'num' and len(sys.argv) >= 3:
             number   = int(sys.argv[2])

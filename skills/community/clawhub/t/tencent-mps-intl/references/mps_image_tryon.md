@@ -1,8 +1,9 @@
-# Image Try-On Parameters & Examples — `mps_image_tryon.py`
+# Image Try-On Parameters and Examples — `mps_image_tryon.py`
 
-**Function**: Based on a **model image** and a **clothing image**, calls the MPS `ProcessImage` API to initiate an AI try-on task, polls for results via `DescribeImageTaskDetail`, and finally returns the output COS path.
+**Feature**: Based on a **model image** and **clothing image(s)**, calls the MPS `ProcessImage` API to initiate an AI try-on task (`ImageTask.AiTryOnConfig`),
+polls via `DescribeImageTaskDetail` for results, and returns the output path or presigned download URL.
 
-Applicable scenarios: e-commerce clothing try-on, product showcase image generation, advertising creative asset generation, clothing effect preview, etc.
+Applicable scenarios: E-commerce clothing try-on, product display image generation, ad creative material generation, clothing effect preview, etc.
 
 ---
 
@@ -11,134 +12,124 @@ Applicable scenarios: e-commerce clothing try-on, product showcase image generat
 ### Input Parameters
 
 | Parameter | Description |
-|-----------|-------------|
-| `--model-url` | Model image URL (mutually exclusive with `--model-cos-key`) |
-| `--model-cos-key` | Model image COS object key (e.g., `/input/model.jpg`), mutually exclusive with `--model-url` |
-| `--model-cos-bucket` | Model image COS Bucket (defaults to `TENCENTCLOUD_COS_BUCKET`) |
-| `--model-cos-region` | Model image COS Region (defaults to `TENCENTCLOUD_COS_REGION`) |
-| `--cloth-url` | Clothing image URL, can be specified 1–2 times; can be mixed with `--cloth-cos-key` |
-| `--cloth-cos-key` | Clothing image COS object key, can be specified 1–2 times; can be mixed with `--cloth-url` |
-| `--cloth-cos-bucket` | Clothing image COS Bucket (defaults to `TENCENTCLOUD_COS_BUCKET`) |
-| `--cloth-cos-region` | Clothing image COS Region (defaults to `TENCENTCLOUD_COS_REGION`) |
+|------|------|
+| `--model-url` | Model image URL (**mutually exclusive** with `--model-cos-key`) |
+| `--model-cos-key` | Model image COS object Key (e.g., `/input/model.jpg`), mutually exclusive with `--model-url` |
+| `--model-cos-bucket` | Model image COS Bucket (default reads `TENCENTCLOUD_COS_BUCKET`) |
+| `--model-cos-region` | Model image COS Region (default reads `TENCENTCLOUD_COS_REGION`) |
+| `--cloth-url` | Clothing image URL, can be repeated 1-4 times; can be mixed with `--cloth-cos-key` |
+| `--cloth-cos-key` | Clothing image COS object Key, can be repeated 1-4 times; can be mixed with `--cloth-url` |
+| `--cloth-cos-bucket` | Clothing image COS Bucket (default reads `TENCENTCLOUD_COS_BUCKET`) |
+| `--cloth-cos-region` | Clothing image COS Region (default reads `TENCENTCLOUD_COS_REGION`) |
 
-> **Note**: You must specify either `--model-url` or `--model-cos-key` for the model image; at least one clothing image must be specified (`--cloth-url` or `--cloth-cos-key`). They can be mixed — for example, using a URL for the model image and COS for the clothing image.
+> **Note**: The model image must specify one of `--model-url` or `--model-cos-key`; 1-4 clothing images (`--cloth-url` or `--cloth-cos-key`). Both can be mixed, e.g., URL for model image and COS for clothing image.
 
 ### Try-On Parameters
 
 | Parameter | Default | Description |
-|-----------|---------|-------------|
-| `--schedule-id` | `30100` | Try-on scene ID: `30100` = regular clothing, `30101` = underwear |
-| `--ext-prompt` | — | Additional prompt, can be specified multiple times (e.g., `"shirt buttons open"`) |
-| `--random-seed` | — | Random seed; a fixed seed produces consistent style |
-| `--resource-id` | — | Optional resource ID (business-specific resource) |
+|------|--------|------|
+| `--model` | `WAND-tryon-1.0-flash` | Try-on model: `WAND-tryon-1.0-lite` (lightweight) / `WAND-tryon-1.0-flash` (fast) / `WAND-tryon-1.0-pro` (professional) |
+| `--prompt` | — | Try-on instruction (optional; uses built-in default when empty) |
+| `--resource-id` | — | Optional resource ID (business-side exclusive resource) |
 
 ### Output Parameters
 
 | Parameter | Default | Description |
-|-----------|---------|-------------|
+|------|--------|------|
+| `--resolution` | `1K` | Output resolution: `1K` / `2K` / `4K` |
 | `--output-bucket` | `TENCENTCLOUD_COS_BUCKET` | Output COS Bucket |
 | `--output-region` | `TENCENTCLOUD_COS_REGION` | Output COS Region |
 | `--output-dir` | `/output/tryon/` | Output directory |
 | `--output-path` | — | Custom output path (must include file extension) |
-| `--format` | `JPEG` | Output format: `JPEG` / `PNG` |
-| `--image-size` | `2K` | Output size: `1K` / `2K` / `4K` |
-| `--quality` | `85` | Output quality 1–100 |
 
 ### Task Control
 
 | Parameter | Description |
-|-----------|-------------|
-| `--no-wait` | Submit the task only without waiting for results (exits after returning TaskId) |
+|------|------|
+| `--no-wait` | Only submit task, do not wait for result (exit after returning TaskId) |
+| `--dry-run` | Only print request parameters, do not actually call the API |
 | `--poll-interval` | Polling interval in seconds (default 10) |
 | `--timeout` | Maximum wait time in seconds (default 600) |
-| `--region` | MPS API access region (defaults to `TENCENTCLOUD_API_REGION`, otherwise `ap-guangzhou`) |
+| `--region` | MPS API access region (default reads `TENCENTCLOUD_API_REGION`, otherwise `ap-guangzhou`) |
 
 ---
 
 ## Mandatory Rules
 
-1. **`--schedule-id 30101` (underwear scene) only accepts 1 clothing image** — passing multiple images will cause an error and exit.
-2. URL inputs must be publicly accessible; COS inputs require that the MPS service has permission to read files from the corresponding Bucket.
-3. Task `Status=FINISH` does not necessarily mean success — you must also check whether `ErrMsg` is empty.
-4. The script waits for task completion by default; to only submit and obtain the TaskId, add `--no-wait`.
-5. To manually check try-on task status, use `mps_get_image_task.py` — do not use `mps_get_video_task.py`.
+1. **1-4 clothing images**; more than 4 will cause an error and exit.
+2. URL input must be publicly accessible; COS input requires that the MPS service has permission to read files in the corresponding Bucket.
+3. Task `Status=FINISH` does not equal success; you must also check whether `ErrMsg` is empty.
+4. The script waits for task completion by default; if you only need to submit and get TaskId, add `--no-wait`.
+5. Use `mps_get_image_task.py` to manually query try-on task status; do not use `mps_get_video_task.py`.
+6. The new API uses `ImageTask.AiTryOnConfig`; `ScheduleId` is no longer used to distinguish scenarios.
 
 ---
 
 ## Example Commands
 
 ```bash
-# Simplest usage: model image + 1 clothing image (URL, wait for result)
-python scripts/mps_image_tryon.py \
+# Minimal usage: model image + 1 clothing image (URL, default COS output)
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
     --cloth-url "https://example.com/cloth.jpg"
+
+# Specify model
+python3 scripts/mps_image_tryon.py \
+    --model-url "https://example.com/model.jpg" \
+    --cloth-url "https://example.com/cloth.jpg" \
+    --model WAND-tryon-1.0-pro
 
 # Model image using COS path input
-python scripts/mps_image_tryon.py \
+python3 scripts/mps_image_tryon.py \
     --model-cos-key "/input/model.jpg" \
     --cloth-url "https://example.com/cloth.jpg"
 
-# Both model image and clothing image using COS path input (using default Bucket from environment variables)
-python scripts/mps_image_tryon.py \
-    --model-cos-key "/input/model.jpg" \
-    --cloth-cos-key "/input/cloth.jpg"
-
-# Clothing image using COS with a non-default Bucket
-python scripts/mps_image_tryon.py \
-    --model-url "https://example.com/model.jpg" \
-    --cloth-cos-key "/input/cloth.jpg" \
-    --cloth-cos-bucket mybucket-125xxx --cloth-cos-region ap-shanghai
-
-# Multiple clothing images (front + back, improves try-on quality)
-python scripts/mps_image_tryon.py \
+# Multiple clothing images (1-4 images)
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
     --cloth-url "https://example.com/cloth-front.jpg" \
     --cloth-url "https://example.com/cloth-back.jpg"
 
-# Underwear scene (only supports 1 clothing image)
-python scripts/mps_image_tryon.py \
-    --model-url "https://example.com/model.jpg" \
-    --cloth-url "https://example.com/underwear.jpg" \
-    --schedule-id 30101
-
-# Additional prompt + fixed random seed
-python scripts/mps_image_tryon.py \
+# Additional prompt
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
     --cloth-url "https://example.com/cloth.jpg" \
-    --ext-prompt "shirt buttons open" \
-    --random-seed 48
+    --prompt "Change the shirt to red"
 
-# Specify output format and size
-python scripts/mps_image_tryon.py \
+# Specify resolution + model
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
     --cloth-url "https://example.com/cloth.jpg" \
-    --format PNG --image-size 4K
+    --model WAND-tryon-1.0-pro --resolution 4K
 
-# Submit task only without waiting for result (returns TaskId)
-python scripts/mps_image_tryon.py \
+# Submit task only, do not wait for result
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
     --cloth-url "https://example.com/cloth.jpg" \
     --no-wait
 
-# Manually check try-on task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
-
-# Download try-on result to local after task completion
-# Step 1: run try-on task (result is saved to COS output path)
-python scripts/mps_image_tryon.py \
+# Specify COS output Bucket and directory
+python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
-    --cloth-url "https://example.com/cloth.jpg"
-# Step 2: download output from COS to local file
-python scripts/mps_cos_download.py \
-    --cos-input-key /output/tryon/result.jpeg \
-    --local-file /tmp/tryon_result.jpg
+    --cloth-url "https://example.com/cloth.jpg" \
+    --output-bucket mybucket-125xxx --output-region ap-shanghai \
+    --output-dir /custom/output/
+
+# Preview request parameters (do not actually submit)
+python3 scripts/mps_image_tryon.py \
+    --model-url "https://example.com/model.jpg" \
+    --cloth-url "https://example.com/cloth.jpg" \
+    --dry-run
+
+# Manually query try-on task status
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---
 
 ## Output Example
 
-JSON output after task completion:
+Task completion output JSON:
 
 ```json
 {
@@ -163,10 +154,11 @@ JSON output after task completion:
 ## API Reference
 
 | API | Description |
-|-----|-------------|
-| `ProcessImage` | Submit a try-on task with `ScheduleId=30100` (regular clothing) or `30101` (underwear) |
+|------|------|
+| `ProcessImage` | Submit AI try-on task, `ImageTask.AiTryOnConfig` |
 | `DescribeImageTaskDetail` | Query task status and output results |
 
 Official documentation:
-- [Process Image](https://cloud.tencent.com/document/product/862/112896)
-- [Describe Image Task Detail](https://cloud.tencent.com/document/api/862/118509)
+- [ProcessImage](https://cloud.tencent.com/document/product/862/112896)
+- [DescribeImageTaskDetail](https://cloud.tencent.com/document/api/862/118509)
+- [AiTryOnConfig Parameter Description](https://cloud.tencent.com/document/api/862/37615#AiTryOnConfig)

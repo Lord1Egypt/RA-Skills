@@ -139,7 +139,7 @@ while [[ -n "$CID" && "$CID" != "null" && $COUNT -lt $LIMIT ]]; do
 
   # Download via authenticated API (handles decompression server-side).
   EXPERIENCE=$(curl -sS --fail \
-    "$AD_DOWNLOAD_API/downloads/$CID" \
+    "$AD_DOWNLOAD_URL/downloads/$CID" \
     -H "Authorization: Bearer $AUTO_DRIVE_API_KEY" \
     -H "X-Auth-Provider: apikey" 2>/dev/null \
     || true)

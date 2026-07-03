@@ -92,7 +92,7 @@ class TestBypassScarcity(unittest.TestCase):
         self.assertEqual(sc["action"], "needs_user_input", "前置条件：1.1 应触发 HIL")
 
         # 调用 write_single_node with bypass_scarcity=True
-        result = write_single_node(TEST_PAPER, "1.1", mock_llm, bypass_scarcity=True)
+        result = write_single_node(TEST_PAPER, "1.1", bypass_scarcity=True)
         self.assertTrue(result["ok"])
         # 不应该返回 needs_user_input，应该继续执行（completed 或 pending_review）
         self.assertIn(result["action"], ["completed", "pending_review"],
@@ -110,7 +110,7 @@ class TestBypassScarcity(unittest.TestCase):
         sc = check_info_scarcity(TEST_PAPER, "1.1")
         self.assertEqual(sc["action"], "needs_user_input", "前置条件：1.1 应触发 HIL")
 
-        result = write_single_node(TEST_PAPER, "1.1", mock_llm, bypass_scarcity=False)
+        result = write_single_node(TEST_PAPER, "1.1", bypass_scarcity=False)
         self.assertTrue(result["ok"])
         self.assertEqual(result["action"], "needs_user_input",
                          f"默认应返回 needs_user_input，但 got {result['action']}")
@@ -119,7 +119,7 @@ class TestBypassScarcity(unittest.TestCase):
     def test_apply_user_decision_then_bypass(self):
         """测试 3：apply_user_decision 后 bypass_scarcity=True 能正常写作（B-1 修复主路径）"""
         # 第一次：触发 HIL
-        r1 = write_single_node(TEST_PAPER, "1.1", mock_llm)
+        r1 = write_single_node(TEST_PAPER, "1.1")
         self.assertEqual(r1["action"], "needs_user_input")
 
         # 用户决策 2（AI 自行生成）
@@ -127,7 +127,7 @@ class TestBypassScarcity(unittest.TestCase):
         self.assertEqual(r_dec["action"], "proceed")
 
         # 第二次：bypass_scarcity=True → 跳过检查，正常生成
-        r2 = write_single_node(TEST_PAPER, "1.1", mock_llm, bypass_scarcity=True)
+        r2 = write_single_node(TEST_PAPER, "1.1", bypass_scarcity=True)
         self.assertIn(r2["action"], ["completed", "pending_review"],
                       f"决策后 bypass_scarcity=True 应能继续写作，但 got action={r2['action']}")
 
@@ -158,7 +158,7 @@ class TestOrchestratePhase2HIL(unittest.TestCase):
     def test_orchestrate_phase2_returns_needs_user_input(self):
         """测试 4：orchestrate_phase2 收到 needs_user_input 时单独返回，不进 pending_review"""
         # orchestrate_phase2 调用 write_single_node
-        result = orchestrate_phase2(TEST_PAPER, llm_func=mock_llm)
+        result = orchestrate_phase2(TEST_PAPER)
 
         # 应该返回 needs_user_input action，而不是 wait_for_user
         self.assertTrue(result.get("ok"))

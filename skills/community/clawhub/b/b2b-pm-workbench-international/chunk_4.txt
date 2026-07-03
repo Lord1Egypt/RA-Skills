@@ -1,0 +1,361 @@
+### Stage 9: Development Collaboration
+
+**Role Hat: Project Manager**
+
+#### Standard Development Collaboration SOP
+
+```
+Requirements Review → Technical Design Review → Task Breakdown (WBS) → Sprint Planning →
+Daily Standup → Progress Tracking → QA Testing → UAT → Release → Retrospective
+```
+
+#### Bi-Weekly Iteration Cadence (B2B Standard)
+
+```
+Day 1-2:  PRD writing / refinement
+Day 3:    Requirements Review Meeting (Product + Dev + QA + UED)
+Day 4-6:  Technical Design
+Day 7:    Technical Design Review + Task Breakdown
+Day 8-13: Development (including integration)
+Day 12-15: Testing
+Day 16:   Product Acceptance (UAT)
+Day 17:   Release Preparation (release notes / help docs / canary strategy)
+Day 18:   Full Release
+Day 19-20: Online Monitoring + Retrospective
+```
+
+#### B2B Requirements Review Checklist
+
+```
+□ Every role considered? (Not just core users)
+□ Exception flows complete? (Timeout / Reject / Withdraw / Permission Denied / Concurrency Conflicts)
+□ Large data volume performance? (100K+ list records / 1000+ batch operations)
+□ Data consistency? (Transaction boundaries / distributed consistency)
+□ Legacy data compatibility / migration plan?
+□ Permission control covers all operations? (Read / Write / Batch / Export / Approve)
+□ Audit logs cover all CUD operations?
+□ Notifications / reminders triggered correctly?
+□ Multi-language / multi-timezone / multi-currency?
+□ Mobile approval adaptation?
+□ Any technical risks requiring pre-research?
+```
+
+#### Acceptance Criteria (AC) Writing Format
+
+```
+Format: Given [precondition] When [user action] Then [expected result]
+
+Example:
+AC-001: Given the user is a Purchase Requester with create permission
+        When the user fills all required fields and clicks [Submit]
+        Then the system creates a purchase request record, status = "In Approval",
+             triggers the approval flow, and the next node approver receives a notification
+
+AC-002: Given the purchase request status is "In Approval" and current approver is John
+        When John clicks [Reject] and fills in rejection reason
+        Then the purchase request status becomes "Rejected",
+             the requester receives a rejection notification,
+             and the requester can edit and resubmit
+```
+
+#### Pre-Release Checklist
+
+```
+□ All P0 test cases passed
+□ All P0 bugs fixed
+□ Data migration scripts ready (if applicable)
+□ Rollback plan ready
+□ Help documentation updated
+□ Release announcement prepared
+□ Customer notification sent (if affecting existing customers)
+□ Monitoring alerts configured
+□ Canary release plan confirmed
+```
+
+---
+
+### Stage 10: Data & Growth
+
+**Role Hat: Data Strategist**
+
+#### B2B Core Metrics System (5-Level Pyramid)
+
+```
+L1: North Star Metric (1)
+    └── L2: Level 1 Metrics (4-6)
+         ├── Acquisition: MQL → SQL → Win Rate → CAC → CAC Payback
+         ├── Activation: Onboarding Completion Rate → Time to First Value
+         ├── Usage: DAU/WAU/MAU → Feature Adoption Rate → Stickiness Coefficient
+         ├── Revenue: ARR/MRR → ARPU → LTV → NRR → NDR
+         └── Quality: NPS/CSAT/CES → Churn Rate
+              └── L3: Level 2 Metrics (10-20, operational level)
+                   └── L4: Level 3 Metrics (diagnostic level, as needed)
+```
+
+#### B2B North Star Metric Selection Guide
+
+| Product Type | Common North Star | Why |
+|-------------|-------------------|-----|
+| SaaS Collaboration | % of WAUs completing core tasks | Measures team dependency |
+| Marketplace / Platform | GMV / Match Success Rate | Measures platform value |
+| Tool-type | DAU × Core Feature Usage Depth | Measures usage stickiness |
+| Platform-type | API Call Volume × Success Rate | Measures service value |
+| AI Product | AI Adoption Rate × Task Completion Rate | Measures actual AI value |
+
+#### B2B-Specific Metrics Deep Dive
+
+| Metric | Formula | Healthy Benchmark | What to Watch |
+|--------|---------|-------------------|---------------|
+| **NRR** | (Beginning ARR + Expansion - Churn - Contraction) / Beginning ARR | >100% Good, >120% Excellent | Customer value growth |
+| **NDR** | Same as NRR but excludes new customers | >100% | Existing customer health |
+| **TTV** | Days from contract signing to first value realization | <7 days Excellent | Onboarding efficiency |
+| **Feature Adoption Rate** | Accounts using feature / Total active accounts | >30% Healthy | Feature penetration |
+| **CES** | Customer Effort Score (1-7) | <3 | Product ease of use |
+| **Expansion MRR** | MRR from existing customer upsells | >20% of total | Upsell capability |
+| **CAC Payback** | CAC / Monthly ARPU (months) | <18 months | Acquisition efficiency |
+| **Logo Churn vs Rev Churn** | Customer count churn vs Revenue churn | Logo <5% annual, Rev <10% annual | Large vs small customer churn |
+
+#### B2B Product Stage & Metric Focus
+
+| Stage | ARR Range | Core Metrics | Focus |
+|-------|-----------|-------------|-------|
+| **PMF Exploration** | <$100K | WAU, NPS, Activation | Find PMF, survive |
+| **PMF Validation** | $100K-$1M | MRR, Churn, LTV/CAC | Validate reproducibility |
+| **Efficiency Expansion** | $1M-$10M | MRR efficiency, NRR, Burn | Efficient growth |
+| **Scale** | $10M+ | ARR + Rule of 40, FCF | Sustainable profitability |
+
+#### Dashboard Design Principles
+
+```
+1. One screen view (no scrolling needed)
+2. 7-10 core metrics, no more
+3. With comparisons (vs last week / last month / same period last year)
+4. With alert thresholds (Red / Yellow / Green)
+5. With drill-down entry (click to see details)
+6. Auto-push weekly reports
+```
+
+---
+
+### Stage 11: Commercialization & GTM
+
+**Role Hat: Commercialization Operator + Product Evangelist**
+
+#### B2B Pricing Strategy Deep Dive
+
+##### Pricing Model Decision Tree
+
+```
+What is your product?
+├── Collaborative (value from multi-user) → Per User / Per Seat
+├── Large feature differentiation → Feature Tiered (Good/Better/Best)
+├── Usage-driven → Per Usage / API Call / Storage
+├── Marketplace / Platform → GMV Take Rate / Fixed Rate
+└── Hybrid → Base Fee + Usage Fee or Base Fee + Feature Tiers
+```
+
+##### Package Design Iron Rules
+
+```
+1. 3 packages optimal: Basic / Professional (Recommended) / Enterprise
+2. Middle package is the anchor: highest margin, most recommended
+3. Enterprise must have "Contact Sales": lead capture entry, let large customers reach out
+4. Free Trial > Free Plan
+5. Annual payment at 20% discount is standard (reduce churn, improve cash flow)
+6. Pricing psychology: $9,999 > $10,000
+```
+
+##### Pricing Number Strategy
+
+```
+Monthly → Annual discount: Monthly × 10 (≈17% off)
+Volume pricing: More users, lower marginal unit price
+Anchoring effect: Show high Enterprise price, make Professional "look like great value"
+Pricing page design: Recommended package highlighted ("Most Popular" badge), feature comparison table, FAQ section
+```
+
+#### GTM Strategy One-Pager
+
+```
+1. ICP (Ideal Customer Profile): Target customer persona
+2. Value Proposition in One Sentence
+3. Pricing & Packages
+4. Sales Channels: Direct / Channel / PLG / Hybrid
+5. Sales Material Package: One-pager / Whitepaper / Demo Script / Competitive Comparison / ROI Calculator
+6. Onboarding Process (Customer 90-Day Health Plan)
+7. Marketing Plan
+8. Key Milestones & Targets
+```
+
+#### Sales Enablement Package Full Checklist
+
+| Material | Format | Purpose |
+|----------|--------|---------|
+| Product One-Pager | PDF/A4 | Sales explains product in 30 seconds |
+| Competitive Comparison Table | Excel | Handle customer side-by-side comparisons |
+| Demo Standard Script | Markdown | Standardized demo flow |
+| FAQ Handbook | Markdown | Handle 90% of customer questions |
+| ROI Calculator | Excel | Help customers do the math |
+| Customer Success Stories | PPT/PDF | Build trust |
+| Technical Whitepaper | PDF | Deep understanding for technical buyers |
+| Objection Handling Handbook | Markdown | Handle rejections and doubts |
+
+---
+
+### Stage 12: Operations & Iteration
+
+**Role Hat: Customer Success Partner + Product Evangelist**
+
+#### B2B Customer Lifecycle Management
+
+```
+Acquisition → Onboarding → Adoption → Value → Expansion → Renewal/Advocacy
+  ↑                                                          ↓
+  └────────────────── Continuous Feedback Loop ──────────────────────────┘
+```
+
+#### Customer Health Score Model
+
+```
+Customer Health Score = 
+  Product Usage Depth × 0.30 +
+  Key Contact Activity × 0.20 +
+  NPS/CSAT × 0.15 +
+  Ticket Frequency (inverse) × 0.15 +
+  Expansion Signals × 0.10 +
+  Contract Remaining Time × 0.10
+
+Red / Yellow / Green Thresholds:
+- Green (>75): Healthy, regular cadence
+- Yellow (50-75): Warning, CSM proactively intervenes
+- Red (<50): High risk, escalate, develop rescue plan
+```
+
+#### B2B Product Operations Framework
+
+```
+Product Operations 4 Major Modules:
+├── Customer Operations: Onboarding → Adoption → Regular Value Reviews → Renewal
+├── Feature Operations: Feature usage analysis → Low adoption investigation → Training/Optimization → Retirement
+├── Content Operations: Help docs / Best practices / Product blog / Training videos
+└── Data Operations: Metric monitoring → Anomaly alerts → Data insights → Drive iteration
+```
+
+---
+
+## Advanced Workflow Systems
+
+> The following are standard workflows, meeting cadences, and OKR systems for advanced B2B PMs.
+
+### 1. Dual-Track Agile
+
+**Track 1: Discovery** — Continuously explore "what to build"
+- User interviews → Opportunity identification → Solution hypotheses → Prototype validation → Experiments → Validated → Enter Delivery
+
+**Track 2: Delivery** — Efficiently execute "how to build"
+- Sprint Planning → Development → Testing → UAT → Release
+
+**Dual-Track Handoff:** Discovery-validated requirements enter Delivery Backlog
+**Product Trio:** PM (Value) + Designer (Experience) + Tech Lead (Feasibility)
+
+### 2. Continuous Discovery System (Teresa Torres)
+
+**5 Core Habits:**
+1. **Interview at least 1 customer per week** (Product Trio together)
+2. **Build Opportunity Solution Tree (OST)**: Outcome → Opportunities → Solutions → Experiments
+3. **Hypothesis-driven**: List assumptions → Sort by risk → Test the most dangerous first
+4. **Small, fast experiments**: Interviews / Prototypes / Fake door tests / Surveys
+5. **Product Trio all participate in discovery**
+
+**Story-Based Interview Method:**
+- ❌ Don't ask: "Would you use this feature?"
+- ✅ Do ask: "Tell me about the last time you [did something]"
+- Collect real past behavior, not hypothetical behavior
+
+### 3. Product Operating Model (Marty Cagan)
+
+**5 Core Principles:**
+
+| Domain | Principle |
+|--------|-----------|
+| **Product Teams** | Empowered teams solving business problems (not backlog executors), focus on outcomes not output |
+| **Product Strategy** | Focus + Insight-driven + Transparent + Bets not fixed plans |
+| **Product Discovery** | Minimize waste + Assess risks (including ethical) + Rapid experiments + Responsible testing |
+| **Product Delivery** | Small frequent decoupled releases + Instrumentation + Monitoring + Deployment infrastructure |
+| **Product Culture** | Principles > Process, Trust > Control, Innovation > Predictability, Learning > Not Failing |
+
+### 4. Standard Workflow SOP (Complete Version)
+
+```
+┌─────────────────────────────────────────────────┐
+│ Phase 1: Requirements Collection & Assessment    │
+│ Collect → Clean → Classify → 5 Whys → JTBD → Output Backlog │
+├─────────────────────────────────────────────────┤
+│ Phase 2: Solution Design                         │
+│ Business Process → Functional Architecture → Permission Design → Data Modeling → Prototype → PRD │
+├─────────────────────────────────────────────────┤
+│ Phase 3: Requirements Review                     │
+│ PRD → Requirements Review Meeting → Revise → Solution Freeze │
+├─────────────────────────────────────────────────┤
+│ Phase 4: UI/UX Design                            │
+│ Design → Design Review → Revise → Design Freeze   │
+├─────────────────────────────────────────────────┤
+│ Phase 5: Technical Design                        │
+│ Technical Design → Tech Review → Task Breakdown → Scheduling │
+├─────────────────────────────────────────────────┤
+│ Phase 6: Development & Testing                   │
+│ Sprint Start → Daily Standup → Testing → Bug Fix → QA Handoff │
+├─────────────────────────────────────────────────┤
+│ Phase 7: Acceptance & Release                    │
+│ PM UAT → Staging → Canary → Full Release → Monitoring │
+├─────────────────────────────────────────────────┤
+│ Phase 8: Retrospective & Iteration               │
+│ Data Review → Hypothesis Retro → Improvement Plan → Next Version Planning │
+└─────────────────────────────────────────────────┘
+```
+
+### 5. B2B PM Standard Weekly / Monthly / Quarterly Cadence
+
+**Weekly Cadence:**
+| Time | Activity | Notes |
+|------|----------|-------|
+| Monday AM | Weekly Meeting | Review last week, align this week |
+| Daily AM | Standup (15min) | Sync progress and blockers |
+| Tuesday | Customer Interviews / Requirements Research | At least 1x/week |
+| Wednesday | Product Design / PRD Writing | Deep work time |
+| Thursday | Cross-functional Communication / Sync | Align with Sales / CSM / Marketing |
+| Friday | Data Review + Next Week Planning | Wrap-up + next week prep |
+
+**Monthly Cadence:**
+| Time | Activity |
+|------|----------|
+| Month Start | OKR progress review, monthly report prep |
+| Mid-Month | Requirements review meeting, solution design |
+| Month End | Monthly product report (PPT), next month planning |
+
+**Quarterly Cadence:**
+| Time | Activity |
+|------|----------|
+| Q-4 Weeks | OKR draft → Align → Finalize |
+| Q-1 Week | OKR finalized, quarter kickoff |
+| Mid-Q | OKR mid-check, strategy adjustment |
+| Q-End | OKR scoring, quarterly retrospective, next Q OKR kickoff |
+| Quarterly | QBR (2 hours), competitive review, roadmap refresh |
+
+### 6. OKR Workflow (Quarterly Standard)
+
+```
+Week -4: Collect top priorities, survey teams, identify last quarter carryover
+Week -3: Draft company OKRs → Share for feedback → OKR Summit
+Week -2: Team OKR alignment → Cross-team dependencies → OKR playback meeting
+Week -1: OKR finalization → Quarter kickoff meeting
+Week 1-12: Weekly OKR check-in (confidence score 1-10)
+Week 13: OKR scoring → Quarterly retrospective
+
+OKR Golden Rules:
+- 3-5 Objectives per quarter, 2-4 Key Results per Objective
+- 70% achievement rate = Success (100% means targets were too conservative)
+- Focus on outcomes not output: not "launch XX feature" but "XX metric improves from A to B"
+```
+
+---

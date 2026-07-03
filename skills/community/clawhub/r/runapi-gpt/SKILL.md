@@ -1,6 +1,6 @@
 ---
 name: gpt
-description: Call the GPT API (gpt-5.2, gpt-5.4, gpt-5.4-mini, gpt-5.5, gpt-5.3-codex) and OpenAI text embeddings through RunAPI using the official OpenAI SDK, Anthropic SDK, Gemini contents clients, or compatible clients. Use when the user asks for OpenAI / GPT chat, streaming completions, vision input, tool use / function calling, reasoning effort, the Responses API, embeddings, semantic search vectors, Codex coding tasks, Anthropic or Gemini protocol compatibility, or when they want to point an existing LLM SDK setup at RunAPI as the base URL.
+description: Call the GPT API (the GPT-5 series — chat, reasoning, and Codex models) and OpenAI text embeddings through RunAPI using the official OpenAI SDK, Anthropic SDK, Gemini contents clients, or compatible clients. Use when the user asks for OpenAI / GPT chat, streaming completions, vision input, tool use / function calling, reasoning effort, the Responses API, embeddings, semantic search vectors, Codex coding tasks, Anthropic or Gemini protocol compatibility, or when they want to point an existing LLM SDK setup at RunAPI as the base URL.
 documentation: https://runapi.ai/models/gpt.md
 provider_page: https://runapi.ai/providers/openai.md
 catalog: https://runapi.ai/models.md
@@ -48,11 +48,11 @@ Get a RunAPI API Key at <https://runapi.ai/api_keys>.
 
 ## Pick the right endpoint
 
-| Model | Endpoint to use |
-|---|---|
-| `gpt-5.2`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.5`, `gpt-5.3-codex`, `gpt-5.3-codex-spark` | Chat Completions **or** Responses |
-| `gpt-5.2-pro`, `gpt-5.4-pro`, `gpt-5.5-pro` | Responses **only** |
-| `text-embedding-3-large`, `text-embedding-3-small`, `text-embedding-ada-002` | Embeddings **only** |
+Chat, reasoning, and Codex models are reachable through every conversational
+surface — Chat Completions, Responses, Anthropic-compatible `/v1/messages`, and
+Gemini `contents` — so pick whichever protocol your client already speaks.
+Embedding models (`text-embedding-*`) are reachable **only** through
+`/v1/embeddings`.
 
 ## Core recipe — Chat Completions
 
@@ -164,7 +164,7 @@ Rails/Puma thread. Long generations should always stream.
       "role": "user",
       "content": [
         { "type": "text", "text": "What is in this image?" },
-        { "type": "image_url", "image_url": { "url": "https://example.com/img.jpg" } }
+        { "type": "image_url", "image_url": { "url": "https://runapi.ai/img.jpg" } }
       ]
     }
   ]
@@ -232,21 +232,21 @@ models to generation endpoints or compatibility surfaces.
 
 ## Supported models
 
-| Model ID | API | Use when |
-|---|---|---|
-| `gpt-5.5` | Chat, Responses | Latest general model |
-| `gpt-5.5-pro` | Responses only | Reasoning-heavy |
-| `gpt-5.4` | Chat, Responses | Production default |
-| `gpt-5.4-mini` | Chat, Responses | Cost-optimized |
-| `gpt-5.4-nano` | Chat, Responses | Smallest, fastest |
-| `gpt-5.4-pro` | Responses only | Reasoning |
-| `gpt-5.3-codex` | Chat, Responses | Code generation |
-| `gpt-5.3-codex-spark` | Chat, Responses | Faster Codex variant |
-| `gpt-5.2` | Chat, Responses | Cost-effective |
-| `gpt-5.2-pro` | Responses only | Reasoning |
-| `text-embedding-3-large` | Embeddings | High-capacity vectors |
-| `text-embedding-3-small` | Embeddings | Efficient vectors |
-| `text-embedding-ada-002` | Embeddings | Legacy-compatible vectors |
+| Model ID | Use when |
+|---|---|
+| `gpt-5.5` | Latest general model |
+| `gpt-5.5-pro` | Reasoning-heavy |
+| `gpt-5.4` | Production default |
+| `gpt-5.4-mini` | Cost-optimized |
+| `gpt-5.4-nano` | Smallest, fastest |
+| `gpt-5.4-pro` | Reasoning |
+| `gpt-5.3-codex` | Code generation |
+| `gpt-5.3-codex-spark` | Faster Codex variant |
+| `gpt-5.2` | Cost-effective |
+| `gpt-5.2-pro` | Reasoning |
+| `text-embedding-3-large` | High-capacity vectors |
+| `text-embedding-3-small` | Efficient vectors |
+| `text-embedding-ada-002` | Legacy-compatible vectors |
 
 ## Connect Codex CLI itself
 

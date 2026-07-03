@@ -1,0 +1,28 @@
+{
+  "name": "{{project_name}}",
+  "version": "1.0.0",
+  "description": "{{project_description}}",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js",
+    "test": "jest",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "openai": "^4.52.0",
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "eslint": "^8.57.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

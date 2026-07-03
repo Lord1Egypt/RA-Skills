@@ -1,0 +1,61 @@
+{
+  "name": "@forgemeshlabs/x402-agent-voice",
+  "version": "0.3.18",
+  "description": "Voice and TTS output, optional push-to-talk input, and local x402 wallet controls for OpenClaw agents.",
+  "homepage": "https://forgemesh.io",
+  "main": "bin/x402-agent-voice.js",
+  "bin": {
+    "agentvoice": "bin/x402-agent-voice.js",
+    "clawvoice": "bin/x402-agent-voice.js",
+    "x402-agent-voice": "bin/x402-agent-voice.js"
+  },
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "bin/",
+    "lib/",
+    "scripts/",
+    "references/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check bin/x402-agent-voice.js && for f in lib/*.js; do node --check $f; done",
+    "test": "npm run check && node scripts/test-python-probe.js && node bin/x402-agent-voice.js stop && node bin/x402-agent-voice.js --help",
+    "postinstall": "node scripts/postinstall.js",
+    "release:pack": "node scripts/release-pack.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "openclaw",
+    "agentvoice",
+    "clawvoice",
+    "openclaw-voice",
+    "openclaw-agent-voice",
+    "ai-voice",
+    "voice-skill",
+    "wallet-voice",
+    "x402-voice",
+    "clawhub",
+    "x402",
+    "agent-voice",
+    "tts",
+    "forgemesh",
+    "base",
+    "usdc",
+    "agentcash",
+    "poncho"
+  ],
+  "author": "clawdbotworker <clawdbotworker@gmail.com>",
+  "license": "MIT-0",
+  "dependencies": {
+    "@x402/core": "2.11.0",
+    "@x402/evm": "2.11.0",
+    "viem": "^2.0.0"
+  },
+  "overrides": {
+    "ws": "8.21.0"
+  }
+}

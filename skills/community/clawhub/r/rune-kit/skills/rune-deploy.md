@@ -293,6 +293,24 @@ Production observability (Datadog, Sentry, New Relic, Honeycomb, Logtail) bills 
 
 This overlaps with `perf` Step 8.6 (Observability Cost Control). `perf` finds the code patterns that emit overheavy telemetry; `deploy` ensures the platform-side ingestion + retention defaults are configured before the first prod release where the bill compounds.
 
+## Instrumentation Readiness (pre-prod advisory gate)
+
+> Two observability concerns, kept separate: the section *above* ("Observability Cost in Deploys") gates the telemetry **bill** (retention/sampling/cardinality config). This section gates whether the telemetry **exists and works** at all. Both run; neither replaces the other.
+
+Cost config (above) answers "is the telemetry *affordable*". This answers "does the telemetry *exist and work*". A feature with retries, queues, external calls, or new endpoints that ships **zero new telemetry** is shipping blind — the first incident becomes archaeology.
+
+<MUST-READ path="references/observability.md" trigger="first prod deploy of a feature that adds I/O, endpoints, jobs, or external integrations"/>
+
+Before the first production deploy of such a feature, verify the **Instrumentation Readiness Checklist** in `references/observability.md`. This is **advisory** (WARN, not BLOCK) — do not stop a deploy over missing telemetry, but surface the gap:
+
+```
+INSTRUMENTATION_GAP — feature adds [endpoint/job/integration] with no new
+structured logs / RED metrics / correlation ID. First incident will be blind.
+→ See deploy/references/observability.md before shipping.
+```
+
+Skip for: static sites, config-only changes, hotfixes (flag for follow-up), non-prod deploys.
+
 ## Output Format
 
 Deploy Report with platform, status (success/failed/rollback), deployed URL, build time, and checks (tests, security, HTTP, visual, monitoring). See Step 6 Report above for full template.
@@ -331,6 +349,7 @@ Known failure modes for this skill. Check these before declaring done.
 | Resources deployed without cost-allocation tags | HIGH | Step 1 pre-deploy MUST verify Environment/Team/Service tags. Untagged = unfalsifiable cost claims downstream |
 | Self-host migration recommended on bill threshold alone | HIGH | Crossover rule requires ALL 3 conditions: bill + ops bandwidth + customization need. Single-criterion recommendations produce engineering-debt swap |
 | Defaults shipped on observability stack | MEDIUM | Verify retention + sampling + cardinality config BEFORE first prod deploy; defaults often bleed > compute bill |
+| Feature ships with zero telemetry (logs/metrics/traces) | MEDIUM | Instrumentation Readiness advisory gate — WARN `INSTRUMENTATION_GAP` (skip for static sites/config-only/hotfix per section); first incident is blind without it. See `references/observability.md` |
 | Premature self-host (< 10K MAU) | MEDIUM | Flag `PREMATURE_SELFHOST` — managed equivalent at this scale is cheaper than engineering time spent operating |
 
 ## Done When
@@ -347,7 +366,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~1000-3000 tokens input, ~500-1000 tokens output. Sonnet. Most time in build/deploy commands.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

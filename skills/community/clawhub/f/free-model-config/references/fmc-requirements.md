@@ -478,5 +478,5 @@ python agnes_gen.py story-video --storyboard storyboard.json --output story.mp4
 - 后台网址：https://longcat.chat/platform/api_keys
 - 接口地址：https://api.longcat.chat/openai
 - API Key：从后台网址生成
-- 模型名称：LongCat-2.0-Preview
+- 模型名称：LongCat-2.0
 - 能力：文本生成

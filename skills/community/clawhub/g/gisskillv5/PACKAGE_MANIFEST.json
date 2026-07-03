@@ -1,0 +1,38 @@
+{
+  "package": "GIS_SKILL V5.0.2 Enterprise",
+  "watermark": "坤图_GIS:V5.0",
+  "build_date": "2026-06-23T14:45:00",
+  "version": "5.0.2",
+  "audit": {
+    "rounds": 2,
+    "score": "92/100",
+    "pass_rate": "94.3%",
+    "severe_defects": 0,
+    "total_checks": 87
+  },
+  "stats": {
+    "directories": 94,
+    "total_files": 112,
+    "md_files": 90,
+    "py_files": 11,
+    "json_files": 3,
+    "html_files": 1,
+    "txt_files": 1,
+    "total_lines": 83616,
+    "atomic_skills": 10,
+    "agents": 5,
+    "geo_evolve_modules": 5,
+    "geo_evolve_py_lines": 1897,
+    "knowledge_groups": 7,
+    "industry_cases": 22,
+    "pitfall_entries": "200+ (800+ framework)",
+    "yaml_metadata": "43/43 references",
+    "watermark_coverage": "112/112 files",
+    "crs_checkpoint_coverage": "10/10 atomic skills",
+    "ban_rules_programmatic": "7/7",
+    "delivery_packages": 3,
+    "workflow_templates": 5,
+    "mermaid_diagrams": 6,
+    "feedback_entries": 10
+  }
+}

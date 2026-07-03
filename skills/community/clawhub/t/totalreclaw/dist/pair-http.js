@@ -2,7 +2,23 @@
  * pair-http — gateway-side HTTP route handlers for the v3.3.0 QR-pairing
  * flow. Registered via `api.registerHttpRoute` from `index.ts`.
  *
- * Three endpoints (all under /plugin/totalreclaw/pair/):
+ * Five endpoints (all under /plugin/totalreclaw/pair/):
+ *
+ *   GET  /plugin/totalreclaw/pair/init
+ *        → IN-PROCESS pair trigger (3.3.14). Opens the relay WebSocket
+ *          directly in the gateway process via `openRemotePairSession`
+ *          (from pair-remote-client.ts), returns `{url, pin, sid,
+ *          expires_at_ms}` immediately so the agent can surface URL+PIN
+ *          to the user, and starts a BACKGROUND `awaitPhraseUpload` that
+ *          blocks on the WS for the browser's encrypted phrase, decrypts
+ *          locally, and invokes the injected `completePairing` callback
+ *          (writes credentials.json + flips onboarding state). The WS
+ *          lives in the gateway process — immune to the shell-tool's
+ *          30s subprocess timeout that killed the `tr pair` CLI path
+ *          (relay returned 502 on /pair/respond when the subprocess
+ *          died). This is the primary agent-facilitated pair path; the
+ *          CLI `tr pair --json` remains as a fallback for non-agent
+ *          scenarios.
  *
  *   GET  /plugin/totalreclaw/pair/finish?sid=<sid>
  *        → returns the browser pairing page (HTML + inline JS + CSS).
@@ -37,6 +53,12 @@
  *   - NO environment-variable reads. All config values flow in via
  *     `PairHttpConfig`; callers read from `CONFIG` in `config.ts`.
  *
+ * Adding `openRemotePairSession` (which dials an outbound WebSocket to
+ * the relay) keeps this file env=N, net=Y → the env-harvesting rule
+ * requires BOTH an env read AND a request trigger in the same file;
+ * the relay base URL arrives via `PairHttpConfig.relayBaseUrl` (caller-
+ * injected), never read from the environment here.
+ *
  * Logging: NEVER logs the secondary code, the mnemonic, the gateway
  * private key, or raw request bodies. Session ids and status
  * transitions are logged at info/warn levels for diagnostics.
@@ -44,9 +66,11 @@
 import { consumePairSession, getPairSession, registerFailedSecondaryCode, rejectPairSession, transitionPairSession, MAX_SECONDARY_CODE_ATTEMPTS, } from './pair-session-store.js';
 import { compareSecondaryCodesCT, decryptPairingPayload } from './pair-crypto.js';
 import { renderPairPage } from './pair-page.js';
+import { awaitPhraseUpload, openRemotePairSession, } from './pair-remote-client.js';
 /**
- * Build the four handlers. The caller registers each with
- * `api.registerHttpRoute({ path, handler })`.
+ * Build the route handlers. The caller registers each with
+ * `api.registerHttpRoute({ path, handler })`. When `cfg.relayBaseUrl` is
+ * set, the bundle also carries the in-process `/pair/init` handler.
  */
 export function buildPairRoutes(cfg) {
     const apiBase = cfg.apiBase.replace(/\/+$/, '');
@@ -283,7 +307,117 @@ export function buildPairRoutes(cfg) {
             mode: session.mode,
         });
     }
-    return {
+    // ---------------------------------------------------------------
+    // 3.3.14 — In-process pair trigger (the 30s-subprocess-kill 502 fix)
+    // ---------------------------------------------------------------
+    //
+    // Defined unconditionally so the handler identity is stable for the
+    // lifetime of the bundle; it short-circuits with 503 when no relay
+    // URL was wired. Only attached to the returned bundle + registered
+    // as a route when `cfg.relayBaseUrl` is set (see the return below).
+    async function handleInit(req, res) {
+        if (!methodAllowed(req, ['GET'])) {
+            sendJson(res, 405, { error: 'method_not_allowed' });
+            return;
+        }
+        const relay = cfg.relayBaseUrl;
+        if (!relay) {
+            // Caller did not wire a relay URL — the in-process route is inert.
+            sendJson(res, 503, { error: 'init_not_configured' });
+            return;
+        }
+        // 1. Open the relay WebSocket IN-PROCESS (the gateway process owns the
+        //    socket). This is the fix: the WS is no longer held by a CLI
+        //    subprocess, so OpenClaw's 30s shell-tool timeout cannot kill it
+        //    and the relay never sees a mid-pair disconnect → no more 502 on
+        //    /pair/respond.
+        let session;
+        try {
+            const openOpts = {
+                relayBaseUrl: relay,
+                mode: cfg.initPairMode ?? 'either',
+            };
+            if (cfg.initWebSocketImpl) {
+                openOpts.webSocketImpl = cfg.initWebSocketImpl;
+            }
+            session = await openRemotePairSession(openOpts);
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            cfg.logger.warn(`pair-http /init: relay session open failed: ${msg}`);
+            sendJson(res, 502, { error: 'relay_open_failed', detail: msg });
+            return;
+        }
+        const parsedExpiresMs = Date.parse(session.expiresAt);
+        const expiresAtMs = Number.isFinite(parsedExpiresMs)
+            ? parsedExpiresMs
+            : now() + 5 * 60_000;
+        // 2. Respond IMMEDIATELY with the URL + PIN + sid (relay token) +
+        //    expiry. The agent reads this and surfaces the URL+PIN to the
+        //    user. The relay token here plays the `sid` role for agent-side
+        //    correlation (parity with the CLI JSON payload shape).
+        sendJson(res, 200, {
+            v: 1,
+            sid: session.token,
+            url: session.url,
+            pin: session.pin,
+            mode: session.mode,
+            expires_at_ms: expiresAtMs,
+        });
+        // 3. Start the background wait IN THE GATEWAY PROCESS. We do NOT
+        //    await this from the request handler — the HTTP response has
+        //    already been sent. The promise resolves when the browser
+        //    uploads the encrypted phrase (the relay pushes a `forward`
+        //    frame), the gateway decrypts locally, and `completePairing`
+        //    writes credentials.json + flips onboarding state. Errors are
+        //    logged but never reach the HTTP response (it's already gone).
+        //
+        //    The injected `completePairing` callback receives the mnemonic
+        //    + a session-shaped object. We adapt the relay session to the
+        //    `PairSession`-like shape the existing handler signature
+        //    expects; only the fields completePairing actually reads are
+        //    populated, the rest default. The mnemonic is the load-bearing
+        //    field (it writes credentials.json); the session shape carries
+        //    sid/mode for log correlation.
+        void (async () => {
+            try {
+                const result = await awaitPhraseUpload(session, {
+                    phraseValidator: validate,
+                    timeoutMs: cfg.initAwaitTimeoutMs,
+                    completePairing: async ({ mnemonic }) => {
+                        // Adapt the relay session to the PairSession-like shape the
+                        // existing CompletePairingHandler signature expects. Only
+                        // sid + mode are load-bearing for log correlation; the
+                        // crypto fields are unused (decryption already happened).
+                        const sessionLike = {
+                            sid: session.token,
+                            mode: session.mode === 'generate' ? 'generate' : 'import',
+                        };
+                        return cfg.completePairing({ mnemonic, session: sessionLike });
+                    },
+                });
+                if (result.state === 'active') {
+                    cfg.logger.info(`pair-http /init: session ${redactSid(session.token)} completed in-process; onboarding active`);
+                }
+                else {
+                    cfg.logger.warn(`pair-http /init: session ${redactSid(session.token)} completion non-active: ${result.error ?? 'unknown'}`);
+                }
+            }
+            catch (err) {
+                const msg = err instanceof Error ? err.message : String(err);
+                // Timeouts are expected when the user closes the browser without
+                // completing; log at info so a benign expire doesn't look like an
+                // error in the gateway log.
+                if (msg.includes('timeout') || msg.includes('closed')) {
+                    cfg.logger.info(`pair-http /init: session ${redactSid(session.token)} expired/closed before completion`);
+                }
+                else {
+                    cfg.logger.warn(`pair-http /init: session ${redactSid(session.token)} failed: ${msg}`);
+                }
+            }
+        })();
+    }
+    const bundle = {
         finishPath: `${apiBase}/finish`,
         startPath: `${apiBase}/start`,
         respondPath: `${apiBase}/respond`,
@@ -295,6 +429,15 @@ export function buildPairRoutes(cfg) {
             status: handleStatus,
         },
     };
+    // Only surface the in-process /init route when a relay URL is wired.
+    // Older callers that construct the bundle without `relayBaseUrl` get
+    // the original four-route shape (back-compat for tests + any external
+    // consumers of buildPairRoutes).
+    if (cfg.relayBaseUrl) {
+        bundle.initPath = `${apiBase}/init`;
+        bundle.handlers.init = handleInit;
+    }
+    return bundle;
 }
 // ---------------------------------------------------------------------------
 // Internals: body reading, response helpers, validation

@@ -262,4 +262,3 @@ External resources:
 **Last Updated**: 2025-12-26
 **Author**: Agent Skills for Context Engineering Contributors
 **Version**: 1.1.0
-

@@ -1,78 +1,78 @@
 #!/usr/bin/env python3
 """
-Tencent Cloud MPS Image Try-On Script
+Tencent Cloud MPS Image Try-On Script (AI Fitting)
 
 Features:
-  Based on a model image and clothing image(s), this script calls the MPS ProcessImage API to initiate an AI try-on
-  task,
-  polls for results via DescribeImageTaskDetail, and returns the output COS path.
+  Based on a model image and clothing image(s), calls the MPS ProcessImage API
+  to initiate an AI try-on task (ImageTask.AiTryOnConfig), polls via
+  DescribeImageTaskDetail to wait for results, and returns the output path.
 
-  Supported try-on scenarios (specified via --schedule-id):
-    - 30100: Regular clothing try-on (default, supports 1-2 clothing images)
-    - 30101: Underwear try-on (supports only 1 clothing image)
+  Supported try-on models:
+    - WAND-tryon-1.0-lite: Lightweight version
+    - WAND-tryon-1.0-flash: Fast version (default)
+    - WAND-tryon-1.0-pro: Professional version
 
 COS Storage Convention:
   The output COS Bucket name is specified via the TENCENTCLOUD_COS_BUCKET environment variable.
   - Default output directory: /output/tryon/
 
 Usage:
-  # Minimal usage: model image + clothing image (URL, default waits for result)
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
+  # Minimal usage: model image + clothing image (URL, waits for result by default)
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg"
 
+  # Specify model
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --model WAND-tryon-1.0-pro
+
   # Model image using COS path input
-  python scripts/mps_image_tryon.py \
-      --model-cos-key "/input/model.jpg" \
+  python3 scripts/mps_image_tryon.py \\
+      --model-cos-key "/input/model.jpg" \\
       --cloth-url "https://example.com/cloth.jpg"
 
   # Model image + clothing image both using COS path input
-  python scripts/mps_image_tryon.py \
-      --model-cos-key "/input/model.jpg" \
+  python3 scripts/mps_image_tryon.py \\
+      --model-cos-key "/input/model.jpg" \\
       --cloth-cos-key "/input/cloth.jpg"
 
-  # Clothing image using COS, specifying non-default Bucket
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-cos-key "/input/cloth.jpg" \
-      --cloth-cos-bucket mybucket-125xxx --cloth-cos-region ap-shanghai
-
-  # Multiple clothing images (front + back)
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-url "https://example.com/cloth-front.jpg" \
+  # Multiple clothing images (1-4 images)
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth-front.jpg" \\
       --cloth-url "https://example.com/cloth-back.jpg"
 
-  # Underwear scenario (supports only 1 clothing image)
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-url "https://example.com/underwear.jpg" \
-      --schedule-id 30101
+  # Additional prompt
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --prompt "Change the shirt to red"
 
-  # Additional prompt + random seed
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-url "https://example.com/cloth.jpg" \
-      --ext-prompt "shirt buttons open" \
-      --random-seed 48
+  # Specify output resolution
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --resolution 4K
 
   # Submit task only, do not wait for result (returns TaskId)
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-url "https://example.com/cloth.jpg" \
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
       --no-wait
 
   # Specify output Bucket and directory
-  python scripts/mps_image_tryon.py \
-      --model-url "https://example.com/model.jpg" \
-      --cloth-url "https://example.com/cloth.jpg" \
-      --output-bucket mybucket-125xxx --output-region ap-shanghai \
+  python3 scripts/mps_image_tryon.py \\
+      --model-url "https://example.com/model.jpg" \\
+      --cloth-url "https://example.com/cloth.jpg" \\
+      --output-bucket mybucket-125xxx --output-region ap-shanghai \\
       --output-dir /custom/output/
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID    - Tencent Cloud SecretId (required)
   TENCENTCLOUD_SECRET_KEY   - Tencent Cloud SecretKey (required)
-  TENCENTCLOUD_API_REGION   - MPS API access region (optional, default ap-guangzhou)
+  TENCENTCLOUD_API_REGION   - MPS API access region (required)
   TENCENTCLOUD_COS_BUCKET   - Output COS Bucket (can be overridden by --output-bucket)
                               Also serves as default Bucket for --model-cos-key / --cloth-cos-key
   TENCENTCLOUD_COS_REGION   - Output COS Region (can be overridden by --output-region)
@@ -108,18 +108,17 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
 # =============================================================================
 # Default parameters
 # =============================================================================
-DEFAULT_SCHEDULE_ID = 30100
+DEFAULT_MODEL = "WAND-tryon-1.0-flash"
+MODEL_CHOICES = ["WAND-tryon-1.0-lite", "WAND-tryon-1.0-flash", "WAND-tryon-1.0-pro"]
 DEFAULT_OUTPUT_DIR = "/output/tryon/"
-DEFAULT_FORMAT = "JPEG"
-DEFAULT_IMAGE_SIZE = "2K"
-DEFAULT_QUALITY = 85
+DEFAULT_RESOLUTION = "1K"
 DEFAULT_POLL_INTERVAL = 10
 DEFAULT_TIMEOUT = 600
 
@@ -133,12 +132,22 @@ def get_credentials():
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        print("❌ TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not found", file=sys.stderr)
-        print("   Please configure them in ~/.env or <SKILL_DIR>/.env", file=sys.stderr)
         if _LOAD_ENV_AVAILABLE:
-            from mps_load_env import _print_setup_hint
-            _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-        sys.exit(1)
+            print("[load_env] Environment variables not set, attempting to auto-load from system files...", file=sys.stderr)
+            _ensure_env_loaded(verbose=True)
+            secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
+            secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
+        if not secret_id or not secret_key:
+            if _LOAD_ENV_AVAILABLE:
+                from mps_load_env import _print_setup_hint
+                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
+            else:
+                print(
+                    "\nError: TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not set.\n"
+                    "Please add these variables to ~/.env, ~/.profile, etc.\n",
+                    file=sys.stderr,
+                )
+            sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
@@ -148,7 +157,7 @@ def get_cos_bucket():
 
 
 def get_cos_region():
-    """Get output COS Region from environment variables, default ap-guangzhou."""
+    """Get output COS Region from environment variables."""
     return os.environ.get("TENCENTCLOUD_COS_REGION", "")
 
 
@@ -175,7 +184,7 @@ def build_cos_input(cos_key, cos_bucket=None, cos_region=None):
     region = cos_region or get_cos_region()
     if not bucket:
         print(
-            "Error: COS input requires Bucket specification; please set via corresponding --*-cos-bucket parameter or TENCENTCLOUD_COS_BUCKET environment variable",  # NOCA:line-too-long(content cannot be shortened)
+            "Error: COS input requires Bucket specification; please set via corresponding --*-cos-bucket parameter or TENCENTCLOUD_COS_BUCKET environment variable",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -203,109 +212,82 @@ def build_media_input(url=None, cos_key=None, cos_bucket=None, cos_region=None, 
 
 
 def build_request_payload(args):
-    """Assemble ProcessImage request body."""
-    # Collect clothing image list (merge url and cos-key, maintain order)
+    """Assemble ProcessImage request body. AiTryOnConfig section uses SDK native model serialization."""
+    # Collect clothing image list
     cloth_inputs = []
     for url in (args.cloth_url or []):
-        cloth_inputs.append(build_url_input(url))
+        cloth_inputs.append({"Image": build_url_input(url)})
     for key in (args.cloth_cos_key or []):
-        cloth_inputs.append(build_cos_input(key, args.cloth_cos_bucket, args.cloth_cos_region))
+        cloth_inputs.append({"Image": build_cos_input(key, args.cloth_cos_bucket, args.cloth_cos_region)})
 
     if not cloth_inputs:
         print("Error: Please specify at least one clothing image (--cloth-url or --cloth-cos-key)", file=sys.stderr)
         sys.exit(1)
 
-    if args.schedule_id == 30101 and len(cloth_inputs) != 1:
-        print("Error: Underwear scenario (--schedule-id 30101) currently supports only 1 clothing image", file=sys.stderr)  # NOCA:line-too-long(line cannot be shortened)
+    if len(cloth_inputs) > 4:
+        print("Error: Maximum 4 clothing images supported, {} provided".format(len(cloth_inputs)), file=sys.stderr)
         sys.exit(1)
 
-    addon_parameter = {
-        "ImageSet": [{"Image": inp} for inp in cloth_inputs],
-        "OutputConfig": {
-            "Format": args.format,
-            "ImageSize": args.image_size,
-            "Quality": args.quality,
-        },
-    }
+    # AiTryOnConfig
+    ai_tryon_config = {"Model": args.model, "Resolution": args.resolution}
+    if args.prompt:
+        ai_tryon_config["Prompt"] = args.prompt
 
-    if args.ext_prompt:
-        addon_parameter["ExtPrompt"] = [{"Prompt": p} for p in args.ext_prompt]
+    payload = {
+        "InputInfo": build_media_input(
+            url=args.model_url,
+            cos_key=args.model_cos_key,
+            cos_bucket=args.model_cos_bucket,
+            cos_region=args.model_cos_region,
+            label="Model image",
+        ),
+        "OutputDir": args.output_dir,
+        "ImageTask": {"AiTryOnConfig": ai_tryon_config},
+        "AddOnParameter": {"ImageSet": cloth_inputs},
+    }
 
     output_bucket = args.output_bucket or get_cos_bucket()
     output_region = args.output_region or get_cos_region()
-
     if not output_bucket:
         print(
             "Error: Missing output Bucket; please provide --output-bucket or set TENCENTCLOUD_COS_BUCKET",
             file=sys.stderr,
         )
         sys.exit(1)
-
-    # Construct model image input
-    model_input = build_media_input(
-        url=args.model_url,
-        cos_key=args.model_cos_key,
-        cos_bucket=args.model_cos_bucket,
-        cos_region=args.model_cos_region,
-        label="Model image",
-    )
-
-    payload = {
-        "InputInfo": model_input,
-        "OutputStorage": {
-            "Type": "COS",
-            "CosOutputStorage": {
-                "Bucket": output_bucket,
-                "Region": output_region,
-            },
-        },
-        "OutputDir": args.output_dir,
-        "ScheduleId": args.schedule_id,
-        "AddOnParameter": addon_parameter,
+    payload["OutputStorage"] = {
+        "Type": "COS",
+        "CosOutputStorage": {"Bucket": output_bucket, "Region": output_region},
     }
 
     if args.output_path:
         payload["OutputPath"] = args.output_path
-
     if args.resource_id:
         payload["ResourceId"] = args.resource_id
-
-    if args.random_seed is not None:
-        payload["StdExtInfo"] = json.dumps(
-            {"ModelConfig": {"RandomSeed": args.random_seed}},
-            ensure_ascii=False,
-            separators=(",", ":"),
-        )
-
 
     return payload
 
 
 def submit_process_image(client, payload):
-    """Submit ProcessImage request for outfit change task."""
+    """Call ProcessImage to submit try-on task."""
     req = models.ProcessImageRequest()
     req.from_json_string(json.dumps(payload, ensure_ascii=False))
     resp = client.ProcessImage(req)
-    result = json.loads(resp.to_json_string())
-    # Compatible with SDK return format
-    if "Response" in result:
-        result = result["Response"]
-    return result
+    return {"TaskId": resp.TaskId, "RequestId": resp.RequestId}
 
 
 # =============================================================================
-# Parameter parsing
+# Argument parsing
 # =============================================================================
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Tencent Cloud MPS Image Try-On (ProcessImage ScheduleId=30100/30101)",
+        description="Tencent Cloud MPS Image Try-On (ProcessImage ImageTask.AiTryOnConfig)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     # Input parameters
     input_group = parser.add_argument_group("Input parameters")
-    # Model image (URL or COS, choose one)
+    # Model image (URL or COS, mutually exclusive)
     model_group = input_group.add_mutually_exclusive_group(required=True)
     model_group.add_argument(
         "--model-url",
@@ -323,14 +305,14 @@ def parse_args():
         "--model-cos-region",
         help="Model image COS Region (default reads TENCENTCLOUD_COS_REGION)",
     )
-    # Clothing image (URL or COS, at least one, can be mixed)
+    # Clothing image (URL or COS, 1-4 images, can be mixed)
     input_group.add_argument(
         "--cloth-url", action="append", default=[],
-        help="Clothing image URL, can be repeated 1-2 times; can be mixed with --cloth-cos-key",
+        help="Clothing image URL, can be repeated 1-4 times; can be mixed with --cloth-cos-key",
     )
     input_group.add_argument(
         "--cloth-cos-key", action="append", default=[],
-        help="Clothing image COS object Key, can be repeated 1-2 times; can be mixed with --cloth-url",
+        help="Clothing image COS object Key, can be repeated 1-4 times; can be mixed with --cloth-url",
     )
     input_group.add_argument(
         "--cloth-cos-bucket",
@@ -344,16 +326,12 @@ def parse_args():
     # Try-on parameters
     tryon_group = parser.add_argument_group("Try-on parameters")
     tryon_group.add_argument(
-        "--schedule-id", type=int, default=DEFAULT_SCHEDULE_ID,
-        help="Try-on scene ID: 30100=regular clothing (default), 30101=underwear",
+        "--model", choices=MODEL_CHOICES, default=DEFAULT_MODEL,
+        help="Try-on model: WAND-tryon-1.0-lite (lightweight) / WAND-tryon-1.0-flash (fast, default) / WAND-tryon-1.0-pro (professional)",
     )
     tryon_group.add_argument(
-        "--ext-prompt", action="append",
-        help="Additional prompt words, can be repeated multiple times (e.g., 'shirt buttons open')",
-    )
-    tryon_group.add_argument(
-        "--random-seed", type=int,
-        help="Random seed (StdExtInfo.ModelConfig.RandomSeed), fixed seed yields stable style",
+        "--prompt",
+        help="Try-on instruction (optional; uses built-in default when empty)",
     )
     tryon_group.add_argument(
         "--resource-id",
@@ -362,6 +340,10 @@ def parse_args():
 
     # Output parameters
     output_group = parser.add_argument_group("Output parameters")
+    output_group.add_argument(
+        "--resolution", choices=["1K", "2K", "4K"], default=DEFAULT_RESOLUTION,
+        help="Output resolution (default 1K)",
+    )
     output_group.add_argument(
         "--output-bucket",
         help="Output COS Bucket (default reads TENCENTCLOUD_COS_BUCKET)",
@@ -378,24 +360,16 @@ def parse_args():
         "--output-path",
         help="Custom output path (must include file extension, e.g., /output/tryon/result.jpg)",
     )
-    output_group.add_argument(
-        "--format", choices=["JPEG", "PNG"], default=DEFAULT_FORMAT,
-        help="Output format (default JPEG)",
-    )
-    output_group.add_argument(
-        "--image-size", choices=["1K", "2K", "4K"], default=DEFAULT_IMAGE_SIZE,
-        help="Output size (default 2K)",
-    )
-    output_group.add_argument(
-        "--quality", type=int, default=DEFAULT_QUALITY,
-        help="Output quality 1-100 (default 85)",
-    )
 
     # Task control
     task_group = parser.add_argument_group("Task control")
     task_group.add_argument(
         "--no-wait", action="store_true",
         help="Only submit task, do not wait for result (exit after returning TaskId)",
+    )
+    task_group.add_argument(
+        "--dry-run", action="store_true",
+        help="Only print request parameters, do not actually call the API",
     )
     task_group.add_argument(
         "--poll-interval", type=int, default=DEFAULT_POLL_INTERVAL,
@@ -435,7 +409,14 @@ def parse_args():
 # Main workflow
 # =============================================================================
 
+# NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # Command-line secrets override environment variables
@@ -466,7 +447,14 @@ def main():
         bucket = args.cloth_cos_bucket or get_cos_bucket()
         print(f"   Clothing image {idx}: COS - {bucket}:{key}")
         idx += 1
-    print(f"   Scene ScheduleId: {args.schedule_id}")
+    print(f"   Model: {args.model}")
+    if args.prompt:
+        print(f"   Prompt: {args.prompt}")
+
+    if args.dry_run:
+        print("\n[dry-run] Request body preview:")
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
 
     try:
         submit_result = submit_process_image(client, payload)
@@ -488,7 +476,7 @@ def main():
     # Poll for result
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module unavailable, please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -502,7 +490,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  Polling timeout, task may still be processing.", file=sys.stderr)
-        print(f"   Manual query available: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   Manual query available: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # Output final result
@@ -538,22 +526,6 @@ def main():
     print(json.dumps(final_result, ensure_ascii=False, indent=2))
 
 
-[To-dos]
-
-
-[To-dos]
-if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nInterrupted", file=sys.stderr)
-        sys.exit(1)
-if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nInterrupted", file=sys.stderr)
-        sys.exit(1)
 if __name__ == "__main__":
     try:
         main()

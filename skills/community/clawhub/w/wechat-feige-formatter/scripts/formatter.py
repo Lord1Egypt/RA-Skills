@@ -743,9 +743,9 @@ class FeigePFormatter:
             alt_text = match.group(1)
             src = match.group(2)
             html = f"""
-  <section style="margin: 24px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); line-height: 0;">
+  <p style="margin: 24px 0; text-align: center;">
     <img src="{src}" alt="{alt_text}" style="width: 100%; max-width: 100%; display: block; border-radius: 16px;" />
-  </section>
+  </p>
 """
             return html
         return ''

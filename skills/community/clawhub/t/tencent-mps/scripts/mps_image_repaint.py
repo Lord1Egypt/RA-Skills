@@ -15,25 +15,25 @@ COS 存储约定：
 
 用法：
   # 原图 URL + 遮罩图 URL + Prompt（等待结果）
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "将人物背心的颜色换为红色"
 
   # 原图 COS 路径 + 遮罩图 COS 路径
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --cos-input-key "/input/photo.jpg" \
       --mask-cos-key "/input/mask.png" \
       --prompt "将背景替换为海边沙滩"
 
   # 原图本地文件（自动上传 COS）+ 遮罩图 URL
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --local-file ./photo.jpg \
       --mask-url "https://example.com/mask.png" \
       --prompt "将裙子换成蓝色连衣裙"
 
   # 遮罩图使用独立 Bucket/Region
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-cos-key "/masks/mask.png" \
       --mask-cos-bucket "other-bucket-125xxx" \
@@ -41,21 +41,21 @@ COS 存储约定：
       --prompt "将墙面颜色改为米白色"
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "将花瓶换成陶瓷花瓶" \
       --no-wait
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "将椅子换成木质椅子" \
       --dry-run
 
   # 任务完成后自动下载结果
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "将天空换成星空" \
@@ -100,7 +100,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -392,6 +392,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 本地文件自动上传
@@ -458,7 +464,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -472,7 +478,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

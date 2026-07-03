@@ -1,0 +1,83 @@
+{
+  "name": "faqgroup-read",
+  "description": "A FAQ group list retrieval skill based on the Tradebee Website Builder Open API. It is used to retrieve FAQ group data configured on the website. It supports filtering by language, exact FAQ group ID, field selection, and paginated retrieval.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. It must be selected from `languages-get` after user confirmation."
+      },
+      "faqgroup_id": {
+        "type": "integer",
+        "description": "Optional. Exact FAQ group filter. Omit this field to read all FAQ groups. If provided, it must be one positive integer (`> 0`)."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. If omitted, all supported FAQ group fields are returned.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10."
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    },
+    "required": [
+      "language"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

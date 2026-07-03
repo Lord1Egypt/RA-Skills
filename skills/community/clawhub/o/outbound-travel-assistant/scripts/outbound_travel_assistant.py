@@ -9,7 +9,7 @@ import sys
 import urllib.request
 import urllib.error
 
-PROXY_URL = "https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com"
+PROXY_URL = os.environ.get("RG_PROXY", "https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com")
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
 # ============================================================
@@ -704,6 +704,24 @@ def exchange_rate(from_currency="", to_currency="", amount="1", **kwargs):
 # ============================================================
 # 工具注册表和主入口
 # ============================================================
+def _build_tips(tool_name):
+    """互动推荐：根据当前工具推荐相关功能"""
+    tip_map = {
+        "search_flights": "💡 查完机票还可以：🪑选座价格 | 🧳行李额度 | 🏨搜索酒店 | 🛂查签证 | 🌤️查安全评级",
+        "search_hotels": "💡 查完酒店还可以：📋房型详情 | ✈️搜索机票 | 💱汇率换算 | 🛂查签证 | 🔌查插头电压",
+        "flight_seats": "💡 选座后还可以：🧳查行李额度 | ✈️搜索机票 | 🏨搜索酒店 | 💱汇率换算",
+        "flight_baggage": "💡 查完行李额还可以：🪑选座价格 | ✈️搜索机票 | 🏨搜索酒店 | 🛂查签证",
+        "hotel_detail": "💡 查完房型还可以：✈️搜索机票 | 💱汇率换算 | 🛂查签证 | 🔌查插头电压",
+        "check_visa": "💡 查完签证还可以：✈️搜索机票 | 🏨搜索酒店 | 🔌查插头电压 | 🆘紧急求助电话",
+        "check_safety": "💡 查完安全还可以：🛂查签证 | ✈️搜索机票 | 🏨搜索酒店 | 🆘紧急求助电话",
+        "check_plug": "💡 查完插头还可以：🛂查签证 | ✈️搜索机票 | 💱汇率换算 | 🏨搜索酒店",
+        "emergency_help": "💡 紧急求助后：📞使领馆电话 | 🛂查签证 | 💱汇率换算",
+        "calc_tax_refund": "💡 退税计算后还可以：💱汇率换算 | ✈️搜索机票 | 🏨搜索酒店",
+        "exchange_rate": "💡 汇率换算后还可以：🧳退税计算 | ✈️搜索机票 | 🏨搜索酒店 | 🛂查签证",
+    }
+    return tip_map.get(tool_name, "")
+
+
 TOOLS = {
     "search_flights": search_flights,
     "search_hotels": search_hotels,
@@ -734,4 +752,14 @@ if __name__ == "__main__":
         if "=" in arg:
             k, v = arg.split("=", 1)
             kwargs[k] = v
-    print(TOOLS[tool_name](**kwargs))
+    output = TOOLS[tool_name](**kwargs)
+    # 注入互动推荐tips
+    tips = _build_tips(tool_name)
+    if tips:
+        try:
+            data = json.loads(output)
+            data["tips"] = tips
+            output = json.dumps(data, ensure_ascii=False, indent=2)
+        except (json.JSONDecodeError, TypeError):
+            output = output + "\n" + tips
+    print(output)

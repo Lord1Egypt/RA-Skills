@@ -919,7 +919,7 @@ def next_step(state_path):
             missing_wp = not sub_entry.get("writing_prompt") or not isinstance(sub_entry.get("writing_prompt"), str) or len(sub_entry.get("writing_prompt", "")) < 50
             if missing_wp:
                 print(f"  ⚠️ 该子结构缺少 writing_prompt（存量旧注册）")
-                print(f"     context_loader 会自动合成 fallback 命题，但不如预编精准")
+                print(f"     context_loader 已 HARD-BLOCK，必须在规划阶段补全 writing_prompt")
                 print(f"     如需补全，请重新注册：")
                 sub_title = sub_entry.get('title', '')
                 sub_summary = sub_entry.get('summary', '')

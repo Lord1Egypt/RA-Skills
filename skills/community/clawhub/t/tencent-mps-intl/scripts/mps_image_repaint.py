@@ -16,25 +16,25 @@ COS Storage Convention:
 
 Usage:
   # Original image URL + mask image URL + prompt (wait for result)
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "Change the subject's vest color to red"
 
   # Original image COS path + mask COS path
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --cos-input-key "/input/photo.jpg" \
       --mask-cos-key "/input/mask.png" \
       --prompt "Replace the background with a seaside beach"
 
   # Local original image file (uploaded to COS automatically) + mask URL
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --local-file ./photo.jpg \
       --mask-url "https://example.com/mask.png" \
       --prompt "Change the skirt into a blue dress"
 
   # Mask image using an independent Bucket/Region
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-cos-key "/masks/mask.png" \
       --mask-cos-bucket "other-bucket-125xxx" \
@@ -42,21 +42,21 @@ Usage:
       --prompt "Change the wall color to off-white"
 
   # Submit task only, do not wait for result (returns TaskId)
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "Replace the vase with a ceramic vase" \
       --no-wait
 
   # Dry Run (print request payload only, do not call the API)
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "Replace the chair with a wooden chair" \
       --dry-run
 
   # Automatically download results after completion
-  python scripts/mps_image_repaint.py \
+  python3 scripts/mps_image_repaint.py \
       --url "https://example.com/photo.jpg" \
       --mask-url "https://example.com/mask.png" \
       --prompt "Replace the sky with a starry sky" \
@@ -101,7 +101,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -382,6 +382,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     if args.local_file:
@@ -441,7 +447,7 @@ def main():
 
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module is unavailable. Please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -455,7 +461,7 @@ def main():
 
     if task_result is None:
         print("\n⚠️  Polling timed out. The task may still be processing.", file=sys.stderr)
-        print(f"   You can query it manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query it manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     err_msg = task_result.get("ErrMsg") or ""

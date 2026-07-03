@@ -1,7 +1,7 @@
 ---
 name: "parkinson-epilepsy-behavior-recognition-analysis"
 description: "Identifies abnormal behaviors such as limb tremors, convulsions, stiffness, and gait abnormalities through video recognition, assisting in home risk monitoring for patients with chronic conditions. | 帕金森癫痫行为识别技能，通过视频识别肢体震颤、抽搐、僵硬、步态异常等异常行为，辅助慢性病患者居家风险监测"
-version: "1.0.6"
+version: "1.0.7"
 license: "MIT-0"
 ---
 

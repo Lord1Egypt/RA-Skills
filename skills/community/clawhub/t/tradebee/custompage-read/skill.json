@@ -1,0 +1,79 @@
+{
+  "name": "custompage-read",
+  "description": "A custom page read skill based on the Tradebee Website Builder Open API. It is used to read one exact custom page or list custom pages under a specified site language, with support for field selection and pagination.",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to read from, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "custompage_id": {
+        "type": "integer",
+        "description": "Optional. Exact custom page filter. Omit this field to read all custom pages, or provide one exact positive custompage_id."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. Supported values: `custompage_id`, `custompage_url`, `language`, `title`, `content`, `seo`, `create_time`, `update_time`. When returning a list to the user, include `custompage_id` and `custompage_url` so one ID and one preview URL are available in the final answer. Do not tell the user they must preview it; provide the preview URL so the user can decide.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Optional. Pagination object.",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10."
+          }
+        }
+      }
+    },
+    "required": [
+      "language"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

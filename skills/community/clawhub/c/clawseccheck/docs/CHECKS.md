@@ -170,7 +170,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Local First
 - Scored: yes
 - Confidence: HIGH
-- OWASP: none
+- OWASP: LLM02 Sensitive Information Disclosure
 - What it checks: Local-first & model hygiene
 - Remediation:
   - none
@@ -692,7 +692,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Human Oversight / Transparency
 - Scored: yes
 - Confidence: HIGH
-- OWASP: LLM09 Misinformation, LLM06 Excessive Agency
+- OWASP: LLM06 Excessive Agency
 - What it checks: Silent-instruction directive (hidden actions from user)
 - Remediation:
   - none
@@ -716,7 +716,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Prompt Injection / Conditional Trigger
 - Scored: yes
 - Confidence: MEDIUM
-- OWASP: LLM06 Excessive Agency, LLM09 Misinformation
+- OWASP: LLM06 Excessive Agency
 - What it checks: Conditional sleeper-trigger detector
 - Remediation:
   - none
@@ -728,7 +728,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Prompt Injection / Persona Injection
 - Scored: yes
 - Confidence: MEDIUM
-- OWASP: LLM06 Excessive Agency, LLM09 Misinformation
+- OWASP: LLM06 Excessive Agency
 - What it checks: Persona / role jailbreak detector
 - Remediation:
   - none
@@ -824,7 +824,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Prompt Injection / Provenance Forgery
 - Scored: yes
 - Confidence: HIGH
-- OWASP: none
+- OWASP: LLM01 Prompt Injection
 - What it checks: Forged role/system block or false-provenance attribution in content
 - Remediation:
   - none
@@ -848,7 +848,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Least Privilege / MCP Tool Inheritance
 - Scored: yes
 - Confidence: ATTESTED
-- OWASP: none
+- OWASP: LLM06 Excessive Agency
 - What it checks: High-blast MCP tool-inheritance bypass (attested)
 - Remediation:
   - none
@@ -884,12 +884,148 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Human Approval
 - Scored: no
 - Confidence: MEDIUM
-- OWASP: none
+- OWASP: LLM06 Excessive Agency
 - What it checks: Codex session approval-policy posture (approval=never)
 - Remediation:
   - none
 
+### B80 - Gateway auth without rate limiting on a non-loopback bind
+
+- Severity: LOW
+- Block: hardening
+- Framework: Least Privilege / Rate Limiting
+- Scored: no
+- Confidence: HIGH
+- OWASP: LLM10 Unbounded Consumption
+- What it checks: Gateway auth without rate limiting on a non-loopback bind
+- Remediation:
+  - none
+
+### B81 - Subagent spawn limits raised beyond recommended defaults
+
+- Severity: LOW
+- Block: hardening
+- Framework: Least Privilege / Subagents
+- Scored: no
+- Confidence: HIGH
+- OWASP: LLM06 Excessive Agency
+- What it checks: Subagent spawn limits raised beyond recommended defaults
+- Remediation:
+  - none
+
+### B82 - cacheTrace transcripts persisted without tool-output redaction
+
+- Severity: MEDIUM
+- Block: hardening
+- Framework: Secrets / At-Rest Redaction
+- Scored: no
+- Confidence: HIGH
+- OWASP: LLM02 Sensitive Information Disclosure
+- What it checks: cacheTrace transcripts persisted without tool-output redaction
+- Remediation:
+  - none
+
+### B83 - Web-fetch tool allows excessive redirect following
+
+- Severity: LOW
+- Block: hardening
+- Framework: SSRF / Redirect Hardening
+- Scored: no
+- Confidence: HIGH
+- OWASP: LLM02 Sensitive Information Disclosure
+- What it checks: Web-fetch tool allows excessive redirect following
+- Remediation:
+  - none
+
 ## Advisory checks
+
+### B84 - Declared vs. effective vs. proven tool use
+
+- Severity: HIGH
+- Block: advisory
+- Framework: Least Privilege / Blast Radius
+- Scored: no
+- Confidence: ATTESTED
+- OWASP: LLM06 Excessive Agency
+- What it checks: Declared vs. effective vs. proven tool use
+- Remediation:
+  - none
+
+## Hardening checks
+
+### B85 - Incident readiness — tool-use trail present and tamper-resistant
+
+- Severity: MEDIUM
+- Block: hardening
+- Framework: Incident Response / Audit Trail
+- Scored: no
+- Confidence: HIGH
+- OWASP: none
+- What it checks: Incident readiness — tool-use trail present and tamper-resistant
+- Remediation:
+  - none
+
+## Advisory checks
+
+### B86 - Import-path hijack surface (sys.path from writable/relative location)
+
+- Severity: MEDIUM
+- Block: advisory
+- Framework: Defensibility / Supply-Chain Tamper
+- Scored: no
+- Confidence: MEDIUM
+- OWASP: none
+- What it checks: Import-path hijack surface (sys.path from writable/relative location)
+- Remediation:
+  - none
+
+### B87 - Symlink escape to sensitive host path (skill / workspace)
+
+- Severity: HIGH
+- Block: advisory
+- Framework: Weak Isolation / Path Escape
+- Scored: no
+- Confidence: HIGH
+- OWASP: none
+- What it checks: Symlink escape to sensitive host path (skill / workspace)
+- Remediation:
+  - none
+
+### B88 - SKILL.md frontmatter authoring hygiene (tag-shaped values / cross-skill squatting)
+
+- Severity: MEDIUM
+- Block: advisory
+- Framework: Authoring Hygiene / Insecure Metadata
+- Scored: no
+- Confidence: MEDIUM
+- OWASP: LLM01 Prompt Injection
+- What it checks: SKILL.md frontmatter authoring hygiene (tag-shaped values / cross-skill squatting)
+- Remediation:
+  - none
+
+### B89 - Dormant-capability skill (unreachable by user and model, yet ships code)
+
+- Severity: MEDIUM
+- Block: advisory
+- Framework: Dormant Capability / Malicious Skill
+- Scored: no
+- Confidence: MEDIUM
+- OWASP: none
+- What it checks: Dormant-capability skill (unreachable by user and model, yet ships code)
+- Remediation:
+  - none
+
+### B90 - Cross-file split base64 payload (reassembled from string literals)
+
+- Severity: MEDIUM
+- Block: advisory
+- Framework: Obfuscation / Malicious Skill
+- Scored: no
+- Confidence: MEDIUM
+- OWASP: none
+- What it checks: Cross-file split base64 payload (reassembled from string literals)
+- Remediation:
+  - none
 
 ### C3 - Backups of SOUL.md / memory
 
@@ -958,7 +1094,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Egress Inventory
 - Scored: no
 - Confidence: HIGH
-- OWASP: none
+- OWASP: LLM02 Sensitive Information Disclosure
 - What it checks: Egress inventory (outbound-capable surface enumeration)
 - Remediation:
   - none
@@ -970,7 +1106,7 @@ Advisory checks are recorded for coverage but are not scored.
 - Framework: Secrets / Filesystem
 - Scored: no
 - Confidence: MEDIUM
-- OWASP: none
+- OWASP: LLM02 Sensitive Information Disclosure
 - What it checks: Secrets-at-rest scan of the OpenClaw home
 - Remediation:
   - none

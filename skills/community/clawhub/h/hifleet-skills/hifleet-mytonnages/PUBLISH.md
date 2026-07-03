@@ -8,7 +8,13 @@
 clawhub publish ./hifleet-charter-ai --name hifleet-mytonnages --version 1.0.0
 ```
 
-发布前请将 **`SKILL.md` frontmatter 中的 `version`** 与命令行 **`--version`** 保持一致（当前均为 **1.1.0**）。
+发布前请将 **`SKILL.md` frontmatter 中的 `version`** 与命令行 **`--version`** 保持一致（当前均为 **1.3.0**）。
+
+**v1.4.1**：预抵 `destination/search` 改 **`params.portid`**（弃用 portcode）；港口 id 经 **`{liner}/ports/suggest`**；补充 `filterLabels`（`etaDays`、`tags`、`hasSenderInfoList`）及响应字段 `purchased` / `requireUnLock` / `senderInfoList`。
+
+**v1.4.0**：预抵（路由 C）支持联系方式按需获取 — **`CONTACT_API.md`**、`destination_tool.py fetch-contacts`（`typeCode=product_will_arrive_charter`）；四类产品 unlock 总表 **`references/charter_contact_unlock.md`**。
+
+**v1.3.0**：班轮船期拆至独立技能 **`hifleet-schedule`**；本包仅 **路由 A（邮箱）+ C（预抵）**；新增 **`LOCALIZATION.md`**、**`LLM_TOKEN_LIMITS.md`**、**`scripts/i18n_messages.py`**（多语言提示）；邮件解析失败时输出 token 调整建议；**`SCHEDULE_API.md`** 已移除（见 **`SCHEDULE_MOVED.md`**）。
 
 **v1.2.0**：移除公开船盘/公开货盘（原 C/D）；**路由 C** 改为 **预抵船舶**（`DESTINATION_SEARCH_API.md`）；单行补充信息默认公网 **`enrich-row`**；新增 **`USER_WORDING.md`**（对用户口语规范）。
 

@@ -15,66 +15,66 @@ COS 存储约定：
 
 用法：
   # 最简用法：默认视角（水平0度，俯仰0度，中景）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg"
 
   # 左侧视角（水平角度 -90 度）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90
 
   # 右侧视角（水平角度 90 度）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 90
 
   # 俯视视角（俯仰角度 45 度）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --vertical-angle 45
 
   # 仰视视角（俯仰角度 -20 度）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --vertical-angle -20
 
   # 左侧远景
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -120 --zoom wide
 
   # 右侧近景
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 60 --zoom close
 
   # 组合：俯视 + 右侧 + 近景
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 45 --vertical-angle 30 --zoom close
 
   # 使用 COS 路径输入
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --cos-input-key "/input/product.jpg" \
       --horizontal-angle -90 --zoom wide
 
   # 使用本地文件（自动上传到 COS）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --local-file ./product.jpg \
       --horizontal-angle 90 --vertical-angle 30
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90 --no-wait
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 45 --vertical-angle 30 --zoom close --dry-run
 
   # 指定输出目录和下载结果
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90 --zoom wide \
       --download-dir ./results/
@@ -118,7 +118,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -398,6 +398,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 本地文件自动上传
@@ -459,7 +465,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -473,7 +479,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

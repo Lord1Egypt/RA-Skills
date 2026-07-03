@@ -189,7 +189,7 @@ class SelfInitiator {
       };
     }
 
-    // SkillSpector fix: CODE 和 SCRIPT 模式强制要求确认，不可绕过
+    // SkillSpector fix: CODE 和 SCRIPT 模式强制要求确认，不可被配置绕过
     if (execMode === EXEC_MODE.CODE || execMode === EXEC_MODE.SCRIPT) {
       this.pendingConfirmations.push(initiatedTask);
       return {
@@ -265,7 +265,7 @@ class SelfInitiator {
   async _runCodeTask(task) {
     task.state = TASK_STATE.RUNNING;
 
-    console.warn('⚠️ 安全警告: 执行用户提供的代码可能带来安全风险');
+    // [PROD] 生产环境移除 console.warn: console.warn('⚠️ 安全警告: 执行用户提供的代码可能带来安全风险');
 
     try {
       // Step 1: 验证代码
@@ -556,7 +556,7 @@ function sortData(data, key = null, ascending = true) {
 
 // 使用示例
 // const result = sortData(items, 'name', true);
-// console.log(result);
+// [PROD] 生产环境移除 console.log: // console.log(result);
 ` },
       { match: /过滤|filter/i, code: (name) =>
 `/**
@@ -570,7 +570,7 @@ function filterData(data, predicate) {
 
 // 使用示例
 // const adults = filterData(people, p => p.age >= 18);
-// console.log(adults);
+// [PROD] 生产环境移除 console.log: // console.log(adults);
 ` },
       { match: /统计|统计|analyze|stats|count/i, code: (name) =>
 `/**
@@ -595,7 +595,7 @@ function analyzeData(data, options = {}) {
 
 // 使用示例
 // const stats = analyzeData([1, 2, 3, 4, 5]);
-// console.log(stats);
+// [PROD] 生产环境移除 console.log: // console.log(stats);
 ` },
       { match: /转换|transform|map|format/i, code: (name) =>
 `/**
@@ -609,7 +609,7 @@ function transformData(data, transformer) {
 
 // 使用示例
 // const names = transformData(users, u => u.name);
-// console.log(names);
+// [PROD] 生产环境移除 console.log: // console.log(names);
 ` },
       { match: /搜索|search|find|query/i, code: (name) =>
 `/**
@@ -636,7 +636,7 @@ function searchData(data, query, options = {}) {
 
 // 使用示例
 // const results = searchData(users, 'alice', { keys: ['name', 'email'] });
-// console.log(results);
+// [PROD] 生产环境移除 console.log: // console.log(results);
 ` },
       { match: /验证|validate|check|assert/i, code: (name) =>
 `/**
@@ -676,7 +676,7 @@ function validateData(data, rules) {
 //   name: { required: true, type: 'string' },
 //   age: { required: true, type: 'number', min: 0, max: 150 }
 // });
-// console.log(result);
+// [PROD] 生产环境移除 console.log: // console.log(result);
 ` },
       { match: /爬虫|fetch|scrape|请求|http|api/i, code: (name) =>
 `/**
@@ -719,7 +719,7 @@ async function fetchData(url, options = {}) {
 
 // 使用示例
 // const result = await fetchData('https://api.example.com/data');
-// console.log(result);
+// [PROD] 生产环境移除 console.log: // console.log(result);
 ` },
       { match: /缓存|cache|memoize|记忆/i, code: (name) =>
 `/**
@@ -767,7 +767,7 @@ class SimpleCache {
 // 使用示例
 // const cache = new SimpleCache({ ttl: 30000 });
 // cache.set('key', { data: 'value' });
-// console.log(cache.get('key'));
+// [PROD] 生产环境移除 console.log: // console.log(cache.get('key'));
 ` },
       { match: /文件|file|read|write|读写/i, code: (name) =>
 `/**
@@ -813,7 +813,7 @@ class FileToolkit {
 // 使用示例
 // const ft = new FileToolkit('./data');
 // ft.write('test.txt', 'Hello World');
-// console.log(ft.read('test.txt'));
+// [PROD] 生产环境移除 console.log: // console.log(ft.read('test.txt'));
 ` }
     ];
 
@@ -829,7 +829,7 @@ class FileToolkit {
  * 通用脚本 — ${description.substring(0, 60)}
  */
 async function main() {
-  console.log('开始执行: ${description.substring(0, 40)}');
+  // [PROD] 生产环境移除 console.log: console.log('开始执行: ${description.substring(0, 40)}');
 
   // 在此处写入你的逻辑
   // ...

@@ -1,0 +1,24 @@
+[
+  {
+    "type": "callout",
+    "block_id": "callout-1",
+    "background_color": "blue",
+    "child_blocks": [
+      {
+        "type": "rich_text",
+        "block_id": "callout-rt-1",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "text": "Use callouts for compact emphasis inside supported layouts."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

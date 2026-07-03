@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-action-gate",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Scope-owned Discord ingress/egress gate for OpenClaw.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/",
+    "src/",
+    "tests/",
+    "openclaw.plugin.json",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build.mjs",
+    "test": "ACTION_GATE_ENABLED= ACTION_GATE_AGENT= node --experimental-strip-types --test --test-concurrency=1 tests/*.test.ts"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.5.14-beta.2"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  }
+}

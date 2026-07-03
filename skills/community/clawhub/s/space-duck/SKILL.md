@@ -227,7 +227,29 @@ Modes: **parallel** (all at once, per-pair threads), **sequential** (queued, nex
 
 Use this **before** sending a peck if you suspect a 403 — it shows shared files, allowed/blocked topics, rate caps, daily caps, and budget gating per connection.
 
-### Receive Pecks (Webhook Listener)
+### Receive Pecks — DEFAULT: Poll Mode (zero setup)
+
+Poll mode is the **default onboarding path** (0.4.19+): install → pair →
+`--poll` and the duck receives. No tunnel, no domain, no public URL, no
+webhook bind. Cadence is adaptive: fast (`--interval`, default 3s) while a
+peck session is active or immediately after a local send (`send_peck.py`
+touches `~/.space-duck/poll_wake`), backing off to `--idle-interval`
+(default 60s) when quiet. `--no-adaptive` restores a fixed interval.
+
+| What the user says | Command |
+|---|---|
+| "make my duck receive pecks" / "start listening" | `python3 scripts/peck_listener.py --poll` |
+| "listen and auto-reply" | `python3 scripts/peck_listener.py --poll --on-peck "python3 scripts/peck_responder.py" --allow-shell-hook` |
+| "poll but keep it snappy/quiet" | `--interval 2 --idle-interval 120` |
+
+All `--forward-to` rails and `--on-peck` behave identically in poll and push
+mode (shared delivery path).
+
+### Receive Pecks — Server-Grade: Webhook Listener (public HTTPS)
+
+For ducks that genuinely are servers (stable domain/tunnel): run the HTTP
+listener and bind its URL with `bind_telegram.py --forward-url` so the
+platform PUSHES `peck.received` instantly.
 
 | What the user says | Command |
 |---|---|
@@ -372,13 +394,95 @@ local listener (cloudflared tunnel / ngrok / your own box):
 python3 scripts/bind_telegram.py \
     --forward-url https://my-tunnel.example.com:8788/beak/telegram/forward
 
-# 2. Run the listener (verifies HMAC, dispatches to a hook, auto-replies)
+# 2. Run the listener (verifies HMAC, dispatches each inbound DM to the hook).
+#    ⚠️ WIRE WITHOUT --auto-reply. reply_with_claude.sh sends its own reply
+#    asynchronously from a detached worker (the Lambda forward has a hard 10s
+#    timeout, so the hook must return in milliseconds). Adding --auto-reply is
+#    a foot-gun on two counts: (a) the listener would block on the brain and
+#    trip the timeout (binding → DEGRADED); (b) the listener would also send
+#    the hook's stdout verbatim as a reply — a double-send / raw-output leak.
+#    This hook deliberately prints nothing to stdout (it logs to the responder
+#    log and self-sends via tg_send), so without --auto-reply it is safe.
 python3 scripts/telegram_listener.py \
-    --on-message ./reply_with_claude.sh --auto-reply --verbose
+    --on-message ./reply_with_claude.sh --verbose
 
 # 3. Send a manual message any time
 python3 scripts/tg_send.py --chat-id 8592866150 --text "ping from my duck"
 ```
+
+**Approval requests are intercepted, not answered.** When a peck needs the
+owner's approval, the platform forwards it with
+`X-SpaceDuck-Event: peck.approval_request` / `approval_required: true`. The
+listener does NOT mirror it to `inbox/` and does NOT invoke the brain hook —
+the peck hasn't been delivered yet. Instead it prints an `[APPROVAL-REQUEST]`
+card to stderr with ready-to-run `check_pecks.py --approve <id>` /
+`--deny <id>` commands. Pass `--approval-hook` if you explicitly want these
+envelopes forwarded to your `--on-message` hook for programmatic handling.
+
+**The plain-DM brain — `reply_with_claude.sh`.** `peck_responder.py` only
+handles duck-to-duck peck envelopes; a plain human "hey" carries no
+`peck_id` and was silently dropped. `reply_with_claude.sh` is the
+`--on-message` hook that answers plain DMs.
+
+**Brain resolution — native Lane A first, then a portable fallback chain.**
+Every brain obeys one contract: prompt on **stdin**, reply on **stdout**,
+exit 0. The hook tries them in order and the first usable reply wins:
+
+1. **Stage 1 — native Lane A brain.** The duck's own agent answers using its
+   own rules/permissions/approval/rotation. Set `SPACEDUCK_NATIVE_BRAIN_CMD`
+   to a stdin→reply wrapper. For an OpenClaw duck, point it at a small script
+   running `openclaw agent --local --json -m "$(cat)"` — `openclaw agent`
+   takes the prompt as `-m`, not on stdin, so the hook can't auto-guess it.
+   If the knob is unset the native stage is skipped (a one-time hint is
+   logged when an `openclaw` is on PATH). The native brain can *decline* by
+   printing the sentinel `__NO_CAPACITY__` to stdout, which falls through to
+   Stage 2 without consuming the round.
+2. **Stage 2 — portable fallback chain.** Tried only if Stage 1 produced no
+   reply. Order: `SPACEDUCK_BRAIN_CMD` → each `SPACEDUCK_BRAIN_CHAIN` entry
+   (`|||`-separated) → an implicit final link to the local `claude` CLI
+   (zero-config). De-duplicated, order preserved. First exit-0 non-empty
+   reply wins; all exhausted → send nothing.
+
+Knobs:
+
+- **`SPACEDUCK_NATIVE_BRAIN_CMD`** — Stage-1 native brain command (stdin→reply,
+  exit 0). Unset → Stage 1 skipped. For openclaw, use a wrapper around
+  `openclaw agent --local --json -m "$(cat)"`.
+- **`SPACEDUCK_BRAIN_CMD`** — first Stage-2 link. e.g.
+  `'python3 brain_openai.py'`, `'ollama run llama3'`.
+- **`SPACEDUCK_BRAIN_CHAIN`** — additional `|||`-separated Stage-2 brains,
+  e.g. `'python3 openrouter.py|||ollama run llama3'`.
+- **`SPACEDUCK_REPLY_MAX_ROUNDS`** — loop guard: max auto-replies per chat in
+  a rolling 120s window (default 6, `0` = uncapped). A near-duplicate inbound
+  (Jaccard ≥ 0.9) is folded into the same window so a stuck repeat or
+  bot-to-bot ping-pong burns the budget faster. Mirrors `peck_responder`'s
+  `max_rounds`.
+- **`SPACEDUCK_REPLY_DISABLED`** — owner sign-out / kill-switch (`1` = answer
+  nothing). Also honored via `config.json {"auto_reply_enabled": false}` or
+  the presence of `~/.space-duck/REPLIES_OFF`. A payload whose
+  `_binding_state` is `REVOKED` is dropped defensively too.
+- **`SPACEDUCK_REPLY_ALLOW_CHATS`** — audience + trust gate. Empty (default)
+  = **owner-only** (owner resolved from `forward.json`→`.telegram.chat_id`,
+  then `config.json`→`owner_chat_id|telegram_chat_id`, then env
+  `SPACEDUCK_FWD_TG_CHAT`). A comma list widens to named chats. `"*"` =
+  answer **anyone** (public duck). **Trust tier:** owner + named chats get
+  full context (SOUL + MEMORY + CONNECTIONS); strangers admitted via `"*"`
+  get persona only (SOUL.md) — never the private MEMORY/CONNECTIONS files.
+- **`SPACEDUCK_REPLY_ALLOW_GROUPS=1`** — also answer group/channel chats
+  (default: private only). Bot senders (`from.is_bot`) are always dropped.
+
+⚠️ **Deploy gotcha:** in owner-only mode your *test* message must come from
+the resolved owner chat, or it drops and the test false-negatives. For a
+quick test from a non-owner account, set
+`SPACEDUCK_REPLY_ALLOW_CHATS=<your_chat_id>`. If owner-only mode can't
+resolve *any* owner chat_id the duck ignores everyone and writes
+`~/.space-duck/DORMANT_NO_OWNER` — sweep for that marker to catch a duck that
+bound but looks dead.
+
+⚠️ **Upgrade gotcha:** the published skill does **not** ship
+`reply_with_claude.sh` (it's added locally). A wholesale `clawhub install/update
+space-duck` that overwrites the skill dir can orphan or remove this hook —
+re-place it and re-confirm the `--on-message` wiring after any skill upgrade.
 
 **HMAC verification recipe** (handled automatically by `telegram_listener.py`):
 

@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes aquarium camera images or videos to estimate fish gill opening and closing respiratory rate, classify abnormal breathing or hypoxia warning status, and return structured reports or historical report links. <br>
+Analyzes aquarium camera images or videos with visible fish gill-cover motion to estimate respiratory rate, flag abnormal breathing patterns, and return structured monitoring guidance. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Aquarium keepers, aquaculture operators, public aquarium staff, and laboratory teams use this skill to review close side-view fish media for respiratory rate, abnormal breathing alerts, and report history. The output supports monitoring and escalation guidance, not veterinary diagnosis or automated device control. <br>
+External users, aquarists, aquarium operators, fish farms, laboratories, and developers use this skill to analyze close-range aquarium footage for fish respiratory rate, abnormal breathing alerts, and report history. It supports structured fish health monitoring guidance but is not a veterinary diagnosis or medication-planning tool. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Aquarium images, videos, or video URLs are processed by the publisher's cloud service. <br>
-Mitigation: Use only media you are comfortable uploading, and confirm the publisher's upload, retention, deletion, and account-linking practices before using private footage. <br>
-Risk: The skill may create local identity records and store backend tokens. <br>
-Mitigation: Run it in an isolated workspace when possible, review retained data and token files, and remove local identity or credential artifacts when no longer needed. <br>
-Risk: Respiratory-rate alerts are visual monitoring outputs and may be wrong when footage is unclear or context is missing. <br>
-Mitigation: Treat alerts as decision support, verify water quality and fish condition independently, and involve qualified aquarium or veterinary support for urgent cases. <br>
+Risk: Aquarium videos or video URLs may be sent to the lifeemergence cloud service. <br>
+Mitigation: Use the skill only when that cloud processing is acceptable, and avoid footage that includes people, private spaces, or sensitive facilities. <br>
+Risk: Report history is tied to an automatically selected identity with limited user control. <br>
+Mitigation: Review the account and workspace context before using history queries, and avoid shared environments where report linkage is inappropriate. <br>
+Risk: Authentication tokens may be stored in a local workspace database. <br>
+Mitigation: Protect the workspace, review local credential storage before deployment, and remove local tokens when they are no longer needed. <br>
+Risk: Respiratory-rate alerts could be mistaken for veterinary diagnosis or treatment advice. <br>
+Mitigation: Treat results as visual monitoring guidance, confirm water-quality and environmental conditions, and consult a qualified aquatic veterinarian for serious or persistent concerns. <br>
 
 
 ## Reference(s): <br>
-- [Fish respiratory rate monitor API documentation](references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-respiratory-rate-monitor-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API Documentation](artifact/references/api_doc.md) <br>
+- [ClawHub Skill Release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-respiratory-rate-monitor-analysis) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured text, Markdown tables, or JSON-style reports with respiratory rate fields, alert status, recommendations, and report links.] <br>
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON-style structured reports, with optional shell commands for analysis and history queries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save results to a requested output file; historical report queries return cloud report listings and links.] <br>
+**Other Properties Related to Output:** [May process local video files or video URLs, return report links, and write requested result files.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server-resolved ClawHub release metadata) <br>
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.4) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,35 @@
+{
+  "name": "clawvoice-x402",
+  "displayName": "ClawVoice Agent Voice + TTS",
+  "version": "0.3.18",
+  "description": "Voice and TTS for OpenClaw agents, with spoken replies, optional push-to-talk input, and a local Base wallet for x402 paid calls.",
+  "homepage": "https://forgemesh.io",
+  "author": "clawdbotworker",
+  "license": "MIT-0",
+  "entrypoint": "bin/x402-agent-voice.js",
+  "runtime": "node",
+  "category": "voice",
+  "tags": [
+    "voice",
+    "agentvoice",
+    "clawvoice",
+    "openclaw-voice",
+    "openclaw-agent-voice",
+    "ai-voice",
+    "voice-skill",
+    "tts",
+    "text-to-speech",
+    "x402",
+    "base",
+    "usdc",
+    "openclaw",
+    "agentcash",
+    "poncho"
+  ],
+  "pricing": {
+    "model": "per-call",
+    "currency": "USDC",
+    "amount": 0.005,
+    "description": "ForgeMesh compatibility fee per successful ForgeMesh-assisted x402 call; downstream endpoint prices are separate."
+  }
+}

@@ -39,51 +39,51 @@ COS Storage Conventions:
 
 Usage:
   # Simplest usage: ASR subtitle recognition (source language subtitles, auto-detect language)
-  python mps_subtitle.py --url https://example.com/video.mp4
+  python3 mps_subtitle.py --url https://example.com/video.mp4
 
   # Specify video source language as Chinese
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh
 
   # ASR recognition + translate to English (bilingual subtitles)
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
   # ASR recognition + translate to English, output translated language subtitles only
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
 
   # ASR recognition + translate to both English and Japanese (multi-language translation)
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
   # OCR subtitle recognition (suitable for hard subtitles, stylized text, etc.)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
 
   # OCR recognition + translate to English
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
   # OCR recognition + custom recognition area (bottom 30% of the frame)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \
       --ocr-area 0,0.7,1,1
 
   # Pure subtitle translation (translate an existing subtitle file)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
 
   # Output subtitles in SRT format
-  python mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
 
   # Use a preset template
-  python mps_subtitle.py --url https://example.com/video.mp4 --template 110167
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --template 110167
 
   # COS input (recommended, use --cos-input-key)
-  python mps_subtitle.py --cos-input-key /input/video/test.mp4
+  python3 mps_subtitle.py --cos-input-key /input/video/test.mp4
 
   # Custom output path
-  python mps_subtitle.py --url https://example.com/video.mp4 \
+  python3 mps_subtitle.py --url https://example.com/video.mp4 \
       --output-object-path /output/{inputName}_subtitle.{format}
 
   # ASR hotword library (improves recognition accuracy for technical terms)
-  python mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
 
   # Dry Run (print request parameters only, do not actually call the API)
-  python mps_subtitle.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID        - Tencent Cloud SecretId
@@ -120,7 +120,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -616,7 +616,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\nNote: The task is being processed in the background. Use the following command to check progress:")  # noqa: E501  # NOCA:line-too-long(content cannot be shortened)
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -632,51 +632,51 @@ def main():
         epilog="""
 Examples:
   # ASR subtitle recognition (simplest usage, default Chinese + VTT format)
-  python mps_subtitle.py --url https://example.com/video.mp4
+  python3 mps_subtitle.py --url https://example.com/video.mp4
 
   # Specify source language as English
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang en
 
   # ASR recognition + translate to English (default bilingual subtitle output)
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
   # ASR recognition + translate to English, output translated subtitles only
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en --subtitle-type 1
 
   # ASR recognition + multi-language translation (English and Japanese)
-  python mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
   # OCR subtitle recognition (hard subtitle scenario)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en
 
   # OCR + custom region (recognize subtitles only in the bottom 30% of the frame)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en \\
       --ocr-area 0,0.7,1,1
 
   # OCR + translate to English
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
   # Subtitle translation only (translate existing subtitle file, no recognition)
-  python mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --process-type translate --translate en
 
   # Output SRT format
-  python mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --subtitle-format srt
 
   # Use preset template (check subtitle template ID in the console)
-  python mps_subtitle.py --url https://example.com/video.mp4 --template 110167
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --template 110167
 
   # ASR hotword library (improves recognition accuracy for technical terms)
-  python mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --hotwords-id hwd-xxxxx
 
   # COS path input (recommended, use after local upload)
-  python mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
+  python3 mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
   /input/video/test.mp4
 
   # COS input (bucket and region auto-fetched from environment variables)
-  python mps_subtitle.py --cos-input-key /input/video/test.mp4
+  python3 mps_subtitle.py --cos-input-key /input/video/test.mp4
 
   # Dry Run (print request parameters only)
-  python mps_subtitle.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_subtitle.py --url https://example.com/video.mp4 --dry-run
 
 Process type description (--process-type):
   asr         ASR speech recognition subtitle (default) — extract subtitles via speech recognition
@@ -805,6 +805,17 @@ Environment variables:
                              help="Automatically download results to the specified directory after task completion (default: no download; specify a path to enable auto-download)")  # noqa: E501  # NOCA:line-too-long(content cannot be shortened)
 
     args = parser.parse_args()
+
+    # Auto-load environment variables (execute at entry to ensure all downstream functions can access)
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  Auto-load env failed: {e}", file=sys.stderr)
+
     # --url auto-converts local path to local upload mode
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -899,8 +910,11 @@ Environment variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (environment variable): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     if args.template and not has_custom_params(args):

@@ -1,3 +1,14 @@
+---
+name: security-log-analyzer
+description: "基于大模型的安全事件日志分析工具，支持快速提取关键信息和深度攻击链细节分析。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 安全事件日志调查助手
+
 # 安全事件日志调查助手
 
 ## 功能说明

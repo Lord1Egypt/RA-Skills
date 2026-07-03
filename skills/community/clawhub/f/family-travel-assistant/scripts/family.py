@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """亲子出行助手 - 儿童票政策查询+亲子景点推荐+出行贴士，帮带娃家庭轻松出行"""
 
+import os
 import sys
 import json
 import urllib.request
@@ -11,7 +12,7 @@ import re
 SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://gaode-proxy-jerspxcked.cn-hangzhou.fcapp.run"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
 HEADERS = {
     "Content-Type": "application/json",

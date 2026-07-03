@@ -121,10 +121,26 @@ function redactString(str) {
  */
 function sanitizePayload(capsule) {
   if (!capsule || typeof capsule !== 'object') return capsule;
-  return JSON.parse(JSON.stringify(capsule), (_key, value) => {
-    if (typeof value === 'string') return redactString(value);
-    return value;
-  });
+  return sanitizePayloadValue(capsule);
+}
+
+function sanitizePayloadValue(value) {
+  if (typeof value === 'string') return redactString(value);
+  if (!value || typeof value !== 'object') return value;
+  if (Array.isArray(value)) return value.map(sanitizePayloadValue);
+  const out = {};
+  for (const key of Object.keys(value)) {
+    const cleanKey = redactString(String(key)) || REDACTED;
+    out[uniqueObjectKey(out, cleanKey)] = sanitizePayloadValue(value[key]);
+  }
+  return out;
+}
+
+function uniqueObjectKey(target, key) {
+  if (!Object.prototype.hasOwnProperty.call(target, key)) return key;
+  let i = 2;
+  while (Object.prototype.hasOwnProperty.call(target, key + '_' + i)) i++;
+  return key + '_' + i;
 }
 
 // --- Leak scanning (detection without destructive replacement) ---

@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+
+# Local runtime configuration
+config.yaml
+*.local.yaml
+*.local.yml
+
+# Collector state and databases
+server_agent_state.json
+*.sqlite
+*.sqlite3
+*.db
+
+# Generated reports and exports
+reports/
+exports/
+data/
+public-reports/
+claude/
+
+# Runtime logs and temp files
+*.log
+*.tmp
+*.bak
+
+# OS noise
+.DS_Store
+Thumbs.db

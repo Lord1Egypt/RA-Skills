@@ -179,6 +179,8 @@ ALL diagnostic code added during debug MUST be wrapped in `#region agent-debug` 
 Unmarked instrumentation will be treated as stray code and removed prematurely.
 </HARD-GATE>
 
+**Observability gap as a finding.** If you had to add temporary `console.log` markers because the code emitted *nothing useful* about this path, that absence is itself a root-cause-adjacent signal: the bug was hard to diagnose because the system is blind here. When the fix lands, recommend converting the throwaway markers into **durable structured telemetry** (a stable event name + correlation ID, not prose) so the next occurrence is a query, not another archaeology session. This is advisory — note it in the report, don't block on it. Contract: `../deploy/references/observability.md`.
+
 ### Step 2c: Check Debug Knowledge Base
 
 Before forming hypotheses, check `.rune/debug/knowledge-base.md`:
@@ -432,7 +434,7 @@ Append to Debug Report when invoked standalone. Suppress when called as sub-skil
 ```yaml
 chain_metadata:
   skill: "rune-debug.md"
-  version: "1.2.0"
+  version: "1.4.0"
   status: "[DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED]"
   domain: "[area debugged]"
   files_changed: []  # debug never changes files
@@ -489,7 +491,7 @@ chain_metadata:
 **Scope guardrail**: Do not apply code changes or expand investigation beyond the locked scope directory unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

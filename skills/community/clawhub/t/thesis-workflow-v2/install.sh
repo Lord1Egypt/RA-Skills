@@ -85,18 +85,10 @@ fi
 if command -v openclaw &>/dev/null; then
     echo "✅ OpenClaw 已安装"
 else
-    echo "⚠️ OpenClaw 未安装，版本H将回退到OpenClaw模式"
+    echo "⚠️ OpenClaw 未安装，本 Skill 需要 OpenClaw 环境运行"
 fi
 
-# Hermes（可选）
-if command -v hermes &>/dev/null; then
-    HERMES_VERSION=$(hermes --version 2>&1 | head -1)
-    echo "✅ Hermes 已安装: $HERMES_VERSION"
-    HERMES_AVAILABLE=1
-else
-    echo "⚠️ Hermes 未安装，版本H将回退到OpenClaw模式"
-    HERMES_AVAILABLE=0
-fi
+# Hermes 检测已移除（v2.1+ 仅支持 OpenClaw）
 
 # 检查依赖 skill
 echo ""

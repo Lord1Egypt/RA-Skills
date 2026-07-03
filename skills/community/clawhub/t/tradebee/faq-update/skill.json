@@ -1,0 +1,138 @@
+{
+  "name": "faq-update",
+  "description": "A FAQ update skill based on the Tradebee Website Builder Open API. Before sending the update request, it automatically reads the current FAQ and writes a local JSON backup file containing the pre-update backup bundle.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code of the FAQ being edited. First call `languages-get`, then copy one exact `language` value the user confirms."
+      },
+      "faq": {
+        "type": "object",
+        "description": "Required. FAQ fields to update. `faq_id` is mandatory. Every other field is optional and should be omitted unless the user explicitly wants to change it.",
+        "properties": {
+          "faq_id": {
+            "type": "integer",
+            "description": "Required. Existing FAQ ID to update. First call `faq-read`, then copy one exact `faq_id`."
+          },
+          "faqgroup_id": {
+            "type": "integer",
+            "description": "Optional. New FAQ group ID. Omit this field to keep the current group unchanged."
+          },
+          "cover_image": {
+            "type": "object",
+            "description": "Optional. New cover image payload, up to 500 kB. Omit this field if the cover image should stay unchanged."
+          },
+          "question": {
+            "type": "string",
+            "description": "Optional. New FAQ question, up to 100 characters."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Optional. New FAQ tags, up to 6 unique items with 3 to 50 characters each.",
+            "items": {
+              "type": "string",
+              "description": "One FAQ tag."
+            }
+          },
+          "summary": {
+            "type": "string",
+            "description": "Optional. New FAQ summary as plain text, up to 500 characters."
+          },
+          "answer": {
+            "type": "string",
+            "description": "Optional. New HTML answer fragment. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `faq.answer`."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. New FAQ detail page SEO fields."
+          }
+        },
+        "required": [
+          "faq_id"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact FAQ edit request after seeing the final language, FAQ ID, and payload. That approval must also cover the automatic pre-update backup read and local backup file write before the update request is sent.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language, target FAQ ID, and exact FAQ payload to be changed."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language, target FAQ ID, and exact payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "faq",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      },
+      "backup": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned automatic pre-update backup information."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "faq.faq_id": {
+      "skill": "faq-read",
+      "field": "list[].faq_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select one existing FAQ ID from `faq-read` under the same language."
+    },
+    "faq.faqgroup_id": {
+      "skill": "faqgroup-read",
+      "field": "list[].faqgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Use this only when moving the FAQ to another FAQ group."
+    }
+  }
+}

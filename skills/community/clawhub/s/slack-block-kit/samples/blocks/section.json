@@ -1,0 +1,30 @@
+[
+  {
+    "type": "section",
+    "block_id": "summary_section",
+    "text": {
+      "type": "mrkdwn",
+      "text": "*Gateway:* healthy\n*Version:* 2026.6.1"
+    },
+    "fields": [
+      {
+        "type": "mrkdwn",
+        "text": "*Node*\nValhalla"
+      },
+      {
+        "type": "mrkdwn",
+        "text": "*Status*\nGreen"
+      }
+    ],
+    "accessory": {
+      "type": "button",
+      "text": {
+        "type": "plain_text",
+        "text": "Open logs",
+        "emoji": true
+      },
+      "url": "https://example.com/logs",
+      "action_id": "open_logs"
+    }
+  }
+]

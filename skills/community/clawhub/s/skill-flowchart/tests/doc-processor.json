@@ -1,0 +1,26 @@
+{
+  "title": "文档处理器",
+  "subtitle": "branches 三叉分类 · 平行处理 · 汇合",
+  "nodes": [
+    {"id": "entry",      "type": "entry",    "label": "用户上传文件",       "role": "ai"},
+    {"id": "classify",    "type": "decision", "label": "文件类型？",         "role": "decision"},
+    {"id": "text_parse",  "type": "process",  "label": "文本解析",           "role": "script"},
+    {"id": "image_ocr",   "type": "process",  "label": "图片 OCR",           "role": "script"},
+    {"id": "audio_stt",   "type": "process",  "label": "语音转文字",         "role": "script"},
+    {"id": "analyze",     "type": "process",  "label": "汇总分析",           "role": "ai"},
+    {"id": "output",      "type": "output",   "label": "输出分析报告",       "role": "output"}
+  ],
+  "edges": [
+    {"from": "entry",     "to": "classify",    "label": "",   "side": "bottom"},
+    {"from": "classify",  "to": "text_parse",  "label": "",   "side": "left"},
+    {"from": "classify",  "to": "image_ocr",   "label": "",   "side": "bottom"},
+    {"from": "classify",  "to": "audio_stt",   "label": "",   "side": "right"},
+    {"from": "text_parse","to": "analyze",     "label": "",   "side": "bottom"},
+    {"from": "image_ocr", "to": "analyze",     "label": "",   "side": "bottom"},
+    {"from": "audio_stt", "to": "analyze",     "label": "",   "side": "bottom"},
+    {"from": "analyze",   "to": "output",      "label": "",   "side": "bottom"}
+  ],
+  "branches": [],
+  "loops": [],
+  "legend": []
+}

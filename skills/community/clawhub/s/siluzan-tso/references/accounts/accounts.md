@@ -307,9 +307,32 @@ siluzan-tso account me --check-phone 15130150466 --json-out ./snap-me
 
 ---
 
-### auth — 添加媒体平台 OAuth 授权
+### check-access — Google 账户访问权限校验
 
-在浏览器中打开对应媒体的 OAuth 授权页面，授权后账户自动绑定到丝路赞。
+校验当前丝路赞凭据是否对指定 **Google** 广告账户有访问权限**403 通常表示该 Google 账户不在当前丝路赞账号下**（或未分享给你），应在拉数/诊断前调用，避免误用他户 ID。
+
+```bash
+siluzan-tso account check-access -a <mediaCustomerId>
+siluzan-tso account check-access -a 4256317784 --json-out ./snap-access
+```
+
+| HTTP | body | 含义 | CLI `status` |
+| ---- | ---- | ---- | ------------ |
+| 200 | `true` | 可访问 | `accessible`（exit 0） |
+| 200 | `false` | 已绑定但 Google OAuth 不可用 | `reauth_required` → `account reauth` |
+| 403 | 账户 ID | 无权限（多不在本账号下） | `no_permission`（exit 1） |
+| 403 | `token不能为空` | 未绑定 Google 媒体 | `google_not_bound` → `account auth -m Google` |
+| 401 | 空 | 丝路赞 Token 失效 | `siluzan_token_invalid` → 重新 login |
+
+> 与 `list-accounts -k` 互补：`list-accounts` 查「是否出现在账户列表」；本接口查「Google 网关是否允许当前凭据访问该 mediaCustomerId」。
+
+---
+
+### auth — 添加媒体平台 OAuth 授权（首次绑定）
+
+在浏览器中打开对应媒体的 OAuth 授权页面，授权后账户自动绑定到丝路赞。对应网页 **「添加授权」**。
+
+> **OAuth 已失效**（`invalidOAuthToken=true`）时**不要**用本命令，须走下方 **`reauth`**（重新授权必须先解绑）。
 
 ```bash
 siluzan-tso account auth -m <媒体类型>
@@ -322,17 +345,49 @@ siluzan-tso account auth -m <媒体类型>
 **示例：**
 
 ```bash
-# 授权 Google Ads 账户
+# 首次授权 Google Ads 账户
 siluzan-tso account auth -m Google
 
-# 授权 TikTok Ads 账户
+# 首次授权 TikTok Ads 账户
 siluzan-tso account auth -m TikTok
 
-# 授权 Meta（Facebook）Ads 账户
+# 首次授权 Meta（Facebook）Ads 账户
 siluzan-tso account auth -m Meta
 ```
 
 > CLI 会自动在系统默认浏览器中打开授权页；无法打开时输出 URL 供手动粘贴。授权完成后会跳回丝路赞，账户立即生效。
+
+---
+
+### reauth — 重新授权（先解绑再 OAuth）
+
+OAuth 失效时恢复授权。对齐 TSO 网页 **「重新授权」**：程序会先 **delink** 断开关联，再跳转媒体 OAuth。**禁止**对失效账户跳过解绑直接用 `account auth`。
+
+```bash
+siluzan-tso account reauth -m <媒体类型> --id <entityId>
+siluzan-tso account reauth -m Google --ids <id1,id2>
+```
+
+| 选项                 | 说明                                                                     |
+| -------------------- | ------------------------------------------------------------------------ |
+| `-m, --media <type>` | 媒体类型（必填）                                                         |
+| `--id <entityId>`    | 单个账户 `entityId`（来自 `list-accounts` 的 `ma.entityId`）             |
+| `--ids <id1,id2>`    | 批量 `entityId`，逗号分隔（与 `--id` 二选一）                            |
+
+**示例：**
+
+```bash
+# 1. 查失效账户的 entityId
+siluzan-tso list-accounts -m Google --json-out ./snap
+
+# 2. 重新授权（内置 delink → OAuth）
+siluzan-tso account reauth -m Google --id abc123def456
+
+# 3. 验证
+siluzan-tso list-accounts -m Google
+```
+
+> 手动两步等价于 `reauth`：`account delink --id …` → `account auth -m …`（须用户确认解绑风险）。
 
 ---
 

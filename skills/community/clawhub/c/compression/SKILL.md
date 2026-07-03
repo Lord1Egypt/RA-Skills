@@ -1,3 +1,14 @@
+---
+name: compression
+description: "Compress prompts locally before iterative AI runs to reduce tokens, with backup, undo, and compatibility for Ralph-style loops and token-billed providers."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Prompt Compression
+
 # Trinity Compress (Skill)
 
 Pre-run prompt compression for iterative AI dev loops.

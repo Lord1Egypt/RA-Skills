@@ -1,0 +1,197 @@
+{
+  "name": "bloggroup-read",
+  "description": "A blog group list retrieval skill based on the Tradebee Website Builder Open API. It is used to retrieve blog group data configured on the website. It supports filtering by language, exact blog group ID, field selection, and paginated retrieval for blog navigation, content organization, SEO planning, and content operations workflows.",
+  "version": "2.0.2",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. It must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "bloggroup_id": {
+        "type": "integer",
+        "description": "Optional. Exact blog group filter. Omit this field to read all blog groups. If provided, it must be one positive integer (`> 0`)."
+      },
+      "fields": {
+        "type": "array",
+        "description": "Optional. Field selection list. If omitted, all supported blog group fields are returned. When returning a list to the user, include `bloggroup_id` and `bloggroup_url` so one ID and one preview URL are available in the final answer. Do not tell the user they must preview it; provide the preview URL so the user can decide.",
+        "items": {
+          "type": "string",
+          "description": "Field name"
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1. Pagination must follow the server-returned `pagination.has_next_page` and `pagination.next_page`. Do not infer pages from `total_page` or manually increment `current_page`. When `has_next_page=true`, `next_page` must be used as the next request page number. When `has_next_page=false`, pagination requests must stop."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10"
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    },
+    "required": [
+      "language"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure",
+        "properties": {
+          "pagination": {
+            "type": "object",
+            "description": "Pagination result",
+            "properties": {
+              "current_page": {
+                "type": "integer",
+                "description": "Current page number"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Items per page"
+              },
+              "total_page": {
+                "type": "integer",
+                "description": "Total number of pages"
+              },
+              "total_count": {
+                "type": "integer",
+                "description": "Total number of records"
+              },
+              "has_next_page": {
+                "type": "boolean",
+                "description": "Whether a next page exists"
+              },
+              "next_page": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Next page number, or `null` if there is no next page"
+              }
+            },
+            "required": [
+              "current_page",
+              "page_size",
+              "total_page",
+              "total_count",
+              "has_next_page",
+              "next_page"
+            ]
+          },
+          "list": {
+            "type": "array",
+            "description": "Blog group data list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "bloggroup_id": {
+                  "type": "integer",
+                  "description": "Blog group ID"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Site language code"
+                },
+                "group_name": {
+                  "type": "string",
+                  "description": "Blog group name"
+                },
+                "tags": {
+                  "type": "array",
+                  "description": "Keywords",
+                  "items": {
+                    "type": "string",
+                    "description": "Keyword"
+                  }
+                },
+                "brief_description": {
+                  "type": "string",
+                  "description": "Short blog group description, up to 300 characters"
+                },
+                "seo": {
+                  "type": "object",
+                  "description": "Optimization data for the blog group page, including title, description, and keywords",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Optimized title, <= 90 characters"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Optimized description, <= 200 characters"
+                    },
+                    "keywords": {
+                      "type": "string",
+                      "description": "Optimized keywords, up to 6 keywords separated by commas, with a total length <= 120 characters"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "keywords"
+                  ]
+                },
+                "bloggroup_url": {
+                  "type": "string",
+                  "description": "Blog group page URL path. When the response is a list, use one returned `bloggroup_url` as the preview URL in the final answer so the user can decide whether to preview it."
+                },
+                "create_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Creation time in ISO 8601 date-time format"
+                },
+                "update_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Update time in ISO 8601 date-time format"
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

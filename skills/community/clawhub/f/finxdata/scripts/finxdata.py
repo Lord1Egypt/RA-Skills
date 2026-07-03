@@ -34,6 +34,7 @@ AGENT_ENDPOINTS = {
     ("agent", "track-news"),
     ("agent", "track-market"),
     ("agent", "track-notice"),
+    ("agent", "economy-china"),
     ("agent", "economy-calendar"),
     ("agent", "ontology-abstract"),
     ("agent", "financial"),
@@ -224,6 +225,10 @@ ENDPOINTS: dict[tuple[str, str], dict[str, Any]] = {
     ("agent", "track-notice"): {
         "path": "/api/v1/http/agent/track/notice",
         "parameters": [],
+    },
+    ("agent", "economy-china"): {
+        "path": "/api/v1/http/agent/economy/china",
+        "parameters": [("type", True, None)],
     },
     ("agent", "economy-calendar"): {
         "path": "/api/v1/http/agent/economy/calendar",

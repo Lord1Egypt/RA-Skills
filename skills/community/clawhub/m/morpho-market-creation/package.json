@@ -1,10 +1,10 @@
 {
-  "name": "morpho-market-deploy",
+  "name": "morpho-market-creation",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "dependencies": {
-    "@api3/dapi-management": "file:./api3-dapi-management-4.20.0.tgz",
+    "@api3/dapi-management": "4.22.0",
     "@morpho-org/blue-sdk": "latest",
     "dotenv": "^17.4.2",
     "ethers": "^6.16.0"

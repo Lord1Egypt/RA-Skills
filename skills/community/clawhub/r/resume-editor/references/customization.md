@@ -68,7 +68,7 @@ python3 scripts/export_resume.py --theme editorial --format html resume.json out
 }
 ```
 
-Only include a photo when the target market expects one — many regions (US, UK, Canada, Australia, much of the EU) penalize or reject photo resumes for anti-discrimination reasons.
+Only include a photo when the target market expects one — many regions (US, UK, Canada, Australia, much of the EU) penalize or reject photo resumes for anti-discrimination reasons. For safety, photo sources should be local files, `file://`, `https://`, or `data:` URIs; plain `http://` URLs are rejected.
 
 ## Restyling the Edit Toolbar
 

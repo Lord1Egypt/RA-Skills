@@ -5,7 +5,7 @@
 Aholo 3D Reconstruction Skill — International (OpenAPI v1, global gateway)
 
 Flow (Aholo Open Platform global site, gateway https://api.aholo3d.com, world APIs under /global prefix):
-1) GET /global/world/v1/asset/token
+1) GET /global/asset/v1/token
 2) OUS direct / multipart upload (/ous/api/* has no /global prefix; globalDomain often https://ous-sg.kujiale.com)
 3) POST /global/world/v1/reconstructions or /global/world/v1/generations
 4) GET /global/world/v1/{worldId}
@@ -40,10 +40,11 @@ SITE_CONFIG = {
 
 def _world_api_paths(path_prefix: str) -> Dict[str, str]:
     return {
-        "upload_token": f"{path_prefix}/world/v1/asset/token",
+        "upload_token": f"{path_prefix}/asset/v1/token",
         "reconstructions": f"{path_prefix}/world/v1/reconstructions",
         "generations": f"{path_prefix}/world/v1/generations",
         "world_detail": f"{path_prefix}/world/v1/{{worldId}}",
+        "world_list": f"{path_prefix}/world/v1/list",
     }
 
 
@@ -53,6 +54,7 @@ PATH_UPLOAD_TOKEN = _PATHS["upload_token"]
 PATH_RECONSTRUCTIONS = _PATHS["reconstructions"]
 PATH_GENERATIONS = _PATHS["generations"]
 PATH_WORLD_DETAIL = _PATHS["world_detail"]
+PATH_WORLD_LIST = _PATHS["world_list"]
 
 HEADER_X_SOURCE = "x-source"
 X_SOURCE_VALUE_SKILLS = "skills"
@@ -169,17 +171,13 @@ class AholoClient:
 
     def __init__(self, api_key: str):
         self.api_key = api_key
-        skip_verify = str(os.environ.get("AHOLO_INSECURE_SKIP_VERIFY", "")).strip().lower()
-        force_verify = str(os.environ.get("AHOLO_FORCE_SSL_VERIFY", "")).strip().lower()
-        if force_verify in {"1", "true", "yes", "on"}:
-            self.verify_ssl = True
-        elif skip_verify in {"0", "false", "no", "off"}:
-            self.verify_ssl = True
-        else:
-            # Skip TLS verification by default (corporate/self-signed certs).
+        insecure_skip = str(os.environ.get("AHOLO_INSECURE_SKIP_VERIFY", "")).strip().lower()
+        if insecure_skip in {"1", "true", "yes", "on"}:
+            # Explicit opt-out only (e.g. corporate self-signed certs).
             self.verify_ssl = False
-        if not self.verify_ssl:
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        else:
+            self.verify_ssl = True
         self.ous_token: Optional[str] = None
         self.global_domain: Optional[str] = None
         self.block_size: int = 1024 * 1024
@@ -424,11 +422,10 @@ class AholoClient:
                 return token_result
             return self._upload_file_single(file_path)
 
-        # Multipart upload: multiple steps share one token
-        if not self.ous_token or not self.global_domain:
-            token_result = self.get_upload_token()
-            if not token_result.get("success"):
-                return token_result
+        # Multipart upload: fetch a fresh token for each file (tokens are one-time)
+        token_result = self.get_upload_token()
+        if not token_result.get("success"):
+            return token_result
         return self._upload_file_block(file_path)
 
     def upload_paths(self, paths: List[str], input_label: str = "asset") -> List[Dict[str, Any]]:
@@ -460,6 +457,7 @@ class AholoClient:
         resources: List[Dict[str, Any]],
         task_quality: str = "high",
         cover: Optional[str] = None,
+        use_mask: Optional[bool] = None,
     ) -> Dict[str, Any]:
         url = f"{self.BASE_URL}{PATH_RECONSTRUCTIONS}"
         body: Dict[str, Any] = {
@@ -471,6 +469,8 @@ class AholoClient:
             body["name"] = project_name
         if cover:
             body["cover"] = cover
+        if use_mask is not None:
+            body["useMask"] = use_mask
         with step_timer("create reconstruction task"):
             try:
                 resp = self.session.post(
@@ -538,7 +538,9 @@ class AholoClient:
                 status = data.get("status")
                 is_terminal = status in WORLD_TERMINAL_STATUS
                 is_success = status == "SUCCEEDED"
-                urls = (((data.get("assets") or {}).get("splats") or {}).get("urls") or {})
+                assets = data.get("assets") or {}
+                urls = ((assets.get("splats") or {}).get("urls") or {})
+                imagery = assets.get("imagery") or {}
                 return {
                     "success": True,
                     "worldId": data.get("worldId") or world_id,
@@ -552,6 +554,8 @@ class AholoClient:
                         "plyPath": urls.get("plyPath"),
                         "spzPath": urls.get("spzPath"),
                         "sogPath": urls.get("sogPath"),
+                        "lodMetaPath": urls.get("lodMetaPath"),
+                        "panoUrl": imagery.get("panoUrl"),
                     },
                     "isTerminal": is_terminal,
                 }
@@ -559,6 +563,29 @@ class AholoClient:
                 return {"success": False, "error": f"Request failed: {e}", "isTerminal": False}
             except json.JSONDecodeError as e:
                 return {"success": False, "error": f"JSON parse error: {e}", "isTerminal": False}
+
+    def list_worlds(
+        self,
+        page_num: int = 0,
+        page_size: int = 20,
+        status_list: Optional[List[str]] = None,
+    ) -> Dict[str, Any]:
+        url = f"{self.BASE_URL}{PATH_WORLD_LIST}"
+        body: Dict[str, Any] = {"pageNum": page_num, "pageSize": page_size}
+        if status_list:
+            body["statusList"] = status_list
+        with step_timer("list worlds"):
+            try:
+                resp = self.session.post(url, headers=self._auth_headers(), json=body, timeout=30, verify=self.verify_ssl)
+                payload = self._parse_open_api_json(resp)
+                err = self._check_open_api_response(resp, payload)
+                if err:
+                    return err
+                return {"success": True, "data": payload}
+            except requests.exceptions.RequestException as e:
+                return {"success": False, "error": f"Request failed: {e}"}
+            except (TypeError, ValueError) as e:
+                return {"success": False, "error": str(e)}
 
     def poll_project_until_terminal(self, world_id: str, interval_seconds: int = 60, timeout_seconds: int = 14400) -> Dict[str, Any]:
         start = time.time()
@@ -656,6 +683,8 @@ def format_status_result(result: Dict[str, Any], world_id: str) -> str:
                 f"- **PLY:** {data.get('plyPath') or 'none'}",
                 f"- **SPZ:** {data.get('spzPath') or 'none'}",
                 f"- **SOG:** {data.get('sogPath') or 'none'}",
+                f"- **LOD metadata:** {data.get('lodMetaPath') or 'none'}",
+                f"- **Panorama (panoUrl):** {data.get('panoUrl') or 'none'}",
             ]
         )
 
@@ -699,15 +728,21 @@ def main() -> None:
     if len(sys.argv) < 2:
         print("## Usage")
         print("")
-        print("Actions: create | create-reconstruction | create-generation | status | poll")
+        print("Actions: create | create-reconstruction | create-generation | status | poll | list")
         print("Environment variable: `AHOLO_API_KEY`")
         print("")
         print("Reconstruction parameters:")
-        print("  - `videoPaths`: video files (1-3)")
-        print("  - `imagePaths`: image files (at least 20)")
-        print("  - `imageDir`: image directory (scans all images; use imagePaths OR imageDir)")
+        print("  - `videoPaths`: video files (1 or more; .insv auto-detected as type=insv)")
+        print("  - `imagePaths`: image files (at least 20, jpg/jpeg/png/webp)")
+        print("  - `imageDir`: image directory (scans jpg/jpeg/png/webp; use imagePaths OR imageDir)")
         print("  - `scene`: `model` or `space`")
         print("  - `taskQuality`: `low` | `normal` | `high`")
+        print("  - `useMask`: true/false, background removal (optional; scene=model only)")
+        print("")
+        print("List parameters:")
+        print("  - `pageNum`: page number (from 0, default 0)")
+        print("  - `pageSize`: items per page (1-100, default 20)")
+        print("  - `statusList`: status filter list (optional, e.g. [\"RUNNING\",\"SUCCEEDED\"])")
         sys.exit(1)
 
     try:
@@ -783,6 +818,13 @@ def main() -> None:
                 print("`taskQuality` must be `low`, `normal`, or `high`.")
                 sys.exit(1)
 
+            # useMask only effective when scene=model
+            use_mask: Optional[bool] = None
+            if scene == "model":
+                use_mask_raw = params.get("useMask")
+                if use_mask_raw is not None:
+                    use_mask = parse_bool(use_mask_raw)
+
             video_paths = params.get("videoPaths") or []
             image_paths = params.get("imagePaths") or []
             image_dir = params.get("imageDir")
@@ -797,7 +839,7 @@ def main() -> None:
                     print("## Directory not found\n")
                     print(f"`imageDir` does not exist: `{image_dir}`")
                     sys.exit(1)
-                valid_ext = ('.jpg', '.jpeg', '.png', '.bmp', '.webp', '.gif')
+                valid_ext = ('.jpg', '.jpeg', '.png', '.webp')
                 image_paths = [
                     os.path.join(image_dir, f)
                     for f in os.listdir(image_dir)
@@ -814,9 +856,9 @@ def main() -> None:
                 print("## Missing input\n")
                 print("Reconstruction requires `videoPaths`, `imagePaths`, or `imageDir`.")
                 sys.exit(1)
-            if video_paths and (len(video_paths) < 1 or len(video_paths) > 3):
+            if video_paths and len(video_paths) < 1:
                 print("## Invalid video count\n")
-                print("`videoPaths` must contain 1-3 items.")
+                print("`videoPaths` must contain at least 1 item.")
                 sys.exit(1)
             if image_paths and len(image_paths) < 20:
                 print("## Not enough images\n")
@@ -833,7 +875,10 @@ def main() -> None:
                     for r in uploads:
                         print(f"- `{r.get('originalPath')}`: {r.get('error')}")
                     sys.exit(1)
-                resources.extend([{"url": x.get("url"), "type": "video"} for x in successful])
+                for x in successful:
+                    orig = x.get("originalPath") or ""
+                    res_type = "insv" if orig.lower().endswith(".insv") else "video"
+                    resources.append({"url": x.get("url"), "type": res_type})
             if image_paths:
                 print("### Step 1: Upload images")
                 uploads = client.upload_paths(image_paths, "image")
@@ -852,6 +897,7 @@ def main() -> None:
                 resources=resources,
                 task_quality=task_quality,
                 cover=cover_url,
+                use_mask=use_mask,
             )
         else:
             image_paths = params.get("imagePaths") or []
@@ -926,9 +972,48 @@ def main() -> None:
         print(format_poll_result(result, world_id))
         return
 
+    if action == "list":
+        page_num = int(params.get("pageNum", 0))
+        page_size = int(params.get("pageSize", 20))
+        status_list = params.get("statusList") or []
+        if page_num < 0:
+            page_num = 0
+        if page_size <= 0 or page_size > 100:
+            page_size = 20
+        result = client.list_worlds(
+            page_num=page_num,
+            page_size=page_size,
+            status_list=status_list if status_list else None,
+        )
+        if not result.get("success"):
+            print("## List query failed\n")
+            print(f"**Error:** {result.get('error', 'Unknown error')}")
+            sys.exit(1)
+        data = result.get("data") or {}
+        print("## World list\n")
+        print(f"- Page: {data.get('pageNum', page_num)}")
+        print(f"- Page size: {data.get('pageSize', page_size)}")
+        print(f"- Count: {data.get('count', 0)}")
+        print(f"- Total: {data.get('totalCount', 0)}")
+        print(f"- Has more: {data.get('hasMore', False)}")
+        items = data.get("result") or []
+        if items:
+            print("\n| worldId | Name | Scene | Status | Progress |")
+            print("|---------|------|-------|--------|----------|")
+            for item in items:
+                status = item.get("status", "")
+                print(
+                    f"| `{item.get('worldId', '')}` | {item.get('name', '')} | "
+                    f"{item.get('scene', '')} | {WORLD_STATUS_DESC.get(status, status)} | "
+                    f"{item.get('progress', '')} |"
+                )
+        else:
+            print("\n(No results)")
+        return
+
     print("## Invalid action\n")
     print(
-        f"**action** must be `create`, `create-reconstruction`, `create-generation`, `status`, or `poll`; got: `{action}`"
+        f"**action** must be `create`, `create-reconstruction`, `create-generation`, `status`, `poll`, or `list`; got: `{action}`"
     )
     sys.exit(1)
 

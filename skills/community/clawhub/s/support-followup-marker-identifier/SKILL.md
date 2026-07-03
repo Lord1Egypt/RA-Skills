@@ -1,7 +1,7 @@
 ---
 name: support-followup-marker-identifier
 description: Digest a support intake marker.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: support-followup-marker-identifier

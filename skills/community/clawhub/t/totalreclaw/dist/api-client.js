@@ -1,8 +1,9 @@
 /**
  * TotalReclaw Plugin - HTTP API Client
  *
- * Communicates with the TotalReclaw server over JSON/HTTP. Uses Node.js
- * built-in `fetch` (available since Node 18).
+ * Communicates with the TotalReclaw server over JSON/HTTP. All wire I/O
+ * goes through `relay.ts` (the plugin's single network site); this module
+ * owns request/response shape, status-checking, and error context.
  *
  * All authenticated endpoints expect:
  *   Authorization: Bearer <hex-encoded-auth-key>
@@ -15,6 +16,7 @@
  * is set. See `relay-headers.ts` and internal#127.
  */
 import { buildRelayHeaders } from './relay-headers.js';
+import { relayFetch } from './relay.js';
 // ---------------------------------------------------------------------------
 // API Client Factory
 // ---------------------------------------------------------------------------
@@ -60,7 +62,8 @@ export function createApiClient(serverUrl) {
          * @returns `{ user_id }` on success.
          */
         async register(authKeyHash, saltHex) {
-            const res = await fetch(`${baseUrl}/v1/register`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/register`,
                 method: 'POST',
                 headers: buildRelayHeaders({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({ auth_key_hash: authKeyHash, salt: saltHex }),
@@ -84,7 +87,8 @@ export function createApiClient(serverUrl) {
          * @param authKeyHex   Hex-encoded raw auth key (64 chars) for Bearer header.
          */
         async store(userId, facts, authKeyHex) {
-            const res = await fetch(`${baseUrl}/v1/store`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/store`,
                 method: 'POST',
                 headers: buildRelayHeaders({
                     'Content-Type': 'application/json',
@@ -113,7 +117,8 @@ export function createApiClient(serverUrl) {
          * @returns Array of encrypted search candidates.
          */
         async search(userId, trapdoors, maxCandidates, authKeyHex) {
-            const res = await fetch(`${baseUrl}/v1/search`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/search`,
                 method: 'POST',
                 headers: buildRelayHeaders({
                     'Content-Type': 'application/json',
@@ -140,7 +145,8 @@ export function createApiClient(serverUrl) {
          * @param authKeyHex  Hex-encoded raw auth key for Bearer header.
          */
         async deleteFact(factId, authKeyHex) {
-            const res = await fetch(`${baseUrl}/v1/facts/${encodeURIComponent(factId)}`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/facts/${encodeURIComponent(factId)}`,
                 method: 'DELETE',
                 headers: buildRelayHeaders({
                     Authorization: `Bearer ${authKeyHex}`,
@@ -161,7 +167,8 @@ export function createApiClient(serverUrl) {
          * @returns The number of facts that were actually deleted.
          */
         async batchDelete(factIds, authKeyHex) {
-            const res = await fetch(`${baseUrl}/v1/facts/batch-delete`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/facts/batch-delete`,
                 method: 'POST',
                 headers: buildRelayHeaders({
                     'Content-Type': 'application/json',
@@ -189,7 +196,8 @@ export function createApiClient(serverUrl) {
             const params = new URLSearchParams({ limit: String(limit) });
             if (cursor)
                 params.set('cursor', cursor);
-            const res = await fetch(`${baseUrl}/v1/export?${params.toString()}`, {
+            const res = await relayFetch({
+                url: `${baseUrl}/v1/export?${params.toString()}`,
                 method: 'GET',
                 headers: buildRelayHeaders({
                     Authorization: `Bearer ${authKeyHex}`,
@@ -215,7 +223,7 @@ export function createApiClient(serverUrl) {
          */
         async health() {
             try {
-                const res = await fetch(`${baseUrl}/health`, { method: 'GET' });
+                const res = await relayFetch({ url: `${baseUrl}/health`, method: 'GET' });
                 return res.status === 200;
             }
             catch {

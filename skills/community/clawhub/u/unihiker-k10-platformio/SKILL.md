@@ -1,6 +1,6 @@
 ---
 name: unihiker-k10-platformio
-description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup, or preparing/installing offline PlatformIO support bundles for workshops where many students should not download toolchains at the same time.
+description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup, or preparing/installing offline PlatformIO support for workshops, including macOS archives and Windows self-extracting USB installers.
 ---
 
 # UNIHIKER K10 - PlatformIO
@@ -29,6 +29,82 @@ If a project uses K10 AI, voice recognition, TTS, face recognition, or OTA parti
 Screen refresh policy: generated K10 display code must prefer partial redraws. Full-screen clearing or full-background redraw causes visible flicker and is uncomfortable; use it only for initialization, page switches, exit cleanup, or when measured full-screen refresh is above 30 fps.
 
 ## Quick Workflow
+
+### Windows Self-Contained Offline Installer
+
+For Windows machines with no PlatformIO or Python environment installed, use the self-contained K10 PlatformIO offline installer first. It installs an isolated PlatformIO environment and does not require system `pio`.
+
+Prepare the Windows x64 self-extracting installer on a teacher Windows machine after one successful K10 PlatformIO build:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\prepare-windows-offline-installer.ps1 C:\tmp\K10P-windows-x64.exe
+```
+
+Copy the resulting `.exe` to the USB drive. Run it on each student Windows machine; it extracts to `C:\K10P` and runs `setup-platformio.bat`.
+
+Known install locations to check, in order:
+
+```text
+C:\K10P
+%USERPROFILE%\K10P
+%LOCALAPPDATA%\K10P
+%LOCALAPPDATA%\K10PlatformIO
+```
+
+Check this location before assuming PlatformIO is missing:
+
+```powershell
+cd C:\K10P
+.\setup-platformio.bat
+.\pio.bat --version
+.\pio.bat run -d .\examples\Blink
+```
+
+Important: use the bundled `pio.bat` or `platformio.bat` wrappers. Do not call `.platformio\penv\Scripts\pio.exe` or `.platformio\penv\Scripts\python.exe` directly; Windows launcher/venv executables can contain absolute paths from the machine that built the bundle or break under non-ASCII usernames. The wrapper uses `.platformio\python3\python.exe -m platformio` with `PYTHONPATH` set to the bundled site-packages.
+
+For user projects:
+
+```powershell
+C:\K10P\compile-project.bat "C:\path\to\PlatformIOProject"
+C:\K10P\upload-project.bat "C:\path\to\PlatformIOProject" COM3
+```
+
+### macOS Self-Contained Offline Installer
+
+For Apple Silicon macOS workshops, prepare a self-extracting `.command` installer on the teacher Mac and copy it by USB drive. This avoids each student downloading the large K10 PlatformIO platform, framework, toolchains, and PlatformIO Python packages. Intel Macs are not supported.
+
+Prepare the Apple Silicon self-extracting installer:
+
+```bash
+# On a prepared teacher Mac after one successful K10 PlatformIO build
+bash scripts/prepare-macos-offline-installer.sh --self-extracting /tmp/K10P-macos-arm64.command
+```
+
+On each student Mac:
+
+```bash
+/Volumes/USB/K10P-macos-arm64.command
+~/K10P/pio --version
+~/K10P/pio run -d ~/K10P/examples/Blink
+```
+
+For user projects:
+
+```bash
+~/K10P/compile-project "/path/to/PlatformIOProject"
+~/K10P/upload-project "/path/to/PlatformIOProject" /dev/cu.usbmodemXXXX
+```
+
+Important: use the bundled `~/K10P/pio` or `~/K10P/platformio` wrappers. They set `PLATFORMIO_CORE_DIR` to the private bundled `.platformio` directory so builds do not depend on or modify the user's global PlatformIO installation.
+
+The macOS bundle still needs a local `python3` to create its private virtual environment. It does not need internet during student setup. If macOS blocks files copied from a downloaded archive, remove quarantine on the installer or copied folder:
+
+```bash
+xattr -d com.apple.quarantine /Volumes/USB/K10P-macos-arm64.command
+xattr -dr com.apple.quarantine "$HOME/K10P"
+```
+
+If macOS setup fails offline with `No matching distribution found for typing-extensions>=4.10.0`, the installer was built with an older script that omitted a conditional PlatformIO dependency needed by Python older than 3.13. Rebuild the installer with `scripts/prepare-macos-offline-installer.sh`, or add `typing-extensions` to the extracted `wheelhouse`.
 
 Before writing K10 application code, read the relevant local references:
 
@@ -76,6 +152,8 @@ pio device monitor -d my-k10-project --port /dev/cu.usbmodemXXXX
 - `scripts/init-k10-platformio-project.sh`: create a minimal K10 PlatformIO project with sample screen code.
 - `scripts/k10-pio.sh`: convenience wrapper for `doctor`, `ports`, `build`, `upload`, and `monitor`.
 - `scripts/prepare-offline-bundle.sh`: build once, collect K10 PlatformIO support files, and create a distributable `.tgz`.
+- `scripts/prepare-macos-offline-installer.sh`: create an Apple Silicon macOS self-contained installer `.tgz` with bundled K10 support files, PlatformIO wheels, wrappers, and a Blink probe project.
+- `scripts/prepare-windows-offline-installer.ps1`: create a Windows x64 self-extracting installer `.exe` with bundled K10 support files, PlatformIO Python runtime, wrappers, and a Blink probe project. Passing a `.zip` output path is still supported as a fallback archive format.
 - `scripts/install-offline-bundle.sh`: install a prepared bundle into a user's PlatformIO core directory.
 - `scripts/doctor-offline.sh`: verify that the required K10 PlatformIO packages are present before class.
 - `scripts/k10-pio.ps1` and `scripts/install-offline-bundle.ps1`: Windows PowerShell helpers for common operations and bundle installation.
@@ -99,7 +177,7 @@ Expected support-file sizes after first successful build vary by OS/CPU, but the
 | `packages/tool-scons` | Build tool | a few MB |
 | `packages/tool-mkfatfs`, `tool-mklittlefs`, `tool-mkspiffs` | Filesystem image tools used by some upload targets | a few MB |
 
-A minimal compressed bundle is typically hundreds of MB. Prepare one bundle per OS/architecture: macOS arm64, macOS Intel, Windows, and Linux are not interchangeable.
+A minimal compressed bundle is typically hundreds of MB. Prepare one bundle per supported OS/architecture. The self-contained macOS installer supports Apple Silicon only; Intel Macs are not supported.
 
 Bundle preparation flow:
 
@@ -108,6 +186,18 @@ Bundle preparation flow:
 bash scripts/init-k10-platformio-project.sh /tmp/k10-pio-probe
 pio run -d /tmp/k10-pio-probe
 bash scripts/prepare-offline-bundle.sh /tmp/k10-platformio-bundle.tgz
+```
+
+For macOS students who should not install PlatformIO manually, prefer the self-contained installer flow instead:
+
+```bash
+bash scripts/prepare-macos-offline-installer.sh --self-extracting /tmp/K10P-macos-arm64.command
+```
+
+For Windows students who should not install PlatformIO or Python manually, prefer the self-contained installer flow instead:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\prepare-windows-offline-installer.ps1 C:\tmp\K10P-windows-x64.exe
 ```
 
 Student installation flow:

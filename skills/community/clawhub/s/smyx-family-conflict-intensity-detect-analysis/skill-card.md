@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes family or couple conflict intensity from living-room audio/video and returns acoustic and visual conflict metrics, low/medium/high intensity labels, gentle reminder text, and optional history-report links. <br>
+Analyzes living-room camera audio and video to estimate family or couple conflict intensity as low, medium, or high and generate reminders or report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, family-support product teams, and counseling or mediation workflows can use this skill to analyze uploaded or URL-based home audio/video for conflict intensity signals and generate gentle de-escalation reminders or conflict-frequency report listings. It is not a replacement for legal, emergency, or mental-health judgment. <br>
+External users, family counselors, and mediation or smart-home operators use this skill to analyze consented living-room audio/video or URLs for conflict-intensity indicators, gentle reminders, and historical report summaries. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Domestic audio/video and video URLs may be sent to a remote service for analysis. <br>
-Mitigation: Use only with clear prior consent from all affected adults and after the publisher documents remote processing, retention, deletion, and access controls. <br>
-Risk: Results may be associated with persistent identifiers and historical report queries. <br>
-Mitigation: Confirm the authorization model before enabling history access, and avoid identifiers that expose phone numbers or other unnecessary personal data. <br>
-Risk: Local user or token data may be stored by supporting code. <br>
-Mitigation: Review credential storage before deployment, keep tokens out of shared workspaces, and rotate credentials after testing. <br>
-Risk: Conflict-intensity labels can be wrong or misused in sensitive household situations. <br>
-Mitigation: Treat outputs as screening signals only; do not use them for legal conclusions, emergency decisions, or mental-health diagnosis. <br>
+Risk: The skill handles highly sensitive family audio/video and may send media or links to backend services for processing. <br>
+Mitigation: Install and run it only after reviewing the provider, consent model, retention policy, and access controls; use consented inputs and avoid long-term raw media storage. <br>
+Risk: Account identity, tokens, personal details, and report history may be associated with analyses. <br>
+Mitigation: Review local token and configuration storage, restrict access to report-history lookup, and remove credentials or cached state when the skill is no longer needed. <br>
+Risk: Conflict-intensity outputs could be misused as legal, psychological, or domestic-violence determinations. <br>
+Mitigation: Treat outputs as acoustic and visual indicators with gentle reminders only; do not use them to label people or replace legal, clinical, or safety judgment. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/smyx-family-conflict-intensity-detect-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/smyx-sunjinhui) <br>
-- [Family conflict intensity API reference](references/api_doc.md) <br>
-- [Common analysis API reference](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-family-conflict-intensity-detect-analysis) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-style report text with conflict metrics, reminder text, recommended actions, report links, and command examples.] <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
+**Output Format:** [Markdown tables or JSON analysis reports with report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an open-id and a local audio/video file path or public media URL; history queries return Markdown tables with report links.] <br>
+**Other Properties Related to Output:** [May save analysis output to a user-specified file and can list historical reports.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,21 @@
+﻿name: huawei-cloud-cce-pod-failure-diagnoser
+level: L3
+domain: diagnosis-remediation
+description: Diagnose Pod and workload failures in Huawei Cloud CCE.
+tools:
+  - huawei_pod_failure_diagnose
+  - huawei_get_cce_pods
+  - huawei_get_pod_logs
+  - huawei_get_cce_events
+  - huawei_get_cce_pod_metrics
+  - huawei_get_cce_pod_metrics_topN
+  - huawei_get_cce_deployments
+  - huawei_workload_diagnose
+  - huawei_workload_diagnose_by_alarm
+  - huawei_generate_diagnosis_report
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

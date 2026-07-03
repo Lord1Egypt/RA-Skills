@@ -1,0 +1,6 @@
+{
+  "output_dir": "~/screen-activity",
+  "mlx_url": "http://192.168.1.198:18000/v1",
+  "interval_minutes": 5,
+  "keep_days": 7
+}

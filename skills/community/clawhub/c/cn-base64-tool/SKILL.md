@@ -1,3 +1,14 @@
+---
+name: cn-base64-tool
+description: "cn-base64-tool。纯Python标准库，无需API Key。"
+source: ClawHub
+version: 1.2.6
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Cn Base64 Tool
+
 slug: cn-base64-tool
 name: Base64工具
 description: "cn-base64-tool。纯Python标准库，无需API Key。"

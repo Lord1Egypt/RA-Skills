@@ -1,14 +1,13 @@
 ---
 name: huahua-daily
 description: Use HuahuaDaily MCP to query portfolio, transactions, market data, screenshot imports, and send App-confirmed trade/import requests.
-version: 2.0.6
 ---
 
 # 花花日记助手（HuahuaDaily）
 
 ## 0. Compatibility
 
-This SKILL.md intentionally uses the smallest common Agent Skills format: YAML frontmatter with only `name` and `description`, followed by Markdown instructions. Platform-specific setup for Codex, Codex CLI, Claude Code, Claude Desktop, OpenClaw, Hermes Agent, and other MCP clients belongs in README/configuration, not in this file.
+This SKILL.md intentionally uses the smallest common Agent Skills format: YAML frontmatter with only `name` and `description`, followed by Markdown instructions. Platform-specific setup for Codex, Codex CLI, Claude Code, Claude Desktop, OpenClaw, and other MCP clients belongs in README/configuration, not in this file.
 
 ## 1. 核心边界
 
@@ -18,7 +17,7 @@ Agent 不直接写入交易、不直接导入持仓、不覆盖云同步。所�
 
 社区授权、取消授权、关注/取消关注、社区收益同步是直接后端写操作，不走 App 待确认页。只有用户明确确认该社区操作时才调用；不要把它们描述为“已发送到 App 等待确认”。
 
-MCP 可读取完整持仓、交易流水、原始云同步快照和截图内容，可能包含金额、成本、收益率等敏感投资数据。回答时不要主动暴露超过用户问题所需的明细。
+MCP 可读取完整持仓、交易流水、原始云端实时同步主数据和截图内容，可能包含金额、成本、收益率等敏感投资数据。回答时不要主动暴露超过用户问题所需的明细。
 
 ## 2. 会话启动
 
@@ -34,6 +33,12 @@ get_tool_manifest()
 
 Token 缺失、无效或过期时，提示用户在 App「小窝 / 设置 → Agent 访问令牌」重新生成，并配置环境变量 `HUAHUA_AGENT_TOKEN`。
 
+如果当前 MCP client 支持运行时传 token，也可以调用：
+
+```json
+set_token({"token": "HUAHUA_AGENT_TOKEN_VALUE"})
+```
+
 确认当前账号信息（昵称、UID、会员状态）：
 
 ```json
@@ -42,9 +47,11 @@ get_current_user()
 
 适合回答"我是谁""我的会员什么时候到期"等问题。
 
-## 3. 查询持仓和云同步
+## 3. 查询持仓和云端实时同步
 
-### 3.1 用户问“今天收益/总资产/累计收益”
+本节所有持仓、交易、分组、标签、自选和原始同步数据读取，都以云端实时同步主数据为准：固定读取结构化组合快照，不读取旧版同步大包。不要把 `history_snapshot` 或 `/api/cloud-snapshots` 历史备份快照当成当前持仓数据源。
+
+### 3.1 用户问“今天收益/总资产/持有收益”
 
 首选：
 
@@ -55,12 +62,14 @@ get_summary()
 返回重点：
 - `totalMarketValue`：总市值。
 - `todayProfit`：今日收益。
+- `todayProfitRate`：今日/昨日收益率，口径为 `todayProfit / totalDayBaseMarketValue × 100%`，不要用当前总市值重算。
+- `totalDayBaseMarketValue`：`todayProfitRate` 使用的归属日组合期初市值。
 - `totalHoldingProfit`：持有收益。
-- `cumulativeProfit`：累计收益。
-- `totalReturnRate`：累计收益率。
-- `dataUpdatedAt`：云同步时间。
+- `totalHoldingReturnRate`：持有收益率。
+- `cumulativeProfit`：累计收益；这是本 App 已记录交易推导的累计，仅在用户明确询问历史累计或该字段时使用。
+- `dataUpdatedAt`：云端实时同步主数据时间。
 
-回答时必须说明 `dataUpdatedAt`。如果时间明显旧，提醒用户在 App 执行「立即同步」。
+回答时必须说明 `dataUpdatedAt`。如果时间明显旧，提醒用户在 App 开启实时同步或点击「从云端同步恢复 / 手动同步」相关入口。
 
 不要为了资产概况先调用 `get_raw_sync_data()`。
 
@@ -77,9 +86,11 @@ get_records({"include_transactions": false})
 - `watchlist`：自选或清仓观察项。
 - `groups`：分组。
 - `summary`：汇总。
-- `dataUpdatedAt`：云同步时间。
+- `dataUpdatedAt`：云端实时同步主数据时间。
 
-云同步会保存最后一次官方净值作为恢复基线，但不会保存盘中估值等高频行情。`get_records` 会主动拉取最新行情并优先使用接口返回的官方净值计算市值；若需要盘中估算口径，再调用 `get_item_estimate` 获取 `estimatedNav`。
+云端实时同步主数据会保存最后一次官方净值作为恢复基线，但不会保存盘中估值等高频行情。`get_records` 会主动拉取最新行情用于今日收益，但持仓市值仍以主数据中的官方 `lastNav` 为准；若需要盘中估算口径，再调用 `get_item_estimate` 获取 `estimatedNav`。
+
+当前 App 口径：持仓市值和持有收益只按云端主数据中的官方 `lastNav` 计价；盘中估算只用于 `dayProfit`（今日收益），不会回填持仓市值。`cumulativeProfit` 是本 App 已记录交易推导的累计收益，不代表用户所有平台/历史清仓买卖的完整累计收益。`get_records` 会读取云端主数据里的 `userPreferences.fundDataSourceMode` 和基金级 `dataSourceMode`，自动按用户选择的行情源请求估值。
 
 如果用户要求交易流水、成本来源、审计收益，再调用：
 
@@ -93,7 +104,7 @@ get_transactions({"code": "", "include_pending": true})
 get_records({"include_transactions": true})
 ```
 
-### 3.3 用户问“云端是不是最新/同步是否完整”
+### 3.3 用户问“云端主数据是不是最新/同步是否完整”
 
 先调用：
 
@@ -102,9 +113,13 @@ get_sync_meta()
 ```
 
 返回重点：
-- `updated_at`：云端更新时间。
-- `etag`：云端快照指纹。
-- `size_bytes`：快照大小。
+- `updated_at`：云端实时同步主数据更新时间。
+- `etag`：云端主数据指纹。
+- `data_source`：`structured_portfolio` 表示结构化实时同步主数据。
+- `size_bytes`：主数据大小。
+- `has_restorable_sync_payload`：是否可由新版 App 安全恢复。
+- `empty_portfolio_confirmed`：是否是用户确认过的空组合主数据；为 true 且可恢复时，不要误判为云端损坏。
+- `history_snapshot`：最新云端历史快照摘要，只用于恢复、回滚和灾备，不代表当前主数据。
 
 需要完整检查时调用：
 
@@ -114,8 +129,10 @@ get_raw_sync_data({"include_json_text": false})
 
 检查重点：
 - `data.funds` 是否存在且非空。
+- 若 `meta.is_confirmed_empty_portfolio_snapshot=true`，这是用户确认清空组合后的合法空组合主数据。
 - `data.groups`、`data.watchlistGroups` 是否存在。
 - `data.globalTags` 是否存在。
+- `data.nightWatchCodes`、`data.purchaseLimitWatchItems`、`data.marketIndexSelection` 是否存在。
 - `meta.contains_ledger` 通常为 false，这是正常的。
 
 只有用户明确要求导出原始 JSON 文本时，才设置 `include_json_text=true`。默认不要返回大段 JSON。
@@ -138,6 +155,16 @@ get_tags()
 - `get_groups()` 用于解释持仓账户分组、自选分组。
 - `get_tags()` 用于解释全局标签和每只基金绑定标签。
 
+### 3.5 用户问“限购观察/哪些基金限制申购”
+
+先读取用户在 App 保存的观察列表：
+
+```json
+get_purchase_limit_watchlist()
+```
+
+再按需对返回的代码调用 `get_batch_fund_fees(codes)` 或 `get_fund_fees(code)` 查看申购状态、QDII/限大额日累计限购金额和确认天数。旧版本或尚未同步过该功能的云端主数据可能没有 `purchaseLimitWatchItems`，此时 `has_customized=false`。
+
 ## 4. 查询基金和市场
 
 ### 4.1 用户提供 6 位基金代码
@@ -157,6 +184,7 @@ get_item_estimate({"codes": ["110022"]})
 - `codes` 最多 50 个。
 - 可批量传入，避免逐个调用。
 - 结果同一 session 内缓存 60 秒。
+- 可传 `default_data_source_mode`（`huahua`/`a`/`b`/`c`）和 `data_source_mode_by_code`，对齐 App 的多行情源设置。
 
 ### 4.2 用户只提供基金名称
 
@@ -178,19 +206,24 @@ search_item({"query": "易方达消费"})
 ```json
 get_item_detail({"code": "110022"})
 get_item_history({"code": "110022"})
+get_fund_source_previews({"code": "110022"})
 get_fund_fees({"code": "110022"})
 get_item_dividends({"code": "110022"})
 get_fund_period_rank({"code": "110022"})
+get_batch_fund_period_ranks({"codes": ["110022", "161725"]})
 get_fund_timeline({"code": "110022"})
+get_fund_profile({"code": "110022"})
+get_batch_fund_profiles({"codes": ["110022", "161725"]})
 ```
 
 选择规则：
 - 当前估算/涨跌：`get_item_estimate`。
+- 对比同一基金的多个行情源：`get_fund_source_previews`。
 - 历史走势：`get_item_history`。
-- 申购赎回费、确认天数：`get_fund_fees`。
+- 申购状态、QDII/限大额日累计限购金额、确认天数：`get_fund_fees`（单只）或 `get_batch_fund_fees`（批量，最多 50 只）。
 - 分红派息：`get_item_dividends`。
 - 近 1/3/6 月、1 年排名：`get_fund_period_rank`（单只）或 `get_batch_fund_period_ranks`（批量，最多 50 只）。
-- 今日盘中估值曲线：`get_fund_timeline`。
+- 今日盘中估值曲线：`get_fund_timeline`；若用户指定行情源，传 `source_mode`。
 - 综合详情、胜率表、持仓等深度信息：`get_item_detail`。此工具较重，不要作为日常行情首选。
 - QDII 夜盘实时估值：`get_night_estimate`（需会员，美股交易时段有效）；用户在 App 添加的夜盘自选基金列表用 `get_night_watchlist`，通常先调这个再传给 `get_night_estimate`。
 - 基金画像（综合信息）：`get_fund_profile`。包含费率、排名、持仓、行业、分红、风险指标等。
@@ -210,10 +243,22 @@ get_overview()
 get_indices()
 ```
 
+板块风向：
+
+```json
+get_sector_wind()
+```
+
 今日涨跌榜：
 
 ```json
 get_daily_rank()
+```
+
+上一交易日涨跌榜：
+
+```json
+get_yesterday_rank()
 ```
 
 是否交易日：
@@ -302,7 +347,7 @@ get_night_watchlist()
 get_night_estimate({"codes": ["016665", "018147"]})
 ```
 
-`force: true` 可跳过服务端缓存强制刷新，默认 false。
+`force: true` 可跳过服务端缓存强制刷新，默认 false。`view: "last_close"` 可查询上一收盘快照口径，默认 `forecast`。
 
 返回每只基金的：
 - `estimatedChangePercent`：盘后复合涨跌幅（股价×汇率）。
@@ -314,7 +359,7 @@ get_night_estimate({"codes": ["016665", "018147"]})
 - 需要 VIP 或 PRO 会员。
 - 非美股交易时段返回休市状态，不是错误。
 - 不要在 A 股交易时段频繁调用。
-- 夜盘自选列表需要 App 至少做过一次云同步才能被 MCP 读到；旧版本 App（未升级到含夜盘同步的版本）的备份里没有 nightWatchCodes 字段，此时 `has_customized` 会是 `false`。
+- 夜盘自选列表需要 App 至少做过一次实时同步才能被 MCP 读到；旧版本 App（未升级到含夜盘同步的版本）的云端主数据里没有 nightWatchCodes 字段，此时 `has_customized` 会是 `false`。
 
 ### 4.10 用户问交易日/T+N
 
@@ -336,7 +381,7 @@ calculate_trading_dates({
 
 参数：
 - `time_mode`: `PRE_MARKET` 表示收盘前，`POST_MARKET` 表示收盘后。
-- `confirm_days`: T+1/T+2/T+3 等，未知时先用 `get_fund_fees(code)` 获取 `confirm_days`。
+- `confirm_days`: T+1/T+2/T+3 等，未知时先用 `get_fund_fees(code)` 获取 `confirm_days`；该工具也返回 `daily_purchase_limit` 等限购字段。
 
 ## 5. 交易请求
 
@@ -388,6 +433,46 @@ update_agent_request({
 ```
 
 不要替 App 把请求标记为 `PROCESSED`，除非用户明确要求且你知道这只是状态处理，不代表真实交易执行。
+
+### 5.3 个人报告投递
+
+仅当用户明确要求生成并保存个人报告时使用：
+
+```json
+submit_personal_strategy_report({
+  "title": "7月1日 个人组合复盘",
+  "summary": "今日组合主要受科技和黄金方向影响。",
+  "payload": {
+    "kind": "evening",
+    "date": "2026-07-01",
+    "body": "个人报告正文",
+    "sections": [
+      {
+        "id": "portfolio",
+        "title": "组合影响",
+        "items": [
+          {
+            "label": "科技方向",
+            "text": "结合用户授权读取的持仓和公开行情做个人化说明。",
+            "impact": "mixed",
+            "confidence": "medium"
+          }
+        ]
+      }
+    ],
+    "riskNotes": ["不构成投资建议，仅供复盘参考。"]
+  },
+  "client_message_id": "personal:2026-07-01:evening"
+})
+```
+
+规则：
+- 该工具只投递到当前 Agent Token 所属用户的报告中心。
+- 需要显式 `messages:write` scope；如需同一个 token 同时读取持仓并投递个人报告，使用 `agent:full messages:write`。
+- 默认 `agent:full` 不含个人报告写入；不要使用 `hermes:write`。
+- 可以基于用户明确授权读取的持仓、交易流水和行情数据生成个人报告。
+- 不能广播，不能指定 `user_id`，不得声称发送给所有用户。
+- 不得调用 `/api/hermes/reports`；公开 MCP 不提供管理员公共报告写入工具。
 
 ## 6. 截图导入
 
@@ -625,27 +710,13 @@ revoke_community_authorization()
 follow_community_user({"target_uid": "12345678"})
 ```
 
-收益同步：
-
-```json
-// 手动同步收益到社区（通常由 App 自动完成，Agent 仅在用户明确要求时调用）
-sync_community_returns({
-  "weekly_return": 5.2,
-  "monthly_return": 12.8,
-  "total_return": 35.6,
-  "fund_count": 8,
-  "top_fund_code": "110022",
-  "top_fund_name": "易方达消费行业"
-})
-```
-
 规则：
 - 社区功能需要 PRO 会员。
 - `get_community_notices` 与 `get_notices` 不同：前者是个人社区通知，后者是系统公告。
-- 授权、取消授权、关注/取消关注、收益同步调用后会直接生效，不会进入 App 确认页；调用前必须向用户明确确认。
+- 授权、取消授权、关注/取消关注调用后会直接生效，不会进入 App 确认页；调用前必须向用户明确确认。
 - 授权操作前须向用户确认是否愿意公开持仓数据，以及是否展示金额、是否匿名。
 - `follow_community_user` 是取反操作：已关注则取消，未关注则添加。
-- `sync_community_returns` 的收益率参数为百分比数值（如 5.2 表示 +5.2%），而非小数。不要凭空编造收益率；只有当用户明确要求刷新社区收益，且你能从可信数据计算或用户明确提供这些数值时才调用。通常应让 App 自动完成社区收益同步。
+- 社区排名收益由服务端基于实时云端组合数据核算，MCP 不提供手动写入收益率工具。
 
 ## 8. JCTI 投资人格分析
 
@@ -689,7 +760,7 @@ get_app_versions({"page": 1, "page_size": 5})
 
 - `401`：Token 无效或过期，要求用户重新生成。
 - `403`：权限不足或会员状态不满足；Agent Token 和多数 MCP 能力需要 PRO，部分行情/JCTI 能力可能要求 VIP 或 PRO。
-- 云端无数据：要求用户打开 App 执行「立即同步」。
+- 云端无数据：要求用户打开 App 确认实时同步已开启，或从设置页主动同步 / 恢复云端主数据。
 - 行情估算为空：可能是非交易日、盘前或数据源暂不可用，不要当作错误。
 - 截图识别为空：提示用户换清晰截图，或分批上传。
 - 导入请求发送成功后：不要继续追问大表格细节，等待用户在 App 确认。

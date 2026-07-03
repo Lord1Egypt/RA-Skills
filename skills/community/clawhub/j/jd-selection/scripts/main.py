@@ -11,10 +11,12 @@ MCP负责：channel路由、参数传递、结果格式化、用户提示语。
 
 import sys
 import json
-from coze_workload_identity import requests
+import os
+import urllib.request
+import urllib.error
 
 # ===== 频道配置 =====
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 
 CHANNELS = {
     "超级补贴": {
@@ -103,13 +105,16 @@ def _resolve_channel(name):
 
 def _scf_call(proxy_url, params, timeout=TIMEOUT_SHORT):
     """调用SCF代理"""
-    payload = {"type": "jingfen", "params": params}
+    payload = json.dumps({"type": "jingfen", "params": params}).encode("utf-8")
     headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    req = urllib.request.Request(proxy_url, data=payload, headers=headers, method="POST")
     try:
-        resp = requests.post(proxy_url, json=payload, headers=headers, timeout=timeout)
-        return resp.json()
-    except requests.exceptions.Timeout:
-        return {"ok": False, "error": "timeout"}
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.URLError as e:
+        if "timed out" in str(e).lower():
+            return {"ok": False, "error": "timeout"}
+        return {"ok": False, "error": str(e)}
     except Exception as e:
         if "timed out" in str(e).lower():
             return {"ok": False, "error": "timeout"}

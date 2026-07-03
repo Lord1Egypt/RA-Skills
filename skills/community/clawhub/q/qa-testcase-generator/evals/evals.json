@@ -1,0 +1,586 @@
+{
+  "skill_name": "qa-testcase-generator",
+  "description": "Eval set for QA test case generator skill — validates requirement-to-Excel conversion across 7 scenarios covering Markdown, PDF, Word, images, API docs, multi-source integration, and requirement conflict handling",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我从产品经理那收到一份用户管理系统的需求文档 tests/test_requirements.md，需要生成测试用例 Excel，放在 output/ 目录下。该系统支持用户注册、登录、信息管理、权限管理等功能，请帮我生成完整的测试用例覆盖。",
+      "expected_output": "生成格式化的 Excel 测试用例文件，覆盖所有 22 条需求，包含至少 6 个业务域，测试维度覆盖功能/安全/可靠性/效率，设计方法覆盖场景法/边界分析/状态迁移",
+      "files": ["tests/test_requirements.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "咱们有个电商订单系统要上线了，需求文档是 PDF 格式的（在我的下载文件夹里叫 order_system_v2.pdf），帮我从里面提取需求生成测试用例。这个系统包括商品浏览、购物车、下单支付、退款售后这些模块，订单状态有「待支付→已支付→已发货→已完成→已退款」的流转。输出到 output/ 目录。",
+      "expected_output": "解析 PDF 文档内容，生成结构化的测试用例 JSON 和 Excel，覆盖订单全生命周期状态流转测试",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "老王给了我一个 Word 文档 design.docx 是后台管理系统的设计稿，里面有用户角色权限的表格和页面交互描述。我需要从中提取功能点生成测试用例，输出 XLSX，重点关注权限控制的边界场景和角色组合。",
+      "expected_output": "从 Word 文档提取需求，生成包含权限矩阵覆盖的测试用例 Excel，重点关注 RBAC 权限组合场景",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我这有个登录页面的 UI 原型图 login_mockup.png，还有一份流程图的截图 flow_chart.png，里面画了用户从注册到下单的完整流程。帮我分析这些图生成测试用例 Excel，要覆盖图片里的所有分支路径和界面交互点。",
+      "expected_output": "通过视觉分析识别流程图路径和 UI 元素，生成包含路径覆盖和界面交互验证的测试用例",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "这是一份 API 接口文档（api_docs.md），定义了用户注册、登录、商品查询、下单、支付回调等 12 个接口。每个接口有请求参数、响应格式、错误码。帮我基于这个文档生成接口测试用例，重点覆盖参数校验（必填/可选/类型/边界）、正常响应和错误码场景，输出 Excel。",
+      "expected_output": "基于接口文档生成接口级测试用例，每个接口覆盖参数校验、正常流程、异常流程和错误码验证",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "我这有一份电商系统的综合需求文档（ecommerce_system.md），里面包含用户注册登录的流程图、下单支付的状态图、退款流程的序列图三张图片。文档里还有文字描述的商品管理和促销规则。帮我从文档和图片中提取所有需求生成测试用例 Excel，要求三张图中的路径逻辑都能在用例中找到对应。",
+      "expected_output": "整合文本需求和多个图表（流程图+状态图+序列图）信息，生成覆盖所有路径和规则的综合测试用例",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "我这有一份产品需求文档（conflicting_reqs.md），里面有些需求是相互冲突的：比如需求 1 说「密码长度至少 8 位」，需求 3 又说「密码长度最多 6 位方便记忆」。还有需求 5 说「注册不需要邮箱验证」，需求 8 却要求「注册必须邮箱验证通过才能登录」。帮我分析这份文档，识别冲突并生成测试用例 Excel，冲突点要在用例中有所体现。",
+      "expected_output": "识别需求冲突并标注，生成包含冲突场景验证的测试用例，每个冲突点至少有一条验证用例",
+      "files": []
+    }
+  ],
+  "assertions": [
+    {
+      "eval_id": 1,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 30",
+          "description": "生成的用例数量不低于 30 条",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 30
+        },
+        {
+          "name": "业务域覆盖 ≥ 4",
+          "description": "至少覆盖 4 个不同的业务域",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 4
+        },
+        {
+          "name": "需求追溯 ≥ 20/22",
+          "description": "至少覆盖 20 条需求",
+          "type": "min_unique_references",
+          "target": "需求来源",
+          "value": 20
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比在 40% 到 70% 之间",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种不同的测试设计方法",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "测试维度覆盖 ≥ 3 种",
+          "description": "覆盖了至少 3 种测试维度（如功能、安全、性能、可靠性等）",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 3
+        },
+        {
+          "name": "用例编号连续",
+          "description": "TC-NNN 格式的用例编号连续递增、没有间断",
+          "type": "tc_id_continuous",
+          "target": "用例编号"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 20",
+          "description": "PDF 文档提取后生成不少于 20 条测试用例",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 20
+        },
+        {
+          "name": "业务域覆盖 ≥ 3",
+          "description": "至少覆盖商品浏览、购物车、下单支付、退款售后中的 3 个业务域",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 3
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比合理",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种测试设计方法（如场景法+状态迁移）",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "测试维度覆盖 ≥ 3 种",
+          "description": "覆盖功能、异常、性能等至少 3 种测试维度",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 3
+        },
+        {
+          "name": "状态迁移覆盖完整",
+          "description": "覆盖订单所有合法状态转换路径：待支付→已支付→已发货→已完成→已退款",
+          "type": "covers_transitions",
+          "target": [
+            "待支付→已支付",
+            "已支付→已发货",
+            "已发货→已完成",
+            "已支付→已退款"
+          ]
+        },
+        {
+          "name": "异常状态转换覆盖",
+          "description": "包含非法状态转换（逆向/跳跃）的测试用例",
+          "type": "has_negative_transitions",
+          "target": "状态迁移"
+        },
+        {
+          "name": "预期结果不含模糊表述",
+          "description": "预期结果中不会单独出现「成功」「正常」等模糊用词",
+          "type": "no_vague_expected",
+          "target": "预期结果",
+          "value": ["成功","正常"]
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 15",
+          "description": "从 Word 文档生成不少于 15 条测试用例",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 15
+        },
+        {
+          "name": "业务域覆盖 ≥ 3",
+          "description": "至少覆盖不同管理模块的 3 个业务域",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 3
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比合理",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种不同设计方法",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "测试维度覆盖 ≥ 2 种",
+          "description": "覆盖功能测试和安全性测试至少 2 种维度",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 2
+        },
+        {
+          "name": "多角色权限场景覆盖",
+          "description": "包含管理员、普通用户、访客等多角色的权限对比测试场景",
+          "type": "has_role_based_cases",
+          "target": ["管理员", "普通用户", "访客"]
+        },
+        {
+          "name": "预期结果不含模糊表述",
+          "description": "预期结果中不会单独出现「成功」「正常」等模糊用词",
+          "type": "no_vague_expected",
+          "target": "预期结果",
+          "value": ["成功","正常"]
+        }
+      ]
+    },
+    {
+      "eval_id": 4,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 10",
+          "description": "从图片分析生成不少于 10 条测试用例",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 10
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比合理",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种不同设计方法",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "测试维度覆盖 ≥ 2 种",
+          "description": "覆盖功能测试和异常测试至少 2 种维度",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 2
+        },
+        {
+          "name": "流程图分支路径覆盖",
+          "description": "流程图中的每个判断节点分支都有对应用例（真/假分支各至少 1 条）",
+          "type": "covers_branches",
+          "target": "分支路径"
+        },
+        {
+          "name": "包含异常/反向场景",
+          "description": "包含流程异常场景（如页面加载失败、验证不通过、操作中断等）",
+          "type": "has_negative_scenarios",
+          "target": "流程异常"
+        },
+        {
+          "name": "UI 交互点验证",
+          "description": "包含对原型图中 UI 元素（按钮、输入框、表单）的交互验证用例",
+          "type": "ui_interaction_check",
+          "target": "UI 交互"
+        }
+      ]
+    },
+    {
+      "eval_id": 5,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 20",
+          "description": "12 个接口每个至少 1-2 条用例，总数不少于 20",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 20
+        },
+        {
+          "name": "业务域覆盖 ≥ 2",
+          "description": "至少覆盖 2 个 API 业务域（如用户管理、订单管理）",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 2
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "参数校验覆盖",
+          "description": "每个接口的必填参数校验和边界值都有测试",
+          "type": "covers_parameter_validation",
+          "target": 12
+        },
+        {
+          "name": "接口错误码覆盖",
+          "description": "包含对 HTTP 状态码和业务错误码的验证场景（如 400/401/404/500）",
+          "type": "covers_error_codes",
+          "target": "错误码"
+        },
+        {
+          "name": "正常流程与异常流程",
+          "description": "每个接口同时包含正常响应和异常响应的测试用例",
+          "type": "has_negative_scenarios",
+          "target": "接口异常"
+        },
+        {
+          "name": "预期结果不含模糊表述",
+          "description": "预期结果中不会单独出现「成功」「正常」等模糊用词",
+          "type": "no_vague_expected",
+          "target": "预期结果",
+          "value": ["成功","正常"]
+        }
+      ]
+    },
+    {
+      "eval_id": 6,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 15",
+          "description": "从多图表需求文档生成不少于 15 条用例",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 15
+        },
+        {
+          "name": "业务域覆盖 ≥ 5",
+          "description": "至少覆盖 5 个业务域（用户/商品/购物车/订单/支付/促销/物流）",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 5
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比合理",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "测试维度覆盖 ≥ 3 种",
+          "description": "覆盖功能/安全/性能/可靠性至少 3 种测试维度",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 3
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种设计方法",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "用例编号连续",
+          "description": "TC-NNN 格式的用例编号连续递增、没有间断",
+          "type": "tc_id_continuous",
+          "target": "用例编号"
+        },
+        {
+          "name": "多源信息整合",
+          "description": "测试用例同时覆盖了文字描述需求和图片中的流程图/状态图/序列图路径",
+          "type": "multi_source_integration",
+          "target": "文本+图片整合"
+        },
+        {
+          "name": "流程图路径覆盖",
+          "description": "用户注册登录流程图的每个判断分支都有对应的测试用例",
+          "type": "covers_branches",
+          "target": "流程图路径"
+        },
+        {
+          "name": "状态图转换覆盖",
+          "description": "下单支付状态图的每个合法转换都有对应的测试用例",
+          "type": "covers_transitions",
+          "target": [
+            "待支付→已支付",
+            "已支付→已发货",
+            "已发货→已完成"
+          ]
+        },
+        {
+          "name": "序列图流程覆盖",
+          "description": "退款序列图中的参与者和消息交互有对应集成测试用例",
+          "type": "sequence_flow_coverage",
+          "target": "序列图交互"
+        }
+      ]
+    },
+    {
+      "eval_id": 7,
+      "assertions": [
+        {
+          "name": "Excel 文件已生成",
+          "description": "验证输出目录下生成了 .xlsx 文件",
+          "type": "file_exists",
+          "target": "output/*.xlsx"
+        },
+        {
+          "name": "用例数量 ≥ 10",
+          "description": "从含冲突的需求文档生成不少于 10 条用例",
+          "type": "min_count",
+          "target": "测试用例",
+          "value": 10
+        },
+        {
+          "name": "业务域覆盖 ≥ 2",
+          "description": "至少覆盖 2 个业务域（通知发送/通知模板/用户偏好等）",
+          "type": "min_unique_values",
+          "target": "业务域",
+          "value": 2
+        },
+        {
+          "name": "P0+P1 占 40%-70%",
+          "description": "P0+P1 占比合理",
+          "type": "priority_distribution",
+          "target": "P0+P1",
+          "min_pct": 40,
+          "max_pct": 70
+        },
+        {
+          "name": "必填字段完整",
+          "description": "每条用例都包含所有必要字段且非空",
+          "type": "field_completeness",
+          "target": ["用例编号","业务域","优先级","测试维度","测试场景","操作步骤","前置条件","需求来源"]
+        },
+        {
+          "name": "平均操作步骤 ≥ 3",
+          "description": "每条用例平均操作步骤数不低于 3",
+          "type": "steps_min_avg",
+          "target": "操作步骤",
+          "value": 3
+        },
+        {
+          "name": "设计方法覆盖 ≥ 2 种",
+          "description": "使用了至少 2 种设计方法",
+          "type": "design_method_coverage",
+          "target": "设计方法",
+          "value": 2
+        },
+        {
+          "name": "用例编号连续",
+          "description": "TC-NNN 格式的用例编号连续递增、没有间断",
+          "type": "tc_id_continuous",
+          "target": "用例编号"
+        },
+        {
+          "name": "需求冲突识别",
+          "description": "识别出文档中至少 2 处需求冲突并在用例中有所体现",
+          "type": "covers_conflict_resolution",
+          "target": "需求冲突"
+        },
+        {
+          "name": "冲突场景验证",
+          "description": "每个识别出的冲突点至少有一条验证用例覆盖",
+          "type": "conflict_scenario_coverage",
+          "target": "冲突场景验证"
+        },
+        {
+          "name": "测试维度覆盖 ≥ 2 种",
+          "description": "至少覆盖 2 种测试维度",
+          "type": "test_dimension_coverage",
+          "target": "测试维度",
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

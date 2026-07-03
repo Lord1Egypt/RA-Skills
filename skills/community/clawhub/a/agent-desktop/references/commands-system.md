@@ -78,6 +78,8 @@ Restores a minimized or maximized window to its previous size.
 
 ## Notifications
 
+If Notification Center fails to close after a successful list or dismiss operation, the command still returns its completed result; the close failure is logged internally and is never surfaced as an error, so a cleanup hiccup never discards a completed action.
+
 ### list-notifications
 ```bash
 agent-desktop list-notifications
@@ -234,7 +236,9 @@ Execute multiple commands in sequence from a JSON array. Each entry has `command
 
 Batch uses the same typed `Commands` enum, command policy preflight, permission report, and dispatch path as the CLI. Unknown fields are rejected instead of being silently ignored. Nested `batch` is rejected.
 
-Each entry may include `"session": "id"` beside `command` and `args`. If omitted, the entry inherits the top-level `--session`. Use per-entry sessions only when intentionally inspecting or coordinating separate agent runs. Top-level `--trace` is inherited by every entry — including entries with a `session` override — so one JSONL file captures the whole batch.
+Each entry may include `"session": "id"` beside `command` and `args`. If omitted, the entry inherits the top-level resolved session. Use per-entry sessions only when intentionally inspecting or coordinating separate agent runs.
+
+**Trace in batch:** when the top-level CLI passes `--trace <path>`, every entry writes to that single file (override). Without `--trace`, entries inherit the resolved session's manifest-gated segment sink; a per-entry `"session"` override re-derives the sink for that session (events never land in the parent session's segment). Session subcommands (`session start`, etc.) are also available in batch JSON via `"action": "start"|"end"|"list"|"gc"`.
 
 | Flag | Default | Description |
 |------|---------|-------------|
@@ -246,7 +250,8 @@ Each entry may include `"session": "id"` beside `command` and `args`. If omitted
   { "command": "click", "args": { "ref_id": "@e1", "snapshot": "<snapshot_id>" } },
   { "command": "wait", "args": { "ms": 500 } },
   { "command": "type", "args": { "ref_id": "@e2", "snapshot": "<snapshot_id>", "text": "hello" } },
-  { "command": "status", "session": "other-agent", "args": {} }
+  { "command": "status", "session": "other-agent", "args": {} },
+  { "command": "session", "args": { "action": "start", "name": "batch-run" } }
 ]
 ```
 
@@ -274,13 +279,114 @@ Each entry may include `"session": "id"` beside `command` and `args`. If omitted
 
 `skeleton: true` clamps depth to 3 and tags truncated containers with `children_count`. `root: "@eN"` starts traversal from that ref instead of the window root; it cannot be combined with `surface`.
 
+## Session lifecycle
+
+Sessions are on-disk containers under `~/.agent-desktop/sessions/<id>/` with a `session.json` manifest, snapshot refmaps, and (when tracing is on) a `trace/` directory. **`session start` is the only command that writes `~/.agent-desktop/current_session`.**
+
+### session start
+```bash
+agent-desktop session start
+agent-desktop session start --name "nightly-run"
+agent-desktop session start --no-trace          # Namespace only — no automatic JSONL
+agent-desktop session start --force             # Override pointer even if it references a live session
+```
+Creates the session directory, pre-creates `trace/` (when tracing is on), writes `session.json` (`trace: on` unless `--no-trace`), sets the current-session pointer, and prints `{ "session_id", "name", "trace", "created_at" }`.
+
+Refuses to clobber a pointer that still references a **live** session unless `--force`. Live means an active `refstore.lock` holder or recent writes under `trace/`.
+
+### session end
+```bash
+agent-desktop session end
+agent-desktop session end run-1719763200123-0
+```
+Seals the manifest with `ended_at` and clears the pointer when it still points at this session.
+
+### session list
+```bash
+agent-desktop session list
+```
+Returns manifest fields only (`session_id`, `name`, `created_at`, `ended_at`, `trace`) — no subtree walk.
+
+### session gc
+```bash
+agent-desktop session gc
+agent-desktop session gc --ended
+agent-desktop session gc --older-than 3600
+```
+Removes ended sessions that are not live and not pointer-referenced. Never reaps a session with a live lock holder or recent `trace/` activity. Refuses symlinked session directories.
+
+### Activation (all commands)
+
+| Source | Precedence |
+|--------|------------|
+| `--session <id>` | Highest |
+| `AGENT_DESKTOP_SESSION` env var | Middle |
+| `~/.agent-desktop/current_session` | Lowest (set only by `session start`) |
+
+Trace-on requires a manifest with `trace: on` from `session start`. Bare `--session` or FFI `ad_adapter_create_with_session` without that manifest selects the snapshot namespace only.
+
+## Trace read and export
+
+Both commands require an active trace-enabled session (`session start` or `--session <id>` with a manifest). They are permissionless — no accessibility or screen-recording grant is needed to read or export traces from disk.
+
+### trace show
+```bash
+agent-desktop trace show [--limit N] [--event PREFIX]
+```
+Merges every segment under `<session>/trace/` into one deterministic timeline. Default `--limit 500` returns the **tail**; `--limit 0` returns all events. `--event action.` filters by event-name prefix before the tail slice.
+
+Response `data` includes `session_id`, per-segment stats (`segments[]` with `segment`, `pid`, `schema`, `event_count`, `skipped_lines`), `total_events`, `returned_events`, `truncated`, optional `warnings[]` (`kind`, `message`), and the merged `events[]` (each annotated with `writer_pid` and `segment`).
+
+Reader tolerance: truncated final lines, corrupt JSON, foreign files, symlinked segments, and unpaired `command.start`/`command.end` pairs degrade to counted warnings — never hard errors.
+
+`warnings[].kind` is one of:
+
+| `kind` | Meaning |
+|--------|---------|
+| `foreign_file` | A file under `trace/` doesn't match the `<pid>-<procTs>.jsonl` segment name pattern (and isn't dotfile-hidden); ignored entirely |
+| `unreadable_segment` | The segment file could not be opened or read; the whole segment is skipped |
+| `symlinked_segment` | The segment path is a symlink; skipped before any read is attempted |
+| `schema_unknown` | The segment's `trace.meta` declares a schema newer than this reader supports; still read best-effort |
+| `unpaired_command` | A `command.start` has no matching `command.end` (or vice versa) within the returned event window |
+
+### trace export
+```bash
+agent-desktop trace export [--out path.html] [--limit N]
+```
+Builds one self-contained HTML file with embedded JSON and base64 PNG screenshots. Default `--limit 5000` (ten times `trace show`'s default). Works from `file://` with no network fetches.
+
+Without `--out`, the file is written into the **session directory** as `trace-<session_id>.html` (`~/.agent-desktop/sessions/<id>/trace-<id>.html`) — not the current working directory. `--out` overrides the path, including writing outside the session directory.
+
+Response `data` reports `path`, `event_count`, `screenshots_embedded`, `screenshots_skipped`, and `bytes`. Export refuses symlinked `--out` paths and returns `INVALID_ARGS` when the embedded JSON exceeds 200MiB (use a smaller `--limit`).
+
+### Replay artifacts (`--screenshots`)
+```bash
+agent-desktop session start --screenshots   # manifest artifacts: full
+```
+Requires tracing (`trace: on`; `--no-trace --screenshots` is rejected). Ref actions capture pre/post PNGs under `trace/screens/`; snapshot saves copy refmaps to `trace/refmaps/`. Skips are recorded in `action.artifacts` events with machine-readable reasons. Artifacts are **unredacted** and may appear in exported HTML — opt in only when that sensitivity is acceptable.
+
+A skip reason lands in `skipped` when the pre- and post-action screenshot outcomes share one reason, otherwise it splits across `skipped_pre`/`skipped_post`. Reasons include (non-exhaustive):
+
+| Token | Meaning |
+|-------|---------|
+| `no_session` | No active session could be resolved for this action |
+| `count_budget` | Per-process screenshot count budget (200) exceeded |
+| `budget` | Per-process screenshot byte budget (128MiB) exceeded |
+| `write_failed` | Writing the PNG to disk failed |
+| `dir: <error>` | Creating `trace/screens/` failed |
+| `adapter: <ERROR_CODE>` | The platform screenshot call failed with the given error code |
+
+Refmap copies under `trace/refmaps/` are best-effort — a skipped or failed copy never fails the primary command and leaves any prior copy intact.
+
 ## System Health
 
 ### status
 ```bash
 agent-desktop status
 ```
-Returns adapter health, platform info, permission report, and latest snapshot metadata (`snapshot_id`, `ref_count`) when available.
+Returns adapter health, platform info, permission report, latest snapshot metadata (`snapshot_id`, `ref_count`) when available, plus **`session_id`** (resolved active session, if any) and **`tracing`** (whether structured trace output is configured for this process — explicit `--trace`, or a trace-enabled session manifest).
+
+When `session_id` resolves to a session with a readable manifest, the response also includes **`artifacts`**: `full` (`session start --screenshots` — screenshots and refmaps captured) or `events` (default — JSONL events only, no binary artifacts). Omitted when there is no active session.
 
 ### permissions
 ```bash

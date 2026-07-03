@@ -1,23 +1,9 @@
-## [3.2.0] - 2026-06-26
-
-### 修复
-- refactor: hug-html
-
----
-
-## [3.1.0] - 2026-06-26
-
-### 修复
-- refactor: hug-html
-
----
-
 ## 3.0.4 (2026-06-02) -- skill-standardization 改造
 
 ### Changed
 - R-10: SKILL.md frontmatter tags 和 description 与 _meta.json 同步一致
-- R-04: description 删除版本号（_meta.json 和 SKILL.md 均去除）
-- R-20: changelog.md 术语统一（删除→删除）
+- R-04: description 移除版本号（_meta.json 和 SKILL.md 均去除）
+- R-20: changelog.md 术语统一（移除→删除）
 - **R-17**: SKILL.md 缩减至 181 行，非标章节按 body.json 三层规则处理:
    - 四层架构（细化）→ 渐进式: references/architecture.md
    - 能力边界 → 重命名: 限制

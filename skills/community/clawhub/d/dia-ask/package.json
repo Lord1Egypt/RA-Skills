@@ -1,0 +1,44 @@
+{
+  "name": "dia-ask",
+  "version": "0.1.2",
+  "description": "Prompt your locally-running Dia browser from the command line and get the assistant's answer back as an exact text file. Focus-safe. macOS.",
+  "license": "MIT",
+  "author": "German Kovacevic <gk@agneo.app>",
+  "type": "commonjs",
+  "bin": {
+    "dia-ask": "dia-ask-v2.js"
+  },
+  "scripts": {
+    "test": "node test/v2-lib.test.js && node test/keymap.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "os": [
+    "darwin"
+  ],
+  "files": [
+    "dia-ask-v2.js",
+    "dia-ask.js",
+    "v2-lib.js",
+    "keymap.js",
+    "dia-cgpost.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dia",
+    "the-browser-company",
+    "browser-automation",
+    "macos",
+    "cli",
+    "ai-agent",
+    "claude",
+    "accessibility",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/germankovacevic-lab/dia-ask.git"
+  }
+}

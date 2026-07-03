@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Mark — Live Demo · click anything, leave a note</title>
+<meta name="description" content="Live playground for HTML Mark. This is a fake product prototype — turn on mark mode, click any element, and write review feedback inline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #faf6f0;
+  --paper: #fffdf9;
+  --ink: #2b2117;
+  --ink-soft: #6f6156;
+  --coral: #ff8d6b;
+  --coral-deep: #f0704b;
+  --honey: #ffc890;
+  --line: #e9ddd0;
+  --glass-dark: rgba(28, 22, 17, .82);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Public Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(1100px 500px at 85% -5%, rgba(255,141,107,.14), transparent 60%),
+    radial-gradient(900px 420px at -10% 40%, rgba(255,200,144,.16), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+main { position: relative; z-index: 1; }
+
+/* ---------- demo guide banner ---------- */
+.demo-banner {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--glass-dark);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  color: #f5ede4;
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  border-bottom: 1px solid rgba(255,200,144,.25);
+}
+@media (min-width: 700px) {
+  .demo-banner { padding-right: 150px; padding-left: 40px; }
+  .demo-banner span:nth-child(2) { max-width: 72ch; }
+}
+.demo-banner .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--coral), var(--honey));
+  box-shadow: 0 0 10px rgba(255,141,107,.9);
+  animation: pulse 1.8s ease-in-out infinite;
+  flex: none;
+}
+@keyframes pulse { 50% { transform: scale(1.45); opacity: .7; } }
+.demo-banner kbd {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 11.5px; font-weight: 700;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 5px; padding: 1px 7px;
+}
+.demo-banner a { color: var(--honey); font-weight: 600; text-decoration: none; }
+.demo-banner a:hover { text-decoration: underline; }
+
+/* ---------- fake prototype below ---------- */
+.wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+
+nav.proto-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 0 10px;
+}
+.logo {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px;
+  letter-spacing: -.02em;
+}
+.logo em { font-style: normal; color: var(--coral-deep); }
+.nav-links { display: flex; gap: 26px; align-items: center; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.btn {
+  display: inline-block; border: none; cursor: pointer;
+  font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 14.5px;
+  padding: 11px 22px; border-radius: 999px;
+  text-decoration: none; transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--honey) 100%);
+  color: #4a2412;
+  box-shadow: 0 6px 18px rgba(255,141,107,.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(255,141,107,.45); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.btn-ghost:hover { border-color: var(--ink); }
+
+header.hero { padding: 72px 0 64px; text-align: left; position: relative; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--coral-deep);
+  margin-bottom: 20px;
+}
+.eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--coral); }
+h1 {
+  font-family: 'Fraunces', serif; font-weight: 600;
+  font-size: clamp(40px, 6.2vw, 68px);
+  line-height: 1.04; letter-spacing: -.025em;
+  max-width: 13ch;
+}
+h1 .swash { color: var(--coral-deep); font-style: italic; }
+.hero p.lede { margin: 26px 0 34px; font-size: 18px; color: var(--ink-soft); max-width: 52ch; }
+.hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.hero-note { font-size: 12.5px; color: var(--ink-soft); }
+
+.hero-card {
+  position: absolute; right: 0; top: 84px;
+  width: 300px; padding: 22px;
+  background: var(--paper);
+  border: 1px solid var(--line); border-radius: 18px;
+  box-shadow: 0 24px 48px -18px rgba(43,33,23,.18);
+  transform: rotate(2.5deg);
+}
+.hero-card .hc-row { display: flex; justify-content: space-between; font-size: 13px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+.hero-card .hc-row:last-child { border-bottom: 0; }
+.hero-card .hc-row b { font-weight: 600; }
+.hero-card .hc-head { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.badge-up { color: #1e7d4f; font-weight: 700; }
+@media (max-width: 900px) { .hero-card { display: none; } }
+
+section { padding: 58px 0; }
+.sec-head { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; letter-spacing: -.02em; margin-bottom: 8px; }
+.sec-sub { color: var(--ink-soft); margin-bottom: 36px; max-width: 56ch; }
+
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 800px) { .features { grid-template-columns: 1fr; } }
+.feature {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+  padding: 26px 24px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.feature:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -16px rgba(43,33,23,.16); }
+.feature .ico {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center; font-size: 20px;
+  background: linear-gradient(135deg, rgba(255,141,107,.16), rgba(255,200,144,.22));
+  margin-bottom: 16px;
+}
+.feature h3 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+.feature p { font-size: 14.5px; color: var(--ink-soft); }
+
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+@media (max-width: 800px) { .pricing { grid-template-columns: 1fr; } }
+.plan {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  padding: 30px 26px; display: flex; flex-direction: column;
+}
+.plan.hot {
+  border: 2px solid var(--coral);
+  box-shadow: 0 20px 44px -18px rgba(255,141,107,.4);
+  position: relative;
+}
+.plan.hot::after {
+  content: 'MOST POPULAR';
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--coral), var(--honey));
+  color: #4a2412; font-size: 10.5px; font-weight: 800; letter-spacing: .1em;
+  padding: 4px 12px; border-radius: 999px;
+}
+.plan h3 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
+.plan .price { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 700; margin: 14px 0 2px; }
+.plan .price span { font-size: 14px; font-weight: 500; color: var(--ink-soft); font-family: 'Public Sans', sans-serif; }
+.plan ul { list-style: none; margin: 20px 0 26px; flex: 1; }
+.plan li { font-size: 14px; padding: 7px 0 7px 26px; position: relative; color: var(--ink-soft); }
+.plan li::before {
+  content: '✓'; position: absolute; left: 0; top: 7px;
+  color: var(--coral-deep); font-weight: 800;
+}
+.plan .btn { text-align: center; }
+
+.faq-item {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px 24px; margin-bottom: 12px;
+}
+.faq-item h4 { font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+.faq-item p { font-size: 14px; color: var(--ink-soft); }
+
+footer.proto-footer {
+  border-top: 1px solid var(--line);
+  padding: 36px 0 90px; margin-top: 30px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px;
+  font-size: 13px; color: var(--ink-soft);
+}
+footer a { color: var(--ink-soft); }
+
+.reveal { opacity: 0; transform: translateY(18px); animation: rise .7s ease forwards; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <span class="dot"></span>
+  <span><strong>This page is the demo.</strong> Everything below is a fake product prototype — press <kbd>M</kbd> or tap the pill in the top-right, then <strong>click anything</strong> to drop a pin and write feedback. Copy it all out as Markdown when you're done.</span>
+  <a href="https://github.com/xuxinmaxen/html-mark">GitHub ↗</a>
+</div>
+
+<main class="wrap">
+
+  <nav class="proto-nav reveal">
+    <div class="logo" data-mm-label="Brand logo">brew<em>&amp;</em>bloom</div>
+    <div class="nav-links">
+      <a href="#features">Blends</a>
+      <a href="#pricing">Plans</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="btn btn-ghost" data-mm-label="Nav: sign-in button">Sign in</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="reveal" style="animation-delay:.08s">
+      <div class="eyebrow">Small-batch tea, delivered monthly</div>
+      <h1>Wake up to a cup worth <span class="swash">writing home</span> about.</h1>
+      <p class="lede" data-mm-label="Hero copy">
+        brew&amp;bloom sources single-garden teas from twelve family farms, roasts to order every
+        Tuesday, and lands a fresh box on your doorstep before the month turns. No warehouses,
+        no year-old leaves, no bergamot-flavored regret.
+      </p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn btn-primary" data-mm-label="Hero primary CTA">Start my first box — $9</a>
+        <a href="#features" class="btn btn-ghost">See this month's blends</a>
+      </div>
+      <p class="hero-note" style="margin-top:14px">Cancel anytime · 4.9★ from 2,184 tea people</p>
+    </div>
+
+    <aside class="hero-card reveal" style="animation-delay:.22s" data-mm-label="Hero stats card">
+      <div class="hc-head">This month's box</div>
+      <div class="hc-row"><span>Jasmine Silver Needle</span><b>40g</b></div>
+      <div class="hc-row"><span>Smoked Golden Yunnan</span><b>40g</b></div>
+      <div class="hc-row"><span>Moonlight Oolong</span><b>40g</b></div>
+      <div class="hc-row"><span>Freshness</span><b class="badge-up">Roasted 3 days ago</b></div>
+    </aside>
+  </header>
+
+  <section id="features">
+    <h2 class="sec-head">Why people switch</h2>
+    <p class="sec-sub">Three honest reasons, no tea-sommelier mysticism.</p>
+    <div class="features">
+      <article class="feature" data-mm-label="Feature card: freshness">
+        <div class="ico">🍃</div>
+        <h3>Roasted to order</h3>
+        <p>Your leaves are finished the same week they ship. Supermarket tea averages 14 months on a shelf before it hits your cup.</p>
+      </article>
+      <article class="feature" data-mm-label="Feature card: sourcing">
+        <div class="ico">🗺️</div>
+        <h3>One garden per tin</h3>
+        <p>Every tin names the farm, the picking date, and the person who rolled it. Scan the lid to see the hillside it grew on.</p>
+      </article>
+      <article class="feature" data-mm-label="Feature card: flexibility">
+        <div class="ico">📦</div>
+        <h3>Skip, swap, stop</h3>
+        <p>Traveling in June? Skip it. Hate smoky teas? Swap them out. Every control is two taps, none of them call a retention team.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2 class="sec-head">Plans</h2>
+    <p class="sec-sub">First box is $9 on every plan. Prices include shipping.</p>
+    <div class="pricing">
+      <article class="plan" data-mm-label="Plan card: Taster">
+        <h3>Taster</h3>
+        <div class="price">$19<span>/mo</span></div>
+        <ul>
+          <li>2 blends · 80g total</li>
+          <li>Tasting notes card</li>
+          <li>Skip any month</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Choose Taster</a>
+      </article>
+      <article class="plan hot" data-mm-label="Plan card: Ritual (highlighted)">
+        <h3>Ritual</h3>
+        <div class="price">$34<span>/mo</span></div>
+        <ul>
+          <li>3 blends · 120g total</li>
+          <li>Brew-temp guide per tin</li>
+          <li>Swap blends before shipping</li>
+          <li>Member-only rare lots</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Choose Ritual</a>
+      </article>
+      <article class="plan" data-mm-label="Plan card: Ceremony">
+        <h3>Ceremony</h3>
+        <div class="price">$58<span>/mo</span></div>
+        <ul>
+          <li>5 blends · 200g total</li>
+          <li>Quarterly teaware gift</li>
+          <li>Direct line to our buyer</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Choose Ceremony</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2 class="sec-head">Questions people actually ask</h2>
+    <p class="sec-sub" style="margin-bottom:24px">The rest live in our help center.</p>
+    <div class="faq-item" data-mm-label="FAQ: caffeine">
+      <h4>Is there a caffeine-free option?</h4>
+      <p>Yes — flip the "low &amp; no caffeine" toggle in preferences and we'll build your box from herbals and decaffeinated lots only.</p>
+    </div>
+    <div class="faq-item" data-mm-label="FAQ: gifting">
+      <h4>Can I gift a subscription?</h4>
+      <p>Three, six, and twelve-month gift passes ship in a letterpress box with a handwritten note. No auto-renew surprises for the recipient.</p>
+    </div>
+    <div class="faq-item" data-mm-label="FAQ: international">
+      <h4>Do you ship outside the US?</h4>
+      <p>Canada and the UK today; EU is on the roadmap for autumn. Join the waitlist and we'll email when your country opens up.</p>
+    </div>
+  </section>
+
+  <footer class="proto-footer">
+    <span>© 2026 brew&amp;bloom — a fictional company that exists so you can criticize this page.</span>
+    <span>
+      Demo for <a href="https://github.com/xuxinmaxen/html-mark"><strong>HTML Mark</strong></a> ·
+      MIT-0 · <a href="https://github.com/xuxinmaxen/html-mark#install">install it on your own pages</a>
+    </span>
+  </footer>
+
+</main>
+
+<script src="./html-mark.js"></script>
+</body>
+</html>

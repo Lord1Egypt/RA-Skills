@@ -1,0 +1,59 @@
+{
+  "request_id": "EREQ-20260619-001",
+  "project_id": "TM-20260619-001",
+  "manager_id": "manager-steward-01",
+  "request_date": "2026-06-19",
+  "evaluation_scope": {
+    "full_evaluation": true,
+    "trl_assessment": true,
+    "risk_focus": ["market", "financial", "certification"],
+    "deadline": "2026-06-26"
+  },
+  "source_data": {
+    "handoff_package": {
+      "transfer_id": "TRF-20260619-001",
+      "project_info": {
+        "name": "耐高温纳米陶瓷涂层技术产业化项目",
+        "tech_domain": "航空新材料/热障涂层",
+        "current_trl": 4,
+        "core_tech_description": "耐高温纳米陶瓷涂层技术，基于YSZ体系+等离子喷涂工艺，最高工作温度1400°C，热循环寿命>1000次"
+      },
+      "screening_report": {
+        "total_score": 7.92,
+        "grade": "A"
+      }
+    },
+    "project_archive_summary": {
+      "current_trl": 4,
+      "grade": "A",
+      "key_conclusions": [
+        "技术领先解决卡脖子问题",
+        "市场刚需替代空间巨大",
+        "工程化经验不足是主要短板",
+        "中试资金缺口大"
+      ]
+    }
+  },
+  "trl_input": {
+    "tech_name": "耐高温纳米陶瓷涂层技术",
+    "tech_domain": "航空新材料/热障涂层",
+    "current_stage": "component_validation",
+    "evidence_list": [
+      { "type": "C_academic", "description": "3项核心专利已授权", "credibility": "high" },
+      { "type": "E_internal", "description": "小尺寸样品（10mm×10mm）制备完成", "credibility": "medium" },
+      { "type": "E_internal", "description": "高温氧化环境测试通过", "credibility": "medium" },
+      { "type": "E_internal", "description": "热循环疲劳测试完成，>1000次@1200°C", "credibility": "medium" },
+      { "type": "E_internal", "description": "初步力学性能测试合格，结合强度>25MPa", "credibility": "medium" },
+      { "type": "E_internal", "description": "初步工艺参数窗口确定", "credibility": "low" },
+      { "type": "E_internal", "description": "初步失效模式分析完成", "credibility": "low" }
+    ],
+    "target_trl": 7,
+    "industry_special": "航空发动机叶片热障涂层，涉及适航认证（CAAC/FAA）、NADCAP特种工艺认证",
+    "resource_info": {
+      "team_size": 8,
+      "invested_capital": 500,
+      "planned_investment": 5000,
+      "timeline_months": 48
+    }
+  }
+}

@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v2.10.0 (2026-07-01)
+
+### 📝 Examples & Wordlist Refresh
+- **3 new end-to-end examples** in `references/examples.md`:
+  - Example 4: Style Cloning + SEO blog (8-dim fingerprint → dual-temp → Reader with style-clone+SEO scoring → drift tracking)
+  - Example 5: Instant Mode WeChat Moments (2-round intent capture → single draft → Creator Lite 5-check → delivery)
+  - Example 6: Long-form thesis Chapter 3 (Chapter Manifest → consistency watchdog → cross-chapter sync)
+- Updated examples.md version from v2.3 to v2.9.2
+- Added 4 new design principles reflecting v2.8+ features
+
+### 🆕 Template #17: WeChat Official Account Article
+- Complete skeleton: title optimization (2-3 candidates) → hook (3 sentences) → visual breakpoints (every 300-500 words) → interaction design → CTA follow
+- Title formula: number/suspense/pain-point + benefit, 15-30 chars
+- Anti-patterns: title-content mismatch, text walls, begging CTAs, self-intro openings
+- SEO subset: title optimization + keyword density (WeChat search traffic)
+- 6 groups of platform-specific AI fatigue words
+
+### 🔤 2026 AI Fatigue Word Expansion
+- **English** (+18 phrases): `I appreciate you bringing that up`, `Let me break this down`, `Here's the thing`, `It's worth emphasizing`, `Let me paint a picture`, `At the end of the day`, `I'd be happy to help`, `Great question!`, `You raise an excellent point`, `Let me walk you through`, `I want to highlight`, `It's important to remember`, `Let me be clear`, `To put it simply`, `The reality is`, `What this means is`, `In practical terms`, `The bottom line`
+- **Chinese** (+18 phrases): “说到底”, “本质上”, “你可能会问”, “我们不妨换个角度”, “这一点非常关键”, “不可否认”, “值得一提的是”, “某种程度上”, “换个角度想”, “你有没有想过”, “说白了就是”, “这就引出了一个问题”, “有意思的是”, “坦白说”, “不得不说”, “从某种意义上说”, “这就是为什么”, “换句话说”
+
+### 📁 Files Changed
+- `SKILL.md` — v2.10.0 frontmatter + version header
+- `references/examples.md` — 3 new examples + updated design principles
+- `references/ai-traces-guide.md` — 2026 fatigue words (English + Chinese)
+- `references/template-library.md` — Template #17 + matching rules update
+- `CHANGELOG.md` — this entry
+
 ## v2.9.2 (2026-06-18)
 
 ### 🔒 Security & Privacy Hardening

@@ -1,0 +1,25 @@
+{
+  "name": "@urufu-labs/urufu-agent",
+  "version": "1.0.0",
+  "description": "AI agent skill + steward CLI for playing urufu gēmu on Base",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "test": "cd scripts && npm test",
+    "pack-hermes": "node scripts/package-hermes.mjs",
+    "install-hermes": "node scripts/install-hermes.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/urufu-labs/urufu-agent.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "urufu",
+    "base",
+    "ai-agent",
+    "openclaw",
+    "hermes",
+    "web3"
+  ]
+}

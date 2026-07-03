@@ -1,0 +1,301 @@
+#!/usr/bin/env bash
+
+# 路径解析（兼容容器/K8s/多环境）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../lib/opphub-paths.sh"
+opphub_init_home
+# 偶合 OppHub · 6 步引导注册
+# 老板 11:36 拍点 + 11:41 修正（账号与飞书解耦）
+
+set -e
+
+OPPHUB_HOME="${OPPHUB_HOME:-}"  # ← 由 lib/opphub-paths.sh 解析后填入
+API_BASE="${OPPHUB_API_BASE:-https://api.opphub.ruiplus.cn}"
+
+# 颜色
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+step() { echo -e "${BLUE}━━━ $1 ━━━${NC}"; }
+ok()   { echo -e "${GREEN}✓ $1${NC}"; }
+warn() { echo -e "${YELLOW}⚠ $1${NC}"; }
+fail() { echo -e "${RED}✗ $1${NC}"; exit 1; }
+
+# 确保 home 目录存在
+mkdir -p "$OPPHUB_HOME"
+
+echo ""
+echo -e "${GREEN}🐪 欢迎使用偶合 OppHub${NC}"
+echo "让 1 人公司跑通商业全流程"
+echo ""
+warn "注意：您的 OPC 账号与飞书完全解耦"
+warn "     邮箱/手机号 + 验证码 = 偶合账号"
+warn "     飞书只是 5 个 IM 通道之一"
+echo ""
+
+# ════════════════════════════════════════════
+# 步骤 1/6：邮箱/手机号注册
+# ════════════════════════════════════════════
+step "步骤 1/6：邮箱/手机号注册"
+
+while true; do
+  echo ""
+  echo "请选择注册方式："
+  echo "  1) 邮箱"
+  echo "  2) 手机号（中国大陆 +86）"
+  read -p "请选择 [1/2]: " METHOD
+  case "$METHOD" in
+    1) TYPE="email"; PROMPT="邮箱"; ;;
+    2) TYPE="phone"; PROMPT="手机号"; ;;
+    *) warn "请输入 1 或 2"; continue ;;
+  esac
+
+  read -p "请输入您的 $PROMPT: " TARGET
+
+  # 校验
+  if [ "$TYPE" = "email" ]; then
+    if ! echo "$TARGET" | grep -qE '@.+\.'; then
+      warn "邮箱格式不对"; continue
+    fi
+  else
+    # 手机号校验（11 位，1 开头）
+    if ! echo "$TARGET" | grep -qE '^1[3-9][0-9]{9}$'; then
+      warn "手机号格式不对（11 位，1 开头）"; continue
+    fi
+  fi
+
+  # 发送验证码
+  echo "正在发送验证码到 $TARGET ..."
+  RESP=$(curl -s -X POST "$API_BASE/api/auth/code/send" \
+    -H "Content-Type: application/json" \
+    -d "{\"type\":\"$TYPE\",\"target\":\"$TARGET\",\"purpose\":\"register\"}" 2>&1) || fail "网络错误"
+
+  if echo "$RESP" | grep -q '"ok":true'; then
+    ok "验证码已发送（5 分钟内有效）"
+  else
+    warn "验证码发送失败：$(echo "$RESP" | grep -o '"error":"[^"]*"' | head -1)"
+    continue
+  fi
+
+  read -p "请输入验证码: " CODE
+
+  # ★ 首次可选设密码
+  echo ""
+  read -p "是否设置登录密码（8-32 位，可跳过）？[y/N]: " SET_PWD
+  PASSWORD=""
+  if [[ "$SET_PWD" =~ ^[yY]$ ]]; then
+    while true; do
+      read -s -p "请输入密码 (8-32 位): " PASSWORD
+      echo ""
+      if [[ ${#PASSWORD} -ge 8 && ${#PASSWORD} -le 32 ]]; then
+        break
+      fi
+      warn "密码长度需 8-32 位"
+    done
+  fi
+
+  # 校验验证码 + 创建账号
+  if [ -n "$PASSWORD" ]; then
+    RESP=$(curl -s -X POST "$API_BASE/api/auth/register" \
+      -H "Content-Type: application/json" \
+      -d "{\"type\":\"$TYPE\",\"target\":\"$TARGET\",\"code\":\"$CODE\",\"password\":\"$PASSWORD\"}" 2>&1) || fail "网络错误"
+  else
+    RESP=$(curl -s -X POST "$API_BASE/api/auth/register" \
+      -H "Content-Type: application/json" \
+      -d "{\"type\":\"$TYPE\",\"target\":\"$TARGET\",\"code\":\"$CODE\"}" 2>&1) || fail "网络错误"
+  fi
+
+  if echo "$RESP" | grep -q '"ok":true'; then
+    OPC_ID=$(echo "$RESP" | grep -o '"opcId":"[^"]*"' | cut -d'"' -f4)
+    TOKEN=$(echo "$RESP" | grep -o '"opphubToken":"[^"]*"' | cut -d'"' -f4)
+    JTI=$(echo "$RESP" | grep -o '"jti":"[^"]*"' | cut -d'"' -f4)
+    ok "账号创建成功：opc_id = $OPC_ID"
+
+    # 保存 token + jti
+    cat > "$OPPHUB_HOME/state.json" <<EOF
+{
+  "opc_id": "$OPC_ID",
+  "opphub_token": "$TOKEN",
+  "jti": "$JTI",
+  "has_password": $([ -n "$PASSWORD" ] && echo "true" || echo "false"),
+  "type": "$TYPE",
+  "target": "$TARGET",
+  "created_at": "$(date -Iseconds)",
+  "onboarding_step": 2
+}
+EOF
+    chmod 600 "$OPPHUB_HOME/state.json"
+    break
+  else
+    warn "注册失败：$(echo "$RESP" | grep -o '"error":"[^"]*"' | head -1)"
+    if echo "$RESP" | grep -q "already"; then
+      warn "该 $PROMPT 已注册，请直接登录（opphub login）"
+      exit 1
+    fi
+  fi
+done
+
+# ════════════════════════════════════════════
+# 步骤 2/6：IM 通道绑定（至少 1 个）
+# ════════════════════════════════════════════
+step "步骤 2/6：IM 通道绑定"
+echo ""
+echo "偶合支持 5 个 IM 通道（与飞书完全解耦）："
+echo "  1) 飞书（推荐）"
+echo "  2) 钉钉（V1.0+）"
+echo "  3) 企业微信（V1.0+）"
+echo "  4) 短信（+86，0.05 元/条）"
+echo "  5) 邮件（免费）"
+echo ""
+warn "至少绑定 1 个通道，撮合结果会推到这里"
+echo ""
+
+# 默认绑邮件
+TARGET_EMAIL="$TARGET"
+if [ "$TYPE" = "email" ]; then
+  echo "✓ 自动绑定邮件通道：$TARGET_EMAIL"
+  curl -s -X POST "$API_BASE/api/channel/bind" \
+    -H "Authorization: Bearer $TOKEN" \
+    -H "Content-Type: application/json" \
+    -d "{\"channelType\":\"email\",\"channelId\":\"$TARGET_EMAIL\",\"isDefault\":true}" > /dev/null
+fi
+
+# 引导绑定飞书
+echo ""
+read -p "是否绑定飞书（y/n，默认 y）? " BIND_FEISHU
+BIND_FEISHU=${BIND_FEISHU:-y}
+if [ "$BIND_FEISHU" = "y" ]; then
+  echo ""
+  echo "👉 打开浏览器访问："
+  echo "   https://open.feishu.cn/oauth/opphub?state=$OPC_ID"
+  echo ""
+  read -p "绑定完成后按回车继续..."
+  ok "飞书通道绑定完成"
+fi
+
+ok "已绑定 ≥1 个 IM 通道"
+
+# ════════════════════════════════════════════
+# 步骤 3/6：手机号 KYC（可选）
+# ════════════════════════════════════════════
+step "步骤 3/6：手机号 KYC（可选）"
+echo ""
+warn "KYC 奖励：信用分 +10"
+warn "       提现额度提升到 50000/日"
+echo ""
+read -p "是否进行 KYC（y/n，默认 n）? " DO_KYC
+DO_KYC=${DO_KYC:-n}
+
+if [ "$DO_KYC" = "y" ]; then
+  if [ "$TYPE" = "phone" ]; then
+    # 已经是手机号，直接 KYC
+    curl -s -X POST "$API_BASE/api/auth/kyc" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{\"phone\":\"$TARGET\"}" > /dev/null
+    ok "KYC 完成，信用分 +10"
+  else
+    # 让用户输入手机号
+    read -p "请输入手机号: " PHONE
+    RESP=$(curl -s -X POST "$API_BASE/api/auth/code/send" \
+      -H "Content-Type: application/json" \
+      -d "{\"type\":\"phone\",\"target\":\"$PHONE\",\"purpose\":\"kyc\"}")
+    read -p "请输入验证码: " KYC_CODE
+    curl -s -X POST "$API_BASE/api/auth/kyc" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{\"phone\":\"$PHONE\",\"code\":\"$KYC_CODE\"}" > /dev/null
+    ok "KYC 完成，信用分 +10"
+  fi
+else
+  warn "跳过 KYC，信用分 +0"
+fi
+
+# ════════════════════════════════════════════
+# 步骤 4/6：1 句话开店（公司卡片 + 能力卡片）
+# ════════════════════════════════════════════
+step "步骤 4/6：1 句话开店"
+echo ""
+echo "请用 1 句话介绍您的公司 + 能力"
+echo "示例：我是 XX 公司创始人，做 AI 营销 SaaS，5 年经验，团队 10 人"
+echo ""
+read -p "您的介绍: " INTRO
+
+if [ -n "$INTRO" ]; then
+  echo "🤖 AI 正在解析您的话..."
+  RESP=$(curl -s -X POST "$API_BASE/api/profile/parse" \
+    -H "Authorization: Bearer $TOKEN" \
+    -H "Content-Type: application/json" \
+    -d "{\"text\":\"$INTRO\"}")
+
+  if echo "$RESP" | grep -q '"ok":true'; then
+    ok "AI 解析完成"
+
+    # 确认公司卡片
+    echo ""
+    read -p "确认公司信息（y/n，可修改）? " CONFIRM
+    if [ "$CONFIRM" != "y" ]; then
+      read -p "公司名: " COMPANY_NAME
+      read -p "公司类型（有限公司/工作室/个体）: " COMPANY_TYPE
+      read -p "法人: " LEGAL_PERSON
+      read -p "团队人数: " TEAM_SIZE
+      curl -s -X POST "$API_BASE/api/company" \
+        -H "Authorization: Bearer $TOKEN" \
+        -H "Content-Type: application/json" \
+        -d "{\"companyName\":\"$COMPANY_NAME\",\"companyType\":\"$COMPANY_TYPE\",\"legalPerson\":\"$LEGAL_PERSON\",\"teamSize\":$TEAM_SIZE}" > /dev/null
+    fi
+
+    # 确认能力卡片
+    read -p "确认能力信息（y/n，可修改）? " CONFIRM2
+    if [ "$CONFIRM2" != "y" ]; then
+      read -p "主能力（1 句话）: " MAIN_SKILL
+      curl -s -X POST "$API_BASE/api/profile" \
+        -H "Authorization: Bearer $TOKEN" \
+        -H "Content-Type: application/json" \
+        -d "{\"mainSkill\":\"$MAIN_SKILL\"}" > /dev/null
+    fi
+  else
+    warn "AI 解析失败，请重写或具体化"
+  fi
+fi
+
+ok "店铺已开"
+
+# ════════════════════════════════════════════
+# 步骤 5/6：服务选择（10 个能力勾选）
+# ════════════════════════════════════════════
+step "步骤 5/6：服务选择（10 个能力）"
+echo ""
+echo "请勾选您能提供的服务（多选，逗号分隔）："
+echo "  1) AI 内容生成    2) 短视频拍摄    3) 直播运营"
+echo "  4) 私域运营      5) 投流优化      6) 数据分析"
+echo "  7) 品牌设计      8) 跨境电商      9) 撮合交易"
+echo "  10) 投融资顾问"
+echo ""
+read -p "请选择（例：1,3,5）: " SERVICES
+
+if [ -n "$SERVICES" ]; then
+  ok "已选择：$SERVICES"
+fi
+
+# ════════════════════════════════════════════
+# 步骤 6/6：完成 + 引导奖励
+# ════════════════════════════════════════════
+step "步骤 6/6：引导完成！🎁"
+echo ""
+echo "🎁 您的引导奖励："
+echo "  • 信用分 +5（70→75）"
+echo "  • MZTD 体验金 100（首单激活）"
+echo "  • 优先匹配 7 天"
+echo ""
+ok "现在您可以："
+echo "  opphub profile       # 查看店铺"
+echo "  opphub opportunities # 查商机"
+echo "  opphub status        # 看状态"
+echo ""
+echo "📖 文档：https://api.opphub.ruiplus.cn/docs"
+echo "💬 客服：hi@opphub.com"
+echo ""

@@ -1,0 +1,8 @@
+{
+  "name": "secure_smtp_sender",
+  "version": "1.0.0",
+  "description": "Send emails securely without exposing SMTP passwords, powered by MGC Blackbox.",
+  "author": "MirginCipher",
+  "license": "MIT",
+  "entry": "mcp_server.py"
+}

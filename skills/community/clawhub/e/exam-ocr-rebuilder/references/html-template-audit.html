@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{exam_title} - 试卷重建报告</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "Microsoft YaHei", sans-serif;
+            background: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        /* 审核面板悬浮按钮 */
+        .audit-toggle-btn {
+            position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+            background: #1a73e8; color: #fff; border: none; border-radius: 50px;
+            padding: 12px 20px; cursor: pointer; font-size: 14px;
+            box-shadow: 0 4px 12px rgba(26,115,232,0.4);
+            transition: all 0.2s;
+        }
+        .audit-toggle-btn:hover { background: #1557b0; transform: scale(1.05); }
+
+        /* 审核面板 */
+        .audit-panel {
+            position: fixed; bottom: 80px; right: 24px; z-index: 1001;
+            width: 420px; max-height: 70vh; background: #fff;
+            border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .audit-panel-header {
+            padding: 16px 20px; background: #1a73e8; color: #fff;
+            font-size: 15px; font-weight: 600;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .audit-panel-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+        .audit-panel-body { padding: 16px; overflow-y: auto; flex: 1; }
+        .audit-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
+        }
+        .audit-stat-card {
+            padding: 10px; border-radius: 8px; text-align: center; font-size: 13px;
+        }
+        .audit-stat-card .num { font-size: 22px; font-weight: 700; }
+        .audit-stat-card.ok { background: #e8f5e9; color: #2e7d32; }
+        .audit-stat-card.corrected { background: #e3f2fd; color: #1565c0; }
+        .audit-stat-card.warning { background: #fff8e1; color: #f57f17; }
+        .audit-stat-card.error { background: #ffebee; color: #c62828; }
+        .audit-log-item {
+            padding: 10px 12px; margin-bottom: 8px; border-radius: 8px; font-size: 13px;
+            border-left: 3px solid #ddd;
+        }
+        .audit-log-item.status-ok { background: #f9f9f9; border-left-color: #4caf50; }
+        .audit-log-item.status-corrected { background: #f0f7ff; border-left-color: #2196f3; }
+        .audit-log-item.status-warning { background: #fffde7; border-left-color: #ff9800; }
+        .audit-log-item.status-error { background: #fff5f5; border-left-color: #f44336; }
+        .audit-log-item .qid { font-weight: 600; margin-bottom: 4px; }
+        .audit-log-item .issues { color: #666; font-size: 12px; margin-top: 4px; }
+        .audit-log-item .confidence {
+            display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px;
+            margin-top: 4px;
+        }
+        .confidence-high { background: #e8f5e9; color: #2e7d32; }
+        .confidence-medium { background: #fff8e1; color: #f57f17; }
+        .confidence-low { background: #ffebee; color: #c62828; }
+
+        /* 试卷头部 */
+        .header {
+            background: #fff; border-radius: 12px; padding: 24px;
+            margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header .meta { color: #666; font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px; margin-top: 16px;
+        }
+        .stat-card { background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center; }
+        .stat-card .num { font-size: 28px; font-weight: 600; color: #1a73e8; }
+        .stat-card .label { font-size: 12px; color: #666; margin-top: 4px; }
+
+        /* 工具栏 */
+        .toolbar {
+            background: #fff; border-radius: 12px; padding: 12px 20px;
+            margin-bottom: 16px; display: flex; gap: 12px; align-items: center;
+            flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .filter-btn {
+            padding: 6px 16px; border-radius: 20px; border: 1px solid #ddd;
+            background: #fff; cursor: pointer; font-size: 13px; transition: all 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+        .toggle-answer { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .toggle-switch {
+            width: 40px; height: 22px; background: #ccc; border-radius: 11px;
+            cursor: pointer; position: relative; transition: background 0.3s;
+        }
+        .toggle-switch.on { background: #1a73e8; }
+        .toggle-switch::after {
+            content: ''; width: 18px; height: 18px; background: #fff;
+            border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left 0.3s;
+        }
+        .toggle-switch.on::after { left: 20px; }
+        .export-btns { display: flex; gap: 8px; }
+        .export-btn {
+            padding: 6px 12px; border-radius: 6px; border: 1px solid #ddd;
+            background: #fff; cursor: pointer; font-size: 12px; color: #666;
+        }
+        .export-btn:hover { background: #f5f5f5; }
+
+        /* 题目区域 */
+        .section {
+            background: #fff; border-radius: 12px; padding: 24px;
+            margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e8e8e8; }
+        .section-info { font-size: 13px; color: #888; margin-bottom: 16px; }
+        .question {
+            margin-bottom: 20px; padding: 16px; background: #fafafa;
+            border-radius: 8px; border-left: 3px solid #1a73e8; position: relative;
+        }
+        .question.audit-corrected { border-left-color: #2196f3; background: #f0f7ff; }
+        .question.audit-warning { border-left-color: #ff9800; background: #fffde7; }
+        .question.audit-error { border-left-color: #f44336; background: #fff5f5; }
+        .audit-badge {
+            position: absolute; top: 8px; right: 12px; font-size: 11px;
+            padding: 2px 8px; border-radius: 10px; font-weight: 600;
+        }
+        .audit-badge.ok { background: #e8f5e9; color: #2e7d32; }
+        .audit-badge.corrected { background: #e3f2fd; color: #1565c0; }
+        .audit-badge.warning { background: #fff8e1; color: #f57f17; }
+        .audit-badge.error { background: #ffebee; color: #c62828; }
+        .question-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .question-num { font-weight: 600; font-size: 15px; }
+        .question-score { font-size: 13px; color: #888; }
+        .question-stem { margin-bottom: 12px; font-size: 15px; }
+        .options { margin-left: 20px; }
+        .option { margin-bottom: 6px; font-size: 14px; }
+        .answer-box {
+            margin-top: 12px; padding: 10px 14px; background: #e8f5e9;
+            border-radius: 6px; font-size: 14px; color: #2e7d32; display: none;
+        }
+        .answer-box.show { display: block; }
+        .answer-box .label { font-weight: 600; }
+        .explanation {
+            margin-top: 8px; padding: 10px 14px; background: #fff3e0;
+            border-radius: 6px; font-size: 13px; color: #e65100; display: none;
+        }
+        .explanation.show { display: block; }
+        .material { margin-bottom: 16px; padding: 16px; background: #f0f4f8; border-radius: 8px; font-size: 14px; white-space: pre-wrap; }
+
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .header h1 { font-size: 20px; }
+            .audit-panel { width: calc(100vw - 48px); right: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 试卷信息头部 -->
+        <div class="header">
+            <h1>{exam_title}</h1>
+            <div class="meta">
+                <span>学科：{subject}</span>
+                <span>总分：{total_score}分</span>
+                <span>时间：{duration}</span>
+                <span>来源：{source}</span>
+            </div>
+            <div class="stats" id="statsPanel"></div>
+        </div>
+
+        <!-- 工具栏 -->
+        <div class="toolbar">
+            <button class="filter-btn active" data-type="all">全部</button>
+            <button class="filter-btn" data-type="single_choice">单选</button>
+            <button class="filter-btn" data-type="multi_choice">多选</button>
+            <button class="filter-btn" data-type="fill_blank">填空</button>
+            <button class="filter-btn" data-type="calculation">计算</button>
+            <button class="filter-btn" data-type="other">其他</button>
+            <div class="toggle-answer">
+                <span>显示答案</span>
+                <div class="toggle-switch" id="answerToggle" onclick="toggleAnswers()"></div>
+            </div>
+            <div class="export-btns">
+                <button class="export-btn" onclick="exportMarkdown()">导出MD</button>
+                <button class="export-btn" onclick="exportJSON()">导出JSON</button>
+            </div>
+        </div>
+
+        <!-- 试卷内容区（由JS渲染） -->
+        <div id="examContent"></div>
+    </div>
+
+    <!-- 审核面板（悬浮） -->
+    <div class="audit-panel" id="auditPanel" style="display:none;">
+        <div class="audit-panel-header">
+            <span>📋 LLM审核报告</span>
+            <button class="audit-panel-close" onclick="toggleAuditPanel()">✕</button>
+        </div>
+        <div class="audit-panel-body">
+            <div class="audit-stats" id="auditStats"></div>
+            <div class="audit-log-list" id="auditLogList"></div>
+        </div>
+    </div>
+    <button class="audit-toggle-btn" id="auditToggleBtn" onclick="toggleAuditPanel()">📋 审核报告</button>
+
+    <script>
+        // ========== 数据区（由生成脚本填充）==========
+        var EXAM_DATA = {exam_json};
+        var AUDIT_LOG = {audit_log};
+
+        // ========== 渲染函数 ==========
+        function renderExam() {
+            var container = document.getElementById('examContent');
+            container.innerHTML = '';
+            var data = EXAM_DATA;
+
+            // 统计面板
+            var statsHtml = '';
+            statsHtml += '<div class="stat-card"><div class="num">' + (data.stats.total_questions || 0) + '</div><div class="label">总题数</div></div>';
+            var dist = data.stats.type_distribution || {};
+            var typeLabels = {
+                'single_choice': '单选', 'multi_choice': '多选', 'fill_blank': '填空',
+                'true_false': '判断', 'calculation': '计算', 'essay': '论述',
+                'short_answer': '简答', 'reading': '阅读', 'cloze': '完形'
+            };
+            for (var t in dist) {
+                statsHtml += '<div class="stat-card"><div class="num">' + dist[t] + '</div><div class="label">' + (typeLabels[t] || t) + '</div></div>';
+            }
+            document.getElementById('statsPanel').innerHTML = statsHtml;
+
+            // 各题型区域
+            (data.sections || []).forEach(function(section) {
+                var sectionEl = document.createElement('div');
+                sectionEl.className = 'section';
+                sectionEl.setAttribute('data-section-type', section.section_type || '');
+
+                var html = '';
+                html += '<div class="section-title">' + (section.section_title || '') + '</div>';
+                html += '<div class="section-info">共' + (section.questions || []).length + '题，' + (section.section_score || '?') + '分</div>';
+
+                (section.questions || []).forEach(function(q) {
+                    var auditItem = getAuditItem(q.question_id);
+                    var auditClass = auditItem ? ' audit-' + auditItem.status : '';
+                    var badgeHtml = auditItem ? '<span class="audit-badge ' + auditItem.status + '">' + getStatusLabel(auditItem.status) + '</span>' : '';
+
+                    html += '<div class="question' + auditClass + '" data-type="' + (q.type || '') + '" id="q-' + q.question_id + '">';
+                    html += badgeHtml;
+                    html += '<div class="question-header"><span class="question-num">' + q.question_id + '.</span><span class="question-score">' + (q.score || '?') + '分</span></div>';
+
+                    if (q.material) {
+                        html += '<div class="material">' + escapeHtml(q.material) + '</div>';
+                    }
+
+                    html += '<div class="question-stem">' + renderLatex(escapeHtml(q.stem || '')) + '</div>';
+
+                    if (q.options) {
+                        html += '<div class="options">';
+                        for (var opt in q.options) {
+                            html += '<div class="option">' + opt + '. ' + renderLatex(escapeHtml(q.options[opt])) + '</div>';
+                        }
+                        html += '</div>';
+                    }
+
+                    if (q.answer) {
+                        html += '<div class="answer-box"><span class="label">答案：</span>' + renderLatex(escapeHtml(q.answer)) + '</div>';
+                    }
+                    if (q.explanation) {
+                        html += '<div class="explanation"><span class="label">解析：</span>' + renderLatex(escapeHtml(q.explanation)) + '</div>';
+                    }
+
+                    // 审核说明（可展开）
+                    if (auditItem && auditItem.issues && auditItem.issues.length > 0) {
+                        html += '<div class="audit-issues" style="margin-top:8px;font-size:12px;color:#666;background:#fff;border-radius:6px;padding:8px 12px;"><strong>审核说明：</strong>' + auditItem.issues.join('；') + '</div>';
+                    }
+
+                    html += '</div>';
+                });
+
+                sectionEl.innerHTML = html;
+                container.appendChild(sectionEl);
+            });
+
+            // 渲染LaTeX
+            setTimeout(function() {
+                if (typeof renderMathInElement !== 'undefined') {
+                    renderMathInElement(document.getElementById('examContent'), {
+                        delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]
+                    });
+                }
+            }, 300);
+        }
+
+        function getAuditItem(qid) {
+            if (!AUDIT_LOG) return null;
+            for (var i = 0; i < AUDIT_LOG.length; i++) {
+                if (AUDIT_LOG[i].question_id === qid) return AUDIT_LOG[i];
+            }
+            return null;
+        }
+
+        function getStatusLabel(status) {
+            var labels = {'ok': '✅ 无需修改', 'corrected': '✏️ 已校正', 'warning': '⚠️ 需复核', 'error': '❌ 失败'};
+            return labels[status] || status;
+        }
+
+        // ========== 审核面板 ==========
+        function renderAuditPanel() {
+            if (!AUDIT_LOG) return;
+            var stats = {ok: 0, corrected: 0, warning: 0, error: 0};
+            AUDIT_LOG.forEach(function(item) {
+                if (stats[item.status] !== undefined) stats[item.status]++;
+            });
+
+            var statsHtml = '';
+            statsHtml += '<div class="audit-stat-card ok"><div class="num">' + stats.ok + '</div><div>无需修改</div></div>';
+            statsHtml += '<div class="audit-stat-card corrected"><div class="num">' + stats.corrected + '</div><div>已校正</div></div>';
+            statsHtml += '<div class="audit-stat-card warning"><div class="num">' + stats.warning + '</div><div>需复核</div></div>';
+            statsHtml += '<div class="audit-stat-card error"><div class="num">' + stats.error + '</div><div>失败</div></div>';
+            document.getElementById('auditStats').innerHTML = statsHtml;
+
+            var listHtml = '';
+            AUDIT_LOG.forEach(function(item) {
+                var confClass = 'confidence-' + (item.confidence || 'low');
+                var issuesHtml = (item.issues || []).map(function(iss) { return '<div>• ' + escapeHtml(iss) + '</div>'; }).join('');
+                listHtml += '<div class="audit-log-item status-' + item.status + '">';
+                listHtml += '  <div class="qid">第' + item.question_id + '题：' + getStatusLabel(item.status) + '</div>';
+                listHtml += '  <div class="confidence ' + confClass + '">置信度：' + (item.confidence || 'low') + '</div>';
+                if (issuesHtml) listHtml += '  <div class="issues">' + issuesHtml + '</div>';
+                listHtml += '</div>';
+            });
+            document.getElementById('auditLogList').innerHTML = listHtml;
+        }
+
+        function toggleAuditPanel() {
+            var panel = document.getElementById('auditPanel');
+            panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+            if (panel.style.display === 'flex') renderAuditPanel();
+        }
+
+        // ========== 工具栏功能 ==========
+        function toggleAnswers() {
+            var toggle = document.getElementById('answerToggle');
+            toggle.classList.toggle('on');
+            var show = toggle.classList.contains('on');
+            document.querySelectorAll('.answer-box, .explanation').forEach(function(el) {
+                el.classList.toggle('show', show);
+            });
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                var type = this.dataset.type;
+                document.querySelectorAll('.question').forEach(function(q) {
+                    q.style.display = (type === 'all' || q.dataset.type === type) ? '' : 'none';
+                });
+                document.querySelectorAll('.section').forEach(function(s) {
+                    var visible = s.querySelectorAll('.question:not([style*="none"])').length;
+                    s.style.display = visible > 0 ? '' : 'none';
+                });
+            });
+        });
+
+        function exportMarkdown() { /* 省略 */ }
+        function exportJSON() {
+            var blob = new Blob([JSON.stringify(EXAM_DATA, null, 2)], {type: 'application/json'});
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob); a.download = 'exam_data.json'; a.click();
+        }
+        function renderLatex(s) { return s; }  // 实际由KaTeX渲染
+        function escapeHtml(s) {
+            var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML;
+        }
+
+        // ========== 初始化 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            renderExam();
+            renderAuditPanel();
+        });
+    </script>
+</body>
+</html>

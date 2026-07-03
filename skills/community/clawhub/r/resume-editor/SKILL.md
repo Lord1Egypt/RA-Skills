@@ -16,8 +16,8 @@ Build professional resumes with AI-assisted content management, supporting PDF i
 ## Dependencies
 
 - **HTML generation**: Python 3 (no extra deps)
-- **PDF import**: `pip install pymupdf`
-- **PDF export** (either one; Playwright preferred for faithful CSS rendering): `pip install playwright && playwright install chromium` OR `pip install pdfkit && brew install wkhtmltopdf`
+- **PDF import**: `pip install pymupdf==1.26.5`
+- **PDF export**: `pip install playwright==1.60.0 && playwright install chromium`
 
 ## Work File Convention
 
@@ -63,8 +63,8 @@ Ask about a photo only when the context suggests one is expected, for example:
 When in doubt, ask once: *"Do you want a portrait on this resume? Some markets expect one, others penalize it."*
 
 If the user wants a photo:
-1. Require them to provide the image themselves. Accept a **file path**, **http(s) URL**, or **data: base64 URI**. Do not invent, fetch, or generate an image.
-2. Store the value in `personal.photo`. Relative paths resolve against the HTML output location, so the user should keep the photo next to the generated HTML (or use an absolute path / URL / data URI).
+1. Require them to provide the image themselves. Accept a **file path**, **`https://` URL**, or **data: base64 URI**. Do not invent, fetch, or generate an image.
+2. Store the value in `personal.photo`. Supported values are a relative path, absolute local file path, `file://` URL, `https://` URL, or `data:` URI. Relative paths resolve against the HTML output location, so the user should keep the photo next to the generated HTML.
 3. Photo rendering is **opt-in per theme**. Built-in themes don't display it; scaffold a custom theme with `scripts/create_theme.py` and enable it:
    ```css
    .resume-photo {
@@ -114,6 +114,7 @@ This separation makes the resume scannable for HR while providing depth for engi
    ```
 
 The PDF flow always renders a clean HTML intermediary first, then converts it to PDF. Do not use editable HTML as the final PDF source.
+The PDF renderer blocks external network requests by design. Prefer local assets, `data:` URIs, or bundled files for anything that must appear in the PDF.
 
 **Available themes:** `modern`, `classic`, `minimal`, `creative`
 **Custom themes:** Any folder under `user-themes/<name>/` with a `style.css`, or a direct path to a custom theme directory

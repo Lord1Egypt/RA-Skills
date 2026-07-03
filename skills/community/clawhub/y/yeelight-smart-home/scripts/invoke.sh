@@ -21,10 +21,23 @@ assert_runtime_compatible() {
   runtime_outdated
 }
 
+invoke_runtime() {
+  runtime_bin="$1"
+  shift
+  case "$runtime_bin" in
+    */*)
+      runtime_dir=$(dirname "$runtime_bin")
+      PATH="$runtime_dir:$PATH"
+      export PATH
+      ;;
+  esac
+  assert_runtime_compatible "$runtime_bin"
+  exec "$runtime_bin" invoke --stdin "$@"
+}
+
 if [ -n "${YEELIGHT_HOME_BIN:-}" ]; then
   if [ -x "$YEELIGHT_HOME_BIN" ]; then
-    assert_runtime_compatible "$YEELIGHT_HOME_BIN"
-    exec "$YEELIGHT_HOME_BIN" invoke --stdin
+    invoke_runtime "$YEELIGHT_HOME_BIN" "$@"
   fi
   cat <<'JSON'
 {"contractVersion":"1.0","requestId":"runtime-missing","status":"error","userMessage":"YEELIGHT_HOME_BIN 指向的 yeelight-home 不存在或不可执行。请将 YEELIGHT_HOME_BIN 设置为 yeelight-home 可执行文件的绝对路径，或取消该环境变量后使用 PATH 中公开安装的 yeelight-home。安装后先运行 yeelight-home auth status --json；若未登录，优先运行 yeelight-home auth login --qr；无法扫码时，可在你自己的终端通过安全输入管道运行 yeelight-home auth token set --stdin --region <region> 导入已获准的 token。houseId 是可选默认家庭，只有家庭内设备、房间、情景、自动化等操作需要选择。","error":{"code":"runtime_missing","message":"YEELIGHT_HOME_BIN is not executable"}}
@@ -33,9 +46,18 @@ JSON
 fi
 
 if command -v yeelight-home >/dev/null 2>&1; then
-  assert_runtime_compatible "yeelight-home"
-  exec yeelight-home invoke --stdin
+  invoke_runtime "yeelight-home" "$@"
 fi
+
+for candidate in \
+  "/opt/homebrew/bin/yeelight-home" \
+  "/usr/local/bin/yeelight-home" \
+  "/usr/bin/yeelight-home" \
+  "$HOME/.local/bin/yeelight-home"; do
+  if [ -x "$candidate" ]; then
+    invoke_runtime "$candidate" "$@"
+  fi
+done
 
 cat <<'JSON'
 {"contractVersion":"1.0","requestId":"runtime-missing","status":"error","userMessage":"Yeelight 本地 Runtime 未安装或不在 PATH 中。请从公开仓库 Yeelight/yeelight-home 的 GitHub Releases 安装 yeelight-home CLI，或使用当前已发布的 Homebrew、Scoop、npm 等包管理器渠道；也可以设置 YEELIGHT_HOME_BIN 指向 yeelight-home 可执行文件。安装后先运行 yeelight-home auth status --json；若未登录，优先运行 yeelight-home auth login --qr；无法扫码时，可在你自己的终端通过安全输入管道运行 yeelight-home auth token set --stdin --region <region> 导入已获准的 token。houseId 是可选默认家庭，只有家庭内设备、房间、情景、自动化等操作需要选择。","error":{"code":"runtime_missing","message":"yeelight-home CLI not found"}}

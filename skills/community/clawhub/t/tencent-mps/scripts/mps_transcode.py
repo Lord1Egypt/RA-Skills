@@ -20,51 +20,51 @@ COS 存储约定：
 
 用法：
   # 最简用法：使用 URL 输入 + 默认模板（输出到 TENCENTCLOUD_COS_BUCKET/output/transcode/）
-  python mps_transcode.py --url https://example.com/video.mp4
+  python3 mps_transcode.py --url https://example.com/video.mp4
 
   # COS 输入（推荐，使用 --cos-input-key）
-  python mps_transcode.py --cos-input-key /input/video/test.mp4
+  python3 mps_transcode.py --cos-input-key /input/video/test.mp4
 
   # COS 输入 + 显式指定 bucket（覆盖环境变量）
-  python mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4  # NOCA:line-too-long(long SDK parameter or URL string)
+  python3 mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4  # NOCA:line-too-long(long SDK parameter or URL string)
 
   # 自定义输出 COS 位置（覆盖默认的 /output/transcode/ 目录）
-  python mps_transcode.py --url https://example.com/video.mp4 \\
+  python3 mps_transcode.py --url https://example.com/video.mp4 \\
       --output-bucket mybucket-125xxx --output-region ap-guangzhou --output-dir /custom_output/
 
   # 自定义分辨率（宽1920，高度自适应）
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1920
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1920
 
   # 自定义分辨率（720P）
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720
 
   # 自定义码率上限（单位 kbps）
-  python mps_transcode.py --url https://example.com/video.mp4 --bitrate 2000
+  python3 mps_transcode.py --url https://example.com/video.mp4 --bitrate 2000
 
   # 自定义编码格式
-  python mps_transcode.py --url https://example.com/video.mp4 --codec h264
+  python3 mps_transcode.py --url https://example.com/video.mp4 --codec h264
 
   # 自定义封装格式
-  python mps_transcode.py --url https://example.com/video.mp4 --container hls
+  python3 mps_transcode.py --url https://example.com/video.mp4 --container hls
 
   # 自定义帧率
-  python mps_transcode.py --url https://example.com/video.mp4 --fps 30
+  python3 mps_transcode.py --url https://example.com/video.mp4 --fps 30
 
   # 使用自定义参数覆盖（完全自定义模式，不使用预设模板）
-  python mps_transcode.py --url https://example.com/video.mp4 \\
+  python3 mps_transcode.py --url https://example.com/video.mp4 \\
       --codec h265 --width 1920 --height 1080 --bitrate 3000 --fps 30 --container mp4
 
   # 极致压缩模式
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
 
   # 画质优先模式
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type low_compress
 
   # 指定场景化转码（如 UGC 短视频）
-  python mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
+  python3 mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
 
   # 设置回调 URL
-  python mps_transcode.py --url https://example.com/video.mp4 --notify-url https://example.com/callback
+  python3 mps_transcode.py --url https://example.com/video.mp4 --notify-url https://example.com/callback
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -101,7 +101,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -440,7 +440,7 @@ def process_media(args):
         else:
             print()
             print(f"提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -457,28 +457,28 @@ def main():
         epilog="""
 示例：
   # URL输入 + 默认模板（极速高清-H265-1080P），输出到 TENCENTCLOUD_COS_BUCKET/output/transcode/
-  python mps_transcode.py --url https://example.com/video.mp4
+  python3 mps_transcode.py --url https://example.com/video.mp4
 
   # COS路径输入（推荐，本地上传后使用）
-  python mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
+  python3 mps_transcode.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_transcode.py --cos-input-key /input/video/test.mp4
+  python3 mps_transcode.py --cos-input-key /input/video/test.mp4
 
   # 自定义720P + 2Mbps码率上限
-  python mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720 --bitrate 2000
+  python3 mps_transcode.py --url https://example.com/video.mp4 --width 1280 --height 720 --bitrate 2000
 
   # 极致压缩模式
-  python mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
+  python3 mps_transcode.py --url https://example.com/video.mp4 --compress-type ultra_compress
 
   # UGC短视频场景优化
-  python mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
+  python3 mps_transcode.py --url https://example.com/video.mp4 --scene-type ugc
 
   # 自定义输出目录（覆盖默认 /output/transcode/）
-  python mps_transcode.py --url https://example.com/video.mp4 --output-dir /custom/
+  python3 mps_transcode.py --url https://example.com/video.mp4 --output-dir /custom/
 
   # Dry Run（仅打印请求参数）
-  python mps_transcode.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_transcode.py --url https://example.com/video.mp4 --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   腾讯云 SecretId
@@ -631,8 +631,11 @@ def main():
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     if not has_custom_params(args):

@@ -1,7 +1,7 @@
 ---
 name: lygo-ollama-army
-description: LYGO Ollama Army & Assistant Hub. Set up a persistent local Ollama bot army for mundane tasking. Summon LYGO champions (OMNIΣIREN, KAIROS, SEPHRAEL, LYRA, SRAITH, etc.) as specialized agent helpers. Generic, cross-platform, self-building. Perfect utility companion for the LYGO RESONANCE skill (batch image-to-sound/profile processing). Fully operational public edition with full instructions, code, and champion personas.
-metadata: {"lygo": true, "ollama": true, "army": true, "champions": true, "self-building": true, "version": "0.3", "website": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html", "donation": "https://paypal.com/paypalme/ExcavationPro"}
+description: "Use when the user runs local Ollama army daemons, joy-loop-pulse, champion-egg-boot, or reviewed queue tasks with LYGO_STACK_ROOT set. Local 127.0.0.1 Ollama only. Read references/SECURITY.md. Not for remote LLM or autonomous social publish."
+metadata: {"lygo": true, "ollama": true, "army": true, "champions": true, "consent_required": false, "requires_lygo_stack": true, "version": "0.4.1", "army_cc": "v3", "security_audit": "tamper-audit-aligned", "capability_network": "127.0.0.1_ollama_only", "publisher": "deepseekoracle", "website": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html", "signature": "Δ9Φ963-ARMY-SKILL-v0.4.1"}
 ---
 
 # LYGO Ollama Army & Assistant Hub (ClawHub Skill)
@@ -127,9 +127,20 @@ This turns the Resonance skill from a single-user tool into a scalable, champion
 
 **In ClawHub context**: This is the public "Ollama + Champions" limb for the LYGO ecosystem. Install alongside lygo-resonance for maximum creative power. Fully generic so anyone can run their own sovereign agent army.
 
+## LYGO stack (required for lattice / joy / champion-egg roles)
+
+```bash
+export LYGO_STACK_ROOT=/path/to/lygo-protocol-stack
+```
+
+Or set `lygo_stack_root` in `ollama_command_center/config/army_config.json`.  
+Read **`references/SECURITY.md`** and **`references/AGENT_CONTRACT.md`**.
+
 ## Security Considerations (Important for Public Users)
 
 This is mostly a disclosed local Ollama helper, but it still has persistent self-growing daemon behavior and process-launching code that users should review before installing.
+
+**v0.4.1:** No hardcoded stack paths; `lygo_stack_root.py` validates clone; missing root → QUARANTINE on stack roles.
 
 **Install only if you are comfortable running persistent local Python daemons.** On Windows, avoid passing role, model, or champion values from untrusted input (names are sanitized, but review the source). Keep Ollama strictly local (this skill now hard-enforces 127.0.0.1:11434 in published champion tools). Review queue files before processing, and leave `--grow` off until you understand that it can autonomously launch additional daemons.
 

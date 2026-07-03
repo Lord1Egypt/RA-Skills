@@ -1,5 +1,5 @@
 ## Description: <br>
-Helps agents retrieve and analyze Kuaishou/Kwai comments and replies through SocialDataX for audience feedback, sentiment themes, pain points, FAQs, and discussion summaries. <br>
+用于快手评论分析、快手评论回复、快手评论洞察、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Kuaishou / Kwai comments and comment replies，来自 SocialDataX 社媒数据助手。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and analysts use this skill to retrieve Kuaishou/Kwai first-level comments and replies with a SocialDataX API key, then summarize observed themes, sentiment, objections, pain points, FAQs, and discussion patterns. <br>
+Developers and analysts use this skill to retrieve and analyze Kuaishou first-level comments and replies through SocialDataX. It supports audience feedback review, sentiment themes, objections, pain points, FAQ extraction, and discussion summaries. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-provided SocialDataX API key for comment retrieval. <br>
-Mitigation: Install and use it only when you intend to access SocialDataX with your own API key, and provide the key through SOCIALDATAX_API_KEY. <br>
-Risk: Using npx with @latest runs the current npm package version. <br>
-Mitigation: Review the package before use in sensitive environments or pin a package version when reproducibility is required. <br>
-Risk: Broad pagination options such as --all or --include-replies may fetch many comments or replies through the API. <br>
-Mitigation: Use --pages or --max-items to bound retrieval when only a sample or limited analysis is needed. <br>
+Risk: The SocialDataX npm package and service receive the SOCIALDATAX_API_KEY and queried Kuaishou URLs or IDs. <br>
+Mitigation: Install and run the package only after confirming that SocialDataX and the package source are trusted for the intended workspace. <br>
+Risk: Using --all, --pages, or --include-replies may retrieve large volumes of public comment data. <br>
+Mitigation: Set page or item limits when broad collection is unnecessary and summarize results by observed themes before drawing conclusions. <br>
 
 
 ## Reference(s): <br>
-- [SocialDataX API access](https://socialdatax.52choujiang.com/?from=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-kuaishou-comments) <br>
+- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-kuaishou-comments) <br>
+- [SocialDataX homepage](https://socialdatax.com/?from=clawhub) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; SocialDataX CLI and MCP calls return JSON comment data.] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown guidance with shell command examples and JSON result handling notes] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOCIALDATAX_API_KEY plus node and npm when using the direct CLI.] <br>
+**Other Properties Related to Output:** [Uses SOCIALDATAX_API_KEY and can process paginated Kuaishou comments and replies, including optional multi-page and reply-inclusive retrieval.] <br>
 
 ## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+0.1.2 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

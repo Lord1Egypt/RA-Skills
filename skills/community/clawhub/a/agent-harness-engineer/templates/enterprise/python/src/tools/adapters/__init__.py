@@ -1,0 +1,1 @@
+# Empty package - adapters directory for tool adapter plugins

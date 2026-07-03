@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "skill_gap_diagnosis_output",
+  "type": "object",
+  "required": ["startDate", "endDate", "dataAsOfDate", "gapIndicators", "diagnosis", "knowledgeRetrievalHints"],
+  "properties": {
+    "startDate": {
+      "type": "string",
+      "description": "查詢開始日期"
+    },
+    "endDate": {
+      "type": "string",
+      "description": "查詢結束日期"
+    },
+    "dataAsOfDate": {
+      "type": "string",
+      "description": "數據截至日期"
+    },
+    "gapIndicators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gapName", "gapType", "gapAmount", "gapUnit", "urgencyTag"],
+        "properties": {
+          "gapName": {
+            "type": "string",
+            "description": "缺口名稱"
+          },
+          "gapType": {
+            "type": "string",
+            "enum": ["CAMPAIGN", "HONOR", "RENEWAL", "ASSESSMENT", "NEW_ALLOWANCE", "CUSTOMER_GROWTH", "SKILL"],
+            "description": "缺口類型"
+          },
+          "deadlineDate": {
+            "type": ["string", "null"],
+            "description": "截止日期"
+          },
+          "daysRemaining": {
+            "type": ["integer", "null"],
+            "description": "剩餘天數"
+          },
+          "targetAmount": {
+            "type": ["number", "null"],
+            "description": "目標金額"
+          },
+          "actualAmount": {
+            "type": ["number", "null"],
+            "description": "實際金額"
+          },
+          "gapAmount": {
+            "type": "number",
+            "description": "缺口金額"
+          },
+          "gapUnit": {
+            "type": "string",
+            "description": "缺口單位（HKD）"
+          },
+          "convertedGapAmount": {
+            "type": ["number", "null"],
+            "description": "換算後缺口金額（保障保費口徑）"
+          },
+          "urgencyTag": {
+            "type": "string",
+            "enum": ["緊急", "重要", "常規"],
+            "description": "緊急度標籤"
+          },
+          "easeTag": {
+            "type": ["string", "null"],
+            "enum": ["容易", null],
+            "description": "容易度標籤"
+          },
+          "requiredCases": {
+            "type": ["integer", "null"],
+            "description": "需成交件數"
+          },
+          "currentRank": {
+            "type": ["integer", "null"],
+            "description": "當前排名"
+          },
+          "targetRank": {
+            "type": ["integer", "null"],
+            "description": "目標排名"
+          },
+          "detailUrl": {
+            "type": ["string", "null"],
+            "description": "詳情鏈接"
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "type": "object",
+      "properties": {
+        "pendingPremium": {
+          "type": ["number", "null"],
+          "description": "待批保費"
+        },
+        "avgPremiumPerCase": {
+          "type": ["number", "null"],
+          "description": "件均保費"
+        },
+        "companyAvgPremiumPerCase": {
+          "type": ["number", "null"],
+          "description": "公司平均件均保費"
+        },
+        "conversionRate": {
+          "type": ["number", "null"],
+          "description": "保障保費轉化率"
+        },
+        "companyAvgConversionRate": {
+          "type": ["number", "null"],
+          "description": "公司平均轉化率"
+        },
+        "caseConversionRate": {
+          "type": ["number", "null"],
+          "description": "件數轉化率"
+        },
+        "companyAvgCaseConversionRate": {
+          "type": ["number", "null"],
+          "description": "公司平均件數轉化率"
+        },
+        "newClientCount": {
+          "type": ["integer", "null"],
+          "description": "新增客戶數"
+        },
+        "churnRate": {
+          "type": ["number", "null"],
+          "description": "客戶流失率"
+        },
+        "companyAvgChurnRate": {
+          "type": ["number", "null"],
+          "description": "公司平均流失率"
+        },
+        "skillGap": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "技能短板列表"
+        }
+      }
+    },
+    "knowledgeRetrievalHints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "知識檢索提示詞列表"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { findChainByAlias, initializeStaticProvider } from '@api3/dapi-management';
+import { findChainByAlias, initializeStaticProvider } from './utils.ts';
 import { getChainAddresses } from '@morpho-org/blue-sdk';
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';

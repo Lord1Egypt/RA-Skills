@@ -1,0 +1,127 @@
+# Automation Templates — Copy and customize
+
+# === Basic Templates ===
+
+- id: turn_on_light_when_occupied
+  alias: "有人开灯"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_ROOM"
+      to: "on"
+  condition:
+    - condition: time
+      after: "18:00:00"
+      before: "23:00:00"
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: "light.ROOM"
+  mode: single
+
+- id: turn_off_light_when_empty
+  alias: "无人关灯"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_ROOM"
+      to: "off"
+      for: "00:05:00"
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: "light.ROOM"
+  mode: single
+
+- id: play_music_when_occupied
+  alias: "有人播放音乐"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_ROOM"
+      to: "on"
+  condition:
+    - condition: time
+      after: "08:00:00"
+      before: "23:00:00"
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: "scene.SCENE_NAME"
+  mode: single
+
+- id: bedtime_routine
+  alias: "睡前自动关灯"
+  trigger:
+    - platform: time
+      at: "23:30:00"
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: "light.living_room"
+    - delay: "00:00:02"
+    - service: light.turn_on
+      target:
+        entity_id: "light.bedroom"
+    - delay: "00:00:02"
+    - service: scene.turn_on
+      target:
+        entity_id: "scene.sleep"
+  mode: single
+
+- id: morning_routine
+  alias: "起床开窗帘"
+  trigger:
+    - platform: time
+      at: "07:30:00"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: mijia.set_property
+      data:
+        did: "CURTAIN_DID"
+        siid: 2
+        piid: 1
+        value: true
+  mode: single
+
+# === Advanced Templates ===
+
+- id: multi_condition_example
+  alias: "复杂条件示例"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_living_room"
+      to: "on"
+  condition:
+    - condition: and
+      conditions:
+        - condition: time
+          after: "18:00:00"
+          before: "23:00:00"
+        - condition: state
+          entity_id: "sensor.occupy_bedroom"
+          state: "off"
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: "scene.music_mode"
+  mode: single
+
+- id: temperature_threshold
+  alias: "温度过高开空调"
+  trigger:
+    - platform: numeric_state
+      entity_id: "sensor.temperature"
+      above: 28
+  action:
+    - service: mijia.set_property
+      data:
+        did: "AC_DID"
+        siid: 2
+        piid: 1
+        value: true
+  mode: single

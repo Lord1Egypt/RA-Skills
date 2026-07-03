@@ -21,6 +21,39 @@ function cleanup(dir) {
   try { fs.rmSync(dir, { recursive: true, force: true }); } catch {}
 }
 
+function withClearedHostEnv(fn) {
+  const keys = [
+    'CLAUDECODE',
+    'CLAUDE_CODE_ENTRYPOINT',
+    'CLAUDE_PROJECT_DIR',
+    'CURSOR_TRACE_ID',
+    'CURSOR_SESSION_ID',
+    'CURSOR_PROJECT_DIR',
+    'CURSOR_AGENT',
+    'CODEX_THREAD_ID',
+    'CODEX_SHELL',
+    'CODEX_CI',
+    'CODEX_INTERNAL_ORIGINATOR_OVERRIDE',
+    'TERM_PROGRAM',
+  ];
+  const oldEnv = {};
+  for (const key of keys) {
+    oldEnv[key] = process.env[key];
+    delete process.env[key];
+  }
+  try {
+    return fn();
+  } finally {
+    for (const key of keys) {
+      if (oldEnv[key] === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = oldEnv[key];
+      }
+    }
+  }
+}
+
 describe('opencode: registration in hookAdapter', () => {
   it('PLATFORMS contains opencode entry', () => {
     assert.ok(hookAdapter.PLATFORMS.opencode, 'PLATFORMS.opencode must be defined');
@@ -40,7 +73,9 @@ describe('opencode: registration in hookAdapter', () => {
     const tmp = makeTmpDir();
     try {
       fs.mkdirSync(path.join(tmp, '.opencode'), { recursive: true });
-      assert.equal(hookAdapter.detectPlatform(tmp), 'opencode');
+      withClearedHostEnv(() => {
+        assert.equal(hookAdapter.detectPlatform(tmp), 'opencode');
+      });
     } finally { cleanup(tmp); }
   });
 });

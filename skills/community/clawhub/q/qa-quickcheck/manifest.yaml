@@ -1,0 +1,59 @@
+name: qa-quickcheck
+version: 1.0.0
+author: HouYang995
+license: MIT
+runtime: node
+entry: scripts/index.js
+min_openclaw_version: "2026.1.0"
+description: AI 驱动的日常测试助手，覆盖 PR 检查、静态代码审计、动态功能测试、Git diff 回归策略，2 分钟上手
+categories:
+  - testing
+  - code-quality
+  - devops
+  - security
+
+input:
+  type: object
+  properties:
+    mode:
+      type: string
+      enum: [quick, standard]
+      description: 测试模式，quick（快速静态扫描）或 standard（静态+动态+回归）
+      default: standard
+    project_path:
+      type: string
+      description: 项目根目录路径，默认为当前工作目录
+  required: []
+
+output:
+  type: object
+  properties:
+    report_path:
+      type: string
+      description: 生成的测试报告路径（test-report.md）
+    conclusions:
+      type: object
+      description: 门禁结论（pass/conditional_pass/blocked/incomplete）
+    defects:
+      type: array
+      description: 发现的缺陷列表
+    summary:
+      type: string
+      description: 执行摘要
+
+config:
+  - key: default_mode
+    type: string
+    required: false
+    default: "standard"
+    description: 未指定模式时的默认测试模式
+  - key: base_url
+    type: string
+    required: false
+    default: "http://localhost:3000"
+    description: 动态测试的目标服务地址
+  - key: test_timeout
+    type: integer
+    required: false
+    default: 30000
+    description: 单次 HTTP 请求超时时间（毫秒）

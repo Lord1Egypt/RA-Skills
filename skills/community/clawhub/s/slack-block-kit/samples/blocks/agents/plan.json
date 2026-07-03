@@ -1,0 +1,129 @@
+[
+  {
+    "type": "plan",
+    "plan_id": "plan_1",
+    "title": "Demonstrating Plan Block Features...",
+    "tasks": [
+      {
+        "task_id": "task_1",
+        "title": "Fetching data from Slack API",
+        "status": "complete",
+        "details": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Retrieving thinking steps data from Slack API endpoints"
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Successfully retrieved thinking steps schema and configuration data"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "type": "url",
+            "url": "https://api.slack.com/partners/thinking-steps",
+            "text": "Thinking Steps Documentation"
+          }
+        ]
+      },
+      {
+        "task_id": "task_2_bkb",
+        "title": "Organizing tasks under a shared goal",
+        "status": "in_progress",
+        "details": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Structuring sequential workflow steps with cohesive planning display"
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Created hierarchical task organization with proper dependency relationships"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "type": "url",
+            "url": "https://api.slack.com/partners/thinking-steps#plan-block-sample",
+            "text": "Plan Block Examples"
+          }
+        ]
+      },
+      {
+        "task_id": "task_3_bkb",
+        "title": "Display structured workflow progress",
+        "status": "pending",
+        "details": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Showing comprehensive multi-stage operations with clear task relationships"
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Plan blocks ideal for complex workflows requiring structured presentation"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "type": "url",
+            "url": "https://api.slack.com/block-kit/reference",
+            "text": "Block Kit Reference"
+          }
+        ]
+      }
+    ]
+  }
+]

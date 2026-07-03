@@ -18,6 +18,12 @@ Worksheet:
 <sheet-ref kind="worksheet" docId="DOCUMENT_ID" gid="WORKSHEET_GID" sheet="WORKSHEET_NAME">VISIBLE_LABEL</sheet-ref>
 ```
 
+Table name:
+
+```html
+<sheet-ref kind="table" docId="DOCUMENT_ID" gid="WORKSHEET_GID" sheet="WORKSHEET_NAME" range="TABLE_RANGE">TABLE_NAME</sheet-ref>
+```
+
 ## Rules
 
 - Only use `sheet-ref` tags when the task is operating on a Maybe Sheet.
@@ -29,6 +35,7 @@ Worksheet:
 - Preserve the exact worksheet name from the workbook or tool result in the `sheet` attribute.
 - Use A1 notation in the `range` attribute. For a single cell, either `A1` or `A1:A1` is acceptable; prefer the form returned or required by the active tool.
 - Use a concise visible label, usually `SheetName!A1`, `SheetName!A1:B2`, or the worksheet name.
+- When referencing workbook cells, ranges, or table names, always use `<sheet-ref kind="..." docId="..." gid="..." sheet="..." range="...">...</sheet-ref>` tags instead of conversational location descriptions such as "above", "the cell above", "D column row fourteen", or "D 列第十四行".
 - Always use paired tags with visible text: `<sheet-ref ...>SheetName!A1</sheet-ref>`.
 - Never use self-closing tags such as `<sheet-ref kind="cell" docId="abc123" gid="0" sheet="Sheet1" range="A1"/>`; they are not clickable in the current frontend.
 - Do not wrap `sheet-ref` tags in code blocks in the final answer.
@@ -46,6 +53,7 @@ Worksheet:
 - `sheet` 必须保留工作簿或工具结果里的精确工作表名。
 - `range` 使用 A1 表示法。单个单元格可以写成 `A1` 或 `A1:A1`；优先使用当前工具返回或要求的形式。
 - 显示文本保持简短，例如 `Sheet1!A1`、`Sheet1!A1:B2` 或工作表名。
+- 引用工作簿里的单元格、区域或表名时，必须使用 `<sheet-ref kind="..." docId="..." gid="..." sheet="..." range="...">...</sheet-ref>` 标签；不要使用“上方”“上面的单元格”“D column row fourteen”“D 列第十四行”等口语化位置描述。
 - 必须使用带显示文本的成对标签：`<sheet-ref ...>SheetName!A1</sheet-ref>`。
 - 禁止使用 `<sheet-ref kind="cell" docId="abc123" gid="0" sheet="Sheet1" range="A1"/>` 这类自闭合标签；当前前端不会把它渲染成可点击链接。
 - 不要把 `sheet-ref` 放进最终回答的代码块。

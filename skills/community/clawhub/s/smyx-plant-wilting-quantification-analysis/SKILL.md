@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-wilting-quantification-analysis"
 description: "AI-powered plant wilting quantification from full-plant images via smart pots or fixed cameras. Detects leaf-stem angle (leaf droop), stem straightness, and leaf turgidity to quantify wilting severity (0-100%). Optionally fuses soil-moisture sensor data to discriminate dehydration (underwatering) vs. waterlogging (root hypoxia), and auto-triggers watering or drainage prompts for precision irrigation. Scenarios: smart pots, home gardening, greenhouses, plant factories. | 通过智能花盆或固定摄像头拍摄植物整体图像，利用AI视觉分析技术检测叶片与茎秆的夹角（叶片下垂角度）、茎秆挺直程度以及叶片舒展度，量化萎蔫程度（0-100%）。可选结合土壤湿度传感器数据，综合判断萎蔫原因是缺水还是水涝（根部缺氧导致）。可自动触发灌溉或排水提示，帮助用户精准浇水。应用场景：智能花盆、家庭园艺、温室大棚、植物工厂。"
-version: "1.0.2"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

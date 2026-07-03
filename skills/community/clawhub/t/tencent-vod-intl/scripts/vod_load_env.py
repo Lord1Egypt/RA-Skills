@@ -15,7 +15,7 @@ Implementation:
     TENCENTCLOUD_SECRET_ID       (required)
     TENCENTCLOUD_SECRET_KEY      (required)
     TENCENTCLOUD_VOD_AIGC_TOKEN  (optional, dedicated to AIGC LLM Chat)
-    TENCENTCLOUD_VOD_SUB_APP_ID  (optional, sub-application ID)
+    TENCENTCLOUD_VOD_SUB_APP_ID  (required, sub-application ID)
 
 Usage (calling from other scripts):
     from vod_load_env import ensure_env_loaded
@@ -23,6 +23,7 @@ Usage (calling from other scripts):
 """
 
 import os
+import re
 import sys
 
 try:
@@ -30,6 +31,75 @@ try:
     _DOTENV_AVAILABLE = True
 except ImportError:
     _DOTENV_AVAILABLE = False
+
+
+def _stdlib_load_dotenv(dotenv_path, override=False):
+    """Pure stdlib fallback for load_dotenv.
+
+    Supports common syntax (covers 99% of real .env files):
+    - `KEY=VALUE`
+    - `KEY="quoted value"` or `KEY='quoted value'`
+    - `export KEY=VALUE`
+    - `# comment` lines (and trailing ` # comment` on value lines)
+    - Skips empty lines
+    - Does NOT support: `${OTHER}` interpolation, multi-line values
+
+    Args:
+        dotenv_path: path to the .env file
+        override: when True, overwrite existing env vars
+
+    Returns:
+        bool: True if at least one KEY=VALUE pair was loaded
+    """
+    if not dotenv_path or not os.path.isfile(dotenv_path):
+        return False
+    loaded_any = False
+    line_re = re.compile(r'^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$')
+    try:
+        with open(dotenv_path, 'r', encoding='utf-8') as f:
+            for raw in f:
+                line = raw.strip()
+                if not line or line.startswith('#'):
+                    continue
+                m = line_re.match(line)
+                if not m:
+                    continue
+                key, val = m.group(1), m.group(2)
+                if (len(val) >= 2 and
+                        ((val[0] == '"' and val[-1] == '"') or
+                         (val[0] == "'" and val[-1] == "'"))):
+                    val = val[1:-1]
+                else:
+                    if ' #' in val:
+                        val = val.split(' #', 1)[0].rstrip()
+                if (not override) and (key in os.environ):
+                    continue
+                os.environ[key] = val
+                loaded_any = True
+    except (OSError, IOError):
+        return False
+    return loaded_any
+
+
+def _stdlib_find_dotenv(usecwd=True):
+    """Walk up from cwd to locate the nearest .env file."""
+    cur = os.getcwd() if usecwd else os.path.dirname(os.path.abspath(__file__))
+    while True:
+        candidate = os.path.join(cur, '.env')
+        if os.path.isfile(candidate):
+            return candidate
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return ''
+        cur = parent
+
+
+# If python-dotenv is unavailable, use the stdlib fallback
+if not _DOTENV_AVAILABLE:
+    load_dotenv = lambda dotenv_path=None, override=False, **kw: _stdlib_load_dotenv(  # noqa: E731
+        dotenv_path or _stdlib_find_dotenv(), override=override
+    )
+    _DOTENV_AVAILABLE = True  # Mark as available (using stdlib fallback)
 
 # Target variables to detect
 _TARGET_VARS = {
@@ -43,12 +113,12 @@ _TARGET_VARS = {
 _REQUIRED_VARS = [
     "TENCENTCLOUD_SECRET_ID",
     "TENCENTCLOUD_SECRET_KEY",
+    "TENCENTCLOUD_VOD_SUB_APP_ID",
 ]
 
 # Optional variables (only needed in specific scenarios)
 _OPTIONAL_VARS = {
     "TENCENTCLOUD_VOD_AIGC_TOKEN": "Dedicated to AIGC LLM Chat (vod_aigc_chat.py)",
-    "TENCENTCLOUD_VOD_SUB_APP_ID": "Used for sub-application operations (can be overridden via --sub-app-id parameter)",
 }
 
 # Candidate dotenv files (loaded in order; load_dotenv defaults to override=False)
@@ -73,7 +143,7 @@ def load_env_files(verbose: bool = False) -> dict:
         if verbose:
             print(
                 "[load_env] python-dotenv is not installed; cannot load .env files. "
-                "Please run: pip install -r scripts/requirements.txt",
+                "Please run: python3 -m pip install -r scripts/requirements.txt",
                 file=sys.stderr,
             )
         return {}
@@ -89,12 +159,16 @@ def load_env_files(verbose: bool = False) -> dict:
     try:
         from dotenv import find_dotenv
         default_path = find_dotenv(usecwd=True)
-    except (ImportError, Exception):
+    except ImportError:
+        default_path = _stdlib_find_dotenv(usecwd=True)
+    except Exception:
         default_path = ""
 
     if default_path and os.path.isfile(default_path):
         try:
-            ok = load_dotenv(override=False)
+            # BUG FIX: must pass dotenv_path explicitly; without it, python-dotenv
+            # walks the call stack instead of cwd, which often fails to find the file.
+            ok = load_dotenv(dotenv_path=default_path, override=False)
             seen_paths.add(os.path.abspath(default_path))
             if verbose:
                 print(
@@ -196,9 +270,9 @@ VOD Console: https://console.cloud.tencent.com/vod
   Example (using ~/.env):
     TENCENTCLOUD_SECRET_ID=<your SecretId>
     TENCENTCLOUD_SECRET_KEY=<your SecretKey>
+    TENCENTCLOUD_VOD_SUB_APP_ID=<your sub-application ID>
     # Optional
     TENCENTCLOUD_VOD_AIGC_TOKEN=<your AIGC Token>
-    TENCENTCLOUD_VOD_SUB_APP_ID=<your sub-application ID>
 
 ⚠️  Security Notice: Configure credentials through a secure channel; avoid committing them to a code repository.
 
@@ -308,7 +382,13 @@ if __name__ == "__main__":
     if args.dry_run:
         print("=== Dry-run ===\n")
         print("Operation: Use load_dotenv to load Tencent Cloud VOD environment variables")
-        print(f"\npython-dotenv status: {'✅ Available' if _DOTENV_AVAILABLE else '❌ Not installed'}")
+        # Distinguish: native python-dotenv vs stdlib fallback
+        try:
+            import dotenv as _dotenv_mod  # noqa: F401
+            _native = True
+        except ImportError:
+            _native = False
+        print(f"\ndotenv loader: {'✅ python-dotenv (native)' if _native else '✅ stdlib fallback'}")
         print("\nDotenv files to be loaded (in order):")
         for filepath in _ENV_FILES:
             exists = "✅ exists" if os.path.isfile(filepath) else "⚪ does not exist"
@@ -334,7 +414,7 @@ if __name__ == "__main__":
     print("=== Loading dotenv files ===", flush=True)
     if not _DOTENV_AVAILABLE:
         print(
-            "❌ python-dotenv is not installed. Please run: pip install -r scripts/requirements.txt",
+            "❌ python-dotenv is not installed. Please run: python3 -m pip install -r scripts/requirements.txt",
             file=sys.stderr,
         )
         sys.exit(1)

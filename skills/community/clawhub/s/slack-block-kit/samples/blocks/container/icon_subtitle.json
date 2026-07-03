@@ -1,0 +1,43 @@
+[
+  {
+    "type": "container",
+    "block_id": "bkb_container_icon_subtitle",
+    "title": {
+      "type": "plain_text",
+      "text": "Project Updates"
+    },
+    "subtitle": {
+      "type": "plain_text",
+      "text": "Last synced 5 minutes ago"
+    },
+    "icon": {
+      "type": "image",
+      "image_url": "https://a.slack-edge.com/80588/img/plugins/app/service_36.png",
+      "alt_text": "Project icon"
+    },
+    "child_blocks": [
+      {
+        "type": "section",
+        "block_id": "section-1",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*Section title*\nThis is a section block with markdown text inside the container."
+        }
+      },
+      {
+        "type": "divider",
+        "block_id": "divider-1"
+      },
+      {
+        "type": "context",
+        "block_id": "context-1",
+        "elements": [
+          {
+            "type": "mrkdwn",
+            "text": "Last updated: May 14, 2026 at 3:42 PM"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -21,7 +21,7 @@ from pathlib import Path
 # PyPika is optional — only available when erpclaw-setup has installed the shared lib.
 # check-installation and install-guide work without it; seed-demo-data uses it for queries.
 try:
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.query import Q, P, Table, Field, fn, Order
     from erpclaw_lib.args import SafeArgumentParser
     _HAS_PYPIKA = True
@@ -33,9 +33,11 @@ except ImportError:
 # Constants
 # ---------------------------------------------------------------------------
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 SKILLS_DIR = os.path.expanduser("~/clawd/skills")
-SHARED_LIB_PATH = os.path.expanduser("~/.openclaw/erpclaw/lib/erpclaw_lib")
+SHARED_LIB_PATH = os.path.join(
+    os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")),
+    "lib", "erpclaw_lib")
 
 ALL_SKILLS = [
     "erpclaw-setup",

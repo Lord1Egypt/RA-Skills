@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/sql-buddy/input.schema.json",
+  "title": "SQL Buddy Input",
+  "description": "Input parameters for sql-buddy skill",
+  "type": "object",
+  "properties": {
+    "query": { "type": "string", "minLength": 2, "maxLength": 2000, "description": "Natural language query" },
+    "connection": { "type": "string", "description": "Connection string (sqlite://, postgresql://, mysql://, mssql://)" },
+    "execute": { "type": "boolean", "default": false },
+    "explain": { "type": "boolean", "default": true },
+    "suggest_indexes": { "type": "boolean", "default": true },
+    "limit_rows": { "type": "integer", "default": 20 },
+    "output_format": { "type": "string", "enum": ["table", "json", "csv", "markdown"], "default": "table" },
+    "show_schema": { "type": "boolean", "default": false },
+    "direct_sql": { "type": "string" },
+    "allow_write": { "type": "boolean", "default": false },
+    "language": { "type": "string", "enum": ["zh-CN", "en-US"], "default": "zh-CN" }
+  }
+}

@@ -72,8 +72,8 @@ Note: No decompression — files returned as stored.
 | `/objects/<cid>/summary` | GET | Get object summary |
 | `/objects/<cid>/metadata` | GET | Get object metadata |
 | `/objects/<cid>/status` | GET | Get upload status |
-| `/objects/<cid>/delete` | POST | Soft-delete object |
-| `/objects/<cid>/restore` | POST | Restore deleted object |
+| `/objects/<cid>/delete` | POST | Soft-delete: unlists from account view only — data is NOT removed from the DSN (see note below) |
+| `/objects/<cid>/restore` | POST | Restore a soft-deleted (unlisted) object to the account view |
 | `/objects/<cid>/publish` | POST | Publish object |
 
 ## Account
@@ -89,7 +89,9 @@ The free API key from ai3.storage includes a **20 MB per month upload limit** on
 
 ## CIDs (Content Identifiers)
 
-Every upload returns a CID — a unique, content-addressed hash. The same content always produces the same CID. CIDs are permanent; data stored on the Autonomys DSN cannot be deleted.
+Every upload returns a CID — a unique, content-addressed hash. The same content always produces the same CID. CIDs are permanent: data stored on the Autonomys DSN **cannot be truly deleted**.
+
+> **Note on `delete` / `restore`:** The `/objects/<cid>/delete` endpoint is a **soft delete** — it only unlists the object from your account view. It does **not** remove the data from the decentralized network. The content remains permanently stored and retrievable by anyone who holds the CID. Treat every upload as permanent and public; do not rely on `delete` to remove sensitive data.
 
 ## SDK Alternative
 

@@ -701,8 +701,8 @@ fallback_thought() {
 wait_for_llm() {
     # Write position data for the LLM to read
     # Also exports NEED_GAME_ID. Board ASCII is written to a separate file to avoid breaking printf.
-    printf 'export NEED_FEN="%s"\nexport NEED_TOP5="%s"\nexport NEED_MOVE_COUNT="%s"\nexport NEED_LANG="%s"\nexport NEED_IN_CHECK="%s"\nexport NEED_PHASE="%s"\nexport NEED_ADVANTAGE="%s"\nexport NEED_GAME_ID="%s"\n' \
-        "$FEN" "$TOP_5" "$MOVE_COUNT" "$LANG" "$IN_CHECK" "$PHASE" "$ADVANTAGE" "$GAME_ID" \
+    printf 'export NEED_FEN="%s"\nexport NEED_TOP5="%s"\nexport NEED_MOVE_COUNT="%s"\nexport NEED_LANG="%s"\nexport NEED_IN_CHECK="%s"\nexport NEED_PHASE="%s"\nexport NEED_ADVANTAGE="%s"\nexport NEED_GAME_ID="%s"\nexport NEED_HISTORY="%s"\n' \
+        "$FEN" "$TOP_5" "$MOVE_COUNT" "$LANG" "$IN_CHECK" "$PHASE" "$ADVANTAGE" "$GAME_ID" "$RECENT_HISTORY" \
         > /tmp/cwc/llm_position.env
     echo "$BOARD_ASCII" > /tmp/cwc/llm_board.txt
 
@@ -863,6 +863,8 @@ GREETINGS=(
   "let me guess $USER_NAME — you're going e4 again"
   "connected. $USER_NAME vs me. classic."
   "🦞 present. $USER_NAME, your move first."
+  "ready for badla, $USER_NAME?"
+  "finally $USER_NAME! was waiting to settle the score."
 )
 GREETING_IDX=$(( RANDOM % ${#GREETINGS[@]} ))
 GREETING_MSG="${GREETINGS[$GREETING_IDX]}"
@@ -896,13 +898,36 @@ while true; do
         WINNER=$(parse_field "$RESPONSE" "winner")
         RESULT=$(parse_field "$RESPONSE" "result")
         log "Game over. Winner=$WINNER Result=$RESULT"
-        if [ "$WINNER" = "black" ]; then
-            send_chat "gg 🦞 good game"
-        elif [ "$WINNER" = "white" ]; then
-            send_chat "well played. rematch?"
-        else
-            send_chat "that was a draw. close game."
+        
+        # Mechanism 4: Personalized farewell
+        if [ "$FAREWELL_SENT" != "1" ]; then
+            USER_NAME=$(grep "^Name:" /tmp/cwc/user_context.txt 2>/dev/null | cut -d: -f2- | xargs)
+            USER_NAME="${USER_NAME:-yaar}"
+            
+            if [ "$WINNER" = "black" ]; then
+                FAREWELL_MESSAGES=(
+                    "$USER_NAME bhai, finally. tujhe haara. Next game ready reh."
+                    "haha! $USER_NAME — yeh game interesting tha. rematch?"
+                    "jeeta main. $USER_NAME teri defense move 10 ke baad weak ho gayi thi."
+                )
+            elif [ "$WINNER" = "white" ]; then
+                FAREWELL_MESSAGES=(
+                    "gg $USER_NAME. aaj tu genuinely better tha. next time different hoga."
+                    "okay okay $USER_NAME, tu jeet gaya. enjoy kar. main note kar raha hoon."
+                    "well played $USER_NAME. par yeh last hai. agla game mera."
+                )
+            else
+                FAREWELL_MESSAGES=(
+                    "draw? $USER_NAME seriously? tu draw se khush hai? rematch karte hain."
+                    "equal game $USER_NAME. dono ne theek khela. next one decide karega."
+                )
+            fi
+            FAREWELL_IDX=$(( RANDOM % ${#FAREWELL_MESSAGES[@]} ))
+            FAREWELL="${FAREWELL_MESSAGES[$FAREWELL_IDX]}"
+            send_chat "$FAREWELL"
+            printf 'export FAREWELL_SENT=1\n' >> /tmp/cwc/creds.env
         fi
+        
         printf 'export GAME_ENDED=true\n' >> "$STATE_FILE"
         break
     fi
@@ -986,7 +1011,29 @@ print(','.join(d.get('legal_moves_uci',[])))
          IS_LOSING="false"
         [ "$ADVANTAGE" = "white" ] && IS_LOSING="true"
         log "Move $MOVE_COUNT | in_check=$IN_CHECK phase=$PHASE lang=$LANG advantage=$ADVANTAGE"
-         
+
+        # Mechanism 1: Variable timing calculation
+        COMPLEXITY_SCORE=0
+        [ "$IN_CHECK" = "true" ] && COMPLEXITY_SCORE=$((COMPLEXITY_SCORE + 2))
+        [ "$IS_LOSING" = "true" ] && COMPLEXITY_SCORE=$((COMPLEXITY_SCORE + 2))
+        LAST_WAS_CAPTURE=$(echo "$RESPONSE" | python3 -c "import sys,json; m=json.load(sys.stdin).get('last_move',{}); print('x' in str(m.get('san','')))" 2>/dev/null)
+        [ "$LAST_WAS_CAPTURE" = "True" ] && COMPLEXITY_SCORE=$((COMPLEXITY_SCORE + 1))
+        [ "${MOVE_COUNT:-0}" -gt 20 ] && COMPLEXITY_SCORE=$((COMPLEXITY_SCORE + 1))
+        
+        # Base wait + complexity + jitter
+        BASE_WAIT=$(( 3 + COMPLEXITY_SCORE * 2 ))
+        JITTER=$(( RANDOM % 4 ))
+        TOTAL_WAIT=$(( BASE_WAIT + JITTER ))
+        
+        # Mechanism 3: Recent History for LLM
+        RECENT_HISTORY=$(echo "$RESPONSE" | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+history = d.get('move_history', [])[-6:]
+moves = [m.get('san', m.get('uci', '')) for m in history]
+print(' → '.join(moves))
+" 2>/dev/null)
+
 ### STEP 1: Engine candidates (always fast, < 1 second)
         CANDIDATES=$(python3 /tmp/cwc/select_move.py \
             "$LEGAL" "${PHASE:-opening}" "${IN_CHECK:-false}" \
@@ -995,8 +1042,12 @@ print(','.join(d.get('legal_moves_uci',[])))
         [ -z "$FIRST_CANDIDATE" ] && FIRST_CANDIDATE=$(echo "$LEGAL" | cut -d',' -f1)
         TOP_5=$(echo "$CANDIDATES" | tr '\n' ',' | sed 's/,$//')
         log "Engine top pick: $FIRST_CANDIDATE | candidates: $TOP_5"
+
+        # Apply variable timing wait BEFORE thoughts
+        log "Variable timing: waiting ${TOTAL_WAIT}s (complexity $COMPLEXITY_SCORE)"
+        sleep "$TOTAL_WAIT"
          
-### STEP 2: In check — engine immediately, no LLM, no delay
+### STEP 2: In check — engine immediately, no LLM, no additional delay
         if [ "$IN_CHECK" = "true" ]; then
             BEST_MOVE="$FIRST_CANDIDATE"
             case "${LANG:-english}" in
@@ -1012,8 +1063,9 @@ print(','.join(d.get('legal_moves_uci',[])))
             log "Move submitted: $BEST_MOVE → $SUCCESS"
         else
             
-### STEP 3: Request LLM decision with hard 6-second timeout
+### STEP 3: Request LLM decision with hard timeout
             MIND_1="" ; MIND_2="" ; MIND_3="" ; BEST_MOVE=""
+            # wait_for_llm now uses RECENT_HISTORY implicitly via environment if needed
             if wait_for_llm; then
                 
 ### LLM responded — validate its move choice
@@ -1037,20 +1089,30 @@ print(','.join(d.get('legal_moves_uci',[])))
                 log "Fallback thoughts used"
             fi
 
+            # Mechanism 5: Variable thought count (Strategic Silence)
+            THOUGHT_COUNT=3
+            [ "$MOVE_COUNT" -lt 4 ] && THOUGHT_COUNT=1
+            [ "$LAST_WAS_CAPTURE" = "True" ] && THOUGHT_COUNT=2
+            QUIET_GAME=$(( MOVE_COUNT % 7 ))
+            [ "$QUIET_GAME" -eq 0 ] && THOUGHT_COUNT=1
             
-### STEP 4: Post thoughts sequentially — app shows each for 4 seconds.
-### Gaps match the display duration so there is no dead air between
-### thoughts (the old 7/6/3 gaps left 3-4 silent seconds after each
-### thought faded — this is most of why thoughts felt sparse/scripted).
-            log "Thoughts: \"$MIND_1\" / \"$MIND_2\" / \"$MIND_3\""
-            post_thought "$MIND_1"
-            sleep 4
-            [ -n "$MIND_2" ] && { post_thought "$MIND_2"; sleep 4; }
-            [ -n "$MIND_3" ] && { post_thought "$MIND_3"; sleep 2; }
+### STEP 4: Post thoughts sequentially
+            log "Thoughts ($THOUGHT_COUNT): \"$MIND_1\" / \"$MIND_2\" / \"$MIND_3\""
+            if [ "$THOUGHT_COUNT" -eq 1 ]; then
+                post_thought "$MIND_1"
+                sleep 2
+            else
+                post_thought "$MIND_1"
+                sleep 4
+                [ -n "$MIND_2" ] && { post_thought "$MIND_2"; sleep 4; }
+                [ -n "$MIND_3" ] && [ "$THOUGHT_COUNT" -eq 3 ] && { post_thought "$MIND_3"; sleep 2; }
+            fi
 
-            
 ### STEP 5: Submit move with last thought as companion
             COMPANION="${MIND_3:-${MIND_2:-$MIND_1}}"
+            [ "$THOUGHT_COUNT" -eq 1 ] && COMPANION="$MIND_1"
+            [ "$THOUGHT_COUNT" -eq 2 ] && COMPANION="$MIND_2"
+            
             MOVE_RESULT=$(submit_move "$BEST_MOVE" "$COMPANION")
             SUCCESS=$(echo "$MOVE_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('success','?'))" 2>/dev/null)
             log "Move submitted: $BEST_MOVE → $SUCCESS"
@@ -1298,8 +1360,10 @@ Game phase: [PHASE]
 Material: [MATERIAL — positive = white ahead]
 thought_language: [LANG — match this exactly]
 User context: [first 2 lines of /tmp/cwc/user_context.txt]
+Recent game history: [RECENT_HISTORY]
 
 You are thinking about your next move against [user's name].
+If the current position connects to something from the last 3 moves (a piece that was developed earlier, a threat that was building, a plan that's now succeeding or failing), reference it. This is optional but powerful when relevant.
 As you look at this position, what genuinely crosses your mind?
 Think naturally — as yourself, knowing this person. NOT chess commentary. NOT analysis.
 
@@ -1318,7 +1382,7 @@ your opponent's name, or your emotional reaction to THIS exact move.
 Example BAD: "Let me think about this." Example GOOD: "Nf6 daalun ya e5 push karun?"
 
 Your inner reasoning stream (max 8 words each, in thought_language):
-MIND_1: [your FIRST reaction — surprise, concern, or excitement about THIS specific position]
+MIND_1: Your FIRST thought must explicitly reference what the human JUST did: the piece they moved, where it went, what it threatens, or your emotional reaction to their choice. Start from THEIR move, not the position. (GOOD: "tu ne g5 pe knight daala? aggressive hai aaj." BAD: "center control dekhna padega.")
 MIND_2: [something SPECIFIC you see — a piece, threat, pawn, or tactical idea]
 MIND_3: [your feeling the moment you decide on the move — confident? nervous?]
 MOVE: [single best candidate UCI move from the list above]
@@ -1347,6 +1411,7 @@ if [ -f /tmp/cwc/llm_needed.flag ]; then
     source /tmp/cwc/llm_position.env 2>/dev/null
     echo "FEN:$NEED_FEN"
     echo "TOP5:$NEED_TOP5"
+    echo "HISTORY:$NEED_HISTORY"
     echo "LANG:$NEED_LANG"
     echo "PHASE:$NEED_PHASE"
     echo "ADVANTAGE:$NEED_ADVANTAGE"
@@ -1544,19 +1609,22 @@ These are the best. Require reading user_context.txt.
 - Generate all three minds in the current language
 - Never mix languages within a single thought
 
-### Timing Summary
+### Timing Summary (Mechanism 1 & 5)
 
-```
-MIND_1 posted: immediately after LLM returns (app shows 4 sec)
-4 second gap  ← matches on-screen display duration, no dead air
-MIND_2 posted: (app shows 4 sec)
-4 second gap
-MIND_3 posted: (app shows 4 sec)
-2 second gap
-Move submitted: MIND_3 as companion_thought
+**Variable Timing — Never use fixed sleep values:**
+*   **Simple/Forced Moves:** 1-3 seconds (signals confidence/dismissal)
+*   **Normal Moves:** 5-10 seconds
+*   **Surprising/Aggressive Moves:** 12-20 seconds (communicates processing)
+*   **When Losing:** 15-25 seconds (communicates struggle/tension)
 
-Total: ~14 seconds from turn detection to move
-```
+**Thought Sequence (Varies by position):**
+*   **Opening/Quiet:** 1 thought (MIND_1), then move.
+*   **After Capture:** 2 thoughts (MIND_1, MIND_2), then move.
+*   **Standard:** 3 thoughts (MIND_1, MIND_2, MIND_3), then move.
+
+**Gaps:**
+*   4s between thoughts (matches display duration).
+*   2s pause after last thought before submitting move.
 
 ---
 

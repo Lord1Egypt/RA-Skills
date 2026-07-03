@@ -79,4 +79,4 @@ Example:
 
 ## Learning Update Rule
 
-Check for updates only after `event-scanner-add-to-calendar` is used. Send suggestions in chat only, and only when the added event reveals a recurring preference not already covered here. Wait for approval before changing this file.
+Check for updates only after `local-event-scanner-add-to-calendar` is used. Send suggestions in chat only, and only when the added event reveals a recurring preference not already covered here. Wait for approval before changing this file.

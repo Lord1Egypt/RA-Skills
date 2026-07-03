@@ -1,26 +1,27 @@
 #!/usr/bin/env node
 /**
- * english-daily — 每日学习推送 prompt 生成器
+ * english-daily — 每日学习推送 prompt 生成器（无文件写入版）
+ *
+ * 由 openclaw cron 驱动，每日早晨执行。档案与 SRS 进度存于原生 MEMORY.md，
+ * 由 Agent 维护；本脚本不读写任何文件，所需字段由 Agent 作为参数传入。
+ * 脚本更新连续学习(streak)后，输出一段 MEMORY.md 区块供 Agent 回写。
  *
  * 用法:
- *   node daily-push.js <userId>
- *
- * 由 openclaw cron 驱动，每日早晨执行。
- * 输出结构化文本，由 Claude 格式化呈现给用户。
+ *   node daily-push.js <userId> [--name <姓名>] [--level A1|A2|B1|B2] \
+ *        [--goal <每日目标>] [--progress '<wordProgress-JSON>'] \
+ *        [--streak <n>] [--longest <n>] [--last <YYYY-MM-DD>] [--points <n>]
  */
 
 'use strict';
 
-const fs   = require('fs');
-const path = require('path');
 const {
   getDueWords,
   getNewWordsForUser,
+  parseProgressArg,
+  renderMemoryBlock,
   todayStr,
   addDays
 } = require('./wordbank');
-
-const USERS_DIR = path.join(__dirname, '../data/users');
 
 // ── Security helpers ──────────────────────────────────────────────────────────
 
@@ -32,30 +33,12 @@ function sanitizeId(value) {
   return value;
 }
 
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ 非法路径');
-    process.exit(1);
-  }
-  return resolved;
+function flag(args, name) {
+  const i = args.indexOf(name);
+  return (i !== -1 && args[i + 1] !== undefined) ? args[i + 1] : undefined;
 }
 
-function loadUser(userId) {
-  const f = safeUserPath(userId);
-  if (!fs.existsSync(f)) {
-    console.error(`❌ 未找到用户：${userId}。请先注册：node register.js ${userId} <姓名>`);
-    process.exit(1);
-  }
-  return JSON.parse(fs.readFileSync(f, 'utf8'));
-}
-
-function saveUser(userId, data) {
-  fs.mkdirSync(USERS_DIR, { recursive: true });
-  fs.writeFileSync(safeUserPath(userId), JSON.stringify(data, null, 2), 'utf8');
-}
-
-// ── Streak update ─────────────────────────────────────────────────────────────
+// ── Streak update (pure) ────────────────────────────────────────────────────────
 
 function updateStreak(profile) {
   const today     = todayStr();
@@ -63,13 +46,11 @@ function updateStreak(profile) {
   const last      = profile.lastStudyDate;
 
   if (last === today) {
-    // Already counted today, no change
-    return profile;
+    return profile; // already counted today
   } else if (last === yesterday) {
     profile.streak = (profile.streak || 0) + 1;
   } else {
-    // Streak broken (or first study)
-    profile.streak = 1;
+    profile.streak = 1; // broken or first study
   }
 
   if (profile.streak > (profile.longestStreak || 0)) {
@@ -95,22 +76,37 @@ function formatWordFull(entry) {
   return lines.join('\n');
 }
 
-// ── Core function (exportable for cron) ───────────────────────────────────────
+// ── Core function ───────────────────────────────────────────────────────────────
 
-function runDailyPush(userId) {
+function runDailyPush(userId, opts = {}) {
   userId = sanitizeId(userId);
-  const profile = loadUser(userId);
 
-  // Update streak
+  const profile = {
+    userId,
+    name:          opts.name || userId,
+    level:         opts.level || 'B1',
+    targetLevel:   opts.targetLevel || opts.level || 'B1',
+    nativeLanguage: 'zh',
+    streak:        opts.streak || 0,
+    longestStreak: opts.longest || 0,
+    lastStudyDate: opts.last || null,
+    totalPoints:   opts.points || 0,
+    preferences: {
+      dailyGoal: opts.goal || 5,
+      pushEnabled: !!opts.pushEnabled,
+      morningTime: opts.morningTime || '08:00',
+      channel: opts.channel || 'telegram'
+    },
+    wordProgress: parseProgressArg(opts.progress)
+  };
+
+  // Update streak (pure compute)
   updateStreak(profile);
 
   const today      = todayStr();
-  const dailyGoal  = profile.preferences && profile.preferences.dailyGoal ? profile.preferences.dailyGoal : 5;
+  const dailyGoal  = profile.preferences.dailyGoal;
   const dueWords   = getDueWords(profile);
   const newWords   = getNewWordsForUser(profile, dailyGoal);
-
-  // Save updated profile (streak + lastStudyDate)
-  saveUser(userId, profile);
 
   // Format date nicely
   const dateObj = new Date(today + 'T12:00:00Z');
@@ -147,8 +143,15 @@ function runDailyPush(userId) {
   console.log('- 每个单词至少造一个句子');
   console.log('- 回复"测验"开始今日练习');
   console.log('');
-  console.log(`📊 查看进度：node scripts/progress.js ${userId}`);
-  console.log(`📝 开始测验：node scripts/quiz.js ${userId}`);
+
+  // 输出更新后的 MEMORY.md 区块（streak / lastStudyDate 已更新），供 Agent 回写
+  console.log('📇 请用以下区块更新 MEMORY.md（已更新连续学习天数）：');
+  console.log('```markdown');
+  console.log(renderMemoryBlock(profile));
+  console.log('```');
+  console.log('');
+  console.log(`📊 查看进度：node scripts/progress.js ${userId} --name "${profile.name}" --level ${profile.level} --progress '<SRS进度JSON>'`);
+  console.log(`📝 开始测验：node scripts/quiz.js ${userId} --level ${profile.level} --progress '<SRS进度JSON>'`);
 }
 
 // ── CLI entry ─────────────────────────────────────────────────────────────────
@@ -156,10 +159,20 @@ function runDailyPush(userId) {
 if (require.main === module) {
   const args = process.argv.slice(2);
   if (!args[0]) {
-    console.log('用法: node daily-push.js <userId>');
+    console.log(`用法: node daily-push.js <userId> [--name <姓名>] [--level A1|A2|B1|B2] [--goal <n>] [--progress '<JSON>'] [--streak <n>] [--longest <n>] [--last <YYYY-MM-DD>] [--points <n>]`);
     process.exit(1);
   }
-  runDailyPush(args[0]);
+  const num = v => (v === undefined ? undefined : parseInt(v, 10));
+  runDailyPush(args[0], {
+    name:    flag(args, '--name'),
+    level:   flag(args, '--level'),
+    goal:    num(flag(args, '--goal')),
+    progress: flag(args, '--progress'),
+    streak:  num(flag(args, '--streak')),
+    longest: num(flag(args, '--longest')),
+    last:    flag(args, '--last'),
+    points:  num(flag(args, '--points'))
+  });
 }
 
-module.exports = { runDailyPush };
+module.exports = { runDailyPush, updateStreak };

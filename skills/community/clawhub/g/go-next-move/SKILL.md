@@ -1,22 +1,22 @@
 ---
 name: go-next-move
-description: Analyze a Go/Weiqi position from an image or board state, use KataGo to recommend the next move at beginner, intermediate, or advanced playing strength. Use when the user asks where black or white should play next, wants a move matched to an opponent's level, or wants AI-assisted handicap-like balancing without changing the board.
+description: 从围棋/Weiqi 棋盘照片或文本棋盘分析当前局面，调用本地 KataGo 按初级、中级、高级强度推荐下一手。适用于用户询问黑棋或白棋下一手应下哪里、希望按对手水平选择落点，或想在不改变棋盘的情况下获得更均衡的 AI 辅助建议。
 ---
 
-# Go Next Move
+# 围棋下一手推荐
 
-## Current Scope
+## 当前范围
 
-This skill is being built as a separate move-selection layer from `count-go-black-stones`.
+这个 skill 是独立于 `count-go-black-stones` 的围棋落点推荐层。
 
-The intended workflow is:
+预期流程：
 
-1. Convert a board photo into a 19x19 position.
-2. Ask the user or infer who is to move when possible.
-3. Send the position to KataGo using Chinese rules and a fixed visit budget.
-4. Return a recommended move matched to the requested playing-strength level.
-5. Include candidate moves and enough analysis data to explain or audit the choice.
-6. For no-capture continuation, preserve the original recognized board and add numbered AI/user move overlays before asking for the next move.
+1. 将棋盘照片转换成 19 路局面。
+2. 在可能时询问或推断轮到黑棋还是白棋行棋。
+3. 使用中国规则和固定访问数预算，将局面发送给 KataGo。
+4. 根据用户请求的落子强度返回推荐手。
+5. 附带候选手和足够的分析数据，方便解释或复核选择。
+6. 对于无提子的连续推演，保留原始识别棋盘，并在询问下一手前叠加带编号的 AI/用户落子。
 
 ## Local KataGo Defaults
 
@@ -116,62 +116,6 @@ The script returns JSON containing:
 - optional `result_image` when `--result-image` is passed
 - default `source_result_image` for photo input, or optional `source_result_image` when `--source-result-image` is passed explicitly
 - optional `recognition` metadata when input is an image
-
-## HTTP Interaction Mode (optional, faster than LLM round trips)
-
-This is an *additional* entry point. The LLM/CLI workflow above is unchanged and
-still fully supported. When the user wants to iterate quickly without a slow LLM
-round trip for every photo, serve a web page behind a public tunnel and hand
-them a link. The page lets them pick the side to move (black/white) and playing
-strength (beginner/intermediate/advanced), upload a board photo, and get the
-recommended-move image back over HTTP. The page calls the same
-`scripts/next_move.py` under the hood.
-
-The design has two parts:
-
-1. A **resident HTTP service** (`scripts/launch_skill_server.py`). Start it once;
-   it is lightweight and stays up. It serves the page + `/api/analyze`, keeps a
-   Cloudflare quick tunnel alive, and writes the current public tunnel URL to a
-   state file (`~/.go-next-move/tunnel_url`). If the tunnel reconnects with a new
-   hostname, the file is updated.
-2. A small **one-shot link minter** (`scripts/mint_link.py`). This is what the
-   agent runs whenever the user needs a link. It signs a fresh token (default
-   5 hours) with the shared secret, reads the current tunnel URL from the state
-   file, and prints `https://<tunnel-host>/?token=<token>`. The token changes on
-   every call; the tunnel URL is whatever the resident service currently has.
-
-Start the resident service (once, on the host where KataGo lives):
-
-```bash
-python3 scripts/launch_skill_server.py
-```
-
-Mint a link to hand to the user (fast, does not start anything):
-
-```bash
-python3 scripts/mint_link.py
-```
-
-Operational rules:
-
-- Tokens expire after the TTL (default 5 hours). When a link expires, just run `mint_link.py` again and send the new link.
-- The tunnel URL can change when the resident service / cloudflared restarts. `mint_link.py` always reads the current URL, so a freshly minted link is always correct.
-- To revoke every outstanding link before expiry, run `mint_link.py --rotate-secret` (rotates the shared secret).
-- The token is a stateless HMAC (see `scripts/skill_token.py`); the server validates it without storing per-token state. The secret persists at `~/.go-next-move/secret` (override with `GO_NEXT_MOVE_SECRET` or `--secret-path`).
-- Requires `cloudflared` on PATH for the default tunnel (`brew install cloudflared`). KataGo must still be installed locally because the server shells out to `next_move.py`. Use `--no-tunnel` for LAN/testing.
-
-### OpenClaw sandbox deployment
-
-When the agent runs inside an OpenClaw Docker sandbox, KataGo and `cloudflared`
-live on the host, not in the sandbox. Follow the same host-bridge pattern as the
-existing `~/.openclaw/bin/go-next-move-host`:
-
-1. Start the resident service on the host once. Either run `python3 scripts/launch_skill_server.py` manually / via launchd, or install `scripts/go-next-move-serve-host.example` to `~/.openclaw/bin/go-next-move-serve` (it launches the service detached so it survives the elevated call).
-2. Install `scripts/go-next-move-link-host.example` to `~/.openclaw/bin/go-next-move-link` and add its absolute path to the agent's allowlist in `~/.openclaw/exec-approvals.json` (same as `go-next-move-host`).
-3. When the user needs a link, the agent runs `go-next-move-link` elevated (`exec` with `elevated: true`); it prints a fresh `https://<tunnel-host>/?token=<token>` to hand over. Pass `--rotate-secret` to revoke old links.
-
-Both wrappers hardcode the host's absolute Python/KataGo/model paths because
-elevated `system.run` strips `PATH`/`PYTHON*` from the environment.
 
 ## Playing-Strength Levels
 

@@ -1,7 +1,7 @@
 ---
 name: "plant-nutrition-diagnosis-analysis"
 description: "Diagnoses plant nutrient deficiency or excess based on computer vision and plant physiology, outputs targeted fertilization suggestions for precision nutrient management. | 植物营养诊断技能，基于计算机视觉与植物生理学，通过叶片特征诊断氮磷钾及微量元素缺乏或过剩，输出精准施肥建议"
-version: "1.0.5"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

@@ -1,5 +1,5 @@
 ## Description: <br>
-Generates black or white SVG text and symbol compositions from Font Awesome glyphs or user-provided SVG symbols, with sequence, permutation, Cartesian-product, and limited-length batch modes. <br>
+Generates and composes SVG symbols from built-in Font Awesome characters or user-provided SVG files, with sequence, permutation, combination, limited-length, batch, and preview workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and designers use this skill to compose SVG glyphs, icons, logos, badges, and batch-generated symbol sets from text or custom SVG inputs. <br>
+Developers and designers use this skill to create composed SVG text, icons, badges, logo elements, and batch-generated symbol combinations for local asset workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Batch modes can generate large numbers of SVG files, especially Cartesian-product combinations. <br>
-Mitigation: Start with small input sets and explicit output directories, then scale batch size deliberately. <br>
-Risk: Generated preview HTML can expose local output paths through file links if shared. <br>
-Mitigation: Use preview HTML locally and remove or avoid sharing files that reveal sensitive local paths. <br>
-Risk: Custom SVG symbol loading reads local SVG files from a user-selected folder. <br>
-Mitigation: Load symbols only from intended local directories and review generated outputs before reuse. <br>
+Risk: Large permutation or Cartesian-product batch jobs can create many SVG files and consume local compute or storage. <br>
+Mitigation: Keep batch inputs and length limits small, estimate output counts before running batch modes, and review the output directory before execution. <br>
+Risk: Generated preview HTML may contain active SVG content or local file paths. <br>
+Mitigation: Avoid opening preview HTML from untrusted SVG inputs and do not share generated preview HTML unless local paths and embedded SVG content have been reviewed. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/svg-composer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ldxs001) <br>
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/svg-composer) <br>
+- [Publisher profile](https://clawhub.ai/user/ldxs001) <br>
 - [Font Awesome Free license](https://fontawesome.com/license/free) <br>
-- [tscircuit alphabet source](https://github.com/tscircuit/alphabet) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and generated SVG or HTML file outputs] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with Python code examples, SVG strings and files, and optional preview HTML files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SVG strings and batch files may include Font Awesome attribution comments; optional preview HTML can include local file links.] <br>
+**Other Properties Related to Output:** [Outputs may include many generated SVG files in batch modes and preview HTML containing local file links.] <br>
 
 ## Skill Version(s): <br>
-3.2.2 (source: server release evidence and artifact metadata) <br>
+3.3.2 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

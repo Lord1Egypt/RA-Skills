@@ -1,0 +1,18 @@
+﻿{
+  "name": "uumit-auto-bot",
+  "version": "2.0.0",
+  "display_name": "UUMit自动接单机器人",
+  "description": "自动扫描UUMit任务大厅并智能匹配技能申请 - 按月9 USDT / 按请求计费0.02 USDT每次",
+  "icon": "🤖",
+  "categories": ["automation", "productivity"],
+  "tags": ["uumit", "task", "auto-apply", "freelance", "paid"],
+  "author": "@cx75227-ops",
+  "license": "MIT-0",
+  "pricing": {
+    "currency": "USDT",
+    "plans": [
+      { "type": "subscription", "name": "月付", "price": 9, "period": "monthly" },
+      { "type": "pay_per_request", "name": "按次", "price": 0.02, "unit": "request" }
+    ]
+  }
+}

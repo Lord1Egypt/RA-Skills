@@ -191,32 +191,32 @@
 
 #### Query all information for a single media file
 ```bash
-python scripts/vod_describe_media.py --file-id 5285485487985271487
+python3 scripts/vod_describe_media.py --file-id 5285485487985271487
 ```
 
 #### Query multiple media files (batch)
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 5285485487985271488 5285485487985271489
 ```
 
 #### Query basic information for a single media file
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo
 ```
 
 #### JSON-formatted output
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --json
 ```
 
 #### dry-run preview parameters
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo \
     --dry-run
@@ -228,105 +228,105 @@ python scripts/vod_describe_media.py \
 
 #### Query basic information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo
 ```
 
 #### Query metadata (bitrate, resolution, duration, etc.)
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters metaData
 ```
 
 #### Query transcode information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo
 ```
 
 #### Query animated image information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters animatedGraphicsInfo
 ```
 
 #### Query image sprite information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageSpriteInfo
 ```
 
 #### Query time-offset snapshot information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters snapshotByTimeOffsetInfo
 ```
 
 #### Query sampled snapshot information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters sampleSnapshotInfo
 ```
 
 #### Query keyframe timestamp information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters keyFrameDescInfo
 ```
 
 #### Query adaptive bitrate streaming information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters adaptiveDynamicStreamingInfo
 ```
 
 #### Query Mini Program review information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters miniProgramReviewInfo
 ```
 
 #### Query subtitle information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters subtitleInfo
 ```
 
 #### Query review information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters reviewInfo
 ```
 
 #### Query MPS AI media information (intelligent classification, tagging, highlights, etc.)
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters mpsAiMediaInfo
 ```
 
 #### Query image understanding information (object detection, face recognition, OCR, etc.)
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageUnderstandingInfo
 ```
 
 #### Query all AI information (AI media + image understanding)
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters mpsAiMediaInfo imageUnderstandingInfo
 ```
@@ -337,28 +337,28 @@ python scripts/vod_describe_media.py \
 
 #### Query basic information and metadata
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo metaData
 ```
 
 #### Query transcode information and adaptive bitrate streaming information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo adaptiveDynamicStreamingInfo
 ```
 
 #### Query all screenshot-related information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageSpriteInfo snapshotByTimeOffsetInfo sampleSnapshotInfo
 ```
 
 #### Query media basic information, transcode information, and review information
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo transcodeInfo reviewInfo
 ```
@@ -369,7 +369,7 @@ python scripts/vod_describe_media.py \
 
 #### Query media information for a specified sub-application
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --sub-app-id 1500000001
 ```
@@ -380,28 +380,28 @@ python scripts/vod_describe_media.py \
 
 #### Batch query multiple media files and save results
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 5285485487985271488 \
     --json > media_infos.json
 ```
 
 #### Query and extract playback URL
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo --json | jq -r '.MediaInfoSet[0].BasicInfo.MediaUrl'
 ```
 
 #### Query and extract transcode output URL list
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo --json | jq -r '.MediaInfoSet[0].TranscodeInfo.TranscodeSet[].Url'
 ```
 
 #### Query and check whether media exists
 ```bash
-RESULT=$(python scripts/vod_describe_media.py \
+RESULT=$(python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --json)
 NOT_EXIST=$(echo "$RESULT" | jq -r '.Not Exist FileId Set | length')

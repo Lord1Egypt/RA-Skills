@@ -1,7 +1,5 @@
 ---
 name: linkfox-temu-manage-product-eu
-version: 1.0.0
-category: product-sourcing
 description: Temu 欧洲站商品管理（Manage Product）API，经 LinkFox 网关转发 Partner EU 24 个 bg.local/temu.local 接口：商品列表/详情/SKU查询、部分/全量编辑、删除、库存、上下架、预售、类目预检、属性模板、合规、外部编码、视频封面等。当用户提到 Temu EU Manage Product、Temu欧洲站商品管理、bg.local.goods、Partner EU、site=eu 商品上下架、改库存、删除商品、合规编辑 时触发。促销用 linkfox-temu-promotion-eu；广告用 linkfox-temu-ads-eu；价格用 linkfox-temu-price-eu。
 ---
 
@@ -18,7 +16,21 @@ description: Temu 欧洲站商品管理（Manage Product）API，经 LinkFox 网
 
 > **发品**、**订单** 等其它域：暂用对应 `linkfox-temu-*-us` skill 并设 **`site=eu`**；或使用已发布的 EU skill：**`linkfox-temu-price-eu`**、**`linkfox-temu-promotion-eu`**、**`linkfox-temu-ads-eu`**、**`linkfox-temu-tax-eu`** 等。
 
-## API Usage
+## 调用方式
+
+- **API 端点**：`POST /temu/proxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## API 文档
 
 入参/出参、**Partner 官方文档 URL** 已内联至 `references/`：
 
@@ -111,3 +123,4 @@ python scripts/eu_manage_stock_edit.py '{"accessToken":"TOKEN","request":{"goods
 | `temu_file_download.py` | 加签文件下载（多 site） |
 
 授权说明：[references/access-token.md](./references/access-token.md)
+

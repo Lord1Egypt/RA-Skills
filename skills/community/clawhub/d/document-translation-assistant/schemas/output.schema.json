@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/document-translation-assistant/output.schema.json",
+  "title": "Document Translation Assistant Output",
+  "description": "Schema for translation output, terminology reports, and consistency checks",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/definitions/TranslationResult" },
+    { "$ref": "#/definitions/GlossaryResult" },
+    { "$ref": "#/definitions/ConsistencyReport" }
+  ],
+  "definitions": {
+    "TranslationResult": {
+      "type": "object",
+      "required": ["source_language", "target_language", "segments"],
+      "properties": {
+        "source_language": { "type": "string" },
+        "target_language": { "type": "string" },
+        "domain": { "type": "string", "enum": ["tech", "legal", "marketing", "general"] },
+        "segments": {
+          "type": "array",
+          "description": "Translated document segments",
+          "items": {
+            "type": "object",
+            "properties": {
+              "index": { "type": "integer" },
+              "type": { "type": "string", "enum": ["heading", "paragraph", "code_block", "list_item", "table_cell", "frontmatter"] },
+              "original": { "type": "string" },
+              "translation": { "type": "string" },
+              "preserved": { "type": "boolean" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "format_integrity": {
+          "type": "object",
+          "properties": {
+            "headings": { "type": "integer" },
+            "code_blocks": { "type": "integer" },
+            "links": { "type": "integer" },
+            "tables": { "type": "integer" },
+            "all_preserved": { "type": "boolean" }
+          }
+        },
+        "disclaimer": { "type": "string" }
+      }
+    },
+    "GlossaryResult": {
+      "type": "object",
+      "required": ["terms", "total_terms"],
+      "properties": {
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_term": { "type": "string" },
+              "occurrences": { "type": "integer" },
+              "suggested_translation": { "type": "string" },
+              "user_confirmed": { "type": "boolean", "default": false }
+            }
+          }
+        },
+        "total_terms": { "type": "integer" },
+        "auto_confirmed": { "type": "integer" },
+        "needs_review": { "type": "integer" }
+      }
+    },
+    "ConsistencyReport": {
+      "type": "object",
+      "required": ["status", "checked_terms"],
+      "properties": {
+        "status": { "type": "string", "enum": ["pass", "pass_with_fixes", "fail"] },
+        "checked_terms": { "type": "integer" },
+        "consistent": { "type": "integer" },
+        "inconsistent": { "type": "integer" },
+        "auto_fixed": { "type": "integer" },
+        "inconsistencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_term": { "type": "string" },
+              "variants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "variant": { "type": "string" },
+                    "occurrences": { "type": "integer" }
+                  }
+                }
+              },
+              "preferred": { "type": "string" }
+            }
+          }
+        },
+        "format_check": {
+          "type": "object",
+          "properties": {
+            "headings_preserved": { "type": "integer" },
+            "code_blocks_preserved": { "type": "integer" },
+            "links_intact": { "type": "integer" },
+            "tables_preserved": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}

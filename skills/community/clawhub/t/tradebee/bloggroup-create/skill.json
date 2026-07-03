@@ -1,0 +1,126 @@
+{
+  "name": "bloggroup-create",
+  "description": "A blog group creation skill based on the Tradebee Website Builder Open API. It is used to create and publish a new blog group under a specified site language, with support for group name, tags, and brief description.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "bloggroup": {
+        "type": "object",
+        "description": "Required. Complete blog group payload for the new published blog group.",
+        "properties": {
+          "group_name": {
+            "type": "string",
+            "description": "Required. Blog group name, up to 100 characters."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Required. Provide 1 to 6 keyword tags. Each tag must be 50 characters or fewer.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. Short plain-text description, up to 300 characters."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO metadata for search engines.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer."
+              }
+            }
+          }
+        },
+        "required": [
+          "group_name",
+          "tags"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact blog group creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact blog group payload to be created. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact blog group payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "bloggroup",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "bloggroup_id": {
+            "type": "integer",
+            "description": "Created blog group ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the created blog group page. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "bloggroup_id",
+          "url"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

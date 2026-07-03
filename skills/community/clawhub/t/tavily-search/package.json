@@ -1,0 +1,5 @@
+{
+    "name":  "tavily-search",
+    "version":  "1.0.0",
+    "description":  "Tavily AI 搜索工具，专为AI Agent设计的联网搜索能力，支持实时搜索、深度研究、图片搜索、引用生成，返回结构化搜索结果。"
+}

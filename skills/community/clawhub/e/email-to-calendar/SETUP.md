@@ -66,12 +66,14 @@ The skill stores settings in `~/.config/email-to-calendar/config.json`.
   },
   "email_handling": {
     "mark_read": true,
-    "archive": false
+    "archive": true,
+    "auto_dispose_calendar_replies": true
   },
   "deadline_notifications": {
     "enabled": true,
     "email_recipient": "your-email@gmail.com"
-  }
+  },
+  "agent_name": "Ripurapu"
 }
 ```
 

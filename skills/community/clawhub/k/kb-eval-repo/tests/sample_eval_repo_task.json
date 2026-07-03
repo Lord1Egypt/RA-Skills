@@ -1,0 +1,38 @@
+{
+  "protocol": "research_kb_agent_task",
+  "protocolVersion": "1.0",
+  "taskId": "sample_eval_repo",
+  "taskType": "kb_eval_repo",
+  "requestedAt": "2026-06-26T00:00:00+08:00",
+  "requester": {
+    "userId": 1,
+    "email": "user@example.com",
+    "displayName": "User",
+    "role": "admin",
+    "giteaUsername": "user"
+  },
+  "kbTargets": [
+    {
+      "kbType": "personal",
+      "repoOwner": "AIFusionBot",
+      "repoName": "kb-user-1",
+      "repoFullName": "AIFusionBot/kb-user-1",
+      "branch": "main"
+    }
+  ],
+  "payload": {
+    "conversationId": "conv_sample",
+    "messageId": "msg_sample",
+    "question": "帮我评估 https://github.com/example/repo 这个开源项目对我有没有用，复现风险大不大？",
+    "repoUrl": "https://github.com/example/repo",
+    "answerLanguage": "zh-CN",
+    "maxCitations": 8,
+    "options": {
+      "writeReview": true
+    }
+  },
+  "responseRequirement": {
+    "format": "json_only",
+    "schema": "research_kb_agent_result_v1"
+  }
+}

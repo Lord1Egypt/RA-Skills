@@ -1,4 +1,4 @@
-# 技能清单 / Skills Index
+﻿# 技能清单 / Skills Index
 
 中英双语。
 
@@ -102,11 +102,31 @@ OpenClaw **不得**据此断言「无 PSC 风险」；应说明仅为「异常�
 
 | 中文 | 英文 |
 |------|------|
-| 名称 | 租船 / Charter |
-| 描述 | `hifleet-skills` 内置租船模块（分册 `hifleet-mytonnages/`）：A 邮件船货盘；B 班轮船期；C 预抵船舶。**B/C 列表须全量返回**（`FULL_LIST_POLICY.md`）。邮件需邮箱与记忆；B/C 及 A 补充信息需 `hifleet_api_key` 或 `HIFLEET_API_KEY`。 |
-| 触发词 | 租船、船盘、货盘、船期、预抵、即将到港、ETA / charter, open vessel, cargo, schedule, charter party, hire, period, line |
+| 名称 | 租船 / Charter（邮箱船货盘 + 预抵） |
+| 描述 | 分册 **`hifleet-mytonnages/`**：**A** 邮件船货盘；**C** 预抵船舶（全量列表见 `FULL_LIST_POLICY.md`）；联系方式按需 **`CONTACT_API.md`**（`product_will_arrive_charter`）。需邮箱（A）与 `hifleet_api_key`（C + 富化）。班轮船期见下条 **`hifleet-schedule`**。 |
+| 触发词 | 租船、船盘、货盘、预抵、即将到港、ETA、我的邮件 / charter, open vessel, cargo, pre-arrival, in my mail |
 
-**路由**：A=邮件里；B=班轮船期；C=预抵船舶。详见 `hifleet-mytonnages/ROUTING_AND_WHEN.md`。
+**路由**：A=邮件；C=预抵。详见 `hifleet-mytonnages/ROUTING_AND_WHEN.md`。
+
+## 10b. 班轮船期 / Liner schedule ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 班轮船期 / Liner schedule |
+| 描述 | 分册 **`hifleet-schedule/`**：散杂货、滚装、集装箱班轮船期；需 `hifleet_api_key`；**须全量返回**（`FULL_LIST_POLICY.md`）；联系方式按需 unlock（`product_vessel_liner_charter`）。 |
+| 触发词 | 班轮船期、船期表、航线班轮、散杂货船期、滚装船期、集装箱船期 / liner schedule, line schedule, bulk schedule, Ro-Ro schedule, container schedule |
+
+**API**：`hifleet-schedule/SCHEDULE_API.md`；四类产品 unlock 对照 **`references/charter_contact_unlock.md`**。
+
+## 10c. 公开船货盘 / Public open market ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 公开船货盘 / Public open tonnage & cargo |
+| 描述 | 分册 **`hifleet-opentonnages/`**：HiFleet 平台**公开** OPEN 船盘与货盘；列表默认**不含联系方式**；用户指定**记录 id**（或全部）后调用原 **`/unlock`** 获取；可选 **`enrich-row`**。需 `hifleet_api_key`。 |
+| 触发词 | 公开船盘、公开货盘、平台船货、HiFleet 船盘/货盘、open market / public tonnage, public cargo, platform listings |
+
+**API**：`VESSEL_SEARCH_API.md`、`CARGO_SEARCH_API.md`、`CONTACT_API.md`；unlock 总表 **`references/charter_contact_unlock.md`**。
 
 ## 11. 航运 / Shipping
 
@@ -140,6 +160,16 @@ OpenClaw **不得**据此断言「无 PSC 风险」；应说明仅为「异常�
 | 描述 | AIS 报文、船舶识别、动态/静态数据、轨迹回放与导出（历史轨迹见 **航程 / Voyage**）。 |
 | 触发词 | AIS、报文、MMSI、AIS 数据 / AIS, message, MMSI, AIS data |
 
+## 15. 账户与用量 / Account & Usage ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 账户与用量 / Account & Usage |
+| 描述 | OpenClaw **api_key** 自助查询：**积分概览**（`openclaw/account/summary`）、**调用汇总**（`usage`）、**调用明细**（`usage/details`）、**积分流水**（`transactions`）。查询不扣积分。响应含 **`agentSummary`** 供 Agent 直接转述。 |
+| 触发词 | 积分、余额、还剩多少、用了多少、调用记录、扣费、消费、流水、account balance、usage、credits、billing |
+
+**Agent 必守**：余额只强调 **`availablePoints`**；真正扣款看 **`transactions`**；调用明细与流水勿混谈。详见 [account_api.md](account_api.md)。
+
 ---
 
-建议实现顺序：船位 → AIS → 档案 → PSC → 港口指南 → 租船 → 航程 → 航线 → 性能 → 气象海况 → 船队 → 航运。
+建议实现顺序：船位 → AIS → 档案 → PSC → 港口指南 → 租船 → 航程 → 航线 → 性能 → 气象海况 → 船队 → 航运 → 账户与用量。

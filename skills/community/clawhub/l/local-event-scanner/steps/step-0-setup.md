@@ -1,11 +1,11 @@
 # Step 0: Setup
 
-This step is used to configure user preferences in the files `skills/event-scanner/assets/sources.md` and `skills/event-scanner/assets/taste-profile.md`.
+This step is used to configure user preferences in the files `<skill_dir>/assets/sources.md` and `<skill_dir>/assets/taste-profile.md`.
 
 ## Procedure
 Locate the following files:
-- `skills/event-scanner/assets/sources.md`
-- `skills/event-scanner/assets/taste-profile.md`
+- `<skill_dir>/assets/sources.md`
+- `<skill_dir>/assets/taste-profile.md`
 
 You may freely change these files and these files only, based on the preferences the user tell you about.
 
@@ -16,7 +16,7 @@ If they don't exist, follow the setup procedure below to set up initial user pre
 
 This procedure shoul only be used if the required files do not exist. Ask the user to give their preferences in the sections marked with `FILL IN` placeholders. Go through the below steps in order. When user input is needed, ask abou one step at a time.
 
-1. First, create their personal configuration files by copying the example files in skills/event-scanner/assets/:
+1. First, create their personal configuration files by copying the example files in `<skill_dir>/assets/`:
 - Copy taste-profile.example.md to taste-profile.md in the same folder
 - Copy sources.example.md to sources.md in the same folder
 

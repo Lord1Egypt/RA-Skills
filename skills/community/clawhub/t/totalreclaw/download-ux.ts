@@ -9,19 +9,25 @@
  *
  * No third-party imports here — pure stdlib so the unit test can exercise it
  * without pulling the heavy `@huggingface/transformers` chain.
+ *
+ * Env read is centralized in entry.ts (env-reading seam, Task 1.3 of the
+ * OpenClaw native integration plan, 2026-06-21).
  */
+
+import { envNumber } from './entry.js';
 
 const DEFAULT_DOWNLOAD_TIMEOUT_MS = 600_000;
 const KEEPALIVE_INTERVAL_MS = 60_000;
 const MAX_DOWNLOAD_ATTEMPTS = 3;
 
 export function getDownloadTimeoutMs(): number {
-  const raw = process.env.TOTALRECLAW_ONNX_INSTALL_TIMEOUT;
-  if (!raw) return DEFAULT_DOWNLOAD_TIMEOUT_MS;
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed) || parsed <= 0) return DEFAULT_DOWNLOAD_TIMEOUT_MS;
-  // Spec accepts seconds; convert to ms.
-  return Math.floor(parsed * 1000);
+  // Spec accepts seconds; convert to ms. Bounds: must be > 0 (a 0 timeout
+  // would fail every attempt instantly). envNumber returns 0 (the
+  // fallback) for unset/empty/non-finite; the >0 check rejects that and
+  // any explicit non-positive value, recovering the DEFAULT.
+  const seconds = envNumber('TOTALRECLAW_ONNX_INSTALL_TIMEOUT', 0);
+  if (!(seconds > 0)) return DEFAULT_DOWNLOAD_TIMEOUT_MS;
+  return Math.floor(seconds * 1000);
 }
 
 export interface DownloadWithUXOpts {

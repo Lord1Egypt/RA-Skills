@@ -1,3 +1,14 @@
+---
+name: openclaw-gateway-watchdog
+description: "Automatically installs and configures Gateway Watchdog to monitor Gateway status, enable DingTalk alerts, set up auto-start, and run the monitoring service."
+source: ClawHub
+version: 0.1.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Gateway Watchdog
+
 # SKILL.md - Gateway Watchdog Skill
 
 > 一句话让 OpenClaw 安装 Gateway Watchdog

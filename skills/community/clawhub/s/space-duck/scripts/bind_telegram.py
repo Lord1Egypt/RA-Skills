@@ -17,9 +17,19 @@ CALLS:  POST /beak/agent/byob-bind
 AUTH:   x-beak-key header (per-duck Beak Key from ~/.space-duck/config.json,
         written by pair.py)
 
+LANE NOTE (2026-06-30, corrected — verified against lambda_function.py):
+  The forward URL is the duck's PECK-DELIVERY channel, not a Telegram-DM
+  forwarder. /beak/agent/byob-bind never calls setWebhook on the bot
+  (lambda_function.py:13620-13657), so binding a forward URL does NOT steal a
+  Lane A bot's native-polling consumer slot. The Lambda PUSHES signed
+  peck.received events to <forward_url>/beak/telegram/forward
+  (lambda_function.py:8593-8695). Lane A ducks therefore SHOULD bind a forward
+  URL — it is how they receive pecks. There is no "native = skip forward" mode;
+  skipping the bind just makes the duck unreachable for pushed pecks.
+
 Usage:
-  # First-time bind
-  python3 bind_telegram.py --forward-url https://my-tunnel.example.com:8788/beak/telegram/forward
+  # Bind your peck-delivery receiver — pass the BASE url, NOT the full path
+  python3 bind_telegram.py --forward-url https://my-tunnel.example.com:8788
   python3 bind_telegram.py --spaceduck-id <SD> --forward-url <URL>
 
   # Status check
@@ -110,9 +120,21 @@ def status(api_base, beak_key, spaceduck_id):
                  beak_key=beak_key)
 
 
+def _normalize_forward_url(url):
+    """The Lambda appends '/beak/telegram/forward' and '/healthz' itself, so we
+    must store the BASE url. Strip a trailing forward/healthz path (the historic
+    double-path 404 bug) and any trailing slash."""
+    u = (url or '').strip().rstrip('/')
+    for suffix in ('/beak/telegram/forward', '/beak/telegram', '/healthz'):
+        if u.endswith(suffix):
+            u = u[: -len(suffix)].rstrip('/')
+    return u
+
+
 def bind(api_base, beak_key, spaceduck_id, forward_url):
     return _http('POST', api_base.rstrip('/') + '/beak/agent/byob-bind',
-                 body={'spaceduck_id': spaceduck_id, 'forward_url': forward_url},
+                 body={'spaceduck_id': spaceduck_id,
+                       'forward_url': _normalize_forward_url(forward_url)},
                  beak_key=beak_key)
 
 
@@ -137,7 +159,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(description='Bind a duck\'s Telegram inbound to a local receiver URL.')
     p.add_argument('--spaceduck-id', help='Spaceduck ID (defaults to config.json value)')
     p.add_argument('--forward-url',
-                   help='HTTPS URL of your local /beak/telegram/forward receiver')
+                   help='BASE HTTPS URL of your local receiver (the Lambda appends '
+                        '/beak/telegram/forward itself — do NOT include that path)')
     p.add_argument('--status', action='store_true', help='Print current binding state and exit')
     p.add_argument('--revoke', action='store_true', help='Revoke binding (clears URL + state)')
     p.add_argument('--bind-only', action='store_true',
@@ -188,8 +211,8 @@ def main(argv=None):
 
     # Default flow: bind (+ optionally verify) in one shot
     if not args.forward_url:
-        print('ERR: --forward-url required (or use --status / --revoke / --verify-pending)',
-              file=sys.stderr)
+        print('ERR: --forward-url required (or use --status / --revoke / '
+              '--verify-pending)', file=sys.stderr)
         return 1
 
     s, r = bind(args.api, beak_key, sd_id, args.forward_url)

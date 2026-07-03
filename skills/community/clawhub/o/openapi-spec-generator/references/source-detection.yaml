@@ -1,0 +1,84 @@
+# Source Detection Patterns for OpenAPI Spec Generator
+# Defines route registration patterns per framework
+version: "1.0.0"
+
+frameworks:
+  gin:
+    name: "Go Gin"
+    detect_files: ["go.mod"]
+    detect_patterns: ["github.com/gin-gonic/gin"]
+    route_patterns:
+      - "router\\.(GET|POST|PUT|DELETE|PATCH)\\(\""
+    param_style: ":param"  # e.g., /users/:id
+    file_extensions: [".go"]
+
+  spring:
+    name: "Java Spring Boot"
+    detect_files: ["pom.xml", "build.gradle", "build.gradle.kts"]
+    detect_patterns: ["spring-boot-starter-web"]
+    route_patterns:
+      - "@(GetMapping|PostMapping|PutMapping|DeleteMapping|RequestMapping)\\(\""
+    param_style: "{param}"  # e.g., /users/{id}
+    file_extensions: [".java"]
+
+  fastapi:
+    name: "Python FastAPI"
+    detect_files: ["requirements.txt", "pyproject.toml", "Pipfile"]
+    detect_patterns: ["fastapi", "from fastapi import"]
+    route_patterns:
+      - '(app|router)\.(get|post|put|delete)\(''|")'
+    param_style: "{param}"  # e.g., /users/{id}
+    file_extensions: [".py"]
+
+  express:
+    name: "Node Express"
+    detect_files: ["package.json"]
+    detect_patterns: ["express"]
+    route_patterns:
+      - '(app|router)\.(get|post|put|delete)\(''|")'
+    param_style: ":param"  # e.g., /users/:id
+    file_extensions: [".js", ".ts"]
+
+  echo:
+    name: "Go Echo"
+    detect_files: ["go.mod"]
+    detect_patterns: ["github.com/labstack/echo"]
+    route_patterns:
+      - "e\\.(GET|POST|PUT|DELETE|PATCH)\\(\""
+    param_style: ":param"
+    file_extensions: [".go"]
+
+  flask:
+    name: "Python Flask"
+    detect_files: ["requirements.txt"]
+    detect_patterns: ["flask"]
+    route_patterns:
+      - "@app\\.route\\(\""
+      - "app\\.add_url_rule\\(\""
+    param_style: "<param>"
+    file_extensions: [".py"]
+
+  nestjs:
+    name: "Node NestJS"
+    detect_files: ["package.json", "nest-cli.json"]
+    detect_patterns: ["@nestjs"]
+    route_patterns:
+      - '@(Get|Post|Put|Delete|Patch)\\(''|\"'
+    param_style: ":param"
+    file_extensions: [".ts"]
+
+source_types:
+  har:
+    description: "Browser HAR export (Chrome DevTools Network tab)"
+    extract_method: "Parse JSON, filter entries by mimeType, deduplicate by method+path"
+    confidence: "high (with multiple samples)"
+    auth_extraction: "Inspect request headers for Authorization, X-API-Key, Cookie"
+  pcap:
+    description: "Wireshark/tcpdump packet capture"
+    extract_method: "Reconstruct HTTP/1.1 streams, or parse JSON-exported HTTP objects"
+    confidence: "medium (encrypted traffic limits visibility)"
+    require_sslkeylogfile: true
+  traffic_log:
+    description: "Charles Proxy, mitmproxy, or custom log format"
+    extract_method: "Parse log entries, extract method+path+status+body"
+    confidence: "high"

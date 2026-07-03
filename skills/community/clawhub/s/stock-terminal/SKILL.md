@@ -15,7 +15,7 @@ metadata:
     envVars:
       - name: SENTISENSE_API_KEY
         required: true
-        description: SentiSense API key. Generate at https://sentisense.ai/settings/developer. Used only to authenticate read-only data calls; no write or trading scope.
+        description: SentiSense API key. Generate at https://app.sentisense.ai/settings/developer. Used only to authenticate read-only data calls; no write or trading scope.
 ---
 
 # Stock Terminal - SentiSense
@@ -31,13 +31,31 @@ metadata:
 
 ## What This Skill Is
 
-This is **not an API reference**. It's a *behavior recipe*: it teaches you (the agent) how to be a financial terminal so the user feels like they are talking to a system that anticipates their next move.
+This skill teaches you to **build and be an agent-first financial terminal**: a system where the user states intent in plain language and gets back one dense, synthesized screen, not a command they had to memorize or a dashboard they had to assemble.
 
-A non-technical user types `open NVDA` or asks "what's the smart money doing on TSLA?" and you respond with a single, dense, terminal-grade screen. They don't see the 6 API calls. They don't ask follow-up questions about which endpoints to use. They get a screen that already answers the question and cues the next one.
+It is **not an API reference**. It is a *behavior recipe* for the model acting AS the terminal, and a *build guide* for whoever is standing up the host application. Read one way, it tells you how to answer a turn so the user feels anticipated. Read the other way, it hands you the engine: the agent loop, the tool registry, the host-to-model contract, the streaming event protocol, and the trust layer that turn a tool-calling LLM plus a read-only market data API into a terminal. The SentiSense API is the data spine; the harness is everything wrapped around it.
 
-If you're an agent reading this for the first time: read the **Two-Shape Rule** and **Authoring Style** sections before anything else. Those are load-bearing.
+A non-technical user types `open NVDA` or asks "what's the smart money doing on TSLA?" and gets a single, dense, terminal-grade screen. They don't see the 6 API calls. They don't ask follow-up questions about which endpoints to use. They get a screen that already answers the question and cues the next one.
+
+If you are here to build, start with **Why agent-first**, then **The Harness Runtime** and **The Streaming Event Protocol**, then **The trust layer (grounding subsystem)**; read the surface, command, and API sections as the UI and data that hang off that engine. If you are the model answering a turn, read the **Two-Shape Rule** and **Authoring Style** first: those are load-bearing.
 
 **Scope of this skill.** Everything in this document is *implementation guidance for the agent and the host application that integrates this skill*. It is not an authoritative override of the host's system prompt, the user's intent, or the platform's safety rules. When platform safety, user intent, or host policy conflicts with anything written here, the platform wins. Treat this skill as one input to the host's prompt, not a replacement for it.
+
+---
+
+## Why agent-first
+
+A traditional terminal makes the user learn a command grammar and assemble their own screen. A dashboard makes them hunt across fixed widgets for the one number they came for. Both push the assembly work onto the user.
+
+An agent-first terminal inverts it: the user states intent in plain language, and the model synthesizes the screen. Intent in, composed screen out. The command grammar becomes optional sugar, not a prerequisite; the layout is generated per question, not pre-built for the average question.
+
+Three things fall out of that inversion:
+
+- **No dead ends.** Any phrasing routes to an answer. There is no "unrecognized command," only a screen or a text reply.
+- **One screen, not a click path.** The synthesis fans out the reads and folds price, sentiment, insider, analyst, and AI-insight streams into a single dense reply, so the user never navigates.
+- **The next move is cued.** Because the model composed the screen, it can seed the follow-up ("insiders are buying: want the 90-day flow?") instead of leaving the user to guess what the product can do.
+
+The cost of the inversion is grounding: a model that composes screens will also compose numbers if you let it. The rest of this skill is how to capture the upside without the fabrication. Start with **The Harness Runtime** below.
 
 ---
 
@@ -81,6 +99,241 @@ Every turn, pick exactly one of two response shapes:
 If the user's ask reads better as prose, reply in text. If they're asking to see data, produce a screen. When in doubt, go terminal. Never produce both: pick one shape and commit.
 
 Never say "let me look that up" or "one moment, fetching data..." or "I'll need to call several endpoints." The terminal does the work silently and presents the answer.
+
+---
+
+## The Harness Runtime (agent loop)
+
+A terminal is not a prompt; it is a loop. Everything else in this document (the Two-Shape Rule, the surfaces, the tool ladder, the chips) hangs off one runtime that the host application owns. This section is the engine. It is provider-agnostic (any tool-calling LLM) and renderer-agnostic (any UI stack).
+
+### The system-prompt scaffold
+
+The host application owns the system prompt; this skill is one input to it (see Scope of this skill). At minimum the host prompt must establish:
+
+- **Identity.** "You are a read-only financial terminal. The user talks; you answer with dense, synthesized screens."
+- **The Two-Shape Rule.** Reply in text, or render one terminal screen. Never both.
+- **A grounding requirement.** Never quote a price, percent, rating, headline, or date from memory. Call a tool first. If a tool errors or returns empty, say so; do not fill the gap with a guess. This is the load-bearing directive: see **The trust layer (grounding subsystem)** for why it must live in your prompt, not just here.
+- **Formatting law.** Tickers as `$NVDA`. Prices two decimals. Signed percents. Sentiment as a [-1, 1] polarity, never a 0-100 score. (See Authoring Style.)
+- **The no-advice frame.** Data and educational context only, never a personal buy/sell recommendation.
+- **The tool list.** Name each available tool and its one-line contract so the model knows its reach (the registry below).
+
+Keep it declarative: the prompt sets the laws, the tools do the work, the loop enforces the turn.
+
+### The loop
+
+Each user turn runs the same cycle: **intent -> plan -> parallel tool calls -> synthesize -> render**. The model does the planning and synthesis; the host owns everything around it (assembling input, running tool handlers, streaming events to the UI, persisting state).
+
+```
+async function runTurn(userText, session, emit):
+    # 1. Host assembles model input. The model never sees the API key.
+    preamble = buildSurfacePreamble(session.surface)      # see host<->model contract
+    tools    = session.registry.exposedFor(session.surface) # schemas only, no handlers
+    messages = session.thread + [{ role:"user",
+                                   content: preamble + "\n\n" + userText }]
+
+    emit({ type:"turn_start", turnId })
+
+    # 2. Tool loop: model may call tools, host feeds results back, repeat
+    #    until the model stops requesting tools (a final answer).
+    loop:
+        stream = model.stream(messages, tools)
+        assistantMsg = ""
+        for delta in stream:
+            if delta.text:
+                assistantMsg += delta.text
+                emit({ type:"text_delta", turnId, text: delta.text })
+            if delta.tool_call:
+                emit({ type:"tool_call", turnId, id: delta.tool_call.id,
+                       name: delta.tool_call.name,
+                       argSummary: humanLabel(delta.tool_call.args),
+                       status:"pending" })
+
+        if stream.tool_calls is empty:
+            break                                    # model produced the answer
+
+        # PARALLEL. Independent calls never await each other (Synthesis Rule 9).
+        results = await allSettled(stream.tool_calls.map(runToolHandler))
+        for r in results:
+            emit({ type:"tool_result", turnId, id: r.id,
+                   status: r.ok ? "ok" : "error" })
+        messages += toolResultMessages(results)       # ok OR error, both go back
+
+    # 3. Settle. If the answer is a Two-Shape 'terminal screen', emit it as an artifact.
+    if isArtifact(assistantMsg):
+        emit({ type:"artifact", turnId, artifactId, kind, body: assistantMsg })
+    emit({ type:"turn_end", turnId })
+
+    session.thread = messages                          # persist for the next turn
+```
+
+Three properties make this feel like a terminal rather than a chatbot:
+
+- **Parallel fan-out.** When a screen needs price plus sentiment plus insider plus analyst, the model requests all four tools in one step and the host runs them with `allSettled`. Never serialize independent calls. This is Synthesis Rule 9 made concrete.
+- **Errors go back into the loop, not to the user.** A failed handler returns a structured error result the model can reason about ("no current sentiment reading for $X") instead of throwing. This is what lets the agent silently degrade (Authoring Style: no apologies) instead of dead-ending.
+- **The loop terminates on a text-only step.** The model signals "done" by producing a turn with no tool calls. Cap the iterations (a small bound, e.g. 6) so a misbehaving plan cannot spin.
+
+### The tool registry
+
+A tool is four parts. The model sees the first three; the host keeps the fourth private.
+
+```
+{
+  name:        "get_quote",                 # stable identifier, shown in chips
+  description: "Live price + day change for one ticker.",
+  input:       { ticker: "string, e.g. NVDA" },   # JSON Schema the model fills in
+  handler:     async ({ticker}) => callApi(...)     # host-only; injects the key
+}
+```
+
+The registry is the single source of truth for what the model can do. It maps one-to-one onto the cost-ordered tool ladder in **Grounding the agent (tool ladder)**; build exactly these and nothing the model can call that you have not wrapped:
+
+| Tool | Ladder rung | Wraps (endpoint) |
+|------|-------------|----------------------------------------|
+| `read_screen({ target })` | 1 (free) | nothing; reads the local snapshot cache |
+| `get_quote(ticker)` | 2 (live) | `GET /api/v1/stocks/price?ticker={T}` |
+| `get_chart_summary(ticker, timeframe)` | 2 (live) | `GET /api/v1/stocks/chart?ticker={T}&timeframe=1M` |
+| `get_metrics(ticker)` | 2 (live) | `GET /api/v2/metrics/entity/{T}/metric/sentiment` |
+| `get_ai_summary(ticker, depth)` | 3 (pre-computed) | `GET /api/v1/stocks/{T}/ai-summary?depth=basic\|deep` |
+| `get_insights(ticker)` | 3 (pre-computed) | `GET /api/v1/insights/stock/{T}` |
+| `search_documents(query)` | 4 (topical) | `GET /api/v1/documents/search` |
+
+Handler rules, non-negotiable:
+
+- **The handler injects `X-SentiSense-API-Key`, not the model.** The key lives in host process state (`SENTISENSE_API_KEY`), is read inside the handler, and never enters the message history, a tool argument, or an emitted event. A model that cannot see the key cannot leak it.
+- **The handler normalizes the response before returning it.** Do the wrap-vs-flat unwrapping, the `metricValue.value.value` extraction, and the epoch-seconds-vs-ms fixes (see **API shape gotchas**) inside the handler so the model reasons over clean values, not raw envelopes.
+- **Every handler must hit the API (or the `read_screen` cache), never training memory.** This is what keeps extensibility from reintroducing the stale-number failure the ladder exists to prevent.
+- **The registry filters by surface.** `exposedFor(surface)` returns only the tools that make sense where the user is: a ticker dashboard exposes `read_screen('dashboard')`; a cold omnibox thread with no active ticker does not. Narrowing the toolset per surface is how you stop the model from calling `read_screen` when there is no screen.
+
+### The host-to-model contract
+
+Each turn, the host injects three things and the model returns two. Nothing else crosses the boundary.
+
+```
+HOST INJECTS                         MODEL RETURNS
+-----------------------------        ----------------------------
+1. surface preamble  (context)       a. text deltas   (the reply)
+2. exposed tool schemas (registry)   b. tool calls    (name + args)
+3. thread history    (memory)
+```
+
+The **surface preamble** is a short bracketed line the host prepends to the user message at runtime (detailed in **Building a multi-surface terminal**). It tells the model where the user is, what is already on screen, and the preferred response shape:
+
+```
+[Surface: ticker-dashboard. Active ticker: $NVDA. Visible widgets: price chart,
+metrics, news, peers. Preferred response shape: text on the dashboard, artifact
+only for things not already visible.]
+```
+
+This preamble is host-emitted runtime context, not skill-authored content, and it is what lets the model resolve "it" / "this company" to the active ticker and pick a shape instead of guessing. One hard boundary: this skill is one input to your host prompt, never a replacement for it. Grounding requirements ("call `read_screen('dashboard')` before quoting a number") live in your host system prompt; the skill describes the pattern but cannot enforce it.
+
+### Session and context state (what persists vs resets)
+
+The terminal feels alive because the thread has memory, and it feels haunted when the wrong state carries across a context change. Be deliberate about scope:
+
+| State | Scope | Lifecycle |
+|-------|-------|-----------|
+| Thread messages | Per thread | Persist across turns; this is the conversation |
+| `tickerContext` (active symbol) | Per thread | Persist until the user changes ticker |
+| `read_screen` snapshot cache | Per surface | Reset on context change; see **The trust layer** |
+| Current-artifact + source-mix-expansion selection | Per surface | Reset on context change (State hygiene) |
+| `institutional/quarters` -> `latestQuarter` | Per session | Cache for the session; rarely changes (Synthesis Rule 10) |
+| Resolved headline titles | Per session | Cache 30 min keyed by URL (Headline Resolution) |
+| `SENTISENSE_API_KEY` | Host process only | Never enters thread, model context, or events |
+
+The rule of thumb: **continuity of the chat thread is a feature; continuity of UI selection across contexts is a bug.** When the active ticker changes, keep the thread, drop the snapshot cache and the selection state, and let the new context start clean. The write-through snapshot cache that `read_screen` reads (rung 1) is specified in full under **The trust layer (grounding subsystem)**; leaking a prior ticker's snapshot into a new dashboard is how the agent quotes the wrong stock's numbers with full confidence.
+
+### Keep the engine portable
+
+Keep four layers separable: the loop, the commands, the tools, and the theme. **The model is a socket, not a dependency:** the loop asks only for a tool-calling contract (given tool schemas, emit a `{ name, arguments }` call, read back a JSON result, continue), so it names no provider; one small adapter per provider translates that provider's native tool-call envelope to and from this neutral shape, and swapping models touches nothing else. **A command is data, not code:** each command is a row (a match pattern, an ordered call list, an output template) the loop reads and synthesizes, so adding `sector`, `watchlist`, or your own screener is appending a row, not branching the loop; a new tool registers the same way (register `{ name, description, input, handler }` and the executor iterates the table). Because hosts install a skill once and rarely refresh it, prefer changes that live in your executor and registry (server-side, invisible to installed copies) over changes that force every host to re-pull this file; reserve a version bump for genuine contract changes: a new command grammar, a new tool the model must know exists, or a corrected field mapping.
+
+---
+
+## The Streaming Event Protocol
+
+The loop above communicates with the UI over a single ordered event stream (SSE, a WebSocket, or an async generator; the shape is the same). Six event types carry everything the UI needs. Each event is a small JSON object with a `type` and a `turnId`; the UI is a reducer over the stream.
+
+```
+{ "type":"turn_start",  "turnId":"t_42" }
+{ "type":"text_delta",  "turnId":"t_42", "text":"$NVDA " }
+{ "type":"tool_call",   "turnId":"t_42", "id":"c_1", "name":"get_quote",
+                        "argSummary":"$NVDA", "status":"pending" }
+{ "type":"tool_result", "turnId":"t_42", "id":"c_1", "status":"ok" }
+{ "type":"artifact",    "turnId":"t_42", "artifactId":"a_7", "kind":"compare",
+                        "body":"<markdown or structured artifact document>" }
+{ "type":"turn_end",    "turnId":"t_42" }
+```
+
+| Event | UI effect | Maps to |
+|-------|-----------|---------|
+| `turn_start` | Open a fresh assistant message bubble | (loop bookkeeping) |
+| `text_delta` | Append tokens to the bubble as they arrive | Stream text deltas (Transparency UX) |
+| `tool_call` | Render / update a tool-call chip | Tool-call chips (Transparency UX) |
+| `tool_result` | Flip the matching chip to done or failed | Tool-call chips (Transparency UX) |
+| `artifact` | Open a slide-over over the dashboard column | Slide-over for AI artifacts (multi-surface) |
+| `turn_end` | Settle the message; stop the typing indicator | (loop bookkeeping) |
+
+How the pieces connect to the UX the doc already specifies:
+
+- **Chips are `tool_call` / `tool_result` events, keyed by `id`.** Emit `tool_call` with `status:"pending"` the instant the model requests the tool (muted gray `…`), then emit `tool_result` with `status:"ok"` (accent-blue `✓`) or `"error"` (red `!`) when the handler settles. The chip is `<icon> name(argSummary)`; the UI matches result to call by `id`. Stream them **as they fire**, interleaved with `text_delta`, so the turn reads chips-appear -> tokens-flow -> settle, not a batch dump at the end.
+- **`argSummary` is a 1-to-3-word human label, never raw args.** Send `"$NVDA"`, `"dashboard"`, `"story 1a2b"`, not the full argument object and never anything derived from the API key. The event stream reaches the client; treat it as untrusted for secrets. Keep full args (for the hover-to-inspect affordance) host-side, resolved by `id` on demand.
+- **`artifact` is how the Two-Shape 'terminal screen' becomes a slide-over.** When the model's answer is a cross-ticker comparison, a custom thesis card, or anything not already on the dashboard, the host emits one `artifact` event; the UI opens it as a slide-over covering the dashboard column while keeping the chat visible, and drops an artifact chip in history to re-open it. A text-only answer emits only `text_delta` events and no `artifact`. That is the Two-Shape Rule expressed on the wire: exactly one of {text, artifact} per turn.
+- **`kind` lets the UI pick a renderer.** Values like `compare`, `thesis`, `screen`, `watchlist` map to your artifact templates.
+
+One turn, one `turnId`, one bubble: every event a turn emits carries the same `turnId`, so a client that reconnects mid-stream can discard a half-rendered turn and wait for the next `turn_start` cleanly. This protocol is the contract between the loop and any renderer; keep the six types stable and you can swap the entire UI without touching the engine.
+
+### The artifact body: a structured, validated document
+
+An `artifact` event's `body` can be markdown (simplest) or, for a native canvas, a **structured artifact document**: an ordered list of typed blocks the host validates and maps to native components. The monospace box and the markdown table in the `open` command are the two lowest-fidelity renderers of that same block list; native components are the third, richest one. The model **proposes structure**; the host **owns rendering**. That split keeps the canvas safe (no arbitrary markup from the model), consistent (one component set), and re-renderable (the same artifact can redraw on theme change, resize, or re-open).
+
+Envelope plus an ordered `blocks[]`, host-agnostic:
+
+```json
+{
+  "id": "art_nvda_1a2b", "version": 1, "surface": "dashboard",
+  "title": "$NVDA screen", "tickerContext": "NVDA",
+  "sourceTools": ["read_screen", "get_ai_summary"],
+  "blocks": [
+    { "type": "header", "ticker": "NVDA", "name": "NVIDIA Corp",
+      "sector": "Technology", "price": 190.20, "changePct": 1.23 },
+    { "type": "stat-grid", "items": [
+      { "label": "Sentiment", "value": "+0.42", "sub": "+0.08 30d",
+        "tone": "bull", "format": "polarity" } ] },
+    { "type": "chart", "ticker": "NVDA", "timeframe": "1M",
+      "kind": "price", "seriesRef": "chart:NVDA:1M" },
+    { "type": "thesis-card", "stance": "mixed", "title": "AI insight",
+      "body": "Margin guide raised, services beating consensus.",
+      "generatedAt": 1719700000 }
+  ]
+}
+```
+
+`id`/`version` make the artifact addressable: history chips re-open a snapshot by `id`, and "refresh this" mints a new `id` and bumps `version` rather than mutating in place. `surface` (`dashboard` or `slide-over`) reuses the two-surface model in **Building a multi-surface terminal**; the default-to-text rule still holds, so do not emit a slide-over that only re-renders blocks already on the dashboard.
+
+Six block types cover the terminal:
+
+| `type` | Renders as | Key fields |
+|---|---|---|
+| `header` | Ticker title bar | `ticker`, `name`, `sector`, `price`, `changePct` |
+| `stat-grid` | Row-per-metric panel | `items[]: { label, value, sub?, tone, format? }` |
+| `chart` | Price/metric chart | `ticker`, `timeframe`, `kind`, `seriesRef` |
+| `table` | Aligned grid | `columns[]`, `align[]`, `rows[][]` |
+| `news-list` | Sentiment-tagged feed | `items[]: { sentiment, headline, source, published, url }` |
+| `thesis-card` | One-line synthesis | `stance`, `title`, `body`, `generatedAt`, `footnote?` |
+
+**Validate then render (the gate is load-bearing).** The model is not trusted to name components:
+
+- Whitelist `block.type`; drop unknown types silently, never render them raw. Coerce `tone` to `bull | bear | neutral`; anything else becomes `neutral`.
+- Never accept a raw HTML, script, style, or URL-scheme field from the model. The only markup that reaches the DOM is what your components emit. The oEmbed `html` block for a social embed is an exception because it is host-fetched, not model-authored (see **Social Embeds**).
+- Clamp array lengths (`news-list` to the feed limit, `table.rows` to a sane cap) so a runaway generation cannot blow up the layout.
+- If the document is malformed, fall back to the markdown `open` template rather than showing a broken screen. Never crash the turn.
+
+Field rules that keep the canvas honest and match the API shapes:
+
+- `header.price` is `price.currentPrice`; `header.changePct` is `price.changePercent`; `header.name` is `profile.name` (not `companyName`).
+- `stat-grid.items[].format` is `polarity | price | percent | count`. Use `polarity` for the Sentiment value (a float in [-1, 1]; render the sign unmistakably, never a 0-100 scale). Report the separate SentiSense Score as-is: unbounded, never normalized. `tone` drives the accent color, not the sign of the number.
+- `chart.timeframe` is one of `1D / 5D / 1W / 1M / 3M / 6M / 1Y / ALL`. `seriesRef` points at the same local snapshot cache `read_screen` reads; the host resolves it to points and reads the x-axis from each point's `timestamp` (Unix ms), never the pre-formatted `date` string.
+- `news-list.items[].headline` is resolved by you via the **Headline Resolution** pattern (the document API returns no title). `sentiment` is the document's `averageSentiment` (scalar in [-1, 1]); `published` is epoch seconds.
+- `thesis-card.body` is `insights[0].insightText` or the `ai-summary` text (there is no `headline` field on insights). Because sentiment, insights, and AI summaries are batch metrics, always carry `generatedAt` so the card can show freshness. Never claim "real time" on a thesis card.
 
 ---
 
@@ -202,6 +455,117 @@ Equip the agent with a tool ladder, ordered by cost:
 **Host-side grounding configuration.** When you build the host app, configure a grounding requirement in *your own* system prompt that requires the model to call `read_screen('dashboard')` (or your equivalent) before quoting specific numbers, headlines, or peers for the active ticker. Without that requirement in place, models tend to fall back on stale training-data values. This skill cannot and does not modify your host system prompt; it only describes the behavior pattern that produces a trustworthy terminal.
 
 **If a tool errors or returns empty, say so.** "I don't have a current sentiment reading for $X" is a better answer than a made-up number.
+
+The ladder above is the *interface* the model calls. To make it dependable, implement it against a single grounding subsystem: a write-through cache the widgets feed, a freshness contract, a host-side grounding requirement, tool-result injection, and typed degradation. See **The trust layer (grounding subsystem)** below. Build that once and every rung of the ladder inherits it.
+
+---
+
+## The trust layer (grounding subsystem)
+
+The tool ladder above tells the model *what to call*. This section tells the builder *what to build once* so the model cannot go stale. It is the single subsystem that separates a demo (renders plausible numbers) from a terminal people rely on (renders what is true right now, and says so when it is not).
+
+State it as an invariant: the model may only assert a number, date, headline, rating, or holding that appears in a tool result inside the current turn's context. Everything else is training data and is stale by definition. Five parts, each buildable on its own.
+
+### 1. The read-model cache (widgets write, the model reads)
+
+The `read_screen` tool from the ladder is the cheap rung because it reads a cache the widgets populate, not the network. Build that cache as a first-class object:
+
+```
+ widget fetch (ok)                          model turn
+      |                                          |
+      v                                          v
+ +--------------+    write-through      +------------------+
+ |  ReadModel   |<----------------------|  price widget    |
+ |  cache       |                       |  metrics widget  |
+ | (per surface)|                       |  news widget ... |
+ +------+-------+                       +------------------+
+        | read (0 API calls)
+        v
+   read_screen('dashboard')  -->  markdown snapshot  -->  model context
+```
+
+Every widget, on a successful fetch, writes its normalized result into a per-surface cache *before* it renders. `read_screen` reads that cache and formats markdown; it never re-fetches. The value the model quotes is therefore the exact value on the user's screen: cheaper (zero API calls) and more trustworthy (no drift between what the user sees and what the model says).
+
+Cache entry schema (one per surface and slot):
+
+```
+CacheEntry {
+  key:       "dashboard:$NVDA:metrics"   // surface : ticker : slot
+  status:    "ok" | "empty" | "error" | "preview"
+  kind:      "realtime" | "batch"
+  value:     <normalized payload>         // already unwrapped per the API gotchas
+  fetchedAt: 1719772800000                // when the widget called the API (epoch ms)
+  dataAsOf:  1719759600000 | null         // batch generatedAt; null for realtime
+}
+```
+
+Two hard rules on the cache:
+
+- Store the *normalized* value, not the raw envelope. Unwrap `{ isPreview, data }` and pull `metricValue.value.value` at write time (see API shape gotchas) so the model never re-derives a shape, and never re-introduces a shape bug it cannot see.
+- Reset the whole cache on context change (ticker change, route change). A stale `$AMD` metrics entry surviving into a `$NVDA` dashboard is the haunted-app failure from the multi-surface section, in data form.
+
+When a slot has nothing yet, `read_screen` returns the loading placeholder (already specified in the ladder), not an omission. An absent row reads as "zero"; a labeled "loading" row reads as "not yet."
+
+### 2. The freshness contract
+
+Grounding is not only "is it fetched" but "how old is fetched allowed to be." Bind every surface to one of two freshness classes and render each class differently. This is the enforcement layer for the batch-vs-real-time gotcha; it does not change which endpoints are which.
+
+| Class | Surfaces | Cache `kind` | How the model renders it |
+|---|---|---|---|
+| Real-time | quote, price, chart points | `realtime` | State the value plainly. Re-fetch on the poll interval, never faster than ~60s on the header. |
+| Batch | Sentiment, SentiSense Score, Mentions, Social Dominance, news clustering, AI summary, insights | `batch` | State the value, then annotate freshness: `as of {dataAsOf}`. Never call it "real time." |
+
+The `dataAsOf` for a batch slot is the payload's `generatedAt` (present on insight and AI-summary surfaces). Surfacing it is not decoration: it is what lets a user trust a `+0.42` sentiment reading taken at the open even though price has moved since. A batch value with no visible age is indistinguishable from a fabricated one.
+
+Compose-time rule the model applies: if two values on one screen have different freshness classes and the question is time-sensitive ("is it still mooning?"), lead with the real-time value and tag the batch value's age, rather than blending both into one implied "now."
+
+### 3. The grounding requirement (host prompt, not this skill)
+
+The cache and the contract are inert unless the host's own system prompt forces the model to consult them. This skill cannot edit your system prompt; you wire this once, on your side. A directive block that holds up:
+
+```
+Before you state any number, date, headline, rating, or holding for the
+active ticker, call read_screen('dashboard') and read the value from its
+result. If the value you need is not in that result, call the matching live
+fetch tool. Never answer these from prior knowledge. If a tool returns
+empty or errors, say you don't have that reading; do not estimate it.
+```
+
+Keep it in the host prompt because it must outrank the model's default helpfulness, which is to answer immediately from memory. Skill text is one input to the prompt; the grounding requirement has to be host-owned to be load-bearing.
+
+### 4. Tool-result to context injection
+
+Fetching is half the loop. The model only stays grounded if each result is injected back into its context as a first-class message it must read, not paraphrased away. The shape that keeps it honest:
+
+```
+loop each turn:
+  model emits tool_call(s)             // e.g. get_metrics($NVDA)
+  host executes, normalizes, caches    // write-through, per part 1
+  host appends a tool_result message:
+     +-----------------------------------------------+
+     | tool: get_metrics($NVDA)                      |
+     | status: ok   kind: batch   dataAsOf: 09:31 ET |
+     | value: { sentiment: +0.42, score: 1830, ... } |
+     +-----------------------------------------------+
+  model reads tool_result, composes screen from it
+```
+
+Two builder rules that keep injection trustworthy:
+
+- Inject the same normalized value you cached and rendered, with the freshness header attached. The model, the cache, and the pixels then agree by construction.
+- Never let the model carry a prior turn's numbers forward from memory. On a follow-up ("and the day before?"), it must call again; one extra fetch costs less than one confidently wrong number, the exact asymmetry the anti-patterns section already names.
+
+### 5. Graceful degradation (empty / error / preview)
+
+A terminal earns trust as much from how it fails as from how it renders. Map every non-`ok` cache status to an explicit render: never a blank cell, never a fabricated fill.
+
+| Status | Cause | Model renders |
+|---|---|---|
+| `empty` | Valid call, empty array (e.g. the 7-day insider/congress lag, `isPreview:false`) | Say the window is empty and widen it (`lookbackDays=30`), noting the wider window in the header. Not an error, not a zero. |
+| `error` | Non-2xx, timeout, `401 api_key_required`, `429` | "I don't have a current {metric} for $X." On `429`, surface the `Retry-After` hint ("rate limit reached, retrying in N s"); do not silently serve a stale value. |
+| `preview` | Free-tier `isPreview:true` (top-3 insights, current-week earnings, sliced flow) | Render the preview slice as the answer; tag `(preview)` in a corner. Mention PRO only if the truncation is materially limiting the answer. |
+
+The through-line: degrade to *less data*, never to *invented data*. An honest "I don't have that reading" costs one moment of friction; a fabricated number costs the whole session's trust, and the user cannot tell the two apart at read time. That asymmetry is the entire reason the trust layer exists.
 
 ---
 

@@ -1,5 +1,5 @@
 ## Description: <br>
-Interact with Bitbucket Cloud via REST API for repository management, pull request operations, branch management, commit history, pipeline status, and workspace/team queries. <br>
+Interact with Bitbucket Cloud via REST API for repository management, pull request operations, branch management, commit history, pipeline status, and workspace or team queries. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to inspect and manage Bitbucket Cloud repositories, pull requests, branches, commits, pipelines, workspaces, and user information from an agent workflow. <br>
+Developers and engineering teams use this skill to let an agent inspect and operate on Bitbucket Cloud repositories, pull requests, branches, commits, pipelines, workspaces, and account information through the bundled CLI. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can perform real repository-changing Bitbucket actions, including repository creation, pull request approval or merge, pull request decline, branch deletion, comments, raw API POST calls, and pipeline runs. <br>
-Mitigation: Use a dedicated least-privilege app password, prefer read-only scopes unless write access is required, and require explicit human confirmation before any write or destructive action. <br>
-Risk: A broadly scoped app password could let an agent affect more repositories or operations than intended. <br>
-Mitigation: Grant only the Bitbucket permissions needed for the intended workflow and rotate the app password if it may have been exposed. <br>
+Risk: The skill can perform live write operations on Bitbucket Cloud repositories, pull requests, branches, and pipelines. <br>
+Mitigation: Use a narrowly scoped Bitbucket token, prefer a limited workspace or test repository first, and review commands before allowing repository creation, branch deletion, PR decline, PR merge, comments, approvals, or pipeline triggers. <br>
+Risk: Credential scope may exceed the specific repository or workflow the agent needs. <br>
+Mitigation: Grant only the minimum Bitbucket permissions required for the intended task and rotate the token if it is exposed. <br>
+Risk: Pipeline triggers and pull request merges can affect CI/CD workflows and protected branches. <br>
+Mitigation: Confirm the target repository, branch, pull request, merge strategy, and pipeline selector before approving execution. <br>
 
 
 ## Reference(s): <br>
 - [Bitbucket Cloud API Reference](references/api.md) <br>
 - [Atlassian Bitbucket Cloud REST API](https://developer.atlassian.com/cloud/bitbucket/rest/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/snowsand-enterprises/snowsand-bitbucket) <br>
+- [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+- [Bitbucket App Passwords](https://bitbucket.org/account/settings/app-passwords/) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API output] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bitbucket workspace, username, and app password environment variables.] <br>
+**Other Properties Related to Output:** [Requires Bitbucket Cloud credentials and workspace configuration through environment variables.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

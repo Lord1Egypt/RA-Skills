@@ -1,0 +1,21 @@
+{
+  "thresholds": {
+    "agents_max_kb": 5,
+    "dreams_max_entries": 30,
+    "dreams_keep_entries": 15,
+    "memory_max_kb": 5,
+    "watch_dreams_max_kb": 60,
+    "watch_agents_max_kb": 10
+  },
+  "sessions": {
+    "archive_days": 30,
+    "auto_archive": false
+  },
+  "safety": {
+    "backup_dir": "~/.openclaw/.token-opt-backups",
+    "backup_keep_days": 90,
+    "auto_replace_agents": false,
+    "max_one_shot_savings_kb": 500,
+    "clean_default_dry_run": true
+  }
+}

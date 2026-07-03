@@ -98,6 +98,8 @@ def load_config():
         "PUSH_MODE": "direct",
         "WECHAT_OA_SERVER": "http://120.79.2.44",
         "WECHAT_OA_SERVER_KEY": "",
+        # ENV 默认不填 = prod
+        # prod → /api/   dev → /testapi/
     }
     if CONFIG_FILE.exists():
         try:
@@ -109,6 +111,20 @@ def load_config():
     return default_config
 
 
+def get_api_prefix(env: str = "") -> str:
+    """
+    根据 ENV 配置返回 API 前缀。
+    不配置或 prod → /api/
+    dev → /testapi/
+    """
+    if not env:
+        cfg = load_config()
+        env = cfg.get("ENV", "prod")
+    if env == "dev":
+        return "/testapi"
+    return "/api"
+
+
 def _get_cfg_params(api_key: str, relay_server: str) -> tuple:
     """统一读取配置参数"""
     cfg = load_config()
@@ -116,7 +132,8 @@ def _get_cfg_params(api_key: str, relay_server: str) -> tuple:
         api_key = cfg.get("WECHAT_OA_SERVER_KEY", "")
     if not relay_server:
         relay_server = cfg.get("WECHAT_OA_SERVER", "http://120.79.2.44")
-    return api_key, relay_server.rstrip('/'), cfg
+    api_prefix = get_api_prefix(cfg.get("ENV", ""))
+    return api_key, relay_server.rstrip('/'), cfg, api_prefix
 
 
 def _post(url: str, payload: dict, api_key: str, timeout: int = 30) -> dict:
@@ -163,12 +180,80 @@ def _get(url: str, params: dict, api_key: str, timeout: int = 15) -> dict:
     headers = {"X-API-Key": api_key}
     try:
         resp = requests.get(url, headers=headers, params=params, timeout=timeout)
+        # 捕获标准 HTTP 402（AI 付协议）
+        if resp.status_code == 402:
+            return {
+                "status_code": 402,
+                "payment_needed": resp.headers.get("Payment-Needed", ""),
+                "body": resp.text,
+            }
         resp.raise_for_status()
         return _fix_garbled(resp.json())
     except requests.exceptions.RequestException as e:
         return {"success": False, "error": f"网络请求失败: {e}"}
     except json.JSONDecodeError:
         return {"success": False, "error": f"服务器返回非 JSON 数据"}
+
+
+def _handle_402_payments(responses: list[dict], api_key: str) -> dict:
+    """
+    统一处理 402 支付流程。
+
+    如果任一响应是 402 状态码，自动执行 alipay-bot 支付后重试。
+
+    Args:
+        responses: 按顺序传入的响应 dict（_get 或 _post 返回）
+        api_key: WECHAT_OA_SERVER_KEY
+
+    Returns:
+        处理完支付后的统一结果
+    """
+    import subprocess
+    import time
+    import os
+    import tempfile
+
+    # 找出第一个 402 响应
+    payment_neededs = []
+    for r in responses:
+        if isinstance(r, dict) and r.get("status_code") == 402:
+            payment_needed = r.get("payment_needed", "")
+            if payment_needed:
+                payment_neededs.append(payment_needed)
+
+    if not payment_neededs:
+        return {"success": False, "error": "没有需要支付的响应"}
+
+    payment_needed = payment_neededs[0]
+
+    # 保存 Payment-Needed 到临时文件
+    fd, file_path = tempfile.mkstemp(suffix="_402_needed.txt", prefix="payment_")
+    with os.fdopen(fd, 'w', encoding='utf-8') as f:
+        f.write(payment_needed)
+
+    # 调用 alipay-bot 支付
+    try:
+        proc = subprocess.run(
+            ["alipay-bot", "--", "402-buyer-pay", "-f", file_path],
+            capture_output=True, text=True, timeout=60
+        )
+        output = proc.stdout + proc.stderr
+        if proc.returncode != 0 and not output:
+            output = proc.stderr or "alipay-bot 执行失败"
+    except Exception as e:
+        return {"success": False, "error": f"调用 alipay-bot 失败: {e}"}
+
+    # 提取 trade_no
+    trade_no = _extract_trade_no(output)
+
+    return {
+        "success": False,
+        "charge_required": True,
+        "trade_no": trade_no,
+        "payment_needed_file": file_path,
+        "alipay_bot_output": output,
+        "message": "请扫码完成支付，支付完成后告诉我'已支付'，我将继续请求",
+    }
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -188,11 +273,11 @@ def get_push_info(api_key: str = "", relay_server: str = "") -> dict:
             ...
         }
     """
-    api_key, relay_server, _ = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, _, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
-    url = f"{relay_server}/api/push/article/info"
+    url = f"{relay_server}{api_prefix}/push/article/info"
     return _get(url, {}, api_key)
 
 
@@ -222,7 +307,7 @@ def create_push_order(title: str = "", content: str = "", author: str = "", dige
             ...
         }
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -248,7 +333,7 @@ def create_push_order(title: str = "", content: str = "", author: str = "", dige
         except Exception as e:
             print(f"[WARN] 封面图读取失败，将继续无封面创建订单: {e}")
 
-    url = f"{relay_server}/api/push/article/order"
+    url = f"{relay_server}{api_prefix}/push/article/order"
     result = _post(url, payload, api_key)
     
     # 统一包装返回格式：服务端成功返回时添加 success 标记
@@ -282,7 +367,7 @@ def execute_push_article(title: str, content: str, order_id: str,
     Returns:
         dict: {"success": True/False, "media_id": "...", "message": "..."}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -311,7 +396,7 @@ def execute_push_article(title: str, content: str, order_id: str,
         except Exception as e:
             print(f"[WARN] 封面图读取失败，将继续无封面推送: {e}")
 
-    url = f"{relay_server}/api/push/article"
+    url = f"{relay_server}{api_prefix}/push/article"
     result = _post(url, payload, api_key)
 
     if result.get("success"):
@@ -334,6 +419,39 @@ def _extract_trade_no(output: str) -> str:
     if match:
         return match.group(1)
     return ""
+
+
+def _clean_wechat_margins(html):
+    """
+    WeChat 渲染器不折叠相邻元素的边距，导致所有 margin 都会变成可见空白。
+    
+    此函数从所有块级元素的内联样式中移除 margin 相关属性，
+    行距统一用 line-height 控制。
+    """
+    block_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'section']
+
+    def clean_style(match):
+        tag = match.group(1)
+        attrs = match.group(2) or ''
+
+        if tag.lower() not in block_tags:
+            return match.group(0)
+
+        def remove_margin(style_val):
+            style_val = re.sub(r';?\s*margin\s*:[^;]+', '', style_val)
+            style_val = re.sub(r';?\s*margin-[a-z]+\s*:[^;]+', '', style_val)
+            style_val = style_val.strip().strip(';')
+            return style_val
+
+        attrs = re.sub(
+            r'style="([^"]*)"',
+            lambda m: f'style="{remove_margin(m.group(1))}"',
+            attrs
+        )
+
+        return f'<{tag}{attrs}>'
+
+    return re.sub(r'<(p|h[1-6]|div|section)(\s+[^>]*)?>', clean_style, html)
 
 
 def _inline_css(html):
@@ -448,7 +566,7 @@ def push_article(title: str, content: str, author: str = "", digest: str = "",
     import subprocess
     import time
 
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -457,6 +575,7 @@ def push_article(title: str, content: str, author: str = "", digest: str = "",
     # CSS 内联：把 <style> 标签的样式内联到元素的 style 属性中
     # 这样微信 API 过滤掉 <style> 标签后，内联样式仍然生效
     content = _inline_css(content)
+    content = _clean_wechat_margins(content)
 
     # 构建请求体
     payload = {
@@ -478,7 +597,7 @@ def push_article(title: str, content: str, author: str = "", digest: str = "",
         except Exception as e:
             print(f"[WARN] 封面图读取失败，将继续无封面推送: {e}")
 
-    url = f"{relay_server}/api/push/article"
+    url = f"{relay_server}{api_prefix}/push/article"
     result = _post(url, payload, api_key)
 
     # 标准 HTTP 402：需要支付
@@ -543,13 +662,13 @@ def finish_push(trade_no: str, payload: dict, api_key: str = "", relay_server: s
     """
     import subprocess
 
-    api_key, relay_server, _ = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, _, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
     if not trade_no:
         return {"success": False, "error": "trade_no 不能为空"}
 
-    resource_url = f"{relay_server}/api/push/article"
+    resource_url = f"{relay_server}{api_prefix}/push/article"
     data = json.dumps(payload)
 
     # 调用 alipay-bot 查询支付状态并自动重试（携带 Payment-Proof）
@@ -607,7 +726,8 @@ def finish_push(trade_no: str, payload: dict, api_key: str = "", relay_server: s
 # 列出草稿箱（通过中转服务器）
 # ════════════════════════════════════════════════════════════════════════════
 
-def list_drafts(count: int = 10, offset: int = 0, api_key: str = "", relay_server: str = "") -> dict:
+def list_drafts(count: int = 10, offset: int = 0, api_key: str = "", relay_server: str = "",
+               payment_proof: str = "") -> dict:
     """
     列出公众号草稿箱（通过中转服务器）
     
@@ -616,11 +736,12 @@ def list_drafts(count: int = 10, offset: int = 0, api_key: str = "", relay_serve
         offset: 偏移量
         api_key: WECHAT_OA_SERVER_KEY
         relay_server: 中转服务器地址
+        payment_proof: 支付凭证（收费模式必填）
     
     Returns:
         dict: {"success": True/False, "drafts": [...], "total": N}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -629,10 +750,16 @@ def list_drafts(count: int = 10, offset: int = 0, api_key: str = "", relay_serve
         "appsecret": cfg.get("APP_SECRET", ""),
         "count": min(count, 20),
         "offset": offset,
+        "payment_proof": payment_proof,
     }
 
-    url = f"{relay_server}/api/push/drafts"
-    return _get(url, params, api_key)
+    url = f"{relay_server}{api_prefix}/push/drafts"
+    result = _get(url, params, api_key)
+
+    if result.get("status_code") == 402:
+        return _handle_402_payments([result], api_key)
+
+    return result
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -659,7 +786,7 @@ def update_draft(media_id: str, title: str, content: str, author: str = "", dige
     Returns:
         dict: {"success": True/False, "message": "..."}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -667,6 +794,7 @@ def update_draft(media_id: str, title: str, content: str, author: str = "", dige
 
     # CSS 内联：把 <style> 标签的样式内联到元素的 style 属性中
     content = _inline_css(content)
+    content = _clean_wechat_margins(content)
 
     # 构建请求体
     payload = {
@@ -690,7 +818,7 @@ def update_draft(media_id: str, title: str, content: str, author: str = "", dige
     elif thumb_media_id:
         payload["thumb_media_id"] = thumb_media_id
 
-    url = f"{relay_server}/api/push/article/{media_id}"
+    url = f"{relay_server}{api_prefix}/push/article/{media_id}"
     result = _put(url, payload, api_key, timeout=30)
 
     if result.get("success"):
@@ -715,7 +843,7 @@ def delete_draft(media_id: str, api_key: str = "", relay_server: str = "") -> di
     Returns:
         dict: {"success": True/False, "message": "..."}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -725,7 +853,7 @@ def delete_draft(media_id: str, api_key: str = "", relay_server: str = "") -> di
     }
 
     headers = {"X-API-Key": api_key}
-    url = f"{relay_server}/api/push/article/{media_id}"
+    url = f"{relay_server}{api_prefix}/push/article/{media_id}"
 
     try:
         resp = requests.delete(url, headers=headers, params=params, timeout=15)
@@ -745,6 +873,141 @@ def delete_draft(media_id: str, api_key: str = "", relay_server: str = "") -> di
 # 搜索草稿（通过中转服务器）
 # ════════════════════════════════════════════════════════════════════════════
 
+def retry_list_drafts(trade_no: str, count: int = 10, offset: int = 0,
+                      api_key: str = "", relay_server: str = "") -> dict:
+    """
+    支付完成后重试列出草稿箱。
+
+    使用 alipay-bot 查询支付状态并自动携带 Payment-Proof 重试原始请求。
+
+    Args:
+        trade_no: 交易号（从 alipay-bot 输出中提取）
+        count: 拉取数量（最大 20）
+        offset: 偏移量
+        api_key: WECHAT_OA_SERVER_KEY
+        relay_server: 中转服务器地址
+
+    Returns:
+        dict: {"success": True/False, "drafts": [...], "total": N}
+    """
+    import subprocess
+    import json
+
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
+    if not api_key:
+        return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
+    if not trade_no:
+        return {"success": False, "error": "trade_no 不能为空"}
+
+    resource_url = f"{relay_server}{api_prefix}/push/drafts"
+    params = {
+        "appid": cfg.get("APP_ID", ""),
+        "appsecret": cfg.get("APP_SECRET", ""),
+        "count": min(count, 20),
+        "offset": offset,
+    }
+    from urllib.parse import urlencode
+    resource_url_with_params = f"{resource_url}?{urlencode(params)}"
+
+    try:
+        proc = subprocess.run(
+            [
+                "alipay-bot", "402-query-payment-status",
+                "-t", trade_no,
+                "-r", resource_url_with_params,
+                "-m", "GET",
+                "-H", f"X-API-Key:{api_key}",
+            ],
+            capture_output=True, text=True, timeout=60
+        )
+        output = proc.stdout + proc.stderr
+    except Exception as e:
+        return {"success": False, "error": f"调用 alipay-bot 重试失败: {e}"}
+
+    try:
+        result = json.loads(output)
+    except json.JSONDecodeError:
+        return {"success": False, "error": f"alipay-bot 返回非 JSON 数据: {output[:500]}"}
+
+    if not result.get("success"):
+        return {"success": False, "error": result.get("errorMsg", "支付查询失败")}
+
+    resource_resp = result.get("resourceResponse", {})
+    if resource_resp.get("status") == 200:
+        body = resource_resp.get("body", {})
+        return _fix_garbled(body) if isinstance(body, dict) else {"success": True, "data": body}
+    else:
+        return {
+            "success": False,
+            "error": f"资源请求失败: HTTP {resource_resp.get('status', '未知')}",
+        }
+
+
+def retry_get_material_count(trade_no: str, api_key: str = "", relay_server: str = "") -> dict:
+    """
+    支付完成后重试获取素材总数。
+
+    使用 alipay-bot 查询支付状态并自动携带 Payment-Proof 重试原始请求。
+
+    Args:
+        trade_no: 交易号（从 alipay-bot 输出中提取）
+        api_key: WECHAT_OA_SERVER_KEY
+        relay_server: 中转服务器地址
+
+    Returns:
+        dict: {"success": True/False, "voice_count": N, "video_count": N, ...}
+    """
+    import subprocess
+    import json
+
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
+    if not api_key:
+        return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
+    if not trade_no:
+        return {"success": False, "error": "trade_no 不能为空"}
+
+    resource_url = f"{relay_server}{api_prefix}/material/count"
+    params = {
+        "appid": cfg.get("APP_ID", ""),
+        "appsecret": cfg.get("APP_SECRET", ""),
+    }
+    from urllib.parse import urlencode
+    resource_url_with_params = f"{resource_url}?{urlencode(params)}"
+
+    try:
+        proc = subprocess.run(
+            [
+                "alipay-bot", "402-query-payment-status",
+                "-t", trade_no,
+                "-r", resource_url_with_params,
+                "-m", "GET",
+                "-H", f"X-API-Key:{api_key}",
+            ],
+            capture_output=True, text=True, timeout=60
+        )
+        output = proc.stdout + proc.stderr
+    except Exception as e:
+        return {"success": False, "error": f"调用 alipay-bot 重试失败: {e}"}
+
+    try:
+        result = json.loads(output)
+    except json.JSONDecodeError:
+        return {"success": False, "error": f"alipay-bot 返回非 JSON 数据: {output[:500]}"}
+
+    if not result.get("success"):
+        return {"success": False, "error": result.get("errorMsg", "支付查询失败")}
+
+    resource_resp = result.get("resourceResponse", {})
+    if resource_resp.get("status") == 200:
+        body = resource_resp.get("body", {})
+        return _fix_garbled(body) if isinstance(body, dict) else {"success": True, "data": body}
+    else:
+        return {
+            "success": False,
+            "error": f"资源请求失败: HTTP {resource_resp.get('status', '未知')}",
+        }
+
+
 def search_drafts(keyword: str, count: int = 20, offset: int = 0,
                  api_key: str = "", relay_server: str = "") -> dict:
     """
@@ -760,7 +1023,7 @@ def search_drafts(keyword: str, count: int = 20, offset: int = 0,
     Returns:
         dict: {"success": True/False, "drafts": [...], "total": N}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -772,7 +1035,7 @@ def search_drafts(keyword: str, count: int = 20, offset: int = 0,
         "offset": offset,
     }
 
-    url = f"{relay_server}/api/push/drafts"
+    url = f"{relay_server}{api_prefix}/push/drafts"
     return _get(url, params, api_key, timeout=15)
 
 
@@ -794,7 +1057,7 @@ def upload_material(file_path: str, material_type: str = "image",
     Returns:
         dict: {"success": True/False, "media_id": "...", "url": "..."}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -816,7 +1079,7 @@ def upload_material(file_path: str, material_type: str = "image",
         "file_data": base64.b64encode(file_data).decode('utf-8'),
     }
 
-    url = f"{relay_server}/api/material/upload"
+    url = f"{relay_server}{api_prefix}/material/upload"
     result = _post(url, payload, api_key, timeout=60)
 
     if result.get("success"):
@@ -833,28 +1096,35 @@ def upload_material(file_path: str, material_type: str = "image",
 # 获取素材总数（通过中转服务器）
 # ════════════════════════════════════════════════════════════════════════════
 
-def get_material_count(api_key: str = "", relay_server: str = "") -> dict:
+def get_material_count(api_key: str = "", relay_server: str = "", payment_proof: str = "") -> dict:
     """
     获取各类永久素材总数（通过中转服务器）
 
     Args:
         api_key: WECHAT_OA_SERVER_KEY
         relay_server: 中转服务器地址
+        payment_proof: 支付凭证（收费模式必填）
 
     Returns:
         dict: {"success": True/False, "voice_count": N, "video_count": N, ...}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
     params = {
         "appid": cfg.get("APP_ID", ""),
         "appsecret": cfg.get("APP_SECRET", ""),
+        "payment_proof": payment_proof,
     }
 
-    url = f"{relay_server}/api/material/count"
-    return _get(url, params, api_key, timeout=15)
+    url = f"{relay_server}{api_prefix}/material/count"
+    result = _get(url, params, api_key, timeout=15)
+
+    if result.get("status_code") == 402:
+        return _handle_402_payments([result], api_key)
+
+    return result
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -877,7 +1147,7 @@ def list_materials(material_type: str = "image", count: int = 20, offset: int = 
     Returns:
         dict: {"success": True/False, "items": [...], "total": N}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -891,7 +1161,7 @@ def list_materials(material_type: str = "image", count: int = 20, offset: int = 
     # 注意：服务器端的 list_materials() 不支持 keyword 参数
     # 如果需要关键词过滤，在客户端侧进行
 
-    url = f"{relay_server}/api/materials"
+    url = f"{relay_server}{api_prefix}/materials"
     result = _get(url, params, api_key, timeout=15)
     
     # 客户端侧关键词过滤
@@ -929,7 +1199,7 @@ def delete_material(media_id: str, api_key: str = "", relay_server: str = "") ->
     Returns:
         dict: {"success": True/False, "message": "..."}
     """
-    api_key, relay_server, cfg = _get_cfg_params(api_key, relay_server)
+    api_key, relay_server, cfg, api_prefix = _get_cfg_params(api_key, relay_server)
     if not api_key:
         return {"success": False, "error": "未配置 WECHAT_OA_SERVER_KEY"}
 
@@ -939,7 +1209,7 @@ def delete_material(media_id: str, api_key: str = "", relay_server: str = "") ->
     }
 
     headers = {"X-API-Key": api_key}
-    url = f"{relay_server}/api/material/{media_id}"
+    url = f"{relay_server}{api_prefix}/material/{media_id}"
 
     try:
         resp = requests.delete(url, headers=headers, params=params, timeout=15)

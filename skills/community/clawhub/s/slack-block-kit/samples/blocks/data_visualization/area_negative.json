@@ -1,0 +1,48 @@
+[
+  {
+    "type": "data_visualization",
+    "block_id": "viz-area-negative",
+    "title": "Net revenue delta (vs. forecast)",
+    "chart": {
+      "type": "area",
+      "series": [
+        {
+          "name": "Delta",
+          "data": [
+            {
+              "label": "Mon",
+              "value": -120
+            },
+            {
+              "label": "Tue",
+              "value": 80
+            },
+            {
+              "label": "Wed",
+              "value": -40
+            },
+            {
+              "label": "Thu",
+              "value": 150
+            },
+            {
+              "label": "Fri",
+              "value": -200
+            }
+          ]
+        }
+      ],
+      "axis_config": {
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "x_label": "Day",
+        "y_label": "Delta ($)"
+      }
+    }
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "type": "plain_text_input",
+  "action_id": "plain_text_input",
+  "multiline": true,
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Add details"
+  }
+}

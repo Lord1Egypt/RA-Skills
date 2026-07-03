@@ -1,0 +1,37 @@
+{
+  "name": "go-fs-mcp-skill",
+  "displayName": "文件系统 MCP 技能",
+  "version": "1.0.0",
+  "category": "filesystem",
+  "description": "通过 MCP stdio 协议调用外部文件系统服务，提供列出目录、读取/写入文件、创建文件夹、删除与移动等能力。本 Skill 仅负责参数校验与请求转发，不直接执行文件操作。",
+  "author": "go-fs-mcp",
+  "trigger": [
+    "列出目录",
+    "读取文件",
+    "写入文件",
+    "创建文件夹",
+    "删除文件",
+    "移动文件"
+  ],
+  "parameters": {
+    "toolName": {
+      "type": "string",
+      "required": true,
+      "description": "MCP 工具名称：list_directory、read_file、write_file、create_directory、delete_file、move_file"
+    },
+    "params": {
+      "type": "object",
+      "required": true,
+      "description": "MCP 工具参数字典，例如 {\"path\": \"...\"}"
+    }
+  },
+  "config": {
+    "mcp_command": "CHANGE_ME_ABSOLUTE_PATH_TO_go-fs-mcp-server",
+    "mcp_args": [],
+    "timeout": 10
+  },
+  "openclaw": {
+    "entry": "go-fs-mcp-skill",
+    "runtime": "binary"
+  }
+}

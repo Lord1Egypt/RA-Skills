@@ -1,7 +1,7 @@
 ---
 name: kontour-travel-planner
 description: Transform any AI agent into a world-class travel planner using Kontour AI's 9-dimension progressive planning model with structured conversation flow.
-version: 2.0.6
+version: 2.0.11
 license: MIT-0
 metadata:
   openclaw:
@@ -129,7 +129,7 @@ When `plan.sh` recognizes a destination with bundled highlights, it emits `sugge
 
 ### Day-Plan Continuity Contract
 
-When `plan.sh` recognizes a destination with at least three bundled highlights, it emits `day_plan_continuity`: a morning/afternoon/evening scaffold ordered by destination-specific zones and lightweight routing heuristics. Each segment includes a `continuity_reason` plus offline coordinates when the bundled metadata has them, and each transition explains whether it is a same-zone pairing or a directional move to reduce backtracking before detailed live transit, hours, and meal timing are finalized. `scripts/export-gmaps.sh` accepts this scaffold directly and turns it into a first-pass Google Maps/KML route even before a full `days` itinerary is authored.
+When `plan.sh` recognizes a destination with at least three bundled highlights, it emits `day_plan_continuity`: a morning/afternoon/evening scaffold ordered by destination-specific zones and lightweight routing heuristics. Each segment includes a `continuity_reason`, and each transition explains whether it is a same-zone pairing or a directional move to reduce backtracking before detailed live transit, hours, and meal timing are finalized.
 
 ### Constraints Capture Contract
 
@@ -152,9 +152,13 @@ These details should be honored before generating an itinerary and removed from 
 
 When `plan.sh` emits `destination_comparison`, each option includes a `decision_matrix` with Budget fit, Season fit, Interest fit, and Pace fit signals, plus `best_for` and `watch_out` bullets for scan-friendly operator narration. If the traveler names a month or season, comparison scoring should surface whether that timing overlaps the destination's bundled best-month window and prefer viable seasonal fits before cheaper but poorly timed options. The comparison also includes an `operator_summary` so agents can explain the recommended option and the most useful alternate without forcing users to parse raw JSON.
 
+### Compact Presentation Markdown
+
+For output polish, `output_polish.presentation_markdown` gives agents a ready-to-adapt Markdown draft with four compact sections: Recommendation, Why this fits, Watch-outs, and Next step. Use it as the user-visible summary scaffold after checking the structured fields; it keeps the recommendation, rationale, fallback warning, and owner-tagged next action together without replacing the machine-readable data. `output_polish.decision_badges` adds compact readiness, next-owner, fallback-count, and decision-mode labels for scan-friendly UI chips or operator summaries. `output_polish.reply_options` adds up to three safe next-move choices with labels, values, owners, and reasons so chat UIs or operators can present actionable follow-ups without inventing buttons from prose.
+
 ### Output Polish Contract
 
-`plan.sh` emits `output_polish` as a compact presentation scaffold for agents and operators. It includes `compact_sections` for the recommended response structure, `decision_summary` for a one-line readiness call, `decision_confidence` with a `level`, concise `summary`, supporting `evidence`, and `missing_evidence` for operator trust/readiness checks, `decision_rationale` with concise evidence for why the current choice or sequence is recommended, `next_step_actions` for narrative next moves, `next_action_checklist` with explicit user/operator ownership and status, and a `response_template` with a four-line operator draft (`Lead with`, `Why`, `Watch`, `Next`) for consistent user-visible rendering. It also includes `user_visible_brief`, a compact labeled summary (`Snapshot`, `Rationale`, optional `Backup`, `Next`) that agents can render directly when the user needs a short answer before a full itinerary.
+`plan.sh` emits `output_polish` as a compact presentation scaffold for agents and operators. It includes `compact_sections` for the recommended response structure, `decision_summary` for a one-line readiness call, `decision_rationale` with concise evidence for why the current choice or sequence is recommended, `confidence_drivers` naming the structured evidence behind the recommendation, `status_line` summarizing readiness/fallback/open-decision counts for dashboards, `next_step_actions` for narrative next moves, `next_action_checklist` with explicit user/operator ownership and status, `next_step_prompt` for the single highest-impact prompt to send or run next, `decision_badges` for concise readiness/owner/fallback/mode chips, `reply_options` for user/operator-visible follow-up choices, `handoff_brief` for copy-ready operator transfer notes, and a `response_template` with a four-line operator draft (`Lead with`, `Why`, `Watch`, `Next`) for consistent user-visible rendering.
 
 ## Structured Output
 

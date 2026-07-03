@@ -1,0 +1,38 @@
+{
+  "protocol": "research_kb_agent_task",
+  "protocolVersion": "1.0",
+  "taskId": "sample_literature_review",
+  "taskType": "kb_literature_review",
+  "requestedAt": "2026-06-26T00:00:00+08:00",
+  "requester": {
+    "userId": 1,
+    "email": "user@example.com",
+    "displayName": "User",
+    "role": "admin",
+    "giteaUsername": "user"
+  },
+  "kbTargets": [
+    {
+      "kbType": "personal",
+      "repoOwner": "AIFusionBot",
+      "repoName": "kb-user-1",
+      "repoFullName": "AIFusionBot/kb-user-1",
+      "branch": "main"
+    }
+  ],
+  "payload": {
+    "conversationId": "conv_sample",
+    "messageId": "msg_sample",
+    "question": "基于我的知识库，写一份关于多智能体协作的专项综述，重点比较方法和研究缺口。",
+    "topic": "多智能体协作",
+    "answerLanguage": "zh-CN",
+    "maxCitations": 8,
+    "options": {
+      "writeReview": true
+    }
+  },
+  "responseRequirement": {
+    "format": "json_only",
+    "schema": "research_kb_agent_result_v1"
+  }
+}

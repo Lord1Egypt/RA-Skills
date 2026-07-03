@@ -3,28 +3,20 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const {
+  PRIVATE_FILE_MODE,
+  bestEffortChmod,
+  ensurePrivateDir,
+  writePrivateFile,
+  readMailboxStateFile,
+  writeMergedMailboxStateFile,
+} = require('./state');
 
 const DEFAULT_CHANNEL = 'evomap-hub';
 const SCHEMA_VERSION = 1;
 const PROXY_PROTOCOL_VERSION = '0.1.0';
-const PRIVATE_DIR_MODE = 0o700;
-const PRIVATE_FILE_MODE = 0o600;
-
-function bestEffortChmod(filePath, mode) {
-  try { fs.chmodSync(filePath, mode); } catch { /* best effort; no-op on Windows */ }
-}
-
-function ensurePrivateDir(dir) {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true, mode: PRIVATE_DIR_MODE });
-  }
-  bestEffortChmod(dir, PRIVATE_DIR_MODE);
-}
-
-function writePrivateFile(filePath, content) {
-  fs.writeFileSync(filePath, content, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
-  bestEffortChmod(filePath, PRIVATE_FILE_MODE);
-}
+const DEFAULT_MAX_JSONL_LINE_BYTES = 16 * 1024 * 1024;
+const JSONL_READ_CHUNK_BYTES = 64 * 1024;
 
 // Merge `fields` into `target` while stripping keys that can mutate the
 // prototype chain. Mailbox rows are persisted as JSONL and rebuilt on
@@ -107,22 +99,117 @@ function safeParse(payload) {
 // Windows NTFS provides the same atomicity guarantee for O_APPEND writes to
 // regular files that POSIX local filesystems do, so the removal above is
 // equally valid on Windows. No platform-specific code is needed here.
+function jsonlLineForWrite(obj, opts = {}) {
+  const line = JSON.stringify(obj) + '\n';
+  const maxLineBytes = Math.max(1, Math.floor(Number(opts.maxLineBytes) || resolveMaxJsonlLineBytes()));
+  const lineBytes = Buffer.byteLength(line, 'utf8');
+  if (lineBytes > maxLineBytes) {
+    const err = new Error(`mailbox JSONL line is ${lineBytes} bytes; maximum is ${maxLineBytes} bytes`);
+    err.code = 'MAILBOX_JSONL_LINE_TOO_LARGE';
+    err.lineBytes = lineBytes;
+    err.maxLineBytes = maxLineBytes;
+    throw err;
+  }
+  return line;
+}
+
 function appendLine(filePath, obj) {
-  fs.appendFileSync(filePath, JSON.stringify(obj) + '\n', { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
+  const line = jsonlLineForWrite(obj);
+  fs.appendFileSync(filePath, line, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
   bestEffortChmod(filePath, PRIVATE_FILE_MODE);
 }
 
-function readLines(filePath) {
-  if (!fs.existsSync(filePath)) return [];
-  const content = fs.readFileSync(filePath, 'utf8');
-  const lines = content.split('\n');
-  const results = [];
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    try { results.push(JSON.parse(trimmed)); } catch { /* skip corrupt lines */ }
+function resolveMaxJsonlLineBytes(env = process.env) {
+  const raw = Number(env.EVOMAP_MAILBOX_MAX_LINE_BYTES);
+  if (Number.isFinite(raw) && raw > 0) return Math.floor(raw);
+  return DEFAULT_MAX_JSONL_LINE_BYTES;
+}
+
+function forEachJsonLine(filePath, onRow, opts = {}) {
+  const stats = { parsed: 0, corrupt: 0, overlong: 0 };
+  if (!fs.existsSync(filePath)) return stats;
+
+  const maxLineBytes = Math.max(1, Math.floor(Number(opts.maxLineBytes) || resolveMaxJsonlLineBytes()));
+  const chunk = Buffer.allocUnsafe(JSONL_READ_CHUNK_BYTES);
+  let fd = null;
+  let parts = [];
+  let lineBytes = 0;
+  let dropping = false;
+
+  const resetLine = () => {
+    parts = [];
+    lineBytes = 0;
+    dropping = false;
+  };
+
+  const appendSegment = (segment) => {
+    if (!segment || segment.length === 0 || dropping) return;
+    if (lineBytes + segment.length > maxLineBytes) {
+      parts = [];
+      lineBytes = 0;
+      dropping = true;
+      return;
+    }
+    parts.push(Buffer.from(segment));
+    lineBytes += segment.length;
+  };
+
+  const finishLine = (hasNewline = false) => {
+    const totalLineBytes = lineBytes + (hasNewline ? 1 : 0);
+    if (dropping) {
+      stats.overlong += 1;
+      resetLine();
+      return;
+    }
+    if (totalLineBytes > maxLineBytes) {
+      stats.overlong += 1;
+      resetLine();
+      return;
+    }
+    if (lineBytes === 0) {
+      resetLine();
+      return;
+    }
+    const trimmed = Buffer.concat(parts, lineBytes).toString('utf8').trim();
+    resetLine();
+    if (!trimmed) return;
+    try {
+      onRow(JSON.parse(trimmed));
+      stats.parsed += 1;
+    } catch {
+      stats.corrupt += 1;
+    }
+  };
+
+  try {
+    fd = fs.openSync(filePath, 'r');
+    while (true) {
+      const bytesRead = fs.readSync(fd, chunk, 0, chunk.length, null);
+      if (bytesRead <= 0) break;
+      let start = 0;
+      for (let i = 0; i < bytesRead; i++) {
+        if (chunk[i] !== 0x0a) continue;
+        appendSegment(chunk.subarray(start, i));
+        finishLine(true);
+        start = i + 1;
+      }
+      if (start < bytesRead) appendSegment(chunk.subarray(start, bytesRead));
+    }
+    finishLine();
+  } catch (err) {
+    stats.read_failed = 1;
+    const detail = err && err.message ? err.message : String(err);
+    const wrapped = new Error(`failed to read mailbox JSONL ${filePath}: ${detail}`);
+    wrapped.code = 'MAILBOX_JSONL_READ_FAILED';
+    wrapped.stats = stats;
+    wrapped.cause = err;
+    throw wrapped;
+  } finally {
+    if (fd !== null) {
+      try { fs.closeSync(fd); } catch { /* ignore close errors */ }
+    }
   }
-  return results;
+  return stats;
 }
 
 // --- In-memory index that backs JSONL persistence ---
@@ -150,19 +237,21 @@ class MailboxStore {
   }
 
   _loadState() {
-    try {
-      if (fs.existsSync(this._stateFile)) {
-        this._state = JSON.parse(fs.readFileSync(this._stateFile, 'utf8'));
-      }
-    } catch {
-      this._state = {};
-    }
+    this._state = readMailboxStateFile(this._stateFile) || {};
     const existingVersion = this._state._schema_version || 0;
+    const beforeMigrationState = { ...this._state };
     if (existingVersion < SCHEMA_VERSION) {
       this._runMigrations(existingVersion, SCHEMA_VERSION);
     }
     this._state._schema_version = SCHEMA_VERSION;
-    this._persistState();
+    const updatedKeys = new Set(['_schema_version']);
+    for (const key of Object.keys(this._state)) {
+      if (this._state[key] !== beforeMigrationState[key]) updatedKeys.add(key);
+    }
+    for (const key of Object.keys(beforeMigrationState)) {
+      if (!Object.prototype.hasOwnProperty.call(this._state, key)) updatedKeys.add(key);
+    }
+    this._persistState(updatedKeys);
   }
 
   _runMigrations(fromVersion, toVersion) {
@@ -174,9 +263,7 @@ class MailboxStore {
     }
   }
 
-  _persistState() {
-    const dir = path.dirname(this._stateFile);
-    ensurePrivateDir(dir);
+  _persistState(updatedKeys) {
     // Round-7 (§20.5): per-PID tmp path. Two evolver processes (daemon +
     // ad-hoc CLI / proxy + loop) writing to the same `${stateFile}.tmp`
     // would otherwise interleave: process B's writeFileSync truncates
@@ -186,20 +273,11 @@ class MailboxStore {
     // load-bearing trigger for the "401-loop -> reauth backoff -> dead
     // for 30 min..4 h" symptom this branch targets. Matches the
     // precedent set by _persistNodeSecret in src/gep/a2aProtocol.js.
-    const tmp = `${this._stateFile}.${process.pid}.tmp`;
-    writePrivateFile(tmp, JSON.stringify(this._state, null, 2) + '\n');
-    // Windows: fs.renameSync throws EPERM when the destination file already
-    // exists, unlike POSIX where rename(2) atomically replaces the target.
-    // Remove the destination first so the rename succeeds on all platforms.
-    // The window between unlink and rename is intentionally tiny; a crash in
-    // that window leaves the tmp file behind (recovered on next _persistState).
-    if (process.platform === 'win32') {
-      try { fs.unlinkSync(this._stateFile); } catch (e) {
-        if (e.code !== 'ENOENT') throw e;
-      }
-    }
-    fs.renameSync(tmp, this._stateFile);
-    bestEffortChmod(this._stateFile, PRIVATE_FILE_MODE);
+    //
+    // Use the shared merge helper so stale long-running stores cannot
+    // resurrect an older node_secret tuple after another path rotates or clears
+    // it directly on disk.
+    this._state = writeMergedMailboxStateFile(this._stateFile, this._state, updatedKeys);
   }
 
   _rebuildIndex() {
@@ -208,17 +286,20 @@ class MailboxStore {
     this._inbound = [];
 
     const TERMINAL = new Set(['synced', 'delivered', 'failed', 'rejected']);
-    const rows = readLines(this._messagesFile);
-    for (const rawRow of rows) {
+    const stats = forEachJsonLine(this._messagesFile, (rawRow) => {
       const row = sanitizeRow(rawRow);
+      if (!row || typeof row !== 'object') return;
       if (row._op === 'update') {
         const existing = this._messages.get(row.id);
         if (existing) safeAssign(existing, row.fields);
-        continue;
+        return;
       }
+      if (!row.id) return;
       this._messages.set(row.id, row);
-    }
+    });
+    this._lastRebuildStats = stats;
     for (const [id, msg] of this._messages) {
+      if (!msg || typeof msg !== 'object') continue;
       if (TERMINAL.has(msg.status)) continue;
       if (msg.direction === 'outbound') this._outbound.push(id);
       else if (msg.direction === 'inbound') this._inbound.push(id);
@@ -430,8 +511,9 @@ class MailboxStore {
   }
 
   setCursor(key, value) {
-    this._state[`cursor:${key}`] = value;
-    this._persistState();
+    const stateKey = `cursor:${key}`;
+    this._state[stateKey] = value;
+    this._persistState([stateKey]);
   }
 
   getState(key) {
@@ -441,7 +523,20 @@ class MailboxStore {
 
   setState(key, value) {
     this._state[key] = typeof value === 'string' ? value : JSON.stringify(value);
-    this._persistState();
+    this._persistState([key]);
+  }
+
+  setNodeSecretState({ secret = '', version = '', source = '', envSuppressed = '' } = {}) {
+    this._state.node_secret = secret;
+    this._state.node_secret_version = version ? String(version) : '';
+    this._state.node_secret_source = source;
+    this._state.node_secret_env_suppressed = envSuppressed;
+    this._persistState([
+      'node_secret',
+      'node_secret_version',
+      'node_secret_source',
+      'node_secret_env_suppressed',
+    ]);
   }
 
   // --- Compaction (reduces JSONL file size by rewriting only current state) ---
@@ -457,11 +552,16 @@ class MailboxStore {
     }
     entries.sort((a, b) => a.created_at - b.created_at);
 
+    const lines = entries.map((msg) => jsonlLineForWrite(msg));
+
     const fd = fs.openSync(tmpFile, 'w', PRIVATE_FILE_MODE);
-    for (const msg of entries) {
-      fs.writeSync(fd, JSON.stringify(msg) + '\n');
+    try {
+      for (const line of lines) {
+        fs.writeSync(fd, line);
+      }
+    } finally {
+      fs.closeSync(fd);
     }
-    fs.closeSync(fd);
     bestEffortChmod(tmpFile, PRIVATE_FILE_MODE);
     // Windows: renameSync throws EPERM when the destination already exists.
     // Remove it first so the swap succeeds on all platforms.

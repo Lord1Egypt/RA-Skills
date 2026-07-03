@@ -1,0 +1,7 @@
+interface:
+  display_name: "Slack Block Kit"
+  short_description: "Build rich native Slack layouts"
+  default_prompt: "Use $slack-block-kit to create a native Slack Block Kit message with tables, buttons, or structured blocks."
+
+policy:
+  allow_implicit_invocation: true

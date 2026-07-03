@@ -63,6 +63,12 @@ def parse_csv_line(line: str) -> dict:
     parts = parts[:6]
 
     try:
+        # 校验日期格式
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', parts[0]):
+            return None
+        # 校验类型
+        if parts[1] not in {"收入", "支出"}:
+            return None
         return {
             "date": parts[0],
             "type": parts[1],

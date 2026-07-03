@@ -73,40 +73,40 @@
 
 ```bash
 # 自动擦除中下部字幕（模板 101，必须显式指定）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 101
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 101
 
 # 去字幕并提取OCR字幕（模板 102）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 102
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 102
 
 # 去水印-高级版（模板 201）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 201
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 201
 
 # 人脸模糊（模板 301）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 301
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 301
 
 # 人脸和车牌模糊（模板 302）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 302
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 302
 
 # 强力擦除（区域模型，适合花体/阴影字幕）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --model area
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --model area
 
 # 使用区域预设 — 字幕在上半屏
-python scripts/mps_erase.py --url https://example.com/video.mp4 --position top-half
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --position top-half
 
 # 使用区域预设 — 字幕在下半屏
-python scripts/mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
 # 自定义区域（画面顶部 0-25% 区域）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
 # 多区域擦除（顶部 + 底部都有字幕）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
 # 去字幕 + OCR 提取 + 翻译为英文（必须用 --template 102）
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 102 --translate en
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 102 --translate en
 
 # 查询已有任务结果
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
 
 # 查询任务并下载结果到本地
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SEO Blog Article Generator Output",
+  "type": "object",
+  "required": ["article_en", "seo_keywords", "seo_description", "chinese_summary", "article_zh"],
+  "properties": {
+    "article_en": {
+      "type": "string",
+      "description": "英文正文，纯文本，包含：文章标题、4-6段正文（每段前有二级小标题单独成行）、3个Q&A，800-1200单词，关键词密度2%-5%，禁止Markdown和HTML"
+    },
+    "seo_keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 5,
+      "maxItems": 5,
+      "description": "5个SEO关键词，含核心词、长尾词、语义相关词"
+    },
+    "seo_description": {
+      "type": "string",
+      "description": "SEO描述，约60个英文单词，含核心关键词和行动引导"
+    },
+    "chinese_summary": {
+      "type": "string",
+      "description": "中文总结，一段话概括全文核心内容"
+    },
+    "article_zh": {
+      "type": "string",
+      "description": "article_en 的完整中文翻译，保持结构一致，纯文本"
+    }
+  }
+}

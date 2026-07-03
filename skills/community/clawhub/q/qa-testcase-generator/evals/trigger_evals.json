@@ -1,0 +1,82 @@
+[
+  {
+    "query": "产品经理刚发了我一份用户管理系统的需求文档（tests/test_requirements.md），里面有注册登录和权限管理的功能描述，帮我生成完整的测试用例 Excel 文件，按业务域分组给我",
+    "should_trigger": true
+  },
+  {
+    "query": "我这边有个电商系统的 Word 设计文档，需要从里面提取功能点生成测试用例表格，输出 xlsx 格式，要覆盖所有业务分支和异常场景",
+    "should_trigger": true
+  },
+  {
+    "query": "take a look at this API spec and generate test cases for all the endpoints, output as excel with request params and expected responses",
+    "should_trigger": true
+  },
+  {
+    "query": "我有张流程图截图（审批流程.png），里面画了请假审批的每个分支节点，帮我分析这张图生成对应的测试用例，要覆盖每个判断路径",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这份 PDF 需求文档转成测试用例，要包含功能测试、安全性测试和性能测试，输出到 output/ 目录下",
+    "should_trigger": true
+  },
+  {
+    "query": "写一下这个系统的测试用例吧，需求在 requirements.md 里，系统有用户模块、订单模块和支付模块，状态流转比较复杂",
+    "should_trigger": true
+  },
+  {
+    "query": "我们新项目要开始写测试了，PRD 文档在 confluence 上我导出成了 PDF（product_requirements.pdf），帮我分析后生成结构化的测试用例表，每个功能模块分开，优先级标清楚",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我根据这份接口文档补充接口测试用例，重点是参数校验、边界值和各种异常返回码的场景，输出到 Excel 里",
+    "should_trigger": true
+  },
+  {
+    "query": "ok so my boss wants me to create test cases for the order system based on the flow chart she drew, its in my downloads called order_flow.png, can you look at it and make an excel with all the paths covered?",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我生成测试用例，需求在 design_spec.docx 里，包含用户注册、商品管理和支付退款三大模块，需要输出 Excel 并在每个模块之间用分隔行区分开",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我写一套 Selenium 自动化测试脚本，基于这个测试用例 Excel 来生成，用 Python 和 pytest",
+    "should_trigger": false
+  },
+  {
+    "query": "写一个登录功能的自动化测试，用 playwright 实现，测试用例写在代码里就行",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我跑一下这些测试用例，看看哪些通过了哪些失败了，给个测试报告",
+    "should_trigger": false
+  },
+  {
+    "query": "把这个 CSV 数据导进去，跑个回归测试看看有没有 regressions",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这个 bug report 整理一下，按严重程度排个序，输出成 Excel",
+    "should_trigger": false
+  },
+  {
+    "query": "写一个 Docker Compose 文件来部署这个测试环境，MySQL + Redis + 应用服务",
+    "should_trigger": false
+  },
+  {
+    "query": "分析一下 production 环境的日志，找出错误率最高的几个接口，输出成报告",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写个 SQL 查询，统计这个月每个用户的订单数量和总金额",
+    "should_trigger": false
+  },
+  {
+    "query": "这个 API 响应时间太慢了，帮我做一下性能分析和优化建议",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这个 Jenkins pipeline 配置写一下，要包含构建、测试、部署三个阶段",
+    "should_trigger": false
+  }
+]

@@ -7,13 +7,13 @@
 
 用法：
   # 最简用法（local-file 省略时自动使用 ./<cos-input-key 文件名>）
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
 
   # 手动指定 local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # 指定 bucket 和 region（覆盖环境变量）
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
 
 环境变量：
@@ -23,6 +23,7 @@
   TENCENTCLOUD_COS_REGION  - COS Bucket 区域（必需）
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import os
 import sys
@@ -32,11 +33,6 @@ _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
 
 try:
-    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
-    _LOAD_ENV_AVAILABLE = True
-except ImportError:
-    _LOAD_ENV_AVAILABLE = False
-try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
@@ -45,7 +41,7 @@ except ImportError:
 try:
     from qcloud_cos import CosConfig, CosS3Client
 except ImportError:
-    print("错误：未安装腾讯云 COS SDK。请运行：pip install cos-python-sdk-v5", file=sys.stderr)
+    print("错误：未安装腾讯云 COS SDK。请运行：python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
     sys.exit(1)
 
 
@@ -57,14 +53,14 @@ def parse_args():
         epilog="""
 示例：
   # 最简用法：省略 --local-file，自动保存为 ./<文件名>
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
   # 等价于：--local-file ./result.mp4
 
   # 手动指定 local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # 指定 bucket 和 region
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
         """
     )

@@ -32,7 +32,8 @@ from .payment_flow_with_status import create_order_and_show_payment_with_status
 
 def get_package_by_id(package_id):
     """根据套餐ID获取套餐信息"""
-    packages = get_selectable_packages()
+    from .package_config import get_display_packages
+    packages = get_display_packages()
     for pkg in packages:
         if pkg.get("id") == package_id:
             return pkg
@@ -49,9 +50,13 @@ def main():
         print(f"    python {sys.argv[0]} <套餐编号>")
         print()
         print("可选套餐：")
-        packages = get_selectable_packages()
+        from .package_config import get_display_packages
+        packages = get_display_packages()
         for pkg in packages:
-            print(f"    {pkg['id']} = {pkg['name']} (¥{pkg['amount']}, {pkg['uses']}次)")
+            if pkg.get('contact_only'):
+                print(f"    {pkg['id']} = {pkg['name']} ({pkg['amount']}, {pkg['uses']}) - 联系客服定制")
+            else:
+                print(f"    {pkg['id']} = {pkg['name']} (¥{pkg['amount']}, {pkg['uses']}次)")
         print()
         print("示例：")
         print(f"    python {sys.argv[0]} 0  # 选择测试套餐")
@@ -69,6 +74,13 @@ def main():
     package = get_package_by_id(package_id)
     if not package:
         print(f"❌ 未找到编号为 {package_id} 的套餐")
+        return 1
+    
+    if package.get('contact_only'):
+        print(f"📞 您选择了定制套餐：{package['name']}")
+        print(f"💡 定制套餐需要联系客服处理")
+        print(f"📧 联系邮箱：product@lifeemergence.com")
+        print(f"💬 联系备注：{package['remark']}")
         return 1
 
     print()

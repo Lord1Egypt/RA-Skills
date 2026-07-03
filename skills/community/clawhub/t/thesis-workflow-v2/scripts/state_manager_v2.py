@@ -551,6 +551,35 @@ def init_orchestrate_state(paper_name: str) -> Dict[str, Any]:
     return state
 
 
+def reset_orchestrate_state(paper_name: str) -> Dict[str, Any]:
+    """
+    重置编排状态为初始态（P0-1 修复：收到新开题报告时强制重置）
+
+    等价于：删除旧 state 文件 + 重新 init_orchestrate_state()
+    重置后 phase="phase1_1"，phase1_confirmed=False，等用户重新走 Phase 1.1→1.2→1.3
+    """
+    state_path = _get_state_path(paper_name)
+    if os.path.exists(state_path):
+        os.remove(state_path)
+    # init_orchestrate_state 要求 outline_state 已存在，重置前先检查
+    outline_state = outline_load(paper_name)
+    if outline_state:
+        # outline 存在，重置 state（节点数量不变）
+        return init_orchestrate_state(paper_name)
+    else:
+        # outline 也不存在，返回空 state，等待 Phase 1.1 重建
+        empty_state = {
+            "paper_name": paper_name,
+            "phase": "phase1_1",
+            "phase1_confirmed": False,
+            "phase1_3_status": "pending",
+            "phase1_3_docx_path": None,
+            "last_updated": datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
+        }
+        save_orchestrate_state(paper_name, empty_state)
+        return empty_state
+
+
 def update_progress(state: Dict[str, Any]) -> Dict[str, Any]:
     """更新进度统计"""
     total = state["progress"]["total"]

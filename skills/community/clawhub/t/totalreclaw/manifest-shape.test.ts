@@ -141,6 +141,101 @@ let manifest: Record<string, unknown>;
   );
 }
 
+{
+  // 1e. (Task 2.8) contracts.tools must be a string array.
+  const tools = (manifest as { contracts?: { tools?: unknown } }).contracts?.tools;
+  assert(Array.isArray(tools), 'manifest contracts.tools is an array');
+  assert(
+    Array.isArray(tools) && tools.every((t) => typeof t === 'string'),
+    'manifest contracts.tools entries are all strings',
+  );
+}
+
+{
+  // 1f. (Task 2.8) The native OpenClaw contract tools `memory_search` and
+  // `memory_get` MUST be declared. Task 2.7 registers them via
+  // `api.registerTool(..., { names: ['memory_search', 'memory_get'] })` in
+  // `registerNativeMemory`. OpenClaw's loader enforces registered⊆declared
+  // (see registry.registerTool → findUndeclaredPluginToolNames): a registered
+  // tool that is NOT in contracts.tools triggers a level:"error" diagnostic
+  // and the registration is silently dropped. So the declaration here is
+  // load-bearing, not cosmetic.
+  const tools = ((manifest as { contracts?: { tools?: string[] } }).contracts?.tools) ?? [];
+  assert(
+    tools.includes('memory_search'),
+    'manifest contracts.tools includes "memory_search" (native contract tool, registered by Task 2.7)',
+  );
+  assert(
+    tools.includes('memory_get'),
+    'manifest contracts.tools includes "memory_get" (native contract tool, registered by Task 2.7)',
+  );
+}
+
+{
+  // 1g. (Task 3.2 — LOCKSTEP GUARD, flipped from Task 2.8) The 17 legacy
+  // `totalreclaw_*` agent-tool names MUST NO LONGER be declared in
+  // contracts.tools. Phase 3.2 retired them: the `api.registerTool(...)`
+  // calls were removed from index.ts AND their contracts.tools entries were
+  // removed from openclaw.plugin.json IN THE SAME COMMIT (the lockstep).
+  //
+  // Why both sides in one commit: OpenClaw's loader enforces
+  // registered⊆declared (registry.registerTool → findUndeclaredPluginToolNames).
+  //   - manifest entry without registration  → dead declaration (noise, not fatal)
+  //   - registration without manifest entry  → level:"error" diagnostic +
+  //     the registration is silently dropped on every boot
+  //   - test guard flipped to `!includes` in the same commit so a future
+  //     half-revert (re-adding either side alone) fails this test loudly.
+  //
+  // (Task 2.8 originally asserted the opposite — `tools.includes(name)` — as
+  // a sequencing guard to prevent a premature half-drop before 3.2 landed.
+  // This is the flip that 2.8's comment promised would happen at 3.2 time.)
+  const tools = ((manifest as { contracts?: { tools?: string[] } }).contracts?.tools) ?? [];
+  const retiredLegacyTools = [
+    'totalreclaw_remember',
+    'totalreclaw_recall',
+    'totalreclaw_forget',
+    'totalreclaw_export',
+    'totalreclaw_status',
+    'totalreclaw_preload_embedder',
+    'totalreclaw_consolidate',
+    'totalreclaw_pin',
+    'totalreclaw_unpin',
+    'totalreclaw_retype',
+    'totalreclaw_set_scope',
+    'totalreclaw_import_from',
+    'totalreclaw_import_batch',
+    'totalreclaw_upgrade',
+    'totalreclaw_migrate',
+    'totalreclaw_pair',
+    'totalreclaw_report_qa_bug',
+  ];
+  for (const name of retiredLegacyTools) {
+    assert(
+      !tools.includes(name),
+      `manifest contracts.tools does NOT include "${name}" (Phase 3.2 retirement — totalreclaw_* agent tools removed)`,
+    );
+  }
+}
+
+{
+  // 1h. (Task 2.8) activation.onStartup === false — the plugin must NOT be
+  // auto-started by the gateway on cold boot; it activates lazily when the
+  // memory slot resolves to it. Mirrors the bundled memory-core manifest
+  // (extensions/memory-core/openclaw.plugin.json). Field shape confirmed via
+  // normalizeManifestActivation in manifest loader (2026.6.8): only
+  // { onStartup: boolean } is consumed here.
+  const activation = (manifest as { activation?: { onStartup?: unknown } }).activation;
+  assert(
+    activation !== undefined && typeof activation === 'object',
+    'manifest has an "activation" object',
+  );
+  assertEq(
+    (activation as { onStartup?: unknown })?.onStartup,
+    false,
+    'manifest activation.onStartup === false (lazy activation, matches memory-core)',
+  );
+}
+
 // ---------------------------------------------------------------------------
 // 2. JS plugin definition assertions (source inspection)
 // ---------------------------------------------------------------------------

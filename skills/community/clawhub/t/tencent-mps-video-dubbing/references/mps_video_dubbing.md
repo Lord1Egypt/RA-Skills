@@ -55,7 +55,7 @@
 
 ## 支持语种（31 种，官方文档声明双向支持翻译）
 
-> 与脚本内的 `SUPPORTED_LANGUAGES` 字典**同源**。运行 `python scripts/mps_video_dubbing.py --list-languages` 可在终端实时查看完整对照表 + 地区分组。
+> 与脚本内的 `SUPPORTED_LANGUAGES` 字典**同源**。运行 `python3 scripts/mps_video_dubbing.py --list-languages` 可在终端实时查看完整对照表 + 地区分组。
 
 | # | 语种 | Code | | # | 语种 | Code | | # | 语种 | Code |
 |:-:|---|:-:|---|:-:|---|:-:|---|:-:|---|:-:|
@@ -94,46 +94,46 @@
 
 ```bash
 # 中→英 OCR 模式 + 预设字幕区域 + 压新字幕 + AI 配音（最常见）
-python scripts/mps_video_dubbing.py -i https://example.com/cn.mp4 \
+python3 scripts/mps_video_dubbing.py -i https://example.com/cn.mp4 \
     --mode ocr --src-lang zh --dst-lang en --burn-subtitle \
     --subtitle-area preset \
     --confirm-charges
 
 # 中→英 OCR 模式 + 自定义字幕区域（顶部 / 竖屏 / 双语对照等）
-python scripts/mps_video_dubbing.py -i https://example.com/cn.mp4 \
+python3 scripts/mps_video_dubbing.py -i https://example.com/cn.mp4 \
     --mode ocr --src-lang zh --dst-lang en --burn-subtitle \
     --subtitle-area custom --subtitle-bbox 53,741,953,922 \
     --confirm-charges
 
 # 本地文件自动上传 + ASR 模式
-python scripts/mps_video_dubbing.py --local-file ./video.mp4 \
+python3 scripts/mps_video_dubbing.py --local-file ./video.mp4 \
     --mode asr --src-lang zh --dst-lang en --burn-subtitle \
     --confirm-charges
 
 # 日→中 ASR + 不压字幕（仅替换配音）
-python scripts/mps_video_dubbing.py -i https://example.com/ja.mp4 \
+python3 scripts/mps_video_dubbing.py -i https://example.com/ja.mp4 \
     --mode asr --src-lang ja --dst-lang zh --no-burn-subtitle \
     --confirm-charges
 
 # COS 路径输入 + 自动下载成品到本地
-python scripts/mps_video_dubbing.py \
+python3 scripts/mps_video_dubbing.py \
     --cos-input-key input/fr_video.mp4 \
     --mode asr --src-lang fr --dst-lang id --burn-subtitle \
     --download-dir ./output/ \
     --confirm-charges
 
 # cos:// URL 输入（自动识别为 CosInputInfo）
-python scripts/mps_video_dubbing.py \
+python3 scripts/mps_video_dubbing.py \
     -i cos://<your-bucket>-<appid>/input/video.mp4 \
     --mode ocr --src-lang zh --dst-lang en --burn-subtitle \
     --subtitle-area preset \
     --confirm-charges
 
 # 交互向导（零配置启动，逐步引导填参数）
-python scripts/mps_video_dubbing.py
+python3 scripts/mps_video_dubbing.py
 
 # 查询已提交任务（单次查询，输出原始 JSON，不计费）
-python scripts/mps_video_dubbing.py --query-task 2600011633-WorkflowTask-xxxxxx
+python3 scripts/mps_video_dubbing.py --query-task 2600011633-WorkflowTask-xxxxxx
 ```
 
 ## 参考文档

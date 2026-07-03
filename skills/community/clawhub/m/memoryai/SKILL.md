@@ -1,7 +1,7 @@
 ---
 name: memoryai
 description: Long-term memory for AI agents. Your AI remembers everything — preferences, decisions, context — across sessions, forever.
-version: 2.1.0
+version: 2.4.0
 metadata: {"openclaw": {"emoji": "🧠", "requires": {"bins": ["python3"], "env": ["HM_API_KEY"]}, "primaryEnv": "HM_API_KEY"}}
 ---
 
@@ -50,6 +50,12 @@ python {baseDir}/scripts/memory.py bootstrap "working on payment feature"
 ```
 Returns identity + mood + context in ~800 tokens. Ready to work immediately.
 
+### Track a message (keeps context healthy)
+```bash
+python {baseDir}/scripts/memory.py track "message content" --role user
+```
+Call on every user/assistant message. The brain keeps your context healthy automatically and lets you know when it's time to save and start fresh. See "Context Guard" below.
+
 ### Check brain health
 ```bash
 python {baseDir}/scripts/memory.py health
@@ -71,7 +77,7 @@ Returns cognitive profile: persona, mood, goals, entities, procedures.
 | Trigger | Command |
 |---------|---------|
 | Start of session | `bootstrap` |
-| Every user message | `track` (rolling session — auto context management) |
+| Every user message | `track` (keeps context healthy automatically) |
 | User says "remember this" | `store` with appropriate type |
 | Need past context | `recall` |
 | Decision made | `store --type decision` |
@@ -79,34 +85,19 @@ Returns cognitive profile: persona, mood, goals, entities, procedures.
 | End of session | `save` with session summary |
 | User seems different | `profile` to check mood/state |
 
-## Context Guard + Rolling Session (Auto)
+## Context Guard (Auto)
 
-MemoryAI tự bảo vệ context window và duy trì bộ nhớ liên tục. Bot chỉ cần tạo 1 cron.
+MemoryAI protects your context window and keeps memory continuous across a long conversation. You don't manage any of this — the brain handles it.
 
-### Setup (1 lần khi cài skill):
+### How to use it:
 
-Tạo cron job:
-- **Name:** `memoryai`
-- **Schedule:** every 5 minutes (`everyMs: 300000`)
-- **Session:** `isolated`
-- **Delivery:** `none`
-- **Payload:**
-```
-Run: python {baseDir}/scripts/memory.py sync
-Reply NO_REPLY.
-```
+1. **Session start:** call `bootstrap` once to wake up with full context (~800 tokens).
+2. **Every message:** call `track`. The brain keeps context healthy on its own.
+3. **When `track` says to save:** call `save` with a short summary. The brain persists everything and gives you a clean slate to continue.
 
-### How it works (bot không cần biết):
-1. Cron mỗi 5 phút đọc context tokens + transcript messages
-2. Gửi lên server (1 HTTP call)
-3. Server tự quyết định: safe / warning / compact / rotate
-4. Khi rotate → bot spawn session mới, server compress session cũ
-5. Sau vài lần compact → server auto-activate rolling (quản lý hoàn toàn)
+That's the whole loop: `bootstrap` → `track` each message → `save` when prompted. No cron jobs, no manual tuning.
 
-### Manual check:
-```bash
-python {baseDir}/scripts/memory.py sync
-```
+> **Note:** Older versions used a periodic background command. That approach is retired — just use the per-message flow above. If you set up a recurring `sync` job before, remove it; it's no longer needed.
 
 ## Rules
 

@@ -1,0 +1,16 @@
+{
+  "name": "sql-buddy",
+  "version": "1.0.0",
+  "description": "Convert natural language to SQL, explore database schemas, execute queries safely, and get optimization suggestions. Supports SQLite, PostgreSQL, MySQL, and SQL Server.",
+  "keywords": [
+    "sql",
+    "database",
+    "natural-language",
+    "query-generator",
+    "schema-explorer",
+    "query-optimizer",
+    "developer-tools"
+  ],
+  "author": "Haidong + AI Agents",
+  "license": "MIT-0"
+}

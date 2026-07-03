@@ -221,6 +221,89 @@ def test_render_format_conversion():
         assert img.format == "JPEG"
     print("Format Conversion verified successfully (saved as JPEG)!")
 
+def test_sequence_and_relative_compositing():
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    test_blend = os.path.join(repo_root, "assets", "test.blend")
+    output_dir = os.path.join(repo_root, "output", "seq_test")
+    
+    if os.path.exists(output_dir):
+        shutil.rmtree(output_dir)
+        
+    if not os.path.exists(test_blend):
+        print("ERROR: Could not find test.blend. Skipping seq test.")
+        return
+
+    analysis = analyze_blend(test_blend)
+    assert analysis["status"] == "success"
+    value_nodes = analysis["parameters"]["value_nodes"]
+    assert "AgentControl" in value_nodes
+    mat_name = value_nodes["AgentControl"]["material"]
+
+    randomizations = [
+        {
+            "type": "value_node",
+            "target": mat_name,
+            "sub_target": "AgentControl",
+            "distribution": "sequence",
+            "range": [0.1, 0.5, 0.9]
+        }
+    ]
+    
+    res = render_procedural_dataset(
+        blend_file=test_blend,
+        output_dir=output_dir,
+        num_images=3,
+        randomizations=randomizations,
+        engine="EEVEE"
+    )
+    print("Render Sequence Dataset Result:", json.dumps(res, indent=2))
+    assert res["status"] == "success"
+    assert os.path.exists(output_dir)
+    
+    for idx in range(3):
+        assert os.path.exists(os.path.join(output_dir, f"{idx}.png"))
+
+def test_plaque_plate_rendering():
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    blend_file = os.path.join(repo_root, "assets", "plaque_plate.blend")
+    output_dir = os.path.join(repo_root, "output", "plaque_plate_test")
+    
+    if os.path.exists(output_dir):
+        shutil.rmtree(output_dir)
+        
+    if not os.path.exists(blend_file):
+        print("ERROR: Could not find plaque_plate.blend. Skipping.")
+        return
+
+    randomizations = [
+        {
+            "type": "modifier_input",
+            "target": "Dye",
+            "sub_target": "GeometryNodes.001",
+            "property": "Socket_15",
+            "distribution": "sequence",
+            "range": [True, False]
+        }
+    ]
+    
+    res = render_procedural_dataset(
+        blend_file=blend_file,
+        output_dir=output_dir,
+        num_images=2,
+        randomizations=randomizations,
+        engine="CYCLES",
+        samples=2,
+        timeout=300
+    )
+    print("Plaque Plate Result:", json.dumps(res, indent=2))
+    assert res["status"] == "success"
+    
+    for i in range(2):
+        assert os.path.exists(os.path.join(output_dir, f"{i}.png"))
+        assert os.path.exists(os.path.join(output_dir, "images", f"{i}.png"))
+        assert os.path.exists(os.path.join(output_dir, "masks", "well_masks", f"{i}.png"))
+        assert os.path.exists(os.path.join(output_dir, "masks", "plaque_masks", f"{i}.png"))
+
 if __name__ == "__main__":
     test_blender_skill()
     test_render_procedural_scene()
@@ -228,4 +311,6 @@ if __name__ == "__main__":
     test_analyze_dataset()
     test_render_procedural_dataset()
     test_render_format_conversion()
+    test_sequence_and_relative_compositing()
+    test_plaque_plate_rendering()
 

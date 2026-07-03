@@ -1,3 +1,14 @@
+---
+name: jin10-news
+description: "提供金十金融快讯及详情，支持本地秒开快讯浏览和对港股、恒生科技及相关个股的深度影响分析。"
+source: ClawHub
+version: 1.0.2
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 金十快讯
+
 # SKILL.md - 金十快讯技能
 
 ## 功能

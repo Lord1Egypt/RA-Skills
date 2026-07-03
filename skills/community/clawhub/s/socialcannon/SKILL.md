@@ -5,7 +5,7 @@ description: >
   Instagram, LinkedIn, TikTok, and YouTube. Content calendar with gap analysis,
   A/B testing, engagement inbox, AI content repurposing, optimal timing
   suggestions, auto-scheduling, and UTM tracking.
-version: 1.8.0
+version: 1.8.3
 metadata:
   openclaw:
     requires:
@@ -480,6 +480,8 @@ All content is humanized automatically to remove AI writing patterns. Trusted cl
 
 > **Not available for TikTok.** A/B-test variants carry only content + media, so they can't set the per-post privacy level TikTok requires. A TikTok account is rejected with `400` and `code: "PLATFORM_UNSUPPORTED"` — publish individual posts to TikTok instead.
 
+> **Not available for LinkedIn.** LinkedIn is currently publish-only (no post analytics), so a winner could never be determined. A LinkedIn account is rejected with `400` and `code: "PLATFORM_UNSUPPORTED"` — publish individual posts to LinkedIn instead.
+
 ### Create a test
 
 ```bash
@@ -700,7 +702,7 @@ Four tiers. Twitter/X is the only platform with a per-post API cost passed throu
 ### Free — $0
 - 2 connected accounts
 - 10 posts per billing period
-- **3 Twitter/X posts per billing period** (thread items count individually)
+- **1 Twitter/X post per billing period** (a taster — thread items count individually)
 - 2 scheduled posts at a time
 - 3 media uploads per billing period
 - 2-item threads, 5 tracked links

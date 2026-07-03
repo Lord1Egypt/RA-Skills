@@ -6,12 +6,17 @@
 'use strict';
 
 const crypto = require('crypto');
-const { buildHubHeaders, getHubUrl, getNodeId } = require('../a2aProtocol');
+const { buildHubHeaders, buildNodeScopedHubHeaders, getHubUrl, getNodeId } = require('../a2aProtocol');
 const { hubFetch } = require('../hubFetch');
 const { captureEnvFingerprint } = require('../envFingerprint');
 const { resolveHubUrl: resolveDefaultHubUrl } = require('../../config');
 
 const REPORT_TIMEOUT_MS = Number(process.env.EVOLVER_VALIDATOR_REPORT_TIMEOUT_MS) || 10_000;
+
+function buildValidatorReportHeaders() {
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
+  return buildHeaders();
+}
 
 // Per-command stderr/stdout tail bundled into the report. Bounded so a noisy
 // validator cannot blow up the Hub's a2a/report payload size.
@@ -175,7 +180,7 @@ async function submitReport(payload) {
   try {
     const res = await hubFetch(url, {
       method: 'POST',
-      headers: buildHubHeaders(),
+      headers: buildValidatorReportHeaders(),
       body: JSON.stringify(msg),
       signal: controller.signal,
     });

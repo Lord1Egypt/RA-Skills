@@ -1,21 +1,14 @@
 #!/usr/bin/env python3
 """
 Convert HTML resume to PDF format.
-Uses browser-based rendering for high-quality output.
+Uses Playwright/Chromium for high-quality output.
 """
 
 import sys
 import argparse
 from pathlib import Path
+from urllib.parse import urlsplit
 
-# Try to import pdfkit (wkhtmltopdf wrapper) for simplicity
-try:
-    import pdfkit
-    HAS_PDFKIT = True
-except ImportError:
-    HAS_PDFKIT = False
-
-# Fallback: use Playwright for modern rendering
 try:
     from playwright.sync_api import sync_playwright
     HAS_PLAYWRIGHT = True
@@ -24,23 +17,16 @@ except ImportError:
 
 
 PDF_MARGIN = "10mm"
+ALLOWED_RESOURCE_SCHEMES = {"file", "data"}
 
 
-def convert_with_pdfkit(html_path, output_path):
-    """Convert HTML to PDF using pdfkit/wkhtmltopdf."""
-    options = {
-        'page-size': 'A4',
-        'margin-top': PDF_MARGIN,
-        'margin-right': PDF_MARGIN,
-        'margin-bottom': PDF_MARGIN,
-        'margin-left': PDF_MARGIN,
-        'encoding': 'UTF-8',
-        'no-outline': None,
-        'enable-local-file-access': None
-    }
-
-    pdfkit.from_file(html_path, output_path, options=options)
-    return True
+def block_external_requests(route):
+    """Allow only local file/data resources during PDF rendering."""
+    parsed = urlsplit(route.request.url)
+    if parsed.scheme.lower() in ALLOWED_RESOURCE_SCHEMES:
+        route.continue_()
+        return
+    route.abort()
 
 
 def convert_with_playwright(html_path, output_path):
@@ -48,6 +34,7 @@ def convert_with_playwright(html_path, output_path):
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
+        page.route("**/*", block_external_requests)
 
         # Load HTML file
         html_url = f"file://{Path(html_path).absolute()}"
@@ -70,6 +57,15 @@ def convert_with_playwright(html_path, output_path):
     return True
 
 
+def print_install_instructions():
+    """Print the supported PDF export dependency installation steps."""
+    print("Error: Playwright is required for PDF conversion.")
+    print("Install it with:")
+    print("  pip install playwright==1.60.0")
+    print("  playwright install chromium")
+    print("  PDF rendering blocks external network requests by design.")
+
+
 def main():
     parser = argparse.ArgumentParser(description='Convert HTML resume to PDF')
     parser.add_argument('html_file', help='Path to HTML resume file')
@@ -83,32 +79,17 @@ def main():
 
     print(f"Converting {args.html_file} to PDF...")
 
-    success = False
+    if not HAS_PLAYWRIGHT:
+        print_install_instructions()
+        sys.exit(1)
 
-    # Prefer Playwright — modern Chromium rendering matches the on-screen HTML
-    # much more faithfully than wkhtmltopdf (flexbox, gap, backdrop-filter, etc.).
-    if HAS_PLAYWRIGHT:
-        try:
-            print("Using Playwright (Chromium)...")
-            success = convert_with_playwright(args.html_file, args.output_pdf)
-        except Exception as e:
-            print(f"Playwright failed: {e}")
-            success = False
-
-    # Fallback to pdfkit (lighter dependency, but older box-model renderer)
-    if not success and HAS_PDFKIT:
-        try:
-            print("Falling back to pdfkit (wkhtmltopdf)...")
-            success = convert_with_pdfkit(args.html_file, args.output_pdf)
-        except Exception as e:
-            print(f"pdfkit failed: {e}")
-            success = False
-
-    if not success:
-        print("Error: No PDF conversion tool available.")
-        print("Install one of:")
-        print("  - pdfkit: pip install pdfkit && brew install wkhtmltopdf")
-        print("  - playwright: pip install playwright && playwright install chromium")
+    try:
+        print("Using Playwright (Chromium)...")
+        convert_with_playwright(args.html_file, args.output_pdf)
+    except Exception as e:
+        print(f"Playwright PDF conversion failed: {e}")
+        print("Ensure the Chromium browser is installed with:")
+        print("  playwright install chromium")
         sys.exit(1)
 
     print(f"PDF generated: {args.output_pdf}")

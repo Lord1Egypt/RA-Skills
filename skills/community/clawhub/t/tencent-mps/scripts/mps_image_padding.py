@@ -18,49 +18,49 @@ COS 存储约定：
 
 用法：
   # 按宽高比扩图（将图片扩展为 16:9）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --aspect-ratio "16:9"
 
   # 按宽高比扩图（正方形）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --aspect-ratio "1:1"
 
   # 按像素尺寸扩图（指定目标宽高）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --image-width 1280 --image-height 720
 
   # 仅指定目标宽度（高度自适应）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --image-width 1920
 
   # 使用 COS 路径输入
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --cos-input-key "/input/photo.jpg" \\
       --aspect-ratio "4:3"
 
   # 使用本地文件输入（自动上传到 COS）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --local-file "/path/to/image.jpg" \\
       --aspect-ratio "16:9"
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --aspect-ratio "16:9" \\
       --no-wait
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --image-width 1280 --image-height 720 \\
       --dry-run
 
   # 指定输出目录和下载结果
-  python scripts/mps_image_padding.py \\
+  python3 scripts/mps_image_padding.py \\
       --url "https://example.com/image.jpg" \\
       --aspect-ratio "16:9" \\
       --output-dir "/output/my_padding/" \\
@@ -105,7 +105,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -378,6 +378,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 本地文件自动上传到 COS
@@ -443,7 +449,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -457,7 +463,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

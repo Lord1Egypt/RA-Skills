@@ -1,0 +1,12 @@
+{
+  "name": "dana-booking",
+  "version": "1.0.0",
+  "title": "明洞丹雅皮肤科预约助手",
+  "description": "明洞丹雅皮肤科 — 首尔明洞人气皮肤科，提供皮肤管理、激光、注射等医美项目",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

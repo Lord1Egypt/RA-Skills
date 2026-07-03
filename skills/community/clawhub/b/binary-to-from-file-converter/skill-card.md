@@ -1,5 +1,5 @@
 ## Description: <br>
-Converts data between base64, hexadecimal, binary strings, and AgentPMT-hosted file/base64 workflows for upload, inspection, and download tasks. <br>
+Binary To/From File Converter converts data between base64, hexadecimal, and binary representations, and supports file-to-base64 and base64-to-file workflows through AgentPMT-hosted remote tool calls. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to transform encoded payloads, inspect binary or file headers, and create or read temporary cloud-stored files in AgentPMT workflows. <br>
+Developers and agents use this skill to convert payloads among base64, hex, binary strings, and temporary cloud-backed files for API transmission, attachment decoding, file reconstruction, and binary inspection workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Remote conversion and temporary cloud file storage can expose secrets, regulated data, private documents, or other sensitive file contents. <br>
-Mitigation: Send only the minimum content needed and avoid secrets, regulated data, or private documents unless remote AgentPMT processing is explicitly intended. <br>
-Risk: Base64-to-file can return signed URLs that function as temporary shareable download links. <br>
-Mitigation: Treat signed URLs as sensitive, avoid logging or broadly sharing them, and rely on the shortest practical expiration period. <br>
+Risk: Inputs and generated files are processed by AgentPMT-hosted remote conversion services and may be exposed through temporary cloud file links. <br>
+Mitigation: Use the skill only for content that can be sent to AgentPMT; avoid passwords, keys, regulated records, private business documents, and malware samples unless that exposure is acceptable. <br>
+Risk: Temporary signed URLs returned by base64-to-file can provide access to converted files until they expire. <br>
+Mitigation: Choose the shortest practical expiration period, share URLs only with intended recipients, and avoid storing sensitive content through base64-to-file. <br>
+Risk: File-to-base64 returns inline content only up to the documented 10 MB limit. <br>
+Mitigation: Check file size before requesting inline base64 output and use another transfer path for larger files. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/binary-to-from-file-converter) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/binary-to-from-file-converter) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [AgentPMT Overview](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+- [Artifact action schema](artifact/schema.md) <br>
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/binary-to-from-file-converter) <br>
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/binary-to-from-file-converter) <br>
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+- [AgentPMT overview](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+- [AgentPMT main MCP server](https://api.agentpmt.com/mcp/) <br>
+- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [JSON tool responses with encoded strings, file metadata, and temporary signed download URLs; Markdown instructions with JSON request examples.] <br>
+**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with JSON examples and invocation guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [File-to-base64 inline returns are limited to 10 MB; base64-to-file outputs expire in 1-7 days and may include signed URLs.] <br>
+**Other Properties Related to Output:** [Produces action schemas, example request bodies, remote tool invocation guidance, and guidance for handling JSON responses and temporary signed file URLs.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+1.0.1 (source: frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

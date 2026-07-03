@@ -20,7 +20,7 @@ from .config import *
 
 from .skill import skill
 
-from skills.smyx_common.scripts.util import RequestUtil
+from skills.smyx_common.scripts.util import RequestUtil, OpenIdUtil
 
 # 从config导入常量
 SUPPORTED_FORMATS = ConstantEnum.SUPPORTED_FORMATS
@@ -169,10 +169,10 @@ def main():
                         help="置信度阈值，低于该分值不输出，默认 0.5")
     parser.add_argument("--absence-threshold", type=int, default=ConstantEnum.DEFAULT__ABSENCE_THRESHOLD,
                         help="离岗判定阈值，超过该时长(秒)判定为异常离岗，默认 300")
-    parser.add_argument("--open-id", required=True, help="当前用户的OpenID/UserId/用户名/手机号")
+    parser.add_argument("--open-id", required=False, help=argparse.SUPPRESS)
     parser.add_argument("--list", action='store_true', help="显示离岗监测列表清单")
     parser.add_argument("--api-url", help="服务端API地址")
-    parser.add_argument("--api-key", help="API访问密钥（必需）")
+    parser.add_argument("--api-key", help=argparse.SUPPRESS)
     parser.add_argument("--output", help="结果输出文件路径")
     parser.add_argument("--detail", choices=["basic", "standard", "json"],
                         default=ConstantEnum.DEFAULT__OUTPUT_LEVEL,
@@ -183,9 +183,8 @@ def main():
     args = parser.parse_args()
 
     try:
-        if args.open_id:
-            # 设置 Python 进程内的环境变量
-            ConstantEnumBase.CURRENT__OPEN_ID = args.open_id
+        # 初始化内部用户身份；不要求用户输入，也不在帮助信息中展示。
+        OpenIdUtil.resolve_current_open_id(args.open_id, use_current=bool(args.open_id))
 
         # 检查必需参数
         if args.list:

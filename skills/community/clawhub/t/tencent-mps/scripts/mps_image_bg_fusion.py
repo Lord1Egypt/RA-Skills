@@ -17,45 +17,45 @@ COS 存储约定：
 
 用法：
   # 背景融合（主图 + 背景图，等待结果）
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --bg-url "https://example.com/background.jpg"
 
   # 背景融合 + 附加 Prompt
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --bg-url "https://example.com/background.jpg" \\
       --prompt "将背景中的树叶替换为黄色"
 
   # 背景生成（只有主图 + Prompt，无背景图）
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "简约白色大理石桌面，柔和自然光"
 
   # 主图使用 COS 路径输入
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-cos-key "/input/product.jpg" \\
       --bg-url "https://example.com/background.jpg"
 
   # 主图 + 背景图均使用 COS 路径输入
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-cos-key "/input/product.jpg" \\
       --bg-cos-key "/input/background.jpg"
 
   # 背景生成 + 固定随机种子
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "现代简约家居客厅背景" \\
       --random-seed 42
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "简约白色大理石桌面" \\
       --no-wait
 
   # 指定输出格式与尺寸
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "户外草坪，阳光明媚" \\
       --format PNG --image-size 4K
@@ -99,7 +99,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -430,6 +430,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # 命令行传入的 secret 覆盖环境变量
@@ -488,7 +494,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -502,7 +508,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

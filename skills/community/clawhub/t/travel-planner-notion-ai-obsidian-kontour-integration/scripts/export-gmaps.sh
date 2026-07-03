@@ -72,22 +72,6 @@ all_locations = []
 daily_locations = {}
 
 days = data.get("days", data.get("itinerary", []))
-if not days and isinstance(data.get("day_plan_continuity"), dict):
-    continuity_segments = data["day_plan_continuity"].get("segments", [])
-    if isinstance(continuity_segments, list) and continuity_segments:
-        days = [{
-            "day": 1,
-            "locations": [
-                {
-                    "name": segment.get("place", "Stop"),
-                    "lat": segment.get("lat"),
-                    "lng": segment.get("lng"),
-                    "time": segment.get("time_of_day"),
-                }
-                for segment in continuity_segments
-                if isinstance(segment, dict)
-            ]
-        }]
 if not isinstance(days, list):
     raise SystemExit("Invalid input: days/itinerary must be an array")
 days = days[:MAX_DAYS]
@@ -214,22 +198,6 @@ for color, style_id in [("ff0000ff", "day-style-1"), ("ff00ff00", "day-style-2")
     SubElement(icon_style, "scale").text = "1.2"
 
 days = data.get("days", data.get("itinerary", []))
-if not days and isinstance(data.get("day_plan_continuity"), dict):
-    continuity_segments = data["day_plan_continuity"].get("segments", [])
-    if isinstance(continuity_segments, list) and continuity_segments:
-        days = [{
-            "day": 1,
-            "locations": [
-                {
-                    "name": segment.get("place", "Stop"),
-                    "lat": segment.get("lat"),
-                    "lng": segment.get("lng"),
-                    "time": segment.get("time_of_day"),
-                }
-                for segment in continuity_segments
-                if isinstance(segment, dict)
-            ]
-        }]
 if not isinstance(days, list):
     raise SystemExit("Invalid input: days/itinerary must be an array")
 days = days[:MAX_DAYS]

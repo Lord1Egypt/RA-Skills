@@ -33,6 +33,7 @@ Optional arguments:
 - `--pages <n>`: fetch and merge N pages of creator content or creator series.
 - `--all`: continue until `next_page_token` is empty; there is no default item or page cap.
 - `--max-items <n>`: stop after collecting N creator content or series items.
+- `--since-days <1-365>`: keep only creator content whose public `publish_time` is within the last N days. When `--pages` is omitted, the CLI continues creator content lists until the publish-time boundary is reached.
 - `--pretty`: output formatting only.
 - Weibo `--user-id <user_id>`: preferred when the creator user_id is already known.
 - Weibo `--profile-url <profile_url_or_share_text>`: use for a profile URL, short link, or profile share text.
@@ -43,7 +44,7 @@ The command prints JSON with `platform`, `tool`, `arguments`, and `data`. Multi-
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 

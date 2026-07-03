@@ -1,6 +1,6 @@
 {
   "name": "yunshi",
-  "version": "1.2.6",
+  "version": "1.3.0",
   "description": "All-in-one Chinese fortune-telling — BaZi (Four Pillars), ZiWei DouShu, QiMen DunJia, I Ching (Meihua + LiuYao), feng shui, marriage compatibility, plus daily horoscope push to Telegram/Feishu. Built on iztro + lunar-typescript, no external API.",
   "keywords": [
     "Chinese astrology",
@@ -46,7 +46,7 @@
     "qimen": "node scripts/qimen.js",
     "fengshui": "node scripts/fengshui.js",
     "zhuanshi": "node scripts/zhuanshi.js",
-    "profile": "node scripts/profile.js"
+    "push": "node scripts/push-toggle.js"
   },
   "directories": {
     "scripts": "scripts",

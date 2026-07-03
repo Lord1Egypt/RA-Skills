@@ -65,51 +65,51 @@ Applicable scenarios: AI drama storyboard splitting, comic panel splitting, long
 
 ```bash
 # Simplest usage: AI drama storyboard split (default parameters)
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg"
 
 # Comic panel split
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/manga_page.jpg" \
     --model-sampling 1.0
 
 # E-commerce scenario: preserve text
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/product_long.jpg" \
     --no-erase-text \
     --model-sampling 0.85
 
 # Process only a specific frame (frame 0)
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --process-index 0
 
 # Local file input
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --local-file /tmp/comic.jpg \
     --model-sampling 1.0
 
 # COS path input
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --cos-input-key "/input/drama_board.jpg"
 
 # Do not erase text
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --no-erase-text
 
 # Submit task only without waiting for result (recommended for long-running tasks)
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --download-dir /tmp/results/
 
 # Manually query split task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

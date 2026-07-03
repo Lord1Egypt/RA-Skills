@@ -1,0 +1,81 @@
+# 外部邮件回复模板 (会合并到默认模板)
+# 格式: category → language → {subject, body}
+
+consultation:
+  en:
+    subject: "Re: {original_subject} | Ticket #{ticket_id}"
+    body: |
+      Hi {customer_name},
+
+      Thank you for reaching out! Regarding your inquiry about **{product_name}**:
+
+      {knowledge_base_snippet}
+
+      💡 Additional Info:
+      - Current stock: Available for order
+      - Estimated shipping: 1-3 business days after order
+      - If you have more questions, simply reply to this email.
+
+      Ticket ID: #{ticket_id}
+      For further assistance, we'll get back to you within {reply_deadline}.
+
+      Happy shopping!
+      {agent_name}
+      ---
+      [This is an automated response. Our support team will follow up if needed.]
+
+complaint:
+  en:
+    subject: "Re: {original_subject} | We take your feedback seriously — Ticket #{ticket_id}"
+    body: |
+      Hi {customer_name},
+
+      We're truly sorry to hear about your experience with **{product_name}**: {issue_summary}.
+
+      🛡️ Immediate Actions:
+      1. Your feedback has been escalated to our Quality Team
+      2. Ticket #{ticket_id} has been created — a specialist will follow up within {reply_deadline}
+      3. If this involves a return/exchange, simply reply with photos for faster processing
+
+      ⚠️ As a token of apology, we've prepared a **15% off coupon** for your next purchase — it will be sent during the manual follow-up.
+
+      Every piece of feedback helps us improve. Thank you for your patience and understanding.
+
+      {agent_name}
+
+return_refund:
+  en:
+    subject: "Re: {original_subject} | Return/Exchange Accepted — RMA #{rma_number}"
+    body: |
+      Hi {customer_name},
+
+      Your return/exchange request has been received. Here are the details:
+
+      📦 Order ID: {order_id}
+      📦 Product: {product_name}
+      📦 RMA Number: {rma_number}
+
+      📋 Next Steps:
+      1. We'll review your request (usually within 24 hours)
+      2. Once approved, you'll receive a Return Label with detailed instructions
+      3. Refund will be processed within 3-5 business days after warehouse receives the return
+
+      RMA valid for {rma_valid_days} days.
+
+      {agent_name}
+
+cooperation:
+  en:
+    subject: "Re: {original_subject} | Cooperation Inquiry Forwarded — Ticket #{ticket_id}"
+    body: |
+      Hi {customer_name},
+
+      Thank you for your interest in partnering with us!
+
+      Your cooperation inquiry has been forwarded to our **Business Development Team**. They will reach out to you directly within **1-2 business days**.
+
+      📩 Ticket ID: #{ticket_id}
+
+      Looking forward to connecting with you!
+
+      {agent_name}

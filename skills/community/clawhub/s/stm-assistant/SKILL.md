@@ -71,5 +71,3 @@ mcporter call agentmail.update_message \
 ```
 
 **Always mark processed emails.** Unread inbox = broken assistant.
-
-

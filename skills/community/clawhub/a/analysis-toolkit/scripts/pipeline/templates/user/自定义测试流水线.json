@@ -1,0 +1,27 @@
+{
+  "name": "自定义测试流水线",
+  "description": "临时组合的精密度分析",
+  "tags": [],
+  "steps": [
+    {
+      "name": "精密度",
+      "target": "scenarios.internal_qc.internal_precision_analysis",
+      "params": {
+        "data": "%input%",
+        "level_col": "水平",
+        "value_col": "结果",
+        "n_replicates": 3
+      },
+      "description": ""
+    },
+    {
+      "name": "质控图",
+      "target": "scenarios.internal_qc.control_chart",
+      "params": {
+        "data": "%input%",
+        "value_col": "结果"
+      },
+      "description": ""
+    }
+  ]
+}

@@ -35,6 +35,12 @@
               "maximum": 180,
               "default": 0,
               "description": "Default rotation applied to the decoration, in degrees. Positive is clockwise."
+            },
+            "max_height_ratio": {
+              "type": "number",
+              "minimum": 0.01,
+              "maximum": 1.5,
+              "description": "Optional cap on decoration height as a fraction of the detected garment bbox height. If the aspect-locked height from width_ratio exceeds this, the decoration is scaled down (aspect preserved) so it fits the location's height box (e.g. a hoodie full-front print must fit above the pocket ~= 9in). Omit for width-only sizing."
             }
           },
           "additionalProperties": false

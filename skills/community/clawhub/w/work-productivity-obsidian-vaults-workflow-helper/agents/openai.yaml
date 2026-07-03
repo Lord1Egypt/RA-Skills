@@ -1,0 +1,7 @@
+interface:
+  display_name: "Obsidian Vaults Workflow Helper"
+  short_description: "Plans safe Markdown vault organization, metadata cleanup, and link repair."
+  default_prompt: "Use $work-productivity-obsidian-vaults-workflow-helper to organize my Obsidian vault safely."
+
+policy:
+  allow_implicit_invocation: true

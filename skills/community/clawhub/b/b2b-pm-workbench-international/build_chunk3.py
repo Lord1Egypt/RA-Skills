@@ -1,0 +1,610 @@
+#!/usr/bin/env python3
+"""Write chunk 3: Stage 5 AI Product Design, Stage 6-8"""
+DEST = "/Users/macos/Desktop/【0616 skill升级工程】/international/b2b-pm-workbench-international/SKILL.md"
+
+chunk3 = """### Stage 5: AI Product Design
+
+**Role Hat: AI Product Designer**
+
+> AI is reshaping B2B product management. AI PM is no longer optional — it's mandatory.
+> B2B products are upgrading from "System of Record" to "System of Action,"
+> and AI is the core engine of this transformation.
+
+**References:**
+- O'Reilly "The Future of PM is AI-Native" (2025)
+- Stanford "Getting Beyond the Sandbox" (2024)
+- Marty Cagan / Teresa Torres Product Methodology in the AI Era
+- Enterprise AI Product Design 10-Module Framework
+
+---
+
+#### 5.1 AI PM Capability Model (3 Types of AI PM)
+
+| Type | Description | Core Skills |
+|------|-------------|-------------|
+| **AI Builder PM** | Builds AI models / infrastructure products | Model literacy, training pipelines, MLOps, evaluation |
+| **AI Experience PM** | Designs AI interaction experiences | UX patterns, HCI-AI, conversation design, trust design |
+| **AI-Enhanced PM** | Uses AI to amplify traditional PM work | AI toolchain, automation, data-driven decisions |
+
+> This Skill covers AI-Enhanced PM and AI Experience PM (the two most common in B2B).
+
+---
+
+#### 5.2 AI Product Design — 10 Major Modules (Complete Framework)
+
+##### Module 1: Model Selection & Strategy
+
+**Model Selection Decision Matrix:**
+
+| Dimension | Closed API (e.g. Claude/GPT) | Open Source Models | Self-Trained Models |
+|-----------|------------------------------|-------------------|---------------------|
+| Capability | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Cost | Pay-per-use (flexible) | Controllable inference cost | High training + inference cost |
+| Data Security | Data goes to external | Fully local | Fully local |
+| Compliance | Needs assessment | Good | Best |
+| Iteration Speed | Fastest (auto model upgrades) | Medium | Slowest |
+| Customizability | Prompt + RAG | RAG + Fine-tuning | Fully custom |
+| B2B Use Cases | General scenarios, fast validation | Data-sensitive, private deployment | Vertical industries, extreme customization |
+
+**B2B Selection Decision Tree:**
+```
+Can data leave the enterprise?
+├── Yes → Large data volume?
+│       ├── Yes → Closed API + RAG (cost controllable)
+│       └── No → Closed API direct call
+└── No → Must deploy privately
+          ├── General scenario → Open source model + RAG
+          └── Special scenario (e.g. medical/legal) → Open source model + fine-tuning
+```
+
+**Model Capability Boundaries (Every AI PM Must Know):**
+
+| What Models Do Well | What Models Struggle With | How to Compensate |
+|---------------------|--------------------------|-------------------|
+| Text understanding & generation | Precise mathematical calculation | Use tools (function calling) |
+| Summarization & classification | Real-time information | Use RAG |
+| Translation & rewriting | Long document precise memory | Context window limitations |
+| Code generation | Overly long reasoning chains | Chain-of-Thought improvement |
+| Sentiment analysis | Image spatial relationships | Not suitable for pure vision tasks |
+| Format conversion | Factual accuracy | Use RAG + source citations |
+
+---
+
+##### Module 2: RAG Architecture Design
+
+**RAG is the core architecture for current B2B AI products.**
+
+```
+RAG Standard Pipeline:
+┌──────────────────────────────────────────────┐
+│ 1. Document Ingestion                         │
+│    ├── Document parsing (PDF/Word/HTML/Image OCR)        │
+│    ├── Chunking: by paragraph / by semantics / by fixed length │
+│    └── Metadata extraction (doc name / date / author / permission tags) │
+├──────────────────────────────────────────────┤
+│ 2. Embedding (Vectorization)                  │
+│    ├── Text → Vector (text-embedding-3-large, etc.)    │
+│    └── Store in Vector DB (Pinecone/Weaviate/Milvus)   │
+├──────────────────────────────────────────────┤
+│ 3. Retrieval                                  │
+│    ├── Hybrid search: Dense vector + Sparse (BM25)      │
+│    ├── Reranking: Second-pass scoring on recall results │
+│    └── Filtering: by permission / date / tags           │
+├──────────────────────────────────────────────┤
+│ 4. Generation                                 │
+│    ├── Context assembly: System Prompt + Retrieved Context + User Query │
+│    ├── Call LLM to generate answer                         │
+│    └── Citation annotation: Mark information sources in answer │
+├──────────────────────────────────────────────┤
+│ 5. Evaluation & Iteration                     │
+│    ├── Answer quality evaluation (accuracy/relevance/completeness) │
+│    ├── Bad Case analysis → tuning                      │
+│    └── Chunking strategy / retrieval strategy iteration │
+└──────────────────────────────────────────────┘
+```
+
+**RAG Design Key Decisions:**
+
+| Decision Point | Options | Recommendation |
+|---------------|---------|----------------|
+| Chunk Size | 256/512/1024/2048 tokens | 512 as default, 1024 for key paragraphs |
+| Overlap | 0/10%/20%/25% | 10-20% (avoid semantic cutting) |
+| Top-K Retrieval | 3/5/10/20 | 5-10 items |
+| Embedding Model | text-embedding-3-large/small, bge-large | Use bge for Chinese scenarios |
+| Vector Database | Pinecone/Milvus/Weaviate/Qdrant/pgvector | Use Milvus for production >1M vectors |
+| Reranking | Cohere Rerank/bge-reranker | Significant retrieval quality improvement |
+
+---
+
+##### Module 3: Agent & Multi-Agent Systems
+
+**Agent = LLM + Memory + Planning + Tools**
+
+**When to Use Agent vs Simple LLM Call:**
+
+| Scenario | Simple LLM | Agent |
+|----------|-----------|-------|
+| Answer questions | ✅ | Overkill |
+| Execute multi-step tasks | ❌ | ✅ |
+| Need to call external tools | ❌ | ✅ |
+| Need planning and reflection | ❌ | ✅ |
+| Cost-sensitive | ✅ | ❌ (multi-turn calls are expensive) |
+| Latency-sensitive | ✅ | ❌ (multi-turn calls have high latency) |
+
+**Agent Architecture Patterns:**
+
+```
+Pattern 1: ReAct (Reasoning + Acting)
+  Thought → Action → Observation → Thought → ... → Final Answer
+
+Pattern 2: Plan-and-Execute
+  Plan → Execute Step 1 → Execute Step 2 → ... → Summarize
+
+Pattern 3: Multi-Agent Orchestration
+  Orchestrator → Agent A (Research) ↘
+               → Agent B (Analyze) → Orchestrator → Response
+               → Agent C (Write) ↗
+
+Pattern 4: Human-in-the-Loop (HITL)
+  Agent Execute → Human Approve → Agent Continue
+  Key: At which nodes is human approval required? (Payment/Publish/Delete/External Send)
+```
+
+**HITL Design (Compliance Essential for B2B Agents):**
+
+| Risk Level | Agent Behavior | Human Role | Example |
+|-----------|---------------|------------|---------|
+| **Low Risk** | Agent executes autonomously | Post-hoc spot check | Add tags, generate summaries |
+| **Medium Risk** | Agent generates → Human confirms | Pre-execution confirmation | Send notifications, change status |
+| **High Risk** | Agent suggests → Human executes | Human operates | Delete data, approve |
+| **Not Allowed** | Agent operation forbidden | Human only | Payments, contract signing, permission changes |
+
+---
+
+##### Module 4: Prompt Engineering
+
+**Prompt engineering is the new fundamental skill for PMs. Prompt = the "UI" of B2B AI products.**
+
+**Structured Prompt Design Pattern:**
+
+```
+┌─────────────────────────────────────────────┐
+│ [System Prompt] - System-level role & capability setup  │
+│ You are [role], your task is [task], your constraints are [...]  │
+├─────────────────────────────────────────────┤
+│ [Context] - Context info (from RAG retrieval / user state)  │
+│ Current user: [role/department/permissions]                 │
+│ Relevant data: [...]                                        │
+├─────────────────────────────────────────────┤
+│ [Task] - Specific task instruction                          │
+│ Please execute: [...]                                       │
+│ Steps: 1. ... 2. ... 3. ...                                │
+├─────────────────────────────────────────────┤
+│ [Output Schema] - Output format constraint                  │
+│ Please output in the following JSON format: { ... }         │
+├─────────────────────────────────────────────┤
+│ [Few-Shot Examples] - Examples (optional but recommended)   │
+│ Example input: [...] Example output: [...]                  │
+├─────────────────────────────────────────────┤
+│ [Constraints] - Prohibited items                            │
+│ Do not: [...] If unsure: [...]                              │
+└─────────────────────────────────────────────┘
+```
+
+**B2B Product Prompt Design Principles:**
+1. Role setting must be precise (not "you are an assistant" but "you are a financial auditor with 10 years of experience")
+2. Output format must be structured (JSON Schema first, easy downstream consumption)
+3. Constraints must be explicit ("do not fabricate data", "if unsure, say so")
+4. Examples must be realistic (use real business scenario examples, not generic ones)
+5. Safety guardrails required ("refuse to answer questions unrelated to XX")
+
+---
+
+##### Module 5: Context Engineering
+
+> Context Engineering is a deeper design layer than Prompt Engineering.
+> Core question: "What information to give the model, in what structure, at what timing?"
+
+**Context Window Budget Management:**
+
+```
+Total Budget: 128K tokens (using Claude as example)
+
+Allocation Strategy:
+├── System Prompt: 2-5K tokens (role + rules + format)
+├── Conversation History: 10-20K tokens (recent conversations)
+├── RAG Retrieval Results: 20-40K tokens (most relevant documents)
+├── Current User Query: 0.5-2K tokens
+├── User Profile/Preferences: 2-5K tokens
+├── Tool Definitions: 5-10K tokens (function definitions)
+└── Reserved Buffer: ~20K tokens (for model thinking/generation)
+```
+
+**Dynamic Context Assembly:**
+- Load different System Prompts based on user role
+- Load different retrieval strategies based on current task type
+- Personalize context based on user behavior history
+- Key information first (most important info at prompt start and end)
+
+---
+
+##### Module 6: Memory Engineering
+
+**Upgrade AI from "one-off conversations" to "continuous partner."**
+
+| Memory Type | Storage Content | Lifespan | Example |
+|------------|-----------------|----------|---------|
+| **Short-Term Memory** | Current conversation context | Current session | Requirements details just discussed |
+| **Long-Term Memory - User** | User preferences/habits/history | Persistent | "This user prefers concise answers" |
+| **Long-Term Memory - Business** | Business knowledge/rules/patterns | Persistent | "This customer's contract expires on XX" |
+| **Working Memory** | Current task state | Task duration | "Currently on step 3 of approval process" |
+
+---
+
+##### Module 7: Evaluation System Design
+
+**No evaluation = no AI product iteration.**
+
+**Evaluation Dimension Matrix:**
+
+| Dimension | Metric | Measurement Method |
+|-----------|--------|-------------------|
+| **Accuracy** | Factual correctness rate | Golden Dataset manual annotation + auto comparison |
+| **Relevance** | Answer-query relevance | Manual scoring + semantic similarity |
+| **Completeness** | Information coverage | Check if key information points are covered |
+| **Safety** | Harmful content rate | Auto scanning + red team testing |
+| **Latency** | P50/P95/P99 response time | Auto monitoring |
+| **Cost** | Token consumption per call | Auto statistics |
+| **User Satisfaction** | Thumbs up/down / CSAT | User feedback collection |
+
+**Golden Dataset Construction Process:**
+```
+1. Collect 100+ real user queries
+2. Manually annotate standard answers
+3. Establish scoring rubric
+4. Regular updates (monthly supplement with new queries)
+5. Bad Case → analyze → tune → validate
+```
+
+---
+
+##### Module 8: AI UX Pattern Design
+
+**6 Interaction Patterns for B2B AI Products ("Six Meridians" Framework):**
+
+| Pattern | Description | Use Case | Example |
+|---------|-------------|----------|---------|
+| **API Wrapper** | AI works in background, user unaware | High certainty, high frequency | Smart sorting, auto-classification |
+| **GUI + Embedded CUI** | Embed conversation in graphical interface | Medium frequency, needs flexibility | Salesforce Agentforce |
+| **Chat Mode** | Pure conversation interface | High exploration | Notion AI |
+| **Co-pilot Mode** | Sidebar AI assistant | Assisted creation/analysis | GitHub Copilot |
+| **Autonomous Execution** | Agent completes tasks autonomously | Complex multi-step tasks | Auto-generate reports |
+| **Human-AI Collaboration** | AI suggests → Human confirms → Execute | High-risk operations | Contract review → Human signs |
+
+**B2B AI UX Principles:**
+1. **Progressive Trust**: Start with low-risk features, gradually expand to high-risk
+2. **Reversible**: AI operations should be undoable
+3. **Explainable**: Why did AI do this? Cite sources
+4. **Overridable**: Users can manually take over at any time
+5. **Show Uncertainty**: Display confidence when uncertain, don't pretend to be certain
+
+---
+
+##### Module 9: AI Product Data Flywheel
+
+```
+More Users → More Interaction Data → Better AI → More Users
+    ↑                                              ↓
+    └──────── Better Data Quality ← Better Product Experience ←──────┘
+
+Flywheel Design Points:
+1. Every user interaction must produce data usable for improvement
+2. Implicit feedback (clicks/dwell/adoption) >> Explicit feedback (thumbs up/ratings)
+3. Bad Cases are gold mines: every failure is an improvement opportunity
+4. Data labeling must be embedded in product flow (e.g. "Was this answer helpful?")
+```
+
+---
+
+##### Module 10: AI Product Strategy
+
+**Wedge Strategy (O'Reilly Recommended):**
+
+```
+Traditional Path: Build platform → Find scenarios → Acquire users
+AI Era Path: Find one pain point → Solve it extremely well → Earn trust → Capture data → Expand
+
+Core Principles:
+1. Start with one pain point from one "hero user"
+2. Go narrow and deep, not wide and shallow
+3. Simple tools earn more trust than complex agents
+4. Data is the moat, models are not
+```
+
+**B2B AI Product Value Proposition Design:**
+
+```
+Framework: Technical Feature × Business Scenario × Quantified Benefit
+
+Example:
+"Using LLMs (technical feature) to auto-generate procurement comparison reports (business scenario),
+ reducing procurement decision time from 3 days to 30 minutes (quantified benefit)"
+```
+
+#### AI Product Design Outputs
+
+1. **AI Product Strategy Document** (including model selection / data strategy / flywheel design)
+2. **RAG Architecture Design Diagram**
+3. **Agent Design Document** (including HITL decision matrix)
+4. **Prompt Template Library**
+5. **Evaluation System Design** (including Golden Dataset design)
+6. **AI UX Interaction Specification**
+
+---
+
+### Stage 6: Prototyping & Interaction
+
+**Role Hat: Solution Architect**
+
+> B2B Prototype Core Principle: **Efficiency > Aesthetics**.
+> Reference: Marty Cagan "Design from Day One", Yang Kun "Interface Design" chapter.
+
+#### B2B Prototype Design — 10 Principles
+
+```
+1. List pages must have: search / filter / sort / pagination / batch operations / export
+2. Forms must have: required field indicators / validation hints / save draft / submit confirmation
+3. Detail pages must have: basic info / related info / operation history / back
+4. Every operation must have feedback (loading → success/error Toast)
+5. Dangerous operations must have confirmation dialogs
+6. Batch operations must have progress bars
+7. Large data volumes: virtual scrolling / lazy loading (over 1000 records)
+8. Keyboard shortcuts (Enter to submit / Esc to cancel / ↑↓ to select / Ctrl+S to save)
+9. Error messages tell users "what to do" not just "something went wrong"
+10. Empty states have guidance ("No data yet, click to create your first one")
+```
+
+#### B2B Standard Page Templates (4 Types)
+
+##### 1. Dashboard
+
+```
+┌──────────────────────────────────────────────────────┐
+│ [Logo] Nav Bar                      [Notifications][Avatar][Settings] │
+├─────────┬────────────────────────────────────────────┤
+│         │ ┌──────────┬──────────┬──────────┬──────┐ │
+│ Sidebar │ │ Pending  │ In Prog. │ Completed│Errors│ │
+│         │ │   128    │   506    │  3,240   │  12  │ │
+│         │ └──────────┴──────────┴──────────┴──────┘ │
+│ Workspace│ ┌──────────────────┐ ┌──────────────────┐ │
+│ Purchasing│ │  Trend (Line)    │ │ Category (Pie)   │ │
+│ Approvals│ └──────────────────┘ └──────────────────┘ │
+│ Reports  │ ┌──────────────────┐ ┌──────────────────┐ │
+│ Settings │ │ My Tasks (List)  │ │ Quick Links (Cards)│ │
+└─────────┴─┴──────────────────┴─┴──────────────────┴─┘
+```
+
+##### 2. CRUD List Page
+
+```
+┌─────────────────────────────────────────────────────┐
+│ [Search:______] [Status▼] [Date Range▼] [Search] [Reset] │
+│                                                     │
+│ [New] [Batch Import] [Batch Export] [Batch Delete]  │
+│                                                     │
+│ ☐ | ID  | Name  | Status   | Owner | Date   | Actions  │
+│ ☐ | 001 | ...  | In Prog.  | John  | 06-07  | Edit Del │
+│ ☐ | 002 | ...  | Completed | Jane  | 06-06  | Edit Del │
+│                                                     │
+│ 3 selected [Batch Approve]   Total 2,345  < 1 2 3 ... 118 > │
+└─────────────────────────────────────────────────────┘
+```
+
+##### 3. Form Page
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Basic Info ▸                                       │
+│  ┌─────────────────────────────────────────────┐   │
+│  │ [*] Name: [_____________________________]    │   │
+│  │ [*] Type: [Dropdown▼]                        │   │
+│  │     Desc: [_____________________________]    │   │
+│  └─────────────────────────────────────────────┘   │
+│  Details ▸                                          │
+│  ┌─────────────────────────────────────────────┐   │
+│  │     Date: [Date Picker]                       │   │
+│  │     Attachments: [Choose File] No file chosen │   │
+│  └─────────────────────────────────────────────┘   │
+│                              [Save Draft] [Submit]  │
+└─────────────────────────────────────────────────────┘
+```
+
+##### 4. Approval Detail Page
+
+```
+┌─────────────────────────────────────────────────────┐
+│ Approval #: AP20260607001  Status: In Approval (2/3) │
+├─────────────────────────────────────────────────────┤
+│ Request Info                                        │
+│ Requester: John | Dept: Engineering | Date: 2026-06-07 │
+│ Amount: $50,000.00                                  │
+├─────────────────────────────────────────────────────┤
+│ Approval Progress                                   │
+│ Initiated ──✅── Dept Mgr ──⏳── Finance Dir ──⭕── CEO │
+│ John         Jane (Approved)  Pending...    Pending  │
+├─────────────────────────────────────────────────────┤
+│ Approval History                                    │
+│ 06-07 10:00 Requester John submitted                │
+│ 06-07 11:30 Dept Mgr Jane approved: "Approved"      │
+├─────────────────────────────────────────────────────┤
+│ Comments: [_______________]                         │
+│                              [Reject] [Transfer] [Approve] │
+└─────────────────────────────────────────────────────┘
+```
+
+#### Prototype Output Methods
+
+**Method 1: HTML Interactive Prototype (Recommended, zero tool dependency, most flexible)**
+- Complete HTML + Tailwind CSS + Alpine.js/Vue3 CDN
+- Real data and interactions, browser-runnable
+- Includes all page states (loading / empty / error / edge cases)
+- Includes simulated permission control (switch roles to view different views)
+- Approval flow interaction visualization (simulate approve/reject flow)
+
+**Method 2: Penpot (Open-source Figma alternative)**
+- Open source (MPL-2.0), Web-based, self-hostable
+- Supports: vector editing / interactive prototypes / components / design tokens / real-time collaboration
+- Has Plugin API, REST API (read), MCP Server
+- International-friendly, community support
+
+**Method 3: Figma / Sketch**
+- Industry standard for high-fidelity design
+- Extensive plugin ecosystem
+- Developer handoff features
+
+#### Prototype Tool Reference Table
+
+| Need | Tool | Command/Method |
+|------|------|---------------|
+| HTML Interactive Prototype | Direct generation | Generate HTML file, open in browser |
+| Wireframes / Low-fidelity | `excalidraw-diagram` | "Draw a wireframe of XX page" |
+| Page Flow Diagram | `drawio-skill` | "Draw XX page flow diagram" |
+| High-fidelity Design Reference | Penpot / Figma | Export Figma format reference |
+
+---
+
+### Stage 7: Diagrams & Architecture
+
+**Role Hat: Solution Architect + Process Designer**
+
+> Diagrams are the universal language of B2B PMs. One picture is worth a thousand words — professional diagrams directly determine solution review approval rates.
+
+---
+
+#### 12 Types of Must-Draw B2B Diagrams (with Tools & Commands)
+
+| # | Diagram Type | Purpose | Recommended Tool | Example Command |
+|---|-------------|---------|-----------------|-----------------|
+| 1 | **Business Process Diagram (Swimlane)** | Cross-role process | `drawio-skill` | "Draw XX business swimlane diagram, roles: Requester/Approver/System" |
+| 2 | **System Architecture (C4)** | System overview | `drawio-coderknock` | "Draw XX system C4 container diagram" |
+| 3 | **Functional Architecture** | Feature module tree | `drawio-skill` | "Draw XX product functional architecture diagram" |
+| 4 | **Data Architecture (ER Diagram)** | Data modeling | `drawio-generator-pro` | "Draw XX module ER diagram" |
+| 5 | **Integration Architecture** | System integration relationships | `drawio-skill` | "Draw XX system integration architecture diagram" |
+| 6 | **Deployment Architecture** | Cloud/on-premise deployment | `drawio-coderknock` | "Draw XX deployment architecture diagram" |
+| 7 | **Approval Flow State Machine** | Approval/state transitions | `drawio-skill` | "Draw XX approval state machine diagram" |
+| 8 | **User Role Matrix** | Permission relationships | `drawio-skill` | "Draw XX system role-permission matrix diagram" |
+| 9 | **Product Roadmap (Gantt)** | Timeline planning | `drawio-skill` | "Draw XX product H2 roadmap" |
+| 10 | **Org Chart** | Organizational hierarchy | `drawio-skill` | "Draw XX company org chart" |
+| 11 | **Service Blueprint** | Front-back stage linkage | `excalidraw-diagram` | "Draw XX scenario service blueprint" |
+| 12 | **User Journey Map** | Full lifecycle | `excalidraw-diagram` | "Draw XX role user journey map" |
+
+#### Available Diagram Tool Matrix
+
+| Tool | Output Format | Strengths | Use Cases |
+|------|--------------|-----------|-----------|
+| **drawio-skill** | .drawio (editable) | Official support, auto-layout, professional colors | Architecture / Flow / ER diagrams |
+| **drawio-coderknock** | .drawio | Python-driven, built-in templates | System / Deployment architecture |
+| **drawio-generator-pro** | .drawio | JSON→draw.io, structured | Precise layout control needed |
+| **excalidraw-diagram** | .excalidraw + PNG | Hand-drawn style, fast | Wireframes / Journey maps / Service blueprints |
+| **processon-diagram** | ProcessOn online | Chinese ecosystem, many templates | Online collaboration needed |
+| **Mermaid (via code)** | SVG/PNG | Code-as-diagram, version controllable | Sequence / Class / State diagrams |
+
+#### Diagram Output Self-Check Checklist
+
+```
+□ Who is the audience? (Executives = minimal / Technical = detailed / Customers = value-oriented)
+□ Can the core message be stated in one sentence?
+□ Are legends / colors / symbols consistent? (Same system = same color)
+□ Is there a title + version + date?
+□ Are arrow directions correct?
+□ Are key decision points / exception branches annotated?
+□ Are there any missing roles / systems / entities?
+□ Are colors suitable for black-and-white printing?
+```
+
+#### B2B Diagram Color Specifications
+
+```
+Enterprise Professional (Default):
+- Primary: #1a56db (Blue - Core Systems)
+- Secondary: #0e9f6e (Green - External Systems)
+- Warning: #e3a008 (Yellow - Needs Improvement)
+- Danger: #e02424 (Red - Risk Points)
+- Neutral: #6b7280 (Gray - Non-critical)
+- Background: #f9fafb
+- Text: #111827
+
+Tech Blue Theme:
+- Primary: #2563eb
+- Secondary: #7c3aed (Purple - Differentiation)
+- Accent: #06b6d4 (Cyan - Highlights)
+```
+
+---
+
+### Stage 8: Documentation Engineering
+
+**Role Hat: Solution Architect + Product Evangelist**
+
+> A B2B PM's documentation capability = cross-team collaboration efficiency lever.
+> Reference: Cagan "Writing is the operating system", Yang Kun "BRD/PRD/MRD" chapters.
+
+#### Document Matrix
+
+| Document | Audience | Length | Detailed Template |
+|----------|----------|--------|-------------------|
+| **BRD - Business Requirements Document** | Executives / Investors | 15-25 pages | `references/templates/brd-template.md` |
+| **MRD - Market Requirements Document** | Product / Marketing teams | 15-20 pages | `references/templates/mrd-template.md` |
+| **PRD - Product Requirements Document** | Dev / QA / UED | 20-40 pages | `references/templates/prd-template-b2b.md` |
+| **FRD - Functional Requirements Document** | Backend / Frontend dev | 15-25 pages | `references/templates/frd-template.md` |
+| **Competitive Analysis Report** | Product / Marketing / Executives | 20-30 pages | `references/templates/competitive-analysis-b2b.md` |
+| **User Research Report** | Product / UED / Executives | 15-20 pages | `references/templates/user-research-report.md` |
+| **Product Roadmap Report** | All staff / Customers | 1 page diagram + 10 pages explanation | `references/templates/roadmap-report.md` |
+| **Backlog & Version Planning** | Product / Dev | Excel | `references/templates/backlog-plan.md` |
+| **Sales Enablement Package** | Sales / Customers | 1-pager + Whitepaper + Demo | `references/templates/sales-enablement.md` |
+
+#### B2B PRD Must-Have 10 Modules
+
+```
+1. Version History & Change Log
+2. Requirements Background & Business Objectives (with BRD link, data support)
+3. User Roles & Permission Matrix ← B2B Unique
+4. Core Business Process Diagrams (Swimlane, Normal + Exception) ← B2B Unique
+5. Detailed Feature Specifications (with prototypes / field tables / interaction specs / permissions / states)
+6. Approval Flow & Workflow Design ← B2B Unique
+7. Data Model Design (ER Diagram + Data Dictionary) ← B2B Unique
+8. Integration & API Requirements (Internal + External + OpenAPI) ← B2B Unique
+9. Non-Functional Requirements (Performance / Security / Availability / Scalability / Internationalization)
+10. Acceptance Criteria & Test Points (each AC verifiable individually)
+```
+
+#### Document Generation Workflow
+
+```
+You describe requirements → AI confirms structure → Generate Markdown draft →
+You confirm → Format as final → Optional: Convert to DOCX/PDF/PPT
+
+To DOCX: Use word-docx skill (standard formatting)
+To PDF: Use minimax-pdf skill (professional layout)
+To PPT: Use pptx-2 skill (extract key points, auto-layout)
+```
+
+#### Document Quality Self-Check (4-Level Standard)
+
+| Level | Standard |
+|-------|----------|
+| **Bronze (Usable)** | Content complete, logic clear, format standard |
+| **Silver (Standardized)** | Standard template, consistent terminology, ready for review |
+| **Gold (Excellent)** | Data-supported, deep analysis, executives can directly decide |
+| **Diamond (Outstanding)** | Methodology innovation, industry insights, citable as whitepaper |
+
+> Core deliverables at least Silver level, key decision documents aim for Gold level.
+
+---
+
+"""
+
+with open(DEST, 'a', encoding='utf-8') as f:
+    f.write(chunk3)
+
+print(f"Chunk 3 appended: {len(chunk3)} chars")

@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "skill_gap_diagnosis_input",
+  "type": "object",
+  "properties": {
+    "periodType": {
+      "type": "string",
+      "enum": [
+        "CURRENT_MONTH",
+        "CURRENT_QUARTER",
+        "CURRENT_HALF_YEAR",
+        "CURRENT_YEAR",
+        "CUSTOM",
+        "LAST_MONTH",
+        "LAST_QUARTER",
+        "LAST_HALF_YEAR",
+        "LAST_YEAR"
+      ],
+      "default": "CURRENT_HALF_YEAR",
+      "description": "時間區間枚舉"
+    },
+    "queryMode": {
+      "type": "string",
+      "enum": ["CORE", "FULL"],
+      "default": "FULL",
+      "description": "CORE 僅返回 gapIndicators / FULL 含全部數據塊"
+    },
+    "includeAssessment": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否包含考核追踪"
+    },
+    "includeNewAllowance": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否包含新人津貼"
+    },
+    "startDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "periodType=CUSTOM 時必填，yyyy-MM-dd"
+    },
+    "endDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "periodType=CUSTOM 時必填，yyyy-MM-dd"
+    }
+  },
+  "required": [],
+  "dependencies": {
+    "startDate": ["endDate"],
+    "endDate": ["startDate"]
+  }
+}

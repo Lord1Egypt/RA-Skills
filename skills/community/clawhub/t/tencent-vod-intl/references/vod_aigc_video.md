@@ -6,7 +6,7 @@
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| `--model` | enum | ✅ | Model name (Hailuo/Kling/Jimeng/Vidu/Hunyuan/Mingmou/GV/OS) |
+| `--model` | enum | ✅ | Model name (GV/Hailuo/Kling/Jimeng/Vidu/Hunyuan/Mingmou/OS/Seedance/PixVerse) |
 | `--model-version` | string | - | Model version (uses default version if not specified) |
 | `--prompt` | string | ❌* | Prompt for video generation (required when no reference file is provided) |
 | `--negative-prompt` | string | ❌ | Prompt to prevent the model from generating certain content (negative prompt) |
@@ -18,7 +18,11 @@
 |------|------|------|------|
 | `--file-id` | string | ❌ | Media file ID of the reference file (single value; use `--file-infos` for multiple reference images) |
 | `--file-url` | string | ❌ | URL of the reference file (single value; use `--file-infos` for multiple reference images) |
-| `--file-infos` | JSON | ❌ | JSON array of multiple reference images, format: `[{"Type":"Url","Url":"..."}]` |
+| `--file-infos` | JSON | ❌ | JSON array of multiple reference images, format: `[{"Type":"Url","Url":"...","Category":"Image","Usage":"Reference","Text":"pic1","ReferenceType":"subject","ObjectId":"..."}]`; supports all SDK fields: `Type`/`FileId`/`Url`/`Base64`/`Category`/`Usage`/`Text`/`ReferenceType`/`ObjectId`/`VoiceId`/`KeepOriginalSound` |
+| `--file-category` | enum | ❌ | Category of the single reference file: `Image` / `Video`; used by Kling motion_control / avatar_i2v scenes to distinguish image vs video |
+| `--file-usage` | enum | ❌ | Usage of the single reference file: `FirstFrame` / `Reference`; used by PixVerse, Vidu, Kling multi-mode disambiguation |
+| `--file-text` | string | ❌ | Name/description of the single reference file (PixVerse multi-image subject reference only; e.g. Text=`pic1` so that Prompt can use `@pic1 walking`) |
+| `--reference-type` | enum | ❌ | Reference type of the single file: `subject` / `background` / `mask`; PixVerse video edit uses subject/background; GV/Kling also applicable |
 
 ### First/Last Frame Generation Parameters
 
@@ -83,56 +87,68 @@
 | Parameter | Supported Values |
 |------|--------|
 | Version | 02, 2.3, 2.3-fast |
-| Duration | 6s, 10s (default: 6s) |
+| Duration | **02: 6/8/10/12/15/20s (interface tested: 02 accepts up to 20s+); 2.3 / 2.3-fast: 6s, 10s (default: 6s)** |
 | Resolution | 768P, 1080P (default: 768P) |
 | Aspect Ratio | Not supported |
 | First/Last Frame Generation | Not supported |
 | Audio Generation | Not supported |
+| Notes | 02 is the latest version with extended duration vs 2.3 series; interface confirmed 02 accepts 20s+ |
 
 #### Kling
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 1.6, 2.0, 2.1, 2.5, O1, 3.0-Omni |
+| Version | 1.6, 2.0, 2.1, 2.5, O1, 2.6, 3.0, 3.0-Omni, 3.0-turbo |
 | Duration | 5s, 10s (default: 5s) |
-| Resolution | 720P, 1080P (default: 720P) |
+| Resolution | **720P, 1080P, 4K (default: 720P; interface tested: 2.1/3.0/2.6/3.0-Omni/3.0-turbo/O1 all accept 4K)** |
 | Aspect Ratio | 16:9, 9:16, 1:1 (default: 16:9) |
 | First/Last Frame Generation | Supported (version 2.1 requires 1080P) |
-| Scene Type | motion_control, avatar_i2v, lip_sync |
+| Scene Type | motion_control, avatar_i2v (digital avatar), lip_sync |
+| Audio Generation | 3.0-Omni supports audio/silent modes (`OutputConfig.AudioGeneration: Enabled/Disabled`) |
 
 #### Jimeng
 
 | Parameter | Supported Values |
 |------|--------|
 | Version | 3.0pro |
+| Resolution | **Custom via ExtInfo `width`/`height`**; example `--ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}'` |
 | First/Last Frame Generation | Not supported |
 | Audio Generation | Not supported |
+| Notes | Jimeng video does not support OutputConfig.Resolution / AspectRatio; pass resolution via ExtInfo |
 
 #### Vidu
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | q2, q2-pro, q2-turbo, q3-pro, q3-turbo |
+| Version | q2, q2-turbo, q2-pro, q3, q3-pro, q3-turbo, q3-mix, q3-drama |
 | Duration | 1–10 seconds (customizable) |
 | Resolution | 720P, 1080P (default: 720P) |
 | Aspect Ratio | 16:9, 9:16, 1:1, 3:4, 4:3 (default: 16:9) |
-| First/Last Frame Generation | Supported (q2-pro and q2-turbo only) |
-| Multi-image Reference | q2 supports 1–7 images |
+| First/Last Frame Generation | Supported (q2-pro, q2-turbo; q3-pro supports text-to-video and image-to-video only) |
+| Multi-image Reference | q2 supports 1–7 images via FileInfos.ObjectId as the subject ID |
 | Scene Type | template_effect (template effect), subject_reference (fixed subject reference) |
+| Notes | **🚨 q3-mix / q3-drama require reference image with `Usage=Reference`** (interface tested: text-to-video alone returns `only supports reference generation`); q3-mix has stronger visual quality, smart cuts, and balanced motion; q3 supports smart cuts with consistent multi-camera; q3-mix does not support subject library yet |
 
 #### Hunyuan
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 1.5 |
+| Version | 1.5, 3d_2.0 |
+| Scene Type | `3d_scene` (3d_2.0 only: Hunyuan World Model generates 3D scene video) |
+| Duration | 3d_2.0 + 3d_scene recommends 16s (`OutputConfig.Duration`) |
+| Resolution | 3d_2.0 + 3d_scene recommends 1080P |
+| Audio Generation | 3d_2.0 + 3d_scene supports `OutputConfig.AudioGeneration: Enabled` |
+| Storage Mode | **3d_2.0 only supports `Temporary`** (interface tested: passing Permanent returns `StorageMode Permanent is not supported for model Hunyuan 3d_2.0`) |
 | First/Last Frame Generation | Not supported |
-| Audio Generation | Not supported |
+| Output Artifacts | 3d_2.0 + 3d_scene outputs multiple files: spz (Gaussian Splatting) / ply (point cloud) etc., importable to Unity/Unreal Engine |
+| Notes | **3d_2.0** + `--scene-type 3d_scene` generates walkable 3D scene videos (Hunyuan World Model); **1.5** is the legacy general video version |
 
 #### Mingmou
 
 | Parameter | Supported Values |
 |------|--------|
 | Version | 1.0 |
+| Resolution | **Custom via ExtInfo `width`/`height`**; example `--ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}'` |
 | First/Last Frame Generation | Not supported |
 | Audio Generation | Not supported |
 
@@ -140,12 +156,14 @@
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 3.1, 3.1-fast |
+| Version | 3.1, 3.1-fast, 3.1-lite |
 | Duration | Fixed 8 seconds |
 | Resolution | 720P, 1080P (default: 720P) |
 | Aspect Ratio | 16:9, 9:16 (default: 16:9) |
 | Multi-image Reference | Up to 3 images |
 | First/Last Frame Generation | Supported |
+| Audio Generation | Native audio-visual sync; supports both audio and silent modes |
+| Notes | Faces are not blocked; when using multi-image input, LastFrameFileId/LastFrameUrl cannot be used simultaneously |
 
 #### OS
 
@@ -156,6 +174,29 @@
 | Resolution | Fixed 720P |
 | Aspect Ratio | 16:9, 9:16 (default: 16:9) |
 | First/Last Frame Generation | Not supported |
+
+#### Seedance (ByteDance)
+
+| Parameter | Supported Values |
+|------|--------|
+| Version | 1.0-pro, 1.0-lite-i2v, 1.0-pro-fast, 1.5-pro |
+| Audio Generation | 1.5-pro supports both audio and silent modes (`OutputConfig.AudioGeneration: Enabled/Disabled`) |
+| Resolution | 1.5-pro does NOT support 1080P |
+| Notes | **Interface name is `Seedance`** (earlier docs incorrectly used `SV`; interface tested: passing `SV` returns `ModelName SV is invalid`); Seedance is the ByteDance Doubao video series |
+
+#### PixVerse
+
+| Parameter | Supported Values |
+|------|--------|
+| Version | v5.6, v6, c1 |
+| Audio Generation | v5.6 (silent); v6/c1 supports both audio and silent modes |
+| Duration | c1/v6: 1–15 seconds (1080P max 15s); v5.6: 5/8/10s (1080p does not support 10s) |
+| Resolution | **360P, 540P, 720P, 1080P, 4K** (interface tested: v5.6/v6/c1 all accept 4K) |
+| Multi-image Reference | c1/v6: up to 7 subjects; v5.6: up to 7 reference videos |
+| First/Last Frame Generation | Supported (use `--file-usage FirstFrame` + `--last-frame-url/--last-frame-file-id`) |
+| Multi-subject (@name reference) | c1/v6 multi-image mode requires `Category=Image` + `Usage=Reference`; use `--file-text` or file-infos `Text` to name images (e.g. `pic1`), then reference as `@pic1` in Prompt |
+| Video Edit | v5.6/v6/c1 support video edit: reference video uses `--file-category Video` + `--reference-type subject` (replace subject) or `background` (replace background) |
+| Notes | c1 is the latest character-consistency version; v6 is the general flagship; v5.6 is the previous stable version; SceneType (motion_control/avatar_i2v/lip_sync) is Kling-only and NOT supported by PixVerse |
 
 ### Task Status Reference
 
@@ -197,14 +238,14 @@
 
 #### GV Model — Text-to-Video
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model GV \
     --prompt "A puppy running across a sunny meadow"
 ```
 
 #### Hailuo Model (with specified resolution and duration)
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model Hailuo \
     --model-version 2.3 \
     --prompt "Time-lapse of a sunset over the ocean" \
@@ -214,7 +255,7 @@ python scripts/vod_aigc_video.py create \
 
 #### Kling Model (1080P HD, 5 seconds)
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model Kling \
     --model-version 2.1 \
     --prompt "Aerial footage of a city skyline at night" \
@@ -227,7 +268,7 @@ python scripts/vod_aigc_video.py create \
 > ⚠️ **Note**: Pass only `Kling` to `--model`; the version `O1` is passed separately via `--model-version`. Do NOT write `--model "Kling O1"`.
 > ⚠️ **Note**: When using `--element-ids`, the `--prompt` must use the `<<<element_1>>>` placeholder in place of the subject name.
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model Kling \
     --model-version O1 \
     --element-ids "866084540648271963" \
@@ -239,7 +280,7 @@ python scripts/vod_aigc_video.py create \
 
 #### Using FileId as the First Frame
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model Kling \
     --model-version 2.1 \
     --file-id 3704211509819 \
@@ -248,7 +289,7 @@ python scripts/vod_aigc_video.py create \
 
 #### Using URL as the First Frame
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model GV \
     --file-url "https://example.com/first_frame.jpg" \
     --prompt "Camera slowly pushes forward"
@@ -257,7 +298,7 @@ python scripts/vod_aigc_video.py create \
 ### 3 First/Last Frame Video Generation
 
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model GV \
     --file-url "https://example.com/first.jpg" \
     --last-frame-url "https://example.com/last.jpg" \
@@ -268,12 +309,12 @@ python scripts/vod_aigc_video.py create \
 
 ```bash
 # Video generation takes a while (default timeout is 1800 seconds)
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model GV \
     --prompt "A cat sunbathing by the window"
 
 # Submit task only, without waiting
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model GV \
     --prompt "A cat sunbathing by the window" \
     --no-wait
@@ -282,7 +323,7 @@ python scripts/vod_aigc_video.py create \
 ### 5 Permanent Storage
 
 ```bash
-python scripts/vod_aigc_video.py create \
+python3 scripts/vod_aigc_video.py create \
     --model Hailuo \
     --prompt "Scenic landscape video" \
     --output-storage-mode Permanent \
@@ -292,5 +333,311 @@ python scripts/vod_aigc_video.py create \
 ### 6 List Supported Models
 
 ```bash
-python scripts/vod_aigc_video.py models
+python3 scripts/vod_aigc_video.py models
 ```
+
+## 7 PixVerse Advanced Features
+
+### 7.1 Multi-Subject Reference (@name in Prompt)
+
+c1 / v6 support up to 7 reference images, each named via `Text` and referenced as `@name` in the Prompt.
+
+**JSON multi-image mode (recommended):**
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model PixVerse --model-version c1 \
+    --prompt "@pic1 (a woman in ancient costume) is holding @pic2 (a closed fan) and slowly opening it" \
+    --file-infos '[
+        {"Type":"Url","Url":"https://e.com/woman.jpg","Category":"Image","Usage":"Reference","Text":"pic1"},
+        {"Type":"Url","Url":"https://e.com/fan.jpg","Category":"Image","Usage":"Reference","Text":"pic2"}
+    ]' \
+    --output-storage-mode Temporary \
+    --output-duration 8 --output-aspect-ratio 3:4 \
+    --output-audio-generation Enabled \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **Required**: every image must have `Category=Image` + `Usage=Reference` + `Text=<name>`; the `@name` reference in Prompt must be followed by a space (e.g. `@pic1 walking`); `Text` must be plain Chinese or English (no special characters).
+
+### 7.2 Video Edit (subject / background)
+
+v5.6 / v6 / c1 support taking a video as input and replacing subject or background, distinguished via `ReferenceType`.
+
+**Example 1: Replace subject (change the dress color to white):**
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model PixVerse --model-version v5.6 \
+    --prompt "Change the color of the actress's dress to white" \
+    --file-url "https://e.com/source.mp4" \
+    --file-category Video \
+    --reference-type subject \
+    --output-storage-mode Permanent \
+    --output-media-name "PixVerse Video Edit" \
+    --sub-app-id 1308104797
+```
+
+**Example 2: First/Last Frame:**
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model PixVerse --model-version v6 \
+    --prompt "smooth transition from sunrise to sunset" \
+    --file-url "https://e.com/first.jpg" \
+    --file-usage FirstFrame \
+    --last-frame-url "https://e.com/last.jpg" \
+    --output-duration 5 \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **First-frame vs Reference**: Single-image PixVerse defaults to first-frame mode; for reference generation explicitly set `--file-usage Reference` (or `Usage=Reference` inside file-infos); multi-image mode defaults to reference generation (each image must carry `Usage`).
+
+### 7.3 PixVerse Version Comparison
+
+| Capability | c1 | v6 | v5.6 |
+|---|---|---|---|
+| Text-to-video | ✅ | ✅ | ✅ |
+| Image-to-video | ✅ | ✅ | ✅ |
+| Reference generation | ✅ | ✅ | (reference video only) |
+| Max reference images | 7 | 7 | 7 |
+| 1080P max duration | 15s | 15s | 8s |
+| Native audio-visual sync | ✅ | ✅ | ❌ |
+
+## 8 Hunyuan 3D Scene Video (Hunyuan World Model)
+
+`Hunyuan 3d_2.0` + `--scene-type 3d_scene` generates walkable 3D scene videos with native audio-visual sync.
+
+### 8.1 Text-to-3D Scene
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Hunyuan --model-version 3d_2.0 \
+    --scene-type 3d_scene \
+    --prompt "Forbidden City Hall at noon, photorealistic historical reconstruction with PBR materials" \
+    --output-storage-mode Temporary \
+    --output-duration 16 \
+    --output-resolution 1080P \
+    --output-audio-generation Enabled \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **3d_2.0 only supports Temporary storage** — passing `Permanent` will be rejected by the interface. Temporary outputs are valid for 7 days.
+
+> 📦 **Output artifacts**: This scene outputs 6 files including 1 `.spz` (Gaussian Splatting model) and multiple `.ply` (point cloud) files, natively importable to Unity/Unreal Engine.
+
+### 8.2 Differences from Hunyuan 1.5 / 3d_panorama
+
+| Use case | Model + Version | Endpoint | SceneType |
+|---|---|---|---|
+| Legacy general video | `Hunyuan 1.5` | `vod_aigc_video.py` | (none) |
+| 360° panoramic image (image side) | `Hunyuan 3d_2.0` | `vod_aigc_image.py` | `3d_panorama` |
+| 3D scene video (video side) | `Hunyuan 3d_2.0` | `vod_aigc_video.py` | `3d_scene` |
+
+> The Hunyuan World Model 3D scene video output may include 3DGS (Gaussian Splatting) / Mesh (GLB/FBX/OBJ) / PLY (point cloud) / panoramic video, with native Unity/Unreal Engine support.
+
+## 9 Kling Advanced Scenes (Motion Control / Lip Sync / Avatar)
+
+Kling distinguishes advanced scenes via `--scene-type`, with complex parameters passed through `--ext-info` as JSON.
+
+### 9.1 Motion Control (motion_control)
+
+**Version requirement**: `3.0` for the v3.0 motion control; `2.6` for the legacy version (also the standard entry for motion_control).
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Kling --model-version 2.6 \
+    --scene-type motion_control \
+    --prompt "Generate a new video based on the reference video" \
+    --file-infos '[
+        {"Type":"Url","Url":"https://e.com/ref.mp4","Category":"Video"},
+        {"Type":"Url","Url":"https://e.com/face.webp","Category":"Image"}
+    ]' \
+    --ext-info '{"AdditionalParameters":"{\"keep_original_sound\":\"no\",\"character_orientation\":\"video\"}"}' \
+    --sub-app-id 1308104797
+```
+
+**ExtInfo key parameters:**
+- `keep_original_sound`: `yes` (keep original audio) / `no`
+- `character_orientation`: `image` (match orientation in image; reference video ≤ 10s) / `video` (match orientation in video; reference video ≤ 30s)
+
+### 9.2 Lip Sync (lip_sync, requires DescribeAigcFaceInfo first)
+
+**Two-step flow:**
+1. First call `DescribeAigcFaceInfo` to get `SessionId` and `FaceId` (note: this endpoint is **not yet implemented** in the skill; you must call SDK/API manually).
+2. Then call `CreateAigcVideoTask` with `SceneType=lip_sync` + `ExtInfo` carrying face info.
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Kling --model-version 2.6 \
+    --scene-type lip_sync \
+    --prompt "lip sync" \
+    --ext-info '{"AdditionalParameters":"{\"session_id\":\"845736590818832460\",\"face_choose\":[{\"face_id\":0,\"sound_file\":\"https://e.com/audio.mp3\",\"sound_start_time\":0,\"sound_end_time\":5000,\"sound_insert_time\":2000,\"sound_volume\":2,\"original_audio_volume\":0}]}"}' \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ **lip_sync does NOT carry FileInfos** — all audio/video info goes through `ExtInfo` (session_id + face_choose); leave FileInfos empty.
+
+### 9.3 Avatar (avatar_i2v)
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Kling --model-version 2.6 \
+    --scene-type avatar_i2v \
+    --prompt "dance" \
+    --file-url "https://e.com/portrait.png" \
+    --file-category Image \
+    --ext-info '{"AdditionalParameters":"{\"sound_file\":\"https://e.com/audio.mp3\"}"}' \
+    --sub-app-id 1308104797
+```
+
+**ExtInfo key parameters:**
+- `sound_file`: Audio URL or Base64 (mp3/wav/m4a/aac, ≤5MB, 2–300 seconds)
+- `audio_id`: Audio ID (alternative to `sound_file`)
+- `sound_file` and `audio_id` cannot both be empty, nor both have values.
+
+## 10 AIGC Super-Resolution Output Strategy
+
+Combine `--output-resolution` + `--output-enhance-switch` to achieve "model outputs low resolution then super-resolves to high resolution" — a cost-optimization pattern.
+
+### 10.1 Super-Resolve to 1080P (cost optimization)
+
+```bash
+# Model outputs 720P natively, then super-resolves to 1080P (cheaper than direct 1080P)
+python3 scripts/vod_aigc_video.py create \
+    --model GV --model-version 3.1 \
+    --prompt "Make the text fly" \
+    --file-url "https://e.com/logo.webp" \
+    --output-resolution 1080P \
+    --output-enhance-switch Enabled \
+    --sub-app-id 1308104797
+```
+
+### 10.2 Output 2K / 4K (super-resolve enabled by default)
+
+```bash
+# When choosing 2K/4K, EnhanceSwitch defaults to Enabled (no need to set explicitly)
+python3 scripts/vod_aigc_video.py create \
+    --model GV --model-version 3.1 \
+    --prompt "Smiling, walking towards me" \
+    --output-resolution 2K \
+    --sub-app-id 1308104797
+```
+
+### 10.3 Resolution Support per Model
+
+| Model | Supported Resolutions |
+|---|---|
+| Kling | **720P, 1080P, 4K** (default: 720P; interface tested: all versions accept 4K) |
+| Jimeng | **ExtInfo `width`/`height` only** (does not support OutputConfig.Resolution) |
+| Hailuo | 768P, 1080P (default: 768P) |
+| Vidu | 720P, 1080P (default: 720P) |
+| GV | 720P, 1080P (default: 720P) |
+| OS | 720P standard; also supports ExtInfo `width`/`height` |
+| PixVerse | **360P, 540P, 720P, 1080P, 4K** (interface tested: all versions accept 4K) |
+| Seedance | 1.0-pro/1.0-pro-fast multiple tiers; 1.5-pro does NOT support 1080P |
+| Mingmou | **ExtInfo `width`/`height` only** |
+| Hunyuan 1.5 | **ExtInfo `size` only** |
+| Hunyuan 3d_2.0 + 3d_scene | 1080P (recommended) |
+
+> The table above shows the native output capabilities. **All models** can chain `--output-enhance-switch Enabled` to output 2K/4K (auto-enabled when 2K/4K is selected).
+
+---
+
+## 11 Custom Resolution via ExtInfo (width/height/size)
+
+Some video models do not support the standard `--output-resolution` parameter and require custom resolution via `--ext-info` (similar to image-side §13).
+
+### 11.1 Jimeng 3.0pro Custom width/height
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Jimeng --model-version 3.0pro \
+    --prompt "Ancient costume swordswoman dance" \
+    --ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 11.2 Hunyuan 1.5 Custom size
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Hunyuan --model-version 1.5 \
+    --prompt "Floating clouds" \
+    --ext-info '{"AdditionalParameters": "{\"size\":\"1280x720\"}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 11.3 OS 2.0 Custom width/height
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model OS --model-version 2.0 \
+    --prompt "abstract liquid flowing" \
+    --ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 11.4 Mingmou 1.0 Custom width/height
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Mingmou --model-version 1.0 \
+    --prompt "City skyline at dusk" \
+    --ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}' \
+    --output-storage-mode Temporary \
+    --sub-app-id 1308104797
+```
+
+### 11.5 ExtInfo Custom Resolution vs OutputConfig
+
+| Model | Standard `--output-resolution` | ExtInfo Custom Resolution |
+|---|---|---|
+| **Jimeng 3.0pro** | ❌ Not supported | ✅ `width`/`height` |
+| **Hunyuan 1.5** | ❌ Not supported | ✅ `size` |
+| **OS 2.0** | ✅ 720P native | ✅ `width`/`height` also supported |
+| **Mingmou 1.0** | ❌ Not supported | ✅ `width`/`height` |
+| Other models (Kling/Vidu/GV/Hailuo/PixVerse/Seedance) | ✅ Supported | — |
+
+---
+
+## 12 Key Constraints Discovered via Interface Testing
+
+> All constraints verified via real interface submissions (2026-06-30)
+
+### 12.1 ModelName Interface Names (verified)
+
+| ModelName | Interface Result | Notes |
+|---|---|---|
+| `Seedance` | ✅ Accepted | **Real interface name** (ByteDance Doubao video series) |
+| `SV` | ❌ **Rejected**: `ModelName SV is invalid` | Earlier skill docs incorrect, fixed |
+| `GV` | ✅ Accepted | Google Veo (no aliases — `Veo`/`GoogleVeo` all rejected) |
+| `Hailuo` | ✅ Accepted | MiniMax Hailuo (no aliases — `MiniMax` rejected) |
+| `Kling`/`Jimeng`/`Vidu`/`Hunyuan`/`Mingmou`/`OS`/`PixVerse` | ✅ Accepted | Single canonical name, no aliases |
+
+### 12.2 Vidu q3-mix / q3-drama Constraints
+
+Interface tested:
+
+```
+model Vidu q3-mix only supports reference generation, all FileInfos must have Usage=Reference
+model Vidu q3-drama only supports reference generation, FileInfos or SubjectInfos is required
+```
+
+**Correct usage**:
+
+```bash
+python3 scripts/vod_aigc_video.py create \
+    --model Vidu --model-version q3-mix \
+    --prompt "Cinematic shot with natural lighting" \
+    --file-url "https://e.com/ref.jpg" \
+    --file-usage Reference \
+    --sub-app-id 1308104797
+```
+
+---
+
+

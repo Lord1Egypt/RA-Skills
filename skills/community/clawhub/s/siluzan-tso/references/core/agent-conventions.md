@@ -105,7 +105,7 @@
 
 - **账户状态 ≠ 系列状态**：`stats` / `balance` / `list-accounts` 的 `status` 只表示账户是否可用；系列状态必须来自 `ad campaigns`。
 - **数据时效性**：涉及「今天/当天/今日消耗」「实时消耗排行」前，必读 `references/analytics/account-analytics.md` 顶部「数据时效性」表。TikTok / Yandex / BingV2 / Kwai 是 `accountsoverview` 同步昨天数据，**不能查今天**。
-- **先查账户再操作**：`list-accounts -m [mediaType] -k [mediaCustomerId]`；用户给出的 `mediaCustomerId` 必须 `-k` 核验，无结果则告知用户并停止，**禁止**翻页 grep 自行换 ID（会导致报告错户）；拉数、脚本、报告文件名全链路用同一 ID（以 stdout `accountId` 为准）。
+- **先查账户再操作**：`list-accounts -m [mediaType] -k [mediaCustomerId]`；用户给出的 `mediaCustomerId` 必须 `-k` 核验，无结果则告知用户并停止，**禁止**翻页 grep 自行换 ID（会导致报告错户）；拉数、脚本、报告文件名全链路用同一 ID（以 stdout `accountId` 为准）。**Google 额外建议**：`list-accounts` 命中后、拉数前可 `account check-access -a <mediaCustomerId>` 校验 Google 网关访问权限；`no_permission`（403）通常表示账户不在当前丝路赞账号下。
 - **不猜测账户 ID**：`entityId` ≠ `mediaCustomerId`，两者均来自 `list-accounts`；**禁止**把 `entityId` 传给 `stats -a` / `balance -a`。
 - **媒体类型区分大小写**：`Google`、`TikTok`、`MetaAd`、`BingV2`、`Kwai`。
 - **CLI 输出忠实**：数值与 ID 须与本次落盘 JSON / stdout 一致，不编造示例 ID；`data` 为空时只说「当前返回无记录」并附 JSON 路径。
@@ -219,7 +219,7 @@
 ## 十一、常见 HTTP 状态码
 
 - **400**：参数错误，查看对应 reference 或 `-h`
-- **401**：平台方返回则需用户重新授权；**我方凭据失效**则优先 `send-login-code` + `login --phone --code`，见 `references/core/setup.md`
+- **401**：媒体 OAuth 失效 → `account reauth -m <媒体> --id <entityId>`（须先 delink，见 W9）；**丝路赞登录凭据失效** → `send-login-code` + `login --phone --code`，见 `references/core/setup.md`
 - **500**：服务可能正在部署/升级，建议反馈 Siluzan 相关人员
 
 ---

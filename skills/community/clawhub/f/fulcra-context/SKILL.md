@@ -98,6 +98,17 @@ uv tool run fulcra-api catalog
 
 Use this to discover available data types. Do not query every metric unless the user asks for a broad inventory.
 
+### Data Updates
+
+```bash
+uv tool run fulcra-api data-updates "1 day"
+uv tool run fulcra-api data-updates "2026-07-01T00:00:00Z" "2026-07-02T00:00:00Z"
+```
+
+When available, use `data-updates` as an incremental freshness preflight before broad pulls. It reports which data types had records processed in the requested window and which Fulcra files changed. Use that summary to choose the smallest follow-up read, such as `get-records`, `metric-time-series`, `sleep-stages`, `calendar-events`, `apple-workouts`, location commands, or file stat/download commands.
+
+`data-updates` is not the records themselves. Do not infer health, calendar, or location facts from update counts alone, and do not use it as proof that an annotation write succeeded. Pull the relevant records and verify through the specific read surface.
+
 ### Recent Heart Rate
 
 ```bash
@@ -168,9 +179,10 @@ Install the fulcra-annotations skill from ClawHub
 If a command returns no data:
 
 1. Confirm the user has authenticated with `uv tool run fulcra-api user-info`.
-2. Confirm the user has synced data from the Context app or another source.
-3. Narrow the query to a known recent time window.
-4. Report missing or stale data honestly instead of fabricating context.
+2. When live help exposes it, run `uv tool run fulcra-api data-updates <window>` to check whether the relevant data types or files changed.
+3. Confirm the user has synced data from the Context app or another source.
+4. Narrow the query to a known recent time window.
+5. Report missing or stale data honestly instead of fabricating context.
 
 ## Links
 

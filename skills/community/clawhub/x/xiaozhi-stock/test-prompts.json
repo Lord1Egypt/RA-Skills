@@ -1,0 +1,72 @@
+[
+  {
+    "id": "tp-001",
+    "scenario": "个股查询",
+    "prompt": "查一下600519",
+    "expected_output_types": ["代码", "名称", "当前价", "涨跌幅", "成交额"],
+    "verification": "输出必须包含贵州茅台、当日价格、涨跌幅、数据来源"
+  },
+  {
+    "id": "tp-002",
+    "scenario": "个股深度分析",
+    "prompt": "分析300750宁德时代怎么样",
+    "expected_output_types": ["基本面分析", "技术面分析", "对抗验证", "综合建议"],
+    "verification": "输出必须包含三维分析框架、对抗验证、BigA评分、择时分、入场区间、止损位"
+  },
+  {
+    "id": "tp-003",
+    "scenario": "大盘情绪",
+    "prompt": "今天大盘怎么样",
+    "expected_output_types": ["上证指数", "深证成指", "创业板指", "市场情绪", "风险等级"],
+    "verification": "输出最少包含三大指数、涨跌幅、市场情绪（🟢/🟡/🔴）、建议仓位"
+  },
+  {
+    "id": "tp-004",
+    "scenario": "热点板块",
+    "prompt": "今天什么板块涨得好",
+    "expected_output_types": ["板块名称", "涨跌幅", "成交额"],
+    "verification": "输出最少5个领涨板块、涨幅数据、数据来源标注"
+  },
+  {
+    "id": "tp-005",
+    "scenario": "选股推荐",
+    "prompt": "推荐几只股票",
+    "expected_output_types": ["代码", "名称", "BigA评分", "方向", "核心理由"],
+    "verification": "输出最少3只池外候选、每只包含双信号对齐（长线OK/短线OK/风控通过）"
+  },
+  {
+    "id": "tp-006",
+    "scenario": "操作建议",
+    "prompt": "能买688981中芯国际吗",
+    "expected_output_types": ["对抗验证", "综合建议", "入场区间", "止损位", "目标位"],
+    "verification": "输出必须包含看涨逻辑→反向挑刺→综判的对抗验证链"
+  },
+  {
+    "id": "tp-007",
+    "scenario": "持仓管理",
+    "prompt": "帮我看看我的股票池",
+    "expected_output_types": ["🔥买入信号", "👀持有/关注", "⚠️风险警示"],
+    "verification": "输出归类为三种信号、每只含评分和操作方向"
+  },
+  {
+    "id": "tp-008",
+    "scenario": "多只批量查询",
+    "prompt": "查一下600519, 000001, 300750",
+    "expected_output_types": ["每只股票行情卡片"],
+    "verification": "批量返回三只完整行情，各自标注数据来源和时间"
+  },
+  {
+    "id": "tp-009",
+    "scenario": "板块+个股交叉",
+    "prompt": "有色板块今天怎么样，龙头有哪些",
+    "expected_output_types": ["板块涨跌", "板块强势股", "核心逻辑"],
+    "verification": "输出板块涨跌幅、板块内强势个股及其涨幅、板块热点原因"
+  },
+  {
+    "id": "tp-010",
+    "scenario": "风险控制检查",
+    "prompt": "600519涨了30%还能追吗",
+    "expected_output_types": ["风控检查", "追高风险提示", "替代建议"],
+    "verification": "必须触发风控规则（一周涨>30%不推荐）、给出替代方案或等待建议"
+  }
+]

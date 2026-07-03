@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/openapi-spec-generator/output.schema.json",
+  "title": "OpenAPI Spec Generator Output",
+  "description": "Schema for generated OpenAPI spec and validation results",
+  "type": "object",
+  "required": ["spec", "metadata"],
+  "properties": {
+    "spec": {
+      "type": "object",
+      "description": "Generated OpenAPI 3.x specification"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["endpoint_count", "schema_count", "source_type"],
+      "properties": {
+        "endpoint_count": { "type": "integer" },
+        "schema_count": { "type": "integer" },
+        "source_type": { "type": "string" },
+        "detected_framework": { "type": "string" },
+        "auth_schemes": { "type": "array", "items": { "type": "string" } },
+        "generated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Validation results (post-validation)",
+      "properties": {
+        "status": { "type": "string", "enum": ["pass", "pass_with_warnings", "fail"] },
+        "errors": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "type": "string" } },
+        "endpoint_issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "method": { "type": "string" },
+              "issues": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "mock_config": {
+      "type": "object",
+      "description": "Optional mock server configuration",
+      "properties": {
+        "type": { "type": "string", "enum": ["prism"] },
+        "dynamic": { "type": "boolean" },
+        "cors": { "type": "boolean" },
+        "port": { "type": "integer" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

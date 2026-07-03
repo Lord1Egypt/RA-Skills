@@ -248,6 +248,7 @@ def fetch_announcements(
                 "url": ann_url,
                 "art_code": art_code,
                 "notice_id": str(ann.get("notice_date", "")),  # 实际存的是日期，字段名兼容旧数据
+                "display_time_dfcf": ann.get("display_time", ""),
                 "market": market,
             })
         logger.debug(
@@ -352,6 +353,8 @@ def get_stocks(cookie_path: str = "cookie.txt", group_name: Optional[str] = None
         stocks = filter_real_stocks(stocks)
         logger.info("过滤后(仅真实个股): %d 只", len(stocks))
         return stocks
+    else:
+        logger.warning("myfavor API 返回空数据，可能 Cookie 已过期，请重新登录获取 Cookie")
 
     # 2. Cookie 解析 (兜底)
     stocks = parse_selfselect_from_cookie(cookie)

@@ -1,287 +1,119 @@
-# clawfetch（ClawHub Skill 中文说明）
+# clawfetch Skill
 
-`clawfetch` 是一个 **网页 → markdown 抓取 CLI 工具**，主要是为
-[OpenClaw](https://github.com/openclaw/openclaw) 的 Agent / Skill 场景设计的。
+这个目录是面向 OpenClaw/ClawHub 的 `clawfetch` npm CLI 薄层 skill 包装。它不是独立 scraper 项目，也不复制 clawfetch 源码。
 
-这个 skill 只是对已发布的 `clawfetch` npm 包做了一层 **很薄的封装**，
-让 OpenClaw 可以用一个可信、易审计的方式调用它，而不是在每个 skill
-里重复造一套爬虫逻辑。
+## 为什么存在
 
-它在补丁版 OpenClaw Docker 镜像 `ernestyu/openclaw-patched` 中体验最佳，
-主要用途是作为 **知识库（例如 `clawsqlite` / Clawkb）之前的一层前处理**：
+这个 skill 让 Agent 能把 clawfetch 当成受控工具调用，用于把一般网页、GitHub README 页面和 Reddit 线程转换成适合知识库处理的 markdown。真正的抓取实现、runtime 生命周期、站点策略和错误恢复都仍然只由 clawfetch CLI 负责。
 
-- 给定一个 URL → 输出带元数据头部的标准化 markdown
-- 再由本地 SQLite / KB 工具去做索引 / 分片 / 检索
-- 避免在 Agent 里面到处散落 ad-hoc 的爬虫脚本
+## 首次可用安装模型
 
-底层 CLI 依赖：
+安装这个 skill wrapper 不等于已经得到可直接运行的 clawfetch 环境。第一次使用时，Agent 必须完成下面所有阶段。
 
-- Playwright（无头 Chromium）
-- Mozilla Readability（正文抽取）
-- Turndown（HTML → markdown）
-- 可选：FlareSolverr（Cloudflare / bot 挑战页面的 JS 抓取后端，通过 `FLARESOLVERR_URL` 调用）
+1. 安装或复制这个 skill wrapper 目录。
+2. 进入已安装的 skill 目录，也就是包含 `SKILL.md` 和 `bootstrap_deps.sh` 的目录。
+3. 把已发布的 npm CLI bootstrap 到当前 skill 目录：
 
-输入：单个 `http/https` URL
+```bash
+cd <installed skill directory>
+sh bootstrap_deps.sh
+```
 
-输出：带 `--- METADATA ---` 头部的标准化 markdown，例如：
+4. 通过 CLI 安装 browser runtime：
+
+```bash
+node node_modules/clawfetch/clawfetch.js runtime install
+```
+
+5. 抓取前检查 runtime：
+
+```bash
+node node_modules/clawfetch/clawfetch.js runtime check
+```
+
+只有第 5 步成功后，Agent 才应该把 clawfetch 视为已经可以执行 browser-backed 抓取。
+
+可选 smoke test：
+
+```bash
+node node_modules/clawfetch/clawfetch.js https://example.com
+```
+
+成功时应输出 `--- METADATA ---` 和 `--- MARKDOWN ---`。
+
+bootstrap 脚本会把已发布的 `clawfetch` npm 包安装到当前 skill 目录，形成 `node_modules/clawfetch`，并在报告成功前验证 `node_modules/clawfetch/clawfetch.js` 确实存在。它不安装 browser runtime，不执行 `git clone`，不下载源码树，不修改全局 npm 状态，不改系统 PATH，也不安装无关工具。
+
+默认情况下，脚本跟随项目根目录 `package.json` 中的版本。如果这个 wrapper 被单独分发、读不到项目根目录，则回退到脚本中固定记录的版本。这个 fallback 只是为了独立 ClawHub 分发场景存在，维护时必须和当前对外发布的 CLI 版本保持一致。
+
+## 配置文件
+
+这个 skill 随包包含正式配置文件：
 
 ```text
---- METADATA ---
-Title: ...
-Author: ...
-Site: ...
-FinalURL: ...
-Extraction: readability|fallback-container|body-innerText|github-raw-fast-path|reddit-rss
-FallbackSelector: ...   # 仅在非 readability 模式下出现
---- MARKDOWN ---
-<markdown>
+clawfetch.toml
 ```
 
-它的目标不是做一个“又一个通用爬虫库”，而是做一个 **OpenClaw 优先、知识库友好** 的
-“URL → markdown + metadata” 工具：
-
-- 输出格式固定、易于机器解析
-- 对 GitHub / Reddit 提供协议层面的快速路径
-- 错误信息带 `NEXT:` 提示，方便 Agent 决策下一步
-
----
-
-## Cloudflare / bot 挑战站点支持
-
-对于带有 Cloudflare 或类似 bot 挑战的站点（例如部分 Kaggle 页面），
-底层 `clawfetch` CLI 已经支持通过额外的 JS 抓取后端（例如 FlareSolverr）来
-获取最终 HTML：
-
-- 当环境变量 `FLARESOLVERR_URL` 配置为一个兼容 FlareSolverr API 的服务时，
-  `clawfetch` 在检测到 Cloudflare / bot-block 页面时可以自动调用该服务；
-- 也可以显式使用 `--via-flaresolverr` 参数，对某个 URL 强制使用该后端：
-
-```bash
-FLARESOLVERR_URL=http://127.0.0.1:8191 \
-  node node_modules/clawfetch/clawfetch.js --via-flaresolverr 'https://www.kaggle.com/.../some-article'
-```
-
-如果 `clawfetch` 在浏览器模式下检测到 Cloudflare / bot 挑战页，并且当前未
-配置 `FLARESOLVERR_URL`，它会输出类似的 `NEXT:` 提示：
+在正常 skill 布局中，CLI 入口是：
 
 ```text
-INFO: Detected possible bot-block / Cloudflare challenge page.
-NEXT: Configure FLARESOLVERR_URL to point to a FlareSolverr service, or open the URL in a full browser to pass the challenge manually.
+node_modules/clawfetch/clawfetch.js
 ```
 
-这意味着在 OpenClaw + 本 skill 的场景下：
+这个 CLI 会把当前 skill 目录下的 `clawfetch.toml` 解析为固定宿主配置。
+它不会从调用方当前工作目录向上搜索。FlareSolverr 的长期配置应维护在这个
+文件里，而不是放进 `node_modules/clawfetch`，因为 `node_modules/clawfetch`
+是 npm 安装产物，bootstrap、repair 或 upgrade 时可能被替换。
 
-- **普通站点**：skill 只需正常调用 `clawfetch`，无需关心 FlareSolverr；
-- **被 Cloudflare 挡住的站点**：你可以在 Agent 环境中配置 `FLARESOLVERR_URL`，
-  或根据 `NEXT:` 提示由人类运维决定是否加上该后端。
+默认配置：
 
----
+```toml
+[flaresolverr]
+enabled = false
+# url = "http://127.0.0.1:8191"
+max_timeout_ms = 60000
+```
 
-## 1. 为什么需要这个 skill？
+如需启用 FlareSolverr，请编辑 `clawfetch.toml`，把 `enabled` 改为 `true`，
+并填入可访问的 `url`，例如本机的 `http://127.0.0.1:8191`，或 Docker /
+服务网络里的 `http://flaresolverr:8191`。`FLARESOLVERR_URL` 仍然兼容旧流程
+和临时覆盖，但不再是推荐的主配置路径。
 
-虽然抓网页的库已经很多，但在 OpenClaw + KB 的场景里有几个特殊诉求：
+## 使用方式
 
-- Agent 通常运行在 Docker（比如 `ernestyu/openclaw-patched`）里
-- 希望有一个统一的 CLI，用来做 “URL → markdown + metadata”
-- 希望输出是干净 markdown，适合喂给 SQLite / 向量库
-- 希望行为简单可审计，不出现各种隐蔽脚本 / git clone
-
-这个 skill 的设计是：
-
-- 重活都交给已经发布的 `clawfetch` npm 包
-- skill 自身只包含最核心的 3 个文件，体积小、结构简单
-- 让 Agent 可以直接在 skill 目录下调用 `clawfetch`，作为统一的抓取入口
-
-如果你在搭 OpenClaw + `clawsqlite` / Clawkb 的知识库，这个 skill 是推荐的网页入口方式。
-
----
-
-## 2. 在 OpenClaw 中的安装方式
-
-> **注意：** 早期文档会提到 `clawhub install clawfetch`，并隐含“npm 依赖会自动安装”。
-> 目前实际推荐的流程是使用 `openclaw` CLI 走 **两步显式动作**。
-
-### 第一步：安装 skill 壳到 workspace
-
-在 OpenClaw 环境里，用 skills 子命令把 skill 下载到当前 workspace：
+bootstrap 且 `runtime check` 成功之后，通过本地 CLI 调用：
 
 ```bash
-openclaw skills install clawfetch
+node node_modules/clawfetch/clawfetch.js https://example.com/article
+node node_modules/clawfetch/clawfetch.js https://github.com/owner/repo
+node node_modules/clawfetch/clawfetch.js https://www.reddit.com/r/example/comments/...
 ```
 
-这一步会在本地创建类似这样的目录：
-
-```text
-~/.openclaw/workspace/skills/clawfetch
-```
-
-此时目录里只有 skill 的元数据和辅助文件：
-
-- `SKILL.md`
-- `manifest.yaml`
-- `bootstrap_deps.sh`
-- README / README_zh 等
-
-**还没有** 安装 npm 里的 `clawfetch` 包。
-
-### 第二步：在 skill 目录里 bootstrap npm CLI（必须手动执行一次）
-
-进入该目录，运行 bootstrap 脚本，在本地安装实际的 `clawfetch` npm 包：
+runtime 生命周期命令也必须走 CLI：
 
 ```bash
-cd ~/.openclaw/workspace/skills/clawfetch
-bash bootstrap_deps.sh
+node node_modules/clawfetch/clawfetch.js runtime install
+node node_modules/clawfetch/clawfetch.js runtime check
+node node_modules/clawfetch/clawfetch.js runtime repair
+node node_modules/clawfetch/clawfetch.js runtime upgrade
+node node_modules/clawfetch/clawfetch.js runtime diagnose --json
 ```
 
-这个脚本刻意保持非常克制，内容本质上只有一条：
+skill 层不直接管理 browser runtime。它应该把 CLI 输出的 `NEXT:` 提示展示给 Agent 或操作者，而不是发明另一套恢复路径。
+
+browser runtime 的安装位置和生命周期由 CLI / 项目本体决定。这个 wrapper 不参与路径选择、runtime 修复逻辑或版本匹配。
+
+如果安装或检查失败，运行：
 
 ```bash
-npm install clawfetch@0.1.7
+node node_modules/clawfetch/clawfetch.js runtime diagnose --json
 ```
 
-不会在运行时：
+然后按照 CLI 输出的 `NEXT:` 提示处理，不要在 skill 层发明另一套绕行方案。
 
-- git clone 任意仓库；
-- 安装无关的额外包；
-- 修改全局 npm 配置。
+## 边界
 
-执行完成后，CLI 入口会出现在：
+这个 skill 不实现抓取逻辑、浏览器启动逻辑、Playwright 包解析、browser runtime 管理、GitHub fast-path、Reddit RSS 处理、FlareSolverr 支持或 markdown 转换。
 
-```text
-~/.openclaw/workspace/skills/clawfetch/node_modules/clawfetch/clawfetch.js
-```
+这个 skill 也不隐藏下载逻辑，不 clone 仓库，不做与抓取无关的文件系统操作，也不作为通用 shell 工具使用。
 
-后续无论是人还是 Agent，都可以直接在这个目录下调用它。
-
----
-
-## 3. 运行方式（从 skill 目录调用）
-
-安装 + bootstrap 完成后，CLI 入口在 skill 目录下：
-
-```bash
-cd ~/.openclaw/workspace/skills/clawfetch
-node node_modules/clawfetch/clawfetch.js <url> [--max-comments N] [--no-reddit-rss]
-```
-
-常见用法：
-
-### 3.1 一般文章 / 文档
-
-```bash
-node node_modules/clawfetch/clawfetch.js https://example.com/some-article > article.md
-```
-
-- 通过 Playwright 启动无头 Chromium；
-- 等待页面文本长度稳定；
-- 用 Readability 抽取主体内容；
-- 如果失败则尝试常见容器，再不行退回 `body.innerText`；
-- 最终输出 markdown + METADATA 头部。
-
-### 3.2 GitHub 仓库
-
-```bash
-node node_modules/clawfetch/clawfetch.js https://github.com/owner/repo > repo-readme.md
-```
-
-对于形如 `https://github.com/owner/repo` 的仓库主页 URL：
-
-- `clawfetch` 会优先尝试从 `raw.githubusercontent.com` 获取 README：
-  - 常见文件名如 `README.md` / `README_zh.md`；
-  - 成功时：
-    - `Extraction: github-raw-fast-path`
-    - `FinalURL` 为 raw 地址；
-    - markdown 部分就是 README 内容。
-- 如果所有 raw 路径都失败，则回退到浏览器模式抓取。
-
-同时，它会提示：
-
-- 如果你想深入看代码，不建议继续用网页抓取；
-- 推荐用 git：
-
-  ```bash
-  git clone git@github.com:owner/repo.git
-  cd repo
-  ```
-
-### 3.3 Reddit 帖子
-
-```bash
-node node_modules/clawfetch/clawfetch.js \
-  "https://www.reddit.com/r/reinforcementlearning/comments/tsv55f/r_reinforcement_learning_in_finance_project/" \
-  --max-comments 5 > reddit-thread.md
-```
-
-对于 Reddit 帖子：
-
-- 默认使用 Atom/RSS 快速路径：
-  - 把 `<url>` 转成 `<url>.rss`；
-  - 用正常桌面浏览器 User-Agent 去抓取 Atom feed；
-  - 把 feed 解析成结构化的“主帖 + 评论” markdown：
-
-    ```markdown
-    ## Post: ...
-    by /u/... at ...
-
-    <主帖正文>
-
-    ---
-
-    ### Comment by /u/... at ...
-
-    <评论正文>
-    ```
-
-- 评论数量由 `--max-comments` 控制（默认 50；传 0 表示不限制）。
-- 如需调试浏览器模式，可以加 `--no-reddit-rss` 禁用 RSS 快速路径。
-
-这类输出非常适合作为“Reddit → KB 文本”的输入。
-
----
-
-## 4. 依赖与缺失依赖时的行为
-
-skill 自身除了 `bootstrap_deps.sh` 里的 `npm install clawfetch@0.1.7` 外，
-不会再主动调用 `npm`。
-
-运行时的行为完全由 `clawfetch` CLI 决定：
-
-- 它会用 `require()` 检查以下依赖是否存在：
-  - `playwright-core`（或 `playwright`）
-  - `@mozilla/readability`
-  - `jsdom`
-  - `turndown`
-- 如果缺少依赖且 **没有使用 `--auto-install`**：
-  - 打印缺失包列表；
-  - 打印推荐的 `npm install` 命令（全局或本地）；
-  - 退出并返回非零状态码；
-- 如果加了 `--auto-install`：
-  - 会在 `clawfetch.js` 所在目录尝试一次本地 `npm install`；
-  - 失败时仍然只打印 `NEXT:` 提示，让人工/上层决定下一步。
-
-skill 不会在背后静默安装其它东西。
-
----
-
-## 5. 安全与信任模型
-
-为了避免在 ClawHub 上触发“可疑代码”标签，这个 skill 遵守几个约束：
-
-- skill 里 **不** 内置 `clawfetch` 源码；
-- **不** 在运行时 git clone 任意仓库；
-- **不** 执行任何 `curl | bash` 类型脚本；
-- 唯一一次 `npm install` 发生在显式的安装阶段，脚本短小可审计；
-- 真正的逻辑全部来自公开的 npm 包 `clawfetch`（Apache-2.0 许可）。
-
-你可以非常容易地 review 本 skill：
-
-- 只看 `clawfetch` 目录下的 3 个文件：`SKILL.md`、`manifest.yaml`、`bootstrap_deps.sh`；
-- 如果需要深入了解实现，再去看主仓库 `ernestyu/clawfetch`。
-
----
-
-## 6. 许可证
-
-本 skill 以 MIT 许可证发布；底层 `clawfetch` npm 包以 Apache-2.0 许可证发布。
-
-具体条款请参考各自仓库中的 LICENSE 文件。
+ClawHub 发布的 skill 内容遵循其 registry 侧的授权策略；`clawfetch` npm CLI 包仍然单独使用 Apache-2.0 授权。

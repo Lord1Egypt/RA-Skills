@@ -12,6 +12,7 @@ const os = require('os');
 
 const CONFIG_DIR = path.join(os.homedir(), '.openclaw', 'bring');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
+const TOKEN_FILE = path.join(CONFIG_DIR, 'token.json');
 
 // Ensure config directory exists
 if (!fs.existsSync(CONFIG_DIR)) {
@@ -30,6 +31,33 @@ function saveConfig(config) {
   fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
 }
 
+// Token caching to avoid re-login on every command
+function loadTokenCache() {
+  if (fs.existsSync(TOKEN_FILE)) {
+    try {
+      const cache = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
+      // Tokens valid for ~30 days; treat as expired after 7 days for safety
+      if (cache.savedAt && (Date.now() - cache.savedAt) < 7 * 24 * 60 * 60 * 1000) {
+        return cache;
+      }
+    } catch (_) { /* stale cache, ignore */ }
+  }
+  return null;
+}
+
+function saveTokenCache(uuid, bearerToken, refreshToken) {
+  fs.writeFileSync(TOKEN_FILE, JSON.stringify({
+    uuid,
+    bearerToken,
+    refreshToken,
+    savedAt: Date.now()
+  }, null, 2));
+}
+
+function clearTokenCache() {
+  try { fs.unlinkSync(TOKEN_FILE); } catch (_) { /* ok if missing */ }
+}
+
 // Detect list language from existing items
 async function detectListLanguage(bring, listUuid) {
   try {
@@ -45,7 +73,7 @@ async function detectListLanguage(bring, listUuid) {
     let bestMatch = { locale: 'en-US', score: 0 };
 
     for (const locale of locales) {
-      const catalog = await bring.getCatalog(locale);
+      const catalog = await bring.loadCatalog(locale);
       const catalogNames = new Set(catalog.map(item => item.name.toLowerCase()));
       
       let score = 0;
@@ -74,6 +102,7 @@ async function main() {
     console.error('Usage: node bring-cli.js <command> [args]');
     console.error('\nCommands:');
     console.error('  configure <email> <password>           - Set up Bring credentials');
+    console.error('  renew                                  - Force re-login (refresh token cache)');
     console.error('  lists                                  - Show all shopping lists');
     console.error('  findlist <name>                        - Find list by name (partial match)');
     console.error('  items [listUuid]                       - Show items in a list');
@@ -123,15 +152,38 @@ async function main() {
 
   const bring = new BringApi({ mail: config.email, password: config.password });
   
-  try {
-    await bring.login();
-  } catch (e) {
-    console.error(`Login error: ${e.message}`);
-    process.exit(1);
+  // Try cached token first
+  const tokenCache = loadTokenCache();
+  if (tokenCache) {
+    bring.uuid = tokenCache.uuid;
+    bring.bearerToken = tokenCache.bearerToken;
+    bring.refreshToken = tokenCache.refreshToken;
+    bring.headers['X-BRING-USER-UUID'] = bring.uuid;
+    bring.headers['Authorization'] = `Bearer ${bring.bearerToken}`;
+    bring.putHeaders = {
+      ...bring.headers,
+      ...{ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+    };
+  } else {
+    try {
+      await bring.login();
+      saveTokenCache(bring.uuid, bring.bearerToken, bring.refreshToken);
+    } catch (e) {
+      console.error(`Login error: ${e.message}`);
+      process.exit(1);
+    }
   }
 
   try {
     switch (command) {
+      case 'renew': {
+        clearTokenCache();
+        await bring.login();
+        saveTokenCache(bring.uuid, bring.bearerToken, bring.refreshToken);
+        console.log(`✓ Token renewed, logged in as ${bring.name}`);
+        break;
+      }
+
       case 'lists': {
         const lists = await bring.loadLists();
         console.log(JSON.stringify(lists, null, 2));
@@ -158,7 +210,7 @@ async function main() {
 
       case 'catalog': {
         const locale = args[0] || 'en-US';
-        const catalog = await bring.getCatalog(locale);
+        const catalog = await bring.loadCatalog(locale);
         console.log(JSON.stringify(catalog, null, 2));
         break;
       }
@@ -182,11 +234,21 @@ async function main() {
         }
 
         // Load catalog for the specified locale
-        const catalog = await bring.getCatalog(locale);
+        const catalogData = await bring.loadCatalog(locale);
+        
+        // Flatten catalog sections into a single array of items
+        const allItems = [];
+        if (catalogData.catalog && catalogData.catalog.sections) {
+          for (const section of catalogData.catalog.sections) {
+            if (section.items) {
+              allItems.push(...section.items);
+            }
+          }
+        }
         
         // Find matching item in catalog (case-insensitive search)
         const searchLower = searchTerm.toLowerCase();
-        const match = catalog.find(item => 
+        const match = allItems.find(item => 
           item.name.toLowerCase() === searchLower ||
           item.name.toLowerCase().includes(searchLower)
         );

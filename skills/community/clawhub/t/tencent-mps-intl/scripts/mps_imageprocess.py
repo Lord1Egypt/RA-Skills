@@ -26,125 +26,125 @@ COS Storage Convention:
 
 Usage:
   # Simplest usage: only specify input image (no processing, for connectivity testing)
-  python mps_imageprocess.py --url https://example.com/image.jpg
+  python3 mps_imageprocess.py --url https://example.com/image.jpg
 
   # === Image Encoding (Format Conversion) ===
   # Convert to PNG format
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
 
   # Convert to WebP format + specify quality 80
-  python mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
   # === Image Enhancement ===
   # Super-resolution (2x enlargement)
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
   # Advanced super-resolution (specify target width/height)
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
 
   # Advanced super-resolution (ratio mode, 3x enlargement)
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
 
   # Noise reduction (strong)
-  python mps_imageprocess.py --url https://example.com/image.jpg --denoise strong
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --denoise strong
 
   # Comprehensive enhancement (strong)
-  python mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong
 
   # Color enhancement
-  python mps_imageprocess.py --url https://example.com/image.jpg --color-enhance normal
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --color-enhance normal
 
   # Detail enhancement (intensity 0.8)
-  python mps_imageprocess.py --url https://example.com/image.jpg --sharp-enhance 0.8
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --sharp-enhance 0.8
 
   # Face enhancement (intensity 0.5)
-  python mps_imageprocess.py --url https://example.com/image.jpg --face-enhance 0.5
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --face-enhance 0.5
 
   # Low-light enhancement
-  python mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
 
   # Combination: noise reduction + super-resolution + color enhancement
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --color-enhance normal
 
   # === Image Erasure ===
   # Auto-detect and erase icons and text
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
 
   # Auto-detect and erase watermarks
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
   # Specify region erasure (pixel coordinates)
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
 
   # Specify region erasure (percentage coordinates)
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
 
   # === Blind Watermark ===
   # Add blind watermark
-  python mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
 
   # Extract blind watermark
-  python mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
 
   # Remove blind watermark
-  python mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
 
   # === Beautification ===
   # Whitening (intensity 50)
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
 
   # Skin smoothing + face slimming
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --beauty Smooth:60 --beauty BeautyThinFace:40
 
   # Lipstick (specify color)
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --beauty 'FaceFeatureLipsLut:50:#ff0000'
 
   # === Filters ===
   # Light Film filter (intensity 70)
-  python mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
   # === Image Scaling ===
   # Percentage scaling (2x enlargement)
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
 
   # Proportional scaling to specified width/height (smaller rectangle)
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height
   600
 
   # Fixed dimension scaling
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode fixed --resize-width 1920
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode fixed --resize-width 1920
   --resize-height 1080
 
   # === Combination usage ===
   # Noise reduction + super-resolution + beautification + format conversion
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --beauty Whiten:30 --beauty Smooth:40 \\
       --format PNG --quality 90
 
   # === Orchestration Scenarios (ScheduleId, Tencent Cloud console preset AI capabilities) ===
   # AI Image Understanding (30200)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
 
   # AI Cutout (30030)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
 
   # AI Image Restoration (30040)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
   # AI Foreground Extraction (30031)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
 
   # AI Outpainting (30010, image extension)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
 
   # AI Text Watermark Erasure (30000)
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
   # Dry Run (only print request parameters, not actually call API)
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -182,7 +182,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -1042,7 +1042,7 @@ def process_image(args):
                                  title="Image Processing Effect Comparison", output_path=compare_path)
         else:
             print(f"\nNote: Task is processing in background, use the following command to check progress:")
-            print(f"  python scripts/mps_get_image_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_image_task.py --task-id {task_id}")
 
         return result
 
@@ -1059,80 +1059,80 @@ def main():
 Examples:
   # === Input Methods ===
   # URL input
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
 
   # COS path input (recommended, use after local upload)
-  python mps_imageprocess.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
+  python3 mps_imageprocess.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
   /input/image.jpg --format PNG
 
   # COS input (bucket and region automatically obtained from environment variables)
-  python mps_imageprocess.py --cos-input-key /input/image/test.jpg --format PNG
+  python3 mps_imageprocess.py --cos-input-key /input/image/test.jpg --format PNG
 
   # === Format Conversion ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --format PNG
-  python mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format PNG
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
   # === Image Enhancement ===
   # Super-resolution (2x magnification)
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
   # Advanced super-resolution (specify target dimensions)
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
   # Advanced super-resolution (magnification mode)
-  python mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-percent 3.0
 
   # Denoise + Color enhancement
-  python mps_imageprocess.py --url https://example.com/image.jpg --denoise strong --color-enhance normal
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --denoise strong --color-enhance normal
 
   # Low-light enhancement
-  python mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --lowlight-enhance
 
   # === Image Erasure ===
   # Auto-detect and erase icons and text
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect logo text
 
   # Auto-detect and erase watermarks
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
   # Specify area to erase (pixel coordinates)
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-area 100,50,300,200
 
   # Specify area to erase (percentage coordinates)
-  python mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --erase-box 0.1,0.1,0.3,0.3
 
   # === Blind Watermark ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
-  python mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
-  python mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "test"
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --extract-watermark
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --remove-watermark
 
   # === Beautification ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty Smooth:60 --beauty BeautyThinFace:40
-  python mps_imageprocess.py --url https://example.com/image.jpg --beauty 'FaceFeatureLipsLut:50:#ff0000'
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Whiten:50
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty Smooth:60 --beauty BeautyThinFace:40
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --beauty 'FaceFeatureLipsLut:50:#ff0000'
 
   # === Filters ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
   # === Scaling ===
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
-  python mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-percent 2.0
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height
   600
 
   # === Combined Usage ===
-  python mps_imageprocess.py --url https://example.com/image.jpg \\
+  python3 mps_imageprocess.py --url https://example.com/image.jpg \\
       --denoise weak --super-resolution --beauty Whiten:30 --format PNG
 
   # === Orchestration Scenarios (ScheduleId, console preset capabilities) ===
   # AI Image Understanding / AI Cutout / AI Image Restoration / AI Foreground Extraction / AI Outpainting / AI Text Watermark Erasure
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
-  python mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
   # Dry Run (only print request parameters)
-  python mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
+  python3 mps_imageprocess.py --url https://example.com/image.jpg --super-resolution --dry-run
 
 Processing Capabilities:
   1. Image Encoding   Format conversion (JPEG/PNG/BMP/WebP), quality adjustment
@@ -1420,8 +1420,11 @@ Environment Variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (environment variable): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     # Processing summary

@@ -1,7 +1,5 @@
 ---
 name: linkfox-amazon-store-auth
-version: 1.0.1
-category: product-sourcing
 description: 亚马逊店铺授权与管理技能，提供完整的授权流程、令牌刷新、已授权店铺查询以及访问令牌获取能力。获取授权链接时店铺名 sellerName 为必填，用于区分已授权店铺。当用户提到亚马逊店铺授权、绑定亚马逊店铺、刷新令牌、查询店铺令牌、管理授权店铺、Amazon seller authorization, bind Amazon seller account, refresh access token, query store tokens, manage authorized stores时触发此技能。只要其需求涉及亚马逊卖家账号授权、访问令牌管理或店铺列表查询，也应触发此技能。
 ---
 
@@ -56,16 +54,19 @@ Selling Partner API 是亚马逊为卖家提供的官方接口。本 skill 负�
 
 默认区域为 **NA**。当用户未指定区域时，使用 NA。
 
-## API Usage
+## 调用方式
 
-本 skill 经 LinkFox 网关调用店铺授权相关接口，详见 `references/api.md`。
+- **API 端点**：`POST /spApi/{authorizeUrl|storeTokens|authorizedStores|refreshToken}`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
-### Available Scripts
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
-- `scripts/authorize_url.py` — 为新店铺生成授权 URL（`sellerName` 必填）
-- `scripts/authorized_stores.py` — 列出所有已授权店铺
-- `scripts/refresh_token.py` — 刷新某店铺的访问令牌
-- `scripts/store_tokens.py` — 查询某店铺的访问令牌（供下游 skill 使用）
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Usage Scenarios
 

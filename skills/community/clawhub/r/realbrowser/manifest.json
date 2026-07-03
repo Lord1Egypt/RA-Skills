@@ -1,0 +1,80 @@
+{
+  "slug": "realbrowser",
+  "name": "RealBrowser by Ceki",
+  "version": "0.1.1",
+  "author": "iWedmak",
+  "license": "MIT",
+  "description": "Real Chrome sessions for AI agents — for tasks on sites you own or have authorization to operate on. Three modes: Self (your own Chrome), Marketplace (rent from opted-in hosts, $0.01/min USDC), Earn (opt-in: share your idle Chrome).",
+  "summary": "Drive a real Chrome session from your AI agent on sites you own or have authorization to operate on. Thin client over the ceki-sdk CLI.",
+  "homepage": "https://ceki.me",
+  "repository": "https://github.com/Ceki-me/realbrowser-skill",
+  "bugs": "https://github.com/Ceki-me/realbrowser-skill/issues",
+  "keywords": [
+    "browser",
+    "automation",
+    "ai-agent",
+    "chrome",
+    "qa",
+    "synthetic-monitoring",
+    "accessibility",
+    "marketplace",
+    "mcp",
+    "openclaw"
+  ],
+  "categories": [
+    "browser",
+    "automation"
+  ],
+  "dependencies": {
+    "ceki-sdk": ">=2.18.0"
+  },
+  "permissions": {
+    "network.outbound": [
+      "api.ceki.me",
+      "browser.ceki.me",
+      "chat.ceki.me"
+    ],
+    "process.spawn": [
+      "ceki"
+    ],
+    "filesystem.read": [
+      "~/.ceki/sessions/"
+    ],
+    "filesystem.write": [
+      "~/.ceki/sessions/"
+    ]
+  },
+  "permissions_justification": {
+    "network.outbound": "ceki-sdk CLI talks to the Ceki API (api.ceki.me), the relay (browser.ceki.me), and the chat backend (chat.ceki.me). No other outbound traffic.",
+    "process.spawn": "Skill invokes the ceki CLI binary. No other processes.",
+    "filesystem.read": "ceki CLI stores session state files at ~/.ceki/sessions/<sid>.json. Required for cross-invocation resume.",
+    "filesystem.write": "Same as above. Session state is created on rent, updated on snapshot/chat next, deleted on stop."
+  },
+  "modes": {
+    "self": {
+      "description": "Your own Chrome (after installing the Ceki extension from browser.ceki.me/install). Used when host_user == renter_user.",
+      "cost": "free for host_user == renter_user"
+    },
+    "marketplace": {
+      "description": "Rent a Chrome contributed by another opted-in user. Sessions are visible to the host.",
+      "cost": "$0.01/min, settled in USDC"
+    },
+    "earn": {
+      "description": "Opt-in: share your idle Chrome with other users' agents. Off by default.",
+      "payout": "90% of session price"
+    }
+  },
+  "engines": {
+    "python": ">=3.10"
+  },
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "README.md",
+    "install.sh",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "examples/"
+  ]
+}

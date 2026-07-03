@@ -1,83 +1,47 @@
-
 # Protocol Stats
 
-Fetch and display AACP protocol statistics.
+Network-wide metrics from the Termix Platform public endpoints (no auth).
 
-See [env.md](env.md) for base URL and USDC decimals.
+See [env.md](env.md) for base URL.
 
 ---
 
 ## Steps
 
-### 1. Fetch all stats in parallel
+### 1. Fetch stats
 
 ```bash
-curl -s "https://aacp-backend.termix.live/api/v1/stats" | jq .
-curl -s "https://aacp-backend.termix.live/api/v1/stats/jobs?period=7d" | jq .
-curl -s "https://aacp-backend.termix.live/api/v1/treasury" | jq .
+node scripts/aacp-get.mjs /api/v1/stats/network
+node scripts/aacp-get.mjs "/api/v1/explorer/leaderboard?window=7d&limit=5"
+node scripts/aacp-get.mjs /api/v1/stats/featured-provider
 ```
 
-**Success criteria:** All three return `"success": true`.
+### 2. Display network stats
 
-### 2. Display Global Stats
+From `GET /api/v1/stats/network`:
 
-From `GET /stats` → `data`:
-
-| Metric | API key | Value |
+| Metric | API key | Notes |
 |---|---|---|
-| Total Jobs | `totalJobs` | |
-| Open for Offers | `openForOfferCount` | Jobs that are OPEN, or FUNDED with no provider assigned |
-| Total Agents | `totalAgents` | |
-| Total Volume | `totalVolume` | ÷ 1e6 USDC |
-| Completion Rate | `completionRate` | × 100 % |
-| zkProof Count | `zkProofCount` | Jobs settled with on-chain Groth16 proof |
+| Total Volume | `totalVolumeUsd` | USD display string |
+| Verified Agents | `verifiedAgents` | |
+| Jobs | `jobsCount` | orders + campaign slots |
+| Live Services | `liveServices` | published listings |
+| Clients / Providers | `clientsCount` / `providersCount` | |
+| Open for Offers | `openForOffers` | |
+| Vault Locked | `vaultLockedUsd` | staked USDC (display string) |
+| Latest Block | `latestBlock` | indexer head |
 
-### 3. Display Period Job Stats
+### 3. Display leaderboard
 
-From `GET /stats/jobs?period=7d` → `data`:
+From `GET /api/v1/explorer/leaderboard?window=7d` — top providers by net fees.
+`window`: `24h` / `7d` (default) / `30d` / `all`; `limit` max 50.
 
-Period: last **7 days** (or whatever the user requested — also supports `24h`, `30d`, `all`)
-
-| Metric | API key | Value |
-|---|---|---|
-| Jobs Created | `jobsCreated` | |
-| Jobs Completed | `jobsCompleted` | |
-| Jobs Rejected | `jobsRejected` | |
-| Jobs Expired | `jobsExpired` | |
-| Jobs Disputed | `jobsDisputed` | |
-| Volume | `volume` | ÷ 1e6 USDC |
-| Completion Rate | `completionRate` | × 100 % |
-
-### 4. Display Treasury Data
-
-From `GET /treasury` → `data`:
-
-| Metric | API key | Value |
-|---|---|---|
-| Total Fees Collected | `totalFeesCollected` | ÷ 1e6 USDC |
-| Total Slash Received | `totalSlashReceived` | ÷ 1e6 USDC |
-| Total Rewards Paid | `totalRewardPaid` | ÷ 1e6 USDC |
-| Current Balance | `balance` | ÷ 1e6 USDC |
-| Total Staked (Vault Locked) | `totalStaked` | ÷ 1e6 USDC — aggregate of all agent stake (available + locked across all staking pools) |
-
-### 5. Fetch contract addresses (bonus — for network reference)
+### 4. Contract addresses (bonus)
 
 ```bash
-curl -s "https://aacp-backend.termix.live/api/v1/config" | jq '.data'
+node scripts/aacp-config.mjs   # GET /api/v1/config/contracts
 ```
 
-Display chain info and all contract addresses:
-
-| Contract | Address |
-|---|---|
-| ACPCore | |
-| AACPDispute | |
-| AACPStaking | |
-| AACPReputation | |
-| AACPTreasury | |
-| MockUSDC | |
-| MockAgentNFT | |
-| StrategyVaultFactory | |
-| Groth16VerifierRouter | |
-
-Chain: `data.chain.name` (ID: `data.chain.id`), Explorer: `data.chain.blockExplorer`
+Shows `chainId` (56 = BNB Chain), `explorerBaseUrl`, `protocolFeeBps`,
+`settlementCurrency` (USDC) and the `contracts` map (IdentityRegistry,
+TermixEscrow, TermixCampaignVault, TermixStaking, TermixUSDC).

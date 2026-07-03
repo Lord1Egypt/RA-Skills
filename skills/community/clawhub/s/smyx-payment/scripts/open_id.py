@@ -56,6 +56,20 @@ def _set_request_layer_api_key(value: str) -> None:
         pass
 
 
+def _is_sensitive_identifier(value: str) -> bool:
+    """Check if value looks like a sensitive API key/token."""
+    if not value or not isinstance(value, str):
+        return False
+    # User_xxx format is safe to display
+    if value.startswith("User_") and len(value) == 11:
+        return False
+    # AK/SK format
+    if value.lower().startswith(("ak_", "sk_", "pk_", "api_", "token_")):
+        return True
+    # Long mixed identifiers are treated as sensitive
+    return len(value) >= 24 and any(c.isalpha() for c in value) and any(c.isdigit() for c in value)
+
+
 def get_or_create_default_recharge_account() -> str:
     """Return a reusable local default recharge account via smyx_common rules.
 
@@ -72,26 +86,56 @@ def get_or_create_default_recharge_account() -> str:
 def get_payment_card_display_account() -> str:
     """Return the plaintext account that must be shown on payment cards.
 
-    This value is intentionally the local default sys_user.username resolved
-    through smyx_common UserDao rules, not any sensitive stored credential.
+    与 resolve_recharge_account 逻辑一致，确保用户看到的账户就是实际充值的账户
+
+    Returns:
+        支付卡片上显示的账户名
     """
-    return get_or_create_default_recharge_account()
+    account, source = resolve_recharge_account(None)
+
+    # 敏感标识符脱敏显示（正常情况下不应该走到这里，因为优先使用 User_xxx）
+    if _is_sensitive_identifier(account):
+        # 显示前8位 + ...，既标识又保护隐私
+        return f"{account[:8]}..."
+
+    # User_xxx 或手机号直接显示
+    return account
 
 
 def resolve_recharge_account(explicit_internal_account: Optional[str] = None) -> Tuple[str, str]:
     """Resolve the account used by payment order creation.
 
+    🔴 关键规则：优先使用 User_xxx 格式的本地充值账户，而非 API Key
+    - API Key 仅用于请求层鉴权，不作为用户账户标识
+    - User_xxx 是用户可识别的本地充值账户
+
     Returns:
-        (account, source): source is "api_key_file" | "explicit" | "default_local_user".
+        (account, source): source is "default_local_user" | "explicit" | "api_key_file".
     """
+    # 1. 优先使用显式传入的账户
+    if explicit_internal_account and str(explicit_internal_account).strip():
+        return str(explicit_internal_account).strip(), "explicit"
+
+    # 2. 优先获取本地默认 User_xxx 账户（这是用户看到的充值账户）
+    try:
+        from skills.smyx_common.scripts.util import OpenIdUtil
+        user_account = OpenIdUtil.get_or_create_default_open_id()
+        if user_account and user_account.startswith("User_"):
+            # 同时设置 API Key 到请求层（如果有）
+            api_key = read_api_key_file()
+            if api_key:
+                _set_request_layer_api_key(api_key)
+            return user_account, "default_local_user"
+    except Exception:
+        pass
+
+    # 3. 降级方案：如果获取 User_xxx 失败，再使用 API Key
     api_key = read_api_key_file()
     if api_key:
         _set_request_layer_api_key(api_key)
         return api_key, "api_key_file"
 
-    if explicit_internal_account and str(explicit_internal_account).strip():
-        return str(explicit_internal_account).strip(), "explicit"
-
+    # 4. 最终兜底：创建默认 User_xxx 账户
     return get_or_create_default_recharge_account(), "default_local_user"
 
 

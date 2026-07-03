@@ -1,0 +1,22 @@
+{
+  "book_title": "My Memoir",
+  "author": "Annmarie Lee",
+  "chapters": [
+    {
+      "id": "64ebf399",
+      "title": "Chapter 1: What I Was Born Into",
+      "status": "planned",
+      "created": "2026-06-21T12:47:42.382152",
+      "updated": "2026-06-21T12:47:42.382156",
+      "order": 1
+    },
+    {
+      "id": "533a8f25",
+      "title": "Chapter 2: The Harm in Love",
+      "status": "planned",
+      "created": "2026-06-21T12:52:09.148072",
+      "updated": "2026-06-21T12:52:09.148076",
+      "order": 2
+    }
+  ]
+}

@@ -11,10 +11,13 @@
 
 ### Trading Style
 
-- **Primary strategy**: Supply chain bottleneck analysis
+- **Primary strategy**: Supply chain bottleneck analysis (Bottleneck Theory)
 - **Execution**: Day trading around core positions
 - **Risk management**: Stop-thesis (not stop-loss)
 - **Position sizing**: Tiered approach (Core/Swing/Lottery)
+- **Research method**: Red-team/Blue-team adversarial testing (v2.1 new)
+- **Margin usage**: Strategic use of margin (~1.4x), with caution
+- **Information sources**: OSINT supply chain mapping (a16z, pitchbook, SMM prices, Gov publications)
 
 ### Information Sources
 
@@ -26,8 +29,16 @@
 ### Performance (Extracted from Tweets)
 
 - **$AAOI**: Bought at $28, trimmed at $195 (357% gain)
+- **$AXTI**: Target ~$15 (2025 year-end) → $82 (2026-05), precise hit
+- **$NBIS**: PT $225 (2025-09-19) → included in Nasdaq 100 (2026-06-12)
+- **$RPI (Raspberry Pi)**: Predicted revenue growth 55% vs analyst 14%, actual 58%
+- **$SIVE**: Core position, CW laser bottleneck, margin ~1.4x used
 - **$POET**: Core position, multiple accounts (conviction play)
 - **$MU**: Core position, benefits from HBM bottleneck
+
+**v2.1 Added Cases:**
+- **$SIVE**: Short-term "murdered" (drawdown >50%), still holding millions of shares waiting for volume ramp
+- **Photonics/CPO theme**: Multiple positions, $SIVE emphasized laser volume ramp, fabless model, NASDAQ listing potential
 
 **Disclaimer**: These are self-reported results. Actual performance may vary.
 

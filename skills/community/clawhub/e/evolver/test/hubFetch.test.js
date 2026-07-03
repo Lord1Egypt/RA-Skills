@@ -151,6 +151,36 @@ describe('hubFetch — unit', () => {
     assert.ok(!('dispatcher' in original), 'original options must not be mutated');
   });
 
+  it('sanitizes Hub response bodies for logs before truncating', () => {
+    const rawNodeSecret = 'f'.repeat(64);
+    const rawBearer = 'Bearer ' + 'g'.repeat(64);
+    const rawToken = 'tok_' + 'h'.repeat(40);
+    const rawEnvPath = '.env.local';
+    const { sanitizeHubResponseForLog } = hubFetchMod;
+
+    const text = JSON.stringify({
+      error: 'auth_failed',
+      node_secret: rawNodeSecret,
+      nested: [
+        {
+          token: rawToken,
+          message: `${rawBearer} leaked from ${rawEnvPath}`,
+        },
+      ],
+      filler: 'x'.repeat(256),
+    });
+
+    const safe = sanitizeHubResponseForLog(text, { maxChars: 192 });
+
+    assert.match(safe, /"node_secret":"\[REDACTED\]"/);
+    assert.match(safe, /\[REDACTED\]/);
+    assert.match(safe, /\.\.\.\[truncated\]/s);
+    assert.equal(safe.includes(rawNodeSecret), false, 'node_secret value must not survive JSON sanitization');
+    assert.equal(safe.includes(rawBearer), false, 'Bearer token must not survive string redaction');
+    assert.equal(safe.includes(rawToken), false, 'token field value must not survive JSON sanitization');
+    assert.equal(safe.includes(rawEnvPath), false, '.env path must not survive string redaction');
+  });
+
   // --- URL schema enforcement (the chokepoint that catches what resolveHubUrl misses) ---
 
   it('throws on http:// URL — even when caller bypassed resolveHubUrl', async () => {

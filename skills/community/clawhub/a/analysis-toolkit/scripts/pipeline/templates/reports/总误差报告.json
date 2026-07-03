@@ -1,0 +1,17 @@
+{
+  "name": "总误差报告",
+  "description": "总误差评估特色报告 — 核心指标卡片 + TE分量Chart.js图 + CLIA判定",
+  "type": "report",
+  "tags": ["total_error", "te", "accuracy"],
+  "report": {
+    "title": "总误差评估报告 (Total Error Analysis)",
+    "sections": [
+      {"type": "metric_card", "source": "%总误差%", "title": "核心指标",
+       "fields": ["mean", "sd", "bias_abs", "te"]},
+      {"type": "te_breakdown", "source": "%总误差%", "title": "总误差分量分解"},
+      {"type": "te_judgment_section", "source": "%判定%", "te_source": "%总误差%"},
+      {"type": "data_table", "source": "%总误差%", "title": "详细统计量",
+       "fields": ["mean", "sd", "bias", "bias_abs", "random_error", "te", "te_relative", "n", "t_crit", "reference"]}
+    ]
+  }
+}

@@ -19,20 +19,22 @@ import logging
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Optional, Callable
+from typing import Optional, Callable, Any
 
 import pdfplumber
 import requests
 
-from text_cleaner import clean_announcement_text
-from llm_judge import LLMJudge
+from dependencies import get_text_cleaner, get_llm_judge
 
-logger = logging.getLogger(__name__)
+clean_announcement_text = get_text_cleaner()
+LLMJudge = get_llm_judge()
 
-CNOTICE_API = "https://np-cnotice-stock.eastmoney.com/api/content/ann"
+logger: logging.Logger = logging.getLogger(__name__)
+
+CNOTICE_API: str = "https://np-cnotice-stock.eastmoney.com/api/content/ann"
 
 # 跳过全文采集的标题模式
-SKIP_CONTENT_PATTERNS = [
+SKIP_CONTENT_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"公司章程", re.IGNORECASE),
     re.compile(r"信用评级|跟踪评级", re.IGNORECASE),
     re.compile(r"募集说明书", re.IGNORECASE),
@@ -60,9 +62,16 @@ SKIP_CONTENT_PATTERNS = [
     re.compile(r"限制性股票.*(?:预留授予|完成登记)|股票期权.*(?:预留授予|完成登记)", re.IGNORECASE),
     # 限制性股票作废（量小无市场影响）
     re.compile(r"作废.*限制性股票|限制性股票.*作废", re.IGNORECASE),
+    # 质押展期/解除质押（流程性公告，不再提醒）
+    re.compile(r"质押.*展期|控股股东.*质押展期|质押展期", re.IGNORECASE),
+    re.compile(r"解除质押|解除.*质押", re.IGNORECASE),
+    # 可转债审计报告（程序性公告，无市场影响）
+    re.compile(r"可转债.*审计报告|审计报告.*可转债", re.IGNORECASE),
+    # 公司理财产品（结构性存款到期、购买理财等，无实质影响）
+    re.compile(r"结构性存款.*到期|到期.*赎回|购买.*理财产品|理财产品.*购买|购买.*信托|信托.*购买", re.IGNORECASE),
 ]
-PDF_BASE = "https://pdf.dfcfw.com/pdf/H2_{art_code}_1.pdf"
-HEADERS = {
+PDF_BASE: str = "https://pdf.dfcfw.com/pdf/H2_{art_code}_1.pdf"
+HEADERS: dict[str, str] = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -76,7 +85,7 @@ HEADERS = {
 
 
 def _get_session() -> requests.Session:
-    session = requests.Session()
+    session: requests.Session = requests.Session()
     session.headers.update(HEADERS)
     return session
 
@@ -84,11 +93,11 @@ def _get_session() -> requests.Session:
 def _extract_text_from_pdf(pdf_url: str, timeout: int = 30) -> Optional[str]:
     """下载 PDF 并提取文本"""
     try:
-        resp = requests.get(pdf_url, headers=HEADERS, timeout=timeout)
+        resp: requests.Response = requests.get(pdf_url, headers=HEADERS, timeout=timeout)
         resp.raise_for_status()
         with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
-            pages = [page.extract_text() or "" for page in pdf.pages]
-        text = "\n".join(pages).strip()
+            pages: list[str] = [page.extract_text() or "" for page in pdf.pages]
+        text: str = "\n".join(pages).strip()
         return text if text else None
     except (OSError, ValueError) as e:
         logger.debug("PDF 提取失败 %s: %s", pdf_url, e)
@@ -96,7 +105,7 @@ def _extract_text_from_pdf(pdf_url: str, timeout: int = 30) -> Optional[str]:
 
 
 # 超长文档只提取目录/概要（保留 attach_url 指向原始 PDF）
-TOC_ONLY_PATTERNS = [
+TOC_ONLY_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"通函", re.IGNORECASE),
     re.compile(r"海外市场公告|海外监管公告", re.IGNORECASE),
     re.compile(r"股东会会议资料|股东大会会议资料|会议文件", re.IGNORECASE),
@@ -112,16 +121,16 @@ def _extract_toc_only(text: str, title: str = "") -> str:
       2. 没有目录标记时，保留开头 1500 字（通常包含提案摘要）
       3. 最终不超过 2000 字
     """
-    max_toc = 2000
+    max_toc: int = 2000
 
     # 尝试找目录标记
     for marker in ["目 录", "目  录", "目录"]:
-        idx = text.find(marker)
+        idx: int = text.find(marker)
         if idx >= 0:
             # 从目录标记开始，截取目录条目部分
-            tail = text[idx:]
+            tail: str = text[idx:]
             # 目录条目通常简短，找到第一个段落结束或连续页码结束
-            end = min(len(tail), 800)
+            end: int = min(len(tail), 800)
             for stop in range(100, len(tail)):
                 if tail[stop:stop+2] in ("\n\n", "页次"):
                     end = stop + 100
@@ -132,9 +141,9 @@ def _extract_toc_only(text: str, title: str = "") -> str:
     return text[:max_toc].strip()
 
 
-def should_skip_content(ann: dict) -> bool:
+def should_skip_content(ann: dict[str, Any]) -> bool:
     """判断是否应跳过全文采集（如公司章程等纯模板文档）"""
-    title = ann.get("title", "")
+    title: str = ann.get("title", "")
     for pattern in SKIP_CONTENT_PATTERNS:
         if pattern.search(title):
             logger.info("跳过全文采集: %s", title[:60])
@@ -148,7 +157,7 @@ def fetch_announcement_content(
     timeout: int = 15,
     retries: int = 1,
     pdf_url_override: str = "",
-) -> Optional[dict]:
+) -> Optional[dict[str, Any]]:
     """获取公告全文内容
 
     优先调用内容 API，失败时回退到 PDF 提取。
@@ -164,15 +173,15 @@ def fetch_announcement_content(
     Returns:
         dict 包含 notice_content 等字段，失败返回 None
     """
-    params = {
+    params: dict[str, str] = {
         "art_code": art_code,
         "client_source": "web",
     }
-    session = _get_session()
+    session: requests.Session = _get_session()
     try:
         for attempt in range(retries + 1):
             try:
-                resp = session.get(
+                resp: requests.Response = session.get(
                     CNOTICE_API,
                     params=params,
                     timeout=timeout,
@@ -182,7 +191,7 @@ def fetch_announcement_content(
                     if attempt < retries:
                         continue
                     break
-                data = resp.json()
+                data: dict[str, Any] = resp.json()
                 if data.get("success") != 1:
                     if attempt < retries:
                         continue
@@ -196,8 +205,8 @@ def fetch_announcement_content(
     finally:
         session.close()
 
-    pdf_url = pdf_url_override or PDF_BASE.format(art_code=art_code)
-    text = _extract_text_from_pdf(pdf_url)
+    pdf_url: str = pdf_url_override or PDF_BASE.format(art_code=art_code)
+    text: Optional[str] = _extract_text_from_pdf(pdf_url)
     if text:
         return {
             "notice_content": text,
@@ -210,13 +219,13 @@ def fetch_announcement_content(
 
 
 def fetch_all_contents(
-    announcements: list[dict],
-    save_batch: Optional[Callable[[list[dict]], None]] = None,
+    announcements: list[dict[str, Any]],
+    save_batch: Optional[Callable[[list[dict[str, Any]]], None]] = None,
     batch_size: int = 10,
-    llm_judge: Optional[LLMJudge] = None,
+    llm_judge: Optional[Any] = None,
     max_workers: int = 5,
     judge_workers: int = 20,
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """批量获取公告全文（并发判断 + 并发下载 + 顺序保存）
 
     Phase 1: 跳过检查（顺序） + LLM 标题判断（并发）
@@ -225,10 +234,10 @@ def fetch_all_contents(
     """
 
     # ── Phase 1a: 正则跳过检查（顺序，极快） ──
-    need_judge = []   # 需要 LLM 判断的 (index, ann)
-    skipped = 0
+    need_judge: list[tuple[int, dict[str, Any]]] = []   # 需要 LLM 判断的 (index, ann)
+    skipped: int = 0
     for i, ann in enumerate(announcements):
-        art_code = ann.get("art_code", "")
+        art_code: str = ann.get("art_code", "")
         if not art_code:
             skipped += 1
             continue
@@ -241,21 +250,21 @@ def fetch_all_contents(
         need_judge.append((i, ann))
 
     # ── Phase 1b: LLM 标题判断（并发） ──
-    to_fetch = []
+    to_fetch: list[tuple[int, dict[str, Any]]] = []
     if llm_judge is not None and llm_judge.enabled and need_judge:
         logger.info("LLM 并发判断 %d 条标题 (workers=%d)...", len(need_judge), judge_workers)
 
-        def _judge_one(item):
+        def _judge_one(item: tuple[int, dict[str, Any]]) -> tuple[int, dict[str, Any]]:
             idx, ann = item
-            title = ann.get("title", "")
-            stock_name = ann.get("stock_name", "")
-            market = ann.get("market", "A股")
-            result = llm_judge.judge(title, stock_name, market)
+            title: str = ann.get("title", "")
+            stock_name: str = ann.get("stock_name", "")
+            market: str = ann.get("market", "A股")
+            result: dict[str, Any] = llm_judge.judge(title, stock_name, market)
             return idx, result
 
         with ThreadPoolExecutor(max_workers=judge_workers) as executor:
             futures = {executor.submit(_judge_one, item): item for item in need_judge}
-            done_count = 0
+            done_count: int = 0
             for future in as_completed(futures):
                 idx, judge_result = future.result()
                 ann = announcements[idx]
@@ -285,8 +294,8 @@ def fetch_all_contents(
     logger.info("Phase 1 完成：跳过 %d 条，待下载 %d 条", skipped, len(to_fetch))
 
     # ── Phase 2: 并发下载正文 ──
-    def _fetch_one(ann):
-        pdf_url = ann.get("url", "")
+    def _fetch_one(ann: dict[str, Any]) -> Optional[dict[str, Any]]:
+        pdf_url: str = ann.get("url", "")
         if pdf_url and not pdf_url.upper().endswith(".PDF"):
             pdf_url = ""
         return fetch_announcement_content(
@@ -295,14 +304,14 @@ def fetch_all_contents(
             pdf_url_override=pdf_url,
         )
 
-    fetched = {}   # {index: result_dict}
+    fetched: dict[int, Optional[dict[str, Any]]] = {}   # {index: result_dict}
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(_fetch_one, ann): idx for idx, ann in to_fetch}
         done_count = 0
         for future in as_completed(futures):
             idx = futures[future]
             try:
-                result = future.result()
+                result: Optional[dict[str, Any]] = future.result()
                 fetched[idx] = result
             except Exception as e:
                 logger.warning("下载失败公告 %d: %s", idx, e)
@@ -312,8 +321,8 @@ def fetch_all_contents(
                 logger.info("  下载进度: %d/%d", done_count, len(to_fetch))
 
     # 统计下载成功/失败，并收集失败列表
-    fetch_success = sum(1 for r in fetched.values() if r)
-    fetch_fail = len(fetched) - fetch_success
+    fetch_success: int = sum(1 for r in fetched.values() if r)
+    fetch_fail: int = len(fetched) - fetch_success
     logger.info("下载完成: %d/%d 成功, %d 失败", fetch_success, len(to_fetch), fetch_fail)
 
     # 打印失败详情
@@ -321,22 +330,22 @@ def fetch_all_contents(
         logger.warning("--- 以下 %d 条公告正文获取失败 ---", fetch_fail)
         for i, ann in enumerate(announcements):
             if i in fetched and not fetched[i]:
-                stock_code = ann.get("stock_code", "")
-                stock_name = ann.get("stock_name", "")
-                title = ann.get("title", "")
-                url = ann.get("url", "")
-                art_code = ann.get("art_code", "")
-                pdf_url = url or PDF_BASE.format(art_code=art_code)
+                stock_code: str = ann.get("stock_code", "")
+                stock_name: str = ann.get("stock_name", "")
+                title: str = ann.get("title", "")
+                url: str = ann.get("url", "")
+                art_code: str = ann.get("art_code", "")
+                pdf_url: str = url or PDF_BASE.format(art_code=art_code)
                 logger.warning("  [%s %s] %s | 链接: %s", stock_code, stock_name, title, pdf_url)
         logger.warning("--- 失败列表结束 ---")
 
     # ── Phase 3: 顺序清洗 + 分批保存 ──
-    process_idx = 0
+    process_idx: int = 0
     for i, ann in enumerate(announcements):
         if i not in fetched:
             continue
         process_idx += 1
-        result = fetched[i]
+        result: Optional[dict[str, Any]] = fetched[i]
         logger.info(
             "处理正文 [%d/%d] %s - %s...",
             process_idx, len(fetched),
@@ -344,9 +353,9 @@ def fetch_all_contents(
             ann.get("title", "")[:30],
         )
         if result:
-            raw_text = result.get("notice_content", "")
+            raw_text: str = result.get("notice_content", "")
             ann["full_text"] = raw_text
-            title = ann.get("title", "")
+            title: str = ann.get("title", "")
             if any(p.search(title) for p in TOC_ONLY_PATTERNS) and len(raw_text) > 5000:
                 ann["clean_text"] = clean_announcement_text(_extract_toc_only(raw_text, title))
                 ann["attach_url"] = result.get("attach_url", "")

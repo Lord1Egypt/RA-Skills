@@ -23,14 +23,15 @@ mps_load_env.py — 腾讯云 MPS Skill 环境变量自动加载工具
                                   国际站设为 mps.intl.tencentcloudapi.com）
 
 用法（在其他脚本中调用）：
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
     from mps_load_env import ensure_env_loaded
     ensure_env_loaded()
 
 诊断模式（独立运行）：
-    python mps_load_env.py                   # 实际加载并打印结果
-    python mps_load_env.py --check-only      # 仅检查当前进程环境变量状态
-    python mps_load_env.py --dry-run         # 模拟执行（不实际加载）
-    python mps_load_env.py --verbose         # 显示详细加载日志
+    python3 mps_load_env.py                   # 实际加载并打印结果
+    python3 mps_load_env.py --check-only      # 仅检查当前进程环境变量状态
+    python3 mps_load_env.py --dry-run         # 模拟执行（不实际加载）
+    python3 mps_load_env.py --verbose         # 显示详细加载日志
 """
 
 import os
@@ -77,7 +78,7 @@ def load_env_files(verbose: bool = False) -> dict:
         if verbose:
             print(
                 "[load_env] python-dotenv 未安装，无法加载 .env 文件。"
-                "请运行: pip install -r scripts/requirements.txt",
+                "请运行: python3 -m pip install -r scripts/requirements.txt",
                 file=sys.stderr,
             )
         return {}
@@ -179,7 +180,7 @@ COS 桶管理：   https://console.cloud.tencent.com/mps/workflows/buckets
     export TENCENTCLOUD_SECRET_KEY=<您的 SecretKey>
 
 ⚠️  安全提示：请通过安全渠道配置密钥，避免提交到代码仓库。
-   如需安装 python-dotenv：pip install -r scripts/requirements.txt
+   如需安装 python-dotenv：python3 -m pip install -r scripts/requirements.txt
 
 配置完成后，请重新发起对话即可。
 """
@@ -312,7 +313,7 @@ if __name__ == "__main__":
     print("=== 加载 dotenv 文件 ===", flush=True)
     if not _DOTENV_AVAILABLE:
         print(
-            "❌ python-dotenv 未安装。请运行: pip install -r scripts/requirements.txt",
+            "❌ python-dotenv 未安装。请运行: python3 -m pip install -r scripts/requirements.txt",
             file=sys.stderr,
         )
         sys.exit(1)

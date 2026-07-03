@@ -1,0 +1,55 @@
+{
+  "platforms": {
+    "douyin": {
+      "enabled": false,
+      "client_key": "",
+      "client_secret": "",
+      "auto_schedule": true,
+      "best_time": true,
+      "note": "访问 https://open.douyin.com/ 获取API凭证"
+    },
+    "xiaohongshu": {
+      "enabled": false,
+      "api_token": "",
+      "auto_schedule": true,
+      "note": "访问 https://open.xiaohongshu.com/ 获取API Token"
+    },
+    "bilibili": {
+      "enabled": false,
+      "access_key": "",
+      "auto_schedule": false,
+      "note": "访问 https://open.bilibili.com/ 获取access_key"
+    },
+    "youtube": {
+      "enabled": false,
+      "client_id": "",
+      "client_secret": "",
+      "note": "访问 https://console.cloud.google.com/ 创建项目并启用YouTube Data API v3"
+    }
+  },
+  "global": {
+    "retry_count": 3,
+    "retry_delay": 5,
+    "notify_on_success": true,
+    "notify_on_failure": true,
+    "save_log": true,
+    "log_path": "logs/publish_log.json"
+  },
+  "best_time": {
+    "enabled": true,
+    "default_hour": 18,
+    "platform_peaks": {
+      "douyin": [18, 19, 20, 21, 22],
+      "xiaohongshu": [9, 10, 12, 13, 18, 19, 20, 21],
+      "bilibili": [12, 13, 18, 19, 20, 21, 22, 23],
+      "youtube": [15, 16, 17, 18, 19, 20, 21]
+    }
+  },
+  "tracker": {
+    "enabled": true,
+    "track_interval": 3600,
+    "max_track_days": 30,
+    "save_history": true,
+    "history_path": "logs/track_history.json"
+  }
+}

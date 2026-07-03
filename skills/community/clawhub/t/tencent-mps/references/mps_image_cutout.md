@@ -65,40 +65,40 @@
 
 ```bash
 # 最简用法：URL 输入，等待结果
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg"
 
 # 本地文件输入
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --local-file /tmp/photo.jpg
 
 # COS 路径输入
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --cos-input-key "/input/model.jpg"
 
 # 精细边缘抠图（适合头发丝等细节）
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/portrait.jpg" \
     --edge-sampling-step 2
 
 # 调整透明度阈值
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --transparency-threshold 20 \
     --opaque-threshold 150
 
 # 只提交任务，不等待结果
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_cutout.py \
+python3 scripts/mps_image_cutout.py \
     --url "https://example.com/product.jpg" \
     --download-dir /tmp/results/
 
 # 手动查询抠图任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

@@ -16,20 +16,20 @@
 
 用法：
   # 最简用法（默认 PicInPic 模式，自动等待完成）
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4
 
   # 指定去重模式
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 \\
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \\
       --mode VerticalExtend
 
   # COS 输入（推荐）
-  python scripts/mps_dedupe.py --cos-input-key /input/video.mp4
+  python3 scripts/mps_dedupe.py --cos-input-key /input/video.mp4
 
   # 异步提交（不等待）
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
 
   # dry-run 预览（含 ExtendedParameter）
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 --dry-run
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --dry-run
 """
 
 import sys
@@ -61,7 +61,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误: 未安装腾讯云 SDK，请运行: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误: 未安装腾讯云 SDK，请运行: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:

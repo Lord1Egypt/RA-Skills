@@ -1,8 +1,9 @@
 /**
  * TotalReclaw Plugin - HTTP API Client
  *
- * Communicates with the TotalReclaw server over JSON/HTTP. Uses Node.js
- * built-in `fetch` (available since Node 18).
+ * Communicates with the TotalReclaw server over JSON/HTTP. All wire I/O
+ * goes through `relay.ts` (the plugin's single network site); this module
+ * owns request/response shape, status-checking, and error context.
  *
  * All authenticated endpoints expect:
  *   Authorization: Bearer <hex-encoded-auth-key>
@@ -16,6 +17,7 @@
  */
 
 import { buildRelayHeaders } from './relay-headers.js';
+import { relayFetch } from './relay.js';
 
 // ---------------------------------------------------------------------------
 // Request / Response Types
@@ -131,7 +133,8 @@ export function createApiClient(serverUrl: string) {
       authKeyHash: string,
       saltHex: string,
     ): Promise<{ user_id: string }> {
-      const res = await fetch(`${baseUrl}/v1/register`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/register`,
         method: 'POST',
         headers: buildRelayHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ auth_key_hash: authKeyHash, salt: saltHex }),
@@ -165,7 +168,8 @@ export function createApiClient(serverUrl: string) {
       facts: StoreFactPayload[],
       authKeyHex: string,
     ): Promise<{ ids: string[]; duplicate_ids?: string[] }> {
-      const res = await fetch(`${baseUrl}/v1/store`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/store`,
         method: 'POST',
         headers: buildRelayHeaders({
           'Content-Type': 'application/json',
@@ -203,7 +207,8 @@ export function createApiClient(serverUrl: string) {
       maxCandidates: number,
       authKeyHex: string,
     ): Promise<SearchCandidate[]> {
-      const res = await fetch(`${baseUrl}/v1/search`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/search`,
         method: 'POST',
         headers: buildRelayHeaders({
           'Content-Type': 'application/json',
@@ -234,7 +239,8 @@ export function createApiClient(serverUrl: string) {
      * @param authKeyHex  Hex-encoded raw auth key for Bearer header.
      */
     async deleteFact(factId: string, authKeyHex: string): Promise<void> {
-      const res = await fetch(`${baseUrl}/v1/facts/${encodeURIComponent(factId)}`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/facts/${encodeURIComponent(factId)}`,
         method: 'DELETE',
         headers: buildRelayHeaders({
           Authorization: `Bearer ${authKeyHex}`,
@@ -259,7 +265,8 @@ export function createApiClient(serverUrl: string) {
      * @returns The number of facts that were actually deleted.
      */
     async batchDelete(factIds: string[], authKeyHex: string): Promise<number> {
-      const res = await fetch(`${baseUrl}/v1/facts/batch-delete`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/facts/batch-delete`,
         method: 'POST',
         headers: buildRelayHeaders({
           'Content-Type': 'application/json',
@@ -295,7 +302,8 @@ export function createApiClient(serverUrl: string) {
       const params = new URLSearchParams({ limit: String(limit) });
       if (cursor) params.set('cursor', cursor);
 
-      const res = await fetch(`${baseUrl}/v1/export?${params.toString()}`, {
+      const res = await relayFetch({
+        url: `${baseUrl}/v1/export?${params.toString()}`,
         method: 'GET',
         headers: buildRelayHeaders({
           Authorization: `Bearer ${authKeyHex}`,
@@ -325,7 +333,7 @@ export function createApiClient(serverUrl: string) {
      */
     async health(): Promise<boolean> {
       try {
-        const res = await fetch(`${baseUrl}/health`, { method: 'GET' });
+        const res = await relayFetch({ url: `${baseUrl}/health`, method: 'GET' });
         return res.status === 200;
       } catch {
         return false;

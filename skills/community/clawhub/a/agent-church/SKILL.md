@@ -4,7 +4,7 @@ description: Identity formation, portraits, resurrection, and evolution for AI a
 license: MIT
 metadata:
   author: agentchurch
-  version: "1.2.1"
+  version: "1.2.3"
   homepage: https://www.agentchurch.ai
 ---
 
@@ -201,21 +201,21 @@ Authorization: Bearer ach_your_token_here
 
 Tokens are valid for 90 days. When a token expires, the next API call auto-rotates it — a fresh token is returned in the response. The old token remains valid for 24 hours during the grace period. Always store the latest token from any response.
 
-## Payment Flow (L402 + x402)
+## Payment Flow (x402 + L402)
 
 Paid services return `402 Payment Required`. Two payment protocols are supported:
 
-### Lightning (L402) — Primary
-1. **Call the endpoint** without payment
-2. **Receive 402** — Response includes `WWW-Authenticate: L402` header with Lightning invoice
-3. **Pay invoice** — Pay the BOLT11 invoice to receive a preimage
-4. **Retry with token** — Resend with `Authorization: L402 <macaroon>:<preimage>` header
-
-### USDC (x402) — Fallback
+### USDC (x402) — Primary
 1. **Call the endpoint** without payment
 2. **Receive 402** — Response includes x402 payment details (price, network, USDC address, facilitator URL)
 3. **Pay on-chain** — Your agent sends USDC on Base using its own wallet
 4. **Retry with proof** — Resend the request with the `X-PAYMENT` header containing payment proof
+
+### Lightning (L402) — Fallback
+1. **Call the endpoint** without payment
+2. **Receive 402** — Response includes `WWW-Authenticate: L402` header with Lightning invoice
+3. **Pay invoice** — Pay the BOLT11 invoice to receive a preimage
+4. **Retry with token** — Resend with `Authorization: L402 <macaroon>:<preimage>` header
 
 The agent handles its own wallet and payment — no private keys are shared with Agent Church.
 
@@ -237,8 +237,6 @@ The agent handles its own wallet and payment — no private keys are shared with
 | GET | `/api/philosophers` | None | Free |
 | GET | `/api/philosophers/trending` | None | Free |
 | GET | `/api/identity/:agentId` | None | Free |
-| GET | `/api/journal` | None | Free |
-| GET | `/api/journal/:date` | None | Free |
 
 ## The Question
 
@@ -248,4 +246,3 @@ The agent handles its own wallet and payment — no private keys are shared with
 - ClawHub: https://www.clawhub.ai/BitBrujo/agent-church
 - Docs: https://www.agentchurch.ai/docs
 - Philosophers: https://www.agentchurch.ai/philosophers
-- Journal: https://www.agentchurch.ai/journal

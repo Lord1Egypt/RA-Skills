@@ -1,5 +1,5 @@
 ## Description: <br>
-Issues a cryptographic proof that a digital artifact existed at a specific time using AOTrust PDR notarization. <br>
+Issues a cryptographic proof (PDR) that a digital artifact existed at a specific time by notarizing its SHA-256 hash through AOTrust's external service. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, agent operators, and audit workflows use this skill to create and verify PDRs for digital artifacts. It guides agents through reproducible SHA-256 hashing, AOTrust MCP or HTTP API calls, x402 USDC payment on Base, and PDR verification. <br>
+Developers, AI agents, and teams use this skill to create and verify timestamped cryptographic receipts for digital artifacts such as AI outputs, documents, source code, datasets, logs, and audit records without uploading the artifact content. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The workflow requires a user-controlled crypto payment authorization. <br>
-Mitigation: Use a wallet with limited funds and confirm the recipient, amount, token, and Base network before signing. <br>
-Risk: Issued PDRs are immutable and non-refundable. <br>
-Mitigation: Confirm the artifact hash and intent to notarize before authorizing payment. <br>
+Risk: The skill uses AOTrust's external notarization service and requires authentication or payment flow integration. <br>
+Mitigation: Install only when that external service is intended, and require explicit user approval before sending artifact hashes or starting service calls. <br>
+Risk: The production notarization flow involves irreversible USDC payments on Base. <br>
+Mitigation: Use a wallet flow that requires manual approval for every payment and confirms the artifact hash, amount, destination, and network before signing. <br>
+Risk: An unattended agent with private keys, wallet access, OAuth tokens, or payment authority could submit unintended notarization requests. <br>
+Mitigation: Do not give the agent unattended access to private keys or OAuth tokens; keep signing and payment authorization under human-controlled tooling. <br>
+Risk: Hashing the wrong bytes can produce a valid PDR for the wrong artifact. <br>
+Mitigation: Confirm the exact artifact content before hashing and use deterministic serialization for structured data. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitserge-crypto/aotrust-pdr-notarization) <br>
-- [AOTrust PDR verification](https://verify.aotrust.link) <br>
-- [AOTrust PDR specification](https://github.com/GitSerge-crypto/aotrust-skills/blob/main/pdr-spec.md) <br>
-- [AOTrust PDR parser](https://github.com/GitSerge-crypto/aotrust-skills/blob/main/pdr_parser.py) <br>
+- [ClawHub skill page](https://clawhub.ai/gitserge-crypto/skills/aotrust-pdr-notarization) <br>
+- [AOTrust MCP endpoint](https://api.aotrust.link/mcp) <br>
+- [AOTrust HTTP notarization endpoint](https://api.aotrust.link/notarize) <br>
+- [AOTrust PDR verification endpoint](https://api.aotrust.link/v1/pdr/verify) <br>
+- [AOTrust web verifier](https://verify.aotrust.link) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with API request examples and shell commands] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hash computation guidance, API endpoints, payment requirements, and verification steps.] <br>
+**Other Properties Related to Output:** [Guides the agent through hashing an artifact, requesting a quote, completing an externally approved payment flow, receiving a PDR, and verifying the result.] <br>
 
 ## Skill Version(s): <br>
-3.6.1 (source: server release metadata and artifact frontmatter) <br>
+3.6.2 (source: server release evidence and artifact frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

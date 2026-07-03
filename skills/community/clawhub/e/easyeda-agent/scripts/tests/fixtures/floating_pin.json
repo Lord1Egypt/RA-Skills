@@ -1,0 +1,12 @@
+{
+  "_intent": "A pin with no wire and no flag attached. MUST fire `floating_pin` (and `single_pin_net`, since that lone pin's net has only itself and no rail/label).",
+  "parts": [
+    {"pid": "u1", "type": "part", "designator": "U1", "x": 100, "y": 100,
+     "pins": [
+       {"num": "1", "name": "IO", "x": 100, "y": 100}
+     ],
+     "bbox": [100, 100, 100, 100]}
+  ],
+  "flags": [],
+  "wires": []
+}

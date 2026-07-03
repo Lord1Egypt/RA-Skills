@@ -135,6 +135,24 @@ If TaskList had in_progress/pending entries before entering fix, fix Step 3 must
 - **Destructive commands require AskUserQuestion even during fix** — `git checkout -- .`, `git reset --hard`, `rm -rf`, etc. must not be executed without approval even under the pretext of "restoring original work"
 - **Do not reinterpret user instructions** — if fix feedback is ambiguous, confirm via AskUserQuestion. Do not flip interpretations like reading "don't lose the changes" as "delete the changes"
 
+**Non-destructive verification is autonomous; only the destructive action is ask-gated (HARD STOP)**:
+
+The destructive-command-requires-ask rule above is **not** a license to defer the *non-destructive verification* that precedes the destructive action. Resume's deliverable includes **autonomously running every read-only verification that informs the gated decision, so the ask is presented WITH the results already in hand** — not "should I even verify?".
+
+Draw the boundary explicitly:
+
+| Stage | Examples | In resume |
+|-------|----------|-----------|
+| **Non-destructive verification** (no state/infra mutation) | `terraform plan` / Semaphore `dry_run` (after env-parity check), `ansible --check --diff`, `kubectl diff`, `--dry-run=client`, read-only API GET, `git fetch`, build/test in a scratch dir | **Run autonomously.** Part of the Resume deliverable. Surface the diff/plan result |
+| **Destructive / irreversible action** (mutates state, infra, remote) | `terraform apply` / Semaphore real apply, `ansible-playbook` (no --check), `kubectl apply`, `git push`, merge, deploy, `rm`/`reset --hard` | **Ask-gated.** Present the ask carrying the verification result from the stage above |
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Defer the dry-run/plan together with the deploy because "deploy = user decision" | Run the dry-run/plan autonomously first → then ask only about the actual apply/deploy, with the plan result attached |
+| 2 | Over-apply "destructive needs ask" to its preceding read-only step | Ask gates only the mutation. The read-only verification that feeds the decision is autonomous |
+| 3 | Present a deploy ask with no plan result ("shall I deploy?") | Present "plan shows N add / M change / K destroy — proceed with apply?" — the user decides from evidence, not blind |
+| 4 | Skip a known-risky dry-run entirely instead of running it the safe way | If the dry-run itself has a project-specific risk (e.g. Semaphore `dry_run:true` can apply — see project rules), satisfy the safe path first (verify env var parity / use local `terraform plan`), then run it. "Risky → skip" ≠ "make it safe → run" |
+
 **Anti-patterns**:
 - "Script creation complete. Run it later" — fix's goal is **completing the original work**, not improving tooling. Tooling is the means.
 - **Only reporting "X is now possible" and stopping** — register the not-done task via TaskCreate and **execute it immediately**. A status report is a precondition for execution, not the result.
@@ -171,3 +189,4 @@ Do not use a different medium than what the user reported as a detour. Reproduce
    - Reusable across projects → `~/.claude/skills/<related-skill>/data/` or `~/.agents/rules/<topic>.md`
    - Session-local context only → no record needed
    - "Code change alone = fix complete" thinking is a violation. The discovery is **load-bearing knowledge** for the next person (or future session) touching this surface — silent loss = the same wall hit again
+6. **Non-destructive verification precedence check (HARD STOP)**: Does completing the original work involve a destructive/ask-gated action (apply, deploy, merge, push)? → If yes, did you **autonomously run the preceding non-destructive verification (dry-run / plan / `--check` / `--dry-run` / read-only diff)** and attach its result to the ask? Presenting the ask without the verification result — or deferring the dry-run together with the destructive action — is a violation (see "Non-destructive verification is autonomous" boundary above)

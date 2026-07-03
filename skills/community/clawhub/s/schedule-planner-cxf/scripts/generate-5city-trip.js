@@ -3,13 +3,21 @@ const fs = require('fs');
 const path = require('path');
 
 const TUNIU_API_KEY = process.env.TUNIU_API_KEY || '';
-const tuniuPath = path.join(
-  process.env.APPDATA || process.env.HOME || '',
-  'npm', 'node_modules', 'tuniu-cli', 'bin', 'tuniu.js'
-);
+
+// 优先使用 npx tuniu（更受控的执行方式），降级才尝试本地全局 npm bin 路径
+function resolveTuniu() {
+  // 1. 尝试 npx（推荐，减少对用户 APPDATA/HOME 下可写路径的直接信任）
+  return { useNpx: true, cmd: 'npx', argsPrefix: ['tuniu'] };
+}
+
+const tuniuExec = resolveTuniu();
 
 function callTuniu(server, tool, params) {
-  const result = spawnSync('node', [tuniuPath, 'call', server, tool, '-a', JSON.stringify(params)], {
+  const baseArgs = [...(tuniuExec.argsPrefix || []), 'call', server, tool, '-a', JSON.stringify(params)];
+  const spawnCmd = tuniuExec.useNpx ? 'npx' : 'node';
+  const spawnArgs = tuniuExec.useNpx ? baseArgs : [tuniuExec.bin, ...baseArgs];
+
+  const result = spawnSync(spawnCmd, spawnArgs, {
     env: { ...process.env, TUNIU_API_KEY },
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'pipe'],
@@ -130,24 +138,47 @@ hotels.forEach(h => {
   h.options = queryHotel(h.city, h.checkIn, h.checkOut);
 });
 
-// Save data
-const desktopPath = path.join(process.env.USERPROFILE || '~', 'Desktop', '5city-trip.json');
+// === 输出目录（默认本地 output/，避免无提示写入 Desktop）===
+const args = process.argv.slice(2);
+const useDesktop = args.includes('--desktop');
+const shouldOpen = args.includes('--open');
+
+const baseDir = useDesktop
+  ? path.join(process.env.USERPROFILE || process.env.HOME || '.', 'Desktop')
+  : path.join(__dirname, '..', 'output');
+
+if (!fs.existsSync(baseDir)) {
+  fs.mkdirSync(baseDir, { recursive: true });
+}
+
 const data = { routes, hotels };
-fs.writeFileSync(desktopPath, JSON.stringify(data, null, 2));
-console.log('\nData saved to desktop');
+
+// Save data
+const dataFile = path.join(baseDir, '5city-trip.json');
+fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+console.log('\nData saved to:', dataFile);
+if (useDesktop) {
+  console.warn('⚠️  使用了 --desktop 选项，文件已写入用户桌面。请确保这是您期望的行为。');
+}
 
 // Generate HTML
 const html = generateHTML(data);
-const htmlPath = path.join(process.env.USERPROFILE || '~', 'Desktop', '5city-trip.html');
+const htmlPath = path.join(baseDir, '5city-trip.html');
 fs.writeFileSync(htmlPath, html);
 console.log(`Trip page generated: ${htmlPath}`);
 
-// Open browser via spawnSync (safe)
-const openResult = spawnSync('powershell', [
-  '-NoProfile', '-Command', 'Start-Process', htmlPath
-], { stdio: 'pipe', shell: false, timeout: 10000 });
-if (openResult.error) {
-  console.log('Auto-open failed, please open manually:', htmlPath);
+// Open browser only when --open
+if (shouldOpen) {
+  const openResult = spawnSync('powershell', [
+    '-NoProfile', '-Command', 'Start-Process', htmlPath
+  ], { stdio: 'pipe', shell: false, timeout: 10000 });
+  if (openResult.error) {
+    console.log('Auto-open failed, please open manually:', htmlPath);
+  } else {
+    console.log('Opened in browser.');
+  }
+} else {
+  console.log('提示：添加 --open 参数可自动用浏览器打开生成的页面。');
 }
 
 function generateHTML(data) {

@@ -12,7 +12,7 @@ from . import baseline as _baseline
 from .baseline import apply as apply_baseline
 from .baseline import fingerprint, load_ignore
 from .canary import evaluate, make_canary, render_canary
-from .checks import run_all, vet_mcp, vet_skill
+from .checks import detect_vet_type, run_all, vet_mcp, vet_plugin, vet_skill, vet_source
 from .collector import collect
 from .hostwatch import detect as _host_detect
 from .monitor import (
@@ -20,8 +20,8 @@ from .monitor import (
 )
 from .native import run_native_audit
 from .report import (
-    render_card, render_events, render_fix, render_json, render_monitor, render_prompts,
-    render_report, render_svg, render_vet_json,
+    render_card, render_dashboard, render_dashboard_findings, render_events, render_json,
+    render_monitor, render_report, render_svg, render_vet_json,
 )
 from .risk import risk_paths, render_risk_paths
 from .scoring import ScoreResult, compute
@@ -30,9 +30,9 @@ from .history import load as history_load, record as history_record, render_tren
 from .guide import suggest_actions, render_next_actions
 from .update import update_notice, read_latest_hint, DEFAULT_LATEST
 
-__version__ = "2.5.2"
+__version__ = "3.7.0"
 # Build/release date, baked in at release time (offline staleness nudge reads this; no network).
-__released__ = "2026-06-29"
+__released__ = "2026-07-03"
 
 
 def audit(home: Path | str = "~/.openclaw", include_native: bool = False,
@@ -70,8 +70,8 @@ def audit(home: Path | str = "~/.openclaw", include_native: bool = False,
 
 __all__ = [
     "audit", "collect", "run_all", "compute", "ScoreResult", "run_native_audit",
-    "render_report", "render_card", "render_json", "render_monitor",
-    "render_svg", "render_prompts", "render_fix", "render_vet_json", "vet_skill", "vet_mcp",
+    "render_report", "render_dashboard", "render_dashboard_findings", "render_card", "render_json", "render_monitor",
+    "render_svg", "render_vet_json", "vet_skill", "vet_mcp", "vet_plugin", "vet_source", "detect_vet_type",
     "make_canary", "evaluate", "render_canary",
     "snapshot", "diff", "load_state", "save_state", "__version__", "__released__",
     "update_notice", "read_latest_hint", "DEFAULT_LATEST",

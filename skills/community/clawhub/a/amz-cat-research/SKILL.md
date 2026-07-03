@@ -9,7 +9,7 @@ description: |
   新品, 新品调研, 跟卖, 品牌分析, brand analysis, 店铺分析, store analysis, 数据采集, 数据抓取, data scraping,
    listing分析, listing优化, 产品详情, 产品信息采集, 月销量, monthly sales, 上架时间, listing date, FBA费用, FBA fee,
    review分析, review analysis, 评论分析, 评分分析, 站外流量, off-site traffic, 视觉文案, 产品主图, A+页面, A+ content
-version: 5.0.1
+version: 5.1.0
 tags: [亚马逊, 类目调研, ASIN分析, 竞品分析, 市场调研, 选品分析, 亚马逊运营, amazon, category research, competitor analysis, seller research, product research, ASIN analysis, market intelligence, FBA, 卖家精灵, sellersprite, SIF]
 category: Data & APIs
 requires_browser: true
@@ -30,7 +30,7 @@ default_site: US
 - 每个易错字段必须记录"来源方法 + 置信度"
 - Amazon 正式重采必须使用 OpenClaw profile 默认浏览器（profile=openclaw）；不得使用 web_fetch
 - 飞书资产由当前 agent 使用飞书 API 读写；Amazon 页面由 agent 直接控制浏览器并行采集
-- **禁止 spawn 多个 browser agent 抢夺同一浏览器**：evaluate 方案下 3-5 ASIN 并行，agent 串行执行 batch 即可
+- **禁止并发调用浏览器工具**：evaluate 方案下 3-5 ASIN 并行采集，但由当前 agent 串行执行 tab 管理，不派发给其他 agent 或外部工具
 - 采集频率控制：3~5 个 ASIN 为一个 batch 并行采集；batch 内一次性 open tab → wait 8s → 一次性批量 evaluate；batch 间关闭旧 tab → 等 3 秒 → 开下一个 batch
 - 不关闭卖家精灵/SIF 插件浮窗（浮窗是数据源）
 - **调研结果必须输出为飞书云文档，禁止在 DM 中直接发送长文本报告**：DM 格式差、读不清、无法协作。无论用户是否要求生成文档，都必须创建飞书云文档，DM 只发文档链接 + 简要摘要
@@ -67,8 +67,12 @@ default_site: US
 5. exec: python3 scripts/init.py report '<检查结果JSON>' → 生成配置报告
 6. 根据报告状态决定后续操作：
    - status=ready → 继续 Step 1
-   - status=partial → 警告用户后继续（部分字段可能缺失）
-   - status=blocked → 停止采集，提示用户安装/登录插件
+   - status=partial → 告知用户哪些插件未登录，引导用户登录对应插件，警告部分字段可能缺失，继续采集
+   - status=blocked → 告知用户缺少哪些插件，提供以下引导信息让用户自行操作后重试：
+     - **卖家精灵**：前往 Chrome 应用商店搜索"卖家精灵"安装，登录卖家精灵账号
+     - **SIF**：前往 Chrome 应用商店搜索"SIF"安装，登录 SIF 账号
+     - 安装并登录后，告诉用户刷新亚马逊商品页，确认插件图标出现即可继续
+⚠️ Gotcha: 禁止替用户安装插件或模拟登录。代理只能提示用户自行操作
 ```
 
 **配置报告状态说明**：
@@ -361,7 +365,7 @@ Review差评率: 必须有1-3星百分比来源，不得按均值倒推
 | `healer.py`            | 自愈：诊断 + 修复 + 写入 registry  | Step 5           |
 
 ```
-⚠️ Gotcha: 脚本在你的 skill 目录下，browser agent 无法访问。所以采集由你直接执行，不派发
+⚠️ Gotcha: 采集脚本在 skill 目录下，浏览器无法直接访问文件系统。所有采集逻辑由 agent 通过 evaluate 在浏览器中直接执行，不依赖外部工具或脚本注入
 ⚠️ Gotcha: healer.py apply 会修改 selector_registry.py，旧选择器自动降级为 fallback
 ⚠️ Gotcha: gen_*.py 不要单独调用，用 run_all.py generate 统一生成
 ```

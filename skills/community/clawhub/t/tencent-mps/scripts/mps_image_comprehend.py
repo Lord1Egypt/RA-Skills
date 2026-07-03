@@ -17,41 +17,41 @@ COS 存储约定：
 
 用法：
   # 使用 URL 输入图片，进行看图问答
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --url "https://example.com/photo.jpg" \\
       --prompt "请描述这张图片中的内容"
 
   # 使用 COS 输入图片，进行 OCR 文字识别
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --cos-input-key "/input/document.jpg" \\
       --prompt "请识别图片中的所有文字"
 
   # 指定模型快捷 ID
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --url "https://example.com/photo.jpg" \\
       --prompt "图片中有哪些物体？" \\
       --definition 10002
 
   # 指定模型名称 + 温度参数
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --url "https://example.com/photo.jpg" \\
       --prompt "分析这张图片的构图和色彩" \\
       --model-name "Google/gemini-2.5-flash-pro" \\
       --temperature 0.7
 
   # 使用本地文件（自动上传到 COS）
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --local-file ./photo.jpg \\
       --prompt "这是什么动物？"
 
   # 只提交任务，不等待结果（返回 TaskId）
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --url "https://example.com/photo.jpg" \\
       --prompt "描述图片内容" \\
       --no-wait
 
   # Dry-run 模式，仅打印请求参数不实际调用
-  python scripts/mps_image_comprehend.py \\
+  python3 scripts/mps_image_comprehend.py \\
       --url "https://example.com/photo.jpg" \\
       --prompt "识别图片中的文字" \\
       --dry-run
@@ -95,7 +95,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -395,6 +395,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     cred = get_credentials()
@@ -453,7 +459,7 @@ def main():
     # 轮询等待结果
     if not _POLL_AVAILABLE:
         print("⚠️  轮询模块不可用，请手动查询：", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -467,7 +473,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  轮询超时，任务可能仍在处理中。", file=sys.stderr)
-        print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # 输出最终结果

@@ -10,12 +10,32 @@ const { captureEnvFingerprint } = require('./envFingerprint');
 const { redactString } = require('./sanitize');
 const { getNodeId } = require('./a2aProtocol');
 const { SELF_PR_REPO } = require('../config');
+const { HOST_PROVIDER_ERR_RE } = require('./hostErrorClassifier');
 
 const STATE_FILE_NAME = 'issue_reporter_state.json';
 const DEFAULT_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const DEFAULT_MIN_STREAK = 5;
 const MAX_LOG_CHARS = 2000;
 const MAX_EVENTS = 5;
+
+// --- Local root-cause classification -------------------------------------
+// Before opening a PUBLIC issue we triage the failure the way a maintainer
+// would. Empirically almost every auto-report is not an evolver bug at all but
+// a host-side problem: no transcript to evolve from, the host's LLM provider
+// rejecting requests, or a locally-generated gene that structurally cannot
+// produce changes (see #530 / #534 / #577). We only file when the failure is
+// plausibly evolver's fault. Default-open: if we cannot classify it, we still
+// file -- never hide an unknown evolver bug. Set
+// EVOLVER_ISSUE_STRICT_CLASSIFY=false to disable and file everything.
+
+// "[NO SESSION LOGS FOUND]" et al. -- the host gave evolver nothing to evolve.
+const HOST_NO_TRANSCRIPT_RE = /\[no session logs? found\]|no session log|no transcript/i;
+// Host LLM-provider errors (4xx-class). Classified by the shared
+// hostErrorClassifier module (HOST_PROVIDER_ERR_RE imported above) so that
+// issueReporter (suppress *filing*) and signals.js (suppress *ban/streak*,
+// #571) stay in lockstep and cannot drift.
+// Buckets we are confident are host-side; everything else gets filed.
+const SUPPRESS_BUCKETS = new Set(['host_no_transcript', 'host_provider_error', 'local_gene_no_blast']);
 
 function getConfig() {
   const enabled = String(process.env.EVOLVER_AUTO_ISSUE || 'true').toLowerCase();
@@ -96,6 +116,61 @@ function extractStreakCount(signals) {
     }
   }
   return 0;
+}
+
+// Triage a failure into a root-cause bucket. Pure function over the same inputs
+// buildIssueBody already receives. Returns { bucket, reason }.
+function classifyFailure(opts) {
+  const signals = Array.isArray(opts && opts.signals) ? opts.signals : [];
+  const events = Array.isArray(opts && opts.recentEvents) ? opts.recentEvents : [];
+  const log = typeof (opts && opts.sessionLog) === 'string' ? opts.sessionLog : '';
+
+  // (a) No transcript -> the host gave evolver nothing to evolve from.
+  if (!log.trim() || HOST_NO_TRANSCRIPT_RE.test(log)) {
+    return { bucket: 'host_no_transcript', reason: 'no session transcript to evolve from' };
+  }
+
+  // (b) Host LLM-provider error surfaced in the transcript.
+  const prov = log.match(HOST_PROVIDER_ERR_RE);
+  if (prov) {
+    return { bucket: 'host_provider_error', reason: 'host LLM-provider error: ' + String(prov[0]).slice(0, 60) };
+  }
+
+  // (c) The banned gene is locally generated AND every recent failing cycle
+  //     changed nothing -- a no-op "strategy" gene, not an evolver bug.
+  const banned = signals.find(function (s) { return s.startsWith('ban_gene:'); });
+  if (banned) {
+    const geneId = banned.replace('ban_gene:', '');
+    const localGene = /^sha256:/.test(geneId) || /^gene_auto_/.test(geneId);
+    const failed = events.filter(function (e) { return e && e.outcome && e.outcome.status === 'failed'; });
+    const allZeroBlast = failed.length > 0 && failed.every(function (e) {
+      const br = e.blast_radius;
+      return (e.meta && e.meta.empty_cycle) || (br && br.files === 0 && br.lines === 0);
+    });
+    if (localGene && allZeroBlast) {
+      return { bucket: 'local_gene_no_blast', reason: 'locally-generated gene ' + geneId.slice(0, 20) + '… produces no blast radius' };
+    }
+  }
+
+  return { bucket: 'unclassified', reason: '' };
+}
+
+// Remember a suppressed report locally so it is observable and dedup-tracked,
+// without opening a public issue.
+function recordSuppression(signals, classification) {
+  try {
+    const state = readState();
+    const errorKey = computeErrorKey(signals);
+    let recentKeys = Array.isArray(state.recentIssueKeys) ? state.recentIssueKeys : [];
+    if (!recentKeys.includes(errorKey)) recentKeys.push(errorKey);
+    if (recentKeys.length > 20) recentKeys = recentKeys.slice(-20);
+    writeState(Object.assign({}, state, {
+      recentIssueKeys: recentKeys,
+      lastSuppressedAt: new Date().toISOString(),
+      lastSuppressedBucket: classification.bucket,
+      lastSuppressedReason: classification.reason,
+    }));
+  } catch (_) {}
 }
 
 function formatRecentEvents(events) {
@@ -268,6 +343,17 @@ async function maybeReportIssue(opts) {
 
   if (!shouldReport(signals, config)) return;
 
+  // Local triage: suppress confidently host-side failures instead of opening a
+  // public issue for them. Default-open -- only recognized host buckets are
+  // suppressed; anything we cannot classify is still filed.
+  const strict = String(process.env.EVOLVER_ISSUE_STRICT_CLASSIFY || 'true').toLowerCase() !== 'false';
+  const classification = classifyFailure(opts);
+  if (strict && SUPPRESS_BUCKETS.has(classification.bucket)) {
+    console.log('[IssueReporter] Suppressing public issue [' + classification.bucket + ']: ' + classification.reason + '. Logged locally; not filing to ' + config.repo + '.');
+    recordSuppression(signals, classification);
+    return;
+  }
+
   const token = getGithubToken();
   if (!token) {
     console.log('[IssueReporter] No GitHub token available. Skipping auto-report.');
@@ -326,4 +412,5 @@ module.exports = {
   computeErrorKey,
   extractStreakCount,
   extractErrorSignature,
+  classifyFailure,
 };

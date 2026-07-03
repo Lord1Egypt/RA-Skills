@@ -1,0 +1,28 @@
+{
+  "name": "opc-zhinao-installer",
+  "version": "1.0.0",
+  "description": "OPC智脑一键安装工具 - 一人公司全生命周期创业诊断系统",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "license": "MIT",
+  "bin": {
+    "install-opc": "./install-opc.js"
+  },
+  "scripts": {
+    "install:local": "bash install-opc.sh .",
+    "install:target": "bash install-opc.sh"
+  },
+  "keywords": [
+    "opc",
+    "startup",
+    "entrepreneur",
+    "diagnosis",
+    "ai",
+    "skills",
+    "codearts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/opc-zhinao.git"
+  },
+  "homepage": "https://github.com/your-repo/opc-zhinao#readme"
+}

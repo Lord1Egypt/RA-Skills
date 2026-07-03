@@ -98,17 +98,17 @@
 
 #### ✅ Fuzzy name search (main application, most common)
 ```bash
-python scripts/vod_search_media.py --names "my video"
+python3 scripts/vod_search_media.py --names "my video"
 ```
 
 #### Search by FileId (main application)
 ```bash
-python scripts/vod_search_media.py --file-ids 387702292285462759
+python3 scripts/vod_search_media.py --file-ids 387702292285462759
 ```
 
 #### Search multiple file names
 ```bash
-python scripts/vod_search_media.py --names "test video" "meeting recording"
+python3 scripts/vod_search_media.py --names "test video" "meeting recording"
 ```
 
 ---
@@ -117,28 +117,28 @@ python scripts/vod_search_media.py --names "test video" "meeting recording"
 
 #### Specify Sub AppId + FileId search
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --file-ids 387702292285462759 \
     --sub-app-id 1500046806
 ```
 
 #### Specify Sub AppId + fuzzy name search
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --names "test video" \
     --sub-app-id 1500046806
 ```
 
 #### ✅ Fuzzy match by app name + name search (common)
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --names "my video" \
     --app-name "test app"
 ```
 
 #### Fuzzy match by app name + FileId search
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --file-ids 387702292285462759 \
     --app-name "test app"
 ```
@@ -150,45 +150,45 @@ python scripts/vod_search_media.py \
 #### Search by file type
 ```bash
 # Search videos
-python scripts/vod_search_media.py --categories Video
+python3 scripts/vod_search_media.py --categories Video
 
 # Search images
-python scripts/vod_search_media.py --categories Image
+python3 scripts/vod_search_media.py --categories Image
 
 # Search audio
-python scripts/vod_search_media.py --categories Audio
+python3 scripts/vod_search_media.py --categories Audio
 ```
 
 #### Search by tag
 ```bash
-python scripts/vod_search_media.py --tags "sports" "basketball"
+python3 scripts/vod_search_media.py --tags "sports" "basketball"
 ```
 
 #### Search by container format
 ```bash
-python scripts/vod_search_media.py --names "test" --media-types mp4
+python3 scripts/vod_search_media.py --names "test" --media-types mp4
 ```
 
 #### Search by file status
 ```bash
-python scripts/vod_search_media.py --categories Video --status Normal
+python3 scripts/vod_search_media.py --categories Video --status Normal
 ```
 
 #### Search by review result
 ```bash
-python scripts/vod_search_media.py --review-results pass
+python3 scripts/vod_search_media.py --review-results pass
 ```
 
 #### Search by creation time range
 ```bash
-python scripts/vod_search_media.py --names "meeting" \
+python3 scripts/vod_search_media.py --names "meeting" \
     --create-after "2026-01-01T00:00:00+08:00" \
     --create-before "2026-03-31T23:59:59+08:00"
 ```
 
 #### Search by storage type
 ```bash
-python scripts/vod_search_media.py --storage-classes STANDARD
+python3 scripts/vod_search_media.py --storage-classes STANDARD
 ```
 
 ---
@@ -197,42 +197,42 @@ python scripts/vod_search_media.py --storage-classes STANDARD
 
 #### Sort by creation time descending
 ```bash
-python scripts/vod_search_media.py --names "test" \
+python3 scripts/vod_search_media.py --names "test" \
     --sort-field CreateTime --sort-order Desc
 ```
 
 #### Paginated query
 ```bash
 # First page
-python scripts/vod_search_media.py --names "video" --offset 0 --limit 20
+python3 scripts/vod_search_media.py --names "video" --offset 0 --limit 20
 
 # Second page
-python scripts/vod_search_media.py --names "video" --offset 20 --limit 20
+python3 scripts/vod_search_media.py --names "video" --offset 20 --limit 20
 ```
 
 #### Return basic info only
 ```bash
-python scripts/vod_search_media.py --names "video" --filters basicInfo
+python3 scripts/vod_search_media.py --names "video" --filters basicInfo
 ```
 
 #### Return basic info and metadata
 ```bash
-python scripts/vod_search_media.py --names "video" --filters basicInfo metaData
+python3 scripts/vod_search_media.py --names "video" --filters basicInfo metaData
 ```
 
 #### JSON format output
 ```bash
-python scripts/vod_search_media.py --names "video" --json
+python3 scripts/vod_search_media.py --names "video" --json
 ```
 
 #### Verbose output (including URLs)
 ```bash
-python scripts/vod_search_media.py --names "video" --verbose
+python3 scripts/vod_search_media.py --names "video" --verbose
 ```
 
 #### Preview request parameters
 ```bash
-python scripts/vod_search_media.py --names "video" --dry-run
+python3 scripts/vod_search_media.py --names "video" --dry-run
 ```
 
 ---
@@ -243,19 +243,19 @@ When users describe search conditions in natural language, map them directly to 
 
 | User Natural Language Description | Corresponding Parameter | Example Command |
 |--------------|---------|---------|
-| "audio type media" / "audio files" / "music" | `--categories Audio` | `python scripts/vod_search_media.py --categories Audio` |
-| "video type media" / "video files" | `--categories Video` | `python scripts/vod_search_media.py --categories Video` |
-| "image type media" / "image files" | `--categories Image` | `python scripts/vod_search_media.py --categories Image` |
-| "created after January 1, 2026" / "uploaded after January 1" | `--create-after "2026-01-01T00:00:00+08:00"` | `python scripts/vod_search_media.py --create-after "2026-01-01T00:00:00+08:00"` |
-| "created before March 31, 2026" | `--create-before "2026-03-31T23:59:59+08:00"` | `python scripts/vod_search_media.py --create-before "2026-03-31T23:59:59+08:00"` |
-| "return at most 5 results" / "get the first 5" | `--limit 5` | `python scripts/vod_search_media.py ... --limit 5` |
-| "output in JSON format" / "return as JSON" | `--json` | `python scripts/vod_search_media.py ... --json` |
-| "mp4 format" / "flv format" | `--media-types mp4` | `python scripts/vod_search_media.py --media-types mp4` |
-| "sort by creation time descending" / "newest first" | `--sort-field CreateTime --sort-order Desc` | `python scripts/vod_search_media.py ... --sort-field CreateTime --sort-order Desc` |
+| "audio type media" / "audio files" / "music" | `--categories Audio` | `python3 scripts/vod_search_media.py --categories Audio` |
+| "video type media" / "video files" | `--categories Video` | `python3 scripts/vod_search_media.py --categories Video` |
+| "image type media" / "image files" | `--categories Image` | `python3 scripts/vod_search_media.py --categories Image` |
+| "created after January 1, 2026" / "uploaded after January 1" | `--create-after "2026-01-01T00:00:00+08:00"` | `python3 scripts/vod_search_media.py --create-after "2026-01-01T00:00:00+08:00"` |
+| "created before March 31, 2026" | `--create-before "2026-03-31T23:59:59+08:00"` | `python3 scripts/vod_search_media.py --create-before "2026-03-31T23:59:59+08:00"` |
+| "return at most 5 results" / "get the first 5" | `--limit 5` | `python3 scripts/vod_search_media.py ... --limit 5` |
+| "output in JSON format" / "return as JSON" | `--json` | `python3 scripts/vod_search_media.py ... --json` |
+| "mp4 format" / "flv format" | `--media-types mp4` | `python3 scripts/vod_search_media.py --media-types mp4` |
+| "sort by creation time descending" / "newest first" | `--sort-field CreateTime --sort-order Desc` | `python3 scripts/vod_search_media.py ... --sort-field CreateTime --sort-order Desc` |
 
 > ✅ Example: User says "search for media created after January 1, 2026, return at most 5 results, in JSON format"
 > ```bash
-> python scripts/vod_search_media.py \
+> python3 scripts/vod_search_media.py \
 >     --create-after "2026-01-01T00:00:00+08:00" \
 >     --limit 5 \
 >     --json
@@ -263,7 +263,7 @@ When users describe search conditions in natural language, map them directly to 
 >
 > ✅ Example: User says "search for audio type media, return at most 5 results"
 > ```bash
-> python scripts/vod_search_media.py --categories Audio --limit 5
+> python3 scripts/vod_search_media.py --categories Audio --limit 5
 > ```
 
 Comparison of use cases for Search Media vs. Describe Media Infos:
@@ -278,10 +278,10 @@ Comparison of use cases for Search Media vs. Describe Media Infos:
 #### Example: Exact query with known FileId
 ```bash
 # Recommended: use Describe Media Infos
-python scripts/vod_describe_media.py --file-id 387702292285462759
+python3 scripts/vod_describe_media.py --file-id 387702292285462759
 
 # Also possible: use Search Media
-python scripts/vod_search_media.py --file-ids 387702292285462759
+python3 scripts/vod_search_media.py --file-ids 387702292285462759
 ```
 
 ---

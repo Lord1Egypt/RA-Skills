@@ -1,10 +1,11 @@
 ---
 name: winskill
-description: "Windows 服务器运维工具箱 - 磁盘分析、临时文件清理、IIS 站点管理、批量文件操作、服务状态监控、Windows Update 诊断、实时性能监控、安全审计、注册表启动项审计、磁盘健康检测、网络端口监控、事件日志诊断、已安装程序管理、用户会话监控。只读分析+安全确认，绝不误删文件，完全免费离线运行。"
-version: 1.4.0
+description: "Windows 服务器运维工具箱 - 磁盘分析、临时文件清理、IIS 站点管理、批量文件操作、服务状态监控、Windows Update 诊断、实时性能监控、安全审计、注册表启动项审计、磁盘健康检测、网络端口监控、事件日志诊断、已安装程序管理、用户会话监控、计划任务审计、文件共享审计、DNS网卡诊断、SSL证书过期检测、防火墙规则审计、服务崩溃恢复状态。只读分析+安全确认，绝不误删文件，完全免费离线运行。"
+version: 1.6.0
 ---
 
-# Winskill — Windows 服务器运维工具箱 v1.4.0
+
+# Winskill — Windows 服务器运维工具箱 v1.6.0
 
 ## 快速开始
 
@@ -26,6 +27,9 @@ version: 1.4.0
 | 系统日志哪里错了 | `"系统日志有没有最近的错误"` |
 | 服务器装了什么程序 | `"看看系统安装了哪些软件"` |
 | 谁在服务器上 | `"当前有谁登录了服务器"` |
+| 检查计划任务 | `"有没有可疑的计划任务"` |
+| 文件共享审计 | `"有哪些共享文件夹，权限安全吗"` |
+| DNS / 网卡诊断 | `"DNS 解析正常吗"` |
 | 搞不定了 | `"我遇到报错了，帮我看看"` |
 
 > ⚠️ **AI 必须遵守**：凡涉及删除、停止服务、修改系统的操作，必须先展示操作清单，等用户明确说"确认执行"后才可执行。
@@ -1414,6 +1418,992 @@ Write-Host "`n⚠️ 标记的账户存在安全风险：无密码或密码永�
 
 ---
 
+## 🆕 模块 17：计划任务审计
+
+**用途**：审计所有计划任务，检测可疑的持久化行为（恶意软件常用的自启动方式）。
+
+**常你说**：`"有没有可疑计划任务"` / `"检查计划任务"` / `"有没有凌晨执行的任务"`
+
+> ⚠️ **本模块仅读，不会创建/删除/修改任何计划任务。**
+
+### 17.1 所有计划任务清单
+
+<details>
+<summary>📋 展开查看命令 — 计划任务概览</summary>
+
+```powershell
+Write-Host "════════ 所有计划任务 ════════"
+$tasks = Get-ScheduledTask | Where-Object { $_.State -ne 'Disabled' }
+$total = ($tasks | Measure-Object).Count
+Write-Host "  总数: $total 个启用的任务`n"
+
+$tasks | Select-Object @{N='任务名';E={$_.TaskName}},
+    @{N='路径';E={$_.TaskPath}},
+    @{N='状态';E={$_.State}},
+    @{N='触发器';E={
+        $info = Get-ScheduledTaskInfo -TaskName $_.TaskName -TaskPath $_.TaskPath -ErrorAction SilentlyContinue
+        if ($info.LastRunTime) { "上次: $($info.LastRunTime)" } else { "从未执行" }
+    }} |
+    Sort-Object TaskPath, TaskName |
+    Format-Table -AutoSize
+```
+
+</details>
+
+### 17.2 异常计划任务检测（凌晨执行 / 隐藏窗口 / 临时目录）
+
+<details>
+<summary>📋 展开查看命令 — 异常任务扫描</summary>
+
+```powershell
+Write-Host "════════ 异常计划任务检测 ════════"
+$suspicious = @()
+$tasks = Get-ScheduledTask | Where-Object { $_.State -ne 'Disabled' }
+
+foreach ($task in $tasks) {
+    $score = 0
+    $reasons = @()
+    $taskInfo = Get-ScheduledTaskInfo -TaskName $task.TaskName -TaskPath $task.TaskPath -ErrorAction SilentlyContinue
+    $lastRun = if ($taskInfo.LastRunTime) { $taskInfo.LastRunTime } else { $null }
+
+    # 检测1: 凌晨执行 (0:00-5:00)
+    # 通过检查 Actions 中的命令行参数
+    $actions = $task.Actions
+    foreach ($action in $actions) {
+        $argStr = "$($action.Arguments)" + "$($action.Execute)"
+        if ($argStr -match '(-WindowStyle\s+Hidden|/hidden|-w\s+hidden|-hide|/background|/min|-NoLogo\s+-NonInteractive\s+-WindowStyle\s+Hidden)') {
+            $score += 2
+            $reasons += "隐藏窗口执行"
+        }
+        if ($argStr -match '(\\Temp\\|\\TMP\\|\\AppData\\Local\\Temp\\)') {
+            $score += 3
+            $reasons += "从临时目录执行"
+        }
+        if ($argStr -match '((?:powershell|cmd|wscript|cscript|rundll32|mshta|regsvr32).*?(?:-enc|-e\s|IEX|Invoke-Expression|DownloadString|FromBase64String|eval))') {
+            $score += 4
+            $reasons += "可疑命令特征(编码/下载)"
+        }
+    }
+
+    # 检测2: 无描述信息的任务
+    if (-not $task.Description -or $task.Description -eq '') {
+        $score += 1
+        $reasons += "无描述信息"
+    }
+
+    if ($score -ge 3) {
+        $suspicious += [PSCustomObject]@{
+            任务名 = $task.TaskName
+            路径 = $task.TaskPath
+            风险分 = $score
+            原因 = ($reasons -join ', ')
+            上次运行 = $lastRun
+        }
+    }
+}
+
+if ($suspicious.Count -gt 0) {
+    $suspicious | Sort-Object 风险分 -Descending |
+        Format-Table -AutoSize -Wrap
+    Write-Host "`n🔴 以上任务存在可疑特征，建议逐条排查"
+} else {
+    Write-Host "✅ 未发现明显可疑的计划任务"
+}
+```
+
+</details>
+
+### 17.3 按触发条件分类（开机自启 / 定时 / 用户登录触发）
+
+<details>
+<summary>📋 展开查看命令 — 触发条件分类</summary>
+
+```powershell
+Write-Host "════════ 计划任务按触发类型分类 ════════`n"
+
+# 开机自启
+Write-Host "═══ 开机/系统启动时触发 ═══"
+Get-ScheduledTask | Where-Object {
+    $_.Triggers | Where-Object { $_.CimClass.CimClassName -match 'BootTrigger|StartupTrigger' }
+} | Select-Object -First 15 @{N='任务名';E={$_.TaskName}},
+    @{N='路径';E={$_.TaskPath}},
+    @{N='触发器';E={
+        ($_.Triggers | ForEach-Object { $_.CimClass.CimClassName }) -join ', '
+    }} |
+    Format-Table -AutoSize
+
+Write-Host "`n═══ 用户登录时触发 ═══"
+Get-ScheduledTask | Where-Object {
+    $_.Triggers | Where-Object { $_.CimClass.CimClassName -match 'LogonTrigger' }
+} | Select-Object -First 15 @{N='任务名';E={$_.TaskName}},
+    @{N='路径';E={$_.TaskPath}},
+    @{N='触发器';E={
+        ($_.Triggers | ForEach-Object { $_.CimClass.CimClassName }) -join ', '
+    }} |
+    Format-Table -AutoSize
+
+Write-Host "`n═══ 定时/周期性触发 (数量最多) ═══"
+$timeTasks = Get-ScheduledTask | Where-Object {
+    $_.Triggers | Where-Object { $_.CimClass.CimClassName -match 'TimeTrigger|DailyTrigger|WeeklyTrigger|MonthlyTrigger' }
+}
+Write-Host "  总数: $(($timeTasks | Measure-Object).Count) 个"
+```
+
+</details>
+
+### 17.4 非 Microsoft 创建的任务
+
+<details>
+<summary>📋 展开查看命令 — 第三方/非系统任务</summary>
+
+```powershell
+Write-Host "════════ 非 Microsoft 创建的计划任务 ════════"
+$nonMsTasks = Get-ScheduledTask | Where-Object {
+    $_.TaskPath -notmatch '\\\\Microsoft\\\\' -and $_.State -ne 'Disabled'
+}
+
+if ($nonMsTasks) {
+    $nonMsTasks | Select-Object @{N='任务名';E={$_.TaskName}},
+        @{N='路径';E={$_.TaskPath}},
+        @{N='状态';E={$_.State}},
+        @{N='描述';E={
+            if ($_.Description) { $_.Description.Substring(0, [Math]::Min(60, $_.Description.Length)) }
+            else { '(无描述)' }
+        }} |
+        Format-Table -AutoSize
+    Write-Host "`n💡 第三方任务值得审查，尤其是无描述且来源不明的"
+} else {
+    Write-Host "✅ 无非 Microsoft 计划任务"
+}
+```
+
+</details>
+
+**风险等级**：🟢 无（只读审计）
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Access denied` | 权限不足 | 管理员身份执行 |
+| `The system cannot find the file specified` | 任务引用的程序已删除 | 正常（残留任务），值得清理 |
+| `Task Scheduler service is not running` | 计划任务服务未启动 | `Start-Service Schedule` |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| 大量凌晨执行的隐藏窗口任务 | 软件更新常见，但需逐条确认来源 |
+| 从 Temp 目录执行的任务 | 高危特征，多数恶意软件行为 |
+| 无描述的随机名任务 | 可能是病毒/蠕虫创建，建议隔离排查 |
+| 编码命令 (Base64) 执行 | 极高风险，常见于挖矿脚本和外连木马 |
+
+---
+
+## 🆕 模块 18：文件共享与 SMB 审计
+
+**用途**：列出所有共享文件夹、当前 SMB 连接、权限风险检测。
+
+**常你说**：`"有哪些共享文件夹"` / `"共享权限安全吗"` / `"谁在访问共享"` / `"SMB 审计"`
+
+> ⚠️ **本模块仅读，不会关闭共享、断开连接或修改权限。**
+
+### 18.1 已共享文件夹清单
+
+<details>
+<summary>📋 展开查看命令 — 共享文件夹列表</summary>
+
+```powershell
+Write-Host "════════ 已共享文件夹 ════════"
+Get-SmbShare | Where-Object { $_.Name -notin @('IPC$','ADMIN$') -or $_.Special -eq $false } |
+    Select-Object @{N='共享名';E={$_.Name}},
+        @{N='路径';E={$_.Path}},
+        @{N='描述';E={if($_.Description){$_.Description}else{'(无)'}}},
+        @{N='最大用户数';E={$_.ConcurrentUserLimit}},
+        @{N='缓存模式';E={$_.CachingMode}},
+        @{N='共享状态';E={$_.ShareState}} |
+    Format-Table -AutoSize
+
+Write-Host "`n💡 ADMIN$ 和 IPC$ 为系统默认管理共享，属正常"
+```
+
+</details>
+
+### 18.2 共享权限审计
+
+<details>
+<summary>📋 展开查看命令 — 共享与 NTFS 权限</summary>
+
+```powershell
+Write-Host "════════ 共享权限审计 ════════"
+$shares = Get-SmbShare | Where-Object { $_.Name -notin @('IPC$','ADMIN$') -or $_.Special -eq $false }
+
+foreach ($share in $shares) {
+    Write-Host "`n═══ 共享: $($share.Name) → $($share.Path) ═══"
+
+    # 共享级别权限
+    try {
+        $sharePerm = Get-SmbShareAccess -Name $share.Name -ErrorAction SilentlyContinue
+        foreach ($perm in $sharePerm) {
+            $flag = if ($perm.AccessRight -eq 'Full' -and $perm.AccountName -eq 'Everyone') {
+                "🔴 高风险: Everyone 拥有完全控制"
+            } elseif ($perm.AccountName -eq 'Everyone') {
+                "⚠️ Everyone 可访问"
+            } else {
+                ""
+            }
+            Write-Host "  共享权限: $($perm.AccountName) -> $($perm.AccessRight)  $flag"
+        }
+    } catch {
+        Write-Host "  共享权限: 无法获取"
+    }
+
+    # NTFS 级别权限（对物理路径）
+    if (Test-Path $share.Path) {
+        $ntfsPerm = Get-Acl $share.Path -ErrorAction SilentlyContinue
+        if ($ntfsPerm) {
+            $ntfsPerm.Access | Where-Object { $_.IdentityReference -match 'Everyone|BUILTIN|Guest|ANONYMOUS' } |
+                ForEach-Object {
+                    Write-Host "  NTFS权限: $($_.IdentityReference) -> $($_.FileSystemRights) ⚠️ 宽松权限"
+                }
+        }
+    }
+}
+```
+
+</details>
+
+### 18.3 当前 SMB 连接会话
+
+<details>
+<summary>📋 展开查看命令 — 活跃 SMB 会话</summary>
+
+```powershell
+Write-Host "════════ 当前 SMB 连接会话 ════════"
+$sessions = Get-SmbSession -ErrorAction SilentlyContinue |
+    Select-Object @{N='客户端';E={$_.ClientComputerName}},
+        @{N='用户名';E={$_.UserName}},
+        @{N='空闲时间(分钟)';E={[math]::Round($_.IdleTime.TotalMinutes, 0)}},
+        @{N='会话时长(分钟)';E={[math]::Round((New-TimeSpan -Start $_.SessionStartTime).TotalMinutes, 0)}} |
+    Sort-Object @{E='空闲时间(分钟)';Descending=$true}
+
+if ($sessions) {
+    $sessions | Format-Table -AutoSize
+    Write-Host "`n💡 空闲 >60 分钟的会话可能为僵尸连接"
+} else {
+    Write-Host "  当前无活跃 SMB 会话"
+}
+```
+
+</details>
+
+### 18.4 开放共享中的风险项汇总
+
+<details>
+<summary>📋 展开查看命令 — 风险汇总</summary>
+
+```powershell
+Write-Host "════════ 共享风险汇总 ════════"
+$risks = @()
+$shares = Get-SmbShare | Where-Object { $_.Name -notin @('IPC$','ADMIN$') -or $_.Special -eq $false }
+
+foreach ($share in $shares) {
+    $sharePerm = Get-SmbShareAccess -Name $share.Name -ErrorAction SilentlyContinue
+    foreach ($perm in $sharePerm) {
+        if ($perm.AccountName -eq 'Everyone') {
+            $risks += "🔴 [$($share.Name)] Everyone -> $($perm.AccessRight) 控制权"
+        }
+        if ($perm.AccountName -eq 'ANONYMOUS LOGON' -or $perm.AccountName -eq 'Guest') {
+            $risks += "🔴 [$($share.Name)] $($perm.AccountName) -> $($perm.AccessRight)"
+        }
+    }
+
+    # 检查共享指向路径不存在
+    if (-not (Test-Path $share.Path)) {
+        $risks += "⚠️ [$($share.Name)] 共享路径不存在: $($share.Path)"
+    }
+}
+
+if ($risks.Count -gt 0) {
+    $risks | ForEach-Object { Write-Host $_ }
+    Write-Host "`n建议: 收紧共享权限为最小访问原则，禁用 Guest/匿名访问"
+} else {
+    Write-Host "✅ 未发现高风险的共享配置"
+}
+
+# 同时检查 SMBv1 是否启用
+$smb1 = Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -ErrorAction SilentlyContinue
+if ($smb1 -and $smb1.State -eq 'Enabled') {
+    Write-Host "`n🔴 SMBv1 已启用！存在 WannaCry 等勒索软件漏洞风险，建议禁用"
+}
+```
+
+</details>
+
+**风险等级**：🟢 无（只读审计）
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Get-SmbShare` 报错 | SMB 未启用或无权限 | 管理员身份在服务器上执行 |
+| `Get-SmbSession` 为空 | 当前无 SMB 连接 | 正常 |
+| `Access denied on Get-Acl` | 部分目录 NTFS 权限限制 | 某些系统目录属正常 |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| Everyone 拥有完全控制 | 任何网络用户可读/写，极大风险 |
+| SMBv1 仍启用 | 永恒之蓝等漏洞存在，应立即禁用 |
+| 指向不存在的路径 | 残留共享，建议删除 |
+| 大量僵尸 SMB 会话 | 客户端未正常断开，占用连接数 |
+
+---
+
+## 🆕 模块 19：DNS 解析与网卡诊断
+
+**用途**：DNS 缓存查看与清空、解析链路测试、网卡 IP 配置、路由表检查。
+
+**常你说**：`"DNS 解析正常吗"` / `"网卡配置"` / `"网络诊断"` / `"路由表"`
+
+> ⚠️ **本模块操作：DNS 缓存查看/清空（可恢复）+ 网卡 IP 查看（只读）。DNS 清空后会重新从服务器获取，非破坏性。**
+
+### 19.1 DNS 缓存与解析测试
+
+<details>
+<summary>📋 展开查看命令 — DNS 缓存查看与清空</summary>
+
+```powershell
+Write-Host "════════ DNS 缓存 ════════"
+$dnsCache = Get-DnsClientCache -ErrorAction SilentlyContinue
+if ($dnsCache) {
+    Write-Host "  缓存条目: $(($dnsCache | Measure-Object).Count)"
+    $dnsCache | Select-Object -First 20 @{N='域名';E={$_.Entry}},
+        @{N='类型';E={$_.RecordType}},
+        @{N='IP地址';E={$_.Data}},
+        @{N='TTL(秒)';E={$_.TimeToLive}} |
+        Format-Table -AutoSize
+} else {
+    Write-Host "  当前无 DNS 缓存"
+}
+
+Write-Host "`n════════ DNS 缓存中异常的记录 (TTL异常长) ════════"
+if ($dnsCache) {
+    $abnormal = $dnsCache | Where-Object { $_.TimeToLive -gt 86400 }
+    if ($abnormal) {
+        $abnormal | Select-Object Entry, Data, TimeToLive | Format-Table -AutoSize
+    } else {
+        Write-Host "  ✅ 无异常记录"
+    }
+}
+
+Write-Host "`n💡 如需清空 DNS 缓存，说：「确认清空 DNS 缓存」"
+Write-Host "  清空命令: Clear-DnsClientCache  (清空后会自动从DNS服务器重新获取)"
+```
+
+</details>
+
+### 19.2 DNS 服务器配置与解析链路测试
+
+<details>
+<summary>📋 展开查看命令 — DNS 服务器配置</summary>
+
+```powershell
+Write-Host "════════ DNS 服务器配置 ════════"
+Get-DnsClientServerAddress -AddressFamily IPv4 |
+    Where-Object { $_.ServerAddresses.Count -gt 0 } |
+    Select-Object @{N='网卡';E={$_.InterfaceAlias}},
+        @{N='索引';E={$_.InterfaceIndex}},
+        @{N='DNS 服务器';E={($_.ServerAddresses -join ', ')}} |
+    Format-Table -AutoSize
+
+Write-Host "`n════════ 解析链路测试 (逐级 DNS) ════════"
+$testDomains = @('www.baidu.com', 'www.google.com', 'portal.azure.com')
+foreach ($domain in $testDomains) {
+    try {
+        $result = Resolve-DnsName -Name $domain -Type A -ErrorAction Stop
+        $ip = ($result | Where-Object { $_.Type -eq 'A' } | Select-Object -First 1).IPAddress
+        if ($ip) { Write-Host "  ✅ $domain → $ip" }
+        else { Write-Host "  ❌ $domain → 解析失败" }
+    } catch {
+        Write-Host "  ❌ $domain → $($_.Exception.Message.Split('.')[0])"
+    }
+}
+```
+
+</details>
+
+### 19.3 网卡 IP 配置概览
+
+<details>
+<summary>📋 展开查看命令 — 网卡配置</summary>
+
+```powershell
+Write-Host "════════ 网卡 IP 配置 ════════"
+Get-NetIPAddress -AddressFamily IPv4 |
+    Where-Object { $_.InterfaceAlias -notmatch 'Loopback' -and $_.IPAddress -ne '127.0.0.1' } |
+    Select-Object @{N='网卡';E={$_.InterfaceAlias}},
+        @{N='IP 地址';E={$_.IPAddress}},
+        @{N='子网掩码';E={$_.PrefixLength}},
+        @{N='网关';E={
+            $ifIndex = $_.InterfaceIndex
+            $gw = Get-NetRoute -InterfaceIndex $ifIndex -DestinationPrefix '0.0.0.0/0' -ErrorAction SilentlyContinue
+            if ($gw) { $gw.NextHop } else { '-' }
+        }},
+        @{N='状态';E={$_.AddressState}} |
+    Format-Table -AutoSize
+
+Write-Host "`n════════ 网卡 MAC 地址与速率 ════════"
+Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } |
+    Select-Object @{N='网卡名';E={$_.Name}},
+        @{N='MAC';E={$_.MacAddress}},
+        @{N='速率';E={if($_.LinkSpeed){ "$([math]::Round($_.LinkSpeed/1e9,1)) Gbps" }else{'未知'}}},
+        @{N='状态';E={$_.Status}} |
+    Format-Table -AutoSize
+```
+
+</details>
+
+### 19.4 路由表检查
+
+<details>
+<summary>📋 展开查看命令 — IPv4 路由表</summary>
+
+```powershell
+Write-Host "════════ IPv4 路由表 ════════"
+Get-NetRoute -AddressFamily IPv4 |
+    Where-Object { $_.DestinationPrefix -ne '255.255.255.255/32' } |
+    Sort-Object @{E={if ($_.DestinationPrefix -eq '0.0.0.0/0') {0} else {1}}},
+        @{E='RouteMetric'} |
+    Select-Object @{N='目标网络';E={$_.DestinationPrefix}},
+        @{N='下一跳';E={$_.NextHop}},
+        @{N='接口';E={$_.InterfaceAlias}},
+        @{N='跃点数';E={$_.RouteMetric}},
+        @{N='协议';E={$_.Protocol}} |
+    Format-Table -AutoSize
+
+Write-Host "`n💡 跃点数越小优先级越高"
+Write-Host "💡 0.0.0.0/0 为默认路由（所有出网流量由此控制）"
+```
+
+</details>
+
+**风险等级**：🟡 中（含 DNS 缓存清空操作，需用户确认）
+
+| 操作 | 风险 | 说明 |
+|------|------|------|
+| DNS 缓存查看 | 🟢 无 | 纯只读 |
+| DNS 解析测试 | 🟢 无 | 纯只读，零风险 |
+| 网卡配置查看 | 🟢 无 | 纯只读 |
+| 路由表查看 | 🟢 无 | 纯只读 |
+| **DNS 缓存清空** | 🟡 中 | 清空后需用户说「确认清空 DNS 缓存」，清空后自动从 DNS 服务器重建，非破坏性 |
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Resolve-DnsName` 超时 | DNS 服务器不可达 | 检查 DNS 服务器配置和网络连通性 |
+| `Get-NetIPAddress` 为空 | 网卡未分配 IPv4 | 检查 DHCP 或静态 IP 配置 |
+| `Get-NetRoute` 无默认路由 | 无互联网出口 | 检查网关配置 |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| DNS 缓存中大量 TTL 异常长的记录 | 可能 DNS 服务器配置问题或域名劫持 |
+| 多网卡存在多个默认路由 | 路由冲突导致网络不稳定 |
+| DNS 服务器指向不可达 IP | 域名解析全部失败 |
+| 网卡速率不匹配（1Gbps vs 100Mbps） | 网线/交换机端口故障 |
+
+---
+
+## 🆕 模块 20：SSL 证书过期检测
+
+**用途**：检测本机 IIS / 所有 HTTPS 站点的 SSL 证书到期时间，提前预警，避免网站突然报"证书无效"。
+
+**常你说**：`"SSL 证书快到期了吗"` / `"证书检查"` / `"HTTPS 站点证书还有多久"` / `"哪些证书要过期了"`
+
+> ⚠️ **本模块仅读，不会申请、续签或删除任何证书。**
+
+### 20.1 本机证书仓库扫描（个人 + 机器）
+
+<details>
+<summary>📋 展开查看命令 — 本机所有证书到期时间</summary>
+
+```powershell
+Write-Host "════════ 本机证书过期检查 ════════"
+$warningDays = 30
+$now = Get-Date
+
+$stores = @(
+    [System.Security.Cryptography.X509Certificates.StoreLocation]::LocalMachine,
+    [System.Security.Cryptography.X509Certificates.StoreLocation]::CurrentUser
+)
+$storeNames = @('My', 'WebHosting', 'Root', 'CA')
+
+$certs = foreach ($loc in $stores) {
+    foreach ($name in $storeNames) {
+        try {
+            $store = [System.Security.Cryptography.X509Certificates.X509Store]::new($name, $loc)
+            $store.Open('ReadOnly')
+            foreach ($cert in $store.Certificates) {
+                $daysLeft = ($cert.NotAfter - $now).Days
+                [PSCustomObject]@{
+                    主体       = ($cert.Subject -replace 'CN=', '' -split ',')[0].Trim()
+                    存储位置   = "$loc\$name"
+                    到期时间   = $cert.NotAfter.ToString('yyyy-MM-dd')
+                    剩余天数   = $daysLeft
+                    状态       = if ($daysLeft -lt 0) { '❌ 已过期' }
+                                 elseif ($daysLeft -lt $warningDays) { '⚠️ 即将过期' }
+                                 else { '✅ 正常' }
+                    颁发者     = ($cert.Issuer -replace 'CN=', '' -split ',')[0].Trim()
+                }
+            }
+            $store.Close()
+        } catch {}
+    }
+}
+
+$result = $certs | Where-Object { $_.剩余天数 -lt 90 } |
+    Sort-Object 剩余天数
+
+if ($result) {
+    $result | Format-Table -AutoSize
+} else {
+    Write-Host "✅ 未发现 90 天内到期的证书"
+}
+```
+
+</details>
+
+### 20.2 IIS 绑定的 HTTPS 证书检查
+
+<details>
+<summary>📋 展开查看命令 — IIS 站点 HTTPS 证书</summary>
+
+```powershell
+Write-Host "════════ IIS HTTPS 绑定证书 ════════"
+Import-Module WebAdministration -ErrorAction SilentlyContinue
+
+$httpsBindings = Get-WebBinding | Where-Object { $_.protocol -eq 'https' }
+if (-not $httpsBindings) {
+    Write-Host "  未发现 HTTPS 绑定"
+} else {
+    foreach ($binding in $httpsBindings) {
+        $hash = $binding.certificateHash
+        if ($hash) {
+            $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Thumbprint -eq $hash }
+            if ($cert) {
+                $daysLeft = ($cert.NotAfter - (Get-Date)).Days
+                $status = if ($daysLeft -lt 0) { '❌ 已过期' }
+                           elseif ($daysLeft -lt 30) { '⚠️ 即将过期' }
+                           else { '✅ 正常' }
+                Write-Host "  站点: $($binding.bindingInformation)"
+                Write-Host "  证书: $($cert.Subject)"
+                Write-Host "  到期: $($cert.NotAfter.ToString('yyyy-MM-dd'))  剩余: $daysLeft 天  $status"
+                Write-Host ""
+            }
+        }
+    }
+}
+```
+
+</details>
+
+### 20.3 远程域名证书探测（本地无证书的站点）
+
+<details>
+<summary>📋 展开查看命令 — 探测远程域名证书</summary>
+
+```powershell
+# 将下方域名替换为你需要检测的站点
+$domains = @('www.baidu.com', 'www.taobao.com')  # 示例，替换为你的域名
+
+Write-Host "════════ 远程域名 SSL 证书检测 ════════"
+foreach ($domain in $domains) {
+    try {
+        $tcpClient = New-Object System.Net.Sockets.TcpClient($domain, 443)
+        $sslStream  = New-Object System.Net.Security.SslStream($tcpClient.GetStream(), $false, { $true })
+        $sslStream.AuthenticateAsClient($domain)
+        $cert = $sslStream.RemoteCertificate
+        $expiry = [DateTime]::Parse($cert.GetExpirationDateString())
+        $daysLeft = ($expiry - (Get-Date)).Days
+        $status = if ($daysLeft -lt 0) { '❌ 已过期' }
+                   elseif ($daysLeft -lt 30) { '⚠️ 即将过期' }
+                   else { '✅ 正常' }
+        Write-Host "  $domain → 到期: $($expiry.ToString('yyyy-MM-dd'))  剩余: $daysLeft 天  $status"
+        $sslStream.Close()
+        $tcpClient.Close()
+    } catch {
+        Write-Host "  $domain → ❌ 连接失败: $($_.Exception.Message.Split('.')[0])"
+    }
+}
+```
+
+</details>
+
+### 20.4 即将过期证书汇总报告
+
+<details>
+<summary>📋 展开查看命令 — 30 天内到期汇总</summary>
+
+```powershell
+Write-Host "════════ 30 天内到期证书汇总 ════════"
+$now = Get-Date
+$soon = @()
+
+foreach ($loc in @('LocalMachine','CurrentUser')) {
+    foreach ($name in @('My','WebHosting')) {
+        try {
+            $store = [System.Security.Cryptography.X509Certificates.X509Store]::new($name, $loc)
+            $store.Open('ReadOnly')
+            $soon += $store.Certificates | Where-Object {
+                ($_.NotAfter - $now).Days -le 30 -and ($_.NotAfter - $now).Days -ge 0
+            } | Select-Object @{N='证书名';E={($_.Subject -replace 'CN=','' -split ',')[0].Trim()}},
+                @{N='剩余天数';E={($_.NotAfter - $now).Days}},
+                @{N='到期日期';E={$_.NotAfter.ToString('yyyy-MM-dd')}},
+                @{N='存储';E={"$loc\$name"}}
+            $store.Close()
+        } catch {}
+    }
+}
+
+if ($soon.Count -gt 0) {
+    $soon | Sort-Object 剩余天数 | Format-Table -AutoSize
+    Write-Host "`n🔴 以上证书需要尽快续签！"
+} else {
+    Write-Host "✅ 30 天内无证书过期"
+}
+```
+
+</details>
+
+**风险等级**：🟢 无（只读，不修改任何证书）
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Access denied` | 需管理员权限 | 管理员身份执行 |
+| `WebAdministration not found` | IIS 未安装 | 跳过模块 20.2 |
+| `Connection refused` | 远程域名 443 不可达 | 检查域名和防火墙 |
+| `AuthenticationException` | SSL 握手失败 | 域名可能证书异常 |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| 证书显示"已过期"但网站仍在访问 | 浏览器有缓存，实际用户已经开始看到警告 |
+| IIS 绑定的证书和仓库里的不一致 | IIS 用指纹引用，需手动在 IIS 管理器重新绑定 |
+| Let's Encrypt 证书 90 天到期周期 | 需设置自动续签（如 win-acme） |
+
+---
+
+## 🆕 模块 21：Windows 防火墙规则审计
+
+**用途**：列出所有防火墙规则，识别过度开放（Any/Any）、可疑来源的规则，找出安全漏洞。
+
+**常你说**：`"防火墙规则有没有问题"` / `"防火墙审计"` / `"哪些端口对外开放"` / `"有没有高危防火墙规则"`
+
+> ⚠️ **本模块仅读，不会新增、删除或修改任何防火墙规则。**
+
+### 21.1 所有入站规则概览
+
+<details>
+<summary>📋 展开查看命令 — 入站规则列表</summary>
+
+```powershell
+Write-Host "════════ 入站防火墙规则（启用中）════════"
+$inbound = Get-NetFirewallRule -Direction Inbound -Enabled True -ErrorAction SilentlyContinue
+
+Write-Host "  启用的入站规则总数: $(($inbound | Measure-Object).Count)"
+Write-Host ""
+
+$inbound | ForEach-Object {
+    $rule = $_
+    $filter = $rule | Get-NetFirewallPortFilter -ErrorAction SilentlyContinue
+    $addrFilter = $rule | Get-NetFirewallAddressFilter -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+        规则名     = $rule.DisplayName.Substring(0, [Math]::Min(40, $rule.DisplayName.Length))
+        协议       = if ($filter.Protocol) { $filter.Protocol } else { '任意' }
+        本地端口   = if ($filter.LocalPort) { $filter.LocalPort -join ',' } else { '任意' }
+        来源地址   = if ($addrFilter.RemoteAddress) { ($addrFilter.RemoteAddress -join ',').Substring(0, [Math]::Min(30, ($addrFilter.RemoteAddress -join ',').Length)) } else { '任意' }
+        动作       = $rule.Action
+    }
+} | Select-Object -First 30 | Format-Table -AutoSize
+```
+
+</details>
+
+### 21.2 高危规则检测（Any → Any / 暴露全端口）
+
+<details>
+<summary>📋 展开查看命令 — 高危防火墙规则扫描</summary>
+
+```powershell
+Write-Host "════════ 高危防火墙规则扫描 ════════"
+$risks = @()
+
+Get-NetFirewallRule -Direction Inbound -Action Allow -Enabled True -ErrorAction SilentlyContinue | ForEach-Object {
+    $rule = $_
+    $portFilter = $rule | Get-NetFirewallPortFilter -ErrorAction SilentlyContinue
+    $addrFilter  = $rule | Get-NetFirewallAddressFilter -ErrorAction SilentlyContinue
+
+    $anyPort = ($portFilter.LocalPort -eq 'Any' -or -not $portFilter.LocalPort)
+    $anyAddr = ($addrFilter.RemoteAddress -eq 'Any' -or $addrFilter.RemoteAddress -contains 'Any' -or -not $addrFilter.RemoteAddress)
+
+    if ($anyPort -and $anyAddr) {
+        $risks += [PSCustomObject]@{
+            风险等级 = '🔴 高危'
+            规则名   = $rule.DisplayName
+            说明     = '允许任意来源访问任意端口'
+            建议     = '收紧来源地址或端口范围'
+        }
+    } elseif ($anyAddr) {
+        # 检查是否暴露高危端口（135/445/3389/5985）
+        $dangerousPorts = @('135','445','3389','5985','5986','23','21','1433','3306','6379')
+        $portStr = ($portFilter.LocalPort -join ',')
+        foreach ($p in $dangerousPorts) {
+            if ($portStr -match "\b$p\b" -or $anyPort) {
+                $risks += [PSCustomObject]@{
+                    风险等级 = '⚠️ 中危'
+                    规则名   = $rule.DisplayName
+                    说明     = "端口 $p 对任意来源开放"
+                    建议     = '限制来源 IP 白名单'
+                }
+                break
+            }
+        }
+    }
+}
+
+if ($risks.Count -gt 0) {
+    $risks | Format-Table -AutoSize -Wrap
+    Write-Host "`n建议: 使用「来源 IP 白名单」替代「任意来源」"
+} else {
+    Write-Host "✅ 未发现明显高危防火墙规则"
+}
+```
+
+</details>
+
+### 21.3 按端口查看谁在放行
+
+<details>
+<summary>📋 展开查看命令 — 指定端口放行规则</summary>
+
+```powershell
+# 修改此处为你想查询的端口
+$targetPorts = @('3389', '445', '80', '443', '1433', '3306')
+
+Write-Host "════════ 关键端口放行规则 ════════"
+foreach ($port in $targetPorts) {
+    $rules = Get-NetFirewallRule -Direction Inbound -Action Allow -Enabled True -ErrorAction SilentlyContinue | Where-Object {
+        $pf = $_ | Get-NetFirewallPortFilter -ErrorAction SilentlyContinue
+        ($pf.LocalPort -eq 'Any' -or $pf.LocalPort -contains $port)
+    }
+
+    if ($rules) {
+        Write-Host "`n  端口 $port — 有 $(($rules | Measure-Object).Count) 条放行规则:"
+        $rules | Select-Object -First 5 @{N='规则名';E={$_.DisplayName}} |
+            ForEach-Object { Write-Host "    - $($_.规则名)" }
+    } else {
+        Write-Host "`n  端口 $port — 无放行规则（默认拒绝）"
+    }
+}
+```
+
+</details>
+
+### 21.4 防火墙配置文件状态
+
+<details>
+<summary>📋 展开查看命令 — 防火墙整体状态</summary>
+
+```powershell
+Write-Host "════════ 防火墙配置文件状态 ════════"
+Get-NetFirewallProfile | Select-Object @{N='配置文件';E={$_.Name}},
+    @{N='是否启用';E={if($_.Enabled){'✅ 启用'}else{'❌ 已禁用 ⚠️'}}},
+    @{N='入站默认';E={$_.DefaultInboundAction}},
+    @{N='出站默认';E={$_.DefaultOutboundAction}},
+    @{N='通知';E={$_.NotifyOnListen}} |
+    Format-Table -AutoSize
+
+Write-Host "`n💡 防火墙应对所有配置文件均启用，入站默认「Block」"
+Write-Host "💡 如果任一配置文件显示「已禁用」，立即排查原因"
+```
+
+</details>
+
+**风险等级**：🟢 无（只读审计，不修改任何规则）
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Get-NetFirewallRule` 报错 | 需管理员权限 | 管理员身份执行 |
+| `WinRM` 相关报错 | 防火墙服务异常 | 检查 `mpssvc` 服务状态 |
+| `Access denied on Get-NetFirewallPortFilter` | 域策略限制 | 以域管理员身份执行 |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| 防火墙被关闭（Enabled=False） | 极高风险，任何连接均可进入 |
+| 3389 对 Any 开放 | RDP 暴力破解首要目标 |
+| 445 对 Any 开放 | WannaCry/勒索病毒入侵路径 |
+| 大量"Any → Any"规则 | 常见于软件安装时自动添加，需逐条清理 |
+
+---
+
+## 🆕 模块 22：关键服务崩溃与自动恢复状态
+
+**用途**：查看服务异常停止记录、自动恢复策略、"应该运行却未运行"的服务。
+
+**常你说**：`"哪些服务崩过"` / `"服务崩溃记录"` / `"服务自动恢复设置"` / `"有服务没跑起来吗"`
+
+> ⚠️ **本模块仅读，不会启动、停止或修改任何服务。**
+
+### 22.1 已停止但设为自动启动的服务（"应跑未跑"）
+
+<details>
+<summary>📋 展开查看命令 — 应运行却已停止的服务</summary>
+
+```powershell
+Write-Host "════════ 应运行却已停止的服务 ════════"
+$deadServices = Get-Service | Where-Object {
+    $_.StartType -in @('Automatic', 'AutomaticDelayedStart') -and
+    $_.Status -eq 'Stopped'
+}
+
+if ($deadServices) {
+    $deadServices | Select-Object @{N='服务名';E={$_.Name}},
+        @{N='显示名';E={$_.DisplayName}},
+        @{N='启动类型';E={$_.StartType}},
+        @{N='状态';E={$_.Status}} |
+        Sort-Object 显示名 |
+        Format-Table -AutoSize
+    Write-Host "`n⚠️ 以上服务设置了自动启动但当前已停止，需要排查原因"
+} else {
+    Write-Host "✅ 所有自动启动的服务均在运行"
+}
+```
+
+</details>
+
+### 22.2 服务崩溃事件记录（事件日志 7034/7036）
+
+<details>
+<summary>📋 展开查看命令 — 服务崩溃事件</summary>
+
+```powershell
+Write-Host "════════ 服务崩溃记录（最近 7 天）════════"
+$events = Get-WinEvent -FilterHashtable @{
+    LogName   = 'System'
+    Id        = @(7034, 7035, 7036, 7031, 7040)
+    StartTime = (Get-Date).AddDays(-7)
+} -ErrorAction SilentlyContinue
+
+if ($events) {
+    $events | Select-Object @{N='时间';E={$_.TimeCreated}},
+        @{N='事件ID';E={$_.Id}},
+        @{N='说明';E={
+            switch ($_.Id) {
+                7034 { "❌ 服务意外停止: " + ($_.Message -replace "`r`n",' ').Substring(0,[Math]::Min(80,$_.Message.Length)) }
+                7031 { "❌ 服务停止后触发恢复动作: " + ($_.Message -replace "`r`n",' ').Substring(0,[Math]::Min(60,$_.Message.Length)) }
+                7035 { "→ 服务控制: " + ($_.Message -replace "`r`n",' ').Substring(0,[Math]::Min(60,$_.Message.Length)) }
+                7036 { "● 服务状态变更: " + ($_.Message -replace "`r`n",' ').Substring(0,[Math]::Min(60,$_.Message.Length)) }
+                7040 { "⚙️ 启动类型变更: " + ($_.Message -replace "`r`n",' ').Substring(0,[Math]::Min(60,$_.Message.Length)) }
+                default { $_.Message.Substring(0,[Math]::Min(80,$_.Message.Length)) }
+            }
+        }} |
+        Where-Object { $_.事件ID -in @(7034, 7031) } |
+        Sort-Object 时间 -Descending |
+        Select-Object -First 20 |
+        Format-Table -AutoSize -Wrap
+} else {
+    Write-Host "✅ 最近 7 天无服务崩溃记录"
+}
+```
+
+</details>
+
+### 22.3 服务自动恢复策略查看
+
+<details>
+<summary>📋 展开查看命令 — 服务故障恢复配置</summary>
+
+```powershell
+Write-Host "════════ 关键服务恢复策略 ════════"
+$keyServices = @(
+    'W3SVC',       # IIS
+    'MSSQLSERVER', # SQL Server
+    'WSearch',     # Windows Search
+    'Spooler',     # 打印机
+    'EventLog',    # 事件日志
+    'WinRM',       # 远程管理
+    'Schedule',    # 计划任务
+    'LanmanServer' # 文件共享
+)
+
+foreach ($svcName in $keyServices) {
+    $svc = Get-Service -Name $svcName -ErrorAction SilentlyContinue
+    if ($svc) {
+        # 使用 sc.exe 读取恢复策略
+        $scOutput = sc.exe qfailure $svcName 2>&1
+        $resetPeriod = ($scOutput | Select-String 'RESET_PERIOD') -replace '.*: ', ''
+        $actions = ($scOutput | Select-String 'FAILURE_ACTIONS') -replace '.*: ', ''
+
+        Write-Host "  $($svc.DisplayName) [$svcName]"
+        Write-Host "    状态: $($svc.Status)"
+        Write-Host "    恢复动作: $(if($actions){$actions}else{'(未配置)'} )"
+        Write-Host ""
+    }
+}
+Write-Host "💡 未配置恢复动作的关键服务，崩溃后不会自动重启，需手动干预"
+```
+
+</details>
+
+### 22.4 服务依赖关系检查（关键服务是否有依赖未启动）
+
+<details>
+<summary>📋 展开查看命令 — 服务依赖链检查</summary>
+
+```powershell
+Write-Host "════════ 关键服务依赖链检查 ════════"
+$keyServices = @('W3SVC', 'MSSQLSERVER', 'WinRM', 'Schedule', 'Netlogon')
+
+foreach ($svcName in $keyServices) {
+    $svc = Get-Service -Name $svcName -ErrorAction SilentlyContinue
+    if ($svc) {
+        $deps = $svc.ServicesDependedOn
+        $brokenDeps = $deps | Where-Object { $_.Status -ne 'Running' }
+
+        if ($brokenDeps) {
+            Write-Host "⚠️ $($svc.DisplayName) 依赖以下未运行的服务:"
+            $brokenDeps | ForEach-Object {
+                Write-Host "    ❌ $($_.Name) ($($_.Status))"
+            }
+        } else {
+            Write-Host "✅ $($svc.DisplayName) — 所有依赖服务正常"
+        }
+    }
+}
+```
+
+</details>
+
+**风险等级**：🟢 无（只读，不启动/停止/修改任何服务）
+
+| 报错 | 含义 | 解决 |
+|-----|------|-----|
+| `Get-WinEvent` 无权限 | 需管理员权限 | 管理员身份执行 |
+| `sc.exe qfailure` 返回空 | 部分服务无恢复策略 | 正常，说明未配置 |
+| `Get-Service` 找不到服务 | 该服务未安装 | 跳过该服务 |
+
+**常见坑 & 解决**：
+
+| 场景 | 说明 |
+|-----|------|
+| IIS 停止但事件日志无崩溃记录 | 可能是被人为停止 |
+| 服务崩溃但无恢复动作 | 需通过"服务属性 → 恢复"配置自动重启 |
+| 依赖服务未运行导致主服务无法启动 | 先启动依赖服务 |
+| 事件 7034 大量重复 | 服务反复崩溃重启，存在底层问题 |
+
+---
+
 ## 前置要求与依赖
 
 | 需求 | 说明 | 检测方法 |
@@ -1482,6 +2472,24 @@ if (-not $isAdmin) {
 clawhub update winskill
 ```
 
+### Q15: 计划任务审计会删除任务吗？
+不会。模块 17 所有操作均为只读审计，绝不会创建/删除/修改任何计划任务。
+
+### Q16: 文件共享审计会断开连接吗？
+不会。模块 18 仅读取共享配置和 SMB 会话信息，不会关闭共享或断开任何用户连接。
+
+### Q17: DNS 缓存清空会断网吗？
+不会。Clear-DnsClientCache 清空后会自动从 DNS 服务器重新获取解析记录。只在用户明确说「确认清空 DNS 缓存」后才执行。
+
+### Q18: SSL 证书检测会申请或修改证书吗？
+不会。模块 20 仅读取证书仓库和 IIS 绑定信息，不会申请、续签或删除任何证书。
+
+### Q19: 防火墙规则审计会改动规则吗？
+不会。模块 21 仅读取规则配置，不会新增、删除或修改任何防火墙规则。
+
+### Q20: 服务崩溃检查会重启服务吗？
+不会。模块 22 仅读取服务状态和事件日志，不会启动、停止或修改任何服务配置。
+
 ---
 
 ## 30 秒速查表
@@ -1504,6 +2512,12 @@ clawhub update winskill
 | `"系统日志错误"` | 模块 14 |
 | `"装了什么软件"` | 模块 15 |
 | `"谁在服务器上"` | 模块 16 |
+| `"可疑计划任务"` | 模块 17 |
+| `"共享文件夹"` | 模块 18 |
+| `"DNS/网卡诊断"` | 模块 19 |
+| `"SSL证书快到期了吗"` | 模块 20 |
+| `"防火墙规则有没有漏洞"` | 模块 21 |
+| `"哪些服务崩过"` | 模块 22 |
 
 ---
 
@@ -1521,6 +2535,12 @@ clawhub update winskill
 | 清除/停止事件日志 | 超出工具范围，仅只读 |
 | 卸载/安装软件 | 超出工具范围，只读审计 |
 | 结束/断开用户会话 | 超出工具范围，只读监控 |
+| 创建/删除计划任务 | 超出工具范围，只读审计 |
+| 修改共享权限 | 超出工具范围，只读审计 |
+| 修改网卡 IP/DNS 配置 | 超出工具范围，只读诊断 |
+| 申请/续签/删除 SSL 证书 | 超出工具范围，只读检测 |
+| 新增/删除/修改防火墙规则 | 超出工具范围，只读审计 |
+| 启动/停止/修改服务配置 | 超出工具范围，只读诊断 |
 
 ---
 
@@ -1530,7 +2550,7 @@ clawhub update winskill
 - **无需 API Key**
 - **无需联网**（除首次安装 IIS 管理工具外）
 - **无需安装任何第三方软件**
-- ⚠️ **管理员权限检测**：部分功能（IIS 管理、更新缓存清理、安全审计、磁盘健康检测、网络监控、事件日志诊断、会话监控）需要管理员权限，AI 会在执行前自动检测并提示
+- ⚠️ **管理员权限检测**：部分功能（IIS 管理、更新缓存清理、安全审计、磁盘健康检测、网络监控、事件日志诊断、会话监控、计划任务审计、共享审计、DNS 网卡诊断、SSL 证书检测、防火墙审计、服务崩溃检查）需要管理员权限，AI 会在执行前自动检测并提示
 
 ## 发布信息
 
@@ -1538,7 +2558,10 @@ clawhub update winskill
 - **许可证**：MIT
 - **支持**：Windows Server 2012+ / Windows 10/11
 - **安全机制**：所有删除操作需用户确认，不用强制删除
+- **TRACE 评测**：已通过评测，[查看详情](https://skillhub.cn/community/skills/winskill)
 - **更新历史**：
+  - v1.6.0：新增 SSL 证书过期检测、防火墙规则审计、服务崩溃恢复状态 3 个模块，总计 22 个模块
+  - v1.5.0：新增计划任务审计、文件共享审计、DNS网卡诊断 3 个模块，总计 19 个模块
   - v1.4.0：新增事件日志诊断、已安装程序管理、用户会话监控 3 个模块，总计 16 个模块
   - v1.3.0：新增注册表启动项审计、磁盘健康检测、网络端口监控 3 个模块
   - v1.2.0：新增 Windows Update 性能监控 安全审计 3 个模块，所有命令折叠隐藏

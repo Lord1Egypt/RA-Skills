@@ -6,7 +6,7 @@ These are the gates. Run them before and after every lifecycle step. All read-on
 ```powershell
 netdom query fsmo
 ```
-Expect all 5 roles (Schema, Naming, PDC, RID, Infrastructure) on the holder you expect (DC1 here). The rebuild target holds **none** of them. If it holds any, transfer them to a healthy DC before demoting:
+Expect all 5 roles (Schema, Naming, PDC, RID, Infrastructure) on the holder you expect (the FSMO holder). The rebuild target holds **none** of them. If it holds any, transfer them to a healthy DC before demoting:
 `Move-ADDirectoryServerOperationMasterRole -Identity <healthyDC> -OperationMasterRole <role> -Confirm:$false`
 
 ## Replication summary
@@ -36,7 +36,7 @@ Get-ADObject -SearchBase "CN=Sites,$cfg" -LDAPFilter "(objectClass=nTDSDSA)" |
 ```powershell
 dcdiag /v   # filter to "passed test|failed test|error|warning" lines
 ```
-Run on the FSMO holder and each surviving DC. Expect every test to pass **except possibly `DFSREvent`**: a `DFSREvent` warning that references a *just-removed* DC (errors 1722/1723/1753, or 9036 "Paused for backup") is benign — DFSR is retrying a partner that no longer exists, and it self-clears. A `DFSREvent` failure that references *surviving, healthy* DCs is worth investigating.
+Run on the FSMO holder and each surviving DC. Expect every test to pass **except possibly `DFSREvent`**: a `DFSREvent` warning that references a *just-removed* DC (errors 1722/1723/1753, or 9036 "Paused for backup") is benign — DFSR is retrying a partner that no longer exists, and it self-clears. A `DFSREvent` failure that references *surviving, healthy* DCs is worth investigating. Note `SystemLog` can also fail transiently right after a rebuild (errors logged during the install/reboot churn age out of its 60-minute window).
 
 ## SYSVOL / NETLOGON + DFSR state (per DC)
 ```powershell

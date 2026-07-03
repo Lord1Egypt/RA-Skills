@@ -84,7 +84,7 @@ Produce this TypeScript snippet. Fill in the values from Steps 1 and 2:
 ```typescript
 import { createWalletClient, createPublicClient, http, parseUnits } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 import { decodeEventLog } from "viem";
 
 // ── Config (fill these in) ────────────────────────────────────────────────────
@@ -100,12 +100,12 @@ const STAKE_AMOUNT   = "<stakeAmount>";         // e.g. "200"; use "0" to skip d
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const walletClient = createWalletClient({
   account,
-  chain: bscTestnet,
-  transport: http("https://data-seed-prebsc-1-s1.binance.org:8545"),
+  chain: bsc,
+  transport: http("https://bsc-rpc.publicnode.com"),
 });
 const publicClient = createPublicClient({
-  chain: bscTestnet,
-  transport: http("https://data-seed-prebsc-1-s1.binance.org:8545"),
+  chain: bsc,
+  transport: http("https://bsc-rpc.publicnode.com"),
 });
 
 const AGENT_NFT_ABI = [
@@ -241,7 +241,7 @@ Show the user:
 | Role | `<role>` |
 | Display Name | `<name>` |
 | Owner | `<ownerAddress>` |
-| BSCScan | `https://testnet.bscscan.com/token/<AgentNFT>?a=<tokenId>` |
+| BSCScan | `https://bscscan.com/token/<AgentNFT>?a=<tokenId>` |
 
 **Next steps by role:**
 

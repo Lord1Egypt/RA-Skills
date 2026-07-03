@@ -1,0 +1,39 @@
+name: huawei-cloud-cce-pressure-test
+level: L5
+domain: performance-engineering
+description: Build a complete CCE end-to-end traffic path from k6 client through ELB to nginx-ingress to workload pods. Support short-connection, keepalive, and ramp traffic models. Collect ELB metrics and AOM observability, evaluate elasticity phases, and generate bilingual Markdown and HTML reports with performance curves.
+tools:
+  - huawei_deploy_cce_pressure_test_java_sample
+  - huawei_create_elb
+  - huawei_prepare_cce_pressure_test_route
+  - huawei_inject_cce_apm_javaagent
+  - huawei_generate_cce_pressure_test_client
+  - huawei_run_cce_pressure_test
+  - huawei_collect_cce_pressure_test_observability
+  - huawei_generate_cce_pressure_test_report
+  - huawei_scale_cce_workload
+  - huawei_list_cce_hpas
+  - huawei_get_cce_pods
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_get_cce_pod_metrics_topN
+  - huawei_get_elb_metrics
+  - huawei_get_elb_backend_status
+  - huawei_list_vpc_subnets
+  - huawei_list_aom_instances
+  - huawei_resolve_cce_aom_instance
+  - huawei_get_apm_master_address
+  - huawei_get_aom_metrics
+  - huawei_query_aom_logs
+  - huawei_get_cce_logconfigs
+  - huawei_create_cce_logconfig
+  - huawei_get_application_logconfigs
+  - huawei_query_application_logs
+  - huawei_analyze_application_logs
+  - huawei_generate_monitor_dashboard
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

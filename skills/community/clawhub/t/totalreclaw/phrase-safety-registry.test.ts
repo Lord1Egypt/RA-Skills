@@ -1,10 +1,12 @@
 /**
- * 3.3.1-rc.4 — phrase-safety contract tests.
+ * Phrase-safety registry contract tests (current surfaces, after Phase 3.2).
  *
  * Contract: NO agent tool registered by the TotalReclaw plugin may
  * generate, return, or accept a recovery phrase. The ONLY approved
- * agent-facilitated setup surface is `totalreclaw_pair` (browser-side
- * crypto keeps the phrase out of the LLM round-trip by construction).
+ * agent-facilitated setup surface is the QR-PAIR flow (browser-side
+ * crypto keeps the phrase out of the LLM round-trip by construction),
+ * exposed in 3.2+ as the `openclaw totalreclaw onboard [--pair-only]`
+ * CLI wizard + the four `/pair/*` HTTP routes.
  *
  * Governed by:
  *   ~/.claude/projects/-Users-pdiogo-Documents-code-totalreclaw-internal/
@@ -14,23 +16,45 @@
  * ANY form — not echoed, not in tool-call stdout, not in tool-result
  * payloads, not in agent reasoning."
  *
- * What this test asserts:
- *   1. `totalreclaw_onboard` is NOT present as a `registerTool` name
- *      anywhere in `index.ts`. (rc.3 registered it; rc.4 removed it.)
- *   2. `totalreclaw_setup` and `totalreclaw_onboarding_start` are NOT
- *      present either. (rc.4 kept them as neutered pointer stubs; rc.5
- *      deletes both — see the rc.4 auto-QA carve-out in the PR body.)
- *   3. `totalreclaw_pair` IS present (the approved replacement).
- *   4. No tool name containing a phrase-adjacent token (`onboard_generate`,
- *      `restore_phrase`, `mnemonic`, `generate_phrase`) is registered.
- *   5. The scan is defense-in-depth — a text search, not an AST walk —
- *      because a new registration that accidentally ships a phrase
- *      surface would almost always include one of these tokens.
+ * HISTORY — why this test was rewritten for the after-3.2 surfaces:
+ *   Phase 3.2 (commit cd21176 "retire totalreclaw_* agent tools")
+ *   retired the `totalreclaw_pair` / `remember` / `recall` / `forget`
+ *   agent tools. The pair surface moved to the CLI wizard
+ *   (`api.registerCli`) + four HTTP routes (`api.registerHttpRoute`);
+ *   recall moved to the native `memory_search` / `memory_get` tools
+ *   registered via the OpenClaw-native
+ *   `api.registerTool(tool, { names: [...] })` signature (not the
+ *   `api.registerTool({ name: '...' })` object form the old test
+ *   scanned for). The memory_* tools operate on the ENCRYPTION key
+ *   and never touch the recovery phrase, so they are NOT in scope for
+ *   this registry (inclusion criterion: "could this surface generate,
+ *   accept, or return a recovery phrase?").
  *
- * Scan strategy: read index.ts as text and search for the
- * `api.registerTool({ name: '...' }` pattern and `{ name: '...' }` tool
- * registrations. We match on the `name:` literal inside the object
- * passed to `registerTool`. This is a coarser scan than parsing TS but
+ * What this test asserts (current contract):
+ *   1. The retired phrase-adjacent agent tool names (`totalreclaw_onboard`,
+ *      `totalreclaw_setup`, `totalreclaw_onboarding_start`) are NOT
+ *      registered as agent tools anywhere in `index.ts`.
+ *   2. The retired `totalreclaw_remember` / `recall` / `forget` / `pair`
+ *      agent tools are NOT registered (they were the pre-3.2 capture
+ *      surface; Phase 3.2 deleted them in lockstep).
+ *   3. The pair surface — the load-bearing agent-facilitated setup path
+ *      the guard protects — IS registered, via BOTH of its current
+ *      surfaces: (a) the `api.registerCli` call that wires
+ *      `openclaw totalreclaw onboard` / `pair`, and (b) the four
+ *      `api.registerHttpRoute` calls that expose the `/pair/*` HTTP
+ *      routes the QR-pairing browser page calls (the actual path shapes
+ *      are asserted in `pair-http-route-registration.test.ts`).
+ *   4. No `api.registerTool({ name: '<phrase-adjacent-token>' })` call
+ *      exists — defense-in-depth: any future tool registration that
+ *      accidentally reintroduces a phrase-handling surface would almost
+ *      always include one of the forbidden substrings.
+ *
+ * Scan strategy: read index.ts as text and search for the registration
+ * call patterns (`api.registerTool`, `api.registerCli`,
+ * `api.registerHttpRoute`). We match on the `name:` literal inside the
+ * object passed to `registerTool`, the `path:` literal inside the
+ * object passed to `registerHttpRoute`, and the literal `api.registerCli`
+ * token for the CLI surface. This is a coarser scan than parsing TS but
  * sufficient for catching an accidental re-registration.
  *
  * Run with: `npx tsx phrase-safety-registry.test.ts`
@@ -57,19 +81,15 @@ const INDEX_PATH = path.resolve(import.meta.dirname, 'index.ts');
 const src = fs.readFileSync(INDEX_PATH, 'utf-8');
 
 /**
- * Extract the set of tool names passed to `api.registerTool({ name: '<name>', ... })`.
- *
- * Matches both single and double-quoted string literals. The regex is
- * anchored to the `registerTool(` opening so literals elsewhere in the
- * file (descriptions, comments, error messages) are not counted.
+ * Extract tool names from `api.registerTool({ name: '<name>', ... })`
+ * (the object-form registration). The native memory tools use a
+ * different signature — `api.registerTool(tool, { names: [...] })` —
+ * and are intentionally NOT captured here: memory_search/memory_get
+ * operate on the encryption key, never the recovery phrase, so they
+ * are out of scope for this registry.
  */
 function extractRegisteredToolNames(source: string): string[] {
   const names: string[] = [];
-  // Find every `api.registerTool(` call and the next `name: '...'`
-  // literal inside the same call block. We approximate "inside the same
-  // call block" by taking the first `name:` literal within 2000 chars
-  // of the opening paren — registerTool blocks are big (schemas + execute
-  // bodies) but 2000 chars is enough for all current ones.
   const openerRe = /api\.registerTool\s*\(\s*\{/g;
   let m: RegExpExecArray | null;
   while ((m = openerRe.exec(source)) !== null) {
@@ -82,41 +102,81 @@ function extractRegisteredToolNames(source: string): string[] {
   return names;
 }
 
+/**
+ * Count `api.registerHttpRoute` calls. The pair surface registers its
+ * four `/pair/*` routes this way. The path values at the call site are
+ * variable references (`bundle.finishPath`, etc.) resolved from
+ * `pair-http.ts`'s `${apiBase}/finish` templates — not string literals
+ * — so this scan counts the registration calls themselves. The actual
+ * path shapes (all four must contain `/pair/`) are covered by
+ * `pair-http-route-registration.test.ts`.
+ */
+function countRegisteredHttpRoutes(source: string): number {
+  const matches = source.match(/api\.registerHttpRoute!?\s*\(/g);
+  return matches ? matches.length : 0;
+}
+
 const registered = extractRegisteredToolNames(src);
+const httpRouteCount = countRegisteredHttpRoutes(src);
 
 // ---------------------------------------------------------------------------
-// 1. totalreclaw_onboard is NOT registered
+// 1. Retired phrase-adjacent agent tools are NOT registered
+// ---------------------------------------------------------------------------
+const RETIRED_PHRASE_ADJACENT = [
+  'totalreclaw_onboard', // removed in rc.4
+  'totalreclaw_setup', // removed in rc.5
+  'totalreclaw_onboarding_start', // removed in rc.5
+];
+for (const t of RETIRED_PHRASE_ADJACENT) {
+  assert(
+    !registered.includes(t),
+    `phrase-safety: ${t} is NOT registered (retired)`,
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 2. Retired totalreclaw_* capture tools are NOT registered
+//    (Phase 3.2 — commit cd21176. The pair surface moved to CLI + HTTP;
+//    recall moved to native memory_search/memory_get which operate on
+//    the encryption key, not the phrase, and use a different signature.)
+// ---------------------------------------------------------------------------
+const RETIRED_CAPTURE_TOOLS = [
+  'totalreclaw_pair',
+  'totalreclaw_remember',
+  'totalreclaw_recall',
+  'totalreclaw_forget',
+];
+for (const t of RETIRED_CAPTURE_TOOLS) {
+  assert(
+    !registered.includes(t),
+    `phrase-safety: ${t} is NOT registered (retired in Phase 3.2 — moved to CLI/HTTP/native)`,
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 3. The pair surface IS registered (load-bearing phrase-safety surface)
+//
+// The QR-pair flow is the ONLY agent-facilitated setup path the guard
+// protects. After 3.2 it is registered through two surfaces, BOTH of
+// which must remain present:
+//   (a) api.registerCli — wires `openclaw totalreclaw onboard` / `pair`
+//       (the leak-free TTY wizard where a phrase is generated/accepted).
+//   (b) api.registerHttpRoute — the four `/pair/*` HTTP routes the
+//       browser pairing page calls (start/respond/finish/status).
 // ---------------------------------------------------------------------------
 assert(
-  !registered.includes('totalreclaw_onboard'),
-  'phrase-safety: totalreclaw_onboard is NOT registered (removed in rc.4)',
+  /api\.registerCli\s*\(/.test(src),
+  'phrase-safety: pair CLI surface is registered (api.registerCli call present — wires `openclaw totalreclaw pair/onboard`)',
+);
+
+const pairRoutes = httpRouteCount;
+assert(
+  pairRoutes >= 4,
+  `phrase-safety: pair HTTP surface is registered (>=4 registerHttpRoute calls for the /pair/* routes; found ${pairRoutes})`,
 );
 
 // ---------------------------------------------------------------------------
-// 1b. totalreclaw_setup and totalreclaw_onboarding_start are NOT
-//     registered (rc.5 removes the rc.4 neutered stubs — closes the
-//     auto-QA carve-out that flagged them as future-regression
-//     surface even though they couldn't leak a phrase today).
-// ---------------------------------------------------------------------------
-assert(
-  !registered.includes('totalreclaw_setup'),
-  'phrase-safety: totalreclaw_setup is NOT registered (removed in rc.5)',
-);
-assert(
-  !registered.includes('totalreclaw_onboarding_start'),
-  'phrase-safety: totalreclaw_onboarding_start is NOT registered (removed in rc.5)',
-);
-
-// ---------------------------------------------------------------------------
-// 2. totalreclaw_pair IS registered (the approved replacement)
-// ---------------------------------------------------------------------------
-assert(
-  registered.includes('totalreclaw_pair'),
-  'phrase-safety: totalreclaw_pair IS registered',
-);
-
-// ---------------------------------------------------------------------------
-// 3. No other phrase-adjacent tool name is registered
+// 4. No phrase-adjacent agent-tool name is registered (defense-in-depth)
 // ---------------------------------------------------------------------------
 const FORBIDDEN_SUBSTRINGS = [
   'onboard_generate',
@@ -126,29 +186,11 @@ const FORBIDDEN_SUBSTRINGS = [
   'restore_mnemonic',
   'mnemonic',
 ];
-
 for (const forbidden of FORBIDDEN_SUBSTRINGS) {
   const hits = registered.filter((n) => n.toLowerCase().includes(forbidden));
   assert(
     hits.length === 0,
     `phrase-safety: no registered tool name contains "${forbidden}" (hits: ${JSON.stringify(hits)})`,
-  );
-}
-
-// ---------------------------------------------------------------------------
-// 4. Known-safe tool names ARE registered (regression guard — if this
-// count drops unexpectedly the scan logic broke, not the registry)
-// ---------------------------------------------------------------------------
-const EXPECTED_SAFE = [
-  'totalreclaw_remember',
-  'totalreclaw_recall',
-  'totalreclaw_forget',
-  'totalreclaw_pair',
-];
-for (const t of EXPECTED_SAFE) {
-  assert(
-    registered.includes(t),
-    `sanity: ${t} is registered (regression guard)`,
   );
 }
 

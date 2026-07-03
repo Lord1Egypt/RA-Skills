@@ -18,21 +18,21 @@
 
 ```bash
 # 最简用法：省略 --cos-input-key，自动使用 input/<文件名> 作为 COS Key
-python scripts/mps_cos_upload.py --local-file ./video.mp4
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4
 # 等价于：--cos-input-key input/video.mp4
 
 # 手动指定 cos-input-key
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4
 
 # 显示详细日志
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --verbose
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --verbose
 
 # 指定 bucket 和 region（覆盖环境变量）
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4 \
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4 \
     --bucket mybucket-125xxx --region ap-guangzhou
 
 # 上传图片文件
-python scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
+python3 scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
 ```
 
 ---
@@ -59,20 +59,20 @@ python scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
 
 ```bash
 # 最简用法：省略 --local-file，自动保存为 ./<文件名>
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4
 # 等价于：--local-file ./result.mp4
 
 # 手动指定 local-file
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
 # 显示详细日志
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --verbose
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --verbose
 
 # 下载到工作目录（推荐路径）
-python scripts/mps_cos_download.py --cos-input-key output/enhanced.mp4 --local-file /data/workspace/enhanced.mp4 --verbose
+python3 scripts/mps_cos_download.py --cos-input-key output/enhanced.mp4 --local-file /data/workspace/enhanced.mp4 --verbose
 
 # 指定 bucket 和 region（覆盖环境变量）
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \
     --bucket mybucket-125xxx --region ap-guangzhou
 ```
 
@@ -97,25 +97,25 @@ python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-fil
 
 ```bash
 # 列出 Bucket 根目录下的所有文件
-python scripts/mps_cos_list.py
+python3 scripts/mps_cos_list.py
 
 # 列出指定路径下的文件
-python scripts/mps_cos_list.py --prefix output/transcode/
+python3 scripts/mps_cos_list.py --prefix output/transcode/
 
 # 模糊搜索文件名包含 "video" 的文件
-python scripts/mps_cos_list.py --prefix output/ --search video
+python3 scripts/mps_cos_list.py --prefix output/ --search video
 
 # 精确匹配文件名
-python scripts/mps_cos_list.py --prefix output/ --search "result.mp4" --exact
+python3 scripts/mps_cos_list.py --prefix output/ --search "result.mp4" --exact
 
 # 显示文件完整 URL
-python scripts/mps_cos_list.py --prefix output/ --show-url
+python3 scripts/mps_cos_list.py --prefix output/ --show-url
 
 # 限制返回数量
-python scripts/mps_cos_list.py --prefix output/ --limit 50
+python3 scripts/mps_cos_list.py --prefix output/ --limit 50
 
 # 列出增强后的结果文件并显示 URL
-python scripts/mps_cos_list.py --prefix /output/enhance/ --show-url --limit 20
+python3 scripts/mps_cos_list.py --prefix /output/enhance/ --show-url --limit 20
 ```
 
 ## 强制规则

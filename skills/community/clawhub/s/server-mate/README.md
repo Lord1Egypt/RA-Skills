@@ -6,7 +6,7 @@ English | [Chinese](README_ZH.md)
 
 > A two-plane monitoring system for Linux hosts running Nginx or Apache, now with **lightweight centralized remote monitoring** via BT-Panel API — one Agent, many servers, no remote installation required.
 
-[![Version](https://img.shields.io/badge/version-1.5.1-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)]()
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-success.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-CentOS%2FUbuntu%2FDebian-lightgrey.svg)](https://linux.org)
@@ -51,6 +51,66 @@ It splits responsibilities into two planes:
 - Generate daily, weekly, and monthly ops reports automatically
 - Detect suspicious IPs, 404 scans, 5xx spikes, and SSH brute-force attempts
 - Enable safe automation with allowlists, TTLs, cooldowns, and audit trails
+
+---
+
+## What's New in v1.6.1
+
+### SRE Visual Themes (Light / Dark / Auto)
+
+- **Dynamic Theme Switcher**: Added a sleek drop-down theme menu at the top-right header with Sun, Moon, and System Monitor icons. Allows switching between Light Mode, Dark Mode, and System Auto mode.
+- **Chart.js Color Adaptation**: When toggling the theme, the javascript dynamically adjusts the Chart.js grid lines, tick fonts, legend text, and scale colors (resolves blue/purple accent lines on light grey background) and re-updates the canvas in real-time.
+- **Persistent Preferences**: Saves the user's theme selection in `localStorage` to persist across restarts.
+
+### PC & Mobile Responsive Adaptive Layout
+
+- **Viewport Grids**: Modified CSS styling to collapse the 4 circular gauges into a 2x2 grid on tablets and 1x1 stack on mobile.
+- **Horizontal Table Scrolling**: Wrapped all dashboard data tables inside responsive scrolling blocks (`overflow-x: auto`) with minimum widths to prevent tables from being squeezed or broken on mobile screens.
+- **Flexible Typography**: Fluid page paddings (shrink from `24px` to `12px` on mobile) and font-size scaling for optimal legibility.
+
+---
+
+## What's New in v1.6.0
+
+### Built-in Visual SRE Dashboard
+
+Server-Mate now features a built-in, lightweight web dashboard served directly by the Python agent in daemon mode.
+- **Modern Dashboard UI**: Visually stunning dark console with glassmorphic cards, responsive columns, and real-time updating SVG progress circle gauges (CPU, RAM, Swap, Disk).
+- **Line Charts Trend**: Includes dynamic real-time system resource & traffic load charts (CPU utilization vs. QPS history) rendered with Chart.js.
+- **SRE Command Center**: Shows active system alerts, Top 5 CPU processes list, monitored sites traffic statistics table, and the active firewall blocked IPs log in real time.
+- **Zero Dependencies**: Powered by Python's standard `http.server` running in a background daemon thread (enabled via `--dashboard` or `dashboard.enabled: true` on port `8000`). Easy to embed in any webpage or reverse-proxy with Nginx.
+
+### AI Security Shield (Dynamic Audit)
+
+Elevates the heuristic `auto_ban` into a smart AI-driven firewall:
+- **Intelligent Auditing**: When a traffic-related warning (e.g. `suspicious_ip_burst` or CPU-spike candidate) occurs, the Agent captures the candidate IP's request log context (URIs, methods, statuses, and User-Agents) and queries the LLM for classification.
+- **Spider & Crawler Protection**: The LLM determines if it is a scraper/scanner (calls `ban_ip`) or a crawler/harmless user (calls `whitelist` to bypass ban).
+- **Auditing Cache**: Cached decisions (`llm_shield_cache`) persist in state for 24 hours to prevent repetitive API calls and save tokens.
+
+### Standalone API Key Configuration
+
+- Enables running SRE monitoring, recovery tracking, and diagnostics fully standalone without OpenClaw. You can now configure `api_key` directly in `config.yaml` under the `ai_analysis` block.
+
+---
+
+## What's New in v1.5.2
+
+### AI Diagnosis Caching
+
+To prevent token wastage on recurring alerts (like `cpu_high` triggering every 10 minutes when CPU remains busy), Server-Mate now caches AI-generated diagnoses in its persistent state.
+- **Cache Reuse**: Reuses the cached diagnosis for matching alert categories and domains for up to 1 hour (configurable via `ai_cooldown_seconds: 3600`), cutting token spend by up to 90%.
+- **Caching Badge**: Alerts using a cached diagnosis will feature a `【AI: 缓存】` badge.
+
+### Accurate CPU & Process Sampling
+
+Switched to a two-pass `psutil` sampling method with a 1.0-second delay for system and process metrics.
+- **False Alarm Elimination**: Eliminates transient false-positives caused by the python interpreter startup or log-parsing CPU usage.
+- **Process Metrics Accuracy**: Fixes the issue where all processes reported `0.0%` CPU utilization due to single-pass sampling limitations.
+
+### CPU-Spike Auto-Remediation (Auto-Ban)
+
+Integrated `auto_ban` with `cpu_high` and `iowait_high` warnings to mitigate application-level CC/DDoS attacks on slow endpoints (e.g. `/responses`).
+- **Dynamic Mitigation**: When CPU is exhausted and `ban_on_cpu_spike` is active, the Agent scans logs for the top client IP. If its request rate exceeds `cpu_spike_rpm_threshold: 60.0`, the IP is automatically banned (e.g., using `iptables`).
 
 ---
 

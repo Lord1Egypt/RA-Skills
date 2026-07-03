@@ -1,0 +1,26 @@
+{
+  "deck": {
+    "artifact": "",
+    "export_target": "",
+    "qa_level": "light|standard|consulting-grade",
+    "created": false,
+    "rendered": "unknown",
+    "read_back": "unknown",
+    "final": false
+  },
+  "checks": {
+    "expected_slide_count": "unknown",
+    "nonblank_render": "unknown",
+    "text_overflow": "unknown",
+    "brand_consistency": "unknown",
+    "editable_core_text": "unknown",
+    "visual_structure_preserved": "unknown",
+    "source_labels_present": "unknown",
+    "privacy_redaction": "unknown",
+    "native_dynamic_transition_xml": "unknown",
+    "notes_count": "unknown"
+  },
+  "rasterization_tradeoffs": [],
+  "failed_slides": [],
+  "remaining_manual_checks": []
+}

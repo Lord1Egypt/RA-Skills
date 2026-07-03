@@ -1,0 +1,40 @@
+{
+  "title": "HaluCatch / 捕幻",
+  "subtitle": "AI Skill 执行可靠性审查 · 四维评估 · 三版报告",
+  "nodes": [
+    {"id": "entry",           "type": "entry",    "label": "用户触发 HaluCatch",          "role": "ai"},
+    {"id": "classify",        "type": "decision", "label": "有数据处理？",              "role": "decision"},
+    {"id": "unsure",          "type": "process",  "label": "询问用户",                  "subtitle": "有数据处理步骤吗？", "role": "ai"},
+    {"id": "scan",            "type": "process",  "label": "L1 文件扫描",               "subtitle": "halucatch_core.py --validate", "role": "script"},
+    {"id": "type_data",      "type": "process",  "label": "代码工程型评估",           "subtitle": "地基 + 代码 + 规则 + 护栏", "role": "ai"},
+    {"id": "type_method",     "type": "process",  "label": "纯方法论型评估",           "subtitle": "指令完备性 · 可复现性", "role": "ai"},
+    {"id": "l2_script",      "type": "process",  "label": "L2 脚本基线",              "subtitle": "地基 · 代码 · 规则 · 护栏", "role": "script"},
+    {"id": "l3_ai",           "type": "process",  "label": "L3 AI 补充",               "subtitle": "语义解读 · 上下文融合", "role": "ai"},
+    {"id": "report",          "type": "process",  "label": "L3 生成三版报告",          "subtitle": "专业版 · 通俗版 · 行动版", "role": "ai"},
+    {"id": "fix_decision",    "type": "decision", "label": "用户选择修复？",           "role": "decision"},
+    {"id": "fix_plan",        "type": "process",  "label": "生成修复方案",              "subtitle": "修复包 + feedback.md 模板", "role": "ai"},
+    {"id": "apply_fix",       "type": "process",  "label": "应用修复",                  "subtitle": "AI 修改目标 Skill", "role": "ai"},
+    {"id": "output",          "type": "output",   "label": "输出报告",                  "subtitle": "HaluCatch/reports/", "role": "output"}
+  ],
+  "edges": [
+    {"from": "entry",           "to": "classify",        "label": "",     "side": "bottom"},
+    {"from": "classify",        "to": "unsure",          "label": "不确定", "side": "left"},
+    {"from": "classify",        "to": "scan",             "label": "是",     "side": "bottom"},
+    {"from": "classify",        "to": "type_method",     "label": "否",     "side": "right"},
+    {"from": "unsure",          "to": "scan",             "label": "",     "side": "bottom"},
+    {"from": "scan",            "to": "type_data",       "label": "",     "side": "bottom"},
+    {"from": "type_data",       "to": "l2_script",       "label": "",     "side": "bottom"},
+    {"from": "type_method",     "to": "l3_ai",            "label": "",     "side": "bottom"},
+    {"from": "l2_script",       "to": "l3_ai",            "label": "",     "side": "bottom"},
+    {"from": "l3_ai",           "to": "report",           "label": "",     "side": "bottom"},
+    {"from": "report",          "to": "fix_decision",     "label": "",     "side": "bottom"},
+    {"from": "fix_decision",    "to": "output",          "label": "不修",   "side": "left"},
+    {"from": "fix_decision",    "to": "fix_plan",         "label": "修",     "side": "bottom"},
+    {"from": "fix_plan",        "to": "apply_fix",        "label": "",     "side": "bottom"}
+  ],
+  "branches": [],
+  "loops": [
+    {"from": "apply_fix", "to": "entry", "label": "修复后重新审查", "path": "left_edge"}
+  ],
+  "legend": []
+}

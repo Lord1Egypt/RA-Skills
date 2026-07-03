@@ -1,0 +1,77 @@
+{
+  "gate_reviews": [
+    {
+      "gate_id": "G0-20260619-001",
+      "gate_type": "gate_0",
+      "project_id": "TM-20260619-001",
+      "reviewer": "所长",
+      "review_date": "2026-06-19",
+      "criteria_results": [
+        { "criterion": "五维综合分≥6", "actual": 7.92, "passed": true },
+        { "criterion": "信息完整性", "actual": "完整", "passed": true },
+        { "criterion": "客户合作意向≥中", "actual": "中高", "passed": true }
+      ],
+      "decision": "pass",
+      "conditions": [],
+      "next_stage": "Phase 2: 标准化报告+评估",
+      "notes": "A级项目，技术+市场双优。重点关注中试工程化和资金筹措。"
+    },
+    {
+      "gate_id": "G1-20260619-001",
+      "gate_type": "gate_1",
+      "project_id": "TM-20260619-001",
+      "reviewer": "所长+评估师",
+      "review_date": "2026-06-19",
+      "criteria_results": [
+        { "criterion": "技术分析报告完整", "actual": "完整", "passed": true },
+        { "criterion": "分级结论明确", "actual": "B级", "passed": true },
+        { "criterion": "TRL置信度可接受", "actual": "medium", "passed": true },
+        { "criterion": "无致命风险", "actual": "无致命风险", "passed": true }
+      ],
+      "decision": "pass",
+      "conditions": [
+        "TRL置信度medium，需在后续补充第三方验证报告",
+        "团队产业化能力不足，需在方案中明确人才引进计划"
+      ],
+      "next_stage": "Phase 3: 成长规划",
+      "notes": "B级项目，TRL4置信度中等。建议采取渐进式跨越方案，优先中试基地。"
+    },
+    {
+      "gate_id": "G2-20260619-001",
+      "gate_type": "gate_2",
+      "project_id": "TM-20260619-001",
+      "reviewer": "所长+评估师",
+      "review_date": "2026-06-19",
+      "criteria_results": [
+        { "criterion": "TRL定位明确", "actual": "TRL4→7路径清晰", "passed": true },
+        { "criterion": "成长路线图完整", "actual": "三阶段方案+里程碑", "passed": true },
+        { "criterion": "风险评估无红色", "actual": "黄色（市场+资金风险）", "passed": true },
+        { "criterion": "转化路径可行", "actual": "中试基地模式", "passed": true }
+      ],
+      "decision": "conditional_pass",
+      "conditions": [
+        "需在30天内确认中试基地合作意向",
+        "需在45天内完成首轮融资方案设计",
+        "需补充第三方检测报告提升TRL置信度"
+      ],
+      "next_stage": "Phase 4: 资源对接",
+      "notes": "方案可行，但融资和中试基地落实是关键条件。"
+    },
+    {
+      "gate_id": "G3-20260619-001",
+      "gate_type": "gate_3",
+      "project_id": "TM-20260619-001",
+      "reviewer": "所长",
+      "review_date": "2026-06-19",
+      "criteria_results": [
+        { "criterion": "转化方案完整", "actual": "渐进式跨越方案+创新建议", "passed": true },
+        { "criterion": "执行计划可操作", "actual": "三阶段里程碑+资源清单", "passed": true },
+        { "criterion": "资源清单齐备", "actual": "中试基地+主机厂+融资渠道", "passed": true }
+      ],
+      "decision": "pass",
+      "conditions": [],
+      "next_stage": "Phase 5: 转化协同",
+      "notes": "方案完整可执行。创意师提出的军民融合和新能源扩展路径值得探索。"
+    }
+  ]
+}

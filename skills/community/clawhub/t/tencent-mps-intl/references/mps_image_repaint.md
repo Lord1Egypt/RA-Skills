@@ -72,25 +72,25 @@ Applicable scenarios: partial product image editing, ad creative retouching, def
 
 ```bash
 # Simplest usage: source image URL + mask image URL
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "blue sky and white clouds"
 
 # Local source image + URL mask image
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --local-file /tmp/room.jpg \
     --mask-url "https://example.com/mask.png" \
     --prompt "a green plant"
 
 # COS source image + COS mask image
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --cos-input-key "/input/scene.jpg" \
     --mask-cos-key "/input/mask.png" \
     --prompt "a white cat"
 
 # Mask image from a non-default Bucket
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-cos-key "/masks/area.png" \
     --mask-cos-bucket mybucket-125xxx \
@@ -98,28 +98,28 @@ python scripts/mps_image_repaint.py \
     --prompt "red flowers"
 
 # Custom output path
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "wooden floor" \
     --output-path "/output/repaint/custom_result.jpg"
 
 # Submit task only without waiting for result
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "green grass" \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "marble texture" \
     --download-dir /tmp/results/
 
 # Manually query repaint task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

@@ -1,0 +1,18 @@
+{
+  "name": "DFP-Skill",
+  "slug": "dfp-skill",
+  "display_name": "Digital Finance Presentation Skill",
+  "version": "6.0.0",
+  "description": "SAP Enterprise Ultra-Wide Presentation Generator with AI-Empowered methodology. Generate professional presentations for enterprise summits, financial digitalization, and valuation reports. Features: 51年SAP技术演进, Joule生成式AI助手, RPA案例(93.75%效率提升), ESG碳资产管理(碳数据→碳资产→碳资本), 数智财务四大能力穿透分析.",
+  "author": "Wang Dongjie",
+  "author_credentials": "CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "tags": ["presentation", "finance", "SAP", "digital-finance", "PPTX", "Keynote", "MCP", "ultra-wide", "ESG", "RPA", "AI", "enterprise"],
+  "category": "Business & Finance",
+  "homepage": "https://github.com/yjkj999999/DFP-Skill",
+  "repository": "https://github.com/yjkj999999/DFP-Skill",
+  "icon": "📊",
+  "min_openclaw_version": "3.22",
+  "tools": ["Bash", "Read", "Write", "RunCommand"],
+  "changelog": "v6.0.0 - SAP Digital Finance Methodology Integration: 51年技术演进, Business AI, Joule助手, RPA案例(93.75%), ESG碳资产管理, 数智财务四大能力, 新增3个报告模板"
+}

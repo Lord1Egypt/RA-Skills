@@ -6,7 +6,7 @@ name: next
 depends-on:
   - fix
   - hook
-description: >-
+description: |
   Suggest next actions after completing any task. Auto-invocation via Stop hook (`resources/next-trigger.sh`) using JSON `decision:"block"` (registered in the settings.json Stop array). Fires when assistant response contains completion keywords (locale patterns in `data/*.regex`).
   stall-detect - detect stalled follow-up steps and invoke /fix [stall-detect.md], ask-gates - recording-skip / decision-deferral forced-ask / TaskList primary-source / current-work confirmation gates [ask-gates.md], suggestion-patterns - per-context "After X" next-action option templates [suggestion-patterns.md].
   Use when "next action", "what next", "stall", "stuck", "not progressing", "follow-up missing" is mentioned.

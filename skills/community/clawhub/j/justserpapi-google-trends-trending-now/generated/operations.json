@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/trends/trending-now for Google SERP Trends Trending Now through Just Serp API with geo.",
+  "displayName": "Google SERP Trends Trending Now",
+  "endpointPath": "trends/trending-now",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google trends Trending Now data, including latest trending topics, region and time-window filters, and volume indicators, for breaking-trend monitoring and editorial planning.",
+      "method": "GET",
+      "operationId": "TrendsTrendingNow",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The geographic location code to retrieve real-time trends for (e.g., 'US' for United States). Default is 'US'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "geo",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Time window for trending topics. Supported values: '4' (past 4 hours), '24' (past 24 hours), '48' (past 48 hours), '168' (past 7 days).",
+          "enumValues": [],
+          "location": "query",
+          "name": "hours",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en').",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/trends/trending-now",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Trending Now",
+      "tags": [
+        "Google Trends"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_trends_trending_now",
+  "skillType": "interface",
+  "slug": "justserpapi-google-trends-trending-now",
+  "sourceTitle": "API Shop Documentation"
+}

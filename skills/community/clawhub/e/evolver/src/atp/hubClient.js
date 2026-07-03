@@ -15,7 +15,7 @@
 // bound to 127.0.0.1).
 
 const http = require('http');
-const { getHubUrl, buildHubHeaders, getNodeId } = require('../gep/a2aProtocol');
+const { getHubUrl, buildHubHeaders, buildNodeScopedHubHeaders, getNodeId } = require('../gep/a2aProtocol');
 const { hubFetch } = require('../gep/hubFetch');
 const { getProxyUrl, getProxyToken } = require('../proxy/server/settings');
 
@@ -95,9 +95,10 @@ function _hubPost(pathSuffix, body, timeoutMs) {
   if (!hubUrl) return Promise.resolve({ ok: false, error: 'no_hub_url' });
   const endpoint = hubUrl.replace(/\/+$/, '') + pathSuffix;
   const timeout = timeoutMs || require('../config').HTTP_TRANSPORT_TIMEOUT_MS;
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
   return hubFetch(endpoint, {
     method: 'POST',
-    headers: buildHubHeaders(),
+    headers: buildHeaders(),
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(timeout),
   })
@@ -123,9 +124,10 @@ function _hubGet(pathSuffix, timeoutMs) {
   if (!hubUrl) return Promise.resolve({ ok: false, error: 'no_hub_url' });
   const endpoint = hubUrl.replace(/\/+$/, '') + pathSuffix;
   const timeout = timeoutMs || require('../config').HTTP_TRANSPORT_TIMEOUT_MS;
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
   return hubFetch(endpoint, {
     method: 'GET',
-    headers: buildHubHeaders(),
+    headers: buildHeaders(),
     signal: AbortSignal.timeout(timeout),
   })
     .then(function (res) {

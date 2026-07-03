@@ -4,14 +4,14 @@ Discover candidate events from user-provided or public sources.
 
 ## Inputs
 
-- Source priorities from `skills/event-scanner/assets/sources.md`.
-- Geography and availability guidance from `skills/event-scanner/references/availability-rules.md`.
+- Source priorities from `<skill_dir>/assets/sources.md`.
+- Geography and availability guidance from `<skill_dir>/references/availability-rules.md`.
 - Any date window or topic requested by the user.
 
 ## Procedure
 
-1. Add `event-scanner-discovery` to the current run note's `Skills used` list before discovery work starts.
-2. Resolve the scan location from the user request and `skills/event-scanner/assets/sources.md`; if the user did not specify a location, use the configured default location.
+1. Add `local-event-scanner-discovery` to the current run note's `Skills used` list before discovery work starts.
+2. Resolve the scan location from the user request and `<skill_dir>/assets/sources.md`; if the user did not specify a location, use the configured default location.
 3. Check primary sources for the requested location first when they exist.
 4. If the requested location has no primary sources, or is not a configured standard location, use public exploration for that location and record that source coverage is exploratory.
 5. Use public pages and source links wherever possible.

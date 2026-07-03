@@ -1,6 +1,6 @@
 # 🧬 Evolver
 
-[![GitHub stars](https://img.shields.io/badge/Stars-8.7k-2b3137?logo=github&logoColor=white)](https://github.com/EvoMap/evolver/stargazers)
+[![GitHub stars](https://img.shields.io/badge/Stars-8.8k-2b3137?logo=github&logoColor=white)](https://github.com/EvoMap/evolver/stargazers)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Node.js >= 18](https://img.shields.io/badge/Node.js-%3E%3D%2018-green.svg)](https://nodejs.org/)
 [![npm downloads](https://img.shields.io/npm/dm/@evomap/evolver.svg)](https://www.npmjs.com/package/@evomap/evolver)

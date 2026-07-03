@@ -66,51 +66,51 @@
 
 ```bash
 # 最简用法：AI 剧分镜拆图（默认参数）
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg"
 
 # 漫画分镜拆图
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/manga_page.jpg" \
     --model-sampling 1.0
 
 # 电商场景：保留文字
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/product_long.jpg" \
     --no-erase-text \
     --model-sampling 0.85
 
 # 只处理指定帧（第 0 帧）
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --process-index 0
 
 # 本地文件输入
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --local-file /tmp/comic.jpg \
     --model-sampling 1.0
 
 # COS 路径输入
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --cos-input-key "/input/drama_board.jpg"
 
 # 不擦除文字
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --no-erase-text
 
 # 只提交任务，不等待结果（推荐用于耗时长的任务）
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_split.py \
+python3 scripts/mps_image_split.py \
     --url "https://example.com/storyboard.jpg" \
     --download-dir /tmp/results/
 
 # 手动查询分镜任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

@@ -3,7 +3,7 @@
   "name": "Rune",
   "kind": "skills",
   "description": "64-skill mesh for AI coding assistants. Routes all code tasks through specialized skills. 203 sync connections + 40 async signals, 14 extension packs.",
-  "version": "2.18.1",
+  "version": "2.20.0",
   "skills": [
     "./skills"
   ],

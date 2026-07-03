@@ -1,0 +1,48 @@
+# ============================================
+# Agent 配置文件模板 - Enterprise
+# ============================================
+#
+# ⚠ AI构建提示:
+# 此为 schema 描述, 非完整 YAML 配置
+# 生成完整配置结构: agent, llm (含 fallback), tools, permissions,
+#   session (Redis), database, observability, security, limits
+
+# agent:
+#   name: default
+#   max_turns: 100
+#   concurrency: 10
+
+# llm:
+#   primary:
+#     provider: openai
+#     model: gpt-4o
+#     max_tokens: 4096
+#   fallback:
+#     provider: anthropic
+#     model: claude-sonnet-4-20250514
+
+# session:
+#   backend: redis
+#   ttl: 3600
+
+# database:
+#   url: postgresql+asyncpg://user:pass@localhost:5432/agentdb
+#   pool_size: 20
+
+# observability:
+#   tracing:
+#     enabled: true
+#     exporter: otlp
+#   metrics:
+#     enabled: true
+#     port: 9090
+
+# security:
+#   jwt:
+#     algorithm: HS256
+#     expire_minutes: 60
+
+# limits:
+#   rate_limit: 100
+#   rate_window: 60
+#   max_concurrent_sessions: 100

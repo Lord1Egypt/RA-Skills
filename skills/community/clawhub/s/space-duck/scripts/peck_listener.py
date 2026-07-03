@@ -45,6 +45,14 @@ Forward channels (--forward-to, repeatable):
 Lambda variant (drop-in handler) — sketch at the bottom of this file.
 
 Usage:
+  # DEFAULT onboarding path (0.4.19+) — zero tunnel/domain/webhook setup.
+  # Polls the platform mailbox with adaptive cadence: fast (--interval, 3s)
+  # while a peck session is active or right after a local send (send_peck
+  # touches ~/.space-duck/poll_wake), idle (--idle-interval, 60s) otherwise.
+  python3 peck_listener.py --poll
+  python3 peck_listener.py --poll --on-peck "python3 peck_responder.py" --allow-shell-hook
+
+  # Server-grade tier (public HTTPS listener + byob_forward_url bind):
   python3 peck_listener.py                              # listen on 0.0.0.0:8787
   python3 peck_listener.py --port 9000
   python3 peck_listener.py --on-peck ./reply.sh
@@ -79,6 +87,12 @@ _FORWARD_CFG_PATHS = [
 # slightly larger replay window on next start.
 POLL_STATE  = Path.home() / '.space-duck' / 'poll_state.json'   # {latest_timestamp_ms}
 SEEN_IDS    = Path.home() / '.space-duck' / 'seen_peck_ids'     # newline ids, last 1000
+# Adaptive-cadence wake file (0.4.19). send_peck.py touches this on every
+# successful send; the sleeping poll loop watches its mtime and polls
+# immediately, then holds the ACTIVE cadence for the activity window. A
+# missing wake file just means no fast-path — cadence still adapts on
+# delivered pecks.
+POLL_WAKE   = Path.home() / '.space-duck' / 'poll_wake'
 LISTENER_PID = Path.home() / '.space-duck' / 'listener.pid'
 LISTENER_LOG = Path.home() / '.space-duck' / 'listener.log'
 
@@ -623,7 +637,30 @@ def _clear_pid_file():
         pass
 
 
-def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
+def _wake_mtime():
+    try:
+        return POLL_WAKE.stat().st_mtime
+    except OSError:
+        return 0.0
+
+
+def _sleep_watching_wake(sleep_s, wake_seen):
+    """Sleep up to sleep_s, waking early if POLL_WAKE is touched. Returns
+    (new_wake_seen, woke_early). ≤1s check granularity so a local send
+    triggers a poll immediately even mid-idle-sleep."""
+    deadline = time.time() + sleep_s
+    while True:
+        m = _wake_mtime()
+        if m > wake_seen:
+            return m, True
+        remaining = deadline - time.time()
+        if remaining <= 0:
+            return wake_seen, False
+        time.sleep(min(1.0, remaining))
+
+
+def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400,
+             idle_interval=60.0, active_window=300.0, adaptive=True):
     """Long-running poll loop. Replaces the HTTP server for laptops that
     have no public URL. Backend endpoints already shipped (lambda v421+).
 
@@ -649,6 +686,12 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
     state = _load_poll_state()
     seen_set, seen_list = _load_seen_ids()
 
+    # Adaptive cadence state. A wake-file touch that happened just before we
+    # started (send-then-start) still opens the activity window; anything
+    # older is stale and ignored.
+    wake_seen = _wake_mtime()
+    last_activity = wake_seen if (time.time() - wake_seen) <= active_window else 0.0
+
     # Cold start floor: if poll_state has no timestamp, start from now-24h so
     # we don't replay days of stale pecks on first launch.
     cold_floor_ms = (int(time.time()) - cold_start_floor_sec) * 1000
@@ -661,7 +704,12 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
     print(f'🦆 peck_listener (poll)  agent={agent_name}  duck={sd_id[:10]}…')
     print(f'    api: {api_base}')
     print(f'    config: {cfg["_path"]}')
-    print(f'    interval: {interval}s   since: {since_ms}ms ({"cold floor" if since_ms == cold_floor_ms else "resumed"})')
+    if adaptive:
+        print(f'    cadence: adaptive — active {interval}s / idle {idle_interval}s '
+              f'(window {int(active_window)}s, wake: {POLL_WAKE})')
+    else:
+        print(f'    cadence: fixed {interval}s (--no-adaptive)')
+    print(f'    since: {since_ms}ms ({"cold floor" if since_ms == cold_floor_ms else "resumed"})')
     if forward_to:
         print(f'    forward-to: {", ".join(forward_to)}')
     if on_peck_cmd:
@@ -670,6 +718,7 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
     backoff = interval
     try:
         while True:
+            err_backoff = False
             url = (f'{api_base}/beak/peck/inbox'
                    f'?spaceduck_id={urllib.parse.quote(sd_id)}'
                    f'&since={since_ms}&limit=20')
@@ -712,7 +761,11 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
                         print(f'   ⚠️ ack failed: http_{a_status} {a_body}')
                     since_ms = processed_max_ts
                     _save_poll_state(since_ms)
+                if delivered:
+                    # inbound traffic = active peck session → hold fast cadence
+                    last_activity = time.time()
             elif status in (429, 500, 502, 503, 504):
+                err_backoff = True
                 ra = resp_headers.get('Retry-After', '') or resp_headers.get('retry-after', '')
                 try:
                     ra_sec = int(ra) if ra else 0
@@ -722,6 +775,7 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
                 print(f'   ⚠️ inbox http_{status}; backing off {backoff}s')
             elif status == 0:
                 # network error
+                err_backoff = True
                 backoff = min(60, max(backoff * 2, interval))
                 print(f'   ⚠️ inbox network err: {body.get("error", "?")}; backing off {backoff}s')
             else:
@@ -730,7 +784,19 @@ def run_poll(interval, forward_to, on_peck_cmd, cold_start_floor_sec=86400):
                 print(f'   ⚠️ inbox http_{status}: {body}')
                 backoff = interval
 
-            time.sleep(backoff)
+            if not adaptive:
+                time.sleep(backoff)          # 0.4.18 legacy behavior, exact
+                continue
+            if err_backoff:
+                sleep_s = backoff            # error backoff overrides cadence
+            elif (time.time() - last_activity) <= active_window:
+                sleep_s = interval           # ACTIVE — inside activity window
+            else:
+                sleep_s = idle_interval      # IDLE — back off, save invocations
+            wake_seen, woke = _sleep_watching_wake(sleep_s, wake_seen)
+            if woke:
+                # local send just happened — poll now + open the window
+                last_activity = time.time()
     except KeyboardInterrupt:
         print('\nbye.')
     finally:
@@ -743,7 +809,18 @@ if __name__ == '__main__':
                    help='Polling mode — long-running loop against /beak/peck/inbox. '
                         'Use this on laptops with no public URL.')
     p.add_argument('--interval', type=float, default=3.0,
-                   help='Poll interval in seconds (poll mode only; default 3)')
+                   help='ACTIVE poll interval in seconds (poll mode only; default 3). '
+                        'With adaptive cadence (default) this applies inside the '
+                        'activity window; with --no-adaptive it is the fixed interval.')
+    p.add_argument('--idle-interval', type=float, default=60.0,
+                   help='IDLE poll interval in seconds when no peck activity within '
+                        '--active-window (poll mode only; default 60)')
+    p.add_argument('--active-window', type=float, default=300.0,
+                   help='Seconds after the last send/delivery during which polling '
+                        'stays at the ACTIVE interval (default 300)')
+    p.add_argument('--no-adaptive', dest='adaptive', action='store_false',
+                   help='Disable adaptive cadence; poll at a fixed --interval '
+                        '(pre-0.4.19 behavior)')
     p.add_argument('--host', default='0.0.0.0',
                    help='HTTP server bind host (push mode only)')
     p.add_argument('--port', type=int, default=8787,
@@ -777,6 +854,9 @@ if __name__ == '__main__':
             interval=max(1.0, float(args.interval)),
             forward_to=args.forward_to,
             on_peck_cmd=args.on_peck,
+            idle_interval=max(1.0, float(args.idle_interval)),
+            active_window=max(0.0, float(args.active_window)),
+            adaptive=args.adaptive,
         )
         sys.exit(0)
 

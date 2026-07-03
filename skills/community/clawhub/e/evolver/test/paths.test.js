@@ -620,11 +620,16 @@ describe('getRepoRoot node_modules boundary (#541)', () => {
     const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-541-cwd-'));
     try {
       const resolved = runGetRepoRootIn(installDir, cwd);
-      assert.notEqual(resolved, root,
+      // #541 invariant: must NOT escape node_modules to the host .git at root.
+      assert.notEqual(canonicalPath(resolved), canonicalPath(root),
         `regressed: walk escaped node_modules and picked outer .git at ${root}`);
-      // Expected fallback: ownDir (the install itself) since no .git was
-      // found within the boundary.
-      assertPathEqual(resolved, installDir);
+      // #580 Bug 2: on a no-opt-out global install where no .git is found,
+      // the fallback is now process.cwd() (where the user stands and should
+      // `git init`), NOT the npm install dir. Still satisfies the #541
+      // no-escape invariant above.
+      assertPathEqual(resolved, cwd);
+      assert.notEqual(canonicalPath(resolved), canonicalPath(installDir),
+        'fallback must no longer be the npm install dir (#580 Bug 2)');
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
       fs.rmSync(cwd, { recursive: true, force: true });
@@ -662,6 +667,34 @@ describe('getRepoRoot node_modules boundary (#541)', () => {
       assertPathEqual(resolved, installDir);
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('#580: global install + no git anywhere falls back to cwd, not the npm install dir', () => {
+    // The reporter's exact case: `npm i -g @evomap/evolver`, then run from a
+    // non-git working directory. No outer .git exists (unlike the Homebrew
+    // #541 layout). Pre-fix getRepoRoot fell back to the install dir
+    // (<prefix>/node_modules/@evomap/evolver), so the daemon FATAL'd telling
+    // the user to `git init` inside the global install dir. The fallback must
+    // now be cwd (where the user stands and should actually `git init`).
+    const installRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-580-install-'));
+    const installDir = path.join(installRoot, 'node_modules', '@evomap', 'evolver');
+    const gepDir = path.join(installDir, 'src', 'gep');
+    fs.mkdirSync(gepDir, { recursive: true });
+    fs.copyFileSync(
+      path.resolve(__dirname, '..', 'src', 'gep', 'paths.js'),
+      path.join(gepDir, 'paths.js')
+    );
+    // A user working directory with NO .git anywhere up the tree.
+    const userDir = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-580-userdir-'));
+    try {
+      const resolved = runGetRepoRootIn(installDir, userDir);
+      assertPathEqual(resolved, userDir);
+      assert.notEqual(canonicalPath(resolved), canonicalPath(installDir),
+        'fallback must NOT be the npm install dir (the original #580 bug)');
+    } finally {
+      fs.rmSync(installRoot, { recursive: true, force: true });
+      fs.rmSync(userDir, { recursive: true, force: true });
     }
   });
 

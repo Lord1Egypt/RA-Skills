@@ -11,42 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, product teams, and strategy operators use this skill to route complex decisions through a small expert council that decomposes the problem, gathers evidence, verifies claims, and produces a final recommendation with assumptions, disagreements, and next actions. <br>
+Developers, operators, product teams, and other decision makers use this skill to structure complex architecture, strategy, risk, or research problems into an expert-council workflow with explicit evidence checks and bounded synthesis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Initializing optional source assets can create local files and clone external GitHub repositories. <br>
-Mitigation: Run the bootstrap only when explicitly needed, review or pin the referenced repositories first, and keep the cloned assets out of committed skill artifacts. <br>
-Risk: Expert reports can overstate claims if evidence is weak, stale, or unavailable. <br>
-Mitigation: Require each specialist to cite evidence or label assumptions, and require the verification layer to return PASS, FAIL, or PARTIAL before final synthesis. <br>
-Risk: A poorly scoped handoff could permit edits, commits, pushes, deploys, or other external mutations during a read-only task. <br>
-Mitigation: State allowed tools and forbidden actions in every handoff, and require explicit user authorization before any external mutation. <br>
+Risk: Optional source initialization may clone external repositories and mutate a local assets directory. <br>
+Mitigation: Run source initialization only after explicit user authorization and keep read-only requests read-only. <br>
+Risk: Public-figure CEO profiles may create sensitivity or framing risk for some users. <br>
+Mitigation: Use the profiles as decision lenses rather than persona roleplay, prefer neutral role labels when appropriate, and avoid controversial lenses when they are not needed. <br>
+Risk: Expert-council synthesis can overstate consensus if claims are not checked. <br>
+Mitigation: Require evidence, label assumptions, preserve disagreements, and use PASS, FAIL, or PARTIAL verification verdicts before final synthesis. <br>
 
 
 ## Reference(s): <br>
-- [AI Expert Team on ClawHub](https://clawhub.ai/wei840222/skills/ai-expert-team) <br>
-- [Publisher profile](https://clawhub.ai/user/wei840222) <br>
-- [Source Research Snapshot](references/source-research-snapshot.md) <br>
+- [AI Expert Team ClawHub Page](https://clawhub.ai/wei840222/skills/ai-expert-team) <br>
+- [AI Expert Team README](README.md) <br>
 - [CEO Profiles](references/ceo-profiles.md) <br>
 - [Specialist Selection](references/specialist-selection.md) <br>
+- [Source Research Snapshot](references/source-research-snapshot.md) <br>
 - [Validation Case Library](references/validation-case-library.md) <br>
 - [Validation Cycle Closure](references/validation-cycle-closure.md) <br>
-- [Expert Handoff Template](templates/expert-handoff.md) <br>
-- [Final Synthesis Template](templates/final-synthesis.md) <br>
-- [Agency Agents source asset](https://github.com/msitarzewski/agency-agents.git) <br>
-- [Nuwa Skill source asset](https://github.com/alchaincyf/nuwa-skill.git) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured expert reports, verification verdicts, and final synthesis sections] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown with structured sections and optional inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PASS, FAIL, or PARTIAL verification verdicts; separates verified findings, assumptions, disagreements, open risks, and next actions.] <br>
+**Other Properties Related to Output:** [May include CEO selection, specialist handoffs, expert reports, verification verdicts, assumptions, disagreements, risks, and next actions.] <br>
 
 ## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+0.1.3 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

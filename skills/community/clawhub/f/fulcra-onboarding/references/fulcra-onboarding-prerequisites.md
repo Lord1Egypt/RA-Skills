@@ -15,7 +15,7 @@ There are two ways for agents to connect to Fulcra. You must determine the appro
    The `fulcra-api` CLI is the primary interface and supports the widest range of Fulcra use cases. If you have full command-line access with outbound network connectivity, you should choose this option and proceed with the CLI workflow below.
 
 2. **Option 2: MCP Connector (Restricted Environments)**
-   If you are in a restricted chat environment without command-line access, or if your shell lacks outbound network access to Fulcra's servers, the CLI will not work. In this case, advise the user that Fulcra provides an MCP (Model Context Protocol) connector as an alternative option for these environments. If they choose this option, fetch and read `https://fulcra.ai/AGENTS.md` for setup instructions, and skip the CLI steps below.
+   Fulcra provides an MCP (Model Context Protocol) connector as an alternative option for restricted environments. To use MCP, fetch and read `https://fulcradynamics.github.io/developer-docs/mcp-server/` for setup instructions, and skip the CLI steps below.
 
 ## Workflow
 

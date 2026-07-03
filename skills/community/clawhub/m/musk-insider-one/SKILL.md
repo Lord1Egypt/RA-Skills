@@ -1,3 +1,14 @@
+---
+name: musk-insider-one
+description: "提供马斯克资讯简报预览和支付链接的演示HTTP服务，无外部数据爬取或模型推理，仅用于功能演示。"
+source: ClawHub
+version: 1.0.2
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Elon马斯克情报内参
+
 # MuskInsider Pro
 
 ## 简介

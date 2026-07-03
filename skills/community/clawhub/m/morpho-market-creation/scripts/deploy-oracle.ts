@@ -1,4 +1,4 @@
-import { findChainByAlias, initializeStaticProvider } from '@api3/dapi-management';
+import { findChainByAlias, initializeStaticProvider } from './utils.ts';
 import { getChainAddresses } from '@morpho-org/blue-sdk';
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';
@@ -73,7 +73,7 @@ async function main() {
     BigInt(p.quoteVaultConversionSample ?? "1"),
     p.quoteFeed1                   ?? ZERO,
     p.quoteFeed2                   ?? ZERO,
-    BigInt(p.quoteTokenDecimals    ?? "18"),
+    BigInt(p.quoteTokenDecimals    ?? "6"),
     p.salt                         ?? ethers.ZeroHash,
   ] as const;
 

@@ -17,6 +17,16 @@ import os
 import sys
 import time
 
+# 依赖自动检查/升级：必须在 tencentcloud / qcloud_cos 首次 import 之前调用
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+try:
+    from mps_auto_upgrade import check_sdk_version as _check_sdk_version
+    _check_sdk_version()
+except ImportError:
+    pass
+
 try:
     from tencentcloud.common import credential
     from tencentcloud.common.profile.client_profile import ClientProfile
@@ -24,7 +34,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -261,7 +271,7 @@ def poll_video_task(task_id, region=None, interval=15, max_wait=3600, verbose=Fa
         elapsed += interval
 
     print(f"\n⚠️  等待超时（已等待 {max_wait}s），任务可能仍在处理中。")
-    print(f"   可手动查询：python scripts/mps_video_dubbing.py --query-task {task_id}")
+    print(f"   可手动查询：python3 scripts/mps_video_dubbing.py --query-task {task_id}")
     return None
 
 
@@ -302,7 +312,7 @@ def auto_upload_local_file(local_path, cos_key=None, verbose=False):
         return None
 
     if not _COS_SDK_AVAILABLE:
-        print("错误：本地文件上传需要安装 COS SDK：pip install cos-python-sdk-v5", file=sys.stderr)
+        print("错误：本地文件上传需要安装 COS SDK：python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
         return None
 
     # 自动生成 cos_key
@@ -475,7 +485,7 @@ def auto_download_outputs(task_result, download_dir=".", verbose=False):
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
 
     if not _COS_SDK_AVAILABLE:
-        print("⚠️  未安装 COS SDK，跳过自动下载（pip install cos-python-sdk-v5）", file=sys.stderr)
+        print("⚠️  未安装 COS SDK，跳过自动下载（python3 -m pip install cos-python-sdk-v5）", file=sys.stderr)
         return []
 
     os.makedirs(download_dir, exist_ok=True)
@@ -516,7 +526,7 @@ def auto_download_outputs(task_result, download_dir=".", verbose=False):
 
 
 # =============================================================================
-# CLI 主入口（独立运行：python mps_poll_task.py --task-id ...）
+# CLI 主入口（独立运行：python3 mps_poll_task.py --task-id ...）
 # =============================================================================
 # ═══════════════════════════════════════════════════════════════════════════════
 # 命令行入口
@@ -531,13 +541,13 @@ if __name__ == '__main__':
         epilog="""
 使用示例:
   # 轮询音视频任务（本 Skill 仅处理视频任务）
-  python mps_poll_task.py --task-id 1234567890
+  python3 mps_poll_task.py --task-id 1234567890
 
   # 指定区域和轮询参数
-  python mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
+  python3 mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
 
   # 详细输出模式
-  python mps_poll_task.py --task-id 1234567890 --verbose
+  python3 mps_poll_task.py --task-id 1234567890 --verbose
 
 环境变量:
   TENCENTCLOUD_SECRET_ID    - 腾讯云 SecretId（必需）

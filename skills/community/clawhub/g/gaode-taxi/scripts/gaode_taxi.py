@@ -4,12 +4,13 @@
 
 import sys
 import json
+import os
 import urllib.request
 import urllib.error
 import urllib.parse
 
-PROXY_URL = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_URL = os.environ.get("GAODE_PROXY_URL", "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com")
+PROXY_TOKEN = os.environ.get("GAODE_PROXY_TOKEN", "")
 
 
 def _post(type_name, params):

@@ -1,0 +1,37 @@
+{
+  "name": "Document Translation Assistant",
+  "slug": "document-translation-assistant",
+  "description": "Translate technical & legal documents while preserving original formatting, terminology consistency, and domain context.",
+  "tags": ["translation", "document", "localization", "markdown", "bilingual", "terminology", "formatting"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/translation-assistant.sh",
+    "description": "CLI script implementing all workflow steps (parse/glossary/translate/check/output/domain)"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "domain_modes": "references/domain-modes.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Document Ingestion", "input": "translation-assistant.sh parse <file>", "output": "Parsed document with structure tree" },
+    { "step": 2, "name": "Structure Preservation", "input": "translation-assistant.sh parse <file>", "output": "Translatable vs non-translatable nodes" },
+    { "step": 3, "name": "Terminology Extraction", "input": "translation-assistant.sh glossary <file>", "output": "Candidate term list with context" },
+    { "step": 4, "name": "Terminology Glossary Building", "input": "translation-assistant.sh glossary <file>", "output": "Finalized bilingual glossary" },
+    { "step": 5, "name": "Segment-Level Translation", "input": "translation-assistant.sh translate <file> <lang>", "output": "Translated segments with format validation" },
+    { "step": 6, "name": "Terminology Consistency Check", "input": "translation-assistant.sh check <file>", "output": "Consistency report with auto-fixes" },
+    { "step": 7, "name": "Context Coherence Review", "input": "translation-assistant.sh check <file>", "output": "Coherence-adjusted translation" },
+    { "step": 8, "name": "Output Generation", "input": "translation-assistant.sh output <file>", "output": "Bilingual or translated-only output" },
+    { "step": 9, "name": "Glossary Persistence", "input": "translation-assistant.sh glossary <file> --save", "output": "Saved glossary for future reuse" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Run: translation-assistant.sh parse README_zh.md — parses document, detects structure and language",
+      "Run: translation-assistant.sh glossary README_zh.md — extracts and reviews terminology glossary",
+      "Run: translation-assistant.sh translate README_zh.md en --domain tech — generates translated document"
+    ]
+  }
+}

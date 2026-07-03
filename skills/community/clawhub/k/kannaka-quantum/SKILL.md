@@ -1,6 +1,6 @@
 ---
 name: kannaka-quantum
-description: Run Kannaka's memory operations on real quantum hardware. Use for quantum circuits, true quantum random numbers, and resonance recall as amplitude amplification — on qBraid's free simulator (default, $0) or real QPUs (IonQ/Rigetti/IQM/AQT via qBraid or OpenQuantum, spends credits). Invoke when asked to run a quantum circuit, draw quantum entropy, list QPUs, or execute Kannaka recall on a quantum backend.
+description: Run Kannaka's memory operations on real quantum hardware, and drive qBraid Lab compute + autonomous remote coding agents. Use for quantum circuits, true quantum random numbers, and resonance recall as amplitude amplification — on qBraid's free simulator (default, $0) or real QPUs (IonQ/Rigetti/IQM/AQT via qBraid or OpenQuantum) — plus qBraid Lab operations: list/manage environments, provision GPU/CPU compute, and launch/drive coding agents on remote instances over SSH. Invoke when asked to run a quantum circuit, draw quantum entropy, list QPUs, execute Kannaka recall on a quantum backend, spin up Lab compute, or run a remote agent on provisioned hardware.
 ---
 
 # Kannaka Quantum
@@ -61,7 +61,41 @@ kannaka-quantum recall --amplitudes 0.1,0.9,0.2,0.15 --labels a,b,c,d \
 
 Authentication: qBraid resolves a key from `QBRAID_API_KEY`, `~/.qbraid/qbraidrc`, or `~/Downloads/QBraid.txt`. OpenQuantum (real QPUs, no free simulator) uses OAuth client-credentials at `~/.openquantum/sdk-key.json` or `OPENQUANTUM_CLIENT_ID`/`OPENQUANTUM_SECRET`.
 
+## qBraid Lab & compute (v0.2+)
+
+Beyond circuits, the bridge exposes **qBraid Lab operations** as `lab-*` CLI subcommands — inspect environments, provision GPU/CPU compute, and launch autonomous coding agents on remote instances over SSH. (These are the surface the Kannaka Rust agent's `lab_*` tools shell out to.)
+
+**Free — inspect (no spend):**
+
+| subcommand | what it does |
+|---|---|
+| `lab-credits` | qBraid credit balance |
+| `lab-list-profiles [--available-only]` | compute profiles + per-minute credit cost |
+| `lab-compute-status` / `lab-compute-usage` | Lab server status / usage + credit rates |
+| `lab-list-instances` / `lab-list-kernels` | on-demand instances / local Jupyter kernels |
+| `lab-list-envs` / `lab-env-info <slug>` | qBraid environments / one env's metadata |
+
+**Free — environment management (in-Lab only):** `lab-create-env`, `lab-delete-env`, `lab-pip-install`, `lab-pip-freeze`, `lab-add-kernel`, `lab-remove-kernel`.
+
+**PAID — compute (bills per wall-clock minute):**
+
+| subcommand | what it does |
+|---|---|
+| `lab-compute-up <profile>` / `lab-compute-down` | start / stop the Lab server on a profile |
+| `lab-provision-instance` / `lab-start-instance` / `lab-stop-instance` | provision / resume / pause an on-demand instance (stop preserves disk) |
+
+**Autonomous remote agents (over SSH):** `lab-ssh-configure <instance>` → alias; `lab-agent-setup` (inject API key + onboarding + model so a remote `claude`/`codex` runs autonomously); `lab-agent-launch` / `lab-agent-list` / `lab-agent-read` / `lab-agent-send`. On Windows, `ssh-bridge` is the websocket↔stdio ProxyCommand shim.
+
+### ⚠️ Lab spend safety — SEPARATE gate from circuits
+
+Paid compute bills **per wall-clock minute until you stop it** — a different risk shape from a one-off circuit run, so it has its own opt-in:
+
+- Requires `--allow-spend` **and** a `--max-credits` ceiling, or `KANNAKA_LAB_ALLOW_SPEND=1` — **distinct from** `KANNAKA_QUANTUM_ALLOW_SPEND` (a circuit-shot opt-in must never silently authorize open-ended compute).
+- `max_credits` is the balance you accept to *risk* (runway = `min(max_credits, balance) / rate`), **not** an automatic cutoff — stop compute explicitly with `lab-compute-down` / `lab-stop-instance`.
+- Refuses to start if the balance can't cover even one minute of burn.
+
 ## Notes
 
 - Bitstrings from qBraid are big-endian; the bridge reverses them for qiskit's little-endian indexing internally — you get labeled results, not raw bits.
 - All errors surface as a JSON object (`{"error": ..., "type": ...}`) so you can branch on failures without scraping text.
+- The lab tools are CLI-only (the MCP server exposes the four quantum tools); drive them via `kannaka-quantum lab-*` or the Kannaka agent's `lab_*` tools.

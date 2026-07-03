@@ -1,0 +1,458 @@
+{
+  "meta": {
+    "version": "1.0",
+    "language": "id",
+    "author": "Dont Waste Food",
+    "note": "All recipes are Indonesian dishes. Pantry staples excluded from match scoring."
+  },
+  "pantry_staples": ["garam", "gula", "minyak goreng", "bawang merah", "bawang putih", "kecap manis", "cabai", "sambal", "merica", "lada", "terasi", "air", "kunyit", "jahe", "sereh", "daun salam", "jeruk nipis", "kelapa", "santan", "minyak", "margarin", "mentega"],
+  "recipes": [
+    {
+      "id": "nasi_goreng_kampung",
+      "name": "Nasi Goreng Kampung",
+      "time_min": 15,
+      "difficulty": "Mudah",
+      "description": "Nasi goreng sederhana dengan telur dan bumbu tradisional yang pedas gurih.",
+      "ingredients": ["nasi sisa", "telur", "bawang merah", "bawang putih", "kecap manis", "garam", "cabai", "sambal"],
+      "optional_ingredients": ["ikan teri", "udang", "sayuran", "bakso"],
+      "steps": [
+        "Panaskan wajan dengan 2 sdm minyak goreng.",
+        "Tumis bawang merah dan bawang putih hingga harum dan kekuningan.",
+        "Masukkan cabai dan sambal, aduk 30 detik.",
+        "Masukkan nasi sisa, aduk rata dengan api besar.",
+        "Tambahkan kecap manis dan garam, aduk merata.",
+        "Masukkan telur di tengah wajan, biarkan 10 detik, lalu orak-arik hingga matang dan tercampur.",
+        "Koreksi rasa. Sajikan dengan kerupuk dan irisan timun."
+      ],
+      "safety_notes": [
+        "Gunakan nasi yang disimpan di kulkas max 24 jam.",
+        "Jangan pakai nasi yang berbau asam meskipun sudah dipanaskan.",
+        "Pastikan minyak goreng bersih dan tidak berbusa."
+      ],
+      "tags": ["nasi", "goreng", "cepat", "pedas"]
+    },
+    {
+      "id": "nasi_goreng_spesial",
+      "name": "Nasi Goreng Spesial",
+      "time_min": 20,
+      "difficulty": "Mudah",
+      "description": "Nasi goreng dengan ayam suwir dan sayuran.",
+      "ingredients": ["nasi sisa", "ayam", "telur", "bawang merah", "bawang putih", "kecap manis", "sayuran", "garam"],
+      "optional_ingredients": ["bakso", "sosis", "udang"],
+      "steps": [
+        "Siapkan ayam suwir atau iris ayam fillet kecil-kecil.",
+        "Tumis bawang merah dan bawang putih hingga harum.",
+        "Masukkan ayam, masak dengan api sedang hingga ayam berubah warna.",
+        "Masukkan nasi sisa, aduk rata dengan api besar.",
+        "Tambahkan kecap manis, garam, dan sayuran.",
+        "Masukkan telur, orak-arik hingga matang.",
+        "Koreksi rasa. Sajikan dengan irisan tomat dan kerupuk."
+      ],
+      "safety_notes": [
+        "Pastikan ayam matang sempurna (tidak ada bagian pink).",
+        "Nasi sisa harus selalu dari kulkas jika lebih dari 2 jam di luar."
+      ],
+      "tags": ["nasi", "goreng", "ayam", "sayuran"]
+    },
+    {
+      "id": "nasi_tim",
+      "name": "Nasi Tim / Bubur Nasi",
+      "time_min": 30,
+      "difficulty": "Mudah",
+      "description": "Nasi lembek yang lembut di perut — cocok untuk yang ingin makanan ringan.",
+      "ingredients": ["nasi sisa", "air", "garam", "bawang merah", "bawang putih"],
+      "optional_ingredients": ["telur", "dada ayam", "wortel"],
+      "steps": [
+        "Masukkan nasi sisa ke panci atau rice cooker.",
+        "Tambahkan air secukupnya (perbandingan 1:2 dengan nasi).",
+        "Masak dengan api kecil, aduk sesekali agar tidak lengket.",
+        "Hancurkan nasi dengan sendok kayu hingga menjadi bubur.",
+        "Tumis bawang merah dan bawang putih dengan sedikit minyak, masukkan ke bubur.",
+        "Tambahkan garam. Sajikan dengan telur dadar atau ayam suwir."
+      ],
+      "safety_notes": [
+        "Panaskan hingga uap panas keluar merata.",
+        "Jangan simpan nasi tim sisa lebih dari 4 jam tanpa kulkas."
+      ],
+      "tags": ["nasi", "tim", "bubur", "lembut"]
+    },
+    {
+      "id": "omelet_nasi",
+      "name": "Omelet Nasi",
+      "time_min": 12,
+      "difficulty": "Mudah",
+      "description": "Omelet nasi cepat dan mengenyangkan.",
+      "ingredients": ["nasi sisa", "telur", "garam", "bawang merah", "bawang putih"],
+      "optional_ingredients": ["sosis", "sayuran", "keju"],
+      "steps": [
+        "Kocok telur dengan garam hingga rata.",
+        "Masukkan nasi sisa, aduk hingga telur menyelimuti nasi.",
+        "Panaskan wajan dengan minyak, tumis bawang sebentar.",
+        "Masukkan campuran nasi dan telur.",
+        "Masak dengan api kecil, jangan diaduk agar bawahnya kecokelatan.",
+        "Balik dengan piring, masak sisi lain 2 menit.",
+        "Lipat dan sajikan."
+      ],
+      "safety_notes": [
+        "Pastikan telur fresh dan nasi tidak basi.",
+        "Masak hingga telur benar-benar matang."
+      ],
+      "tags": ["nasi", "omelet", "telur", "cepat"]
+    },
+    {
+      "id": "lontong_sayur",
+      "name": "Lontong Kuah Sayur",
+      "time_min": 25,
+      "difficulty": "Mudah",
+      "description": "Lontong dengan kuah santan sayur yang gurih.",
+      "ingredients": ["lontong", "santan", "bawang merah", "bawang putih", "kunyit", "garam", "sayuran", "tempe", "tahu"],
+      "optional_ingredients": ["labu", "wortel", "jagung"],
+      "steps": [
+        "Potong lontong menjadi bagian kecil.",
+        "Tumis bawang merah dan bawang putih hingga harum.",
+        "Masukkan kunyit dan garam, aduk.",
+        "Tuang santan, masak dengan api kecil.",
+        "Masukkan sayuran keras dulu (wortel, labu), masak 5 menit.",
+        "Masukkan tempe dan tahu goreng, aduk lembut.",
+        "Masukkan lontong, masak 3 menit lagi.",
+        "Koreksi rasa. Sajikan dengan taburan bawang goreng."
+      ],
+      "safety_notes": [
+        "Masak santan dengan api kecil agar tidak pecah.",
+        "Jangan gunakan santan yang berbau asam."
+      ],
+      "tags": ["lontong", "kuah", "santan", "sayur"]
+    },
+    {
+      "id": "mie_goreng",
+      "name": "Mie Goreng",
+      "time_min": 20,
+      "difficulty": "Mudah",
+      "description": "Mie goreng simpel dengan telur dan sayuran.",
+      "ingredients": ["mie", "telur", "bawang merah", "bawang putih", "kecap manis", "garam", "cabai", "sayuran"],
+      "optional_ingredients": ["ayam suwir", "bakso", "udang"],
+      "steps": [
+        "Rebus mie hingga setengah matang. Tiriskan.",
+        "Tumis bawang merah, bawang putih, cabai hingga harum.",
+        "Masukkan telur, orak-arik hingga matang.",
+        "Masukkan sayuran, aduk hingga layu.",
+        "Masukkan mie, aduk rata.",
+        "Tambahkan kecap manis, garam, dan penyedap.",
+        "Aduk dengan api besar hingga tercampur merata. Sajikan."
+      ],
+      "safety_notes": [
+        "Mie harus fresh atau dari kulkas max 24 jam.",
+        "Jangan gunakan mie yang sudah berbau asam."
+      ],
+      "tags": ["mie", "goreng", "cepat", "telur"]
+    },
+    {
+      "id": "mie_rebus",
+      "name": "Mie Kuah Bening",
+      "time_min": 20,
+      "difficulty": "Mudah",
+      "description": "Mie kuah hangat untuk cuaca dingin atau saat perut butuhhangat.",
+      "ingredients": ["mie", "telur", "bawang putih", "kecap manis", "garam", "sayuran", "air", "kaldu"],
+      "optional_ingredients": ["ayam suwir", "bakso", "sosis"],
+      "steps": [
+        "Rebus air dengan bawang putih geprek hingga mendidih.",
+        "Masukkan mie, masak hingga setengah matang.",
+        "Tambahkan kaldu, kecap manis, dan garam.",
+        "Masukkan telur, aduk perlahan.",
+        "Masukkan sayuran, masak hingga layu.",
+        "Koreksi rasa. Sajikan selagi hangat dengan sambal."
+      ],
+      "safety_notes": [
+        "Pastikan mie tidak basi sebelum direbus.",
+        "Masak dengan air mendidih minimal 2 menit."
+      ],
+      "tags": ["mie", "rebus", "kuah", "hangat"]
+    },
+    {
+      "id": "tahu_geprek",
+      "name": "Tahu Geprek Sambal",
+      "time_min": 15,
+      "difficulty": "Mudah",
+      "description": "Tahu goreng crispy dengan sambal geprek pedas.",
+      "ingredients": ["tahu", "bawang merah", "bawang putih", "cabai", "garam", "terasi"],
+      "optional_ingredients": ["ayam suwir", "tempe", "telur"],
+      "steps": [
+        "Potong tahu sesuai selera.",
+        "Goreng tahu dengan minyak banyak dan api sedang hingga kuning keemasan.",
+        "Tiriskan.",
+        "Ulek bawang merah, bawang putih, cabai, terasi, dan garam.",
+        "Letakkan tahu di cobek, geprek dengan sambal hingga hancur.",
+        "Aduk rata. Sajikan dengan nasi hangat."
+      ],
+      "safety_notes": [
+        "Goreng tahu dengan minyak cukup dan api sedang.",
+        "Jangan gunakan tahu yang sudah berubah warna atau berbau."
+      ],
+      "tags": ["tahu", "geprek", "pedas", "cepat"]
+    },
+    {
+      "id": "tempe_goreng",
+      "name": "Tempe Goreng & Sambal",
+      "time_min": 10,
+      "difficulty": "Mudah",
+      "description": "Tempe goreng renyah dengan sambal.",
+      "ingredients": ["tempe", "bawang merah", "cabai", "garam", "terasi"],
+      "optional_ingredients": ["tahu", "telur"],
+      "steps": [
+        "Potong tempe tipis atau tebal sesuai selera.",
+        "Goreng tempe dengan api sedang hingga kuning keemasan.",
+        "Ulek cabai, bawang merah, garam, dan terasi.",
+        "Sajikan tempe goreng dengan sambal dan nasi hangat."
+      ],
+      "safety_notes": [
+        "Pastikan minyak goreng bersih.",
+        "Jangan gunakan tempe yang sudah berbulu putih berlebihan."
+      ],
+      "tags": ["tempe", "goreng", "cepat", "vegetarian"]
+    },
+    {
+      "id": "ayam_geprek",
+      "name": "Ayam Geprek",
+      "time_min": 25,
+      "difficulty": "Sedang",
+      "description": "Ayam goreng crispy dengan sambal geprek.",
+      "ingredients": ["ayam", "bawang merah", "bawang putih", "cabai", "garam", "tepung terigu", "telur"],
+      "optional_ingredients": ["nasi sisa"],
+      "steps": [
+        "Potong ayam kecil-kecil atau gunakan ayam fillet.",
+        "Marinasi dengan bawang putih halus, garam, dan merica 10 menit.",
+        "Gulingkan ayam di tepung terigu, celup telur, gulingkan tepung lagi.",
+        "Goreng dengan api sedang hingga kuning keemasan dan matang (165°C internal).",
+        "Ulek bawang merah, cabai, garam, terasi.",
+        "Geprek ayam crispy di atas cobek dengan sambal.",
+        "Sajikan dengan nasi."
+      ],
+      "safety_notes": [
+        "Pastikan ayam matang sempurna — tidak ada bagian pink.",
+        "Minyak harus cukup panas sebelum menggoreng."
+      ],
+      "tags": ["ayam", "geprek", "pedas", "crispy"]
+    },
+    {
+      "id": "soto_ayam",
+      "name": "Soto Ayam Bening",
+      "time_min": 45,
+      "difficulty": "Sedang",
+      "description": "Sup ayam Jawa dengan bumbu rempah yang hangat dan segar.",
+      "ingredients": ["ayam", "bawang merah", "bawang putih", "jahe", "kunyit", "sereh", "daun salam", "garam"],
+      "optional_ingredients": ["nasi sisa", "soun", "tauge", "kol", "santan"],
+      "steps": [
+        "Rebus ayam dengan air hingga matang. Sisihkan, suwir ayam, simpan kaldu.",
+        "Tumis bawang merah, bawang putih, jahe, kunyit, sereh, daun salam hingga harum.",
+        "Masukkan bumbu tumis ke kaldu ayam.",
+        "Masak dengan api kecil 20 menit.",
+        "Masukkan ayam suwir, tambahkan garam.",
+        "Sajikan dengan nasi, tauge, irisan kol, dan bawang goreng."
+      ],
+      "safety_notes": [
+        "Ayam harus matang sempurna.",
+        "Gunakan ayam segar dari kulkas."
+      ],
+      "tags": ["ayam", "soto", "sup", "hangat", "kuah"]
+    },
+    {
+      "id": "sayur_lodeh",
+      "name": "Sayur Lodeh",
+      "time_min": 35,
+      "difficulty": "Sedang",
+      "description": "Sayur santan khas Indonesia yang creamy dan gurih.",
+      "ingredients": ["santan", "bawang merah", "bawang putih", "cabai", "terasi", "garam", "sayuran", "tahu", "tempe"],
+      "optional_ingredients": ["jagung", "wortel", "labu"],
+      "steps": [
+        "Tumis bawang merah, bawang putih, cabai, terasi hingga harum.",
+        "Masukkan sayuran keras dulu (wortel, jagung, labu).",
+        "Tambahkan air, masak sayuran hingga setengah matang.",
+        "Masukkan tahu dan tempe.",
+        "Tuang santan perlahan, aduk dengan api kecil.",
+        "Masak hingga santan matang dan sayuran empuk (10-15 menit).",
+        "Koreksi rasa. Sajikan dengan nasi hangat."
+      ],
+      "safety_notes": [
+        "Masak santan dengan api kecil agar tidak pecah.",
+        "Jangan gunakan santan yang sudah berbau asam.",
+        "Pastikan sayuran segar dan tidak layu."
+      ],
+      "tags": ["sayur", "santan", "kuah", "lodeh"]
+    },
+    {
+      "id": "tomyam_indo",
+      "name": "Tom Yam Indonesian",
+      "time_min": 30,
+      "difficulty": "Sedang",
+      "description": "Sup asam pedas fusion Indonesia dengan seafood atau ayam.",
+      "ingredients": ["ayam", "bawang putih", "cabai", "jeruk nipis", "sereh", "daun salam", "garam", "air"],
+      "optional_ingredients": ["udang", "tahu", "jamur", "sayuran", "nasi sisa"],
+      "steps": [
+        "Rebus air dengan sereh dan daun salam.",
+        "Masukkan bawang putih dan cabai, masak 5 menit.",
+        "Masukkan ayam atau seafood, masak hingga matang.",
+        "Tambahkan tahu, jamur, atau sayuran.",
+        "Tambahkan perasan jeruk nipis dan garam.",
+        "Koreksi rasa asam-pedas-manis. Sajikan segera."
+      ],
+      "safety_notes": [
+        "Masak seafood hingga benar-benar matang.",
+        "Jangan gunakan bahan yang sudah berbau tidak segar."
+      ],
+      "tags": ["sup", "asam", "pedas", "seafood"]
+    },
+    {
+      "id": "perkedel_kentang",
+      "name": "Perkedel Kentang",
+      "time_min": 30,
+      "difficulty": "Mudah",
+      "description": "Perkedel kentang goreng yang crispy di luar dan lembut di dalam.",
+      "ingredients": ["kentang", "telur", "bawang merah", "bawang putih", "garam", "merica"],
+      "optional_ingredients": ["daging cincang", "wortel", "jagung"],
+      "steps": [
+        "Kupas dan rebus kentang hingga empuk.",
+        "Haluskan kentang selagi panas.",
+        "Campurkan bawang merah dan putih yang sudah digoreng halus.",
+        "Masukkan garam, merica, dan kuning telur. Aduk rata.",
+        "Bentuk bulat pipih.",
+        "Celupkan ke putih telur, goreng dengan api sedang hingga kuning keemasan."
+      ],
+      "safety_notes": [
+        "Jangan gunakan kentang yang sudah bertunas atau menghijau.",
+        "Goreng dengan minyak banyak dan api sedang."
+      ],
+      "tags": ["kentang", "goreng", "perkedel", "cemilan"]
+    },
+    {
+      "id": "pisang_goreng",
+      "name": "Pisang Goreng",
+      "time_min": 15,
+      "difficulty": "Mudah",
+      "description": "Pisang goreng crispy sederhana.",
+      "ingredients": ["pisang", "tepung terigu", "gula", "air"],
+      "optional_ingredients": ["cokelat meses", "keju"],
+      "steps": [
+        "Campurkan tepung terigu, gula, dan air hingga rata (konsistensi sedang).",
+        "Pastikan pisang dalam kondisi baik — tidak seluruhnya menghitam.",
+        "Celupkan pisang ke adonan.",
+        "Goreng dengan api sedang hingga kuning keemasan.",
+        "Tiriskan. Sajikan hangat."
+      ],
+      "safety_notes": [
+        "Jangan gunakan pisang yang seluruhnya menghitam dan berbau.",
+        "Pisang yang sedikit menghilau masih aman jika tidak berbau."
+      ],
+      "tags": ["pisang", "goreng", "cemilan", "cepat"]
+    },
+    {
+      "id": "roti_goreng_isi",
+      "name": "Roti Goreng Isi",
+      "time_min": 20,
+      "difficulty": "Mudah",
+      "description": "Roti tawar goreng dengan berbagai isi.",
+      "ingredients": ["roti tawar", "telur", "gula", "mentega"],
+      "optional_ingredients": ["cokelat meses", "keju", "selai", "pisang"],
+      "steps": [
+        "Pipihkan roti tawar dengan rolling pin atau botol.",
+        "Tambahkan isian di tengah roti.",
+        "Lipat dan tekan tepi hingga tertutup rapat.",
+        "Kocok telur dengan sedikit gula.",
+        "Celupkan roti ke adonan telur.",
+        "Goreng dengan mentega di kedua sisi hingga kuning keemasan."
+      ],
+      "safety_notes": [
+        "Pastikan roti tawar masih segar.",
+        "Jangan gunakan roti yang sudah berjamur."
+      ],
+      "tags": ["roti", "goreng", "cemilan", "cepat"]
+    },
+    {
+      "id": "tumis_kangkung",
+      "name": "Tumis Kangkung Bawang",
+      "time_min": 12,
+      "difficulty": "Mudah",
+      "description": "Tumis sayur hijau yang cepat dan sehat.",
+      "ingredients": ["kangkung", "bawang merah", "bawang putih", "cabai", "garam", "terasi"],
+      "optional_ingredients": ["taoge", "bakso"],
+      "steps": [
+        "Petik kangkung, pisahkan batang dan daun.",
+        "Tumis bawang merah, bawang putih, cabai, terasi.",
+        "Masukkan batang kangkung dulu, masak 2 menit.",
+        "Masukkan daun kangkung, aduk cepat dengan api besar.",
+        "Tambahkan garam. Jangan masak terlalu lama.",
+        "Koreksi rasa. Sajikan segera agar tetap hijau."
+      ],
+      "safety_notes": [
+        "Jangan gunakan sayuran yang sudah layu atau kuning.",
+        "Masak dengan api besar agar tekstur tetap crunch."
+      ],
+      "tags": ["sayur", "tumis", "kangkung", "cepat", "sehat"]
+    },
+    {
+      "id": "oseng_mercon",
+      "name": "Oseng Mercon",
+      "time_min": 15,
+      "difficulty": "Mudah",
+      "description": "Tumis kangkung atau taoge dengan bumbu pedas Jawa.",
+      "ingredients": ["kangkung", "bawang merah", "bawang putih", "cabai rawit", "garam", "teri"],
+      "optional_ingredients": ["taoge", "wortel"],
+      "steps": [
+        "Petik kangkung, pisahkan batang dan daun.",
+        "Tumis bawang merah, bawang putih, cabai.",
+        "Masukkan teri, aduk hingga harum.",
+        "Masukkan batang kangkung dulu, masak 2 menit.",
+        "Masukkan daun kangkung, aduk cepat.",
+        "Tambahkan garam dan penyedap. Sajikan."
+      ],
+      "safety_notes": [
+        "Gunakan sayuran segar dan bersih.",
+        "Jangan overcook agar nutrisi terjaga."
+      ],
+      "tags": ["sayur", "oseng", "pedas", "cepat"]
+    },
+    {
+      "id": "capcay_sisa",
+      "name": "Capcay Sisa Sayur",
+      "time_min": 20,
+      "difficulty": "Mudah",
+      "description": "Tumis sayuran campur yang fleksibel untuk sisa sayur apapun.",
+      "ingredients": ["sayuran", "bawang merah", "bawang putih", "garam", "air"],
+      "optional_ingredients": ["telur", "bakso", "sosis", "wortel", "jagung"],
+      "steps": [
+        "Panaskan wajan dengan sedikit minyak.",
+        "Tumis bawang merah dan bawang putih hingga harum.",
+        "Masukkan sayuran keras dulu (wortel, jagung) — masak 3 menit.",
+        "Masukkan sayuran sedang (brokoli, kol) — masak 2 menit.",
+        "Masukkan sayuran lembut terakhir (bayam, kangkung) — masak 1 menit.",
+        "Tambahkan garam dan sedikit air jika perlu.",
+        "Koreksi rasa. Sajikan segera."
+      ],
+      "safety_notes": [
+        "Pastikan semua sayuran bersih dari pestisida.",
+        "Jangan masak sayuran terlalu lama agar nutrisi terjaga."
+      ],
+      "tags": ["sayur", "capcay", "tumis", "sehat"]
+    },
+    {
+      "id": "sandwich_sisa",
+      "name": "Sandwich Telur Mayo",
+      "time_min": 10,
+      "difficulty": "Mudah",
+      "description": "Sandwich simpel dari roti dan telur.",
+      "ingredients": ["roti tawar", "telur", "mentega", "garam"],
+      "optional_ingredients": ["selada", "tomat", "keju", "sosis"],
+      "steps": [
+        "Rebus telur 10 menit, kupas, haluskan dengan garpu.",
+        "Campurkan telur dengan mayonnaise atau mentega, garam.",
+        "Olesi roti tawar dengan mentega.",
+        "Taruh campuran telur di atas roti, tutup dengan roti lain.",
+        "Panggang sebentar di teflon atau makan langsung."
+      ],
+      "safety_notes": [
+        "Gunakan telur yang sudah matang sempurna.",
+        "Pastikan roti tidak berjamur."
+      ],
+      "tags": ["roti", "sandwich", "telur", "cepat"]
+    }
+  ]
+}

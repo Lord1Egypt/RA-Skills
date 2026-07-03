@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const DEFAULT_BASE_URL = "https://aacp-backend.termix.live";
+const DEFAULT_BASE_URL = "https://platform-backend.prod.termix.live";
 
 export function usage(message, examples = []) {
   if (message) console.error(message);

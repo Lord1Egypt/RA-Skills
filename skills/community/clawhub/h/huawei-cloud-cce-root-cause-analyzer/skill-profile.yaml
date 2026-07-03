@@ -1,0 +1,28 @@
+﻿name: huawei-cloud-cce-root-cause-analyzer
+level: L3
+domain: diagnosis-remediation
+description: Analyze cross-domain CCE incidents and produce root cause reports.
+tools:
+  - huawei_root_cause_analyze
+  - huawei_workload_rollout_diagnose
+  - huawei_pod_failure_diagnose
+  - huawei_dependency_impact_analyze
+  - huawei_change_impact_analyze
+  - huawei_workload_diagnose
+  - huawei_workload_diagnose_by_alarm
+  - huawei_network_diagnose
+  - huawei_network_diagnose_by_alarm
+  - huawei_network_failure_diagnose
+  - huawei_node_diagnose
+  - huawei_node_failure_diagnose
+  - huawei_node_batch_diagnose
+  - huawei_generate_diagnosis_report
+  - huawei_generate_monitor_dashboard
+  - huawei_analyze_aom_alarms
+  - huawei_get_cce_events
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

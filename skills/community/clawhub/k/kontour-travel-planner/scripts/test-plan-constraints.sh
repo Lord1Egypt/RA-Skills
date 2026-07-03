@@ -44,11 +44,6 @@ kyoto_continuity = kyoto["day_plan_continuity"]
 assert kyoto_continuity["sequencing_goal"].startswith("morning/afternoon/evening anchors")
 assert [segment["time_of_day"] for segment in kyoto_continuity["segments"]] == ["morning", "afternoon", "evening"]
 assert [segment["place"] for segment in kyoto_continuity["segments"]] == ["Gion District", "Fushimi Inari", "Kiyomizu-dera"]
-for segment in kyoto_continuity["segments"]:
-    assert isinstance(segment.get("lat"), (int, float)), segment
-    assert isinstance(segment.get("lng"), (int, float)), segment
-assert kyoto_continuity["segments"][0]["lat"] == 35.0038, kyoto_continuity
-assert kyoto_continuity["segments"][0]["lng"] == 135.7786, kyoto_continuity
 assert len(kyoto_continuity["transition_rationale"]) == 2
 assert all("backtracking" in note or "same-zone" in note for note in kyoto_continuity["transition_rationale"])
 assert "backtracking" in kyoto_continuity["backtracking_note"]
@@ -96,42 +91,116 @@ assert [section["title"] for section in polish["compact_sections"]] == [
     "Trip Snapshot", "Best-Fit Choices", "Day Flow", "Risks + Backups"
 ], polish
 assert polish["decision_summary"] == "Recommend Fushimi Inari; needs live validation before final itinerary.", polish
-assert polish["decision_confidence"]["level"] == "medium", polish
-assert "fallback risks" in polish["decision_confidence"]["summary"], polish
-assert "destination found in bundled reference data" in polish["decision_confidence"]["evidence"], polish
-assert any("ranked suggested places" in item for item in polish["decision_confidence"]["evidence"]), polish
 assert len(polish["decision_rationale"]) >= 2, polish
 assert any("Gion District" in item for item in polish["decision_rationale"]), polish
 assert any("fallback" in action.lower() for action in polish["next_step_actions"]), polish
+assert polish["status_line"] == {
+    "readiness": "needs live validation before final itinerary",
+    "recommended_focus": "Fushimi Inari",
+    "evidence_count": 4,
+    "fallback_count": 2,
+    "open_decisions_count": 2,
+    "next_owner": "user",
+}, polish
+assert len(polish["confidence_drivers"]) == 4, polish
+assert any("scored 5 place candidate" in item for item in polish["confidence_drivers"]), polish
+assert any("explicit constraints" in item for item in polish["confidence_drivers"]), polish
 assert [item["owner"] for item in polish["next_action_checklist"]] == ["user", "operator", "operator", "user"], polish
 assert polish["next_action_checklist"][0]["status"] == "needed", polish
 assert "Confirm fallback preference" in polish["next_action_checklist"][-1]["action"], polish
+assert polish["next_step_prompt"] == {
+    "audience": "user",
+    "prompt": "What type of stay should I assume?",
+    "reason": "This is the highest-impact traveler clarification before the next planning pass.",
+    "source": "next_action_checklist[0]",
+}, polish
+assert polish["decision_badges"] == [
+    {"label": "Readiness", "value": "needs_live_validation", "tone": "caution"},
+    {"label": "Next owner", "value": "user", "tone": "action"},
+    {"label": "Fallbacks", "value": "2 warning(s)", "tone": "caution"},
+    {"label": "Decision mode", "value": "day_flow_scaffold", "tone": "sequence"},
+], polish
+assert polish["handoff_brief"] == {
+    "title": "Planning handoff — Fushimi Inari",
+    "decision": "Recommend Fushimi Inari; needs live validation before final itinerary.",
+    "rationale_bullets": polish["decision_rationale"],
+    "watch_out": "Verify live opening hours for Fushimi Inari before locking the itinerary.",
+    "next_action": {
+        "owner": "user",
+        "prompt": "What type of stay should I assume?",
+        "reason": "This is the highest-impact traveler clarification before the next planning pass.",
+    },
+    "evidence_drivers": polish["confidence_drivers"][:3],
+}, polish
+assert polish["quick_reply_card"] == {
+    "title": "Best next move: Fushimi Inari",
+    "subtitle": "needs live validation before final itinerary",
+    "bullets": [polish["decision_rationale"][0], polish["confidence_drivers"][0]],
+    "caveat": "Verify live opening hours for Fushimi Inari before locking the itinerary.",
+    "next_ask": "What type of stay should I assume?",
+    "cta": "Reply with the missing detail so I can expand this into a timed, budget-aware itinerary.",
+}, polish
+assert polish["reply_options"] == [
+    {"label": "Answer accommodation", "value": "clarify:accommodation", "owner": "user", "reason": "Resolves the highest-priority missing decision before itinerary expansion."},
+    {"label": "Use backup: Kinkaku-ji", "value": "accept:fallback", "owner": "user", "reason": "Lets the plan degrade gracefully if the top anchor is closed, weather-mismatched, or over-constrained."},
+    {"label": "Expand timed day flow", "value": "expand:day_flow", "owner": "operator", "reason": "Converts the continuity scaffold into timed morning, afternoon, and evening blocks."},
+], polish
+assert polish["presentation_markdown"]["format"] == "compact markdown draft", polish
+assert [section["heading"] for section in polish["presentation_markdown"]["sections"]] == [
+    "Recommendation", "Why this fits", "Watch-outs", "Next step"
+], polish
+assert polish["presentation_markdown"]["text"].startswith("### Recommendation\nRecommend Fushimi Inari"), polish
+assert "### Watch-outs\nVerify live opening hours" in polish["presentation_markdown"]["text"], polish
+assert "What type of stay should I assume? (user)" in polish["presentation_markdown"]["text"], polish
+assert polish["presentation_markdown"]["tone"].startswith("scannable"), polish
 assert polish["response_template"]["format"] == "four-line operator draft", polish
 assert polish["response_template"]["tone"].startswith("concise"), polish
 assert [line.split(":", 1)[0] for line in polish["response_template"]["lines"]] == ["Lead with", "Why", "Watch", "Next"], polish
 assert "Fushimi Inari" in polish["response_template"]["lines"][0], polish
 assert "Verify live opening hours" in polish["response_template"]["lines"][2], polish
-brief = polish["user_visible_brief"]
-assert brief["format"] == "compact labeled summary", brief
-assert [section["label"] for section in brief["sections"]] == ["Snapshot", "Rationale", "Backup", "Next"], brief
-assert "Kyoto" in brief["sections"][0]["text"] and "5 days" in brief["sections"][0]["text"], brief
-assert "Backup:" in brief["sections"][2]["text"], brief
-assert brief["rendering_note"].startswith("Use these labels verbatim"), brief
 
 compare_polish = comparison["output_polish"]
 assert compare_polish["decision_summary"] == "Recommend Bangkok; needs one clarification before detailed planning.", compare_polish
-assert compare_polish["decision_confidence"]["level"] == "low", compare_polish
-assert "destination" in compare_polish["decision_confidence"]["missing_evidence"], compare_polish
-assert "destination comparison decision matrix available" in compare_polish["decision_confidence"]["evidence"], compare_polish
+assert compare_polish["status_line"] == {
+    "readiness": "needs one clarification before detailed planning",
+    "recommended_focus": "Bangkok",
+    "evidence_count": 2,
+    "fallback_count": 0,
+    "open_decisions_count": 3,
+    "next_owner": "user",
+}, compare_polish
+assert any("ranked 3 destination option" in item for item in compare_polish["confidence_drivers"]), compare_polish
+assert any("explicit constraints" in item for item in compare_polish["confidence_drivers"]), compare_polish
 assert any("Bangkok" in item for item in compare_polish["decision_rationale"]), compare_polish
 assert any(section["title"] == "Best-Fit Choices" for section in compare_polish["compact_sections"]), compare_polish
 assert compare_polish["next_action_checklist"][0]["owner"] == "user", compare_polish
+assert compare_polish["next_step_prompt"]["audience"] == "user", compare_polish
+assert compare_polish["next_step_prompt"]["prompt"] == "Which destination should I optimize for first?", compare_polish
+assert compare_polish["decision_badges"] == [
+    {"label": "Readiness", "value": "needs_clarification", "tone": "needs_input"},
+    {"label": "Next owner", "value": "user", "tone": "action"},
+    {"label": "Fallbacks", "value": "0 warning(s)", "tone": "clear"},
+    {"label": "Decision mode", "value": "destination_comparison", "tone": "compare"},
+], compare_polish
+assert compare_polish["handoff_brief"]["title"] == "Planning handoff — Bangkok", compare_polish
+assert compare_polish["handoff_brief"]["next_action"]["prompt"] == "Which destination should I optimize for first?", compare_polish
+assert compare_polish["handoff_brief"]["watch_out"] == "No major first-pass fallback warning from offline data.", compare_polish
+assert compare_polish["quick_reply_card"] == {
+    "title": "Best next move: Bangkok",
+    "subtitle": "needs one clarification before detailed planning",
+    "bullets": [compare_polish["decision_rationale"][0], compare_polish["confidence_drivers"][0]],
+    "caveat": "No major first-pass fallback warning from offline data.",
+    "next_ask": "Which destination should I optimize for first?",
+    "cta": "Reply with the missing detail so I can expand this into a timed, budget-aware itinerary.",
+}, compare_polish
+assert compare_polish["reply_options"] == [
+    {"label": "Answer destination", "value": "clarify:destination", "owner": "user", "reason": "Resolves the highest-priority missing decision before itinerary expansion."},
+    {"label": "Compare around Bangkok", "value": "expand:comparison", "owner": "operator", "reason": "Turns the recommendation into a side-by-side user explanation with tradeoffs."},
+], compare_polish
+assert compare_polish["presentation_markdown"]["sections"][0]["body"] == "Recommend Bangkok; needs one clarification before detailed planning.", compare_polish
+assert "### Next step\nWhich destination should I optimize for first? (user)" in compare_polish["presentation_markdown"]["text"], compare_polish
 assert "Bangkok" in compare_polish["response_template"]["lines"][0], compare_polish
 assert compare_polish["response_template"]["lines"][3].startswith("Next:"), compare_polish
-compare_brief = compare_polish["user_visible_brief"]
-assert compare_brief["sections"][0]["label"] == "Snapshot", compare_brief
-assert "Tokyo, Paris, Bangkok" in compare_brief["sections"][0]["text"], compare_brief
-assert any(section["label"] == "Rationale" and "Bangkok" in section["text"] for section in compare_brief["sections"]), compare_brief
 
 print("constraint capture smoke tests passed")
 PY

@@ -1,0 +1,46 @@
+{
+  "name": "opc-skills",
+  "version": "1.2.0",
+  "description": "OPC智脑五阶段创业诊断Skills - 一人创业者(One Person Company)的全栈创业诊断专家",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "skills",
+    "skills-registry.json",
+    "src/prompts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "opc",
+    "one-person-company",
+    "startup",
+    "entrepreneurship",
+    "diagnosis",
+    "skills",
+    "ai-agent",
+    "prompt-engineering",
+    "mvp",
+    "compliance",
+    "growth"
+  ],
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/zx_allen_li/opc-skills"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

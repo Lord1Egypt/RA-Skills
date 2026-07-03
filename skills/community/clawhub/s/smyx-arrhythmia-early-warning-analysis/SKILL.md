@@ -1,7 +1,7 @@
 ---
 name: "arrhythmia-early-warning-analysis"
 description: "Based on facial video, identifies abnormal rhythms such as premature beats, atrial fibrillation, tachycardia/bradycardia, assists in early detection of heart health risks. | 心律失常早期预警技能，基于面部视频识别早搏、房颤、心动过速/心动过缓等异常节律，辅助心脏健康风险早发现"
-version: "1.0.8"
+version: "1.0.9"
 license: "MIT-0"
 ---
 
@@ -31,7 +31,7 @@ abnormal rhythms.
 本技能通过分析面部视频中的微细颜色变化与周期性运动，识别心脏搏动引发的血流动力学波动，从而检测早搏、房颤、心动过速与心动过缓等异常节律。无需接触式传感器，仅利用普通摄像头即可完成非侵入式筛查，辅助用户在日常状态下便捷评估心脏健康风险，实现异常节律的早期发现与预警。
 
 ## 🎬 技能演示 | Skill Demo
-[▶️ 点击查看技能使用介绍](https://lifeemergence.com/guide.html)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
 ## 🎯 任务目标 | Goals
 
@@ -41,13 +41,13 @@ abnormal rhythms.
 
 ### 2. 🛠️ 能力范围
 
-| 能力类型 | 具体能力 |
-|---|---|
-| 能力 1 | 早搏识别 |
-| 能力 2 | 房颤特征识别 |
-| 能力 3 | 心动过速检测 |
-| 能力 4 | 心动过缓检测 |
-| 能力 5 | 整体风险分级 |
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 早搏识别 |
+| 2 | 房颤特征识别 |
+| 3 | 心动过速检测 |
+| 4 | 心动过缓检测 |
+| 5 | 整体风险分级 |
 
 ### 3. ⚡ 触发条件
 
@@ -89,11 +89,11 @@ python -m scripts.arrhythmia_early_warning_analysis --list
   ```
 
 ## 📸 采集要求 | Capture Requirements
-为了获得相对准确的分析结果，请确保：
-
-1. **面部完整出镜**，光线均匀充足，避免背光和强烈阴影
-2. **保持相对静止**，视频采集时间建议 **10-30 秒**
-3. **避免剧烈运动后立即采集**，建议安静休息几分钟后再采集
+| 要求项 | 说明 |
+|---|---|
+| 面部完整出镜 | ，光线均匀充足，避免背光和强烈阴影 |
+| 保持相对静止 | ，视频采集时间建议 **10-30 秒** |
+| 避免剧烈运动后立即采集 | ，建议安静休息几分钟后再采集 |
 
 ## 🚀 操作步骤 | Workflow
 ### 🔐 用户身份处理（内部自动完成）
@@ -155,7 +155,7 @@ python -m scripts.arrhythmia_early_warning_analysis --list
 | 🧑‍⚖️ 结果性质 | **⚠️ 非常重要声明**：本分析结果仅供健康风险早期预警参考，**不能替代专业心电图检查和心内科医生诊断**。发现高风险请及时就医检查确诊 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

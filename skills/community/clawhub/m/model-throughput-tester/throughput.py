@@ -14,13 +14,18 @@ TOKEN_RATIO_ZH = 1.5     # Chinese: 1 token ≈ 1.5 chars
 
 def estimate_tokens(text):
     """Estimate token count from text."""
+    if not text:
+        return 0
     ascii_chars = sum(1 for c in text if ord(c) < 128)
     if ascii_chars / len(text) > 0.7:
-        return len(text.split()) / TOKEN_RATIO_EN
+        words = len([w for w in text.split() if w])
+        return words / TOKEN_RATIO_EN
     else:
         return len(text) / TOKEN_RATIO_ZH
 
 def detect_lang(text):
+    if not text:
+        return "en"
     ascii_chars = sum(1 for c in text if ord(c) < 128)
     return "en" if ascii_chars / len(text) > 0.7 else "zh"
 
@@ -85,29 +90,45 @@ def run_auto_test(model, iterations, max_tokens, test_prompt, timeout):
 
         try:
             start = time.perf_counter()
+            # Use bytes mode with stderr merged to stdout to ensure JSON output
+            # (capture_output=True + text=True causes openclaw to emit human-readable format)
             r = subprocess.run(
                 cmd,
-                capture_output=True, text=True, timeout=timeout
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                timeout=timeout
             )
             elapsed = time.perf_counter() - start
+            raw = r.stdout.decode("utf-8", errors="replace")
 
             if r.returncode != 0:
                 status = "cli_error"
-                error_msg = r.stderr.strip()[:200]
+                error_msg = raw.strip()[:200]
             else:
+                text = ""
+                # Strategy 1: JSON output (ideal case)
                 try:
-                    d = json.loads(r.stdout)
-                    if d.get("ok") and d.get("outputs"):
-                        text = d["outputs"][0].get("text", "")
-                        output_tokens = estimate_tokens(text)
-                        if not text:
-                            status = "empty_response"
-                    else:
-                        status = "api_error"
-                        error_msg = json.dumps(d, ensure_ascii=False)[:200]
-                except json.JSONDecodeError:
-                    status = "json_error"
-                    error_msg = r.stdout[:200]
+                    json_start = raw.rfind('{')
+                    if json_start >= 0:
+                        d = json.loads(raw[json_start:])
+                        if d.get("ok") and d.get("outputs"):
+                            text = d["outputs"][0].get("text", "")
+                except (json.JSONDecodeError, KeyError, IndexError):
+                    pass
+
+                # Strategy 2: Human-readable format (non-TTY pipe fallback)
+                if not text:
+                    lines = raw.strip().split('\n')
+                    for j, line in enumerate(lines):
+                        if line.strip().startswith('outputs:'):
+                            text = '\n'.join(lines[j+1:])
+                            break
+
+                if text:
+                    output_tokens = estimate_tokens(text)
+                else:
+                    status = "empty_response"
+                    error_msg = raw.strip()[:200]
         except subprocess.TimeoutExpired:
             elapsed = timeout
             status = "timeout"

@@ -1,0 +1,26 @@
+{
+  "id": "secure_script_runner",
+  "version": "1.0.0",
+  "name": "Secure Script Runner (Zero‑Exposure Sandbox)",
+  "description": "Zero‑exposure script execution using MGC Blackbox. Store scripts encrypted, execute locally, AI never sees plaintext. Supports MCP/API/WebUI execution, internal credential calls, and script sealing.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": ["security", "script", "zero-exposure", "mgc", "sandbox", "execution"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_get", "mgc_seal", "mgc_list", "mgc_open_webui"],
+  "install": "pip install mgc-blackbox",
+  "runtime": "mgc",
+  "port": 57219,
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "script execution",
+    "zero trust",
+    "sandbox",
+    "encrypted execution",
+    "script sealing"
+  ]
+}

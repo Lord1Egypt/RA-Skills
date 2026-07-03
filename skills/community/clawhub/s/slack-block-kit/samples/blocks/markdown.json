@@ -1,0 +1,64 @@
+[
+  {
+    "type": "markdown",
+    "text": "Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.\n\nCombine them: **_bold italic_** and [links](<https://api.slack.com>).\n\n> Blockquotes work too, with **formatting** inside."
+  },
+  {
+    "type": "markdown",
+    "text": "# Heading 1\n\nIntroduction paragraph.\n\n---\n\n## Heading 2\n\nMore details here.\n\n---\n\n### Heading 3\n\nEven more details.\n\n#### Heading 4\n\n##### Heading 5\n\n###### Heading 6"
+  },
+  {
+    "type": "markdown",
+    "text": "Here is a JavaScript function:\n\n```javascript\nfunction greet(name) {\n return \"Hello, \" + name + \"!\";\n}\n\nconsole.log(greet(\"world\"));\n```"
+  },
+  {
+    "type": "markdown",
+    "text": "## Sprint Status\n\n| Task | Owner | Status |\n|---|---|---|\n| **Authentication** | Alice | ~~Done~~ _Shipped_ |\n| `Dashboard` | Bob | **In Progress** |\n| [API Docs](<https://api.slack.com>) | Carol | _Not Started_ |"
+  },
+  {
+    "type": "context",
+    "elements": [
+      {
+        "type": "image",
+        "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+        "alt_text": "cute cat"
+      },
+      {
+        "type": "mrkdwn",
+        "text": "*Cat* has approved this message."
+      }
+    ]
+  },
+  {
+    "type": "context",
+    "elements": [
+      {
+        "type": "mrkdwn",
+        "text": "*This* is :smile: markdown"
+      },
+      {
+        "type": "image",
+        "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+        "alt_text": "cute cat"
+      },
+      {
+        "type": "image",
+        "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+        "alt_text": "cute cat"
+      },
+      {
+        "type": "image",
+        "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+        "alt_text": "cute cat"
+      },
+      {
+        "type": "plain_text",
+        "text": "Author: K A Applegate",
+        "emoji": true
+      }
+    ]
+  },
+  {
+    "type": "divider"
+  }
+]

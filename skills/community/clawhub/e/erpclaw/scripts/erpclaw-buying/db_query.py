@@ -20,7 +20,7 @@ from decimal import Decimal, InvalidOperation
 
 # Add shared lib to path
 try:
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.db import get_connection, ensure_db_exists, DEFAULT_DB_PATH
     from erpclaw_lib.decimal_utils import to_decimal, round_currency
     from erpclaw_lib.validation import check_input_lengths
@@ -1277,7 +1277,47 @@ def cancel_purchase_order(conn, args):
 # ---------------------------------------------------------------------------
 
 def create_purchase_receipt(conn, args):
-    """Create a purchase receipt (GRN) from a PO."""
+    """Create a purchase receipt (GRN) from a PO.
+
+    Subcontracting integration (Wave 2 S5, §Decision 6 single-post): when this
+    receipt is for a subcontracting order (--subcontracting-order-id), buying
+    DEFERS the finished-goods receipt bookkeeping ENTIRELY to manufacturing's
+    receive-subcontracted-items, which owns the FG cost roll-up (raw + subcontract
+    charge), the single FG SLE/GL, and the subcontract-charge invoice. Buying does
+    NOT also post the FG receipt — both posting would double the SLE and GL. The
+    subcontract path is the sole writer of that receipt event.
+    """
+    subcontracting_order_id = getattr(args, "subcontracting_order_id", None)
+    if subcontracting_order_id:
+        if not args.received_qty:
+            err("--received-qty is required when receiving against a "
+                "subcontracting order")
+        # Pure delegation: post NOTHING here; the subcontract path owns the GL/SLE.
+        from erpclaw_lib.cross_skill import call_skill_action, CrossSkillError
+        deleg_args = {
+            "--order": subcontracting_order_id,
+            "--received-qty": args.received_qty,
+        }
+        if args.posting_date:
+            deleg_args["--posting-date"] = args.posting_date
+        sc_rate = getattr(args, "subcontract_charge_rate", None)
+        if sc_rate is not None:
+            deleg_args["--subcontract-charge-rate"] = sc_rate
+        try:
+            resp = call_skill_action(
+                "erpclaw-manufacturing", "receive-subcontracted-items",
+                args=deleg_args,
+                db_path=args.db_path,
+            )
+        except CrossSkillError as e:
+            err(f"Subcontracting receipt failed: {e}")
+        # Surface the manufacturing result; mark it as delegated so callers know
+        # buying posted no second receipt.
+        resp["delegated_to"] = "receive-subcontracted-items"
+        resp["subcontracting_order_id"] = subcontracting_order_id
+        ok(resp)
+        return
+
     if not args.purchase_order_id:
         err("--purchase-order-id is required")
 
@@ -4418,6 +4458,12 @@ def main():
     parser.add_argument("--purchase-receipt-id")
     parser.add_argument("--purchase-receipt-ids")  # JSON for landed cost
     parser.add_argument("--pr-status", dest="pr_status")
+    # Wave 2 S5 subcontracting receipt delegation (§Decision 6 single-post):
+    # when set, create-purchase-receipt defers the FG receipt to manufacturing's
+    # receive-subcontracted-items and posts nothing itself.
+    parser.add_argument("--subcontracting-order-id", dest="subcontracting_order_id")
+    parser.add_argument("--received-qty", dest="received_qty")
+    parser.add_argument("--subcontract-charge-rate", dest="subcontract_charge_rate")
 
     # Purchase invoice
     parser.add_argument("--purchase-invoice-id")

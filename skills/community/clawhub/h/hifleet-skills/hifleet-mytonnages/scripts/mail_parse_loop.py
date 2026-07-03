@@ -21,7 +21,6 @@ import sys
 import time
 import traceback
 from datetime import datetime, timezone
-from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any, Optional
 
@@ -36,6 +35,15 @@ from charter_facts_tool import (  # noqa: E402
     enrich_database,
 )
 from desensitize_for_llm import desensitize_for_llm  # noqa: E402
+from extract_contacts import merge_contacts_into_parsed  # noqa: E402
+from imap_mail import (  # noqa: E402
+    archive_fetched_message,
+    body_text_from_message,
+    email_date_utc,
+    message_id_from_raw,
+)
+from llm_parse_errors import format_llm_parse_error_for_user, is_llm_json_parse_error  # noqa: E402
+from i18n_messages import resolve_user_locale  # noqa: E402
 
 logger = logging.getLogger("mail_parse_loop")
 
@@ -111,29 +119,11 @@ def _parsed_inbox_dir() -> Path:
 
 
 def _message_id_from_raw(raw: bytes) -> str:
-    msg = email.message_from_bytes(raw, policy=email.policy.default)
-    mid = (msg.get("Message-ID") or msg.get("Message-Id") or "").strip()
-    if mid:
-        return mid
-    digest = hashlib.sha256(raw).hexdigest()[:32]
-    return f"generated-{digest}@local"
+    return message_id_from_raw(raw)
 
 
 def _email_date_utc(msg: email.message.Message) -> str:
-    for hdr in ("Date", "Received"):
-        val = msg.get(hdr)
-        if not val:
-            continue
-        try:
-            dt = parsedate_to_datetime(val)
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=timezone.utc)
-            else:
-                dt = dt.astimezone(timezone.utc)
-            return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-        except (TypeError, ValueError, IndexError):
-            continue
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return email_date_utc(msg)
 
 
 def _from_addr(msg: email.message.Message) -> str:
@@ -158,33 +148,7 @@ def _subject(msg: email.message.Message) -> str:
 
 
 def _body_text(msg: email.message.Message) -> str:
-    if msg.is_multipart():
-        chunks: list[str] = []
-        for part in msg.walk():
-            if part.get_content_maintype() == "multipart":
-                continue
-            if part.get_content_disposition() == "attachment":
-                continue
-            ctype = (part.get_content_type() or "").lower()
-            if ctype not in ("text/plain", "text/html"):
-                continue
-            payload = part.get_payload(decode=True)
-            if not payload:
-                continue
-            charset = part.get_content_charset() or "utf-8"
-            try:
-                chunks.append(payload.decode(charset, errors="replace"))
-            except Exception:
-                chunks.append(payload.decode("utf-8", errors="replace"))
-        return "\n".join(chunks)
-    payload = msg.get_payload(decode=True)
-    if not payload:
-        return str(msg.get_payload() or "")
-    charset = msg.get_content_charset() or "utf-8"
-    try:
-        return payload.decode(charset, errors="replace")
-    except Exception:
-        return payload.decode("utf-8", errors="replace")
+    return body_text_from_message(msg)
 
 
 def _known_message_ids(db_path: Path) -> set[str]:
@@ -217,9 +181,15 @@ def _imap_fetch_new(cfg: dict[str, Any], state: dict[str, Any]) -> list[dict[str
     out: list[dict[str, Any]] = []
     max_uid = last_uid
 
+    mailbox = str(cfg.get("imap_mailbox") or "INBOX").strip() or "INBOX"
+
     with imaplib.IMAP4_SSL(host, port) as mail:
         mail.login(user, password)
-        mail.select("INBOX")
+        if host and any(x in host.lower() for x in ("163.com", "126.com", "yeah.net")):
+            from imap_mail import _netease_imap_id  # noqa: WPS433
+
+            _netease_imap_id(mail, user)
+        mail.select(mailbox)
         if last_uid <= 0:
             status, data = mail.uid("search", None, "ALL")
             if status != "OK" or not data or not data[0]:
@@ -249,15 +219,32 @@ def _imap_fetch_new(cfg: dict[str, Any], state: dict[str, Any]) -> list[dict[str
                 continue
             msg = email.message_from_bytes(raw, policy=email.policy.default)
             body = _body_text(msg)
+            mid = _message_id_from_raw(raw)
+            subj = _subject(msg)
+            from_a = _from_addr(msg)
+            date_u = _email_date_utc(msg)
+            try:
+                archive_fetched_message(
+                    bytes(raw),
+                    message_id=mid,
+                    imap_uid=uid,
+                    mailbox=mailbox,
+                    email_date_utc=date_u,
+                    from_addr=from_a,
+                    subject=subj,
+                    db_path=default_db_path(),
+                )
+            except Exception as e:
+                logger.warning("归档邮件失败 %s: %s", mid, e)
             out.append(
                 {
                     "imap_uid": uid,
-                    "message_id": _message_id_from_raw(raw),
-                    "email_date_utc": _email_date_utc(msg),
-                    "from_addr": _from_addr(msg),
-                    "subject": _subject(msg),
+                    "message_id": mid,
+                    "email_date_utc": date_u,
+                    "from_addr": from_a,
+                    "subject": subj,
                     "body_text": body,
-                    "body_for_llm": desensitize_for_llm(f"{_subject(msg)}\n\n{body}"),
+                    "body_for_llm": desensitize_for_llm(f"{subj}\n\n{body}"),
                 }
             )
             max_uid = max(max_uid, uid)
@@ -266,21 +253,21 @@ def _imap_fetch_new(cfg: dict[str, Any], state: dict[str, Any]) -> list[dict[str
     return out
 
 
-def _try_charter_ai_parse(email_doc: dict[str, Any]) -> Optional[dict[str, Any]]:
-    """若同机存在 charter_ai，则调用大模型解析；否则返回 None。"""
+def _try_charter_ai_parse(email_doc: dict[str, Any]) -> tuple[Optional[dict[str, Any]], Optional[str]]:
+    """若同机存在 charter_ai，则调用大模型解析；返回 (parsed, user_error_message)。"""
     root = os.environ.get("HIFLEET_CHARTER_AI_ROOT", "").strip()
     if not root:
         candidate = default_skill_dir().parents[2] / "charter_ai"
         if candidate.is_dir():
             root = str(candidate)
     if not root:
-        return None
+        return None, None
     if root not in sys.path:
         sys.path.insert(0, root)
     try:
         from charter_utils import call_charter_deepseek_api  # type: ignore
     except ImportError:
-        return None
+        return None, None
     try:
         data = call_charter_deepseek_api(
             email_doc.get("body_for_llm") or "",
@@ -288,11 +275,20 @@ def _try_charter_ai_parse(email_doc: dict[str, Any]) -> Optional[dict[str, Any]]
             from_email=email_doc.get("from_addr") or "",
         )
         if isinstance(data, dict):
-            return data
+            return data, None
+        user_msg = format_llm_parse_error_for_user(
+            ValueError("LLM response did not contain a JSON object")
+        )
+        logger.warning("用户提示(%s): %s", resolve_user_locale(), user_msg)
+        return None, user_msg
     except Exception as e:
         logger.error("charter_ai 解析失败: %s", e)
         logger.debug(traceback.format_exc())
-    return None
+        user_msg = None
+        if is_llm_json_parse_error(e) or "json" in str(e).lower():
+            user_msg = format_llm_parse_error_for_user(e)
+            logger.warning("用户提示(%s): %s", resolve_user_locale(), user_msg)
+        return None, user_msg
 
 
 def _save_parsed_doc(db_path: Path, doc: dict[str, Any]) -> None:
@@ -300,6 +296,10 @@ def _save_parsed_doc(db_path: Path, doc: dict[str, Any]) -> None:
     conn = db.connect()
     try:
         parsed = doc.get("parsed") or doc
+        if isinstance(parsed, dict):
+            body = str(doc.get("body_text") or "")
+            if body:
+                merge_contacts_into_parsed(parsed, body)
         db.save_parsed(
             conn,
             message_id=str(doc.get("message_id") or ""),
@@ -366,13 +366,14 @@ def run_cycle(*, skip_imap: bool = False, skip_enrich: bool = False) -> dict[str
             mid = doc.get("message_id")
             if mid and mid in known:
                 continue
-            parsed = _try_charter_ai_parse(doc)
+            parsed, parse_user_msg = _try_charter_ai_parse(doc)
             if parsed:
                 save_doc = {
                     "message_id": mid,
                     "email_date_utc": doc.get("email_date_utc"),
                     "from_addr": doc.get("from_addr"),
                     "subject": doc.get("subject"),
+                    "body_text": doc.get("body_text") or "",
                     "parsed": parsed,
                 }
                 try:
@@ -385,6 +386,13 @@ def run_cycle(*, skip_imap: bool = False, skip_enrich: bool = False) -> dict[str
             else:
                 _write_pending(doc)
                 stats["pending_written"] += 1
+                if parse_user_msg:
+                    stats.setdefault("parse_hints", []).append(
+                        {
+                            "message_id": mid,
+                            "user_message": parse_user_msg,
+                        }
+                    )
 
     stats["inbox_saved"] = _process_parsed_inbox(db_path)
 

@@ -1,5 +1,5 @@
 ## Description: <br>
-Manages VMware NSX networking resources such as segments, gateways, NAT rules, routes, IP pools, and health checks through CLI or MCP workflows. <br>
+This skill helps agents manage VMware NSX networking, including segments, gateways, NAT, routing, IP pools, fabric inventory, health checks, and troubleshooting. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Infrastructure, platform, and network engineers use this skill to inspect and manage VMware NSX-T or NSX 4.x networking. It supports network segment, gateway, NAT, static route, IP pool, health, and troubleshooting workflows. <br>
+Developers and infrastructure engineers use this skill to inspect, operate, and troubleshoot VMware NSX networking through CLI and MCP workflows. It covers NSX segments, Tier-0 and Tier-1 gateways, NAT, static routes, IP pools, fabric inventory, health status, and connectivity troubleshooting. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can change VMware NSX networking and may disrupt connectivity if used with broad privileges or insufficient review. <br>
-Mitigation: Use least-privilege NSX accounts, keep write access out of routine monitoring setups, and review write plans before enabling agent access. <br>
-Risk: TLS safety can be weakened when verify_ssl is disabled for non-lab environments. <br>
-Mitigation: Set verify_ssl to true with a trusted CA for production and reserve TLS bypass only for controlled lab systems. <br>
-Risk: Password obfuscation in .env files may be mistaken for encryption. <br>
-Mitigation: Treat .env password obfuscation as convenience only, restrict file permissions, and manage credentials through approved secret-handling processes. <br>
+Risk: The skill can change live VMware NSX network infrastructure. <br>
+Mitigation: Review carefully before production use, prefer dry-run CLI workflows for changes, and confirm whether MCP write tools require explicit approval in the connected agent. <br>
+Risk: Over-privileged credentials could amplify the impact of incorrect or unauthorized network changes. <br>
+Mitigation: Use a least-privilege NSX service account appropriate to the intended read or write operations. <br>
+Risk: Insecure TLS or credential handling could expose NSX administrative access. <br>
+Mitigation: Set verify_ssl to true with a trusted CA and avoid storing real admin passwords in plaintext .env files. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zw008/skills/vmware-nsx) <br>
-- [VMware NSX GitHub repository](https://github.com/zw008/VMware-NSX) <br>
-- [Capabilities](references/capabilities.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/zw008/skills/vmware-nsx) <br>
+- [Source Homepage](https://github.com/zw008/VMware-NSX) <br>
+- [Capabilities Reference](artifact/references/capabilities.md) <br>
+- [CLI Reference](artifact/references/cli-reference.md) <br>
+- [Setup Guide](artifact/references/setup-guide.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured CLI or MCP guidance] <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration, API calls, Guidance] <br>
+**Output Format:** [Markdown with inline shell commands and structured MCP tool guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute NSX administration workflows depending on connected agent permissions and user approval.] <br>
+**Other Properties Related to Output:** [May include NSX Policy API operation plans, read-only checks, and write-operation guidance.] <br>
 
 ## Skill Version(s): <br>
-1.6.1 (source: server release evidence) <br>
+1.7.3 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

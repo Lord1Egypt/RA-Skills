@@ -1,0 +1,8979 @@
+#!/usr/bin/env node
+import { createRequire as __clinkCreateRequire } from "node:module";
+const require = __clinkCreateRequire(import.meta.url);
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+}) : x)(function(x) {
+  if (typeof require !== "undefined") return require.apply(this, arguments);
+  throw Error('Dynamic require of "' + x + '" is not supported');
+});
+var __commonJS = (cb, mod) => function __require2() {
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+
+// node_modules/commander/lib/error.js
+var require_error = __commonJS({
+  "node_modules/commander/lib/error.js"(exports) {
+    var CommanderError2 = class extends Error {
+      /**
+       * Constructs the CommanderError class
+       * @param {number} exitCode suggested exit code which could be used with process.exit
+       * @param {string} code an id string representing the error
+       * @param {string} message human-readable description of the error
+       */
+      constructor(exitCode, code, message) {
+        super(message);
+        Error.captureStackTrace(this, this.constructor);
+        this.name = this.constructor.name;
+        this.code = code;
+        this.exitCode = exitCode;
+        this.nestedError = void 0;
+      }
+    };
+    var InvalidArgumentError2 = class extends CommanderError2 {
+      /**
+       * Constructs the InvalidArgumentError class
+       * @param {string} [message] explanation of why argument is invalid
+       */
+      constructor(message) {
+        super(1, "commander.invalidArgument", message);
+        Error.captureStackTrace(this, this.constructor);
+        this.name = this.constructor.name;
+      }
+    };
+    exports.CommanderError = CommanderError2;
+    exports.InvalidArgumentError = InvalidArgumentError2;
+  }
+});
+
+// node_modules/commander/lib/argument.js
+var require_argument = __commonJS({
+  "node_modules/commander/lib/argument.js"(exports) {
+    var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
+    var Argument2 = class {
+      /**
+       * Initialize a new command argument with the given name and description.
+       * The default is that the argument is required, and you can explicitly
+       * indicate this with <> around the name. Put [] around the name for an optional argument.
+       *
+       * @param {string} name
+       * @param {string} [description]
+       */
+      constructor(name, description) {
+        this.description = description || "";
+        this.variadic = false;
+        this.parseArg = void 0;
+        this.defaultValue = void 0;
+        this.defaultValueDescription = void 0;
+        this.argChoices = void 0;
+        switch (name[0]) {
+          case "<":
+            this.required = true;
+            this._name = name.slice(1, -1);
+            break;
+          case "[":
+            this.required = false;
+            this._name = name.slice(1, -1);
+            break;
+          default:
+            this.required = true;
+            this._name = name;
+            break;
+        }
+        if (this._name.endsWith("...")) {
+          this.variadic = true;
+          this._name = this._name.slice(0, -3);
+        }
+      }
+      /**
+       * Return argument name.
+       *
+       * @return {string}
+       */
+      name() {
+        return this._name;
+      }
+      /**
+       * @package
+       */
+      _collectValue(value, previous) {
+        if (previous === this.defaultValue || !Array.isArray(previous)) {
+          return [value];
+        }
+        previous.push(value);
+        return previous;
+      }
+      /**
+       * Set the default value, and optionally supply the description to be displayed in the help.
+       *
+       * @param {*} value
+       * @param {string} [description]
+       * @return {Argument}
+       */
+      default(value, description) {
+        this.defaultValue = value;
+        this.defaultValueDescription = description;
+        return this;
+      }
+      /**
+       * Set the custom handler for processing CLI command arguments into argument values.
+       *
+       * @param {Function} [fn]
+       * @return {Argument}
+       */
+      argParser(fn) {
+        this.parseArg = fn;
+        return this;
+      }
+      /**
+       * Only allow argument value to be one of choices.
+       *
+       * @param {string[]} values
+       * @return {Argument}
+       */
+      choices(values) {
+        this.argChoices = values.slice();
+        this.parseArg = (arg, previous) => {
+          if (!this.argChoices.includes(arg)) {
+            throw new InvalidArgumentError2(
+              `Allowed choices are ${this.argChoices.join(", ")}.`
+            );
+          }
+          if (this.variadic) {
+            return this._collectValue(arg, previous);
+          }
+          return arg;
+        };
+        return this;
+      }
+      /**
+       * Make argument required.
+       *
+       * @returns {Argument}
+       */
+      argRequired() {
+        this.required = true;
+        return this;
+      }
+      /**
+       * Make argument optional.
+       *
+       * @returns {Argument}
+       */
+      argOptional() {
+        this.required = false;
+        return this;
+      }
+    };
+    function humanReadableArgName(arg) {
+      const nameOutput = arg.name() + (arg.variadic === true ? "..." : "");
+      return arg.required ? "<" + nameOutput + ">" : "[" + nameOutput + "]";
+    }
+    exports.Argument = Argument2;
+    exports.humanReadableArgName = humanReadableArgName;
+  }
+});
+
+// node_modules/commander/lib/help.js
+var require_help = __commonJS({
+  "node_modules/commander/lib/help.js"(exports) {
+    var { humanReadableArgName } = require_argument();
+    var Help2 = class {
+      constructor() {
+        this.helpWidth = void 0;
+        this.minWidthToWrap = 40;
+        this.sortSubcommands = false;
+        this.sortOptions = false;
+        this.showGlobalOptions = false;
+      }
+      /**
+       * prepareContext is called by Commander after applying overrides from `Command.configureHelp()`
+       * and just before calling `formatHelp()`.
+       *
+       * Commander just uses the helpWidth and the rest is provided for optional use by more complex subclasses.
+       *
+       * @param {{ error?: boolean, helpWidth?: number, outputHasColors?: boolean }} contextOptions
+       */
+      prepareContext(contextOptions) {
+        this.helpWidth = this.helpWidth ?? contextOptions.helpWidth ?? 80;
+      }
+      /**
+       * Get an array of the visible subcommands. Includes a placeholder for the implicit help command, if there is one.
+       *
+       * @param {Command} cmd
+       * @returns {Command[]}
+       */
+      visibleCommands(cmd) {
+        const visibleCommands = cmd.commands.filter((cmd2) => !cmd2._hidden);
+        const helpCommand = cmd._getHelpCommand();
+        if (helpCommand && !helpCommand._hidden) {
+          visibleCommands.push(helpCommand);
+        }
+        if (this.sortSubcommands) {
+          visibleCommands.sort((a, b) => {
+            return a.name().localeCompare(b.name());
+          });
+        }
+        return visibleCommands;
+      }
+      /**
+       * Compare options for sort.
+       *
+       * @param {Option} a
+       * @param {Option} b
+       * @returns {number}
+       */
+      compareOptions(a, b) {
+        const getSortKey = (option) => {
+          return option.short ? option.short.replace(/^-/, "") : option.long.replace(/^--/, "");
+        };
+        return getSortKey(a).localeCompare(getSortKey(b));
+      }
+      /**
+       * Get an array of the visible options. Includes a placeholder for the implicit help option, if there is one.
+       *
+       * @param {Command} cmd
+       * @returns {Option[]}
+       */
+      visibleOptions(cmd) {
+        const visibleOptions = cmd.options.filter((option) => !option.hidden);
+        const helpOption = cmd._getHelpOption();
+        if (helpOption && !helpOption.hidden) {
+          const removeShort = helpOption.short && cmd._findOption(helpOption.short);
+          const removeLong = helpOption.long && cmd._findOption(helpOption.long);
+          if (!removeShort && !removeLong) {
+            visibleOptions.push(helpOption);
+          } else if (helpOption.long && !removeLong) {
+            visibleOptions.push(
+              cmd.createOption(helpOption.long, helpOption.description)
+            );
+          } else if (helpOption.short && !removeShort) {
+            visibleOptions.push(
+              cmd.createOption(helpOption.short, helpOption.description)
+            );
+          }
+        }
+        if (this.sortOptions) {
+          visibleOptions.sort(this.compareOptions);
+        }
+        return visibleOptions;
+      }
+      /**
+       * Get an array of the visible global options. (Not including help.)
+       *
+       * @param {Command} cmd
+       * @returns {Option[]}
+       */
+      visibleGlobalOptions(cmd) {
+        if (!this.showGlobalOptions) return [];
+        const globalOptions = [];
+        for (let ancestorCmd = cmd.parent; ancestorCmd; ancestorCmd = ancestorCmd.parent) {
+          const visibleOptions = ancestorCmd.options.filter(
+            (option) => !option.hidden
+          );
+          globalOptions.push(...visibleOptions);
+        }
+        if (this.sortOptions) {
+          globalOptions.sort(this.compareOptions);
+        }
+        return globalOptions;
+      }
+      /**
+       * Get an array of the arguments if any have a description.
+       *
+       * @param {Command} cmd
+       * @returns {Argument[]}
+       */
+      visibleArguments(cmd) {
+        if (cmd._argsDescription) {
+          cmd.registeredArguments.forEach((argument) => {
+            argument.description = argument.description || cmd._argsDescription[argument.name()] || "";
+          });
+        }
+        if (cmd.registeredArguments.find((argument) => argument.description)) {
+          return cmd.registeredArguments;
+        }
+        return [];
+      }
+      /**
+       * Get the command term to show in the list of subcommands.
+       *
+       * @param {Command} cmd
+       * @returns {string}
+       */
+      subcommandTerm(cmd) {
+        const args = cmd.registeredArguments.map((arg) => humanReadableArgName(arg)).join(" ");
+        return cmd._name + (cmd._aliases[0] ? "|" + cmd._aliases[0] : "") + (cmd.options.length ? " [options]" : "") + // simplistic check for non-help option
+        (args ? " " + args : "");
+      }
+      /**
+       * Get the option term to show in the list of options.
+       *
+       * @param {Option} option
+       * @returns {string}
+       */
+      optionTerm(option) {
+        return option.flags;
+      }
+      /**
+       * Get the argument term to show in the list of arguments.
+       *
+       * @param {Argument} argument
+       * @returns {string}
+       */
+      argumentTerm(argument) {
+        return argument.name();
+      }
+      /**
+       * Get the longest command term length.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {number}
+       */
+      longestSubcommandTermLength(cmd, helper) {
+        return helper.visibleCommands(cmd).reduce((max, command) => {
+          return Math.max(
+            max,
+            this.displayWidth(
+              helper.styleSubcommandTerm(helper.subcommandTerm(command))
+            )
+          );
+        }, 0);
+      }
+      /**
+       * Get the longest option term length.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {number}
+       */
+      longestOptionTermLength(cmd, helper) {
+        return helper.visibleOptions(cmd).reduce((max, option) => {
+          return Math.max(
+            max,
+            this.displayWidth(helper.styleOptionTerm(helper.optionTerm(option)))
+          );
+        }, 0);
+      }
+      /**
+       * Get the longest global option term length.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {number}
+       */
+      longestGlobalOptionTermLength(cmd, helper) {
+        return helper.visibleGlobalOptions(cmd).reduce((max, option) => {
+          return Math.max(
+            max,
+            this.displayWidth(helper.styleOptionTerm(helper.optionTerm(option)))
+          );
+        }, 0);
+      }
+      /**
+       * Get the longest argument term length.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {number}
+       */
+      longestArgumentTermLength(cmd, helper) {
+        return helper.visibleArguments(cmd).reduce((max, argument) => {
+          return Math.max(
+            max,
+            this.displayWidth(
+              helper.styleArgumentTerm(helper.argumentTerm(argument))
+            )
+          );
+        }, 0);
+      }
+      /**
+       * Get the command usage to be displayed at the top of the built-in help.
+       *
+       * @param {Command} cmd
+       * @returns {string}
+       */
+      commandUsage(cmd) {
+        let cmdName = cmd._name;
+        if (cmd._aliases[0]) {
+          cmdName = cmdName + "|" + cmd._aliases[0];
+        }
+        let ancestorCmdNames = "";
+        for (let ancestorCmd = cmd.parent; ancestorCmd; ancestorCmd = ancestorCmd.parent) {
+          ancestorCmdNames = ancestorCmd.name() + " " + ancestorCmdNames;
+        }
+        return ancestorCmdNames + cmdName + " " + cmd.usage();
+      }
+      /**
+       * Get the description for the command.
+       *
+       * @param {Command} cmd
+       * @returns {string}
+       */
+      commandDescription(cmd) {
+        return cmd.description();
+      }
+      /**
+       * Get the subcommand summary to show in the list of subcommands.
+       * (Fallback to description for backwards compatibility.)
+       *
+       * @param {Command} cmd
+       * @returns {string}
+       */
+      subcommandDescription(cmd) {
+        return cmd.summary() || cmd.description();
+      }
+      /**
+       * Get the option description to show in the list of options.
+       *
+       * @param {Option} option
+       * @return {string}
+       */
+      optionDescription(option) {
+        const extraInfo = [];
+        if (option.argChoices) {
+          extraInfo.push(
+            // use stringify to match the display of the default value
+            `choices: ${option.argChoices.map((choice) => JSON.stringify(choice)).join(", ")}`
+          );
+        }
+        if (option.defaultValue !== void 0) {
+          const showDefault = option.required || option.optional || option.isBoolean() && typeof option.defaultValue === "boolean";
+          if (showDefault) {
+            extraInfo.push(
+              `default: ${option.defaultValueDescription || JSON.stringify(option.defaultValue)}`
+            );
+          }
+        }
+        if (option.presetArg !== void 0 && option.optional) {
+          extraInfo.push(`preset: ${JSON.stringify(option.presetArg)}`);
+        }
+        if (option.envVar !== void 0) {
+          extraInfo.push(`env: ${option.envVar}`);
+        }
+        if (extraInfo.length > 0) {
+          const extraDescription = `(${extraInfo.join(", ")})`;
+          if (option.description) {
+            return `${option.description} ${extraDescription}`;
+          }
+          return extraDescription;
+        }
+        return option.description;
+      }
+      /**
+       * Get the argument description to show in the list of arguments.
+       *
+       * @param {Argument} argument
+       * @return {string}
+       */
+      argumentDescription(argument) {
+        const extraInfo = [];
+        if (argument.argChoices) {
+          extraInfo.push(
+            // use stringify to match the display of the default value
+            `choices: ${argument.argChoices.map((choice) => JSON.stringify(choice)).join(", ")}`
+          );
+        }
+        if (argument.defaultValue !== void 0) {
+          extraInfo.push(
+            `default: ${argument.defaultValueDescription || JSON.stringify(argument.defaultValue)}`
+          );
+        }
+        if (extraInfo.length > 0) {
+          const extraDescription = `(${extraInfo.join(", ")})`;
+          if (argument.description) {
+            return `${argument.description} ${extraDescription}`;
+          }
+          return extraDescription;
+        }
+        return argument.description;
+      }
+      /**
+       * Format a list of items, given a heading and an array of formatted items.
+       *
+       * @param {string} heading
+       * @param {string[]} items
+       * @param {Help} helper
+       * @returns string[]
+       */
+      formatItemList(heading, items, helper) {
+        if (items.length === 0) return [];
+        return [helper.styleTitle(heading), ...items, ""];
+      }
+      /**
+       * Group items by their help group heading.
+       *
+       * @param {Command[] | Option[]} unsortedItems
+       * @param {Command[] | Option[]} visibleItems
+       * @param {Function} getGroup
+       * @returns {Map<string, Command[] | Option[]>}
+       */
+      groupItems(unsortedItems, visibleItems, getGroup) {
+        const result = /* @__PURE__ */ new Map();
+        unsortedItems.forEach((item) => {
+          const group = getGroup(item);
+          if (!result.has(group)) result.set(group, []);
+        });
+        visibleItems.forEach((item) => {
+          const group = getGroup(item);
+          if (!result.has(group)) {
+            result.set(group, []);
+          }
+          result.get(group).push(item);
+        });
+        return result;
+      }
+      /**
+       * Generate the built-in help text.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {string}
+       */
+      formatHelp(cmd, helper) {
+        const termWidth = helper.padWidth(cmd, helper);
+        const helpWidth = helper.helpWidth ?? 80;
+        function callFormatItem(term, description) {
+          return helper.formatItem(term, termWidth, description, helper);
+        }
+        let output = [
+          `${helper.styleTitle("Usage:")} ${helper.styleUsage(helper.commandUsage(cmd))}`,
+          ""
+        ];
+        const commandDescription = helper.commandDescription(cmd);
+        if (commandDescription.length > 0) {
+          output = output.concat([
+            helper.boxWrap(
+              helper.styleCommandDescription(commandDescription),
+              helpWidth
+            ),
+            ""
+          ]);
+        }
+        const argumentList = helper.visibleArguments(cmd).map((argument) => {
+          return callFormatItem(
+            helper.styleArgumentTerm(helper.argumentTerm(argument)),
+            helper.styleArgumentDescription(helper.argumentDescription(argument))
+          );
+        });
+        output = output.concat(
+          this.formatItemList("Arguments:", argumentList, helper)
+        );
+        const optionGroups = this.groupItems(
+          cmd.options,
+          helper.visibleOptions(cmd),
+          (option) => option.helpGroupHeading ?? "Options:"
+        );
+        optionGroups.forEach((options, group) => {
+          const optionList = options.map((option) => {
+            return callFormatItem(
+              helper.styleOptionTerm(helper.optionTerm(option)),
+              helper.styleOptionDescription(helper.optionDescription(option))
+            );
+          });
+          output = output.concat(this.formatItemList(group, optionList, helper));
+        });
+        if (helper.showGlobalOptions) {
+          const globalOptionList = helper.visibleGlobalOptions(cmd).map((option) => {
+            return callFormatItem(
+              helper.styleOptionTerm(helper.optionTerm(option)),
+              helper.styleOptionDescription(helper.optionDescription(option))
+            );
+          });
+          output = output.concat(
+            this.formatItemList("Global Options:", globalOptionList, helper)
+          );
+        }
+        const commandGroups = this.groupItems(
+          cmd.commands,
+          helper.visibleCommands(cmd),
+          (sub) => sub.helpGroup() || "Commands:"
+        );
+        commandGroups.forEach((commands, group) => {
+          const commandList = commands.map((sub) => {
+            return callFormatItem(
+              helper.styleSubcommandTerm(helper.subcommandTerm(sub)),
+              helper.styleSubcommandDescription(helper.subcommandDescription(sub))
+            );
+          });
+          output = output.concat(this.formatItemList(group, commandList, helper));
+        });
+        return output.join("\n");
+      }
+      /**
+       * Return display width of string, ignoring ANSI escape sequences. Used in padding and wrapping calculations.
+       *
+       * @param {string} str
+       * @returns {number}
+       */
+      displayWidth(str) {
+        return stripColor(str).length;
+      }
+      /**
+       * Style the title for displaying in the help. Called with 'Usage:', 'Options:', etc.
+       *
+       * @param {string} str
+       * @returns {string}
+       */
+      styleTitle(str) {
+        return str;
+      }
+      styleUsage(str) {
+        return str.split(" ").map((word) => {
+          if (word === "[options]") return this.styleOptionText(word);
+          if (word === "[command]") return this.styleSubcommandText(word);
+          if (word[0] === "[" || word[0] === "<")
+            return this.styleArgumentText(word);
+          return this.styleCommandText(word);
+        }).join(" ");
+      }
+      styleCommandDescription(str) {
+        return this.styleDescriptionText(str);
+      }
+      styleOptionDescription(str) {
+        return this.styleDescriptionText(str);
+      }
+      styleSubcommandDescription(str) {
+        return this.styleDescriptionText(str);
+      }
+      styleArgumentDescription(str) {
+        return this.styleDescriptionText(str);
+      }
+      styleDescriptionText(str) {
+        return str;
+      }
+      styleOptionTerm(str) {
+        return this.styleOptionText(str);
+      }
+      styleSubcommandTerm(str) {
+        return str.split(" ").map((word) => {
+          if (word === "[options]") return this.styleOptionText(word);
+          if (word[0] === "[" || word[0] === "<")
+            return this.styleArgumentText(word);
+          return this.styleSubcommandText(word);
+        }).join(" ");
+      }
+      styleArgumentTerm(str) {
+        return this.styleArgumentText(str);
+      }
+      styleOptionText(str) {
+        return str;
+      }
+      styleArgumentText(str) {
+        return str;
+      }
+      styleSubcommandText(str) {
+        return str;
+      }
+      styleCommandText(str) {
+        return str;
+      }
+      /**
+       * Calculate the pad width from the maximum term length.
+       *
+       * @param {Command} cmd
+       * @param {Help} helper
+       * @returns {number}
+       */
+      padWidth(cmd, helper) {
+        return Math.max(
+          helper.longestOptionTermLength(cmd, helper),
+          helper.longestGlobalOptionTermLength(cmd, helper),
+          helper.longestSubcommandTermLength(cmd, helper),
+          helper.longestArgumentTermLength(cmd, helper)
+        );
+      }
+      /**
+       * Detect manually wrapped and indented strings by checking for line break followed by whitespace.
+       *
+       * @param {string} str
+       * @returns {boolean}
+       */
+      preformatted(str) {
+        return /\n[^\S\r\n]/.test(str);
+      }
+      /**
+       * Format the "item", which consists of a term and description. Pad the term and wrap the description, indenting the following lines.
+       *
+       * So "TTT", 5, "DDD DDDD DD DDD" might be formatted for this.helpWidth=17 like so:
+       *   TTT  DDD DDDD
+       *        DD DDD
+       *
+       * @param {string} term
+       * @param {number} termWidth
+       * @param {string} description
+       * @param {Help} helper
+       * @returns {string}
+       */
+      formatItem(term, termWidth, description, helper) {
+        const itemIndent = 2;
+        const itemIndentStr = " ".repeat(itemIndent);
+        if (!description) return itemIndentStr + term;
+        const paddedTerm = term.padEnd(
+          termWidth + term.length - helper.displayWidth(term)
+        );
+        const spacerWidth = 2;
+        const helpWidth = this.helpWidth ?? 80;
+        const remainingWidth = helpWidth - termWidth - spacerWidth - itemIndent;
+        let formattedDescription;
+        if (remainingWidth < this.minWidthToWrap || helper.preformatted(description)) {
+          formattedDescription = description;
+        } else {
+          const wrappedDescription = helper.boxWrap(description, remainingWidth);
+          formattedDescription = wrappedDescription.replace(
+            /\n/g,
+            "\n" + " ".repeat(termWidth + spacerWidth)
+          );
+        }
+        return itemIndentStr + paddedTerm + " ".repeat(spacerWidth) + formattedDescription.replace(/\n/g, `
+${itemIndentStr}`);
+      }
+      /**
+       * Wrap a string at whitespace, preserving existing line breaks.
+       * Wrapping is skipped if the width is less than `minWidthToWrap`.
+       *
+       * @param {string} str
+       * @param {number} width
+       * @returns {string}
+       */
+      boxWrap(str, width) {
+        if (width < this.minWidthToWrap) return str;
+        const rawLines = str.split(/\r\n|\n/);
+        const chunkPattern = /[\s]*[^\s]+/g;
+        const wrappedLines = [];
+        rawLines.forEach((line) => {
+          const chunks = line.match(chunkPattern);
+          if (chunks === null) {
+            wrappedLines.push("");
+            return;
+          }
+          let sumChunks = [chunks.shift()];
+          let sumWidth = this.displayWidth(sumChunks[0]);
+          chunks.forEach((chunk) => {
+            const visibleWidth = this.displayWidth(chunk);
+            if (sumWidth + visibleWidth <= width) {
+              sumChunks.push(chunk);
+              sumWidth += visibleWidth;
+              return;
+            }
+            wrappedLines.push(sumChunks.join(""));
+            const nextChunk = chunk.trimStart();
+            sumChunks = [nextChunk];
+            sumWidth = this.displayWidth(nextChunk);
+          });
+          wrappedLines.push(sumChunks.join(""));
+        });
+        return wrappedLines.join("\n");
+      }
+    };
+    function stripColor(str) {
+      const sgrPattern = /\x1b\[\d*(;\d*)*m/g;
+      return str.replace(sgrPattern, "");
+    }
+    exports.Help = Help2;
+    exports.stripColor = stripColor;
+  }
+});
+
+// node_modules/commander/lib/option.js
+var require_option = __commonJS({
+  "node_modules/commander/lib/option.js"(exports) {
+    var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
+    var Option2 = class {
+      /**
+       * Initialize a new `Option` with the given `flags` and `description`.
+       *
+       * @param {string} flags
+       * @param {string} [description]
+       */
+      constructor(flags, description) {
+        this.flags = flags;
+        this.description = description || "";
+        this.required = flags.includes("<");
+        this.optional = flags.includes("[");
+        this.variadic = /\w\.\.\.[>\]]$/.test(flags);
+        this.mandatory = false;
+        const optionFlags = splitOptionFlags(flags);
+        this.short = optionFlags.shortFlag;
+        this.long = optionFlags.longFlag;
+        this.negate = false;
+        if (this.long) {
+          this.negate = this.long.startsWith("--no-");
+        }
+        this.defaultValue = void 0;
+        this.defaultValueDescription = void 0;
+        this.presetArg = void 0;
+        this.envVar = void 0;
+        this.parseArg = void 0;
+        this.hidden = false;
+        this.argChoices = void 0;
+        this.conflictsWith = [];
+        this.implied = void 0;
+        this.helpGroupHeading = void 0;
+      }
+      /**
+       * Set the default value, and optionally supply the description to be displayed in the help.
+       *
+       * @param {*} value
+       * @param {string} [description]
+       * @return {Option}
+       */
+      default(value, description) {
+        this.defaultValue = value;
+        this.defaultValueDescription = description;
+        return this;
+      }
+      /**
+       * Preset to use when option used without option-argument, especially optional but also boolean and negated.
+       * The custom processing (parseArg) is called.
+       *
+       * @example
+       * new Option('--color').default('GREYSCALE').preset('RGB');
+       * new Option('--donate [amount]').preset('20').argParser(parseFloat);
+       *
+       * @param {*} arg
+       * @return {Option}
+       */
+      preset(arg) {
+        this.presetArg = arg;
+        return this;
+      }
+      /**
+       * Add option name(s) that conflict with this option.
+       * An error will be displayed if conflicting options are found during parsing.
+       *
+       * @example
+       * new Option('--rgb').conflicts('cmyk');
+       * new Option('--js').conflicts(['ts', 'jsx']);
+       *
+       * @param {(string | string[])} names
+       * @return {Option}
+       */
+      conflicts(names) {
+        this.conflictsWith = this.conflictsWith.concat(names);
+        return this;
+      }
+      /**
+       * Specify implied option values for when this option is set and the implied options are not.
+       *
+       * The custom processing (parseArg) is not called on the implied values.
+       *
+       * @example
+       * program
+       *   .addOption(new Option('--log', 'write logging information to file'))
+       *   .addOption(new Option('--trace', 'log extra details').implies({ log: 'trace.txt' }));
+       *
+       * @param {object} impliedOptionValues
+       * @return {Option}
+       */
+      implies(impliedOptionValues) {
+        let newImplied = impliedOptionValues;
+        if (typeof impliedOptionValues === "string") {
+          newImplied = { [impliedOptionValues]: true };
+        }
+        this.implied = Object.assign(this.implied || {}, newImplied);
+        return this;
+      }
+      /**
+       * Set environment variable to check for option value.
+       *
+       * An environment variable is only used if when processed the current option value is
+       * undefined, or the source of the current value is 'default' or 'config' or 'env'.
+       *
+       * @param {string} name
+       * @return {Option}
+       */
+      env(name) {
+        this.envVar = name;
+        return this;
+      }
+      /**
+       * Set the custom handler for processing CLI option arguments into option values.
+       *
+       * @param {Function} [fn]
+       * @return {Option}
+       */
+      argParser(fn) {
+        this.parseArg = fn;
+        return this;
+      }
+      /**
+       * Whether the option is mandatory and must have a value after parsing.
+       *
+       * @param {boolean} [mandatory=true]
+       * @return {Option}
+       */
+      makeOptionMandatory(mandatory = true) {
+        this.mandatory = !!mandatory;
+        return this;
+      }
+      /**
+       * Hide option in help.
+       *
+       * @param {boolean} [hide=true]
+       * @return {Option}
+       */
+      hideHelp(hide = true) {
+        this.hidden = !!hide;
+        return this;
+      }
+      /**
+       * @package
+       */
+      _collectValue(value, previous) {
+        if (previous === this.defaultValue || !Array.isArray(previous)) {
+          return [value];
+        }
+        previous.push(value);
+        return previous;
+      }
+      /**
+       * Only allow option value to be one of choices.
+       *
+       * @param {string[]} values
+       * @return {Option}
+       */
+      choices(values) {
+        this.argChoices = values.slice();
+        this.parseArg = (arg, previous) => {
+          if (!this.argChoices.includes(arg)) {
+            throw new InvalidArgumentError2(
+              `Allowed choices are ${this.argChoices.join(", ")}.`
+            );
+          }
+          if (this.variadic) {
+            return this._collectValue(arg, previous);
+          }
+          return arg;
+        };
+        return this;
+      }
+      /**
+       * Return option name.
+       *
+       * @return {string}
+       */
+      name() {
+        if (this.long) {
+          return this.long.replace(/^--/, "");
+        }
+        return this.short.replace(/^-/, "");
+      }
+      /**
+       * Return option name, in a camelcase format that can be used
+       * as an object attribute key.
+       *
+       * @return {string}
+       */
+      attributeName() {
+        if (this.negate) {
+          return camelcase(this.name().replace(/^no-/, ""));
+        }
+        return camelcase(this.name());
+      }
+      /**
+       * Set the help group heading.
+       *
+       * @param {string} heading
+       * @return {Option}
+       */
+      helpGroup(heading) {
+        this.helpGroupHeading = heading;
+        return this;
+      }
+      /**
+       * Check if `arg` matches the short or long flag.
+       *
+       * @param {string} arg
+       * @return {boolean}
+       * @package
+       */
+      is(arg) {
+        return this.short === arg || this.long === arg;
+      }
+      /**
+       * Return whether a boolean option.
+       *
+       * Options are one of boolean, negated, required argument, or optional argument.
+       *
+       * @return {boolean}
+       * @package
+       */
+      isBoolean() {
+        return !this.required && !this.optional && !this.negate;
+      }
+    };
+    var DualOptions = class {
+      /**
+       * @param {Option[]} options
+       */
+      constructor(options) {
+        this.positiveOptions = /* @__PURE__ */ new Map();
+        this.negativeOptions = /* @__PURE__ */ new Map();
+        this.dualOptions = /* @__PURE__ */ new Set();
+        options.forEach((option) => {
+          if (option.negate) {
+            this.negativeOptions.set(option.attributeName(), option);
+          } else {
+            this.positiveOptions.set(option.attributeName(), option);
+          }
+        });
+        this.negativeOptions.forEach((value, key) => {
+          if (this.positiveOptions.has(key)) {
+            this.dualOptions.add(key);
+          }
+        });
+      }
+      /**
+       * Did the value come from the option, and not from possible matching dual option?
+       *
+       * @param {*} value
+       * @param {Option} option
+       * @returns {boolean}
+       */
+      valueFromOption(value, option) {
+        const optionKey = option.attributeName();
+        if (!this.dualOptions.has(optionKey)) return true;
+        const preset = this.negativeOptions.get(optionKey).presetArg;
+        const negativeValue = preset !== void 0 ? preset : false;
+        return option.negate === (negativeValue === value);
+      }
+    };
+    function camelcase(str) {
+      return str.split("-").reduce((str2, word) => {
+        return str2 + word[0].toUpperCase() + word.slice(1);
+      });
+    }
+    function splitOptionFlags(flags) {
+      let shortFlag;
+      let longFlag;
+      const shortFlagExp = /^-[^-]$/;
+      const longFlagExp = /^--[^-]/;
+      const flagParts = flags.split(/[ |,]+/).concat("guard");
+      if (shortFlagExp.test(flagParts[0])) shortFlag = flagParts.shift();
+      if (longFlagExp.test(flagParts[0])) longFlag = flagParts.shift();
+      if (!shortFlag && shortFlagExp.test(flagParts[0]))
+        shortFlag = flagParts.shift();
+      if (!shortFlag && longFlagExp.test(flagParts[0])) {
+        shortFlag = longFlag;
+        longFlag = flagParts.shift();
+      }
+      if (flagParts[0].startsWith("-")) {
+        const unsupportedFlag = flagParts[0];
+        const baseError = `option creation failed due to '${unsupportedFlag}' in option flags '${flags}'`;
+        if (/^-[^-][^-]/.test(unsupportedFlag))
+          throw new Error(
+            `${baseError}
+- a short flag is a single dash and a single character
+  - either use a single dash and a single character (for a short flag)
+  - or use a double dash for a long option (and can have two, like '--ws, --workspace')`
+          );
+        if (shortFlagExp.test(unsupportedFlag))
+          throw new Error(`${baseError}
+- too many short flags`);
+        if (longFlagExp.test(unsupportedFlag))
+          throw new Error(`${baseError}
+- too many long flags`);
+        throw new Error(`${baseError}
+- unrecognised flag format`);
+      }
+      if (shortFlag === void 0 && longFlag === void 0)
+        throw new Error(
+          `option creation failed due to no flags found in '${flags}'.`
+        );
+      return { shortFlag, longFlag };
+    }
+    exports.Option = Option2;
+    exports.DualOptions = DualOptions;
+  }
+});
+
+// node_modules/commander/lib/suggestSimilar.js
+var require_suggestSimilar = __commonJS({
+  "node_modules/commander/lib/suggestSimilar.js"(exports) {
+    var maxDistance = 3;
+    function editDistance(a, b) {
+      if (Math.abs(a.length - b.length) > maxDistance)
+        return Math.max(a.length, b.length);
+      const d = [];
+      for (let i = 0; i <= a.length; i++) {
+        d[i] = [i];
+      }
+      for (let j = 0; j <= b.length; j++) {
+        d[0][j] = j;
+      }
+      for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+          let cost = 1;
+          if (a[i - 1] === b[j - 1]) {
+            cost = 0;
+          } else {
+            cost = 1;
+          }
+          d[i][j] = Math.min(
+            d[i - 1][j] + 1,
+            // deletion
+            d[i][j - 1] + 1,
+            // insertion
+            d[i - 1][j - 1] + cost
+            // substitution
+          );
+          if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+            d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+          }
+        }
+      }
+      return d[a.length][b.length];
+    }
+    function suggestSimilar(word, candidates) {
+      if (!candidates || candidates.length === 0) return "";
+      candidates = Array.from(new Set(candidates));
+      const searchingOptions = word.startsWith("--");
+      if (searchingOptions) {
+        word = word.slice(2);
+        candidates = candidates.map((candidate) => candidate.slice(2));
+      }
+      let similar = [];
+      let bestDistance = maxDistance;
+      const minSimilarity = 0.4;
+      candidates.forEach((candidate) => {
+        if (candidate.length <= 1) return;
+        const distance = editDistance(word, candidate);
+        const length = Math.max(word.length, candidate.length);
+        const similarity = (length - distance) / length;
+        if (similarity > minSimilarity) {
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            similar = [candidate];
+          } else if (distance === bestDistance) {
+            similar.push(candidate);
+          }
+        }
+      });
+      similar.sort((a, b) => a.localeCompare(b));
+      if (searchingOptions) {
+        similar = similar.map((candidate) => `--${candidate}`);
+      }
+      if (similar.length > 1) {
+        return `
+(Did you mean one of ${similar.join(", ")}?)`;
+      }
+      if (similar.length === 1) {
+        return `
+(Did you mean ${similar[0]}?)`;
+      }
+      return "";
+    }
+    exports.suggestSimilar = suggestSimilar;
+  }
+});
+
+// node_modules/commander/lib/command.js
+var require_command = __commonJS({
+  "node_modules/commander/lib/command.js"(exports) {
+    var EventEmitter = __require("node:events").EventEmitter;
+    var childProcess = __require("node:child_process");
+    var path = __require("node:path");
+    var fs = __require("node:fs");
+    var process2 = __require("node:process");
+    var { Argument: Argument2, humanReadableArgName } = require_argument();
+    var { CommanderError: CommanderError2 } = require_error();
+    var { Help: Help2, stripColor } = require_help();
+    var { Option: Option2, DualOptions } = require_option();
+    var { suggestSimilar } = require_suggestSimilar();
+    var Command2 = class _Command extends EventEmitter {
+      /**
+       * Initialize a new `Command`.
+       *
+       * @param {string} [name]
+       */
+      constructor(name) {
+        super();
+        this.commands = [];
+        this.options = [];
+        this.parent = null;
+        this._allowUnknownOption = false;
+        this._allowExcessArguments = false;
+        this.registeredArguments = [];
+        this._args = this.registeredArguments;
+        this.args = [];
+        this.rawArgs = [];
+        this.processedArgs = [];
+        this._scriptPath = null;
+        this._name = name || "";
+        this._optionValues = {};
+        this._optionValueSources = {};
+        this._storeOptionsAsProperties = false;
+        this._actionHandler = null;
+        this._executableHandler = false;
+        this._executableFile = null;
+        this._executableDir = null;
+        this._defaultCommandName = null;
+        this._exitCallback = null;
+        this._aliases = [];
+        this._combineFlagAndOptionalValue = true;
+        this._description = "";
+        this._summary = "";
+        this._argsDescription = void 0;
+        this._enablePositionalOptions = false;
+        this._passThroughOptions = false;
+        this._lifeCycleHooks = {};
+        this._showHelpAfterError = false;
+        this._showSuggestionAfterError = true;
+        this._savedState = null;
+        this._outputConfiguration = {
+          writeOut: (str) => process2.stdout.write(str),
+          writeErr: (str) => process2.stderr.write(str),
+          outputError: (str, write) => write(str),
+          getOutHelpWidth: () => process2.stdout.isTTY ? process2.stdout.columns : void 0,
+          getErrHelpWidth: () => process2.stderr.isTTY ? process2.stderr.columns : void 0,
+          getOutHasColors: () => useColor() ?? (process2.stdout.isTTY && process2.stdout.hasColors?.()),
+          getErrHasColors: () => useColor() ?? (process2.stderr.isTTY && process2.stderr.hasColors?.()),
+          stripColor: (str) => stripColor(str)
+        };
+        this._hidden = false;
+        this._helpOption = void 0;
+        this._addImplicitHelpCommand = void 0;
+        this._helpCommand = void 0;
+        this._helpConfiguration = {};
+        this._helpGroupHeading = void 0;
+        this._defaultCommandGroup = void 0;
+        this._defaultOptionGroup = void 0;
+      }
+      /**
+       * Copy settings that are useful to have in common across root command and subcommands.
+       *
+       * (Used internally when adding a command using `.command()` so subcommands inherit parent settings.)
+       *
+       * @param {Command} sourceCommand
+       * @return {Command} `this` command for chaining
+       */
+      copyInheritedSettings(sourceCommand) {
+        this._outputConfiguration = sourceCommand._outputConfiguration;
+        this._helpOption = sourceCommand._helpOption;
+        this._helpCommand = sourceCommand._helpCommand;
+        this._helpConfiguration = sourceCommand._helpConfiguration;
+        this._exitCallback = sourceCommand._exitCallback;
+        this._storeOptionsAsProperties = sourceCommand._storeOptionsAsProperties;
+        this._combineFlagAndOptionalValue = sourceCommand._combineFlagAndOptionalValue;
+        this._allowExcessArguments = sourceCommand._allowExcessArguments;
+        this._enablePositionalOptions = sourceCommand._enablePositionalOptions;
+        this._showHelpAfterError = sourceCommand._showHelpAfterError;
+        this._showSuggestionAfterError = sourceCommand._showSuggestionAfterError;
+        return this;
+      }
+      /**
+       * @returns {Command[]}
+       * @private
+       */
+      _getCommandAndAncestors() {
+        const result = [];
+        for (let command = this; command; command = command.parent) {
+          result.push(command);
+        }
+        return result;
+      }
+      /**
+       * Define a command.
+       *
+       * There are two styles of command: pay attention to where to put the description.
+       *
+       * @example
+       * // Command implemented using action handler (description is supplied separately to `.command`)
+       * program
+       *   .command('clone <source> [destination]')
+       *   .description('clone a repository into a newly created directory')
+       *   .action((source, destination) => {
+       *     console.log('clone command called');
+       *   });
+       *
+       * // Command implemented using separate executable file (description is second parameter to `.command`)
+       * program
+       *   .command('start <service>', 'start named service')
+       *   .command('stop [service]', 'stop named service, or all if no name supplied');
+       *
+       * @param {string} nameAndArgs - command name and arguments, args are `<required>` or `[optional]` and last may also be `variadic...`
+       * @param {(object | string)} [actionOptsOrExecDesc] - configuration options (for action), or description (for executable)
+       * @param {object} [execOpts] - configuration options (for executable)
+       * @return {Command} returns new command for action handler, or `this` for executable command
+       */
+      command(nameAndArgs, actionOptsOrExecDesc, execOpts) {
+        let desc = actionOptsOrExecDesc;
+        let opts = execOpts;
+        if (typeof desc === "object" && desc !== null) {
+          opts = desc;
+          desc = null;
+        }
+        opts = opts || {};
+        const [, name, args] = nameAndArgs.match(/([^ ]+) *(.*)/);
+        const cmd = this.createCommand(name);
+        if (desc) {
+          cmd.description(desc);
+          cmd._executableHandler = true;
+        }
+        if (opts.isDefault) this._defaultCommandName = cmd._name;
+        cmd._hidden = !!(opts.noHelp || opts.hidden);
+        cmd._executableFile = opts.executableFile || null;
+        if (args) cmd.arguments(args);
+        this._registerCommand(cmd);
+        cmd.parent = this;
+        cmd.copyInheritedSettings(this);
+        if (desc) return this;
+        return cmd;
+      }
+      /**
+       * Factory routine to create a new unattached command.
+       *
+       * See .command() for creating an attached subcommand, which uses this routine to
+       * create the command. You can override createCommand to customise subcommands.
+       *
+       * @param {string} [name]
+       * @return {Command} new command
+       */
+      createCommand(name) {
+        return new _Command(name);
+      }
+      /**
+       * You can customise the help with a subclass of Help by overriding createHelp,
+       * or by overriding Help properties using configureHelp().
+       *
+       * @return {Help}
+       */
+      createHelp() {
+        return Object.assign(new Help2(), this.configureHelp());
+      }
+      /**
+       * You can customise the help by overriding Help properties using configureHelp(),
+       * or with a subclass of Help by overriding createHelp().
+       *
+       * @param {object} [configuration] - configuration options
+       * @return {(Command | object)} `this` command for chaining, or stored configuration
+       */
+      configureHelp(configuration) {
+        if (configuration === void 0) return this._helpConfiguration;
+        this._helpConfiguration = configuration;
+        return this;
+      }
+      /**
+       * The default output goes to stdout and stderr. You can customise this for special
+       * applications. You can also customise the display of errors by overriding outputError.
+       *
+       * The configuration properties are all functions:
+       *
+       *     // change how output being written, defaults to stdout and stderr
+       *     writeOut(str)
+       *     writeErr(str)
+       *     // change how output being written for errors, defaults to writeErr
+       *     outputError(str, write) // used for displaying errors and not used for displaying help
+       *     // specify width for wrapping help
+       *     getOutHelpWidth()
+       *     getErrHelpWidth()
+       *     // color support, currently only used with Help
+       *     getOutHasColors()
+       *     getErrHasColors()
+       *     stripColor() // used to remove ANSI escape codes if output does not have colors
+       *
+       * @param {object} [configuration] - configuration options
+       * @return {(Command | object)} `this` command for chaining, or stored configuration
+       */
+      configureOutput(configuration) {
+        if (configuration === void 0) return this._outputConfiguration;
+        this._outputConfiguration = {
+          ...this._outputConfiguration,
+          ...configuration
+        };
+        return this;
+      }
+      /**
+       * Display the help or a custom message after an error occurs.
+       *
+       * @param {(boolean|string)} [displayHelp]
+       * @return {Command} `this` command for chaining
+       */
+      showHelpAfterError(displayHelp = true) {
+        if (typeof displayHelp !== "string") displayHelp = !!displayHelp;
+        this._showHelpAfterError = displayHelp;
+        return this;
+      }
+      /**
+       * Display suggestion of similar commands for unknown commands, or options for unknown options.
+       *
+       * @param {boolean} [displaySuggestion]
+       * @return {Command} `this` command for chaining
+       */
+      showSuggestionAfterError(displaySuggestion = true) {
+        this._showSuggestionAfterError = !!displaySuggestion;
+        return this;
+      }
+      /**
+       * Add a prepared subcommand.
+       *
+       * See .command() for creating an attached subcommand which inherits settings from its parent.
+       *
+       * @param {Command} cmd - new subcommand
+       * @param {object} [opts] - configuration options
+       * @return {Command} `this` command for chaining
+       */
+      addCommand(cmd, opts) {
+        if (!cmd._name) {
+          throw new Error(`Command passed to .addCommand() must have a name
+- specify the name in Command constructor or using .name()`);
+        }
+        opts = opts || {};
+        if (opts.isDefault) this._defaultCommandName = cmd._name;
+        if (opts.noHelp || opts.hidden) cmd._hidden = true;
+        this._registerCommand(cmd);
+        cmd.parent = this;
+        cmd._checkForBrokenPassThrough();
+        return this;
+      }
+      /**
+       * Factory routine to create a new unattached argument.
+       *
+       * See .argument() for creating an attached argument, which uses this routine to
+       * create the argument. You can override createArgument to return a custom argument.
+       *
+       * @param {string} name
+       * @param {string} [description]
+       * @return {Argument} new argument
+       */
+      createArgument(name, description) {
+        return new Argument2(name, description);
+      }
+      /**
+       * Define argument syntax for command.
+       *
+       * The default is that the argument is required, and you can explicitly
+       * indicate this with <> around the name. Put [] around the name for an optional argument.
+       *
+       * @example
+       * program.argument('<input-file>');
+       * program.argument('[output-file]');
+       *
+       * @param {string} name
+       * @param {string} [description]
+       * @param {(Function|*)} [parseArg] - custom argument processing function or default value
+       * @param {*} [defaultValue]
+       * @return {Command} `this` command for chaining
+       */
+      argument(name, description, parseArg, defaultValue) {
+        const argument = this.createArgument(name, description);
+        if (typeof parseArg === "function") {
+          argument.default(defaultValue).argParser(parseArg);
+        } else {
+          argument.default(parseArg);
+        }
+        this.addArgument(argument);
+        return this;
+      }
+      /**
+       * Define argument syntax for command, adding multiple at once (without descriptions).
+       *
+       * See also .argument().
+       *
+       * @example
+       * program.arguments('<cmd> [env]');
+       *
+       * @param {string} names
+       * @return {Command} `this` command for chaining
+       */
+      arguments(names) {
+        names.trim().split(/ +/).forEach((detail) => {
+          this.argument(detail);
+        });
+        return this;
+      }
+      /**
+       * Define argument syntax for command, adding a prepared argument.
+       *
+       * @param {Argument} argument
+       * @return {Command} `this` command for chaining
+       */
+      addArgument(argument) {
+        const previousArgument = this.registeredArguments.slice(-1)[0];
+        if (previousArgument?.variadic) {
+          throw new Error(
+            `only the last argument can be variadic '${previousArgument.name()}'`
+          );
+        }
+        if (argument.required && argument.defaultValue !== void 0 && argument.parseArg === void 0) {
+          throw new Error(
+            `a default value for a required argument is never used: '${argument.name()}'`
+          );
+        }
+        this.registeredArguments.push(argument);
+        return this;
+      }
+      /**
+       * Customise or override default help command. By default a help command is automatically added if your command has subcommands.
+       *
+       * @example
+       *    program.helpCommand('help [cmd]');
+       *    program.helpCommand('help [cmd]', 'show help');
+       *    program.helpCommand(false); // suppress default help command
+       *    program.helpCommand(true); // add help command even if no subcommands
+       *
+       * @param {string|boolean} enableOrNameAndArgs - enable with custom name and/or arguments, or boolean to override whether added
+       * @param {string} [description] - custom description
+       * @return {Command} `this` command for chaining
+       */
+      helpCommand(enableOrNameAndArgs, description) {
+        if (typeof enableOrNameAndArgs === "boolean") {
+          this._addImplicitHelpCommand = enableOrNameAndArgs;
+          if (enableOrNameAndArgs && this._defaultCommandGroup) {
+            this._initCommandGroup(this._getHelpCommand());
+          }
+          return this;
+        }
+        const nameAndArgs = enableOrNameAndArgs ?? "help [command]";
+        const [, helpName, helpArgs] = nameAndArgs.match(/([^ ]+) *(.*)/);
+        const helpDescription = description ?? "display help for command";
+        const helpCommand = this.createCommand(helpName);
+        helpCommand.helpOption(false);
+        if (helpArgs) helpCommand.arguments(helpArgs);
+        if (helpDescription) helpCommand.description(helpDescription);
+        this._addImplicitHelpCommand = true;
+        this._helpCommand = helpCommand;
+        if (enableOrNameAndArgs || description) this._initCommandGroup(helpCommand);
+        return this;
+      }
+      /**
+       * Add prepared custom help command.
+       *
+       * @param {(Command|string|boolean)} helpCommand - custom help command, or deprecated enableOrNameAndArgs as for `.helpCommand()`
+       * @param {string} [deprecatedDescription] - deprecated custom description used with custom name only
+       * @return {Command} `this` command for chaining
+       */
+      addHelpCommand(helpCommand, deprecatedDescription) {
+        if (typeof helpCommand !== "object") {
+          this.helpCommand(helpCommand, deprecatedDescription);
+          return this;
+        }
+        this._addImplicitHelpCommand = true;
+        this._helpCommand = helpCommand;
+        this._initCommandGroup(helpCommand);
+        return this;
+      }
+      /**
+       * Lazy create help command.
+       *
+       * @return {(Command|null)}
+       * @package
+       */
+      _getHelpCommand() {
+        const hasImplicitHelpCommand = this._addImplicitHelpCommand ?? (this.commands.length && !this._actionHandler && !this._findCommand("help"));
+        if (hasImplicitHelpCommand) {
+          if (this._helpCommand === void 0) {
+            this.helpCommand(void 0, void 0);
+          }
+          return this._helpCommand;
+        }
+        return null;
+      }
+      /**
+       * Add hook for life cycle event.
+       *
+       * @param {string} event
+       * @param {Function} listener
+       * @return {Command} `this` command for chaining
+       */
+      hook(event, listener) {
+        const allowedValues = ["preSubcommand", "preAction", "postAction"];
+        if (!allowedValues.includes(event)) {
+          throw new Error(`Unexpected value for event passed to hook : '${event}'.
+Expecting one of '${allowedValues.join("', '")}'`);
+        }
+        if (this._lifeCycleHooks[event]) {
+          this._lifeCycleHooks[event].push(listener);
+        } else {
+          this._lifeCycleHooks[event] = [listener];
+        }
+        return this;
+      }
+      /**
+       * Register callback to use as replacement for calling process.exit.
+       *
+       * @param {Function} [fn] optional callback which will be passed a CommanderError, defaults to throwing
+       * @return {Command} `this` command for chaining
+       */
+      exitOverride(fn) {
+        if (fn) {
+          this._exitCallback = fn;
+        } else {
+          this._exitCallback = (err) => {
+            if (err.code !== "commander.executeSubCommandAsync") {
+              throw err;
+            } else {
+            }
+          };
+        }
+        return this;
+      }
+      /**
+       * Call process.exit, and _exitCallback if defined.
+       *
+       * @param {number} exitCode exit code for using with process.exit
+       * @param {string} code an id string representing the error
+       * @param {string} message human-readable description of the error
+       * @return never
+       * @private
+       */
+      _exit(exitCode, code, message) {
+        if (this._exitCallback) {
+          this._exitCallback(new CommanderError2(exitCode, code, message));
+        }
+        process2.exit(exitCode);
+      }
+      /**
+       * Register callback `fn` for the command.
+       *
+       * @example
+       * program
+       *   .command('serve')
+       *   .description('start service')
+       *   .action(function() {
+       *      // do work here
+       *   });
+       *
+       * @param {Function} fn
+       * @return {Command} `this` command for chaining
+       */
+      action(fn) {
+        const listener = (args) => {
+          const expectedArgsCount = this.registeredArguments.length;
+          const actionArgs = args.slice(0, expectedArgsCount);
+          if (this._storeOptionsAsProperties) {
+            actionArgs[expectedArgsCount] = this;
+          } else {
+            actionArgs[expectedArgsCount] = this.opts();
+          }
+          actionArgs.push(this);
+          return fn.apply(this, actionArgs);
+        };
+        this._actionHandler = listener;
+        return this;
+      }
+      /**
+       * Factory routine to create a new unattached option.
+       *
+       * See .option() for creating an attached option, which uses this routine to
+       * create the option. You can override createOption to return a custom option.
+       *
+       * @param {string} flags
+       * @param {string} [description]
+       * @return {Option} new option
+       */
+      createOption(flags, description) {
+        return new Option2(flags, description);
+      }
+      /**
+       * Wrap parseArgs to catch 'commander.invalidArgument'.
+       *
+       * @param {(Option | Argument)} target
+       * @param {string} value
+       * @param {*} previous
+       * @param {string} invalidArgumentMessage
+       * @private
+       */
+      _callParseArg(target, value, previous, invalidArgumentMessage) {
+        try {
+          return target.parseArg(value, previous);
+        } catch (err) {
+          if (err.code === "commander.invalidArgument") {
+            const message = `${invalidArgumentMessage} ${err.message}`;
+            this.error(message, { exitCode: err.exitCode, code: err.code });
+          }
+          throw err;
+        }
+      }
+      /**
+       * Check for option flag conflicts.
+       * Register option if no conflicts found, or throw on conflict.
+       *
+       * @param {Option} option
+       * @private
+       */
+      _registerOption(option) {
+        const matchingOption = option.short && this._findOption(option.short) || option.long && this._findOption(option.long);
+        if (matchingOption) {
+          const matchingFlag = option.long && this._findOption(option.long) ? option.long : option.short;
+          throw new Error(`Cannot add option '${option.flags}'${this._name && ` to command '${this._name}'`} due to conflicting flag '${matchingFlag}'
+-  already used by option '${matchingOption.flags}'`);
+        }
+        this._initOptionGroup(option);
+        this.options.push(option);
+      }
+      /**
+       * Check for command name and alias conflicts with existing commands.
+       * Register command if no conflicts found, or throw on conflict.
+       *
+       * @param {Command} command
+       * @private
+       */
+      _registerCommand(command) {
+        const knownBy = (cmd) => {
+          return [cmd.name()].concat(cmd.aliases());
+        };
+        const alreadyUsed = knownBy(command).find(
+          (name) => this._findCommand(name)
+        );
+        if (alreadyUsed) {
+          const existingCmd = knownBy(this._findCommand(alreadyUsed)).join("|");
+          const newCmd = knownBy(command).join("|");
+          throw new Error(
+            `cannot add command '${newCmd}' as already have command '${existingCmd}'`
+          );
+        }
+        this._initCommandGroup(command);
+        this.commands.push(command);
+      }
+      /**
+       * Add an option.
+       *
+       * @param {Option} option
+       * @return {Command} `this` command for chaining
+       */
+      addOption(option) {
+        this._registerOption(option);
+        const oname = option.name();
+        const name = option.attributeName();
+        if (option.negate) {
+          const positiveLongFlag = option.long.replace(/^--no-/, "--");
+          if (!this._findOption(positiveLongFlag)) {
+            this.setOptionValueWithSource(
+              name,
+              option.defaultValue === void 0 ? true : option.defaultValue,
+              "default"
+            );
+          }
+        } else if (option.defaultValue !== void 0) {
+          this.setOptionValueWithSource(name, option.defaultValue, "default");
+        }
+        const handleOptionValue = (val, invalidValueMessage, valueSource) => {
+          if (val == null && option.presetArg !== void 0) {
+            val = option.presetArg;
+          }
+          const oldValue = this.getOptionValue(name);
+          if (val !== null && option.parseArg) {
+            val = this._callParseArg(option, val, oldValue, invalidValueMessage);
+          } else if (val !== null && option.variadic) {
+            val = option._collectValue(val, oldValue);
+          }
+          if (val == null) {
+            if (option.negate) {
+              val = false;
+            } else if (option.isBoolean() || option.optional) {
+              val = true;
+            } else {
+              val = "";
+            }
+          }
+          this.setOptionValueWithSource(name, val, valueSource);
+        };
+        this.on("option:" + oname, (val) => {
+          const invalidValueMessage = `error: option '${option.flags}' argument '${val}' is invalid.`;
+          handleOptionValue(val, invalidValueMessage, "cli");
+        });
+        if (option.envVar) {
+          this.on("optionEnv:" + oname, (val) => {
+            const invalidValueMessage = `error: option '${option.flags}' value '${val}' from env '${option.envVar}' is invalid.`;
+            handleOptionValue(val, invalidValueMessage, "env");
+          });
+        }
+        return this;
+      }
+      /**
+       * Internal implementation shared by .option() and .requiredOption()
+       *
+       * @return {Command} `this` command for chaining
+       * @private
+       */
+      _optionEx(config, flags, description, fn, defaultValue) {
+        if (typeof flags === "object" && flags instanceof Option2) {
+          throw new Error(
+            "To add an Option object use addOption() instead of option() or requiredOption()"
+          );
+        }
+        const option = this.createOption(flags, description);
+        option.makeOptionMandatory(!!config.mandatory);
+        if (typeof fn === "function") {
+          option.default(defaultValue).argParser(fn);
+        } else if (fn instanceof RegExp) {
+          const regex = fn;
+          fn = (val, def) => {
+            const m = regex.exec(val);
+            return m ? m[0] : def;
+          };
+          option.default(defaultValue).argParser(fn);
+        } else {
+          option.default(fn);
+        }
+        return this.addOption(option);
+      }
+      /**
+       * Define option with `flags`, `description`, and optional argument parsing function or `defaultValue` or both.
+       *
+       * The `flags` string contains the short and/or long flags, separated by comma, a pipe or space. A required
+       * option-argument is indicated by `<>` and an optional option-argument by `[]`.
+       *
+       * See the README for more details, and see also addOption() and requiredOption().
+       *
+       * @example
+       * program
+       *     .option('-p, --pepper', 'add pepper')
+       *     .option('--pt, --pizza-type <TYPE>', 'type of pizza') // required option-argument
+       *     .option('-c, --cheese [CHEESE]', 'add extra cheese', 'mozzarella') // optional option-argument with default
+       *     .option('-t, --tip <VALUE>', 'add tip to purchase cost', parseFloat) // custom parse function
+       *
+       * @param {string} flags
+       * @param {string} [description]
+       * @param {(Function|*)} [parseArg] - custom option processing function or default value
+       * @param {*} [defaultValue]
+       * @return {Command} `this` command for chaining
+       */
+      option(flags, description, parseArg, defaultValue) {
+        return this._optionEx({}, flags, description, parseArg, defaultValue);
+      }
+      /**
+       * Add a required option which must have a value after parsing. This usually means
+       * the option must be specified on the command line. (Otherwise the same as .option().)
+       *
+       * The `flags` string contains the short and/or long flags, separated by comma, a pipe or space.
+       *
+       * @param {string} flags
+       * @param {string} [description]
+       * @param {(Function|*)} [parseArg] - custom option processing function or default value
+       * @param {*} [defaultValue]
+       * @return {Command} `this` command for chaining
+       */
+      requiredOption(flags, description, parseArg, defaultValue) {
+        return this._optionEx(
+          { mandatory: true },
+          flags,
+          description,
+          parseArg,
+          defaultValue
+        );
+      }
+      /**
+       * Alter parsing of short flags with optional values.
+       *
+       * @example
+       * // for `.option('-f,--flag [value]'):
+       * program.combineFlagAndOptionalValue(true);  // `-f80` is treated like `--flag=80`, this is the default behaviour
+       * program.combineFlagAndOptionalValue(false) // `-fb` is treated like `-f -b`
+       *
+       * @param {boolean} [combine] - if `true` or omitted, an optional value can be specified directly after the flag.
+       * @return {Command} `this` command for chaining
+       */
+      combineFlagAndOptionalValue(combine = true) {
+        this._combineFlagAndOptionalValue = !!combine;
+        return this;
+      }
+      /**
+       * Allow unknown options on the command line.
+       *
+       * @param {boolean} [allowUnknown] - if `true` or omitted, no error will be thrown for unknown options.
+       * @return {Command} `this` command for chaining
+       */
+      allowUnknownOption(allowUnknown = true) {
+        this._allowUnknownOption = !!allowUnknown;
+        return this;
+      }
+      /**
+       * Allow excess command-arguments on the command line. Pass false to make excess arguments an error.
+       *
+       * @param {boolean} [allowExcess] - if `true` or omitted, no error will be thrown for excess arguments.
+       * @return {Command} `this` command for chaining
+       */
+      allowExcessArguments(allowExcess = true) {
+        this._allowExcessArguments = !!allowExcess;
+        return this;
+      }
+      /**
+       * Enable positional options. Positional means global options are specified before subcommands which lets
+       * subcommands reuse the same option names, and also enables subcommands to turn on passThroughOptions.
+       * The default behaviour is non-positional and global options may appear anywhere on the command line.
+       *
+       * @param {boolean} [positional]
+       * @return {Command} `this` command for chaining
+       */
+      enablePositionalOptions(positional = true) {
+        this._enablePositionalOptions = !!positional;
+        return this;
+      }
+      /**
+       * Pass through options that come after command-arguments rather than treat them as command-options,
+       * so actual command-options come before command-arguments. Turning this on for a subcommand requires
+       * positional options to have been enabled on the program (parent commands).
+       * The default behaviour is non-positional and options may appear before or after command-arguments.
+       *
+       * @param {boolean} [passThrough] for unknown options.
+       * @return {Command} `this` command for chaining
+       */
+      passThroughOptions(passThrough = true) {
+        this._passThroughOptions = !!passThrough;
+        this._checkForBrokenPassThrough();
+        return this;
+      }
+      /**
+       * @private
+       */
+      _checkForBrokenPassThrough() {
+        if (this.parent && this._passThroughOptions && !this.parent._enablePositionalOptions) {
+          throw new Error(
+            `passThroughOptions cannot be used for '${this._name}' without turning on enablePositionalOptions for parent command(s)`
+          );
+        }
+      }
+      /**
+       * Whether to store option values as properties on command object,
+       * or store separately (specify false). In both cases the option values can be accessed using .opts().
+       *
+       * @param {boolean} [storeAsProperties=true]
+       * @return {Command} `this` command for chaining
+       */
+      storeOptionsAsProperties(storeAsProperties = true) {
+        if (this.options.length) {
+          throw new Error("call .storeOptionsAsProperties() before adding options");
+        }
+        if (Object.keys(this._optionValues).length) {
+          throw new Error(
+            "call .storeOptionsAsProperties() before setting option values"
+          );
+        }
+        this._storeOptionsAsProperties = !!storeAsProperties;
+        return this;
+      }
+      /**
+       * Retrieve option value.
+       *
+       * @param {string} key
+       * @return {object} value
+       */
+      getOptionValue(key) {
+        if (this._storeOptionsAsProperties) {
+          return this[key];
+        }
+        return this._optionValues[key];
+      }
+      /**
+       * Store option value.
+       *
+       * @param {string} key
+       * @param {object} value
+       * @return {Command} `this` command for chaining
+       */
+      setOptionValue(key, value) {
+        return this.setOptionValueWithSource(key, value, void 0);
+      }
+      /**
+       * Store option value and where the value came from.
+       *
+       * @param {string} key
+       * @param {object} value
+       * @param {string} source - expected values are default/config/env/cli/implied
+       * @return {Command} `this` command for chaining
+       */
+      setOptionValueWithSource(key, value, source) {
+        if (this._storeOptionsAsProperties) {
+          this[key] = value;
+        } else {
+          this._optionValues[key] = value;
+        }
+        this._optionValueSources[key] = source;
+        return this;
+      }
+      /**
+       * Get source of option value.
+       * Expected values are default | config | env | cli | implied
+       *
+       * @param {string} key
+       * @return {string}
+       */
+      getOptionValueSource(key) {
+        return this._optionValueSources[key];
+      }
+      /**
+       * Get source of option value. See also .optsWithGlobals().
+       * Expected values are default | config | env | cli | implied
+       *
+       * @param {string} key
+       * @return {string}
+       */
+      getOptionValueSourceWithGlobals(key) {
+        let source;
+        this._getCommandAndAncestors().forEach((cmd) => {
+          if (cmd.getOptionValueSource(key) !== void 0) {
+            source = cmd.getOptionValueSource(key);
+          }
+        });
+        return source;
+      }
+      /**
+       * Get user arguments from implied or explicit arguments.
+       * Side-effects: set _scriptPath if args included script. Used for default program name, and subcommand searches.
+       *
+       * @private
+       */
+      _prepareUserArgs(argv, parseOptions) {
+        if (argv !== void 0 && !Array.isArray(argv)) {
+          throw new Error("first parameter to parse must be array or undefined");
+        }
+        parseOptions = parseOptions || {};
+        if (argv === void 0 && parseOptions.from === void 0) {
+          if (process2.versions?.electron) {
+            parseOptions.from = "electron";
+          }
+          const execArgv = process2.execArgv ?? [];
+          if (execArgv.includes("-e") || execArgv.includes("--eval") || execArgv.includes("-p") || execArgv.includes("--print")) {
+            parseOptions.from = "eval";
+          }
+        }
+        if (argv === void 0) {
+          argv = process2.argv;
+        }
+        this.rawArgs = argv.slice();
+        let userArgs;
+        switch (parseOptions.from) {
+          case void 0:
+          case "node":
+            this._scriptPath = argv[1];
+            userArgs = argv.slice(2);
+            break;
+          case "electron":
+            if (process2.defaultApp) {
+              this._scriptPath = argv[1];
+              userArgs = argv.slice(2);
+            } else {
+              userArgs = argv.slice(1);
+            }
+            break;
+          case "user":
+            userArgs = argv.slice(0);
+            break;
+          case "eval":
+            userArgs = argv.slice(1);
+            break;
+          default:
+            throw new Error(
+              `unexpected parse option { from: '${parseOptions.from}' }`
+            );
+        }
+        if (!this._name && this._scriptPath)
+          this.nameFromFilename(this._scriptPath);
+        this._name = this._name || "program";
+        return userArgs;
+      }
+      /**
+       * Parse `argv`, setting options and invoking commands when defined.
+       *
+       * Use parseAsync instead of parse if any of your action handlers are async.
+       *
+       * Call with no parameters to parse `process.argv`. Detects Electron and special node options like `node --eval`. Easy mode!
+       *
+       * Or call with an array of strings to parse, and optionally where the user arguments start by specifying where the arguments are `from`:
+       * - `'node'`: default, `argv[0]` is the application and `argv[1]` is the script being run, with user arguments after that
+       * - `'electron'`: `argv[0]` is the application and `argv[1]` varies depending on whether the electron application is packaged
+       * - `'user'`: just user arguments
+       *
+       * @example
+       * program.parse(); // parse process.argv and auto-detect electron and special node flags
+       * program.parse(process.argv); // assume argv[0] is app and argv[1] is script
+       * program.parse(my-args, { from: 'user' }); // just user supplied arguments, nothing special about argv[0]
+       *
+       * @param {string[]} [argv] - optional, defaults to process.argv
+       * @param {object} [parseOptions] - optionally specify style of options with from: node/user/electron
+       * @param {string} [parseOptions.from] - where the args are from: 'node', 'user', 'electron'
+       * @return {Command} `this` command for chaining
+       */
+      parse(argv, parseOptions) {
+        this._prepareForParse();
+        const userArgs = this._prepareUserArgs(argv, parseOptions);
+        this._parseCommand([], userArgs);
+        return this;
+      }
+      /**
+       * Parse `argv`, setting options and invoking commands when defined.
+       *
+       * Call with no parameters to parse `process.argv`. Detects Electron and special node options like `node --eval`. Easy mode!
+       *
+       * Or call with an array of strings to parse, and optionally where the user arguments start by specifying where the arguments are `from`:
+       * - `'node'`: default, `argv[0]` is the application and `argv[1]` is the script being run, with user arguments after that
+       * - `'electron'`: `argv[0]` is the application and `argv[1]` varies depending on whether the electron application is packaged
+       * - `'user'`: just user arguments
+       *
+       * @example
+       * await program.parseAsync(); // parse process.argv and auto-detect electron and special node flags
+       * await program.parseAsync(process.argv); // assume argv[0] is app and argv[1] is script
+       * await program.parseAsync(my-args, { from: 'user' }); // just user supplied arguments, nothing special about argv[0]
+       *
+       * @param {string[]} [argv]
+       * @param {object} [parseOptions]
+       * @param {string} parseOptions.from - where the args are from: 'node', 'user', 'electron'
+       * @return {Promise}
+       */
+      async parseAsync(argv, parseOptions) {
+        this._prepareForParse();
+        const userArgs = this._prepareUserArgs(argv, parseOptions);
+        await this._parseCommand([], userArgs);
+        return this;
+      }
+      _prepareForParse() {
+        if (this._savedState === null) {
+          this.saveStateBeforeParse();
+        } else {
+          this.restoreStateBeforeParse();
+        }
+      }
+      /**
+       * Called the first time parse is called to save state and allow a restore before subsequent calls to parse.
+       * Not usually called directly, but available for subclasses to save their custom state.
+       *
+       * This is called in a lazy way. Only commands used in parsing chain will have state saved.
+       */
+      saveStateBeforeParse() {
+        this._savedState = {
+          // name is stable if supplied by author, but may be unspecified for root command and deduced during parsing
+          _name: this._name,
+          // option values before parse have default values (including false for negated options)
+          // shallow clones
+          _optionValues: { ...this._optionValues },
+          _optionValueSources: { ...this._optionValueSources }
+        };
+      }
+      /**
+       * Restore state before parse for calls after the first.
+       * Not usually called directly, but available for subclasses to save their custom state.
+       *
+       * This is called in a lazy way. Only commands used in parsing chain will have state restored.
+       */
+      restoreStateBeforeParse() {
+        if (this._storeOptionsAsProperties)
+          throw new Error(`Can not call parse again when storeOptionsAsProperties is true.
+- either make a new Command for each call to parse, or stop storing options as properties`);
+        this._name = this._savedState._name;
+        this._scriptPath = null;
+        this.rawArgs = [];
+        this._optionValues = { ...this._savedState._optionValues };
+        this._optionValueSources = { ...this._savedState._optionValueSources };
+        this.args = [];
+        this.processedArgs = [];
+      }
+      /**
+       * Throw if expected executable is missing. Add lots of help for author.
+       *
+       * @param {string} executableFile
+       * @param {string} executableDir
+       * @param {string} subcommandName
+       */
+      _checkForMissingExecutable(executableFile, executableDir, subcommandName) {
+        if (fs.existsSync(executableFile)) return;
+        const executableDirMessage = executableDir ? `searched for local subcommand relative to directory '${executableDir}'` : "no directory for search for local subcommand, use .executableDir() to supply a custom directory";
+        const executableMissing = `'${executableFile}' does not exist
+ - if '${subcommandName}' is not meant to be an executable command, remove description parameter from '.command()' and use '.description()' instead
+ - if the default executable name is not suitable, use the executableFile option to supply a custom name or path
+ - ${executableDirMessage}`;
+        throw new Error(executableMissing);
+      }
+      /**
+       * Execute a sub-command executable.
+       *
+       * @private
+       */
+      _executeSubCommand(subcommand, args) {
+        args = args.slice();
+        let launchWithNode = false;
+        const sourceExt = [".js", ".ts", ".tsx", ".mjs", ".cjs"];
+        function findFile(baseDir, baseName) {
+          const localBin = path.resolve(baseDir, baseName);
+          if (fs.existsSync(localBin)) return localBin;
+          if (sourceExt.includes(path.extname(baseName))) return void 0;
+          const foundExt = sourceExt.find(
+            (ext) => fs.existsSync(`${localBin}${ext}`)
+          );
+          if (foundExt) return `${localBin}${foundExt}`;
+          return void 0;
+        }
+        this._checkForMissingMandatoryOptions();
+        this._checkForConflictingOptions();
+        let executableFile = subcommand._executableFile || `${this._name}-${subcommand._name}`;
+        let executableDir = this._executableDir || "";
+        if (this._scriptPath) {
+          let resolvedScriptPath;
+          try {
+            resolvedScriptPath = fs.realpathSync(this._scriptPath);
+          } catch {
+            resolvedScriptPath = this._scriptPath;
+          }
+          executableDir = path.resolve(
+            path.dirname(resolvedScriptPath),
+            executableDir
+          );
+        }
+        if (executableDir) {
+          let localFile = findFile(executableDir, executableFile);
+          if (!localFile && !subcommand._executableFile && this._scriptPath) {
+            const legacyName = path.basename(
+              this._scriptPath,
+              path.extname(this._scriptPath)
+            );
+            if (legacyName !== this._name) {
+              localFile = findFile(
+                executableDir,
+                `${legacyName}-${subcommand._name}`
+              );
+            }
+          }
+          executableFile = localFile || executableFile;
+        }
+        launchWithNode = sourceExt.includes(path.extname(executableFile));
+        let proc;
+        if (process2.platform !== "win32") {
+          if (launchWithNode) {
+            args.unshift(executableFile);
+            args = incrementNodeInspectorPort(process2.execArgv).concat(args);
+            proc = childProcess.spawn(process2.argv[0], args, { stdio: "inherit" });
+          } else {
+            proc = childProcess.spawn(executableFile, args, { stdio: "inherit" });
+          }
+        } else {
+          this._checkForMissingExecutable(
+            executableFile,
+            executableDir,
+            subcommand._name
+          );
+          args.unshift(executableFile);
+          args = incrementNodeInspectorPort(process2.execArgv).concat(args);
+          proc = childProcess.spawn(process2.execPath, args, { stdio: "inherit" });
+        }
+        if (!proc.killed) {
+          const signals = ["SIGUSR1", "SIGUSR2", "SIGTERM", "SIGINT", "SIGHUP"];
+          signals.forEach((signal) => {
+            process2.on(signal, () => {
+              if (proc.killed === false && proc.exitCode === null) {
+                proc.kill(signal);
+              }
+            });
+          });
+        }
+        const exitCallback = this._exitCallback;
+        proc.on("close", (code) => {
+          code = code ?? 1;
+          if (!exitCallback) {
+            process2.exit(code);
+          } else {
+            exitCallback(
+              new CommanderError2(
+                code,
+                "commander.executeSubCommandAsync",
+                "(close)"
+              )
+            );
+          }
+        });
+        proc.on("error", (err) => {
+          if (err.code === "ENOENT") {
+            this._checkForMissingExecutable(
+              executableFile,
+              executableDir,
+              subcommand._name
+            );
+          } else if (err.code === "EACCES") {
+            throw new Error(`'${executableFile}' not executable`);
+          }
+          if (!exitCallback) {
+            process2.exit(1);
+          } else {
+            const wrappedError = new CommanderError2(
+              1,
+              "commander.executeSubCommandAsync",
+              "(error)"
+            );
+            wrappedError.nestedError = err;
+            exitCallback(wrappedError);
+          }
+        });
+        this.runningCommand = proc;
+      }
+      /**
+       * @private
+       */
+      _dispatchSubcommand(commandName, operands, unknown) {
+        const subCommand = this._findCommand(commandName);
+        if (!subCommand) this.help({ error: true });
+        subCommand._prepareForParse();
+        let promiseChain;
+        promiseChain = this._chainOrCallSubCommandHook(
+          promiseChain,
+          subCommand,
+          "preSubcommand"
+        );
+        promiseChain = this._chainOrCall(promiseChain, () => {
+          if (subCommand._executableHandler) {
+            this._executeSubCommand(subCommand, operands.concat(unknown));
+          } else {
+            return subCommand._parseCommand(operands, unknown);
+          }
+        });
+        return promiseChain;
+      }
+      /**
+       * Invoke help directly if possible, or dispatch if necessary.
+       * e.g. help foo
+       *
+       * @private
+       */
+      _dispatchHelpCommand(subcommandName) {
+        if (!subcommandName) {
+          this.help();
+        }
+        const subCommand = this._findCommand(subcommandName);
+        if (subCommand && !subCommand._executableHandler) {
+          subCommand.help();
+        }
+        return this._dispatchSubcommand(
+          subcommandName,
+          [],
+          [this._getHelpOption()?.long ?? this._getHelpOption()?.short ?? "--help"]
+        );
+      }
+      /**
+       * Check this.args against expected this.registeredArguments.
+       *
+       * @private
+       */
+      _checkNumberOfArguments() {
+        this.registeredArguments.forEach((arg, i) => {
+          if (arg.required && this.args[i] == null) {
+            this.missingArgument(arg.name());
+          }
+        });
+        if (this.registeredArguments.length > 0 && this.registeredArguments[this.registeredArguments.length - 1].variadic) {
+          return;
+        }
+        if (this.args.length > this.registeredArguments.length) {
+          this._excessArguments(this.args);
+        }
+      }
+      /**
+       * Process this.args using this.registeredArguments and save as this.processedArgs!
+       *
+       * @private
+       */
+      _processArguments() {
+        const myParseArg = (argument, value, previous) => {
+          let parsedValue = value;
+          if (value !== null && argument.parseArg) {
+            const invalidValueMessage = `error: command-argument value '${value}' is invalid for argument '${argument.name()}'.`;
+            parsedValue = this._callParseArg(
+              argument,
+              value,
+              previous,
+              invalidValueMessage
+            );
+          }
+          return parsedValue;
+        };
+        this._checkNumberOfArguments();
+        const processedArgs = [];
+        this.registeredArguments.forEach((declaredArg, index) => {
+          let value = declaredArg.defaultValue;
+          if (declaredArg.variadic) {
+            if (index < this.args.length) {
+              value = this.args.slice(index);
+              if (declaredArg.parseArg) {
+                value = value.reduce((processed, v) => {
+                  return myParseArg(declaredArg, v, processed);
+                }, declaredArg.defaultValue);
+              }
+            } else if (value === void 0) {
+              value = [];
+            }
+          } else if (index < this.args.length) {
+            value = this.args[index];
+            if (declaredArg.parseArg) {
+              value = myParseArg(declaredArg, value, declaredArg.defaultValue);
+            }
+          }
+          processedArgs[index] = value;
+        });
+        this.processedArgs = processedArgs;
+      }
+      /**
+       * Once we have a promise we chain, but call synchronously until then.
+       *
+       * @param {(Promise|undefined)} promise
+       * @param {Function} fn
+       * @return {(Promise|undefined)}
+       * @private
+       */
+      _chainOrCall(promise, fn) {
+        if (promise?.then && typeof promise.then === "function") {
+          return promise.then(() => fn());
+        }
+        return fn();
+      }
+      /**
+       *
+       * @param {(Promise|undefined)} promise
+       * @param {string} event
+       * @return {(Promise|undefined)}
+       * @private
+       */
+      _chainOrCallHooks(promise, event) {
+        let result = promise;
+        const hooks = [];
+        this._getCommandAndAncestors().reverse().filter((cmd) => cmd._lifeCycleHooks[event] !== void 0).forEach((hookedCommand) => {
+          hookedCommand._lifeCycleHooks[event].forEach((callback) => {
+            hooks.push({ hookedCommand, callback });
+          });
+        });
+        if (event === "postAction") {
+          hooks.reverse();
+        }
+        hooks.forEach((hookDetail) => {
+          result = this._chainOrCall(result, () => {
+            return hookDetail.callback(hookDetail.hookedCommand, this);
+          });
+        });
+        return result;
+      }
+      /**
+       *
+       * @param {(Promise|undefined)} promise
+       * @param {Command} subCommand
+       * @param {string} event
+       * @return {(Promise|undefined)}
+       * @private
+       */
+      _chainOrCallSubCommandHook(promise, subCommand, event) {
+        let result = promise;
+        if (this._lifeCycleHooks[event] !== void 0) {
+          this._lifeCycleHooks[event].forEach((hook) => {
+            result = this._chainOrCall(result, () => {
+              return hook(this, subCommand);
+            });
+          });
+        }
+        return result;
+      }
+      /**
+       * Process arguments in context of this command.
+       * Returns action result, in case it is a promise.
+       *
+       * @private
+       */
+      _parseCommand(operands, unknown) {
+        const parsed = this.parseOptions(unknown);
+        this._parseOptionsEnv();
+        this._parseOptionsImplied();
+        operands = operands.concat(parsed.operands);
+        unknown = parsed.unknown;
+        this.args = operands.concat(unknown);
+        if (operands && this._findCommand(operands[0])) {
+          return this._dispatchSubcommand(operands[0], operands.slice(1), unknown);
+        }
+        if (this._getHelpCommand() && operands[0] === this._getHelpCommand().name()) {
+          return this._dispatchHelpCommand(operands[1]);
+        }
+        if (this._defaultCommandName) {
+          this._outputHelpIfRequested(unknown);
+          return this._dispatchSubcommand(
+            this._defaultCommandName,
+            operands,
+            unknown
+          );
+        }
+        if (this.commands.length && this.args.length === 0 && !this._actionHandler && !this._defaultCommandName) {
+          this.help({ error: true });
+        }
+        this._outputHelpIfRequested(parsed.unknown);
+        this._checkForMissingMandatoryOptions();
+        this._checkForConflictingOptions();
+        const checkForUnknownOptions = () => {
+          if (parsed.unknown.length > 0) {
+            this.unknownOption(parsed.unknown[0]);
+          }
+        };
+        const commandEvent = `command:${this.name()}`;
+        if (this._actionHandler) {
+          checkForUnknownOptions();
+          this._processArguments();
+          let promiseChain;
+          promiseChain = this._chainOrCallHooks(promiseChain, "preAction");
+          promiseChain = this._chainOrCall(
+            promiseChain,
+            () => this._actionHandler(this.processedArgs)
+          );
+          if (this.parent) {
+            promiseChain = this._chainOrCall(promiseChain, () => {
+              this.parent.emit(commandEvent, operands, unknown);
+            });
+          }
+          promiseChain = this._chainOrCallHooks(promiseChain, "postAction");
+          return promiseChain;
+        }
+        if (this.parent?.listenerCount(commandEvent)) {
+          checkForUnknownOptions();
+          this._processArguments();
+          this.parent.emit(commandEvent, operands, unknown);
+        } else if (operands.length) {
+          if (this._findCommand("*")) {
+            return this._dispatchSubcommand("*", operands, unknown);
+          }
+          if (this.listenerCount("command:*")) {
+            this.emit("command:*", operands, unknown);
+          } else if (this.commands.length) {
+            this.unknownCommand();
+          } else {
+            checkForUnknownOptions();
+            this._processArguments();
+          }
+        } else if (this.commands.length) {
+          checkForUnknownOptions();
+          this.help({ error: true });
+        } else {
+          checkForUnknownOptions();
+          this._processArguments();
+        }
+      }
+      /**
+       * Find matching command.
+       *
+       * @private
+       * @return {Command | undefined}
+       */
+      _findCommand(name) {
+        if (!name) return void 0;
+        return this.commands.find(
+          (cmd) => cmd._name === name || cmd._aliases.includes(name)
+        );
+      }
+      /**
+       * Return an option matching `arg` if any.
+       *
+       * @param {string} arg
+       * @return {Option}
+       * @package
+       */
+      _findOption(arg) {
+        return this.options.find((option) => option.is(arg));
+      }
+      /**
+       * Display an error message if a mandatory option does not have a value.
+       * Called after checking for help flags in leaf subcommand.
+       *
+       * @private
+       */
+      _checkForMissingMandatoryOptions() {
+        this._getCommandAndAncestors().forEach((cmd) => {
+          cmd.options.forEach((anOption) => {
+            if (anOption.mandatory && cmd.getOptionValue(anOption.attributeName()) === void 0) {
+              cmd.missingMandatoryOptionValue(anOption);
+            }
+          });
+        });
+      }
+      /**
+       * Display an error message if conflicting options are used together in this.
+       *
+       * @private
+       */
+      _checkForConflictingLocalOptions() {
+        const definedNonDefaultOptions = this.options.filter((option) => {
+          const optionKey = option.attributeName();
+          if (this.getOptionValue(optionKey) === void 0) {
+            return false;
+          }
+          return this.getOptionValueSource(optionKey) !== "default";
+        });
+        const optionsWithConflicting = definedNonDefaultOptions.filter(
+          (option) => option.conflictsWith.length > 0
+        );
+        optionsWithConflicting.forEach((option) => {
+          const conflictingAndDefined = definedNonDefaultOptions.find(
+            (defined) => option.conflictsWith.includes(defined.attributeName())
+          );
+          if (conflictingAndDefined) {
+            this._conflictingOption(option, conflictingAndDefined);
+          }
+        });
+      }
+      /**
+       * Display an error message if conflicting options are used together.
+       * Called after checking for help flags in leaf subcommand.
+       *
+       * @private
+       */
+      _checkForConflictingOptions() {
+        this._getCommandAndAncestors().forEach((cmd) => {
+          cmd._checkForConflictingLocalOptions();
+        });
+      }
+      /**
+       * Parse options from `argv` removing known options,
+       * and return argv split into operands and unknown arguments.
+       *
+       * Side effects: modifies command by storing options. Does not reset state if called again.
+       *
+       * Examples:
+       *
+       *     argv => operands, unknown
+       *     --known kkk op => [op], []
+       *     op --known kkk => [op], []
+       *     sub --unknown uuu op => [sub], [--unknown uuu op]
+       *     sub -- --unknown uuu op => [sub --unknown uuu op], []
+       *
+       * @param {string[]} args
+       * @return {{operands: string[], unknown: string[]}}
+       */
+      parseOptions(args) {
+        const operands = [];
+        const unknown = [];
+        let dest = operands;
+        function maybeOption(arg) {
+          return arg.length > 1 && arg[0] === "-";
+        }
+        const negativeNumberArg = (arg) => {
+          if (!/^-(\d+|\d*\.\d+)(e[+-]?\d+)?$/.test(arg)) return false;
+          return !this._getCommandAndAncestors().some(
+            (cmd) => cmd.options.map((opt) => opt.short).some((short) => /^-\d$/.test(short))
+          );
+        };
+        let activeVariadicOption = null;
+        let activeGroup = null;
+        let i = 0;
+        while (i < args.length || activeGroup) {
+          const arg = activeGroup ?? args[i++];
+          activeGroup = null;
+          if (arg === "--") {
+            if (dest === unknown) dest.push(arg);
+            dest.push(...args.slice(i));
+            break;
+          }
+          if (activeVariadicOption && (!maybeOption(arg) || negativeNumberArg(arg))) {
+            this.emit(`option:${activeVariadicOption.name()}`, arg);
+            continue;
+          }
+          activeVariadicOption = null;
+          if (maybeOption(arg)) {
+            const option = this._findOption(arg);
+            if (option) {
+              if (option.required) {
+                const value = args[i++];
+                if (value === void 0) this.optionMissingArgument(option);
+                this.emit(`option:${option.name()}`, value);
+              } else if (option.optional) {
+                let value = null;
+                if (i < args.length && (!maybeOption(args[i]) || negativeNumberArg(args[i]))) {
+                  value = args[i++];
+                }
+                this.emit(`option:${option.name()}`, value);
+              } else {
+                this.emit(`option:${option.name()}`);
+              }
+              activeVariadicOption = option.variadic ? option : null;
+              continue;
+            }
+          }
+          if (arg.length > 2 && arg[0] === "-" && arg[1] !== "-") {
+            const option = this._findOption(`-${arg[1]}`);
+            if (option) {
+              if (option.required || option.optional && this._combineFlagAndOptionalValue) {
+                this.emit(`option:${option.name()}`, arg.slice(2));
+              } else {
+                this.emit(`option:${option.name()}`);
+                activeGroup = `-${arg.slice(2)}`;
+              }
+              continue;
+            }
+          }
+          if (/^--[^=]+=/.test(arg)) {
+            const index = arg.indexOf("=");
+            const option = this._findOption(arg.slice(0, index));
+            if (option && (option.required || option.optional)) {
+              this.emit(`option:${option.name()}`, arg.slice(index + 1));
+              continue;
+            }
+          }
+          if (dest === operands && maybeOption(arg) && !(this.commands.length === 0 && negativeNumberArg(arg))) {
+            dest = unknown;
+          }
+          if ((this._enablePositionalOptions || this._passThroughOptions) && operands.length === 0 && unknown.length === 0) {
+            if (this._findCommand(arg)) {
+              operands.push(arg);
+              unknown.push(...args.slice(i));
+              break;
+            } else if (this._getHelpCommand() && arg === this._getHelpCommand().name()) {
+              operands.push(arg, ...args.slice(i));
+              break;
+            } else if (this._defaultCommandName) {
+              unknown.push(arg, ...args.slice(i));
+              break;
+            }
+          }
+          if (this._passThroughOptions) {
+            dest.push(arg, ...args.slice(i));
+            break;
+          }
+          dest.push(arg);
+        }
+        return { operands, unknown };
+      }
+      /**
+       * Return an object containing local option values as key-value pairs.
+       *
+       * @return {object}
+       */
+      opts() {
+        if (this._storeOptionsAsProperties) {
+          const result = {};
+          const len = this.options.length;
+          for (let i = 0; i < len; i++) {
+            const key = this.options[i].attributeName();
+            result[key] = key === this._versionOptionName ? this._version : this[key];
+          }
+          return result;
+        }
+        return this._optionValues;
+      }
+      /**
+       * Return an object containing merged local and global option values as key-value pairs.
+       *
+       * @return {object}
+       */
+      optsWithGlobals() {
+        return this._getCommandAndAncestors().reduce(
+          (combinedOptions, cmd) => Object.assign(combinedOptions, cmd.opts()),
+          {}
+        );
+      }
+      /**
+       * Display error message and exit (or call exitOverride).
+       *
+       * @param {string} message
+       * @param {object} [errorOptions]
+       * @param {string} [errorOptions.code] - an id string representing the error
+       * @param {number} [errorOptions.exitCode] - used with process.exit
+       */
+      error(message, errorOptions) {
+        this._outputConfiguration.outputError(
+          `${message}
+`,
+          this._outputConfiguration.writeErr
+        );
+        if (typeof this._showHelpAfterError === "string") {
+          this._outputConfiguration.writeErr(`${this._showHelpAfterError}
+`);
+        } else if (this._showHelpAfterError) {
+          this._outputConfiguration.writeErr("\n");
+          this.outputHelp({ error: true });
+        }
+        const config = errorOptions || {};
+        const exitCode = config.exitCode || 1;
+        const code = config.code || "commander.error";
+        this._exit(exitCode, code, message);
+      }
+      /**
+       * Apply any option related environment variables, if option does
+       * not have a value from cli or client code.
+       *
+       * @private
+       */
+      _parseOptionsEnv() {
+        this.options.forEach((option) => {
+          if (option.envVar && option.envVar in process2.env) {
+            const optionKey = option.attributeName();
+            if (this.getOptionValue(optionKey) === void 0 || ["default", "config", "env"].includes(
+              this.getOptionValueSource(optionKey)
+            )) {
+              if (option.required || option.optional) {
+                this.emit(`optionEnv:${option.name()}`, process2.env[option.envVar]);
+              } else {
+                this.emit(`optionEnv:${option.name()}`);
+              }
+            }
+          }
+        });
+      }
+      /**
+       * Apply any implied option values, if option is undefined or default value.
+       *
+       * @private
+       */
+      _parseOptionsImplied() {
+        const dualHelper = new DualOptions(this.options);
+        const hasCustomOptionValue = (optionKey) => {
+          return this.getOptionValue(optionKey) !== void 0 && !["default", "implied"].includes(this.getOptionValueSource(optionKey));
+        };
+        this.options.filter(
+          (option) => option.implied !== void 0 && hasCustomOptionValue(option.attributeName()) && dualHelper.valueFromOption(
+            this.getOptionValue(option.attributeName()),
+            option
+          )
+        ).forEach((option) => {
+          Object.keys(option.implied).filter((impliedKey) => !hasCustomOptionValue(impliedKey)).forEach((impliedKey) => {
+            this.setOptionValueWithSource(
+              impliedKey,
+              option.implied[impliedKey],
+              "implied"
+            );
+          });
+        });
+      }
+      /**
+       * Argument `name` is missing.
+       *
+       * @param {string} name
+       * @private
+       */
+      missingArgument(name) {
+        const message = `error: missing required argument '${name}'`;
+        this.error(message, { code: "commander.missingArgument" });
+      }
+      /**
+       * `Option` is missing an argument.
+       *
+       * @param {Option} option
+       * @private
+       */
+      optionMissingArgument(option) {
+        const message = `error: option '${option.flags}' argument missing`;
+        this.error(message, { code: "commander.optionMissingArgument" });
+      }
+      /**
+       * `Option` does not have a value, and is a mandatory option.
+       *
+       * @param {Option} option
+       * @private
+       */
+      missingMandatoryOptionValue(option) {
+        const message = `error: required option '${option.flags}' not specified`;
+        this.error(message, { code: "commander.missingMandatoryOptionValue" });
+      }
+      /**
+       * `Option` conflicts with another option.
+       *
+       * @param {Option} option
+       * @param {Option} conflictingOption
+       * @private
+       */
+      _conflictingOption(option, conflictingOption) {
+        const findBestOptionFromValue = (option2) => {
+          const optionKey = option2.attributeName();
+          const optionValue = this.getOptionValue(optionKey);
+          const negativeOption = this.options.find(
+            (target) => target.negate && optionKey === target.attributeName()
+          );
+          const positiveOption = this.options.find(
+            (target) => !target.negate && optionKey === target.attributeName()
+          );
+          if (negativeOption && (negativeOption.presetArg === void 0 && optionValue === false || negativeOption.presetArg !== void 0 && optionValue === negativeOption.presetArg)) {
+            return negativeOption;
+          }
+          return positiveOption || option2;
+        };
+        const getErrorMessage = (option2) => {
+          const bestOption = findBestOptionFromValue(option2);
+          const optionKey = bestOption.attributeName();
+          const source = this.getOptionValueSource(optionKey);
+          if (source === "env") {
+            return `environment variable '${bestOption.envVar}'`;
+          }
+          return `option '${bestOption.flags}'`;
+        };
+        const message = `error: ${getErrorMessage(option)} cannot be used with ${getErrorMessage(conflictingOption)}`;
+        this.error(message, { code: "commander.conflictingOption" });
+      }
+      /**
+       * Unknown option `flag`.
+       *
+       * @param {string} flag
+       * @private
+       */
+      unknownOption(flag) {
+        if (this._allowUnknownOption) return;
+        let suggestion = "";
+        if (flag.startsWith("--") && this._showSuggestionAfterError) {
+          let candidateFlags = [];
+          let command = this;
+          do {
+            const moreFlags = command.createHelp().visibleOptions(command).filter((option) => option.long).map((option) => option.long);
+            candidateFlags = candidateFlags.concat(moreFlags);
+            command = command.parent;
+          } while (command && !command._enablePositionalOptions);
+          suggestion = suggestSimilar(flag, candidateFlags);
+        }
+        const message = `error: unknown option '${flag}'${suggestion}`;
+        this.error(message, { code: "commander.unknownOption" });
+      }
+      /**
+       * Excess arguments, more than expected.
+       *
+       * @param {string[]} receivedArgs
+       * @private
+       */
+      _excessArguments(receivedArgs) {
+        if (this._allowExcessArguments) return;
+        const expected = this.registeredArguments.length;
+        const s = expected === 1 ? "" : "s";
+        const forSubcommand = this.parent ? ` for '${this.name()}'` : "";
+        const message = `error: too many arguments${forSubcommand}. Expected ${expected} argument${s} but got ${receivedArgs.length}.`;
+        this.error(message, { code: "commander.excessArguments" });
+      }
+      /**
+       * Unknown command.
+       *
+       * @private
+       */
+      unknownCommand() {
+        const unknownName = this.args[0];
+        let suggestion = "";
+        if (this._showSuggestionAfterError) {
+          const candidateNames = [];
+          this.createHelp().visibleCommands(this).forEach((command) => {
+            candidateNames.push(command.name());
+            if (command.alias()) candidateNames.push(command.alias());
+          });
+          suggestion = suggestSimilar(unknownName, candidateNames);
+        }
+        const message = `error: unknown command '${unknownName}'${suggestion}`;
+        this.error(message, { code: "commander.unknownCommand" });
+      }
+      /**
+       * Get or set the program version.
+       *
+       * This method auto-registers the "-V, --version" option which will print the version number.
+       *
+       * You can optionally supply the flags and description to override the defaults.
+       *
+       * @param {string} [str]
+       * @param {string} [flags]
+       * @param {string} [description]
+       * @return {(this | string | undefined)} `this` command for chaining, or version string if no arguments
+       */
+      version(str, flags, description) {
+        if (str === void 0) return this._version;
+        this._version = str;
+        flags = flags || "-V, --version";
+        description = description || "output the version number";
+        const versionOption = this.createOption(flags, description);
+        this._versionOptionName = versionOption.attributeName();
+        this._registerOption(versionOption);
+        this.on("option:" + versionOption.name(), () => {
+          this._outputConfiguration.writeOut(`${str}
+`);
+          this._exit(0, "commander.version", str);
+        });
+        return this;
+      }
+      /**
+       * Set the description.
+       *
+       * @param {string} [str]
+       * @param {object} [argsDescription]
+       * @return {(string|Command)}
+       */
+      description(str, argsDescription) {
+        if (str === void 0 && argsDescription === void 0)
+          return this._description;
+        this._description = str;
+        if (argsDescription) {
+          this._argsDescription = argsDescription;
+        }
+        return this;
+      }
+      /**
+       * Set the summary. Used when listed as subcommand of parent.
+       *
+       * @param {string} [str]
+       * @return {(string|Command)}
+       */
+      summary(str) {
+        if (str === void 0) return this._summary;
+        this._summary = str;
+        return this;
+      }
+      /**
+       * Set an alias for the command.
+       *
+       * You may call more than once to add multiple aliases. Only the first alias is shown in the auto-generated help.
+       *
+       * @param {string} [alias]
+       * @return {(string|Command)}
+       */
+      alias(alias) {
+        if (alias === void 0) return this._aliases[0];
+        let command = this;
+        if (this.commands.length !== 0 && this.commands[this.commands.length - 1]._executableHandler) {
+          command = this.commands[this.commands.length - 1];
+        }
+        if (alias === command._name)
+          throw new Error("Command alias can't be the same as its name");
+        const matchingCommand = this.parent?._findCommand(alias);
+        if (matchingCommand) {
+          const existingCmd = [matchingCommand.name()].concat(matchingCommand.aliases()).join("|");
+          throw new Error(
+            `cannot add alias '${alias}' to command '${this.name()}' as already have command '${existingCmd}'`
+          );
+        }
+        command._aliases.push(alias);
+        return this;
+      }
+      /**
+       * Set aliases for the command.
+       *
+       * Only the first alias is shown in the auto-generated help.
+       *
+       * @param {string[]} [aliases]
+       * @return {(string[]|Command)}
+       */
+      aliases(aliases) {
+        if (aliases === void 0) return this._aliases;
+        aliases.forEach((alias) => this.alias(alias));
+        return this;
+      }
+      /**
+       * Set / get the command usage `str`.
+       *
+       * @param {string} [str]
+       * @return {(string|Command)}
+       */
+      usage(str) {
+        if (str === void 0) {
+          if (this._usage) return this._usage;
+          const args = this.registeredArguments.map((arg) => {
+            return humanReadableArgName(arg);
+          });
+          return [].concat(
+            this.options.length || this._helpOption !== null ? "[options]" : [],
+            this.commands.length ? "[command]" : [],
+            this.registeredArguments.length ? args : []
+          ).join(" ");
+        }
+        this._usage = str;
+        return this;
+      }
+      /**
+       * Get or set the name of the command.
+       *
+       * @param {string} [str]
+       * @return {(string|Command)}
+       */
+      name(str) {
+        if (str === void 0) return this._name;
+        this._name = str;
+        return this;
+      }
+      /**
+       * Set/get the help group heading for this subcommand in parent command's help.
+       *
+       * @param {string} [heading]
+       * @return {Command | string}
+       */
+      helpGroup(heading) {
+        if (heading === void 0) return this._helpGroupHeading ?? "";
+        this._helpGroupHeading = heading;
+        return this;
+      }
+      /**
+       * Set/get the default help group heading for subcommands added to this command.
+       * (This does not override a group set directly on the subcommand using .helpGroup().)
+       *
+       * @example
+       * program.commandsGroup('Development Commands:);
+       * program.command('watch')...
+       * program.command('lint')...
+       * ...
+       *
+       * @param {string} [heading]
+       * @returns {Command | string}
+       */
+      commandsGroup(heading) {
+        if (heading === void 0) return this._defaultCommandGroup ?? "";
+        this._defaultCommandGroup = heading;
+        return this;
+      }
+      /**
+       * Set/get the default help group heading for options added to this command.
+       * (This does not override a group set directly on the option using .helpGroup().)
+       *
+       * @example
+       * program
+       *   .optionsGroup('Development Options:')
+       *   .option('-d, --debug', 'output extra debugging')
+       *   .option('-p, --profile', 'output profiling information')
+       *
+       * @param {string} [heading]
+       * @returns {Command | string}
+       */
+      optionsGroup(heading) {
+        if (heading === void 0) return this._defaultOptionGroup ?? "";
+        this._defaultOptionGroup = heading;
+        return this;
+      }
+      /**
+       * @param {Option} option
+       * @private
+       */
+      _initOptionGroup(option) {
+        if (this._defaultOptionGroup && !option.helpGroupHeading)
+          option.helpGroup(this._defaultOptionGroup);
+      }
+      /**
+       * @param {Command} cmd
+       * @private
+       */
+      _initCommandGroup(cmd) {
+        if (this._defaultCommandGroup && !cmd.helpGroup())
+          cmd.helpGroup(this._defaultCommandGroup);
+      }
+      /**
+       * Set the name of the command from script filename, such as process.argv[1],
+       * or require.main.filename, or __filename.
+       *
+       * (Used internally and public although not documented in README.)
+       *
+       * @example
+       * program.nameFromFilename(require.main.filename);
+       *
+       * @param {string} filename
+       * @return {Command}
+       */
+      nameFromFilename(filename) {
+        this._name = path.basename(filename, path.extname(filename));
+        return this;
+      }
+      /**
+       * Get or set the directory for searching for executable subcommands of this command.
+       *
+       * @example
+       * program.executableDir(__dirname);
+       * // or
+       * program.executableDir('subcommands');
+       *
+       * @param {string} [path]
+       * @return {(string|null|Command)}
+       */
+      executableDir(path2) {
+        if (path2 === void 0) return this._executableDir;
+        this._executableDir = path2;
+        return this;
+      }
+      /**
+       * Return program help documentation.
+       *
+       * @param {{ error: boolean }} [contextOptions] - pass {error:true} to wrap for stderr instead of stdout
+       * @return {string}
+       */
+      helpInformation(contextOptions) {
+        const helper = this.createHelp();
+        const context = this._getOutputContext(contextOptions);
+        helper.prepareContext({
+          error: context.error,
+          helpWidth: context.helpWidth,
+          outputHasColors: context.hasColors
+        });
+        const text = helper.formatHelp(this, helper);
+        if (context.hasColors) return text;
+        return this._outputConfiguration.stripColor(text);
+      }
+      /**
+       * @typedef HelpContext
+       * @type {object}
+       * @property {boolean} error
+       * @property {number} helpWidth
+       * @property {boolean} hasColors
+       * @property {function} write - includes stripColor if needed
+       *
+       * @returns {HelpContext}
+       * @private
+       */
+      _getOutputContext(contextOptions) {
+        contextOptions = contextOptions || {};
+        const error = !!contextOptions.error;
+        let baseWrite;
+        let hasColors;
+        let helpWidth;
+        if (error) {
+          baseWrite = (str) => this._outputConfiguration.writeErr(str);
+          hasColors = this._outputConfiguration.getErrHasColors();
+          helpWidth = this._outputConfiguration.getErrHelpWidth();
+        } else {
+          baseWrite = (str) => this._outputConfiguration.writeOut(str);
+          hasColors = this._outputConfiguration.getOutHasColors();
+          helpWidth = this._outputConfiguration.getOutHelpWidth();
+        }
+        const write = (str) => {
+          if (!hasColors) str = this._outputConfiguration.stripColor(str);
+          return baseWrite(str);
+        };
+        return { error, write, hasColors, helpWidth };
+      }
+      /**
+       * Output help information for this command.
+       *
+       * Outputs built-in help, and custom text added using `.addHelpText()`.
+       *
+       * @param {{ error: boolean } | Function} [contextOptions] - pass {error:true} to write to stderr instead of stdout
+       */
+      outputHelp(contextOptions) {
+        let deprecatedCallback;
+        if (typeof contextOptions === "function") {
+          deprecatedCallback = contextOptions;
+          contextOptions = void 0;
+        }
+        const outputContext = this._getOutputContext(contextOptions);
+        const eventContext = {
+          error: outputContext.error,
+          write: outputContext.write,
+          command: this
+        };
+        this._getCommandAndAncestors().reverse().forEach((command) => command.emit("beforeAllHelp", eventContext));
+        this.emit("beforeHelp", eventContext);
+        let helpInformation = this.helpInformation({ error: outputContext.error });
+        if (deprecatedCallback) {
+          helpInformation = deprecatedCallback(helpInformation);
+          if (typeof helpInformation !== "string" && !Buffer.isBuffer(helpInformation)) {
+            throw new Error("outputHelp callback must return a string or a Buffer");
+          }
+        }
+        outputContext.write(helpInformation);
+        if (this._getHelpOption()?.long) {
+          this.emit(this._getHelpOption().long);
+        }
+        this.emit("afterHelp", eventContext);
+        this._getCommandAndAncestors().forEach(
+          (command) => command.emit("afterAllHelp", eventContext)
+        );
+      }
+      /**
+       * You can pass in flags and a description to customise the built-in help option.
+       * Pass in false to disable the built-in help option.
+       *
+       * @example
+       * program.helpOption('-?, --help' 'show help'); // customise
+       * program.helpOption(false); // disable
+       *
+       * @param {(string | boolean)} flags
+       * @param {string} [description]
+       * @return {Command} `this` command for chaining
+       */
+      helpOption(flags, description) {
+        if (typeof flags === "boolean") {
+          if (flags) {
+            if (this._helpOption === null) this._helpOption = void 0;
+            if (this._defaultOptionGroup) {
+              this._initOptionGroup(this._getHelpOption());
+            }
+          } else {
+            this._helpOption = null;
+          }
+          return this;
+        }
+        this._helpOption = this.createOption(
+          flags ?? "-h, --help",
+          description ?? "display help for command"
+        );
+        if (flags || description) this._initOptionGroup(this._helpOption);
+        return this;
+      }
+      /**
+       * Lazy create help option.
+       * Returns null if has been disabled with .helpOption(false).
+       *
+       * @returns {(Option | null)} the help option
+       * @package
+       */
+      _getHelpOption() {
+        if (this._helpOption === void 0) {
+          this.helpOption(void 0, void 0);
+        }
+        return this._helpOption;
+      }
+      /**
+       * Supply your own option to use for the built-in help option.
+       * This is an alternative to using helpOption() to customise the flags and description etc.
+       *
+       * @param {Option} option
+       * @return {Command} `this` command for chaining
+       */
+      addHelpOption(option) {
+        this._helpOption = option;
+        this._initOptionGroup(option);
+        return this;
+      }
+      /**
+       * Output help information and exit.
+       *
+       * Outputs built-in help, and custom text added using `.addHelpText()`.
+       *
+       * @param {{ error: boolean }} [contextOptions] - pass {error:true} to write to stderr instead of stdout
+       */
+      help(contextOptions) {
+        this.outputHelp(contextOptions);
+        let exitCode = Number(process2.exitCode ?? 0);
+        if (exitCode === 0 && contextOptions && typeof contextOptions !== "function" && contextOptions.error) {
+          exitCode = 1;
+        }
+        this._exit(exitCode, "commander.help", "(outputHelp)");
+      }
+      /**
+       * // Do a little typing to coordinate emit and listener for the help text events.
+       * @typedef HelpTextEventContext
+       * @type {object}
+       * @property {boolean} error
+       * @property {Command} command
+       * @property {function} write
+       */
+      /**
+       * Add additional text to be displayed with the built-in help.
+       *
+       * Position is 'before' or 'after' to affect just this command,
+       * and 'beforeAll' or 'afterAll' to affect this command and all its subcommands.
+       *
+       * @param {string} position - before or after built-in help
+       * @param {(string | Function)} text - string to add, or a function returning a string
+       * @return {Command} `this` command for chaining
+       */
+      addHelpText(position, text) {
+        const allowedValues = ["beforeAll", "before", "after", "afterAll"];
+        if (!allowedValues.includes(position)) {
+          throw new Error(`Unexpected value for position to addHelpText.
+Expecting one of '${allowedValues.join("', '")}'`);
+        }
+        const helpEvent = `${position}Help`;
+        this.on(helpEvent, (context) => {
+          let helpStr;
+          if (typeof text === "function") {
+            helpStr = text({ error: context.error, command: context.command });
+          } else {
+            helpStr = text;
+          }
+          if (helpStr) {
+            context.write(`${helpStr}
+`);
+          }
+        });
+        return this;
+      }
+      /**
+       * Output help information if help flags specified
+       *
+       * @param {Array} args - array of options to search for help flags
+       * @private
+       */
+      _outputHelpIfRequested(args) {
+        const helpOption = this._getHelpOption();
+        const helpRequested = helpOption && args.find((arg) => helpOption.is(arg));
+        if (helpRequested) {
+          this.outputHelp();
+          this._exit(0, "commander.helpDisplayed", "(outputHelp)");
+        }
+      }
+    };
+    function incrementNodeInspectorPort(args) {
+      return args.map((arg) => {
+        if (!arg.startsWith("--inspect")) {
+          return arg;
+        }
+        let debugOption;
+        let debugHost = "127.0.0.1";
+        let debugPort = "9229";
+        let match;
+        if ((match = arg.match(/^(--inspect(-brk)?)$/)) !== null) {
+          debugOption = match[1];
+        } else if ((match = arg.match(/^(--inspect(-brk|-port)?)=([^:]+)$/)) !== null) {
+          debugOption = match[1];
+          if (/^\d+$/.test(match[3])) {
+            debugPort = match[3];
+          } else {
+            debugHost = match[3];
+          }
+        } else if ((match = arg.match(/^(--inspect(-brk|-port)?)=([^:]+):(\d+)$/)) !== null) {
+          debugOption = match[1];
+          debugHost = match[3];
+          debugPort = match[4];
+        }
+        if (debugOption && debugPort !== "0") {
+          return `${debugOption}=${debugHost}:${parseInt(debugPort) + 1}`;
+        }
+        return arg;
+      });
+    }
+    function useColor() {
+      if (process2.env.NO_COLOR || process2.env.FORCE_COLOR === "0" || process2.env.FORCE_COLOR === "false")
+        return false;
+      if (process2.env.FORCE_COLOR || process2.env.CLICOLOR_FORCE !== void 0)
+        return true;
+      return void 0;
+    }
+    exports.Command = Command2;
+    exports.useColor = useColor;
+  }
+});
+
+// node_modules/commander/index.js
+var require_commander = __commonJS({
+  "node_modules/commander/index.js"(exports) {
+    var { Argument: Argument2 } = require_argument();
+    var { Command: Command2 } = require_command();
+    var { CommanderError: CommanderError2, InvalidArgumentError: InvalidArgumentError2 } = require_error();
+    var { Help: Help2 } = require_help();
+    var { Option: Option2 } = require_option();
+    exports.program = new Command2();
+    exports.createCommand = (name) => new Command2(name);
+    exports.createOption = (flags, description) => new Option2(flags, description);
+    exports.createArgument = (name, description) => new Argument2(name, description);
+    exports.Command = Command2;
+    exports.Option = Option2;
+    exports.Argument = Argument2;
+    exports.Help = Help2;
+    exports.CommanderError = CommanderError2;
+    exports.InvalidArgumentError = InvalidArgumentError2;
+    exports.InvalidOptionArgumentError = InvalidArgumentError2;
+  }
+});
+
+// node_modules/commander/esm.mjs
+var import_index = __toESM(require_commander(), 1);
+var {
+  program,
+  createCommand,
+  createArgument,
+  createOption,
+  CommanderError,
+  InvalidArgumentError,
+  InvalidOptionArgumentError,
+  // deprecated old name
+  Command,
+  Argument,
+  Option,
+  Help
+} = import_index.default;
+
+// src/curl.ts
+function curlForJsonRequest(method, url, body) {
+  const lines2 = [
+    `curl -X ${method.toUpperCase()} "${url}"`,
+    `  -H "X-API-KEY: $CLINK_SECRET_KEY"`,
+    `  -H "X-Timestamp: $(date +%s000)"`
+  ];
+  if (body !== void 0) {
+    lines2.push(`  -H "Content-Type: application/json"`);
+    lines2.push(`  -d '${JSON.stringify(body)}'`);
+  }
+  return lines2.join(" \\\n");
+}
+
+// src/output.ts
+function printJson(value) {
+  console.log(JSON.stringify(value, null, 2));
+}
+function printResult(value, mode, pretty) {
+  if (mode === "json") {
+    printJson(value);
+    return;
+  }
+  if (pretty) {
+    console.log(pretty);
+    return;
+  }
+  printJson(value);
+}
+function maskSecret(value) {
+  if (!value) return void 0;
+  if (value.length <= 8) return "****";
+  return `${value.slice(0, 4)}...${value.slice(-4)}`;
+}
+function requireOption(name, value) {
+  if (value === void 0 || value === null || value === "") {
+    throw new Error(`Missing required option: ${name}`);
+  }
+}
+function parseNumberOption(name, value) {
+  requireOption(name, value);
+  const parsed = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(parsed)) {
+    throw new Error(`Option ${name} must be a number`);
+  }
+  return parsed;
+}
+function parseIntegerOption(name, value) {
+  const parsed = parseNumberOption(name, value);
+  if (!Number.isInteger(parsed)) {
+    throw new Error(`Option ${name} must be an integer`);
+  }
+  return parsed;
+}
+
+// src/commands/helpers.ts
+import { readFile as readFile3 } from "node:fs/promises";
+
+// src/api/client.ts
+import { readFile } from "node:fs/promises";
+import { basename } from "node:path";
+var ClinkApiClient = class {
+  constructor(config) {
+    this.config = config;
+  }
+  config;
+  async delete(path, options = {}) {
+    return this.request("DELETE", path, options);
+  }
+  async get(path, options = {}) {
+    return this.request("GET", path, options);
+  }
+  async post(path, options = {}) {
+    return this.request("POST", path, options);
+  }
+  async patch(path, options = {}) {
+    return this.request("PATCH", path, options);
+  }
+  async put(path, options = {}) {
+    return this.request("PUT", path, options);
+  }
+  async request(method, path, options = {}) {
+    if (!this.config.apiKey && !this.config.dryRun) {
+      throw new Error("Missing Clink Secret Key. Set CLINK_SECRET_KEY or run clink auth secret set --api-key env:CLINK_SECRET_KEY");
+    }
+    const url = new URL(path.replace(/^\//, ""), this.config.baseUrl);
+    for (const [key, value] of Object.entries(options.query ?? {})) {
+      if (value !== void 0) {
+        url.searchParams.set(key, String(value));
+      }
+    }
+    const headers = new Headers({
+      "X-API-KEY": this.config.apiKey ?? "dry_run_missing_key",
+      "X-Timestamp": String(Date.now())
+    });
+    let body;
+    if (options.multipart) {
+      body = options.multipart;
+    } else if (options.body !== void 0) {
+      headers.set("Content-Type", "application/json");
+      body = JSON.stringify(options.body);
+    }
+    if (this.config.dryRun) {
+      return {
+        dryRun: true,
+        request: {
+          method,
+          url: url.toString(),
+          headers: {
+            "X-API-KEY": "[masked]",
+            "X-Timestamp": "[generated]",
+            ...headers.has("Content-Type") ? { "Content-Type": headers.get("Content-Type") } : {}
+          },
+          body: options.body ?? (options.multipart ? "[multipart]" : void 0)
+        }
+      };
+    }
+    let response;
+    try {
+      response = await fetch(url, { method, headers, body });
+    } catch (error) {
+      throw new Error(`Clink API ${method} ${url.pathname} network error: ${formatFetchError(error)}`);
+    }
+    const text = await response.text();
+    const data = parseResponseBody(text);
+    if (!response.ok) {
+      throw new Error(`Clink API ${method} ${url.pathname} failed with ${response.status}: ${sanitizeApiText(text, this.config)}`);
+    }
+    assertSuccessfulApiEnvelope(method, url.pathname, data, this.config);
+    return data;
+  }
+};
+async function createImageUploadForm(filePath) {
+  const buffer = await readFile(filePath);
+  const form = new FormData();
+  const blob = new Blob([buffer]);
+  form.append("file", blob, basename(filePath));
+  return form;
+}
+function parseResponseBody(text) {
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+}
+function assertSuccessfulApiEnvelope(method, path, data, config) {
+  if (!data || typeof data !== "object") return;
+  const envelope = data;
+  if (typeof envelope.code !== "number" || envelope.code === 200) return;
+  const message = typeof envelope.msg === "string" ? envelope.msg : JSON.stringify(data);
+  throw new Error(`Clink API ${method} ${path} returned code ${envelope.code}: ${sanitizeApiText(message, config)}`);
+}
+function formatFetchError(error) {
+  if (!(error instanceof Error)) return String(error);
+  const cause = error.cause;
+  if (cause && typeof cause === "object") {
+    const code = "code" in cause && typeof cause.code === "string" ? cause.code : void 0;
+    const host = "host" in cause && typeof cause.host === "string" ? cause.host : void 0;
+    const port = "port" in cause && (typeof cause.port === "number" || typeof cause.port === "string") ? String(cause.port) : void 0;
+    const details = [code, host ? `host=${host}` : void 0, port ? `port=${port}` : void 0].filter(Boolean).join(" ");
+    return details ? `${error.message} (${details})` : error.message;
+  }
+  return error.message;
+}
+function sanitizeApiText(value, config) {
+  let sanitized = value;
+  for (const secret of [config.apiKey, config.webhookSigningKey]) {
+    if (secret) {
+      sanitized = sanitized.split(secret).join(maskSecret(secret) ?? "[masked]");
+    }
+  }
+  return sanitized.replace(/\bsk_(?:(?:test|live|uat|prod)_)?[A-Za-z0-9_-]{8,}\b/g, "[masked-secret-key]").replace(/\bwhsec_[A-Za-z0-9_-]{8,}\b/g, "[masked-webhook-secret]").replace(/\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, "[masked-jwt]");
+}
+
+// src/config.ts
+import { mkdir, readFile as readFile2, writeFile } from "node:fs/promises";
+import { homedir } from "node:os";
+import { dirname, join } from "node:path";
+
+// src/constants.ts
+var DEFAULT_PROFILE = "default";
+var DASHBOARD_UAT_BASE_URL = "https://uat-dashboard.clinkbill.com/prod-api/";
+var DASHBOARD_UAT_LOGIN_URL = "https://uat-dashboard.clinkbill.com/auth/login";
+var DASHBOARD_UAT_CLIENT_ID = "e5cd7e4891bf95d1d19206ce24a7b32e";
+var BUILT_IN_ENVIRONMENTS = {
+  sandbox: {
+    apiBaseUrl: "https://uat-api.clinkbill.com/api/",
+    dashboardBaseUrl: DASHBOARD_UAT_BASE_URL,
+    dashboardLoginUrl: DASHBOARD_UAT_LOGIN_URL,
+    dashboardClientId: DASHBOARD_UAT_CLIENT_ID
+  },
+  production: {
+    apiBaseUrl: "https://api.clinkbill.com/api/"
+  }
+};
+var BASE_URLS = {
+  sandbox: BUILT_IN_ENVIRONMENTS.sandbox.apiBaseUrl,
+  production: BUILT_IN_ENVIRONMENTS.production.apiBaseUrl
+};
+var DEFAULT_PAGE_SIZE = 20;
+
+// src/environments.ts
+function mergeEnvironments(stored) {
+  return {
+    ...BUILT_IN_ENVIRONMENTS,
+    ...stored.environments ?? {}
+  };
+}
+function getEnvironmentDefinition(stored, name) {
+  return mergeEnvironments(stored)[name];
+}
+function isBuiltInEnvironment(name) {
+  return Object.prototype.hasOwnProperty.call(BUILT_IN_ENVIRONMENTS, name);
+}
+function resolveDashboardEndpoints(def) {
+  return {
+    baseUrl: def?.dashboardBaseUrl ?? DASHBOARD_UAT_BASE_URL,
+    loginUrl: def?.dashboardLoginUrl ?? DASHBOARD_UAT_LOGIN_URL,
+    clientId: def?.dashboardClientId ?? DASHBOARD_UAT_CLIENT_ID
+  };
+}
+
+// src/config.ts
+function emptyConfig() {
+  return {
+    defaultProfile: DEFAULT_PROFILE,
+    profiles: {}
+  };
+}
+function getConfigPath() {
+  return process.env.CLINK_CONFIG_PATH || defaultConfigPath();
+}
+async function readStoredConfig() {
+  try {
+    const raw = await readFile2(getConfigPath(), "utf8");
+    const parsed = JSON.parse(raw);
+    return {
+      defaultProfile: parsed.defaultProfile ?? DEFAULT_PROFILE,
+      profiles: parsed.profiles ?? {},
+      environments: parsed.environments ?? {}
+    };
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      if (!process.env.CLINK_CONFIG_PATH) {
+        return readLegacyStoredConfig();
+      }
+      return emptyConfig();
+    }
+    throw error;
+  }
+}
+async function readLegacyStoredConfig() {
+  try {
+    const raw = await readFile2(legacyConfigPath(), "utf8");
+    const parsed = JSON.parse(raw);
+    return {
+      defaultProfile: parsed.defaultProfile ?? DEFAULT_PROFILE,
+      profiles: parsed.profiles ?? {},
+      environments: parsed.environments ?? {}
+    };
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return emptyConfig();
+    }
+    throw error;
+  }
+}
+function defaultConfigPath() {
+  return join(homedir(), ".clink-integ-cli", "config.json");
+}
+function legacyConfigPath() {
+  return join(homedir(), ".clink-dev-cli", "config.json");
+}
+async function writeStoredConfig(config) {
+  const configPath = getConfigPath();
+  await mkdir(dirname(configPath), { recursive: true });
+  await writeFile(configPath, `${JSON.stringify(config, null, 2)}
+`, "utf8");
+}
+function resolveSecretRef(value, envFallbacks) {
+  if (value) {
+    if (value.startsWith("env:")) {
+      const envName = value.slice("env:".length);
+      return { secret: process.env[envName], source: `env:${envName}`, envName };
+    }
+    return { secret: value, source: "literal", literal: value };
+  }
+  for (const envName of envFallbacks) {
+    if (process.env[envName]) {
+      return { secret: process.env[envName], source: `env:${envName}`, envName };
+    }
+  }
+  return {};
+}
+async function saveProfile(name, profile) {
+  const config = await readStoredConfig();
+  config.defaultProfile = config.defaultProfile ?? DEFAULT_PROFILE;
+  config.profiles[name] = {
+    ...config.profiles[name] ?? {},
+    ...profile
+  };
+  await writeStoredConfig(config);
+}
+async function resolveRuntimeConfig(options) {
+  const profileName = options.profile ?? DEFAULT_PROFILE;
+  const stored = await readStoredConfig();
+  const profile = stored.profiles[profileName] ?? {};
+  const environment = options.env ?? profile.environment ?? readEnvironmentFromEnv() ?? "sandbox";
+  const envDef = getEnvironmentDefinition(stored, environment);
+  const baseUrl = normalizeBaseUrl(
+    options.baseUrl ?? profile.baseUrl ?? process.env.CLINK_BASE_URL ?? envDef?.apiBaseUrl ?? BASE_URLS.sandbox
+  );
+  const dashboardEndpoints = resolveDashboardEndpoints(envDef);
+  const apiKeyRef = resolveSecretRef(options.apiKey, ["CLINK_SECRET_KEY", "CLINK_API_KEY"]);
+  const profileApiKey = profile.apiKeyEnv ? resolveSecretRef(`env:${profile.apiKeyEnv}`, []) : resolveSecretRef(profile.apiKey, []);
+  const apiKey = apiKeyRef.secret ?? profileApiKey.secret;
+  const apiKeySource = apiKeyRef.source ?? profileApiKey.source;
+  const profileWebhookKey = profile.webhookSigningKeyEnv ? resolveSecretRef(`env:${profile.webhookSigningKeyEnv}`, []) : resolveSecretRef(profile.webhookSigningKey, []);
+  const envWebhookKey = resolveSecretRef(void 0, ["CLINK_WEBHOOK_SIGNING_KEY", "CLINK_WEBHOOK_SECRET"]);
+  return {
+    profile: profileName,
+    environment,
+    baseUrl,
+    apiKey,
+    apiKeySource,
+    dashboard: profile.dashboard,
+    dashboardEndpoints,
+    webhookSigningKey: profileWebhookKey.secret ?? envWebhookKey.secret,
+    webhookSigningKeySource: profileWebhookKey.source ?? envWebhookKey.source,
+    dryRun: Boolean(options.dryRun),
+    outputMode: options.json ? "json" : "pretty"
+  };
+}
+function readEnvironmentFromEnv() {
+  const raw = process.env.CLINK_ENV?.trim();
+  return raw ? raw : void 0;
+}
+function normalizeBaseUrl(value) {
+  return value.endsWith("/") ? value : `${value}/`;
+}
+
+// src/commands/helpers.ts
+async function getCommandContext(command) {
+  const options = command.optsWithGlobals();
+  const config = await resolveRuntimeConfig(options);
+  return {
+    config,
+    client: new ClinkApiClient(config)
+  };
+}
+function parseMetadata(values) {
+  if (!values || values.length === 0) return void 0;
+  const metadata = {};
+  for (const value of values) {
+    const [key, ...rest] = value.split("=");
+    if (!key || rest.length === 0) {
+      throw new Error(`Invalid metadata "${value}". Use key=value.`);
+    }
+    metadata[key] = rest.join("=");
+  }
+  return metadata;
+}
+function collect(value, previous) {
+  previous.push(value);
+  return previous;
+}
+async function readJsonInput(options) {
+  if (options.data && options.dataFile) {
+    throw new Error("Use either --data or --data-file, not both");
+  }
+  if (options.dataFile) {
+    return parseJson(await readFile3(options.dataFile, "utf8"), `file ${options.dataFile}`);
+  }
+  if (options.data) {
+    return parseJson(options.data, "--data");
+  }
+  return void 0;
+}
+function parseQuery(values) {
+  if (!values || values.length === 0) return void 0;
+  const query = {};
+  for (const value of values) {
+    const [key, ...rest] = value.split("=");
+    if (!key || rest.length === 0) {
+      throw new Error(`Invalid query "${value}". Use key=value.`);
+    }
+    query[key] = coerceScalar(rest.join("="));
+  }
+  return query;
+}
+function buildUrl(baseUrl, path, query) {
+  const url = new URL(path.replace(/^\//, ""), baseUrl);
+  for (const [key, value] of Object.entries(query ?? {})) {
+    if (value !== void 0) {
+      url.searchParams.set(key, String(value));
+    }
+  }
+  return url.toString();
+}
+function parseJson(raw, source) {
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Invalid JSON in ${source}: ${message}`);
+  }
+}
+function coerceScalar(value) {
+  if (value === "true") return true;
+  if (value === "false") return false;
+  if (value !== "" && /^-?\d+(\.\d+)?$/.test(value)) return Number(value);
+  return value;
+}
+
+// src/commands/api.ts
+function registerApi(program2) {
+  const api = program2.command("api").description("Call official Clink API endpoints with CLINK_SECRET_KEY authentication");
+  api.command("request <method> <path>").description("Call any official Clink API path using X-API-KEY and X-Timestamp").option("--data <json>", "JSON request body").option("--data-file <path>", "Read JSON request body from a file").option("--query <key=value...>", "Query parameter", collect, []).action(async (methodInput, path, options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const method = parseMethod(methodInput);
+    const query = parseQuery(options.query);
+    const body = await readJsonInput(options);
+    if ((method === "GET" || method === "DELETE") && body !== void 0) {
+      throw new Error(`${method} requests cannot include --data or --data-file`);
+    }
+    const result = await client.request(method, normalizePath(path), { query, body });
+    printResult(
+      {
+        method,
+        path: normalizePath(path),
+        result,
+        curl: method === "GET" || method === "DELETE" ? void 0 : curlForJsonRequest(method, buildUrl(config.baseUrl, path, query), body)
+      },
+      config.outputMode,
+      `Clink API ${method} ${normalizePath(path)} completed. Use --json to view the full response.`
+    );
+  });
+}
+function parseMethod(value) {
+  const method = value.toUpperCase();
+  if (method === "GET" || method === "POST" || method === "PUT" || method === "PATCH" || method === "DELETE") {
+    return method;
+  }
+  throw new Error(`Unsupported API method "${value}". Use GET, POST, PUT, PATCH, or DELETE.`);
+}
+function normalizePath(path) {
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
+// src/commands/auth.ts
+function registerAuth(program2) {
+  const auth = program2.command("auth").description("Configure and inspect Clink API credentials");
+  auth.command("set").description("Store a local profile. Prefer env:VARIABLE references for secrets.").option("--api-key <value>", "Secret key literal or env:CLINK_SECRET_KEY").option("--webhook-secret <value>", "Webhook signing key literal or env:CLINK_WEBHOOK_SIGNING_KEY").option("--env <environment>", "sandbox or production", "sandbox").option("--base-url <url>", "Override Clink API base URL").action(async (options, command) => {
+    const global = command.optsWithGlobals();
+    const profileName = global.profile ?? "default";
+    const apiKey = options.apiKey ?? global.apiKey;
+    const profile = {
+      environment: global.env ?? options.env ?? "sandbox",
+      baseUrl: options.baseUrl ?? global.baseUrl
+    };
+    if (apiKey) {
+      if (apiKey.startsWith("env:")) {
+        profile.apiKeyEnv = apiKey.slice("env:".length);
+      } else {
+        profile.apiKey = apiKey;
+      }
+    }
+    if (options.webhookSecret) {
+      if (options.webhookSecret.startsWith("env:")) {
+        profile.webhookSigningKeyEnv = options.webhookSecret.slice("env:".length);
+      } else {
+        profile.webhookSigningKey = options.webhookSecret;
+      }
+    }
+    await saveProfile(profileName, profile);
+    const runtime = await resolveRuntimeConfig(global);
+    printResult(
+      {
+        profile: profileName,
+        configPath: getConfigPath(),
+        environment: profile.environment,
+        baseUrl: runtime.baseUrl,
+        apiKeySource: profile.apiKeyEnv ? `env:${profile.apiKeyEnv}` : profile.apiKey ? "literal" : void 0,
+        webhookSigningKeySource: profile.webhookSigningKeyEnv ? `env:${profile.webhookSigningKeyEnv}` : profile.webhookSigningKey ? "literal" : void 0
+      },
+      runtime.outputMode,
+      `Saved profile "${profileName}" at ${getConfigPath()}`
+    );
+  });
+  const secret = auth.command("secret").description("Configure Secret Key authentication without Dashboard login");
+  secret.command("set").description("Store an existing Clink Secret Key for API authentication. Prefer env:VARIABLE references.").option("--api-key <value>", "Secret key literal or env:CLINK_SECRET_KEY").option("--env <environment>", "sandbox or production", "sandbox").option("--base-url <url>", "Override Clink API base URL").action(async (options, command) => {
+    const global = command.optsWithGlobals();
+    const profileName = global.profile ?? "default";
+    const apiKey = options.apiKey ?? global.apiKey;
+    requireOption("--api-key", apiKey);
+    const profile = {
+      environment: global.env ?? options.env ?? "sandbox",
+      baseUrl: options.baseUrl ?? global.baseUrl
+    };
+    if (apiKey.startsWith("env:")) {
+      profile.apiKeyEnv = apiKey.slice("env:".length);
+    } else {
+      profile.apiKey = apiKey;
+    }
+    await saveProfile(profileName, profile);
+    const runtime = await resolveRuntimeConfig(global);
+    const apiKeySource = profile.apiKeyEnv ? `env:${profile.apiKeyEnv}` : "literal";
+    printResult(
+      {
+        profile: profileName,
+        configPath: getConfigPath(),
+        environment: profile.environment,
+        baseUrl: runtime.baseUrl,
+        apiKey: maskSecret(runtime.apiKey),
+        apiKeySource,
+        ready: Boolean(runtime.apiKey),
+        next: "clink auth status"
+      },
+      runtime.outputMode,
+      [
+        `Saved Secret Key authentication for profile "${profileName}" at ${getConfigPath()}`,
+        `Environment: ${profile.environment}`,
+        `Base URL: ${runtime.baseUrl}`,
+        `API key: ${maskSecret(runtime.apiKey) ?? "missing"} (${apiKeySource})`,
+        runtime.apiKey ? "Next: clink auth status" : "Set the referenced environment variable before running API commands."
+      ].join("\n")
+    );
+  });
+  auth.command("status").description("Show resolved auth status without revealing secrets").action(async function() {
+    const global = this.optsWithGlobals();
+    const runtime = await resolveRuntimeConfig(global);
+    requireOption("baseUrl", runtime.baseUrl);
+    printResult(
+      {
+        profile: runtime.profile,
+        environment: runtime.environment,
+        baseUrl: runtime.baseUrl,
+        apiKey: maskSecret(runtime.apiKey),
+        apiKeySource: runtime.apiKeySource,
+        webhookSigningKey: maskSecret(runtime.webhookSigningKey),
+        webhookSigningKeySource: runtime.webhookSigningKeySource,
+        configPath: getConfigPath()
+      },
+      runtime.outputMode,
+      [
+        `Profile: ${runtime.profile}`,
+        `Environment: ${runtime.environment}`,
+        `Base URL: ${runtime.baseUrl}`,
+        `API key: ${maskSecret(runtime.apiKey) ?? "missing"}`,
+        `Webhook signing key: ${maskSecret(runtime.webhookSigningKey) ?? "missing"}`
+      ].join("\n")
+    );
+  });
+}
+
+// src/commands/billing.ts
+function registerBilling(program2) {
+  const billing = program2.command("billing").description("Create customer billing portal sessions with CLINK_SECRET_KEY authentication");
+  billing.command("portal-session").description("Create a customer portal session").requiredOption("--customer-id <id>", "Existing Clink customer ID").option("--return-url <url>", "Return URL when the customer leaves the portal").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = {
+      customerId: options.customerId,
+      returnUrl: options.returnUrl
+    };
+    const result = await client.post("/billing/session", { body });
+    printResult(
+      {
+        portalUrl: extractPortalUrl(result),
+        result,
+        curl: curlForJsonRequest("POST", buildUrl(config.baseUrl, "/billing/session"), body)
+      },
+      config.outputMode,
+      "Billing portal session create request completed. Use --json to view the full response and curl example."
+    );
+  });
+}
+function extractPortalUrl(result) {
+  const data = result && typeof result === "object" ? result.data : void 0;
+  return typeof data?.url === "string" ? data.url : void 0;
+}
+
+// src/commands/catalog.ts
+import { mkdir as mkdir2, readFile as readFile5, writeFile as writeFile2 } from "node:fs/promises";
+import { dirname as dirname3 } from "node:path";
+
+// src/catalog-images.ts
+import { createHash } from "node:crypto";
+import { stat, readFile as readFile4 } from "node:fs/promises";
+import { basename as basename2, dirname as dirname2, extname, isAbsolute, posix, resolve } from "node:path";
+var PRODUCT_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+var SUPPORTED_IMAGE_MIME_TYPES = /* @__PURE__ */ new Set([
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp"
+]);
+var EXTENSION_BY_MIME = {
+  "image/jpeg": ".jpg",
+  "image/png": ".png",
+  "image/gif": ".gif",
+  "image/webp": ".webp"
+};
+function isHttpUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+function supportedImageMimeTypes() {
+  return Array.from(SUPPORTED_IMAGE_MIME_TYPES);
+}
+async function inspectImageFile(imageFile, options) {
+  const resolvedPath = await resolveExistingImagePath(imageFile, options);
+  const info = await stat(resolvedPath);
+  if (!info.isFile()) {
+    throw new Error(`imageFile must point to a file: ${resolvedPath}`);
+  }
+  if (info.size > PRODUCT_IMAGE_MAX_BYTES) {
+    throw new Error(formatTooLarge(info.size));
+  }
+  const buffer = await readFile4(resolvedPath);
+  const mimeType = detectImageMime(buffer);
+  if (!mimeType) {
+    throw new Error(formatUnsupportedMime());
+  }
+  return {
+    kind: "file",
+    imageFile,
+    resolvedPath,
+    fileName: basename2(resolvedPath),
+    mimeType,
+    sizeBytes: info.size,
+    sha256: sha256Hex(buffer)
+  };
+}
+async function inspectImageUrl(imageUrl) {
+  const asset = await downloadImage(imageUrl);
+  return {
+    kind: "url",
+    imageUrl,
+    fileName: asset.fileName,
+    mimeType: asset.mimeType,
+    sizeBytes: asset.sizeBytes,
+    sha256: asset.sha256
+  };
+}
+async function loadImageUploadAsset(source) {
+  if (source.kind === "file") {
+    const buffer = await readFile4(source.resolvedPath);
+    const mimeType = detectImageMime(buffer);
+    if (!mimeType) {
+      throw new Error(`Catalog image ${source.imageFile} is no longer a supported image file.`);
+    }
+    const sha256 = sha256Hex(buffer);
+    return {
+      sourceKind: "file",
+      source: source.resolvedPath,
+      fileName: source.fileName,
+      mimeType,
+      sizeBytes: buffer.byteLength,
+      sha256,
+      buffer
+    };
+  }
+  if (source.kind === "url") {
+    return downloadImage(source.imageUrl);
+  }
+  throw new Error("imageId sources do not need uploading");
+}
+function createImageUploadFormFromAsset(asset) {
+  const form = new FormData();
+  const arrayBuffer = asset.buffer.buffer.slice(
+    asset.buffer.byteOffset,
+    asset.buffer.byteOffset + asset.buffer.byteLength
+  );
+  const blob = new Blob([arrayBuffer], { type: asset.mimeType });
+  form.append("file", blob, asset.fileName);
+  return form;
+}
+function resolveCandidateRoots(options) {
+  const catalogDir = dirname2(resolve(options.catalogFilePath));
+  const roots = [catalogDir];
+  if (options.projectRoot) roots.push(resolve(options.projectRoot));
+  if (options.publicDir) {
+    roots.push(
+      isAbsolute(options.publicDir) ? resolve(options.publicDir) : resolve(options.projectRoot ? resolve(options.projectRoot) : catalogDir, options.publicDir)
+    );
+  }
+  return Array.from(new Set(roots));
+}
+async function resolveExistingImagePath(imageFile, options) {
+  const raw = imageFile.trim();
+  const strippedRootRelative = raw.replace(/^[\\/]+/, "");
+  const candidates = isAbsolute(raw) && !options.publicDir ? [resolve(raw)] : resolveCandidateRoots(options).map((root) => resolve(root, raw.startsWith("/") || raw.startsWith("\\") ? strippedRootRelative : raw));
+  for (const candidate of Array.from(new Set(candidates))) {
+    try {
+      const info = await stat(candidate);
+      if (info.isFile()) return candidate;
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+  }
+  throw new Error(`imageFile not found. Tried: ${Array.from(new Set(candidates)).join(", ")}`);
+}
+async function downloadImage(imageUrl) {
+  let url;
+  try {
+    url = new URL(imageUrl);
+  } catch {
+    throw new Error("imageUrl must be a valid http(s) URL");
+  }
+  if (url.protocol !== "http:" && url.protocol !== "https:") {
+    throw new Error("imageUrl must use http:// or https://");
+  }
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Could not download imageUrl: ${message}`);
+  }
+  if (!response.ok) {
+    throw new Error(`Could not download imageUrl: HTTP ${response.status}`);
+  }
+  const declaredLength = Number(response.headers.get("content-length"));
+  if (Number.isFinite(declaredLength) && declaredLength > PRODUCT_IMAGE_MAX_BYTES) {
+    throw new Error(formatTooLarge(declaredLength));
+  }
+  const buffer = await readResponseBuffer(response, PRODUCT_IMAGE_MAX_BYTES + 1);
+  if (buffer.byteLength > PRODUCT_IMAGE_MAX_BYTES) {
+    throw new Error(formatTooLarge(buffer.byteLength));
+  }
+  const headerMime = normalizeMime(response.headers.get("content-type"));
+  const detectedMime = detectImageMime(buffer);
+  const mimeType = detectedMime ?? headerMime;
+  if (!mimeType || !SUPPORTED_IMAGE_MIME_TYPES.has(mimeType)) {
+    throw new Error(formatUnsupportedMime(headerMime));
+  }
+  const sha256 = sha256Hex(buffer);
+  return {
+    sourceKind: "url",
+    source: imageUrl,
+    fileName: fileNameFromUrl(url, mimeType),
+    mimeType,
+    sizeBytes: buffer.byteLength,
+    sha256,
+    buffer
+  };
+}
+async function readResponseBuffer(response, limitBytes) {
+  if (!response.body) {
+    return Buffer.from(await response.arrayBuffer());
+  }
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    const chunk = Buffer.from(value);
+    chunks.push(chunk);
+    total += chunk.byteLength;
+    if (total > limitBytes) break;
+  }
+  await reader.cancel().catch(() => void 0);
+  return Buffer.concat(chunks, total);
+}
+function detectImageMime(buffer) {
+  if (buffer.length >= 3 && buffer[0] === 255 && buffer[1] === 216 && buffer[2] === 255) {
+    return "image/jpeg";
+  }
+  if (buffer.length >= 8 && buffer[0] === 137 && buffer[1] === 80 && buffer[2] === 78 && buffer[3] === 71 && buffer[4] === 13 && buffer[5] === 10 && buffer[6] === 26 && buffer[7] === 10) {
+    return "image/png";
+  }
+  const asciiStart = buffer.subarray(0, 6).toString("ascii");
+  if (asciiStart === "GIF87a" || asciiStart === "GIF89a") {
+    return "image/gif";
+  }
+  if (buffer.length >= 12 && buffer.subarray(0, 4).toString("ascii") === "RIFF" && buffer.subarray(8, 12).toString("ascii") === "WEBP") {
+    return "image/webp";
+  }
+  return void 0;
+}
+function normalizeMime(value) {
+  if (!value) return void 0;
+  const mime = value.split(";")[0]?.trim().toLowerCase();
+  return mime && SUPPORTED_IMAGE_MIME_TYPES.has(mime) ? mime : void 0;
+}
+function fileNameFromUrl(url, mimeType) {
+  const rawName = decodeURIComponent(posix.basename(url.pathname || ""));
+  const safeName = rawName && rawName !== "/" ? rawName.replace(/[^\w. -]+/g, "-") : `product-image${EXTENSION_BY_MIME[mimeType]}`;
+  return extname(safeName) ? safeName : `${safeName}${EXTENSION_BY_MIME[mimeType]}`;
+}
+function sha256Hex(buffer) {
+  return createHash("sha256").update(buffer).digest("hex");
+}
+function formatTooLarge(sizeBytes) {
+  return `Image file is ${sizeBytes} bytes; product images must not exceed ${PRODUCT_IMAGE_MAX_BYTES} bytes.`;
+}
+function formatUnsupportedMime(actual) {
+  const suffix = actual ? ` Got ${actual}.` : "";
+  return `Unsupported product image MIME type.${suffix} Supported types: ${supportedImageMimeTypes().join(", ")}.`;
+}
+
+// src/commands/catalog.ts
+var DEFAULT_MAPPING_FILE = ".clink/catalog-map.json";
+var DEFAULT_TAX_CATEGORY = "software_service";
+var DEFAULT_RECURRING_INTERVAL = "month";
+var DEFAULT_PRICING_MODEL = "flat_rate";
+var SUPPORTED_CURRENCIES = /* @__PURE__ */ new Set([
+  "USD",
+  "EUR",
+  "JPY",
+  "GBP",
+  "AUD",
+  "CAD",
+  "CNY",
+  "HKD",
+  "SGD",
+  "KRW",
+  "AED",
+  "THB",
+  "IDR",
+  "PHP",
+  "MYR",
+  "BRL",
+  "INR"
+]);
+var SUPPORTED_RECURRING_INTERVALS = /* @__PURE__ */ new Set(["day", "week", "month", "year", "quarter", "half_year", "custom"]);
+var SUPPORTED_PRICING_MODELS = /* @__PURE__ */ new Set(["flat_rate", "per_seat", "tiered", "usage_based"]);
+function registerCatalog(program2) {
+  const catalog = program2.command("catalog").description("Validate, plan, and import AI-discovered product catalogs");
+  catalog.command("validate").description("Validate a catalog JSON file produced by an agent").requiredOption("--file <path>", "Catalog JSON file").option("--default-image-id <ossId>", "Fallback product image OSS ID for products without imageId").option("--project-root <path>", "Project root for resolving catalog imageFile paths").option("--public-dir <path>", "Public/static asset directory for root-relative imageFile paths").action(async (options, command) => {
+    const { config } = await getCommandContext(command);
+    const validation = await readAndValidateCatalog(options.file, options.defaultImageId, imageResolveOptions(options));
+    printResult(
+      validation,
+      config.outputMode,
+      validation.ok ? `Catalog is valid: ${validation.catalog?.products.length ?? 0} product(s)` : formatValidationIssues(validation)
+    );
+    if (!validation.ok) process.exitCode = 1;
+  });
+  catalog.command("plan").description("Show which catalog products and prices would be created or skipped").requiredOption("--file <path>", "Catalog JSON file").option("--mapping-file <path>", "Catalog mapping file", DEFAULT_MAPPING_FILE).option("--default-image-id <ossId>", "Fallback product image OSS ID for products without imageId").option("--project-root <path>", "Project root for resolving catalog imageFile paths").option("--public-dir <path>", "Public/static asset directory for root-relative imageFile paths").option("--force", "Plan recreation even when mapping entries exist").action(async (options, command) => {
+    const { config } = await getCommandContext(command);
+    const validation = await readAndValidateCatalog(options.file, options.defaultImageId, imageResolveOptions(options));
+    if (!validation.ok || !validation.catalog) {
+      printResult(validation, config.outputMode, formatValidationIssues(validation));
+      process.exitCode = 1;
+      return;
+    }
+    const mapping = await readCatalogMapping(options.mappingFile);
+    const plan = buildCatalogPlan(validation.catalog, mapping, Boolean(options.force));
+    printResult(
+      {
+        ok: true,
+        catalogFile: options.file,
+        mappingFile: options.mappingFile,
+        force: Boolean(options.force),
+        ...plan
+      },
+      config.outputMode,
+      formatPlan(plan.products)
+    );
+  });
+  catalog.command("import").description("Create catalog products and prices in Clink and save sourceId mappings").requiredOption("--file <path>", "Catalog JSON file").option("--mapping-file <path>", "Catalog mapping file", DEFAULT_MAPPING_FILE).option("--default-image-id <ossId>", "Fallback product image OSS ID for products without imageId").option("--project-root <path>", "Project root for resolving catalog imageFile paths").option("--public-dir <path>", "Public/static asset directory for root-relative imageFile paths").option("--force", "Create new Clink products even when mapping entries exist").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const validation = await readAndValidateCatalog(options.file, options.defaultImageId, imageResolveOptions(options));
+    if (!validation.ok || !validation.catalog) {
+      printResult(validation, config.outputMode, formatValidationIssues(validation));
+      process.exitCode = 1;
+      return;
+    }
+    const mapping = await readCatalogMapping(options.mappingFile);
+    const result = await importCatalog(validation.catalog, mapping, {
+      force: Boolean(options.force),
+      dryRun: config.dryRun,
+      postProduct: (body) => client.post("/product", { body }),
+      postPrice: (body) => client.post("/price", { body }),
+      uploadImage: (form) => client.post("/product/image/upload", { multipart: form })
+    });
+    if (!config.dryRun) {
+      await writeCatalogMapping(options.mappingFile, result.mapping);
+    }
+    printResult(
+      {
+        ok: true,
+        catalogFile: options.file,
+        mappingFile: options.mappingFile,
+        mappingSaved: !config.dryRun,
+        dryRun: config.dryRun,
+        summary: result.summary,
+        operations: result.operations
+      },
+      config.outputMode,
+      `Catalog import ${config.dryRun ? "dry-run " : ""}completed: ${result.summary.createdProducts} product(s), ${result.summary.createdPrices} price(s) created.`
+    );
+  });
+}
+function imageResolveOptions(options) {
+  return {
+    catalogFilePath: options.file,
+    projectRoot: options.projectRoot,
+    publicDir: options.publicDir
+  };
+}
+async function readAndValidateCatalog(filePath, defaultImageId, imageOptions = { catalogFilePath: filePath }) {
+  let raw;
+  try {
+    raw = JSON.parse(stripJsonBom(await readFile5(filePath, "utf8")));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return {
+      ok: false,
+      errors: [{ path: "$", message: `Could not read catalog JSON: ${message}` }],
+      warnings: []
+    };
+  }
+  return normalizeCatalog(raw, defaultImageId, imageOptions);
+}
+async function normalizeCatalog(raw, defaultImageId, imageOptions) {
+  const errors = [];
+  const warnings = [];
+  const root = asRecord(raw);
+  if (!root) {
+    return {
+      ok: false,
+      errors: [{ path: "$", message: "Catalog must be a JSON object" }],
+      warnings
+    };
+  }
+  const rawProducts = Array.isArray(root.products) ? root.products : void 0;
+  if (!rawProducts) {
+    errors.push({ path: "$.products", message: "Catalog must include a products array" });
+  }
+  const productSourceIds = /* @__PURE__ */ new Set();
+  const products = [];
+  if (defaultImageId && isHttpUrl(defaultImageId)) {
+    errors.push({ path: "$.--default-image-id", message: "defaultImageId must be an uploaded OSS ID, not a URL. Use imageUrl in the catalog instead." });
+  }
+  for (const [index, value] of (rawProducts ?? []).entries()) {
+    const path = `$.products[${index}]`;
+    const product = asRecord(value);
+    if (!product) {
+      errors.push({ path, message: "Product must be an object" });
+      continue;
+    }
+    const sourceId = requiredString(product.sourceId, `${path}.sourceId`, errors);
+    const name = requiredString(product.name, `${path}.name`, errors);
+    const imageSource = await normalizeImageSource(product, path, defaultImageId, imageOptions, errors);
+    const taxCategory = optionalString(product.taxCategory) ?? DEFAULT_TAX_CATEGORY;
+    if (!isTaxCategory(taxCategory)) {
+      errors.push({ path: `${path}.taxCategory`, message: "taxCategory must be digital_goods_or_service, ebook, or software_service" });
+    }
+    if (sourceId) {
+      if (productSourceIds.has(sourceId)) {
+        errors.push({ path: `${path}.sourceId`, message: `Duplicate product sourceId "${sourceId}"` });
+      }
+      productSourceIds.add(sourceId);
+    }
+    const rawPrices = Array.isArray(product.prices) ? product.prices : Array.isArray(product.priceList) ? product.priceList : void 0;
+    if (!rawPrices || rawPrices.length === 0) {
+      errors.push({ path: `${path}.prices`, message: "Product must include at least one price" });
+    }
+    const priceSourceIds = /* @__PURE__ */ new Set();
+    const prices = [];
+    (rawPrices ?? []).forEach((priceValue, priceIndex) => {
+      const pricePath = `${path}.prices[${priceIndex}]`;
+      const price = asRecord(priceValue);
+      if (!price) {
+        errors.push({ path: pricePath, message: "Price must be an object" });
+        return;
+      }
+      const priceSourceId = requiredString(price.sourceId, `${pricePath}.sourceId`, errors);
+      if (priceSourceId) {
+        if (priceSourceIds.has(priceSourceId)) {
+          errors.push({ path: `${pricePath}.sourceId`, message: `Duplicate price sourceId "${priceSourceId}" in product "${sourceId ?? index}"` });
+        }
+        priceSourceIds.add(priceSourceId);
+      }
+      const amount = requiredNumber(price.amount ?? price.unitAmount, `${pricePath}.amount`, errors);
+      const currency = (requiredString(price.currency, `${pricePath}.currency`, errors) ?? "").toUpperCase();
+      const type = optionalString(price.type) ?? optionalString(price.priceType) ?? "one_time";
+      const interval = optionalString(price.interval);
+      const intervalCount = optionalNumber(price.intervalCount);
+      const trialDays = optionalNumber(price.trialDays ?? price.trialPeriodDays);
+      const pricingModel = optionalString(price.pricingModel);
+      const priority = optionalNumber(price.priority);
+      if (type !== "one_time" && type !== "recurring") {
+        errors.push({ path: `${pricePath}.type`, message: "type must be one_time or recurring" });
+      }
+      if (currency && !/^[A-Z]{3}$/.test(currency)) {
+        warnings.push({ path: `${pricePath}.currency`, message: "Currency should be a three-letter ISO code" });
+      }
+      if (currency && !SUPPORTED_CURRENCIES.has(currency)) {
+        errors.push({ path: `${pricePath}.currency`, message: `currency must be one of ${Array.from(SUPPORTED_CURRENCIES).join(", ")}` });
+      }
+      if (amount !== void 0 && amount <= 0) {
+        errors.push({ path: `${pricePath}.amount`, message: "amount must be greater than 0" });
+      }
+      if (interval && !SUPPORTED_RECURRING_INTERVALS.has(interval)) {
+        errors.push({ path: `${pricePath}.interval`, message: `interval must be one of ${Array.from(SUPPORTED_RECURRING_INTERVALS).join(", ")}` });
+      }
+      if (intervalCount !== void 0 && (!Number.isInteger(intervalCount) || intervalCount <= 0)) {
+        errors.push({ path: `${pricePath}.intervalCount`, message: "intervalCount must be a positive integer" });
+      }
+      if (trialDays !== void 0 && (!Number.isInteger(trialDays) || trialDays < 0)) {
+        errors.push({ path: `${pricePath}.trialDays`, message: "trialDays must be a non-negative integer" });
+      }
+      if (pricingModel && !SUPPORTED_PRICING_MODELS.has(pricingModel)) {
+        errors.push({ path: `${pricePath}.pricingModel`, message: `pricingModel must be one of ${Array.from(SUPPORTED_PRICING_MODELS).join(", ")}` });
+      }
+      if (priority !== void 0 && !Number.isInteger(priority)) {
+        errors.push({ path: `${pricePath}.priority`, message: "priority must be an integer" });
+      }
+      prices.push({
+        sourceId: priceSourceId ?? "",
+        amount: amount ?? 0,
+        currency,
+        type: type === "recurring" ? "recurring" : "one_time",
+        interval,
+        intervalCount,
+        trialDays,
+        pricingModel,
+        default: optionalBoolean(price.default ?? price.isDefaultPrice),
+        priority
+      });
+    });
+    products.push({
+      sourceId: sourceId ?? "",
+      name: name ?? "",
+      localizedNames: stringRecord(product.localizedNames),
+      description: optionalString(product.description),
+      imageId: imageSource?.kind === "id" || imageSource?.kind === "default" ? imageSource.imageId : void 0,
+      imageUrl: imageSource?.kind === "url" ? imageSource.imageUrl : void 0,
+      imageFile: imageSource?.kind === "file" ? imageSource.imageFile : void 0,
+      imageSource: imageSource ?? { kind: "id", imageId: "", sourceField: "imageId" },
+      taxCategory: isTaxCategory(taxCategory) ? taxCategory : DEFAULT_TAX_CATEGORY,
+      prices
+    });
+  }
+  return {
+    ok: errors.length === 0,
+    errors,
+    warnings,
+    catalog: errors.length === 0 ? {
+      version: optionalNumber(root.version) ?? 1,
+      source: asRecord(root.source),
+      products
+    } : void 0
+  };
+}
+async function normalizeImageSource(product, path, defaultImageId, imageOptions, errors) {
+  const explicitImageId = optionalString(product.imageId);
+  const legacyImage = optionalString(product.image);
+  const imageId = explicitImageId ?? legacyImage;
+  const imageIdPath = explicitImageId ? `${path}.imageId` : `${path}.image`;
+  const imageUrl = optionalString(product.imageUrl);
+  const imageFile = optionalString(product.imageFile);
+  const provided = [imageId, imageUrl, imageFile].filter(Boolean);
+  if (provided.length > 1) {
+    errors.push({ path: `${path}.image`, message: "Use only one of imageId, imageUrl, or imageFile for each product." });
+    return void 0;
+  }
+  if (imageId) {
+    if (isHttpUrl(imageId)) {
+      errors.push({ path: imageIdPath, message: "imageId must be an uploaded OSS ID, not a URL. Move this value to imageUrl." });
+      return void 0;
+    }
+    return {
+      kind: "id",
+      imageId,
+      sourceField: explicitImageId ? "imageId" : "image"
+    };
+  }
+  if (imageUrl) {
+    if (!isHttpUrl(imageUrl)) {
+      errors.push({ path: `${path}.imageUrl`, message: "imageUrl must be a valid http(s) URL." });
+      return void 0;
+    }
+    try {
+      return await inspectImageUrl(imageUrl);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push({ path: `${path}.imageUrl`, message });
+      return void 0;
+    }
+  }
+  if (imageFile) {
+    if (isHttpUrl(imageFile)) {
+      errors.push({ path: `${path}.imageFile`, message: "imageFile must be a local file path. Move URLs to imageUrl." });
+      return void 0;
+    }
+    try {
+      return await inspectImageFile(imageFile, imageOptions);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push({ path: `${path}.imageFile`, message });
+      return void 0;
+    }
+  }
+  if (defaultImageId && !isHttpUrl(defaultImageId)) {
+    return {
+      kind: "default",
+      imageId: defaultImageId,
+      sourceField: "defaultImageId"
+    };
+  }
+  errors.push({ path: `${path}.imageId`, message: "Product must include imageId, imageUrl, or imageFile, or pass --default-image-id." });
+  return void 0;
+}
+async function readCatalogMapping(filePath) {
+  try {
+    const parsed = JSON.parse(stripJsonBom(await readFile5(filePath, "utf8")));
+    return {
+      version: 1,
+      generatedBy: "clink-integ-cli",
+      updatedAt: parsed.updatedAt,
+      products: parsed.products ?? {},
+      assets: parsed.assets ?? {}
+    };
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return emptyMapping();
+    }
+    throw error;
+  }
+}
+async function writeCatalogMapping(filePath, mapping) {
+  await mkdir2(dirname3(filePath), { recursive: true });
+  await writeFile2(filePath, `${JSON.stringify({ ...mapping, updatedAt: (/* @__PURE__ */ new Date()).toISOString() }, null, 2)}
+`, "utf8");
+}
+function emptyMapping() {
+  return {
+    version: 1,
+    generatedBy: "clink-integ-cli",
+    products: {},
+    assets: {}
+  };
+}
+function buildCatalogPlan(catalog, mapping, force) {
+  const products = catalog.products.map((product) => {
+    const mappedProduct = mapping.products[product.sourceId];
+    const createProduct = force || !mappedProduct;
+    const image = planImage(product, mapping, createProduct);
+    const prices = product.prices.map((price) => {
+      const mappedPrice = mappedProduct?.prices?.[price.sourceId];
+      const action = createProduct ? "create_with_product" : mappedPrice ? "skip_existing_price" : "create_price";
+      return {
+        sourceId: price.sourceId,
+        action,
+        priceId: mappedPrice?.priceId,
+        amount: price.amount,
+        currency: price.currency,
+        type: price.type
+      };
+    });
+    return {
+      sourceId: product.sourceId,
+      name: product.name,
+      action: createProduct ? "create_product" : "skip_existing_product",
+      productId: mappedProduct?.productId,
+      image,
+      prices
+    };
+  });
+  return {
+    products,
+    summary: summarizePlan(products)
+  };
+}
+function planImage(product, mapping, willCreateProduct) {
+  const source = product.imageSource;
+  if (!willCreateProduct) {
+    return {
+      action: "skip_existing_product",
+      sourceKind: source.kind,
+      source: imageSourceLabel(source),
+      ossId: source.kind === "id" || source.kind === "default" ? source.imageId : void 0,
+      sha256: imageSourceSha(source),
+      mimeType: imageSourceMime(source),
+      sizeBytes: imageSourceSize(source)
+    };
+  }
+  if (source.kind === "id") {
+    return {
+      action: "skip_existing_image_id",
+      sourceKind: source.kind,
+      source: source.imageId,
+      ossId: source.imageId
+    };
+  }
+  if (source.kind === "default") {
+    return {
+      action: "use_default_image_id",
+      sourceKind: source.kind,
+      source: source.imageId,
+      ossId: source.imageId
+    };
+  }
+  const cached = mapping.assets?.[source.sha256];
+  return {
+    action: cached?.ossId ? "reuse_cached_upload" : "upload",
+    sourceKind: source.kind,
+    source: imageSourceLabel(source),
+    ossId: cached?.ossId,
+    sha256: source.sha256,
+    mimeType: source.mimeType,
+    sizeBytes: source.sizeBytes
+  };
+}
+async function importCatalog(catalog, mapping, options) {
+  const operations = [];
+  const summary = {
+    createdProducts: 0,
+    createdPrices: 0,
+    skippedProducts: 0,
+    skippedPrices: 0,
+    uploadedImages: 0,
+    reusedImages: 0,
+    skippedImages: 0
+  };
+  for (const product of catalog.products) {
+    const mappedProduct = mapping.products[product.sourceId];
+    const shouldCreateProduct = options.force || !mappedProduct;
+    if (shouldCreateProduct) {
+      const imageResult = await resolveProductImage(product, mapping, options);
+      operations.push({
+        sourceId: product.sourceId,
+        action: imageResult.action,
+        image: imageResult.image,
+        result: imageResult.result
+      });
+      if (imageResult.action === "upload_image") summary.uploadedImages += 1;
+      if (imageResult.action === "reuse_image_upload") summary.reusedImages += 1;
+      if (imageResult.action === "skip_image_upload") summary.skippedImages += 1;
+      const body = productCreatePayload(product, imageResult.ossId);
+      const result = await options.postProduct(body);
+      const ids = extractProductIds(result);
+      operations.push({
+        sourceId: product.sourceId,
+        action: "create_product",
+        requestBody: body,
+        result,
+        productId: ids.productId
+      });
+      summary.createdProducts += 1;
+      summary.createdPrices += product.prices.length;
+      if (!options.dryRun && !ids.productId) {
+        throw new Error(`Clink product create response did not include productId for catalog product "${product.sourceId}"`);
+      }
+      if (!options.dryRun && ids.productId) {
+        const mappedPrices = mapCreatedPrices(product.prices, result);
+        if (Object.keys(mappedPrices).length !== product.prices.length) {
+          throw new Error(`Clink product create response did not include all price IDs for catalog product "${product.sourceId}"`);
+        }
+        mapping.products[product.sourceId] = {
+          productId: ids.productId,
+          defaultPrice: ids.defaultPrice,
+          prices: mappedPrices
+        };
+      }
+      continue;
+    }
+    summary.skippedProducts += 1;
+    summary.skippedImages += 1;
+    operations.push({
+      sourceId: product.sourceId,
+      action: "skip_existing_product",
+      productId: mappedProduct.productId,
+      image: planImage(product, mapping, false)
+    });
+    for (const price of product.prices) {
+      const mappedPrice = mappedProduct.prices[price.sourceId];
+      if (mappedPrice && !options.force) {
+        summary.skippedPrices += 1;
+        operations.push({
+          sourceId: product.sourceId,
+          priceSourceId: price.sourceId,
+          action: "skip_existing_price",
+          productId: mappedProduct.productId,
+          priceId: mappedPrice.priceId
+        });
+        continue;
+      }
+      const body = priceCreatePayload(mappedProduct.productId, price);
+      const result = await options.postPrice(body);
+      const priceId = extractPriceId(result);
+      summary.createdPrices += 1;
+      operations.push({
+        sourceId: product.sourceId,
+        priceSourceId: price.sourceId,
+        action: "create_price",
+        requestBody: body,
+        result,
+        priceId
+      });
+      if (!options.dryRun && !priceId) {
+        throw new Error(`Clink price create response did not include priceId for catalog price "${product.sourceId}/${price.sourceId}"`);
+      }
+      if (!options.dryRun && priceId) {
+        mappedProduct.prices[price.sourceId] = {
+          priceId,
+          type: price.type,
+          amount: price.amount,
+          currency: price.currency
+        };
+      }
+    }
+  }
+  return {
+    mapping,
+    summary,
+    operations
+  };
+}
+async function resolveProductImage(product, mapping, options) {
+  const source = product.imageSource;
+  if (source.kind === "id" || source.kind === "default") {
+    return {
+      action: "skip_image_upload",
+      ossId: source.imageId,
+      image: planImage(product, mapping, true)
+    };
+  }
+  mapping.assets = mapping.assets ?? {};
+  const cached = mapping.assets[source.sha256];
+  if (cached?.ossId) {
+    return {
+      action: "reuse_image_upload",
+      ossId: cached.ossId,
+      image: planImage(product, mapping, true)
+    };
+  }
+  const asset = await loadImageUploadAsset(source);
+  const form = createImageUploadFormFromAsset(asset);
+  const result = await options.uploadImage(form);
+  const ossId = options.dryRun ? dryRunOssId(asset.sha256) : extractOssId(result);
+  if (!ossId) {
+    throw new Error(`Clink image upload response did not include ossId for catalog product "${product.sourceId}"`);
+  }
+  mapping.assets[asset.sha256] = {
+    ossId,
+    sourceKind: asset.sourceKind,
+    source: asset.source,
+    mimeType: asset.mimeType,
+    sizeBytes: asset.sizeBytes,
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+  };
+  return {
+    action: "upload_image",
+    ossId,
+    image: {
+      action: "upload",
+      sourceKind: source.kind,
+      source: imageSourceLabel(source),
+      ossId,
+      sha256: asset.sha256,
+      mimeType: asset.mimeType,
+      sizeBytes: asset.sizeBytes
+    },
+    result
+  };
+}
+function productCreatePayload(product, imageId) {
+  return {
+    name: product.name,
+    localizedNames: product.localizedNames,
+    description: product.description,
+    image: imageId,
+    taxCategory: product.taxCategory,
+    priceList: product.prices.map(productPricePayload)
+  };
+}
+function productPricePayload(price) {
+  const item = {
+    currency: price.currency,
+    unitAmount: price.amount,
+    priceType: price.type,
+    isDefaultPrice: Boolean(price.default),
+    priority: price.priority
+  };
+  if (price.type === "recurring") {
+    item.recurringDetails = recurringDetails(price);
+  }
+  return item;
+}
+function priceCreatePayload(productId, price) {
+  const body = {
+    productId,
+    currency: price.currency,
+    unitAmount: price.amount,
+    priceType: price.type,
+    isDefaultPrice: Boolean(price.default)
+  };
+  if (price.type === "recurring") {
+    body.recurringDetails = recurringDetails(price);
+  }
+  return body;
+}
+function recurringDetails(price) {
+  return {
+    interval: price.interval ?? DEFAULT_RECURRING_INTERVAL,
+    intervalCount: price.intervalCount ?? 1,
+    trialPeriodDays: price.trialDays,
+    pricingModel: price.pricingModel ?? DEFAULT_PRICING_MODEL
+  };
+}
+function mapCreatedPrices(prices, result) {
+  const mapped = {};
+  const data = result && typeof result === "object" ? result.data : void 0;
+  const resultPrices = Array.isArray(data?.priceList) ? data.priceList : [];
+  prices.forEach((price, index) => {
+    const raw = resultPrices[index] && typeof resultPrices[index] === "object" ? resultPrices[index] : void 0;
+    const priceId = stringValue(raw?.priceId) ?? (price.default ? stringValue(data?.defaultPrice) : void 0);
+    if (priceId) {
+      mapped[price.sourceId] = {
+        priceId,
+        type: price.type,
+        amount: price.amount,
+        currency: price.currency
+      };
+    }
+  });
+  return mapped;
+}
+function extractProductIds(result) {
+  const data = result && typeof result === "object" ? result.data : void 0;
+  return {
+    productId: stringValue(data?.productId),
+    defaultPrice: stringValue(data?.defaultPrice)
+  };
+}
+function extractPriceId(result) {
+  const data = result && typeof result === "object" ? result.data : void 0;
+  return stringValue(data?.priceId);
+}
+function extractOssId(result) {
+  const data = result && typeof result === "object" ? result.data : void 0;
+  return stringValue(data?.ossId);
+}
+function dryRunOssId(sha256) {
+  return `dry_run_oss_${sha256.slice(0, 16)}`;
+}
+function summarizePlan(products) {
+  const images = products.map((product) => product.image);
+  return {
+    createProducts: products.filter((product) => product.action === "create_product").length,
+    skipProducts: products.filter((product) => product.action === "skip_existing_product").length,
+    createPrices: products.flatMap((product) => product.prices).filter((price) => price.action !== "skip_existing_price").length,
+    skipPrices: products.flatMap((product) => product.prices).filter((price) => price.action === "skip_existing_price").length,
+    uploadImages: images.filter((image) => image.action === "upload").length,
+    reuseImages: images.filter((image) => image.action === "reuse_cached_upload").length,
+    skipImages: images.filter((image) => image.action !== "upload" && image.action !== "reuse_cached_upload").length
+  };
+}
+function formatValidationIssues(validation) {
+  const lines2 = [
+    ...validation.errors.map((issue) => `[error] ${issue.path}: ${issue.message}`),
+    ...validation.warnings.map((issue) => `[warn] ${issue.path}: ${issue.message}`)
+  ];
+  return lines2.length > 0 ? lines2.join("\n") : "Catalog validation completed.";
+}
+function formatPlan(products) {
+  if (products.length === 0) return "Catalog contains no products.";
+  return products.map((product) => {
+    const priceSummary = product.prices.map((price) => `${price.action}:${price.sourceId}`).join(", ");
+    const imageSummary = `image=${product.image.action}:${product.image.source}`;
+    return `${product.action}: ${product.sourceId} (${product.name}) ${imageSummary}${priceSummary ? ` -> ${priceSummary}` : ""}`;
+  }).join("\n");
+}
+function asRecord(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : void 0;
+}
+function requiredString(value, path, errors) {
+  const text = optionalString(value);
+  if (!text) {
+    errors.push({ path, message: "Required string is missing" });
+    return void 0;
+  }
+  return text;
+}
+function requiredNumber(value, path, errors) {
+  const parsed = optionalNumber(value);
+  if (parsed === void 0) {
+    errors.push({ path, message: "Required number is missing" });
+    return void 0;
+  }
+  return parsed;
+}
+function optionalString(value) {
+  return typeof value === "string" && value.trim() !== "" ? value.trim() : void 0;
+}
+function optionalNumber(value) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim() !== "" && Number.isFinite(Number(value))) return Number(value);
+  return void 0;
+}
+function optionalBoolean(value) {
+  if (typeof value === "boolean") return value;
+  if (value === "true") return true;
+  if (value === "false") return false;
+  return void 0;
+}
+function stringRecord(value) {
+  const record = asRecord(value);
+  if (!record) return void 0;
+  const result = {};
+  for (const [key, nestedValue] of Object.entries(record)) {
+    if (typeof nestedValue === "string") {
+      result[key] = nestedValue;
+    }
+  }
+  return Object.keys(result).length > 0 ? result : void 0;
+}
+function isTaxCategory(value) {
+  return value === "digital_goods_or_service" || value === "ebook" || value === "software_service";
+}
+function imageSourceLabel(source) {
+  if (source.kind === "id" || source.kind === "default") return source.imageId;
+  if (source.kind === "file") return source.imageFile;
+  return source.imageUrl;
+}
+function imageSourceSha(source) {
+  return source.kind === "file" || source.kind === "url" ? source.sha256 : void 0;
+}
+function imageSourceMime(source) {
+  return source.kind === "file" || source.kind === "url" ? source.mimeType : void 0;
+}
+function imageSourceSize(source) {
+  return source.kind === "file" || source.kind === "url" ? source.sizeBytes : void 0;
+}
+function stringValue(value) {
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function stripJsonBom(raw) {
+  return raw.charCodeAt(0) === 65279 ? raw.slice(1) : raw;
+}
+
+// src/commands/checkout.ts
+import { spawn } from "node:child_process";
+function registerCheckout(program2) {
+  const checkout = program2.command("checkout").description("Create checkout sessions");
+  checkout.command("get <session-id-or-url>").description("Get checkout session details").action(async function(sessionIdOrUrl) {
+    const { config, client } = await getCommandContext(this);
+    const sessionId = normalizeCheckoutSessionId(sessionIdOrUrl);
+    const result = await client.get(`/checkout/session/${encodeURIComponent(sessionId)}`);
+    printResult(
+      {
+        sessionId,
+        result
+      },
+      config.outputMode
+    );
+  });
+  checkout.command("create").description("Create a checkout session using either product/price IDs or inline price data").option("--customer-id <id>", "Existing Clink customer ID").option("--customer-email <email>", "Customer email").option("--reference-customer-id <id>", "Merchant-side customer ID").requiredOption("--amount <amount>", "Original total amount").requiredOption("--currency <currency>", "Original currency, for example USD").option("--name <name>", "Inline one-time product name").option("--unit-amount <amount>", "Inline product unit amount. Defaults to amount / quantity.").option("--quantity <number>", "Inline one-time product quantity", "1").option("--image-url <url>", "Inline product image URL").option("--product-id <id>", "Registered product ID").option("--price-id <id>", "Registered price ID").option("--merchant-reference-id <id>", "Merchant order/reference ID").option("--success-url <url>", "Success redirect URL").option("--cancel-url <url>", "Cancel redirect URL").option("--ui-mode <mode>", "hostedPage or elements", "hostedPage").option("--return-url <url>", "Return URL for elements mode").option("--payment-method-type <type>", "Default payment method type").option("--allow-promotion-codes", "Enable promotion code entry").option("--promotion-code <code>", "Pre-filled promotion code").option("--open", "Open the hosted checkout URL after creation").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const { body, mode } = buildCheckoutPayload(options);
+    const result = await client.post(
+      "/checkout/session",
+      { body }
+    );
+    const url = buildUrl(config.baseUrl, "/checkout/session");
+    const checkoutUrl = extractCheckoutUrl(result);
+    if (options.open && checkoutUrl && !config.dryRun) {
+      openUrl(checkoutUrl);
+    }
+    printResult(
+      {
+        mode,
+        checkoutUrl,
+        sessionId: extractSessionId(result),
+        result,
+        curl: curlForJsonRequest("POST", url, body)
+      },
+      config.outputMode,
+      checkoutUrl ? `Checkout session created: ${checkoutUrl}` : "Checkout session create request completed. Use --json to view the full response and curl example."
+    );
+  });
+}
+function buildCheckoutPayload(options) {
+  requireCustomerIdentifier(options);
+  const amount = parseNumberOption("--amount", options.amount);
+  const currency = options.currency.toUpperCase();
+  const mode = checkoutMode(options);
+  const body = {
+    customerId: options.customerId,
+    customerEmail: options.customerEmail,
+    referenceCustomerId: options.referenceCustomerId,
+    originalAmount: amount,
+    originalCurrency: currency,
+    merchantReferenceId: options.merchantReferenceId,
+    successUrl: options.successUrl,
+    cancelUrl: options.cancelUrl,
+    uiMode: options.uiMode,
+    returnUrl: options.returnUrl,
+    paymentMethodType: options.paymentMethodType,
+    allowPromotionCodes: Boolean(options.allowPromotionCodes),
+    promotionCode: options.promotionCode
+  };
+  if (mode === "registered") {
+    body.productId = options.productId;
+    body.priceId = options.priceId;
+    return { body, mode };
+  }
+  const quantity = parsePositiveIntegerOption("--quantity", options.quantity);
+  const unitAmount = options.unitAmount ? parseNumberOption("--unit-amount", options.unitAmount) : roundMoney(amount / quantity);
+  const expectedAmount = roundMoney(unitAmount * quantity);
+  if (roundMoney(amount) !== expectedAmount) {
+    throw new Error(
+      `Option --amount must be equal to --unit-amount * --quantity for inline checkout. Got amount=${amount}, unitAmount=${unitAmount}, quantity=${quantity}.`
+    );
+  }
+  const priceData = {
+    name: options.name ?? "Test Product",
+    quantity,
+    unitAmount,
+    currency,
+    imageUrl: options.imageUrl
+  };
+  body.priceDataList = [priceData];
+  return { body, mode };
+}
+function requireCustomerIdentifier(options) {
+  if (!options.customerId && !options.customerEmail && !options.referenceCustomerId) {
+    throw new Error("Missing required option: --customer-id or --customer-email or --reference-customer-id");
+  }
+}
+function checkoutMode(options) {
+  if (options.productId || options.priceId) {
+    requireOption("--product-id", options.productId);
+    requireOption("--price-id", options.priceId);
+    return "registered";
+  }
+  return "inline";
+}
+function parsePositiveIntegerOption(name, value) {
+  const parsed = parseIntegerOption(name, value);
+  if (parsed < 1) {
+    throw new Error(`Option ${name} must be greater than or equal to 1`);
+  }
+  return parsed;
+}
+function roundMoney(value) {
+  return Math.round((value + Number.EPSILON) * 100) / 100;
+}
+function extractCheckoutUrl(result) {
+  const root = result && typeof result === "object" ? result : void 0;
+  const data = root?.data && typeof root.data === "object" ? root.data : void 0;
+  const value = data?.checkoutUrl ?? data?.url ?? data?.hostedUrl ?? data?.paymentUrl ?? data?.checkout_url ?? root?.checkoutUrl ?? root?.url ?? root?.hostedUrl ?? root?.paymentUrl ?? root?.checkout_url;
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function extractSessionId(result) {
+  const root = result && typeof result === "object" ? result : void 0;
+  const data = root?.data && typeof root.data === "object" ? root.data : void 0;
+  const value = data?.sessionId ?? data?.id ?? root?.sessionId ?? root?.id;
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function normalizeCheckoutSessionId(value) {
+  const trimmed = value.trim();
+  requireOption("session-id-or-url", trimmed);
+  if (!/^https?:\/\//i.test(trimmed)) return trimmed;
+  let url;
+  try {
+    url = new URL(trimmed);
+  } catch {
+    return trimmed;
+  }
+  const sessionId = url.searchParams.get("session_id") ?? url.searchParams.get("sessionId") ?? url.pathname.split("/").filter(Boolean).reverse().find((part) => /^sess[_-]/i.test(part)) ?? url.pathname.split("/").filter(Boolean).pop();
+  if (!sessionId) {
+    throw new Error("Could not extract checkout session ID from URL.");
+  }
+  return sessionId;
+}
+function openUrl(url) {
+  const command = process.platform === "win32" ? "cmd" : process.platform === "darwin" ? "open" : "xdg-open";
+  const args = process.platform === "win32" ? ["/c", "start", "", url] : [url];
+  const child = spawn(command, args, { detached: true, stdio: "ignore" });
+  child.unref();
+}
+
+// src/dashboard-console.ts
+var USER_INFO_PATH = "/platform/user/getInfo";
+var API_KEY_LIST_PATH = "/platform/apikey/list";
+var API_KEY_STANDARD_PATH = "/platform/apikey/standard";
+var MERCHANT_LIST_PATH = "/platform/merchant/list";
+var WEBHOOK_PATH = "/platform/webhook";
+var WEBHOOK_LIST_PATH = "/platform/webhook/list";
+var WEBHOOK_STATUS_PATH = "/platform/webhook/updateStatus";
+var LANGUAGE = "zh_CN";
+var DashboardConsoleClient = class {
+  constructor(credentials, dryRun = false) {
+    this.credentials = credentials;
+    this.dryRun = dryRun;
+  }
+  credentials;
+  dryRun;
+  async getInfo() {
+    return this.request("GET", USER_INFO_PATH);
+  }
+  async listApiKeys() {
+    return this.request("GET", API_KEY_LIST_PATH);
+  }
+  async initializeStandardApiKeys() {
+    return this.request("POST", API_KEY_STANDARD_PATH);
+  }
+  async listMerchants(params) {
+    return this.request("GET", MERCHANT_LIST_PATH, { params });
+  }
+  async listWebhooks(merchantId) {
+    return this.request("GET", WEBHOOK_LIST_PATH, { params: { merchantId } });
+  }
+  async createWebhook(body) {
+    return this.request("POST", WEBHOOK_PATH, { body });
+  }
+  async updateWebhook(body) {
+    return this.request("PUT", WEBHOOK_PATH, { body });
+  }
+  async updateWebhookStatus(webhookKeyId, status) {
+    return this.request("PUT", WEBHOOK_STATUS_PATH, { body: { webhookKeyId, status } });
+  }
+  async getWebhook(webhookKeyId) {
+    return this.request("GET", `${WEBHOOK_PATH}/${webhookKeyId}`);
+  }
+  async deleteWebhook(webhookKeyId) {
+    return this.request("DELETE", `${WEBHOOK_PATH}/${webhookKeyId}`);
+  }
+  async request(method, path, options = {}) {
+    const url = buildDashboardApiUrl(this.credentials.baseUrl, path, options.params);
+    const headers = buildDashboardHeaders(this.credentials);
+    if (options.body !== void 0) {
+      headers["Content-Type"] = "application/json";
+    }
+    if (this.dryRun) {
+      const request = {
+        method,
+        url,
+        headers: maskDashboardHeaders(headers)
+      };
+      if (options.body !== void 0) {
+        request.body = options.body;
+      }
+      return {
+        dryRun: true,
+        request
+      };
+    }
+    let response;
+    try {
+      response = await fetch(url, {
+        method,
+        headers,
+        body: options.body === void 0 ? void 0 : JSON.stringify(options.body)
+      });
+    } catch (error) {
+      throw new Error(`Dashboard API ${method} ${path} network error: ${formatFetchError2(error)}`);
+    }
+    const text = await response.text();
+    const data = parseResponseBody2(text);
+    if (!response.ok) {
+      throw new Error(`Dashboard API ${method} ${path} failed with ${response.status}: ${sanitizeDashboardText(text, this.credentials.accessToken)}`);
+    }
+    assertSuccessfulDashboardEnvelope(method, path, data, this.credentials.accessToken);
+    return data;
+  }
+};
+async function getDashboardInfoFromPage(page, credentials) {
+  const path = USER_INFO_PATH;
+  const url = buildDashboardApiUrl(credentials.baseUrl, path);
+  const headers = buildDashboardHeaders(credentials);
+  const result = await page.evaluate(
+    async ({ headers: requestHeaders, url: requestUrl }) => {
+      const response = await fetch(requestUrl, {
+        method: "GET",
+        headers: requestHeaders
+      });
+      const text = await response.text();
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = text;
+      }
+      return {
+        ok: response.ok,
+        status: response.status,
+        text,
+        data
+      };
+    },
+    { url, headers }
+  );
+  if (!result.ok) {
+    throw new Error(`Dashboard browser fetch GET ${path} failed with ${result.status}: ${sanitizeDashboardText(result.text, credentials.accessToken)}`);
+  }
+  assertSuccessfulDashboardEnvelope("GET", path, result.data, credentials.accessToken);
+  return result.data;
+}
+function buildDashboardHeaders(credentials) {
+  return {
+    Authorization: `Bearer ${credentials.accessToken}`,
+    ClientID: credentials.clientId,
+    "Accept-Language": LANGUAGE,
+    "Content-Language": LANGUAGE
+  };
+}
+function maskDashboardHeaders(headers) {
+  return {
+    ...headers,
+    Authorization: headers.Authorization ? "Bearer [masked]" : "[missing]"
+  };
+}
+function maskDashboardProfile(profile) {
+  return {
+    ...profile,
+    accessToken: maskSecret(profile.accessToken) ?? "missing"
+  };
+}
+function maskDashboardApiKeyRecord(record) {
+  return {
+    ...record,
+    keyValue: maskSecret(record.keyValue) ?? record.keyValue
+  };
+}
+function maskDashboardWebhookRecord(record) {
+  return {
+    ...record,
+    signKey: maskSecret(record.signKey) ?? record.signKey
+  };
+}
+function extractDashboardApiKeyRecords(raw) {
+  return extractDashboardArray(raw).map(toDashboardApiKeyRecord);
+}
+function extractDashboardMerchantRecords(raw) {
+  return extractDashboardArray(raw).map(toDashboardMerchantRecord);
+}
+function extractDashboardWebhookRecords(raw) {
+  const records = extractDashboardArray(raw).map(toDashboardWebhookRecord);
+  if (records.length > 0) return records;
+  const record = toDashboardWebhookRecord(unwrapDashboardData(raw));
+  return record.webhookKeyId || record.endpoint ? [record] : [];
+}
+function findDashboardSecretKey(records) {
+  return records.find((record) => record.keyType === "SK" && typeof record.keyValue === "string" && record.keyValue.length > 0);
+}
+function findDashboardPublishableKey(records) {
+  return records.find((record) => record.keyType === "PK" && typeof record.keyValue === "string" && record.keyValue.length > 0);
+}
+function findDashboardWebhookByEndpoint(records, endpoint) {
+  return records.find((record) => normalizeEndpoint(record.endpoint) === normalizeEndpoint(endpoint));
+}
+function extractCredentialsFromDashboardRequest(request) {
+  if (!isUserInfoUrl(request.url())) return void 0;
+  return extractCredentialsFromHeaders(request.headers());
+}
+function extractCredentialsFromHeaders(headers) {
+  const authorization = getHeader(headers, "authorization");
+  const clientId = getHeader(headers, "clientid") ?? getHeader(headers, "client-id") ?? getHeader(headers, "client_id");
+  const accessToken = normalizeBearerToken(authorization);
+  if (!accessToken || !clientId) return void 0;
+  return {
+    accessToken,
+    clientId,
+    source: "network"
+  };
+}
+async function waitForDashboardCredentials(page, timeoutMs) {
+  let resolved = false;
+  let interval;
+  let timeout;
+  return new Promise((resolve2, reject) => {
+    const finish = (credentials) => {
+      if (resolved) return;
+      resolved = true;
+      if (interval) clearInterval(interval);
+      if (timeout) clearTimeout(timeout);
+      page.off("request", onRequest);
+      resolve2(credentials);
+    };
+    const fail = () => {
+      if (resolved) return;
+      resolved = true;
+      if (interval) clearInterval(interval);
+      page.off("request", onRequest);
+      reject(new Error("Timed out waiting for Dashboard Console access token. Finish login in the opened browser and try again."));
+    };
+    const onRequest = (request) => {
+      const credentials = extractCredentialsFromDashboardRequest(request);
+      if (credentials) finish(credentials);
+    };
+    page.on("request", onRequest);
+    interval = setInterval(() => {
+      void readStorageCredentials(page).then((credentials) => {
+        if (credentials) finish(credentials);
+      }).catch(() => {
+      });
+    }, 1e3);
+    timeout = setTimeout(fail, timeoutMs);
+  });
+}
+async function readStorageCredentials(page) {
+  const entries = await page.evaluate(() => {
+    const snapshot = (storage, area) => {
+      const result = [];
+      for (let index = 0; index < storage.length; index += 1) {
+        const key = storage.key(index);
+        if (!key) continue;
+        result.push({ area, key, value: storage.getItem(key) ?? "" });
+      }
+      return result;
+    };
+    return [...snapshot(window.localStorage, "localStorage"), ...snapshot(window.sessionStorage, "sessionStorage")];
+  });
+  return extractCredentialsFromStorageEntries(entries);
+}
+function extractCredentialsFromStorageEntries(entries) {
+  const found = entries.reduce((credentials, entry) => {
+    const byKey = extractCredentialsFromStorageValue(entry.key, entry.value);
+    return {
+      accessToken: credentials.accessToken ?? byKey.accessToken,
+      clientId: credentials.clientId ?? byKey.clientId
+    };
+  }, {});
+  if (!found.accessToken) return void 0;
+  return {
+    accessToken: found.accessToken,
+    clientId: found.clientId ?? DASHBOARD_UAT_CLIENT_ID,
+    source: found.clientId ? "storage" : "storage+default-client"
+  };
+}
+function extractDashboardUserSummary(raw) {
+  const payload = unwrapDashboardData(raw);
+  const objectPayload = asRecord2(payload);
+  const user = objectPayload.user && typeof objectPayload.user === "object" ? asRecord2(objectPayload.user) : objectPayload;
+  return {
+    userId: stringValue2(user.userId),
+    username: stringValue2(user.userName) ?? stringValue2(user.username),
+    realName: stringValue2(user.nickName) ?? stringValue2(user.realName),
+    email: stringValue2(user.email),
+    roles: stringArray(objectPayload.roles) ?? stringArray(user.roles),
+    roleTypes: roleTypes(objectPayload.roles),
+    permissions: stringArray(objectPayload.permissions)
+  };
+}
+function buildDashboardApiUrl(baseUrl, path, query) {
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const url = new URL(path.replace(/^\//, ""), normalizedBase);
+  for (const [key, value] of Object.entries(query ?? {})) {
+    if (value !== void 0) {
+      url.searchParams.set(key, String(value));
+    }
+  }
+  return url.toString();
+}
+function isUserInfoUrl(url) {
+  return url.includes(USER_INFO_PATH);
+}
+function getHeader(headers, name) {
+  const lowerName = name.toLowerCase();
+  for (const [key, value] of Object.entries(headers)) {
+    if (key.toLowerCase() === lowerName) return value;
+  }
+  return void 0;
+}
+function normalizeBearerToken(value) {
+  if (!value) return void 0;
+  const trimmed = value.trim();
+  const match = /^Bearer\s+(.+)$/i.exec(trimmed);
+  return match ? match[1].trim() : trimmed;
+}
+function extractCredentialsFromStorageValue(key, value) {
+  const result = {};
+  const keyHint = key.toLowerCase();
+  if (isTokenKey(keyHint)) {
+    result.accessToken = extractTokenCandidate(value);
+  }
+  if (isClientIdKey(keyHint)) {
+    result.clientId = extractStringCandidate(value);
+  }
+  const parsed = parseJson2(value);
+  if (parsed !== void 0) {
+    const nested = extractCredentialsFromUnknown(parsed);
+    result.accessToken = result.accessToken ?? nested.accessToken;
+    result.clientId = result.clientId ?? nested.clientId;
+  }
+  return result;
+}
+function extractCredentialsFromUnknown(value) {
+  if (!value || typeof value !== "object") return {};
+  const result = {};
+  for (const [key, nestedValue] of Object.entries(value)) {
+    const keyHint = key.toLowerCase();
+    if (typeof nestedValue === "string") {
+      if (isTokenKey(keyHint)) {
+        result.accessToken = result.accessToken ?? extractTokenCandidate(nestedValue);
+      }
+      if (isClientIdKey(keyHint)) {
+        result.clientId = result.clientId ?? extractStringCandidate(nestedValue);
+      }
+    }
+    if (nestedValue && typeof nestedValue === "object") {
+      const nested = extractCredentialsFromUnknown(nestedValue);
+      result.accessToken = result.accessToken ?? nested.accessToken;
+      result.clientId = result.clientId ?? nested.clientId;
+    }
+  }
+  return result;
+}
+function isTokenKey(key) {
+  return /access[_-]?token|authorization|sa-?token|satoken|tokenvalue/.test(key) || key === "token";
+}
+function isClientIdKey(key) {
+  return /client[_-]?id|clientid/.test(key);
+}
+function extractTokenCandidate(value) {
+  const text = normalizeBearerToken(stripQuotes(value));
+  if (!text || text.length < 8) return void 0;
+  return text;
+}
+function extractStringCandidate(value) {
+  const text = stripQuotes(value).trim();
+  return text.length > 0 ? text : void 0;
+}
+function stripQuotes(value) {
+  const trimmed = value.trim();
+  if (trimmed.startsWith('"') && trimmed.endsWith('"') || trimmed.startsWith("'") && trimmed.endsWith("'")) {
+    return trimmed.slice(1, -1);
+  }
+  return trimmed;
+}
+function parseJson2(value) {
+  try {
+    return JSON.parse(value);
+  } catch {
+    return void 0;
+  }
+}
+function parseResponseBody2(text) {
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+}
+function assertSuccessfulDashboardEnvelope(method, path, data, accessToken) {
+  if (!data || typeof data !== "object") return;
+  const envelope = data;
+  if (typeof envelope.code !== "number" || envelope.code === 200) return;
+  const rawMessage = typeof envelope.msg === "string" ? envelope.msg : JSON.stringify(data);
+  const message = sanitizeDashboardText(rawMessage, accessToken);
+  throw new Error(`Dashboard API ${method} ${path} returned code ${envelope.code}: ${message}`);
+}
+function unwrapDashboardData(raw) {
+  const record = asRecord2(raw);
+  if (record && "data" in record) return record.data;
+  return raw;
+}
+function extractDashboardArray(raw) {
+  const payload = unwrapDashboardData(raw);
+  const direct = firstDashboardArray(payload);
+  if (direct) return direct;
+  const fallback = firstDashboardArray(raw);
+  if (fallback) return fallback;
+  return [];
+}
+function firstDashboardArray(value) {
+  if (Array.isArray(value)) return value;
+  const record = asRecord2(value);
+  for (const key of ["rows", "records", "list", "voList"]) {
+    const nested = record[key];
+    if (Array.isArray(nested)) return nested;
+  }
+  return void 0;
+}
+function asRecord2(value) {
+  return value && typeof value === "object" ? value : {};
+}
+function toDashboardApiKeyRecord(value) {
+  return asRecord2(value);
+}
+function toDashboardMerchantRecord(value) {
+  return asRecord2(value);
+}
+function toDashboardWebhookRecord(value) {
+  return asRecord2(value);
+}
+function normalizeEndpoint(value) {
+  return value?.replace(/\/+$/, "");
+}
+function sanitizeDashboardText(value, accessToken) {
+  let sanitized = value;
+  if (accessToken) {
+    sanitized = sanitized.split(accessToken).join(maskSecret(accessToken) ?? "[masked]");
+  }
+  return sanitized.replace(/\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, "[masked-jwt]");
+}
+function formatFetchError2(error) {
+  if (!(error instanceof Error)) return String(error);
+  const cause = error.cause;
+  if (cause && typeof cause === "object") {
+    const code = "code" in cause && typeof cause.code === "string" ? cause.code : void 0;
+    const host = "host" in cause && typeof cause.host === "string" ? cause.host : void 0;
+    const port = "port" in cause && (typeof cause.port === "number" || typeof cause.port === "string") ? String(cause.port) : void 0;
+    const details = [code, host ? `host=${host}` : void 0, port ? `port=${port}` : void 0].filter(Boolean).join(" ");
+    return details ? `${error.message} (${details})` : error.message;
+  }
+  return error.message;
+}
+function stringValue2(value) {
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function stringArray(value) {
+  if (!Array.isArray(value)) return void 0;
+  const strings = value.filter((item) => typeof item === "string");
+  return strings.length > 0 ? strings : void 0;
+}
+function roleTypes(value) {
+  if (!Array.isArray(value)) return void 0;
+  const types = value.map((item) => asRecord2(item).roleType).filter((item) => typeof item === "string" && item.length > 0);
+  return types.length > 0 ? types : void 0;
+}
+
+// src/commands/webhook-endpoints.ts
+import { exec } from "node:child_process";
+import { mkdir as mkdir3, readFile as readFile6, writeFile as writeFile3 } from "node:fs/promises";
+import { dirname as dirname4 } from "node:path";
+import { promisify } from "node:util";
+var WEBHOOK_ENDPOINT_PATH = "/webhook/endpoints";
+var WEBHOOK_EVENT_CATALOG = [
+  { name: "order.created", code: 1, description: "Order created" },
+  { name: "order.succeeded", code: 2, description: "Order payment succeeded" },
+  { name: "order.failed", code: 3, description: "Order payment failed" },
+  { name: "refund.created", code: 4, description: "Refund created" },
+  { name: "refund.succeeded", code: 5, description: "Refund succeeded" },
+  { name: "refund.failed", code: 6, description: "Refund failed" },
+  { name: "subscription.created", code: 7, description: "Subscription created" },
+  { name: "subscription.trialing", code: 8, description: "Subscription trialing" },
+  { name: "subscription.activated", code: 9, description: "Subscription activated" },
+  { name: "subscription.incomplete_expired", code: 10, description: "Subscription incomplete expired" },
+  { name: "subscription.past_due", code: 11, description: "Subscription past due" },
+  { name: "subscription.cancelled", code: 12, description: "Subscription cancelled" },
+  { name: "invoice.open", code: 13, description: "Invoice open" },
+  { name: "invoice.paid", code: 14, description: "Invoice paid" },
+  { name: "invoice.void", code: 15, description: "Invoice void" },
+  { name: "order.next_action", code: 16, description: "Order next action required" },
+  { name: "subscription.updated.plan_changed", code: 17, description: "Subscription plan changed" },
+  { name: "subscription.updated.plan_change_canceled", code: 18, description: "Subscription plan change canceled" },
+  { name: "subscription.updated.renewed", code: 19, description: "Subscription renewed" },
+  { name: "subscription.updated.cancel_at_period_end_set", code: 20, description: "Subscription cancel at period end set" },
+  { name: "subscription.updated.cancel_at_period_end_revoked", code: 21, description: "Subscription cancel at period end revoked" },
+  { name: "session.complete", code: 22, description: "Checkout session completed" },
+  { name: "session.expired", code: 23, description: "Checkout session expired" },
+  { name: "dispute.created", code: 24, description: "Dispute created" },
+  { name: "dispute.updated", code: 25, description: "Dispute updated" },
+  { name: "dispute.won", code: 26, description: "Dispute won" },
+  { name: "dispute.lost", code: 27, description: "Dispute lost" },
+  { name: "dispute.closed", code: 28, description: "Dispute closed" },
+  { name: "customer.verify", code: 29, description: "Customer verified" },
+  { name: "payment_method.added", code: 30, description: "Payment method added" },
+  { name: "payment_method.default_change", code: 31, description: "Default payment method changed" },
+  { name: "risk_rule.updated", code: 32, description: "Risk rule updated" },
+  { name: "agent_order.succeeded", code: 33, description: "Agent order succeeded" },
+  { name: "agent_order.failed", code: 34, description: "Agent order failed" },
+  { name: "agent_refund.succeeded", code: 35, description: "Agent refund succeeded" },
+  { name: "agent_refund.failed", code: 36, description: "Agent refund failed" },
+  { name: "agent_refund.approved", code: 37, description: "Agent refund approved" },
+  { name: "agent_refund.rejected", code: 38, description: "Agent refund rejected" },
+  { name: "payment_method.update", code: 39, description: "Payment method updated" },
+  { name: "purchase_instruction.created", code: 40, description: "Purchase instruction created" },
+  { name: "purchase_instruction.activated", code: 41, description: "Purchase instruction activated" },
+  { name: "purchase_instruction.updated", code: 42, description: "Purchase instruction updated" },
+  { name: "purchase_instruction.cancelled", code: 43, description: "Purchase instruction cancelled" },
+  { name: "vic_device.binding_succeeded", code: 44, description: "VIC device binding succeeded" }
+];
+var WEBHOOK_ALL_EVENTS = WEBHOOK_EVENT_CATALOG.map((event) => event.name);
+var WEBHOOK_CORE_EVENTS = [
+  "session.complete",
+  "order.succeeded",
+  "order.failed",
+  "refund.succeeded",
+  "subscription.created",
+  "invoice.paid"
+];
+var WEBHOOK_SUPPORTED_EVENTS = new Set(WEBHOOK_ALL_EVENTS);
+var WEBHOOK_SIGNING_KEY_ENV = "CLINK_WEBHOOK_SIGNING_KEY";
+var execAsync = promisify(exec);
+function registerWebhookEndpointSubcommands(parent, options = {}) {
+  parent.command("events").description("List Secret Key API-supported webhook event names").action(async function() {
+    const { config, client } = await getCommandContext(this);
+    const result = await client.get("/webhook/events");
+    printResult(
+      {
+        result,
+        fallbackSupportedEvents: WEBHOOK_EVENT_CATALOG,
+        fallbackAliases: {
+          all: WEBHOOK_ALL_EVENTS,
+          core: WEBHOOK_CORE_EVENTS
+        }
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook event list dry-run generated. Use --json to view request metadata." : formatEventResult(result)
+    );
+  });
+  const list = parent.command("list").description("List webhook endpoints for the current Secret Key merchant").option("--page <number>", "Page number", "1").option("--page-size <number>", "Page size", "20").option("--enabled <boolean>", "Filter by enabled status").option("--url <https-url>", "Filter by exact endpoint URL");
+  if (options.legacyDashboardOptions) {
+    list.option("--show-secret", "Ignored; Secret Key API list responses do not return plaintext signing secrets");
+  }
+  addLegacyDashboardOptions(list, options);
+  list.action(async function(listOptions) {
+    const { config, client } = await getCommandContext(this);
+    const query = {
+      pageNum: parsePositiveIntegerOption2("--page", listOptions.page),
+      pageSize: parsePageSizeOption(listOptions.pageSize),
+      enabled: parseOptionalBoolean("--enabled", listOptions.enabled),
+      url: listOptions.url
+    };
+    const result = await client.get(WEBHOOK_ENDPOINT_PATH, { query });
+    const safeResult = maskWebhookSecrets(result, false);
+    printResult(
+      {
+        profile: config.profile,
+        ignoredMerchantId: listOptions.merchantId,
+        ignoredShowSecret: listOptions.showSecret,
+        result: safeResult
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint list dry-run generated. Use --json to view request metadata." : formatEndpointList(result)
+    );
+  });
+  parent.command("get <endpoint-id>").description("Get a webhook endpoint by ID").action(async function(endpointId) {
+    requireOption("endpoint-id", endpointId);
+    const { config, client } = await getCommandContext(this);
+    const result = await client.get(`${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}`);
+    printResult(
+      {
+        profile: config.profile,
+        result: maskWebhookSecrets(result, false)
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint get dry-run generated. Use --json to view request metadata." : formatEndpointLine(extractEndpoint(result))
+    );
+  });
+  const create = parent.command("create").description("Create a webhook endpoint with the Secret Key API").requiredOption("--url <https-url>", "HTTPS webhook endpoint URL").requiredOption("--events <events>", "Comma-separated event names, core, or all").option("--description <text>", "Webhook endpoint description").option("--remark <text>", "Alias for --description").option("--save-secret", "Save the returned signing secret into the current clink profile").option("--show-secret", "Print the full signing secret in command output").option("--allow-unknown-events", "Send event names without local validation").option("--disabled", "Create the webhook but leave it disabled");
+  addEnvSyncOptions(create);
+  addLegacyDashboardOptions(create, options);
+  create.action(async function(createOptions) {
+    const { config, client } = await getCommandContext(this);
+    const body = {
+      url: parseHttpsEndpoint(createOptions.url),
+      events: parseWebhookEvents(createOptions.events, Boolean(createOptions.allowUnknownEvents)),
+      description: getDescription(createOptions),
+      enabled: !createOptions.disabled
+    };
+    const result = await client.post(WEBHOOK_ENDPOINT_PATH, { body });
+    await saveSigningSecretIfRequested(config.profile, result, Boolean(createOptions.saveSecret), config.dryRun);
+    const envSync = await syncEnvAndRestartIfRequested(createOptions, result, config.dryRun);
+    const endpoint = extractEndpoint(result);
+    printResult(
+      {
+        profile: config.profile,
+        ignoredMerchantId: createOptions.merchantId,
+        saved: Boolean(createOptions.saveSecret),
+        envSync,
+        endpoint: maskWebhookSecrets(endpoint, Boolean(createOptions.showSecret)),
+        result: maskWebhookSecrets(result, Boolean(createOptions.showSecret))
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint create dry-run generated. Use --json to view request metadata." : [
+        `Created webhook endpoint: ${endpoint?.url ?? body.url}`,
+        `Endpoint ID: ${endpoint?.id ?? "unknown"}`,
+        `Events: ${(endpoint?.events ?? body.events).join(", ")}`,
+        formatSigningSecretLine(endpoint, Boolean(createOptions.showSecret)),
+        createOptions.saveSecret ? `Saved signing secret into profile "${config.profile}".` : "Signing secret was not saved. Re-run with --save-secret to store it.",
+        formatEnvSyncLine(envSync)
+      ].filter(Boolean).join("\n")
+    );
+  });
+  const update = parent.command("update <endpoint-id>").description("Update a webhook endpoint with the Secret Key API").option("--url <https-url>", "HTTPS webhook endpoint URL").option("--events <events>", "Comma-separated event names, core, or all").option("--description <text>", "Webhook endpoint description").option("--remark <text>", "Alias for --description").option("--enabled <boolean>", "Set enabled status").option("--disabled", "Disable the webhook endpoint").option("--allow-unknown-events", "Send event names without local validation").option("--rotate-secret", "Rotate the signing secret after updating").option("--save-secret", "Save the rotated signing secret into the current clink profile").option("--show-secret", "Print the full rotated signing secret in command output");
+  addEnvSyncOptions(update);
+  addLegacyDashboardOptions(update, options);
+  update.action(async function(endpointId, updateOptions) {
+    requireOption("endpoint-id", endpointId);
+    const { config, client } = await getCommandContext(this);
+    const body = buildUpdateBody(updateOptions);
+    const shouldRotate = Boolean(updateOptions.rotateSecret || updateOptions.saveSecret || updateOptions.showSecret || updateOptions.syncEnvFile);
+    if (Object.keys(body).length === 0 && !shouldRotate) {
+      throw new Error("Provide at least one of --url, --events, --description, --remark, --enabled, --disabled, or --rotate-secret.");
+    }
+    const updateResult = Object.keys(body).length > 0 ? await client.patch(`${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}`, { body }) : void 0;
+    const rotateResult = shouldRotate ? await client.post(`${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}/rotate-secret`) : void 0;
+    await saveSigningSecretIfRequested(config.profile, rotateResult ?? updateResult, Boolean(updateOptions.saveSecret), config.dryRun);
+    const result = rotateResult ?? updateResult;
+    const envSync = await syncEnvAndRestartIfRequested(updateOptions, result, config.dryRun);
+    const endpoint = extractEndpoint(result);
+    printResult(
+      {
+        profile: config.profile,
+        ignoredMerchantId: updateOptions.merchantId,
+        saved: Boolean(updateOptions.saveSecret),
+        envSync,
+        updateResult: maskWebhookSecrets(updateResult, false),
+        rotateResult: maskWebhookSecrets(rotateResult, Boolean(updateOptions.showSecret)),
+        endpoint: maskWebhookSecrets(endpoint, Boolean(updateOptions.showSecret))
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint update dry-run generated. Use --json to view request metadata." : [
+        `Updated webhook endpoint: ${endpoint?.url ?? endpointId}`,
+        `Endpoint ID: ${endpoint?.id ?? endpointId}`,
+        endpoint?.events ? `Events: ${endpoint.events.join(", ")}` : void 0,
+        formatSigningSecretLine(endpoint, Boolean(updateOptions.showSecret)),
+        updateOptions.saveSecret ? `Saved signing secret into profile "${config.profile}".` : void 0,
+        formatEnvSyncLine(envSync)
+      ].filter(Boolean).join("\n")
+    );
+  });
+  parent.command("delete <endpoint-id>").description("Delete a webhook endpoint").action(async function(endpointId) {
+    requireOption("endpoint-id", endpointId);
+    const { config, client } = await getCommandContext(this);
+    const result = await client.delete(`${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}`);
+    printResult(
+      {
+        profile: config.profile,
+        endpointId,
+        result
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint delete dry-run generated. Use --json to view request metadata." : `Deleted webhook endpoint: ${endpointId}`
+    );
+  });
+  parent.command("enable <endpoint-id>").description("Enable a webhook endpoint").action(async function(endpointId) {
+    await updateEndpointEnabled(this, endpointId, true);
+  });
+  parent.command("disable <endpoint-id>").description("Disable a webhook endpoint").action(async function(endpointId) {
+    await updateEndpointEnabled(this, endpointId, false);
+  });
+  const rotateSecret = parent.command("rotate-secret <endpoint-id>").description("Rotate a webhook endpoint signing secret").option("--save-secret", "Save the rotated signing secret into the current clink profile").option("--show-secret", "Print the full signing secret in command output");
+  addEnvSyncOptions(rotateSecret);
+  rotateSecret.action(async function(endpointId, rotateOptions) {
+    requireOption("endpoint-id", endpointId);
+    const { config, client } = await getCommandContext(this);
+    const result = await client.post(`${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}/rotate-secret`);
+    await saveSigningSecretIfRequested(config.profile, result, Boolean(rotateOptions.saveSecret), config.dryRun);
+    const envSync = await syncEnvAndRestartIfRequested(rotateOptions, result, config.dryRun);
+    const endpoint = extractEndpoint(result);
+    printResult(
+      {
+        profile: config.profile,
+        saved: Boolean(rotateOptions.saveSecret),
+        envSync,
+        endpoint: maskWebhookSecrets(endpoint, Boolean(rotateOptions.showSecret)),
+        result: maskWebhookSecrets(result, Boolean(rotateOptions.showSecret))
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook signing secret rotate dry-run generated. Use --json to view request metadata." : [
+        `Rotated webhook signing secret: ${endpoint?.url ?? endpointId}`,
+        `Endpoint ID: ${endpoint?.id ?? endpointId}`,
+        formatSigningSecretLine(endpoint, Boolean(rotateOptions.showSecret)),
+        rotateOptions.saveSecret ? `Saved signing secret into profile "${config.profile}".` : "Signing secret was not saved. Re-run with --save-secret to store it.",
+        formatEnvSyncLine(envSync)
+      ].filter(Boolean).join("\n")
+    );
+  });
+  const ensure = parent.command("ensure").description("Create or update a webhook endpoint by URL with the Secret Key API").requiredOption("--url <https-url>", "HTTPS webhook endpoint URL").requiredOption("--events <events>", "Comma-separated event names, core, or all").option("--description <text>", "Webhook endpoint description").option("--remark <text>", "Alias for --description").option("--save-secret", "Save the resolved signing secret into the current clink profile").option("--show-secret", "Print the full signing secret in command output").option("--allow-unknown-events", "Send event names without local validation").option("--disabled", "Create or update the webhook but leave it disabled").option("--return-signing-secret", "Request plaintext signing secret when available").option("--rotate-secret", "Always rotate the signing secret for an existing endpoint").option("--no-rotate-secret-if-unavailable", "Do not rotate existing endpoints when plaintext secret is unavailable");
+  addEnvSyncOptions(ensure);
+  addLegacyDashboardOptions(ensure, options);
+  ensure.action(async function(ensureOptions) {
+    const { config, client } = await getCommandContext(this);
+    const wantsSigningSecret = Boolean(
+      ensureOptions.saveSecret || ensureOptions.showSecret || ensureOptions.returnSigningSecret || ensureOptions.rotateSecret || ensureOptions.syncEnvFile
+    );
+    const body = {
+      url: parseHttpsEndpoint(ensureOptions.url),
+      events: parseWebhookEvents(ensureOptions.events, Boolean(ensureOptions.allowUnknownEvents)),
+      description: getDescription(ensureOptions),
+      enabled: !ensureOptions.disabled,
+      returnSigningSecret: wantsSigningSecret || void 0,
+      rotateSecretIfUnavailable: wantsSigningSecret && ensureOptions.rotateSecretIfUnavailable !== false ? true : void 0,
+      rotateSecret: ensureOptions.rotateSecret || void 0
+    };
+    const result = await client.put(
+      `${WEBHOOK_ENDPOINT_PATH}/ensure`,
+      { body }
+    );
+    await saveSigningSecretIfRequested(config.profile, result, Boolean(ensureOptions.saveSecret), config.dryRun);
+    const envSync = await syncEnvAndRestartIfRequested(ensureOptions, result, config.dryRun);
+    const data = result.data;
+    const endpoint = data?.endpoint;
+    printResult(
+      {
+        profile: config.profile,
+        ignoredMerchantId: ensureOptions.merchantId,
+        saved: Boolean(ensureOptions.saveSecret),
+        envSync,
+        source: data?.source,
+        signingSecretAvailable: data?.signingSecretAvailable,
+        signingSecretUnavailableReason: data?.signingSecretUnavailableReason,
+        nextAction: data?.nextAction,
+        endpoint: maskWebhookSecrets(endpoint, Boolean(ensureOptions.showSecret)),
+        result: maskWebhookSecrets(result, Boolean(ensureOptions.showSecret))
+      },
+      config.outputMode,
+      config.dryRun ? "Webhook endpoint ensure dry-run generated. Use --json to view request metadata." : [
+        `${formatEnsureSource(data?.source)} webhook endpoint: ${endpoint?.url ?? body.url}`,
+        `Endpoint ID: ${endpoint?.id ?? "unknown"}`,
+        `Events: ${(endpoint?.events ?? body.events).join(", ")}`,
+        `Enabled: ${endpoint?.enabled ?? body.enabled}`,
+        formatSigningSecretLine(endpoint, Boolean(ensureOptions.showSecret)),
+        ensureOptions.saveSecret ? `Saved signing secret into profile "${config.profile}".` : "Signing secret was not saved. Re-run with --save-secret to store it.",
+        formatEnvSyncLine(envSync),
+        data?.nextAction ? `Next action: ${data.nextAction}` : void 0
+      ].filter(Boolean).join("\n")
+    );
+  });
+}
+function addLegacyDashboardOptions(command, options) {
+  if (!options.legacyDashboardOptions) return;
+  command.option("--merchant-id <id>", "Ignored; the Secret Key selects the current merchant");
+}
+function addEnvSyncOptions(command) {
+  command.option("--sync-env-file <path>", `Write ${WEBHOOK_SIGNING_KEY_ENV} to an env file after resolving the plaintext signing secret`).option("--restart-command <command>", "Run this shell command after --sync-env-file is updated");
+}
+async function updateEndpointEnabled(command, endpointId, enabled) {
+  requireOption("endpoint-id", endpointId);
+  const { config, client } = await getCommandContext(command);
+  const result = await client.post(
+    `${WEBHOOK_ENDPOINT_PATH}/${encodeURIComponent(endpointId)}/${enabled ? "enable" : "disable"}`
+  );
+  const endpoint = extractEndpoint(result);
+  printResult(
+    {
+      profile: config.profile,
+      endpointId,
+      endpoint: maskWebhookSecrets(endpoint, false),
+      result: maskWebhookSecrets(result, false)
+    },
+    config.outputMode,
+    config.dryRun ? `Webhook endpoint ${enabled ? "enable" : "disable"} dry-run generated. Use --json to view request metadata.` : `${enabled ? "Enabled" : "Disabled"} webhook endpoint: ${endpoint?.url ?? endpointId}`
+  );
+}
+function buildUpdateBody(options) {
+  const body = {};
+  if (options.url) body.url = parseHttpsEndpoint(options.url);
+  if (options.events) body.events = parseWebhookEvents(options.events, Boolean(options.allowUnknownEvents));
+  const description = getDescription(options);
+  if (description !== void 0) body.description = description;
+  const enabled = parseEndpointEnabled(options);
+  if (enabled !== void 0) body.enabled = enabled;
+  return body;
+}
+function parseEndpointEnabled(options) {
+  if (options.enabled !== void 0 && options.disabled) {
+    throw new Error("Use either --enabled or --disabled, not both.");
+  }
+  if (options.disabled) return false;
+  return parseOptionalBoolean("--enabled", options.enabled);
+}
+function getDescription(options) {
+  if (options.description !== void 0 && options.remark !== void 0 && options.description !== options.remark) {
+    throw new Error("Use either --description or --remark, not both.");
+  }
+  return options.description ?? options.remark;
+}
+function parseHttpsEndpoint(value) {
+  requireOption("--url", value);
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error("Option --url must be a valid HTTPS URL");
+  }
+  if (url.protocol !== "https:") {
+    throw new Error("Option --url must start with https:// because Clink webhook endpoints require HTTPS.");
+  }
+  if (isBlockedWebhookHost(url.hostname)) {
+    throw new Error("Option --url must not use localhost, loopback, private, link-local, or multicast hosts.");
+  }
+  return url.toString();
+}
+function isBlockedWebhookHost(hostname) {
+  const host = hostname.replace(/^\[|\]$/g, "").toLowerCase();
+  if (host === "localhost" || host === "::1" || host === "0:0:0:0:0:0:0:1") return true;
+  if (/^127\./.test(host) || /^10\./.test(host) || /^169\.254\./.test(host) || /^192\.168\./.test(host)) return true;
+  const match = /^172\.(\d+)\./.exec(host);
+  if (match) {
+    const second = Number(match[1]);
+    if (second >= 16 && second <= 31) return true;
+  }
+  const firstOctet = /^(\d+)\./.exec(host);
+  if (firstOctet) {
+    const first = Number(firstOctet[1]);
+    if (first >= 224 && first <= 239) return true;
+  }
+  return false;
+}
+function parseWebhookEvents(value, allowUnknownEvents) {
+  requireOption("--events", value);
+  const normalized = value.trim().toLowerCase();
+  const events = normalized === "core" ? [...WEBHOOK_CORE_EVENTS] : normalized === "all" ? [...WEBHOOK_ALL_EVENTS] : value.split(",").map((event) => event.trim()).filter(Boolean);
+  if (events.length === 0) {
+    throw new Error("Option --events must include at least one event, core, or all.");
+  }
+  const numericEvents = events.filter((event) => /^\d+$/.test(event));
+  if (numericEvents.length > 0) {
+    throw new Error(`Webhook endpoint Secret Key API accepts event names, not numeric event codes: ${numericEvents.join(", ")}`);
+  }
+  if (!allowUnknownEvents) {
+    const unknown = events.filter((event) => !WEBHOOK_SUPPORTED_EVENTS.has(event));
+    if (unknown.length > 0) {
+      throw new Error(`Unknown webhook event(s): ${unknown.join(", ")}. Run clink webhook endpoint events, or pass --allow-unknown-events.`);
+    }
+  }
+  return [...new Set(events)];
+}
+function parseOptionalBoolean(name, value) {
+  if (value === void 0) return void 0;
+  if (value === "true") return true;
+  if (value === "false") return false;
+  throw new Error(`Option ${name} must be true or false`);
+}
+function parsePositiveIntegerOption2(name, value) {
+  const parsed = parseIntegerOption(name, value);
+  if (parsed <= 0) {
+    throw new Error(`Option ${name} must be greater than 0`);
+  }
+  return parsed;
+}
+function parsePageSizeOption(value) {
+  const parsed = parsePositiveIntegerOption2("--page-size", value);
+  if (parsed > 100) {
+    throw new Error("Option --page-size must be less than or equal to 100");
+  }
+  return parsed;
+}
+function extractEndpoint(result) {
+  const data = getEnvelopeData(result);
+  if (isRecord(data) && isRecord(data.endpoint)) return data.endpoint;
+  return isRecord(data) ? data : void 0;
+}
+function getEnvelopeData(result) {
+  return isRecord(result) && "data" in result ? result.data : void 0;
+}
+function extractSigningSecret(result) {
+  const endpoint = extractEndpoint(result);
+  return typeof endpoint?.signingSecret === "string" && endpoint.signingSecret.length > 0 ? endpoint.signingSecret : void 0;
+}
+async function saveSigningSecretIfRequested(profile, result, enabled, dryRun) {
+  if (!enabled) return extractSigningSecret(result);
+  if (dryRun) return void 0;
+  const signingSecret = requireSigningSecret(result);
+  await saveProfile(profile, { webhookSigningKey: signingSecret });
+  return signingSecret;
+}
+async function syncEnvAndRestartIfRequested(options, result, dryRun) {
+  if (!options.syncEnvFile) return void 0;
+  if (dryRun) {
+    return {
+      envFile: options.syncEnvFile,
+      key: WEBHOOK_SIGNING_KEY_ENV,
+      dryRun: true,
+      restartRequired: !options.restartCommand,
+      restart: options.restartCommand ? { command: options.restartCommand, ok: true } : void 0
+    };
+  }
+  const signingSecret = requireSigningSecret(result);
+  await writeEnvFileValue(options.syncEnvFile, WEBHOOK_SIGNING_KEY_ENV, signingSecret);
+  const envSync = {
+    envFile: options.syncEnvFile,
+    key: WEBHOOK_SIGNING_KEY_ENV,
+    written: true,
+    restartRequired: !options.restartCommand
+  };
+  if (options.restartCommand) {
+    envSync.restart = await runRestartCommand(options.restartCommand);
+    envSync.restartRequired = false;
+  }
+  return envSync;
+}
+function requireSigningSecret(result) {
+  const signingSecret = extractSigningSecret(result);
+  if (signingSecret) return signingSecret;
+  const data = getEnvelopeData(result);
+  const nextAction = isRecord(data) && typeof data.nextAction === "string" ? data.nextAction : void 0;
+  throw new Error(
+    [
+      "Clink did not return a plaintext webhook signing secret.",
+      nextAction ? `Next action: ${nextAction}.` : "Use rotate-secret, or retry ensure with --rotate-secret."
+    ].join(" ")
+  );
+}
+async function writeEnvFileValue(filePath, key, value) {
+  let raw = "";
+  try {
+    raw = await readFile6(filePath, "utf8");
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  await mkdir3(dirname4(filePath), { recursive: true });
+  await writeFile3(filePath, upsertEnvValue(raw, key, value), "utf8");
+}
+function upsertEnvValue(raw, key, value) {
+  const line = `${key}=${formatEnvValue(value)}`;
+  const pattern = new RegExp(`^(\\s*(?:export\\s+)?${escapeRegExp(key)}\\s*=).*$`, "m");
+  if (pattern.test(raw)) {
+    return raw.replace(pattern, (_match, prefix2) => `${prefix2}${formatEnvValue(value)}`);
+  }
+  const prefix = raw.length === 0 || raw.endsWith("\n") ? raw : `${raw}
+`;
+  return `${prefix}${line}
+`;
+}
+function formatEnvValue(value) {
+  return /^[A-Za-z0-9_./:=+-]+$/.test(value) ? value : JSON.stringify(value);
+}
+async function runRestartCommand(command) {
+  const { stdout, stderr } = await execAsync(command, { windowsHide: true });
+  return {
+    command,
+    ok: true,
+    stdout: truncateCommandOutput(stdout),
+    stderr: truncateCommandOutput(stderr)
+  };
+}
+function truncateCommandOutput(value) {
+  if (!value) return void 0;
+  const trimmed = value.trim();
+  return trimmed.length > 1e3 ? `${trimmed.slice(0, 1e3)}...` : trimmed;
+}
+function formatEnvSyncLine(envSync) {
+  if (!envSync) return void 0;
+  if (envSync.dryRun) {
+    return `Dry run: would write ${envSync.key} to ${envSync.envFile}.`;
+  }
+  const restart = envSync.restart ? ` Restart command completed: ${envSync.restart.command}` : " Restart or redeploy the app before verifying webhooks.";
+  return `Synced ${envSync.key} to ${envSync.envFile}.${restart}`;
+}
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function maskWebhookSecrets(value, showSecret) {
+  if (showSecret) return value;
+  if (Array.isArray(value)) return value.map((item) => maskWebhookSecrets(item, false));
+  if (!isRecord(value)) return value;
+  const result = {};
+  for (const [key, nestedValue] of Object.entries(value)) {
+    if (key === "signingSecret" && typeof nestedValue === "string") {
+      result[key] = maskSecret(nestedValue);
+    } else {
+      result[key] = maskWebhookSecrets(nestedValue, false);
+    }
+  }
+  return result;
+}
+function formatEventResult(result) {
+  const data = getEnvelopeData(result);
+  const events = isRecord(data) && Array.isArray(data.events) ? data.events : [];
+  if (events.length === 0) return formatEventCatalog(WEBHOOK_EVENT_CATALOG);
+  return events.map((event) => {
+    if (!isRecord(event)) return String(event);
+    return [event.name, event.code, event.description].filter(Boolean).join("	");
+  }).join("\n");
+}
+function formatEventCatalog(events) {
+  return events.map((event) => [event.name, event.code, event.description].join("	")).join("\n");
+}
+function formatEndpointList(result) {
+  const rows = result.rows ?? [];
+  if (rows.length === 0) return "No webhook endpoints found.";
+  return rows.map((endpoint) => formatEndpointLine(endpoint)).join("\n");
+}
+function formatEndpointLine(endpoint) {
+  if (!endpoint) return "Webhook endpoint response received.";
+  return [
+    endpoint.id ?? "unknown",
+    endpoint.url ?? "unknown-url",
+    endpoint.events ? `${endpoint.events.length} events` : void 0,
+    endpoint.enabled === void 0 ? void 0 : `enabled=${endpoint.enabled}`,
+    endpoint.maskedSigningSecret ? `signingSecret=${endpoint.maskedSigningSecret}` : void 0
+  ].filter(Boolean).join(" ");
+}
+function formatEnsureSource(source) {
+  if (source === "created") return "Created";
+  if (source === "updated") return "Updated";
+  if (source === "rotated") return "Rotated";
+  if (source === "updated_rotated") return "Updated and rotated";
+  return "Found";
+}
+function formatSigningSecretLine(endpoint, showSecret) {
+  const secret = endpoint?.signingSecret;
+  if (typeof secret === "string" && secret.length > 0) {
+    return `Signing secret: ${showSecret ? secret : maskSecret(secret)}`;
+  }
+  if (endpoint?.maskedSigningSecret) {
+    return `Signing secret: ${endpoint.maskedSigningSecret}`;
+  }
+  return void 0;
+}
+function isRecord(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+// src/commands/dashboard.ts
+var DASHBOARD_WEBHOOK_EVENTS = [
+  "order.created",
+  "order.succeeded",
+  "order.failed",
+  "refund.created",
+  "refund.succeeded",
+  "refund.failed",
+  "subscription.created",
+  "subscription.trialing",
+  "subscription.activated",
+  "subscription.incomplete_expired",
+  "subscription.past_due",
+  "subscription.cancelled",
+  "invoice.open",
+  "invoice.paid",
+  "invoice.void",
+  "order.next_action",
+  "subscription.updated.plan_changed",
+  "subscription.updated.plan_change_canceled",
+  "subscription.updated.renewed",
+  "subscription.updated.cancel_at_period_end_set",
+  "subscription.updated.cancel_at_period_end_revoked",
+  "session.complete",
+  "session.expired",
+  "dispute.created",
+  "dispute.updated",
+  "dispute.won",
+  "dispute.lost",
+  "dispute.closed",
+  "customer.verify",
+  "payment_method.added",
+  "payment_method.default_change",
+  "risk_rule.updated",
+  "agent_order.succeeded",
+  "agent_order.failed",
+  "agent_refund.succeeded",
+  "agent_refund.failed",
+  "agent_refund.approved",
+  "agent_refund.rejected",
+  "payment_method.update",
+  "purchase_instruction.created",
+  "purchase_instruction.activated",
+  "purchase_instruction.updated",
+  "purchase_instruction.cancelled",
+  "vic_device.binding_succeeded"
+];
+var DASHBOARD_WEBHOOK_CORE_EVENTS = [
+  "session.complete",
+  "order.succeeded",
+  "order.failed",
+  "refund.succeeded",
+  "subscription.created",
+  "invoice.paid"
+];
+var DASHBOARD_WEBHOOK_EVENT_CODE_BY_NAME = {
+  "order.created": "1",
+  "order.succeeded": "2",
+  "order.failed": "3",
+  "refund.created": "4",
+  "refund.succeeded": "5",
+  "refund.failed": "6",
+  "subscription.created": "7",
+  "subscription.trialing": "8",
+  "subscription.activated": "9",
+  "subscription.incomplete_expired": "10",
+  "subscription.past_due": "11",
+  "subscription.cancelled": "12",
+  "invoice.open": "13",
+  "invoice.paid": "14",
+  "invoice.void": "15",
+  "order.next_action": "16",
+  "subscription.updated.plan_changed": "17",
+  "subscription.updated.plan_change_canceled": "18",
+  "subscription.updated.renewed": "19",
+  "subscription.updated.cancel_at_period_end_set": "20",
+  "subscription.updated.cancel_at_period_end_revoked": "21",
+  "session.complete": "22",
+  "session.expired": "23",
+  "dispute.created": "24",
+  "dispute.updated": "25",
+  "dispute.won": "26",
+  "dispute.lost": "27",
+  "dispute.closed": "28",
+  "customer.verify": "29",
+  "payment_method.added": "30",
+  "payment_method.default_change": "31",
+  "risk_rule.updated": "32",
+  "agent_order.succeeded": "33",
+  "agent_order.failed": "34",
+  "agent_refund.succeeded": "35",
+  "agent_refund.failed": "36",
+  "agent_refund.approved": "37",
+  "agent_refund.rejected": "38",
+  "payment_method.update": "39",
+  "purchase_instruction.created": "40",
+  "purchase_instruction.activated": "41",
+  "purchase_instruction.updated": "42",
+  "purchase_instruction.cancelled": "43",
+  "vic_device.binding_succeeded": "44"
+};
+var DASHBOARD_WEBHOOK_EVENT_TYPE_MAX_LENGTH = 100;
+var DASHBOARD_WEBHOOK_STATUS_DISABLED = "0";
+var DASHBOARD_WEBHOOK_STATUS_ACTIVE = "1";
+function registerDashboard(program2) {
+  const dashboard = program2.command("dashboard").description("Use saved Dashboard Console credentials");
+  dashboard.command("whoami").description("Call Dashboard /platform/user/getInfo with the saved Console token").action(async function() {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = new DashboardConsoleClient(
+      {
+        baseUrl: dashboardProfile.baseUrl,
+        accessToken: dashboardProfile.accessToken,
+        clientId: dashboardProfile.clientId
+      },
+      config.dryRun
+    );
+    const result = await client.getInfo();
+    if (config.dryRun) {
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          result
+        },
+        config.outputMode,
+        "Dashboard whoami dry-run generated. Use --json to view headers."
+      );
+      return;
+    }
+    const user = extractDashboardUserSummary(result);
+    const updatedProfile = {
+      ...dashboardProfile,
+      user
+    };
+    await saveProfile(config.profile, { dashboard: updatedProfile });
+    printResult(
+      {
+        profile: config.profile,
+        dashboard: maskDashboardProfile(updatedProfile),
+        user
+      },
+      config.outputMode,
+      [
+        `Dashboard profile: ${config.profile}`,
+        `Dashboard API: ${updatedProfile.baseUrl}`,
+        `ClientID: ${updatedProfile.clientId}`,
+        `Token: ${maskDashboardProfile(updatedProfile).accessToken}`,
+        `User: ${formatUser(user)}`
+      ].join("\n")
+    );
+  });
+  const apikey = dashboard.command("apikey").description("Inspect or initialize Dashboard API keys");
+  apikey.command("list").description("List Dashboard API keys for the current merchant").option("--show-secret", "Print full key values instead of masking them").action(async function(options) {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    const result = await client.listApiKeys();
+    if (config.dryRun) {
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          result
+        },
+        config.outputMode,
+        "Dashboard API key list dry-run generated. Use --json to view headers."
+      );
+      return;
+    }
+    const records = extractDashboardApiKeyRecords(result);
+    const outputRecords = options.showSecret ? records : records.map(maskDashboardApiKeyRecord);
+    printResult(
+      {
+        profile: config.profile,
+        count: outputRecords.length,
+        keys: outputRecords
+      },
+      config.outputMode,
+      outputRecords.length > 0 ? outputRecords.map((record) => `${record.keyType ?? "?"} ${record.apikeyName ?? ""}: ${record.keyValue ?? "missing"}`).join("\n") : "No Dashboard API keys found."
+    );
+  });
+  apikey.command("ensure-secret").description("Use the existing Dashboard Secret Key, or initialize standard PK/SK if none exists").option("--save", "Save the resolved Secret Key into the current clink profile").option("--show-secret", "Print the full Secret Key in command output").action(async function(options) {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    if (config.dryRun) {
+      const listRequest = await client.listApiKeys();
+      const initializeRequest = await client.initializeStandardApiKeys();
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          plan: [
+            { step: "list_api_keys", result: listRequest },
+            { step: "initialize_standard_keys_if_missing", result: initializeRequest },
+            { step: "save_secret_key", enabled: Boolean(options.save) }
+          ]
+        },
+        config.outputMode,
+        "Dashboard API key ensure-secret dry-run generated. Use --json to view planned requests."
+      );
+      return;
+    }
+    const listResult = await client.listApiKeys();
+    let records = extractDashboardApiKeyRecords(listResult);
+    let secretKey = findDashboardSecretKey(records);
+    let publishableKey = findDashboardPublishableKey(records);
+    let source = "existing";
+    if (!secretKey) {
+      const initializeResult = await client.initializeStandardApiKeys();
+      records = extractDashboardApiKeyRecords(initializeResult);
+      secretKey = findDashboardSecretKey(records);
+      publishableKey = findDashboardPublishableKey(records);
+      source = "created";
+    }
+    if (!secretKey?.keyValue) {
+      throw new Error("Dashboard did not return a Secret Key. Check Developers -> API Keys in the Dashboard.");
+    }
+    if (options.save) {
+      await saveProfile(config.profile, {
+        environment: "sandbox",
+        apiKey: secretKey.keyValue,
+        dashboard: dashboardProfile
+      });
+    }
+    const outputSecret = options.showSecret ? secretKey.keyValue : maskSecret(secretKey.keyValue);
+    const outputPublishable = publishableKey?.keyValue ? options.showSecret ? publishableKey.keyValue : maskSecret(publishableKey.keyValue) : void 0;
+    printResult(
+      {
+        profile: config.profile,
+        source,
+        saved: Boolean(options.save),
+        secretKey: outputSecret,
+        publishableKey: outputPublishable,
+        secretKeyRecord: options.showSecret ? secretKey : maskDashboardApiKeyRecord(secretKey),
+        publishableKeyRecord: publishableKey ? options.showSecret ? publishableKey : maskDashboardApiKeyRecord(publishableKey) : void 0
+      },
+      config.outputMode,
+      [
+        `${source === "created" ? "Created" : "Found"} Dashboard Secret Key: ${outputSecret}`,
+        outputPublishable ? `Publishable Key: ${outputPublishable}` : void 0,
+        options.save ? `Saved Secret Key into profile "${config.profile}" for Clink API calls.` : "Secret Key was not saved. Re-run with --save to store it."
+      ].filter(Boolean).join("\n")
+    );
+  });
+  const merchant = dashboard.command("merchant").description("Inspect Dashboard merchant context");
+  merchant.command("list").description("List Dashboard merchants visible to the saved Console token").action(async function() {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    const result = await client.listMerchants();
+    if (config.dryRun) {
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          result
+        },
+        config.outputMode,
+        "Dashboard merchant list dry-run generated. Use --json to view headers."
+      );
+      return;
+    }
+    const merchants = extractDashboardMerchantRecords(result);
+    printResult(
+      {
+        profile: config.profile,
+        count: merchants.length,
+        merchants
+      },
+      config.outputMode,
+      merchants.length > 0 ? merchants.map(formatMerchantLine).join("\n") : "No Dashboard merchants found."
+    );
+  });
+  const webhook = dashboard.command("webhook").description("Manage Clink webhook endpoints with the Secret Key API");
+  registerWebhookEndpointSubcommands(webhook, { legacyDashboardOptions: true });
+  return;
+  webhook.command("events").description("Print Dashboard-supported webhook event names and numeric codes").action(async function() {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const events = getDashboardWebhookEventCatalog();
+    printResult(
+      {
+        count: events.length,
+        events
+      },
+      config.outputMode,
+      events.map((event) => `${event.name}	${event.code}`).join("\n")
+    );
+  });
+  webhook.command("list").description("List Dashboard webhook endpoints for the current merchant").option("--merchant-id <id>", "Merchant ID. If omitted, the CLI resolves it when exactly one merchant is visible.").option("--show-secret", "Print full webhook signing keys instead of masking them").action(async function(options) {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    if (config.dryRun) {
+      const merchantId = options.merchantId ?? "[resolved-dashboard-merchant-id]";
+      const merchantRequest = options.merchantId ? void 0 : await client.listMerchants();
+      const result2 = await client.listWebhooks(merchantId);
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          merchantId,
+          plan: [
+            merchantRequest ? { step: "resolve_merchant", result: merchantRequest } : void 0,
+            { step: "list_webhooks", result: result2 }
+          ].filter(Boolean)
+        },
+        config.outputMode,
+        "Dashboard webhook list dry-run generated. Use --json to view planned requests."
+      );
+      return;
+    }
+    const merchantContext = await resolveDashboardMerchant(client, options.merchantId);
+    const result = await client.listWebhooks(merchantContext.merchantId);
+    const records = extractDashboardWebhookRecords(result);
+    const outputRecords = options.showSecret ? records : records.map(maskDashboardWebhookRecord);
+    printResult(
+      {
+        profile: config.profile,
+        merchantId: merchantContext.merchantId,
+        merchant: merchantContext.merchant,
+        count: outputRecords.length,
+        webhooks: outputRecords
+      },
+      config.outputMode,
+      outputRecords.length > 0 ? outputRecords.map(formatWebhookLine).join("\n") : `No Dashboard webhooks found for merchant ${merchantContext.merchantId}.`
+    );
+  });
+  webhook.command("create").description("Create a Dashboard webhook endpoint").requiredOption("--url <https-url>", "HTTPS webhook endpoint URL").requiredOption("--events <events>", "Comma-separated event names, or core").option("--remark <text>", "Dashboard webhook remark/description", "Created by clink-integ-cli").option("--merchant-id <id>", "Merchant ID. If omitted, the CLI resolves it when exactly one merchant is visible.").option("--save-secret", "Save the returned signing key into the current clink profile").option("--show-secret", "Print the full signing key in command output").option("--allow-unknown-events", "Allow event names not in the current Dashboard event list").option("--disabled", "Create the webhook but leave it disabled").action(async function(options) {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    const endpoint = parseHttpsEndpoint2(options.url);
+    const eventType = parseWebhookEventType(options.events, Boolean(options.allowUnknownEvents));
+    if (config.dryRun) {
+      const merchantId = options.merchantId ?? "[resolved-dashboard-merchant-id]";
+      const merchantRequest = options.merchantId ? void 0 : await client.listMerchants();
+      const createRequest = await client.createWebhook(buildWebhookPayload(endpoint, eventType, options.remark));
+      const enableRequest = options.disabled ? void 0 : await client.updateWebhookStatus("[created-webhook-key-id]", DASHBOARD_WEBHOOK_STATUS_ACTIVE);
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          merchantId,
+          plan: [
+            merchantRequest ? { step: "resolve_merchant", result: merchantRequest } : void 0,
+            { step: "create_webhook", result: createRequest },
+            enableRequest ? { step: "enable_webhook", result: enableRequest } : void 0,
+            { step: "save_signing_key", enabled: Boolean(options.saveSecret) }
+          ].filter(Boolean)
+        },
+        config.outputMode,
+        "Dashboard webhook create dry-run generated. Use --json to view planned requests."
+      );
+      return;
+    }
+    const merchantContext = await resolveDashboardMerchant(client, options.merchantId);
+    const result = await client.createWebhook(buildWebhookPayload(endpoint, eventType, options.remark));
+    const record = await enableWebhookIfRequested(
+      client,
+      await resolveWebhookRecordAfterWrite(client, result, merchantContext.merchantId, endpoint),
+      !options.disabled
+    );
+    await saveWebhookSecretIfRequested(config.profile, record, Boolean(options.saveSecret));
+    const outputRecord = options.showSecret ? record : maskDashboardWebhookRecord(record);
+    printResult(
+      {
+        profile: config.profile,
+        merchantId: merchantContext.merchantId,
+        saved: Boolean(options.saveSecret),
+        webhook: outputRecord
+      },
+      config.outputMode,
+      [
+        `Created Dashboard webhook: ${outputRecord.endpoint ?? endpoint}`,
+        `Webhook ID: ${outputRecord.webhookKeyId ?? "unknown"}`,
+        `Events: ${eventCount(outputRecord.eventType)} selected`,
+        `Signing key: ${outputRecord.signKey ?? "missing"}`,
+        options.saveSecret ? `Saved signing key into profile "${config.profile}".` : "Signing key was not saved. Re-run with --save-secret to store it."
+      ].join("\n")
+    );
+  });
+  webhook.command("update <webhook-key-id>").description("Update a Dashboard webhook endpoint by ID").requiredOption("--url <https-url>", "HTTPS webhook endpoint URL").requiredOption("--events <events>", "Comma-separated event names, or core").option("--remark <text>", "Dashboard webhook remark/description", "Created by clink-integ-cli").option("--save-secret", "Save the resolved signing key into the current clink profile").option("--show-secret", "Print the full signing key in command output").option("--allow-unknown-events", "Allow event names not in the current Dashboard event list").option("--disabled", "Update the webhook but leave it disabled").action(async function(webhookKeyId, options) {
+    requireOption("webhook-key-id", webhookKeyId);
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    const endpoint = parseHttpsEndpoint2(options.url);
+    const eventType = parseWebhookEventType(options.events, Boolean(options.allowUnknownEvents));
+    if (config.dryRun) {
+      const updateRequest = await client.updateWebhook({
+        webhookKeyId,
+        endpoint,
+        remark: options.remark,
+        eventType
+      });
+      const enableRequest = options.disabled ? void 0 : await client.updateWebhookStatus(webhookKeyId, DASHBOARD_WEBHOOK_STATUS_ACTIVE);
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          webhookKeyId,
+          plan: [
+            { step: "update_webhook", result: updateRequest },
+            enableRequest ? { step: "enable_webhook", result: enableRequest } : void 0,
+            { step: "save_signing_key", enabled: Boolean(options.saveSecret) }
+          ].filter(Boolean)
+        },
+        config.outputMode,
+        "Dashboard webhook update dry-run generated. Use --json to view planned requests."
+      );
+      return;
+    }
+    const result = await client.updateWebhook({
+      webhookKeyId,
+      endpoint,
+      remark: options.remark,
+      eventType
+    });
+    const record = await enableWebhookIfRequested(
+      client,
+      await resolveWebhookRecordAfterStatusWrite(client, result, webhookKeyId),
+      !options.disabled
+    );
+    await saveWebhookSecretIfRequested(config.profile, record, Boolean(options.saveSecret));
+    const outputRecord = options.showSecret ? record : maskDashboardWebhookRecord(record);
+    printResult(
+      {
+        profile: config.profile,
+        saved: Boolean(options.saveSecret),
+        webhook: outputRecord
+      },
+      config.outputMode,
+      [
+        `Updated Dashboard webhook: ${outputRecord.endpoint ?? endpoint}`,
+        `Webhook ID: ${outputRecord.webhookKeyId ?? webhookKeyId}`,
+        `Status: ${formatWebhookStatus(outputRecord.status)}`,
+        `Events: ${eventCount(outputRecord.eventType)} selected`,
+        `Signing key: ${outputRecord.signKey ?? "missing"}`,
+        options.saveSecret ? `Saved signing key into profile "${config.profile}".` : "Signing key was not saved. Re-run with --save-secret to store it."
+      ].join("\n")
+    );
+  });
+  webhook.command("ensure").description("Create a Dashboard webhook endpoint, or update it when the URL already exists").requiredOption("--url <https-url>", "HTTPS webhook endpoint URL").requiredOption("--events <events>", "Comma-separated event names, or core").option("--remark <text>", "Dashboard webhook remark/description", "Created by clink-integ-cli").option("--merchant-id <id>", "Merchant ID. If omitted, the CLI resolves it when exactly one merchant is visible.").option("--save-secret", "Save the resolved signing key into the current clink profile").option("--show-secret", "Print the full signing key in command output").option("--allow-unknown-events", "Allow event names not in the current Dashboard event list").option("--disabled", "Create or update the webhook but leave it disabled").action(async function(options) {
+    const global = this.optsWithGlobals();
+    const config = await resolveRuntimeConfig(global);
+    const dashboardProfile = requireDashboardProfile(config.dashboard);
+    const client = createDashboardClient(dashboardProfile, config.dryRun);
+    const endpoint = parseHttpsEndpoint2(options.url);
+    const eventType = parseWebhookEventType(options.events, Boolean(options.allowUnknownEvents));
+    if (config.dryRun) {
+      const merchantId = options.merchantId ?? "[resolved-dashboard-merchant-id]";
+      const merchantRequest = options.merchantId ? void 0 : await client.listMerchants();
+      const listRequest = await client.listWebhooks(merchantId);
+      const createRequest = await client.createWebhook(buildWebhookPayload(endpoint, eventType, options.remark));
+      const updateRequest = await client.updateWebhook({
+        webhookKeyId: "[existing-webhook-key-id]",
+        endpoint,
+        remark: options.remark,
+        eventType
+      });
+      const enableRequest = options.disabled ? void 0 : await client.updateWebhookStatus("[created-or-existing-webhook-key-id]", DASHBOARD_WEBHOOK_STATUS_ACTIVE);
+      printResult(
+        {
+          profile: config.profile,
+          dashboard: maskDashboardProfile(dashboardProfile),
+          merchantId,
+          plan: [
+            merchantRequest ? { step: "resolve_merchant", result: merchantRequest } : void 0,
+            { step: "list_webhooks", result: listRequest },
+            { step: "create_if_missing", result: createRequest },
+            { step: "update_if_existing_events_differ", result: updateRequest },
+            enableRequest ? { step: "enable_webhook", result: enableRequest } : void 0,
+            { step: "save_signing_key", enabled: Boolean(options.saveSecret) }
+          ].filter(Boolean)
+        },
+        config.outputMode,
+        "Dashboard webhook ensure dry-run generated. Use --json to view planned requests."
+      );
+      return;
+    }
+    const merchantContext = await resolveDashboardMerchant(client, options.merchantId);
+    const listResult = await client.listWebhooks(merchantContext.merchantId);
+    const existing = findDashboardWebhookByEndpoint(extractDashboardWebhookRecords(listResult), endpoint);
+    let source = "existing";
+    let record;
+    if (existing?.webhookKeyId) {
+      const shouldUpdate = !sameWebhookEventType(existing.eventType, eventType) || options.remark !== void 0 && existing.remark !== options.remark;
+      if (shouldUpdate) {
+        const updateResult = await client.updateWebhook({
+          webhookKeyId: existing.webhookKeyId,
+          endpoint,
+          remark: options.remark,
+          eventType
+        });
+        record = await resolveWebhookRecordAfterWrite(client, updateResult, merchantContext.merchantId, endpoint, existing.webhookKeyId);
+        source = "updated";
+      } else {
+        record = await resolveWebhookRecordAfterWrite(client, existing, merchantContext.merchantId, endpoint, existing.webhookKeyId);
+      }
+    } else {
+      const createResult = await client.createWebhook(buildWebhookPayload(endpoint, eventType, options.remark));
+      record = await resolveWebhookRecordAfterWrite(client, createResult, merchantContext.merchantId, endpoint);
+      source = "created";
+    }
+    record = await enableWebhookIfRequested(client, record, !options.disabled);
+    await saveWebhookSecretIfRequested(config.profile, record, Boolean(options.saveSecret));
+    const outputRecord = options.showSecret ? record : maskDashboardWebhookRecord(record);
+    printResult(
+      {
+        profile: config.profile,
+        merchantId: merchantContext.merchantId,
+        source,
+        saved: Boolean(options.saveSecret),
+        webhook: outputRecord
+      },
+      config.outputMode,
+      [
+        `${source === "created" ? "Created" : source === "updated" ? "Updated" : "Found"} Dashboard webhook: ${outputRecord.endpoint ?? endpoint}`,
+        `Webhook ID: ${outputRecord.webhookKeyId ?? "unknown"}`,
+        `Events: ${eventCount(outputRecord.eventType)} selected`,
+        `Signing key: ${outputRecord.signKey ?? "missing"}`,
+        options.saveSecret ? `Saved signing key into profile "${config.profile}".` : "Signing key was not saved. Re-run with --save-secret to store it."
+      ].join("\n")
+    );
+  });
+  webhook.command("enable <webhook-key-id>").description("Enable a Dashboard webhook endpoint").action(async function(webhookKeyId) {
+    await updateWebhookEnabledStatus(this, webhookKeyId, true);
+  });
+  webhook.command("disable <webhook-key-id>").description("Disable a Dashboard webhook endpoint").action(async function(webhookKeyId) {
+    await updateWebhookEnabledStatus(this, webhookKeyId, false);
+  });
+}
+function requireDashboardProfile(profile) {
+  if (!profile?.accessToken || !profile.clientId || !profile.baseUrl) {
+    throw new Error(
+      "Missing Dashboard Console token. Current official Secret Key API coverage does not include Dashboard webhook management; use public API commands with CLINK_SECRET_KEY where available, or run clink login for Dashboard-only commands."
+    );
+  }
+  return profile;
+}
+function createDashboardClient(profile, dryRun) {
+  return new DashboardConsoleClient(
+    {
+      baseUrl: profile.baseUrl,
+      accessToken: profile.accessToken,
+      clientId: profile.clientId
+    },
+    dryRun
+  );
+}
+function formatUser(user) {
+  if (!user) return "unknown";
+  return user.email ?? user.username ?? user.userId ?? "unknown";
+}
+function formatMerchantLine(record) {
+  return `${record.merchantId ?? "unknown"} ${record.merchantName ?? ""}`.trim();
+}
+function formatWebhookLine(record) {
+  return [
+    record.webhookKeyId ?? "unknown",
+    record.endpoint ?? "unknown-endpoint",
+    `${eventCount(record.eventType)} events`,
+    `status=${formatWebhookStatus(record.status)}`,
+    record.signKey ? `signKey=${record.signKey}` : void 0
+  ].filter(Boolean).join(" ");
+}
+function formatWebhookStatus(status) {
+  if (String(status) === DASHBOARD_WEBHOOK_STATUS_ACTIVE) return "active";
+  if (String(status) === DASHBOARD_WEBHOOK_STATUS_DISABLED) return "disabled";
+  return status === void 0 ? "unknown" : String(status);
+}
+async function updateWebhookEnabledStatus(command, webhookKeyId, enabled) {
+  requireOption("webhook-key-id", webhookKeyId);
+  const global = command.optsWithGlobals();
+  const config = await resolveRuntimeConfig(global);
+  const dashboardProfile = requireDashboardProfile(config.dashboard);
+  const client = createDashboardClient(dashboardProfile, config.dryRun);
+  const status = enabled ? DASHBOARD_WEBHOOK_STATUS_ACTIVE : DASHBOARD_WEBHOOK_STATUS_DISABLED;
+  if (config.dryRun) {
+    const result2 = await client.updateWebhookStatus(webhookKeyId, status);
+    printResult(
+      {
+        profile: config.profile,
+        dashboard: maskDashboardProfile(dashboardProfile),
+        webhookKeyId,
+        status,
+        plan: [{ step: enabled ? "enable_webhook" : "disable_webhook", result: result2 }]
+      },
+      config.outputMode,
+      `Dashboard webhook ${enabled ? "enable" : "disable"} dry-run generated. Use --json to view planned requests.`
+    );
+    return;
+  }
+  const result = await client.updateWebhookStatus(webhookKeyId, status);
+  const record = await resolveWebhookRecordAfterStatusWrite(client, result, webhookKeyId);
+  const outputRecord = maskDashboardWebhookRecord(record);
+  printResult(
+    {
+      profile: config.profile,
+      webhookKeyId,
+      status,
+      webhook: outputRecord
+    },
+    config.outputMode,
+    [
+      `${enabled ? "Enabled" : "Disabled"} Dashboard webhook: ${outputRecord.endpoint ?? webhookKeyId}`,
+      `Webhook ID: ${outputRecord.webhookKeyId ?? webhookKeyId}`,
+      `Status: ${formatWebhookStatus(outputRecord.status)}`
+    ].join("\n")
+  );
+}
+async function resolveDashboardMerchant(client, explicitMerchantId) {
+  if (explicitMerchantId) return { merchantId: explicitMerchantId };
+  const result = await client.listMerchants();
+  const merchants = extractDashboardMerchantRecords(result).filter((record) => record.merchantId);
+  if (merchants.length === 1 && merchants[0].merchantId) {
+    return { merchantId: merchants[0].merchantId, merchant: merchants[0] };
+  }
+  if (merchants.length === 0) {
+    throw new Error("No Dashboard merchant was found. Run clink dashboard merchant list, or pass --merchant-id.");
+  }
+  const choices = merchants.slice(0, 5).map(formatMerchantLine).join("; ");
+  throw new Error(`Multiple Dashboard merchants were found. Pass --merchant-id. Candidates: ${choices}`);
+}
+function parseHttpsEndpoint2(value) {
+  requireOption("--url", value);
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error("Option --url must be a valid HTTPS URL");
+  }
+  if (url.protocol !== "https:") {
+    throw new Error("Option --url must start with https:// because Dashboard webhook endpoints require HTTPS.");
+  }
+  return url.toString();
+}
+function parseWebhookEventType(value, allowUnknownEvents) {
+  requireOption("--events", value);
+  const normalizedValue = value.trim().toLowerCase();
+  if (normalizedValue === "all") {
+    const allEventType = DASHBOARD_WEBHOOK_EVENTS.join(",");
+    throw new Error(
+      `Dashboard currently rejects all webhook events in one endpoint because the eventType string is ${allEventType.length} characters. Use --events core or a shorter comma-separated event list.`
+    );
+  }
+  const events = normalizedValue === "core" ? [...DASHBOARD_WEBHOOK_CORE_EVENTS] : value.split(",").map((event) => event.trim()).filter(Boolean);
+  if (events.length === 0) {
+    throw new Error("Option --events must include at least one event, or core.");
+  }
+  if (!allowUnknownEvents) {
+    const supported = new Set(DASHBOARD_WEBHOOK_EVENTS);
+    const unknown = events.filter((event) => !supported.has(event) && !isWebhookEventCode(event));
+    if (unknown.length > 0) {
+      throw new Error(`Unknown Dashboard webhook event(s): ${unknown.join(", ")}. Run clink dashboard webhook events, or pass --allow-unknown-events.`);
+    }
+  }
+  const eventType = [...new Set(events.map(toDashboardWebhookEventCode))].join(",");
+  if (eventType.length > DASHBOARD_WEBHOOK_EVENT_TYPE_MAX_LENGTH) {
+    throw new Error(
+      `Dashboard currently rejects webhook eventType strings longer than ${DASHBOARD_WEBHOOK_EVENT_TYPE_MAX_LENGTH} characters. Your selection is ${eventType.length} characters. Use --events core or a shorter comma-separated event list.`
+    );
+  }
+  return eventType;
+}
+function toDashboardWebhookEventCode(event) {
+  if (isWebhookEventCode(event)) return event;
+  const code = DASHBOARD_WEBHOOK_EVENT_CODE_BY_NAME[event];
+  if (code) return code;
+  throw new Error(
+    `Dashboard webhook event "${event}" does not have a known numeric code in this CLI build. Pass the Dashboard numeric code directly, or use --events core.`
+  );
+}
+function isWebhookEventCode(value) {
+  return /^\d+$/.test(value.trim());
+}
+function getDashboardWebhookEventCatalog() {
+  return DASHBOARD_WEBHOOK_EVENTS.map((name) => ({
+    name,
+    code: DASHBOARD_WEBHOOK_EVENT_CODE_BY_NAME[name]
+  }));
+}
+function buildWebhookPayload(endpoint, eventType, remark) {
+  return {
+    endpoint,
+    remark,
+    eventType,
+    status: 0
+  };
+}
+async function enableWebhookIfRequested(client, record, enabled) {
+  if (!enabled || String(record.status) === DASHBOARD_WEBHOOK_STATUS_ACTIVE) return record;
+  if (!record.webhookKeyId) {
+    throw new Error("Dashboard did not return a webhook ID, so the CLI could not enable it automatically.");
+  }
+  const result = await client.updateWebhookStatus(record.webhookKeyId, DASHBOARD_WEBHOOK_STATUS_ACTIVE);
+  return resolveWebhookRecordAfterStatusWrite(client, result, record.webhookKeyId);
+}
+async function resolveWebhookRecordAfterStatusWrite(client, raw, webhookKeyId) {
+  const direct = extractDashboardWebhookRecords(raw)[0];
+  if (direct?.webhookKeyId || direct?.endpoint) return direct;
+  try {
+    const detail = await client.getWebhook(webhookKeyId);
+    const detailed = extractDashboardWebhookRecords(detail)[0];
+    if (detailed) return detailed;
+  } catch {
+  }
+  return { webhookKeyId, status: void 0 };
+}
+async function resolveWebhookRecordAfterWrite(client, raw, merchantId, endpoint, fallbackWebhookKeyId) {
+  const direct = extractDashboardWebhookRecords(raw)[0];
+  const webhookKeyId = direct?.webhookKeyId ?? fallbackWebhookKeyId;
+  if (webhookKeyId) {
+    try {
+      const detail = await client.getWebhook(webhookKeyId);
+      const detailed = extractDashboardWebhookRecords(detail)[0];
+      if (detailed) return detailed;
+    } catch {
+    }
+  }
+  const list = await client.listWebhooks(merchantId);
+  const fromList = findDashboardWebhookByEndpoint(extractDashboardWebhookRecords(list), endpoint);
+  return fromList ?? direct ?? { endpoint, eventType: void 0, webhookKeyId };
+}
+async function saveWebhookSecretIfRequested(profile, record, enabled) {
+  if (!enabled) return;
+  if (!record.signKey) {
+    throw new Error("Dashboard did not return a webhook signing key. Check Developers -> Webhooks in the Dashboard.");
+  }
+  await saveProfile(profile, { webhookSigningKey: record.signKey });
+}
+function eventCount(eventType) {
+  if (!eventType) return 0;
+  return eventType.split(",").filter(Boolean).length;
+}
+function sameWebhookEventType(left, right) {
+  return normalizeWebhookEventSet(left).join(",") === normalizeWebhookEventSet(right).join(",");
+}
+function normalizeWebhookEventSet(value) {
+  return (value ?? "").split(",").map((event) => event.trim()).filter(Boolean).sort();
+}
+
+// src/webhook/fixtures.ts
+var FIXTURE_EVENT_CREATED = "2025-01-15T12:00:00.000Z";
+var CHECKOUT_CREATED_AT = "2025-01-15T11:45:00.000Z";
+var CHECKOUT_EXPIRES_AT = "2025-01-15T12:45:00.000Z";
+var CHECKOUT_EXPIRED_AT = "2025-01-15T12:45:00.000Z";
+var ORDER_CREATED_AT = "2025-01-15T11:50:00.000Z";
+var ORDER_PAID_AT = "2025-01-15T11:55:00.000Z";
+var ORDER_CREATED_TIME = Date.parse(ORDER_CREATED_AT);
+var ORDER_PAYMENT_TIME = Date.parse(ORDER_PAID_AT);
+var SUBSCRIPTION_CREATED_AT = "2025-01-15T11:56:00.000Z";
+var SUBSCRIPTION_ACTIVATED_AT = "2025-01-15T11:57:00.000Z";
+var CURRENT_PERIOD_START = "2025-01-15T00:00:00.000Z";
+var CURRENT_PERIOD_END = "2025-02-15T00:00:00.000Z";
+var INVOICE_CREATED_AT = "2025-01-15T11:58:00.000Z";
+var INVOICE_DUE_AT = "2025-01-22T00:00:00.000Z";
+var INVOICE_PAID_AT = "2025-01-15T12:00:00.000Z";
+var INVOICE_VOIDED_AT = "2025-01-16T12:00:00.000Z";
+function createWebhookFixture(type, overrides = {}) {
+  const event = {
+    id: fixtureEventId(type),
+    object: "event",
+    created: FIXTURE_EVENT_CREATED,
+    livemode: false,
+    type,
+    data: defaultDataForType(type),
+    ...overrides
+  };
+  return event;
+}
+function defaultDataForType(type) {
+  const builder = fixtureBuilders[type];
+  if (builder) return builder();
+  return {
+    note: "Generated by clink-integ-cli local webhook simulation"
+  };
+}
+var fixtureBuilders = {
+  "session.complete": () => sessionFixture({
+    status: "completed",
+    paymentStatus: "paid",
+    orderId: "ord_test_123",
+    expiresAt: CHECKOUT_EXPIRES_AT
+  }),
+  "session.expired": () => sessionFixture({
+    status: "expired",
+    paymentStatus: "unpaid",
+    orderId: null,
+    expiresAt: CHECKOUT_EXPIRED_AT
+  }),
+  "order.created": () => orderFixture({
+    status: "pending",
+    paymentTime: null,
+    paymentExecutionDetails: []
+  }),
+  "order.succeeded": () => orderFixture({
+    status: "success",
+    paymentTime: ORDER_PAYMENT_TIME,
+    paymentExecutionDetails: []
+  }),
+  "order.failed": () => orderFixture({
+    status: "failed",
+    paymentTime: ORDER_PAYMENT_TIME,
+    paymentExecutionDetails: [
+      {
+        channelCode: "CARD",
+        originalFailureCode: "card_declined",
+        originalFailureMessage: "The payment method was declined in the local fixture."
+      }
+    ]
+  }),
+  "subscription.created": () => subscriptionFixture({
+    status: "created",
+    activatedAt: null,
+    pastDueSince: null
+  }),
+  "subscription.activated": () => subscriptionFixture({
+    status: "activated",
+    activatedAt: SUBSCRIPTION_ACTIVATED_AT,
+    pastDueSince: null
+  }),
+  "subscription.past_due": () => subscriptionFixture({
+    status: "past_due",
+    activatedAt: SUBSCRIPTION_ACTIVATED_AT,
+    pastDueSince: "2025-02-16T00:00:00.000Z"
+  }),
+  "invoice.open": () => invoiceFixture({
+    status: "open",
+    amountDue: 1999,
+    amountPaid: 0,
+    paidAt: null,
+    voidedAt: null
+  }),
+  "invoice.paid": () => invoiceFixture({
+    status: "paid",
+    amountDue: 1999,
+    amountPaid: 1999,
+    paidAt: INVOICE_PAID_AT,
+    voidedAt: null
+  }),
+  "invoice.void": () => invoiceFixture({
+    status: "void",
+    amountDue: 1999,
+    amountPaid: 0,
+    paidAt: null,
+    voidedAt: INVOICE_VOIDED_AT
+  })
+};
+function fixtureEventId(type) {
+  return `evt_${type.replace(/[^a-z0-9]+/gi, "_")}_test`;
+}
+function baseCustomer() {
+  return {
+    customerId: "cus_test_123",
+    email: "test@example.com",
+    name: "Test Customer"
+  };
+}
+function baseLineItems() {
+  return [
+    {
+      productId: "prd_test_123",
+      priceId: "price_test_123",
+      description: "Local webhook test plan",
+      quantity: 1,
+      unitAmount: 1999,
+      amountTotal: 1999
+    }
+  ];
+}
+function basePriceDataList() {
+  return [
+    {
+      name: "Local webhook test plan",
+      quantity: 1,
+      unitAmount: 1999,
+      currency: "USD",
+      imageUrl: "https://merchant.example/assets/local-webhook-test.png"
+    }
+  ];
+}
+function baseMetadata() {
+  return {
+    environment: "local",
+    source: "clink-integ-cli"
+  };
+}
+function sessionFixture(values) {
+  return {
+    sessionId: "sess_test_123",
+    token: "tok_test_123",
+    status: values.status,
+    paymentStatus: values.paymentStatus,
+    originalCurrency: "USD",
+    paymentCurrency: "USD",
+    amountSubtotal: 1999,
+    amountTotal: 1999,
+    subscriptionId: null,
+    invoiceId: null,
+    orderId: values.orderId,
+    merchantReferenceId: "order_test_123",
+    customer: baseCustomer(),
+    locale: "en-US",
+    uiMode: "hostedPage",
+    returnUrl: null,
+    successUrl: "https://merchant.example/success",
+    cancelUrl: "https://merchant.example/cancel",
+    created: CHECKOUT_CREATED_AT,
+    expire: values.expiresAt,
+    product: {
+      productId: "prd_test_123",
+      productName: "Local webhook test plan"
+    },
+    priceDataList: basePriceDataList(),
+    metadata: baseMetadata()
+  };
+}
+function orderFixture(values) {
+  return {
+    orderId: "ord_test_123",
+    type: "onetime",
+    status: values.status,
+    merchantReferenceId: "order_test_123",
+    sessionId: "sess_test_123",
+    customerId: "cus_test_123",
+    customerEmail: "test@example.com",
+    createTime: ORDER_CREATED_TIME,
+    productId: "prd_test_123",
+    priceId: "price_test_123",
+    priceDataList: basePriceDataList(),
+    paymentMethod: {
+      paymentMethodType: "CARD",
+      paymentInstrumentId: "pi_test_123"
+    },
+    paymentExecutionDetails: values.paymentExecutionDetails,
+    amountSubtotal: 1999,
+    amountTotal: 1999,
+    paymentCurrency: "USD",
+    originalCurrency: "USD",
+    paymentTime: values.paymentTime,
+    metadata: baseMetadata(),
+    riskLevel: "low"
+  };
+}
+function subscriptionFixture(values) {
+  return {
+    object: "subscription",
+    subscriptionId: "sub_test_123",
+    status: values.status,
+    productId: "prd_test_123",
+    priceId: "price_test_123",
+    customerId: "cus_test_123",
+    customer: baseCustomer(),
+    currentPeriodStart: CURRENT_PERIOD_START,
+    currentPeriodEnd: CURRENT_PERIOD_END,
+    cancelAtPeriodEnd: false,
+    latestInvoiceId: "inv_test_123",
+    createdAt: SUBSCRIPTION_CREATED_AT,
+    activatedAt: values.activatedAt,
+    pastDueSince: values.pastDueSince,
+    metadata: baseMetadata()
+  };
+}
+function invoiceFixture(values) {
+  return {
+    object: "invoice",
+    invoiceId: "inv_test_123",
+    status: values.status,
+    subscriptionId: "sub_test_123",
+    customerId: "cus_test_123",
+    customer: baseCustomer(),
+    amountDue: values.amountDue,
+    amountPaid: values.amountPaid,
+    currency: "USD",
+    dueAt: INVOICE_DUE_AT,
+    hostedInvoiceUrl: "https://merchant.example/invoices/inv_test_123",
+    lineItems: baseLineItems(),
+    createdAt: INVOICE_CREATED_AT,
+    paidAt: values.paidAt,
+    voidedAt: values.voidedAt,
+    metadata: baseMetadata()
+  };
+}
+
+// src/webhook/signature.ts
+import { createHmac, timingSafeEqual } from "node:crypto";
+var DEFAULT_WEBHOOK_TOLERANCE_SECONDS = 300;
+function signWebhookPayload(secret, timestamp, rawBody) {
+  return createHmac("sha256", secret).update(`${timestamp}.${rawBody}`).digest("hex");
+}
+function verifyWebhookPayload(secret, timestamp, rawBody, signature, options = {}) {
+  if (!isWebhookTimestampWithinTolerance(timestamp, options.toleranceSeconds, options.nowMs)) {
+    return false;
+  }
+  const expected = signWebhookPayload(secret, timestamp, rawBody);
+  return safeCompare(expected, signature);
+}
+function isWebhookTimestampWithinTolerance(timestamp, toleranceSeconds = DEFAULT_WEBHOOK_TOLERANCE_SECONDS, nowMs = Date.now()) {
+  const timestampMs = parseWebhookTimestampMs(timestamp);
+  if (timestampMs === void 0 || !Number.isFinite(toleranceSeconds) || toleranceSeconds < 0) {
+    return false;
+  }
+  return Math.abs(nowMs - timestampMs) <= toleranceSeconds * 1e3;
+}
+function parseWebhookTimestampMs(timestamp) {
+  const trimmed = timestamp.trim();
+  if (trimmed === "") return void 0;
+  const parsed = Number(trimmed);
+  if (!Number.isFinite(parsed)) return void 0;
+  const absolute = Math.abs(parsed);
+  return absolute < 1e12 ? parsed * 1e3 : parsed;
+}
+function safeCompare(a, b) {
+  const aBuffer = Buffer.from(a);
+  const bBuffer = Buffer.from(b);
+  if (aBuffer.length !== bBuffer.length) return false;
+  return timingSafeEqual(aBuffer, bBuffer);
+}
+
+// src/commands/doctor.ts
+function registerDoctor(program2) {
+  program2.command("doctor").description("Run Clink integration health checks").option("--skip-network", "Do not call the Clink API").option("--webhook-url <url>", "POST a signed local webhook fixture to this endpoint").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const checks = [];
+    checks.push({
+      name: "environment",
+      status: config.environment === "sandbox" ? "pass" : "warn",
+      message: `Using ${config.environment} (${config.baseUrl})`
+    });
+    checks.push({
+      name: "api_key",
+      status: config.apiKey ? "pass" : "fail",
+      message: config.apiKey ? `Resolved ${maskSecret(config.apiKey)} from ${config.apiKeySource}` : "Missing CLINK_SECRET_KEY"
+    });
+    checks.push({
+      name: "webhook_signing_key",
+      status: config.webhookSigningKey ? "pass" : "warn",
+      message: config.webhookSigningKey ? `Resolved ${maskSecret(config.webhookSigningKey)} from ${config.webhookSigningKeySource}` : "Missing CLINK_WEBHOOK_SIGNING_KEY. Webhook simulation requires it."
+    });
+    if (!options.skipNetwork && config.apiKey) {
+      try {
+        await client.get("/product", { query: { pageNum: 1, pageSize: 1 } });
+        checks.push({ name: "api_connectivity", status: "pass", message: "Product list endpoint responded" });
+      } catch (error) {
+        checks.push({ name: "api_connectivity", status: "fail", message: error.message });
+      }
+    }
+    if (options.webhookUrl) {
+      if (!config.webhookSigningKey) {
+        checks.push({
+          name: "webhook_simulation",
+          status: "fail",
+          message: "Cannot simulate webhook without CLINK_WEBHOOK_SIGNING_KEY"
+        });
+      } else {
+        try {
+          const event = createWebhookFixture("order.succeeded");
+          const rawBody = JSON.stringify(event);
+          const timestamp = String(Date.now());
+          const signature = signWebhookPayload(config.webhookSigningKey, timestamp, rawBody);
+          const response = await fetch(options.webhookUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Clink-Timestamp": timestamp,
+              "X-Clink-Signature": signature
+            },
+            body: rawBody
+          });
+          checks.push({
+            name: "webhook_simulation",
+            status: response.ok ? "pass" : "fail",
+            message: `Webhook endpoint responded with ${response.status}`
+          });
+        } catch (error) {
+          checks.push({ name: "webhook_simulation", status: "fail", message: error.message });
+        }
+      }
+    }
+    const failed = checks.some((check) => check.status === "fail");
+    printResult(
+      { ok: !failed, checks },
+      config.outputMode,
+      checks.map((check) => `[${check.status}] ${check.name}: ${check.message}`).join("\n")
+    );
+    if (failed) process.exitCode = 1;
+  });
+}
+
+// src/commands/env.ts
+var ENV_NAME_PATTERN = /^[a-zA-Z0-9_-]+$/;
+function registerEnv(program2) {
+  const env = program2.command("env").description("Manage Clink API environments (request domains)");
+  env.command("list").description("List built-in and custom environments").action(async function() {
+    const global = this.optsWithGlobals();
+    const outputMode = global.json ? "json" : "pretty";
+    const stored = await readStoredConfig();
+    const merged = mergeEnvironments(stored);
+    const environments = Object.entries(merged).map(([name, def]) => ({
+      name,
+      builtIn: isBuiltInEnvironment(name),
+      apiBaseUrl: def.apiBaseUrl,
+      dashboardBaseUrl: resolveDashboardEndpoints(def).baseUrl
+    }));
+    printResult(
+      { count: environments.length, environments },
+      outputMode,
+      environments.map((item) => `${item.name}${item.builtIn ? " (built-in)" : ""}	${item.apiBaseUrl}`).join("\n")
+    );
+  });
+  env.command("show <name>").description("Show the resolved configuration for an environment").action(async function(name) {
+    const global = this.optsWithGlobals();
+    const outputMode = global.json ? "json" : "pretty";
+    const stored = await readStoredConfig();
+    const def = getEnvironmentDefinition(stored, name);
+    if (!def) {
+      throw new Error(`Unknown environment "${name}". Run clink env list to see available environments.`);
+    }
+    const dashboard = resolveDashboardEndpoints(def);
+    printResult(
+      {
+        name,
+        builtIn: isBuiltInEnvironment(name),
+        apiBaseUrl: def.apiBaseUrl,
+        dashboard
+      },
+      outputMode,
+      [
+        `Environment: ${name}${isBuiltInEnvironment(name) ? " (built-in)" : ""}`,
+        `API base URL: ${def.apiBaseUrl}`,
+        `Dashboard API: ${dashboard.baseUrl}`,
+        `Dashboard login: ${dashboard.loginUrl}`,
+        `Dashboard ClientID: ${dashboard.clientId}`
+      ].join("\n")
+    );
+  });
+  env.command("add <name>").description("Add or update a custom environment").requiredOption("--api-base-url <url>", "Clink API base URL for this environment").option("--dashboard-base-url <url>", "Dashboard Console API base URL").option("--dashboard-login-url <url>", "Dashboard Console browser login URL").option("--dashboard-client-id <id>", "Dashboard Console ClientID header value").option("--force", "Allow overriding a built-in environment name").action(async function(name, options) {
+    const global = this.optsWithGlobals();
+    const outputMode = global.json ? "json" : "pretty";
+    if (!ENV_NAME_PATTERN.test(name)) {
+      throw new Error(`Invalid environment name "${name}". Use letters, digits, "-" or "_".`);
+    }
+    if (isBuiltInEnvironment(name) && !options.force) {
+      throw new Error(`"${name}" is a built-in environment. Pass --force to override it locally.`);
+    }
+    requireOption("--api-base-url", options.apiBaseUrl);
+    const definition = {
+      apiBaseUrl: normalizeBaseUrl(validateUrl("--api-base-url", options.apiBaseUrl))
+    };
+    if (options.dashboardBaseUrl) {
+      definition.dashboardBaseUrl = normalizeBaseUrl(validateUrl("--dashboard-base-url", options.dashboardBaseUrl));
+    }
+    if (options.dashboardLoginUrl) {
+      definition.dashboardLoginUrl = validateUrl("--dashboard-login-url", options.dashboardLoginUrl);
+    }
+    if (options.dashboardClientId) {
+      definition.dashboardClientId = options.dashboardClientId;
+    }
+    const stored = await readStoredConfig();
+    stored.environments = { ...stored.environments ?? {}, [name]: definition };
+    await writeStoredConfig(stored);
+    printResult(
+      { name, environment: definition, configPath: getConfigPath() },
+      outputMode,
+      [
+        `Saved environment "${name}" at ${getConfigPath()}`,
+        `API base URL: ${definition.apiBaseUrl}`,
+        `Use it with: clink --env ${name} <command>`
+      ].join("\n")
+    );
+  });
+  env.command("remove <name>").description("Remove a custom environment").action(async function(name) {
+    const global = this.optsWithGlobals();
+    const outputMode = global.json ? "json" : "pretty";
+    if (isBuiltInEnvironment(name)) {
+      throw new Error(`"${name}" is a built-in environment and cannot be removed.`);
+    }
+    const stored = await readStoredConfig();
+    if (!stored.environments?.[name]) {
+      throw new Error(`Unknown custom environment "${name}". Run clink env list to see available environments.`);
+    }
+    delete stored.environments[name];
+    await writeStoredConfig(stored);
+    printResult(
+      { name, removed: true, configPath: getConfigPath() },
+      outputMode,
+      `Removed environment "${name}" from ${getConfigPath()}`
+    );
+  });
+}
+function validateUrl(option, value) {
+  try {
+    return new URL(value).toString();
+  } catch {
+    throw new Error(`Option ${option} must be a valid URL`);
+  }
+}
+
+// src/commands/init.ts
+import { mkdir as mkdir4, writeFile as writeFile4 } from "node:fs/promises";
+import { dirname as dirname5, join as join2 } from "node:path";
+
+// src/starters.ts
+var supportedFrameworks = ["generic", "nextjs", "express", "fastapi"];
+var frameworkAliases = {
+  generic: "generic",
+  next: "nextjs",
+  nextjs: "nextjs",
+  "next.js": "nextjs",
+  express: "express",
+  fastapi: "fastapi",
+  "fast-api": "fastapi"
+};
+function createFrameworkStarter(frameworkName) {
+  const framework = normalizeFramework(frameworkName);
+  switch (framework) {
+    case "nextjs":
+      return { framework, files: nextjsFiles() };
+    case "express":
+      return { framework, files: expressFiles() };
+    case "fastapi":
+      return { framework, files: fastapiFiles() };
+    case "generic":
+      return { framework, files: genericFiles() };
+  }
+}
+function listSupportedFrameworks() {
+  return [...supportedFrameworks];
+}
+function normalizeFramework(frameworkName) {
+  const key = (frameworkName || "generic").trim().toLowerCase();
+  const framework = frameworkAliases[key];
+  if (!framework) {
+    throw new Error(`Unsupported framework "${frameworkName}". Supported frameworks: ${supportedFrameworks.join(", ")}`);
+  }
+  return framework;
+}
+function nextjsFiles() {
+  return [
+    ...commonFiles({
+      framework: "Next.js App Router",
+      appUrl: "http://localhost:3000",
+      port: "3000",
+      runCommand: "npm install\nnpm run dev",
+      endpointBase: "/api/clink",
+      notes: [
+        "The webhook route calls request.text() so the exact raw body is verified before JSON parsing.",
+        'The route files are server-only and use Node.js crypto, so they export runtime = "nodejs".'
+      ]
+    }),
+    {
+      relativePath: "package.json",
+      content: jsonFile({
+        private: true,
+        scripts: {
+          dev: "next dev",
+          build: "next build",
+          start: "next start"
+        },
+        dependencies: {
+          next: "latest",
+          react: "latest",
+          "react-dom": "latest"
+        },
+        devDependencies: {
+          "@types/node": "latest",
+          "@types/react": "latest",
+          typescript: "latest"
+        }
+      })
+    },
+    {
+      relativePath: "next.config.mjs",
+      content: lines(["/** @type {import('next').NextConfig} */", "const nextConfig = {};", "", "export default nextConfig;"])
+    },
+    {
+      relativePath: "tsconfig.json",
+      content: jsonFile({
+        compilerOptions: {
+          target: "ES2017",
+          lib: ["dom", "dom.iterable", "esnext"],
+          allowJs: true,
+          skipLibCheck: true,
+          strict: true,
+          noEmit: true,
+          esModuleInterop: true,
+          module: "esnext",
+          moduleResolution: "bundler",
+          resolveJsonModule: true,
+          isolatedModules: true,
+          jsx: "preserve",
+          incremental: true
+        },
+        include: ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+        exclude: ["node_modules"]
+      })
+    },
+    {
+      relativePath: "app/api/clink/checkout/route.ts",
+      content: nextCheckoutRoute()
+    },
+    {
+      relativePath: "app/api/clink/subscription/route.ts",
+      content: nextSubscriptionRoute()
+    },
+    {
+      relativePath: "app/api/clink/webhook/route.ts",
+      content: nextWebhookRoute()
+    },
+    {
+      relativePath: "lib/clink.ts",
+      content: nextClinkLibrary()
+    }
+  ];
+}
+function expressFiles() {
+  return [
+    ...commonFiles({
+      framework: "Express",
+      appUrl: "http://localhost:3000",
+      port: "3000",
+      runCommand: "npm install\nnpm run dev",
+      endpointBase: "/api/clink",
+      notes: [
+        "The webhook route is registered before JSON parsing and uses express.raw() to preserve the request body.",
+        "Checkout and subscription routes proxy only server-side requests to Clink and never expose CLINK_SECRET_KEY to browsers."
+      ]
+    }),
+    {
+      relativePath: "package.json",
+      content: jsonFile({
+        private: true,
+        type: "module",
+        scripts: {
+          dev: "node --watch src/server.js",
+          start: "node src/server.js"
+        },
+        dependencies: {
+          dotenv: "latest",
+          express: "latest"
+        }
+      })
+    },
+    {
+      relativePath: "src/server.js",
+      content: expressServer()
+    }
+  ];
+}
+function fastapiFiles() {
+  return [
+    ...commonFiles({
+      framework: "FastAPI",
+      appUrl: "http://localhost:8000",
+      port: "8000",
+      runCommand: "python -m venv .venv\n. .venv/bin/activate\npip install -r requirements.txt\nuvicorn app.main:app --reload",
+      endpointBase: "/api/clink",
+      notes: [
+        "The webhook endpoint calls await request.body() and verifies those bytes before JSON parsing.",
+        "Outbound Clink API calls use server-side environment variables only."
+      ]
+    }),
+    {
+      relativePath: "requirements.txt",
+      content: lines(["fastapi", "uvicorn[standard]", "httpx"])
+    },
+    {
+      relativePath: "app/main.py",
+      content: fastapiMain()
+    }
+  ];
+}
+function genericFiles() {
+  return commonFiles({
+    framework: "Generic HTTP server",
+    appUrl: "http://localhost:3000",
+    port: "3000",
+    runCommand: "Add these files to your server project, then run your framework dev server.",
+    endpointBase: "/api/clink",
+    notes: [
+      "Create checkout and subscription endpoints that proxy server-side requests to Clink.",
+      "Keep the webhook raw body unchanged until after X-Clink-Signature verification."
+    ]
+  });
+}
+function commonFiles(options) {
+  return [
+    {
+      relativePath: ".env.example",
+      content: envExample(options.appUrl, options.port)
+    },
+    {
+      relativePath: "README.md",
+      content: starterReadme(options)
+    },
+    {
+      relativePath: "docs/clink-integration.md",
+      content: integrationDoc(options)
+    },
+    {
+      relativePath: "examples/curl-examples.sh",
+      content: curlExamples(options.appUrl, options.endpointBase)
+    },
+    {
+      relativePath: "scripts/clink-smoke-test.sh",
+      content: smokeTestScript(options.appUrl)
+    }
+  ];
+}
+function envExample(appUrl, port) {
+  return lines([
+    "CLINK_ENV=sandbox",
+    "CLINK_BASE_URL=https://uat-api.clinkbill.com/api/",
+    "CLINK_SECRET_KEY=",
+    "CLINK_WEBHOOK_SIGNING_KEY=",
+    `APP_URL=${appUrl}`,
+    `PORT=${port}`
+  ]);
+}
+function starterReadme(options) {
+  return lines([
+    `# Clink ${options.framework} Starter`,
+    "",
+    "This starter shows how to create checkout sessions, create subscriptions, and receive signed Clink webhooks without hardcoding secrets.",
+    "",
+    "## Environment",
+    "",
+    "Copy `.env.example` to your local environment file and fill in:",
+    "",
+    "- `CLINK_SECRET_KEY`",
+    "- `CLINK_WEBHOOK_SIGNING_KEY`",
+    "- `CLINK_BASE_URL` if you need a non-sandbox API URL",
+    "",
+    "## Run",
+    "",
+    "```bash",
+    options.runCommand,
+    "```",
+    "",
+    "## Endpoints",
+    "",
+    "- `POST " + options.endpointBase + "/checkout` creates a hosted checkout session.",
+    "- `POST " + options.endpointBase + "/subscription` creates a subscription.",
+    "- `POST " + options.endpointBase + "/webhook` verifies `X-Clink-Timestamp` and `X-Clink-Signature` against the raw body.",
+    "",
+    "## Curl Examples",
+    "",
+    "```bash",
+    "bash examples/curl-examples.sh",
+    "```",
+    "",
+    "## Notes",
+    "",
+    ...options.notes.map((note) => `- ${note}`)
+  ]);
+}
+function integrationDoc(options) {
+  return lines([
+    "# Clink Integration",
+    "",
+    `Framework: ${options.framework}`,
+    "",
+    "## Server Routes",
+    "",
+    "- Checkout: `POST " + options.endpointBase + "/checkout`",
+    "- Subscription: `POST " + options.endpointBase + "/subscription`",
+    "- Webhook: `POST " + options.endpointBase + "/webhook`",
+    "",
+    "The webhook signature base string is:",
+    "",
+    "```text",
+    'X-Clink-Timestamp + "." + raw request body',
+    "```",
+    "",
+    "Verify the HMAC SHA-256 hex digest with `CLINK_WEBHOOK_SIGNING_KEY` before parsing JSON.",
+    "",
+    "## Local Checks",
+    "",
+    "```bash",
+    "clink doctor",
+    `clink webhook simulate order.succeeded --secret env:CLINK_WEBHOOK_SIGNING_KEY --forward-to ${options.appUrl}${options.endpointBase}/webhook --json`,
+    "```",
+    "",
+    "## Curl Examples",
+    "",
+    "Run:",
+    "",
+    "```bash",
+    "bash examples/curl-examples.sh",
+    "```",
+    "",
+    "The script sends local checkout and subscription requests, then signs a sample webhook payload with the key in your environment."
+  ]);
+}
+function curlExamples(appUrl, endpointBase) {
+  return lines([
+    "#!/usr/bin/env bash",
+    "set -euo pipefail",
+    "",
+    `APP_URL="\${APP_URL:-${appUrl}}"`,
+    "",
+    'curl -X POST "$APP_URL' + endpointBase + '/checkout" \\',
+    '  -H "Content-Type: application/json" \\',
+    `  -d '{"customerEmail":"buyer@example.com","amount":19.99,"currency":"USD","name":"Starter Plan","successUrl":"http://localhost:3000/success","cancelUrl":"http://localhost:3000/cancel"}'`,
+    "",
+    'curl -X POST "$APP_URL' + endpointBase + '/subscription" \\',
+    '  -H "Content-Type: application/json" \\',
+    `  -d '{"customerEmail":"buyer@example.com","productId":"prd_test","priceId":"price_test","paymentInstrumentId":"pi_test","paymentMethodType":"CARD","paymentCurrency":"USD","returnUrl":"http://localhost:3000/account"}'`,
+    "",
+    `RAW_BODY='{"type":"order.succeeded","data":{"id":"ord_test"}}'`,
+    'TIMESTAMP="$(date +%s000)"',
+    ': "${CLINK_WEBHOOK_SIGNING_KEY:?Set CLINK_WEBHOOK_SIGNING_KEY before running the webhook curl example}"',
+    `SIGNATURE="$(printf '%s.%s' "$TIMESTAMP" "$RAW_BODY" | openssl dgst -sha256 -hmac "$CLINK_WEBHOOK_SIGNING_KEY" -hex | sed 's/^.* //')"`,
+    "",
+    'curl -X POST "$APP_URL' + endpointBase + '/webhook" \\',
+    '  -H "Content-Type: application/json" \\',
+    '  -H "X-Clink-Timestamp: $TIMESTAMP" \\',
+    '  -H "X-Clink-Signature: $SIGNATURE" \\',
+    '  -d "$RAW_BODY"'
+  ]);
+}
+function smokeTestScript(appUrl) {
+  return lines([
+    "#!/usr/bin/env bash",
+    "set -euo pipefail",
+    "",
+    `WEBHOOK_URL="\${WEBHOOK_URL:-${appUrl}/api/clink/webhook}"`,
+    "",
+    "clink doctor",
+    'clink smoke-test --webhook-url "$WEBHOOK_URL" "$@"'
+  ]);
+}
+function nextClinkLibrary() {
+  return lines([
+    'import { createHmac, timingSafeEqual } from "node:crypto";',
+    "",
+    'const DEFAULT_BASE_URL = "https://uat-api.clinkbill.com/api/";',
+    "",
+    "export function requireEnv(name: string): string {",
+    "  const value = process.env[name];",
+    "  if (!value) {",
+    "    throw new Error(`Missing required environment variable: ${name}`);",
+    "  }",
+    "  return value;",
+    "}",
+    "",
+    "export function clinkApiUrl(path: string): string {",
+    "  const baseUrl = process.env.CLINK_BASE_URL ?? DEFAULT_BASE_URL;",
+    '  const normalizedBaseUrl = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;',
+    '  return new URL(path.replace(/^\\/+/, ""), normalizedBaseUrl).toString();',
+    "}",
+    "",
+    "export async function postClink(path: string, body: unknown): Promise<unknown> {",
+    "  const response = await fetch(clinkApiUrl(path), {",
+    '    method: "POST",',
+    "    headers: {",
+    '      "Content-Type": "application/json",',
+    '      "X-API-KEY": requireEnv("CLINK_SECRET_KEY"),',
+    '      "X-Timestamp": String(Date.now()),',
+    "    },",
+    "    body: JSON.stringify(body),",
+    '    cache: "no-store",',
+    "  });",
+    "",
+    "  const text = await response.text();",
+    "  const data = parseResponseBody(text);",
+    "",
+    "  if (!response.ok) {",
+    "    throw new Error(`Clink API request failed with ${response.status}: ${text}`);",
+    "  }",
+    "",
+    "  return data;",
+    "}",
+    "",
+    "export function verifyClinkWebhook(secret: string, timestamp: string, rawBody: string, signature: string): boolean {",
+    '  const expected = createHmac("sha256", secret).update(`${timestamp}.${rawBody}`).digest("hex");',
+    "  return safeCompare(expected, signature);",
+    "}",
+    "",
+    "export function buildCheckoutPayload(input: Record<string, unknown>): Record<string, unknown> {",
+    "  const amount = Number(input.amount ?? input.originalAmount ?? 19.99);",
+    '  const currency = String(input.currency ?? input.originalCurrency ?? "USD").toUpperCase();',
+    "  const body: Record<string, unknown> = {",
+    "    customerEmail: input.customerEmail,",
+    "    originalAmount: amount,",
+    "    originalCurrency: currency,",
+    "    merchantReferenceId: input.merchantReferenceId,",
+    "    successUrl: input.successUrl,",
+    "    cancelUrl: input.cancelUrl,",
+    '    uiMode: input.uiMode ?? "hostedPage",',
+    "    returnUrl: input.returnUrl,",
+    "    paymentMethodType: input.paymentMethodType,",
+    "    allowPromotionCodes: Boolean(input.allowPromotionCodes),",
+    "  };",
+    "",
+    "  if (input.productId || input.priceId) {",
+    "    body.productId = input.productId;",
+    "    body.priceId = input.priceId;",
+    "  } else {",
+    "    body.priceDataList = [",
+    "      {",
+    '        name: input.name ?? "Test Product",',
+    "        quantity: Number(input.quantity ?? 1),",
+    "        unitAmount: amount,",
+    "        currency,",
+    "        imageUrl: input.imageUrl,",
+    "      },",
+    "    ];",
+    "  }",
+    "",
+    "  return body;",
+    "}",
+    "",
+    "export function buildSubscriptionPayload(input: Record<string, unknown>): Record<string, unknown> {",
+    "  return {",
+    "    customerId: input.customerId,",
+    "    customerEmail: input.customerEmail,",
+    "    referenceCustomerId: input.referenceCustomerId,",
+    "    merchantReferenceId: input.merchantReferenceId,",
+    "    productId: input.productId,",
+    "    priceId: input.priceId,",
+    "    paymentInstrumentId: input.paymentInstrumentId,",
+    '    paymentMethodType: input.paymentMethodType ?? "CARD",',
+    '    paymentCurrency: String(input.paymentCurrency ?? "USD").toUpperCase(),',
+    "    returnUrl: input.returnUrl,",
+    "    metadata: input.metadata,",
+    "  };",
+    "}",
+    "",
+    "export function errorMessage(error: unknown): string {",
+    "  return error instanceof Error ? error.message : String(error);",
+    "}",
+    "",
+    "function parseResponseBody(text: string): unknown {",
+    "  if (!text) return {};",
+    "  try {",
+    "    return JSON.parse(text) as unknown;",
+    "  } catch {",
+    "    return text;",
+    "  }",
+    "}",
+    "",
+    "function safeCompare(a: string, b: string): boolean {",
+    "  const aBuffer = Buffer.from(a);",
+    "  const bBuffer = Buffer.from(b);",
+    "  if (aBuffer.length !== bBuffer.length) return false;",
+    "  return timingSafeEqual(aBuffer, bBuffer);",
+    "}"
+  ]);
+}
+function nextCheckoutRoute() {
+  return lines([
+    'import { NextResponse } from "next/server";',
+    'import { buildCheckoutPayload, errorMessage, postClink } from "../../../../lib/clink";',
+    "",
+    'export const runtime = "nodejs";',
+    "",
+    "export async function POST(request: Request) {",
+    "  try {",
+    "    const input = (await request.json()) as Record<string, unknown>;",
+    '    const result = await postClink("/checkout/session", buildCheckoutPayload(input));',
+    "    return NextResponse.json({ ok: true, result });",
+    "  } catch (error) {",
+    "    return NextResponse.json({ ok: false, error: errorMessage(error) }, { status: 500 });",
+    "  }",
+    "}"
+  ]);
+}
+function nextSubscriptionRoute() {
+  return lines([
+    'import { NextResponse } from "next/server";',
+    'import { buildSubscriptionPayload, errorMessage, postClink } from "../../../../lib/clink";',
+    "",
+    'export const runtime = "nodejs";',
+    "",
+    "export async function POST(request: Request) {",
+    "  try {",
+    "    const input = (await request.json()) as Record<string, unknown>;",
+    '    const result = await postClink("/subscription", buildSubscriptionPayload(input));',
+    "    return NextResponse.json({ ok: true, result });",
+    "  } catch (error) {",
+    "    return NextResponse.json({ ok: false, error: errorMessage(error) }, { status: 500 });",
+    "  }",
+    "}"
+  ]);
+}
+function nextWebhookRoute() {
+  return lines([
+    'import { NextResponse } from "next/server";',
+    'import { errorMessage, requireEnv, verifyClinkWebhook } from "../../../../lib/clink";',
+    "",
+    'export const runtime = "nodejs";',
+    "",
+    "export async function POST(request: Request) {",
+    "  try {",
+    '    const timestamp = request.headers.get("x-clink-timestamp");',
+    '    const signature = request.headers.get("x-clink-signature");',
+    "",
+    "    if (!timestamp || !signature) {",
+    '      return NextResponse.json({ ok: false, error: "Missing Clink webhook signature headers" }, { status: 400 });',
+    "    }",
+    "",
+    "    const rawBody = await request.text();",
+    '    const secret = requireEnv("CLINK_WEBHOOK_SIGNING_KEY");',
+    "",
+    "    if (!verifyClinkWebhook(secret, timestamp, rawBody, signature)) {",
+    '      return NextResponse.json({ ok: false, error: "Invalid Clink webhook signature" }, { status: 400 });',
+    "    }",
+    "",
+    "    const event = JSON.parse(rawBody) as { type?: string; eventType?: string };",
+    '    console.log("Received Clink event", event.type ?? event.eventType ?? "unknown");',
+    "",
+    "    return NextResponse.json({ ok: true });",
+    "  } catch (error) {",
+    "    return NextResponse.json({ ok: false, error: errorMessage(error) }, { status: 500 });",
+    "  }",
+    "}"
+  ]);
+}
+function expressServer() {
+  return lines([
+    'import "dotenv/config";',
+    'import { createHmac, timingSafeEqual } from "node:crypto";',
+    'import express from "express";',
+    "",
+    "const app = express();",
+    "const port = Number(process.env.PORT ?? 3000);",
+    'const defaultBaseUrl = "https://uat-api.clinkbill.com/api/";',
+    "",
+    'app.post("/api/clink/webhook", express.raw({ type: "application/json" }), (req, res) => {',
+    '  const timestamp = req.header("x-clink-timestamp");',
+    '  const signature = req.header("x-clink-signature");',
+    "",
+    "  if (!timestamp || !signature) {",
+    '    return res.status(400).json({ ok: false, error: "Missing Clink webhook signature headers" });',
+    "  }",
+    "",
+    '  const rawBody = Buffer.isBuffer(req.body) ? req.body.toString("utf8") : "";',
+    "",
+    '  if (!verifyClinkWebhook(requireEnv("CLINK_WEBHOOK_SIGNING_KEY"), timestamp, rawBody, signature)) {',
+    '    return res.status(400).json({ ok: false, error: "Invalid Clink webhook signature" });',
+    "  }",
+    "",
+    "  const event = JSON.parse(rawBody);",
+    '  console.log("Received Clink event", event.type ?? event.eventType ?? "unknown");',
+    "",
+    "  return res.json({ ok: true });",
+    "});",
+    "",
+    "app.use(express.json());",
+    "",
+    'app.post("/api/clink/checkout", async (req, res, next) => {',
+    "  try {",
+    '    const result = await postClink("/checkout/session", buildCheckoutPayload(req.body ?? {}));',
+    "    res.json({ ok: true, result });",
+    "  } catch (error) {",
+    "    next(error);",
+    "  }",
+    "});",
+    "",
+    'app.post("/api/clink/subscription", async (req, res, next) => {',
+    "  try {",
+    '    const result = await postClink("/subscription", buildSubscriptionPayload(req.body ?? {}));',
+    "    res.json({ ok: true, result });",
+    "  } catch (error) {",
+    "    next(error);",
+    "  }",
+    "});",
+    "",
+    "app.use((error, _req, res, _next) => {",
+    "  const message = error instanceof Error ? error.message : String(error);",
+    "  res.status(500).json({ ok: false, error: message });",
+    "});",
+    "",
+    "app.listen(port, () => {",
+    "  console.log(`Clink Express starter listening on http://localhost:${port}`);",
+    "});",
+    "",
+    "function requireEnv(name) {",
+    "  const value = process.env[name];",
+    "  if (!value) {",
+    "    throw new Error(`Missing required environment variable: ${name}`);",
+    "  }",
+    "  return value;",
+    "}",
+    "",
+    "function clinkApiUrl(path) {",
+    "  const baseUrl = process.env.CLINK_BASE_URL ?? defaultBaseUrl;",
+    '  const normalizedBaseUrl = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;',
+    '  return new URL(path.replace(/^\\/+/, ""), normalizedBaseUrl).toString();',
+    "}",
+    "",
+    "async function postClink(path, body) {",
+    "  const response = await fetch(clinkApiUrl(path), {",
+    '    method: "POST",',
+    "    headers: {",
+    '      "Content-Type": "application/json",',
+    '      "X-API-KEY": requireEnv("CLINK_SECRET_KEY"),',
+    '      "X-Timestamp": String(Date.now()),',
+    "    },",
+    "    body: JSON.stringify(body),",
+    "  });",
+    "",
+    "  const text = await response.text();",
+    "  const data = parseResponseBody(text);",
+    "",
+    "  if (!response.ok) {",
+    "    throw new Error(`Clink API request failed with ${response.status}: ${text}`);",
+    "  }",
+    "",
+    "  return data;",
+    "}",
+    "",
+    "function verifyClinkWebhook(secret, timestamp, rawBody, signature) {",
+    '  const expected = createHmac("sha256", secret).update(`${timestamp}.${rawBody}`).digest("hex");',
+    "  return safeCompare(expected, signature);",
+    "}",
+    "",
+    "function buildCheckoutPayload(input) {",
+    "  const amount = Number(input.amount ?? input.originalAmount ?? 19.99);",
+    '  const currency = String(input.currency ?? input.originalCurrency ?? "USD").toUpperCase();',
+    "  const body = {",
+    "    customerEmail: input.customerEmail,",
+    "    originalAmount: amount,",
+    "    originalCurrency: currency,",
+    "    merchantReferenceId: input.merchantReferenceId,",
+    "    successUrl: input.successUrl,",
+    "    cancelUrl: input.cancelUrl,",
+    '    uiMode: input.uiMode ?? "hostedPage",',
+    "    returnUrl: input.returnUrl,",
+    "    paymentMethodType: input.paymentMethodType,",
+    "    allowPromotionCodes: Boolean(input.allowPromotionCodes),",
+    "  };",
+    "",
+    "  if (input.productId || input.priceId) {",
+    "    body.productId = input.productId;",
+    "    body.priceId = input.priceId;",
+    "  } else {",
+    "    body.priceDataList = [{",
+    '      name: input.name ?? "Test Product",',
+    "      quantity: Number(input.quantity ?? 1),",
+    "      unitAmount: amount,",
+    "      currency,",
+    "      imageUrl: input.imageUrl,",
+    "    }];",
+    "  }",
+    "",
+    "  return body;",
+    "}",
+    "",
+    "function buildSubscriptionPayload(input) {",
+    "  return {",
+    "    customerId: input.customerId,",
+    "    customerEmail: input.customerEmail,",
+    "    referenceCustomerId: input.referenceCustomerId,",
+    "    merchantReferenceId: input.merchantReferenceId,",
+    "    productId: input.productId,",
+    "    priceId: input.priceId,",
+    "    paymentInstrumentId: input.paymentInstrumentId,",
+    '    paymentMethodType: input.paymentMethodType ?? "CARD",',
+    '    paymentCurrency: String(input.paymentCurrency ?? "USD").toUpperCase(),',
+    "    returnUrl: input.returnUrl,",
+    "    metadata: input.metadata,",
+    "  };",
+    "}",
+    "",
+    "function parseResponseBody(text) {",
+    "  if (!text) return {};",
+    "  try {",
+    "    return JSON.parse(text);",
+    "  } catch {",
+    "    return text;",
+    "  }",
+    "}",
+    "",
+    "function safeCompare(a, b) {",
+    "  const aBuffer = Buffer.from(a);",
+    "  const bBuffer = Buffer.from(b);",
+    "  if (aBuffer.length !== bBuffer.length) return false;",
+    "  return timingSafeEqual(aBuffer, bBuffer);",
+    "}"
+  ]);
+}
+function fastapiMain() {
+  return lines([
+    "from __future__ import annotations",
+    "",
+    "import hashlib",
+    "import hmac",
+    "import json",
+    "import os",
+    "import time",
+    "from typing import Any",
+    "",
+    "import httpx",
+    "from fastapi import FastAPI, Header, HTTPException, Request",
+    "",
+    'app = FastAPI(title="Clink FastAPI Starter")',
+    'DEFAULT_BASE_URL = "https://uat-api.clinkbill.com/api/"',
+    "",
+    "",
+    '@app.post("/api/clink/checkout")',
+    "async def create_checkout_session(payload: dict[str, Any]) -> dict[str, Any]:",
+    '    result = await post_clink("/checkout/session", build_checkout_payload(payload))',
+    '    return {"ok": True, "result": result}',
+    "",
+    "",
+    '@app.post("/api/clink/subscription")',
+    "async def create_subscription(payload: dict[str, Any]) -> dict[str, Any]:",
+    '    result = await post_clink("/subscription", build_subscription_payload(payload))',
+    '    return {"ok": True, "result": result}',
+    "",
+    "",
+    '@app.post("/api/clink/webhook")',
+    "async def clink_webhook(",
+    "    request: Request,",
+    '    x_clink_timestamp: str | None = Header(default=None, alias="X-Clink-Timestamp"),',
+    '    x_clink_signature: str | None = Header(default=None, alias="X-Clink-Signature"),',
+    ") -> dict[str, bool]:",
+    "    if not x_clink_timestamp or not x_clink_signature:",
+    '        raise HTTPException(status_code=400, detail="Missing Clink webhook signature headers")',
+    "",
+    "    raw_body = await request.body()",
+    "    if not verify_clink_webhook(",
+    '        require_env("CLINK_WEBHOOK_SIGNING_KEY"),',
+    "        x_clink_timestamp,",
+    "        raw_body,",
+    "        x_clink_signature,",
+    "    ):",
+    '        raise HTTPException(status_code=400, detail="Invalid Clink webhook signature")',
+    "",
+    "    try:",
+    "        event = json.loads(raw_body)",
+    "    except json.JSONDecodeError as exc:",
+    '        raise HTTPException(status_code=400, detail="Invalid JSON body") from exc',
+    "",
+    '    print("Received Clink event", event.get("type") or event.get("eventType") or "unknown")',
+    '    return {"ok": True}',
+    "",
+    "",
+    "async def post_clink(path: str, body: dict[str, Any]) -> Any:",
+    "    headers = {",
+    '        "Content-Type": "application/json",',
+    '        "X-API-KEY": require_env("CLINK_SECRET_KEY"),',
+    '        "X-Timestamp": str(int(time.time() * 1000)),',
+    "    }",
+    "",
+    "    async with httpx.AsyncClient(timeout=20) as client:",
+    "        response = await client.post(clink_api_url(path), headers=headers, json=body)",
+    "",
+    "    try:",
+    "        data: Any = response.json()",
+    "    except ValueError:",
+    "        data = response.text",
+    "",
+    "    if response.status_code >= 400:",
+    "        raise HTTPException(",
+    "            status_code=502,",
+    '            detail=f"Clink API request failed with {response.status_code}: {response.text}",',
+    "        )",
+    "",
+    "    return data",
+    "",
+    "",
+    "def clink_api_url(path: str) -> str:",
+    '    base_url = os.environ.get("CLINK_BASE_URL", DEFAULT_BASE_URL)',
+    '    normalized_base_url = base_url if base_url.endswith("/") else f"{base_url}/"',
+    '    return normalized_base_url + path.lstrip("/")',
+    "",
+    "",
+    "def require_env(name: str) -> str:",
+    "    value = os.environ.get(name)",
+    "    if not value:",
+    '        raise RuntimeError(f"Missing required environment variable: {name}")',
+    "    return value",
+    "",
+    "",
+    "def verify_clink_webhook(secret: str, timestamp: str, raw_body: bytes, signature: str) -> bool:",
+    '    signed_payload = timestamp.encode("utf-8") + b"." + raw_body',
+    '    expected = hmac.new(secret.encode("utf-8"), signed_payload, hashlib.sha256).hexdigest()',
+    "    return hmac.compare_digest(expected, signature)",
+    "",
+    "",
+    "def build_checkout_payload(input_data: dict[str, Any]) -> dict[str, Any]:",
+    '    amount = float(input_data.get("amount") or input_data.get("originalAmount") or 19.99)',
+    '    currency = str(input_data.get("currency") or input_data.get("originalCurrency") or "USD").upper()',
+    "    body: dict[str, Any] = {",
+    '        "customerEmail": input_data.get("customerEmail"),',
+    '        "originalAmount": amount,',
+    '        "originalCurrency": currency,',
+    '        "merchantReferenceId": input_data.get("merchantReferenceId"),',
+    '        "successUrl": input_data.get("successUrl"),',
+    '        "cancelUrl": input_data.get("cancelUrl"),',
+    '        "uiMode": input_data.get("uiMode") or "hostedPage",',
+    '        "returnUrl": input_data.get("returnUrl"),',
+    '        "paymentMethodType": input_data.get("paymentMethodType"),',
+    '        "allowPromotionCodes": bool(input_data.get("allowPromotionCodes")),',
+    "    }",
+    "",
+    '    if input_data.get("productId") or input_data.get("priceId"):',
+    '        body["productId"] = input_data.get("productId")',
+    '        body["priceId"] = input_data.get("priceId")',
+    "    else:",
+    '        body["priceDataList"] = [',
+    "            {",
+    '                "name": input_data.get("name") or "Test Product",',
+    '                "quantity": int(input_data.get("quantity") or 1),',
+    '                "unitAmount": amount,',
+    '                "currency": currency,',
+    '                "imageUrl": input_data.get("imageUrl"),',
+    "            }",
+    "        ]",
+    "",
+    "    return body",
+    "",
+    "",
+    "def build_subscription_payload(input_data: dict[str, Any]) -> dict[str, Any]:",
+    "    return {",
+    '        "customerId": input_data.get("customerId"),',
+    '        "customerEmail": input_data.get("customerEmail"),',
+    '        "referenceCustomerId": input_data.get("referenceCustomerId"),',
+    '        "merchantReferenceId": input_data.get("merchantReferenceId"),',
+    '        "productId": input_data.get("productId"),',
+    '        "priceId": input_data.get("priceId"),',
+    '        "paymentInstrumentId": input_data.get("paymentInstrumentId"),',
+    '        "paymentMethodType": input_data.get("paymentMethodType") or "CARD",',
+    '        "paymentCurrency": str(input_data.get("paymentCurrency") or "USD").upper(),',
+    '        "returnUrl": input_data.get("returnUrl"),',
+    '        "metadata": input_data.get("metadata"),',
+    "    }"
+  ]);
+}
+function jsonFile(value) {
+  return `${JSON.stringify(value, null, 2)}
+`;
+}
+function lines(value) {
+  return `${value.join("\n")}
+`;
+}
+
+// src/commands/init.ts
+function registerInit(program2) {
+  program2.command("init").description("Generate starter integration artifacts in the current project").option("--out <directory>", "Output directory", ".").option("--framework <name>", "Starter framework: generic, nextjs, express, or fastapi", "generic").option("--force", "Overwrite existing files").action(async (options, command) => {
+    const { config } = await getCommandContext(command);
+    const starter = createFrameworkStarter(options.framework);
+    const files = starter.files.map((file) => ({
+      path: join2(options.out, file.relativePath),
+      content: file.content
+    }));
+    for (const file of files) {
+      await mkdir4(dirname5(file.path), { recursive: true });
+      await writeFile4(file.path, file.content, { encoding: "utf8", flag: options.force ? "w" : "wx" });
+    }
+    printResult(
+      {
+        framework: starter.framework,
+        out: options.out,
+        files: files.map((file) => file.path),
+        supportedFrameworks: listSupportedFrameworks()
+      },
+      config.outputMode,
+      `Generated ${files.length} Clink ${starter.framework} starter artifact(s) in ${options.out}`
+    );
+  });
+}
+
+// src/commands/login.ts
+function registerLogin(program2) {
+  program2.command("login").description("Open the Dashboard for manual login and save Dashboard Console credentials").option("--timeout-ms <ms>", "How long to wait for the Dashboard getInfo request", "300000").option("--browser-channel <channel>", "Playwright browser channel, for example chrome or msedge").action(async (options, command) => {
+    const global = command.optsWithGlobals();
+    const profileName = global.profile ?? "default";
+    const config = await resolveRuntimeConfig(global);
+    const { baseUrl: dashboardBaseUrl, loginUrl: dashboardLoginUrl } = config.dashboardEndpoints;
+    const outputMode = global.json ? "json" : "pretty";
+    const timeoutMs = parseIntegerOption("--timeout-ms", options.timeoutMs);
+    if (outputMode !== "json") {
+      console.log(`Opening ${dashboardLoginUrl}`);
+      console.log("Finish login in the browser. The CLI will capture the Dashboard getInfo request after login.");
+    }
+    const { chromium } = await importPlaywrightForLogin();
+    const browser = await launchLoginBrowser(chromium, options.browserChannel);
+    try {
+      const context = await browser.newContext();
+      const page = await context.newPage();
+      const credentialsPromise = waitForDashboardCredentials(page, timeoutMs);
+      credentialsPromise.catch(() => void 0);
+      try {
+        await page.goto(dashboardLoginUrl, { waitUntil: "domcontentloaded" });
+      } catch (error) {
+        if (outputMode !== "json") {
+          console.warn(`Could not auto-open the Dashboard login page: ${error.message}`);
+          console.warn(`Keep the browser open and navigate manually to: ${dashboardLoginUrl}`);
+        }
+      }
+      const credentials = await credentialsPromise;
+      const client = new DashboardConsoleClient({
+        baseUrl: dashboardBaseUrl,
+        accessToken: credentials.accessToken,
+        clientId: credentials.clientId
+      });
+      const verification = await getVerifiedDashboardInfo(client, page, {
+        baseUrl: dashboardBaseUrl,
+        accessToken: credentials.accessToken,
+        clientId: credentials.clientId
+      }, outputMode);
+      const user = extractDashboardUserSummary(verification);
+      const dashboardProfile = {
+        baseUrl: dashboardBaseUrl,
+        loginUrl: dashboardLoginUrl,
+        clientId: credentials.clientId,
+        accessToken: credentials.accessToken,
+        tokenSource: credentials.source,
+        savedAt: (/* @__PURE__ */ new Date()).toISOString(),
+        user
+      };
+      await saveProfile(profileName, {
+        environment: config.environment,
+        dashboard: dashboardProfile
+      });
+      const maskedProfile = maskDashboardProfile(dashboardProfile);
+      printResult(
+        {
+          profile: profileName,
+          configPath: getConfigPath(),
+          dashboard: maskedProfile
+        },
+        outputMode,
+        [
+          `Saved Dashboard Console profile "${profileName}" at ${getConfigPath()}`,
+          `Dashboard API: ${maskedProfile.baseUrl}`,
+          `ClientID: ${maskedProfile.clientId}`,
+          `Token: ${maskedProfile.accessToken}`,
+          `User: ${formatUser2(user)}`
+        ].join("\n")
+      );
+    } finally {
+      await browser.close().catch(() => void 0);
+    }
+  });
+}
+async function getVerifiedDashboardInfo(client, page, credentials, outputMode) {
+  try {
+    return await client.getInfo();
+  } catch (error) {
+    if (outputMode !== "json") {
+      console.warn(`Node fetch verification failed: ${error.message}`);
+      console.warn("Retrying verification inside the logged-in browser context.");
+    }
+    return getDashboardInfoFromPage(page, credentials);
+  }
+}
+async function importPlaywrightForLogin() {
+  const packageName = "playwright";
+  try {
+    return await import(packageName);
+  } catch (error) {
+    if (isMissingPlaywright(error)) {
+      throw new Error(
+        [
+          "clink login requires optional Playwright browser support, but the playwright package is not installed.",
+          "",
+          "For offline skill usage, Playwright must be pre-provisioned outside this bundle:",
+          "  use an offline-provisioned playwright package, or skip clink login",
+          "",
+          "For browserless, cloud IDE, low-code, sandbox, or dependency-locked environments:",
+          "  use clink auth secret set --api-key env:CLINK_SECRET_KEY --env sandbox",
+          "",
+          "If this is a browserless, cloud IDE, low-code, or sandbox environment, skip clink login and configure a Secret Key instead:",
+          "  clink auth secret set --api-key env:CLINK_SECRET_KEY --env sandbox"
+        ].join("\n")
+      );
+    }
+    throw error;
+  }
+}
+function isMissingPlaywright(error) {
+  if (!(error instanceof Error)) return false;
+  const code = "code" in error && typeof error.code === "string" ? error.code : void 0;
+  return ["ERR_MODULE_NOT_FOUND", "MODULE_NOT_FOUND"].includes(code ?? "") && error.message.includes("playwright");
+}
+async function launchLoginBrowser(chromium, channel) {
+  const candidates = channel ? [channel] : ["chrome", "msedge", void 0];
+  const failures = [];
+  for (const candidate of candidates) {
+    try {
+      return await chromium.launch({
+        headless: false,
+        ...candidate ? { channel: candidate } : {}
+      });
+    } catch (error) {
+      failures.push(`${candidate ?? "bundled chromium"}: ${error.message}`);
+    }
+  }
+  throw new Error(`Unable to launch a browser for clink login. Tried ${failures.join(" | ")}`);
+}
+function formatUser2(user) {
+  if (!user) return "unknown";
+  return user.email ?? user.username ?? user.userId ?? "unknown";
+}
+
+// src/commands/order.ts
+function registerOrder(program2) {
+  const order = program2.command("order").description("Inspect orders with CLINK_SECRET_KEY authentication");
+  order.command("get <order-id>").description("Get order details").action(async (orderId, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get(`/order/${encodeURIComponent(orderId)}`);
+    printResult(result, config.outputMode);
+  });
+  order.command("list").description("List orders for the current merchant").option("--subscription-id <id>", "Filter by subscription ID").option("--customer-id <id>", "Filter by customer ID").option("--page <number>", "Page number", "1").option("--page-size <number>", "Page size", String(DEFAULT_PAGE_SIZE)).action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get("/order", {
+      query: {
+        subscriptionId: options.subscriptionId,
+        customerId: options.customerId,
+        pageNum: Number(options.page),
+        pageSize: Number(options.pageSize)
+      }
+    });
+    printResult(result, config.outputMode);
+  });
+}
+
+// src/commands/payment.ts
+function registerPayment(program2) {
+  const payment = program2.command("payment").description("Create one-time payments and payment instruments with CLINK_SECRET_KEY authentication");
+  payment.command("create").description("Create a one-time payment. Provide the official API JSON payload with --data or --data-file.").option("--data <json>", "Create payment JSON payload").option("--data-file <path>", "Read JSON payload from a file").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = await readJsonInput(options);
+    if (body === void 0) {
+      throw new Error("Missing required option: --data or --data-file");
+    }
+    const result = await client.post("/payment", { body });
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("POST", buildUrl(config.baseUrl, "/payment"), body)
+      },
+      config.outputMode,
+      "Payment create request completed. Use --json to view the full response and curl example."
+    );
+  });
+  const instrument = payment.command("instrument").description("Manage payment instruments");
+  instrument.command("create").description("Create a payment instrument. Provide the official API JSON payload with --data or --data-file.").option("--data <json>", "Create payment instrument JSON payload").option("--data-file <path>", "Read JSON payload from a file").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = await readJsonInput(options);
+    if (body === void 0) {
+      throw new Error("Missing required option: --data or --data-file");
+    }
+    const result = await client.post("/payment-instrument", { body });
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("POST", buildUrl(config.baseUrl, "/payment-instrument"), body)
+      },
+      config.outputMode,
+      "Payment instrument create request completed. Use --json to view the full response and curl example."
+    );
+  });
+}
+
+// src/commands/price.ts
+function registerPrice(program2) {
+  const price = program2.command("price").description("Create and list Clink prices");
+  price.command("get <price-id>").description("Get price details").action(async (priceId, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get(`/price/${encodeURIComponent(priceId)}`);
+    printResult(result, config.outputMode);
+  });
+  price.command("create").description("Create a one-time or recurring price").requiredOption("--product-id <id>", "Product ID").requiredOption("--amount <amount>", "Unit amount").requiredOption("--currency <currency>", "Currency, for example USD").option("--type <type>", "one_time or recurring", "one_time").option("--interval <interval>", "day, week, month, year, quarter, half_year, or custom").option("--interval-count <number>", "Interval count", "1").option("--trial-days <number>", "Trial period days").option("--pricing-model <model>", "flat_rate, per_seat, tiered, or usage_based", "flat_rate").option("--default", "Mark as default price").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = {
+      productId: options.productId,
+      currency: options.currency.toUpperCase(),
+      unitAmount: parseNumberOption("--amount", options.amount),
+      priceType: options.type,
+      isDefaultPrice: Boolean(options.default)
+    };
+    if (options.type === "recurring") {
+      body.recurringDetails = {
+        interval: options.interval ?? "month",
+        intervalCount: Number(options.intervalCount),
+        trialPeriodDays: options.trialDays ? Number(options.trialDays) : void 0,
+        pricingModel: options.pricingModel
+      };
+    }
+    const result = await client.post("/price", { body });
+    printResult(result, config.outputMode, `Price create request completed for product ${options.productId}`);
+  });
+  price.command("list").description("List prices for a product").requiredOption("--product-id <id>", "Product ID").option("--active <boolean>", "Filter active prices", "true").option("--page <number>", "Page number", "1").option("--page-size <number>", "Page size", String(DEFAULT_PAGE_SIZE)).action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const query = {
+      productId: options.productId,
+      active: options.active === "true",
+      pageNum: Number(options.page),
+      pageSize: Number(options.pageSize)
+    };
+    const result = await client.get("/price", {
+      query
+    });
+    printResult(result, config.outputMode);
+  });
+  price.command("update <price-id>").description("Update a price. Provide the official API JSON payload with --data or --data-file.").option("--data <json>", "Update price JSON payload").option("--data-file <path>", "Read JSON payload from a file").action(async (priceId, options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = await readJsonInput(options);
+    if (body === void 0) {
+      throw new Error("Missing required option: --data or --data-file");
+    }
+    const path = `/price/${encodeURIComponent(priceId)}`;
+    const result = await client.put(path, { body });
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("PUT", buildUrl(config.baseUrl, path), body)
+      },
+      config.outputMode,
+      "Price update request completed. Use --json to view the full response and curl example."
+    );
+  });
+}
+
+// src/commands/product.ts
+function registerProduct(program2) {
+  const product = program2.command("product").description("Create and list Clink products");
+  product.command("get <product-id>").description("Get product details").action(async (productId, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get(`/product/${encodeURIComponent(productId)}`);
+    printResult(result, config.outputMode);
+  });
+  product.command("create").description("Create a product with its initial price. Use --image-file to upload a product image first.").requiredOption("--name <name>", "Product name").requiredOption("--amount <amount>", "Initial price unit amount").requiredOption("--currency <currency>", "Initial price currency, for example USD").option("--description <description>", "Product description").option("--image-id <ossId>", "Existing uploaded product image OSS ID").option("--image-file <path>", "Local image file to upload before product creation").option("--tax-category <category>", "digital_goods_or_service, ebook, or software_service", "software_service").option("--type <type>", "Initial price type: one_time or recurring", "one_time").option("--interval <interval>", "Recurring interval: day, week, month, year, quarter, half_year, or custom").option("--interval-count <number>", "Recurring interval count", "1").option("--trial-days <number>", "Recurring trial period days").option("--pricing-model <model>", "Recurring pricing model: flat_rate, per_seat, tiered, or usage_based", "flat_rate").option("--default", "Mark the initial price as the product default price").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    let imageId = options.imageId;
+    let uploadResult;
+    if (!imageId && options.imageFile) {
+      const form = await createImageUploadForm(options.imageFile);
+      uploadResult = await client.post("/product/image/upload", { multipart: form });
+      imageId = extractOssId2(uploadResult);
+    }
+    requireOption("--image-id or --image-file", imageId);
+    const body = {
+      name: options.name,
+      description: options.description,
+      image: imageId,
+      taxCategory: options.taxCategory,
+      priceList: [buildInitialPrice(options)]
+    };
+    const result = await client.post("/product", { body });
+    const ids = extractProductIds2(result);
+    printResult(
+      {
+        productId: ids.productId,
+        defaultPrice: ids.defaultPrice,
+        initialPriceId: ids.initialPriceId,
+        checkoutCommand: ids.productId && ids.initialPriceId ? checkoutCommand(ids.productId, ids.initialPriceId, options.currency, options.amount) : void 0,
+        upload: uploadResult,
+        product: result
+      },
+      config.outputMode,
+      [
+        `Product create request completed for "${options.name}"`,
+        ids.productId ? `Product ID: ${ids.productId}` : void 0,
+        ids.initialPriceId ? `Price ID: ${ids.initialPriceId}` : void 0,
+        ids.productId && ids.initialPriceId ? `Next: ${checkoutCommand(ids.productId, ids.initialPriceId, options.currency, options.amount)}` : void 0
+      ].filter(Boolean).join("\n")
+    );
+  });
+  product.command("list").description("List products for the current merchant").option("--page <number>", "Page number", "1").option("--page-size <number>", "Page size", String(DEFAULT_PAGE_SIZE)).action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const query = {
+      pageNum: Number(options.page),
+      pageSize: Number(options.pageSize)
+    };
+    const result = await client.get("/product", {
+      query
+    });
+    printResult(result, config.outputMode);
+  });
+}
+function buildInitialPrice(options) {
+  const price = {
+    currency: options.currency.toUpperCase(),
+    unitAmount: parseNumberOption("--amount", options.amount),
+    priceType: options.type,
+    isDefaultPrice: Boolean(options.default)
+  };
+  if (options.type === "recurring") {
+    price.recurringDetails = {
+      interval: options.interval ?? "month",
+      intervalCount: Number(options.intervalCount),
+      trialPeriodDays: options.trialDays ? Number(options.trialDays) : void 0,
+      pricingModel: options.pricingModel
+    };
+  }
+  return price;
+}
+function extractOssId2(uploadResult) {
+  if (!uploadResult || typeof uploadResult !== "object") return void 0;
+  const data = uploadResult.data;
+  return data?.ossId;
+}
+function extractProductIds2(result) {
+  const data = result && typeof result === "object" ? result.data : void 0;
+  const productId = stringValue3(data?.productId);
+  const defaultPrice = stringValue3(data?.defaultPrice);
+  const priceList = Array.isArray(data?.priceList) ? data.priceList : [];
+  const firstPrice = priceList.find((item) => item && typeof item === "object");
+  const initialPriceId = defaultPrice ?? stringValue3(firstPrice?.priceId);
+  return { productId, defaultPrice, initialPriceId };
+}
+function stringValue3(value) {
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function checkoutCommand(productId, priceId, currency, amount) {
+  return [
+    "clink checkout create",
+    "--customer-email buyer@example.com",
+    `--amount ${amount}`,
+    `--currency ${currency.toUpperCase()}`,
+    `--product-id ${productId}`,
+    `--price-id ${priceId}`,
+    "--success-url https://your-site.com/success",
+    "--cancel-url https://your-site.com/cancel",
+    "--json"
+  ].join(" ");
+}
+
+// src/commands/refund.ts
+function registerRefund(program2) {
+  const refund = program2.command("refund").description("Create and inspect refunds with CLINK_SECRET_KEY authentication");
+  refund.command("create").description("Create a refund for an existing order").requiredOption("--order-id <id>", "Order ID to refund").requiredOption("--refund-merchant-order-id <id>", "Merchant idempotency ID for this refund").requiredOption("--amount <amount>", "Refund amount").option("--reason-type <number>", "0 duplicate, 1 fraud, 2 customer initiated, 3 other", "2").option("--remark <text>", "Refund remark").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = {
+      orderId: options.orderId,
+      refundMerchantOrderId: options.refundMerchantOrderId,
+      refundAmount: parseNumberOption("--amount", options.amount),
+      refundReasonType: Number(options.reasonType),
+      remark: options.remark
+    };
+    const result = await client.post("/refund", { body });
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("POST", buildUrl(config.baseUrl, "/refund"), body)
+      },
+      config.outputMode,
+      "Refund create request completed. Use --json to view the full response and curl example."
+    );
+  });
+  refund.command("get <refund-id>").description("Get refund details").action(async (refundId, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get(`/refund/${encodeURIComponent(refundId)}`);
+    printResult(result, config.outputMode);
+  });
+}
+
+// src/commands/smoke-test.ts
+function registerSmokeTest(program2) {
+  program2.command("smoke-test").description("Run a minimal checkout and optional webhook smoke test").option("--customer-email <email>", "Customer email", "test@example.com").option("--amount <amount>", "Checkout amount", "1").option("--currency <currency>", "Checkout currency", "USD").option("--name <name>", "Inline product name", "CLI Smoke Test Product").option("--merchant-reference-id <id>", "Merchant order/reference ID. Defaults to smoke-<timestamp>.").option("--success-url <url>", "Success URL", "http://localhost:3000/success").option("--cancel-url <url>", "Cancel URL", "http://localhost:3000/cancel").option("--webhook-url <url>", "Optional local webhook URL to receive a signed fixture").action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const steps = [];
+    const merchantReferenceId = options.merchantReferenceId ?? `smoke-${Date.now()}`;
+    const checkoutBody = {
+      customerEmail: options.customerEmail,
+      originalAmount: Number(options.amount),
+      originalCurrency: options.currency.toUpperCase(),
+      merchantReferenceId,
+      successUrl: options.successUrl,
+      cancelUrl: options.cancelUrl,
+      uiMode: "hostedPage",
+      priceDataList: [
+        {
+          name: options.name,
+          quantity: 1,
+          unitAmount: Number(options.amount),
+          currency: options.currency.toUpperCase()
+        }
+      ]
+    };
+    const checkout = await client.post("/checkout/session", { body: checkoutBody });
+    const sessionId = extractDataString(checkout, "sessionId");
+    steps.push({ name: "checkout_session", ok: true, merchantReferenceId, sessionId, result: checkout });
+    if (options.webhookUrl) {
+      if (!config.webhookSigningKey) {
+        steps.push({ name: "webhook_simulation", ok: false, error: "Missing CLINK_WEBHOOK_SIGNING_KEY" });
+      } else {
+        const event = withSmokeReconciliationFields(createWebhookFixture("order.succeeded"), {
+          merchantReferenceId,
+          sessionId
+        });
+        const rawBody = JSON.stringify(event);
+        const timestamp = String(Date.now());
+        const signature = signWebhookPayload(config.webhookSigningKey, timestamp, rawBody);
+        const response = await fetch(options.webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Clink-Timestamp": timestamp,
+            "X-Clink-Signature": signature
+          },
+          body: rawBody
+        });
+        steps.push({
+          name: "webhook_simulation",
+          ok: response.ok,
+          status: response.status,
+          body: await response.text()
+        });
+      }
+    }
+    const ok = steps.every((step) => typeof step === "object" && step !== null && step.ok);
+    const realPaymentVerification = realPaymentVerificationChecklist();
+    printResult(
+      { ok, steps, realPaymentVerification },
+      config.outputMode,
+      ok ? `Smoke test passed. Real payment is not complete until the merchant order is paid and fulfillment/entitlement is complete.` : "Smoke test completed with failures"
+    );
+    if (!ok) process.exitCode = 1;
+  });
+}
+function withSmokeReconciliationFields(event, values) {
+  const data = event.data && typeof event.data === "object" ? event.data : {};
+  event.data = {
+    ...data,
+    merchantReferenceId: values.merchantReferenceId,
+    sessionId: values.sessionId ?? data.sessionId
+  };
+  return event;
+}
+function extractDataString(result, key) {
+  if (!result || typeof result !== "object") return void 0;
+  const root = result;
+  const data = root.data && typeof root.data === "object" ? root.data : void 0;
+  const value = data?.[key] ?? root[key];
+  return typeof value === "string" && value.length > 0 ? value : void 0;
+}
+function realPaymentVerificationChecklist() {
+  return [
+    "Open the real sandbox checkoutUrl and complete a sandbox payment.",
+    "Confirm the webhook handler returns 200 after signature verification.",
+    "Confirm the local order matched by both merchantReferenceId and sessionId is marked paid/completed.",
+    "Confirm entitlement, credits, download access, shipment, or other merchant fulfillment is completed."
+  ];
+}
+
+// src/commands/subscription.ts
+function registerSubscription(program2) {
+  const subscription = program2.command("subscription").description("Create and manage subscriptions");
+  subscription.command("get <subscription-id>").description("Get subscription details").action(async (subscriptionId, command) => {
+    const { config, client } = await getCommandContext(command);
+    const result = await client.get(`/subscription/${encodeURIComponent(subscriptionId)}`);
+    printResult(result, config.outputMode);
+  });
+  subscription.command("create").description("Create a subscription with an existing payment instrument").requiredOption("--product-id <id>", "Product ID").requiredOption("--price-id <id>", "Recurring price ID").requiredOption("--payment-instrument-id <id>", "Payment instrument ID").requiredOption("--payment-currency <currency>", "Payment currency").requiredOption("--return-url <url>", "Return URL for required payment actions").option("--customer-id <id>", "Existing Clink customer ID").option("--customer-email <email>", "Customer email").option("--reference-customer-id <id>", "Merchant-side customer ID").option("--merchant-reference-id <id>", "Merchant reference ID").option("--payment-method-type <type>", "CARD or GCASH", "CARD").option("--metadata <key=value...>", "Metadata entry", collect, []).action(async (options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const body = {
+      customerId: options.customerId,
+      customerEmail: options.customerEmail,
+      referenceCustomerId: options.referenceCustomerId,
+      merchantReferenceId: options.merchantReferenceId,
+      productId: options.productId,
+      priceId: options.priceId,
+      paymentInstrumentId: options.paymentInstrumentId,
+      paymentMethodType: options.paymentMethodType,
+      paymentCurrency: options.paymentCurrency.toUpperCase(),
+      returnUrl: options.returnUrl,
+      metadata: parseMetadata(options.metadata)
+    };
+    const result = await client.post("/subscription", { body });
+    const url = buildUrl(config.baseUrl, "/subscription");
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("POST", url, body)
+      },
+      config.outputMode,
+      "Subscription create request completed. Use --json to view the full response and curl example."
+    );
+  });
+  subscription.command("cancel <subscription-id>").description("Cancel a subscription").requiredOption("--reason <reason>", "Cancellation reason").option("--reason-code <code>", "Cancel reason code, for example no_longer_needed").option("--immediately", "Cancel immediately without refund").action(async (subscriptionId, options, command) => {
+    const { config, client } = await getCommandContext(command);
+    const path = `/subscription/${encodeURIComponent(subscriptionId)}/cancel`;
+    const body = {
+      reason: options.reason,
+      cancelReasonCode: options.reasonCode,
+      cancelImmediately: Boolean(options.immediately)
+    };
+    const result = await client.post(path, { body });
+    printResult(
+      {
+        result,
+        curl: curlForJsonRequest("POST", buildUrl(config.baseUrl, path), body)
+      },
+      config.outputMode,
+      "Subscription cancel request completed. Use --json to view the full response and curl example."
+    );
+  });
+}
+
+// src/commands/webhook.ts
+import { mkdir as mkdir5, readFile as readFile7, writeFile as writeFile5 } from "node:fs/promises";
+import { dirname as dirname6 } from "node:path";
+function registerWebhook(program2) {
+  const webhook = program2.command("webhook").description("Simulate, sign, verify, and manage Clink webhooks");
+  const endpoint = webhook.command("endpoint").description("Manage webhook endpoints with the Secret Key API");
+  registerWebhookEndpointSubcommands(endpoint);
+  webhook.command("fixture").description("Write a stable local webhook fixture to disk").argument("<type>", "Event type, for example invoice.paid").requiredOption("--out <file>", "Output JSON file").action(async (type, options, command) => {
+    const { config } = await getCommandContext(command);
+    const event = createWebhookFixture(type);
+    await mkdir5(dirname6(options.out), { recursive: true });
+    await writeFile5(options.out, `${JSON.stringify(event, null, 2)}
+`, "utf8");
+    printResult(
+      {
+        eventType: type,
+        out: options.out,
+        fixture: event
+      },
+      config.outputMode,
+      `Wrote ${type} fixture to ${options.out}`
+    );
+  });
+  webhook.command("simulate").description("Generate a signed local event and optionally POST it to a local endpoint").argument("<type>", "Event type, for example order.succeeded").option("--secret <value>", "Webhook signing key literal or env:CLINK_WEBHOOK_SIGNING_KEY").option("--forward-to <url>", "Local endpoint to POST the signed event to").option("--body-file <path>", "Use a custom JSON event body instead of a generated fixture").action(async (type, options, command) => {
+    const { config } = await getCommandContext(command);
+    const secret = resolveSecretRef(options.secret, []).secret ?? config.webhookSigningKey;
+    requireOption("--secret or CLINK_WEBHOOK_SIGNING_KEY", secret);
+    const event = options.bodyFile ? JSON.parse(await readFile7(options.bodyFile, "utf8")) : createWebhookFixture(type);
+    const rawBody = JSON.stringify(event);
+    const timestamp = String(Date.now());
+    const signature = signWebhookPayload(secret, timestamp, rawBody);
+    let forwardResult;
+    if (options.forwardTo) {
+      let response;
+      try {
+        response = await fetch(options.forwardTo, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Clink-Timestamp": timestamp,
+            "X-Clink-Signature": signature
+          },
+          body: rawBody
+        });
+      } catch (error) {
+        throw new Error(`Webhook forward to ${options.forwardTo} network error: ${formatFetchError2(error)}`);
+      }
+      forwardResult = {
+        status: response.status,
+        ok: response.ok,
+        body: await response.text()
+      };
+    }
+    printResult(
+      {
+        event,
+        timestamp,
+        signature,
+        headers: {
+          "X-Clink-Timestamp": timestamp,
+          "X-Clink-Signature": signature
+        },
+        rawBody,
+        forwardResult
+      },
+      config.outputMode,
+      options.forwardTo ? `Sent signed ${type} fixture to ${options.forwardTo}` : `Generated signed ${type} fixture. Use --json to inspect headers and body.`
+    );
+  });
+  webhook.command("sign").description("Sign a raw webhook JSON body").requiredOption("--body-file <path>", "JSON body file").option("--secret <value>", "Webhook signing key literal or env:CLINK_WEBHOOK_SIGNING_KEY").option("--timestamp <value>", "Timestamp to sign with", String(Date.now())).action(async (options, command) => {
+    const { config } = await getCommandContext(command);
+    const secret = resolveSecretRef(options.secret, []).secret ?? config.webhookSigningKey;
+    requireOption("--secret or CLINK_WEBHOOK_SIGNING_KEY", secret);
+    const rawBody = await readFile7(options.bodyFile, "utf8");
+    const signature = signWebhookPayload(secret, options.timestamp, rawBody);
+    printResult(
+      {
+        timestamp: options.timestamp,
+        signature,
+        headers: {
+          "X-Clink-Timestamp": options.timestamp,
+          "X-Clink-Signature": signature
+        }
+      },
+      config.outputMode,
+      signature
+    );
+  });
+  webhook.command("verify").description("Verify a webhook signature against a raw body").requiredOption("--body-file <path>", "JSON body file").requiredOption("--timestamp <value>", "X-Clink-Timestamp header").requiredOption("--signature <value>", "X-Clink-Signature header").option("--secret <value>", "Webhook signing key literal or env:CLINK_WEBHOOK_SIGNING_KEY").option("--tolerance-seconds <seconds>", "Allowed timestamp drift before rejecting", String(DEFAULT_WEBHOOK_TOLERANCE_SECONDS)).action(async (options, command) => {
+    const { config } = await getCommandContext(command);
+    const secret = resolveSecretRef(options.secret, []).secret ?? config.webhookSigningKey;
+    requireOption("--secret or CLINK_WEBHOOK_SIGNING_KEY", secret);
+    const rawBody = await readFile7(options.bodyFile, "utf8");
+    const toleranceSeconds = parseNonNegativeIntegerOption("--tolerance-seconds", options.toleranceSeconds);
+    const valid = verifyWebhookPayload(secret, options.timestamp, rawBody, options.signature, { toleranceSeconds });
+    printResult({ valid, toleranceSeconds }, config.outputMode, valid ? "valid" : "invalid");
+    if (!valid) process.exitCode = 1;
+  });
+}
+function parseNonNegativeIntegerOption(name, value) {
+  const parsed = parseIntegerOption(name, value);
+  if (parsed < 0) {
+    throw new Error(`Option ${name} must be greater than or equal to 0`);
+  }
+  return parsed;
+}
+
+// src/exit-codes.ts
+var ExitCode = {
+  OK: 0,
+  GENERAL_ERROR: 1,
+  USAGE: 64,
+  API_UNAVAILABLE: 69,
+  TEMPORARY_FAILURE: 75,
+  AUTH_REQUIRED: 77,
+  CONFIG: 78,
+  INTERRUPTED: 130
+};
+function classifyError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  if (/missing clink secret key|dashboard console token|access token|api key|unauthorized|authentication/i.test(message)) {
+    return ExitCode.AUTH_REQUIRED;
+  }
+  if (/missing required option|invalid command|unknown command|unknown option|required option|option .* must be|invalid metadata/i.test(message)) {
+    return ExitCode.USAGE;
+  }
+  if (/config|profile|environment|base url|webhook signing key/i.test(message)) {
+    return ExitCode.CONFIG;
+  }
+  if (/clink api|fetch failed|network|timeout|econnrefused|enotfound/i.test(message)) {
+    return ExitCode.API_UNAVAILABLE;
+  }
+  return ExitCode.GENERAL_ERROR;
+}
+
+// C:/Users/Administrator/AppData/Local/Temp/clink-integ-cli-bundle-aG2Y7a/entry.ts
+var bundledVersion = "0.1.14";
+async function main() {
+  const program2 = new Command();
+  program2.name("clink").description("Merchant developer CLI for ClinkBill integrations").version(bundledVersion).option("--json", "Output machine-readable JSON").option("--profile <name>", "Use a named local profile", "default").option("--env <environment>", "Environment name: sandbox, production, or a custom env (see clink env)").option("--base-url <url>", "Override Clink API base URL").option("--api-key <value>", "Secret key literal or env:CLINK_SECRET_KEY").option("--dry-run", "Print request metadata instead of executing Clink API writes");
+  program2.exitOverride();
+  program2.configureOutput({
+    writeErr: (text) => {
+      if (!process.argv.includes("--json")) {
+        process.stderr.write(text);
+      }
+    }
+  });
+  registerApi(program2);
+  registerAuth(program2);
+  registerBilling(program2);
+  registerCatalog(program2);
+  registerCheckout(program2);
+  registerDashboard(program2);
+  registerDoctor(program2);
+  registerEnv(program2);
+  registerInit(program2);
+  registerLogin(program2);
+  registerOrder(program2);
+  registerPayment(program2);
+  registerPrice(program2);
+  registerProduct(program2);
+  registerRefund(program2);
+  registerSmokeTest(program2);
+  registerSubscription(program2);
+  registerWebhook(program2);
+  await program2.parseAsync(process.argv);
+}
+main().catch((error) => {
+  if (error instanceof CommanderError && error.exitCode === 0) {
+    process.exitCode = 0;
+    return;
+  }
+  const message = error instanceof Error ? error.message : String(error);
+  const exitCode = classifyError(error);
+  const wantsJson = process.argv.includes("--json");
+  if (wantsJson) {
+    console.error(JSON.stringify({ ok: false, error: message, exitCode }, null, 2));
+  } else {
+    console.error(`Error: ${message}`);
+  }
+  process.exitCode = exitCode;
+});

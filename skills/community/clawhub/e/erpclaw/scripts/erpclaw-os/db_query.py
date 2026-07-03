@@ -34,7 +34,7 @@ import time
 
 # Add shared lib to path
 try:
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.response import ok, err
     from erpclaw_lib.args import SafeArgumentParser, check_unknown_args
 except ImportError:

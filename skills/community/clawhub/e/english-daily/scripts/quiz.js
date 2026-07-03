@@ -1,31 +1,37 @@
 #!/usr/bin/env node
 /**
- * english-daily — 测验/练习生成器
+ * english-daily — 测验/练习生成器（无文件写入版）
+ *
+ * 档案与 SRS 进度存于原生 MEMORY.md，由 Agent 维护；本脚本不读写任何文件。
+ * 测验题目为纯计算生成；记分时脚本更新 SRS 进度后，输出一段 MEMORY.md
+ * 区块供 Agent 回写。
  *
  * 用法:
- *   node quiz.js <userId> [type]
- *   node quiz.js <userId> --score <points>
+ *   node quiz.js <userId> [type] [--level A1|A2|B1|B2] [--progress '<JSON>']
+ *   node quiz.js <userId> --score <points> [--name <姓名>] [--level ...] \
+ *        [--progress '<JSON>'] [--streak <n>] [--longest <n>] [--points <n>] \
+ *        [--goal <n>] [--last <YYYY-MM-DD>]
  *
  * type: vocab | sentence | mixed（默认 mixed）
  *
  * 生成5道题（含答案），由 Claude 逐题互动呈现。
- * 答题完成后 Claude 调用：node quiz.js <userId> --score <points>
+ * 答题完成后 Claude 调用：node quiz.js <userId> --score <points> --progress '<JSON>' ...
  */
 
 'use strict';
 
-const fs   = require('fs');
 const path = require('path');
 const {
-  getDueWords,
   getNewWordsForUser,
   updateWordProgress,
   loadWordBank,
+  parseProgressArg,
+  renderMemoryBlock,
   todayStr
 } = require('./wordbank');
 
-const USERS_DIR = path.join(__dirname, '../data/users');
 const QUESTIONS_PER_QUIZ = 5;
+const VALID_LEVELS = ['A1', 'A2', 'B1', 'B2'];
 
 // ── Security helpers ──────────────────────────────────────────────────────────
 
@@ -37,27 +43,9 @@ function sanitizeId(value) {
   return value;
 }
 
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ 非法路径');
-    process.exit(1);
-  }
-  return resolved;
-}
-
-function loadUser(userId) {
-  const f = safeUserPath(userId);
-  if (!fs.existsSync(f)) {
-    console.error(`❌ 未找到用户：${userId}。请先注册：node register.js ${userId} <姓名>`);
-    process.exit(1);
-  }
-  return JSON.parse(fs.readFileSync(f, 'utf8'));
-}
-
-function saveUser(userId, data) {
-  fs.mkdirSync(USERS_DIR, { recursive: true });
-  fs.writeFileSync(safeUserPath(userId), JSON.stringify(data, null, 2), 'utf8');
+function flag(args, name) {
+  const i = args.indexOf(name);
+  return (i !== -1 && args[i + 1] !== undefined) ? args[i + 1] : undefined;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -90,19 +78,12 @@ function getQuizPool(profile) {
   const bank = loadWordBank();
   const progress = profile.wordProgress || {};
 
-  // Include: due words + recently studied words + new words (padded)
   const studied = bank.filter(w => !!progress[w.w]);
-  const due      = studied.filter(w => {
-    const p = progress[w.w];
-    return p && p.nextReview <= todayStr();
-  });
 
-  // If user has less than 5 studied words, also grab new ones to pad
   let pool = studied.length >= QUESTIONS_PER_QUIZ
     ? studied
     : [...studied, ...getNewWordsForUser(profile, QUESTIONS_PER_QUIZ - studied.length)];
 
-  // Ensure uniqueness
   const seen = new Set();
   pool = pool.filter(w => {
     if (seen.has(w.w)) return false;
@@ -110,7 +91,7 @@ function getQuizPool(profile) {
     return true;
   });
 
-  return { pool, due };
+  return { pool };
 }
 
 /** Pick wrong answers for multiple choice (3 distractors) */
@@ -141,10 +122,8 @@ function buildVocabQuestion(entry, bank, qNum, seed) {
 
 /** Build a sentence (fill-in-the-blank) question */
 function buildSentenceQuestion(entry, qNum) {
-  // Pick a sentence example if available
   const exPair = entry.ex && entry.ex.length > 0 ? entry.ex[0] : null;
   if (!exPair) {
-    // Fallback to simple pattern
     return {
       type: 'sentence',
       word: entry.w,
@@ -154,7 +133,6 @@ function buildSentenceQuestion(entry, qNum) {
   }
 
   const [enSentence, zhSentence] = exPair;
-  // Find a good word to blank out — use the target word if present in example
   const wordLower = entry.w.toLowerCase();
   const regex     = new RegExp(`\\b${wordLower}(?:ed|ing|s|d|es)?\\b`, 'i');
   const match     = enSentence.match(regex);
@@ -183,7 +161,7 @@ function generateQuiz(profile, type, seed) {
   const { pool } = getQuizPool(profile);
 
   if (pool.length < QUESTIONS_PER_QUIZ) {
-    return null; // Not enough words
+    return null;
   }
 
   const words   = shuffle(pool, seed).slice(0, QUESTIONS_PER_QUIZ);
@@ -197,7 +175,6 @@ function generateQuiz(profile, type, seed) {
     } else if (type === 'sentence') {
       q = buildSentenceQuestion(entry, qNum);
     } else {
-      // mixed: alternate
       q = idx % 2 === 0
         ? buildVocabQuestion(entry, bank, qNum, seed)
         : buildSentenceQuestion(entry, qNum);
@@ -208,9 +185,31 @@ function generateQuiz(profile, type, seed) {
   return { words: words.map(w => w.w), questions };
 }
 
-// ── Score recording ───────────────────────────────────────────────────────────
+// ── Score recording (pure — prints MEMORY.md block, no fs) ──────────────────────
 
-function recordScore(userId, rawPoints) {
+function buildProfileFromArgs(userId, args) {
+  const num = v => (v === undefined ? undefined : parseInt(v, 10));
+  let level = (flag(args, '--level') || 'B1').toUpperCase();
+  if (!VALID_LEVELS.includes(level)) level = 'B1';
+  return {
+    userId,
+    name:          flag(args, '--name') || userId,
+    level,
+    targetLevel:   flag(args, '--target') || level,
+    nativeLanguage: 'zh',
+    streak:        num(flag(args, '--streak')) || 0,
+    longestStreak: num(flag(args, '--longest')) || 0,
+    lastStudyDate: flag(args, '--last') || null,
+    totalPoints:   num(flag(args, '--points')) || 0,
+    preferences: {
+      dailyGoal: num(flag(args, '--goal')) || 5,
+      pushEnabled: false, morningTime: '08:00', channel: 'telegram'
+    },
+    wordProgress:  parseProgressArg(flag(args, '--progress'))
+  };
+}
+
+function recordScore(userId, rawPoints, args) {
   userId = sanitizeId(userId);
   const points = parseInt(rawPoints, 10);
   if (isNaN(points) || points < 0 || points > 500) {
@@ -218,13 +217,12 @@ function recordScore(userId, rawPoints) {
     process.exit(1);
   }
 
-  const profile = loadUser(userId);
+  const profile = buildProfileFromArgs(userId, args);
   profile.totalPoints = (profile.totalPoints || 0) + points;
 
   const correct = Math.round(points / 10);
 
-  // Update word quality for the quiz words (simplified: use quality=3 for correct)
-  const bank = loadWordBank();
+  // Update word quality for the quiz words (same deterministic pool as generation)
   const { pool } = getQuizPool(profile);
   const seed = dateSeed(userId);
   const quizWords = shuffle(pool, seed).slice(0, QUESTIONS_PER_QUIZ).map(w => w.w);
@@ -234,23 +232,21 @@ function recordScore(userId, rawPoints) {
     updateWordProgress(profile, word, quality);
   });
 
-  // Update wordsLearned count
-  const newlyLearned = quizWords.filter(w => {
-    const p = profile.wordProgress[w];
-    return p && p.repetitions === 0;
-  });
   profile.wordsLearned = Object.keys(profile.wordProgress).length;
 
-  saveUser(userId, profile);
-
   console.log(`
-✅ 积分已记录！
-
-本次得分：+${points}分
+✅ 本次得分：+${points}分
 累计积分：${profile.totalPoints}分
 已掌握单词：${profile.wordsLearned}个
 
-继续加油！🎉`);
+继续加油！🎉
+`);
+
+  // 输出更新后的 MEMORY.md 区块（积分 + SRS进度已更新），供 Agent 回写
+  console.log('📇 请用以下区块更新 MEMORY.md（积分与 SRS 进度已更新）：');
+  console.log('```markdown');
+  console.log(renderMemoryBlock(profile));
+  console.log('```');
 }
 
 // ── CLI entry ─────────────────────────────────────────────────────────────────
@@ -260,8 +256,8 @@ if (require.main === module) {
 
   if (!args[0]) {
     console.log(`用法:
-  node quiz.js <userId> [type]          生成测验（type: vocab/sentence/mixed）
-  node quiz.js <userId> --score <pts>   记录本次得分（10分/题）`);
+  node quiz.js <userId> [type] [--level A1|A2|B1|B2] [--progress '<JSON>']   生成测验（type: vocab/sentence/mixed）
+  node quiz.js <userId> --score <pts> --level ... --progress '<JSON>' ...    记录本次得分（10分/题）`);
     process.exit(1);
   }
 
@@ -273,27 +269,27 @@ if (require.main === module) {
       console.error('❌ --score 后需要跟积分数值');
       process.exit(1);
     }
-    recordScore(args[0], pts);
+    recordScore(args[0], pts, args);
     process.exit(0);
   }
 
   // Generate quiz
   const userId = sanitizeId(args[0]);
-  const rawType = (args[1] || 'mixed').toLowerCase();
+  const rawType = (args[1] && !args[1].startsWith('--') ? args[1] : 'mixed').toLowerCase();
   const validTypes = ['vocab', 'sentence', 'mixed'];
   if (!validTypes.includes(rawType)) {
     console.error(`❌ 无效的测验类型：${rawType}。支持：${validTypes.join('/')}`);
     process.exit(1);
   }
 
-  const profile = loadUser(userId);
+  const profile = buildProfileFromArgs(userId, args);
   const seed    = dateSeed(userId);
   const quiz    = generateQuiz(profile, rawType, seed);
 
   if (!quiz) {
     console.log(`
 ❌ 单词量不足（需要至少 ${QUESTIONS_PER_QUIZ} 个已学单词或新单词）。
-请先完成今日学习：node daily-push.js ${userId}
+请先完成今日学习：node daily-push.js ${userId} --level ${profile.level} --goal ${profile.preferences.dailyGoal} --progress '<JSON>'
 `);
     process.exit(0);
   }
@@ -314,9 +310,10 @@ if (require.main === module) {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('【Claude 操作指南】');
   console.log('请将以上题目逐题呈现给用户，等待回答后再显示答案。');
-  console.log('所有题目完成后，根据正确题数运行以下命令记录积分：');
-  console.log(`  node ${path.join(__dirname, 'quiz.js')} ${userId} --score <正确题数×10>`);
+  console.log('所有题目完成后，根据正确题数运行以下命令记录积分（带上 MEMORY.md 里的进度）：');
+  console.log(`  node ${path.join(__dirname, 'quiz.js')} ${userId} --score <正确题数×10> --level ${profile.level} --progress '<SRS进度JSON>' --points ${profile.totalPoints}`);
   console.log('例如答对3题：--score 30');
+  console.log('脚本会输出更新后的 MEMORY.md 区块，请回写到原生记忆。');
 }
 
 module.exports = { generateQuiz, recordScore };

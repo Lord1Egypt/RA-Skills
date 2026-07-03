@@ -13,6 +13,8 @@ argument-hint: "[project-key] [--server URL] [--token PAT] [--start-date YYYY-MM
 
 ## Step 1: Gather Connection Parameters
 
+**模型建议**：在开始收集参数前，主动告知用户：推荐使用 **GPT 或 Claude Opus 4.7** 运行本 Skill。如果在后续步骤中遇到 HTML 页面展示效果不佳（图表错位、样式异常、内容不完整等），可以切换模型后重新生成（在 Claude Code 中使用 `/model` 命令）。
+
 向用户收集以下必要信息（如果用户已在调用参数中提供，则跳过询问）：
 
 **必填参数：**

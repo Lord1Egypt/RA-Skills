@@ -21,7 +21,6 @@
         "success",
         "partial",
         "clarification_required",
-        "confirmation_required",
         "blocked",
         "not_supported",
         "auth_required",
@@ -37,9 +36,6 @@
       "type": ["object", "null"]
     },
     "clarification": {
-      "type": ["object", "null"]
-    },
-    "confirmation": {
       "type": ["object", "null"]
     },
     "execution": {
@@ -77,4 +73,3 @@
     }
   }
 }
-

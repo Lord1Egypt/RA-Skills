@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed-camera video to identify hand rubbing, nail biting, and pacing, then returns behavior counts, durations, trend signals, and a non-diagnostic anxiety-behavior index. <br>
+Analyzes home or office fixed-camera videos to detect hand-rubbing, nail-biting, and pacing, then returns behavior statistics, an anxiety-behavior index, and self-care guidance without making a medical diagnosis. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, mental-health support teams, and developers can use this skill to send consented home, office, school, or counseling-room video to a remote analysis service for anxiety-related behavior statistics and self-awareness guidance. It is not a diagnostic or treatment tool. <br>
+External users, counselors, caregivers, and developers use this skill to analyze consented fixed-camera videos for objective anxiety-related behavior counts, trend indicators, and supportive self-awareness reminders. It is positioned as behavior analysis support, not a medical diagnosis or treatment tool. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive mental-health video, identity-linked metadata, and report history may be sent to remote services. <br>
-Mitigation: Use only with explicit consent from every recorded person, avoid third-party or workplace footage unless consent and policy allow it, and minimize retained data. <br>
-Risk: The authoritative scan verdict is suspicious because the skill uses remote services, accounts, token persistence, and mismatched health/pet-analysis components. <br>
-Mitigation: Review endpoints, credentials, token storage, and dependencies before installation; pin dependencies and prefer a revised release that removes unrelated components. <br>
-Risk: Behavior classification may produce false positives or be misread as a mental-health diagnosis. <br>
-Mitigation: Present outputs as behavior statistics and self-awareness cues only, and require qualified clinical review for diagnosis or treatment decisions. <br>
-Risk: Open-id values or API credentials may expose personal identifiers or reusable secrets. <br>
-Mitigation: Use least-privilege credentials, avoid phone numbers or reusable identifiers when possible, and store secrets outside prompts and logs. <br>
+Risk: Sensitive home, office, school, or counseling-room behavioral videos may be sent to a cloud service and linked to an automatically managed identity. <br>
+Mitigation: Use only with informed subject consent, clear retention and deletion practices, access controls, and data minimization such as masked or metric-only workflows where available. <br>
+Risk: Reusable local account tokens or history can connect future analyses to the same user identity. <br>
+Mitigation: Deploy only where persistent local identity storage is acceptable, restrict local file access, and provide an operational process to clear stored tokens or history. <br>
+Risk: Third-party, workplace, classroom, counseling, or minor-subject footage can create heightened consent and privacy exposure. <br>
+Mitigation: Require explicit authorization from the subject or guardian and verify organizational privacy, retention, access, and deletion controls before use. <br>
+Risk: Behavior indices and alerts may be mistaken for a clinical anxiety diagnosis. <br>
+Mitigation: Present outputs as visual behavior statistics and self-awareness guidance only, and route urgent or high-concern cases to qualified medical or mental-health professionals. <br>
 
 
 ## Reference(s): <br>
-- [API interface document](references/api_doc.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/smyx-sunjinhui/smyx-anxiety-behavior-recognition-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-anxiety-behavior-recognition-analysis) <br>
+- [API Interface Documentation](references/api_doc.md) <br>
+- [Shared Analysis API Reference](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill usage demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown report text with CLI commands and configuration notes] <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown or JSON analysis reports, with optional saved text output and report links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include behavior counts, durations, an anxiety-behavior index, baseline comparison, alert level, self-care guidance, and report links.] <br>
+**Other Properties Related to Output:** [May query cloud-hosted historical reports and return behavior metrics, trend comparisons, self-care suggestions, and links.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -15,7 +15,7 @@ import sys
 from uuid import uuid4
 
 # Shared library
-sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
 from erpclaw_lib.db import get_connection
 from erpclaw_lib.response import ok, err
 

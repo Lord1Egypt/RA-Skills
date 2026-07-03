@@ -11,21 +11,22 @@ Features:
 
 Usage:
   # Single comparison (auto-detects media type)
-  python mps_gen_compare.py --original <original_URL> --enhanced <enhanced_URL>
+  python3 mps_gen_compare.py --original <original_URL> --enhanced <enhanced_URL>
 
   # Specify title and output
-  python mps_gen_compare.py --original <URL1> --enhanced <URL2> --title "Video Enhancement" -o result.html
+  python3 mps_gen_compare.py --original <URL1> --enhanced <URL2> --title "Video Enhancement" -o result.html
 
   # Multiple comparisons
-  python mps_gen_compare.py --pairs "<orig1>,<enh1>" "<orig2>,<enh2>"
+  python3 mps_gen_compare.py --pairs "<orig1>,<enh1>" "<orig2>,<enh2>"
 
   # Local files (auto-uploaded to COS)
-  python mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
+  python3 mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
 
   # From JSON config
-  python mps_gen_compare.py --config compare_config.json
+  python3 mps_gen_compare.py --config compare_config.json
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import json
 import os
@@ -539,20 +540,20 @@ def parse_args():
         epilog="""
 Examples:
   # Single comparison
-  python mps_gen_compare.py --original https://xxx.cos/input.mp4 --enhanced https://xxx.cos/output.mp4
+  python3 mps_gen_compare.py --original https://xxx.cos/input.mp4 --enhanced https://xxx.cos/output.mp4
 
   # Specify title and labels
-  python mps_gen_compare.py --original <URL1> --enhanced <URL2> \\
+  python3 mps_gen_compare.py --original <URL1> --enhanced <URL2> \\
       --title "Video Enhancement Effect" --labels "Original" "Enhanced"
 
   # Multiple comparisons
-  python mps_gen_compare.py --pairs "orig1.mp4,enh1.mp4" "orig2.jpg,enh2.jpg"
+  python3 mps_gen_compare.py --pairs "orig1.mp4,enh1.mp4" "orig2.jpg,enh2.jpg"
 
   # Local files (auto-uploaded to COS)
-  python mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
+  python3 mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
 
   # From JSON config
-  python mps_gen_compare.py --config compare.json
+  python3 mps_gen_compare.py --config compare.json
         """)
 
     single = parser.add_argument_group("Single comparison")

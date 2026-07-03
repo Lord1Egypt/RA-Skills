@@ -1,4 +1,4 @@
-import { findChainByAlias } from '@api3/dapi-management';
+import { findChainByAlias } from './utils.ts';
 import { getChainAddresses } from '@morpho-org/blue-sdk';
 
 function main() {

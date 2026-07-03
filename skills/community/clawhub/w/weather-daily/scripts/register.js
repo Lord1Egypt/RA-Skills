@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 /**
- * weather-daily — user registration / city setup
+ * weather-daily — user registration / city setup (no filesystem writes)
+ *
+ * The profile lives in the agent's native MEMORY.md, not on disk. This script
+ * only validates input and prints a `<!-- weather-daily:profile:<userId> -->`
+ * markdown block for the agent to store in MEMORY.md, plus a push-toggle hint.
  *
  * Usage:
  *   node register.js <userId> <city> [units] [morningTime] [eveningTime] [language] [timezone]
@@ -20,11 +24,6 @@
  *   node register.js carol London metric 07:00 21:00 en Europe/London
  */
 
-const fs = require('fs');
-const path = require('path');
-
-const USERS_DIR = path.join(__dirname, '../data/users');
-
 function sanitizeId(value) {
   if (typeof value !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(value)) {
     console.error('❌ Invalid userId: only letters, digits, - and _ are allowed (1-128 chars)');
@@ -38,8 +37,8 @@ function sanitizeCity(value) {
     console.error('❌ Invalid city name');
     process.exit(1);
   }
-  const stripped = value.replace(/[^\u4e00-\u9fa5a-zA-Z0-9\s\-]/g, '').trim();
-  if (!/^[\u4e00-\u9fa5a-zA-Z0-9\s\-]{1,50}$/.test(stripped)) {
+  const stripped = value.replace(/[^一-龥a-zA-Z0-9\s\-]/g, '').trim();
+  if (!/^[一-龥a-zA-Z0-9\s\-]{1,50}$/.test(stripped)) {
     console.error('❌ Invalid city name: use Chinese/English/digits/spaces/hyphens, length 1-50');
     process.exit(1);
   }
@@ -84,18 +83,29 @@ function sanitizeTimezone(value) {
   return value;
 }
 
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ Illegal path');
-    process.exit(1);
-  }
-  return resolved;
-}
-
 // Auto-detect language from city name: Chinese chars → zh, else → en
 function detectLanguage(city) {
-  return /[\u4e00-\u9fa5]/.test(city) ? 'zh' : 'en';
+  return /[一-龥]/.test(city) ? 'zh' : 'en';
+}
+
+/**
+ * Render the profile as a MEMORY.md block (agent stores it in native memory;
+ * this script never writes to disk).
+ */
+function renderMemoryBlock(profile) {
+  const unitLabel = profile.units === 'metric' ? '°C / metric' : '°F / imperial';
+  const langLabel = profile.language === 'zh' ? '中文 (zh)' : 'English (en)';
+  return `<!-- weather-daily:profile:${profile.userId} -->
+## Weather profile · ${profile.userId}
+- userId: ${profile.userId}
+- city: ${profile.city}
+- units: ${unitLabel}
+- language: ${langLabel}
+- morningTime: ${profile.morningTime}
+- eveningTime: ${profile.eveningTime}
+- timezone: ${profile.timezone}
+- push: disabled (run push-toggle.js on to enable)
+<!-- /weather-daily:profile -->`;
 }
 
 // --- Main ---
@@ -130,49 +140,13 @@ const language    = args[5] ? sanitizeLanguage(args[5]) : detectLanguage(city);
 const defaultTz   = language === 'zh' ? 'Asia/Shanghai' : 'UTC';
 const timezone    = args[6] ? sanitizeTimezone(args[6]) : defaultTz;
 
-fs.mkdirSync(USERS_DIR, { recursive: true });
-
-const filePath = safeUserPath(userId);
-const now = new Date().toISOString();
-
-let createdAt = now;
-if (fs.existsSync(filePath)) {
-  try {
-    const existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    if (existing.createdAt) createdAt = existing.createdAt;
-  } catch (_) {}
-}
-
-const profile = {
-  userId,
-  city,
-  units,
-  language,
-  preferences: {
-    morningTime,
-    eveningTime,
-    timezone,
-    channel: 'telegram',
-    pushEnabled: false,
-    alerts: {
-      rain: true,
-      snow: true,
-      wind: true,
-      extreme: true,
-      airQuality: true
-    }
-  },
-  createdAt,
-  updatedAt: now
-};
-
-fs.writeFileSync(filePath, JSON.stringify(profile, null, 2), 'utf8');
+const profile = { userId, city, units, language, morningTime, eveningTime, timezone };
 
 const unitLabel = units === 'metric' ? '°C / metric' : '°F / imperial';
 
 if (language === 'zh') {
   console.log(`
-✅ 用户注册成功
+✅ 用户资料已生成（未写入磁盘，请存入 MEMORY.md）
 
 👤 用户：${userId}
 🌆 城市：${city}
@@ -182,14 +156,20 @@ if (language === 'zh') {
 🌙 晚间推送：${eveningTime}（明日预告）
 🕐 时区：${timezone}
 
+📇 请将以下档案写入 MEMORY.md（原生记忆，跨会话保留）：
+\`\`\`markdown
+${renderMemoryBlock(profile)}
+\`\`\`
+
 下一步：
-  开启每日推送：node scripts/push-toggle.js on ${userId}
-  查看今日天气：node scripts/morning-push.js ${userId}
-  查看一周预报：node scripts/forecast.js ${userId}
-  修改城市设置：node scripts/register.js ${userId} <新城市>`);
+  开启每日推送（把上面的城市/单位作为参数传入）：
+    node scripts/push-toggle.js on ${userId} --city "${city}" --units ${units} --lang ${language} \\
+      --morning ${morningTime} --evening ${eveningTime} --timezone ${timezone} --channel telegram
+  查看今日天气：node scripts/morning-push.js ${userId} --city "${city}" --units ${units} --lang ${language}
+  查看一周预报：node scripts/forecast.js ${userId} --city "${city}" --units ${units} --lang ${language}`);
 } else {
   console.log(`
-✅ Registration successful
+✅ Profile generated (NOT written to disk — store it in MEMORY.md)
 
 👤 User: ${userId}
 🌆 City: ${city}
@@ -199,9 +179,17 @@ if (language === 'zh') {
 🌙 Evening push: ${eveningTime} (tomorrow's preview)
 🕐 Timezone: ${timezone}
 
+📇 Store this block in MEMORY.md (native memory, persists across sessions):
+\`\`\`markdown
+${renderMemoryBlock(profile)}
+\`\`\`
+
 Next steps:
-  Enable daily push: node scripts/push-toggle.js on ${userId}
-  Today's weather:   node scripts/morning-push.js ${userId}
-  Weekly forecast:   node scripts/forecast.js ${userId}
-  Change city:       node scripts/register.js ${userId} <new-city>`);
+  Enable daily push (pass city/units read back from MEMORY.md):
+    node scripts/push-toggle.js on ${userId} --city "${city}" --units ${units} --lang ${language} \\
+      --morning ${morningTime} --evening ${eveningTime} --timezone ${timezone} --channel telegram
+  Today's weather:  node scripts/morning-push.js ${userId} --city "${city}" --units ${units} --lang ${language}
+  Weekly forecast:  node scripts/forecast.js ${userId} --city "${city}" --units ${units} --lang ${language}`);
 }
+
+module.exports = { renderMemoryBlock };

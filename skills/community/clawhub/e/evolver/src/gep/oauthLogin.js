@@ -5,11 +5,9 @@
 // (gh-auth-login style): print a user code + verification URL, poll until the
 // user approves in the browser, then store the token at ~/.evomap/oauth_token.json.
 //
-// The resulting access token carries the `a2a` scope, so it is the converged
-// replacement for node_secret on the hub's agent surface (hub Phase 2). It is
-// consumed by a2aProtocol.buildHubHeaders(), which prefers a valid OAuth token
-// over node_secret. Existing node_secret flows are untouched when no token file
-// is present.
+// The resulting access token is consumed by a2aProtocol.buildHubHeaders() for
+// user-scoped Hub APIs. Node-scoped A2A endpoints use node_secret via
+// buildNodeScopedHubHeaders().
 // ---------------------------------------------------------------------------
 'use strict';
 

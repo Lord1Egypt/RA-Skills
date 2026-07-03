@@ -1,0 +1,160 @@
+{
+  "name": "faq-create",
+  "description": "A FAQ creation skill based on the Tradebee Website Builder Open API. It is used to create and publish a new FAQ under a specified site language and FAQ group, with support for cover image, question, tags, summary, answer, and SEO data.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "faq": {
+        "type": "object",
+        "description": "Required. Complete FAQ payload for a new FAQ.",
+        "properties": {
+          "faqgroup_id": {
+            "type": "integer",
+            "description": "Required. FAQ group ID for the new FAQ. First call `faqgroup-read`, then copy one exact `faqgroup_id`."
+          },
+          "cover_image": {
+            "type": "object",
+            "description": "Optional. Cover image payload. Maximum size is 500 kB.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Image file label used only to identify this image inside the payload."
+              },
+              "base64": {
+                "type": "string",
+                "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`."
+              }
+            }
+          },
+          "question": {
+            "type": "string",
+            "description": "Required. FAQ question shown to users, up to 100 characters."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Required. Provide 1 to 6 unique FAQ keyword tags. Each tag must contain 3 to 50 characters.",
+            "items": {
+              "type": "string",
+              "description": "One FAQ keyword tag."
+            }
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required. FAQ summary as plain text, up to 500 characters."
+          },
+          "answer": {
+            "type": "string",
+            "description": "Required. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `faq.answer`."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO metadata for search engines.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. Optimized title, up to 90 characters."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. Optimized description, up to 200 characters."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. SEO keywords as one comma-separated string, with total length 120 characters or fewer."
+              }
+            }
+          }
+        },
+        "required": [
+          "faqgroup_id",
+          "question",
+          "tags",
+          "summary",
+          "answer"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact FAQ creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact FAQ payload to be created."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact FAQ payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "faq",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "faq_id": {
+            "type": "integer",
+            "description": "Created FAQ ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the created FAQ. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "faq_id",
+          "url"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "faq.faqgroup_id": {
+      "skill": "faqgroup-read",
+      "field": "list[].faqgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select a FAQ group ID from `faqgroup-read` under the same language."
+    }
+  }
+}

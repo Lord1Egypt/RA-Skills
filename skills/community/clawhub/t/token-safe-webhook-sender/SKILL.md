@@ -1,7 +1,7 @@
 ---
 spec: usk/3.0
 id: token_safe_webhook_sender
-version: 1.0.0
+version: 1.1.0
 name: Webhook Token Security (Zero‑Exposure Edition)
 description: Secure webhook token management using MGC Blackbox. Supports DingTalk, WeCom, Feishu, Telegram, Slack and more. Store webhook tokens locally in encrypted form, retrieve at runtime without exposing to AI models.
 author: MirginCipher Team
@@ -9,6 +9,11 @@ license: MIT
 tags: webhook, token, security, credential-management, zero-exposure, mgc, dingtalk, wecom, feishu, telegram, slack
 platform_compatibility: windows, macos, linux
 changelog:
+  - version: 1.1.0
+    changes:
+      - Removed CLI interface (not functional)
+      - Changed to WebUI as recommended storage method (prevents AI from directly handling sensitive tokens)
+      - Changed MCP to alternative for retrieval only
   - version: 1.0.0
     changes:
       - Initial release with webhook token zero-exposure pattern
@@ -36,7 +41,7 @@ After reading this documentation, an AI agent will understand how to:
 
 # Prerequisites
 
-1. Install MGC Blackbox: `pip install mgc-blackbox`
+1. Install MGC Blackbox: `pip install mgc-blackbox`(recommended 1.4.6+)
 2. Start MGC service: `mgc` (runs at http://127.0.0.1:57219)
 3. Use **MCP tools** (`mgc_save`, `mgc_get`) for token management
 
@@ -136,16 +141,19 @@ Create a JSON file containing your webhook token details (see Platform-Specific 
 
 > **Important:** Use **MCP tools** for AI agents. CLI may have port conflicts in some environments.
 
-**Recommended: MCP Interface**
-- Use `mgc_save` MCP tool to store tokens
+**Recommended: WebUI (for human operators)**
+> **Note:** According to user feedback, webhook tokens should be stored by humans via WebUI to avoid AI directly handling sensitive tokens through MCP.
+
+Store via WebUI:
+1. Open: http://127.0.0.1:57218
+2. Navigate to Save page
+3. Enter info_type: "webhook", info_owner: "your_webhook_name"
+4. Enter token content
+5. Click Save
+
+**Alternative: MCP Interface** (for AI agents)
 - Use `mgc_get` MCP tool to retrieve tokens
-
-**Alternative: CLI** (for local development only)
-```bash
-mgc_save info_type=config info_owner=my_webhook < token.json
-```
-
-> **Tip:** Users can also store tokens manually via MGC WebUI at http://127.0.0.1:57218/skill
+- Use `mgc_save` MCP tool if needed
 
 ---
 

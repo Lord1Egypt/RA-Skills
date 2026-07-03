@@ -5,7 +5,7 @@
   "command": ["yeelight-home", "invoke", "--stdin"],
   "authCommand": ["yeelight-home", "auth", "login", "--qr"],
   "statusCommand": ["yeelight-home", "auth", "status", "--json"],
-  "devSmokeCommand": ["yeelight-home", "api", "smoke", "--json", "--region", "dev"],
+  "healthCommand": ["yeelight-home", "doctor", "--json", "--online"],
   "storage": {
     "preferences": "json-file",
     "credentials": "system-credential-store-or-protected-local-fallback",

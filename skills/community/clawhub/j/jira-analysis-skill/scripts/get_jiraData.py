@@ -20,12 +20,45 @@ import requests
 import urllib3
 
 
+"""
+Skill 开发完成
 
+  文件结构
 
+  jira_analysis_skill/
+  ├── SKILL.md                    # Skill 定义（已完成）
+  ├── requirements.txt            # Python 依赖（新建）
+  └── scripts/
+      └── get_jiraData.py         # Jira 数据拉取脚本（已完成）
+
+  各文件功能
+
+  requirements.txt — 唯一依赖 requests
+
+  scripts/get_jiraData.py — Python CLI 工具：
+  - 支持 PAT 和 Basic Auth 两种认证方式
+  - POST /rest/api/2/search 分页拉取 Bug 数据
+  - 提取 15+ 个字段（key, summary, status, priority, severity, assignee, resolution_days 等）
+  - 预计算 15+ 种聚合统计（按状态/优先级/严重程度/组件/月份分布、解决时间统计、老化分析等）
+  - 完整的错误处理（401/403/SSL/连接/超时）
+  - JSON 输出到 stdout，诊断信息到 stderr
+
+  SKILL.md — Claude Code Skill 定义，引导 Claude 执行 5 步流程：
+  1. 收集 Jira 连接参数
+  2. 安装依赖
+  3. 运行脚本拉取数据
+  4. 全面 AI 分析（10 个维度）
+  5. 生成自包含 HTML 报表（深色主题、SVG 图表、可搜索表格）
+
+  使用方式
+
+  将此 skill 注册到 Claude Code 后，用户可以通过类似以下方式调用：
+  /jira-bug-analysis PROJ --server https://jira.company.com --token <PAT>
+"""
 
 
 def log(msg):
-    """
+    """Print diagnostic messages to stderr.
     将诊断信息输出到标准错误流 (stderr)，避免污染 stdout 的 JSON 输出。
     """
     print(msg, file=sys.stderr, flush=True)
@@ -168,7 +201,7 @@ def fetch_issues(session, server, jql, fields, max_results, page_size):
 
 
 def safe_get(obj, *keys, default=None):
-    """
+    """Safely traverse nested dicts.
     安全地遍历嵌套字典，任意层级为 None 时返回默认值，避免 KeyError。
     """
     current = obj
@@ -183,7 +216,7 @@ def safe_get(obj, *keys, default=None):
 
 
 def parse_jira_datetime(dt_str):
-    """
+    """Parse Jira datetime string to datetime object.
     将 Jira 返回的日期时间字符串（如 2026-01-15T10:30:00.000+0800）解析为 Python datetime 对象。
     """
     if not dt_str:
@@ -201,7 +234,7 @@ def parse_jira_datetime(dt_str):
 
 
 def extract_issue(raw_issue, severity_field):
-    """
+    """Extract a flat dict from a raw Jira issue.
     从 Jira 原始 Issue 数据中提取扁平化字典，包含 key、状态、优先级、严重程度、经办人、解决天数等 15+ 个字段。
     """
     fields = raw_issue.get("fields", {})
@@ -242,7 +275,7 @@ def extract_issue(raw_issue, severity_field):
 
 
 def is_resolved(issue):
-    """
+    """Determine if an issue is resolved using two-step logic:
     1. resolution 字段不为空 → 已解决
     2. resolution 为空时，按 status 二次判定：已关闭/INVALID/DUPLICATED/无法复现/已解决 → 已解决
     """
@@ -252,7 +285,7 @@ def is_resolved(issue):
 
 
 def compute_aggregations(issues):
-    """
+    """Compute aggregation statistics from extracted issues.
     基于提取后的 Issue 列表计算 15+ 种聚合统计，包括按状态/优先级/严重程度/组件/月份分布、解决时间统计、未解决 Bug 老化分析等。
     """
     agg = {}

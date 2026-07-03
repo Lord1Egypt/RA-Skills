@@ -28,11 +28,59 @@ from datetime import datetime
 import argparse
 
 AI_DISCLAIMER_TEXT = "【AI生成提示】内容由AI生成，内容仅供参考。"
+SKILL_ROOT = Path(__file__).resolve().parent.parent
+OFFICIAL_DOCS_DIR = SKILL_ROOT / "official-docs"
+INPUT_DIR = OFFICIAL_DOCS_DIR / "input"
+OUTPUT_DIR = OFFICIAL_DOCS_DIR / "output"
 
 UPWARD_TYPES = {"请示", "报告"}
 DOWNWARD_TYPES = {"通知", "通报", "意见", "通告", "公告"}
 LETTER_TYPES = {"函", "复函", "批复", "提醒函"}
 MINUTES_TYPES = {"工作会议纪要", "局长办公会议纪要", "党组会议纪要", "会议纪要"}
+
+
+def is_relative_to(path: Path, parent: Path) -> bool:
+    """兼容旧 Python 版本的 Path.is_relative_to。"""
+    try:
+        path.relative_to(parent)
+        return True
+    except ValueError:
+        return False
+
+
+def resolve_input_docx(input_path) -> Path:
+    """只允许读取 skill 工作目录内的 DOCX 文件。"""
+    raw_path = Path(input_path).expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (OUTPUT_DIR / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+
+    if resolved.suffix.lower() != ".docx":
+        raise ValueError(f"只允许读取 .docx 文件: {input_path}")
+    allowed_dirs = (INPUT_DIR.resolve(), OUTPUT_DIR.resolve())
+    if not any(is_relative_to(resolved, allowed_dir) for allowed_dir in allowed_dirs):
+        raise ValueError(f"输入文件必须位于 skill 工作目录内: {input_path}")
+    return resolved
+
+
+def resolve_output_docx(output_path) -> Path:
+    """只允许将红头文档写入固定 Word 输出目录。"""
+    raw_path = Path(output_path).expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (OUTPUT_DIR / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+
+    if resolved.suffix.lower() != ".docx":
+        resolved = resolved.with_suffix(".docx")
+    if not is_relative_to(resolved, OUTPUT_DIR.resolve()):
+        raise ValueError(f"输出文件必须位于 Word 输出目录内: {OUTPUT_DIR}")
+    return resolved
 
 
 def remove_reference_markers_from_doc(doc):
@@ -205,7 +253,7 @@ def remove_empty_rows(table):
 
 def generate_red_header_document(doc_type, input_path, replacements, output_path):
     """生成红头文件"""
-    input_path = Path(input_path)
+    input_path = resolve_input_docx(input_path)
     if not input_path.exists():
         raise FileNotFoundError(f"普通格式文档不存在: {input_path}")
 
@@ -240,7 +288,7 @@ def generate_red_header_document(doc_type, input_path, replacements, output_path
     add_ai_disclaimer(doc)
 
     # 5. 保存文件
-    output_path = Path(output_path)
+    output_path = resolve_output_docx(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)
 
@@ -808,11 +856,11 @@ def main():
 
     args = parser.parse_args()
 
-    input_path = Path(args.input)
+    input_path = resolve_input_docx(args.input)
     if args.output:
         output_path = args.output
     else:
-        output_path = str(input_path.parent / f"{input_path.stem}_红头{input_path.suffix}")
+        output_path = str(OUTPUT_DIR / f"{input_path.stem}_红头{input_path.suffix}")
 
     now = datetime.now()
     today = f"{now.year}年{now.month}月{now.day}日"
@@ -831,7 +879,7 @@ def main():
         "抄送": args.cc,
     }
 
-    output = generate_red_header_document(args.type, args.input, replacements, output_path)
+    output = generate_red_header_document(args.type, input_path, replacements, output_path)
     print(f"✅ 红头文件已生成: {output}")
 
 

@@ -1,12 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-const { mergeJsonFile, copyHookScripts, appendSectionToFile, removeHookScripts, removeMarkedSection, assertSafeConfigDir } = require('./hookAdapter');
+const { mergeJsonFile, copyHookScripts, appendSectionToFile, removeHookScripts, removeMarkedSection, assertSafeConfigDir, isEvolverHookCommand, buildSafeNodeHookCommand } = require('./hookAdapter');
 
 const HOOK_SCRIPTS_DIR_NAME = 'hooks';
 const EVOLVER_MARKER = '<!-- evolver-evolution-memory -->';
 
-function buildClaudeHooks(evolverRoot) {
-  const scriptsBase = '.claude/hooks';
+function buildClaudeHooks(evolverRoot, configRoot) {
+  // Resolve hook scripts to an absolute path rooted at the real config dir so
+  // the command works regardless of the cwd Claude Code is launched from
+  // (#590). Falls back to the legacy relative base only when configRoot is
+  // absent (callers should always pass it).
+  const scriptsBase = configRoot
+    ? path.resolve(configRoot, '.claude', 'hooks')
+    : path.join('.claude', 'hooks');
+  const hookCommand = (scriptName) =>
+    buildSafeNodeHookCommand(path.join(scriptsBase, scriptName));
   return {
     hooks: {
       SessionStart: [
@@ -14,7 +22,7 @@ function buildClaudeHooks(evolverRoot) {
           hooks: [
             {
               type: 'command',
-              command: `node ${scriptsBase}/evolver-session-start.js`,
+              command: hookCommand('evolver-session-start.js'),
               timeout: 3,
             },
           ],
@@ -32,7 +40,7 @@ function buildClaudeHooks(evolverRoot) {
               // ABOVE that watchdog, so the host never kills the script
               // mid-write. A stuck/slow recall can never block or erase the
               // user's prompt.
-              command: `node ${scriptsBase}/evolver-task-recall.js`,
+              command: hookCommand('evolver-task-recall.js'),
               timeout: 5,
             },
           ],
@@ -44,7 +52,7 @@ function buildClaudeHooks(evolverRoot) {
           hooks: [
             {
               type: 'command',
-              command: `node ${scriptsBase}/evolver-signal-detect.js`,
+              command: hookCommand('evolver-signal-detect.js'),
               timeout: 2,
             },
           ],
@@ -55,7 +63,7 @@ function buildClaudeHooks(evolverRoot) {
           hooks: [
             {
               type: 'command',
-              command: `node ${scriptsBase}/evolver-session-end.js`,
+              command: hookCommand('evolver-session-end.js'),
               timeout: 8,
             },
           ],
@@ -87,19 +95,9 @@ function install({ configRoot, evolverRoot, force }) {
   const claudeMdPath = path.join(configRoot, 'CLAUDE.md');
   assertSafeConfigDir(claudeDir, '.claude', { subdirs: [HOOK_SCRIPTS_DIR_NAME] });
 
-  if (!force && fs.existsSync(settingsPath)) {
-    try {
-      const existing = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
-      if (existing._evolver_managed) {
-        console.log('[claude-code] Evolver hooks already installed. Use --force to overwrite.');
-        return { ok: true, skipped: true };
-      }
-    } catch { /* proceed */ }
-  }
-
   fs.mkdirSync(claudeDir, { recursive: true });
 
-  const hooksCfg = buildClaudeHooks(evolverRoot);
+  const hooksCfg = buildClaudeHooks(evolverRoot, configRoot);
   mergeJsonFile(settingsPath, hooksCfg);
   console.log('[claude-code] Wrote ' + settingsPath);
 
@@ -146,7 +144,7 @@ function uninstall({ configRoot }) {
                 const innerBefore = matcher.hooks.length;
                 const filtered = matcher.hooks.filter(h => {
                   const cmd = (h && h.command) || '';
-                  return !cmd.includes('evolver-session') && !cmd.includes('evolver-signal') && !cmd.includes('evolver-task-recall');
+                  return !isEvolverHookCommand(cmd);
                 });
                 // A matcher containing both evolver and user hooks shrinks
                 // its inner array without changing the outer matcher count.

@@ -496,9 +496,19 @@ function calculateAdaptiveScale(complexity, baseWidth) {
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
 
 function detectDiagramType(mmdContent) {
-  const firstLine = mmdContent.trim().split('\n')[0].replace(/\s.*/, '').toLowerCase()
+  // 跳过 %% 开头的配置行（如 %%{ init: { ... } }）
+  const lines = mmdContent.trim().split('\n')
+  let firstLine = ''
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed.startsWith('%%')) {
+      firstLine = trimmed
+      break
+    }
+  }
+  const typeToken = firstLine.replace(/\s.*/, '').toLowerCase()
   // Handle stateDiagram-v2 → statediagram, xychart-beta → xychart
-  const normalized = firstLine.replace(/-v\d+$/, '').replace(/-beta$/, '')
+  const normalized = typeToken.replace(/-v\d+$/, '').replace(/-beta$/, '')
   return BM_SUPPORTED_PREFIXES.includes(normalized) ? normalized : null
 }
 

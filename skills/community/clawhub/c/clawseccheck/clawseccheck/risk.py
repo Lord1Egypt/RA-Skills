@@ -4,7 +4,7 @@ Detects dangerous CAPABILITY CHAINS — not isolated property checks. A chain
 fires only on POSITIVE evidence for every link; UNKNOWN inputs yield no chain
 (zero false-positives by design).
 
-English-only for v1 (no i18n). Read-only. Pure stdlib.
+English-only. Read-only. Pure stdlib.
 """
 from __future__ import annotations
 
@@ -1071,7 +1071,8 @@ def render_risk_paths(paths: list[RiskPath], ascii_only: bool = False) -> str:
         lines.append(f"{sev_tag} {p.id}: {p.title}")
         lines.append(f"  Chain : {arrow.join(p.chain)}")
         lines.append(f"  Why   : {p.why}")
-        lines.append(f"  Fix   : {p.fix}")
+        # Reports-only (F-074): the chain and why ARE the report; the structured
+        # remediation stays available as --json data (risk_paths[].fix) only.
         lines.append("")
 
     out = "\n".join(lines).rstrip() + "\n"

@@ -1,5 +1,5 @@
 ## Description: <br>
-Novel Weaver helps agents run a structured novel-writing workflow with scene setup, outline generation, causal checks, gated chapter planning, continuity review, style checks, logic checks, fidelity checks, ending verification, entity tracking, character alias recognition, and cross-chapter behavior summaries. <br>
+Novel Weaver helps an agent run a structured novel-writing workflow with scene setup, outline planning, causality checks, gated chapter drafting, continuity validation, style checks, logic checks, fidelity review, ending verification, entity tracking, character aliases, and cross-chapter behavior summaries. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,35 @@ MIT <br>
 
 
 ## Use Case: <br>
-External users and writing-focused agents use this skill to plan, draft, validate, and revise long-form fiction through a staged workflow with local project state, chapter files, continuity gates, and optional local semantic or reasoning checks. <br>
+External users and writing-focused agents use this skill to plan, draft, validate, and revise long-form fiction through a staged local workflow with explicit project state and quality gates. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates persistent local novel project state, chapter files, reports, and a current-project cache. <br>
-Mitigation: Install and run it only when a persistent local writing workflow is desired, and review the configured project data directory before use. <br>
-Risk: Optional model setup commands download third-party packages or models, and one optional command enables remote model code. <br>
-Mitigation: Run optional model setup only from trusted sources, preferably in an isolated environment, and treat it as a separate trust decision. <br>
+Risk: The skill stores novel project content and workflow state in its local data directory. <br>
+Mitigation: Use it only for content you are comfortable storing locally, and review the configured data directory before starting a project. <br>
+Risk: Optional model setup may install Python packages, download large third-party models, and use trust_remote_code. <br>
+Mitigation: Run optional model installation only intentionally, preferably in an isolated environment, and treat it as a separate trust decision from the base skill. <br>
 
 
 ## Reference(s): <br>
-- [Novel Weaver Skill Page](https://clawhub.ai/ldxs001/skills/novel-weaver) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Execution Standards](artifact/references/execution_standards.md) <br>
-- [Workflow Hooks](artifact/references/hooks.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [FAQ](artifact/references/faq.md) <br>
-- [Permissions](artifact/references/permissions.md) <br>
-- [Changelog](artifact/references/changelog.md) <br>
+- [Novel Weaver on ClawHub](https://clawhub.ai/ldxs001/skills/novel-weaver) <br>
+- [Execution Standards](references/execution_standards.md) <br>
+- [Workflow Hooks and Gates](references/hooks.md) <br>
+- [Examples](references/examples.md) <br>
+- [Permissions](references/permissions.md) <br>
+- [Changelog](references/changelog.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON project state, text chapter drafts, and local report files] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown and plain text with inline shell commands, JSON snippets, and generated novel prose] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project state, chapter text, gate status, continuity reports, style reports, logic reports, fidelity reports, and ending verification reports.] <br>
+**Other Properties Related to Output:** [Outputs may include local project state updates, chapter text files, validation reports, gate status, and repair guidance.] <br>
 
 ## Skill Version(s): <br>
-1.35.2 (source: frontmatter, changelog, server release metadata) <br>
+1.35.3 (source: frontmatter, _meta.json, release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,50 @@
+name: seo-backlink-article-generator
+version: 1.0.0
+description: 基于企业知识库生成 SEO 外链文章，英文正文 + 中文总结，仅使用三级标题
+author: WorkBuddy
+
+model:
+  provider: anthropic
+  name: claude-sonnet-4-5
+  temperature: 0.7
+  max_tokens: 4096
+
+inputs:
+  - name: title
+    type: string
+    required: true
+    description: 文章标题
+  - name: keyword
+    type: string
+    required: true
+    description: 核心关键词
+
+rag:
+  provider: siluzan-cso
+  queries:
+    - id: keyword_product_context
+      template: "{{keyword}} {{title}} product features"
+      top_k: 8
+      purpose: 召回与关键词和标题相关的产品描述和案例
+    - id: company_profile
+      template: "company profile brand overview services"
+      top_k: 5
+      purpose: 召回企业档案和品牌信息
+    - id: product_detail
+      template: "{{keyword}} product specifications advantages"
+      top_k: 5
+      purpose: 召回产品技术细节和核心优势
+    - id: trust_assets
+      template: "certification award trust partnership"
+      top_k: 3
+      purpose: 召回资质荣誉，增强文章可信度
+  merge: union
+  dedup: true
+
+prompts:
+  system: prompts/system.md
+  user: prompts/user.md
+
+output:
+  schema: schemas/output.json
+  format: json

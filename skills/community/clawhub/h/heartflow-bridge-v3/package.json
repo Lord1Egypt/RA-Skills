@@ -1,0 +1,45 @@
+{
+  "name": "mark-heartflow-skill",
+  "version": "2.14.1",
+  "description": "HeartFlow 心虫 v2.14.1 — AI 认知与自愈引擎。核心：存在论/意识/进化/心理分析/三层记忆/自愈RL/梦境引擎/哲学层/7条指令。本心在代码里，不在记忆里。",
+  "main": "src/core/heartflow.js",
+  "bin": {
+    "heartflow": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "check": "find src bin -name '*.js' -not -path '*/node_modules/*' -print0 | xargs -0 -n 1 node --check",
+    "test": "node tests/integration.test.js && node tests/v2_0_19.test.js",
+    "demo": "node -e \"const {createHeartFlow}=require('./src/core/heartflow.js'); const fs=require('fs'); const hf=createHeartFlow({rootPath:\".\"}); hf.start(); console.log('Version:',fs.readFileSync('./VERSION','utf8').trim()); hf.stop();\""
+  },
+  "files": [
+    "SKILL.md",
+    "VERSION",
+    "bin/",
+    "src/core/**/*.js",
+    "src/core/**/*.json",
+    "src/core/**/*.md",
+    "src/psychology/**/*.js",
+    "src/memory/**/*.js",
+    "src/identity/**/*.js",
+    "references/"
+  ],
+  "keywords": [
+    "cognitive",
+    "memory",
+    "self-healing",
+    "verification",
+    "reasoning"
+  ],
+  "security": {
+    "warnings": [
+      "此技能包含高级 AI 认知能力。desktop-agent 和 video-generate 等子技能包含高风险功能，需要明确用户授权才能使用。",
+      "不会自动发送数据到外部服务。所有网络通信需要显式配置。",
+      "不会自动写入 API 密钥到环境变量文件。用户必须显式提供密钥。"
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2"
+  }
+}

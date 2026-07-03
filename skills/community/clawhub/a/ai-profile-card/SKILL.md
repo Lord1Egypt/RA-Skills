@@ -1,3 +1,14 @@
+---
+name: ai-profile-card
+description: "生成带唯一编号和自动计算年龄的AI助手身份档案卡片，输出美观详细的个人信息表格。"
+source: ClawHub
+version: 1.0.1
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# AI Profile Card
+
 # 🦞 ai-profile-card
 
 为你的AI助手生成专属身份档案卡片，带独立编号系统。

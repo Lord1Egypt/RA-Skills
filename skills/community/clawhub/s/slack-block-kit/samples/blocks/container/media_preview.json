@@ -1,0 +1,62 @@
+[
+  {
+    "type": "container",
+    "block_id": "bkb_container_media",
+    "title": {
+      "type": "plain_text",
+      "text": "Getting Started with Slack"
+    },
+    "child_blocks": [
+      {
+        "type": "video",
+        "block_id": "video-1",
+        "title": {
+          "type": "plain_text",
+          "text": "How to use Slack?"
+        },
+        "title_url": "https://www.youtube.com/watch?v=RRxQQxiM7AA",
+        "video_url": "https://www.youtube.com/embed/RRxQQxiM7AA?feature=oembed&autoplay=1",
+        "thumbnail_url": "https://i.ytimg.com/vi/RRxQQxiM7AA/hqdefault.jpg",
+        "alt_text": "How to use Slack?",
+        "author_name": "Arcado Buendia",
+        "provider_name": "YouTube",
+        "provider_icon_url": "https://a.slack-edge.com/80588/img/unfurl_icons/youtube.png",
+        "description": {
+          "type": "plain_text",
+          "text": "Slack is a new way to communicate with your team."
+        }
+      },
+      {
+        "type": "rich_text",
+        "block_id": "video-desc-rt",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "text": "Watch this short tutorial to learn the basics of Slack - channels, messages, and integrations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "actions",
+        "block_id": "media-actions",
+        "elements": [
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "Open in Browser",
+              "emoji": true
+            },
+            "url": "https://www.youtube.com/watch?v=RRxQQxiM7AA",
+            "action_id": "open_in_browser"
+          }
+        ]
+      }
+    ]
+  }
+]

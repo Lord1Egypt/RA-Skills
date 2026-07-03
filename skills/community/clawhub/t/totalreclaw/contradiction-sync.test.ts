@@ -229,10 +229,14 @@ function fakeSubgraph(byTrapdoor: Record<string, FakeRow[]>) {
 // ---------------------------------------------------------------------------
 
 {
-  assert(isPinnedClaim({ t: 'x', c: 'fact', st: 'p' }) === true, 'isPinnedClaim: st=p → true');
-  assert(isPinnedClaim({ t: 'x', c: 'fact' }) === false, 'isPinnedClaim: missing st → false (default active)');
-  assert(isPinnedClaim({ t: 'x', c: 'fact', st: 'a' }) === false, 'isPinnedClaim: st=a → false');
-  assert(isPinnedClaim({ t: 'x', c: 'fact', st: 's' }) === false, 'isPinnedClaim: st=s (superseded) → false');
+  // Use makeClaim so the fixture carries the full v0 field set (cf/i/sa/ea/e)
+  // the WASM core's is_pinned_json requires to deserialize a v0 Claim. A bare
+  // {t,c,st} object fails serde (missing required fields) and the core returns
+  // false before the st=='p' check ever runs.
+  assert(isPinnedClaim(makeClaim({ t: 'x', c: 'fact', st: 'p' })) === true, 'isPinnedClaim: st=p → true');
+  assert(isPinnedClaim(makeClaim({ t: 'x', c: 'fact' })) === false, 'isPinnedClaim: missing st → false (default active)');
+  assert(isPinnedClaim(makeClaim({ t: 'x', c: 'fact', st: 'a' })) === false, 'isPinnedClaim: st=a → false');
+  assert(isPinnedClaim(makeClaim({ t: 'x', c: 'fact', st: 's' })) === false, 'isPinnedClaim: st=s (superseded) → false');
 }
 
 // ---------------------------------------------------------------------------

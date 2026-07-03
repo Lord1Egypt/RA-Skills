@@ -131,8 +131,17 @@ CH2_PATTERN = re.compile(r'^\s*(\d+)\.(\d+)\s*(\S.*)$')
 CH3_PATTERN = re.compile(r'^\s*(\d+)\.(\d+)\.(\d+)\s*(\S.*)$')
 
 # 大纲锚点(起始/终止)
-OUTLINE_START_ANCHORS = ["论文大纲", "目录", "目  录", "目 录"]
+OUTLINE_START_ANCHORS = ["论文大纲", "目录", "目  录", "目 录", "4.  论文大纲", "4.论文大纲", "4 论文大纲"]
 OUTLINE_END_ANCHOR = "参考文献"
+
+# v2.x.x C 路径: Word 自定义样式（南大 MBA 模板等）
+# 这些样式不属于 Word 内置 Heading 1/2/3，但用户用它们写论文标题
+# MinerU 不会识别，所以需要 python-docx 直接读
+CUSTOM_OUTLINE_STYLES = {
+    "l1": ("MBA-章标题", "Heading 1", "Title"),
+    "l2": ("MBA-一级节标题", "Heading 2"),
+    "l3": ("Heading 3",),
+}
 
 # 中文数字转换
 CHINESE_TO_INT = {
@@ -352,38 +361,115 @@ def extract_outline_from_docx_via_mineru(
         return extract_outline_from_text(md_text)
 
 
+def extract_outline_from_docx_with_custom_styles(docx_path: str) -> Tuple[List[Dict], List[Dict]]:
+    """
+    v2.x.x C 路径: 读取 Word 自定义样式 (如 MBA-章标题/MBA-一级节标题)
+    适用场景: 用户用 Word 自定义样式（非 Heading 1/2/3）写论文标题（如南大 MBA 模板）
+    优势: 不依赖 MinerU（避免隐私问题 + 速度问题），不依赖任何 heading 渲染
+    """
+    paragraphs = extract_text_from_docx(docx_path)
+
+    # 1. 找大纲区起点：用自定义 L1 样式 + 含"论文大纲"/"目录"的段
+    start_idx = None
+    for i, (_, style, text) in enumerate(paragraphs):
+        ts = text.strip()
+        if style in CUSTOM_OUTLINE_STYLES["l1"]:
+            for anchor in OUTLINE_START_ANCHORS:
+                if anchor in ts or ts.endswith(anchor) or ts.replace(" ", "") == anchor.replace(" ", ""):
+                    start_idx = i + 1
+                    break
+        if start_idx is not None:
+            break
+
+    if start_idx is None:
+        # 没找到自定义样式锚点 → 回退到 heuristic
+        return extract_outline_from_docx_with_heuristic(docx_path)
+
+    # 2. 找大纲区终点：含"参考文献"的段
+    end_idx = len(paragraphs)
+    for i in range(start_idx, len(paragraphs)):
+        _, style, text = paragraphs[i]
+        ts = text.strip()
+        if "参考文献" in ts and (style in CUSTOM_OUTLINE_STYLES["l1"] or style == "Normal" or style == "Title"):
+            end_idx = i
+            break
+
+    # 3. 收集大纲区内的章节行（L1 + L2/L3 节点）
+    #    关键发现：南大 MBA 模板中，"第1章 绪论" 等 L1 标题是 Normal 样式，
+    #    不是 MBA-章标题。所以 L1 需要靠文本模式（"第N章 XXX"）识别。
+    outline_lines = []
+    for i in range(start_idx, end_idx):
+        _, style, text = paragraphs[i]
+        ts = text.strip()
+        if not ts:
+            continue
+        # 优先级1: L2/L3 样式（南大 MBA-一级节标题 → L2/L3）
+        if style in CUSTOM_OUTLINE_STYLES["l2"] or style in CUSTOM_OUTLINE_STYLES["l3"]:
+            outline_lines.append(ts)
+            continue
+        # 优先级2: L1 标题段——但南大模板中 L1 是 Normal 样式，需靠文本模式识别
+        if re.match(r'^第[\d一二三四五六七八九十]+章', ts):
+            outline_lines.append(ts)
+            continue
+        # 优先级3: MBA-章标题（防其他模板用）
+        if style in CUSTOM_OUTLINE_STYLES["l1"] and not re.match(r'^第[\d一二三四五六七八九十]+章', ts):
+            # 避免被 OUTLINE_START_ANCHORS 错误加进去
+            continue
+
+    if not outline_lines:
+        return extract_outline_from_docx_with_heuristic(docx_path)
+
+    # 4. 用 _parse_outline_lines 解析
+    tree, issues = _parse_outline_lines(outline_lines)
+
+    # 5. L1 节点占位处理：开题报告通常没有"绪论"等章节标题
+    #    只有当 title 为空时才用 "第N章" 作占位
+    for ch in tree:
+        if ch.get("level") == 1:
+            if not ch.get("title", "").strip():
+                # 占位标题（仅当 title 为空时）
+                ch["title"] = f"第{ch['num']}章"
+                ch["_needs_llm_title"] = True
+            else:
+                ch["_needs_llm_title"] = False
+
+    return tree, issues
+
+
 def extract_outline_from_docx(docx_path: str) -> Tuple[List[Dict], List[Dict]]:
     """
     从 docx 文件解析目录
-    v2.0.7 统一入口: 根据模块级状态决策调用哪个路径。
-    降级语义(F1-F5 决策):
-      - F1=否: 不弹窗(用户静默)
-      - F2=是: 降级事件写 audit_log
-      - F3=1: MinerU 失败 1 次后立即降级
-      - F4=进程级: _fallback_used 是模块全局
-      - F5=共享: 跨 paper 共享 _fallback_used
-    单向降级: B (MinerU) → A (heuristic),A 失败不回 B。
+    v2.x.x 统一入口: 根据模块级状态决策调用哪个路径。
+    解析路径顺序: C (自定义样式) → B (MinerU) → A (heuristic)
+    v2.x.x 新增 C 路径: 修复 MinerU 不识别 Word 自定义样式的问题
     """
     global _fallback_used
 
-    # 情况 1: MinerU 不可用 → 直接 A
+    # 情况 1: 优先尝试 C 路径 (自定义样式)
+    try:
+        tree, issues = extract_outline_from_docx_with_custom_styles(docx_path)
+        if tree and len(tree) >= 5:
+            return tree, issues
+    except Exception as e:
+        # C 路径失败，继续尝试其他路径
+        pass
+
+    # 情况 2: MinerU 不可用 → 直接 A
     if not _is_mineru_available():
         return extract_outline_from_docx_with_heuristic(docx_path)
 
-    # 情况 2: 已降级过 → 直接 A(不回环,F5=共享)
+    # 情况 3: 已降级过 → 直接 A(不回环)
     if _fallback_used:
         return extract_outline_from_docx_with_heuristic(docx_path)
 
-    # 情况 3: 尝试 MinerU(B 路径,F3=1 次机会)
+    # 情况 4: 尝试 MinerU(B 路径)
     try:
         return extract_outline_from_docx_via_mineru(docx_path)
 
     except KeyboardInterrupt:
-        # 用户中断,不降级,不写 audit
         raise
 
     except Exception as e:
-        # 单向降级: B → A(F2=是 写 audit,F1=否 不弹窗,F4=进程级 标记 fallback_used)
         _fallback_used = True
         _log_fallback_to_audit(
             from_engine="mineru",
@@ -905,6 +991,11 @@ def extract_proposal_content(
     # 章节标题模式
     heading_patterns = [
         (r'^第([一二三四五六七八九十\d]+)章\s*([^\n]{0,50})$', 'ch'),
+        # 中文数字章节号 + 顿号 + 标题（如：一、 研究背景与研究问题）
+        (r'^[一二三四五六七八九十\d]+[、\.]\s*([^\n]{2,50})$', 'cn_num'),
+        # 带括号的中文数字（如：（一）  研究背景）
+        (r'^\（([一二三四五六七八九十\d]+)\）\s*([^\n]{2,50})$', 'cn_paren'),
+        # 半角数字编号（如：1.  宏观与技术背景）
         (r'^(\d+(?:\.\d+){1,2})\s+([^\n]{2,50})$', 'num'),
     ]
 
@@ -961,6 +1052,22 @@ def extract_proposal_content(
                     heading_to_node[heading_text] = node["id"]
                     break
 
+        # 中文数字编号 + 顿号/点号（如：一、 研究背景，或 1. 宏观与技术背景）
+        # → 尝试用 title_text 模糊匹配 node title
+        if heading_text not in heading_to_node and pat_type in ('cn_num', 'cn_paren'):
+            for node in nodes:
+                node_title = node.get("title", "")
+                if title_text and (title_text in node_title or node_title in title_text):
+                    heading_to_node[heading_text] = node["id"]
+                    break
+
+        # 数字编号（1. 宏观与技术背景）→ 直接匹配 node num
+        if heading_text not in heading_to_node and pat_type == 'num':
+            for node in nodes:
+                if str(node.get("num", "")) == num_str:
+                    heading_to_node[heading_text] = node["id"]
+                    break
+
     # 第二步：AI 标题匹配（未匹配的标题）
     unmatched_headings = [info for info in heading_info if info["text"] not in heading_to_node]
     ai_heading_matched_count = 0
@@ -981,8 +1088,14 @@ def extract_proposal_content(
                             "向量匹配: %s → [%s] (score=%.3f)",
                             heading_text, node_id, score,
                         )
-            except Exception:
-                pass  # 向量匹配失败 → 降级到 LLM 兜底
+            except Exception as e:
+                import logging
+                _logger = logging.getLogger(__name__)
+                _logger.warning(
+                    "[TitleMatcher] 向量匹配降级: heading_count=%d, error=%s",
+                    len(unmatched_headings), str(e)
+                )
+                # 继续走到 LLM 兜底逻辑
 
         # ── 2b: LLM 标题匹配（向量未匹配或无向量依赖时兜底）────
         still_unmatched = [
@@ -1097,11 +1210,172 @@ def extract_proposal_content(
     }
 
 
+
+def extract_code_name_from_docx(
+    docx_path: str,
+    llm_func: Callable[[str], str] = None
+) -> Dict[str, Any]:
+    """
+    从开题报告 docx 文件名中提取去标识公司名（如 "A公司"）。
+
+    LLM 直接读文件名，根据论文标题上下文推断出论文用哪个字母代指目标公司。
+
+    参数：
+      docx_path: 开题报告 docx 文件路径
+      llm_func: LLM 调用函数
+
+    返回：
+      {"ok": bool, "code_name": str, "confidence": float}
+    """
+    import re as re_module
+    basename = os.path.basename(docx_path)
+
+    # 兜底：正则直接从文件名提取
+    m = re_module.search(r'([A-E])公司', basename)
+    if m:
+        code_name = m.group(0)  # "A公司"
+
+        # LLM 二次确认（仅在有 llm_func 时）
+        if llm_func:
+            prompt = f"""以下是一篇MBA论文的文件名，请找出其中用字母代指目标公司的部分（如"A公司"、"B公司"）。
+
+文件名：{basename}
+
+请直接回答：论文中用哪个字母代指目标公司？只回答字母，如"A公司"。"""
+            try:
+                response = llm_func(prompt).strip()
+                confirm_m = re_module.search(r'[A-E]公司', response)
+                if confirm_m:
+                    code_name = confirm_m.group(0)
+                    return {"ok": True, "code_name": code_name, "confidence": 0.95}
+            except Exception:
+                pass
+
+        return {"ok": True, "code_name": code_name, "confidence": 0.8}
+
+    # 完全兜底：从路径各层级搜索
+    for part in basename.split('/'):
+        m2 = re_module.search(r'([A-E])公司', part)
+        if m2:
+            return {"ok": True, "code_name": m2.group(0), "confidence": 0.7}
+
+    return {"ok": False, "code_name": None, "confidence": 0.0}
+
+
+def extract_keywords_from_docx(
+    docx_path: str,
+    outline_tree: Dict,
+    llm_func: Callable[[str], str] = None,
+    max_keywords_per_node: int = 5,
+    proposal_result: Dict = None
+) -> Dict[str, List[str]]:
+    """
+    从开题报告 docx 内容 + 大纲标题，为每个章节节点生成检索关键词。
+
+    LLM 读取：
+    1. 开题报告全文（提取段落）
+    2. 该章节的大纲标题（理解上下文）
+    3. 该章节对应的开题报告内容
+
+    输出：该章节的检索关键词列表（最多5个）
+
+    数据流：
+      Phase 1.3 归因完成 → extract_keywords_from_docx() 生成各节点 keywords
+        → 写入 outline_state 各节点
+        → Phase 2 context_builder 读取用于检索
+
+    参数：
+      docx_path: 开题报告 docx 文件路径
+      outline_tree: outline_parse() 返回的 outline 对象
+      llm_func: LLM 调用函数
+      max_keywords_per_node: 每个节点最多返回关键词数，默认5
+      proposal_result: 可选，已有的 extract_proposal_content 结果（避免重复调用）
+
+    返回：
+      {node_id: ["keyword1", "keyword2", ...], ...}
+    """
+    # 1. 获取所有节点
+    try:
+        nodes = _get_outline_nodes({"outline": outline_tree})
+    except Exception:
+        nodes = outline_tree.get("nodes", [])
+
+    # 2. 获取每个节点的内容（复用 extract_proposal_content 结果，避免重复 LLM 调用）
+    if proposal_result is None:
+        result = extract_proposal_content(docx_path, outline_tree, llm_func=llm_func)
+    else:
+        result = proposal_result
+    node_segments = result.get("node_segments", {})
+
+    node_keywords: Dict[str, List[str]] = {}
+
+    # 4. 对每个有内容的节点，LLM 生成关键词
+    for node in nodes:
+        node_id = node["id"]
+        if node_id.startswith("__"):
+            continue
+
+        segments = node_segments.get(node_id, [])
+        if not segments:
+            node_keywords[node_id] = []
+            continue
+
+        # 构建上下文：章节标题 + 内容摘要
+        node_title = node.get("title", "")
+        content_summary = "。".join([s.strip()[:80] for s in segments[:2]])
+
+        # 父章节标题（用于理解上下文）
+        parent_title = ""
+        parent_id = node.get("parent_id") or node.get("parent")
+        if parent_id:
+            parent = next((n for n in nodes if n["id"] == parent_id), None)
+            if parent:
+                parent_title = parent.get("title", "")
+
+        context = f"论文主题：竞争战略研究\n"
+        context += f"上级章节：{parent_title}\n" if parent_title else ""
+        context += f"本章标题：{node_title}\n"
+        context += f"本章内容摘要：{content_summary}"
+
+        prompt = f"""以下是一篇MBA论文中某一章节的信息，请为该章节生成检索关键词。
+
+{context}
+
+要求：
+1. 生成该章节在写作时需要检索的背景信息关键词
+2. 关键词应该是具体的、可检索的术语（如公司名、行业词、技术词、战略术语）
+3. 最多 {max_keywords_per_node} 个，按重要性排序
+4. 只返回关键词列表，每行一个，不要解释
+
+示例输出：
+vivo
+互联网分发
+竞争战略
+差异化
+生态协同"""
+
+        try:
+            if llm_func:
+                response = llm_func(prompt).strip()
+                # 解析关键词（每行一个，去除空白）
+                keywords = [k.strip() for k in response.split("\n") if k.strip()]
+                keywords = [k for k in keywords if len(k) > 1][:max_keywords_per_node]
+                node_keywords[node_id] = keywords
+            else:
+                node_keywords[node_id] = []
+        except Exception:
+            node_keywords[node_id] = []
+
+    return node_keywords
+
+
+
 def extract_content_hints(
     docx_path: str,
     outline_tree: Dict,
     llm_func: Callable[[str], str] = None,
-    max_hint_chars: int = 150
+    max_hint_chars: int = 150,
+    proposal_result: Dict = None
 ) -> Dict[str, str]:
     """
     从开题报告 docx 中提取每个节点的方向提示（content_hint）
@@ -1115,12 +1389,16 @@ def extract_content_hints(
       outline_tree: outline_parse() 返回的 outline 对象
       llm_func: LLM 调用函数（传入 extract_proposal_content）
       max_hint_chars: 每个 hint 的最大字符数，默认 150
+      proposal_result: 可选，已有的 extract_proposal_content 结果（避免重复调用）
 
     返回：
       {node_id: "方向提示文本", ...}
     """
-    # 调用 extract_proposal_content 获取每个节点的内容
-    result = extract_proposal_content(docx_path, outline_tree, llm_func=llm_func)
+    # 复用 extract_proposal_content 结果（避免重复 LLM 调用）
+    if proposal_result is None:
+        result = extract_proposal_content(docx_path, outline_tree, llm_func=llm_func)
+    else:
+        result = proposal_result
     if not result.get("ok"):
         return {}
 
@@ -1151,7 +1429,212 @@ def extract_content_hints(
         # 存入 special key
         content_hints["__orphan_count__"] = str(orphan_count)
 
+    # v2.x.x 新增: LLM 兜底 — 一次性补全所有空 hint 节点
+    # 背景: 之前只取"开题报告匹配段落"前 60 字作 hint，导致 70%+ 节点没 hint。
+    #       Phase 2 写作时 LLM 靠"大纲骨架"勉强写，但容易跑题。
+    # 修复: 调一次 LLM，输入所有空 hint 节点 (id + title)，输出 hint 字典。
+    # v2.x.x P0 hotfix: 从 docx_path 提取 paper_name，传递动态 paper_subject
+    _hint_paper_name = ""
+    if docx_path:
+        from pathlib import Path as _Path
+        _docx_path = _Path(docx_path)
+        for _parent in _docx_path.parents:
+            _parts = _parent.parts
+            if ".openclaw" in _parts and "workspace" in _parts:
+                _idx = _parts.index("workspace")
+                if _idx + 1 < len(_parts):
+                    _hint_paper_name = _parts[_idx + 1]
+                    break
+    if llm_func:
+        content_hints = _llm_fill_empty_hints(
+            outline_tree=outline_tree,
+            content_hints=content_hints,
+            llm_func=llm_func,
+            max_hint_chars=max_hint_chars,
+            paper_name=_hint_paper_name,
+        )
+
     return content_hints
+
+
+def _llm_fill_empty_hints(
+    outline_tree: Dict,
+    content_hints: Dict[str, str],
+    llm_func: Callable[[str], str],
+    max_hint_chars: int = 150,
+    paper_name: str = "",
+) -> Dict[str, str]:
+    """
+    v2.x.x 新增: LLM 一次性兜底补全所有空 hint 节点。
+
+    适用场景:
+      - 节点在开题报告里没匹配到段落 (orphan) → extract_content_hints() 跳过了它
+      - 需为这些"空 hint 节点"生成方向提示，让 Phase 2 写作时 LLM 有上下文约束
+
+    策略:
+      - 收集所有空 hint 节点 (id + title)
+      - 调一次 LLM，输入节点列表，要求 JSON 数组返回 hint
+      - 解析 + 写回 content_hints
+
+    参数:
+      outline_tree: outline_parse() 返回的 outline
+      content_hints: 已有的 content_hints 字典
+      llm_func: LLM 调用函数
+      max_hint_chars: 每个 hint 最大字符数，默认 150
+      paper_name: 论文项目名（用于提取 paper_subject；兑底使用）
+
+    返回:
+      更新后的 content_hints 字典
+    """
+    if not llm_func:
+        return content_hints
+
+    # 1. 收集空 hint 节点
+    try:
+        nodes = _get_outline_nodes({"outline": outline_tree})
+    except Exception:
+        return content_hints
+
+    empty_nodes = []
+    for n in nodes:
+        if n.get("is_virtual"):
+            continue
+        node_id = n.get("id", "")
+        if not node_id:
+            continue
+        if content_hints.get(node_id, "").strip():
+            continue  # 已有 hint，跳过
+        empty_nodes.append({
+            "id": node_id,
+            "level": n.get("level", 0),
+            "title": n.get("title", ""),
+        })
+
+    if not empty_nodes:
+        return content_hints  # 全部有 hint，无需兜底
+
+    # 2. 构造 prompt
+    # v2.x.x P0 修复（v2.1.1-beta.10 硬编码 bug）: 论文主题改为动态提取
+    # 背景: 之前硬编码"A公司互联网分发业务竞争战略研究..."，导致所有 v2 用户的
+    #       _llm_fill_empty_hints 被错误引导为"终端厂商 + AI 大模型"主题
+    # 修复: 从 outline_tree.metadata.paper_title 提取，兑底用 paper_name
+    paper_subject = ""
+    try:
+        paper_subject = (
+            outline_tree.get("outline_tree", {}).get("metadata", {}).get("paper_title", "")
+            or ""
+        ).strip()
+    except Exception:
+        pass
+    if not paper_subject:
+        # 兑底：从 paper_name 去后缀
+        import re as _re_hint
+        paper_subject = _re_hint.sub(r'(_v\d+(?:\.\d+)*|_final|_\d{8}_\d{6})+$', '', paper_name or "").strip() or (paper_name or "本研究")
+    nodes_text = "\n".join(
+        f"- [{n['id']}] L{n['level']} {n['title']}"
+        for n in empty_nodes
+    )
+    prompt = f"""你是一名学术论文写作助手。基于以下论文的节点列表，**一次性**为每个节点生成一段"写作方向提示"（content_hint），用于 Phase 2 写作时的上下文约束。
+
+论文主题：{paper_subject}
+
+要求：
+1. 每个 hint 30-80 字
+2. 紧扣节点标题与论文主题，给出具体写作方向（理论框架、关键数据、案例、写作侧重点）
+3. 用学术、严谨语气，避免空泛话语
+4. 用 JSON 数组格式返回，每个元素包含 `id` 和 `hint` 两个字段
+
+节点列表（{len(empty_nodes)} 个）：
+{nodes_text}
+
+返回格式（严格 JSON 数组，不要其他文字、代码块标记、注释）：
+[
+  {{"id": "1.1", "hint": "..."}},
+  {{"id": "1.5", "hint": "..."}}
+]"""
+
+    # 3. 调 LLM
+    try:
+        response = llm_func(prompt)
+    except Exception as e:
+        # LLM 失败不影响主流程，返回原 content_hints
+        return content_hints
+
+    if not response or not isinstance(response, str):
+        return content_hints
+
+    # 4. 解析 LLM 输出 — 提取 JSON 数组
+    import re as _re
+    # 匹配第一个 [] 块（贪婪 or 非贪婪都试）
+    json_match = _re.search(r'\[.*\]', response, _re.DOTALL)
+    if not json_match:
+        return content_hints
+    try:
+        hints_list = json.loads(json_match.group(0))
+    except Exception:
+        return content_hints
+
+    if not isinstance(hints_list, list):
+        return content_hints
+
+    # 5. 写回 content_hints
+    filled = 0
+    for item in hints_list:
+        if not isinstance(item, dict):
+            continue
+        nid = str(item.get("id", "")).strip()
+        hint = str(item.get("hint", "")).strip()
+        if not nid or not hint:
+            continue
+        # 截断到 max_hint_chars
+        if len(hint) > max_hint_chars:
+            hint = hint[:max_hint_chars] + "..."
+        content_hints[nid] = hint
+        filled += 1
+
+    return content_hints
+
+
+def _extract_keywords_from_hint(hint_text: str) -> List[str]:
+    """
+    备用：从 content_hint 纯文本提取关键词（Phase 1.3 未调用 LLM 时的兜底）。
+
+    不再使用预定义 pattern 库，改为基于文本特征的简单提取：
+    - 连续中文字符串（2-10字）
+    - 英文词/缩写
+    - 数字+单位组合
+
+    注意：关键词正式生成已迁移到 extract_keywords_from_docx()（Phase 1.3 LLM 生成）。
+    此函数仅作为兜底使用。
+
+    参数：
+      hint_text: 节点对应的 content_hint 文本
+
+    返回：
+      List[str]，最多5个
+    """
+    if not hint_text:
+        return []
+
+    import re as re_module
+    keywords = []
+    seen = set()
+
+    # 提取中文术语（2-10字的连续中文字符串）
+    for m in re_module.finditer(r'[\u4e00-\u9fff]{2,10}', hint_text):
+        kw = m.group(0)
+        if kw not in seen and len(kw) >= 2:
+            seen.add(kw)
+            keywords.append(kw)
+
+    # 提取英文词/缩写
+    for m in re_module.finditer(r'[A-Za-z]{2,}(?:\s+[A-Za-z]{2,})*', hint_text):
+        kw = m.group(0).strip()
+        if kw and kw.lower() not in seen:
+            seen.add(kw.lower())
+            keywords.append(kw)
+
+    return list(set(keywords))[:5]
 
 
 def save_content_hints_to_outline(paper_name: str, content_hints: Dict[str, str]) -> Dict[str, Any]:
@@ -1199,12 +1682,23 @@ def save_content_hints_to_outline(paper_name: str, content_hints: Dict[str, str]
         if key not in node_ids:
             skipped += 1
             continue
-        # 写入节点 content_hint
+        # 写入节点 content_hint + research_keywords
         for n in nodes:
             if n["id"] == key:
                 n["content_hint"] = hint
+                # P0 修复：同时提炼并写入 research_keywords（供 Phase 2 多工具检索使用）
+                n["research_keywords"] = _extract_keywords_from_hint(hint)
                 written += 1
                 break
+
+    # P2-1 fix: 初始化所有节点的 content_hint 字段（无 hint 的节点设为空字符串）
+    # P0 修复：同时初始化 research_keywords 字段（无关键词的节点设为空列表）
+    # 这样 context_builder 读取时能统一用 .get() 判断
+    for n in nodes:
+        if "content_hint" not in n:
+            n["content_hint"] = ""
+        if "research_keywords" not in n:
+            n["research_keywords"] = []
 
     # P1 修复：使用 helper 多版本兼容写回
     _set_outline_nodes(state, nodes)

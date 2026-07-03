@@ -42,27 +42,27 @@
 
 ```bash
 # 画面质检（默认，模板 60）
-python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
+python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
 
 # 指定画面质检模板
-python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
+python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
 
 # 播放兼容性质检（模板 70）
-python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
+python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
 
 # 音频质检（模板 50）
-python scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
+python3 scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
 
 # COS 输入（推荐写法）
-python scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
+python3 scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
 
 # 异步提交
-python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
 
 # 查询已有任务结果（JSON 格式）
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 
 # dry-run 预览
-python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70 --dry-run
+python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70 --dry-run
 ```
 

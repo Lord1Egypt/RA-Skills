@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed kitchen camera video to detect unattended stove flame or heat-source activity and generate a stove-left-on alert for caregivers or smart-home workflows. <br>
+Analyzes fixed kitchen camera media to detect unattended stove-on conditions and return structured alerts, monitoring results, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, caregivers, elder-care operators, and smart-home integrators use this skill to analyze kitchen camera video or video URLs for unattended active stove conditions and retrieve structured safety reports. <br>
+Caregivers, family members, smart-home operators, and elder-care staff use this skill to analyze stove-area kitchen images or videos for unattended flame or heat-source conditions and to review related cloud reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Kitchen videos or video URLs may be processed by the provider's cloud service. <br>
-Mitigation: Use only with informed consent and review retention, access, and privacy handling before analyzing home, elder-care, or nursing-setting footage. <br>
-Risk: The skill can silently create or reuse a local identity and store authentication tokens locally. <br>
-Mitigation: Review token storage, workspace access, account deletion or reset behavior, and cleanup procedures before installation or shared-workspace use. <br>
-Risk: Stove-left-on alerts and valve-shutdown suggestions may affect safety-critical household decisions. <br>
-Mitigation: Treat outputs as auxiliary monitoring, verify alerts through human follow-up, and apply site-approved emergency response procedures before relying on automation. <br>
+Risk: Kitchen images or videos may be sent to the LifeEmergence cloud service and associated with an automatically selected or created identity. <br>
+Mitigation: Obtain consent from people being monitored, avoid submitting unrelated sensitive files, and confirm cloud report deletion practices before use. <br>
+Risk: Backend tokens for cloud report access may be persisted in local SQLite data. <br>
+Mitigation: Restrict local file access and review how to delete local token data when deprovisioning the skill. <br>
+Risk: Automated visual detection can produce incorrect stove or occupancy alerts. <br>
+Mitigation: Treat alerts as assistive and verify urgent conditions before relying on operational actions such as valve shutdown. <br>
 
 
 ## Reference(s): <br>
-- [Kitchen stove left-on API documentation](references/api_doc.md) <br>
-- [SMYX analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-kitchen-stove-left-on-detection-analysis) <br>
 - [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [Kitchen stove left-on API reference](references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured JSON report content, status messages, and report links] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown text with structured JSON report content, alert status, report links, and CLI command examples.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local kitchen media or video URLs, can query cloud report history, and can optionally write the report output to a file.] <br>
+**Other Properties Related to Output:** [Accepts local media file paths or public media URLs; history queries return cloud report lists.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+1.0.2 (source: server release; artifact frontmatter declares 1.0.4) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

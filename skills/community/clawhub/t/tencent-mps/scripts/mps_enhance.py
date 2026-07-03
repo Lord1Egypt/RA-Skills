@@ -29,52 +29,52 @@ COS 存储约定：
 
 用法：
   # 最简用法：使用 URL 输入 + 默认预设模板 321002（输出到 TENCENTCLOUD_COS_BUCKET/output/enhance/）
-  python mps_enhance.py --url https://example.com/video.mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4
 
   # COS 输入（推荐，使用 --cos-input-key）
-  python mps_enhance.py --cos-input-key /input/video/test.mp4
+  python3 mps_enhance.py --cos-input-key /input/video/test.mp4
 
   # 大模型增强预设（强度 strong）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
   # 综合增强预设（强度 normal）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
   # 去毛刺预设（强度 strong）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
   # 自定义分辨率（宽1920，高度自适应）
-  python mps_enhance.py --url https://example.com/video.mp4 --width 1920
+  python3 mps_enhance.py --url https://example.com/video.mp4 --width 1920
 
   # 自定义码率上限（单位 kbps）
-  python mps_enhance.py --url https://example.com/video.mp4 --bitrate 3000
+  python3 mps_enhance.py --url https://example.com/video.mp4 --bitrate 3000
 
   # 同时开启色彩增强和低光照增强
-  python mps_enhance.py --url https://example.com/video.mp4 --color-enhance --low-light-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --color-enhance --low-light-enhance
 
   # 开启超分（2倍）+ 降噪 + 色彩增强（不可与大模型增强同时使用）
-  python mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
   # 开启去划痕（老片修复场景）
-  python mps_enhance.py --url https://example.com/video.mp4 --scratch-repair 0.8 --scene-type LQ_material
+  python3 mps_enhance.py --url https://example.com/video.mp4 --scratch-repair 0.8 --scene-type LQ_material
 
   # 使用 HDR 增强
-  python mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10
+  python3 mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10
 
   # 开启插帧（目标60fps）
-  python mps_enhance.py --url https://example.com/video.mp4 --frame-rate 60
+  python3 mps_enhance.py --url https://example.com/video.mp4 --frame-rate 60
 
   # 指定增强场景（游戏视频）
-  python mps_enhance.py --url https://example.com/video.mp4 --scene-type game
+  python3 mps_enhance.py --url https://example.com/video.mp4 --scene-type game
 
   # 开启音频增强（降噪 + 音量均衡 + 美化）
-  python mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+  python3 mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
   # 自定义编码和封装格式
-  python mps_enhance.py --url https://example.com/video.mp4 --codec h265 --container mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4 --codec h265 --container mp4
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_enhance.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_enhance.py --url https://example.com/video.mp4 --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -111,7 +111,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -831,7 +831,7 @@ def process_media(args):
                                  title="视频增强效果对比", output_path=compare_path)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -848,39 +848,39 @@ def main():
         epilog="""
 示例：
   # URL输入 + 默认模板（视频增强 321002），输出到 TENCENTCLOUD_COS_BUCKET/output/enhance/
-  python mps_enhance.py --url https://example.com/video.mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4
 
   # COS路径输入（推荐，本地上传后使用）
-  python mps_enhance.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
+  python3 mps_enhance.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video/test.mp4
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_enhance.py --cos-input-key /input/video/test.mp4
+  python3 mps_enhance.py --cos-input-key /input/video/test.mp4
 
   # 大模型增强（强度 strong，效果最好）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
   # 综合增强（强度 normal，平衡效果与效率）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
   # 去毛刺（去伪影，强度 strong）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
   # 超分 + 降噪 + 色彩增强（组合使用）
-  python mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
   # 老片修复场景（去划痕 + 低光照增强 + 色彩增强）
-  python mps_enhance.py --url https://example.com/video.mp4 \\
+  python3 mps_enhance.py --url https://example.com/video.mp4 \\
       --scratch-repair 0.8 --low-light-enhance --color-enhance --scene-type LQ_material
 
   # 游戏视频增强（插帧到60fps + 综合增强）
-  python mps_enhance.py --url https://example.com/video.mp4 \\
+  python3 mps_enhance.py --url https://example.com/video.mp4 \\
       --preset comprehensive --frame-rate 60 --scene-type game
 
   # 音频增强（降噪 + 音量均衡 + 美化）
-  python mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+  python3 mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
   # Dry Run（仅打印请求参数）
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --dry-run
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --dry-run
 
 增强预设说明（三选一，互斥）：
   diffusion      大模型增强 — 基于扩散模型的画质重建，效果最强，耗时较长
@@ -1046,6 +1046,17 @@ def main():
                              help="任务完成后自动生成对比 HTML 页面（可选指定输出路径，默认自动生成）")
 
     args = parser.parse_args()
+
+    # 自动加载环境变量（入口处立即执行，确保后续所有函数都能拿到变量）
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  自动加载 env 失败：{e}", file=sys.stderr)
+
     # --url 本地路径自动转换为本地上传模式
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -1114,8 +1125,11 @@ def main():
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     if args.template:

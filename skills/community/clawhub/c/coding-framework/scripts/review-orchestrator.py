@@ -58,6 +58,18 @@ ALL_AGENTS = [
     "documentation-checker",
 ]
 
+# v10.3: 语言专属reviewer路由
+LANGUAGE_AGENT_MAP = {
+    ".py": "python-reviewer",
+    ".ts": "typescript-reviewer",
+    ".tsx": "typescript-reviewer",
+    ".js": "typescript-reviewer",
+    ".jsx": "typescript-reviewer",
+    ".go": "go-reviewer",
+    ".rs": "rust-reviewer",
+    ".java": "java-reviewer",
+}
+
 # 代理选择规则（根据文件特征自动选择）
 AGENT_SELECTION_RULES = {
     "security-auditor": {
@@ -139,7 +151,7 @@ def load_agent_definition(agent_name: str) -> dict:
 
 
 def auto_select_agents(files: list, user_keywords: str = "") -> list:
-    """根据文件特征和关键词自动选择代理。"""
+    """根据文件特征和关键词自动选择代理（v10.3 增强：语言路由）。"""
     selected = set()
     all_content = ""
 
@@ -155,7 +167,14 @@ def auto_select_agents(files: list, user_keywords: str = "") -> list:
             except (OSError, IOError):
                 pass
 
-    # 根据规则匹配
+    # v10.3: 语言专属reviewer优先路由
+    lang_agents = set()
+    for ext in extensions:
+        if ext in LANGUAGE_AGENT_MAP:
+            lang_agents.add(LANGUAGE_AGENT_MAP[ext])
+    selected.update(lang_agents)
+
+    # 根据规则匹配通用代理
     for agent_name, rules in AGENT_SELECTION_RULES.items():
         score = 0
 
@@ -355,7 +374,7 @@ def generate_report(
 
     report = {
         "report_type": "multi-agent-code-review",
-        "version": "10.1.0",
+        "version": "10.3.0",
         "generated_at": now_iso(),
         "files_reviewed": files_reviewed,
         "agents_used": agents_used,
@@ -476,7 +495,7 @@ def main() -> None:
 
     if args.tasks_only:
         output = {
-            "version": "10.1.0",
+            "version": "10.3.0",
             "agents": valid_agents,
             "tasks": tasks,
             "files": valid_files,
@@ -488,7 +507,7 @@ def main() -> None:
 
     # 输出编排计划
     plan = {
-        "version": "10.1.0",
+        "version": "10.3.0",
         "action": "review_plan",
         "agents": valid_agents,
         "agent_count": len(valid_agents),

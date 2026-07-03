@@ -58,7 +58,7 @@ Echo this table when the user asks what gets backed up:
 
 | Mode | Includes | Excludes by default | Sensitivity |
 |---|---|---|---|
-| `backup full` (default) | openclaw.json, credentials/, secret stores, state + agent SQLite snapshots, agent memory, workspace, installed skills | session transcripts, codex caches/logs, tools/, media/, logs/, old backups | SENSITIVE — encryption forced |
+| `backup full` (default) | openclaw.json, credentials/, secret stores, state + agent SQLite snapshots, agent memory, workspace, installed skills | session transcripts, codex caches/logs, qmd embedding caches (models + index), tools/, media/, logs/, old backups | SENSITIVE — encryption forced |
 | `backup full --everything` | everything above PLUS session transcripts and codex history | previous backup archives only | SENSITIVE — encryption forced |
 | `backup settings` | openclaw.json, secret stores, credentials/, auth files | everything else | SENSITIVE — always encrypted, no opt-out |
 | `backup workspace` | workspace directories (skills, memory files) | all state/config | encrypted by default; `--no-encrypt` allowed here only |

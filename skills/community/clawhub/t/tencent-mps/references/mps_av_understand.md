@@ -36,46 +36,46 @@
 
 ```bash
 # 理解视频内容（--mode video + 提示词）
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video \
     --prompt "请分析这个视频的主要内容、场景和关键信息"
 
 # 音频模式：语音识别（视频自动提取音频）
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode audio \
     --prompt "请对这段音频进行语音识别，输出完整文字内容"
 
 # 纯音频文件
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/audio.mp3 \
     --mode audio \
     --prompt "请识别这段音频的内容并输出文字"
 
 # 对比分析（两段音视频）
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/standard.mp4 \
     --extend-url https://example.com/user.mp4 \
     --mode audio \
     --prompt "请对比这两段音频，分析差异，给出专业评价"
 
 # COS 对象输入
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --cos-input-key /input/my-video.mp4 \
     --mode video \
     --prompt "总结视频的核心内容"
 
 # 异步模式：只提交任务
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video --prompt "分析视频内容" --no-wait
 
 # 查询已有任务结果
-python scripts/mps_av_understand.py --task-id 2600011633-WorkflowTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_av_understand.py --task-id 2600011633-WorkflowTask-80108cc3380155d98b2e3573a48a
 
 # 将结果保存到本地目录
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video --prompt "分析内容" --output-dir /output/
 ```

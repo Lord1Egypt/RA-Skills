@@ -1,17 +1,35 @@
 name: clawsqlite-knowledge
-version: 1.0.2
-description: Knowledge base skill wrapping the clawsqlite knowledge CLI for ingest/search/maintenance.
-author: Ernest Yu
-license: MIT
-permissions:
-  - network  # only used indirectly via configured scraper/embedding if enabled
+version: 1.0.7
+description: Knowledge base skill that uses the published clawsqlite CLI for ingest, search, show, and maintenance workflows.
 entry: SKILL.md
 tags:
   - knowledge
   - sqlite
   - search
   - cli
-models:
-  - gpt-*
-  - claude-*
-  - gemini-*
+requires:
+  bins:
+    - python
+  env: []
+install:
+  - id: clawsqlite_knowledge_bootstrap
+    kind: bash
+    label: Install clawsqlite Python package from PyPI
+    script: set -e && cd {baseDir} && bash bootstrap_deps.sh
+metadata:
+  openclaw:
+    homepage: https://github.com/ernestyu/clawsqlite
+    tags:
+      - knowledge
+      - sqlite
+      - search
+      - cli
+    requires:
+      bins:
+        - python
+      env: []
+    install:
+      - id: clawsqlite_knowledge_bootstrap
+        kind: bash
+        label: Install clawsqlite Python package from PyPI
+        script: set -e && cd {baseDir} && bash bootstrap_deps.sh

@@ -44,8 +44,8 @@ siluzan-tso google-analysis -a <mediaCustomerId> --start <S> --end <E> --json-ou
 
 **任务**:
 
-1. Read `report-templates/okki-weekly-google-client.md` 中 xlsx 版式（若子会话可 Read skill 内路径）。
-2. 编写并执行 Node/Python 脚本，产出 `.xlsx` + 客户话术。
+1. Read `report-templates/okki-weekly-google-client.md` 中 xlsx 版式与 **§对外客户话术**（默认 7 条模板；主 Agent 若指定自定义话术则从其指示）。
+2. 编写并执行 Node/Python 脚本，产出 `.xlsx` + 客户话术；**每个 Sheet 数据表末须写「分析」**（总结 + 建议，见模板各 Sheet「表末「分析」」行）。
 3. 设备/国家 Sheet 必须用 `campaign-device` / `campaign-geo-matched` 落盘文件。
 
 **returnSchema**: 产出文件路径列表 + 脚本 exitCode；勿贴 xlsx 二进制内容。

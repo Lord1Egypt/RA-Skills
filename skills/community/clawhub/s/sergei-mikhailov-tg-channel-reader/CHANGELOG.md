@@ -2,6 +2,58 @@
 
 ---
 
+## [0.10.0] - 2026-07-02
+
+**Session hardening — the skill can no longer destroy its own session, and can recover it when something else does.** Triggered by a real incident: after a VM restart, several agent processes raced over the same session file, overwrote it with empty copies, and reported the session as "expired" — while the session on Telegram's side was alive the whole time.
+
+### Why this was broken
+
+- `fetch`/`info` (Pyrogram backend) checked only that the session *file exists*, then entered `Client.start()`, which interactively prompts for a phone number when the session is not authorized. In cron this hangs or dies — and by then the SQLite session is already open for writing.
+- Nothing prevented two `tg-reader` processes from opening the same SQLite session file concurrently.
+- Error messages suggested switching to the freshest session file found on disk — agents followed that blindly, drifting onto empty never-authorized files.
+- `auth` overwrote the session file with no backup.
+- There was no honest `not_authorized` error — agents invented explanations ("TTL 30 days", "revoked by Telegram").
+- SKILL.md itself advised `rm -f` on the session file as the "session expired" remedy.
+
+### How it works after this update
+
+- `fetch`/`info` connect **non-interactively** (`connect()` + `get_me()`) and never prompt. An unauthorized session returns a structured `error_type: "not_authorized"` immediately; a network failure returns `error_type: "network"` — the two are never conflated. As a backstop, non-interactive commands run with stdin detached (any stray prompt gets `EOFError` instead of hanging).
+- Every session use (fetch/info/auth/restore, both backends) takes an **exclusive file lock**. A second process waits up to 60 s, then returns `error_type: "busy"` — concurrent processes can no longer corrupt the file. (POSIX only; on other platforms the lock is a no-op.)
+- After every successful authorized run the session is snapshotted to `{session}.session.last-good` (0600) with a no-secrets manifest (verified time, user, sha256). New **`tg-reader restore-session`** command restores it: moves the broken file aside (never deletes), checksum-verifies the backup, installs it, and confirms authorization against Telegram.
+- `auth` backs up an existing session first (timestamped `.bak-*`, last 3 kept) and verifies the fresh session with `get_me()`.
+- `tg-reader-check --online` (opt-in) verifies actual authorization of the resolved session — the offline default also reports lock state and last-good backup metadata.
+- `not_authorized` errors advertise the last-good backup when one exists (`action: "offer_restore"`) and carry an explicit background policy: scheduled/background runs must notify the user, not attempt repairs.
+- "Session file not found" hints no longer suggest switching to the freshest found file; they point at `tg-reader-check --online` verification instead.
+
+### Required user action
+
+Update the installed package (`pip install .` from the skill directory, or `clawhub update`). No re-authentication needed. The first successful fetch after the update creates the last-good backup.
+
+### Added
+
+- `tg_session_guard.py` — shared module: session lock, timestamped backups with rotation, last-known-good snapshot/restore (no heavy dependencies)
+- `restore-session` subcommand in both backends (`tg-reader`, `tg-reader-telethon`)
+- `tg-reader-check --online` — authorization check for the resolved session, under the lock
+- `error_type` values: `not_authorized`, `busy`, `network`
+- SKILL.md "Session Safety Rules" — agents must never delete/move session files or attempt auth/restore from background runs
+
+### Changed
+
+- Pyrogram backend `fetch`/`info` no longer use `Client.start()` — replaced with non-interactive `connect()` + authorization check (Telethon backend already connected non-interactively; its unauthorized error is now structured)
+- `auth` creates a timestamped backup before overwriting an existing session (both backends)
+- Session-discovery hints in `reader.py`, `reader_telethon.py`, and `tg_check.py` no longer recommend the freshest file by mtime
+- SKILL.md: removed the destructive `rm -f` session-expired instruction; documented recovery via `restore-session`
+- `.gitignore`: added `*.session.lock`, `*.session.last-good`, `*.session.last-good.json`, `*.session.bak-*`
+
+### Not changed (no regression risk)
+
+- Fetch/output formats, channel error types, read_unread tracking, comments, `--output` — untouched
+- Default session paths and config schema — the `session` config key stays optional
+- Device identity remains Pyrogram/Telethon defaults (spoofing gets sessions terminated)
+- Dependencies — still pyrofork + tgcrypto + telethon
+
+---
+
 ## [0.9.4] - 2026-05-16
 
 **Recent Telegram posts come through again.** The Pyrogram backend now uses `pyrofork>=2.3.69` (a community-maintained drop-in fork) instead of the stale upstream `pyrogram`. Under 0.9.3 and earlier, recent channel posts arrived with `"text": ""`, `"has_media": false`, no `"web_page"` field — even when the same post displayed fine in the Telegram app.

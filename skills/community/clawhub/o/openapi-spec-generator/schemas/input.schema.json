@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/openapi-spec-generator/input.schema.json",
+  "title": "OpenAPI Spec Generator Input",
+  "description": "Schema for source input to the OpenAPI spec generator",
+  "type": "object",
+  "required": ["source_type", "source_path"],
+  "properties": {
+    "source_type": {
+      "type": "string",
+      "enum": ["code_repo", "har_file", "pcap_file", "traffic_log", "manual_description"],
+      "description": "Type of input source"
+    },
+    "source_path": {
+      "type": "string",
+      "description": "File path or directory to scan"
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["auto", "gin", "spring", "fastapi", "express", "echo", "chi", "jax-rs", "flask", "django", "fastify", "nestjs", "none"],
+      "description": "API framework (auto-detect or specify)",
+      "default": "auto"
+    },
+    "options": {
+      "type": "object",
+      "description": "Generation options",
+      "properties": {
+        "title": { "type": "string", "description": "API title override" },
+        "version": { "type": "string", "description": "API version", "default": "1.0.0" },
+        "server_url": { "type": "string", "description": "Server base URL" },
+        "format": { "type": "string", "enum": ["yaml", "json"], "default": "yaml" },
+        "include_mock": { "type": "boolean", "default": false },
+        "auth_detection": { "type": "boolean", "default": true },
+        "path_parameter_clustering": { "type": "boolean", "default": true },
+        "confidence_threshold": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.7 },
+        "with_examples": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -179,9 +179,9 @@ Example MCP config:
       "command": "rapidx",
       "args": ["mcp", "serve"],
       "env": {
-        "LTP_ACCESS_KEY": "<secret-ref>",
-        "LTP_SECRET_KEY": "<secret-ref>",
-        "LTP_API_HOST": "<secret-ref>"
+        "LTP_ACCESS_KEY": "<host-expanded-secret-or-materialized-value>",
+        "LTP_SECRET_KEY": "<host-expanded-secret-or-materialized-value>",
+        "LTP_API_HOST": "<host-expanded-api-host-or-materialized-value>"
       }
     }
   }
@@ -195,6 +195,8 @@ rapidx/tools
 rapidx/self-check
 rapidx/update/check
 ```
+
+If MCP loads but `rapidx/self-check` reports credential/auth failures, inspect the `rapidx` MCP server env block. Literal placeholder values such as `${LTP_ACCESS_KEY}`, `$LTP_ACCESS_KEY`, `<secret-ref>`, `<provided-api-host>`, or empty strings mean the credentials were not materialized for the MCP runtime. Do not copy placeholder text literally. Read real values from an authorized secret source, then update only the `rapidx` server block with a YAML/JSON parser. Do not append duplicate blocks and do not remove config with broad regex such as `mcp_servers:.*`. Reload or restart MCP, then rerun `rapidx/tools`, `rapidx/update/check`, and `rapidx/self-check`; credential-auth must be `PASS`.
 
 Expected tool surface should include:
 

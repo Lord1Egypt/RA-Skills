@@ -1,0 +1,35 @@
+{
+  "skill_name": "vision",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看看这张图片是什么内容：/tmp/test.jpg",
+      "expected_output": "AI 应该调用 vision.js 识别图片并返回文字描述",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我发了一张图片，帮我分析一下里面的文字",
+      "expected_output": "AI 应该识别图片中的文字内容",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "看看这个截图有什么问题：https://example.com/screenshot.png",
+      "expected_output": "AI 应该下载并识别网络图片",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "描述一下这张照片的场景",
+      "expected_output": "AI 应该描述照片中的场景和元素",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "这张图片里有几个人？",
+      "expected_output": "AI 应该识图并回答图片中的人数",
+      "files": []
+    }
+  ]
+}

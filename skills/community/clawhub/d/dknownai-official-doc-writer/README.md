@@ -46,7 +46,7 @@ https://open.dknowc.cn/dependable/search/
 
 ## 版本说明
 
-当前 Clawhub Public 版基于 `3.0.18`。
+当前 Clawhub Public 版基于 `3.0.20`。
 
 ## 常用测试
 
@@ -59,32 +59,25 @@ python3 -m py_compile scripts/dkag_search.py scripts/merge_search_results.py scr
 普通 Word 生成：
 
 ```bash
-python3 scripts/format_document.py --text "# 关于召开专题会议的通知
-
-各有关单位：
-
-为统筹推进相关工作，现定于2026年5月20日召开专题会议。
-
-广东省政务服务和数据管理局
-2026年5月18日" --output /private/tmp/dknowc-test.docx
+python3 scripts/format_document.py official-docs/input/dknowc-test.md --output dknowc-test.docx
 ```
 
 红头 Word 生成：
 
 ```bash
-python3 scripts/template_generator.py 通知 --input /private/tmp/dknowc-test.docx --org "广东省政务服务和数据管理局" --doc-number "粤政数〔2026〕1号" --output /private/tmp/dknowc-test-red.docx
+python3 scripts/template_generator.py 通知 --input dknowc-test.docx --org "广东省政务服务和数据管理局" --doc-number "粤政数〔2026〕1号" --output dknowc-test-red.docx
 ```
 
 搜索结果保存：
 
 ```bash
-python3 scripts/dkag_search.py "留学人才来粤服务政策" --area 广东省 --clean --output /private/tmp/result_gd.json
+python3 scripts/dkag_search.py "留学人才来粤服务政策" --area 广东省 --clean --output result_gd.json
 ```
 
 多次搜索合并：
 
 ```bash
-python3 scripts/merge_search_results.py /private/tmp/result_gd.json /private/tmp/result_bj.json --output /private/tmp/merged.json
+python3 scripts/merge_search_results.py result_gd.json result_bj.json --output merged.json
 ```
 
 ## Public 版说明

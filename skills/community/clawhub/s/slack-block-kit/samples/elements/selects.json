@@ -1,0 +1,47 @@
+{
+  "static_select": {
+    "type": "static_select",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Choose environment",
+      "emoji": true
+    },
+    "options": [
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Production",
+          "emoji": true
+        },
+        "value": "production"
+      },
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Staging",
+          "emoji": true
+        },
+        "value": "staging"
+      }
+    ],
+    "action_id": "environment_select"
+  },
+  "users_select": {
+    "type": "users_select",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Assign owner",
+      "emoji": true
+    },
+    "action_id": "owner_select"
+  },
+  "conversations_select": {
+    "type": "conversations_select",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Choose channel",
+      "emoji": true
+    },
+    "action_id": "channel_select"
+  }
+}

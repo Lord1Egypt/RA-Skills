@@ -97,13 +97,13 @@
 
 ## W5 · 拓词 / RAG
 
-- **触发**：拓词、关键词规划、词包、否词线索；或写文案/方案需客户产品背景。
+- **触发**：拓词、关键词规划、**Keyword Planner**、词包、否词线索；**月搜索量 / 竞争度 / 长尾关键词 / 核心词扩词**（见 `intent-routing.md` **§零·C**）；**阅读 URL/文章 + 针对核心词出 Google 词表**；或写文案/方案需客户产品背景。
 - **必读**：`references/analytics/keyword-planner-workflows.md`；客户/品牌背景先 `references/analytics/rag.md`。
 - **步骤**：
-  1. （需背景时）RAG：`rag list --rag-only --json-out ./snap` → `rag query -q "型号 英文类目 应用场景" --folder-id <id> --partition wiki --top-k 12 --json-out ./snap`，归纳 2–8 个种子词。
-  2. 拓词：`keyword -k "种子1,种子2,..." [--geo <id>] [--url <落地页>] [--google-only] --json-out ./snap-kw`（仅 Google 数据加 `--google-only`；分市场对比每次只传一个 `--geo`）。
-  3. 脚本读落盘 `items`（`montlySearch`/`averageCpc`/`competition`，币种见 `bidAmountCurrency`）→ 去重/洗词/分组/截 Top N，标注数据来源。
-- **交付/确认**：联网搜索词与 Google Planner 指标**分列标注**，不混为一谈；账户内 `google-analysis keywords` 表现**不可**与市场侧拓词合并。落地否词/建户见 **W3**。
+  1. （可选）WebFetch 读用户 URL/文章 **仅归纳种子词**；或 RAG：`rag list --rag-only --json-out ./snap` → `rag query … --json-out ./snap`。
+  2. 拓词（**必 `--google-only --json-out`**）：`keyword -k "种子1,种子2,..." [--url "<落地页>"] [--geo <id>] --google-only --json-out ./snap-kw`；**多核心词分批** `-k`（每批 3–8 词），避免单次过大。
+  3. 脚本读落盘 `items`（`montlySearch`/`averageCpc`/`competition`，币种见 `bidAmountCurrency`）→ 按用户阈值洗词（如搜索量≈3000、竞争中低）→ 去重/分组/截 Top N，标注 **数据来源：Google Keyword Planner**。
+- **交付/确认**：表格列含英文词、中文翻译、所属核心词、月搜索量、竞争度（指标**仅**来自 CLI）；联网/文章语境与 Planner 指标**分列标注**；账户内 `google-analysis keywords` 表现**不可**与市场侧拓词合并。完整 campaign 见 **W3**。
 
 ---
 
@@ -152,7 +152,8 @@
 - **步骤（按场景）**：
   - **分享**：`list-accounts --json-out` 取 `entityId` → `account share --id <entityId> --phone <手机号>`；查 `account share-detail --customer-id <mediaCustomerId>`；取消 `account unshare --id <entityId> --account-id <userId>`。
   - **解绑**：`account delink --id <entityId>` / `--ids id1,id2`。
-  - **OAuth 重授权**：`invalidOAuthToken=true` → `account auth -m <媒体>`（浏览器授权）→ `list-accounts` 验证。
+  - **OAuth 重授权**：`invalidOAuthToken=true` → `list-accounts --json-out` 取 `ma.entityId` → **`account reauth -m <媒体> --id <entityId>`**（内置先 delink 再 OAuth，对齐网页「重新授权」）→ `list-accounts` 验证。**禁止**对失效账户直接用 `account auth`（首次「添加授权」专用）。
+  - **首次 OAuth 添加授权**：`account auth -m <媒体>`（无需先 delink）。
   - **MCC**：`account mcc-bind --customers <mediaCustomerId,...> --mcc <MCC客户ID>` / `mcc-unbind`（走 `googleApiUrl`，先 `config show`）。
   - **BC（TikTok）**：`account bc-bind --customers <id> --bc-ids <id>` / `bc-unbind --bc-id <id>`（解绑一次一个）。
   - **BM（Meta）**：`account bm-bind --account-id <mediaCustomerId> --bm-id <bmId>`。

@@ -36,7 +36,9 @@ API_CONFIG = {
     "token": ""  # 待用户配置
 }
 
-def query_account(phone_number: str = None, token: str = None) -> Dict | str:
+from typing import Dict, Optional
+
+def query_account(phone_number: Optional[str] = None, token: Optional[str] = None) -> Dict or str:
     """
     查询账户信息
     

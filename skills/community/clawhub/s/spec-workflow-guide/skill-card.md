@@ -11,36 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to decide when a medium-to-large coding change needs a structured requirements, design, and task workflow before implementation. It helps agents produce requirements, design, and task documents with user confirmation between phases. <br>
+Developers and engineers use this skill to decide when a coding request needs a structured requirements, design, and task-planning workflow before implementation. It helps agents produce concise spec documents with explicit acceptance criteria and staged confirmation for larger or ambiguous changes. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can add unnecessary planning overhead for small or already precise changes. <br>
-Mitigation: Apply its own decision rule and skip the full workflow for small, low-risk tasks with clear scope and acceptance criteria. <br>
-Risk: Requirements, design, or task plans may be incomplete or misaligned with user intent. <br>
-Mitigation: Review each generated spec phase and require user confirmation before moving from requirements to design, from design to tasks, and from tasks to implementation. <br>
-Risk: The skill may create project spec files as part of normal use. <br>
-Mitigation: Review generated files under the specs directory before implementation and keep task status tied to confirmed requirements. <br>
+Risk: The workflow can slow larger coding tasks by requiring requirements, design, task planning, and confirmation steps. <br>
+Mitigation: Use the full workflow only for medium-to-large or ambiguous changes; skip it for small, clear, low-risk edits. <br>
+Risk: The skill may create planning files in the workspace. <br>
+Mitigation: Review generated requirements, design, and task files before relying on them or starting implementation. <br>
+Risk: The skill may reference external CloudBase documentation links. <br>
+Mitigation: Review external references before using them as project guidance. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binggg/skills/spec-workflow-guide) <br>
-- [CloudBase main entry](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
-- [Current skill raw source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/spec-workflow/SKILL.md) <br>
+- [Spec Workflow raw source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/spec-workflow/SKILL.md) <br>
+- [CloudBase main skill entry](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
 - [UI design companion skill](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/ui-design/SKILL.md) <br>
 - [Data model companion skill](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/data-model-creation/SKILL.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown spec documents and concise planning guidance] <br>
+**Output Type(s):** [guidance, markdown, configuration] <br>
+**Output Format:** [Markdown planning documents and concise workflow guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create requirements.md, design.md, and tasks.md under a specs directory when the full workflow is appropriate.] <br>
+**Other Properties Related to Output:** [May create requirements.md, design.md, and tasks.md under a specs directory when the full workflow is used.] <br>
 
 ## Skill Version(s): <br>
-1.18.6 (source: server release metadata; artifact frontmatter reports 2.23.5) <br>
+1.18.7 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

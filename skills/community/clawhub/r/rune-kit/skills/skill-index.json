@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated": "2026-05-15T05:03:19.696Z",
+  "generated": "2026-07-02T09:53:21.373Z",
   "skillCount": 64,
   "skills": {
     "adversary": {
@@ -90,7 +90,8 @@
         "research",
         "trend-scout",
         "sequential-thinking",
-        "plan"
+        "plan",
+        "ba"
       ],
       "signals": {
         "emit": [
@@ -985,7 +986,8 @@
       "research",
       "trend-scout",
       "sequential-thinking",
-      "plan"
+      "plan",
+      "ba"
     ],
     "browser-pilot": [],
     "completion-gate": [],
@@ -1721,7 +1723,8 @@
         "research",
         "trend-scout",
         "sequential-thinking",
-        "plan"
+        "plan",
+        "ba"
       ]
     },
     "debug": {

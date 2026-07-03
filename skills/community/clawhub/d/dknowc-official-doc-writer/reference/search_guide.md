@@ -48,17 +48,17 @@
 ```
 【搜索方案】
 
-搜索地域：广东省 / 中国
+搜索地域：任务所在地区 / 中国
 
 1. 政策依据
-- query：广东省人工智能产业政策支持
-- 地域：广东省
+- query：某省人工智能产业政策支持
+- 地域：某省
 - 参数：--search-type policy --policy
 - 用途：查找可作为本省政策依据的文件、意见、办法等
 
 2. 数据支撑
-- query：广东省人工智能产业发展规模 2025
-- 地域：广东省
+- query：某省人工智能产业发展规模 2025
+- 地域：某省
 - 参数：--search-type govSite --search-channel govSearch
 - 用途：查找政府公开发布的产业数据、工作进展和成效
 
@@ -184,7 +184,7 @@ for article in result['content']['data']['检索文章']:
 2. 2023年市场规模5059.5亿元（数据源：中国电子信息产业发展研究院）
    用途：现状概述"产业规模"部分
 
-3. 广东省集聚全国30%以上产业链企业（数据源：广东省政府网站）
+3. 某省集聚全国30%以上产业链企业（数据源：某省政府网站）
    用途：现状概述"地方实践"部分，作为典型案例
 
 二、参考范文
@@ -197,7 +197,7 @@ for article in result['content']['data']['检索文章']:
 国家级政策：
 https://yun.dknowc.cn/wlcb/ShenZhi-policy/#/knowledgebase/?id=XXX
 
-广东省：
+某省：
 https://yun.dknowc.cn/wlcb/ShenZhi-policy/#/knowledgebase/?id=XXX
 ```
 

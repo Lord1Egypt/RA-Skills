@@ -1,7 +1,5 @@
 ---
 name: linkfox-amazon-ads-report
-version: 1.0.1
-category: product-sourcing
 description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖 Sponsored Products (SP) / Sponsored Brands (SB) / Sponsored Display (SD) 全部报告类型。脚本自动完成报告的创建、等待、下载和解压，直接返回可读的结构化数据。真实可用的报告类型及每类的列清单/groupBy/filters 以 `references/report-types/<adProduct-dir>/<reportTypeId>.md` 为单一真相源。当用户提到拉取亚马逊广告报告、下载 Amazon Ads 报告、获取 SP/SB/SD 广告活动/关键词/搜索词/投放商品/购买商品/广告组/流量异常/Prompt 扩展等任意报告时触发。本技能依赖 linkfox-amazon-ads-auth。Sponsored Television (ST) / Amazon DSP 暂未覆盖。
 ---
 
@@ -25,6 +23,20 @@ description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖
 4. **严禁**在歧义下"挑第一个"或"选默认"绕过澄清。
 
 完整决策表见 `linkfox-amazon-ads-auth` SKILL.md 的 **Usage Scenarios 第 4 节**。
+
+## 调用方式
+
+- **API 端点**：`POST /amazonAds/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Core Concepts
 
@@ -199,7 +211,7 @@ python scripts/get_report.py '{
 
 - Brand Analytics / Retail Analytics / Attribution 报告 → 不在本 skill
 - 报告删除 / 修改 / 定时任务 → 不在本 skill
-- 实体元数据（campaign 名、keyword 匹配类型等）→ `linkfox-amazon-ads-entity`
+- 实体元数据（campaign 名、keyword 匹配类型等）→ `linkfox-amazon-ads-manager`
 - 授权 / token → `linkfox-amazon-ads-auth`
 
 **Feedback:**

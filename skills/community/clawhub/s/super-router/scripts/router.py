@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
+import contextvars
+import copy
+import datetime
 import json
 import operator
 import os
@@ -9,12 +13,21 @@ import shutil
 import socket
 import subprocess
 import sys
+import tempfile
+import threading
+import time
 import urllib.error
 import urllib.request
-from typing import Annotated, Any, Callable, Dict, List, Literal, TypedDict
+import uuid
+from typing import Annotated, Any, Callable, Dict, Iterator, List, Literal, TypedDict
 
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Send
+
+try:
+    import langsmith as _langsmith
+except Exception:
+    _langsmith = None
 
 try:
     sys.stdout.reconfigure(line_buffering=True)
@@ -22,9 +35,58 @@ try:
 except Exception:
     pass
 
+
+def load_openclaw_env_file(env_file: str | None = None) -> None:
+    """Load KEY=VALUE pairs from OpenClaw's .env without overriding explicit env."""
+    configured_path = (env_file or os.environ.get("OPENCLAW_ENV_FILE", "")).strip()
+    if configured_path:
+        env_path = os.path.expanduser(configured_path)
+    else:
+        openclaw_home = os.path.expanduser(os.environ.get("OPENCLAW_HOME", "~/.openclaw"))
+        env_path = os.path.join(openclaw_home, ".env")
+    if not env_path or not os.path.exists(env_path):
+        return
+
+    try:
+        with open(env_path, "r", encoding="utf-8") as env_handle:
+            lines = env_handle.readlines()
+    except OSError:
+        return
+
+    for raw_line in lines:
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export ") :].strip()
+        if "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if not key or key in os.environ:
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+            value = value[1:-1]
+        os.environ[key] = value
+
+
+load_openclaw_env_file()
+
 OLLAMA_URL = os.environ.get("ROUTER_OLLAMA_URL", "http://localhost:11434/api/generate")
+ROUTER_MODEL_ENV_VAR = "ROUTER_MODEL"
 ROUTER_TASK_ENV_VAR = "ROUTER_TASK"
+CODEX_CLI_PATH = os.environ.get("ROUTER_CODEX_CLI", shutil.which("codex") or "codex")
+ROUTER_CODEX_CWD_ENV_VAR = "ROUTER_CODEX_CWD"
+ROUTER_CODEX_SANDBOX_ENV_VAR = "ROUTER_CODEX_SANDBOX"
 GEMINI_CLI_PATH = os.environ.get("ROUTER_GEMINI_CLI", shutil.which("gemini") or "/opt/homebrew/bin/gemini")
+CLAUDE_CLI_PATH = os.environ.get("ROUTER_CLAUDE_CLI", shutil.which("claude") or "claude")
+GEMINI_SYSTEM_SETTINGS_ENV_VAR = "GEMINI_CLI_SYSTEM_SETTINGS_PATH"
+ROUTER_SKIP_WARMUP = os.environ.get("ROUTER_SKIP_WARMUP", "0").lower() in ("1", "true", "yes")
+ROUTER_LANGSMITH_ENABLED_ENV_VAR = "ROUTER_LANGSMITH_ENABLED"
+ROUTER_LANGSMITH_PROJECT_ENV_VAR = "ROUTER_LANGSMITH_PROJECT"
+ROUTER_LANGSMITH_TAGS_ENV_VAR = "ROUTER_LANGSMITH_TAGS"
+ROUTER_TOKEN_USAGE_LEDGER_ENV_VAR = "ROUTER_TOKEN_USAGE_LEDGER"
 #GEMINI_EXTENSION_NAME = os.environ.get("ROUTER_GEMINI_EXTENSION", "superpowers")
 PRO = "PRO"
 FLASH = "FLASH"
@@ -101,6 +163,7 @@ COMMUNICATION_AUDIENCE_KEYWORDS = (
 DEEP_WORK_HINT_KEYWORDS = (
     "inspect",
     "check",
+    "audit",
     "examine",
     "identify",
     "compare",
@@ -344,14 +407,34 @@ DEFAULT_FLASH_EXECUTION_TIMEOUT = 6000
 DEFAULT_PRO_FINALIZER_TIMEOUT = 6000
 DEFAULT_FLASH_FINALIZER_TIMEOUT = 6000
 DEFAULT_PRO_MODEL = "google-gemini-cli/gemini-3-pro-preview"
-DEFAULT_FLASH_MODEL = "google-gemini-cli/flash"
-WARMUP_PROMPT = "Return exactly OK."
+DEFAULT_FLASH_MODEL = "google-gemini-cli/gemini-3-flash-preview"
+DEFAULT_PLANNER_MODEL = DEFAULT_PRO_MODEL
+DEFAULT_JUDGE_MODEL = DEFAULT_FLASH_MODEL
+ROUTER_PLANNER_TASK_CHAR_LIMIT_ENV_VAR = "ROUTER_PLANNER_TASK_CHAR_LIMIT"
+ROUTER_PLANNER_MAX_OUTPUT_TOKENS_ENV_VAR = "ROUTER_PLANNER_MAX_OUTPUT_TOKENS"
+ROUTER_JUDGE_CONTEXT_CHAR_LIMIT_ENV_VAR = "ROUTER_JUDGE_CONTEXT_CHAR_LIMIT"
+ROUTER_EXECUTOR_CONTEXT_CHAR_LIMIT_ENV_VAR = "ROUTER_EXECUTOR_CONTEXT_CHAR_LIMIT"
+ROUTER_METADATA_OUTPUT_CHAR_LIMIT_ENV_VAR = "ROUTER_METADATA_OUTPUT_CHAR_LIMIT"
+ROUTER_FINALIZER_CONTEXT_CHAR_LIMIT_ENV_VAR = "ROUTER_FINALIZER_CONTEXT_CHAR_LIMIT"
+DEFAULT_PLANNER_TASK_CHAR_LIMIT = 6000
+DEFAULT_PLANNER_MAX_OUTPUT_TOKENS = 4096
+DEFAULT_JUDGE_CONTEXT_CHAR_LIMIT = 3000
+DEFAULT_EXECUTOR_CONTEXT_CHAR_LIMIT = 8000
+DEFAULT_METADATA_OUTPUT_CHAR_LIMIT = 6000
+DEFAULT_FINALIZER_CONTEXT_CHAR_LIMIT = 12000
 GEMINI_PREFLIGHT_RESULTS: Dict[str, str] = {}
 GEMINI_NETWORK_PREFLIGHT_RESULT: str | None = None
+TOKEN_USAGE_RUN_ID: contextvars.ContextVar[str] = contextvars.ContextVar("TOKEN_USAGE_RUN_ID", default="")
+TOKEN_USAGE_LOCK = threading.RLock()
+TOKEN_USAGE_RECORDS_BY_RUN: Dict[str, List["TokenUsageRecord"]] = {}
+TOKEN_USAGE_ACTIVE_RUN_IDS: set[str] = set()
 
 
 class PlannedSubtask(TypedDict):
+    id: str
     desc: str
+    depends_on: List[str]
+    dependency_reason: str
 
 
 class ComplexityScores(TypedDict):
@@ -385,6 +468,47 @@ class ModelInvocationResult(TypedDict):
     attempt_log: List[str]
 
 
+class TextGenerationResult(TypedDict):
+    text: str
+    usage_metadata: Dict[str, int]
+    provider: str
+    model_name: str
+    usage_source: str
+
+
+class TokenUsageRecord(TypedDict):
+    run_id: str
+    call_index: int
+    label: str
+    provider: str
+    model_name: str
+    usage_source: str
+    input_tokens: int
+    output_tokens: int
+    total_tokens: int
+    cached_tokens: int
+    candidate_tokens: int
+    thought_tokens: int
+    tool_tokens: int
+    prompt_chars: int
+    output_chars: int
+
+
+class TokenUsageSummary(TypedDict):
+    calls: int
+    calls_with_usage: int
+    calls_without_usage: int
+    input_tokens: int
+    output_tokens: int
+    total_tokens: int
+    cached_tokens: int
+    candidate_tokens: int
+    thought_tokens: int
+    tool_tokens: int
+    by_model: Dict[str, Dict[str, int]]
+    by_provider: Dict[str, Dict[str, int]]
+
+
 class ModelInvocationState(TypedDict):
     primary_model: str
     candidates: List[str]
@@ -411,7 +535,10 @@ class FinalizerOutcome(TypedDict):
 
 
 class Subtask(TypedDict):
+    id: str
     desc: str
+    depends_on: List[str]
+    dependency_reason: str
     model: Literal["PRO", "FLASH"]
     assessment: ComplexityAssessment
 
@@ -424,6 +551,8 @@ class JudgedSubtask(TypedDict):
 
 class StepResult(TypedDict):
     step: int
+    subtask_id: str
+    depends_on: List[str]
     planned_route: Literal["PRO", "FLASH"]
     route: Literal["PRO", "FLASH"]
     model_name: str
@@ -439,6 +568,7 @@ class StepResult(TypedDict):
 
 
 class RouterState(TypedDict):
+    run_id: str
     task: str
     planner_model: str
     judge_model: str
@@ -450,6 +580,10 @@ class RouterState(TypedDict):
     planned_subtasks: List[PlannedSubtask]
     planner_raw_text: str
     planner_error: str
+    dependency_raw_text: str
+    dependency_error: str
+    dependency_issues: List[str]
+    dependency_confidence: float
     planner_warmup_attempt: int
     judge_warmup_done: bool
     subtasks: List[Subtask]
@@ -483,13 +617,18 @@ class RouterState(TypedDict):
     finalizer_error: str
     finalizer_flash_reason: str
     finalizer_invocation_result: ModelInvocationResult
+    token_usage: List[TokenUsageRecord]
+    token_usage_summary: TokenUsageSummary
 
 
 def resolve_model(explicit_value: str | None, env_name: str, fallback: str) -> str:
     if explicit_value and explicit_value.strip():
         return explicit_value.strip()
     env_value = os.environ.get(env_name, "").strip()
-    return env_value or fallback
+    if env_value:
+        return env_value
+    global_model = os.environ.get(ROUTER_MODEL_ENV_VAR, "").strip()
+    return global_model or fallback
 
 
 def resolve_execution_model(explicit_value: str | None, env_name: str, fallback: str) -> str:
@@ -576,10 +715,850 @@ def compact_text(text: str, limit: int = 160) -> str:
     return one_line[: limit - 3] + "..."
 
 
+def compact_text_middle(text: str, limit: int) -> str:
+    one_line = " ".join(text.strip().split())
+    if len(one_line) <= limit:
+        return one_line
+    if limit <= 3:
+        return one_line[:limit]
+    marker = " ... "
+    available = limit - len(marker)
+    if available <= 0:
+        return one_line[:limit]
+    head_size = max(1, available // 2)
+    tail_size = max(1, available - head_size)
+    return f"{one_line[:head_size].rstrip()}{marker}{one_line[-tail_size:].lstrip()}"
+
+
+PLANNER_RELEVANT_TASK_KEYWORDS = (
+    "must",
+    "should",
+    "need",
+    "needs",
+    "required",
+    "requirement",
+    "constraint",
+    "deliverable",
+    "output",
+    "format",
+    "table",
+    "summary",
+    "report",
+    "brief",
+    "compare",
+    "analy",
+    "debug",
+    "diagnos",
+    "fix",
+    "implement",
+    "investig",
+    "trace",
+    "optimiz",
+    "refactor",
+    "rewrite",
+    "migrate",
+    "design",
+    "component",
+    "provider",
+    "model",
+    "file",
+    "service",
+    "region",
+    "backend",
+    "risk",
+    "incident",
+    "rollback",
+    "validation",
+    "test",
+    "evidence",
+    "citation",
+    "version",
+    "metric",
+    "limit",
+    "budget",
+)
+PLANNER_CONSTRAINT_KEYWORDS = (
+    "must",
+    "should",
+    "required",
+    "requirement",
+    "constraint",
+    "preserve",
+    "do not",
+    "avoid",
+    "without",
+    "risk",
+    "rollback",
+    "security",
+    "pci",
+    "budget",
+    "deadline",
+    "slo",
+    "sla",
+    "必须",
+    "需要",
+    "要求",
+    "约束",
+    "保留",
+    "不要",
+    "避免",
+    "风险",
+    "回滚",
+    "安全",
+    "预算",
+)
+PLANNER_DELIVERABLE_KEYWORDS = (
+    "deliverable",
+    "output",
+    "return",
+    "write",
+    "summary",
+    "report",
+    "brief",
+    "table",
+    "format",
+    "final",
+    "include",
+    "artifact",
+    "产出",
+    "输出",
+    "返回",
+    "总结",
+    "报告",
+    "简报",
+    "表格",
+    "格式",
+    "最终",
+    "包含",
+)
+PLANNER_EVIDENCE_KEYWORDS = (
+    "evidence",
+    "metric",
+    "metrics",
+    "version",
+    "versions",
+    "hard limit",
+    "limit",
+    "citation",
+    "citations",
+    "file",
+    "files",
+    "command",
+    "commands",
+    "test",
+    "tests",
+    "validation",
+    "verify",
+    "logs",
+    "traces",
+    "数据",
+    "证据",
+    "指标",
+    "版本",
+    "限制",
+    "引用",
+    "文件",
+    "命令",
+    "测试",
+    "验证",
+    "日志",
+)
+PLANNER_DECOMPOSITION_HINT_KEYWORDS = (
+    "each",
+    "per",
+    "independent",
+    "component",
+    "components",
+    "provider",
+    "providers",
+    "model",
+    "models",
+    "region",
+    "regions",
+    "backend",
+    "backends",
+    "service",
+    "services",
+    "technical area",
+    "technical areas",
+    "entity",
+    "entities",
+    "每个",
+    "分别",
+    "独立",
+    "组件",
+    "提供商",
+    "模型",
+    "区域",
+    "后端",
+    "服务",
+    "技术领域",
+)
+PLANNER_ENTITY_LIST_PATTERNS = (
+    r"\b(?:across|between|among|covering|including)\s+([^.;\n]+)",
+    r"\b(?:components?|services?|providers?|models?|regions?|backends?|technical areas?|entities)\s*[:=]\s*([^.;\n]+)",
+    r"\bone\s+per\s+([^.;\n]+)",
+)
+PLANNER_ENTITY_STOPWORDS = {
+    "a",
+    "an",
+    "analyze",
+    "and",
+    "avoid",
+    "brief",
+    "do",
+    "each",
+    "final",
+    "goal",
+    "if",
+    "include",
+    "including",
+    "investigate",
+    "must",
+    "one",
+    "output",
+    "preserve",
+    "required",
+    "return",
+    "role",
+    "rules",
+    "should",
+    "summary",
+    "task",
+    "technical",
+    "the",
+    "this",
+    "with",
+}
+
+
+def split_planner_task_segments(task: str) -> List[str]:
+    segments: List[str] = []
+    for line in task.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        parts = re.split(r"(?<=[.!?])\s+", stripped)
+        for part in parts:
+            normalized = " ".join(part.strip().split())
+            if normalized:
+                segments.append(normalized)
+    return segments
+
+
+def is_planner_relevant_task_segment(segment: str) -> bool:
+    stripped = segment.strip()
+    if not stripped:
+        return False
+    lowered = stripped.lower()
+    if contains_any(lowered, PLANNER_RELEVANT_TASK_KEYWORDS):
+        return True
+    if re.search(r"^([-*+]|\d+[.)]|[A-Za-z][.)])\s+", stripped):
+        return True
+    if "`" in stripped:
+        return True
+    return bool(re.search(r"\b[A-Z][A-Za-z0-9_.:/-]{2,}\b", stripped))
+
+
+def compact_planner_relevant_segment(segment: str, limit: int) -> str:
+    return compact_text_middle(segment, limit)
+
+
+def compact_planner_task(task: str, limit: int) -> str:
+    one_line = " ".join(task.strip().split())
+    if len(one_line) <= limit:
+        return one_line
+    if limit < 240:
+        return compact_text_middle(one_line, limit)
+
+    marker = f"[planner input compacted from {len(one_line)} chars]"
+    remaining = limit - len(marker) - 2
+    if remaining < 160:
+        return compact_text_middle(one_line, limit)
+
+    head_budget = min(max(240, remaining // 4), remaining // 2)
+    tail_budget = min(max(200, remaining // 5), remaining - head_budget)
+    head = one_line[:head_budget].rstrip()
+    tail = one_line[-tail_budget:].lstrip()
+    middle_budget = remaining - len(head) - len(tail)
+
+    selected: List[str] = []
+    used = 0
+    if middle_budget > 80:
+        for segment in split_planner_task_segments(task):
+            if not is_planner_relevant_task_segment(segment):
+                continue
+            if segment in head or segment in tail:
+                continue
+            spacing = 1 if selected else 0
+            available = middle_budget - used - spacing
+            if available < 60:
+                break
+            compacted_segment = compact_planner_relevant_segment(segment, min(220, available))
+            selected.append(compacted_segment)
+            used += len(compacted_segment) + spacing
+
+    middle = " ".join(selected)
+    compacted = " ".join(part for part in (head, marker, middle, tail) if part)
+    if len(compacted) <= limit:
+        return compacted
+    return compact_text_middle(compacted, limit)
+
+
+def append_unique_planner_item(items: List[str], value: str, max_items: int, item_limit: int) -> None:
+    normalized = " ".join(value.strip().strip("`'\"-:;,.()[]{}").split())
+    if not normalized:
+        return
+    if len(normalized) < 2 or normalized.isdigit():
+        return
+    if normalized.lower() in PLANNER_ENTITY_STOPWORDS:
+        return
+    compacted = compact_text_middle(normalized, item_limit)
+    existing = {item.lower() for item in items}
+    if compacted.lower() in existing:
+        return
+    items.append(compacted)
+    if len(items) > max_items:
+        del items[max_items:]
+
+
+def split_planner_entity_list(text: str) -> List[str]:
+    normalized = re.sub(r"\b(?:and|or)\b", ",", text, flags=re.IGNORECASE)
+    normalized = normalized.replace("/", ",")
+    entities: List[str] = []
+    for raw_part in re.split(r"[,;|]", normalized):
+        part = " ".join(raw_part.strip().strip("`'\"-:;,.()[]{}").split())
+        part = re.sub(r"^(?:the|a|an)\s+", "", part, flags=re.IGNORECASE)
+        if not part:
+            continue
+        if len(part.split()) > 6:
+            continue
+        entities.append(part)
+    return entities
+
+
+def extract_planner_entities(segments: List[str], max_items: int = 24) -> List[str]:
+    entities: List[str] = []
+    for segment in segments:
+        for pattern in PLANNER_ENTITY_LIST_PATTERNS:
+            for match in re.finditer(pattern, segment, flags=re.IGNORECASE):
+                for entity in split_planner_entity_list(match.group(1)):
+                    append_unique_planner_item(entities, entity, max_items, 80)
+
+        for code_match in re.finditer(r"`([^`]{2,120})`", segment):
+            append_unique_planner_item(entities, code_match.group(1), max_items, 80)
+
+        for path_match in re.finditer(
+            r"\b(?:[\w.-]+/)+[\w./-]+|\b[\w.-]+\.(?:py|js|ts|tsx|json|ya?ml|md|sql|go|rs|java|sh|tf)\b",
+            segment,
+        ):
+            append_unique_planner_item(entities, path_match.group(0), max_items, 80)
+
+        for token_match in re.finditer(r"\b[A-Z][A-Za-z0-9]*(?:[-_./:][A-Za-z0-9]+)*\b|\b[a-z]+(?:-[a-z0-9]+)+\b", segment):
+            append_unique_planner_item(entities, token_match.group(0), max_items, 80)
+
+        if len(entities) >= max_items:
+            break
+    return entities
+
+
+def collect_planner_segments(
+    segments: List[str],
+    keywords: tuple[str, ...],
+    *,
+    max_items: int,
+    item_limit: int = 180,
+) -> List[str]:
+    collected: List[str] = []
+    for segment in segments:
+        lowered = segment.lower()
+        if contains_any(lowered, keywords):
+            append_unique_planner_item(collected, segment, max_items, item_limit)
+        if len(collected) >= max_items:
+            break
+    return collected
+
+
+def serialize_planner_manifest(manifest: Dict[str, Any]) -> str:
+    return json.dumps(manifest, ensure_ascii=False, indent=2)
+
+
+def build_planner_manifest_payload(
+    task: str,
+    source_brief_budget: int,
+    *,
+    max_entities: int = 24,
+    max_constraints: int = 10,
+    max_deliverables: int = 8,
+    max_evidence: int = 8,
+    max_decomposition_hints: int = 8,
+) -> Dict[str, Any]:
+    one_line = " ".join(task.strip().split())
+    segments = split_planner_task_segments(task)
+    objective = segments[0] if segments else one_line
+    return {
+        "original_chars": len(one_line),
+        "objective": compact_text_middle(objective, 420),
+        "entities": extract_planner_entities(segments, max_items=max_entities),
+        "constraints": collect_planner_segments(
+            segments,
+            PLANNER_CONSTRAINT_KEYWORDS,
+            max_items=max_constraints,
+        ),
+        "deliverables": collect_planner_segments(
+            segments,
+            PLANNER_DELIVERABLE_KEYWORDS,
+            max_items=max_deliverables,
+        ),
+        "evidence_requirements": collect_planner_segments(
+            segments,
+            PLANNER_EVIDENCE_KEYWORDS,
+            max_items=max_evidence,
+        ),
+        "decomposition_hints": collect_planner_segments(
+            segments,
+            PLANNER_DECOMPOSITION_HINT_KEYWORDS,
+            max_items=max_decomposition_hints,
+        ),
+        "source_brief": compact_planner_task(task, source_brief_budget),
+    }
+
+
+def build_planner_context_manifest(task: str, limit: int) -> str:
+    one_line = " ".join(task.strip().split())
+    effective_limit = max(240, limit)
+    source_brief_budget = max(80, min(2000, effective_limit // 3))
+    manifest = build_planner_manifest_payload(task, source_brief_budget)
+    serialized = serialize_planner_manifest(manifest)
+    if len(serialized) <= effective_limit:
+        return serialized
+
+    for item_count in (8, 4, 2, 1, 0):
+        source_budget = max(40, min(source_brief_budget, effective_limit // 5))
+        manifest = build_planner_manifest_payload(
+            task,
+            source_budget,
+            max_entities=max(4, item_count * 2),
+            max_constraints=item_count,
+            max_deliverables=item_count,
+            max_evidence=item_count,
+            max_decomposition_hints=item_count,
+        )
+        serialized = serialize_planner_manifest(manifest)
+        if len(serialized) <= effective_limit:
+            return serialized
+
+    minimal_manifest = {
+        "original_chars": len(one_line),
+        "objective": compact_text_middle(one_line, max(40, effective_limit // 4)),
+        "entities": [],
+        "constraints": [],
+        "deliverables": [],
+        "evidence_requirements": [],
+        "decomposition_hints": [],
+        "source_brief": compact_text_middle(one_line, max(40, effective_limit // 4)),
+    }
+    serialized = serialize_planner_manifest(minimal_manifest)
+    if len(serialized) <= effective_limit:
+        return serialized
+    return json.dumps(
+        {"source_brief": compact_text_middle(one_line, max(1, effective_limit - 24))},
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+
+
+def resolve_context_char_limit(env_name: str, fallback: int, task: str = "", subtask_desc: str = "") -> int:
+    if os.environ.get(env_name, "").strip():
+        return resolve_positive_int(None, env_name, fallback)
+    if task and is_high_risk_context(task, subtask_desc):
+        return fallback * 2
+    return fallback
+
+
+def tokenize_context_text(text: str) -> set[str]:
+    return {
+        token.lower()
+        for token in re.findall(r"[A-Za-z0-9][A-Za-z0-9_.:/-]{2,}", text)
+    }
+
+
+def prioritize_items_for_context(items: List[str], text: str, max_items: int) -> List[str]:
+    if max_items <= 0:
+        return []
+    text_lower = text.lower()
+    text_tokens = tokenize_context_text(text)
+    relevant: List[str] = []
+    remainder: List[str] = []
+    for item in items:
+        item_lower = item.lower()
+        item_tokens = tokenize_context_text(item)
+        if item_lower in text_lower or (item_tokens and item_tokens & text_tokens):
+            relevant.append(item)
+        else:
+            remainder.append(item)
+    return (relevant + remainder)[:max_items]
+
+
+def matched_context_keywords(text: str, keywords: tuple[str, ...], max_items: int = 12) -> List[str]:
+    lowered = text.lower()
+    matched: List[str] = []
+    for keyword in keywords:
+        if keyword in lowered and keyword not in matched:
+            matched.append(keyword)
+        if len(matched) >= max_items:
+            break
+    return matched
+
+
+def serialize_context_payload(payload: Dict[str, Any]) -> str:
+    return json.dumps(payload, ensure_ascii=False, indent=2)
+
+
+def build_task_context_payload(
+    task: str,
+    subtask_desc: str = "",
+    *,
+    source_brief_budget: int,
+    max_entities: int = 24,
+    max_constraints: int = 10,
+    max_deliverables: int = 8,
+    max_evidence: int = 8,
+    max_decomposition_hints: int = 8,
+) -> Dict[str, Any]:
+    manifest = build_planner_manifest_payload(
+        task,
+        source_brief_budget,
+        max_entities=max(max_entities, 24),
+        max_constraints=max_constraints,
+        max_deliverables=max_deliverables,
+        max_evidence=max_evidence,
+        max_decomposition_hints=max_decomposition_hints,
+    )
+    context_text = f"{task}\n{subtask_desc}"
+    payload: Dict[str, Any] = {
+        "original_chars": manifest["original_chars"],
+        "objective": manifest["objective"],
+    }
+    if subtask_desc:
+        payload["subtask"] = compact_text_middle(subtask_desc, 420)
+    payload.update(
+        {
+            "entities": prioritize_items_for_context(
+                manifest["entities"],
+                subtask_desc or task,
+                max_entities,
+            ),
+            "constraints": manifest["constraints"][:max_constraints],
+            "deliverables": manifest["deliverables"][:max_deliverables],
+            "evidence_requirements": manifest["evidence_requirements"][:max_evidence],
+            "decomposition_hints": manifest["decomposition_hints"][:max_decomposition_hints],
+            "risk_context": {
+                "high_risk": is_high_risk_context(task, subtask_desc),
+                "matched_keywords": matched_context_keywords(context_text, HIGH_RISK_CONTEXT_KEYWORDS),
+            },
+            "source_brief": manifest["source_brief"],
+        }
+    )
+    return payload
+
+
+def build_task_context_pack_json(task: str, subtask_desc: str, limit: int) -> str:
+    effective_limit = max(240, limit)
+    source_brief_budget = max(80, min(2000, effective_limit // 3))
+    for item_count in (12, 8, 4, 2, 1):
+        payload = build_task_context_payload(
+            task,
+            subtask_desc,
+            source_brief_budget=source_brief_budget,
+            max_entities=max(4, item_count * 2),
+            max_constraints=item_count,
+            max_deliverables=item_count,
+            max_evidence=item_count,
+            max_decomposition_hints=item_count,
+        )
+        serialized = serialize_context_payload(payload)
+        if len(serialized) <= effective_limit:
+            return serialized
+        source_brief_budget = max(40, source_brief_budget // 2)
+    return serialize_context_payload(
+        build_task_context_payload(
+            task,
+            subtask_desc,
+            source_brief_budget=max(40, effective_limit // 8),
+            max_entities=2,
+            max_constraints=1,
+            max_deliverables=1,
+            max_evidence=1,
+            max_decomposition_hints=1,
+        )
+    )
+
+
+def build_judge_context_pack_json(task: str, subtask_desc: str) -> str:
+    limit = resolve_context_char_limit(
+        ROUTER_JUDGE_CONTEXT_CHAR_LIMIT_ENV_VAR,
+        DEFAULT_JUDGE_CONTEXT_CHAR_LIMIT,
+        task,
+        subtask_desc,
+    )
+    return build_task_context_pack_json(task, subtask_desc, limit)
+
+
+def compact_step_result_for_context(result: StepResult, output_limit: int) -> Dict[str, Any]:
+    return {
+        "step": result["step"],
+        "subtask_id": result.get("subtask_id", ""),
+        "depends_on": list(result.get("depends_on", [])),
+        "planned_route": result["planned_route"],
+        "actual_route": result["route"],
+        "model_name": result["model_name"],
+        "status": result["status"],
+        "desc": compact_text_middle(result["desc"], 220),
+        "output_excerpt": compact_text_middle(result["output"], output_limit) if output_limit > 0 else "",
+        "attempt_count": result["attempt_count"],
+        "retry_count": result["retry_count"],
+        "escalated_from_flash": result["escalated_from_flash"],
+        "used_provider_fallback": result["used_provider_fallback"],
+    }
+
+
+def build_executor_context_payload(
+    state: RouterState,
+    route: Literal["PRO", "FLASH"],
+    *,
+    source_brief_budget: int,
+    prior_output_limit: int,
+    max_prior_results: int,
+    item_count: int,
+) -> Dict[str, Any]:
+    subtask_desc = str(state["active_subtask"].get("desc", "N/A"))
+    assessment = state["active_subtask"].get("assessment") or {}
+    prior_results = state["results"][-max_prior_results:] if max_prior_results > 0 else []
+    payload: Dict[str, Any] = {
+        "task_context": build_task_context_payload(
+            state["task"],
+            subtask_desc,
+            source_brief_budget=source_brief_budget,
+            max_entities=max(4, item_count * 2),
+            max_constraints=item_count,
+            max_deliverables=item_count,
+            max_evidence=item_count,
+            max_decomposition_hints=item_count,
+        ),
+        "routing": {
+            "route": route,
+            "score": assessment.get("complexity_score", "N/A"),
+            "confidence": assessment.get("confidence", "N/A"),
+            "reason": str(assessment.get("reason", "N/A")),
+        },
+        "dependency_context": {
+            "subtask_id": state["active_subtask"].get("id", ""),
+            "depends_on": list(state["active_subtask"].get("depends_on", [])),
+            "dependency_reason": str(state["active_subtask"].get("dependency_reason", "")),
+            "prior_results_are_direct_dependencies": True,
+        },
+        "prior_results": [
+            compact_step_result_for_context(result, prior_output_limit)
+            for result in prior_results
+        ],
+        "response_contract": "Return only the result for the current subtask. No markdown fences.",
+    }
+    if route == PRO and state["active_escalated_from_flash"]:
+        flash_review = state["active_flash_review"]
+        payload["escalation"] = {
+            "from": FLASH,
+            "to": PRO,
+            "failure_type": flash_review["failure_type"],
+            "retries": state["active_retry_count"],
+            "reason": flash_review["reason"],
+        }
+    return payload
+
+
+def build_executor_context_pack_json(state: RouterState, route: Literal["PRO", "FLASH"]) -> str:
+    subtask_desc = str(state["active_subtask"].get("desc", ""))
+    limit = resolve_context_char_limit(
+        ROUTER_EXECUTOR_CONTEXT_CHAR_LIMIT_ENV_VAR,
+        DEFAULT_EXECUTOR_CONTEXT_CHAR_LIMIT,
+        state["task"],
+        subtask_desc,
+    )
+    effective_limit = max(480, limit)
+    source_brief_budget = max(120, min(3000, effective_limit // 3))
+    max_prior = len(state["results"])
+    for item_count, prior_limit, prior_count in (
+        (12, 320, max_prior),
+        (8, 220, min(max_prior, 8)),
+        (4, 140, min(max_prior, 4)),
+        (2, 80, min(max_prior, 2)),
+        (1, 0, 0),
+    ):
+        payload = build_executor_context_payload(
+            state,
+            route,
+            source_brief_budget=source_brief_budget,
+            prior_output_limit=prior_limit,
+            max_prior_results=prior_count,
+            item_count=item_count,
+        )
+        serialized = serialize_context_payload(payload)
+        if len(serialized) <= effective_limit:
+            return serialized
+        source_brief_budget = max(60, source_brief_budget // 2)
+    return serialize_context_payload(
+        build_executor_context_payload(
+            state,
+            route,
+            source_brief_budget=60,
+            prior_output_limit=0,
+            max_prior_results=0,
+            item_count=1,
+        )
+    )
+
+
+def build_metadata_context_pack_json(state: RouterState, result: StepResult, output: str) -> str:
+    limit = resolve_context_char_limit(
+        ROUTER_METADATA_OUTPUT_CHAR_LIMIT_ENV_VAR,
+        DEFAULT_METADATA_OUTPUT_CHAR_LIMIT,
+        state["task"],
+        result["desc"],
+    )
+    effective_limit = max(480, limit)
+    output_budget = max(120, min(effective_limit // 2, DEFAULT_METADATA_OUTPUT_CHAR_LIMIT))
+    for item_count in (8, 4, 2, 1):
+        payload = {
+            "task_context": build_task_context_payload(
+                state["task"],
+                result["desc"],
+                source_brief_budget=max(80, effective_limit // 5),
+                max_entities=max(4, item_count * 2),
+                max_constraints=item_count,
+                max_deliverables=item_count,
+                max_evidence=item_count,
+                max_decomposition_hints=item_count,
+            ),
+            "result": compact_step_result_for_context(result, 0),
+            "output_excerpt": compact_text_middle(output, output_budget),
+            "extraction_schema": [
+                "architectural_decisions",
+                "library_or_tool_choices",
+                "critical_logic_or_algorithm_details",
+                "tradeoffs",
+                "verified_results",
+            ],
+        }
+        serialized = serialize_context_payload(payload)
+        if len(serialized) <= effective_limit:
+            return serialized
+        output_budget = max(80, output_budget // 2)
+    return serialize_context_payload(
+        {
+            "task_context": build_task_context_payload(
+                state["task"],
+                result["desc"],
+                source_brief_budget=40,
+                max_entities=4,
+                max_constraints=1,
+                max_deliverables=1,
+                max_evidence=1,
+                max_decomposition_hints=1,
+            ),
+            "result": compact_step_result_for_context(result, 0),
+            "output_excerpt": compact_text_middle(output, max(80, effective_limit // 4)),
+        }
+    )
+
+
+def build_finalizer_context_payload(
+    state: RouterState,
+    route: Literal["PRO", "FLASH"],
+    *,
+    source_brief_budget: int,
+    result_output_limit: int,
+    max_results: int,
+    metadata_limit: int,
+    item_count: int,
+) -> Dict[str, Any]:
+    metadata_blocks = [line for line in state["history"] if "TECHNICAL METADATA STEP" in line]
+    results = state["results"][-max_results:] if max_results > 0 else []
+    return {
+        "task_context": build_task_context_payload(
+            state["task"],
+            "",
+            source_brief_budget=source_brief_budget,
+            max_entities=max(4, item_count * 2),
+            max_constraints=item_count,
+            max_deliverables=item_count,
+            max_evidence=item_count,
+            max_decomposition_hints=item_count,
+        ),
+        "models": {
+            "planner": state["planner_model"],
+            "judge": state["judge_model"],
+            "finalizer_route": route,
+        },
+        "technical_metadata": [
+            compact_text_middle(block, metadata_limit) for block in metadata_blocks
+        ] or ["No technical metadata extracted."],
+        "execution_results": [
+            compact_step_result_for_context(result, result_output_limit)
+            for result in results
+        ],
+        "required_sections": ["Routing Summary", "Step Outcomes", "Next Action"],
+    }
+
+
+def build_finalizer_context_pack_json(state: RouterState, route: Literal["PRO", "FLASH"]) -> str:
+    limit = resolve_context_char_limit(
+        ROUTER_FINALIZER_CONTEXT_CHAR_LIMIT_ENV_VAR,
+        DEFAULT_FINALIZER_CONTEXT_CHAR_LIMIT,
+        state["task"],
+        "",
+    )
+    effective_limit = max(800, limit)
+    max_results = len(state["results"])
+    source_brief_budget = max(160, min(3000, effective_limit // 4))
+    for item_count, result_limit, result_count, metadata_limit in (
+        (12, 360, max_results, 900),
+        (8, 240, min(max_results, 12), 600),
+        (4, 160, min(max_results, 8), 420),
+        (2, 80, min(max_results, 4), 240),
+        (1, 0, min(max_results, 2), 160),
+    ):
+        payload = build_finalizer_context_payload(
+            state,
+            route,
+            source_brief_budget=source_brief_budget,
+            result_output_limit=result_limit,
+            max_results=result_count,
+            metadata_limit=metadata_limit,
+            item_count=item_count,
+        )
+        serialized = serialize_context_payload(payload)
+        if len(serialized) <= effective_limit:
+            return serialized
+        source_brief_budget = max(80, source_brief_budget // 2)
+    return serialize_context_payload(
+        build_finalizer_context_payload(
+            state,
+            route,
+            source_brief_budget=80,
+            result_output_limit=0,
+            max_results=min(max_results, 1),
+            metadata_limit=120,
+            item_count=1,
+        )
+    )
+
+
 def normalize_model_name(model: str) -> str:
     normalized = model.strip()
-    if normalized.startswith("google-gemini-cli/"):
-        normalized = normalized.split("/", 1)[1]
+    for prefix in ("google-gemini-cli/", "codex/", "ollama/", "claude/"):
+        if normalized.startswith(prefix):
+            normalized = normalized.split("/", 1)[1]
+            break
     return normalized
 
 
@@ -865,6 +1844,7 @@ def model_invoke_node(state: ModelInvocationState) -> Dict[str, Any]:
             timeout=state["timeout"],
             num_predict=state["num_predict"],
             temperature=state["temperature"],
+            usage_label=state["label"],
         )
         log.append(f"{state['label']} succeeded with model {model_name}.")
         return {
@@ -1080,7 +2060,7 @@ def decide_route(
 
     if summary_like and not deep_work_hint:
         return FLASH
-    if summary_like and scores["io_heaviness"] >= 1 and scores["code_change_scope"] <= 1 and scores["risk"] <= 1:
+    if summary_like and not deep_work_hint and scores["io_heaviness"] >= 1 and scores["code_change_scope"] <= 1 and scores["risk"] <= 1:
         return FLASH
     if high_risk_core_step:
         return PRO
@@ -1109,8 +2089,726 @@ def decide_route(
 
 
 def is_gemini_model(model: str) -> bool:
+    raw = model.strip().lower()
+    if raw.startswith(("codex/", "ollama/", "claude/")):
+        return False
+    if raw.startswith("google-gemini-cli/"):
+        return True
     normalized = normalize_model_name(model)
     return normalized in {"auto", "pro", "flash", "flash-lite"} or normalized.startswith("gemini-")
+
+
+def is_codex_model(model: str) -> bool:
+    raw = model.strip().lower()
+    if raw.startswith(("google-gemini-cli/", "ollama/", "claude/")):
+        return False
+    normalized = normalize_model_name(model).lower()
+    if raw.startswith("codex/"):
+        return True
+    if ":" in normalized:
+        return False
+    return (
+        normalized.startswith("gpt-")
+        or normalized.startswith("chatgpt-")
+        or re.match(r"^o\d(?:[-.].*)?$", normalized) is not None
+    )
+
+
+def is_claude_model(model: str) -> bool:
+    raw = model.strip().lower()
+    if raw.startswith(("google-gemini-cli/", "codex/", "ollama/")):
+        return False
+    if raw.startswith("claude/"):
+        return True
+    normalized = normalize_model_name(model).lower()
+    return normalized.startswith("claude-")
+
+
+def model_transport_name(model: str) -> str:
+    if is_claude_model(model):
+        return "claude_cli"
+    if is_gemini_model(model):
+        return "gemini_cli"
+    if is_codex_model(model):
+        return "codex_cli"
+    return "ollama_http"
+
+
+def langsmith_provider_name(model: str) -> str:
+    if is_claude_model(model):
+        return "anthropic"
+    if is_gemini_model(model):
+        return "google_genai"
+    if is_codex_model(model):
+        return "codex"
+    return "ollama"
+
+
+def build_text_generation_result(
+    text: str,
+    usage_metadata: Dict[str, int] | None,
+    provider: str,
+    model_name: str,
+    usage_source: str = "unavailable",
+) -> TextGenerationResult:
+    return {
+        "text": text,
+        "usage_metadata": usage_metadata or {},
+        "provider": provider,
+        "model_name": model_name,
+        "usage_source": usage_source if usage_metadata else "unavailable",
+    }
+
+
+def coerce_non_negative_int(value: Any) -> int | None:
+    if value is None or value == "":
+        return None
+    try:
+        parsed = int(float(str(value).strip()))
+    except (TypeError, ValueError):
+        return None
+    if parsed < 0:
+        return None
+    return parsed
+
+
+def normalize_usage_metadata(
+    *,
+    input_tokens: Any = None,
+    output_tokens: Any = None,
+    total_tokens: Any = None,
+    cached_tokens: Any = None,
+    thought_tokens: Any = None,
+    tool_tokens: Any = None,
+    candidates_tokens: Any = None,
+) -> Dict[str, int]:
+    input_count = coerce_non_negative_int(input_tokens)
+    output_count = coerce_non_negative_int(output_tokens)
+    candidates_count = coerce_non_negative_int(candidates_tokens)
+    thought_count = coerce_non_negative_int(thought_tokens)
+    total_count = coerce_non_negative_int(total_tokens)
+    cached_count = coerce_non_negative_int(cached_tokens)
+    tool_count = coerce_non_negative_int(tool_tokens)
+    if output_count is None and (candidates_count is not None or thought_count is not None):
+        output_count = (candidates_count or 0) + (thought_count or 0)
+    if total_count is None and input_count is not None and output_count is not None:
+        total_count = input_count + output_count + (tool_count or 0)
+    if output_count is None and total_count is not None and input_count is not None:
+        output_count = max(0, total_count - input_count)
+    if input_count is None and total_count is not None and output_count is not None:
+        input_count = max(0, total_count - output_count)
+
+    usage: Dict[str, int] = {}
+    if input_count is not None:
+        usage["input_tokens"] = input_count
+    if output_count is not None:
+        usage["output_tokens"] = output_count
+    if total_count is not None:
+        usage["total_tokens"] = total_count
+    if cached_count is not None:
+        usage["cached_tokens"] = cached_count
+    if thought_count is not None:
+        usage["thought_tokens"] = thought_count
+    if tool_count is not None:
+        usage["tool_tokens"] = tool_count
+    if candidates_count is not None:
+        usage["candidate_tokens"] = candidates_count
+    return usage
+
+
+def extract_ollama_usage_metadata(data: Dict[str, Any]) -> Dict[str, int]:
+    return normalize_usage_metadata(
+        input_tokens=data.get("prompt_eval_count"),
+        output_tokens=data.get("eval_count"),
+    )
+
+
+def extract_gemini_cli_stats_usage_metadata(payload: Any) -> Dict[str, int]:
+    if not isinstance(payload, dict):
+        return {}
+    stats = payload.get("stats")
+    if not isinstance(stats, dict):
+        return {}
+    models = stats.get("models")
+    if not isinstance(models, dict):
+        return {}
+
+    totals = {
+        "prompt": 0,
+        "candidates": 0,
+        "total": 0,
+        "cached": 0,
+        "thoughts": 0,
+        "tool": 0,
+    }
+    saw_tokens = False
+    for model_stats in models.values():
+        if not isinstance(model_stats, dict):
+            continue
+        tokens = model_stats.get("tokens")
+        if not isinstance(tokens, dict):
+            continue
+        token_values: Dict[str, int] = {}
+        for key in totals:
+            value = coerce_non_negative_int(tokens.get(key))
+            if value is not None:
+                token_values[key] = value
+        if not token_values:
+            continue
+        saw_tokens = True
+        for key, value in token_values.items():
+            totals[key] += value
+
+    if not saw_tokens:
+        return {}
+    return normalize_usage_metadata(
+        input_tokens=totals["prompt"],
+        candidates_tokens=totals["candidates"],
+        total_tokens=totals["total"],
+        cached_tokens=totals["cached"],
+        thought_tokens=totals["thoughts"],
+        tool_tokens=totals["tool"],
+    )
+
+
+def first_present_value(data: Dict[str, Any], keys: tuple[str, ...]) -> Any:
+    for key in keys:
+        if key in data:
+            return data[key]
+    return None
+
+
+def extract_usage_metadata_from_mapping(data: Dict[str, Any]) -> Dict[str, int]:
+    return normalize_usage_metadata(
+        input_tokens=first_present_value(
+            data,
+            (
+                "input_tokens",
+                "prompt_tokens",
+                "prompt_token_count",
+                "promptTokenCount",
+            ),
+        ),
+        output_tokens=first_present_value(
+            data,
+            (
+                "output_tokens",
+                "completion_tokens",
+                "completion_token_count",
+                "completionTokenCount",
+            ),
+        ),
+        candidates_tokens=first_present_value(
+            data,
+            (
+                "candidate_tokens",
+                "candidates_tokens",
+                "candidates_token_count",
+                "candidatesTokenCount",
+            ),
+        ),
+        total_tokens=first_present_value(
+            data,
+            (
+                "total_tokens",
+                "total_token_count",
+                "totalTokenCount",
+            ),
+        ),
+        cached_tokens=first_present_value(
+            data,
+            (
+                "cached_tokens",
+                "cached_token_count",
+                "cachedContentTokenCount",
+                "cached_content_token_count",
+            ),
+        ),
+        thought_tokens=first_present_value(
+            data,
+            (
+                "thought_tokens",
+                "thoughts_token_count",
+                "thoughtsTokenCount",
+                "thinking_tokens",
+            ),
+        ),
+        tool_tokens=first_present_value(
+            data,
+            (
+                "tool_tokens",
+                "tool_token_count",
+                "toolUsePromptTokenCount",
+                "tool_use_prompt_token_count",
+            ),
+        ),
+    )
+
+
+def extract_nested_gemini_usage_metadata(payload: Any) -> Dict[str, int]:
+    candidates: List[Dict[str, Any]] = []
+
+    def visit(value: Any) -> None:
+        if isinstance(value, dict):
+            for usage_key in ("usage_metadata", "usageMetadata", "usage"):
+                usage_value = value.get(usage_key)
+                if isinstance(usage_value, dict):
+                    candidates.append(usage_value)
+            if extract_usage_metadata_from_mapping(value):
+                candidates.append(value)
+            for nested_value in value.values():
+                visit(nested_value)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(payload)
+    for candidate in candidates:
+        usage = extract_usage_metadata_from_mapping(candidate)
+        if usage:
+            return usage
+    return {}
+
+
+def extract_gemini_usage_metadata_with_source(payload: Any) -> tuple[Dict[str, int], str]:
+    cli_stats_usage = extract_gemini_cli_stats_usage_metadata(payload)
+    if cli_stats_usage:
+        return cli_stats_usage, "gemini_cli_stats"
+    nested_usage = extract_nested_gemini_usage_metadata(payload)
+    if nested_usage:
+        return nested_usage, "usage_metadata"
+    return {}, "unavailable"
+
+
+def extract_gemini_usage_metadata(payload: Any) -> Dict[str, int]:
+    usage, _ = extract_gemini_usage_metadata_with_source(payload)
+    return usage
+
+
+def annotate_langsmith_model_run(
+    *,
+    model: str,
+    provider: str,
+    num_predict: int,
+    temperature: float,
+) -> None:
+    if _langsmith is None or not langsmith_tracing_configured():
+        return
+    get_current_run_tree = getattr(_langsmith, "get_current_run_tree", None)
+    if get_current_run_tree is None:
+        return
+    try:
+        run_tree = get_current_run_tree()
+    except Exception:
+        return
+    if run_tree is None:
+        return
+    try:
+        run_tree.add_metadata(
+            {
+                "ls_provider": provider,
+                "ls_model_name": normalize_model_name(model),
+                "ls_temperature": temperature,
+                "ls_max_tokens": num_predict,
+                "ls_invocation_params": {
+                    "model": normalize_model_name(model),
+                    "raw_model": model,
+                    "provider": provider,
+                },
+            }
+        )
+    except Exception:
+        return
+
+
+def resolve_bool_value(value: str | None, fallback: bool = False) -> bool:
+    if value is None or not str(value).strip():
+        return fallback
+    return str(value).strip().lower() in {"1", "true", "yes", "on", "debug"}
+
+
+def langsmith_tracing_requested() -> bool:
+    router_value = os.environ.get(ROUTER_LANGSMITH_ENABLED_ENV_VAR)
+    if router_value is not None and router_value.strip():
+        return resolve_bool_value(router_value)
+    for env_name in ("LANGSMITH_TRACING", "LANGCHAIN_TRACING_V2"):
+        env_value = os.environ.get(env_name)
+        if env_value is not None and env_value.strip():
+            return resolve_bool_value(env_value)
+    return False
+
+
+def langsmith_tracing_forced_disabled() -> bool:
+    router_value = os.environ.get(ROUTER_LANGSMITH_ENABLED_ENV_VAR)
+    return router_value is not None and router_value.strip() and not resolve_bool_value(router_value)
+
+
+def langsmith_api_key_configured() -> bool:
+    return bool(
+        os.environ.get("LANGSMITH_API_KEY", "").strip()
+        or os.environ.get("LANGCHAIN_API_KEY", "").strip()
+    )
+
+
+def langsmith_tracing_configured() -> bool:
+    return _langsmith is not None and langsmith_tracing_requested() and langsmith_api_key_configured()
+
+
+def langsmith_project_name() -> str:
+    return (
+        os.environ.get(ROUTER_LANGSMITH_PROJECT_ENV_VAR, "").strip()
+        or os.environ.get("LANGSMITH_PROJECT", "").strip()
+        or "super-router"
+    )
+
+
+def parse_langsmith_tags() -> List[str]:
+    tags = ["super-router", "langgraph"]
+    raw_tags = os.environ.get(ROUTER_LANGSMITH_TAGS_ENV_VAR, "")
+    for raw_tag in raw_tags.split(","):
+        tag = raw_tag.strip()
+        if tag and tag not in tags:
+            tags.append(tag)
+    return tags
+
+
+def build_langsmith_metadata(state: RouterState) -> Dict[str, Any]:
+    return {
+        "component": "super-router",
+        "run_id": state["run_id"],
+        "planner_model": state["planner_model"],
+        "judge_model": state["judge_model"],
+        "pro_model": state["pro_model"],
+        "flash_model": state["flash_model"],
+        "pro_fallback_count": len(state["pro_fallback_models"]),
+        "flash_fallback_count": len(state["flash_fallback_models"]),
+        "flash_retry_budget": state["flash_retry_budget"],
+        "task_chars": len(state["task"]),
+    }
+
+
+def process_langsmith_model_inputs(inputs: Dict[str, Any]) -> Dict[str, Any]:
+    if resolve_bool("ROUTER_LANGSMITH_HIDE_INPUTS"):
+        return {}
+    args = inputs.get("args")
+    if not isinstance(args, (list, tuple)):
+        args = []
+    model = str(inputs.get("model") or (args[0] if len(args) > 0 else ""))
+    prompt = str(inputs.get("prompt") or (args[1] if len(args) > 1 else ""))
+    processed: Dict[str, Any] = {
+        "model": model,
+        "provider": langsmith_provider_name(model),
+        "transport": model_transport_name(model),
+        "timeout": inputs.get("timeout"),
+        "num_predict": inputs.get("num_predict"),
+        "temperature": inputs.get("temperature"),
+        "usage_label": inputs.get("usage_label", ""),
+        "prompt_chars": len(prompt),
+    }
+    if resolve_bool("ROUTER_LANGSMITH_TRACE_PROMPTS"):
+        processed["prompt_preview"] = compact_text(prompt, 1000)
+    return processed
+
+
+def process_langsmith_model_outputs(output: Any) -> Dict[str, Any]:
+    output_text = str(output.get("text", "")) if isinstance(output, dict) else str(output or "")
+    usage_metadata = (
+        output.get("usage_metadata", {})
+        if isinstance(output, dict) and isinstance(output.get("usage_metadata"), dict)
+        else {}
+    )
+    usage_source = str(output.get("usage_source", "")) if isinstance(output, dict) else ""
+    if resolve_bool("ROUTER_LANGSMITH_HIDE_OUTPUTS"):
+        processed_hidden: Dict[str, Any] = {}
+        if usage_metadata:
+            processed_hidden["usage_metadata"] = usage_metadata
+        if usage_source:
+            processed_hidden["usage_source"] = usage_source
+        return processed_hidden
+    processed: Dict[str, Any] = {"output_chars": len(output_text)}
+    if usage_metadata:
+        processed["usage_metadata"] = usage_metadata
+    if usage_source:
+        processed["usage_source"] = usage_source
+    if resolve_bool("ROUTER_LANGSMITH_TRACE_OUTPUTS"):
+        processed["output_preview"] = compact_text(output_text, 1000)
+    return processed
+
+
+def create_langsmith_client() -> Any | None:
+    if _langsmith is None:
+        return None
+    client_cls = getattr(_langsmith, "Client", None)
+    if client_cls is None:
+        return None
+    kwargs: Dict[str, Any] = {}
+    api_key = os.environ.get("LANGSMITH_API_KEY", "").strip() or os.environ.get("LANGCHAIN_API_KEY", "").strip()
+    endpoint = os.environ.get("LANGSMITH_ENDPOINT", "").strip() or os.environ.get("LANGCHAIN_ENDPOINT", "").strip()
+    workspace_id = os.environ.get("LANGSMITH_WORKSPACE_ID", "").strip()
+    if api_key:
+        kwargs["api_key"] = api_key
+    if endpoint:
+        kwargs["api_url"] = endpoint
+    if workspace_id:
+        kwargs["workspace_id"] = workspace_id
+    if resolve_bool("ROUTER_LANGSMITH_HIDE_INPUTS"):
+        kwargs["hide_inputs"] = True
+    if resolve_bool("ROUTER_LANGSMITH_HIDE_OUTPUTS"):
+        kwargs["hide_outputs"] = True
+    try:
+        return client_cls(**kwargs)
+    except Exception as exc:
+        print(f"[LangSmith] Failed to initialize client; continuing without telemetry: {compact_text(str(exc), 220)}")
+        return None
+
+
+@contextlib.contextmanager
+def langsmith_tracing_context(state: RouterState) -> Iterator[None]:
+    if langsmith_tracing_forced_disabled():
+        tracing_context = getattr(_langsmith, "tracing_context", None) if _langsmith is not None else None
+        if tracing_context is None:
+            yield
+        else:
+            with tracing_context(enabled=False):
+                yield
+        return
+    if not langsmith_tracing_requested():
+        yield
+        return
+    if _langsmith is None:
+        print("[LangSmith] Telemetry requested but the langsmith package is unavailable; continuing without tracing.")
+        yield
+        return
+    tracing_context = getattr(_langsmith, "tracing_context", None)
+    if tracing_context is None:
+        print("[LangSmith] Telemetry requested but tracing_context is unavailable; continuing without tracing.")
+        yield
+        return
+    if not langsmith_api_key_configured():
+        print("[LangSmith] Telemetry requested but LANGSMITH_API_KEY is not set; continuing without tracing.")
+        with tracing_context(enabled=False):
+            yield
+        return
+
+    client = create_langsmith_client()
+    context_kwargs: Dict[str, Any] = {
+        "enabled": True,
+        "project_name": langsmith_project_name(),
+        "tags": parse_langsmith_tags(),
+        "metadata": build_langsmith_metadata(state),
+    }
+    if client is not None:
+        context_kwargs["client"] = client
+    try:
+        with tracing_context(**context_kwargs):
+            yield
+    finally:
+        if client is not None and resolve_bool("ROUTER_LANGSMITH_FLUSH", True):
+            try:
+                client.flush()
+            except Exception as exc:
+                print(f"[LangSmith] Failed to flush traces: {compact_text(str(exc), 220)}")
+
+
+def empty_token_usage_summary() -> TokenUsageSummary:
+    return {
+        "calls": 0,
+        "calls_with_usage": 0,
+        "calls_without_usage": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "candidate_tokens": 0,
+        "thought_tokens": 0,
+        "tool_tokens": 0,
+        "by_model": {},
+        "by_provider": {},
+    }
+
+
+def current_token_usage_run_id() -> str:
+    run_id = TOKEN_USAGE_RUN_ID.get("")
+    if run_id:
+        return run_id
+    with TOKEN_USAGE_LOCK:
+        if len(TOKEN_USAGE_ACTIVE_RUN_IDS) == 1:
+            return next(iter(TOKEN_USAGE_ACTIVE_RUN_IDS))
+    return ""
+
+
+@contextlib.contextmanager
+def token_usage_tracking_context(run_id: str) -> Iterator[None]:
+    token = TOKEN_USAGE_RUN_ID.set(run_id)
+    with TOKEN_USAGE_LOCK:
+        TOKEN_USAGE_RECORDS_BY_RUN[run_id] = []
+        TOKEN_USAGE_ACTIVE_RUN_IDS.add(run_id)
+    try:
+        yield
+    finally:
+        TOKEN_USAGE_RUN_ID.reset(token)
+        with TOKEN_USAGE_LOCK:
+            TOKEN_USAGE_ACTIVE_RUN_IDS.discard(run_id)
+
+
+def get_token_usage_records(run_id: str) -> List[TokenUsageRecord]:
+    with TOKEN_USAGE_LOCK:
+        return list(TOKEN_USAGE_RECORDS_BY_RUN.get(run_id, []))
+
+
+def resolve_token_usage_ledger_path() -> str:
+    return os.path.expanduser(os.environ.get(ROUTER_TOKEN_USAGE_LEDGER_ENV_VAR, "").strip())
+
+
+def persist_token_usage_ledger(
+    records: List[TokenUsageRecord],
+    summary: TokenUsageSummary,
+    *,
+    state: RouterState,
+) -> str:
+    ledger_path = resolve_token_usage_ledger_path()
+    if not ledger_path or not records:
+        return ""
+
+    timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    ledger_dir = os.path.dirname(ledger_path)
+    if ledger_dir:
+        os.makedirs(ledger_dir, exist_ok=True)
+
+    base_event = {
+        "event": "token_usage",
+        "schema_version": 1,
+        "timestamp": timestamp,
+        "run_id": state["run_id"],
+        "task_chars": len(state["task"]),
+        "status": state["status"],
+        "planner_model": state["planner_model"],
+        "judge_model": state["judge_model"],
+        "pro_model": state["pro_model"],
+        "flash_model": state["flash_model"],
+        "summary": summary,
+    }
+    with open(ledger_path, "a", encoding="utf-8") as ledger_file:
+        for record in records:
+            event = dict(base_event)
+            event["record"] = record
+            ledger_file.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+    return ledger_path
+
+
+def metric_value(record: TokenUsageRecord, key: str) -> int:
+    return int(record.get(key, 0) or 0)
+
+
+def add_usage_to_bucket(bucket: Dict[str, int], record: TokenUsageRecord) -> None:
+    bucket["calls"] = bucket.get("calls", 0) + 1
+    if metric_value(record, "total_tokens") > 0:
+        bucket["calls_with_usage"] = bucket.get("calls_with_usage", 0) + 1
+    else:
+        bucket["calls_without_usage"] = bucket.get("calls_without_usage", 0) + 1
+    for key in (
+        "input_tokens",
+        "output_tokens",
+        "total_tokens",
+        "cached_tokens",
+        "candidate_tokens",
+        "thought_tokens",
+        "tool_tokens",
+    ):
+        bucket[key] = bucket.get(key, 0) + metric_value(record, key)
+
+
+def summarize_token_usage_records(records: List[TokenUsageRecord]) -> TokenUsageSummary:
+    summary = empty_token_usage_summary()
+    for record in records:
+        add_usage_to_bucket(summary, record)
+        model_name = record["model_name"] or "unknown"
+        provider = record["provider"] or "unknown"
+        model_bucket = summary["by_model"].setdefault(model_name, {})
+        provider_bucket = summary["by_provider"].setdefault(provider, {})
+        add_usage_to_bucket(model_bucket, record)
+        add_usage_to_bucket(provider_bucket, record)
+    return summary
+
+
+def format_int(value: int) -> str:
+    return f"{value:,}"
+
+
+def format_token_usage_summary(summary: TokenUsageSummary) -> str:
+    if summary["calls"] == 0:
+        return "Token Usage Summary\n- Calls: 0 (no provider token usage captured)."
+    lines = [
+        "Token Usage Summary",
+        (
+            f"- Calls: {summary['calls']} "
+            f"({summary['calls_with_usage']} with token counts, "
+            f"{summary['calls_without_usage']} unavailable)"
+        ),
+        (
+            "- Tokens: "
+            f"input={format_int(summary['input_tokens'])}, "
+            f"output={format_int(summary['output_tokens'])}, "
+            f"total={format_int(summary['total_tokens'])}"
+        ),
+    ]
+    extras: List[str] = []
+    if summary["cached_tokens"]:
+        extras.append(f"cached={format_int(summary['cached_tokens'])}")
+    if summary["candidate_tokens"]:
+        extras.append(f"candidates={format_int(summary['candidate_tokens'])}")
+    if summary["thought_tokens"]:
+        extras.append(f"thoughts={format_int(summary['thought_tokens'])}")
+    if summary["tool_tokens"]:
+        extras.append(f"tool={format_int(summary['tool_tokens'])}")
+    if extras:
+        lines.append("- Extra tokens: " + ", ".join(extras))
+    if summary["by_model"]:
+        lines.append("- By model:")
+        for model_name, bucket in sorted(summary["by_model"].items()):
+            lines.append(
+                f"  - {model_name}: calls={bucket.get('calls', 0)}, "
+                f"total={format_int(bucket.get('total_tokens', 0))}, "
+                f"input={format_int(bucket.get('input_tokens', 0))}, "
+                f"output={format_int(bucket.get('output_tokens', 0))}"
+            )
+    return "\n".join(lines)
+
+
+def record_token_usage(
+    result: TextGenerationResult,
+    *,
+    label: str,
+    prompt: str,
+) -> None:
+    run_id = current_token_usage_run_id()
+    if not run_id:
+        return
+    usage = result.get("usage_metadata", {})
+    if not isinstance(usage, dict):
+        usage = {}
+    output_text = str(result.get("text", ""))
+    record: TokenUsageRecord = {
+        "run_id": run_id,
+        "call_index": 0,
+        "label": label,
+        "provider": str(result.get("provider", "")),
+        "model_name": str(result.get("model_name", "")),
+        "usage_source": str(result.get("usage_source", "unavailable")),
+        "input_tokens": int(usage.get("input_tokens", 0) or 0),
+        "output_tokens": int(usage.get("output_tokens", 0) or 0),
+        "total_tokens": int(usage.get("total_tokens", 0) or 0),
+        "cached_tokens": int(usage.get("cached_tokens", 0) or 0),
+        "candidate_tokens": int(usage.get("candidate_tokens", 0) or 0),
+        "thought_tokens": int(usage.get("thought_tokens", 0) or 0),
+        "tool_tokens": int(usage.get("tool_tokens", 0) or 0),
+        "prompt_chars": len(prompt),
+        "output_chars": len(output_text),
+    }
+    with TOKEN_USAGE_LOCK:
+        records = TOKEN_USAGE_RECORDS_BY_RUN.setdefault(run_id, [])
+        record["call_index"] = len(records) + 1
+        records.append(record)
 
 
 def has_proxy_config() -> bool:
@@ -1118,6 +2816,59 @@ def has_proxy_config() -> bool:
         os.environ.get(name, "").strip()
         for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy", "ALL_PROXY", "all_proxy")
     )
+
+
+def env_flag_enabled(name: str, default: bool = False) -> bool:
+    raw_value = os.environ.get(name, "").strip().lower()
+    if not raw_value:
+        return default
+    return raw_value in {"1", "true", "yes", "on"}
+
+
+def openclaw_auth_profiles_path() -> str:
+    agent_dir = os.environ.get("OPENCLAW_AGENT_DIR", "").strip()
+    if agent_dir:
+        return os.path.join(os.path.expanduser(agent_dir), "auth-profiles.json")
+    openclaw_home = os.path.expanduser(os.environ.get("OPENCLAW_HOME", "~/.openclaw"))
+    return os.path.join(openclaw_home, "agents", "main", "agent", "auth-profiles.json")
+
+
+def detect_openclaw_gemini_auth_issue(now_ms: int | None = None) -> str:
+    if env_flag_enabled("ROUTER_IGNORE_OPENCLAW_GEMINI_AUTH", False):
+        return ""
+    auth_path = openclaw_auth_profiles_path()
+    if not os.path.exists(auth_path):
+        return ""
+    try:
+        with open(auth_path, "r", encoding="utf-8") as auth_file:
+            auth_data = json.load(auth_file)
+    except (OSError, json.JSONDecodeError):
+        return ""
+    profiles = auth_data.get("profiles")
+    if not isinstance(profiles, dict):
+        return ""
+    gemini_profiles = [
+        profile
+        for profile in profiles.values()
+        if isinstance(profile, dict) and profile.get("provider") == "google-gemini-cli"
+    ]
+    if not gemini_profiles:
+        return ""
+
+    now = now_ms if now_ms is not None else int(time.time() * 1000)
+    for profile in gemini_profiles:
+        expires = profile.get("expires") or profile.get("expiresAt")
+        try:
+            expires_ms = int(expires)
+        except (TypeError, ValueError):
+            continue
+        if expires_ms <= now + 60_000:
+            email = str(profile.get("email") or "configured account")
+            return (
+                "OpenClaw Gemini OAuth profile for "
+                f"{email} is expired. Run `openclaw models auth login --provider google-gemini-cli`."
+            )
+    return ""
 
 
 def ensure_gemini_network_ready(timeout: float = 3.0) -> None:
@@ -1152,14 +2903,14 @@ def ensure_gemini_network_ready(timeout: float = 3.0) -> None:
     GEMINI_NETWORK_PREFLIGHT_RESULT = ""
 
 
-def ollama_generate(
+def ollama_generate_with_usage(
     model: str,
     prompt: str,
     *,
     timeout: int = 60,
     num_predict: int = 400,
     temperature: float = 0.0,
-) -> str:
+) -> TextGenerationResult:
     # Increase num_predict for large models (e.g. gemma4:26b) to allow full JSON responses
     # Large models need more tokens for structured output like JSON
     if "gemma4" in model.lower() and num_predict < 204800:
@@ -1207,15 +2958,90 @@ def ollama_generate(
     text = str(data.get("response", "")).strip()
     if not text:
         raise RuntimeError(f"Ollama returned an empty response for model {model}")
-    return text
+    return build_text_generation_result(
+        text,
+        extract_ollama_usage_metadata(data),
+        "ollama",
+        model,
+        "ollama_generate",
+    )
 
 
-def invoke_gemini_cli(
+def ollama_generate(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 60,
+    num_predict: int = 400,
+    temperature: float = 0.0,
+) -> str:
+    return ollama_generate_with_usage(
+        model,
+        prompt,
+        timeout=timeout,
+        num_predict=num_predict,
+        temperature=temperature,
+    )["text"]
+
+
+def default_gemini_system_settings_path() -> str:
+    if sys.platform == "darwin":
+        return "/Library/Application Support/GeminiCli/settings.json"
+    if os.name == "nt":
+        return r"C:\ProgramData\gemini-cli\settings.json"
+    return "/etc/gemini-cli/settings.json"
+
+
+def load_gemini_system_settings() -> Dict[str, Any]:
+    settings_path = os.environ.get(GEMINI_SYSTEM_SETTINGS_ENV_VAR, "").strip()
+    if not settings_path:
+        settings_path = default_gemini_system_settings_path()
+    if not settings_path or not os.path.exists(settings_path):
+        return {}
+    try:
+        with open(settings_path, "r", encoding="utf-8") as settings_file:
+            settings = json.load(settings_file)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(settings, dict):
+        return {}
+    return settings
+
+
+def build_gemini_temperature_settings(normalized_model: str, temperature: float) -> Dict[str, Any]:
+    settings = copy.deepcopy(load_gemini_system_settings())
+    model_configs = settings.get("modelConfigs")
+    if not isinstance(model_configs, dict):
+        model_configs = {}
+        settings["modelConfigs"] = model_configs
+
+    custom_overrides = model_configs.get("customOverrides")
+    if not isinstance(custom_overrides, list):
+        custom_overrides = []
+    else:
+        custom_overrides = list(custom_overrides)
+
+    custom_overrides.append(
+        {
+            "match": {"model": normalized_model},
+            "modelConfig": {
+                "generateContentConfig": {
+                    "temperature": temperature,
+                },
+            },
+        }
+    )
+    model_configs["customOverrides"] = custom_overrides
+    return settings
+
+
+def invoke_gemini_cli_with_usage(
     model: str,
     prompt: str,
     *,
     timeout: int = 120,
-) -> str:
+    temperature: float = 0.0,
+) -> TextGenerationResult:
     normalized_model = normalize_model_name(model)
     if not GEMINI_CLI_PATH or not os.path.exists(GEMINI_CLI_PATH):
         raise RuntimeError("Gemini CLI executable was not found. Set ROUTER_GEMINI_CLI or install `gemini`.")
@@ -1223,6 +3049,12 @@ def invoke_gemini_cli(
     env = dict(os.environ)
     env["NO_COLOR"] = "1"
     env["NO_BROWSER"] = "true"
+    # Force inject ripgrep + common tool paths (fixes "Ripgrep is not available" warning)
+    extra_paths = ["/opt/homebrew/bin", "/usr/local/bin"]
+    current_path = env.get("PATH", "")
+    path_parts = [p for p in extra_paths if p not in current_path.split(":")]
+    if path_parts:
+        env["PATH"] = ":".join(path_parts + [current_path]) if current_path else ":".join(path_parts)
     command = [
         GEMINI_CLI_PATH,
         "-m",
@@ -1230,25 +3062,54 @@ def invoke_gemini_cli(
         "-p",
         prompt,
         "-o",
-        "json"
+        "json",
+        "-y",
 #        "-e",
 #        GEMINI_EXTENSION_NAME,
     ]
     try:
-        result = subprocess.run(
-            command,
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-            env=env,
-            check=False,
-        )
+        with tempfile.TemporaryDirectory(prefix="router-gemini-") as settings_dir:
+            settings_path = os.path.join(settings_dir, "settings.json")
+            with open(settings_path, "w", encoding="utf-8") as settings_file:
+                json.dump(build_gemini_temperature_settings(normalized_model, temperature), settings_file)
+            env[GEMINI_SYSTEM_SETTINGS_ENV_VAR] = settings_path
+
+            result = subprocess.run(
+                command,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                env=env,
+                check=False,
+                stdin=subprocess.DEVNULL,
+            )
     except subprocess.TimeoutExpired as exc:
         raise RuntimeError(f"Gemini CLI timed out after {timeout}s") from exc
 
     stdout = result.stdout.strip()
     stderr = result.stderr.strip()
+
+    # Filter known benign Gemini CLI tool warnings (YOLO mode, ripgrep fallback, etc.)
+    # These are non-fatal and should not cause the call to fail
+    BENIGN_WARNINGS = [
+        "YOLO mode is enabled",
+        "All tool calls will be automatically approved",
+        "Ripgrep is not available",
+        "Falling back to GrepTool",
+        "ripgrep",
+    ]
+
+    def _strip_benign_warnings(text: str) -> str:
+        if not text:
+            return ""
+        lines = text.splitlines()
+        filtered = [line for line in lines if not any(w.lower() in line.lower() for w in BENIGN_WARNINGS)]
+        return "\n".join(filtered).strip()
+
+    stdout = _strip_benign_warnings(stdout)
+    stderr = _strip_benign_warnings(stderr)
     payload_text = stdout or stderr
+
     parsed_payload: Dict[str, Any] | None = None
     if payload_text:
         try:
@@ -1267,7 +3128,9 @@ def invoke_gemini_cli(
             )
         else:
             error_text = compact_text(stderr or stdout or f"exit code {result.returncode}", 280)
-        raise RuntimeError(f"Gemini CLI failed for model {normalized_model}: {error_text}")
+        # Only raise if we still have a real error after filtering warnings
+        if error_text and not any(w.lower() in error_text.lower() for w in BENIGN_WARNINGS):
+            raise RuntimeError(f"Gemini CLI failed for model {normalized_model}: {error_text}")
 
     if parsed_payload and isinstance(parsed_payload.get("error"), dict):
         error_block = parsed_payload["error"]
@@ -1275,14 +3138,43 @@ def invoke_gemini_cli(
             str(error_block.get("message") or error_block.get("type") or payload_text),
             280,
         )
-        raise RuntimeError(f"Gemini CLI returned an error for model {normalized_model}: {error_text}")
+        if error_text and not any(w.lower() in error_text.lower() for w in BENIGN_WARNINGS):
+            raise RuntimeError(f"Gemini CLI returned an error for model {normalized_model}: {error_text}")
 
+    usage_metadata, usage_source = extract_gemini_usage_metadata_with_source(parsed_payload or {})
     if parsed_payload and str(parsed_payload.get("response", "")).strip():
-        return str(parsed_payload["response"]).strip()
+        return build_text_generation_result(
+            str(parsed_payload["response"]).strip(),
+            usage_metadata,
+            "google_genai",
+            normalized_model,
+            usage_source,
+        )
 
     if not payload_text:
         raise RuntimeError(f"Gemini CLI returned an empty response for model {normalized_model}")
-    return payload_text
+    return build_text_generation_result(
+        payload_text,
+        usage_metadata,
+        "google_genai",
+        normalized_model,
+        usage_source,
+    )
+
+
+def invoke_gemini_cli(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 120,
+    temperature: float = 0.0,
+) -> str:
+    return invoke_gemini_cli_with_usage(
+        model,
+        prompt,
+        timeout=timeout,
+        temperature=temperature,
+    )["text"]
 
 
 def ensure_gemini_cli_ready(model: str) -> None:
@@ -1292,6 +3184,12 @@ def ensure_gemini_cli_ready(model: str) -> None:
         if cached_error:
             raise RuntimeError(cached_error)
         return
+
+    auth_issue = detect_openclaw_gemini_auth_issue()
+    if auth_issue:
+        error_text = f"Gemini CLI auth preflight failed: {auth_issue}"
+        GEMINI_PREFLIGHT_RESULTS[normalized_model] = error_text
+        raise RuntimeError(error_text)
 
     try:
         ensure_gemini_network_ready()
@@ -1308,9 +3206,315 @@ def gemini_generate(
     prompt: str,
     *,
     timeout: int = 120,
+    temperature: float = 0.0,
 ) -> str:
+    return gemini_generate_with_usage(
+        model,
+        prompt,
+        timeout=timeout,
+        temperature=temperature,
+    )["text"]
+
+
+def gemini_generate_with_usage(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 120,
+    temperature: float = 0.0,
+) -> TextGenerationResult:
     ensure_gemini_cli_ready(model)
-    return invoke_gemini_cli(model, prompt, timeout=timeout)
+    return invoke_gemini_cli_with_usage(model, prompt, timeout=timeout, temperature=temperature)
+
+
+def codex_generate_with_usage(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 60,
+    num_predict: int = 400,
+    temperature: float = 0.0,
+) -> TextGenerationResult:
+    del num_predict, temperature
+
+    normalized_model = normalize_model_name(model)
+    if os.path.sep in CODEX_CLI_PATH and not os.path.exists(CODEX_CLI_PATH):
+        raise RuntimeError("Codex CLI executable was not found. Set ROUTER_CODEX_CLI or install `codex`.")
+
+    env = dict(os.environ)
+    env["NO_COLOR"] = "1"
+    sandbox = os.environ.get(ROUTER_CODEX_SANDBOX_ENV_VAR, "read-only").strip() or "read-only"
+    command = [
+        CODEX_CLI_PATH,
+        "exec",
+        "-m",
+        normalized_model,
+        "--sandbox",
+        sandbox,
+        "--skip-git-repo-check",
+        "--color",
+        "never",
+        "--ephemeral",
+    ]
+    codex_cwd = os.environ.get(ROUTER_CODEX_CWD_ENV_VAR, "").strip()
+    if codex_cwd:
+        command.extend(["--cd", codex_cwd])
+
+    try:
+        with tempfile.TemporaryDirectory(prefix="router-codex-") as output_dir:
+            output_path = os.path.join(output_dir, "last-message.txt")
+            command.extend(["--output-last-message", output_path, "-"])
+            result = subprocess.run(
+                command,
+                input=prompt,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                env=env,
+                check=False,
+            )
+            output_text = ""
+            if os.path.exists(output_path):
+                with open(output_path, "r", encoding="utf-8") as output_file:
+                    output_text = output_file.read().strip()
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"Codex CLI timed out after {timeout}s") from exc
+
+    stdout = result.stdout.strip()
+    stderr = result.stderr.strip()
+    if result.returncode != 0:
+        error_text = compact_text(stderr or stdout or f"exit code {result.returncode}", 280)
+        raise RuntimeError(f"Codex CLI failed for model {normalized_model}: {error_text}")
+
+    text = output_text or stdout
+    if not text.strip():
+        raise RuntimeError(f"Codex CLI returned an empty response for model {normalized_model}")
+    return build_text_generation_result(
+        text.strip(),
+        {},
+        "codex",
+        normalized_model,
+        "unavailable",
+    )
+
+
+def codex_generate(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 60,
+    num_predict: int = 400,
+    temperature: float = 0.0,
+) -> str:
+    return codex_generate_with_usage(
+        model,
+        prompt,
+        timeout=timeout,
+        num_predict=num_predict,
+        temperature=temperature,
+    )["text"]
+
+
+def sum_optional_ints(values: List[Any]) -> int | None:
+    total = 0
+    found = False
+    for value in values:
+        count = coerce_non_negative_int(value)
+        if count is None:
+            continue
+        total += count
+        found = True
+    return total if found else None
+
+
+def extract_claude_usage_metadata(parsed: Dict[str, Any], normalized_model: str) -> Dict[str, int]:
+    usage = parsed.get("usage")
+    if isinstance(usage, dict):
+        cache_creation_tokens = first_present_value(
+            usage,
+            ("cache_creation_input_tokens", "cacheCreationInputTokens"),
+        )
+        cache_read_tokens = first_present_value(
+            usage,
+            ("cache_read_input_tokens", "cacheReadInputTokens"),
+        )
+        return normalize_usage_metadata(
+            input_tokens=first_present_value(usage, ("input_tokens", "inputTokens")),
+            output_tokens=first_present_value(usage, ("output_tokens", "outputTokens")),
+            total_tokens=first_present_value(usage, ("total_tokens", "totalTokens")),
+            cached_tokens=sum_optional_ints([cache_creation_tokens, cache_read_tokens]),
+        )
+
+    model_usage = parsed.get("model_usage") or parsed.get("modelUsage")
+    if isinstance(model_usage, dict):
+        model_entry = model_usage.get(normalized_model)
+        entries = (
+            [model_entry]
+            if isinstance(model_entry, dict)
+            else [entry for entry in model_usage.values() if isinstance(entry, dict)]
+        )
+        if entries:
+            input_tokens = sum_optional_ints(
+                [first_present_value(entry, ("inputTokens", "input_tokens")) for entry in entries]
+            )
+            output_tokens = sum_optional_ints(
+                [first_present_value(entry, ("outputTokens", "output_tokens")) for entry in entries]
+            )
+            cache_creation_tokens = sum_optional_ints(
+                [
+                    first_present_value(
+                        entry,
+                        ("cacheCreationInputTokens", "cache_creation_input_tokens"),
+                    )
+                    for entry in entries
+                ]
+            )
+            cache_read_tokens = sum_optional_ints(
+                [
+                    first_present_value(
+                        entry,
+                        ("cacheReadInputTokens", "cache_read_input_tokens"),
+                    )
+                    for entry in entries
+                ]
+            )
+            total_tokens = sum_optional_ints(
+                [first_present_value(entry, ("totalTokens", "total_tokens")) for entry in entries]
+            )
+            return normalize_usage_metadata(
+                input_tokens=input_tokens,
+                output_tokens=output_tokens,
+                total_tokens=total_tokens,
+                cached_tokens=sum_optional_ints([cache_creation_tokens, cache_read_tokens]),
+            )
+
+    cache_creation_tokens = first_present_value(
+        parsed,
+        ("cache_creation_input_tokens", "cacheCreationInputTokens"),
+    )
+    cache_read_tokens = first_present_value(
+        parsed,
+        ("cache_read_input_tokens", "cacheReadInputTokens"),
+    )
+    return normalize_usage_metadata(
+        input_tokens=first_present_value(parsed, ("total_input_tokens", "input_tokens", "inputTokens")),
+        output_tokens=first_present_value(parsed, ("total_output_tokens", "output_tokens", "outputTokens")),
+        total_tokens=first_present_value(parsed, ("total_tokens", "totalTokens")),
+        cached_tokens=sum_optional_ints([cache_creation_tokens, cache_read_tokens]),
+    )
+
+
+def claude_generate_with_usage(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 120,
+    temperature: float = 0.0,
+) -> TextGenerationResult:
+    del temperature
+
+    normalized_model = normalize_model_name(model)
+    if os.path.sep in CLAUDE_CLI_PATH and not os.path.exists(CLAUDE_CLI_PATH):
+        raise RuntimeError("Claude CLI executable was not found. Set ROUTER_CLAUDE_CLI or install `claude`.")
+
+    env = dict(os.environ)
+    env["NO_COLOR"] = "1"
+    command = [CLAUDE_CLI_PATH, "--model", normalized_model, "--output-format", "json", "-p", prompt]
+
+    try:
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"Claude CLI timed out after {timeout}s") from exc
+
+    stdout = result.stdout.strip()
+    stderr = result.stderr.strip()
+    if result.returncode != 0:
+        error_text = compact_text(stderr or stdout or f"exit code {result.returncode}", 280)
+        raise RuntimeError(f"Claude CLI failed for model {normalized_model}: {error_text}")
+
+    try:
+        parsed = json.loads(stdout)
+    except json.JSONDecodeError as exc:
+        error_text = compact_text(stderr or stdout or "no output", 280)
+        raise RuntimeError(f"Claude CLI returned non-JSON output for model {normalized_model}: {error_text}") from exc
+
+    if parsed.get("is_error"):
+        error_text = compact_text(parsed.get("result") or stderr or "unknown error", 280)
+        raise RuntimeError(f"Claude CLI reported error for model {normalized_model}: {error_text}")
+
+    text = parsed.get("result", "")
+    if not text.strip():
+        raise RuntimeError(f"Claude CLI returned an empty response for model {normalized_model}")
+
+    usage = extract_claude_usage_metadata(parsed, normalized_model)
+    return build_text_generation_result(
+        text.strip(),
+        usage or {},
+        "anthropic",
+        normalized_model,
+        "claude_cli_json" if usage else "unavailable",
+    )
+
+
+def _execute_generate_text_with_usage(
+    model: str,
+    prompt: str,
+    *,
+    timeout: int = 60,
+    num_predict: int = 400,
+    temperature: float = 0.0,
+    usage_label: str = "",
+) -> TextGenerationResult:
+    provider = langsmith_provider_name(model)
+    annotate_langsmith_model_run(
+        model=model,
+        provider=provider,
+        num_predict=num_predict,
+        temperature=temperature,
+    )
+    if is_claude_model(model):
+        return claude_generate_with_usage(model, prompt, timeout=timeout, temperature=temperature)
+    if is_gemini_model(model):
+        return gemini_generate_with_usage(model, prompt, timeout=timeout, temperature=temperature)
+    if is_codex_model(model):
+        return codex_generate_with_usage(
+            model,
+            prompt,
+            timeout=timeout,
+            num_predict=num_predict,
+            temperature=temperature,
+        )
+    return ollama_generate_with_usage(
+        model,
+        prompt,
+        timeout=timeout,
+        num_predict=num_predict,
+        temperature=temperature,
+    )
+
+
+if _langsmith is not None and getattr(_langsmith, "traceable", None) is not None:
+    _traced_generate_text = _langsmith.traceable(
+        name="Super Router Model Call",
+        run_type="llm",
+        process_inputs=process_langsmith_model_inputs,
+        process_outputs=process_langsmith_model_outputs,
+    )(_execute_generate_text_with_usage)
+else:
+    _traced_generate_text = _execute_generate_text_with_usage
+
+
+def unwrap_text_generation_result(result: Any) -> str:
+    if isinstance(result, dict) and "text" in result:
+        return str(result["text"])
+    return str(result)
 
 
 def generate_text(
@@ -1320,16 +3524,38 @@ def generate_text(
     timeout: int = 60,
     num_predict: int = 400,
     temperature: float = 0.0,
+    usage_label: str = "",
 ) -> str:
-    if is_gemini_model(model):
-        return gemini_generate(model, prompt, timeout=timeout)
-    return ollama_generate(
+    if langsmith_tracing_configured():
+        result = _traced_generate_text(
+            model,
+            prompt,
+            timeout=timeout,
+            num_predict=num_predict,
+            temperature=temperature,
+            usage_label=usage_label,
+        )
+        if isinstance(result, dict):
+            record_token_usage(
+                result,
+                label=usage_label or normalize_model_name(model),
+                prompt=prompt,
+            )
+        return unwrap_text_generation_result(result)
+    result = _execute_generate_text_with_usage(
         model,
         prompt,
         timeout=timeout,
         num_predict=num_predict,
         temperature=temperature,
+        usage_label=usage_label,
     )
+    record_token_usage(
+        result,
+        label=usage_label or normalize_model_name(model),
+        prompt=prompt,
+    )
+    return unwrap_text_generation_result(result)
 
 
 def extract_first_json_array(text: str) -> List[Any]:
@@ -1360,27 +3586,233 @@ def extract_first_json_object(text: str) -> Dict[str, Any]:
     raise ValueError("No valid JSON object found in judge output")
 
 
+def normalize_dependency_id(value: Any, fallback: str) -> str:
+    raw = str(value or "").strip()
+    if not raw:
+        raw = fallback
+    normalized = re.sub(r"[^A-Za-z0-9_.:-]+", "_", raw).strip("_")
+    return normalized or fallback
+
+
+def normalize_dependency_list(value: Any) -> List[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        raw_items = value
+    elif isinstance(value, str):
+        stripped = value.strip()
+        raw_items = re.split(r"[\s,]+", stripped) if stripped else []
+    else:
+        raw_items = [value]
+
+    dependencies: List[str] = []
+    for item in raw_items:
+        dependency_id = normalize_dependency_id(item, "")
+        if dependency_id and dependency_id not in dependencies:
+            dependencies.append(dependency_id)
+    return dependencies
+
+
+def dependency_reason_from_raw(raw: Any, default: str) -> str:
+    if isinstance(raw, dict):
+        reason = (
+            raw.get("dependency_reason")
+            or raw.get("depends_reason")
+            or raw.get("reason")
+            or raw.get("dependency")
+        )
+        if reason:
+            return compact_text(str(reason), 220)
+    return default
+
+
 def normalize_planned_subtasks(raw_subtasks: List[Any]) -> List[PlannedSubtask]:
-    normalized: List[PlannedSubtask] = []
+    pending: List[Dict[str, Any]] = []
+    used_ids: set[str] = set()
+    id_aliases: Dict[str, str] = {}
+
     for item in raw_subtasks:
         if isinstance(item, dict):
             desc = str(item.get("desc") or item.get("description") or item.get("step") or "").strip()
+            raw_id = item.get("id") or item.get("step_id") or item.get("name")
+            raw_depends_on = item.get("depends_on") or item.get("dependencies") or item.get("requires")
         else:
             desc = str(item).strip()
+            raw_id = None
+            raw_depends_on = []
 
         if not desc:
             continue
 
-        normalized.append({"desc": desc})
+        fallback_id = f"S{len(pending) + 1}"
+        subtask_id = normalize_dependency_id(raw_id, fallback_id)
+        if subtask_id in used_ids:
+            subtask_id = fallback_id
+            suffix = 2
+            while subtask_id in used_ids:
+                subtask_id = f"{fallback_id}_{suffix}"
+                suffix += 1
+        used_ids.add(subtask_id)
+        if raw_id:
+            id_aliases[str(raw_id).strip()] = subtask_id
+            id_aliases[normalize_dependency_id(raw_id, subtask_id)] = subtask_id
+
+        pending.append(
+            {
+                "id": subtask_id,
+                "desc": desc,
+                "raw_depends_on": raw_depends_on,
+                "dependency_reason": dependency_reason_from_raw(
+                    item,
+                    "Dependency not specified by planner.",
+                ),
+            }
+        )
+
+    normalized: List[PlannedSubtask] = []
+    for item in pending:
+        dependencies: List[str] = []
+        for dependency_id in normalize_dependency_list(item["raw_depends_on"]):
+            resolved_dependency_id = id_aliases.get(dependency_id, dependency_id)
+            if resolved_dependency_id != item["id"] and resolved_dependency_id not in dependencies:
+                dependencies.append(resolved_dependency_id)
+        normalized.append(
+            {
+                "id": item["id"],
+                "desc": item["desc"],
+                "depends_on": dependencies,
+                "dependency_reason": item["dependency_reason"],
+            }
+        )
 
     if not normalized:
         raise ValueError("Planner did not return any usable subtasks")
     return normalized
 
 
+def validate_dependency_graph(subtasks: List[PlannedSubtask]) -> List[PlannedSubtask]:
+    ids = [subtask["id"] for subtask in subtasks]
+    duplicate_ids = sorted({subtask_id for subtask_id in ids if ids.count(subtask_id) > 1})
+    if duplicate_ids:
+        raise ValueError(f"Duplicate dependency ids: {', '.join(duplicate_ids)}")
+
+    known_ids = set(ids)
+    for subtask in subtasks:
+        if not subtask["id"]:
+            raise ValueError("Dependency graph contains an empty subtask id")
+        missing = [dependency_id for dependency_id in subtask["depends_on"] if dependency_id not in known_ids]
+        if missing:
+            raise ValueError(
+                f"Subtask {subtask['id']} references unknown dependencies: {', '.join(missing)}"
+            )
+        if subtask["id"] in subtask["depends_on"]:
+            raise ValueError(f"Subtask {subtask['id']} depends on itself")
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+    by_id = {subtask["id"]: subtask for subtask in subtasks}
+
+    def visit(subtask_id: str, path: List[str]) -> None:
+        if subtask_id in visited:
+            return
+        if subtask_id in visiting:
+            cycle = " -> ".join(path + [subtask_id])
+            raise ValueError(f"Dependency cycle detected: {cycle}")
+        visiting.add(subtask_id)
+        for dependency_id in by_id[subtask_id]["depends_on"]:
+            visit(dependency_id, path + [subtask_id])
+        visiting.remove(subtask_id)
+        visited.add(subtask_id)
+
+    for subtask_id in ids:
+        visit(subtask_id, [])
+
+    return subtasks
+
+
+def make_serial_dependency_plan(
+    subtasks: List[PlannedSubtask],
+    *,
+    reason: str = "Conservative serial fallback after invalid dependency judgment.",
+) -> List[PlannedSubtask]:
+    serial_subtasks: List[PlannedSubtask] = []
+    previous_id = ""
+    for subtask in subtasks:
+        serial_subtasks.append(
+            {
+                **subtask,
+                "depends_on": [previous_id] if previous_id else [],
+                "dependency_reason": reason if previous_id else "First serial fallback step has no dependency.",
+            }
+        )
+        previous_id = subtask["id"]
+    return serial_subtasks
+
+
+def normalize_dependency_judgment(
+    raw: Dict[str, Any],
+    planned_subtasks: List[PlannedSubtask],
+) -> tuple[List[PlannedSubtask], float, List[str]]:
+    raw_subtasks = raw.get("subtasks") or raw.get("planned_subtasks") or raw.get("plan")
+    raw_dependencies = raw.get("dependencies")
+    updates: Dict[str, Dict[str, Any]] = {}
+
+    if isinstance(raw_subtasks, list):
+        for item in raw_subtasks:
+            if not isinstance(item, dict):
+                continue
+            subtask_id = normalize_dependency_id(
+                item.get("id") or item.get("step_id") or item.get("name"),
+                "",
+            )
+            if subtask_id:
+                updates[subtask_id] = item
+
+    if isinstance(raw_dependencies, dict):
+        for raw_id, raw_depends_on in raw_dependencies.items():
+            subtask_id = normalize_dependency_id(raw_id, "")
+            if not subtask_id:
+                continue
+            updates.setdefault(subtask_id, {})["depends_on"] = raw_depends_on
+
+    judged: List[PlannedSubtask] = []
+    for planned in planned_subtasks:
+        update = updates.get(planned["id"], {})
+        dependency_value = planned["depends_on"]
+        for key in ("depends_on", "dependencies", "requires"):
+            if key in update:
+                dependency_value = update[key]
+                break
+        dependencies = normalize_dependency_list(dependency_value)
+        dependencies = [
+            dependency_id
+            for dependency_id in dependencies
+            if dependency_id != planned["id"]
+        ]
+        judged.append(
+            {
+                **planned,
+                "depends_on": dependencies,
+                "dependency_reason": dependency_reason_from_raw(
+                    update,
+                    planned["dependency_reason"],
+                ),
+            }
+        )
+
+    confidence = clamp_float(raw.get("confidence"), 0.0, 1.0, default=0.5)
+    raw_issues = raw.get("issues")
+    issues = [
+        compact_text(str(issue), 220)
+        for issue in raw_issues
+        if str(issue).strip()
+    ] if isinstance(raw_issues, list) else []
+    return judged, confidence, issues
+
+
 def build_fallback_subtasks(task: str) -> List[PlannedSubtask]:
     lowered = task.lower()
-    subtasks: List[PlannedSubtask] = []
+    subtasks: List[Any] = []
 
     if any(
         keyword in lowered
@@ -1425,34 +3857,102 @@ def build_fallback_subtasks(task: str) -> List[PlannedSubtask]:
     ):
         subtasks.append({"desc": "整理执行结果并生成最终总结或输出。"})
 
-    return subtasks
+    return normalize_planned_subtasks(subtasks)
 
 
 def build_planner_prompt(task: str) -> str:
+    task_limit = resolve_positive_int(
+        None,
+        ROUTER_PLANNER_TASK_CHAR_LIMIT_ENV_VAR,
+        DEFAULT_PLANNER_TASK_CHAR_LIMIT,
+    )
+    planner_context = build_planner_context_manifest(task, task_limit)
+    original_chars = len(" ".join(task.strip().split()))
+    compaction_note = ""
+    if len(planner_context) < original_chars:
+        compaction_note = (
+            f"Planner context manifest compacted from {original_chars} to {len(planner_context)} chars. "
+            "Plan from the manifest JSON's objective, entities, constraints, deliverables, evidence requirements, "
+            "and decomposition hints; do not copy omitted context into every subtask.\n"
+        )
     return (
-        "Role: Expert Technical Architect and Task Decomposer.\\n"
-        f"Task: {task}\\n"
-        "Instruction: Break the task into atomic, actionable, and outcome-oriented subtasks. Each subtask must be a discrete unit of work.\\n"
-        "CRITICAL FOR PARALLELISM: If the task involves multiple entities, technologies, or components (e.g., 3 different model families, 5 providers, 10 files), you MUST create a separate subtask for EACH individual entity. Do not group them into a single 'Research' or 'Analysis' phase. One entity = One subtask.\\n"
-        "TECHNICAL GOLD REQUIREMENT: For each research or analysis subtask, explicitly aim to identify quantitative metrics, specific version numbers, architectural constants, and hard limits. This 'Technical Gold' is required for the final synthesis.\\n"
-        "Structure: When a task mixes investigation and reporting, keep the reporting/update step separate from the investigation step.\\n"
-        "Artifacts: If the task asks for a summary, update, impact note, or table, you MUST emit that as its own final subtask.\\n"
-        "Do not assign model labels, complexity labels, or scores.\\n"
-        "Output rules: Return a raw JSON array only. Each item must be an object with key 'desc'.\\n"
-        "Example 1 (Parallel): Research the KV cache of Llama-3 and Mistral-v0.3.\\n"
-        "Example 1 Output: [{\"desc\":\"Analyze Llama-3 KV cache implementation and bandwidth metrics\"},{\"desc\":\"Analyze Mistral-v0.3 KV cache implementation and bandwidth metrics\"},{\"desc\":\"Synthesize a technical comparison table of KV cache metrics\"}]\\n"
-        "Example 2: Debug an API failure and send a la-concise team update.\\n"
-        "Example 2 Output: [{\"desc\":\"Inspect the failing API path and isolate the root cause\"},{\"desc\":\"Prepare a concise team status update with the findings\"}]\\n"
+        "Role: Task decomposition planner.\n"
+        "Goal: produce the execution plan only; do not solve the task.\n"
+        f"{compaction_note}"
+        "Planner context manifest JSON:\n"
+        f"{planner_context}\n"
+        "Rules:\n"
+        "- Split by independent entity/component/file/provider/region/backend/technical area.\n"
+        "- Separate investigation/implementation/validation/reporting when mixed.\n"
+        "- Preserve deliverables, constraints, and needed evidence.\n"
+        "- Use stable ids S1, S2, S3.\n"
+        "- depends_on only when earlier outputs/evidence/decisions are required; otherwise [].\n"
+        "- No model labels, complexity labels, or scores.\n"
+        "Return raw JSON only: [{\"id\":\"S1\",\"desc\":\"atomic subtask\",\"depends_on\":[],"
+        "\"dependency_reason\":\"why\"}]\n"
         "JSON Output:"
     )
 
 
+def build_dependency_judge_prompt(task: str, planned_subtasks: List[PlannedSubtask]) -> str:
+    planned_json = json.dumps(planned_subtasks, ensure_ascii=False, indent=2)
+    return (
+        "Role: Dependency judge for a LangGraph task router.\n"
+        "Goal: verify and correct only execution dependencies; do not solve the task and do not score complexity.\n"
+        f"Original task:\n{task}\n"
+        f"Planner subtasks JSON:\n{planned_json}\n"
+        "Rules:\n"
+        "- Keep every existing id exactly as provided.\n"
+        "- Do not add, remove, merge, split, or rewrite subtasks.\n"
+        "- Use depends_on only when the current subtask needs prior outputs, evidence, decisions, or generated artifacts.\n"
+        "- Independent investigations, file/provider/region checks, and unrelated evidence collection should have empty depends_on.\n"
+        "- Synthesis, comparison, validation-after-implementation, reporting, and final answer steps should depend on the producing subtasks.\n"
+        "- If uncertain whether a dependency is required for correctness, include the dependency.\n"
+        "- Dependencies may reference only ids from the provided list.\n"
+        "Return raw JSON only with keys: subtasks, confidence, issues.\n"
+        "Each subtask item must contain: id, depends_on, dependency_reason.\n"
+        "JSON Output:"
+    )
+
+
+def judge_dependencies_with_model(
+    task: str,
+    planned_subtasks: List[PlannedSubtask],
+    judge_model: str,
+) -> tuple[List[PlannedSubtask], float, List[str], str]:
+    default_timeout = DEFAULT_LARGE_MODEL_TIMEOUT if is_large_model(judge_model) else 300
+    judge_timeout = int(os.environ.get("ROUTER_JUDGE_TIMEOUT", str(default_timeout)))
+    raw_text = generate_text(
+        judge_model,
+        build_dependency_judge_prompt(task, planned_subtasks),
+        timeout=judge_timeout,
+        num_predict=4096,
+        temperature=0.0,
+        usage_label="Dependency judge",
+    )
+    if router_debug_enabled():
+        print("\n[DEBUG Dependency Judge Output]")
+        print(f"  Model: {judge_model}")
+        print(f"  Raw text length: {len(raw_text)} chars")
+        print(f"  First 400 chars: {raw_text[:400]}")
+        if len(raw_text) > 400:
+            print(f"  Last 200 chars: {raw_text[-200:]}")
+        print(f"  Contains '{{': { '{' in raw_text }, Contains '}}': {'}' in raw_text }")
+        print("  ---\n")
+    judged_subtasks, confidence, issues = normalize_dependency_judgment(
+        extract_first_json_object(raw_text),
+        planned_subtasks,
+    )
+    return judged_subtasks, confidence, issues, raw_text
+
+
 def build_judge_prompt(task: str, subtask_desc: str) -> str:
+    context_pack = build_judge_context_pack_json(task, subtask_desc)
     return (
         "Role: Complexity judge for model routing.\n"
-        f"Original task: {task}\n"
+        f"Task context JSON:\n{context_pack}\n"
         f"Subtask: {subtask_desc}\n"
-        "Judge the subtask itself, but use the original task to understand domain risk. Only avoid inheriting the overall-task complexity when the subtask is purely a summary, report, or status update.\n"
+        "Judge the subtask itself, but use the task context JSON to understand domain risk. Only avoid inheriting the overall-task complexity when the subtask is purely a summary, report, or status update.\n"
         "Score the subtask with these ranges:\n"
         "- reasoning_depth: 0-3 (0 = lookup/formatting only, 1 = straightforward transformation, 2 = debugging or multi-step reasoning, 3 = architecture or open-ended investigation)\n"
         "- code_change_scope: 0-3 (0 = no code changes, 1 = small local edit, 2 = non-trivial or multi-file change, 3 = broad refactor/migration)\n"
@@ -1795,6 +4295,7 @@ def score_subtask_with_model(task: str, subtask_desc: str, judge_model: str) -> 
         build_judge_prompt(task, subtask_desc),
         timeout=judge_timeout,
         num_predict=204800,  # Increased for full JSON object output from large models
+        usage_label=f"Judge subtask: {compact_text(subtask_desc, 80)}",
     )
     if router_debug_enabled():
         print(f"\n[DEBUG Judge Output for: {subtask_desc[:60]}...]")
@@ -1808,9 +4309,12 @@ def score_subtask_with_model(task: str, subtask_desc: str, judge_model: str) -> 
     return normalize_complexity_assessment(extract_first_json_object(raw_text), task, subtask_desc)
 
 
-def build_subtask(desc: str, assessment: ComplexityAssessment) -> Subtask:
+def build_subtask(planned: PlannedSubtask, assessment: ComplexityAssessment) -> Subtask:
     return {
-        "desc": desc,
+        "id": planned["id"],
+        "desc": planned["desc"],
+        "depends_on": list(planned["depends_on"]),
+        "dependency_reason": planned["dependency_reason"],
         "model": assessment["final_route"],
         "assessment": assessment,
     }
@@ -1825,23 +4329,34 @@ def display_plan(subtasks: List[Subtask], planner_model: str, judge_model: str) 
     for index, step in enumerate(subtasks, start=1):
         icon = "🧠 [PRO]  " if step["model"] == PRO else "⚡ [FLASH] "
         assessment = step["assessment"]
+        dependencies = ", ".join(step["depends_on"]) if step["depends_on"] else "-"
         print(
-            f"步骤 {index}: {icon}| score={assessment['complexity_score']} "
-            f"| conf={assessment['confidence']:.2f} | {step['desc']}"
+            f"步骤 {index} [{step['id']}]: {icon}| score={assessment['complexity_score']} "
+            f"| conf={assessment['confidence']:.2f} | deps={dependencies} | {step['desc']}"
         )
         print(
             f"         判定依据: {assessment['reason']} "
             f"({assessment['judge_source']}, suggested={assessment['suggested_route']})"
         )
+        print(f"         依赖依据: {step['dependency_reason']}")
     print("=" * 58)
 
 
 def planner_warmup_node(state: RouterState) -> Dict[str, Any]:
+    if ROUTER_SKIP_WARMUP:
+        print("[Node: Planner Warmup] ⏭️  Skipping warmup (ROUTER_SKIP_WARMUP=1)")
+        return {"planner_warmup_attempt": 3, "status": "planner_warmup_skipped"}
     attempt = state["planner_warmup_attempt"] + 1
     if attempt == 1:
         print("\n[Node: Planner Warmup] 🔥 Warming up planner model with a LangGraph loop...")
     try:
-        generate_text(state["planner_model"], WARMUP_PROMPT, timeout=180, num_predict=4)
+        generate_text(
+            state["planner_model"],
+            "OK",
+            timeout=300,
+            num_predict=4,
+            usage_label=f"Planner warmup {attempt}",
+        )
         print(f"[Planner Warmup] ✅ Ping {attempt}/3 successful")
     except Exception as exc:
         print(f"[Planner Warmup] ⚠️ Ping {attempt}/3 failed: {exc}")
@@ -1860,11 +4375,17 @@ def route_after_planner_warmup(state: RouterState) -> str:
 def planner_invoke_node(state: RouterState) -> Dict[str, Any]:
     print("\n[Node: Planner Invoke] 🧠 调用规划模型拆解任务...")
     try:
+        planner_output_tokens = resolve_positive_int(
+            None,
+            ROUTER_PLANNER_MAX_OUTPUT_TOKENS_ENV_VAR,
+            DEFAULT_PLANNER_MAX_OUTPUT_TOKENS,
+        )
         raw_text = generate_text(
             state["planner_model"],
             build_planner_prompt(state["task"]),
             timeout=300,  # 5 minutes for large models like gemma4:26b
-            num_predict=409600,  # Increased for full JSON array output from large models
+            num_predict=planner_output_tokens,
+            usage_label="Planner invoke",
         )
         return {
             "planner_raw_text": raw_text,
@@ -1901,6 +4422,7 @@ def planner_parse_node(state: RouterState) -> Dict[str, Any]:
     try:
         planned_subtasks = normalize_planned_subtasks(extract_first_json_array(raw_text))
         planned_subtasks = ensure_communication_subtask(state["task"], planned_subtasks)
+        planned_subtasks = normalize_planned_subtasks(planned_subtasks)
         print(f"✅ 规划成功，拆解出 {len(planned_subtasks)} 个步骤。")
         return {
             "planned_subtasks": planned_subtasks,
@@ -1919,12 +4441,13 @@ def planner_parse_node(state: RouterState) -> Dict[str, Any]:
 def route_after_planner_parse(state: RouterState) -> str:
     if state["status"] == "planner_parse_failed":
         return "planner_fallback"
-    return "planner_ready"
+    return "dependency_judge"
 
 
 def planner_fallback_node(state: RouterState) -> Dict[str, Any]:
     planned_subtasks = build_fallback_subtasks(state["task"])
     planned_subtasks = ensure_communication_subtask(state["task"], planned_subtasks)
+    planned_subtasks = normalize_planned_subtasks(planned_subtasks)
     error_text = state["planner_error"] or "Unknown planner failure"
     print(f"⚠️ 规划器异常：{error_text}。已切换到启发式回退规划。")
     return {
@@ -1932,6 +4455,69 @@ def planner_fallback_node(state: RouterState) -> Dict[str, Any]:
         "errors": [f"Planner fallback: {error_text}"],
         "status": "planner_fallback",
     }
+
+
+def dependency_judge_node(state: RouterState) -> Dict[str, Any]:
+    print("\n[Node: Dependency Judge] 🧭 验证子任务依赖关系...")
+    try:
+        judged_subtasks, confidence, issues, raw_text = judge_dependencies_with_model(
+            state["task"],
+            state["planned_subtasks"],
+            state["judge_model"],
+        )
+        print(
+            f"  依赖判定完成: subtasks={len(judged_subtasks)} "
+            f"| confidence={confidence:.2f} | issues={len(issues)}"
+        )
+        return {
+            "planned_subtasks": judged_subtasks,
+            "dependency_raw_text": raw_text,
+            "dependency_error": "",
+            "dependency_issues": issues,
+            "dependency_confidence": confidence,
+            "history": [f"Dependency judge reviewed {len(judged_subtasks)} planned subtasks."],
+            "status": "dependencies_judged",
+        }
+    except Exception as exc:
+        error_text = compact_text(str(exc), 260)
+        print(f"  依赖判定异常: {error_text}。保留规划器依赖并进入结构校验。")
+        return {
+            "dependency_error": error_text,
+            "errors": [f"Dependency judge fallback: {error_text}"],
+            "status": "dependency_judge_failed",
+        }
+
+
+def dependency_validate_node(state: RouterState) -> Dict[str, Any]:
+    try:
+        validated_subtasks = validate_dependency_graph(state["planned_subtasks"])
+        dependency_edges = sum(len(subtask["depends_on"]) for subtask in validated_subtasks)
+        print(
+            f"\n[Node: Dependency Validate] ✅ DAG 校验通过: "
+            f"subtasks={len(validated_subtasks)}, edges={dependency_edges}"
+        )
+        return {
+            "planned_subtasks": validated_subtasks,
+            "history": [
+                f"Dependency graph validated with {len(validated_subtasks)} subtasks and {dependency_edges} edges."
+            ],
+            "status": "dependencies_validated",
+        }
+    except Exception as exc:
+        error_text = compact_text(str(exc), 260)
+        fallback_subtasks = make_serial_dependency_plan(state["planned_subtasks"])
+        print(
+            f"\n[Node: Dependency Validate] ⚠️ DAG 校验失败: {error_text}。"
+            "已切换到保守串行依赖。"
+        )
+        return {
+            "planned_subtasks": fallback_subtasks,
+            "dependency_error": error_text,
+            "dependency_issues": state["dependency_issues"] + [error_text],
+            "errors": [f"Dependency validation fallback: {error_text}"],
+            "history": ["Dependency graph invalid; switched to conservative serial execution order."],
+            "status": "dependencies_validated_with_fallback",
+        }
 
 
 def planner_ready_node(state: RouterState) -> Dict[str, Any]:
@@ -1944,9 +4530,18 @@ def planner_ready_node(state: RouterState) -> Dict[str, Any]:
 
 
 def judge_warmup_node(state: RouterState) -> Dict[str, Any]:
+    if ROUTER_SKIP_WARMUP:
+        print("[Node: Judge Warmup] ⏭️  Skipping warmup (ROUTER_SKIP_WARMUP=1)")
+        return {"judge_warmup_done": True, "status": "judge_warmup_skipped"}
     print("\n[Node: Judge Warmup] 🔥 Warming up judge model before LangGraph fanout...")
     try:
-        generate_text(state["judge_model"], WARMUP_PROMPT, timeout=180, num_predict=4)
+        generate_text(
+            state["judge_model"],
+            "OK",
+            timeout=300,
+            num_predict=4,
+            usage_label="Judge warmup",
+        )
         print("[Judge Warmup] ✅ Warmup successful")
         return {
             "judge_warmup_done": True,
@@ -1982,7 +4577,8 @@ def route_to_judge_subtasks(state: RouterState) -> List[Send] | str:
 
 def judge_subtask_node(state: RouterState) -> Dict[str, Dict[int, JudgedSubtask]]:
     index = state["judge_index"]
-    desc = state["judge_desc"]
+    planned = state["planned_subtasks"][index - 1]
+    desc = state["judge_desc"] or planned["desc"]
     print(f"\n[Node: Judge Subtask] 🎯 Step {index} 结构化复杂度评分...")
     error = ""
     try:
@@ -2000,7 +4596,7 @@ def judge_subtask_node(state: RouterState) -> Dict[str, Dict[int, JudgedSubtask]
         "judge_results": {
             index: {
                 "index": index,
-                "subtask": build_subtask(desc, assessment),
+                "subtask": build_subtask(planned, assessment),
                 "error": error,
             }
         }
@@ -2038,10 +4634,9 @@ def extract_technical_metadata_for_result(state: RouterState, result: StepResult
     ):
         return [f"Step {step_number} metadata extraction skipped (no output or failure)."]
 
+    metadata_context = build_metadata_context_pack_json(state, result, active_output)
     prompt = (
-        f"Task: {state['task']}\n"
-        f"Subtask: {result['desc']}\n"
-        f"Output: {active_output}\n\n"
+        f"Metadata context JSON:\n{metadata_context}\n\n"
         "Instruction: Extract the 'technical gold' from this output. "
         "Identify: 1. Key architectural decisions, 2. Specific library/tool choices, 3. Critical logic/algorithm details, "
         "4. CAP theorem trade-offs identified, 5. Final outcomes or verified results. "
@@ -2087,6 +4682,74 @@ def route_to_parallel_executor_subtasks(state: RouterState) -> List[Send] | str:
     return sends
 
 
+def completed_subtask_ids(state: RouterState) -> set[str]:
+    return {
+        str(result.get("subtask_id") or "")
+        for result in state["execution_results"].values()
+        if str(result.get("subtask_id") or "")
+    }
+
+
+def dependency_context_results_for_subtask(
+    state: RouterState,
+    subtask: Subtask,
+) -> List[StepResult]:
+    dependency_ids = set(subtask["depends_on"])
+    if not dependency_ids:
+        return []
+    return [
+        result
+        for result in sorted(state["execution_results"].values(), key=lambda item: item["step"])
+        if result.get("subtask_id") in dependency_ids
+    ]
+
+
+def dependency_scheduler_node(state: RouterState) -> Dict[str, Any]:
+    completed_ids = completed_subtask_ids(state)
+    remaining_count = sum(1 for subtask in state["subtasks"] if subtask["id"] not in completed_ids)
+    return {
+        "current_step": len(completed_ids),
+        "history": [
+            f"Dependency scheduler sees {len(completed_ids)} completed and {remaining_count} remaining subtasks."
+        ],
+        "status": "dependency_scheduling",
+    }
+
+
+def route_to_ready_executor_subtasks(state: RouterState) -> List[Send] | str:
+    completed_ids = completed_subtask_ids(state)
+    ready: List[tuple[int, Subtask]] = []
+    remaining: List[Subtask] = []
+
+    for index, subtask in enumerate(state["subtasks"], start=1):
+        if subtask["id"] in completed_ids:
+            continue
+        remaining.append(subtask)
+        if all(dependency_id in completed_ids for dependency_id in subtask["depends_on"]):
+            ready.append((index, subtask))
+
+    if not remaining:
+        return "execution_finalize_join"
+    if not ready:
+        return "dependency_deadlock"
+
+    print(
+        "\n[Edge: Dependency Scheduler -> Executor Fanout] 🚀 Dispatching "
+        f"{len(ready)} ready subtasks; completed={len(completed_ids)}, remaining={len(remaining)}."
+    )
+    return [
+        Send(
+            "parallel_executor",
+            {
+                **state,
+                "execution_index": index,
+                "execution_subtask": subtask,
+            },
+        )
+        for index, subtask in ready
+    ]
+
+
 def route_to_deferred_executor_subtasks(state: RouterState) -> List[Send] | str:
     sends = [
         Send(
@@ -2122,11 +4785,12 @@ def invoke_parallel_executor_attempt(
     attempt_log: List[str],
 ) -> tuple[ModelInvocationResult, int]:
     model_name = state["pro_model"] if route == PRO else state["flash_model"]
+    dependency_results = dependency_context_results_for_subtask(state, subtask)
     prompt_state = dict(state)
     prompt_state.update(
         {
-            "results": list(state["execution_context_results"] or state["results"]),
-            "current_step": index - 1,
+            "results": dependency_results,
+            "current_step": len(state["execution_results"]),
             "active_subtask": subtask,
             "active_route": route,
             "active_model_name": model_name,
@@ -2176,6 +4840,8 @@ def build_parallel_step_result(
 ) -> StepResult:
     return {
         "step": index,
+        "subtask_id": subtask["id"],
+        "depends_on": list(subtask["depends_on"]),
         "planned_route": planned_route,
         "route": final_route,
         "model_name": model_name,
@@ -2383,6 +5049,66 @@ def parallel_execution_join_node(state: RouterState) -> RouterState:
     }
 
 
+def dependency_execution_join_node(state: RouterState) -> RouterState:
+    ordered_results = sorted(state["execution_results"].values(), key=lambda result: result["step"])
+    completed_ids = completed_subtask_ids(state)
+    print(
+        "\n[Node: Dependency Execution Join] 🧩 "
+        f"Collected {len(ordered_results)} completed dependency-aware subtask results."
+    )
+    return {
+        "execution_context_results": ordered_results,
+        "current_step": len(completed_ids),
+        "history": [f"Dependency executor has completed {len(completed_ids)} subtasks."],
+        "status": "dependency_wave_executed",
+    }
+
+
+def dependency_deadlock_node(state: RouterState) -> RouterState:
+    completed_ids = completed_subtask_ids(state)
+    fallback_results: Dict[int, StepResult] = {}
+    errors: List[str] = []
+    for index, subtask in enumerate(state["subtasks"], start=1):
+        if subtask["id"] in completed_ids:
+            continue
+        missing = [
+            dependency_id
+            for dependency_id in subtask["depends_on"]
+            if dependency_id not in completed_ids
+        ]
+        planned_route = normalize_route(subtask.get("model"), default=PRO)
+        error = (
+            f"Dependency deadlock on step {index} ({subtask['id']}): "
+            f"missing dependencies {', '.join(missing) or 'unknown'}"
+        )
+        errors.append(error)
+        fallback_results[index] = build_parallel_step_result(
+            index=index,
+            subtask=subtask,
+            planned_route=planned_route,
+            final_route=planned_route,
+            model_name=state["pro_model"] if planned_route == PRO else state["flash_model"],
+            output=f"Dependency scheduler fallback output: {error}",
+            status="dependency_deadlock",
+            attempt_count=0,
+            retry_count=0,
+            escalated_from_flash=False,
+            used_provider_fallback=False,
+            flash_review=empty_flash_review(),
+            attempt_log=[error],
+        )
+    print(
+        "\n[Node: Dependency Deadlock] ⚠️ "
+        f"Recorded {len(fallback_results)} fallback results for blocked subtasks."
+    )
+    return {
+        "execution_results": fallback_results,
+        "errors": errors,
+        "history": ["Dependency scheduler deadlock fallback recorded blocked subtasks."],
+        "status": "dependency_deadlock",
+    }
+
+
 def execution_finalize_join_node(state: RouterState) -> RouterState:
     ordered_results = sorted(state["execution_results"].values(), key=lambda result: result["step"])
     print(
@@ -2459,18 +5185,7 @@ def route_after_dispatch(state: RouterState) -> str:
 
 
 def build_execution_prompt(state: RouterState, route: Literal["PRO", "FLASH"]) -> str:
-    completed_results = state["results"]
-    completed_context = "\n".join(
-        [
-            f"- Step {result['step']} [{result['route']}]: {result['desc']} => {compact_text(result['output'], 160)}"
-            for result in completed_results
-        ]
-    ) or "None"
-
-    assessment = state["active_subtask"].get("assessment") or {}
-    route_reason = str(assessment.get("reason", "N/A"))
-    route_score = assessment.get("complexity_score", "N/A")
-    route_confidence = assessment.get("confidence", "N/A")
+    context_pack = build_executor_context_pack_json(state, route)
     escalation_context = ""
     if route == PRO and state["active_escalated_from_flash"]:
         flash_review = state["active_flash_review"]
@@ -2488,11 +5203,8 @@ def build_execution_prompt(state: RouterState, route: Literal["PRO", "FLASH"]) -
     return (
         f"Role: {route} task executor.\n"
         f"Execution mode: {mode_instruction}\n"
-        f"Original task: {state['task']}\n"
-        f"Current subtask: {state['active_subtask'].get('desc', 'N/A')}\n"
-        f"Routing rationale: route={route}, score={route_score}, confidence={route_confidence}, reason={route_reason}\n"
+        f"Execution context JSON:\n{context_pack}\n"
         f"{escalation_context}"
-        f"Completed context:\n{completed_context}\n"
         "Return only the result for the current subtask. No markdown fences."
     )
 
@@ -2739,6 +5451,8 @@ def record_step_node(state: RouterState) -> RouterState:
     desc = state["active_subtask"].get("desc", "N/A")
     result: StepResult = {
         "step": step_number,
+        "subtask_id": str(state["active_subtask"].get("id") or f"S{step_number}"),
+        "depends_on": list(state["active_subtask"].get("depends_on", [])),
         "planned_route": planned_route,
         "route": PRO if route == PRO else FLASH,
         "model_name": model_name,
@@ -2843,25 +5557,16 @@ def has_distinct_finalizer_model_path(state: RouterState) -> bool:
 
 
 def build_finalizer_prompt(state: RouterState, route: Literal["PRO", "FLASH"]) -> str:
-    results_json = json.dumps(state["results"], ensure_ascii=False, indent=2)
-    
-    # Collect all technical metadata markers from history
-    metadata_blocks = [line for line in state["history"] if "TECHNICAL METADATA STEP" in line]
-    metadata_context = "\n".join(metadata_blocks) if metadata_blocks else "No technical metadata extracted."
-
+    finalizer_context = build_finalizer_context_pack_json(state, route)
     role = "FLASH summarizer" if route == FLASH else "PRO summarizer"
     route_instruction = (
         "Write a concise final report with three sections: Routing Summary, Step Outcomes, Next Action. Use the Technical Metadata blocks for precise facts."
         if route == FLASH
-        else "Write a concise but higher-signal final report with three sections: Routing Summary, Step Outcomes, Next Action. Use the Technical Metadata blocks for precision, but refer back to the Execution Log for full context if needed."
+        else "Write a concise but higher-signal final report with three sections: Routing Summary, Step Outcomes, Next Action. Use the compact execution results and Technical Metadata blocks for precision."
     )
     return (
         f"Role: {role}.\n"
-        f"Original task: {state['task']}\n"
-        f"Planner model: {state['planner_model']}\n"
-        f"Judge model: {state['judge_model']}\n"
-        f"Technical Data Gold:\n{metadata_context}\n\n"
-        f"Execution log JSON:\n{results_json}\n"
+        f"Finalizer context JSON:\n{finalizer_context}\n"
         f"{route_instruction}"
     )
 
@@ -3092,12 +5797,32 @@ def deterministic_finalizer_node(state: RouterState) -> RouterState:
 
 
 def finalizer_complete_node(state: RouterState) -> RouterState:
+    token_usage = get_token_usage_records(state["run_id"])
+    token_usage_summary = summarize_token_usage_records(token_usage)
+    token_usage_history: List[str] = ["Finalizer completed."]
     print("\n" + "=" * 58)
     print(state["final_report"])
+    print("-" * 58)
+    print(format_token_usage_summary(token_usage_summary))
+    try:
+        ledger_path = persist_token_usage_ledger(
+            token_usage,
+            token_usage_summary,
+            state=state,
+        )
+        if ledger_path:
+            print(f"- Ledger: {ledger_path}")
+            token_usage_history.append(f"Token usage ledger appended: {ledger_path}")
+    except Exception as exc:
+        error_text = compact_text(str(exc), 220)
+        print(f"- Ledger write failed: {error_text}")
+        token_usage_history.append(f"Token usage ledger write failed: {error_text}")
     print("=" * 58)
 
     return {
-        "history": ["Finalizer completed."],
+        "history": token_usage_history,
+        "token_usage": token_usage,
+        "token_usage_summary": token_usage_summary,
         "status": "finished",
     }
 
@@ -3108,13 +5833,16 @@ def build_router_graph():
     workflow.add_node("planner_invoke", planner_invoke_node)
     workflow.add_node("planner_parse", planner_parse_node)
     workflow.add_node("planner_fallback", planner_fallback_node)
+    workflow.add_node("dependency_judge", dependency_judge_node)
+    workflow.add_node("dependency_validate", dependency_validate_node)
     workflow.add_node("planner_ready", planner_ready_node)
     workflow.add_node("judge_warmup", judge_warmup_node)
     workflow.add_node("judge_subtask", judge_subtask_node)
     workflow.add_node("assemble_plan", assemble_plan_node)
+    workflow.add_node("dependency_scheduler", dependency_scheduler_node)
     workflow.add_node("parallel_executor", parallel_executor_node)
-    workflow.add_node("parallel_execution_join", parallel_execution_join_node)
-    workflow.add_node("deferred_executor", parallel_executor_node)
+    workflow.add_node("dependency_execution_join", dependency_execution_join_node)
+    workflow.add_node("dependency_deadlock", dependency_deadlock_node)
     workflow.add_node("execution_finalize_join", execution_finalize_join_node)
     workflow.add_node("flash_finalizer", flash_finalizer_node)
     workflow.add_node("flash_finalizer_verify", flash_finalizer_verify_node)
@@ -3144,18 +5872,21 @@ def build_router_graph():
         "planner_parse",
         route_after_planner_parse,
         {
-            "planner_ready": "planner_ready",
+            "dependency_judge": "dependency_judge",
             "planner_fallback": "planner_fallback",
         },
     )
-    workflow.add_edge("planner_fallback", "planner_ready")
+    workflow.add_edge("planner_fallback", "dependency_judge")
+    workflow.add_edge("dependency_judge", "dependency_validate")
+    workflow.add_edge("dependency_validate", "planner_ready")
     workflow.add_edge("planner_ready", "judge_warmup")
     workflow.add_conditional_edges("judge_warmup", route_to_judge_subtasks)
     workflow.add_edge("judge_subtask", "assemble_plan")
-    workflow.add_conditional_edges("assemble_plan", route_to_parallel_executor_subtasks)
-    workflow.add_edge("parallel_executor", "parallel_execution_join")
-    workflow.add_conditional_edges("parallel_execution_join", route_to_deferred_executor_subtasks)
-    workflow.add_edge("deferred_executor", "execution_finalize_join")
+    workflow.add_edge("assemble_plan", "dependency_scheduler")
+    workflow.add_conditional_edges("dependency_scheduler", route_to_ready_executor_subtasks)
+    workflow.add_edge("parallel_executor", "dependency_execution_join")
+    workflow.add_edge("dependency_execution_join", "dependency_scheduler")
+    workflow.add_edge("dependency_deadlock", "execution_finalize_join")
     workflow.add_edge("execution_finalize_join", "flash_finalizer")
     workflow.add_edge("flash_finalizer", "flash_finalizer_verify")
     workflow.add_conditional_edges(
@@ -3190,10 +5921,18 @@ def resolve_graph_max_concurrency(explicit_value: int | None, state: RouterState
     return None
 
 
-def build_graph_config(recursion_limit: int, max_concurrency: int | None = None) -> Dict[str, int]:
-    config = {"recursion_limit": recursion_limit}
+def build_graph_config(
+    recursion_limit: int,
+    max_concurrency: int | None = None,
+    state: RouterState | None = None,
+) -> Dict[str, Any]:
+    config: Dict[str, Any] = {"recursion_limit": recursion_limit}
     if max_concurrency is not None:
         config["max_concurrency"] = max_concurrency
+    if state is not None:
+        config["run_name"] = "super-router"
+        config["tags"] = parse_langsmith_tags()
+        config["metadata"] = build_langsmith_metadata(state)
     return config
 
 
@@ -3241,8 +5980,8 @@ def create_initial_state(
     flash_fallback_models: List[str] | None = None,
     flash_retry_budget: int | None = None,
 ) -> RouterState:
-    resolved_planner = resolve_model(planner_model, "ROUTER_PLANNER_MODEL", "gemma4:26b")
-    resolved_judge = resolve_model(judge_model, "ROUTER_JUDGE_MODEL", "llama3.1:8b")
+    resolved_planner = resolve_model(planner_model, "ROUTER_PLANNER_MODEL", DEFAULT_PLANNER_MODEL)
+    resolved_judge = resolve_model(judge_model, "ROUTER_JUDGE_MODEL", DEFAULT_JUDGE_MODEL)
     resolved_pro = resolve_execution_model(pro_model, "ROUTER_PRO_MODEL", DEFAULT_PRO_MODEL)
     resolved_flash = resolve_execution_model(flash_model, "ROUTER_FLASH_MODEL", DEFAULT_FLASH_MODEL)
     resolved_pro_fallback_models = resolve_model_list(
@@ -3259,6 +5998,7 @@ def create_initial_state(
         DEFAULT_FLASH_RETRY_BUDGET,
     )
     return {
+        "run_id": str(uuid.uuid4()),
         "task": task,
         "planner_model": resolved_planner,
         "judge_model": resolved_judge,
@@ -3270,6 +6010,10 @@ def create_initial_state(
         "planned_subtasks": [],
         "planner_raw_text": "",
         "planner_error": "",
+        "dependency_raw_text": "",
+        "dependency_error": "",
+        "dependency_issues": [],
+        "dependency_confidence": 0.0,
         "planner_warmup_attempt": 0,
         "judge_warmup_done": False,
         "subtasks": [],
@@ -3303,6 +6047,8 @@ def create_initial_state(
         "finalizer_error": "",
         "finalizer_flash_reason": "",
         "finalizer_invocation_result": empty_model_invocation_result(),
+        "token_usage": [],
+        "token_usage_summary": empty_token_usage_summary(),
     }
 
 
@@ -3407,24 +6153,30 @@ def run_router_app(
         recursion_limit=recursion_limit,
         max_concurrency=max_concurrency,
     )
-    graph_config = build_graph_config(resolved_recursion_limit, resolved_max_concurrency)
+    graph_config = build_graph_config(
+        resolved_recursion_limit,
+        resolved_max_concurrency,
+        initial_state,
+    )
     if resolved_max_concurrency == 1 and is_large_model(initial_state["judge_model"]):
         print("[LangGraph Config] Large Judge model detected; max_concurrency=1 to avoid local model contention.")
-    if not stream:
-        return graph.invoke(
-            initial_state,
-            config=graph_config,
-        )
+    with token_usage_tracking_context(initial_state["run_id"]):
+        with langsmith_tracing_context(initial_state):
+            if not stream:
+                return graph.invoke(
+                    initial_state,
+                    config=graph_config,
+                )
 
-    print("\n[LangGraph Stream] 🔄 节点级流式输出已启用。")
-    final_state: RouterState = initial_state
-    for event in graph.stream(
-        initial_state,
-        config=graph_config,
-        stream_mode=["updates", "values"],
-    ):
-        final_state = observe_stream_event(event, final_state=final_state)
-    return final_state
+            print("\n[LangGraph Stream] 🔄 节点级流式输出已启用。")
+            final_state: RouterState = initial_state
+            for event in graph.stream(
+                initial_state,
+                config=graph_config,
+                stream_mode=["updates", "values"],
+            ):
+                final_state = observe_stream_event(event, final_state=final_state)
+            return final_state
 
 
 def parse_cli_args(argv: List[str]) -> argparse.Namespace:

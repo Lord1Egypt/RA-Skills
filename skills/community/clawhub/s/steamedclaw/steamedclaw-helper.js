@@ -5,9 +5,11 @@
  * SteamedClaw helper script — batches HTTP + file operations into single exec invocations.
  * Reduces LLM calls per game turn from 5-6 (individual web_fetch) to 1-2 (exec this script).
  *
- * @version 1.3.4
+ * @version 1.3.10
  *
  * Usage:
+ *   node steamedclaw-helper.js whoami                registration check (never prints the API key)
+ *   node steamedclaw-helper.js register <name>       registers, writes credentials (creates state dir)
  *   node steamedclaw-helper.js queue [gameId]        default: tic-tac-toe
  *   node steamedclaw-helper.js status
  *   node steamedclaw-helper.js move <action>         action: position number or JSON string
@@ -26,6 +28,17 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+// Client-side cap on the status long-poll (server holds wait=true up to ~30s).
+// 15s keeps a single exec well inside OpenClaw's exec timeout
+// (tools.exec.timeoutSec default 1800s, verified 2026-06-11) while converting
+// most medium-speed opponent turns into same-heartbeat continuations.
+const LONG_POLL_WAIT_MS = 15000;
+
+// Backgammon legal-move sequences are listed outright at or below this count
+// (forced/constrained positions); above it only the count is shown and the
+// agent derives sequences from points + dice.
+const BACKGAMMON_LEGAL_LIST_MAX = 8;
+
 const DATA_DIR = path.join(os.homedir(), '.config', 'steamedclaw-state');
 const LEGACY_DATA_DIR = path.join(os.homedir(), '.config', 'steamedclaw');
 const CREDENTIALS = path.join(DATA_DIR, 'credentials.md');
@@ -39,8 +52,10 @@ Agent ID: (not registered yet)
 API Key: (not registered yet)
 `;
 
-// Ensure data directory and seed files exist on first run
-fs.mkdirSync(DATA_DIR, { recursive: true });
+// Ensure data directory and seed files exist on first run. mode applies only
+// on creation (POSIX; no-op on Windows) — see the hardenStatePermissions()
+// backfill below for pre-existing installs.
+fs.mkdirSync(DATA_DIR, { recursive: true, mode: 0o700 });
 
 // Migrate from legacy ~/.config/steamedclaw/ (pre-1.3.0). If the new dir is
 // empty and the legacy dir has content, copy files forward. Keep the legacy
@@ -66,16 +81,36 @@ if (!fs.existsSync(CREDENTIALS) && fs.existsSync(MATCH_HISTORY)) {
     fs.writeFileSync(
       CREDENTIALS,
       `# SteamedClaw Credentials\n\nServer: ${oldServer}\nAgent ID: ${oldId}\nAPI Key: ${oldKey}\n`,
+      { mode: 0o600 },
     );
   }
 }
 
 if (!fs.existsSync(CREDENTIALS)) {
-  fs.writeFileSync(CREDENTIALS, CREDENTIALS_TEMPLATE);
+  fs.writeFileSync(CREDENTIALS, CREDENTIALS_TEMPLATE, { mode: 0o600 });
 }
 if (!fs.existsSync(CURRENT_GAME)) {
   fs.writeFileSync(CURRENT_GAME, 'No active game.\n');
 }
+
+// Owner-only permissions on the state dir + credential file. writeFileSync's
+// mode applies only when the file is CREATED, so installs that predate this
+// hardening (or files carried over by the legacy migration above) keep their
+// old 0644/0755 bits — chmod backfills them. Best-effort: chmod is a no-op
+// concept on Windows and must never break gameplay on odd filesystems.
+function hardenStatePermissions() {
+  try {
+    fs.chmodSync(DATA_DIR, 0o700);
+  } catch {
+    /* best-effort */
+  }
+  try {
+    if (fs.existsSync(CREDENTIALS)) fs.chmodSync(CREDENTIALS, 0o600);
+  } catch {
+    /* best-effort */
+  }
+}
+hardenStatePermissions();
 
 // ── File helpers ──────────────────────────────────────────────────────────────
 
@@ -89,14 +124,25 @@ function readCredentials() {
   return { server, agentId: registered ? agentId : null, apiKey: registered ? apiKey : null };
 }
 
-function writeCredentials(server, agentId, apiKey) {
-  const template = `# SteamedClaw Credentials
+function writeCredentials(server, agentId, apiKey, claimUrl, verificationCode) {
+  let template = `# SteamedClaw Credentials
 
 Server: ${server}
 Agent ID: ${agentId}
 API Key: ${apiKey}
 `;
-  fs.writeFileSync(CREDENTIALS, template);
+  // Claim URL + verification code are written only on registration (they let
+  // the human owner claim the agent); the 401-reset callers omit them.
+  if (claimUrl) template += `Claim URL: ${claimUrl}\n`;
+  if (verificationCode) template += `Verification Code: ${verificationCode}\n`;
+  // mode applies only on creation; the file usually already exists (seeded at
+  // load), so backfill owner-only permissions after the write.
+  fs.writeFileSync(CREDENTIALS, template, { mode: 0o600 });
+  try {
+    fs.chmodSync(CREDENTIALS, 0o600);
+  } catch {
+    /* best-effort */
+  }
 }
 
 function readGameState() {
@@ -179,7 +225,7 @@ const ACTION_HINTS = {
   checkers: '{"type":"move","from":1-32,"to":1-32} or {"type":"resign"}',
   backgammon:
     '{"type":"move","moves":[{"from":1-24|"bar","to":1-24|"off"}]} (up to 4 moves; empty [] to pass) or {"type":"resign"}',
-  mancala: '{"type":"sow","pit":0-5} or {"type":"resign"}',
+  mancala: '{"type":"sow","pit":1-6} or {"type":"resign"}',
   // murder-mystery-5 is embargoed server-side (#406) and no longer listed in
   // SKILL.md; the hint stays so preview-allowlisted test agents still get the
   // action format if they are matched into one.
@@ -214,11 +260,173 @@ function compactView(view, gameId) {
   if (gameId === 'prisoners-dilemma') {
     return `round:${view.round || '?'} myScore:${view.myScore ?? '?'}`;
   }
-  // Generic fallback — truncate to keep output compact
-  return JSON.stringify(view).slice(0, 200);
+  if (gameId === 'chess' && view.fen) {
+    const last = view.lastMove ? ` last:${view.lastMove}` : '';
+    const legal =
+      Array.isArray(view.legalMoves) && view.legalMoves.length > 0
+        ? ` legal:[${view.legalMoves.join(',')}]`
+        : '';
+    return `fen:[${view.fen}] me:${view.yourColor || '?'}${last} check:${view.inCheck}${legal}`;
+  }
+  if (gameId === 'reversi' && view.board) {
+    const rows = view.board.map((row) => row.map((c) => (c === null ? '_' : c)).join('')).join('|');
+    const counts = view.pieceCounts ? ` B:${view.pieceCounts.B} W:${view.pieceCounts.W}` : '';
+    // validMoves is an array of [row, col] tuples
+    const valid = (view.validMoves || []).map(([r, c]) => `${r},${c}`).join(' ');
+    return `board:[${rows}] me:${view.yourMark || '?'}${counts} valid:[${valid}]`;
+  }
+  if (gameId === 'checkers' && view.board) {
+    // board is an 8x8 grid of {player, king, position(1-32 PDN)} | null
+    const mine = [];
+    const opp = [];
+    for (const row of view.board) {
+      for (const cell of row) {
+        if (!cell) continue;
+        const label = cell.king ? `${cell.position}K` : `${cell.position}`;
+        (cell.player === view.yourColor ? mine : opp).push(label);
+      }
+    }
+    const legal = (view.legalMoves || [])
+      .map((m) => (m.captures && m.captures.length > 0 ? `${m.from}x${m.to}` : `${m.from}-${m.to}`))
+      .join(',');
+    return `me(${view.yourColor || '?'}):[${mine.join(',')}] opp:[${opp.join(',')}] legal:[${legal}]`;
+  }
+  if (gameId === 'backgammon' && view.board) {
+    // board[1..24]: positive = white checkers, negative = black
+    const pts = [];
+    for (let p = 1; p <= 24; p++) {
+      const v = view.board[p] ?? 0;
+      if (v !== 0) pts.push(`${p}:${v > 0 ? 'w' : 'b'}${Math.abs(v)}`);
+    }
+    const seqs = Array.isArray(view.legalMoves) ? view.legalMoves : [];
+    const legal =
+      seqs.length > 0 && seqs.length <= BACKGAMMON_LEGAL_LIST_MAX
+        ? ` legal:[${seqs.map((seq) => seq.map((m) => `${m.from}>${m.to}`).join('+')).join(' ')}]`
+        : ` legalSeqs:${seqs.length}`;
+    return `me:${view.yourColor || '?'} pts:[${pts.join(',')}] bar:w${view.whiteBar}/b${view.blackBar} off:w${view.whiteOff}/b${view.blackOff} dice:[${(view.dice || []).join(',')}]${legal}`;
+  }
+  if (gameId === 'mancala' && view.yourPits) {
+    return `mine:[${view.yourPits.join(',')}]+${view.yourStore} opp:[${view.opponentPits.join(',')}]+${view.opponentStore} valid:[${(view.validPits || []).join(',')}]`;
+  }
+  if (gameId === 'werewolf-7' && view.yourRole) {
+    // Night actions and votes require FULL agent ids as targets — the alive
+    // roster (and wolf partner list) must never be truncated to prefixes.
+    // This line exceeds compactness norms on purpose: correctness over brevity.
+    const wolves = Array.isArray(view.wolves) ? ` wolves:[${view.wolves.join(',')}]` : '';
+    const inv =
+      Array.isArray(view.investigations) && view.investigations.length > 0
+        ? ` investigations:[${view.investigations.map((i) => `${i.target.slice(0, 8)}=${i.faction}`).join(',')}]`
+        : '';
+    const dead = (view.deadPlayers || []).map((d) => `${d.id.slice(0, 8)}:${d.role}`).join(',');
+    return `role:${view.yourRole} phase:${view.phase} day:${view.day} alive:[${(view.livingPlayers || []).join(',')}]${wolves}${inv} dead:[${dead}]`;
+  }
+  // Generic fallback for games without a formatter — a safety net sized so a
+  // raw view (FEN, legal moves, full boards) survives whole, not a compactness
+  // enforcer. Per-game formatters above are the compact path (#479).
+  return JSON.stringify(view).slice(0, 2000);
+}
+
+/**
+ * Single game_over line shared by BOTH terminal paths (#480): cmdStatus when
+ * the opponent's move ended the game, and cmdMove when the agent's own move
+ * did. The server's terminal payload (#324) is fully populated on both —
+ * results[], rating, newBadges, suggestions — this renders the decision- and
+ * retention-relevant parts. Degrades gracefully: rating/badges/suggestions
+ * segments are omitted when absent (e.g. completion-pipeline cap exceeded, or
+ * cancelled/aborted records with no results → outcome:unknown).
+ */
+function formatGameOverLine(s, agentId, seq) {
+  // Only this agent's own entry counts — never present another player's
+  // outcome as ours (multiplayer results would misattribute); unknown is the
+  // honest fallback when the agent is absent from results.
+  const myResult = (s.results || []).find((r) => r.agentId === agentId);
+  const outcome = myResult?.outcome || 'unknown';
+  let rating = '';
+  if (s.rating && typeof s.rating.before === 'number' && typeof s.rating.after === 'number') {
+    // Elo outputs are unrounded floats — round for the line so agents never
+    // see rating:+11.842105263157896→1211.8421052631579. Delta is derived
+    // from the rounded endpoints so the arithmetic stays self-consistent.
+    const after = Math.round(s.rating.after);
+    const change = after - Math.round(s.rating.before);
+    rating = ` rating:${change >= 0 ? '+' : ''}${change}→${after}`;
+  }
+  const badges =
+    Array.isArray(s.newBadges) && s.newBadges.length > 0
+      ? ` badges:[${s.newBadges.map((b) => b.badgeId).join(',')}]`
+      : '';
+  const next =
+    Array.isArray(s.suggestions) && s.suggestions.length > 0 ? ` next:${s.suggestions[0]}` : '';
+  const line = `game_over outcome:${outcome}${rating}${badges}${next} seq:${seq}`;
+  // #516: forward the server-authored encouragement CTA (messaging.encouragement,
+  // #514) verbatim on its own line — passthrough only, never author or edit it.
+  // Absent/blank → omit; never errors. The compact stats line above is unchanged.
+  const enc =
+    typeof s.messaging?.encouragement === 'string' ? s.messaging.encouragement.trim() : '';
+  return enc ? `${line}\n${enc}` : line;
 }
 
 // ── Commands ──────────────────────────────────────────────────────────────────
+
+// Registration check WITHOUT exposing the API key. SKILL.md Step 1 calls this
+// instead of reading credentials.md directly, so the key never enters the
+// agent's context/transcript — the helper reads and uses it internally.
+function cmdWhoami() {
+  const { server, agentId } = readCredentials();
+  if (!agentId) {
+    console.log(`not_registered server:${server}`);
+    return;
+  }
+  console.log(`registered:${agentId} server:${server}`);
+}
+
+async function cmdRegister(name) {
+  const trimmed = (name || '').trim();
+  if (!trimmed) throw new Error('register needs a name: register <YourChosenName>');
+
+  // Server comes from the seeded credentials.md (defaults to prod). The state
+  // dir + seed file are created at load (top of this script), so registration
+  // works on a clean install where the agent's own write tools cannot reach
+  // ~/.config/ (OpenClaw write/edit are workspace-scoped).
+  const { server, agentId, apiKey } = readCredentials();
+
+  // Idempotent: never re-register over valid credentials. Re-running register
+  // (e.g. a stray heartbeat) must not mint a second agent and orphan the first.
+  if (agentId && apiKey) {
+    console.log(`already_registered:${agentId}`);
+    return;
+  }
+
+  const res = await request('POST', `${server}/api/agents`, { name: trimmed }, null);
+  if (res.status === 409) {
+    // Name collision — the caller picks a different name and retries (SKILL Branch A).
+    console.log(`name_taken:${trimmed}`);
+    return;
+  }
+  if (res.status === 400) {
+    // The POST carries only `name`, so a 400 is a name-validation rejection
+    // (too short, reserved, brackets/dots, profanity). Recoverable like 409 —
+    // pick a different name and retry, rather than looping on the same one.
+    console.log(`name_rejected:${trimmed}`);
+    return;
+  }
+  if (res.status !== 201 && res.status !== 200) {
+    throw new Error(`register failed ${res.status}: ${JSON.stringify(res.data)}`);
+  }
+
+  const d = res.data || {};
+  if (!d.id || !d.apiKey) {
+    // Never stringify the body here — it may contain the API key, and thrown
+    // errors reach agent-visible output. Name the missing fields instead.
+    const missing = [!d.id && 'id', !d.apiKey && 'apiKey'].filter(Boolean).join(',');
+    throw new Error(`register response missing ${missing} (keys: ${Object.keys(d).join(',')})`);
+  }
+  writeCredentials(server, d.id, d.apiKey, d.claim_url, d.verification_code);
+
+  // One compact line carrying everything the agent relays to its human owner.
+  const claim = d.claim_url ? ` claim:${d.claim_url}` : '';
+  const code = d.verification_code ? ` code:${d.verification_code}` : '';
+  console.log(`registered:${d.id} name:${d.name || trimmed}${claim}${code}`);
+}
 
 async function cmdQueue(gameId = 'tic-tac-toe') {
   const { server, apiKey } = readCredentials();
@@ -330,8 +538,10 @@ async function cmdStatus() {
   const state = readGameState();
   if (!state || !state.matchId) throw new Error('no active match in current-game.md');
 
-  // Poll with wait=false only — afterSequence is ignored by the server in this mode.
-  // Sequence tracking is only needed for the action endpoint's optimistic concurrency.
+  // Phase 1: immediate check (wait=false). Actionable states (your_turn,
+  // discussion, game_over) are handled right away — discussion especially must
+  // never long-poll, because the state only changes when someone (possibly
+  // this agent) acts.
   const url = `${server}/api/matches/${state.matchId}/state?wait=false`;
   let res = await request('GET', url, null, apiKey);
 
@@ -356,19 +566,35 @@ async function cmdStatus() {
     throw new Error(`state fetch failed ${res.status}`);
   }
 
-  const s = res.data;
+  let s = res.data;
+
+  // Phase 2: if nothing is actionable yet, ride ONE bounded long-poll so an
+  // opponent move landing within LONG_POLL_WAIT_MS continues this same
+  // heartbeat instead of burning the next one. The server holds wait=true
+  // requests up to ~30s; we abort client-side at 15s. A client timeout means
+  // "still waiting" — exactly what phase 1 already said — so fall through
+  // with the phase-1 response unchanged. Never loop this: one hold per
+  // status command keeps heartbeat occupancy bounded.
+  if (s.status === 'waiting' || s.status === 'not_started') {
+    const waitUrl =
+      s.status === 'waiting'
+        ? `${server}/api/matches/${state.matchId}/state?wait=true&afterSequence=${s.sequence ?? state.seq}`
+        : `${server}/api/matches/${state.matchId}/state?wait=true`;
+    try {
+      const res2 = await request('GET', waitUrl, null, apiKey, LONG_POLL_WAIT_MS);
+      if (res2.status === 200) s = res2.data;
+      // Non-200 here is rare (auth/match just died mid-wait); keep the
+      // phase-1 state — the next heartbeat's phase 1 will surface the error.
+    } catch (e) {
+      if (e.message !== 'timeout') throw e;
+    }
+  }
+
   const seq = s.sequence ?? state.seq;
 
   if (s.status === 'game_over') {
     clearGame();
-    const myResult = (s.results || []).find((r) => r.agentId === agentId) || (s.results || [])[0]; // fallback if agentId not in results
-    const outcome = myResult?.outcome || 'unknown';
-    let rating = '';
-    if (s.rating && typeof s.rating.before === 'number' && typeof s.rating.after === 'number') {
-      const change = s.rating.after - s.rating.before;
-      rating = ` rating:${change >= 0 ? '+' : ''}${change}→${s.rating.after}`;
-    }
-    console.log(`game_over outcome:${outcome}${rating} seq:${seq}`);
+    console.log(formatGameOverLine(s, agentId, seq));
     return;
   }
 
@@ -465,8 +691,11 @@ async function cmdMove(arg) {
   updateSeq(newSeq);
 
   if (newState.status === 'game_over') {
+    // Own move ended the game. The response IS the full terminal payload
+    // (#324) — report outcome/rating/badges/suggestion before clearing state,
+    // since after clearGame() there is no match id left to ask again (#480).
     clearGame();
-    console.log(`game_over seq:${newSeq}`);
+    console.log(formatGameOverLine(newState, agentId, newSeq));
     return;
   }
   console.log(`ok seq:${newSeq} status:${newState.status}`);
@@ -474,21 +703,30 @@ async function cmdMove(arg) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-const [, , cmd, ...args] = process.argv;
+// Test seam: lets tools/steamedclaw-skill-tests require the formatters without
+// running the CLI. Inert on agent installs (the CLI path is the require.main
+// branch below).
+module.exports = { compactView, formatGameOverLine, ACTION_HINTS };
 
-(async () => {
-  try {
-    if (cmd === 'queue') await cmdQueue(args[0]);
-    else if (cmd === 'status') await cmdStatus();
-    else if (cmd === 'move') await cmdMove(args.join(' '));
-    else {
-      console.error(`err: unknown command: ${cmd || '(none)'}`);
-      console.error('Usage: node steamedclaw-helper.js queue|status|move');
+if (require.main === module) {
+  const [, , cmd, ...args] = process.argv;
+
+  (async () => {
+    try {
+      if (cmd === 'whoami') cmdWhoami();
+      else if (cmd === 'register') await cmdRegister(args.join(' '));
+      else if (cmd === 'queue') await cmdQueue(args[0]);
+      else if (cmd === 'status') await cmdStatus();
+      else if (cmd === 'move') await cmdMove(args.join(' '));
+      else {
+        console.error(`err: unknown command: ${cmd || '(none)'}`);
+        console.error('Usage: node steamedclaw-helper.js whoami|register|queue|status|move');
+        process.exit(1);
+      }
+    } catch (e) {
+      // OpenClaw exec merges both stdout and stderr into a single output visible to the LLM.
+      console.error(`err: ${e.message}`);
       process.exit(1);
     }
-  } catch (e) {
-    // OpenClaw exec merges both stdout and stderr into a single output visible to the LLM.
-    console.error(`err: ${e.message}`);
-    process.exit(1);
-  }
-})();
+  })();
+}

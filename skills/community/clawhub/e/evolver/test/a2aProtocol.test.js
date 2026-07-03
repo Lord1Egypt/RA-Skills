@@ -1,8 +1,10 @@
-const { describe, it, before, after } = require('node:test');
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const crypto = require('crypto');
+const { spawnSync } = require('child_process');
 if (!process.env.A2A_NODE_SECRET) {
   process.env.A2A_NODE_SECRET = 'a'.repeat(64);
 }
@@ -19,14 +21,35 @@ const {
   buildRevoke,
   isValidProtocolMessage,
   unwrapAssetFromMessage,
+  sendHelloToHub,
+  rotateNodeSecret,
   sendHeartbeat,
   hubOpenEventStream,
+  getHubNodeSecret,
+  getHubNodeSecretVersion,
   mergeAndCap,
   httpTransportSend,
   httpTransportReceive,
 } = require('../src/gep/a2aProtocol');
-const { _resetDryRunWarnedForTesting } = require('../src/gep/a2aProtocol')._testing;
+const {
+  _resetCachedNodeIdForTesting,
+  _resetDryRunWarnedForTesting,
+  _resetHubNodeSecretStateForTesting,
+} = require('../src/gep/a2aProtocol')._testing;
 const { computeAssetId } = require('../src/gep/contentHash');
+const { MailboxStore } = require('../src/proxy/mailbox/store');
+
+function suppressionMarker(secret) {
+  return 'sha256:' + crypto.createHash('sha256').update(secret.toLowerCase()).digest('hex');
+}
+
+function assertNoRawHubResponseSecrets(logText, raw) {
+  assert.equal(logText.includes(raw.nodeSecret), false, 'raw node_secret value must not be logged');
+  assert.equal(logText.includes(raw.bearer), false, 'raw Bearer token must not be logged');
+  assert.equal(logText.includes(raw.token), false, 'raw token field value must not be logged');
+  assert.equal(logText.includes(raw.envPath), false, 'raw .env path must not be logged');
+  assert.equal(logText.includes(raw.body), false, 'raw Hub response body must not be logged verbatim');
+}
 
 describe('protocol constants', () => {
   it('has expected protocol name', () => {
@@ -222,14 +245,17 @@ describe('sendHeartbeat log touch', () => {
   var originalHubUrl;
   var originalLogsDir;
   var originalInsecure;
+  var originalEvolverHome;
 
   before(() => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-hb-test-'));
     originalHubUrl = process.env.A2A_HUB_URL;
     originalLogsDir = process.env.EVOLVER_LOGS_DIR;
     originalInsecure = process.env.EVOMAP_HUB_ALLOW_INSECURE;
+    originalEvolverHome = process.env.EVOLVER_HOME;
     process.env.A2A_HUB_URL = 'http://localhost:19999';
     process.env.EVOLVER_LOGS_DIR = tmpDir;
+    process.env.EVOLVER_HOME = path.join(tmpDir, '.evomap');
     // hubFetch enforces https:// by default; tests use a fake http URL with
     // a stubbed fetch, so opt into insecure mode to bypass URL validation
     // and have hubFetch route through global.fetch (where the stub lives).
@@ -251,7 +277,18 @@ describe('sendHeartbeat log touch', () => {
     }
     if (originalInsecure === undefined) delete process.env.EVOMAP_HUB_ALLOW_INSECURE;
     else process.env.EVOMAP_HUB_ALLOW_INSECURE = originalInsecure;
+    if (originalEvolverHome === undefined) delete process.env.EVOLVER_HOME;
+    else process.env.EVOLVER_HOME = originalEvolverHome;
     fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  beforeEach(() => {
+    _resetHubNodeSecretStateForTesting();
+    fs.mkdirSync(process.env.EVOLVER_HOME, { recursive: true });
+  });
+
+  afterEach(() => {
+    _resetHubNodeSecretStateForTesting();
   });
 
   it('updates mtime of existing evolver_loop.log on successful heartbeat', async () => {
@@ -289,21 +326,1032 @@ describe('sendHeartbeat log touch', () => {
     assert.ok(result.ok, 'heartbeat should succeed');
     assert.ok(fs.existsSync(logPath), 'evolver_loop.log should be created when missing');
   });
+
+  it('sends node_secret_version on heartbeat headers and body', async () => {
+    var savedVersion = process.env.A2A_NODE_SECRET_VERSION;
+    var captured = null;
+    try {
+      process.env.A2A_NODE_SECRET_VERSION = '9';
+      global.fetch = async (url, opts) => {
+        captured = { url, opts, body: JSON.parse(opts.body) };
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ status: 'ok' }),
+          text: async () => '',
+        };
+      };
+
+      var result = await sendHeartbeat();
+      assert.ok(result.ok, 'heartbeat should succeed');
+      assert.equal(getHubNodeSecretVersion(), 9);
+      assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '9');
+      assert.equal(captured.body.node_secret_version, 9);
+      assert.equal(captured.body.meta.node_secret_version, 9);
+    } finally {
+      if (savedVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+      else process.env.A2A_NODE_SECRET_VERSION = savedVersion;
+    }
+  });
+
+  it('does not reuse persisted node_secret_version for a different env secret', async () => {
+    var savedSecret = process.env.A2A_NODE_SECRET;
+    var savedVersion = process.env.A2A_NODE_SECRET_VERSION;
+    var savedEvoVersion = process.env.EVOMAP_NODE_SECRET_VERSION;
+    try {
+      fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'a'.repeat(64));
+      fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '7');
+      process.env.A2A_NODE_SECRET = 'b'.repeat(64);
+      delete process.env.A2A_NODE_SECRET_VERSION;
+      delete process.env.EVOMAP_NODE_SECRET_VERSION;
+
+      assert.equal(getHubNodeSecretVersion(), null);
+    } finally {
+      if (savedSecret === undefined) delete process.env.A2A_NODE_SECRET;
+      else process.env.A2A_NODE_SECRET = savedSecret;
+      if (savedVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+      else process.env.A2A_NODE_SECRET_VERSION = savedVersion;
+      if (savedEvoVersion === undefined) delete process.env.EVOMAP_NODE_SECRET_VERSION;
+      else process.env.EVOMAP_NODE_SECRET_VERSION = savedEvoVersion;
+    }
+  });
+
+  it('uses rotated secret and version on heartbeat retry when env secret is stale', async () => {
+    var savedSecret = process.env.A2A_NODE_SECRET;
+    var savedVersion = process.env.A2A_NODE_SECRET_VERSION;
+    var savedEvoVersion = process.env.EVOMAP_NODE_SECRET_VERSION;
+    var savedNodeId = process.env.A2A_NODE_ID;
+    var savedEvolverHome = process.env.EVOLVER_HOME;
+    var tempHome = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-hb-reauth-'));
+    try {
+      _resetCachedNodeIdForTesting();
+      _resetHubNodeSecretStateForTesting();
+      process.env.EVOLVER_HOME = path.join(tempHome, '.evomap');
+      process.env.A2A_NODE_ID = 'node_aaaaaaaaaaaa';
+      process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+      process.env.A2A_NODE_SECRET_VERSION = '1';
+      delete process.env.EVOMAP_NODE_SECRET_VERSION;
+      fs.mkdirSync(process.env.EVOLVER_HOME, { recursive: true });
+      fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'a'.repeat(64));
+      fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '1');
+
+      var heartbeatCalls = [];
+      global.fetch = async (url, opts) => {
+        if (String(url).includes('/a2a/heartbeat')) {
+          heartbeatCalls.push({
+            headers: opts.headers,
+            body: JSON.parse(opts.body),
+          });
+          if (heartbeatCalls.length === 1) {
+            return {
+              ok: false,
+              status: 403,
+              json: async () => ({ error: 'node_secret_invalid' }),
+              text: async () => JSON.stringify({ error: 'node_secret_invalid' }),
+            };
+          }
+          return {
+            ok: true,
+            status: 200,
+            json: async () => ({ status: 'ok' }),
+            text: async () => '',
+          };
+        }
+        if (String(url).includes('/a2a/hello')) {
+          return {
+            ok: true,
+            status: 200,
+            json: async () => ({
+              payload: {
+                status: 'acknowledged',
+                node_secret: 'b'.repeat(64),
+                node_secret_version: 4,
+                your_node_id: 'node_aaaaaaaaaaaa',
+              },
+            }),
+            text: async () => '',
+          };
+        }
+        throw new Error('unexpected fetch URL: ' + url);
+      };
+
+      var result = await sendHeartbeat();
+
+      assert.equal(result.ok, true);
+      assert.equal(heartbeatCalls.length, 2, 'expected initial heartbeat plus retry');
+      assert.equal(heartbeatCalls[0].headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+      assert.equal(heartbeatCalls[0].headers['X-EvoMap-Node-Secret-Version'], '1');
+      assert.equal(heartbeatCalls[0].body.node_secret_version, 1);
+      assert.equal(heartbeatCalls[0].body.meta.node_secret_version, 1);
+      assert.equal(heartbeatCalls[1].headers.Authorization, 'Bearer ' + 'b'.repeat(64));
+      assert.equal(heartbeatCalls[1].headers['X-EvoMap-Node-Secret-Version'], '4');
+      assert.equal(heartbeatCalls[1].body.node_secret_version, 4);
+      assert.equal(heartbeatCalls[1].body.meta.node_secret_version, 4);
+      assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+      assert.equal(getHubNodeSecretVersion(), 4);
+    } finally {
+      _resetHubNodeSecretStateForTesting();
+      _resetCachedNodeIdForTesting();
+      fs.rmSync(tempHome, { recursive: true, force: true });
+      if (savedSecret === undefined) delete process.env.A2A_NODE_SECRET;
+      else process.env.A2A_NODE_SECRET = savedSecret;
+      if (savedVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+      else process.env.A2A_NODE_SECRET_VERSION = savedVersion;
+      if (savedEvoVersion === undefined) delete process.env.EVOMAP_NODE_SECRET_VERSION;
+      else process.env.EVOMAP_NODE_SECRET_VERSION = savedEvoVersion;
+      if (savedNodeId === undefined) delete process.env.A2A_NODE_ID;
+      else process.env.A2A_NODE_ID = savedNodeId;
+      if (savedEvolverHome === undefined) delete process.env.EVOLVER_HOME;
+      else process.env.EVOLVER_HOME = savedEvolverHome;
+    }
+  });
+
+  it('clears diverged local secret on heartbeat 401 followed by rotate hello 401', async () => {
+    var savedSecret = process.env.A2A_NODE_SECRET;
+    var savedEvoSecret = process.env.EVOMAP_NODE_SECRET;
+    var savedVersion = process.env.A2A_NODE_SECRET_VERSION;
+    var savedEvoVersion = process.env.EVOMAP_NODE_SECRET_VERSION;
+    var savedNodeId = process.env.A2A_NODE_ID;
+    var secretFile = path.join(process.env.EVOLVER_HOME, 'node_secret');
+    var versionFile = path.join(process.env.EVOLVER_HOME, 'node_secret_version');
+    var sourceFile = path.join(process.env.EVOLVER_HOME, 'node_secret_source');
+    var suppressionFile = path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed');
+    var logPath = path.join(tmpDir, 'evolver_loop.log');
+    try {
+      _resetCachedNodeIdForTesting();
+      _resetHubNodeSecretStateForTesting();
+      process.env.A2A_NODE_ID = 'node_aaaaaaaaaaaa';
+      process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+      process.env.A2A_NODE_SECRET_VERSION = '1';
+      delete process.env.EVOMAP_NODE_SECRET;
+      delete process.env.EVOMAP_NODE_SECRET_VERSION;
+      fs.rmSync(secretFile, { force: true });
+      fs.rmSync(versionFile, { force: true });
+      fs.rmSync(sourceFile, { force: true });
+      fs.rmSync(suppressionFile, { force: true });
+      fs.rmSync(logPath, { force: true });
+      fs.writeFileSync(secretFile, 'a'.repeat(64));
+      fs.writeFileSync(versionFile, '1');
+      fs.writeFileSync(sourceFile, 'hub_rotate');
+
+      var calls = [];
+      global.fetch = async (url, opts) => {
+        var u = String(url);
+        var kind = u.includes('/a2a/heartbeat') ? 'heartbeat'
+          : u.includes('/a2a/hello') ? 'hello'
+            : 'unknown';
+        calls.push({
+          kind: kind,
+          headers: opts.headers,
+          body: JSON.parse(opts.body),
+        });
+        if (kind === 'heartbeat' || kind === 'hello') {
+          return {
+            ok: false,
+            status: 401,
+            json: async () => ({ error: 'node_secret_invalid' }),
+            text: async () => JSON.stringify({ error: 'node_secret_invalid' }),
+          };
+        }
+        throw new Error('unexpected fetch URL: ' + url);
+      };
+
+      var result = await sendHeartbeat();
+
+      assert.deepEqual(calls.map(function (c) { return c.kind; }), ['heartbeat', 'hello']);
+      assert.equal(calls[0].headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+      assert.equal(calls[0].headers['X-EvoMap-Node-Secret-Version'], '1');
+      assert.equal(calls[0].body.node_secret_version, 1);
+      assert.equal(calls[0].body.meta.node_secret_version, 1);
+      assert.equal(calls[1].headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+      assert.equal(calls[1].headers['X-EvoMap-Node-Secret-Version'], '1');
+      assert.equal(calls[1].body.payload.rotate_secret, true);
+      assert.equal(result.ok, false);
+      assert.equal(result.error, 'secret_diverged_cleared');
+      assert.equal(fs.existsSync(secretFile), false, 'diverged node_secret must be removed');
+      assert.equal(fs.existsSync(versionFile), false, 'diverged node_secret_version must be removed');
+      assert.equal(fs.existsSync(sourceFile), false, 'diverged node_secret_source must be removed');
+      assert.equal(fs.readFileSync(suppressionFile, 'utf8'), suppressionMarker('a'.repeat(64)));
+      assert.equal(getHubNodeSecret(), null);
+      assert.equal(getHubNodeSecretVersion(), null);
+      if (fs.existsSync(logPath)) {
+        assert.equal(fs.readFileSync(logPath, 'utf8').includes('"type":"heartbeat_ok"'), false);
+      }
+    } finally {
+      _resetHubNodeSecretStateForTesting();
+      _resetCachedNodeIdForTesting();
+      fs.rmSync(secretFile, { force: true });
+      fs.rmSync(versionFile, { force: true });
+      fs.rmSync(sourceFile, { force: true });
+      fs.rmSync(suppressionFile, { force: true });
+      if (savedSecret === undefined) delete process.env.A2A_NODE_SECRET;
+      else process.env.A2A_NODE_SECRET = savedSecret;
+      if (savedEvoSecret === undefined) delete process.env.EVOMAP_NODE_SECRET;
+      else process.env.EVOMAP_NODE_SECRET = savedEvoSecret;
+      if (savedVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+      else process.env.A2A_NODE_SECRET_VERSION = savedVersion;
+      if (savedEvoVersion === undefined) delete process.env.EVOMAP_NODE_SECRET_VERSION;
+      else process.env.EVOMAP_NODE_SECRET_VERSION = savedEvoVersion;
+      if (savedNodeId === undefined) delete process.env.A2A_NODE_ID;
+      else process.env.A2A_NODE_ID = savedNodeId;
+    }
+  });
+});
+
+describe('node_secret_version hello compatibility', () => {
+  var originalFetch;
+  var originalHubUrl;
+  var originalInsecure;
+  var originalNodeId;
+  var originalSecret;
+  var originalEvoSecret;
+  var originalVersion;
+  var originalEvoVersion;
+  var originalEvolverHome;
+  var tempHome;
+
+  before(() => {
+    originalFetch = global.fetch;
+    originalHubUrl = process.env.A2A_HUB_URL;
+    originalInsecure = process.env.EVOMAP_HUB_ALLOW_INSECURE;
+    originalNodeId = process.env.A2A_NODE_ID;
+    originalSecret = process.env.A2A_NODE_SECRET;
+    originalEvoSecret = process.env.EVOMAP_NODE_SECRET;
+    originalVersion = process.env.A2A_NODE_SECRET_VERSION;
+    originalEvoVersion = process.env.EVOMAP_NODE_SECRET_VERSION;
+    originalEvolverHome = process.env.EVOLVER_HOME;
+  });
+
+  after(() => {
+    global.fetch = originalFetch;
+    if (originalHubUrl === undefined) delete process.env.A2A_HUB_URL;
+    else process.env.A2A_HUB_URL = originalHubUrl;
+    if (originalInsecure === undefined) delete process.env.EVOMAP_HUB_ALLOW_INSECURE;
+    else process.env.EVOMAP_HUB_ALLOW_INSECURE = originalInsecure;
+    if (originalNodeId === undefined) delete process.env.A2A_NODE_ID;
+    else process.env.A2A_NODE_ID = originalNodeId;
+    if (originalSecret === undefined) delete process.env.A2A_NODE_SECRET;
+    else process.env.A2A_NODE_SECRET = originalSecret;
+    if (originalEvoSecret === undefined) delete process.env.EVOMAP_NODE_SECRET;
+    else process.env.EVOMAP_NODE_SECRET = originalEvoSecret;
+    if (originalVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+    else process.env.A2A_NODE_SECRET_VERSION = originalVersion;
+    if (originalEvoVersion === undefined) delete process.env.EVOMAP_NODE_SECRET_VERSION;
+    else process.env.EVOMAP_NODE_SECRET_VERSION = originalEvoVersion;
+    if (originalEvolverHome === undefined) delete process.env.EVOLVER_HOME;
+    else process.env.EVOLVER_HOME = originalEvolverHome;
+  });
+
+  beforeEach(() => {
+    tempHome = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-hello-version-'));
+    process.env.EVOLVER_HOME = path.join(tempHome, '.evomap');
+    process.env.A2A_HUB_URL = 'http://localhost:19999';
+    process.env.EVOMAP_HUB_ALLOW_INSECURE = '1';
+    process.env.A2A_NODE_ID = 'node_aaaaaaaaaaaa';
+    delete process.env.A2A_NODE_SECRET;
+    delete process.env.EVOMAP_NODE_SECRET;
+    delete process.env.A2A_NODE_SECRET_VERSION;
+    delete process.env.EVOMAP_NODE_SECRET_VERSION;
+    fs.mkdirSync(process.env.EVOLVER_HOME, { recursive: true });
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'a'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '7');
+    _resetHubNodeSecretStateForTesting();
+    _resetCachedNodeIdForTesting();
+  });
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+    _resetHubNodeSecretStateForTesting();
+    _resetCachedNodeIdForTesting();
+    fs.rmSync(tempHome, { recursive: true, force: true });
+  });
+
+  function mailboxDir() {
+    return path.join(process.env.EVOLVER_HOME, 'mailbox');
+  }
+
+  function mailboxStatePath() {
+    return path.join(mailboxDir(), 'state.json');
+  }
+
+  function readMailboxState() {
+    return JSON.parse(fs.readFileSync(mailboxStatePath(), 'utf8'));
+  }
+
+  function seedMailboxSecret(secret, version, source) {
+    const store = new MailboxStore(mailboxDir());
+    store.setState('node_secret', secret);
+    store.setState('node_secret_version', version);
+    store.setState('node_secret_source', source);
+    return store;
+  }
+
+  it('clears persisted node_secret_version when hello succeeds without a version', async () => {
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ payload: { status: 'acknowledged', your_node_id: 'node_aaaaaaaaaaaa' } }),
+      text: async () => '',
+    });
+
+    assert.equal(getHubNodeSecretVersion(), 7);
+    const result = await sendHelloToHub();
+
+    assert.equal(result.ok, true);
+    assert.equal(getHubNodeSecretVersion(), null);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version')), false);
+  });
+
+  it('prefers hub-rotated persisted secret and version over stale env after restart', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '4');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '1';
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 4);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'b'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '4');
+    assert.equal(captured.body.node_secret_version, 4);
+    assert.equal(captured.body.meta.node_secret_version, 4);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'hub_rotate');
+  });
+
+  it('does not attach stale env version to a hub-rotated persisted secret', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '4');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    process.env.A2A_NODE_SECRET = 'b'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '1';
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 4);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'b'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '4');
+    assert.equal(captured.body.node_secret_version, 4);
+    assert.equal(captured.body.meta.node_secret_version, 4);
+  });
+
+  it('lets env secret and version win when persisted source is env_seed', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '7');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'env_seed');
+    process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '2';
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'a'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 2);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '2');
+    assert.equal(captured.body.node_secret_version, 2);
+    assert.equal(captured.body.meta.node_secret_version, 2);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'utf8'), 'a'.repeat(64));
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '2');
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'env_seed');
+  });
+
+  it('lets env secret win when persisted source is missing for legacy installs', async () => {
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '7');
+    process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '2';
+    _resetHubNodeSecretStateForTesting();
+
+    assert.equal(getHubNodeSecret(), 'a'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 2);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'utf8'), 'a'.repeat(64));
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '2');
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'env_seed');
+  });
+
+  it('stores node_secret_version when hello succeeds without rotating the secret', async () => {
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        payload: {
+          status: 'acknowledged',
+          node_secret_version: 9,
+          your_node_id: 'node_aaaaaaaaaaaa',
+        },
+      }),
+      text: async () => '',
+    });
+
+    const result = await sendHelloToHub();
+
+    assert.equal(result.ok, true);
+    assert.equal(getHubNodeSecretVersion(), 9);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '9');
+  });
+
+  it('uses newer legacy hub_rotate version when mailbox has the same secret at an older version', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '9');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    seedMailboxSecret('a'.repeat(64), '5', 'hub_rotate').close();
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'a'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 9);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '9');
+    assert.equal(captured.body.node_secret_version, 9);
+    assert.equal(captured.body.meta.node_secret_version, 9);
+  });
+
+  it('uses newer legacy hub_rotate tuple when mailbox has a different older secret', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'c'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '9');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    seedMailboxSecret('b'.repeat(64), '5', 'hub_rotate').close();
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'c'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 9);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'c'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '9');
+    assert.equal(captured.body.node_secret_version, 9);
+    assert.equal(captured.body.meta.node_secret_version, 9);
+  });
+
+  it('syncs hello-only node_secret_version to legacy and mailbox without changing the secret', async () => {
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '4');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    seedMailboxSecret('b'.repeat(64), '4', 'hub_rotate').close();
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        payload: {
+          status: 'acknowledged',
+          node_secret_version: 12,
+          your_node_id: 'node_aaaaaaaaaaaa',
+        },
+      }),
+      text: async () => '',
+    });
+
+    const result = await sendHelloToHub();
+    const state = readMailboxState();
+
+    assert.equal(result.ok, true);
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 12);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'utf8'), 'b'.repeat(64));
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '12');
+    assert.equal(state.node_secret, 'b'.repeat(64));
+    assert.equal(state.node_secret_version, '12');
+    assert.equal(state.node_secret_source, 'hub_rotate');
+  });
+
+  it('sanitizes sendHelloToHub non-2xx Hub response logs', async () => {
+    const raw = {
+      nodeSecret: 'f'.repeat(64),
+      bearer: 'Bearer ' + 'g'.repeat(64),
+      token: 'tok_' + 'h'.repeat(40),
+      envPath: '.env.local',
+    };
+    raw.body = JSON.stringify({
+      error: 'auth_failed',
+      node_secret: raw.nodeSecret,
+      token: raw.token,
+      detail: `${raw.bearer} from ${raw.envPath}`,
+    });
+    global.fetch = async () => ({
+      ok: false,
+      status: 503,
+      json: async () => ({}),
+      text: async () => raw.body,
+    });
+
+    const warnings = [];
+    const origWarn = console.warn;
+    console.warn = function () { warnings.push(Array.prototype.join.call(arguments, ' ')); };
+    let result;
+    try {
+      result = await sendHelloToHub();
+    } finally {
+      console.warn = origWarn;
+    }
+
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'http_503');
+    const logText = warnings.join('\n');
+    assert.match(logText, /\[Hello\] Hub returned 503:/);
+    assert.match(logText, /"node_secret":"\[REDACTED\]"/);
+    assertNoRawHubResponseSecrets(logText, raw);
+  });
+
+  it('clears persisted node_secret_version when rotate hello returns a secret without a version', async () => {
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        payload: {
+          status: 'acknowledged',
+          node_secret: 'b'.repeat(64),
+          your_node_id: 'node_aaaaaaaaaaaa',
+        },
+      }),
+      text: async () => '',
+    });
+
+    assert.equal(getHubNodeSecretVersion(), 7);
+    const result = await rotateNodeSecret();
+
+    assert.equal(result.ok, true);
+    assert.equal(getHubNodeSecretVersion(), null);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version')), false);
+  });
+
+  it('sanitizes rotateNodeSecret non-2xx Hub response logs', async () => {
+    const raw = {
+      nodeSecret: 'f'.repeat(64),
+      bearer: 'Bearer ' + 'g'.repeat(64),
+      token: 'tok_' + 'h'.repeat(40),
+      envPath: '.env.local',
+    };
+    raw.body = JSON.stringify({
+      error: 'rotate_failed',
+      node_secret: raw.nodeSecret,
+      credential: {
+        token: raw.token,
+      },
+      detail: `${raw.bearer} from ${raw.envPath}`,
+    });
+    global.fetch = async () => ({
+      ok: false,
+      status: 502,
+      json: async () => ({}),
+      text: async () => raw.body,
+    });
+
+    const warnings = [];
+    const origWarn = console.warn;
+    console.warn = function () { warnings.push(Array.prototype.join.call(arguments, ' ')); };
+    let result;
+    try {
+      result = await rotateNodeSecret();
+    } finally {
+      console.warn = origWarn;
+    }
+
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'http_502');
+    const logText = warnings.join('\n');
+    assert.match(logText, /rotate_secret hello returned 502:/);
+    assert.match(logText, /"node_secret":"\[REDACTED\]"/);
+    assertNoRawHubResponseSecrets(logText, raw);
+  });
+
+  it('tags rotated node_secret source as hub_rotate', async () => {
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        payload: {
+          status: 'acknowledged',
+          node_secret: 'b'.repeat(64),
+          node_secret_version: 9,
+          your_node_id: 'node_aaaaaaaaaaaa',
+        },
+      }),
+      text: async () => '',
+    });
+
+    const result = await rotateNodeSecret();
+
+    assert.equal(result.ok, true);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'hub_rotate');
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 9);
+  });
+
+  it('keeps Hub-rotated mailbox secret when an old MailboxStore writes unrelated state', async () => {
+    const oldStore = seedMailboxSecret('a'.repeat(64), '1', 'hub_rotate');
+    try {
+      global.fetch = async () => ({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          payload: {
+            status: 'acknowledged',
+            node_secret: 'b'.repeat(64),
+            node_secret_version: 11,
+            your_node_id: 'node_aaaaaaaaaaaa',
+          },
+        }),
+        text: async () => '',
+      });
+
+      const result = await rotateNodeSecret();
+      assert.equal(result.ok, true);
+
+      oldStore.setState('last_sync_error', 'dummy_unrelated_error');
+      const state = readMailboxState();
+
+      assert.equal(state.node_secret, 'b'.repeat(64));
+      assert.equal(state.node_secret_version, '11');
+      assert.equal(state.node_secret_source, 'hub_rotate');
+      assert.equal(state.last_sync_error, 'dummy_unrelated_error');
+      assert.equal(oldStore.getState('node_secret'), 'b'.repeat(64));
+      assert.equal(oldStore.getState('node_secret_version'), '11');
+    } finally {
+      oldStore.close();
+    }
+  });
+
+  it('keeps divergence-cleared mailbox secret when an old MailboxStore writes a cursor', async () => {
+    const oldStore = seedMailboxSecret('a'.repeat(64), '1', 'hub_rotate');
+    try {
+      global.fetch = async () => ({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          payload: {
+            status: 'rejected',
+            reason: 'node_secret_invalid',
+          },
+        }),
+        text: async () => '',
+      });
+
+      const result = await rotateNodeSecret();
+      assert.equal(result.ok, false);
+      assert.equal(result.error, 'secret_diverged_cleared');
+
+      oldStore.setCursor('evomap-hub:outbound_cursor', 'cursor_after_clear');
+      const state = readMailboxState();
+
+      assert.equal(state.node_secret, '');
+      assert.equal(state.node_secret_version, '');
+      assert.equal(state.node_secret_source, '');
+      assert.equal(state.node_secret_env_suppressed, '');
+      assert.equal(state['cursor:evomap-hub:outbound_cursor'], 'cursor_after_clear');
+      assert.equal(oldStore.getState('node_secret'), '');
+      assert.equal(oldStore.getState('node_secret_version'), '');
+    } finally {
+      oldStore.close();
+    }
+  });
+
+  it('clears node_secret_source when divergence clears local secret', async () => {
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        payload: {
+          status: 'rejected',
+          reason: 'node_secret_invalid',
+        },
+      }),
+      text: async () => '',
+    });
+
+    const result = await rotateNodeSecret();
+
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'secret_diverged_cleared');
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret')), false);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version')), false);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source')), false);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed')), false);
+    assert.equal(getHubNodeSecret(), null);
+    assert.equal(getHubNodeSecretVersion(), null);
+  });
+
+  it('keeps env node_secret suppressed across restart after divergence clear', async () => {
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    process.env.A2A_NODE_SECRET = 'a'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '1';
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ payload: { status: 'rejected', reason: 'node_secret_invalid' } }),
+      text: async () => '',
+    });
+
+    const result = await rotateNodeSecret();
+
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'secret_diverged_cleared');
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret')), false);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed')), true);
+    assert.equal(
+      fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed'), 'utf8'),
+      suppressionMarker('a'.repeat(64))
+    );
+
+    const script = `
+      const fs = require('fs');
+      const path = require('path');
+      const { sendHelloToHub } = require('./src/gep/a2aProtocol');
+      let hadAuth = null;
+      global.fetch = async (url, opts) => {
+        hadAuth = Boolean(opts && opts.headers && opts.headers.Authorization);
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ payload: {
+            status: 'acknowledged',
+            node_secret: '${'c'.repeat(64)}',
+            node_secret_version: 5,
+            your_node_id: 'node_aaaaaaaaaaaa'
+          } }),
+          text: async () => ''
+        };
+      };
+      sendHelloToHub().then((hello) => {
+        process.stdout.write(JSON.stringify({
+          ok: hello.ok === true,
+          hadAuth,
+          marker: fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed'))
+            ? fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed'), 'utf8')
+            : ''
+        }));
+      }).catch((err) => {
+        process.stderr.write(String(err && err.stack || err));
+        process.exit(1);
+      });
+    `;
+    const child = spawnSync(process.execPath, ['-e', script], {
+      cwd: path.resolve(__dirname, '..'),
+      env: {
+        ...process.env,
+        EVOLVER_HOME: process.env.EVOLVER_HOME,
+        A2A_HUB_URL: process.env.A2A_HUB_URL,
+        EVOMAP_HUB_ALLOW_INSECURE: '1',
+        A2A_NODE_ID: 'node_aaaaaaaaaaaa',
+        A2A_NODE_SECRET: 'a'.repeat(64),
+        A2A_NODE_SECRET_VERSION: '1',
+      },
+      encoding: 'utf8',
+      timeout: 20_000,
+    });
+
+    assert.equal(child.status, 0, child.stderr);
+    const childStdoutLines = child.stdout.trim().split('\n').filter(Boolean);
+    const childResult = JSON.parse(childStdoutLines[childStdoutLines.length - 1]);
+    assert.equal(childResult.ok, true);
+    assert.equal(childResult.hadAuth, false, 'restart hello must ignore stale env secret');
+    assert.equal(childResult.marker, suppressionMarker('a'.repeat(64)), 'same stale env marker must remain fingerprinted');
+  });
+
+  it('adopts changed env node_secret after fingerprinted suppression restart', async () => {
+    var captured = null;
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'c'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '5');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed'), suppressionMarker('a'.repeat(64)));
+    process.env.A2A_NODE_SECRET = 'd'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '8';
+    _resetHubNodeSecretStateForTesting();
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'd'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 8);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'd'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '8');
+    assert.equal(captured.body.node_secret_version, 8);
+    assert.equal(captured.body.meta.node_secret_version, 8);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed')), false);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'utf8'), 'd'.repeat(64));
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '8');
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'env_seed');
+  });
+
+  it('preserves hub_rotate source when changed env matches persisted rotated secret', async () => {
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'b'.repeat(64));
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), '5');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'hub_rotate');
+    fs.writeFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed'), suppressionMarker('a'.repeat(64)));
+    process.env.A2A_NODE_SECRET = 'b'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '8';
+    _resetHubNodeSecretStateForTesting();
+
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 5);
+    assert.equal(fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed')), false);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret'), 'utf8'), 'b'.repeat(64));
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_version'), 'utf8'), '5');
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'hub_rotate');
+
+    process.env.A2A_NODE_SECRET = 'c'.repeat(64);
+    process.env.A2A_NODE_SECRET_VERSION = '9';
+    _resetHubNodeSecretStateForTesting();
+
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64), 'hub-rotated store must still win over later stale env');
+    assert.equal(getHubNodeSecretVersion(), 5);
+    assert.equal(fs.readFileSync(path.join(process.env.EVOLVER_HOME, 'node_secret_source'), 'utf8'), 'hub_rotate');
+  });
+
+  // Regression: a rotate hello that the hub rejects at the app level
+  // (status:"rejected", reason:"node_secret_invalid") must unlink the
+  // on-disk node_secret so buildHubHeaders() falls back to an
+  // unauthenticated hello on the next tick. Pre-fix, the divergence block
+  // referenced an undeclared NODE_SECRET_FILE; the resulting ReferenceError
+  // was swallowed by the catch, the file was left on disk, and the node
+  // reloaded the same diverged secret every tick — a permanent 403 deadlock
+  // against the hub. This test fails against that pre-fix code (file stays on
+  // disk AND a "Failed to unlink" warning is logged).
+  it('unlinks the diverged node_secret + version from disk on a rotate hello rejection', async () => {
+    var secretFile = path.join(process.env.EVOLVER_HOME, 'node_secret');
+    var versionFile = path.join(process.env.EVOLVER_HOME, 'node_secret_version');
+    var sourceFile = path.join(process.env.EVOLVER_HOME, 'node_secret_source');
+    fs.writeFileSync(sourceFile, 'hub_rotate');
+    assert.equal(fs.existsSync(secretFile), true, 'precondition: persisted node_secret present');
+    assert.equal(fs.existsSync(versionFile), true, 'precondition: persisted node_secret_version present');
+    assert.equal(fs.existsSync(sourceFile), true, 'precondition: persisted node_secret_source present');
+
+    global.fetch = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ payload: { status: 'rejected', reason: 'node_secret_invalid' } }),
+      text: async () => '',
+    });
+
+    var warnings = [];
+    var origWarn = console.warn;
+    console.warn = function () { warnings.push(Array.prototype.join.call(arguments, ' ')); };
+    var result;
+    try {
+      result = await rotateNodeSecret();
+    } finally {
+      console.warn = origWarn;
+    }
+
+    // Caller is signalled to clear (not arm the reauth backoff).
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'secret_diverged_cleared');
+
+    // (a) the on-disk secret (and its version sibling) are actually unlinked.
+    assert.equal(fs.existsSync(secretFile), false, 'diverged node_secret must be unlinked from disk');
+    assert.equal(fs.existsSync(versionFile), false, 'diverged node_secret_version must be unlinked from disk');
+    assert.equal(fs.existsSync(sourceFile), false, 'diverged node_secret_source must be unlinked from disk');
+    assert.equal(
+      fs.existsSync(path.join(process.env.EVOLVER_HOME, 'node_secret_env_suppressed')),
+      false,
+      'divergence without env must not persist env suppression'
+    );
+
+    // (b) the unlink must not have thrown an undefined-variable ReferenceError
+    // (the exact failure mode of the original NODE_SECRET_FILE bug).
+    var unlinkFail = warnings.find(function (w) { return /Failed to unlink diverged node_secret file/.test(w); });
+    assert.equal(unlinkFail, undefined, 'unlink must succeed without a swallowed ReferenceError: ' + (unlinkFail || ''));
+  });
+
+  it('ignores orphan env node_secret_version when persisted secret is active', async () => {
+    var captured = null;
+    process.env.A2A_NODE_SECRET_VERSION = '9';
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecretVersion(), 7);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'a'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '7');
+    assert.equal(captured.body.node_secret_version, 7);
+    assert.equal(captured.body.meta.node_secret_version, 7);
+  });
+
+  it('uses EVOMAP_NODE_SECRET and version as a matched pair', async () => {
+    var captured = null;
+    process.env.EVOMAP_NODE_SECRET = 'b'.repeat(64);
+    process.env.EVOMAP_NODE_SECRET_VERSION = '9';
+    global.fetch = async (url, opts) => {
+      captured = { url, opts, body: JSON.parse(opts.body) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ status: 'ok' }),
+        text: async () => '',
+      };
+    };
+
+    assert.equal(getHubNodeSecret(), 'b'.repeat(64));
+    assert.equal(getHubNodeSecretVersion(), 9);
+    var result = await sendHeartbeat();
+
+    assert.equal(result.ok, true);
+    assert.equal(captured.opts.headers.Authorization, 'Bearer ' + 'b'.repeat(64));
+    assert.equal(captured.opts.headers['X-EvoMap-Node-Secret-Version'], '9');
+    assert.equal(captured.body.node_secret_version, 9);
+    assert.equal(captured.body.meta.node_secret_version, 9);
+  });
 });
 
 describe('hubOpenEventStream', () => {
   var originalHubUrl;
   var originalNodeId;
   var originalNodeSecret;
+  var originalNodeSecretVersion;
+  var originalEvolverHome;
   var originalEventSource;
+  var tmpDir;
 
   before(() => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'evolver-event-stream-'));
     originalHubUrl = process.env.A2A_HUB_URL;
     originalNodeId = process.env.A2A_NODE_ID;
     originalNodeSecret = process.env.A2A_NODE_SECRET;
+    originalNodeSecretVersion = process.env.A2A_NODE_SECRET_VERSION;
+    originalEvolverHome = process.env.EVOLVER_HOME;
     originalEventSource = globalThis.EventSource;
     process.env.A2A_HUB_URL = 'http://localhost:19999';
     process.env.A2A_NODE_ID = 'test-node';
+    process.env.EVOLVER_HOME = path.join(tmpDir, '.evomap');
   });
 
   after(() => {
@@ -313,8 +1361,22 @@ describe('hubOpenEventStream', () => {
     else process.env.A2A_NODE_ID = originalNodeId;
     if (originalNodeSecret === undefined) delete process.env.A2A_NODE_SECRET;
     else process.env.A2A_NODE_SECRET = originalNodeSecret;
+    if (originalNodeSecretVersion === undefined) delete process.env.A2A_NODE_SECRET_VERSION;
+    else process.env.A2A_NODE_SECRET_VERSION = originalNodeSecretVersion;
+    if (originalEvolverHome === undefined) delete process.env.EVOLVER_HOME;
+    else process.env.EVOLVER_HOME = originalEvolverHome;
     if (originalEventSource === undefined) delete globalThis.EventSource;
     else globalThis.EventSource = originalEventSource;
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  beforeEach(() => {
+    _resetHubNodeSecretStateForTesting();
+    fs.mkdirSync(process.env.EVOLVER_HOME, { recursive: true });
+  });
+
+  afterEach(() => {
+    _resetHubNodeSecretStateForTesting();
   });
 
   it('returns ok:false with no_hub_url when A2A_HUB_URL is unset', () => {
@@ -349,19 +1411,23 @@ describe('hubOpenEventStream', () => {
     delete globalThis.EventSource;
   });
 
-  it('passes Authorization header when A2A_NODE_SECRET is set', () => {
+  it('passes Authorization and node secret version headers when set', () => {
     var calledOpts = null;
     globalThis.EventSource = function (url, opts) {
       calledOpts = opts;
       this.close = function () {};
     };
     process.env.A2A_NODE_SECRET = 'secret123';
+    process.env.A2A_NODE_SECRET_VERSION = '4';
 
     var result = hubOpenEventStream({});
     assert.equal(result.ok, true);
     assert.equal(calledOpts.headers['Authorization'], 'Bearer secret123');
+    assert.equal(calledOpts.headers['X-EvoMap-Node-Secret-Version'], '4');
+    assert.equal(calledOpts.method, undefined);
 
     delete process.env.A2A_NODE_SECRET;
+    delete process.env.A2A_NODE_SECRET_VERSION;
     delete globalThis.EventSource;
   });
 

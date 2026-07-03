@@ -48,6 +48,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TG_LISTENER="${SCRIPT_DIR}/telegram_listener.py"
 PECK_LISTENER="${SCRIPT_DIR}/peck_listener.py"
 PECK_RESPONDER="${SCRIPT_DIR}/peck_responder.py"
+REPLY_HOOK="${SCRIPT_DIR}/reply_with_claude.sh"
 PULSE_SCRIPT="${SCRIPT_DIR}/pulse.py"
 
 die()  { echo "✗ $*" >&2; exit 1; }
@@ -134,6 +135,7 @@ cmd_install() {
   [[ -f "$TG_LISTENER" ]] || die "telegram_listener.py missing at $TG_LISTENER — run from the skill's scripts/ dir"
   [[ -f "$PECK_LISTENER" ]] || die "peck_listener.py missing at $PECK_LISTENER — run from the skill's scripts/ dir"
   [[ -f "$PECK_RESPONDER" ]] || die "peck_responder.py missing at $PECK_RESPONDER — required for auto-reply (v0.4.7)"
+  [[ -f "$REPLY_HOOK" ]] || die "reply_with_claude.sh missing at $REPLY_HOOK — required for plain-DM auto-reply (v0.4.16)"
   [[ -f "${SD_DIR}/config.json" ]] || die "no ~/.space-duck/config.json — pair this agent first via 'python3 pair.py'"
   command -v python3 >/dev/null || die "python3 not in PATH"
 
@@ -199,7 +201,14 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix://${SUP_SOCK}
 
 [program:telegram_listener]
-command=python3 ${TG_LISTENER} --owner-approval
+; v0.4.16 — wire reply_with_claude.sh via --on-message so verified plain DMs
+; actually get a reply. Before this, the listener accepted + owner-approved
+; inbound DMs but had no hook to compose an answer — root cause of the
+; "duck looks connected but never replies to DMs" failure. We do NOT pass
+; --auto-reply: reply_with_claude.sh forks a detached worker and sends its
+; own threaded reply via tg_send, so --auto-reply would double-send and the
+; hook-timeout would race the brain. The hook owns its own dispatch.
+command=python3 ${TG_LISTENER} --owner-approval --on-message "bash ${REPLY_HOOK}"
 directory=${SD_DIR}
 autostart=true
 autorestart=true

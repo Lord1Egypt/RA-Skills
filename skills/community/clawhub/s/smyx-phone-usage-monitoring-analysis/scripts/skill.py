@@ -5,7 +5,7 @@ from .config import ApiEnum, ConstantEnum
 
 from skills.smyx_common.scripts.api_service import ApiService as ApiServiceBase
 
-from skills.face_analysis.scripts.skill import Skill as SkillParent
+from skills.smyx_analysis.scripts.skill import Skill as SkillParent
 from skills.smyx_common.scripts.util import JsonUtil
 
 

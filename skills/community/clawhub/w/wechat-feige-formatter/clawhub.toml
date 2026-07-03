@@ -2,7 +2,7 @@ name = "wechat-feige-formatter"
 description = "AI 智能优化 + 排版 Markdown 为飞哥风格的公众号 HTML"
 authors = ["feige"]
 license = "MIT"
-version = "2.3.5"
+version = "2.3.6"
 keywords = ["wechat", "formatter", "markdown", "公众号", "排版"]
 categories = ["content", "formatting", "wechat"]
 

@@ -43,6 +43,10 @@ LEVEL_ALIASES = {
     "advanced": "advanced",
     "高级": "advanced",
     "high": "advanced",
+    "expert": "expert",
+    "special": "expert",
+    "特": "expert",
+    "特级": "expert",
     "all": "all",
     "全部": "all",
 }
@@ -532,7 +536,7 @@ def normalize_level(raw: str) -> str:
     value = raw.strip().lower()
     if value in LEVEL_ALIASES:
         return LEVEL_ALIASES[value]
-    raise SystemExit("--level must be beginner/初级, intermediate/中级, advanced/高级, or all/全部")
+    raise SystemExit("--level must be beginner/初级, intermediate/中级, advanced/高级, expert/特级, or all/全部")
 
 
 def score_loss(best: dict[str, Any], move: dict[str, Any]) -> float | None:
@@ -611,13 +615,15 @@ def candidate_snapshot(
 
 
 def level_description(requested_level: str) -> str:
+    if requested_level == "expert":
+        return "特级强度：使用最高搜索预算，并直接采用 KataGo 当前搜索排序第一的候选手。"
     if requested_level == "advanced":
         return "高级强度：直接采用 KataGo 当前搜索排序第一的候选手。"
     if requested_level == "intermediate":
         return "中级强度：优先选择接近最优、但不一定是第一推荐的稳健候选手。"
     if requested_level == "beginner":
         return "初级强度：选择仍可下、但相对最强手有一定损失的温和候选手。"
-    return "全部级别：`recommendation` 使用高级强度，三档结果见 `recommendations_by_level`。"
+    return "全部级别：`recommendation` 使用特级强度，四档结果见 `recommendations_by_level`。"
 
 
 def move_reason(
@@ -795,7 +801,7 @@ def choose_fallback(
 
 def recommendations_by_level(candidates: list[dict[str, Any]]) -> dict[str, dict[str, Any] | None]:
     if not candidates:
-        return {"beginner": None, "intermediate": None, "advanced": None}
+        return {"beginner": None, "intermediate": None, "advanced": None, "expert": None}
 
     best = candidates[0]
     intermediate = choose_by_window(
@@ -839,6 +845,12 @@ def recommendations_by_level(candidates: list[dict[str, Any]]) -> dict[str, dict
             "advanced",
             "采用 KataGo 当前搜索排序第一的候选手。",
         ),
+        "expert": annotate_strength(
+            best,
+            best,
+            "expert",
+            "使用最高搜索预算，并采用 KataGo 当前搜索排序第一的候选手。",
+        ),
     }
 
 
@@ -856,7 +868,8 @@ def build_result(args: argparse.Namespace) -> dict[str, Any]:
     ]
     rows = apply_move_overlays(base_rows, confirmed_overlays, coordinate_style)
 
-    analysis = run_katago_analysis(
+    analysis_runner = getattr(args, "analysis_runner", run_katago_analysis)
+    analysis = analysis_runner(
         rows,
         side_to_move,
         komi=args.komi,
@@ -872,7 +885,7 @@ def build_result(args: argparse.Namespace) -> dict[str, Any]:
         for move in move_infos[: args.top_candidates]
     ]
     by_level = recommendations_by_level(candidates)
-    selected = by_level["advanced"] if level == "all" else by_level[level]
+    selected = by_level["expert"] if level == "all" else by_level[level]
     root_info = analysis.get("rootInfo", {})
     reason = move_reason(selected, candidates, root_info, side_to_move, level, recognition)
     next_recommendation_overlay = recommendation_overlay(
@@ -907,6 +920,7 @@ def build_result(args: argparse.Namespace) -> dict[str, Any]:
             "beginner": "Choose a plausible lower-ranked move with a moderate score/winrate loss when available.",
             "intermediate": "Choose a solid near-top candidate with a small score/winrate loss when available.",
             "advanced": "Choose KataGo's top searched candidate.",
+            "expert": "Choose KataGo's top searched candidate with the strongest configured visit budget.",
         },
     }
     if recognition is not None:
@@ -948,7 +962,7 @@ def main() -> int:
     parser.add_argument("source", nargs="?", help="Image path, board_ascii text file, or omitted to read board_ascii from stdin")
     parser.add_argument("--input", choices=["auto", "image", "ascii"], default="auto", help="Input kind, default: auto")
     parser.add_argument("--side-to-move", required=True, help="Side to move: black/B/黑 or white/W/白")
-    parser.add_argument("--level", default="advanced", help="Move strength: beginner/初级, intermediate/中级, advanced/高级, or all/全部")
+    parser.add_argument("--level", default="advanced", help="Move strength: beginner/初级, intermediate/中级, advanced/高级, expert/特级, or all/全部")
     parser.add_argument(
         "--coordinate-style",
         choices=sorted(COORDINATE_COLUMNS),

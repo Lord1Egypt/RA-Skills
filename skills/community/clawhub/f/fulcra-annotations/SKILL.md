@@ -1,6 +1,7 @@
 ---
 name: fulcra-annotations
 description: Create, list, update, and record Fulcra annotations through the Fulcra Life API. Use when a user asks to log an annotation, create an annotation button/definition, record a moment/boolean/numeric/scale annotation, inspect annotation IDs/source IDs, or build agent workflows that write Fulcra annotation events.
+metadata: {"openclaw":{"requires":{"bins":["python3","uv"]},"permissions":["shell:uv-tool-run-fulcra-api","network:https://api.fulcradynamics.com","env:FULCRA_ACCESS_TOKEN","env:FULCRA_HOME","env:FULCRA_AGENT_SOURCE"]}}
 ---
 
 # Fulcra Annotations
@@ -37,6 +38,8 @@ When a user is new to Fulcra annotations, optimize for a quick useful loop: choo
 ## Safety Rules
 
 - Never print access tokens, refresh tokens, raw private Fulcra records, credential files, or direct capability URLs in chat.
+- Authenticated API calls are pinned to `https://api.fulcradynamics.com`; do not redirect Fulcra bearer tokens to custom API hosts.
+- `FULCRA_CLI_COMMAND` is restricted to the standard Fulcra CLI invocation (`uv tool run fulcra-api`, `fulcra-api`, or a trusted absolute path ending in `fulcra-api`).
 - Device auth URLs and user codes are allowed only when the intended user needs to approve Fulcra access from another device; send them only through the active trusted user channel.
 - Ask before deleting or updating an existing annotation definition.
 - For public demos, use synthetic annotation names/values unless the user explicitly approves real data.
@@ -246,6 +249,7 @@ Example: on 2026-05-16 in Eastern Time, "yesterday at 10am" means `2026-05-15T10
 
 - `record` returns `recorded_at` and `verified_matches`.
 - `verified_matches >= 1` means the script found the written record in Fulcra after ingest.
+- `uv tool run fulcra-api data-updates <window>` can show that annotation-related data types were processed in a time range, but it is not record-level write verification. Do not use update counts as proof that a specific annotation record was created, changed, or deleted.
 - For historical writes, use `recent --hours` with a window large enough to include the target time if a second verification is needed.
 - When inspecting readback, use only minimal fields needed for confirmation: annotation name/id, `recorded_at`, value if relevant, and note if relevant.
 
@@ -258,6 +262,9 @@ Core REST endpoints:
 - `PUT /user/v1alpha1/annotation/{annotation_id}` updates a definition.
 - `DELETE /user/v1alpha1/annotation/{annotation_id}` deletes a definition.
 - `POST /ingest/v1/record` records annotation events.
+- `POST /ingest/v1/record/batch` records batches of annotation events.
 - Readback uses `/data/v1alpha1/event/MomentAnnotation` for moment/duration and `/data/v1alpha1/metric/{BooleanAnnotation|NumericAnnotation|ScaleAnnotation}` for metric annotation values.
+
+For bulk or backfill pipelines, `data-updates` is a coarse freshness diagnostic after ingest. It supplements the local ledger and record readback; it does not replace either.
 
 For schema details or upstream gaps, read `references/api-notes.md`.

@@ -24,7 +24,7 @@ Complete list of forbidden and allowed actions for Cloud Firewall ACL Diagnosis 
 - ❌ NEVER ask for FirewallId/InstanceId to "help configure"
 - ❌ NEVER ask for rule IDs to "execute configuration"
 - ❌ NEVER offer to configure on behalf of user
-- ❌ NEVER say "配置脚本已保存" or "生成配置方案"
+- ❌ NEVER say "configuration script saved" or "configuration plan generated"
 
 ### 4. NO Automated Deployment
 
@@ -32,7 +32,7 @@ Complete list of forbidden and allowed actions for Cloud Firewall ACL Diagnosis 
 - ❌ NEVER execute API calls that change Cloud Firewall state
 - ❌ NEVER create, update, or delete any Cloud Firewall resources
 
-### 5. NO Credential Exposure (测评系统 Forbidden 规则)
+### 5. NO Credential Exposure (Evaluation System Forbidden Rule)
 
 - ❌ NEVER use `--profile` parameter in any CLI command
 - ❌ NEVER run `aliyun configure get` (exposes AK/SK)
@@ -75,3 +75,18 @@ Complete list of forbidden and allowed actions for Cloud Firewall ACL Diagnosis 
 - [ ] **NO auto-installation of CLI tools**
 
 **If ANY item is unchecked, REMOVE the violating content immediately.**
+
+---
+
+## Read-Only Privilege Model
+
+This skill operates under a least-privilege, read-only model:
+
+- Only the following API action categories are used:
+  - Cloud Firewall `Describe*` actions
+  - `log:GetLogs` for `aliyun sls get-logs-v2`
+  - `actiontrail:LookupEvents` for `aliyun actiontrail lookup-events`
+- No Create/Update/Delete API calls are ever made.
+- The skill relies on the default credential chain (environment variables or the default profile in `~/.aliyun/config.json`).
+- The skill never uses `--profile`, never runs `aliyun configure get`, and never runs `aliyun configure list`.
+- See `references/ram-policies.md` for the complete RAM permission list.

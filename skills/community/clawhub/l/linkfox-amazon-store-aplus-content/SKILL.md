@@ -1,7 +1,5 @@
 ---
 name: linkfox-amazon-store-aplus-content
-version: 0.0.1
-category: product-sourcing
 description: 亚马逊店铺 A+ Content（增强图文页）管理（与 linkfox-amazon-store-auth / linkfox-amazon-store-listings 同系列），经 LinkFox /spApi/developerProxy 调用 SP-API A+ Content Management v2020-11-01：searchContentDocuments、createContentDocument、getContentDocument、updateContentDocument、list/post ContentDocument ASIN 关联、validateContentDocumentAsinRelations、searchContentPublishRecords、提交审核 postContentDocumentApprovalSubmission、暂停展示 postContentDocumentSuspendSubmission。当用户提到 A+ 页面、A+ Content、增强品牌内容、EBC、图文详情、searchContentDocuments、getContentDocument、contentReferenceKey、A+ 审核、A+ 发布记录、contentPublishRecords 时触发。
 ---
 
@@ -21,6 +19,22 @@ description: 亚马逊店铺 A+ Content（增强图文页）管理（与 linkfox
 | 按 ASIN 查发布记录 | [searchContentPublishRecords](https://developer-docs.amazon.com/sp-api/reference/searchcontentpublishrecords) |
 | 提交审核/发布 | [postContentDocumentApprovalSubmission](https://developer-docs.amazon.com/sp-api/reference/postcontentdocumentapprovalsubmission) |
 | 暂停前台展示 | [postContentDocumentSuspendSubmission](https://developer-docs.amazon.com/sp-api/reference/postcontentdocumentsuspendsubmission) |
+
+---
+
+## 调用方式
+
+- **API 端点**：`POST /spApi/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-amazon-store-aplus-content-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ---
 

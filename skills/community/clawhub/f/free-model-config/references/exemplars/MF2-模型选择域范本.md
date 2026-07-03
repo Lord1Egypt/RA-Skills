@@ -12,7 +12,7 @@
 | 智谱 BigModel | glm-4.7-flash | 文本生成 | https://open.bigmodel.cn/api/paas/v4/ |
 | 商汤 SenseNova | sensenova-6.7-flash-lite | 文本生成 | https://token.sensenova.cn/v1 |
 | 小米 MIMO | mimo-v2.5-pro | 文本生成 | https://token-plan-cn.xiaomimimo.com/v1 |
-| 美团 LongCat | LongCat-2.0-Preview | 文本生成 | https://api.longcat.chat/openai |
+| 美团 LongCat | LongCat-2.0 | 文本生成 | https://api.longcat.chat/openai |
 
 2. **平台能力对比**：
 
@@ -121,7 +121,7 @@
 | 智谱 BigModel | glm-4.7-flash | ✅ | ❌ | ❌ | ✅ |
 | 商汤 SenseNova | sensenova-6.7-flash-lite | ✅ | ❌ | ❌ | ✅ |
 | 小米 MIMO | mimo-v2.5-pro | ✅ | ❌ | ❌ | ✅ |
-| 美团 LongCat | LongCat-2.0-Preview | ✅ | ❌ | ❌ | ✅ |
+| 美团 LongCat | LongCat-2.0 | ✅ | ❌ | ❌ | ✅ |
 
 2. **需求匹配度分析**：
 

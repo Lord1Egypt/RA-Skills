@@ -1,0 +1,4 @@
+interface:
+  display_name: "人力资源候选人发现和筛查"
+  short_description: "从人工智能论文发现、筛查候选人并逐封审批招聘邮件和回复"
+  default_prompt: "使用 $hr-candidate-discovery-screening 按指定日期范围发现并筛查人工智能候选人。"

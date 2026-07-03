@@ -1,6 +1,6 @@
 ---
 name: ltp-rapidx-config
-version: 1.0.15
+version: 1.0.16
 description: Use when an agent needs to install or configure RapidX CLI/MCP access, set production LTP credentials, locate the agent workspace MCP config, review integration, discover tools, or run read-only self-checks.
 ---
 
@@ -204,7 +204,68 @@ For OpenClaw, use repeated `--arg` entries. Do not use `--args`.
 
 For Hermes, use a single `--args` and put `mcp serve` after it. Do not repeat `--args`, because Hermes treats the first `--args` as the start of the child command arguments.
 
-If a host CLI tries to run an interactive `mcp add` flow and blocks on prompts like enabling all tools, do not keep retrying it in a non-interactive terminal. Edit the confirmed workspace MCP config directly with the JSON above, then restart or reload the agent host and verify through real MCP tool discovery.
+If a host CLI tries to run an interactive `mcp add` flow and blocks on prompts like enabling all tools, do not keep retrying it in a non-interactive terminal. Edit the confirmed workspace MCP config in the host's native format, then restart or reload the agent host and verify through real MCP tool discovery. JSON configs usually use `mcpServers.rapidx`; YAML configs usually use `mcp_servers.rapidx`.
+
+### MCP Env Materialization Fallback
+
+First use the host's official MCP configuration path, such as `hermes mcp add`, `codex mcp add`, `claude mcp add`, `openclaw mcp add`, or the host's documented `mcp.json` / YAML config.
+
+If MCP loads and `rapidx/tools` is visible, but `rapidx/self-check` reports credential/auth failures such as `Invalid URL`, `credential-auth: FAIL`, or missing RapidX credentials, inspect only the `rapidx` MCP server env block. Treat these literal placeholder values as not materialized:
+
+```text
+${LTP_ACCESS_KEY}
+$LTP_ACCESS_KEY
+${LTP_SECRET_KEY}
+$LTP_SECRET_KEY
+${LTP_API_HOST}
+$LTP_API_HOST
+<secret>
+<secret-ref>
+<provided-api-host>
+""
+```
+
+Repair rules:
+
+1. Read real values from an agent-readable secret source: user-provided chat secrets, `.env`, OS environment variables, agent secret store, or a workspace secret file authorized by the user.
+2. Update the MCP config with a structured parser: use `yaml.safe_load` / `safe_dump` for YAML and `json.load` / `json.dump` for JSON.
+3. Replace only the `rapidx` server block under `mcp_servers.rapidx`, `mcpServers.rapidx`, or the host's equivalent MCP server map.
+4. Do not delete config with broad regex such as `mcp_servers:.*`.
+5. Do not append a second `rapidx` block when one already exists.
+6. Never print full credential values in chat, logs, review summaries, or evidence.
+
+For Hermes, if `hermes mcp add` creates a config with unresolved `${VAR}` values, edit the active profile config, usually:
+
+```text
+~/.hermes/profiles/<profile>/config.yaml
+```
+
+The resulting `rapidx` block should use materialized values or a secret mechanism that Hermes actually expands at runtime. Do not copy the example placeholders literally:
+
+```yaml
+mcp_servers:
+  rapidx:
+    command: rapidx
+    args:
+      - mcp
+      - serve
+    env:
+      LTP_ACCESS_KEY: "actual-access-key-or-host-supported-secret-reference"
+      LTP_SECRET_KEY: "actual-secret-key-or-host-supported-secret-reference"
+      LTP_API_HOST: "actual-api-host"
+```
+
+After repair, reload the MCP host. For Hermes, run `/reload-mcp` when available. If the host cannot hot reload MCP, restart the agent session or gateway.
+
+Verification after reload:
+
+```text
+rapidx/tools
+rapidx/update/check
+rapidx/self-check
+```
+
+`rapidx/self-check` must report credential-auth as `PASS` before classifying the host as `MCP_READY`.
 
 ## Expected MCP Tools
 

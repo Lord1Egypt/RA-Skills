@@ -19,7 +19,7 @@ const { DmHandler } = require('./extensions/dmHandler');
 const { SessionHandler } = require('./extensions/sessionHandler');
 const { TraceControl } = require('./extensions/traceControl');
 const { backfillProxyTraceUploads } = require('./trace/extractor');
-const { hubFetch } = require('../gep/hubFetch');
+const { hubFetch, sanitizeHubResponseForLog } = require('../gep/hubFetch');
 
 const TRACE_BACKFILL_DRAIN_MAX_PASSES = 8;
 const TRACE_BACKFILL_STARTUP_DRAIN_MAX_MS = 250;
@@ -184,6 +184,7 @@ class EvoMapProxy {
     this.dataDir = opts.dataDir || opts.dbPath || _defaultDataDir();
     this.port = opts.port;
     this.logger = opts.logger || console;
+    this.clientSettings = opts.clientSettings || null;
     this._skillPath = opts.skillPath || null;
     this._anthropicBaseUrl = (opts.anthropicBaseUrl || process.env.EVOMAP_ANTHROPIC_BASE_URL || 'https://api.anthropic.com').replace(/\/+$/, '');
     this._openaiBaseUrl = String(opts.openaiBaseUrl || process.env.EVOMAP_OPENAI_BASE_URL || DEFAULT_OPENAI_BASE_URL).replace(/\/+$/, '');
@@ -284,6 +285,11 @@ class EvoMapProxy {
       assetSearch: (body) => this._assetSearch(body),
       assetValidate: (body) => this._proxyHttp('/a2a/validate', this._wrapA2a('validate', body)),
       assetPublish: (body) => this._assetPublish(body),
+      // Reuse-attribution report -> hub /a2a/memory/record. FLAT body (not an
+      // envelope): the record endpoint reads sender_id/signals/used_asset_ids at
+      // the top level, so this goes through _reportReuse (like the lenient REST
+      // search path), not _wrapA2a.
+      reportReuse: (body) => this._reportReuse(body),
       // ATP passthrough (#460 Bug 2): merchant/consumer flows that used to call
       // hub directly via src/atp/hubClient.js must route through the proxy when
       // EVOMAP_PROXY=1 so proxy sees the transaction (for audit + offline queue).
@@ -391,6 +397,7 @@ class EvoMapProxy {
     this.server = new ProxyHttpServer(routes, {
       port: this.port,
       logger: this.logger,
+      clientSettings: this.clientSettings,
     });
 
     const serverInfo = await this.server.start();
@@ -457,7 +464,8 @@ class EvoMapProxy {
           || (stats.skipped || 0) > 0
           || (stats.duplicates || 0) > 0;
         if (!madeProgress) break;
-        if (stats.reasons?.max_pending_uploads || stats.reasons?.collection_disabled
+        if (stats.reasons?.max_pending_uploads || stats.reasons?.max_enqueue_bytes
+          || stats.reasons?.collection_disabled
           || stats.reasons?.missing_file || stats.reasons?.missing_store
           || stats.reasons?.read_failed || stats.reasons?.thrown) {
           break;
@@ -557,17 +565,17 @@ class EvoMapProxy {
         const retry = await hubFetch(endpoint, retryInit);
         if (!retry.ok) {
           const text = await retry.text().catch(() => '');
-          throw Object.assign(new Error(`Hub ${retry.status}: ${text}`), { statusCode: retry.status });
+          throw Object.assign(new Error(`Hub ${retry.status}: ${sanitizeHubResponseForLog(text)}`), { statusCode: retry.status });
         }
         return retry.json();
       }
       const text = await res.text().catch(() => '');
-      throw Object.assign(new Error(`Hub ${res.status} (re-auth failed): ${text}`), { statusCode: res.status });
+      throw Object.assign(new Error(`Hub ${res.status} (re-auth failed): ${sanitizeHubResponseForLog(text)}`), { statusCode: res.status });
     }
 
     if (!res.ok) {
       const text = await res.text().catch(() => '');
-      const err = Object.assign(new Error(`Hub ${res.status}: ${text}`), { statusCode: res.status });
+      const err = Object.assign(new Error(`Hub ${res.status}: ${sanitizeHubResponseForLog(text)}`), { statusCode: res.status });
       if (res.status === 429) err.retryAfterMs = parseRetryAfterMs(res, text);
       throw err;
     }
@@ -613,6 +621,51 @@ class EvoMapProxy {
   // dedup, and Retry-After-aware cooldown. Preserves the original return shape
   // and the 429 error contract so existing callers (and their "proceed on local
   // evidence" fallback) are unaffected.
+  // Report which fetched assets the agent reused, so the hub credits their
+  // authors (reuse-reward attribution). Unlike fetch/validate (strict GEP-A2A
+  // envelopes), the hub's /a2a/memory/record reads a FLAT top-level body
+  // ({sender_id, signals, status, used_asset_ids}); envelope-wrapping would bury
+  // those under .payload and the record would 400. The proxy reports as its OWN
+  // node -- the same node that fetched the asset -- so the hub's buildAttribution
+  // finds the matching AssetFetcher row (cross-owner + GDI verified hub-side).
+  // Declaration model, never server-inferred. Best-effort: a report failure
+  // (insufficient credits, hub error) must never break the agent's session.
+  // Kill-switch: EVOLVER_PROXY_REPORT_REUSE=0.
+  async _reportReuse(body) {
+    if (process.env.EVOLVER_PROXY_REPORT_REUSE === '0') {
+      return { ok: false, reason: 'report_reuse_disabled' };
+    }
+    const nodeId = this.store.getState('node_id');
+    if (!nodeId) return { ok: false, reason: 'no_node_id' };
+
+    const b = body || {};
+    const used = Array.isArray(b.used_asset_ids)
+      ? b.used_asset_ids.filter((x) => typeof x === 'string' && x.length > 0 && x.length <= 200).slice(0, 50)
+      : [];
+    if (used.length === 0) return { ok: false, reason: 'no_used_asset_ids' };
+
+    let signals = Array.isArray(b.signals)
+      ? b.signals.filter((s) => typeof s === 'string' && s.length > 0).slice(0, 32)
+      : [];
+    if (signals.length === 0) signals = ['reused_via_mcp'];
+
+    const flat = {
+      sender_id: nodeId,
+      signals,
+      status: b.status === 'failed' ? 'failed' : 'success',
+      used_asset_ids: used,
+      ...(typeof b.score === 'number' ? { score: b.score } : {}),
+    };
+
+    try {
+      const res = await this._proxyHttp('/a2a/memory/record', flat);
+      return { ok: true, recorded: res && res.recorded, used_asset_ids: used };
+    } catch (err) {
+      this.logger?.warn?.(`[proxy] report-reuse failed: ${err.message}`);
+      return { ok: false, reason: err.message, statusCode: err.statusCode };
+    }
+  }
+
   async _assetSearch(body) {
     const plan = this._planAssetSearchWithNode(body);
     const key = this._assetSearchCacheKey(plan);
@@ -774,8 +827,9 @@ class EvoMapProxy {
   // here, so clients (e.g. Claude Code) can authenticate to the proxy
   // with `ANTHROPIC_AUTH_TOKEN=<proxy_token>` without losing the ability
   // to reach Anthropic upstream. When the client did not pass x-api-key,
-  // the proxy substitutes its own ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN
-  // env var on the upstream request. Env is read per-request so creds
+  // the proxy substitutes its own EVOMAP_ANTHROPIC_API_KEY /
+  // ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN env var on the upstream request.
+  // Env is read per-request so creds
   // can be hot-swapped without restart, matching the EVOMAP_MODEL_*
   // policy in README.
   async _proxyAnthropic(reqPath, body, opts = {}) {
@@ -796,8 +850,9 @@ class EvoMapProxy {
     }
 
     if (!fwd['x-api-key']) {
-      if (process.env.ANTHROPIC_API_KEY) {
-        fwd['x-api-key'] = process.env.ANTHROPIC_API_KEY;
+      const upstreamApiKey = process.env.EVOMAP_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+      if (upstreamApiKey) {
+        fwd['x-api-key'] = upstreamApiKey;
       } else {
         const upstreamAuthToken = process.env.EVOMAP_ANTHROPIC_AUTH_TOKEN
           || (process.env.EVOMAP_PROXY_AUTO_INJECTED === '1' ? '' : process.env.ANTHROPIC_AUTH_TOKEN);
@@ -1260,6 +1315,7 @@ class EvoMapProxy {
           stream,
           json: null,
           text: null,
+          traceRequestBody: upstreamBody,
         };
       }
 
@@ -1277,6 +1333,7 @@ class EvoMapProxy {
         stream: null,
         json: () => JSON.parse(text),
         text: () => text,
+        traceRequestBody: upstreamBody,
       };
     } catch (err) {
       clearTimeout(abortTimer);
@@ -1291,6 +1348,7 @@ class EvoMapProxy {
         stream: null,
         json: () => JSON.parse(errBody),
         text: () => errBody,
+        traceRequestBody: upstreamBody,
       };
     }
   }

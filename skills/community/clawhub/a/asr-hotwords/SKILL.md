@@ -1,3 +1,14 @@
+---
+name: asr-hotwords
+description: "自动从 OpenClaw 对话记录挖掘高频热词与歧义词，生成供 ASR 模型提升转录准确性的热词表。"
+source: ClawHub
+version: 2.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# ASR Hotwords
+
 # ASR Hotwords — OpenClaw Skill
 
 ## 功能

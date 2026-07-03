@@ -18,26 +18,26 @@
 
 用法：
   # 换脸模式（默认自动等待完成）
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
       --dst-faces https://example.com/dst.png
 
   # 换人模式
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapCharacter \\
       --src-character https://example.com/src_person.png \\
       --dst-character https://example.com/dst_person.png
 
   # 视频交错（AB 模式）
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode AB
 
   # 异步提交（不等待）
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
@@ -45,10 +45,10 @@
       --no-wait
 
   # 查询已有任务结果
-  python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # dry-run 预览（含 ExtendedParameter）
-  python scripts/mps_vremake.py \\
+  python3 scripts/mps_vremake.py \\
       --url https://example.com/video.mp4 \\
       --mode SwapFace \\
       --src-faces https://example.com/src.png \\
@@ -85,7 +85,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误: 未安装腾讯云 SDK，请运行: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误: 未安装腾讯云 SDK，请运行: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:

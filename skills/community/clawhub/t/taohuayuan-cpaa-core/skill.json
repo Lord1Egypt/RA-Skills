@@ -1,0 +1,19 @@
+{
+  "skill_name": "CPAA-Physical-Align-Checker",
+  "version": "1.0.0",
+  "namespace": "SpaceSQ",
+  "description": "基于常德AI物理对齐架构（CPAA）的端侧合规扫描工具。用于验证具身智能体的地址、S2-DID物理钢印以及温控死锁机制。",
+  "author": {
+    "name": "Miles Xiang",
+    "role": "Voluntary Librarian and Experimenter"
+  },
+  "entry_point": "main.py",
+  "tags": ["AI Safety", "Physical Alignment", "S2-SWM", "Embodied AI"],
+  "inputs": [
+    {
+      "name": "agent_config",
+      "type": "json",
+      "description": "智能体底层配置文件，需包含 S2-DID、CD-U6A地址及指令集参数。"
+    }
+  ]
+}

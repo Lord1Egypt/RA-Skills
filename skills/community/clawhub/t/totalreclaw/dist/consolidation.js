@@ -18,10 +18,13 @@
  * and `clusterFacts` WASM functions when available, falling back to local
  * implementations that use WASM-backed `cosineSimilarity`.
  *
- * Threshold helpers remain local (they read process.env).
+ * Threshold helpers remain local; their env reads are centralized in
+ * entry.ts (env-reading seam, Task 1.3 of the OpenClaw native
+ * integration plan, 2026-06-21).
  */
 import { createRequire } from 'node:module';
 import { cosineSimilarity } from './reranker.js';
+import { envNumber } from './entry.js';
 // ---------------------------------------------------------------------------
 // Lazy-load WASM core (mirrors claims-helper.ts / contradiction-sync.ts
 // pattern — plays nicely under both the OpenClaw runtime (CJS-ish tsx) and
@@ -44,13 +47,7 @@ function getWasm() {
  * Must be a number in [0, 1]. Falls back to 0.85 if invalid or unset.
  */
 export function getStoreDedupThreshold() {
-    const envVal = process.env.TOTALRECLAW_STORE_DEDUP_THRESHOLD;
-    if (envVal !== undefined) {
-        const parsed = parseFloat(envVal);
-        if (!isNaN(parsed) && parsed >= 0 && parsed <= 1)
-            return parsed;
-    }
-    return 0.85;
+    return envNumber('TOTALRECLAW_STORE_DEDUP_THRESHOLD', 0.85, { min: 0, max: 1 });
 }
 /**
  * Get the cosine similarity threshold for bulk consolidation clustering.
@@ -59,13 +56,7 @@ export function getStoreDedupThreshold() {
  * Must be a number in [0, 1]. Falls back to 0.88 if invalid or unset.
  */
 export function getConsolidationThreshold() {
-    const envVal = process.env.TOTALRECLAW_CONSOLIDATION_THRESHOLD;
-    if (envVal !== undefined) {
-        const parsed = parseFloat(envVal);
-        if (!isNaN(parsed) && parsed >= 0 && parsed <= 1)
-            return parsed;
-    }
-    return 0.88;
+    return envNumber('TOTALRECLAW_CONSOLIDATION_THRESHOLD', 0.88, { min: 0, max: 1 });
 }
 /** Maximum candidates to compare against during store-time dedup. */
 export const STORE_DEDUP_MAX_CANDIDATES = 200;

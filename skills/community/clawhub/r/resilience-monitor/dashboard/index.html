@@ -12,7 +12,7 @@
       <span class="logo">◆</span>
       <div>
         <h1>Resilience</h1>
-        <p class="subtitle">OpenClaw API 错误统计 · 重试策略</p>
+        <p class="subtitle">OpenClaw API 错误统计 · 会话恢复队列 · 重试策略</p>
       </div>
     </div>
     <div class="controls">
@@ -69,6 +69,16 @@
           <tbody></tbody>
         </table>
       </div>
+    </section>
+
+    <section class="card span-1">
+      <h2>会话恢复摘要</h2>
+      <div id="sessionRetrySummary" class="mini-metrics"></div>
+    </section>
+
+    <section class="card span-2">
+      <h2>会话 / 工具恢复队列</h2>
+      <ul id="sessionRetries" class="list queue"></ul>
     </section>
 
     <section class="card span-1">

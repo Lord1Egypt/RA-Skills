@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-verifier"
+version = "0.2.0"
+description = "Pre-send verification for outbound agents — multi-axis guardian (deterministic + semantic) sitting in front of send()"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT-0" }
+authors = [
+    { name = "Alfred Churchill", email = "alfred@workloft.ai" },
+]
+keywords = ["agents", "ai-safety", "agent-infrastructure", "audit", "compliance", "fca", "ico", "regulated-ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+# No required dependencies — bring your own LLM callable.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.urls]
+Homepage = "https://workloft.ai/labs"
+Documentation = "https://workloft.ai/labs/notes/pre-send-verifier-2026-05-09.html"
+Repository = "https://gitlab.com/Alfpl/agent-verifier"
+Issues = "https://gitlab.com/Alfpl/agent-verifier/-/issues"
+
+[tool.setuptools.packages.find]
+include = ["agent_verifier*"]

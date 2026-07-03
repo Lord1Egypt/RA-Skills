@@ -26,22 +26,22 @@
 
 用法：
   # 查询最近 7 天转码用量（默认）
-  python scripts/mps_usage.py
+  python3 scripts/mps_usage.py
 
   # 查询指定日期范围
-  python scripts/mps_usage.py --start 2024-01-01 --end 2024-01-31
+  python3 scripts/mps_usage.py --start 2024-01-01 --end 2024-01-31
 
   # 查询多个任务类型
-  python scripts/mps_usage.py --type Transcode Enhance AIGC
+  python3 scripts/mps_usage.py --type Transcode Enhance AIGC
 
   # 查询指定地域
-  python scripts/mps_usage.py --region ap-guangzhou ap-hongkong
+  python3 scripts/mps_usage.py --region ap-guangzhou ap-hongkong
 
   # 输出 JSON 格式（方便程序处理）
-  python scripts/mps_usage.py --json
+  python3 scripts/mps_usage.py --json
 
   # 查询最近 30 天所有类型
-  python scripts/mps_usage.py --days 30 --all-types
+  python3 scripts/mps_usage.py --days 30 --all-types
 """
 
 import sys
@@ -68,7 +68,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("❌ 缺少依赖，请运行: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("❌ 缺少依赖，请运行: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # 所有支持的任务类型

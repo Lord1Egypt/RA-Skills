@@ -4,7 +4,7 @@ description: "全方位AI代码审查：安全/性能/逻辑/风格/AI幻觉，�
 metadata:
   openclaw:
     emoji: "🔍"
-    version: "2.0.0"
+    version: "2.2.2"
     author: "墨鱼精@g1776933879"
     tags: ["code-review", "security", "performance", "ai"]
 ---
@@ -12,6 +12,7 @@ metadata:
 # 🔍 Code Audit Pro — 全方位AI代码审查
 
 > **slug**: `code-audit-pro` | **安装**: `clawhub install @g1776933879/code-audit-pro`
+> **一键部署**: `bash install.sh` （自动安装 flake8 + bandit）
 
 ## 核心能力
 
@@ -191,3 +192,8 @@ python3 audit.py --check "代码内容"  # 审查代码片段
 - 每个问题都要给出具体位置和修复方案
 - 宁严勿松：不确定时标记为问题
 - 安全相关一律标 🔴 致命
+
+```
+```
+
+```

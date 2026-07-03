@@ -13,7 +13,8 @@ This skill focuses on the more practical OpenClaw case:
 - local file paths must be exact;
 - `MEDIA:/path` may fail for local files;
 - wrapper-based send flows may misbehave;
-- generated local HTML may need trusted temp placement such as `/tmp/openclaw/`;
+- generated local HTML must be copied to OpenClaw's trusted temp root, normally `/tmp/openclaw/`;
+- plain `/tmp`, project `media/`, and arbitrary workspace paths can still fail for HTML;
 - `openclaw message send --media ... --force-document` is often the reliable path.
 
 ## Requirements
@@ -41,13 +42,18 @@ This skill focuses on the more practical OpenClaw case:
 openclaw message send --channel telegram --target <target> --media /absolute/path/to/file --force-document --message "Done"
 ```
 
-For local HTML reports, prefer copying the file first:
+For local HTML reports, copy the file to OpenClaw's trusted temp root first:
 
 ```bash
 mkdir -p /tmp/openclaw
+chmod 700 /tmp/openclaw || true
 cp /absolute/path/to/report.html /tmp/openclaw/report.html
+chmod 600 /tmp/openclaw/report.html
+file --mime-type /tmp/openclaw/report.html
 openclaw message send --channel telegram --target <target> --media /tmp/openclaw/report.html --force-document --message "HTML report"
 ```
+
+If `/tmp/openclaw` is unavailable on another platform, resolve the current OpenClaw temp helper from the installed `dist/tmp-openclaw-dir-*.js` module and use that returned path.
 
 ## Common pain points
 

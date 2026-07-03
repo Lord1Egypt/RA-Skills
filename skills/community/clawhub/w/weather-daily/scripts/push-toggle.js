@@ -1,22 +1,20 @@
 #!/usr/bin/env node
 /**
- * weather-daily — 推送开关
+ * weather-daily — 推送开关（无文件写入版）
+ *
+ * 用户资料存于原生 MEMORY.md，由 Agent 维护；本脚本不读写任何文件。
+ * 开启推送所需的城市/单位/语言/时区由 Agent 从 MEMORY.md 读出后作为参数传入，
+ * 并被烘焙进各条 cron 任务的推送命令中，使无头推送无需读取任何文件。
+ * cron 任务通过 openclaw 运行时协议（__OPENCLAW_CRON_ADD__ / __OPENCLAW_CRON_RM__）管理。
  *
  * 用法:
- *   node push-toggle.js on <userId>   开启推送
- *   node push-toggle.js off <userId>  关闭推送
- *   node push-toggle.js status <userId>  查看状态
- *
- * 选项:
- *   --morning HH:MM   早报时间（覆盖用户设置，默认 07:00）
- *   --evening HH:MM   晚报时间（覆盖用户设置，默认 21:00）
- *   --channel <name>  推送渠道（默认 telegram）
+ *   node push-toggle.js on <userId> --city <城市> [--units metric|imperial] [--lang zh|en] \
+ *        [--morning 07:00] [--evening 21:00] [--channel telegram] [--timezone Asia/Shanghai]
+ *   node push-toggle.js off <userId>
+ *   node push-toggle.js status <userId>
  */
 
-const fs = require('fs');
 const path = require('path');
-
-const USERS_DIR = path.join(__dirname, '../data/users');
 
 // 只允许字母、数字、连字符、下划线，最长 128 字符
 function sanitizeId(value, label) {
@@ -41,41 +39,67 @@ function sanitizeTime(value, label) {
   return { h, m };
 }
 
-// 验证文件路径确实在 USERS_DIR 内（防路径穿越）
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ 非法路径');
+function sanitizeCity(value) {
+  if (typeof value !== 'string') {
+    console.error('❌ 无效的城市名');
     process.exit(1);
   }
-  return resolved;
+  const stripped = value.replace(/[^一-龥a-zA-Z0-9\s\-]/g, '').trim();
+  if (!/^[一-龥a-zA-Z0-9\s\-]{1,50}$/.test(stripped)) {
+    console.error('❌ 无效的城市名：使用中文/英文/数字/空格/连字符，长度 1-50');
+    process.exit(1);
+  }
+  return stripped;
 }
 
-function loadUser(userId) {
-  const f = safeUserPath(userId);
-  if (!fs.existsSync(f)) return null;
-  return JSON.parse(fs.readFileSync(f, 'utf8'));
+function sanitizeUnits(value) {
+  if (value !== 'metric' && value !== 'imperial') {
+    console.error('❌ 无效的 units：使用 metric 或 imperial');
+    process.exit(1);
+  }
+  return value;
 }
 
-function saveUser(userId, data) {
-  fs.mkdirSync(USERS_DIR, { recursive: true });
-  fs.writeFileSync(safeUserPath(userId), JSON.stringify(data, null, 2), 'utf8');
+function sanitizeLang(value) {
+  if (value !== 'zh' && value !== 'en') {
+    console.error('❌ 无效的 lang：使用 zh 或 en');
+    process.exit(1);
+  }
+  return value;
+}
+
+function sanitizeTimezone(value) {
+  if (typeof value !== 'string' || !/^[A-Za-z][A-Za-z0-9_+\-\/]{0,49}$/.test(value)) {
+    console.error('❌ 无效的 timezone：使用 IANA 格式，如 America/New_York');
+    process.exit(1);
+  }
+  return value;
 }
 
 const ALLOWED_CHANNELS = new Set(['telegram', 'feishu', 'slack', 'discord']);
 
+// 把资料字段烘焙进推送命令，使无头推送脚本无需读取任何文件
+function pushCommand(script, userId, city, units, lang) {
+  const scriptPath = path.join(__dirname, script);
+  return `node ${scriptPath} ${userId} --city "${city}" --units ${units} --lang ${lang}`;
+}
+
 function enablePush(userId, opts = {}) {
   userId = sanitizeId(userId, 'userId');
 
-  // 加载用户资料获取默认推送时间
-  const userProfile = loadUser(userId);
-  const defaultMorning = (userProfile && userProfile.preferences && userProfile.preferences.morningTime) || '07:00';
-  const defaultEvening = (userProfile && userProfile.preferences && userProfile.preferences.eveningTime) || '21:00';
+  if (!opts.city) {
+    console.error('❌ 缺少 --city 参数。请先让 Agent 从 MEMORY.md 读取资料（城市/单位/语言），或运行 register.js 生成。');
+    process.exit(1);
+  }
+  const city  = sanitizeCity(opts.city);
+  const units = sanitizeUnits(opts.units || 'metric');
+  const lang  = opts.lang ? sanitizeLang(opts.lang) : (/[一-龥]/.test(city) ? 'zh' : 'en');
+  const timezone = opts.timezone ? sanitizeTimezone(opts.timezone) : 'Asia/Shanghai';
 
-  const { h: mh, m: mm } = sanitizeTime(opts.morning || defaultMorning, 'morning');
-  const { h: eh, m: em } = sanitizeTime(opts.evening || defaultEvening, 'evening');
+  const { h: mh, m: mm } = sanitizeTime(opts.morning || '07:00', 'morning');
+  const { h: eh, m: em } = sanitizeTime(opts.evening || '21:00', 'evening');
 
-  const rawChannel = opts.channel || (userProfile && userProfile.preferences && userProfile.preferences.channel) || 'telegram';
+  const rawChannel = opts.channel || 'telegram';
   if (!ALLOWED_CHANNELS.has(rawChannel)) {
     console.error(`❌ 不支持的渠道：${rawChannel}。支持：${[...ALLOWED_CHANNELS].join(', ')}`);
     process.exit(1);
@@ -87,18 +111,18 @@ function enablePush(userId, opts = {}) {
 
   const sessionKey = `agent:main:${channel}:direct:${userId}`;
 
-  // 早间天气 cron
+  // 早间天气 cron（城市/单位/语言已烘焙进命令）
   const morningConfig = {
     name: `weather-morning-${userId}`,
     cronExpr: morningCron,
-    tz: 'Asia/Shanghai',
+    tz: timezone,
     session: 'isolated',
     sessionKey,
     channel,
     to: userId,
     announce: true,
     timeoutSeconds: 120,
-    message: `node ${path.join(__dirname, 'morning-push.js')} ${userId}`
+    message: pushCommand('morning-push.js', userId, city, units, lang)
   };
   console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(morningConfig)}`);
 
@@ -106,14 +130,14 @@ function enablePush(userId, opts = {}) {
   const eveningConfig = {
     name: `weather-evening-${userId}`,
     cronExpr: eveningCron,
-    tz: 'Asia/Shanghai',
+    tz: timezone,
     session: 'isolated',
     sessionKey,
     channel,
     to: userId,
     announce: true,
     timeoutSeconds: 120,
-    message: `node ${path.join(__dirname, 'evening-push.js')} ${userId}`
+    message: pushCommand('evening-push.js', userId, city, units, lang)
   };
   console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(eveningConfig)}`);
 
@@ -121,14 +145,14 @@ function enablePush(userId, opts = {}) {
   const weeklyConfig = {
     name: `weather-weekly-${userId}`,
     cronExpr: '0 20 * * 6',
-    tz: 'Asia/Shanghai',
+    tz: timezone,
     session: 'isolated',
     sessionKey,
     channel,
     to: userId,
     announce: true,
     timeoutSeconds: 120,
-    message: `node ${path.join(__dirname, 'weekly-push.js')} ${userId}`
+    message: pushCommand('weekly-push.js', userId, city, units, lang)
   };
   console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(weeklyConfig)}`);
 
@@ -136,112 +160,54 @@ function enablePush(userId, opts = {}) {
   const monthlyConfig = {
     name: `weather-monthly-${userId}`,
     cronExpr: '0 20 28-31 * *',
-    tz: 'Asia/Shanghai',
+    tz: timezone,
     session: 'isolated',
     sessionKey,
     channel,
     to: userId,
     announce: true,
     timeoutSeconds: 120,
-    message: `node ${path.join(__dirname, 'monthly-push.js')} ${userId}`
+    message: pushCommand('monthly-push.js', userId, city, units, lang)
   };
   console.log(`__OPENCLAW_CRON_ADD__:${JSON.stringify(monthlyConfig)}`);
 
   const morningDisplay = `${String(mh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
   const eveningDisplay = `${String(eh).padStart(2,'0')}:${String(em).padStart(2,'0')}`;
 
-  // 更新用户资料中的推送设置
-  const updatedProfile = userProfile ? {
-    ...userProfile,
-    preferences: {
-      ...userProfile.preferences,
-      morningTime: morningDisplay,
-      eveningTime: eveningDisplay,
-      channel,
-      pushEnabled: true
-    },
-    pushEnabledAt: new Date().toISOString()
-  } : {
-    userId,
-    preferences: {
-      morningTime: morningDisplay,
-      eveningTime: eveningDisplay,
-      channel,
-      pushEnabled: true
-    },
-    pushEnabledAt: new Date().toISOString()
-  };
-
-  saveUser(userId, updatedProfile);
-
-  const city = (updatedProfile.city) || '（未设置）';
-
   console.log(`
 ✅ 天气推送已开启
 
 🌆 城市：${city}
+🌡️ 单位：${units === 'metric' ? '°C / metric' : '°F / imperial'}
+🌐 语言：${lang}
 ⏰ 早间推送：每天 ${morningDisplay}（今日天气）
 🌙 晚间推送：每天 ${eveningDisplay}（明日预告）
 📅 周报推送：每周六 20:00（下周天气）
 🗓️ 月报推送：每月末 20:00（下月概况）
 📡 渠道：${channel}
+🕐 时区：${timezone}
 
-关闭推送：node push-toggle.js off ${userId}`);
+💡 请在 MEMORY.md 的资料区块记下：推送已开启（${channel}，${morningDisplay}/${eveningDisplay}）。
+关闭推送：node scripts/push-toggle.js off ${userId}`);
 }
 
 function disablePush(userId) {
   userId = sanitizeId(userId, 'userId');
-  const user = loadUser(userId);
-  if (!user) {
-    console.log(`❌ 未找到用户 ${userId} 的推送记录`);
-    return;
-  }
-
+  // cron 名称可由 userId 推导，无需读取任何文件
   console.log(`__OPENCLAW_CRON_RM__:weather-morning-${userId}`);
   console.log(`__OPENCLAW_CRON_RM__:weather-evening-${userId}`);
   console.log(`__OPENCLAW_CRON_RM__:weather-weekly-${userId}`);
   console.log(`__OPENCLAW_CRON_RM__:weather-monthly-${userId}`);
-
-  const updated = {
-    ...user,
-    preferences: {
-      ...user.preferences,
-      pushEnabled: false
-    },
-    pushDisabledAt: new Date().toISOString()
-  };
-  saveUser(userId, updated);
-  console.log(`✅ 天气推送已关闭`);
+  console.log(`
+✅ 天气推送已关闭（已请求删除 ${userId} 的早/晚/周/月定时任务）
+💡 请在 MEMORY.md 的资料区块记下：推送已关闭。`);
 }
 
 function showStatus(userId) {
   userId = sanitizeId(userId, 'userId');
-  const user = loadUser(userId);
-  if (!user) {
-    console.log(`❌ 未找到用户 ${userId} 的推送记录`);
-    return;
-  }
-
-  const prefs = user.preferences || {};
-  const city         = user.city || '（未设置）';
-  const pushEnabled  = prefs.pushEnabled || false;
-  const morningTime  = prefs.morningTime || '07:00';
-  const eveningTime  = prefs.eveningTime || '21:00';
-  const channel      = prefs.channel || 'telegram';
-  const enabledAt    = user.pushEnabledAt ? user.pushEnabledAt.split('T')[0] : '未知';
-
   console.log(`
-📡 推送状态 — ${userId}
-━━━━━━━━━━━━━━━━━━━━━━━
-城市：${city}
-状态：${pushEnabled ? '✅ 开启中' : '❌ 已关闭'}
-早间推送：${morningTime}（今日天气）
-晚间推送：${eveningTime}（明日预告）
-周报推送：每周六 20:00（下周天气）
-月报推送：每月末 20:00（下月概况）
-渠道：${channel}
-开启于：${enabledAt}
-━━━━━━━━━━━━━━━━━━━━━━━`);
+🔔 推送状态由 MEMORY.md 资料记录 —— 请读取 MEMORY.md 中 <!-- weather-daily:profile:${userId} --> 区块查看开启/时间/渠道。
+   如需重新开启：node scripts/push-toggle.js on ${userId} --city <城市> --units <metric|imperial> --lang <zh|en>`);
 }
 
 module.exports = { enablePush, disablePush, showStatus };
@@ -252,21 +218,33 @@ const args = process.argv.slice(2);
 const command = args[0];
 const userId  = args[1];
 
+function flag(name) {
+  const i = args.indexOf(name);
+  return (i !== -1 && args[i + 1]) ? args[i + 1] : undefined;
+}
+
 if (!command || !userId) {
   console.log(`用法:
-  node push-toggle.js on <userId> [--morning 07:00] [--evening 21:00] [--channel telegram]
+  node push-toggle.js on <userId> --city <城市> [--units metric|imperial] [--lang zh|en] \\
+       [--morning 07:00] [--evening 21:00] [--channel telegram] [--timezone Asia/Shanghai]
   node push-toggle.js off <userId>
-  node push-toggle.js status <userId>`);
+  node push-toggle.js status <userId>
+
+说明:
+  资料存于原生 MEMORY.md，由 Agent 维护并在开启推送时把城市/单位/语言作为参数传入。
+  这些字段会被烘焙进定时任务命令，使无头推送无需读取任何文件。`);
   process.exit(1);
 }
 
-const opts = {};
-const mi = args.indexOf('--morning');
-if (mi !== -1) opts.morning = args[mi + 1];
-const ei = args.indexOf('--evening');
-if (ei !== -1) opts.evening = args[ei + 1];
-const ci = args.indexOf('--channel');
-if (ci !== -1) opts.channel = args[ci + 1];
+const opts = {
+  city: flag('--city'),
+  units: flag('--units'),
+  lang: flag('--lang'),
+  morning: flag('--morning'),
+  evening: flag('--evening'),
+  channel: flag('--channel'),
+  timezone: flag('--timezone'),
+};
 
 switch (command) {
   case 'on':     enablePush(userId, opts); break;

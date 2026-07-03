@@ -11,30 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to query Nansen CLI data for Hyperliquid perpetual market volume, open interest, trader leaderboard, and smart-money perp activity. <br>
+Developers and analysts use this skill to query Nansen market-data views for Hyperliquid perpetual contracts, trader leaderboards, and smart-money perpetual trade activity. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill requires a Nansen API key and invokes the nansen CLI. <br>
-Mitigation: Install only when Nansen market-data access is intended, keep the API key scoped and protected, and approve the read-only Nansen commands expected for this workflow. <br>
-Risk: The installed nansen-cli package may change behavior over time. <br>
-Mitigation: In stricter environments, review or pin the nansen-cli package version before use. <br>
+Risk: The skill requires NANSEN_API_KEY to be available to the nansen-cli package. <br>
+Mitigation: Install and use it only in environments where sharing that credential with the third-party CLI is acceptable, and scope or rotate the key according to local policy. <br>
+Risk: The workflow depends on a third-party CLI package for market-data queries. <br>
+Mitigation: Review the nansen-cli package provenance before installation and keep execution limited to the documented read-only Nansen market-data commands. <br>
 
 
 ## Reference(s): <br>
-- [Nansen Perp Screener on ClawHub](https://clawhub.ai/nansen-devops/nansen-perp-screener) <br>
+- [ClawHub skill page](https://clawhub.ai/nansen-devops/skills/nansen-perp-screener) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and market-data field descriptions] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown text with Nansen CLI command examples and market-data field descriptions.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; intended for read-only market-data queries.] <br>
+**Other Properties Related to Output:** [Requires the nansen CLI and NANSEN_API_KEY for live market-data queries.] <br>
 
 ## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+0.1.1 (source: server evidence release.version) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

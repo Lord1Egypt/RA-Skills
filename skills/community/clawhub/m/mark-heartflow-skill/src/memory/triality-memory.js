@@ -46,7 +46,7 @@ class TrialityMemory {
       fs.mkdirSync(dataDir, { recursive: true });
     }
     this.initializeSchema();
-    console.error('[TrialityMemory] 三维经验大脑初始化完成');
+    // [PROD] 生产环境移除 console.error: console.error('[TrialityMemory] 三维经验大脑初始化完成');
   }
 
   initializeSchema() {
@@ -81,10 +81,10 @@ class TrialityMemory {
             }
           }
           this.stats.totalMemories = this.memories.length;
-          console.error(`[TrialityMemory] 从 ${exportPath} 恢复 ${data.memories.length} 条记忆`);
+          // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 从 ${exportPath} 恢复 ${data.memories.length} 条记忆`);
         }
       } catch (e) {
-        console.warn('[TrialityMemory] 恢复记忆失败:', e.message);
+        // [PROD] 生产环境移除 console.warn: console.warn('[TrialityMemory] 恢复记忆失败:', e.message);
       }
     }
   }
@@ -106,7 +106,7 @@ class TrialityMemory {
       };
       fs.writeFileSync(exportPath, JSON.stringify(data, null, 2));
     } catch (e) {
-      console.warn('[TrialityMemory] 自动保存失败:', e.message);
+      // [PROD] 生产环境移除 console.warn: console.warn('[TrialityMemory] 自动保存失败:', e.message);
     }
   }
 
@@ -144,7 +144,7 @@ class TrialityMemory {
     }
     
     this.stats.totalMemories = this.memories.length;
-    console.error(`[TrialityMemory] 记忆存储: ${id} (${this.memories.length} total)`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 记忆存储: ${id} (${this.memories.length} total)`);
     this._autoSave(); // 自动持久化
     return id;
   }
@@ -332,7 +332,7 @@ class TrialityMemory {
     }
 
     narrative.sort((a, b) => a.timestamp - b.timestamp);
-    console.error(`[TrialityMemory] 叙事查询: ${narrative.length} 个记忆节点`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 叙事查询: ${narrative.length} 个记忆节点`);
     return narrative;
   }
 
@@ -367,7 +367,7 @@ class TrialityMemory {
     const allowedDir = path.join(path.dirname(this.dbPath || __dirname), '..', '..', '..', 'data');
     const resolvedPath = path.resolve(filePath);
     if (!resolvedPath.startsWith(path.resolve(allowedDir))) {
-      console.error(`[TrialityMemory] 安全拦截: 不允许导出到 ${resolvedPath}（必须在 data 目录内）`);
+      // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 安全拦截: 不允许导出到 ${resolvedPath}（必须在 data 目录内）`);
       return { success: false, error: 'path_not_allowed' };
     }
     const data = {
@@ -376,7 +376,7 @@ class TrialityMemory {
       exportedAt: new Date().toISOString()
     };
     fs.writeFileSync(resolvedPath, JSON.stringify(data, null, 2));
-    console.error(`[TrialityMemory] 导出到: ${resolvedPath}`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 导出到: ${resolvedPath}`);
     return { success: true, count: this.memories.length };
   }
 
@@ -385,11 +385,11 @@ class TrialityMemory {
     const allowedDir = path.resolve(path.join(path.dirname(this.dbPath || __dirname), '..', '..', '..', 'data'));
     const resolvedPath = path.resolve(filePath);
     if (!resolvedPath.startsWith(allowedDir)) {
-      console.error(`[TrialityMemory] 安全拦截: 不允许从 ${resolvedPath} 导入（必须在 data 目录内）`);
+      // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 安全拦截: 不允许从 ${resolvedPath} 导入（必须在 data 目录内）`);
       return { success: false, error: 'path_not_allowed' };
     }
     if (!fs.existsSync(resolvedPath)) {
-      console.error(`[TrialityMemory] 文件不存在: ${resolvedPath}`);
+      // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 文件不存在: ${resolvedPath}`);
       return { success: false, error: 'file_not_found' };
     }
     const data = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
@@ -398,7 +398,7 @@ class TrialityMemory {
         this.store(mem);
       }
     }
-    console.error(`[TrialityMemory] 从 ${filePath} 导入`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 从 ${filePath} 导入`);
     return { success: true, count: data.memories?.length || 0 };
   }
 
@@ -408,7 +408,7 @@ class TrialityMemory {
     this.memories = this.memories.filter(m => m.timestamp > cutoff);
     this.stats.lastCleanup = new Date().toISOString();
     const removed = before - this.memories.length;
-    console.error(`[TrialityMemory] 清理: 移除 ${removed} 条旧记忆`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 清理: 移除 ${removed} 条旧记忆`);
     return { removed, remaining: this.memories.length };
   }
 
@@ -470,7 +470,7 @@ class TrialityMemory {
       if (mem) mem.compressed = true;
     }
 
-    console.error(`[TrialityMemory] 遗忘曲线清理: 删除 ${toDelete.length} 条, 压缩 ${toCompress.length} 条`);
+    // [PROD] 生产环境移除 console.error: console.error(`[TrialityMemory] 遗忘曲线清理: 删除 ${toDelete.length} 条, 压缩 ${toCompress.length} 条`);
     return { deleted: toDelete.length, compressed: toCompress.length };
   }
 

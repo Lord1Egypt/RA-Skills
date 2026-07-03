@@ -1,6 +1,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const zlib = require('zlib');
 const { execFileSync } = require('child_process');
 const { getEvolverInstallRoot } = require('./gep/paths');
 
@@ -57,11 +58,40 @@ const FORCE_UPDATE_FAIL_CODES = Object.freeze({
   DEGIT_TIMEOUT: 'degit_timeout',
   DEGIT_FAILED: 'degit_failed',
   DOWNLOAD_INCOMPLETE: 'download_incomplete',
+  DOWNLOADED_PACKAGE_NAME_MISMATCH: 'downloaded_package_name_mismatch',
   DOWNLOADED_VERSION_MISMATCH: 'downloaded_version_mismatch',
   DELETE_FAILED: 'delete_failed',
   COPY_FAILED: 'copy_failed',
+  FALLBACK_DOWNLOAD_INCOMPLETE: 'fallback_download_incomplete',
+  FALLBACK_DELETE_FAILED: 'fallback_delete_failed',
+  FALLBACK_COPY_FAILED: 'fallback_copy_failed',
+  FALLBACK_DOWNLOADED_PACKAGE_NAME_MISMATCH: 'fallback_downloaded_package_name_mismatch',
+  FALLBACK_DOWNLOADED_VERSION_MISMATCH: 'fallback_downloaded_version_mismatch',
   ALL_CHANNELS_EXHAUSTED: 'all_channels_exhausted',
 });
+
+const EVOLVER_INSTALL_MARKERS = Object.freeze([
+  Object.freeze({
+    relPath: path.join('src', 'forceUpdate.js'),
+    required: true,
+    tokens: Object.freeze(['executeForceUpdate', 'FORCE_UPDATE_FAIL_CODES']),
+  }),
+  Object.freeze({
+    relPath: path.join('src', 'gep', 'paths.js'),
+    tokens: Object.freeze(['getRepoRoot', 'getEvolverInstallRoot']),
+  }),
+  Object.freeze({
+    relPath: path.join('src', 'gep', 'a2aProtocol.js'),
+    tokens: Object.freeze(['GEP A2A Protocol', 'reportForceUpdateOutcome']),
+  }),
+  Object.freeze({
+    relPath: 'index.js',
+    tokens: Object.freeze(['proxy-token', './src/evolve']),
+  }),
+]);
+const MAX_INSTALL_MARKER_BYTES = 1024 * 1024;
+const FORCE_UPDATE_BACKUP_PREFIX = '.evolver-force-update-backup-';
+const FORCE_UPDATE_JOURNAL_FILE = '.evolver-force-update-journal.json';
 
 // Build the structured failure result that replaces a bare `return false`.
 // Shape: { ok:false, code, detail }. Distinct from `true`, FORCE_UPDATE_NOOP
@@ -84,6 +114,38 @@ function _errStr(e) {
   if (!e) return 'unknown';
   var code = e.code ? String(e.code) + ': ' : '';
   return code + (e.message != null ? String(e.message) : String(e));
+}
+
+function _isEvolverPackageName(name) {
+  return name === '@evomap/evolver' || name === 'evolver';
+}
+
+function _fileMatchesInstallMarker(root, marker) {
+  try {
+    var markerPath = path.join(root, marker.relPath);
+    var st = fs.statSync(markerPath);
+    if (!st.isFile()) return false;
+    if (st.size > MAX_INSTALL_MARKER_BYTES) return false;
+    var content = fs.readFileSync(markerPath, 'utf8');
+    for (var i = 0; i < marker.tokens.length; i++) {
+      if (!content.includes(marker.tokens[i])) return false;
+    }
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function _hasStrongEvolverInstallMarkers(root) {
+  var matched = 0;
+  var requiredMatched = false;
+  for (var i = 0; i < EVOLVER_INSTALL_MARKERS.length; i++) {
+    var marker = EVOLVER_INSTALL_MARKERS[i];
+    if (!_fileMatchesInstallMarker(root, marker)) continue;
+    matched++;
+    if (marker.required) requiredMatched = true;
+  }
+  return requiredMatched && matched >= 3;
 }
 
 // Map a Channel 1 (GitHub Release / degit) throw to a structured failure.
@@ -139,6 +201,18 @@ function _classifyChannel1Error(e, phase) {
   return _fail(FORCE_UPDATE_FAIL_CODES.DEGIT_FAILED, detail);
 }
 
+function _withFallbackFailure(primaryFailure, fallbackFailure) {
+  if (!primaryFailure) return fallbackFailure;
+  if (!fallbackFailure) return primaryFailure;
+  var primaryCode = String(primaryFailure.code || FORCE_UPDATE_FAIL_CODES.ALL_CHANNELS_EXHAUSTED);
+  var fallbackCode = String(fallbackFailure.code || FORCE_UPDATE_FAIL_CODES.ALL_CHANNELS_EXHAUSTED);
+  var terminalCode = 'fallback_' + fallbackCode.replace(/[^a-z0-9_]/gi, '_').toLowerCase();
+  var detail = 'primary_failed=' + primaryCode + ' | fallback_failed=' + fallbackCode;
+  if (fallbackFailure.detail) detail += ': ' + fallbackFailure.detail;
+  if (primaryFailure.detail) detail += ' | primary_detail=' + primaryFailure.detail;
+  return _fail(terminalCode, detail);
+}
+
 function _isRetryableFsLockError(e) {
   var code = e && e.code;
   return code === 'EPERM' || code === 'EBUSY' || code === 'EACCES' ||
@@ -164,6 +238,144 @@ function _retryFsLockOperation(fn) {
   throw err;
 }
 
+function _downloadUrlWithNode(url, destPath) {
+  var script = [
+    "const fs=require('fs');",
+    "const https=require('https');",
+    "const url=process.argv[1];",
+    "const dest=process.argv[2];",
+    "function fail(msg){try{fs.rmSync(dest,{force:true});}catch(_){};console.error(msg);process.exit(1);}",
+    "function get(u, redirects){",
+    "  const parsed=new URL(u);",
+    "  if(parsed.protocol!=='https:') fail('refusing non-https download URL');",
+    "  const req=https.get(parsed,{headers:{'User-Agent':'evomap-evolver-force-update'}},(res)=>{",
+    "    if(res.statusCode>=300&&res.statusCode<400&&res.headers.location){",
+    "      if(redirects<=0) fail('too many redirects');",
+    "      res.resume();",
+    "      return get(new URL(res.headers.location, parsed).toString(), redirects-1);",
+    "    }",
+    "    if(res.statusCode!==200) fail('download status '+res.statusCode);",
+    "    const out=fs.createWriteStream(dest,{flags:'wx',mode:0o600});",
+    "    res.pipe(out);",
+    "    out.on('finish',()=>out.close(()=>process.exit(0)));",
+    "    out.on('error',(e)=>fail(e&&e.message||e));",
+    "  });",
+    "  req.setTimeout(60000,()=>req.destroy(new Error('download timeout')));",
+    "  req.on('error',(e)=>fail(e&&e.message||e));",
+    "}",
+    "get(url,5);",
+  ].join('');
+  execFileSync(process.execPath, ['-e', script, url, destPath], {
+    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: 70000, windowsHide: true, maxBuffer: MAX_EXEC_BUFFER,
+  });
+}
+
+function _readTarString(block, start, length) {
+  var end = start;
+  var max = start + length;
+  while (end < max && block[end] !== 0) end++;
+  return block.toString('utf8', start, end);
+}
+
+function _readTarOctal(block, start, length) {
+  var raw = _readTarString(block, start, length).trim();
+  if (!raw) return 0;
+  var parsed = parseInt(raw, 8);
+  if (!Number.isFinite(parsed) || parsed < 0) throw new Error('invalid tar numeric field');
+  return parsed;
+}
+
+function _isZeroTarBlock(block) {
+  for (var i = 0; i < block.length; i++) {
+    if (block[i] !== 0) return false;
+  }
+  return true;
+}
+
+function _stripTarPathComponents(entryName, count) {
+  var normalized = String(entryName || '').replace(/\\/g, '/');
+  if (!normalized || normalized.startsWith('/')) return '';
+  var parts = normalized.split('/').filter(function (part) { return part !== '' && part !== '.'; });
+  if (parts.length <= count) return '';
+  return parts.slice(count).join('/');
+}
+
+function _safeTarOutputPath(root, relativeName) {
+  var parts = String(relativeName || '').split('/');
+  for (var i = 0; i < parts.length; i++) {
+    if (!parts[i] || parts[i] === '.' || parts[i] === '..') return '';
+  }
+  var rootPath = path.resolve(root);
+  var outPath = path.resolve(rootPath, relativeName);
+  if (outPath !== rootPath && outPath.startsWith(rootPath + path.sep)) return outPath;
+  return '';
+}
+
+function _extractTarGzWithNode(archivePath, tempTarget) {
+  var archive = zlib.gunzipSync(fs.readFileSync(archivePath));
+  var offset = 0;
+  while (offset + 512 <= archive.length) {
+    var header = archive.subarray(offset, offset + 512);
+    offset += 512;
+    if (_isZeroTarBlock(header)) break;
+
+    var name = _readTarString(header, 0, 100);
+    var prefix = _readTarString(header, 345, 155);
+    if (prefix) name = prefix + '/' + name;
+    var size = _readTarOctal(header, 124, 12);
+    var typeFlag = _readTarString(header, 156, 1) || '0';
+    if (offset + size > archive.length) throw new Error('truncated tar entry: ' + name);
+    var mode = 0;
+    try { mode = _readTarOctal(header, 100, 8) & 0o777; } catch (_) { mode = 0; }
+
+    var stripped = _stripTarPathComponents(name, 1);
+    var outPath = _safeTarOutputPath(tempTarget, stripped);
+    if (outPath) {
+      if (typeFlag === '5') {
+        fs.mkdirSync(outPath, { recursive: true });
+        if (mode && process.platform !== 'win32') {
+          try { fs.chmodSync(outPath, mode); } catch (_) {}
+        }
+      } else if (typeFlag === '0' || typeFlag === '\0') {
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
+        fs.writeFileSync(outPath, archive.subarray(offset, offset + size));
+        if (mode && process.platform !== 'win32') {
+          try { fs.chmodSync(outPath, mode); } catch (_) {}
+        }
+      }
+    }
+
+    offset += Math.ceil(size / 512) * 512;
+  }
+}
+
+function _clearTempTarget(tempTarget) {
+  fs.rmSync(tempTarget, { recursive: true, force: true });
+  fs.mkdirSync(tempTarget, { recursive: true });
+}
+
+function _tryDownloadReleaseTarball(requiredVersion, tempTarget) {
+  var archiveDir = null;
+  var archivePath = null;
+  var url = 'https://codeload.github.com/EvoMap/evolver/tar.gz/refs/tags/v' + requiredVersion;
+  try {
+    archiveDir = fs.mkdtempSync(path.join(os.tmpdir(), '.evolver-update-archive-'));
+    archivePath = path.join(archiveDir, 'archive.tar.gz');
+    _clearTempTarget(tempTarget);
+    console.log('[ForceUpdate] Channel 1b: GitHub tarball fallback (v' + requiredVersion + ')...');
+    _downloadUrlWithNode(url, archivePath);
+    _extractTarGzWithNode(archivePath, tempTarget);
+    return null;
+  } catch (e) {
+    return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE, _errStr(e));
+  } finally {
+    if (archiveDir) {
+      try { fs.rmSync(archiveDir, { recursive: true, force: true }); } catch (_) {}
+    }
+  }
+}
+
 function _recoverPackageCommitMarkerIfMissing(installRoot) {
   var pkgDst = path.join(installRoot, 'package.json');
   if (fs.existsSync(pkgDst)) return false;
@@ -186,23 +398,256 @@ function _recoverPackageCommitMarkerIfMissing(installRoot) {
   return false;
 }
 
-function _restorePackageBackup(pkgBackup, pkgDst) {
-  if (!fs.existsSync(pkgBackup)) return false;
-  if (fs.existsSync(pkgDst)) {
-    try { fs.rmSync(pkgBackup, { force: true }); } catch (_) {}
-    return false;
-  }
+function _isForceUpdateKeepEntry(name) {
+  return name === 'node_modules' || name === 'memory' || name === '.git' || name === 'MEMORY.md' ||
+    name === '.env' || name === '.env.local' || name === 'USER.md' || name === '.evolver' ||
+    name === 'logs';
+}
+
+function _isForceUpdateInternalEntry(name) {
+  return name === FORCE_UPDATE_JOURNAL_FILE || String(name || '').startsWith(FORCE_UPDATE_BACKUP_PREFIX);
+}
+
+function _isForceUpdateBootstrapEntry(name) {
+  return name === 'index.js';
+}
+
+function _readInstallPackageVersion(installRoot) {
   try {
-    fs.renameSync(pkgBackup, pkgDst);
-    return true;
+    var pkg = JSON.parse(fs.readFileSync(path.join(installRoot, 'package.json'), 'utf8'));
+    return pkg && pkg.version ? String(pkg.version) : '';
   } catch (_) {
-    return false;
+    return '';
   }
 }
 
-function _isForceUpdateKeepEntry(name) {
-  return name === 'node_modules' || name === 'memory' || name === '.git' || name === 'MEMORY.md' ||
-    name === '.env' || name === '.env.local' || name === 'USER.md' || name === '.evolver';
+function _writeForceUpdateRecoveryJournal(backupRoot, requiredVersion, previousVersion) {
+  var journal = {
+    state: 'precommit',
+    requiredVersion: String(requiredVersion || ''),
+    previousVersion: String(previousVersion || ''),
+    createdAt: Date.now(),
+  };
+  fs.writeFileSync(
+    path.join(backupRoot, FORCE_UPDATE_JOURNAL_FILE),
+    JSON.stringify(journal),
+    { encoding: 'utf8', mode: 0o600 },
+  );
+}
+
+function _removeInstallEntryIfPresent(entryPath) {
+  _retryFsLockOperation(function () {
+    fs.rmSync(entryPath, {
+      recursive: true, force: true, maxRetries: 3, retryDelay: 200,
+    });
+  });
+}
+
+function _copyFileIfPresent(src, dst) {
+  if (!fs.existsSync(src)) return false;
+  fs.copyFileSync(src, dst);
+  return true;
+}
+
+function _restoreFileBackupIfPresent(backupPath, dstPath) {
+  if (!backupPath || !fs.existsSync(backupPath)) return false;
+  try { fs.rmSync(dstPath, { recursive: true, force: true }); } catch (_) {}
+  fs.copyFileSync(backupPath, dstPath);
+  return true;
+}
+
+function _commitAtomicFileReplacement(srcPath, dstPath, tmpPath, backupPath) {
+  try { fs.rmSync(tmpPath, { force: true }); } catch (_) {}
+  try { fs.rmSync(backupPath, { force: true }); } catch (_) {}
+  fs.copyFileSync(srcPath, tmpPath);
+  _copyFileIfPresent(dstPath, backupPath);
+  _retryFsLockOperation(function () {
+    fs.renameSync(tmpPath, dstPath);
+  });
+}
+
+function _restoreMovedInstallEntries(installRoot, movedEntries, copiedEntryNames) {
+  var ok = true;
+  var seenCopied = Object.create(null);
+  for (var ci = copiedEntryNames.length - 1; ci >= 0; ci--) {
+    var copiedName = copiedEntryNames[ci];
+    if (seenCopied[copiedName]) continue;
+    seenCopied[copiedName] = true;
+    try {
+      _removeInstallEntryIfPresent(path.join(installRoot, copiedName));
+    } catch (copyCleanupErr) {
+      ok = false;
+      console.warn('[ForceUpdate] rollback cleanup failed for ' + copiedName + ': ' +
+        (copyCleanupErr.message || copyCleanupErr));
+    }
+  }
+
+  for (var mi = movedEntries.length - 1; mi >= 0; mi--) {
+    var moved = movedEntries[mi];
+    try {
+      if (fs.existsSync(moved.livePath)) _removeInstallEntryIfPresent(moved.livePath);
+      fs.renameSync(moved.backupPath, moved.livePath);
+    } catch (restoreErr) {
+      ok = false;
+      console.warn('[ForceUpdate] rollback restore failed for ' + moved.name + ': ' +
+        (restoreErr.message || restoreErr));
+    }
+  }
+  return ok;
+}
+
+function _installDownloadedTree(installRoot, tempTarget, requiredVersion, successLabel) {
+  var phase = 'parse';
+  var backupRoot = null;
+  var movedEntries = [];
+  var copiedEntryNames = [];
+  var committedIndex = false;
+  var indexBackup = null;
+  var packageBackup = null;
+  try {
+    var tmpPkg = JSON.parse(fs.readFileSync(path.join(tempTarget, 'package.json'), 'utf8'));
+    if (!_isEvolverPackageName(tmpPkg && tmpPkg.name)) {
+      return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOADED_PACKAGE_NAME_MISMATCH,
+        'downloaded package.json name="' + (tmpPkg && tmpPkg.name) + '", expected "@evomap/evolver"');
+    }
+    if (!tmpPkg.version) {
+      return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE,
+        'downloaded package.json has no version field');
+    }
+    if (tmpPkg.version !== requiredVersion) {
+      return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOADED_VERSION_MISMATCH,
+        'downloaded version=' + JSON.stringify(tmpPkg.version) + ', expected ' + requiredVersion);
+    }
+    try {
+      if (!fs.statSync(path.join(tempTarget, 'index.js')).isFile()) {
+        return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE,
+          'downloaded index.js is not a file');
+      }
+    } catch (indexReadErr) {
+      return _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE,
+        'missing/unreadable index.js in downloaded tree: ' + _errStr(indexReadErr));
+    }
+
+    phase = 'delete';
+    var entries = fs.readdirSync(installRoot, { withFileTypes: true });
+    backupRoot = fs.mkdtempSync(path.join(installRoot, FORCE_UPDATE_BACKUP_PREFIX));
+    _writeForceUpdateRecoveryJournal(backupRoot, requiredVersion, _readInstallPackageVersion(installRoot));
+    var indexSrc = path.join(tempTarget, 'index.js');
+    var indexDst = path.join(installRoot, 'index.js');
+    var indexTmp = indexDst + '.' + process.pid + '.evolver-tmp';
+    indexBackup = path.join(backupRoot, 'index.js');
+    try {
+      phase = 'copy';
+      _commitAtomicFileReplacement(indexSrc, indexDst, indexTmp, indexBackup);
+      committedIndex = true;
+    } catch (indexErr) {
+      _restoreFileBackupIfPresent(indexBackup, indexDst);
+      try { fs.rmSync(indexTmp, { force: true }); } catch (_) {}
+      console.warn('[ForceUpdate] index.js commit (atomic replace) failed: ' + (indexErr.message || indexErr));
+      try { indexErr._evolverEntry = 'index.js commit'; } catch (_) {}
+      throw indexErr;
+    }
+
+    for (var ei = 0; ei < entries.length; ei++) {
+      var eName = entries[ei].name;
+      // package.json is the install's commit marker: keep the OLD one in
+      // place through the entire delete+copy below and swap in the new one
+      // atomically at the very end. index.js was already atomically replaced
+      // after the recovery journal was written, before moving payload entries,
+      // so an interrupted update restarts through the recovery-capable
+      // bootstrap. Keep-list entries are local state and must not be deleted or
+      // overwritten by a downloaded release.
+      if (_isForceUpdateKeepEntry(eName) || _isForceUpdateBootstrapEntry(eName) ||
+        _isForceUpdateInternalEntry(eName) || eName === 'package.json') continue;
+      try {
+        (function (entryName) {
+          phase = 'delete';
+          var livePath = path.join(installRoot, entryName);
+          var backupPath = path.join(backupRoot, entryName);
+          _retryFsLockOperation(function () {
+            fs.renameSync(livePath, backupPath);
+          });
+          movedEntries.push({ name: entryName, livePath: livePath, backupPath: backupPath });
+        })(eName);
+      } catch (rmErr) {
+        console.warn('[ForceUpdate] backup move failed for ' + eName + ': ' + (rmErr.message || rmErr));
+        try { rmErr._evolverEntry = eName; } catch (_) {}
+        throw rmErr;
+      }
+    }
+
+    phase = 'copy';
+    var newEntries = fs.readdirSync(tempTarget, { withFileTypes: true });
+    for (var ni = 0; ni < newEntries.length; ni++) {
+      if (newEntries[ni].name === 'package.json' || _isForceUpdateKeepEntry(newEntries[ni].name) ||
+        _isForceUpdateBootstrapEntry(newEntries[ni].name) || _isForceUpdateInternalEntry(newEntries[ni].name)) continue;
+      var src = path.join(tempTarget, newEntries[ni].name);
+      var dst = path.join(installRoot, newEntries[ni].name);
+      try {
+        (function (copySrc, copyDst) {
+          copiedEntryNames.push(path.basename(copyDst));
+          _retryFsLockOperation(function () {
+            fs.cpSync(copySrc, copyDst, { recursive: true });
+          });
+        })(src, dst);
+      } catch (copyErr) {
+        console.warn('[ForceUpdate] cpSync failed for ' + newEntries[ni].name + ': ' +
+          (copyErr.message || copyErr));
+        try { copyErr._evolverEntry = newEntries[ni].name; } catch (_) {}
+        throw copyErr;
+      }
+    }
+
+    var pkgSrc = path.join(tempTarget, 'package.json');
+    var pkgDst = path.join(installRoot, 'package.json');
+    var pkgTmp = pkgDst + '.' + process.pid + '.evolver-tmp';
+    packageBackup = path.join(backupRoot, 'package.json');
+
+    try {
+      _commitAtomicFileReplacement(pkgSrc, pkgDst, pkgTmp, packageBackup);
+    } catch (pkgErr) {
+      _restoreFileBackupIfPresent(packageBackup, pkgDst);
+      if (committedIndex) _restoreFileBackupIfPresent(indexBackup, indexDst);
+      try { fs.rmSync(pkgTmp, { force: true }); } catch (_) {}
+      console.warn('[ForceUpdate] package.json commit (atomic replace) failed: ' + (pkgErr.message || pkgErr));
+      try { pkgErr._evolverEntry = 'package.json commit'; } catch (_) {}
+      throw pkgErr;
+    }
+
+    try { fs.rmSync(tempTarget, { recursive: true, force: true }); } catch (_) {}
+    if (backupRoot) {
+      try { fs.rmSync(backupRoot, { recursive: true, force: true }); } catch (backupCleanupErr) {
+        console.warn('[ForceUpdate] backup cleanup failed: ' + (backupCleanupErr.message || backupCleanupErr));
+      }
+    }
+    console.log('[ForceUpdate] ' + successLabel + ': ' + tmpPkg.version);
+    return { ok: true, version: tmpPkg.version };
+  } catch (e) {
+    if (backupRoot) {
+      var rollbackOk = true;
+      if (committedIndex) {
+        try {
+          if (!_restoreFileBackupIfPresent(indexBackup, path.join(installRoot, 'index.js'))) rollbackOk = false;
+        } catch (indexRestoreErr) {
+          rollbackOk = false;
+          console.warn('[ForceUpdate] rollback restore failed for index.js: ' +
+            (indexRestoreErr.message || indexRestoreErr));
+        }
+      }
+      try {
+        _restoreFileBackupIfPresent(packageBackup, path.join(installRoot, 'package.json'));
+      } catch (packageRestoreErr) {
+        rollbackOk = false;
+        console.warn('[ForceUpdate] rollback restore failed for package.json: ' +
+          (packageRestoreErr.message || packageRestoreErr));
+      }
+      var restored = _restoreMovedInstallEntries(installRoot, movedEntries, copiedEntryNames);
+      if (rollbackOk && restored) {
+        try { fs.rmSync(backupRoot, { recursive: true, force: true }); } catch (_) {}
+      }
+    }
+    return _classifyChannel1Error(e, phase);
+  }
 }
 
 // Module-level mutex: shared by every caller that requires('../forceUpdate'),
@@ -326,7 +771,7 @@ function _executeForceUpdateInner(forceUpdate) {
   // the deletion loop and the user's data.
   try {
     const pkg = JSON.parse(fs.readFileSync(path.join(INSTALL_ROOT, 'package.json'), 'utf8'));
-    if (!pkg || (pkg.name !== '@evomap/evolver' && pkg.name !== 'evolver')) {
+    if (!pkg || !_isEvolverPackageName(pkg.name)) {
       console.warn('[ForceUpdate] Refusing — ' + INSTALL_ROOT +
         '/package.json has name="' + (pkg && pkg.name) +
         '", expected "@evomap/evolver". Aborting to avoid data loss.');
@@ -337,7 +782,7 @@ function _executeForceUpdateInner(forceUpdate) {
     if (_recoverPackageCommitMarkerIfMissing(INSTALL_ROOT)) {
       try {
         const recoveredPkg = JSON.parse(fs.readFileSync(path.join(INSTALL_ROOT, 'package.json'), 'utf8'));
-        if (!recoveredPkg || (recoveredPkg.name !== '@evomap/evolver' && recoveredPkg.name !== 'evolver')) {
+        if (!recoveredPkg || !_isEvolverPackageName(recoveredPkg.name)) {
           console.warn('[ForceUpdate] Refusing — recovered ' + INSTALL_ROOT +
             '/package.json has name="' + (recoveredPkg && recoveredPkg.name) +
             '", expected "@evomap/evolver". Aborting to avoid data loss.');
@@ -351,6 +796,8 @@ function _executeForceUpdateInner(forceUpdate) {
         return _fail(FORCE_UPDATE_FAIL_CODES.INSTALL_GUARD_UNREADABLE,
           'cannot read recovered install root package.json: ' + _errStr(recoverReadErr));
       }
+    } else if (_hasStrongEvolverInstallMarkers(INSTALL_ROOT)) {
+      console.warn('[ForceUpdate] install package.json is unreadable, but strong evolver install markers are present; bootstrap recovery allowed');
     } else {
       console.warn('[ForceUpdate] Refusing — cannot read ' + INSTALL_ROOT +
         '/package.json: ' + (e && e.message || e));
@@ -438,118 +885,51 @@ function _executeForceUpdateInner(forceUpdate) {
       encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 60000, windowsHide: true, maxBuffer: MAX_EXEC_BUFFER,
     });
-    phase = 'parse';
-    var tmpPkg = JSON.parse(fs.readFileSync(path.join(TMP_TARGET, 'package.json'), 'utf8'));
-    // Require exact version match — a ">=" check would allow a compromised hub to
-    // request version "0.0.1" and install any version including unreleased HEAD code.
-    if (tmpPkg.version && tmpPkg.version === requiredVersion) {
-      var entries = fs.readdirSync(INSTALL_ROOT, { withFileTypes: true });
-      for (var ei = 0; ei < entries.length; ei++) {
-        var eName = entries[ei].name;
-        // package.json is the install's commit marker: keep the OLD one in
-        // place through the entire delete+copy below and swap in the new one
-        // atomically at the very end (see "commit marker" block). If it were
-        // deleted here and any later cpSync threw (ENOSPC, a Windows lock that
-        // outlasts the retries, a kill), the install root would be left with
-        // no package.json — and the install-guard at the top of this function
-        // refuses on an unreadable package.json, wedging the node in
-        // install_guard_unreadable on every subsequent attempt with no path
-        // that ever re-copies it. Deferring it keeps the install self-healing.
-        if (_isForceUpdateKeepEntry(eName) || eName === 'package.json') continue;
-        try {
-          (function (entryName) {
-            phase = 'delete';
-            _retryFsLockOperation(function () {
-              fs.rmSync(path.join(INSTALL_ROOT, entryName), {
-                recursive: true, force: true, maxRetries: 3, retryDelay: 200,
-              });
-            });
-          })(eName);
-        } catch (rmErr) {
-          console.warn('[ForceUpdate] rmSync failed for ' + eName + ': ' + (rmErr.message || rmErr));
-          try { rmErr._evolverEntry = eName; } catch (_) {}
-          throw rmErr;
-        }
-      }
-      phase = 'copy';
-      var newEntries = fs.readdirSync(TMP_TARGET, { withFileTypes: true });
-      for (var ni = 0; ni < newEntries.length; ni++) {
-        // Deferred: package.json is the commit marker, written last after every
-        // other entry has copied successfully (see below). Keep-list entries are
-        // local state and must not be overwritten by the downloaded release.
-        if (newEntries[ni].name === 'package.json' || _isForceUpdateKeepEntry(newEntries[ni].name)) continue;
-        var src = path.join(TMP_TARGET, newEntries[ni].name);
-        var dst = path.join(INSTALL_ROOT, newEntries[ni].name);
-        try {
-          (function (copySrc, copyDst) {
-            _retryFsLockOperation(function () {
-              fs.cpSync(copySrc, copyDst, { recursive: true });
-            });
-          })(src, dst);
-        } catch (copyErr) {
-          console.warn('[ForceUpdate] cpSync failed for ' + newEntries[ni].name + ': ' + (copyErr.message || copyErr));
-          // Tag the failing entry so _classifyChannel1Error can name it in the
-          // copy_failed detail. phase is already 'copy' here.
-          try { copyErr._evolverEntry = newEntries[ni].name; } catch (_) {}
-          throw copyErr;
-        }
-      }
-      // Commit marker: every other entry copied successfully, so swap in the
-      // new package.json LAST. POSIX gets an atomic rename-over-existing. Windows
-      // cannot rename over an existing destination, so it first renames the old
-      // package.json to a recoverable same-directory backup; the install guard
-      // restores that backup on the next tick if the process dies mid-commit.
-      var pkgSrc = path.join(TMP_TARGET, 'package.json');
-      var pkgDst = path.join(INSTALL_ROOT, 'package.json');
-      var pkgTmp = pkgDst + '.' + process.pid + '.evolver-tmp';
-      var pkgBackup = pkgDst + '.' + process.pid + '.evolver-old';
-      try {
-        _retryFsLockOperation(function () {
-          try { fs.rmSync(pkgTmp, { force: true }); } catch (_) {}
-          fs.cpSync(pkgSrc, pkgTmp);
-          if (process.platform === 'win32') {
-            if (!fs.existsSync(pkgDst)) _recoverPackageCommitMarkerIfMissing(INSTALL_ROOT);
-            try { fs.rmSync(pkgBackup, { force: true }); } catch (_) {}
-            fs.renameSync(pkgDst, pkgBackup);
-            try {
-              fs.renameSync(pkgTmp, pkgDst);
-            } catch (commitErr) {
-              _restorePackageBackup(pkgBackup, pkgDst);
-              throw commitErr;
-            }
-            try { fs.rmSync(pkgBackup, { force: true }); } catch (_) {}
-          } else {
-            fs.renameSync(pkgTmp, pkgDst);
-          }
-        });
-      } catch (pkgErr) {
-        _restorePackageBackup(pkgBackup, pkgDst);
-        try { fs.rmSync(pkgTmp, { force: true }); } catch (_) {}
-        console.warn('[ForceUpdate] package.json commit (atomic replace) failed: ' + (pkgErr.message || pkgErr));
-        try { pkgErr._evolverEntry = 'package.json commit'; } catch (_) {}
-        throw pkgErr;
-      }
-      try { fs.rmSync(TMP_TARGET, { recursive: true, force: true }); } catch (_) {}
-      console.log('[ForceUpdate] GitHub Release update successful: ' + tmpPkg.version);
+    var installResult = _installDownloadedTree(
+      INSTALL_ROOT, TMP_TARGET, requiredVersion, 'GitHub Release update successful',
+    );
+    if (installResult.ok === true) {
       return true;
     }
-    // degit succeeded and produced a parseable package.json, but it did not
-    // satisfy the exact-version check above. Two distinct causes, two codes:
-    if (!tmpPkg.version) {
-      // degit produced a parseable package.json with no version field — a
-      // malformed/incomplete download, not a stale/tampered tag mismatch.
-      channel1Failure = _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE,
-        'downloaded package.json has no version field');
-    } else {
-      // version present but not the exact tag we asked for (stale tag, mirror
-      // lag, or a tampered/redirected tag). Refuse and record the delta.
-      channel1Failure = _fail(FORCE_UPDATE_FAIL_CODES.DOWNLOADED_VERSION_MISMATCH,
-        'downloaded version=' + JSON.stringify(tmpPkg.version) + ', expected ' + requiredVersion);
+    channel1Failure = installResult;
+    if (
+      channel1Failure.code === FORCE_UPDATE_FAIL_CODES.DOWNLOAD_INCOMPLETE ||
+      channel1Failure.code === FORCE_UPDATE_FAIL_CODES.DOWNLOADED_PACKAGE_NAME_MISMATCH ||
+      channel1Failure.code === FORCE_UPDATE_FAIL_CODES.DOWNLOADED_VERSION_MISMATCH
+    ) {
+      var postDownloadFallbackFailure = _tryDownloadReleaseTarball(requiredVersion, TMP_TARGET);
+      if (!postDownloadFallbackFailure) {
+        var postDownloadFallbackResult = _installDownloadedTree(
+          INSTALL_ROOT, TMP_TARGET, requiredVersion, 'GitHub tarball fallback update successful',
+        );
+        if (postDownloadFallbackResult.ok === true) {
+          return true;
+        }
+        postDownloadFallbackFailure = postDownloadFallbackResult;
+      }
+      console.warn('[ForceUpdate] GitHub tarball fallback failed (' + postDownloadFallbackFailure.code + '): ' +
+        postDownloadFallbackFailure.detail);
+      channel1Failure = _withFallbackFailure(channel1Failure, postDownloadFallbackFailure);
     }
     try { fs.rmSync(TMP_TARGET, { recursive: true, force: true }); } catch (_) {}
   } catch (e) {
     channel1Failure = _classifyChannel1Error(e, phase);
     console.warn('[ForceUpdate] GitHub Release failed (' + channel1Failure.code + '):', e && e.message || e);
+    var fallbackFailure = _tryDownloadReleaseTarball(requiredVersion, TMP_TARGET);
+    if (!fallbackFailure) {
+      var fallbackInstallResult = _installDownloadedTree(
+        INSTALL_ROOT, TMP_TARGET, requiredVersion, 'GitHub tarball fallback update successful',
+      );
+      if (fallbackInstallResult.ok === true) {
+        return true;
+      }
+      fallbackFailure = fallbackInstallResult;
+    }
+    if (fallbackFailure) {
+      console.warn('[ForceUpdate] GitHub tarball fallback failed (' + fallbackFailure.code + '): ' +
+        fallbackFailure.detail);
+      channel1Failure = _withFallbackFailure(channel1Failure, fallbackFailure);
+    }
     try { fs.rmSync(TMP_TARGET, { recursive: true, force: true }); } catch (_) {}
     // Fall through to Channel 2 (manual download URL hint) instead of
     // returning. A Channel 1 error (degit missing, network down, tag not

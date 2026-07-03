@@ -685,3 +685,47 @@ describe('signals.js source hardening (GHSA-j5w5-568x-rq53)', () => {
     }
   });
 });
+
+describe('analyzeRecentHistory -- empty cycles do not drive the failure-loop ban (#577)', () => {
+  const { _isEmptyCycle } = require('../src/gep/signals');
+  const failEvent = (gene, files, lines) => ({
+    intent: 'innovate',
+    genes_used: [gene],
+    blast_radius: { files, lines },
+    outcome: { status: 'failed', score: 0.8 },
+  });
+
+  it('_isEmptyCycle: zero blast / empty_cycle meta are empty; productive is not', () => {
+    assert.equal(_isEmptyCycle({ blast_radius: { files: 0, lines: 0 } }), true);
+    assert.equal(_isEmptyCycle({ meta: { empty_cycle: true }, blast_radius: { files: 3, lines: 9 } }), true);
+    assert.equal(_isEmptyCycle({ blast_radius: { files: 1, lines: 4 } }), false);
+    assert.equal(_isEmptyCycle({}), false); // unknown blast radius -> not empty (conservative)
+    assert.equal(_isEmptyCycle(null), false);
+  });
+
+  it('5 productive (non-empty) failures still trigger failure_loop_detected + ban_gene', () => {
+    const events = Array.from({ length: 5 }, () => failEvent('gene_real', 2, 12));
+    const out = extractSignals({ ...emptyInput, recentEvents: events });
+    assert.ok(out.includes('failure_loop_detected'), 'productive failures must still be detected');
+    assert.ok(out.includes('ban_gene:gene_real'), 'offending gene must still be banned');
+    assert.ok(hasSignal(out, 'consecutive_failure_streak_'), 'streak signal present');
+  });
+
+  it('zero-blast failures do NOT ban; they route to steady-state instead', () => {
+    const events = Array.from({ length: 6 }, () => failEvent('sha256:deadbeefcafe', 0, 0));
+    const out = extractSignals({ ...emptyInput, recentEvents: events });
+    assert.ok(!out.includes('failure_loop_detected'), 'no-op cycles must not trigger a failure loop');
+    assert.ok(!hasSignal(out, 'ban_gene:'), 'no gene should be banned for empty cycles');
+    assert.ok(!hasSignal(out, 'consecutive_failure_streak_'), 'no failure streak from empty cycles');
+    assert.ok(out.includes('force_steady_state'), 'empty-cycle saturation routes to steady state');
+  });
+
+  it('a trailing no-op breaks an otherwise-failing streak', () => {
+    const events = [
+      ...Array.from({ length: 5 }, () => failEvent('gene_real', 2, 12)),
+      failEvent('gene_real', 0, 0), // most recent cycle produced nothing
+    ];
+    const out = extractSignals({ ...emptyInput, recentEvents: events });
+    assert.ok(!out.includes('failure_loop_detected'), 'tail no-op means we are not in an active failure streak');
+  });
+});

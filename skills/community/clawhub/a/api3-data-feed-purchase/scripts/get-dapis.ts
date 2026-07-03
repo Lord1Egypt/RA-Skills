@@ -1,4 +1,4 @@
-import { dapis } from '@api3/dapi-management';
+import { dapis } from "@api3/dapi-management";
 
 function main() {
   const dapiNames = dapis.filter((dapi) => dapi.stage === "active").map((dapi) => dapi.name);

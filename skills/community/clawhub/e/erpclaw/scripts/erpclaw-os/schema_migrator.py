@@ -30,7 +30,7 @@ from schema_diff import (
 )
 from validate_module import build_table_ownership_registry, validate_module_static
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 
 # ---------------------------------------------------------------------------

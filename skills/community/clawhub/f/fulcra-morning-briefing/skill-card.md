@@ -1,5 +1,5 @@
 ## Description: <br>
-Compose a personalized morning briefing using the latest fulcra-context skill for sleep, biometrics, calendar, activity, and weather context. <br>
+Compose a personalized morning briefing using Fulcra sleep, biometric, calendar, activity, and optional weather context, with tone and detail calibrated to how the user slept. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to collect Fulcra sleep, biometric, calendar, activity, and weather context, then compose a morning briefing calibrated to the user's sleep quality. It is intended for private personal briefings rather than public or group disclosure of sensitive health and schedule details. <br>
+External users and their agents use this skill to collect recent Fulcra sleep, biometric, activity, calendar, and optional weather context, then compose a personalized morning briefing calibrated to sleep quality. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill processes highly personal sleep, biometric, calendar, activity, and location-related context. <br>
-Mitigation: Use it only in trusted private contexts, confirm the data categories before use, and avoid sharing exact health, calendar, or location details in group or public channels. <br>
-Risk: Weather lookup behavior may send a location-derived query to wttr.in. <br>
-Mitigation: Prefer coarse locations and disable or avoid external weather lookup when the user does not want location information shared with that service. <br>
+Risk: Morning briefings can expose sensitive sleep, biometric, steps, location, and calendar details. <br>
+Mitigation: Deliver detailed briefings only to the intended user or an explicitly approved channel; keep group-chat summaries qualitative and minimal. <br>
+Risk: The optional cron workflow can write sensitive briefing JSON to /tmp. <br>
+Mitigation: Store scheduled output in a user-private path with restrictive permissions and a retention policy. <br>
+Risk: A briefing may be based on stale or incomplete Fulcra data. <br>
+Mitigation: Use freshness checks as signals and fetch the specific sleep, biometric, activity, calendar, and weather records before summarizing. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub Skill Page](https://clawhub.ai/arc-claw-bot/skills/fulcra-morning-briefing) <br>
 - [Fulcra Platform](https://fulcradynamics.com) <br>
-- [Context iOS App](https://apps.apple.com/app/id1633037434) <br>
 - [Fulcra Developer Docs](https://fulcradynamics.github.io/developer-docs/) <br>
+- [Context iOS App](https://apps.apple.com/app/id1633037434) <br>
 - [Fulcra Python Client](https://github.com/fulcradynamics/fulcra-api-python) <br>
 - [Fulcra Context MCP Server](https://github.com/fulcradynamics/fulcra-context-mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/arc-claw-bot/fulcra-morning-briefing) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON collector output] <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown briefing prose with optional JSON collection output and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefing detail and tone are adjusted according to sleep quality and available personal context.] <br>
+**Other Properties Related to Output:** [Read-only Fulcra workflow; briefing length, tone, and detail vary with sleep quality.] <br>
 
 ## Skill Version(s): <br>
-1.1.7 (source: server release metadata) <br>
+1.1.9 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

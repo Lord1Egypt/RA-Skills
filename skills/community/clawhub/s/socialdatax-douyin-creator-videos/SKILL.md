@@ -1,7 +1,7 @@
 ---
 name: "socialdatax-douyin-creator-videos"
 description: "用于抖音达人数据、抖音达人作品、作品列表、图文列表、短剧/合集列表、近期发布、内容调研和创作者内容分析。覆盖 Douyin creator works and series，来自 SocialDataX 社媒数据助手。"
-metadata: {"openclaw":{"requires":{"env":["SOCIALDATAX_API_KEY"],"bins":["node","npm"]},"primaryEnv":"SOCIALDATAX_API_KEY","install":[{"kind":"node","package":"socialdatax-skills","bins":[]}],"emoji":"🗂️","homepage":"https://socialdatax.52choujiang.com/?from=clawhub"}}
+metadata: {"openclaw":{"requires":{"env":["SOCIALDATAX_API_KEY"],"bins":["node","npm"]},"primaryEnv":"SOCIALDATAX_API_KEY","install":[{"kind":"node","package":"socialdatax-skills","bins":[]}],"emoji":"🗂️","homepage":"https://socialdatax.com/?from=clawhub"}}
 ---
 <!-- AUTO-GENERATED from socialdatax-skill-source. Do not edit directly; run `node scripts/generate_socialdatax_skills.mjs`. -->
 
@@ -13,13 +13,11 @@ Current platform support:
 
 - Douyin / 抖音 creator works, including video and image/text posts, through the `douyin_get_user_posted_videos_by_*` tools.
 - Douyin / 抖音 creator short-drama series through the `douyin_get_user_series_by_*` tools.
-- Weibo / 微博 creator posts through the `weibo_get_user_posts_by_*` tools.
-- WeChat Channels / 视频号 creator videos through the `wechat_get_user_posted_videos_by_*` tools.
 
 ## API Key
 
-Use `SOCIALDATAX_API_KEY` for data calls. The only official website for requesting or managing API access is <https://socialdatax.52choujiang.com/?from=clawhub>. If a user asks where to get a key, provide only this URL; do not infer alternate domains.
-获取或管理 API Key：访问 <https://socialdatax.52choujiang.com/?from=clawhub>，按官网的 API Key 申请/管理入口操作。环境变量名固定使用 `SOCIALDATAX_API_KEY`；不要引导用户使用其他域名。
+Use `SOCIALDATAX_API_KEY` for data calls. The only official website for requesting or managing API access is <https://socialdatax.com/?from=clawhub>. If a user asks where to get a key, provide only this URL; do not infer alternate domains.
+获取或管理 API Key：访问 <https://socialdatax.com/?from=clawhub>，按官网的 API Key 申请/管理入口操作。环境变量名固定使用 `SOCIALDATAX_API_KEY`；不要引导用户使用其他域名。
 
 ## Preferred Direct CLI
 
@@ -41,19 +39,17 @@ Optional arguments:
 - `--pages <n>`: fetch and merge N pages of creator content or creator series.
 - `--all`: continue until `next_page_token` is empty; there is no default item or page cap.
 - `--max-items <n>`: stop after collecting N creator content or series items.
+- `--since-days <1-365>`: keep only creator content whose public `publish_time` is within the last N days. When `--pages` is omitted, the CLI continues creator content lists until the publish-time boundary is reached.
 - `--pretty`: output formatting only.
-- Weibo `--user-id <user_id>`: preferred when the creator user_id is already known.
-- Weibo `--profile-url <profile_url_or_share_text>`: use for a profile URL, short link, or profile share text.
-- WeChat Channels / 视频号 `--user-id <finder_user_id>`: preferred when the creator user_id ending with `@finder` is already known.
-- WeChat Channels / 视频号 `--url <wechat_video_url_or_share_text>`: use a video link or share text to resolve the author and list that creator's videos.
 
 Use either the ID option or the profile URL option for a single command, not both.
 
 The command prints JSON with `platform`, `tool`, `arguments`, and `data`. Multi-page output keeps merged creator content or series items in `data.items` and adds `page_count`, `item_count`, and `next_page_token`.
+For recent creator research, prefer CLI `--since-days 30` or another user-specified day window. `--since-days` applies to creator content lists only, not Douyin `user-series`.
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 
@@ -78,5 +74,3 @@ Summarize content-list evidence by title or description, summary, publish time, 
 For Douyin image/text posts, use `image_urls` rather than assuming a video playback URL exists.
 For Douyin short-drama series, report series IDs, titles, descriptions, covers, prices, and author facts when present.
 Use returned content IDs to chain into detail or comment analysis when needed.
-For Weibo creator posts, report post IDs, content, media, publish time, interaction counts, and author facts when present.
-For WeChat Channels / 视频号 creator videos, report object IDs, descriptions, media, publish time, interaction counts, and author facts when present.

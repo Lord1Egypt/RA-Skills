@@ -1,5 +1,5 @@
 ## Description: <br>
-搜索万豪集团旗下威斯汀酒店并返回实时价格与预订链接，支持酒店详情查询和套餐优惠搜索，多旅游平台数据直连。 <br>
+万豪集团旗下威斯汀酒店实时搜索，返回价格与预订链接，支持酒店详情和套餐优惠查询，多旅游平台数据直连，零配置即装即用。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External travelers and travel assistants use this skill to search Westin hotels, inspect hotel details, compare package offers, and return booking links without inventing hotel data. <br>
+External travelers and travel-planning agents use this skill to search Westin hotels by destination, price, and keywords, inspect hotel details, and find booking links or package offers. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Destination, hotel, and related search parameters are sent to a configured proxy service. <br>
-Mitigation: Use only a trusted HTTPS PROXY_URL and a proxy token scoped to this service. <br>
-Risk: Untrusted parties could alter environment variables that control the proxy endpoint or token. <br>
-Mitigation: Run the skill only in environments where PROXY_URL and PROXY_TOKEN are controlled by trusted operators. <br>
-Risk: Hotel prices, availability, and booking links are live external data and can change after the response is generated. <br>
-Mitigation: Tell users to confirm final price and availability on the linked booking page before purchase. <br>
+Risk: Hotel destinations, dates, keywords, and selected hotel identifiers may be sent to the configured cloud proxy and travel providers. <br>
+Mitigation: Use only where this travel-query sharing is acceptable, and avoid entering sensitive personal travel intent. <br>
+Risk: The proxy endpoint is controlled by runtime configuration rather than fixed in the artifact. <br>
+Mitigation: Review the configured proxy URL and token handling before deployment. <br>
+Risk: Prices, availability, policies, and booking links can change after the skill returns results. <br>
+Mitigation: Confirm final price, availability, and hotel policies on the booking page before purchase. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/travel-skills/westin-hotel-booking) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown-style Chinese text with hotel details, prices, amenities, package information, and booking links.] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown-formatted text with hotel listings, detail summaries, package offers, prices, and booking links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and package results are limited by the script defaults to up to 10 items; prices are real-time and may change on booking pages.] <br>
+**Other Properties Related to Output:** [Results depend on live travel-provider responses and may be limited by the tool's result cap.] <br>
 
 ## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+1.1.3 (source: server release metadata; artifact frontmatter shows 1.1.2) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

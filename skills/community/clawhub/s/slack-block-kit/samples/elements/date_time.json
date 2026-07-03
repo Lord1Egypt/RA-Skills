@@ -1,0 +1,22 @@
+{
+  "datepicker": {
+    "type": "datepicker",
+    "initial_date": "2026-07-01",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Select date",
+      "emoji": true
+    },
+    "action_id": "date_select"
+  },
+  "timepicker": {
+    "type": "timepicker",
+    "initial_time": "09:00",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Select time",
+      "emoji": true
+    },
+    "action_id": "time_select"
+  }
+}

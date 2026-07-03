@@ -1,5 +1,5 @@
 ## Description: <br>
-Desktop automation via native OS accessibility trees using the agent-desktop CLI. <br>
+Desktop automation via native OS accessibility trees using the agent-desktop CLI for observing, interacting with, and automating desktop applications. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and AI-agent operators use this skill when an agent needs to observe, interact with, or automate desktop applications through the agent-desktop CLI, including reading UI state, clicking controls, filling forms, managing windows, using the clipboard, and taking screenshots. <br>
+Developers and agents use this skill to inspect desktop UI state and perform controlled GUI actions such as clicking, typing, navigating menus, handling windows, reading notifications, and managing clipboard or screenshot workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to read and control sensitive parts of a live desktop. <br>
-Mitigation: Install it only when desktop automation is intended, grant Accessibility and Screen Recording permissions deliberately, and limit use around private applications or content. <br>
-Risk: Screenshots and clipboard operations can expose passwords, private text, or other sensitive content. <br>
-Mitigation: Avoid screenshot and clipboard commands around secrets, prefer direct value-setting paths for sensitive text when possible, and clear or inspect the clipboard after automation when appropriate. <br>
-Risk: Commands that force-close applications or change system settings can lose work or alter the user environment. <br>
-Mitigation: Prefer observe-then-act workflows, verify UI state after each action, and require explicit user intent before force-closing apps or changing settings. <br>
+Risk: The skill enables powerful local desktop control through accessibility permissions, including actions that can modify applications and windows. <br>
+Mitigation: Install only when desktop automation is intended, grant Accessibility and Screen Recording permissions carefully, and use headed or forceful actions only for deliberate high-impact operations. <br>
+Risk: Screenshot, clipboard, and trace workflows can expose sensitive local information. <br>
+Mitigation: Avoid clipboard or screenshot workflows around secrets, prefer no-trace sessions for sensitive work, and run session garbage collection after completing automation. <br>
 
 
 ## Reference(s): <br>
-- [Agent Desktop on ClawHub](https://clawhub.ai/lahfir/skills/agent-desktop) <br>
-- [commands-observation.md](references/commands-observation.md) <br>
-- [commands-interaction.md](references/commands-interaction.md) <br>
-- [commands-system.md](references/commands-system.md) <br>
-- [workflows.md](references/workflows.md) <br>
-- [macos.md](references/macos.md) <br>
+- [Agent Desktop Skill Page](https://clawhub.ai/lahfir/skills/agent-desktop) <br>
+- [Observation Commands](references/commands-observation.md) <br>
+- [Interaction Commands](references/commands-interaction.md) <br>
+- [System Commands](references/commands-system.md) <br>
+- [Common Automation Workflows](references/workflows.md) <br>
+- [macOS Platform](references/macos.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON output examples] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing command guidance for desktop observation and action loops.] <br>
+**Other Properties Related to Output:** [Guidance centers on the agent-desktop CLI, structured JSON command envelopes, snapshot refs, and macOS permission workflows.] <br>
 
 ## Skill Version(s): <br>
-0.1.16 (source: server release evidence) <br>
+0.1.20 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

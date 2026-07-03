@@ -17,7 +17,7 @@
 1. Navigate to Firewall Switch tab
 2. Find target asset (public IP/EIP)
 3. Toggle protection status to **ON** (ProtectStatus=open)
-4. Wait ~30 seconds for生效
+4. Wait ~30 seconds for it to take effect
 
 **Important**:
 - Rules won't work if asset protection is disabled
@@ -219,7 +219,7 @@ When domain-type ACL policies are configured, Cloud Firewall starts pre-match me
 ```
 Traffic arrives (e.g., telnet to example.com:80)
         ↓
-System attempts application识别 (DPI)
+System attempts application recognition (DPI)
         ↓
 Cannot immediately identify domain (no HTTP request) → AppName=Unknown
         ↓
@@ -227,7 +227,7 @@ Cannot immediately identify domain (no HTTP request) → AppName=Unknown
         ↓
 AclPreState = app_unknown → Allow first, wait for subsequent data to identify domain
         ↓
-If始终无法识别 (e.g., pure TCP traffic) → Traffic continuously allowed
+If still cannot recognize (e.g., pure TCP traffic) → traffic is continuously allowed
 ```
 
 **Solutions**:

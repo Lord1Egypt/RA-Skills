@@ -433,6 +433,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Print a systemd service unit for the current workspace and exit.",
     )
+    parser.add_argument(
+        "--dashboard",
+        action="store_true",
+        help="Enable the built-in SRE web dashboard.",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=None,
+        help="Port to run the dashboard HTTP server on.",
+    )
     return parser.parse_args()
 
 
@@ -752,6 +763,7 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
     storage = config.setdefault("storage", {})
     notifications = config.setdefault("notifications", {})
     automation = config.setdefault("automation", {})
+    dashboard = config.setdefault("dashboard", {})
     webhooks = notifications.setdefault("webhooks", {})
     alerts_config = notifications.setdefault("alerts", {})
     reports_config = notifications.setdefault("reports", {})
@@ -768,6 +780,9 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
     agent["max_buffer_events"] = max(int(agent.get("max_buffer_events", 20000)), 100)
     agent["emit_events"] = bool(agent.get("emit_events", False))
     agent["state_file"] = str(resolve_config_path(base_dir, agent.get("state_file")))
+
+    dashboard["enabled"] = bool(dashboard.get("enabled", False))
+    dashboard["port"] = max(int(dashboard.get("port", 8000)), 1)
 
     system_metrics["enabled"] = bool(system_metrics.get("enabled", True))
     system_metrics["disk_root"] = str(
@@ -889,6 +904,10 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
         alerts_config["minimum_severity"] = "warning"
     alerts_config["cooldown_seconds"] = max(
         int(alerts_config.get("cooldown_seconds", 300)),
+        0,
+    )
+    alerts_config["ai_cooldown_seconds"] = max(
+        int(alerts_config.get("ai_cooldown_seconds", 3600)),
         0,
     )
     alerts_config["channels"] = normalize_string_list(
@@ -1047,6 +1066,10 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
     auto_ban["unban_command_template"] = str(
         auto_ban.get("unban_command_template") or "iptables -D INPUT -s {ip} -j DROP"
     ).strip()
+    auto_ban["ban_on_cpu_spike"] = bool(auto_ban.get("ban_on_cpu_spike", True))
+    auto_ban["cpu_spike_rpm_threshold"] = float(auto_ban.get("cpu_spike_rpm_threshold", 60.0))
+    auto_ban["use_llm_shield"] = bool(auto_ban.get("use_llm_shield", False))
+    auto_ban["shield_trigger_rpm"] = float(auto_ban.get("shield_trigger_rpm", 20.0))
 
     auto_heal = automation.setdefault("auto_heal", {})
     auto_heal["enabled"] = bool(auto_heal.get("enabled", False))
@@ -2196,17 +2219,17 @@ def collect_system_snapshot(
     prev_ts: float | None = _io_state.get("prev_ts") if _io_state is not None else None
     elapsed: float | None = (now_ts - prev_ts) if (prev_ts and now_ts > prev_ts) else None
 
-    # ── Layer 1: CPU ─────────────────────────────────────────────────────
-    cpu_pct = psutil.cpu_percent(interval=0.1)
-    snapshot["cpu_pct"] = round(cpu_pct, 2)
-    snapshot["cpu_count"] = int(psutil.cpu_count(logical=True) or 1)
-    try:
-        ct = psutil.cpu_times_percent(interval=0)
-        snapshot["cpu_user_pct"]   = round(float(ct.user), 2)
-        snapshot["cpu_system_pct"] = round(float(ct.system), 2)
-        snapshot["cpu_iowait_pct"] = round(float(getattr(ct, "iowait", 0.0)), 2)
-    except Exception:
-        snapshot["cpu_user_pct"] = snapshot["cpu_system_pct"] = snapshot["cpu_iowait_pct"] = None
+    # ── Layer 1 & 2: CPU First-Pass sampling ─────────────────────────────
+    # Trigger base CPU time sampling for the system and all processes
+    psutil.cpu_percent(interval=None)
+    procs_base: dict[int, psutil.Process] = {}
+    if collect_processes:
+        for proc in psutil.process_iter():
+            try:
+                proc.cpu_percent(interval=None)
+                procs_base[proc.pid] = proc
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
 
     # ── Layer 1: Memory & Swap ────────────────────────────────────────────
     memory = psutil.virtual_memory()
@@ -2316,15 +2339,34 @@ def collect_system_snapshot(
     snapshot["load_5m"] = load_5m
     snapshot["load_15m"] = load_15m
 
-    # ── Layer 2: Processes ────────────────────────────────────────────────
+    # ── Wait for sampling interval to elapse ──────────────────────────────
+    # We want a 1.0 second window for accurate CPU utilization averages
+    elapsed_so_far = utcnow().timestamp() - now_ts
+    sleep_time = max(1.0 - elapsed_so_far, 0.1)
+    time.sleep(sleep_time)
+
+    # Compute system CPU percent over this interval
+    cpu_pct = psutil.cpu_percent(interval=None)
+    snapshot["cpu_pct"] = round(cpu_pct, 2)
+    snapshot["cpu_count"] = int(psutil.cpu_count(logical=True) or 1)
+    try:
+        ct = psutil.cpu_times_percent(interval=0)
+        snapshot["cpu_user_pct"]   = round(float(ct.user), 2)
+        snapshot["cpu_system_pct"] = round(float(ct.system), 2)
+        snapshot["cpu_iowait_pct"] = round(float(getattr(ct, "iowait", 0.0)), 2)
+    except Exception:
+        snapshot["cpu_user_pct"] = snapshot["cpu_system_pct"] = snapshot["cpu_iowait_pct"] = None
+
+    # ── Layer 2: Processes (Second-Pass CPU Calculation) ──────────────────
     if collect_processes:
         try:
             status_counts: dict[str, int] = {"running": 0, "sleeping": 0, "zombie": 0, "other": 0}
             top_cpu_list: list[tuple[float, int, str]] = []
             top_mem_list: list[tuple[float, int, str]] = []
-            for proc in psutil.process_iter(["pid", "name", "status", "cpu_percent", "memory_percent"]):
+            for proc in psutil.process_iter(["pid", "name", "status", "memory_percent"]):
                 try:
                     info = proc.info
+                    pid = int(info["pid"])
                     st = str(info.get("status") or "").lower()
                     if "zombie" in st:
                         status_counts["zombie"] += 1
@@ -2334,10 +2376,17 @@ def collect_system_snapshot(
                         status_counts["sleeping"] += 1
                     else:
                         status_counts["other"] += 1
-                    cp = float(info.get("cpu_percent") or 0.0)
+
+                    cp = 0.0
+                    if pid in procs_base:
+                        try:
+                            # Returns delta since first-pass call
+                            cp = float(procs_base[pid].cpu_percent(interval=None) or 0.0)
+                        except (psutil.NoSuchProcess, psutil.AccessDenied):
+                            pass
                     mp = float(info.get("memory_percent") or 0.0)
-                    top_cpu_list.append((cp, int(info["pid"]), str(info.get("name") or "")))
-                    top_mem_list.append((mp, int(info["pid"]), str(info.get("name") or "")))
+                    top_cpu_list.append((cp, pid, str(info.get("name") or "")))
+                    top_mem_list.append((mp, pid, str(info.get("name") or "")))
                 except (psutil.NoSuchProcess, psutil.AccessDenied):
                     pass
             snapshot["process_count"]    = sum(status_counts.values())
@@ -2586,12 +2635,16 @@ def alert_display_site(config: dict[str, Any]) -> str:
 
 def resolve_shared_ai_settings(config: dict[str, Any]) -> dict[str, Any]:
     ai_settings = dict(config.get("notifications", {}).get("reports", {}).get("ai_analysis") or {})
+    api_key_conf = str(ai_settings.get("api_key") or "").strip()
+    api_key_env_name = str(ai_settings.get("api_key_env") or "OPENAI_API_KEY").strip()
+    api_key = api_key_conf or os.getenv(api_key_env_name) or ""
     return {
         "enabled": bool(ai_settings.get("enabled", True)),
         "simulate": bool(ai_settings.get("simulate", False)),
         "endpoint": str(ai_settings.get("endpoint") or ai_settings.get("base_url") or "").strip(),
         "model": str(ai_settings.get("model") or "gpt-4o-mini").strip(),
-        "api_key_env": str(ai_settings.get("api_key_env") or "OPENAI_API_KEY").strip(),
+        "api_key": api_key,
+        "api_key_env": api_key_env_name,
         "timeout_seconds": max(int(ai_settings.get("timeout_seconds", 20)), 3),
     }
 
@@ -2662,10 +2715,10 @@ def request_alert_ai_diagnosis(config: dict[str, Any], payload: dict[str, Any]) 
     if not settings["endpoint"]:
         log_alert_ai_fallback("未配置 ai_analysis.endpoint/base_url", settings)
         return None
-    api_key = os.getenv(settings["api_key_env"])
+    api_key = settings["api_key"]
     if not api_key:
         log_alert_ai_fallback(
-            f"未读取到环境变量 {settings['api_key_env']}",
+            f"未找到 API Key（配置文件中未填写且未找到环境变量 {settings['api_key_env']}）",
             settings,
         )
         return None
@@ -2739,7 +2792,27 @@ def build_alert_ai_diagnosis(
     system_snapshot: dict[str, Any],
     access_summary: dict[str, Any],
     error_summary: dict[str, Any],
+    state: dict[str, Any] | None = None,
 ) -> dict[str, str]:
+    cooldown_key = alert_cooldown_key(config, alert)
+    alerts_config = config.get("notifications", {}).get("alerts", {})
+    ai_cooldown = int(alerts_config.get("ai_cooldown_seconds", 3600))
+
+    if state is not None:
+        delivery = state.setdefault("delivery", {})
+        cache = delivery.setdefault("last_ai_diagnoses", {})
+        if cooldown_key in cache:
+            entry = cache[cooldown_key]
+            cached_ts = parse_iso_ts(entry.get("ts"))
+            if cached_ts:
+                elapsed = (utcnow() - cached_ts).total_seconds()
+                if elapsed < ai_cooldown:
+                    return {
+                        "analysis": entry.get("analysis", ""),
+                        "suggestion": entry.get("suggestion", ""),
+                        "source": "cached",
+                    }
+
     payload = build_alert_ai_payload(config, alert, system_snapshot, access_summary, error_summary)
     ai_text = request_alert_ai_diagnosis(config, payload)
     source = "llm"
@@ -2748,6 +2821,16 @@ def build_alert_ai_diagnosis(
         source = "simulated"
     normalized = normalize_alert_ai_diagnosis(ai_text)
     normalized["source"] = source
+
+    if state is not None:
+        delivery = state.setdefault("delivery", {})
+        cache = delivery.setdefault("last_ai_diagnoses", {})
+        cache[cooldown_key] = {
+            "ts": utcnow().isoformat(),
+            "analysis": normalized.get("analysis", ""),
+            "suggestion": normalized.get("suggestion", ""),
+        }
+
     return normalized
 
 
@@ -2911,7 +2994,11 @@ def render_alert_markdown(
     if ai_diagnosis and (ai_diagnosis.get("analysis") or ai_diagnosis.get("suggestion")):
         # Indicate when the diagnosis came from the local fallback rather than a real LLM.
         ai_source = ai_diagnosis.get("source", "")
-        ai_badge = " \u3010AI: 本地兜底\u3011" if ai_source == "simulated" else ""
+        ai_badge = ""
+        if ai_source == "simulated":
+            ai_badge = " \u3010AI: 本地兜底\u3011"
+        elif ai_source == "cached":
+            ai_badge = " \u3010AI: 缓存\u3011"
         lines.extend(
             [
                 "",
@@ -3297,6 +3384,7 @@ def deliver_alerts(
             system_snapshot,
             access_summary,
             error_summary,
+            state=state,
         )
         markdown = render_alert_markdown(
             config,
@@ -3665,9 +3753,48 @@ def release_expired_bans(
         site_config = build_site_runtime_config(config, find_site(config, site) or {"domain": site, "site_host": site})
         action["notifications"] = send_automation_notice(site_config, auto_ban.get("channels", []), action)
         results.append(action)
-    if rows:
-        connection.commit()
-    return results
+def request_llm_shield_audit(config: dict[str, Any], prompt: str) -> str | None:
+    settings = resolve_shared_ai_settings(config)
+    if not settings["enabled"]:
+        return None
+    if settings["simulate"]:
+        return "DECISION: ban_ip\nREASON: simulated audit result (malicious scanner activity)"
+    if not settings["endpoint"]:
+        return None
+    api_key = settings["api_key"]
+    if not api_key:
+        return None
+
+    endpoint = settings["endpoint"].rstrip("/")
+    if endpoint.endswith("/v1"):
+        endpoint = endpoint + "/chat/completions"
+    elif not endpoint.endswith("/chat/completions"):
+        endpoint = endpoint + "/chat/completions"
+
+    body = {
+        "model": settings["model"],
+        "temperature": 0.1,
+        "messages": [
+            {"role": "system", "content": "You are a Linux SRE security expert analyzing server logs."},
+            {"role": "user", "content": prompt},
+        ],
+    }
+    request = urllib.request.Request(
+        endpoint,
+        data=json.dumps(body).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=settings["timeout_seconds"]) as response:
+            data = json.loads(response.read().decode("utf-8"))
+            return str(data["choices"][0]["message"]["content"] or "").strip()
+    except Exception as exc:
+        print(f"Warning: LLM Shield Audit failed: {exc}", file=sys.stderr, flush=True)
+        return None
 
 
 def handle_auto_ban(
@@ -3692,19 +3819,51 @@ def handle_auto_ban(
         ),
         None,
     )
-    if not matched_alert:
+
+    ip_address = ""
+    reason = ""
+    alert_kind = ""
+    top_rpm = None
+    failure_count = None
+
+    if matched_alert:
+        ip_address = str(matched_alert.get("top_ip") or "").strip()
+        alert_kind = matched_alert.get("kind")
+        top_rpm = matched_alert.get("top_rpm")
+        failure_count = matched_alert.get("failure_count")
+        if matched_alert.get("kind") == "ssh_brute_force":
+            reason = (
+                f"ssh brute-force failures ({matched_alert.get('failure_count', 0)} in "
+                f"{matched_alert.get('window_minutes', 5)} minutes)"
+            )
+        else:
+            reason = f"suspicious request burst ({matched_alert.get('top_rpm', 0)} req/min)"
+    else:
+        # CPU-spike auto-ban: if CPU/IOWait is high and a single client IP is driving high traffic
+        ban_on_cpu = bool(auto_ban.get("ban_on_cpu_spike", True))
+        cpu_alert = next((a for a in alerts if a.get("kind") in {"cpu_high", "iowait_high"}), None)
+        if ban_on_cpu and cpu_alert:
+            client_ip_stats = access_summary.get("client_ip_stats", [])
+            if client_ip_stats:
+                top_client = client_ip_stats[0]
+                top_ip = top_client.get("ip")
+                top_count = top_client.get("count", 0)
+
+                win_min = max(int(config.get("thresholds", {}).get("summary_window_minutes", 10)), 1)
+                avg_rpm = top_count / win_min
+                cpu_spike_rpm_threshold = float(auto_ban.get("cpu_spike_rpm_threshold", 60.0))
+
+                if avg_rpm >= cpu_spike_rpm_threshold:
+                    ip_address = str(top_ip or "").strip()
+                    alert_kind = cpu_alert.get("kind")
+                    top_rpm = avg_rpm
+                    reason = f"CPU high ({cpu_alert.get('value', 100.0):.1f}%) and high request rate ({avg_rpm:.1f} req/min)"
+
+    if not matched_alert and not ip_address:
         return []
 
     host_id = config["agent"]["host_id"]
     site = config["agent"]["site"]
-    ip_address = str(matched_alert.get("top_ip") or "").strip()
-    if matched_alert.get("kind") == "ssh_brute_force":
-        reason = (
-            f"ssh brute-force failures ({matched_alert.get('failure_count', 0)} in "
-            f"{matched_alert.get('window_minutes', 5)} minutes)"
-        )
-    else:
-        reason = f"suspicious request burst ({matched_alert.get('top_rpm', 0)} req/min)"
     dry_run = bool(automation.get("dry_run", True))
     actions: list[dict[str, Any]] = []
 
@@ -3717,13 +3876,15 @@ def handle_auto_ban(
         "dry_run": dry_run,
     }
 
+    is_traffic_alert = (matched_alert is not None and matched_alert.get("kind") == "suspicious_ip_burst") or (matched_alert is None and ip_address != "")
+
     if not ip_address:
         action["status"] = "skipped"
         action["stderr"] = "missing target ip"
     elif ip_is_whitelisted(ip_address, list(auto_ban.get("whitelist_ips", []))):
         action["status"] = "skipped"
         action["stderr"] = "ip matched whitelist"
-    elif matched_alert.get("kind") == "suspicious_ip_burst" and ip_matches_whitelisted_spider(
+    elif is_traffic_alert and ip_matches_whitelisted_spider(
         site_state.get("history", {}).get("access_events", []),
         ip_address,
         window_start,
@@ -3739,54 +3900,137 @@ def handle_auto_ban(
         action["status"] = "skipped"
         action["stderr"] = "active ban limit reached"
     else:
-        command_text = format_command_template(
-            str(auto_ban.get("command_template") or ""),
-            ip=ip_address,
-            site=site,
-            host_id=host_id,
-        )
-        execution = execute_guarded_command(command_text, int(auto_ban.get("timeout_seconds", 15)), dry_run)
-        if execution["status"] in {"success", "dry-run"}:
-            expires_at = now + dt.timedelta(seconds=int(auto_ban.get("ban_ttl_seconds", 86400)))
-            connection.execute(
-                """
-                INSERT INTO banned_ips (
-                    host_id,
-                    site,
-                    ip_address,
-                    reason,
-                    command_text,
-                    dry_run,
-                    created_at,
-                    expires_at,
-                    unban_command_text
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    host_id,
-                    site,
-                    ip_address,
-                    reason,
-                    command_text,
-                    1 if dry_run else 0,
-                    now.isoformat(),
-                    expires_at.isoformat(),
-                    format_command_template(
-                        str(auto_ban.get("unban_command_template") or ""),
-                        ip=ip_address,
-                        site=site,
-                        host_id=host_id,
-                    ),
-                ),
+        # Check LLM Shield if enabled and it is a web traffic threat
+        use_llm_shield = bool(auto_ban.get("use_llm_shield", False))
+        is_ssh_threat = (matched_alert is not None and matched_alert.get("kind") == "ssh_brute_force")
+        should_ban = True
+        ai_reason = ""
+
+        if use_llm_shield and not is_ssh_threat:
+            cache = site_state.setdefault("llm_shield_cache", {})
+            cached_entry = cache.get(ip_address)
+            cached_valid = False
+            if cached_entry:
+                try:
+                    cached_ts = dt.datetime.fromisoformat(cached_entry.get("ts", ""))
+                    if (now - cached_ts).total_seconds() < 86400:
+                        cached_valid = True
+                except Exception:
+                    pass
+
+            if cached_valid:
+                if cached_entry.get("decision") == "whitelist":
+                    should_ban = False
+                    action["status"] = "skipped"
+                    action["stderr"] = f"ip whitelisted by cached AI shield: {cached_entry.get('reason')}"
+            else:
+                ip_events = [
+                    e
+                    for e in site_state.get("history", {}).get("access_events", [])
+                    if str(e.get("client_ip")) == ip_address
+                ]
+                ip_events = ip_events[-15:]
+
+                if ip_events:
+                    formatted_logs = ""
+                    for ev in ip_events:
+                        ev_ts = ev.get("time_local") or ""
+                        ev_method = ev.get("request_method") or ""
+                        ev_uri = ev.get("request_uri") or ""
+                        ev_status = ev.get("status") or 0
+                        ev_ms = ev.get("response_time_ms") or 0
+                        ev_ua = ev.get("user_agent") or ""
+                        formatted_logs += f"[{ev_ts}] {ev_method} {ev_uri} (Status {ev_status}, {ev_ms}ms) - UA: {ev_ua}\n"
+
+                    prompt = (
+                        f"You are a Linux SRE Security Auditor. Analyze this traffic log from IP {ip_address}:\n\n"
+                        f"Host/Site: {site}\n"
+                        f"Total requests: {len(ip_events)} in last window\n"
+                        f"Sample logs:\n{formatted_logs}\n\n"
+                        f"Decide if this traffic is a malicious attack (e.g., CC flood, vulnerability scanning, SQL injection) "
+                        f"or legitimate traffic (e.g. search engine crawler, authorized user client).\n\n"
+                        f"Return your decision in this EXACT format:\n"
+                        f"DECISION: [ban_ip|whitelist]\n"
+                        f"REASON: [Short explanation of why, max 20 words]"
+                    )
+
+                    ai_res = request_llm_shield_audit(config, prompt)
+                    if ai_res:
+                        ai_decision = "ban_ip"
+                        if "DECISION: whitelist" in ai_res:
+                            ai_decision = "whitelist"
+                            should_ban = False
+
+                        for line in ai_res.splitlines():
+                            if line.upper().startswith("REASON:"):
+                                ai_reason = line.split(":", 1)[1].strip()
+                                break
+
+                        cache[ip_address] = {
+                            "decision": ai_decision,
+                            "ts": now.isoformat(),
+                            "reason": ai_reason or "AI evaluated decision"
+                        }
+                        if not should_ban:
+                            action["status"] = "skipped"
+                            action["stderr"] = f"ip whitelisted by AI shield: {ai_reason or 'legitimate traffic'}"
+                    else:
+                        pass
+                else:
+                    pass
+
+        if should_ban:
+            if ai_reason:
+                reason = f"{reason} | AI: {ai_reason}"
+                action["reason"] = reason
+            command_text = format_command_template(
+                str(auto_ban.get("command_template") or ""),
+                ip=ip_address,
+                site=site,
+                host_id=host_id,
             )
-        action.update(
-            {
-                "status": execution["status"],
-                "command_text": command_text,
-                "stdout": execution.get("stdout"),
-                "stderr": execution.get("stderr"),
-            }
-        )
+            execution = execute_guarded_command(command_text, int(auto_ban.get("timeout_seconds", 15)), dry_run)
+            if execution["status"] in {"success", "dry-run"}:
+                expires_at = now + dt.timedelta(seconds=int(auto_ban.get("ban_ttl_seconds", 86400)))
+                connection.execute(
+                    """
+                    INSERT INTO banned_ips (
+                        host_id,
+                        site,
+                        ip_address,
+                        reason,
+                        command_text,
+                        dry_run,
+                        created_at,
+                        expires_at,
+                        unban_command_text
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        host_id,
+                        site,
+                        ip_address,
+                        reason,
+                        command_text,
+                        1 if dry_run else 0,
+                        now.isoformat(),
+                        expires_at.isoformat(),
+                        format_command_template(
+                            str(auto_ban.get("unban_command_template") or ""),
+                            ip=ip_address,
+                            site=site,
+                            host_id=host_id,
+                        ),
+                    ),
+                )
+            action.update(
+                {
+                    "status": execution["status"],
+                    "command_text": command_text,
+                    "stdout": execution.get("stdout"),
+                    "stderr": execution.get("stderr"),
+                }
+            )
 
     record_automation_action(
         connection,
@@ -3801,9 +4045,9 @@ def handle_auto_ban(
         action.get("stdout"),
         action.get("stderr"),
         {
-            "alert_kind": matched_alert.get("kind"),
-            "top_rpm": matched_alert.get("top_rpm"),
-            "failure_count": matched_alert.get("failure_count"),
+            "alert_kind": alert_kind,
+            "top_rpm": top_rpm,
+            "failure_count": failure_count,
             "top_uri": access_summary.get("top_uris", [{}])[0].get("uri") if access_summary.get("top_uris") else None,
         },
         created_at=now,
@@ -4841,6 +5085,90 @@ def run_cycle(
             "dry_run": bool(config.get("automation", {}).get("dry_run", True)),
         },
     }
+    # Update dashboard state thread-safely
+    active_alerts = []
+    for a in host_alerts:
+        active_alerts.append({
+            "site": HOST_METRIC_SITE,
+            "kind": a.get("kind"),
+            "severity": a.get("severity"),
+            "value": a.get("value"),
+            "label": alert_label(a),
+            "suggestion": alert_suggestion(a)
+        })
+    for domain, site_result in site_results.items():
+        for a in site_result.get("alerts", []):
+            active_alerts.append({
+                "site": domain,
+                "kind": a.get("kind"),
+                "severity": a.get("severity"),
+                "value": a.get("value"),
+                "label": alert_label(a),
+                "suggestion": alert_suggestion(a)
+            })
+
+    active_bans = []
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT ip_address, reason, created_at, expires_at FROM banned_ips WHERE expires_at > ?",
+            (now.isoformat(),)
+        )
+        for row in cursor.fetchall():
+            active_bans.append({
+                "ip": row[0],
+                "reason": row[1],
+                "created_at": row[2],
+                "expires_at": row[3]
+            })
+    except Exception:
+        pass
+
+    sites_info = {}
+    total_qps = 0.0
+    for domain, site_result in site_results.items():
+        traffic = site_result.get("traffic", {})
+        errs = site_result.get("errors", {})
+        win_min = max(int(config.get("thresholds", {}).get("summary_window_minutes", 10)), 1)
+        site_qps = traffic.get("total_requests", 0) / (win_min * 60.0)
+        total_qps += site_qps
+        sites_info[domain] = {
+            "site": domain,
+            "site_host": site_result.get("site_host"),
+            "qps": round(site_qps, 3),
+            "requests": traffic.get("total_requests", 0),
+            "errors": errs.get("total_errors", 0),
+            "bytes_out": traffic.get("bandwidth_out_bytes", 0),
+            "avg_response_ms": traffic.get("avg_response_ms", 0),
+            "top_uris": traffic.get("top_uris", [])[:5]
+        }
+
+    with dashboard_lock:
+        hist = dashboard_history
+        hist["time"].append(now.strftime("%H:%M:%S"))
+        hist["cpu"].append(system_snapshot.get("cpu_pct", 0.0))
+        hist["qps"].append(round(total_qps, 3))
+        if len(hist["time"]) > 60:
+            hist["time"].pop(0)
+            hist["cpu"].pop(0)
+            hist["qps"].pop(0)
+
+        global latest_dashboard_data
+        latest_dashboard_data = {
+            "status": "ok",
+            "host_id": host_id,
+            "updated_at": now.strftime("%Y-%m-%d %H:%M:%S"),
+            "snapshot": system_snapshot,
+            "sites": sites_info,
+            "active_bans": active_bans,
+            "active_alerts": active_alerts,
+            "history": {
+                "time": list(hist["time"]),
+                "cpu": list(hist["cpu"]),
+                "qps": list(hist["qps"])
+            }
+        }
+
     if config["agent"]["emit_events"]:
         payload["host_security"]["ssh_auth_events"] = serialize_events(ssh_auth_events)
     return payload
@@ -4916,12 +5244,864 @@ def build_systemd_service_unit(config_path: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
-def resolve_mode(args: argparse.Namespace, config: dict[str, Any]) -> str:
-    if args.daemon:
-        return "daemon"
-    if args.once:
-        return "once"
-    return config["agent"].get("mode", "once")
+import http.server
+import socketserver
+import threading
+
+# Thread-safe global variables for SRE dashboard metrics
+dashboard_lock = threading.Lock()
+dashboard_history = {"cpu": [], "qps": [], "time": []}
+latest_dashboard_data = {
+    "status": "initializing",
+    "updated_at": "-",
+    "snapshot": {},
+    "sites": {},
+    "active_bans": [],
+    "active_alerts": [],
+    "history": {"cpu": [], "qps": [], "time": []}
+}
+
+DASHBOARD_HTML = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server-Mate Visual Console</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --panel-bg: rgba(22, 27, 34, 0.6);
+            --border-color: #21262d;
+            --text-main: #ecf2f8;
+            --text-muted: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-yellow: #d29922;
+            --accent-red: #f85149;
+            --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --ring-bg: rgba(48, 54, 61, 0.4);
+            --card-hover-border: #444c56;
+            --dropdown-bg: #161b22;
+            --dropdown-hover: #21262d;
+            --chart-grid: #21262d;
+            --header-border: #21262d;
+        }
+        body.light-theme {
+            --bg-color: #f6f8fa;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --border-color: #d0d7de;
+            --text-main: #24292f;
+            --text-muted: #57606a;
+            --accent-blue: #0969da;
+            --accent-green: #1a7f37;
+            --accent-yellow: #9a6700;
+            --accent-red: #cf222e;
+            --ring-bg: rgba(208, 215, 222, 0.5);
+            --card-hover-border: #8c959f;
+            --dropdown-bg: #ffffff;
+            --dropdown-hover: #f3f4f6;
+            --chart-grid: #d0d7de;
+            --header-border: #d0d7de;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            padding: 0 24px 24px 24px;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-top: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--header-border);
+            transition: background-color 0.3s;
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .logo-text { font-size: 24px; font-weight: 700; background: linear-gradient(45deg, #58a6ff, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .status-badge { display: flex; align-items: center; gap: 6px; font-size: 14px; background: rgba(63, 185, 80, 0.1); color: var(--accent-green); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(63, 185, 80, 0.2); }
+        .status-badge.alerting { background: rgba(248, 81, 73, 0.1); color: var(--accent-red); border-color: rgba(248, 81, 73, 0.2); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent-green); animation: pulse 1.8s infinite; }
+        .status-badge.alerting .status-dot { background-color: var(--accent-red); }
+        @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }
+        
+        /* Header right details & theme dropdown */
+        .header-right { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--text-muted); }
+        .theme-selector { position: relative; display: inline-block; }
+        .theme-btn { background: var(--panel-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 10px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .theme-btn:hover { background: var(--dropdown-hover); }
+        .theme-dropdown { display: none; position: absolute; right: 0; top: 36px; background: var(--dropdown-bg); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); z-index: 100; min-width: 130px; padding: 4px 0; }
+        .theme-dropdown.show { display: block; }
+        .theme-opt { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer; color: var(--text-main); transition: background 0.2s; }
+        .theme-opt:hover { background: var(--dropdown-hover); }
+        .theme-opt.active { background: var(--dropdown-hover); font-weight: 600; color: var(--accent-blue); }
+        .theme-opt svg { opacity: 0.8; }
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+        .card { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s; min-width: 0; }
+        .card:hover { border-color: var(--card-hover-border); }
+        .card-title { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .ring-container { display: flex; justify-content: center; align-items: center; position: relative; margin: 10px 0; }
+        .ring-label { position: absolute; font-size: 20px; font-weight: 700; }
+        .metrics-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-top: 8px; border-top: 1px dashed var(--border-color); padding-top: 8px; }
+        .metrics-meta span:last-child { color: var(--text-main); font-weight: 500; }
+        
+        .layout-main { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .layout-main-split { grid-template-columns: 1fr 1fr; }
+        .chart-card { grid-column: span 1; }
+        .table-section { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px; min-width: 0; }
+        .section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        
+        /* Table scroll wrappers */
+        .table-wrapper { overflow-x: auto; width: 100%; max-width: 100%; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        .wide-table { min-width: 600px; }
+        th, td { padding: 12px; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        th { color: var(--text-muted); font-weight: 500; }
+        tr:last-child td { border-bottom: none; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+        .badge.warning { background: rgba(210, 153, 34, 0.15); color: var(--accent-yellow); border: 1px solid rgba(210, 153, 34, 0.2); }
+        .badge.critical { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 81, 73, 0.2); }
+        .no-data { text-align: center; color: var(--text-muted); padding: 30px; font-size: 14px; }
+        .alert-item { display: flex; flex-direction: column; gap: 4px; padding: 10px; border-radius: 6px; background: rgba(248, 81, 73, 0.05); border-left: 4px solid var(--accent-red); margin-bottom: 10px; }
+        .alert-item.warning { background: rgba(210, 153, 34, 0.05); border-left-color: var(--accent-yellow); }
+        .alert-header { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
+        .alert-body { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+        .alert-sugg { font-size: 12px; color: var(--accent-blue); margin-top: 2px; }
+
+        /* Media Queries for responsive PC/Tablet/Mobile layout */
+        @media (max-width: 1024px) {
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+            .layout-main { grid-template-columns: 1fr; }
+            .layout-main-split { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 0 12px 12px 12px; }
+            header { 
+                padding-top: 12px; 
+                padding-bottom: 12px; 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 12px; 
+            }
+            .header-right { width: 100%; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .wide-table { min-width: 500px; }
+            th, td { padding: 8px; font-size: 13px; }
+            .ring-container svg { width: 100px; height: 100px; }
+            .ring-container svg circle { r: 40; cx: 50; cy: 50; }
+            /* Stroke calculations for r=40: 2*pi*40 = 251.3 */
+            #cpu-ring, #mem-ring, #swap-ring, #disk-ring { stroke-dasharray: 251.3; stroke-dashoffset: 251.3; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <span class="logo-text">Server-Mate Dashboard</span>
+            <div id="status-container" class="status-badge">
+                <span class="status-dot"></span>
+                <span id="status-text">系统正常</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div>
+                主机ID: <span id="host-id" style="color:var(--text-main); font-weight:500;">-</span> &nbsp;|&nbsp; 
+                更新于: <span id="updated-at" style="color:var(--text-main); font-weight:500;">-</span>
+            </div>
+            
+            <button class="theme-btn" id="mock-btn" onclick="toggleMockData()" title="切换模拟数据" style="font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; margin-right: 8px;">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3 2.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-11zm1 .5v10h8V3H4z"/>
+                    <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg>
+                <span>演示数据</span>
+            </button>
+            
+            <div class="theme-selector">
+                <button class="theme-btn" id="theme-btn" onclick="toggleThemeDropdown(event)" title="切换主题">
+                    <svg id="theme-icon-light" style="display:none;" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                    </svg>
+                    <svg id="theme-icon-dark" style="display:none;" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                    </svg>
+                    <svg id="theme-icon-auto" style="display:none;" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm-1 9a1 1 0 1 0 2 0v-1H7v1zm6-7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM1 11.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+                <div class="theme-dropdown" id="theme-dropdown">
+                    <div class="theme-opt" id="opt-auto" onclick="setThemeMode('auto')">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm-1 9a1 1 0 1 0 2 0v-1H7v1zm6-7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM1 11.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/></svg>
+                        自动 (亮色)
+                    </div>
+                    <div class="theme-opt" id="opt-light" onclick="setThemeMode('light')">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                        亮色
+                    </div>
+                    <div class="theme-opt" id="opt-dark" onclick="setThemeMode('dark')">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
+                        暗色
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <div class="card-title">CPU 使用率</div>
+            <div class="ring-container">
+                <svg width="120" height="120">
+                    <circle stroke="var(--ring-bg)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"/>
+                    <circle id="cpu-ring" stroke="var(--accent-blue)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"
+                            style="stroke-dasharray: 301.6; stroke-dashoffset: 301.6; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.8s ease;"/>
+                </svg>
+                <div class="ring-label" id="cpu-val">0%</div>
+            </div>
+            <div class="metrics-meta">
+                <span>用户/系统占比:</span>
+                <span id="cpu-meta">- / -</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">内存使用率</div>
+            <div class="ring-container">
+                <svg width="120" height="120">
+                    <circle stroke="var(--ring-bg)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"/>
+                    <circle id="mem-ring" stroke="var(--accent-green)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"
+                            style="stroke-dasharray: 301.6; stroke-dashoffset: 301.6; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.8s ease;"/>
+                </svg>
+                <div class="ring-label" id="mem-val">0%</div>
+            </div>
+            <div class="metrics-meta">
+                <span>可用内存:</span>
+                <span id="mem-meta">- GB</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Swap 使用率</div>
+            <div class="ring-container">
+                <svg width="120" height="120">
+                    <circle stroke="var(--ring-bg)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"/>
+                    <circle id="swap-ring" stroke="var(--accent-yellow)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"
+                            style="stroke-dasharray: 301.6; stroke-dashoffset: 301.6; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.8s ease;"/>
+                </svg>
+                <div class="ring-label" id="swap-val">0%</div>
+            </div>
+            <div class="metrics-meta">
+                <span>已用 Swap:</span>
+                <span id="swap-meta">- MB</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">系统主磁盘</div>
+            <div class="ring-container">
+                <svg width="120" height="120">
+                    <circle stroke="var(--ring-bg)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"/>
+                    <circle id="disk-ring" stroke="var(--accent-blue)" stroke-width="8" fill="transparent" r="48" cx="60" cy="60"
+                            style="stroke-dasharray: 301.6; stroke-dashoffset: 301.6; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.8s ease;"/>
+                </svg>
+                <div class="ring-label" id="disk-val">0%</div>
+            </div>
+            <div class="metrics-meta">
+                <span>Inode / 剩余空间:</span>
+                <span id="disk-meta">- / -</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-main">
+        <div class="card chart-card">
+            <div class="card-title" style="margin-bottom: 20px;">系统负载 & QPS 趋势图</div>
+            <div style="position: relative; height: 320px; width: 100%;">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="card" style="flex: 1; min-height: 180px;">
+                <div class="card-title">网络与连接信息</div>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
+                    <div style="display:flex; justify-content:space-between; font-size:14px;">
+                        <span style="color:var(--text-muted);">网络带宽下行/上行:</span>
+                        <span id="net-rate" style="font-weight:600;">- / - Mbps</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:14px;">
+                        <span style="color:var(--text-muted);">TCP 连接数(EST/WAIT):</span>
+                        <span id="tcp-conns" style="font-weight:600;">- / -</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:14px;">
+                        <span style="color:var(--text-muted);">系统负载(1m/5m/15m):</span>
+                        <span id="sys-load" style="font-weight:600;">- / - / -</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:14px;">
+                        <span style="color:var(--text-muted);">磁盘IOPS (R/W):</span>
+                        <span id="disk-iops" style="font-weight:600;">- / -</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="flex: 1; min-height: 180px; overflow-y: auto;">
+                <div class="card-title">当前活跃告警</div>
+                <div id="alerts-list">
+                    <div class="no-data">无活动告警</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-section">
+        <div class="section-title">站点流量与性能统计</div>
+        <div class="table-wrapper">
+            <table class="wide-table">
+                <thead>
+                    <tr>
+                        <th>站点</th>
+                        <th>对应主机</th>
+                        <th>当前QPS</th>
+                        <th>累积请求(窗口)</th>
+                        <th>5xx 错误</th>
+                        <th>流出流量</th>
+                        <th>平均耗时</th>
+                    </tr>
+                </thead>
+                <tbody id="sites-tbody">
+                    <tr>
+                        <td colspan="7" class="no-data">暂无监控站点数据</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout-main layout-main-split">
+        <div class="table-section">
+            <div class="section-title">Top 5 高 CPU 进程</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PID</th>
+                            <th>进程名称</th>
+                            <th style="text-align: right;">CPU 占用率</th>
+                        </tr>
+                    </thead>
+                    <tbody id="procs-tbody">
+                        <tr>
+                            <td colspan="3" class="no-data">暂无数据</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <div class="section-title">防火墙动态拦截列表 (Active Bans)</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IP 地址</th>
+                            <th>封禁原因</th>
+                            <th style="text-align: right;">过期时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bans-tbody">
+                        <tr>
+                            <td colspan="3" class="no-data">无被封禁IP</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global references to avoid temporal dead zone (TDZ) reference errors
+        let trendChart = null;
+
+        // Theme toggler logic
+        function toggleThemeDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('theme-dropdown').classList.toggle('show');
+        }
+        document.addEventListener('click', () => {
+            document.getElementById('theme-dropdown').classList.remove('show');
+        });
+
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function setThemeMode(mode) {
+            localStorage.setItem('sm-theme', mode);
+            applyTheme(mode);
+        }
+
+        function applyTheme(mode) {
+            // Remove active classes
+            document.getElementById('opt-auto').classList.remove('active');
+            document.getElementById('opt-light').classList.remove('active');
+            document.getElementById('opt-dark').classList.remove('active');
+            
+            // Hide icons
+            document.getElementById('theme-icon-light').style.display = 'none';
+            document.getElementById('theme-icon-dark').style.display = 'none';
+            document.getElementById('theme-icon-auto').style.display = 'none';
+
+            let resolvedTheme = mode;
+            if (mode === 'auto') {
+                resolvedTheme = getSystemTheme();
+                document.getElementById('opt-auto').classList.add('active');
+                document.getElementById('theme-icon-auto').style.display = 'inline-block';
+                document.getElementById('opt-auto').innerText = '自动 (' + (resolvedTheme === 'dark' ? '暗色' : '亮色') + ')';
+            } else if (mode === 'light') {
+                document.getElementById('opt-light').classList.add('active');
+                document.getElementById('theme-icon-light').style.display = 'inline-block';
+            } else {
+                document.getElementById('opt-dark').classList.add('active');
+                document.getElementById('theme-icon-dark').style.display = 'inline-block';
+            }
+
+            if (resolvedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            } else {
+                document.body.classList.remove('light-theme');
+            }
+
+            // Update Chart ticks and grids dynamically
+            updateChartTheme(resolvedTheme);
+        }
+
+        // Listen for system theme changes in auto mode
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            const currentMode = localStorage.getItem('sm-theme') || 'auto';
+            if (currentMode === 'auto') {
+                applyTheme('auto');
+            }
+        });
+
+        const ctx = document.getElementById('trendChart').getContext('2d');
+        trendChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'CPU 使用率 (%)',
+                        data: [],
+                        borderColor: '#58a6ff',
+                        backgroundColor: 'rgba(88, 166, 255, 0.05)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '系统请求速率 (QPS)',
+                        data: [],
+                        borderColor: '#bc8cff',
+                        backgroundColor: 'rgba(188, 140, 255, 0.05)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: { color: '#21262d' },
+                        ticks: { color: '#8b949e', font: { family: 'Outfit' } }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        min: 0,
+                        max: 100,
+                        grid: { color: '#21262d' },
+                        ticks: { color: '#58a6ff', font: { family: 'Outfit' } }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        grid: { drawOnChartArea: false },
+                        ticks: { color: '#bc8cff', font: { family: 'Outfit' } }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: '#ecf2f8', font: { family: 'Outfit' } }
+                    }
+                }
+            }
+        });
+
+        // Initialize Theme
+        const initialTheme = localStorage.getItem('sm-theme') || 'auto';
+        applyTheme(initialTheme);
+
+        function updateChartTheme(theme) {
+            if (!trendChart) return;
+            const isLight = theme === 'light';
+            const gridColor = isLight ? '#d0d7de' : '#21262d';
+            const textColor = isLight ? '#24292f' : '#ecf2f8';
+
+            trendChart.options.scales.x.grid.color = gridColor;
+            trendChart.options.scales.x.ticks.color = isLight ? '#57606a' : '#8b949e';
+            trendChart.options.scales.y.grid.color = gridColor;
+            trendChart.options.scales.y.ticks.color = isLight ? '#0969da' : '#58a6ff'; // dynamic axis accent
+            trendChart.options.scales.y1.ticks.color = isLight ? '#8250df' : '#bc8cff';
+            trendChart.options.plugins.legend.labels.color = textColor;
+            trendChart.update('none');
+        }
+
+        // Adjust rings stroke for mobile screens
+        function getRingStroke(circleId) {
+            const circle = document.getElementById(circleId);
+            const r = parseFloat(circle.getAttribute('r'));
+            return 2 * Math.PI * r;
+        }
+
+        function updateRing(id, value) {
+            const circle = document.getElementById(id);
+            const circumference = getRingStroke(id);
+            circle.style.strokeDasharray = circumference;
+            const offset = circumference - (Math.min(Math.max(value, 0), 100) / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+        }
+
+        function formatBytes(bytes) {
+            if (!bytes || bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        let useMockData = false;
+
+        function getMockData() {
+            return {
+                status: "ok",
+                host_id: "demo-server-01",
+                updated_at: new Date().toLocaleString(),
+                snapshot: {
+                    cpu_pct: 38,
+                    cpu_user_pct: 28,
+                    cpu_system_pct: 10,
+                    memory_pct: 64,
+                    memory_available_bytes: 6120345600,
+                    swap_used_pct: 15,
+                    swap_used_bytes: 327155712,
+                    disk_used_pct: 42,
+                    disk_inode_used_pct: 18,
+                    disk_free_bytes: 128849018880,
+                    net_rx_mbps: 3.42,
+                    net_tx_mbps: 1.85,
+                    tcp_established: 142,
+                    tcp_time_wait: 89,
+                    load_1m: 0.85,
+                    load_5m: 1.12,
+                    load_15m: 0.95,
+                    disk_read_iops: 124,
+                    disk_write_iops: 45,
+                    top_cpu_procs: [
+                        { pid: 14502, name: "nginx: worker", cpu_pct: 18.2 },
+                        { pid: 3209, name: "node /app/index.js", cpu_pct: 12.1 },
+                        { pid: 1542, name: "python3 server_agent.py", cpu_pct: 5.6 },
+                        { pid: 902, name: "mysqld", cpu_pct: 2.1 },
+                        { pid: 1104, name: "redis-server", cpu_pct: 0.8 }
+                    ]
+                },
+                sites: {
+                    "demo.btc354.com": {
+                        site: "demo.btc354.com",
+                        site_host: "127.0.0.1:80",
+                        qps: 18.24,
+                        requests: 12450,
+                        errors: 12,
+                        bytes_out: 425983710,
+                        avg_response_ms: 35
+                    },
+                    "api.demo.com": {
+                        site: "api.demo.com",
+                        site_host: "127.0.0.1:8080",
+                        qps: 52.18,
+                        requests: 31200,
+                        errors: 145,
+                        bytes_out: 1205938100,
+                        avg_response_ms: 124
+                    }
+                },
+                active_bans: [
+                    { ip: "185.220.101.5", reason: "SSH brute force (15 failed attempts)", expires_at: new Date(Date.now() + 3600000).toISOString() },
+                    { ip: "45.143.203.42", reason: "WAF: SQL Injection pattern detected", expires_at: new Date(Date.now() + 7200000).toISOString() }
+                ],
+                active_alerts: [
+                    { site: "host", severity: "warning", label: "内存使用率较高 (64.2%)", value: "64.2%", suggestion: "可清理无用的后台常驻进程" },
+                    { site: "api.demo.com", severity: "critical", label: "5xx 错误率突增", value: "145 次", suggestion: "建议排查 Nginx 后端 upstream 响应情况" }
+                ],
+                history: {
+                    time: Array.from({length: 15}, (_, i) => {
+                        let d = new Date(Date.now() - (15 - i) * 60000);
+                        return d.toTimeString().split(' ')[0];
+                    }),
+                    cpu: [20, 25, 18, 30, 45, 55, 38, 29, 34, 40, 50, 48, 42, 35, 38],
+                    qps: [30, 32, 28, 35, 48, 62, 50, 42, 45, 50, 58, 60, 55, 48, 52]
+                }
+            };
+        }
+
+        function updateMockButtonUI() {
+            const btn = document.getElementById('mock-btn');
+            if (!btn) return;
+            if (useMockData) {
+                btn.style.borderColor = 'var(--accent-blue)';
+                btn.style.color = 'var(--accent-blue)';
+                btn.style.background = 'rgba(88, 166, 255, 0.1)';
+                btn.querySelector('span').innerText = '演示数据 (已启用)';
+            } else {
+                btn.style.borderColor = 'var(--border-color)';
+                btn.style.color = 'var(--text-main)';
+                btn.style.background = 'var(--panel-bg)';
+                btn.querySelector('span').innerText = '演示数据';
+            }
+        }
+
+        function toggleMockData() {
+            useMockData = !useMockData;
+            updateMockButtonUI();
+            fetchMetrics();
+        }
+
+        function renderMetrics(data) {
+            // Update text fields
+            document.getElementById('host-id').innerText = data.host_id || '-';
+            document.getElementById('updated-at').innerText = data.updated_at || '-';
+            
+            const snap = data.snapshot || {};
+            
+            // CPU Ring & Vals
+            const cpuVal = Math.round(snap.cpu_pct || 0);
+            document.getElementById('cpu-val').innerText = cpuVal + '%';
+            updateRing('cpu-ring', cpuVal);
+            document.getElementById('cpu-meta').innerText = 
+                (snap.cpu_user_pct || 0) + '% 用户 / ' + (snap.cpu_system_pct || 0) + '% 系统';
+
+            // Memory Ring & Vals
+            const memVal = Math.round(snap.memory_pct || 0);
+            document.getElementById('mem-val').innerText = memVal + '%';
+            updateRing('mem-ring', memVal);
+            const memAvailGB = ((snap.memory_available_bytes || 0) / 1024 / 1024 / 1024).toFixed(2);
+            document.getElementById('mem-meta').innerText = memAvailGB + ' GB 可用';
+
+            // Swap Ring & Vals
+            const swapVal = Math.round(snap.swap_used_pct || 0);
+            document.getElementById('swap-val').innerText = swapVal + '%';
+            updateRing('swap-ring', swapVal);
+            const swapUsedMB = Math.round((snap.swap_used_bytes || 0) / 1024 / 1024);
+            document.getElementById('swap-meta').innerText = swapUsedMB + ' MB 已用';
+
+            // Disk Ring & Vals
+            const diskVal = Math.round(snap.disk_used_pct || 0);
+            document.getElementById('disk-val').innerText = diskVal + '%';
+            updateRing('disk-ring', diskVal);
+            const inodeVal = snap.disk_inode_used_pct !== null ? snap.disk_inode_used_pct + '%' : 'N/A';
+            const diskFreeGB = ((snap.disk_free_bytes || 0) / 1024 / 1024 / 1024).toFixed(1);
+            document.getElementById('disk-meta').innerText = 'Inode: ' + inodeVal + ' / 剩余: ' + diskFreeGB + ' GB';
+
+            // Network & Connections Card
+            const rx = snap.net_rx_mbps || 0;
+            const tx = snap.net_tx_mbps || 0;
+            document.getElementById('net-rate').innerText = rx.toFixed(2) + ' / ' + tx.toFixed(2) + ' Mbps';
+            document.getElementById('tcp-conns').innerText = (snap.tcp_established || 0) + ' / ' + (snap.tcp_time_wait || 0);
+            
+            const load1 = snap.load_1m !== null ? snap.load_1m.toFixed(2) : '-';
+            const load5 = snap.load_5m !== null ? snap.load_5m.toFixed(2) : '-';
+            const load15 = snap.load_15m !== null ? snap.load_15m.toFixed(2) : '-';
+            document.getElementById('sys-load').innerText = load1 + ' / ' + load5 + ' / ' + load15;
+            document.getElementById('disk-iops').innerText = (snap.disk_read_iops || 0) + ' / ' + (snap.disk_write_iops || 0);
+
+            // Top CPU Procs Table
+            const procsTbody = document.getElementById('procs-tbody');
+            const procs = snap.top_cpu_procs || [];
+            if (procs.length === 0) {
+                procsTbody.innerHTML = `<tr><td colspan="3" class="no-data">无运行进程数据</td></tr>`;
+            } else {
+                procsTbody.innerHTML = procs.map(p => `
+                    <tr>
+                        <td><code>${p.pid}</code></td>
+                        <td>${p.name}</td>
+                        <td style="text-align: right; font-weight: 600; color: var(--accent-blue);">${p.cpu_pct.toFixed(1)}%</td>
+                    </tr>
+                `).join('');
+            }
+
+            // Active Alerts
+            const alertsContainer = document.getElementById('alerts-list');
+            const alerts = data.active_alerts || [];
+            const statusBadge = document.getElementById('status-container');
+            const statusText = document.getElementById('status-text');
+            
+            if (alerts.length === 0) {
+                alertsContainer.innerHTML = `<div class="no-data">无活动告警</div>`;
+                statusBadge.className = 'status-badge';
+                statusText.innerText = '系统正常';
+            } else {
+                statusBadge.className = 'status-badge alerting';
+                statusText.innerText = `告警中 (${alerts.length})`;
+                alertsContainer.innerHTML = alerts.map(a => `
+                    <div class="alert-item ${a.severity}">
+                        <div class="alert-header">
+                            <span>${a.label} (${a.site})</span>
+                            <span class="badge ${a.severity}">${a.severity.toUpperCase()}</span>
+                        </div>
+                        <div class="alert-body">触发值: ${a.value}</div>
+                        <div class="alert-sugg">建议: ${a.suggestion}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Sites traffic stats table
+            const sitesTbody = document.getElementById('sites-tbody');
+            const sites = Object.values(data.sites || {});
+            if (sites.length === 0) {
+                sitesTbody.innerHTML = `<tr><td colspan="7" class="no-data">暂无监控站点数据</td></tr>`;
+            } else {
+                sitesTbody.innerHTML = sites.map(s => `
+                    <tr>
+                        <td style="font-weight: 600; color: var(--accent-blue);">${s.site}</td>
+                        <td><code>${s.site_host}</code></td>
+                        <td style="font-weight: 600;">${s.qps.toFixed(3)} QPS</td>
+                        <td>${s.requests} 次</td>
+                        <td style="${s.errors > 0 ? 'color: var(--accent-red); font-weight: 600;' : ''}">${s.errors} 次</td>
+                        <td>${formatBytes(s.bytes_out)}</td>
+                        <td>${s.avg_response_ms.toFixed(0)} ms</td>
+                    </tr>
+                `).join('');
+            }
+
+            // Active Bans table
+            const bansTbody = document.getElementById('bans-tbody');
+            const bans = data.active_bans || [];
+            if (bans.length === 0) {
+                bansTbody.innerHTML = `<tr><td colspan="3" class="no-data">无被封禁IP</td></tr>`;
+            } else {
+                bansTbody.innerHTML = bans.map(b => {
+                    let exp = '-';
+                    if (b.expires_at) {
+                        try {
+                            exp = new Date(b.expires_at).toLocaleTimeString();
+                        } catch (e) {}
+                    }
+                    return `
+                        <tr>
+                            <td style="font-weight: 600; color: var(--accent-red);">${b.ip}</td>
+                            <td style="font-size: 13px; color: var(--text-muted);">${b.reason}</td>
+                            <td style="text-align: right;"><code>${exp}</code></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Update charts
+            const hist = data.history || {};
+            trendChart.data.labels = hist.time || [];
+            trendChart.data.datasets[0].data = hist.cpu || [];
+            trendChart.data.datasets[1].data = hist.qps || [];
+            trendChart.update('none');
+        }
+
+        async function fetchMetrics() {
+            try {
+                if (useMockData) {
+                    renderMetrics(getMockData());
+                    return;
+                }
+                const res = await fetch('/api/metrics');
+                const data = await res.json();
+                
+                if (data.status === 'initializing') {
+                    document.getElementById('status-text').innerText = '系统初始化中...';
+                    useMockData = true;
+                    updateMockButtonUI();
+                    renderMetrics(getMockData());
+                    return;
+                }
+
+                renderMetrics(data);
+            } catch (err) {
+                console.error('Error fetching SRE metrics:', err);
+                document.getElementById('status-text').innerText = '网络连接失败';
+                useMockData = true;
+                updateMockButtonUI();
+                renderMetrics(getMockData());
+            }
+        }
+
+        // Loop fetching every 3s
+        setInterval(fetchMetrics, 3000);
+        fetchMetrics();
+    </script>
+</body>
+</html>
+"""
+
+class DashboardHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/api/metrics":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            with dashboard_lock:
+                resp_bytes = json.dumps(latest_dashboard_data).encode("utf-8")
+            self.wfile.write(resp_bytes)
+        elif self.path == "/":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(DASHBOARD_HTML.encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b"Not Found")
+
+    def log_message(self, format, *args):
+        pass
+
+
+def start_dashboard_server(config: dict[str, Any], port: int):
+    def run_server():
+        try:
+            server = http.server.HTTPServer(("0.0.0.0", port), DashboardHTTPRequestHandler)
+            print(f"[server_mate] Visual dashboard running on http://0.0.0.0:{port}", flush=True)
+            server.serve_forever()
+        except Exception as exc:
+            print(f"[server_mate] Visual dashboard failed to start on port {port}: {exc}", file=sys.stderr, flush=True)
+
+    t = threading.Thread(target=run_server, daemon=True)
+    t.start()
 
 
 def run_daemon(
@@ -4930,7 +6110,15 @@ def run_daemon(
     connection: sqlite3.Connection,
     config_path: Path,
     config_generated: bool,
+    args: argparse.Namespace,
 ) -> int:
+    # Launch dashboard web console in background thread if enabled
+    dashboard_cfg = config.get("dashboard", {})
+    dashboard_enabled = bool(dashboard_cfg.get("enabled", False)) or args.dashboard
+    dashboard_port = int(args.port or dashboard_cfg.get("port", 8000))
+    if dashboard_enabled:
+        start_dashboard_server(config, dashboard_port)
+
     interval_seconds = config["agent"]["poll_interval_seconds"]
     while True:
         try:
@@ -4995,7 +6183,7 @@ def main() -> int:
     connection = init_database(database_file)
     try:
         if mode == "daemon":
-            return run_daemon(config, state, connection, config_path, config_generated)
+            return run_daemon(config, state, connection, config_path, config_generated, args)
         payload = run_cycle(
             config,
             state,

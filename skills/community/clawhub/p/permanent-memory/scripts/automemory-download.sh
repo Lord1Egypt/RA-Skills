@@ -58,11 +58,11 @@ fi
 
 if [[ -z "$OUTPUT" ]]; then
   # Output to stdout — try download API first, fall back to gateway
-  curl -sS --fail "$AD_DOWNLOAD_API/downloads/$CID" ${AUTH_ARGS[@]+"${AUTH_ARGS[@]}"} 2>/dev/null \
+  curl -sS --fail "$AD_DOWNLOAD_URL/downloads/$CID" ${AUTH_ARGS[@]+"${AUTH_ARGS[@]}"} 2>/dev/null \
     || curl -sS --fail "$GATEWAY/file/$CID"
 else
   # Output to file — check HTTP codes for proper error reporting
-  HTTP_CODE=$(download_to_file "$AD_DOWNLOAD_API/downloads/$CID" "$OUTPUT" ${AUTH_ARGS[@]+"${AUTH_ARGS[@]}"})
+  HTTP_CODE=$(download_to_file "$AD_DOWNLOAD_URL/downloads/$CID" "$OUTPUT" ${AUTH_ARGS[@]+"${AUTH_ARGS[@]}"})
   if [[ "$HTTP_CODE" -ge 200 && "$HTTP_CODE" -lt 300 ]]; then
     echo "Saved to: $OUTPUT" >&2
   else

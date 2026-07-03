@@ -206,7 +206,7 @@ class TestIndependentReviewer(unittest.TestCase):
 
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
-            r = write_single_node(TEST_PAPER, "1.1", mock, bypass_scarcity=True)
+            r = write_single_node(TEST_PAPER, "1.1", bypass_scarcity=True)
             warning_msgs = [str(warning.message) for warning in w]
             self.assertTrue(any("P1-2" in msg for msg in warning_msgs),
                           f"必须发 P1-2 警告，实际 warnings: {warning_msgs}")
@@ -219,7 +219,7 @@ class TestIndependentReviewer(unittest.TestCase):
 
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
-            r = write_single_node(TEST_PAPER, "1.1", mock, reviewer_func=mock, bypass_scarcity=True)
+            r = write_single_node(TEST_PAPER, "1.1", reviewer_func=mock, bypass_scarcity=True)
             warning_msgs = [str(warning.message) for warning in w]
             self.assertTrue(any("P1-2" in msg for msg in warning_msgs))
 
@@ -232,7 +232,7 @@ class TestIndependentReviewer(unittest.TestCase):
 
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
-            r = write_single_node(TEST_PAPER, "1.1", mock_writer,
+            r = write_single_node(TEST_PAPER, "1.1",
                                 reviewer_func=mock_reviewer, bypass_scarcity=True)
             warning_msgs = [str(warning.message) for warning in w]
             self.assertFalse(any("P1-2" in msg for msg in warning_msgs),
@@ -263,14 +263,14 @@ class TestEndToEndWorkflow(unittest.TestCase):
         # 但有 bypass_scarcity=False，先看是否会触发 HIL
         import warnings
         warnings.simplefilter("ignore")  # 忽略 P1-2 警告
-        r1 = write_single_node(TEST_PAPER, "1.1", mock_writer,
+        r1 = write_single_node(TEST_PAPER, "1.1",
                             reviewer_func=mock_reviewer, bypass_scarcity=False)
 
         # info_scarcity 检查可能返回 needs_user_input（因为 skip 后 content_hint 为空）
         if r1.get("action") == "needs_user_input":
             # 走 v2.0.4 推荐路径：apply_user_decision("2") + bypass_scarcity=True
             apply_user_decision(TEST_PAPER, "1.1", "2")
-            r2 = write_single_node(TEST_PAPER, "1.1", mock_writer,
+            r2 = write_single_node(TEST_PAPER, "1.1",
                                  reviewer_func=mock_reviewer, bypass_scarcity=True)
             # 应该 completed 或 pending_review
             self.assertIn(r2.get("action"), ["completed", "pending_review"])

@@ -1,0 +1,22 @@
+{
+  "type": "overflow",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "Edit",
+        "emoji": true
+      },
+      "value": "edit"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "Archive",
+        "emoji": true
+      },
+      "value": "archive"
+    }
+  ],
+  "action_id": "more_actions"
+}

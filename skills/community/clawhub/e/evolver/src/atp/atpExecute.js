@@ -31,6 +31,7 @@ const {
   getHubUrl,
   getHubNodeSecret,
   buildHubHeaders,
+  buildNodeScopedHubHeaders,
   sendHelloToHub,
 } = require('../gep/a2aProtocol');
 const { submitDelivery } = require('./hubClient');
@@ -126,9 +127,10 @@ function _publishUrl() {
 
 async function _postJson(urlStr, body, timeoutMs) {
   const payload = JSON.stringify(body || {});
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
   const headers = Object.assign(
     { 'Content-Type': 'application/json' },
-    buildHubHeaders() || {},
+    buildHeaders() || {},
   );
 
   try {

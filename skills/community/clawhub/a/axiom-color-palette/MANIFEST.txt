@@ -1,0 +1,9 @@
+# Manifest — axiom-color-palette (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:37Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+a935dd79dcd7a8f788ee24c70a5968d549b05ec12709f47f4e26a15b268446a9  README.md  (1156 bytes)
+32a1478592d5d1ffe142c84cfb915ec28ea3169be657cc15ff467e7c48dbe659  SKILL.md  (475 bytes)
+99f7237bcac0e407f15c1810095466e2dd9c06312ce5eba75cc3501fd9909c2f  axiom_color_palette.py  (6912 bytes)
+cd54339fa7a703cbecb516a82e04385a10412c8f8b0adaae8f1b8bc25fa109f5  test_axiom_color_palette.py  (3069 bytes)

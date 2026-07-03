@@ -8,8 +8,8 @@
 2. 识别素材使用情况、参考资料和知识专库链接内容
 3. 去除正文中的引用标记 [^1^] 等
 4. 通过代码生成红头表格（开头）
-5. 通过代码在正文末尾、素材使用情况或参考来源之前插入表尾表格
-6. 在表尾后保留素材使用情况、参考资料和知识专库链接
+5. 通过代码在正文末尾、素材使用情况或参考来源之前插入版记
+6. 在版记后保留素材使用情况、参考资料和知识专库链接
 7. 另存为红头版本
 """
 
@@ -26,17 +26,32 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from datetime import datetime
 import argparse
+import json
 
 AI_DISCLAIMER_TEXT = "【AI生成提示】内容由AI生成，内容仅供参考。"
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 OFFICIAL_DOCS_DIR = SKILL_ROOT / "official-docs"
 INPUT_DIR = OFFICIAL_DOCS_DIR / "input"
 OUTPUT_DIR = OFFICIAL_DOCS_DIR / "output"
+PROFILE_PATH = SKILL_ROOT / "config" / "user_profile.json"
+PLACEHOLDER_ORG = "XX单位"
 
 UPWARD_TYPES = {"请示", "报告"}
 DOWNWARD_TYPES = {"通知", "通报", "意见", "通告", "公告"}
 LETTER_TYPES = {"函", "复函", "批复", "提醒函"}
 MINUTES_TYPES = {"工作会议纪要", "局长办公会议纪要", "党组会议纪要", "会议纪要"}
+
+
+def load_user_profile():
+    """读取仅保存在本机的可选用户配置。"""
+    if not PROFILE_PATH.exists():
+        return {}
+    try:
+        with PROFILE_PATH.open("r", encoding="utf-8") as profile_file:
+            profile = json.load(profile_file)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"用户配置不可读取，请重新初始化: {exc}") from exc
+    return profile if isinstance(profile, dict) else {}
 
 
 def is_relative_to(path: Path, parent: Path) -> bool:
@@ -83,6 +98,15 @@ def resolve_output_docx(output_path) -> Path:
     return resolved
 
 
+def display_path(path: Path) -> str:
+    """将 Skill 内文件路径转换为面向用户的相对路径。"""
+    resolved = Path(path).expanduser().resolve()
+    try:
+        return str(resolved.relative_to(SKILL_ROOT))
+    except ValueError:
+        return str(resolved)
+
+
 def remove_reference_markers_from_doc(doc):
     """去除文档中所有段落的引用标记 [^1^] [^2^] 等"""
     count = 0
@@ -95,7 +119,7 @@ def remove_reference_markers_from_doc(doc):
 
 
 def remove_ai_disclaimer_from_doc(doc):
-    """删除已有 AI 生成提示，避免红头表尾插入后提示不在最末尾或重复。"""
+    """删除已有 AI 生成提示，避免红头版记插入后提示不在最末尾或重复。"""
     removed = 0
     for para in list(doc.paragraphs):
         if para.text.strip() == AI_DISCLAIMER_TEXT:
@@ -277,14 +301,14 @@ def generate_red_header_document(doc_type, input_path, replacements, output_path
         remove_reference_markers_from_doc(doc)
     print(f"✓ 已去除正文引用标记")
 
-    # 3. 插入代码化红头和表尾
+    # 3. 插入代码化红头和版记
     configure_document_page(doc)
     create_programmatic_red_header_table(doc, doc_type, replacements)
     print(f"✓ 已生成代码化红头: {get_layout_type(doc_type)}")
 
     insert_programmatic_footer_table(doc, replacements, page_break_idx, ref_start, doc_type)
     pos_desc = "分页符之前" if page_break_idx is not None else ("素材/参考来源之前" if ref_start is not None else "文档末尾")
-    print(f"✓ 已生成代码化表尾: {pos_desc}")
+    print(f"✓ 已生成代码化版记: {pos_desc}")
     add_ai_disclaimer(doc)
 
     # 5. 保存文件
@@ -314,6 +338,32 @@ def set_cell_text(cell, text, font_name='仿宋_GB2312', font_size=16, bold=Fals
     return run
 
 
+def add_cell_run(para, text, font_name='仿宋_GB2312', font_size=16, bold=False, color=None):
+    """向单元格段落添加指定字体文字。"""
+    run = para.add_run(text)
+    run.font.name = font_name
+    run.font.size = Pt(font_size)
+    run.font.bold = bold
+    if color:
+        run.font.color.rgb = color
+    run._element.rPr.rFonts.set(qn('w:eastAsia'), font_name)
+    return run
+
+
+def set_signer_cell_text(cell, signer, alignment=WD_ALIGN_PARAGRAPH.CENTER):
+    """按国标设置签发人字段：“签发人：”仿宋，姓名楷体。"""
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    para = cell.paragraphs[0]
+    para.clear()
+    para.alignment = alignment
+    para.paragraph_format.space_before = Pt(0)
+    para.paragraph_format.space_after = Pt(0)
+    para.paragraph_format.line_spacing = 1
+    if signer:
+        add_cell_run(para, "签发人：", font_name='仿宋_GB2312', font_size=16)
+        add_cell_run(para, signer, font_name='楷体_GB2312', font_size=16)
+
+
 def configure_document_page(doc):
     """设置红头文件页边距，采用党政机关公文常用 A4 版心。"""
     for section in doc.sections:
@@ -325,7 +375,7 @@ def configure_document_page(doc):
 
 def set_table_borders(table, color='C00000', size='12', edges=None):
     """设置表格边框；edges 为 None 时设置全部边框。"""
-    edges = edges or ('top', 'left', 'bottom', 'right', 'insideH', 'insideV')
+    edges = ('top', 'left', 'bottom', 'right', 'insideH', 'insideV') if edges is None else edges
     tblPr = table._tbl.tblPr
     if tblPr is None:
         tblPr = OxmlElement('w:tblPr')
@@ -350,6 +400,35 @@ def set_table_borders(table, color='C00000', size='12', edges=None):
         element.set(qn('w:color'), color)
 
 
+def set_table_border_edge(table, edge, val='single', size='8', color='000000'):
+    """设置单条表格边框。"""
+    tblPr = table._tbl.tblPr
+    if tblPr is None:
+        tblPr = OxmlElement('w:tblPr')
+        table._tbl.insert(0, tblPr)
+    borders = tblPr.find(qn('w:tblBorders'))
+    if borders is None:
+        borders = OxmlElement('w:tblBorders')
+        tblPr.append(borders)
+    element = borders.find(qn(f'w:{edge}'))
+    if element is None:
+        element = OxmlElement(f'w:{edge}')
+        borders.append(element)
+    element.set(qn('w:val'), val)
+    element.set(qn('w:sz'), size)
+    element.set(qn('w:space'), '0')
+    element.set(qn('w:color'), color)
+
+
+def set_standard_imprint_borders(table, has_middle_line=False):
+    """设置国标版记横线：首末粗线，中间细线，无竖线。"""
+    set_table_borders(table, color='000000', size='0', edges=())
+    set_table_border_edge(table, 'top', size='8')
+    set_table_border_edge(table, 'bottom', size='8')
+    if has_middle_line:
+        set_table_border_edge(table, 'insideH', size='6')
+
+
 def set_table_width(table, width_cm):
     """设置表格宽度。"""
     tblPr = table._tbl.tblPr
@@ -362,6 +441,17 @@ def set_table_width(table, width_cm):
         tblPr.append(tblW)
     tblW.set(qn('w:w'), str(int(width_cm * 567)))
     tblW.set(qn('w:type'), 'dxa')
+
+
+def set_cell_width(cell, width_cm):
+    """设置单元格宽度。"""
+    tcPr = cell._tc.get_or_add_tcPr()
+    tcW = tcPr.find(qn('w:tcW'))
+    if tcW is None:
+        tcW = OxmlElement('w:tcW')
+        tcPr.append(tcW)
+    tcW.set(qn('w:w'), str(int(width_cm * 567)))
+    tcW.set(qn('w:type'), 'dxa')
 
 
 def set_row_height(row, height_cm, exact=False):
@@ -490,7 +580,7 @@ def create_programmatic_official_header_table(doc, doc_type, replacements):
         set_cell_text(title_cell, f"{org_name}文件" if org_name else "文件", font_name='方正小标宋简体', font_size=34, color=RGBColor(0xFF, 0x00, 0x00))
         if layout == "upward":
             set_cell_text(table.rows[2].cells[0], doc_number, font_name='仿宋_GB2312', font_size=16)
-            set_cell_text(table.rows[2].cells[1], f"签发人：{signer}" if signer else "", font_name='仿宋_GB2312', font_size=16)
+            set_signer_cell_text(table.rows[2].cells[1], signer)
         else:
             set_cell_text(table.rows[2].cells[0], doc_number, font_name='仿宋_GB2312', font_size=16)
 
@@ -616,10 +706,20 @@ def create_page_break_paragraph():
     return p
 
 
+def normalize_cc_text(cc_text):
+    """规范版记抄送行，末尾补句号。"""
+    text = (cc_text or "").strip()
+    if not text:
+        return ""
+    if text[-1] not in "。.!！?？":
+        text += "。"
+    return text
+
+
 def insert_xml_before_appendix(doc, xml_elements, page_break_idx=None, ref_start=None):
     """
-    将表尾 XML 插入正文和素材附录之间。
-    如果分页符和日期同段，先移除原分页符，再在表尾后补一个分页符，避免日期跑到表尾后面。
+    将版记 XML 插入正文和素材附录之间。
+    如果分页符和日期同段，先移除原分页符，再在版记后补一个分页符，避免日期跑到版记后面。
     """
     if not isinstance(xml_elements, (list, tuple)):
         xml_elements = [xml_elements]
@@ -650,7 +750,7 @@ def insert_xml_before_appendix(doc, xml_elements, page_break_idx=None, ref_start
 
 
 def insert_programmatic_footer_table(doc, replacements, page_break_idx=None, ref_start=None, doc_type=None):
-    """生成代码化表尾，并插入到素材页之前或正文末尾。"""
+    """生成国标版记，并插入到素材页之前或正文末尾。"""
     if is_minutes_type(doc_type):
         return insert_programmatic_minutes_footer(doc, replacements, page_break_idx, ref_start)
 
@@ -660,34 +760,37 @@ def insert_programmatic_footer_table(doc, replacements, page_break_idx=None, ref
     layout = get_layout_type(doc_type)
 
     if layout == "letter":
-        table = doc.add_table(rows=3, cols=1)
+        cc_text = normalize_cc_text(cc_list)
+        if not cc_text:
+            return None
+        table = doc.add_table(rows=1, cols=1)
         table.alignment = WD_TABLE_ALIGNMENT.CENTER
         set_table_width(table, 15.6)
-        set_table_borders(table, color='000000', size='8', edges=('top', 'insideH', 'bottom'))
-        set_cell_text(table.rows[0].cells[0], "公开方式：主动公开", font_size=16, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_row_height(table.rows[1], 1.3)
-        set_cell_text(table.rows[1].cells[0], "", font_size=14)
-        set_cell_text(table.rows[2].cells[0], f"抄送：{cc_list}" if cc_list else "抄送：", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_table_borders(table, color='000000', size='0', edges=())
+        set_cell_text(table.rows[0].cells[0], f"抄送：{cc_text}", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
         set_table_keep_together(table)
         insert_xml_before_appendix(doc, table._tbl, page_break_idx, ref_start)
         return table
 
-    table = doc.add_table(rows=4, cols=3)
+    cc_text = normalize_cc_text(cc_list)
+    rows = 2 if cc_text else 1
+    table = doc.add_table(rows=rows, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_width(table, 15.6)
-    set_table_borders(table, color='000000', size='8', edges=('top', 'insideH', 'bottom'))
+    set_standard_imprint_borders(table, has_middle_line=bool(cc_text))
 
-    public_cell = table.rows[0].cells[0].merge(table.rows[0].cells[1]).merge(table.rows[0].cells[2])
-    blank_cell = table.rows[1].cells[0].merge(table.rows[1].cells[1]).merge(table.rows[1].cells[2])
-    cc_cell = table.rows[2].cells[1].merge(table.rows[2].cells[2])
-    unit_cell = table.rows[3].cells[0].merge(table.rows[3].cells[1])
+    issue_row_idx = 0
+    if cc_text:
+        cc_cell = table.rows[0].cells[0].merge(table.rows[0].cells[1])
+        set_cell_text(cc_cell, f"抄送：{cc_text}", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        issue_row_idx = 1
 
-    set_cell_text(public_cell, "公开方式：主动公开", font_size=16, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(blank_cell, "", font_size=14)
-    set_cell_text(table.rows[2].cells[0], "抄送：", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(cc_cell, cc_list, font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(unit_cell, f"{org_name}办公室" if org_name else "", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(table.rows[3].cells[2], f"{date_str}印发" if date_str else "", font_size=14, alignment=WD_ALIGN_PARAGRAPH.RIGHT)
+    issue_row = table.rows[issue_row_idx]
+    set_cell_width(issue_row.cells[0], 9.0)
+    set_cell_width(issue_row.cells[1], 6.6)
+    print_unit = replacements.get("印发单位", "") or (f"{org_name}办公室" if org_name else "")
+    set_cell_text(issue_row.cells[0], print_unit, font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(issue_row.cells[1], f"{date_str}印发" if date_str else "", font_size=14, alignment=WD_ALIGN_PARAGRAPH.RIGHT)
 
     set_table_keep_together(table)
     insert_xml_before_appendix(doc, table._tbl, page_break_idx, ref_start)
@@ -695,7 +798,7 @@ def insert_programmatic_footer_table(doc, replacements, page_break_idx=None, ref
 
 
 def insert_programmatic_minutes_footer(doc, replacements, page_break_idx=None, ref_start=None):
-    """生成会议纪要出席/列席和印发表尾。"""
+    """生成会议纪要出席/列席信息和版记。"""
     attendees = replacements.get("出席人员", "")
     non_voting = replacements.get("列席人员", "")
     org_name = replacements.get("发文机关", "")
@@ -712,16 +815,21 @@ def insert_programmatic_minutes_footer(doc, replacements, page_break_idx=None, r
     set_cell_text(info_table.rows[1].cells[0], "列席：", font_size=16, alignment=WD_ALIGN_PARAGRAPH.LEFT)
     set_cell_text(info_table.rows[1].cells[1], non_voting, font_size=16, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
-    issue_table = doc.add_table(rows=2, cols=3)
+    cc_text = normalize_cc_text(cc_list)
+    issue_rows = 2 if cc_text else 1
+    issue_table = doc.add_table(rows=issue_rows, cols=2)
     issue_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_width(issue_table, 15.6)
-    set_table_borders(issue_table, color='000000', size='8', edges=('top', 'insideH', 'bottom'))
-    set_cell_text(issue_table.rows[0].cells[0], "抄送：", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(issue_table.rows[0].cells[1], cc_list, font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(issue_table.rows[0].cells[2], "", font_size=14)
-    set_cell_text(issue_table.rows[1].cells[0], print_unit, font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(issue_table.rows[1].cells[1], "", font_size=14)
-    set_cell_text(issue_table.rows[1].cells[2], f"{print_date}印发" if print_date else "", font_size=14, alignment=WD_ALIGN_PARAGRAPH.RIGHT)
+    set_standard_imprint_borders(issue_table, has_middle_line=bool(cc_text))
+    issue_row_idx = 0
+    if cc_text:
+        cc_cell = issue_table.rows[0].cells[0].merge(issue_table.rows[0].cells[1])
+        set_cell_text(cc_cell, f"抄送：{cc_text}", font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        issue_row_idx = 1
+    set_cell_width(issue_table.rows[issue_row_idx].cells[0], 9.0)
+    set_cell_width(issue_table.rows[issue_row_idx].cells[1], 6.6)
+    set_cell_text(issue_table.rows[issue_row_idx].cells[0], print_unit, font_size=14, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(issue_table.rows[issue_row_idx].cells[1], f"{print_date}印发" if print_date else "", font_size=14, alignment=WD_ALIGN_PARAGRAPH.RIGHT)
 
     for table in (info_table, issue_table):
         set_table_keep_together(table)
@@ -839,18 +947,22 @@ def update_footer_table(table, replacements):
 
 
 def main():
+    profile = load_user_profile()
+    year = datetime.now().year
+    doc_prefix = profile.get('doc_prefix') or "XX"
+    default_doc_number = f"{doc_prefix}〔{year}〕XX号"
     parser = argparse.ArgumentParser(description='红头文件生成器 v4.4')
     parser.add_argument('type', help='文种')
     parser.add_argument('--input', required=True, help='普通格式文档路径')
-    parser.add_argument('--org', default='广东省政务服务和数据管理局', help='发文机关')
-    parser.add_argument('--doc-number', default='', help='发文字号')
+    parser.add_argument('--org', default=profile.get('organization') or PLACEHOLDER_ORG, help='发文机关')
+    parser.add_argument('--doc-number', default=default_doc_number, help='发文字号')
     parser.add_argument('--output', help='输出文件路径')
     parser.add_argument('--signer', default='', help='签发人')
     # 会议纪要专用参数
     parser.add_argument('--meeting-number', default='', help='纪要编号（如〔2026〕第10号）')
     parser.add_argument('--attendees', default='', help='出席人员')
     parser.add_argument('--non-voting', default='', help='列席人员')
-    parser.add_argument('--print-unit', default='', help='印发单位')
+    parser.add_argument('--print-unit', default=profile.get('print_unit') or '', help='印发单位')
     parser.add_argument('--print-date', default='', help='印发日期（如2026年3月19日）')
     parser.add_argument('--cc', default='', help='抄送单位')
 
@@ -880,7 +992,7 @@ def main():
     }
 
     output = generate_red_header_document(args.type, input_path, replacements, output_path)
-    print(f"✅ 红头文件已生成: {output}")
+    print(f"✅ 红头文件已生成: {display_path(Path(output))}")
 
 
 if __name__ == "__main__":

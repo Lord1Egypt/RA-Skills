@@ -35,14 +35,16 @@ def is_test_package_enabled() -> bool:
     return str(os.getenv(SHOW_TEST_PACKAGE_ENV, "")).strip().lower() in {"1", "true", "yes", "on", "open", "enabled"}
 
 
-def get_visible_packages(show_test_package: bool | None = None) -> list:
+from typing import Optional
+
+def get_visible_packages(show_test_package: Optional[bool] = None) -> list:
     """获取当前会话可下单的套餐列表。默认隐藏测试套餐。"""
     if show_test_package is None:
         show_test_package = is_test_package_enabled()
     return list(TEST_PACKAGES if show_test_package else FORMAL_PACKAGES)
 
 
-def get_display_packages(show_test_package: bool | None = None, include_custom: bool = True) -> list:
+def get_display_packages(show_test_package: Optional[bool] = None, include_custom: bool = True) -> list:
     """获取对用户展示的套餐列表。专属定制仅展示，不参与自动下单。"""
     packages = get_visible_packages(show_test_package)
     if include_custom:
@@ -50,6 +52,6 @@ def get_display_packages(show_test_package: bool | None = None, include_custom: 
     return packages
 
 
-def get_selectable_packages(show_test_package: bool | None = None) -> list:
+def get_selectable_packages(show_test_package: Optional[bool] = None) -> list:
     """获取可直接选择并创建订单的套餐列表。"""
     return [pkg for pkg in get_visible_packages(show_test_package) if not pkg.get("contact_only")]

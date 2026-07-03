@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Media File Server - {{ display_path }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .current-path {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .file-list {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: #2c3e50;
+            margin: 15px 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .file-item {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-icon {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .file-link {
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 16px;
+        }
+
+        .file-link:hover {
+            text-decoration: underline;
+            color: #3498db;
+        }
+
+        .directory {
+            font-weight: bold;
+            color: #27ae60 !important;
+        }
+
+        .media-file {
+            color: #8e44ad !important;
+        }
+
+        .parent-dir {
+            color: #7f8c8d !important;
+        }
+
+        .player-container {
+            margin: 20px 0;
+            background-color: #000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        video,
+        audio {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+
+            .file-list {
+                padding: 15px;
+            }
+
+            .file-link {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Media File Server</h1>
+        <div class="current-path">Current directory: {{ display_path }}</div>
+    </div>
+
+    <div class="file-list">
+        <!-- Add parent directory link if not at root -->
+        {% if display_path != '/' %}
+        <div class="file-item"><span class="file-icon">📁</span><a href="../" class="file-link parent-dir">[..] Parent
+                Directory</a></div>
+        {% endif %}
+
+        <!-- Add directories -->
+        {% if directories %}
+        <h2 class="section-title">Directories</h2>
+        {% for dir in directories %}
+        <div class="file-item"><span class="file-icon">📁</span><a href="{{ dir }}/" class="file-link directory">{{ dir }}/</a></div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- Add media files -->
+        {% if media_files %}
+        <h2 class="section-title">Media Files</h2>
+        {% for name in media_files %}
+        <div class="file-item"><span class="file-icon">🎬</span><a href="{{ name }}" class="file-link media-file">{{ name }}</a></div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+
+</html>

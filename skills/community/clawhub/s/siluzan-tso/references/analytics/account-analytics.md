@@ -327,7 +327,7 @@ siluzan-tso report bing-keywords -a <mediaCustomerId> --start 2026-03-01 --end 2
 siluzan-tso report bing-audience-merged -a <mediaCustomerId> --json-out ./snap-bing
 ```
 
-报告模板：`report-templates/bing-period-report.md`。
+报告模板：`report-templates/bing-period-report.md`（**每个 section 须写「分析」**；**余额**：overview 快照常为 0，读落盘 `balance`/`remainingAccountBudget` 或 `balance` 命令；**环比**：网关 `previousPeriod` 常空，CLI 二次拉上一周期回填）。
 
 ---
 

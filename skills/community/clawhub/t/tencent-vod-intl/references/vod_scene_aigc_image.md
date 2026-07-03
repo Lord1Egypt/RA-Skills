@@ -233,7 +233,7 @@ Based on the `CreateSceneAigcImageTask` API, supports scene-based image generati
 
 #### Basic Outfit Change (Using VOD File)
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -243,7 +243,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outfit Change Using URL Images
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "Url:https://example.com/model.jpg" \
@@ -253,7 +253,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outfit Change with Multiple Clothing Items
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -263,7 +263,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outfit Change with Specified Output Resolution
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -275,7 +275,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outfit Change with Specified Encoding Format
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -287,7 +287,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outfit Change and Wait for Completion
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -298,7 +298,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Store Generated Image Permanently
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -314,7 +314,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Basic Product Image Generation (Single Product Image)
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -323,7 +323,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Multi-Angle Product Image Generation
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" "File:3704211509820" "File:3704211509821" \
@@ -332,7 +332,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Product Image with Detailed Description
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -343,7 +343,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Batch Generate Multiple Product Images
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -354,7 +354,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Specify Negative Prompt
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -365,7 +365,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Specify Category and Expiration Time
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -381,7 +381,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Basic Outpainting (Aspect Ratio Only)
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -390,7 +390,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outpainting with Specific Dimensions
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -401,7 +401,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Outpainting to Portrait Aspect Ratio
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -416,20 +416,20 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### Basic Query
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-Scene Aigc Image Task-abc123"
 ```
 
 #### Query with Sub-Application ID
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-Scene Aigc Image Task-abc123" \
     --sub-app-id 251007502
 ```
 
 #### JSON Format Output
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-Scene Aigc Image Task-abc123" \
     --json
 ```

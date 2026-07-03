@@ -1,7 +1,7 @@
 ---
 name: "infant-blanket-kick-monitoring-analysis"
 description: "Identifies babies kicking off blankets or exposing their bodies during sleep and alerts parents to cover them up to prevent catching a cold. | 婴儿蹬被监测技能，识别婴儿夜间睡觉踢开被子、身体裸露，及时提醒家长给宝宝盖被保暖，预防着凉感冒"
-version: "1.0.4"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

@@ -78,51 +78,51 @@
 
 ```bash
 # 最简用法：描述图片内容
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "描述这张图片的内容"
 
 # OCR 文字提取
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/document.jpg" \
     --prompt "提取图片中所有文字"
 
 # 图片问答
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --local-file /tmp/product.jpg \
     --prompt "这个商品的品牌和价格是什么？"
 
 # 使用 definition 指定模型
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "描述图片内容" \
     --definition 10004
 
 # 指定模型名称
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "描述图片内容" \
     --model-name "Google/gemini-2.5-flash"
 
 # 调整采样参数
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/creative.jpg" \
     --prompt "用诗意的语言描述这张图" \
     --temperature 0.8 --top-p 0.9
 
 # COS 路径输入
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --cos-input-key "/input/receipt.jpg" \
     --prompt "提取这张发票上的金额和日期"
 
 # 只提交任务，不等待结果
-python scripts/mps_image_comprehend.py \
+python3 scripts/mps_image_comprehend.py \
     --url "https://example.com/photo.jpg" \
     --prompt "描述图片内容" \
     --no-wait
 
 # 手动查询理解任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

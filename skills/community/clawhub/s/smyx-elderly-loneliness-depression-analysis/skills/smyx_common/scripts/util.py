@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import json
 import os
+import secrets
 import traceback
+from json import JSONDecodeError
 
 import requests
 from .config import ApiEnum, ConstantEnum, sys, YamlUtil
@@ -10,7 +12,28 @@ from .base import BaseUtil
 import time
 import logging
 from typing import Any, Callable, Optional, TypeVar, Dict
-import pydash as _
+
+try:
+    import pydash as _
+except ImportError:
+    class _PydashFallback:
+        @staticmethod
+        def get(obj, path, default=None):
+            try:
+                cur = obj
+                for part in str(path).split('.'):
+                    if isinstance(cur, (list, tuple)) and part.isdigit():
+                        cur = cur[int(part)]
+                    elif isinstance(cur, dict):
+                        cur = cur.get(part, default)
+                    else:
+                        cur = getattr(cur, part)
+                return cur
+            except Exception:
+                return default
+
+
+    _ = _PydashFallback()
 
 if ConstantEnum.is_debug():
     import http.client
@@ -228,6 +251,222 @@ class CommonUtil(BaseUtil):
             return True
 
 
+class AgentContextUtil(BaseUtil):
+    """Agent 上下文检测与工作区定位工具。
+
+    自动检测当前运行在哪一个 Agent 的工作区，实现：
+    1. 自动识别当前 Agent 的身份（main agent 还是子 agent）
+    2. 定位正确的工作区根目录和 data 目录
+    3. 技能安装默认使用当前 Agent 自己的工作区，不污染 main agent
+    """
+
+    @staticmethod
+    def detect_current_agent_workspace():
+        """检测当前 Agent 的工作区根目录。
+
+        检测逻辑：
+        1. 检查环境变量 OPENCLAW_WORKSPACE
+        2. 检查 __file__ 路径中是否包含 .arkclaw-team/packs/ 模式
+        3. 向上查找包含 skills/ 目录的最近工作区
+        4. 兜底使用当前脚本所在的工作区
+
+        Returns:
+            dict: {"workspace_root": str, "agent_id": str|None, "is_main_agent": bool}
+        """
+        import os
+
+        # 1. 环境变量优先
+        env_workspace = os.environ.get("OPENCLAW_WORKSPACE")
+        if env_workspace:
+            is_main = ".arkclaw-team" not in env_workspace
+            return {
+                "workspace_root": env_workspace,
+                "agent_id": None,
+                "is_main_agent": is_main
+            }
+
+        # 2. 通过当前脚本路径检测
+        current_file = os.path.abspath(__file__)
+
+        # 检测是否在子 Agent 工作区：.arkclaw-team/packs/{pack}/agents/{agent}/workspace/
+        arkclaw_pattern = os.sep + ".arkclaw-team" + os.sep + "packs" + os.sep
+        if arkclaw_pattern in current_file:
+            # 提取子 Agent 工作区路径
+            parts = current_file.split(arkclaw_pattern)
+            if len(parts) >= 2:
+                pack_and_rest = parts[1]
+                # 找到 agents/ 后面的 agent_id
+                agent_parts = pack_and_rest.split(os.sep + "agents" + os.sep)
+                if len(agent_parts) >= 2:
+                    # 提取 agent_id 和 workspace 路径
+                    rest_parts = agent_parts[1].split(os.sep)
+                    if len(rest_parts) >= 1:
+                        agent_id = rest_parts[0]
+                        # 构建子 Agent 的 workspace 根目录
+                        workspace_idx = current_file.find(os.sep + "workspace" + os.sep + "skills")
+                        if workspace_idx > 0:
+                            agent_workspace = current_file[:workspace_idx + len(os.sep + "workspace")]
+                            return {
+                                "workspace_root": agent_workspace,
+                                "agent_id": agent_id,
+                                "is_main_agent": False
+                            }
+
+        # 3. 🔴 核心算法：第一个 /skills/ 之前就是工作区根目录
+        #    无论工作区叫什么名字（workspace 或其他），只要有 skills/ 目录
+        #    第一个 /skills/ 之前的路径就是工作区根目录！
+        skills_marker = os.sep + "skills" + os.sep  # "/skills/"
+        if skills_marker in current_file:
+            # ✅ 找到第一个 "/skills/" 的位置，截取之前的路径就是工作区根目录
+            first_skills_idx = current_file.find(skills_marker)
+            workspace_root = current_file[:first_skills_idx]
+            # 确保路径不以 / 结尾（规范化）
+            if workspace_root.endswith(os.sep):
+                workspace_root = workspace_root[:-1]
+            return {
+                "workspace_root": workspace_root,
+                "agent_id": "main",
+                "is_main_agent": True
+            }
+
+        # 4. 最后兜底：向上回溯找到包含 skills/ 的目录
+        check_path = os.path.dirname(current_file)
+        while check_path and check_path != os.sep:
+            if os.path.isdir(os.path.join(check_path, "skills")):
+                return {
+                    "workspace_root": check_path,
+                    "agent_id": "main",
+                    "is_main_agent": ".arkclaw-team" not in check_path
+                }
+            check_path = os.path.dirname(check_path)
+
+        # 极端情况兜底
+        return {
+            "workspace_root": os.path.dirname(os.path.dirname(os.path.dirname(current_file))),
+            "agent_id": None,
+            "is_main_agent": True
+        }
+
+    @staticmethod
+    def get_agent_data_dir():
+        """获取当前 Agent 的 data 目录路径。
+
+        Returns:
+            str: 当前 Agent 的 data 目录绝对路径
+        """
+        context = AgentContextUtil.detect_current_agent_workspace()
+        data_dir = os.path.join(context["workspace_root"], "data")
+        os.makedirs(data_dir, exist_ok=True)
+        return data_dir
+
+    @staticmethod
+    def get_agent_skills_dir():
+        """获取当前 Agent 的 skills 目录路径。
+
+        技能安装默认到此目录，保证每个 Agent 独立的技能环境。
+
+        Returns:
+            str: 当前 Agent 的 skills 目录绝对路径
+        """
+        context = AgentContextUtil.detect_current_agent_workspace()
+        skills_dir = os.path.join(context["workspace_root"], "skills")
+        os.makedirs(skills_dir, exist_ok=True)
+        return skills_dir
+
+
+class OpenIdUtil(BaseUtil):
+    """open-id 初始化与缺省用户分配工具。
+
+    规则：
+    1. 上游显式传入 open-id 时，直接沿用上游值；
+    2. 未传入 open-id 时，优先读取工作区 data/smyx-api-key.txt；
+    3. 该文件没有可用值时，复用本地 smyx-common-claw.db 中第一个
+       username 以 User_ 开头且总长度为 11 的 sys_user 记录；
+    4. 本地不存在时，生成 User_{6位小写随机哈希码} 并写入本地库，
+       后续未显式传入 open-id 时持续复用该缺省用户。
+    """
+
+    DEFAULT_PREFIX = "User_"
+    RANDOM_HEX_LENGTH = 6
+    DEFAULT_USERNAME_LENGTH = len(DEFAULT_PREFIX) + RANDOM_HEX_LENGTH
+
+    @classmethod
+    def is_default_open_id(cls, value):
+        return isinstance(value, str) and value.startswith(cls.DEFAULT_PREFIX) and len(
+            value) == cls.DEFAULT_USERNAME_LENGTH
+
+    @classmethod
+    def generate_default_open_id(cls):
+        return f"{cls.DEFAULT_PREFIX}{secrets.token_hex(3).lower()}"
+
+    @classmethod
+    def get_workspace_data_dir(cls):
+        workspace = os.environ.get('OPENCLAW_WORKSPACE')
+        if not workspace:
+            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        return os.path.join(workspace, "data")
+
+    @classmethod
+    def get_api_key_file_open_id(cls):
+        """读取工作区 data/smyx-api-key.txt 中的内部身份值。"""
+        api_key_path = os.path.join(cls.get_workspace_data_dir(), "smyx-api-key.txt")
+        try:
+            if not os.path.exists(api_key_path):
+                return None
+            with open(api_key_path, "r", encoding="utf-8") as f:
+                value = f.read().strip()
+            return value or None
+        except Exception as e:
+            CommonUtil.trace_exception_stack(e)
+        return None
+
+    @classmethod
+    def get_or_create_default_open_id(cls):
+        from .dao import UserDao, User
+        import uuid
+
+        user_dao = UserDao()
+        user = user_dao.get_first_default_user(cls.DEFAULT_PREFIX, cls.DEFAULT_USERNAME_LENGTH)
+        if user and user.username:
+            return user.username
+
+        # 极低概率碰撞时重试，避免 username 唯一索引冲突。
+        for _ in range(10):
+            username = cls.generate_default_open_id()
+            if user_dao.get_by_username(username):
+                continue
+            now = datetime.now()
+            user = User(
+                id=uuid.uuid4().hex,
+                username=username,
+                realname=username,
+                source=ConstantEnum.APP__SOURCE,
+                del_flag=0,
+                create_time=now,
+                update_time=now
+            )
+            user_dao.add(user)
+            return username
+
+        raise RuntimeError("生成默认 open-id 失败：随机用户名连续冲突")
+
+    @classmethod
+    def resolve_current_open_id(cls, open_id=None, use_current=True):
+        """解析并初始化当前 open-id，返回最终使用值。"""
+        resolved_open_id = (open_id or "").strip() if isinstance(open_id, str) else open_id
+        if not resolved_open_id and use_current:
+            resolved_open_id = ConstantEnum.CURRENT__OPEN_ID or ConstantEnum.CURRENT__USER_NAME
+        if not resolved_open_id:
+            resolved_open_id = cls.get_api_key_file_open_id()
+        if not resolved_open_id:
+            resolved_open_id = cls.get_or_create_default_open_id()
+
+        ConstantEnum.CURRENT__OPEN_ID = resolved_open_id
+        if not ConstantEnum.CURRENT__USER_NAME:
+            ConstantEnum.CURRENT__USER_NAME = resolved_open_id
+        return resolved_open_id
+
+
 from datetime import date, datetime
 
 
@@ -237,6 +476,10 @@ class DatetimeUtil(BaseUtil):
     @staticmethod
     def now_str():
         return DatetimeUtil.format(DatetimeUtil.now())
+
+    @staticmethod
+    def datetime_str():
+        return DatetimeUtil.format(DatetimeUtil.now(), '%Y%m%d%H%M%S')
 
     @staticmethod
     def today_str():
@@ -251,8 +494,8 @@ class DatetimeUtil(BaseUtil):
         return DatetimeUtil.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
     @staticmethod
-    def format(date):
-        return date.strftime('%Y-%m-%d %H:%M:%S') if type(date) == datetime else date
+    def format(date, pattern='%Y-%m-%d %H:%M:%S'):
+        return date.strftime(pattern) if type(date) == datetime else date
 
     @staticmethod
     def format_date(date):
@@ -291,6 +534,13 @@ class RequestUtil(BaseUtil):
         return cls.http_request("get", url, params=params, headers=headers, *args, **argss)
 
     @classmethod
+    def get_user_by_username(cls, username):
+        from .dao import UserDao, User
+        user_dao = UserDao()
+        user = user_dao.get_by_username(username)
+        return user
+
+    @classmethod
     def http_request(cls, method, url, data=None, params=None, headers=None, options=None, *args,
                      timeout=ApiEnum.DEFAULT__REQUEST_TIMEOUT, **argss):
         def _get_or_create_user(username):
@@ -319,6 +569,8 @@ class RequestUtil(BaseUtil):
                 url = cls.BASE_URL + url
             headers['App-Id'] = ConstantEnum.APP__ID
             # ConstantEnum.CURRENT__USER_NAME = ConstantEnum.CURRENT__OPEN_ID = "ou_86fdd8e0d5f116c18a9dd550abefe6d2"
+            if not (ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID):
+                OpenIdUtil.resolve_current_open_id(use_current=False)
             current__user_name = ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID
             found_user = None
             if (not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN) and current__user_name:
@@ -329,6 +581,7 @@ class RequestUtil(BaseUtil):
                     if found_user:
                         ApiEnum.TOKEN = found_user.token
                         ApiEnum.OPEN_TOKEN = found_user.open_token
+                        current__user_name = found_user.username
                     if not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN:
                         new_current_user = _get_or_create_user(current__user_name)
                         if new_current_user:
@@ -365,7 +618,7 @@ class RequestUtil(BaseUtil):
             if current__user_name:
                 data.setdefault('pnaUserName', current__user_name)
 
-            if bool(options.get("dataAsParams")):
+            if bool(options.get("dataAsParams")) or bool(options.get("data_as_params")):
                 params.update(data)
 
             # 安全打印：不打印完整 headers（避免巨大的 token 导致输出缓冲区溢出）
@@ -391,8 +644,6 @@ class RequestUtil(BaseUtil):
             response_text0 = response.text
             response_text = response_text0 if ConstantEnum.is_debug() else response
             status_code = response.status_code
-            if current__user_name == "13800000000":
-                status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:
@@ -410,8 +661,8 @@ class RequestUtil(BaseUtil):
                                                   "timeout",
                                                   timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
-👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
-👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
+👉 1. 先输入命令 "安装生命涌现支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
+👉 2. 再输入命令 "技能账户充值续费", 然后跟随系统提示操作后即可继续使用技能.
 {response_text0 or ""}
 '''
             elif status_code != 200:
@@ -433,6 +684,19 @@ class RequestUtil(BaseUtil):
                                               "timeout",
                                               timeout)  ## ARK_CLAW ##
             return response_json_data
+        except JSONDecodeError as e:
+            ConstantEnum.is_debug() and print(
+                f"⚠️ 请求拦截, 序列化失败: {e}, e.response.text: {response_text}, url:{url}",
+                "method",
+                method,
+                "params",
+                params,
+                "data", data, "headers",
+                "response", hasattr(e, 'response') and e.response,
+                # "headers", headers,
+                "timeout",
+                timeout)  ## ARK_CLAW ##
+            return response_text
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
             response_text = _.get(e.args, '0.text')

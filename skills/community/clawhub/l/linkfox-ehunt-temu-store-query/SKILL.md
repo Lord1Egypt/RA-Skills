@@ -1,7 +1,5 @@
 ---
 name: linkfox-ehunt-temu-store-query
-version: 1.0.0
-category: product-sourcing
 description: 通过 EHunt Temu 店铺查询（网关路由 `ehunt/temu/storeQuery`）按多维度筛选 Temu 店铺（店名/ID、国家站点、后台类目、全托管/半托管、总/周/月销量与销售额、评分、评论、粉丝、商品数、开店时间等）。当用户提到 EHunt Temu 店铺、Temu 店铺分析、Temu seller、Temu 店铺排行、Temu 半托管店铺、Temu 销售额、temu stores、Temu store query 时触发。即使用户未写 EHunt，只要在 Temu 上找店铺、筛店铺数据或分析店铺表现，也应触发此技能。
 ---
 
@@ -27,27 +25,3 @@ description: 通过 EHunt Temu 店铺查询（网关路由 `ehunt/temu/storeQuer
 
 入参/出参表见 [references/api.md](references/api.md)。
 
-<!-- LF_LARGE_RESPONSE_BLOCK -->
-## Handling Large Responses
-
-To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
-
-```
-python scripts/response_io.py run --script scripts/ehunt_temu_store_query.py --out-dir <DIR> '<params>'
-python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
-```
-
-> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data — do not commit them. Files are not auto-deleted; clean up when the task is done.
-
-`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
-
-**When to prefer this pattern** — apply your judgment based on the response characteristics, e.g.:
-- High field count per record, or fields you don't need
-- Batch/paginated results (multiple items per call)
-- Long-text fields (descriptions, reviews, HTML, time series)
-- Output reused across later steps rather than consumed immediately
-
-For small, single-use responses, calling the main script directly is fine.
-
-⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
-<!-- /LF_LARGE_RESPONSE_BLOCK -->

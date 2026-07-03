@@ -1,0 +1,18 @@
+{
+  "name": "google-flow-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "check-chrome.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright-core": "^1.61.0"
+  }
+}

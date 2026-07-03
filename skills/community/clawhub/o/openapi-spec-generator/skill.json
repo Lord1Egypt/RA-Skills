@@ -1,0 +1,36 @@
+{
+  "name": "OpenAPI Spec Generator",
+  "slug": "openapi-spec-generator",
+  "description": "Auto-generate OpenAPI 3.x specs from code, traffic logs, or packet captures — with interactive refinement.",
+  "tags": ["openapi", "swagger", "api", "documentation", "code-generation", "har", "developer-tools"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/openapi-gen.sh",
+    "description": "CLI script implementing all workflow steps (scan/infer/generate/validate/mock)"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "source_detection": "references/source-detection.yaml"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Select Input Source", "input": "openapi-gen.sh scan <source>", "output": "Detected framework and endpoint list" },
+    { "step": 2, "name": "Endpoint Discovery", "input": "openapi-gen.sh scan <source>", "output": "Endpoint list with method + path templates" },
+    { "step": 3, "name": "Schema Inference", "input": "openapi-gen.sh infer <source>", "output": "Per-endpoint request/response schemas with confidence" },
+    { "step": 4, "name": "Parameter Classification", "input": "openapi-gen.sh infer <source>", "output": "Parameter list with type, location, required flag" },
+    { "step": 5, "name": "Authentication Detection", "input": "openapi-gen.sh scan <source>", "output": "Security scheme definition" },
+    { "step": 6, "name": "OpenAPI Spec Generation", "input": "openapi-gen.sh generate <source>", "output": "Draft OpenAPI 3.x YAML/JSON spec" },
+    { "step": 7, "name": "Interactive Refinement", "input": "openapi-gen.sh generate <source> [options]", "output": "Refined and validated spec" },
+    { "step": 8, "name": "Validation & Export", "input": "openapi-gen.sh validate <spec>", "output": "Validated spec file" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Run: openapi-gen.sh scan ~/projects/user-service/ — discovers endpoints and detects framework",
+      "Run: openapi-gen.sh infer ~/projects/user-service/ — reviews inferred schemas",
+      "Run: openapi-gen.sh generate ~/projects/user-service/ --output openapi.yaml — generates validated spec"
+    ]
+  }
+}

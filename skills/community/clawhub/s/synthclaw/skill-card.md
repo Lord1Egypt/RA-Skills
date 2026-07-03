@@ -1,5 +1,5 @@
 ## Description: <br>
-Render Blender files with agent-controlled procedural parameters for synthetic data generation, including Naturalness, LPIPS, and dataset diversity metrics that help agents iteratively tune parameter ranges for more useful synthetic data. <br>
+Render Blender files with agent-controlled procedural parameters for synthetic data generation, including render quality metrics and dataset-wide diversity analysis. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,34 @@ MIT <br>
 
 
 ## Use Case: <br>
-Developers and ML or data engineers use SynthClaw to analyze Blender scenes, adjust named procedural Value Nodes, render CYCLES or EEVEE images and datasets, and use returned quality metrics to iterate on synthetic training data. <br>
+Developers and ML/data engineers use SynthClaw to analyze Blender scenes, adjust procedural value nodes, and generate synthetic image datasets with accompanying render metrics. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill runs local Blender jobs on user-selected .blend files. <br>
-Mitigation: Review third-party .blend files before use and run Blender in a sandboxed or otherwise constrained process when files are untrusted. <br>
-Risk: The skill can write generated renders and remove cleanup targets inside caller-selected output folders. <br>
-Mitigation: Use a dedicated empty output directory for each run and avoid broad paths such as a home directory, project root, or shared workspace. <br>
-Risk: Rendering and metric computation may read local scene and image files while sensitive environment variables are present. <br>
-Mitigation: Run with only the environment variables needed for Blender execution and avoid processing sensitive reference images unless required. <br>
+Risk: SynthClaw opens user-supplied .blend files in Blender while inheriting the caller environment, which can expose local secrets if a file is untrusted. <br>
+Mitigation: Run it only on trusted .blend files or inside a sandbox/container with a scrubbed environment, limited filesystem access, and limited network access. <br>
+Risk: Running Blender workflows in a session with cloud tokens, API keys, or other secrets in environment variables can expose those secrets to untrusted scene execution. <br>
+Mitigation: Use a dedicated low-privilege execution environment and remove cloud tokens, API keys, and other sensitive environment variables before running the skill. <br>
+Risk: The test blend creation script is not intended to run against an existing Blender project. <br>
+Mitigation: Run test blend creation only in a disposable project directory or isolated test workspace. <br>
 
 
 ## Reference(s): <br>
-- [SynthClaw ClawHub listing](https://clawhub.ai/ayakimovich/skills/synthclaw) <br>
-- [Skill definition](SKILL.md) <br>
-- [README](README.md) <br>
+- [SynthClaw Skill Page](https://clawhub.ai/ayakimovich/skills/synthclaw) <br>
+- [README.md](README.md) <br>
+- [SKILL.md](SKILL.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Files, JSON, Analysis, Guidance] <br>
-**Output Format:** [JSON status objects with local render or dataset file paths, logs, scene analysis, and optional Naturalness, LPIPS, or diversity metrics.] <br>
+**Output Format:** [Rendered image files plus JSON status, metrics, and scene-analysis responses] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Blender 4.0+ in PATH; CYCLES is used for production rendering and EEVEE for faster tests.] <br>
+**Other Properties Related to Output:** [May write generated images, compositor outputs, and dataset artifacts under caller-specified output paths.] <br>
 
 ## Skill Version(s): <br>
-0.2.3 (source: SKILL.md frontmatter, pyproject.toml, server release metadata) <br>
+0.2.5 (source: frontmatter and pyproject.toml) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

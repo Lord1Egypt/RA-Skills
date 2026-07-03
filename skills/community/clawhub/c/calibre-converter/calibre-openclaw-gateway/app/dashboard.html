@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calibre OpenClaw - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border-radius: 30px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: #4CAF50;
+        }
+
+        .status-dot.disconnected {
+            background: #f44336;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .stat-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .stat-change {
+            font-size: 0.9em;
+            margin-top: 10px;
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .stat-change.positive {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .stat-change.negative {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .queue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .queue-status {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .queue-status.pending {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .queue-status.processing {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .queue-status.completed {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .queue-status.failed {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .activity-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 10px;
+            border-left: 3px solid #667eea;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .activity-time {
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .book-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .book-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .book-item:hover {
+            background: #e9ecef;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .book-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .book-author {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .book-status {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .book-status.has-embeddings {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .book-status.no-embeddings {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .problem-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #ffebee;
+            color: #f44336;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .problem-tag.file-not-found {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .problem-tag.no-embeddings {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .problem-tag.no-file-path {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .calibre-id {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .added-date {
+            color: #999;
+        }
+
+        .download-status {
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .download-status.available {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .download-status.manual {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .book-item {
+            position: relative;
+        }
+
+        .book-tooltip {
+            position: fixed;
+            background: rgba(50, 50, 50, 0.98);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            z-index: 10000;
+            display: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            min-width: 200px;
+            max-width: 320px;
+            backdrop-filter: blur(10px);
+        }
+
+        .book-tooltip.visible {
+            display: block;
+        }
+
+        .book-tooltip-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .book-tooltip-label {
+            color: #aaa;
+            margin-right: 10px;
+        }
+
+        .book-tooltip-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .rag-status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .rag-status-badge.processed {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .rag-status-badge.in-queue {
+            background: #ff9800;
+            color: white;
+        }
+
+        .rag-status-badge.failed {
+            background: #f44336;
+            color: white;
+        }
+
+        .rag-status-badge.pending {
+            background: #9e9e9e;
+            color: white;
+        }
+
+        .openlibrary-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .openlibrary-badge.enriched {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #90caf9;
+        }
+
+        .openlibrary-badge.download-available {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .metadata-source {
+            font-size: 0.75em;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .metadata-source .source {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        .metadata-source .source.calibre {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .metadata-source .source.openlibrary {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: #e0e0e0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .api-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .api-link:hover {
+            transform: scale(1.05);
+        }
+
+        .links-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .links-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .search-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .search-field.grow {
+            flex: 1 1 320px;
+        }
+
+        .search-field label {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .search-field input {
+            padding: 12px 14px;
+            border: 1px solid #d6d6e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            color: #333;
+            background: #fff;
+        }
+
+        .search-field input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .search-button:hover {
+            transform: scale(1.03);
+        }
+
+        .search-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .search-status {
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .search-status.error {
+            color: #c0392b;
+        }
+
+        .search-results {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .result-item {
+            border: 1px solid #ececf3;
+            border-left: 4px solid #667eea;
+            border-radius: 10px;
+            padding: 16px 18px;
+            background: #fafaff;
+        }
+
+        .result-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .result-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .result-similarity {
+            font-weight: 700;
+            color: #4CAF50;
+            white-space: nowrap;
+        }
+
+        .result-citation {
+            margin-top: 4px;
+            font-size: 0.85em;
+            color: #764ba2;
+        }
+
+        .result-content {
+            margin-top: 10px;
+            font-size: 0.92em;
+            color: #444;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .result-checkbox {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            align-items: center;
+        }
+
+        .process-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .process-button:hover {
+            transform: scale(1.03);
+        }
+
+        .process-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .process-button.processing {
+            background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+        }
+
+        .priority-queue-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .priority-queue-title {
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .priority-queue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .priority-queue-item.processing {
+            border-left: 4px solid #2196f3;
+        }
+
+        .priority-queue-item.completed {
+            border-left: 4px solid #4CAF50;
+            opacity: 0.7;
+        }
+
+        .priority-queue-item.failed {
+            border-left: 4px solid #f44336;
+        }
+
+        .priority-queue-info {
+            flex: 1;
+        }
+
+        .priority-queue-book-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .priority-queue-status {
+            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .priority-queue-status.pending {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .priority-queue-status.processing {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .priority-queue-status.completed {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .priority-queue-status.failed {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .download-queue-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .download-queue-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .queue-control-btn {
+            padding: 8px 16px;
+            background: #9c27b0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+
+        .queue-control-btn:hover {
+            background: #7b1fa2;
+        }
+
+        .download-queue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .download-queue-item.pending {
+            border-left: 4px solid #ff9800;
+        }
+
+        .download-queue-item.processing {
+            border-left: 4px solid #2196f3;
+        }
+
+        .download-queue-item.completed {
+            border-left: 4px solid #4CAF50;
+            opacity: 0.7;
+        }
+
+        .download-queue-item.failed {
+            border-left: 4px solid #f44336;
+        }
+
+        .download-queue-info {
+            flex: 1;
+        }
+
+        .download-queue-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+            margin-bottom: 4px;
+        }
+
+        .download-queue-meta {
+            font-size: 0.8em;
+            color: #666;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .download-queue-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: background 0.2s;
+        }
+
+        .download-action-btn.manual {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .download-action-btn.manual:hover {
+            background: #bbdefb;
+        }
+
+        .download-action-btn.move-up {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .download-action-btn.move-up:hover {
+            background: #ffe0b2;
+        }
+
+        .download-action-btn.move-down {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .download-action-btn.move-down:hover {
+            background: #ffe0b2;
+        }
+
+        .download-action-btn.delete {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .download-action-btn.delete:hover {
+            background: #ffcdd2;
+        }
+
+        .download-queue-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .download-queue-link {
+            font-size: 0.75em;
+            color: #2196f3;
+            text-decoration: none;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #e3f2fd;
+        }
+
+        .download-queue-link:hover {
+            background: #bbdefb;
+            text-decoration: underline;
+        }
+
+        .download-status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .download-status-badge.available {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .download-status-badge.manual {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stat-value {
+                font-size: 2em;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Calibre OpenClaw Dashboard</h1>
+            <p>Real-time monitoring of the database and semantic search system</p>
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card full-width">
+                <div class="card-title">Catalog Search</div>
+                <form class="search-form" id="catalogSearchForm">
+                    <div class="search-field grow">
+                        <label for="catalogQuery">Query</label>
+                        <input type="text" id="catalogQuery" placeholder="Search title, author, tags, publisher, or topic..." autocomplete="off" required>
+                    </div>
+                    <div class="search-field">
+                        <label for="catalogLimit">Results (1-100)</label>
+                        <input type="number" id="catalogLimit" value="20" min="1" max="100" step="1">
+                    </div>
+                    <button type="submit" class="search-button" id="catalogSearchButton">Search Catalog</button>
+                </form>
+                <div class="search-status" id="catalogSearchStatus"></div>
+                <div class="search-results" id="catalogSearchResults"></div>
+                <div class="result-actions" id="catalogResultActions" style="display: none;">
+                    <button type="button" class="process-button" id="processCatalogButton">Process Selected Books (RAG)</button>
+                    <span id="catalogSelectedCount" style="color: #666; font-size: 0.9em;">0 selected</span>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">RAG Semantic Search</div>
+                <form class="search-form" id="ragSearchForm">
+                    <div class="search-field grow">
+                        <label for="ragQuery">Query</label>
+                        <input type="text" id="ragQuery" placeholder="Type a question or topic to test the RAG index..." autocomplete="off" required>
+                    </div>
+                    <div class="search-field">
+                        <label for="ragLimit">Results (1-50)</label>
+                        <input type="number" id="ragLimit" value="10" min="1" max="50" step="1">
+                    </div>
+                    <div class="search-field">
+                        <label for="ragThreshold">Threshold (0-1)</label>
+                        <input type="number" id="ragThreshold" value="0.3" min="0" max="1" step="0.05">
+                    </div>
+                    <button type="submit" class="search-button" id="ragSearchButton">Search RAG</button>
+                </form>
+                <div class="search-status" id="ragSearchStatus"></div>
+                <div class="search-results" id="ragSearchResults"></div>
+                <div class="result-actions" id="ragResultActions" style="display: none;">
+                    <button type="button" class="process-button" id="processRagButton">Process Selected Books (RAG)</button>
+                    <span id="ragSelectedCount" style="color: #666; font-size: 0.9em;">0 selected</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Total Books</div>
+                <div class="stat-value" id="totalBooks">0</div>
+                <div class="stat-label">Books in the database</div>
+                <div class="stat-change positive" id="booksWithEmbeddings">0 with embeddings</div>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value" id="booksWithoutEmbeddings">0</div>
+                        <div class="metric-label">Without Embeddings</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="embeddingCoverage">0%</div>
+                        <div class="metric-label">Coverage</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Total Chunks</div>
+                <div class="stat-value" id="totalChunks">0</div>
+                <div class="stat-label">Processed text segments</div>
+                <div class="stat-change positive" id="chunksWithEmbeddings">0 with embeddings</div>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value" id="chunksWithoutEmbeddings">0</div>
+                        <div class="metric-label">Without Embeddings</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="avgChunksPerBook">0</div>
+                        <div class="metric-label">Average per Indexed Book</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Stored Embeddings</div>
+                <div class="stat-value" id="totalEmbeddings">0</div>
+                <div class="stat-label">Embedding vectors</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="embeddingProgress" style="width: 0%"></div>
+                </div>
+                <div class="stat-label" style="margin-top: 10px" id="embeddingRate">0% coverage</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Processing Queue</div>
+                <div class="queue-item">
+                    <span>Pending</span>
+                    <span class="queue-status pending" id="pendingQueue">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Processing</span>
+                    <span class="queue-status processing" id="processingQueue">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Completed</span>
+                    <span class="queue-status completed" id="completedQueue">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Failed</span>
+                    <span class="queue-status failed" id="failedQueue">0</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Download Queue</div>
+                <div class="queue-item">
+                    <span>Pending</span>
+                    <span class="queue-status pending" id="downloadPending">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Processing</span>
+                    <span class="queue-status processing" id="downloadProcessing">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Completed</span>
+                    <span class="queue-status completed" id="downloadCompleted">0</span>
+                </div>
+                <div class="queue-item">
+                    <span>Failed</span>
+                    <span class="queue-status failed" id="downloadFailed">0</span>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Download Queue Management</div>
+                <div class="download-queue-section">
+                    <div class="download-queue-controls">
+                        <button onclick="loadDownloadQueue('pending')" class="queue-control-btn">Show Pending</button>
+                        <button onclick="loadDownloadQueue('processing')" class="queue-control-btn">Show Processing</button>
+                        <button onclick="loadDownloadQueue('failed')" class="queue-control-btn">Show Failed</button>
+                        <button onclick="loadDownloadQueue('completed')" class="queue-control-btn">Show Completed</button>
+                    </div>
+                    <div id="downloadQueueList">
+                        <div style="color: #666; font-size: 0.9em;">Click a button above to load download queue items</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Priority Processing Queue</div>
+                <div class="priority-queue-section">
+                    <div class="priority-queue-title">
+                        <span>🚀 Immediate Processing</span>
+                    </div>
+                    <div id="priorityQueueList">
+                        <div style="color: #666; font-size: 0.9em;">No books in priority queue</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Embedding Distribution</div>
+                <div class="chart-container">
+                    <canvas id="embeddingChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">System Status</div>
+                <div class="chart-container">
+                    <canvas id="systemChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Storage</div>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value" id="librarySize">0 GB</div>
+                        <div class="metric-label">Calibre Library</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="databaseSize">0 MB</div>
+                        <div class="metric-label">Database</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="totalSize">0 GB</div>
+                        <div class="metric-label">Total</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Recent Books</div>
+                <div class="book-list" id="recentBooks">
+                    <div class="book-item">
+                        <div class="book-info">
+                            <div class="book-title">Loading...</div>
+                            <div class="book-author">Please wait</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Books with Problems</div>
+                <div class="book-list" id="problemBooks">
+                    <div class="book-item">
+                        <div class="book-info">
+                            <div class="book-title">Loading...</div>
+                            <div class="book-author">Please wait</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Downloaded Books Added to Calibre</div>
+                <div class="book-list" id="calibreAddedBooks">
+                    <div class="book-item">
+                        <div class="book-info">
+                            <div class="book-title">Loading...</div>
+                            <div class="book-author">Please wait</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="card-title">Quick Links</div>
+                <div class="links-section">
+                    <h3>API Documentation</h3>
+                    <a href="/docs" class="api-link">📖 Swagger UI</a>
+                    <a href="/redoc" class="api-link">📚 ReDoc</a>
+                    <a href="/openapi.json" class="api-link">🔧 OpenAPI JSON</a>
+                    <h3>Endpoints</h3>
+                    <a href="/api/books" class="api-link">📕 List Books</a>
+                    <a href="/api/books/sync" class="api-link">🔄 Sync</a>
+                    <a href="/api/books/problems" class="api-link">⚠️ Books with Problems</a>
+                    <a href="/api/stats/overview" class="api-link">📊 Statistics</a>
+                    <a href="/health" class="api-link">❤️ Health Check</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            Last updated: <span id="lastUpdated">--</span>
+        </div>
+    </div>
+
+    <script>
+        let ws;
+        let embeddingChart;
+        let systemChart;
+        let selectedCatalogBooks = new Set();
+        let selectedRagBooks = new Set();
+        let activeTooltip = null;
+        let tooltipElement = null;
+
+        function createTooltip() {
+            if (!tooltipElement) {
+                tooltipElement = document.createElement('div');
+                tooltipElement.className = 'book-tooltip';
+                document.body.appendChild(tooltipElement);
+            }
+            return tooltipElement;
+        }
+
+        function showTooltip(content, x, y) {
+            const tooltip = createTooltip();
+            tooltip.innerHTML = content;
+            tooltip.classList.add('visible');
+            
+            // Position tooltip near cursor but ensure it stays in viewport
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            let posX = x + 15;
+            let posY = y + 15;
+            
+            // Adjust if tooltip would overflow right edge
+            if (posX + tooltipRect.width > viewportWidth - 20) {
+                posX = x - tooltipRect.width - 15;
+            }
+            
+            // Adjust if tooltip would overflow bottom edge
+            if (posY + tooltipRect.height > viewportHeight - 20) {
+                posY = y - tooltipRect.height - 15;
+            }
+            
+            tooltip.style.left = `${posX}px`;
+            tooltip.style.top = `${posY}px`;
+        }
+
+        function hideTooltip() {
+            if (tooltipElement) {
+                tooltipElement.classList.remove('visible');
+            }
+        }
+
+        function createDoughnutChart(canvas, labels, colors) {
+            const ctx = canvas.getContext('2d');
+            const state = { data: [0, 0] };
+
+            function draw() {
+                const width = canvas.clientWidth || 300;
+                const height = canvas.clientHeight || 220;
+                canvas.width = width * window.devicePixelRatio;
+                canvas.height = height * window.devicePixelRatio;
+                ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+                ctx.clearRect(0, 0, width, height);
+
+                const total = state.data.reduce((sum, value) => sum + value, 0);
+                const radius = Math.min(width, height) * 0.28;
+                const centerX = width / 2;
+                const centerY = height * 0.42;
+                let start = -Math.PI / 2;
+
+                if (!total) {
+                    ctx.strokeStyle = '#e0e0e0';
+                    ctx.lineWidth = radius * 0.45;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else {
+                    state.data.forEach((value, index) => {
+                        const angle = (value / total) * Math.PI * 2;
+                        ctx.strokeStyle = colors[index];
+                        ctx.lineWidth = radius * 0.45;
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radius, start, start + angle);
+                        ctx.stroke();
+                        start += angle;
+                    });
+                }
+
+                labels.forEach((label, index) => {
+                    const x = width * 0.25 + index * width * 0.34;
+                    const y = height - 34;
+                    ctx.fillStyle = colors[index];
+                    ctx.fillRect(x, y - 10, 14, 14);
+                    ctx.fillStyle = '#555';
+                    ctx.font = '12px Segoe UI, sans-serif';
+                    ctx.fillText(label, x + 20, y + 1);
+                });
+            }
+
+            return {
+                data: { datasets: [{ data: state.data }] },
+                update() {
+                    state.data = this.data.datasets[0].data.map((value) => Number(value) || 0);
+                    draw();
+                }
+            };
+        }
+
+        function createBarChart(canvas, labels, colors) {
+            const ctx = canvas.getContext('2d');
+            const state = { data: [0, 0, 0, 0] };
+
+            function draw() {
+                const width = canvas.clientWidth || 300;
+                const height = canvas.clientHeight || 220;
+                canvas.width = width * window.devicePixelRatio;
+                canvas.height = height * window.devicePixelRatio;
+                ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+                ctx.clearRect(0, 0, width, height);
+
+                const max = Math.max(1, ...state.data);
+                const chartTop = 20;
+                const chartBottom = height - 48;
+                const chartHeight = chartBottom - chartTop;
+                const slot = width / labels.length;
+
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.beginPath();
+                ctx.moveTo(20, chartBottom);
+                ctx.lineTo(width - 10, chartBottom);
+                ctx.stroke();
+
+                state.data.forEach((value, index) => {
+                    const barHeight = (value / max) * chartHeight;
+                    const barWidth = Math.min(46, slot * 0.5);
+                    const x = slot * index + slot / 2 - barWidth / 2;
+                    const y = chartBottom - barHeight;
+                    ctx.fillStyle = colors[index];
+                    ctx.fillRect(x, y, barWidth, barHeight);
+                    ctx.fillStyle = '#333';
+                    ctx.font = '12px Segoe UI, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(String(value), x + barWidth / 2, y - 6);
+                    ctx.fillStyle = '#666';
+                    ctx.fillText(labels[index], x + barWidth / 2, height - 20);
+                });
+                ctx.textAlign = 'start';
+            }
+
+            return {
+                data: { datasets: [{ data: state.data }] },
+                update() {
+                    state.data = this.data.datasets[0].data.map((value) => Number(value) || 0);
+                    draw();
+                }
+            };
+        }
+
+        function initCharts() {
+            embeddingChart = createDoughnutChart(
+                document.getElementById('embeddingChart'),
+                ['With Embeddings', 'Without Embeddings'],
+                ['rgba(102, 126, 234, 0.85)', 'rgba(118, 75, 162, 0.85)']
+            );
+            systemChart = createBarChart(
+                document.getElementById('systemChart'),
+                ['Pending', 'Processing', 'Completed', 'Failed'],
+                ['rgba(255, 152, 0, 0.85)', 'rgba(33, 150, 243, 0.85)', 'rgba(76, 175, 80, 0.85)', 'rgba(244, 67, 54, 0.85)']
+            );
+            embeddingChart.update();
+            systemChart.update();
+        }
+
+        function updateDashboard(data) {
+            const db = data.database;
+            const queries = data.queries;
+
+            // Update books stats
+            document.getElementById('totalBooks').textContent = db.books.total.toLocaleString();
+            document.getElementById('booksWithEmbeddings').textContent = 
+                `${db.books.with_embeddings.toLocaleString()} with embeddings`;
+            document.getElementById('booksWithoutEmbeddings').textContent = 
+                db.books.without_embeddings.toLocaleString();
+            
+            const coverage = db.books.total > 0 
+                ? ((db.books.with_embeddings / db.books.total) * 100).toFixed(1) 
+                : 0;
+            document.getElementById('embeddingCoverage').textContent = `${coverage}%`;
+
+            // Update chunks stats
+            document.getElementById('totalChunks').textContent = db.chunks.total.toLocaleString();
+            document.getElementById('chunksWithEmbeddings').textContent = 
+                `${db.chunks.with_embeddings.toLocaleString()} with embeddings`;
+            document.getElementById('chunksWithoutEmbeddings').textContent = 
+                db.chunks.without_embeddings.toLocaleString();
+            
+            // Average over INDEXED books only. Dividing by the whole catalog
+            // (db.books.total) is misleading because most titles are not
+            // embedded yet, producing an artificially tiny number.
+            const indexedBooks = (db.embeddings && db.embeddings.indexed_books) || db.books.with_embeddings || 0;
+            const avgChunks = (db.embeddings && typeof db.embeddings.avg_chunks_per_indexed_book === 'number')
+                ? db.embeddings.avg_chunks_per_indexed_book.toFixed(1)
+                : (indexedBooks > 0 ? (db.chunks.total / indexedBooks).toFixed(1) : 0);
+            document.getElementById('avgChunksPerBook').textContent = avgChunks;
+
+            // Update embeddings stats
+            document.getElementById('totalEmbeddings').textContent = 
+                db.embeddings.total_stored.toLocaleString();
+            document.getElementById('embeddingProgress').style.width = 
+                `${db.embeddings.utilization_rate}%`;
+            document.getElementById('embeddingRate').textContent = 
+                `${db.embeddings.utilization_rate}% coverage`;
+
+            // Update queue stats
+            document.getElementById('pendingQueue').textContent = 
+                db.processing_queue.pending;
+            document.getElementById('processingQueue').textContent = 
+                db.processing_queue.processing;
+            document.getElementById('completedQueue').textContent = 
+                db.processing_queue.completed;
+            document.getElementById('failedQueue').textContent = 
+                db.processing_queue.failed;
+
+            // Update download queue
+            if (db.download_queue) {
+                document.getElementById('downloadPending').textContent = 
+                    db.download_queue.pending || 0;
+                document.getElementById('downloadProcessing').textContent = 
+                    db.download_queue.processing || 0;
+                document.getElementById('downloadCompleted').textContent = 
+                    db.download_queue.completed || 0;
+                document.getElementById('downloadFailed').textContent = 
+                    db.download_queue.failed || 0;
+            }
+
+            // Update storage
+            document.getElementById('librarySize').textContent = 
+                `${db.storage.library_size_gb.toLocaleString()} GB`;
+            document.getElementById('databaseSize').textContent = 
+                `${db.storage.database_size_mb.toLocaleString()} MB`;
+            document.getElementById('totalSize').textContent = 
+                `${db.storage.total_size_gb.toLocaleString()} GB`;
+
+            // Update charts
+            embeddingChart.data.datasets[0].data = [
+                db.chunks.with_embeddings,
+                db.chunks.without_embeddings
+            ];
+            embeddingChart.update();
+
+            systemChart.data.datasets[0].data = [
+                db.processing_queue.pending,
+                db.processing_queue.processing,
+                db.processing_queue.completed,
+                db.processing_queue.failed
+            ];
+            systemChart.update();
+
+            // Update timestamp
+            document.getElementById('lastUpdated').textContent = 
+                new Date(data.timestamp).toLocaleString('en-US');
+        }
+
+        async function loadRecentBooks() {
+            try {
+                const response = await fetch('/api/books/recent?limit=10', {
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                
+                const booksList = document.getElementById('recentBooks');
+                booksList.innerHTML = '';
+                
+                if (data.books && data.books.length > 0) {
+                    data.books.forEach(book => {
+                        const bookItem = document.createElement('div');
+                        bookItem.className = 'book-item';
+                        
+                        // RAG status badge
+                        let ragStatusBadge = '';
+                        if (book.rag_processed) {
+                            ragStatusBadge = '<span class="rag-status-badge processed">RAG Processed</span>';
+                        } else if (book.rag_in_queue) {
+                            ragStatusBadge = '<span class="rag-status-badge in-queue">In Queue</span>';
+                        } else if (book.rag_status === 'failed') {
+                            ragStatusBadge = '<span class="rag-status-badge failed">Failed</span>';
+                        } else {
+                            ragStatusBadge = '<span class="rag-status-badge pending">Not Processed</span>';
+                        }
+                        
+                        // Build tooltip content
+                        const tooltipContent = `
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">Author:</span>
+                                <span class="book-tooltip-value">${escapeHtml(book.author || 'Unknown')}</span>
+                            </div>
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">Publisher:</span>
+                                <span class="book-tooltip-value">${escapeHtml(book.publisher || 'N/A')}</span>
+                            </div>
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">Year:</span>
+                                <span class="book-tooltip-value">${book.year || 'N/A'}</span>
+                            </div>
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">ISBN:</span>
+                                <span class="book-tooltip-value">${escapeHtml(book.isbn || 'N/A')}</span>
+                            </div>
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">Pages:</span>
+                                <span class="book-tooltip-value">${book.page_count || 'N/A'}</span>
+                            </div>
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">RAG Status:</span>
+                                <span class="book-tooltip-value">${ragStatusBadge}</span>
+                            </div>
+                            ${book.rag_error ? `<div class="book-tooltip-row"><span class="book-tooltip-label">Error:</span><span class="book-tooltip-value" style="color: #ff6b6b;">${escapeHtml(book.rag_error)}</span></div>` : ''}
+                            ${book.openlibrary ? `
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">OpenLibrary:</span>
+                                <span class="book-tooltip-value">✓ Enriched</span>
+                            </div>
+                            ${book.openlibrary_download_available ? `
+                            <div class="book-tooltip-row">
+                                <span class="book-tooltip-label">Download:</span>
+                                <span class="book-tooltip-value" style="color: #4CAF50;">Available</span>
+                            </div>
+                            ` : ''}
+                            ` : ''}
+                        `;
+                        
+                        // Build OpenLibrary badge
+                        let openlibraryBadge = '';
+                        if (book.openlibrary) {
+                            if (book.openlibrary_download_available) {
+                                openlibraryBadge = '<span class="openlibrary-badge download-available">📥 OL</span>';
+                            } else {
+                                openlibraryBadge = '<span class="openlibrary-badge enriched">📚 OL</span>';
+                            }
+                        }
+                        
+                        // Build metadata source indicator
+                        let metadataSource = '';
+                        const sources = [];
+                        if (book.publisher || book.year || book.isbn) {
+                            sources.push('<span class="source calibre">Calibre</span>');
+                        }
+                        if (book.openlibrary) {
+                            sources.push('<span class="source openlibrary">OpenLibrary</span>');
+                        }
+                        if (sources.length > 0) {
+                            metadataSource = `<div class="metadata-source">${sources.join('')}</div>`;
+                        }
+                        
+                        bookItem.innerHTML = `
+                            <div class="book-info">
+                                <div class="book-title">${escapeHtml(book.title || 'Untitled')} ${openlibraryBadge}</div>
+                                <div class="book-author">${escapeHtml(book.author || 'Unknown author')}</div>
+                                ${metadataSource}
+                            </div>
+                            <div>${ragStatusBadge}</div>
+                        `;
+                        
+                        // Add mouse events for tooltip
+                        bookItem.addEventListener('mouseenter', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        bookItem.addEventListener('mousemove', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        bookItem.addEventListener('mouseleave', () => {
+                            hideTooltip();
+                        });
+                        
+                        booksList.appendChild(bookItem);
+                    });
+                } else {
+                    booksList.innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">No recent books found</div></div></div>';
+                }
+            } catch (error) {
+                console.error('Error loading recent books:', error);
+                document.getElementById('recentBooks').innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">Error loading recent books</div></div></div>';
+            }
+        }
+
+        async function loadProblemBooks() {
+            try {
+                const response = await fetch('/api/books/problems', {
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                
+                const problemBooksList = document.getElementById('problemBooks');
+                problemBooksList.innerHTML = '';
+                
+                if (data.books && data.books.length > 0) {
+                    data.books.forEach(book => {
+                        const bookItem = document.createElement('div');
+                        bookItem.className = 'book-item';
+                        
+                        const problemTags = book.problems.map(problem => {
+                            let tagClass = '';
+                            if (problem === 'File not found') tagClass = 'file-not-found';
+                            else if (problem === 'No embeddings') tagClass = 'no-embeddings';
+                            else tagClass = 'other-problem';
+                            return `<span class="problem-tag ${tagClass}">${problem}</span>`;
+                        }).join(' ');
+                        
+                        bookItem.innerHTML = `
+                            <div class="book-info">
+                                <div class="book-title">${escapeHtml(book.title)}</div>
+                                <div class="book-author">${escapeHtml(book.author || 'Unknown')}</div>
+                                <div class="book-problems">${problemTags}</div>
+                            </div>
+                        `;
+                        problemBooksList.appendChild(bookItem);
+                    });
+                } else {
+                    problemBooksList.innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">No books with problems</div></div></div>';
+                }
+            } catch (error) {
+                console.error('Error loading problem books:', error);
+                document.getElementById('problemBooks').innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">Error loading problem books</div></div></div>';
+            }
+        }
+
+        async function loadCalibreAddedBooks() {
+            try {
+                const response = await fetch('/api/downloads/queue?status=completed&limit=10', {
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                
+                const calibreAddedList = document.getElementById('calibreAddedBooks');
+                calibreAddedList.innerHTML = '';
+                
+                if (data.items && data.items.length > 0) {
+                    const addedBooks = data.items.filter(item => item.calibre_integration.is_added_to_calibre);
+                    
+                    if (addedBooks.length > 0) {
+                        addedBooks.forEach(item => {
+                            const bookItem = document.createElement('div');
+                            bookItem.className = 'book-item';
+                            
+                            const calibreId = item.calibre_integration.calibre_book_id;
+                            const addedAt = item.calibre_integration.added_at 
+                                ? new Date(item.calibre_integration.added_at).toLocaleString() 
+                                : 'Unknown';
+                            const downloadAvailable = item.download_available !== false;
+                            
+                            bookItem.innerHTML = `
+                                <div class="book-info">
+                                    <div class="book-title">${escapeHtml(item.title)}</div>
+                                    <div class="book-author">${escapeHtml(item.author || 'Unknown')}</div>
+                                    <div class="book-meta">
+                                        <span class="calibre-id">Calibre ID: ${calibreId}</span>
+                                        <span class="added-date">Added: ${addedAt}</span>
+                                        <span class="download-status ${downloadAvailable ? 'available' : 'manual'}">
+                                            ${downloadAvailable ? 'Auto-downloaded' : 'Manual download'}
+                                        </span>
+                                    </div>
+                                </div>
+                            `;
+                            calibreAddedList.appendChild(bookItem);
+                        });
+                    } else {
+                        calibreAddedList.innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">No books added to Calibre yet</div></div></div>';
+                    }
+                } else {
+                    calibreAddedList.innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">No completed downloads</div></div></div>';
+                }
+            } catch (error) {
+                console.error('Error loading Calibre-added books:', error);
+                document.getElementById('calibreAddedBooks').innerHTML = '<div class="book-item"><div class="book-info"><div class="book-title">Error loading Calibre-added books</div></div></div>';
+            }
+        }
+
+        async function loadDownloadQueue(status) {
+            try {
+                const response = await fetch(`/api/downloads/queue?status=${status}&limit=50`, {
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                
+                const queueList = document.getElementById('downloadQueueList');
+                queueList.innerHTML = '';
+                
+                if (data.items && data.items.length > 0) {
+                    data.items.forEach((item, index) => {
+                        const queueItem = document.createElement('div');
+                        queueItem.className = `download-queue-item ${item.status}`;
+                        
+                        const downloadAvailable = item.download_available !== false;
+                        const createdAt = item.created_at 
+                            ? new Date(item.created_at).toLocaleString() 
+                            : 'Unknown';
+                        
+                        let actionsHtml = '';
+                        
+                        // Manual download button
+                        if (!downloadAvailable && item.download_url) {
+                            actionsHtml += `
+                                <button onclick="openDownloadUrl('${escapeHtml(item.download_url)}')" 
+                                        class="download-action-btn manual" 
+                                        title="Open download URL">
+                                    🔗 Manual Download
+                                </button>
+                            `;
+                        }
+                        
+                        // Move up/down buttons for pending items
+                        if (status === 'pending') {
+                            if (index > 0) {
+                                actionsHtml += `
+                                    <button onclick="moveQueueItem(${item.id}, 'up')" 
+                                            class="download-action-btn move-up" 
+                                            title="Move up in queue">
+                                        ⬆️
+                                    </button>
+                                `;
+                            }
+                            if (index < data.items.length - 1) {
+                                actionsHtml += `
+                                    <button onclick="moveQueueItem(${item.id}, 'down')" 
+                                            class="download-action-btn move-down" 
+                                            title="Move down in queue">
+                                        ⬇️
+                                    </button>
+                                `;
+                            }
+                        }
+                        
+                        // Delete button
+                        actionsHtml += `
+                            <button onclick="deleteQueueItem(${item.id})" 
+                                    class="download-action-btn delete" 
+                                    title="Remove from queue">
+                                🗑️
+                            </button>
+                        `;
+                        
+                        // Generate source links
+                        let linksHtml = '';
+                        if (item.source === 'openlibrary' && item.olid) {
+                            linksHtml += `<a href="https://openlibrary.org${item.olid}" target="_blank" class="download-queue-link">📖 OpenLibrary</a>`;
+                        } else if (item.source === 'archive' && item.ocaid) {
+                            linksHtml += `<a href="https://archive.org/details/${item.ocaid}" target="_blank" class="download-queue-link">📚 Archive</a>`;
+                        }
+                        
+                        queueItem.innerHTML = `
+                            <div class="download-queue-info">
+                                <div class="download-queue-title">${escapeHtml(item.title)}</div>
+                                <div class="download-queue-meta">
+                                    <span>Created: ${createdAt}</span>
+                                    <span class="download-status-badge ${downloadAvailable ? 'available' : 'manual'}">
+                                        ${downloadAvailable ? 'Auto' : 'Manual'}
+                                    </span>
+                                    ${item.author ? `<span>Author: ${escapeHtml(item.author)}</span>` : ''}
+                                </div>
+                                ${linksHtml ? `<div class="download-queue-links">${linksHtml}</div>` : ''}
+                            </div>
+                            <div class="download-queue-actions">
+                                ${actionsHtml}
+                            </div>
+                        `;
+                        queueList.appendChild(queueItem);
+                    });
+                } else {
+                    queueList.innerHTML = `<div style="color: #666; font-size: 0.9em;">No ${status} items in download queue</div>`;
+                }
+            } catch (error) {
+                console.error('Error loading download queue:', error);
+                document.getElementById('downloadQueueList').innerHTML = '<div style="color: #f44336; font-size: 0.9em;">Error loading download queue</div>';
+            }
+        }
+
+        function openDownloadUrl(url) {
+            window.open(url, '_blank');
+        }
+
+        async function moveQueueItem(itemId, direction) {
+            try {
+                const response = await fetch(`/api/downloads/queue/${itemId}/move`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        ...getAuthHeaders()
+                    },
+                    body: JSON.stringify({ direction })
+                });
+                
+                if (response.ok) {
+                    // Reload the queue to show updated order
+                    loadDownloadQueue('pending');
+                } else {
+                    const error = await response.json();
+                    alert(`Failed to move item: ${error.detail || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Error moving queue item:', error);
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        async function deleteQueueItem(itemId) {
+            if (!confirm('Are you sure you want to remove this item from the download queue?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/downloads/queue/${itemId}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    // Reload the queue to show updated list
+                    loadDownloadQueue('pending');
+                } else {
+                    const error = await response.json();
+                    alert(`Failed to delete item: ${error.detail || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Error deleting queue item:', error);
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function escapeHtml(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        async function runCatalogSearch(event) {
+            if (event) event.preventDefault();
+
+            const statusEl = document.getElementById('catalogSearchStatus');
+            const resultsEl = document.getElementById('catalogSearchResults');
+            const button = document.getElementById('catalogSearchButton');
+
+            const query = (document.getElementById('catalogQuery').value || '').trim();
+            if (!query) {
+                statusEl.className = 'search-status error';
+                statusEl.textContent = 'Please enter a query.';
+                return;
+            }
+
+            let limit = parseInt(document.getElementById('catalogLimit').value, 10);
+            if (!Number.isFinite(limit)) limit = 20;
+            limit = Math.min(100, Math.max(1, limit));
+
+            button.disabled = true;
+            statusEl.className = 'search-status';
+            statusEl.textContent = 'Searching catalog...';
+            resultsEl.innerHTML = '';
+
+            try {
+                const params = new URLSearchParams({ query, limit: String(limit) });
+                const response = await fetch(`/api/search?${params.toString()}`, {
+                    headers: getAuthHeaders()
+                });
+
+                if (!response.ok) {
+                    let detail = `HTTP ${response.status}`;
+                    try {
+                        const err = await response.json();
+                        if (err && err.detail) detail = err.detail;
+                    } catch (e) { /* keep status-based detail */ }
+                    throw new Error(detail);
+                }
+
+                const results = await response.json();
+                if (!Array.isArray(results) || results.length === 0) {
+                    statusEl.className = 'search-status';
+                    statusEl.textContent = `No catalog results for "${query}".`;
+                    return;
+                }
+
+                const hasSemanticFallback = results.some(item => item.result_type === 'semantic');
+                const hasOpenLibraryResults = results.some(item => item.result_type === 'openlibrary');
+                const hasCatalogResults = results.some(item => item.result_type === 'catalog');
+                
+                statusEl.className = 'search-status';
+                let statusText = '';
+                if (hasOpenLibraryResults) {
+                    statusText = `${results.length} result(s) for "${query}" (includes OpenLibrary).`;
+                } else if (hasSemanticFallback) {
+                    statusText = `${results.length} semantic fallback result(s) for "${query}".`;
+                } else {
+                    statusText = `${results.length} catalog result(s) for "${query}".`;
+                }
+                statusEl.textContent = statusText;
+
+                resultsEl.innerHTML = results.map(item => {
+                    if (item.result_type === 'openlibrary') {
+                        // OpenLibrary result - display with link to OpenLibrary
+                        const title = item.title || 'Untitled';
+                        const author = item.author || 'Unknown author';
+                        const year = item.year || 'N/A';
+                        const olid = item.openlibrary_olid;
+                        const previewUrl = item.openlibrary_preview_url;
+                        const coverUrl = item.openlibrary_cover_url;
+                        
+                        return `
+                            <div class="result-item" style="border-left-color: #1976d2;">
+                                <div class="result-head">
+                                    <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                                        <span class="openlibrary-badge enriched">📚 OpenLibrary</span>
+                                        <span class="result-title">${escapeHtml(title)}</span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 0.9em; color: #666;">
+                                    <div><strong>Author:</strong> ${escapeHtml(author)}</div>
+                                    <div><strong>Year:</strong> ${escapeHtml(String(year))}</div>
+                                    ${previewUrl ? `<div><a href="${escapeHtml(previewUrl)}" target="_blank" style="color: #1976d2; text-decoration: none;">View on OpenLibrary →</a></div>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    if (item.result_type === 'semantic') {
+                        const similarity = typeof item.similarity === 'number'
+                            ? `${(item.similarity * 100).toFixed(1)}%`
+                            : '--';
+                        const titleLine = item.author
+                            ? `${item.title || 'Untitled'} · ${item.author}`
+                            : (item.title || `book_id ${item.book_id}`);
+                        const bookId = item.book_id;
+                        return `
+                            <div class="result-item">
+                                <div class="result-head">
+                                    <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                                        <input type="checkbox" class="result-checkbox" data-book-id="${bookId}" data-search-type="rag">
+                                        <span class="result-title">${escapeHtml(titleLine)}</span>
+                                    </div>
+                                    <span class="result-similarity">${escapeHtml(similarity)}</span>
+                                </div>
+                                ${item.citation ? `<div class="result-citation">${escapeHtml(item.citation)}</div>` : ''}
+                                <div class="result-content">${escapeHtml(item.content || '')}</div>
+                            </div>
+                        `;
+                    }
+
+                    const book = item;
+                    const metadata = book.metadata || {};
+                    const formats = Array.isArray(metadata.available_formats)
+                        ? metadata.available_formats.join(', ')
+                        : (metadata.selected_format || book.file_type || '--');
+                    const author = book.author || 'Unknown author';
+                    const publisher = book.publisher || (Array.isArray(metadata.publishers) && metadata.publishers.length
+                        ? metadata.publishers.join(', ')
+                        : '');
+                    const bookId = book.id;
+                    
+                    // RAG status badge
+                    let ragStatusBadge = '';
+                    if (book.rag_processed) {
+                        ragStatusBadge = '<span class="rag-status-badge processed">RAG Processed</span>';
+                    } else if (book.rag_in_queue) {
+                        ragStatusBadge = '<span class="rag-status-badge in-queue">In Queue</span>';
+                    } else if (book.rag_status === 'failed') {
+                        ragStatusBadge = '<span class="rag-status-badge failed">Failed</span>';
+                    } else {
+                        ragStatusBadge = '<span class="rag-status-badge pending">Not Processed</span>';
+                    }
+                    
+                    // Build tooltip content
+                    const tooltipContent = `
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Author:</span>
+                            <span class="book-tooltip-value">${escapeHtml(author)}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Publisher:</span>
+                            <span class="book-tooltip-value">${escapeHtml(publisher || 'N/A')}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Year:</span>
+                            <span class="book-tooltip-value">${book.year || 'N/A'}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">ISBN:</span>
+                            <span class="book-tooltip-value">${escapeHtml(book.isbn || 'N/A')}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Pages:</span>
+                            <span class="book-tooltip-value">${book.page_count || 'N/A'}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">RAG Status:</span>
+                            <span class="book-tooltip-value">${ragStatusBadge}</span>
+                        </div>
+                        ${book.rag_error ? `<div class="book-tooltip-row"><span class="book-tooltip-label">Error:</span><span class="book-tooltip-value" style="color: #ff6b6b;">${escapeHtml(book.rag_error)}</span></div>` : ''}
+                    `;
+                    
+                    return `
+                        <div class="result-item" data-tooltip-content="${encodeURIComponent(tooltipContent)}">
+                            <div class="result-head">
+                                <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                                    <input type="checkbox" class="result-checkbox" data-book-id="${bookId}" data-search-type="catalog">
+                                    <span class="result-title">${escapeHtml(book.title || 'Untitled')}</span>
+                                </div>
+                                <span class="result-similarity">ID ${escapeHtml(book.id)}</span>
+                            </div>
+                            <div class="result-citation">${escapeHtml(author)}${publisher ? ` · ${escapeHtml(publisher)}` : ''}</div>
+                            <div class="result-content">Calibre ID: ${escapeHtml(book.calibre_id || '--')} · Formats: ${escapeHtml(formats)} · ${ragStatusBadge}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Show/hide action buttons based on results
+                const actionsEl = document.getElementById('catalogResultActions');
+                actionsEl.style.display = results.length > 0 ? 'flex' : 'none';
+
+                // Add checkbox event listeners
+                document.querySelectorAll('#catalogSearchResults .result-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        const bookId = e.target.dataset.bookId;
+                        if (e.target.checked) {
+                            selectedCatalogBooks.add(bookId);
+                        } else {
+                            selectedCatalogBooks.delete(bookId);
+                        }
+                        document.getElementById('catalogSelectedCount').textContent = `${selectedCatalogBooks.size} selected`;
+                    });
+                });
+
+                // Add tooltip event listeners for catalog results
+                document.querySelectorAll('#catalogSearchResults .result-item').forEach(item => {
+                    const tooltipContent = decodeURIComponent(item.dataset.tooltipContent || '');
+                    if (tooltipContent) {
+                        item.addEventListener('mouseenter', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        item.addEventListener('mousemove', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            hideTooltip();
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('Catalog search error:', error);
+                statusEl.className = 'search-status error';
+                statusEl.textContent = `Search failed: ${error.message}`;
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        async function runRagSearch(event) {
+            if (event) event.preventDefault();
+
+            const statusEl = document.getElementById('ragSearchStatus');
+            const resultsEl = document.getElementById('ragSearchResults');
+            const button = document.getElementById('ragSearchButton');
+
+            const query = (document.getElementById('ragQuery').value || '').trim();
+            if (!query) {
+                statusEl.className = 'search-status error';
+                statusEl.textContent = 'Please enter a query.';
+                return;
+            }
+
+            let limit = parseInt(document.getElementById('ragLimit').value, 10);
+            if (!Number.isFinite(limit)) limit = 10;
+            limit = Math.min(50, Math.max(1, limit));
+
+            let threshold = parseFloat(document.getElementById('ragThreshold').value);
+            if (!Number.isFinite(threshold)) threshold = 0.3;
+            threshold = Math.min(1, Math.max(0, threshold));
+
+            button.disabled = true;
+            statusEl.className = 'search-status';
+            statusEl.textContent = 'Searching...';
+            resultsEl.innerHTML = '';
+
+            try {
+                const response = await fetch('/api/search/content', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        ...getAuthHeaders()
+                    },
+                    body: JSON.stringify({ query, limit, threshold })
+                });
+
+                if (!response.ok) {
+                    let detail = `HTTP ${response.status}`;
+                    try {
+                        const err = await response.json();
+                        if (err && err.detail) detail = err.detail;
+                    } catch (e) { /* keep status-based detail */ }
+                    throw new Error(detail);
+                }
+
+                const results = await response.json();
+                if (!Array.isArray(results) || results.length === 0) {
+                    statusEl.className = 'search-status';
+                    statusEl.textContent = `No results above the similarity threshold (${threshold}).`;
+                    return;
+                }
+
+                statusEl.className = 'search-status';
+                statusEl.textContent = `${results.length} result(s) for "${query}".`;
+
+                // Book content is untrusted; escape everything before rendering.
+                resultsEl.innerHTML = results.map(r => {
+                    const similarity = typeof r.similarity === 'number'
+                        ? `${(r.similarity * 100).toFixed(1)}%`
+                        : '--';
+                    const titleLine = r.author
+                        ? `${r.title || 'Untitled'} — ${r.author}`
+                        : (r.title || `book_id ${r.book_id}`);
+                    const citation = r.citation || '';
+                    const content = r.content || '';
+                    const bookId = r.book_id;
+                    
+                    // RAG status badge
+                    let ragStatusBadge = '';
+                    if (r.rag_processed) {
+                        ragStatusBadge = '<span class="rag-status-badge processed">RAG Processed</span>';
+                    } else if (r.rag_in_queue) {
+                        ragStatusBadge = '<span class="rag-status-badge in-queue">In Queue</span>';
+                    } else if (r.rag_status === 'failed') {
+                        ragStatusBadge = '<span class="rag-status-badge failed">Failed</span>';
+                    } else {
+                        ragStatusBadge = '<span class="rag-status-badge pending">Not Processed</span>';
+                    }
+                    
+                    // Build tooltip content
+                    const tooltipContent = `
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Author:</span>
+                            <span class="book-tooltip-value">${escapeHtml(r.author || 'Unknown')}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Publisher:</span>
+                            <span class="book-tooltip-value">${escapeHtml(r.publisher || 'N/A')}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Year:</span>
+                            <span class="book-tooltip-value">${r.year || 'N/A'}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">ISBN:</span>
+                            <span class="book-tooltip-value">${escapeHtml(r.isbn || 'N/A')}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">Pages:</span>
+                            <span class="book-tooltip-value">${r.page_count || 'N/A'}</span>
+                        </div>
+                        <div class="book-tooltip-row">
+                            <span class="book-tooltip-label">RAG Status:</span>
+                            <span class="book-tooltip-value">${ragStatusBadge}</span>
+                        </div>
+                        ${r.rag_error ? `<div class="book-tooltip-row"><span class="book-tooltip-label">Error:</span><span class="book-tooltip-value" style="color: #ff6b6b;">${escapeHtml(r.rag_error)}</span></div>` : ''}
+                    `;
+                    
+                    return `
+                        <div class="result-item" data-tooltip-content="${encodeURIComponent(tooltipContent)}">
+                            <div class="result-head">
+                                <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                                    <input type="checkbox" class="result-checkbox" data-book-id="${bookId}" data-search-type="rag">
+                                    <span class="result-title">${escapeHtml(titleLine)}</span>
+                                </div>
+                                <span class="result-similarity">${escapeHtml(similarity)}</span>
+                            </div>
+                            ${citation ? `<div class="result-citation">${escapeHtml(citation)}</div>` : ''}
+                            <div class="result-content">${escapeHtml(content)}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Show/hide action buttons based on results
+                const actionsEl = document.getElementById('ragResultActions');
+                actionsEl.style.display = results.length > 0 ? 'flex' : 'none';
+
+                // Add checkbox event listeners
+                document.querySelectorAll('#ragSearchResults .result-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        const bookId = e.target.dataset.bookId;
+                        if (e.target.checked) {
+                            selectedRagBooks.add(bookId);
+                        } else {
+                            selectedRagBooks.delete(bookId);
+                        }
+                        document.getElementById('ragSelectedCount').textContent = `${selectedRagBooks.size} selected`;
+                    });
+                });
+
+                // Add tooltip event listeners for RAG results
+                document.querySelectorAll('#ragSearchResults .result-item').forEach(item => {
+                    const tooltipContent = decodeURIComponent(item.dataset.tooltipContent || '');
+                    if (tooltipContent) {
+                        item.addEventListener('mouseenter', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        item.addEventListener('mousemove', (e) => {
+                            showTooltip(tooltipContent, e.clientX, e.clientY);
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            hideTooltip();
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('RAG search error:', error);
+                statusEl.className = 'search-status error';
+                statusEl.textContent = `Search failed: ${error.message}`;
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        async function processSelectedBooks(searchType) {
+            const selectedSet = searchType === 'catalog' ? selectedCatalogBooks : selectedRagBooks;
+            const buttonId = searchType === 'catalog' ? 'processCatalogButton' : 'processRagButton';
+
+            if (selectedSet.size === 0) {
+                alert('Please select at least one book to process');
+                return;
+            }
+
+            const button = document.getElementById(buttonId);
+            button.disabled = true;
+            button.classList.add('processing');
+            button.textContent = 'Processing...';
+
+            try {
+                const bookIds = Array.from(selectedSet);
+                const response = await fetch('/api/embeddings/priority-queue', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        ...getAuthHeaders()
+                    },
+                    body: JSON.stringify({ book_ids: bookIds })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Failed to queue books for processing');
+                }
+
+                const result = await response.json();
+                alert(`Successfully queued ${result.queued_count} book(s) for immediate processing`);
+
+                // Clear selection
+                selectedSet.clear();
+                document.getElementById(`${searchType}SelectedCount`).textContent = '0 selected';
+
+                // Uncheck all checkboxes
+                document.querySelectorAll(`#${searchType}SearchResults .result-checkbox`).forEach(cb => {
+                    cb.checked = false;
+                });
+
+                // Refresh priority queue
+                await updatePriorityQueue();
+            } catch (error) {
+                console.error('Error processing books:', error);
+                alert(`Error: ${error.message}`);
+            } finally {
+                button.disabled = false;
+                button.classList.remove('processing');
+                button.textContent = 'Process Selected Books (RAG)';
+            }
+        }
+
+        async function updatePriorityQueue() {
+            try {
+                const response = await fetch('/api/embeddings/priority-queue', {
+                    headers: getAuthHeaders()
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch priority queue');
+                }
+
+                const queueItems = await response.json();
+                const queueList = document.getElementById('priorityQueueList');
+
+                if (!queueItems || queueItems.length === 0) {
+                    queueList.innerHTML = '<div style="color: #666; font-size: 0.9em;">No books in priority queue</div>';
+                    return;
+                }
+
+                queueList.innerHTML = queueItems.map(item => {
+                    const statusClass = item.status || 'pending';
+                    const statusText = item.status ? item.status.charAt(0).toUpperCase() + item.status.slice(1) : 'Pending';
+                    return `
+                        <div class="priority-queue-item ${statusClass}">
+                            <div class="priority-queue-info">
+                                <div class="priority-queue-book-title">${escapeHtml(item.title || `Book ID ${item.book_id}`)}</div>
+                                <div style="font-size: 0.8em; color: #666; margin-top: 2px;">
+                                    ${item.author ? escapeHtml(item.author) : ''}
+                                </div>
+                            </div>
+                            <span class="priority-queue-status ${statusClass}">${statusText}</span>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error updating priority queue:', error);
+            }
+        }
+
+        function getApiKey() {
+            // Get API key from localStorage
+            return localStorage.getItem('calibre_api_key');
+        }
+
+        function getAuthHeaders() {
+            const apiKey = getApiKey();
+            if (apiKey) {
+                return { 'X-API-Key': apiKey };
+            }
+            return {};
+        }
+
+        let wsReconnectAttempts = 0;
+        const MAX_RECONNECT_ATTEMPTS = 10;
+        let wsReconnectTimeout = null;
+
+        function connectWebSocket() {
+            // Clear any existing reconnection timeout
+            if (wsReconnectTimeout) {
+                clearTimeout(wsReconnectTimeout);
+                wsReconnectTimeout = null;
+            }
+
+            // Close existing WebSocket if it's still connected
+            if (ws && (ws.readyState === WebSocket.CONNECTING || ws.readyState === WebSocket.OPEN)) {
+                console.log('WebSocket already connected or connecting, skipping new connection');
+                return;
+            }
+
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws/stats`;
+
+            // Try to get API key from localStorage or prompt user
+            let apiKey = localStorage.getItem('calibre_api_key');
+            if (!apiKey) {
+                // Only prompt if user explicitly wants to provide an API key
+                // Otherwise, try connecting without authentication (requires ALLOW_UNAUTHENTICATED=true)
+                const userApiKey = prompt('Enter API key for dashboard (leave empty if ALLOW_UNAUTHENTICATED=true):');
+                if (userApiKey && userApiKey.trim() !== '') {
+                    apiKey = userApiKey.trim();
+                    localStorage.setItem('calibre_api_key', apiKey);
+                }
+            }
+
+            // Append API key to WebSocket URL if available
+            const finalWsUrl = apiKey ? `${wsUrl}?api_key=${encodeURIComponent(apiKey)}` : wsUrl;
+            
+            console.log(`Connecting to WebSocket: ${finalWsUrl}`);
+            ws = new WebSocket(finalWsUrl);
+
+            ws.onopen = () => {
+                console.log('WebSocket connected');
+                wsReconnectAttempts = 0; // Reset reconnection counter on successful connection
+                document.getElementById('statusDot').className = 'status-dot connected';
+                document.getElementById('statusText').textContent = 'Connected';
+            };
+
+            ws.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                console.log('Received:', message);
+
+                if (message.type === 'connected') {
+                    console.log('WebSocket connection acknowledged');
+                    document.getElementById('statusDot').className = 'status-dot connecting';
+                    document.getElementById('statusText').textContent = 'Connected - Loading data...';
+                } else if (message.type === 'initial' || message.type === 'update') {
+                    updateDashboard(message.data);
+                    // Also update priority queue on dashboard updates
+                    updatePriorityQueue();
+                } else if (message.type === 'error') {
+                    console.error('WebSocket error:', message.error);
+                    document.getElementById('statusText').textContent = `Error: ${message.error}`;
+                }
+            };
+
+            ws.onclose = () => {
+                console.log('WebSocket disconnected');
+                document.getElementById('statusDot').className = 'status-dot disconnected';
+                
+                wsReconnectAttempts++;
+                
+                if (wsReconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+                    document.getElementById('statusText').textContent = 'Disconnected - Max reconnection attempts reached';
+                    console.error('WebSocket: Max reconnection attempts reached, giving up');
+                    return;
+                }
+                
+                document.getElementById('statusText').textContent = `Disconnected - Reconnecting (${wsReconnectAttempts}/${MAX_RECONNECT_ATTEMPTS})...`;
+                
+                // Exponential backoff: 5s, 10s, 20s, 40s, etc.
+                const backoffDelay = Math.min(30000, 5000 * Math.pow(2, wsReconnectAttempts - 1));
+                console.log(`WebSocket: Reconnecting in ${backoffDelay}ms (attempt ${wsReconnectAttempts})`);
+                
+                wsReconnectTimeout = setTimeout(connectWebSocket, backoffDelay);
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                document.getElementById('statusDot').className = 'status-dot disconnected';
+                document.getElementById('statusText').textContent = 'Connection error';
+            };
+        }
+
+        function manualReconnect() {
+            console.log('Manual reconnection requested');
+            wsReconnectAttempts = 0;
+            if (ws) {
+                ws.close();
+            }
+            connectWebSocket();
+        }
+
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            connectWebSocket();
+            loadRecentBooks();
+            loadProblemBooks();
+            loadCalibreAddedBooks();
+            document.getElementById('catalogSearchForm').addEventListener('submit', runCatalogSearch);
+            document.getElementById('ragSearchForm').addEventListener('submit', runRagSearch);
+            document.getElementById('processCatalogButton').addEventListener('click', () => processSelectedBooks('catalog'));
+            document.getElementById('processRagButton').addEventListener('click', () => processSelectedBooks('rag'));
+            // Initial priority queue update
+            updatePriorityQueue();
+        });
+    </script>
+</body>
+</html>

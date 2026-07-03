@@ -1,4 +1,4 @@
-# API 基址 / API Base URL
+﻿# API 基址 / API Base URL
 
 本技能内所有 HiFleet API 文档与 Agent 构造请求时，使用占位符 **`{base}`** 表示 API 根地址（**不含**末尾 `/`）。
 
@@ -15,4 +15,10 @@ def api_base():
     return (os.environ.get("HIFLEET_API_BASE") or "https://api.hifleet.com").rstrip("/")
 ```
 
-租船分册（`hifleet-mytonnages/`）中 **`{base}`** 另表示**模块 API 根**（非仅主机）：路由 A 默认 `…/openclaw/vessel/charter`，路由 B 默认 `…/openclaw/vessel/charter/liner`（`…` = `HIFLEET_API_BASE` 或 `https://api.hifleet.com`）。可分别用 `hifleet_charter_api_base` / `hifleet_liner_api_base`（或 `HIFLEET_CHARTER_API_BASE` / `HIFLEET_LINER_API_BASE`）覆盖。
+租船分册 API 根（`…` = `HIFLEET_API_BASE` 或 `https://api.hifleet.com`）：
+
+| 分册 | 默认根 |
+|------|--------|
+| **`hifleet-mytonnages/`** 路由 A | `…/openclaw/vessel/charter`（`hifleet_charter_api_base` / `HIFLEET_CHARTER_API_BASE`） |
+| **`hifleet-schedule/`** 班轮船期 | `…/openclaw/vessel/charter/liner`（`hifleet_liner_api_base` / `HIFLEET_LINER_API_BASE`） |
+| **`hifleet-opentonnages/`** 公开船/货盘 | `…/openclaw/vessel/charter`（`vessels/search`、`cargo/search`；同 `hifleet_charter_api_base`） |

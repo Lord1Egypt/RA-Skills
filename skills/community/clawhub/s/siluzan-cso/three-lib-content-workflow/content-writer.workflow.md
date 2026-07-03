@@ -26,13 +26,18 @@
 ```mermaid
 flowchart TD
     Start([开始]) --> S1{第 1 步：加载人设<br/>判断人设来源}
-    S1 -->|本次提供人设卡| P1[按 persona-schema 6 章节校验<br/>缺章节补问 → 用户确认<br/>persona create 保存]
-    S1 -->|已指定人设名| P2[直接拉取 styleGuide]
+    S1 -->|本次提供人设相关输入| P1{是否符合<br/>persona-schema<br/>6 章节？}
+    P1 -->|完整人设卡| P1a[校验 → 缺章节补问<br/>A1 → persona create]
+    P1 -->|仅风格描述| P1b[按用户风格走<br/>临时人设兜底]
+    P1a --> S2
+    P1b --> S2
+    S1 -->|已指定人设名或自述身份| P2{按 --name 拉取<br/>styleGuide}
+    P2 -->|查到| S2
+    P2 -->|未查到| P2b[按自述身份走<br/>临时人设兜底]
+    P2b --> S2
     S1 -->|均无| P3{persona list<br/>平台是否已有人设？}
     P3 -->|非空| P3a[列出人设 → 用户确认选定<br/>再拉取 styleGuide]
     P3 -->|为空| P3b[persona-onboarding 引导<br/>反推/描述/已有卡<br/>都不填走临时人设兜底]
-    P1 --> S2
-    P2 --> S2
     P3a --> S2
     P3b --> S2
 
@@ -56,17 +61,26 @@ flowchart TD
 
 ### 第 1 步：加载人设
 
-所有腔调、句式、共鸣切入点都依赖人设卡。按以下优先级判断：
+所有腔调、句式、共鸣切入点都依赖人设卡（`styleGuide`）。**按优先级判断，命中一条即止**：
 
-> 确定人设后拉取 `styleGuide` 字段作为人设卡：**有人设 id 时优先用** `siluzan-cso persona list --id <人设id> --json-out ./snap-cso`，没有 id 才用 `siluzan-cso persona list --name <人设名> --json-out ./snap-cso`；落盘后脚本读 `styleGuide`（见 `references/core/tips.md`），不存在或异常则请用户核对。
+| 优先级 | 触发条件 | 动作 |
+| --- | --- | --- |
+| **1** | 用户给了人设材料（文件 / 文本 / 截图 / 风格描述） | 完整 6 章节 → **正式人设**；否则 → **临时人设** |
+| **2** | 用户指定人设名或自述身份（如「用某某人设」「我是一个 xxx」） | `--name` 查到 → 拉 `styleGuide`；未查到 → **临时人设**（xxx 作线索） |
+| **3** | 以上均无 | `persona list --no-style-guide` 查平台：有人设 → 列名让用户选（**不替选**）再拉取；无 → `persona-onboarding.md` |
 
-1. **本次提供了人设卡**（文件 / 文本 / 截图）→ 按 `persona-schema.md` 的 6 章节校验 → 缺章节补问 → A1 确认 → `siluzan-cso persona create` 保存 → 进入主流程
-2. **已指定人设名** → 直接按上方命令拉取
-3. **均无** → 先 `siluzan-cso persona list --json-out ./snap-cso --no-style-guide`（落盘精简列表，仅含 `styleGuideChars` 长度提示）查平台是否已有人设，**不要在查询前假设有无**：
-   - 非空 → 列出查到的人设名（不展示完整 `styleGuide`，避免过长）→ 请用户指定用哪个：宿主提供 human-in-the-loop 工具（如 `ask_clarification`、`AskQuestion`、`AskUserQuestion`等）时用该工具发起询问，否则直接在对话里提问；**不要替用户擅自选定**（即使只有一个人设，也需确认）→ 用户确认后按第 2 步开头命令拉取该人设 `styleGuide`，再继续流程
-   - 为空 → 进入 `persona-onboarding.md` 引导（反推 / 描述 / 已有卡三选一；都不填走临时人设兜底）
+**两种结局（先认清，再执行）**
 
-人设字段标准见 `persona-schema.md`；反推见 `persona-reverse-sop.md`；平台命令细节见 `references/persona.md`。
+- **正式人设**：内容符合 `persona-schema.md` 6 章节 → 校验 / 缺项补问 → A1 确认 → `siluzan-cso persona create` 保存。
+- **临时人设**：碎片风格（「语气犀利」「别太官腔」）、口语身份、或平台查无此人设 → 以用户线索在会话内拼出可用 `styleGuide`，**本次不落盘**；写完后按 `persona-onboarding.md` 追问是否保存。
+
+**拉取已有正式人设**（优先级 2 命中且查到、或优先级 3 用户选定后）：
+
+> 有人设 id：`siluzan-cso persona list --id <id> --json-out ./snap-cso`；否则 `--name <人设名>`。落盘后脚本读 `styleGuide`（见 `references/core/tips.md`）。
+
+**优先级 3 补充**：查询前不假设平台有无；列表只展示人设名（不贴完整 `styleGuide`）。让人设选择时优先用宿主提供的 **human-in-the-loop** 工具（有则用、无则对话提问）。常见举例：`ask_clarification`（DeerFlow）、`AskQuestion`（Cursor）、`AskUserQuestion`（Claude Code）——**不限于此**，以当前宿主实际可用的结构化提问工具为准；**不要替用户默认选定**（即使只有一个人设也需确认）。
+
+人设字段标准见 `persona-schema.md`；反推见 `persona-reverse-sop.md`；平台命令见 `references/persona.md`。
 
 ---
 
@@ -103,7 +117,7 @@ siluzan-cso workflow load-libraries --platform <平台> --out <file_path>
 >
 > **不得跳过的情形**：只要成稿会出现品牌名、产品名、规格参数、功效卖点、价格政策、资质认证等任何**品牌/产品事实**，必须先执行 RAG 核对，不得凭模型记忆或外部素材臆测，以免编造事实。仅在纯抒情、泛话题、与具体品牌/产品无关的文案时才可跳过。
 
-如需从平台知识库检索品牌/产品内部素材，调用 `siluzan-cso rag query`（`-q` 内多个短词用**空格**分隔时，CLI 会分检再合并排序；详见 `references/rag.md`），结果归入主 SOP 第 4 步"拆素材"。不用于与文案无关的场景。
+如需从平台知识库检索品牌/产品内部素材，**先按** `references/core/knowledge-base-resolution.md` **确定 `--folder-id`**（有 `<knowledge_base_selection>` 时直接用 comid，跳过 `rag list`），再调用 `siluzan-cso rag query`（`-q` 内多个短词用**空格**分隔时，CLI 会分检再合并排序；详见 `references/rag.md`），结果归入主 SOP 第 4 步"拆素材"。不用于与文案无关的场景。
 
 ### 第 4 步：读取并遵循必读文件指导创作文案
 
@@ -115,7 +129,7 @@ siluzan-cso workflow load-libraries --platform <平台> --out <file_path>
 
 逐条自检，全部通过才进入「输出」。任一项不通过，回到对应步骤补全，**不得**带着缺口直接交付。
 
-- [ ] 第 1 步：人设已确定并加载（`styleGuide` 已拉取；临时人设也已明确）；若走「均未提供」且平台已有人设，须已列出全部选项并由用户明确选定（未默认、未替用户挑选）
+- [ ] 第 1 步：人设已就绪（`styleGuide` 已加载或临时人设已明确）；碎片风格 / 平台未命中须走临时人设；平台有人设时须由用户选定（未替选）
 - [ ] 第 2 步：本次三库已按优先级确认并**完整读取**（兜底走 `siluzan-cso workflow load-libraries --out <可读目录>/three-lib.md`，读其合并文件，无 `head`/`tail`/截断）
 - [ ] 第 3 步：RAG 已执行或已明确判定跳过（涉及品牌/产品事实时不得跳过）
 - [ ] 第 4 步：生成阶段已严格依照 `sop.md` 流程执行且全部要求落实

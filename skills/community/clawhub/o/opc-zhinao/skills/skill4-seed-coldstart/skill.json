@@ -1,0 +1,25 @@
+{
+  "id": "skill4-seed-coldstart",
+  "name": "种子用户冷启动",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "获取种子用户、验证付费意愿、跑通最小商业闭环",
+  "stage": 4,
+  "stageName": "验证期",
+  "graduationCondition": "种子用户≥10 + 付费用户≥1 + 商业闭环跑通",
+  "triggers": ["获客", "种子用户", "冷启动", "定价", "付费验证", "增长"],
+  "prerequisites": ["MVP已可交付（Skill2输出）", "合规主体已就绪（Skill3进行中或已完成）"],
+  "dependencies": ["skill1-idea-feasibility", "skill2-mvp-design", "skill3-opc-compliance"],
+  "outputs": [
+    "低成本获客渠道方案",
+    "种子用户招募策略",
+    "定价诊断与方案",
+    "合同规范化升级",
+    "消费者权益保护合规",
+    "退款政策模板"
+  ],
+  "files": {
+    "prompt": "prompt.md",
+    "code": "index.ts"
+  }
+}

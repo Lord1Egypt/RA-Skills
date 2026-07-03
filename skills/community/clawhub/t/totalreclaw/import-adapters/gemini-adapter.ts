@@ -7,55 +7,30 @@ import type {
 } from './types.js';
 import fs from 'node:fs';
 import os from 'node:os';
+import { createRequire } from 'node:module';
 
-/** Maximum messages per conversation chunk for LLM extraction. */
-const CHUNK_SIZE = 20;
-
-/** Gap (in minutes) between entries that starts a new pseudo-session. */
-const SESSION_GAP_MINUTES = 30;
-
-// ── Timestamp Parsing ────────────────────────────────────────────────────────
-
-const MONTHS: Record<string, number> = {
-  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
-};
-
-/**
- * Parse Gemini timestamp: "1 Apr 2026, 18:39:35 WEST" → ISO 8601.
- * Timezone is treated as UTC (all entries use the same TZ, preserving order).
- */
-function parseTimestamp(raw: string): string | undefined {
-  const m = raw.match(/^(\d{1,2})\s+(\w{3})\s+(\d{4}),\s+(\d{2}):(\d{2}):(\d{2})\s+/);
-  if (!m || MONTHS[m[2]] === undefined) return undefined;
-  const d = new Date(Date.UTC(+m[3], MONTHS[m[2]], +m[1], +m[4], +m[5], +m[6]));
-  return d.toISOString();
+// All Gemini format parsing (MyActivity.json, legacy HTML, Saved-info paste)
+// lives in the shared Rust core (`@totalreclaw/core` WASM) so the logic —
+// including the locale-robust, lossless timestamp handling — is identical across
+// every client (Python/Hermes via PyO3, TS via WASM). This adapter is a thin
+// shim: it owns only file I/O + the size/RAM preflight, then delegates parsing.
+const requireWasm = createRequire(import.meta.url);
+let _wasm: typeof import('@totalreclaw/core') | null = null;
+function getWasm() {
+  if (!_wasm) _wasm = requireWasm('@totalreclaw/core');
+  return _wasm!;
 }
 
-// ── HTML Helpers ─────────────────────────────────────────────────────────────
-
-function decodeEntities(t: string): string {
-  return t.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ');
+/** Shape returned by core `parseGemini` (serde -> JS object, snake_case). */
+interface CoreParseResult {
+  chunks: ConversationChunk[];
+  total_messages: number;
+  warnings: string[];
+  errors: string[];
+  format: string;
+  records_count?: number;
+  skipped?: number;
 }
-
-function stripHTML(html: string): string {
-  return html.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n')
-    .replace(/<\/li>/gi, '\n').replace(/<\/h[1-6]>/gi, '\n')
-    .replace(/<hr\s*\/?>/gi, '\n---\n').replace(/<[^>]+>/g, '')
-    .replace(/\n{3,}/g, '\n\n').trim();
-}
-
-// ── Entry Types ──────────────────────────────────────────────────────────────
-
-interface GeminiEntry {
-  userPrompt: string;
-  aiResponse: string;
-  timestampISO: string;
-  timestampUnix: number;
-}
-
-// ── Gemini Adapter ───────────────────────────────────────────────────────────
 
 export class GeminiAdapter extends BaseImportAdapter {
   readonly source: ImportSource = 'gemini';
@@ -101,161 +76,41 @@ export class GeminiAdapter extends BaseImportAdapter {
     } else {
       errors.push(
         'Gemini import requires either content or file_path. ' +
-        'Export from Google Takeout: takeout.google.com → select Gemini Apps → export. ' +
-        'Provide the "My Activity.html" file path.',
+        'Export from Google Takeout: takeout.google.com → "My Activity" → "Gemini Apps". ' +
+        'Provide the "My Activity.html" (or MyActivity.json) file path, or paste your Saved info.',
       );
       return { facts: [], chunks: [], totalMessages: 0, warnings, errors };
     }
 
     if (onProgress) {
-      onProgress({ current: 0, total: 0, phase: 'parsing', message: 'Parsing Gemini HTML...' });
+      onProgress({ current: 0, total: 0, phase: 'parsing', message: 'Parsing Gemini export...' });
     }
 
-    // Parse HTML into entries
-    const entries = this.parseHTML(content);
-    if (entries.length === 0) {
-      warnings.push('No conversation entries found in the HTML file.');
-      return { facts: [], chunks: [], totalMessages: 0, warnings, errors };
-    }
-
-    // Group into pseudo-sessions by temporal proximity
-    const sessions = this.groupSessions(entries);
+    // Delegate ALL format parsing to the shared core.
+    const result = getWasm().parseGemini(content) as CoreParseResult;
 
     if (onProgress) {
       onProgress({
-        current: 0,
-        total: sessions.length,
+        current: result.chunks.length,
+        total: result.chunks.length,
         phase: 'parsing',
-        message: `Parsed ${entries.length} entries into ${sessions.length} sessions`,
+        message: `Parsed ${result.total_messages} messages into ${result.chunks.length} chunks`,
       });
-    }
-
-    // Build conversation chunks from sessions
-    const chunks: ConversationChunk[] = [];
-    let totalMessages = 0;
-
-    for (const session of sessions) {
-      const messages: Array<{ role: 'user' | 'assistant'; text: string }> = [];
-      for (const entry of session) {
-        if (entry.userPrompt) messages.push({ role: 'user', text: entry.userPrompt });
-        if (entry.aiResponse) messages.push({ role: 'assistant', text: entry.aiResponse });
-      }
-      if (messages.length === 0) continue;
-
-      totalMessages += messages.length;
-      const timestamp = session[0].timestampISO;
-
-      // Sub-chunk large sessions
-      for (let i = 0; i < messages.length; i += CHUNK_SIZE) {
-        const batch = messages.slice(i, i + CHUNK_SIZE);
-        const chunkIdx = Math.floor(i / CHUNK_SIZE) + 1;
-        const totalChunks = Math.ceil(messages.length / CHUNK_SIZE);
-        const title = totalChunks > 1
-          ? `Gemini session (part ${chunkIdx}/${totalChunks})`
-          : 'Gemini session';
-
-        chunks.push({ title, messages: batch, timestamp });
-      }
     }
 
     return {
       facts: [],
-      chunks,
-      totalMessages,
-      warnings,
-      errors,
+      chunks: result.chunks,
+      totalMessages: result.total_messages,
+      warnings: [...warnings, ...result.warnings],
+      errors: [...errors, ...result.errors],
       source_metadata: {
-        format: 'gemini-takeout-html',
-        total_entries: entries.length,
-        sessions_count: sessions.length,
-        chunks_count: chunks.length,
-        total_messages: totalMessages,
-        date_range: {
-          earliest: entries[0]?.timestampISO,
-          latest: entries[entries.length - 1]?.timestampISO,
-        },
+        format: result.format,
+        chunks_count: result.chunks.length,
+        total_messages: result.total_messages,
+        ...(result.records_count ? { records_count: result.records_count } : {}),
+        ...(result.skipped ? { skipped_non_gemini: result.skipped } : {}),
       },
     };
-  }
-
-  /**
-   * Parse Gemini Takeout HTML into structured entries.
-   *
-   * Each outer-cell div contains: "Prompted USER_TEXT<br>TIMESTAMP<br>RESPONSE_HTML"
-   * all within one content-cell.
-   */
-  private parseHTML(html: string): GeminiEntry[] {
-    const entries: GeminiEntry[] = [];
-    const cellPattern = /<div class="outer-cell[^"]*">([\s\S]*?)(?=<div class="outer-cell|$)/g;
-    let match: RegExpExecArray | null;
-
-    while ((match = cellPattern.exec(html)) !== null) {
-      const cell = match[1];
-
-      // Only process "Prompted" entries (skip canvas, feedback)
-      const promptedIdx = cell.indexOf('Prompted\u00a0');
-      if (promptedIdx === -1) continue;
-
-      // Extract timestamp
-      const tsMatch = cell.match(/(\d{1,2}\s+\w{3}\s+\d{4},\s+\d{2}:\d{2}:\d{2}\s+\w+)/);
-      if (!tsMatch) continue;
-      const timestampISO = parseTimestamp(tsMatch[1]);
-      if (!timestampISO) continue;
-
-      // Split on timestamp to separate user prompt from AI response
-      const afterPrompted = cell.substring(promptedIdx + 'Prompted\u00a0'.length);
-      const tsPattern = /(\d{1,2}\s+\w{3}\s+\d{4},\s+\d{2}:\d{2}:\d{2}\s+\w+)/;
-      const tsIdx = afterPrompted.search(tsPattern);
-
-      let userPrompt = '';
-      let aiResponse = '';
-
-      if (tsIdx > 0) {
-        userPrompt = stripHTML(decodeEntities(afterPrompted.substring(0, tsIdx))).trim();
-
-        const tsInner = afterPrompted.match(tsPattern);
-        if (tsInner) {
-          const afterTs = afterPrompted.substring(tsIdx + tsInner[0].length)
-            .replace(/^\s*<br\s*\/?>\s*/i, '');
-          const endDiv = afterTs.search(/<\/div>\s*<div class="content-cell/);
-          const rawResp = endDiv !== -1 ? afterTs.substring(0, endDiv) : afterTs;
-          aiResponse = stripHTML(decodeEntities(rawResp)).trim();
-        }
-      }
-
-      if (userPrompt.length < 3 && aiResponse.length < 3) continue;
-
-      entries.push({
-        userPrompt,
-        aiResponse,
-        timestampISO,
-        timestampUnix: Math.floor(new Date(timestampISO).getTime() / 1000),
-      });
-    }
-
-    // Sort chronologically (HTML is newest-first)
-    entries.sort((a, b) => a.timestampUnix - b.timestampUnix);
-    return entries;
-  }
-
-  /**
-   * Group entries into pseudo-sessions by temporal proximity.
-   */
-  private groupSessions(entries: GeminiEntry[]): GeminiEntry[][] {
-    if (entries.length === 0) return [];
-    const sessions: GeminiEntry[][] = [];
-    let current: GeminiEntry[] = [entries[0]];
-
-    for (let i = 1; i < entries.length; i++) {
-      const gap = entries[i].timestampUnix - entries[i - 1].timestampUnix;
-      if (gap > SESSION_GAP_MINUTES * 60) {
-        sessions.push(current);
-        current = [entries[i]];
-      } else {
-        current.push(entries[i]);
-      }
-    }
-    if (current.length > 0) sessions.push(current);
-    return sessions;
   }
 }

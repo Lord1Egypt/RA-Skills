@@ -41,7 +41,7 @@ Produce this TypeScript snippet for the user to run. Replace `<STAKING_ADDR>` an
 ```typescript
 import { createWalletClient, createPublicClient, http, parseUnits } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 const STAKING  = "<STAKING_ADDR>" as `0x${string}`;  // AACPStaking from config
 const USDC     = "<USDC_ADDR>"    as `0x${string}`;   // MockUSDC from config
@@ -51,8 +51,8 @@ const AMOUNT   = parseUnits("<AMOUNT_USDC>", 6);       // 6 decimals
 
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const ERC20_APPROVE_ABI = [{
   name: "approve", type: "function",
@@ -92,7 +92,7 @@ export WALLET_KEY=0x<your_private_key>
 pnpm exec tsx stake-provider.ts
 ```
 
-**Success criteria:** Both transactions confirmed on BSC Testnet. Tx hashes logged.
+**Success criteria:** Both transactions confirmed on BSC Mainnet. Tx hashes logged.
 
 ### 4. Verify stake was recorded
 

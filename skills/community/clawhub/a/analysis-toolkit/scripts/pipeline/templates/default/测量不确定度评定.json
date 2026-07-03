@@ -1,0 +1,56 @@
+{
+  "name": "测量不确定度评定",
+  "description": "GUM法测量不确定度评定 — A类/B类评定 → 合成 → 扩展不确定度",
+  "tags": [
+    "uncertainty",
+    "GUM",
+    "JJF1059",
+    "bias"
+  ],
+  "default_report": "测量不确定度报告",
+  "steps": [
+    {
+      "name": "A类评定",
+      "target": "operations.uncertainty.calc_ua",
+      "params": {
+        "values": "%input.values%"
+      },
+      "description": "重复性引入的标准不确定度"
+    },
+    {
+      "name": "偏倚不确定度",
+      "target": "operations.uncertainty.calc_ubias_by_distribution",
+      "params": {
+        "bias": "%input.bias%",
+        "distribution": "%input.distribution%"
+      },
+      "description": "偏倚引入的标准不确定度"
+    },
+    {
+      "name": "B类评定",
+      "target": "operations.uncertainty.calc_ub_type_b",
+      "params": {
+        "half_width": "%input.half_width%",
+        "distribution": "%input.b_distribution%"
+      },
+      "description": "B类标准不确定度"
+    },
+    {
+      "name": "合成不确定度",
+      "target": "operations.uncertainty.calc_u_combined",
+      "params": {
+        "components": "%input.components%"
+      },
+      "description": "uc = sqrt(Σui²)"
+    },
+    {
+      "name": "扩展不确定度",
+      "target": "operations.uncertainty.calc_expanded_u",
+      "params": {
+        "uc": "%合成不确定度%",
+        "k": "%input.k%"
+      },
+      "description": "U = k × uc"
+    }
+  ]
+}

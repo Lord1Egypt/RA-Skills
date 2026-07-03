@@ -28,23 +28,23 @@ COS 存储约定：
 
 用法：
   # 足球赛事精彩集锦
-  python mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+  python3 mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
   # 短剧影视高光
-  python mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # VLOG 全景相机
-  python mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+  python3 mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
   # 自定义场景（大模型版）
-  python mps_highlight.py --url https://example.com/skiing.mp4 \
+  python3 mps_highlight.py --url https://example.com/skiing.mp4 \
       --scene custom --prompt "滑雪场景，输出人物高光" --scenario "滑雪"
 
   # 篮球赛事
-  python mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+  python3 mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
+  python3 mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -81,7 +81,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -485,7 +485,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\n提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -502,26 +502,26 @@ def main():
         epilog="""
 示例：
   # 足球赛事精彩集锦
-  python mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+  python3 mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
   # 短剧影视高光
-  python mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # VLOG 全景相机
-  python mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+  python3 mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
   # 自定义场景（大模型版）
-  python mps_highlight.py --url https://example.com/skiing.mp4 \\
+  python3 mps_highlight.py --url https://example.com/skiing.mp4 \\
       --scene custom --prompt "滑雪场景，输出人物高光" --scenario "滑雪"
 
   # 篮球赛事
-  python mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+  python3 mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
   # 指定输出片段数（仅 vlog/vlog-panorama/custom 支持）
-  python mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
+  python3 mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
 
   # Dry Run（仅打印请求参数）
-  python mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
+  python3 mps_highlight.py --cos-input-key /input/game.mp4 --scene football --dry-run
 
 预设场景（--scene）：
   vlog          VLOG、风景、无人机视频（大模型版）
@@ -696,8 +696,11 @@ def main():
 
     if cos_bucket_env:
         print(f"COS Bucket (环境变量): {cos_bucket_env}")
-    else:
-        print("❌ 未设置 TENCENTCLOUD_COS_BUCKET 环境变量，请配置后重试", file=sys.stderr)
+
+    # 最终校验：命令行 --output-bucket 或环境变量至少一处提供了有效 bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ 未指定输出 Bucket，请通过 --output-bucket 参数或 TENCENTCLOUD_COS_BUCKET 环境变量配置后重试",
+              file=sys.stderr)
         sys.exit(1)
 
     print(f"场景: {args.scene}（{preset.get('version', '')}）")

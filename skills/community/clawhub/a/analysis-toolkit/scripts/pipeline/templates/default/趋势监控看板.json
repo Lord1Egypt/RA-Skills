@@ -1,0 +1,46 @@
+{
+  "name": "趋势监控看板",
+  "description": "时序聚合 → 趋势图 → 滚动统计 → 预测预警",
+  "tags": [
+    "趋势监控",
+    "时序",
+    "Prophet",
+    "预测"
+  ],
+  "default_report": "趋势监控报告",
+  "steps": [
+    {
+      "name": "监控看板",
+      "target": "scenarios.trend_monitoring.monitoring_dashboard",
+      "params": {
+        "data": "%input%",
+        "date_col": "日期",
+        "value_col": "值",
+        "freq": "W",
+        "window": 7
+      },
+      "description": "时序聚合 + 趋势图 + 滚动统计"
+    },
+    {
+      "name": "预测预警",
+      "target": "scenarios.trend_monitoring.forecast_alert",
+      "params": {
+        "data": "%input%",
+        "date_col": "日期",
+        "value_col": "值",
+        "freq": "W",
+        "periods": 4
+      },
+      "description": "Prophet预测 + 预警判断"
+    },
+    {
+      "name": "趋势报告",
+      "target": "scenarios.trend_monitoring.trend_report",
+      "params": {
+        "trend_result": "%监控看板%",
+        "alert_result": "%预测预警%"
+      },
+      "description": "报告文本"
+    }
+  ]
+}

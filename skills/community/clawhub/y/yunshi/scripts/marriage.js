@@ -4,22 +4,6 @@
  * 根据八字分析两个人的婚姻适配度
  */
 
-const fs = require('fs');
-const path = require('path');
-
-const PROFILES_DIR = path.join(__dirname, '../data/profiles');
-
-/**
- * 加载用户档案
- */
-function loadProfile(userId) {
-  const filePath = path.join(PROFILES_DIR, `${userId}.json`);
-  if (!fs.existsSync(filePath)) {
-    return null;
-  }
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
 /**
  * 天干信息
  */
@@ -361,45 +345,23 @@ function generateReport(name1, bazi1, name2, bazi2) {
 // 主入口
 const args = process.argv.slice(2);
 
-if (args.length < 2) {
+if (args.length < 4) {
   console.log(`
 💕 合婚分析
 
 用法:
-  node marriage.js <userId1> <userId2>
   node marriage.js <name1> <bazi1> <name2> <bazi2>
 
 示例:
-  node marriage.js 111111 222222
   node marriage.js 张三 "甲子 乙丑 丙寅 丁卯" 李四 "庚午 辛巳 庚辰 癸未"
+
+说明:
+  双方八字由 Agent 从 MEMORY.md 档案读取后作为参数传入（本脚本不读写文件）。
 `);
   process.exit(1);
 }
 
-let name1, bazi1, name2, bazi2;
-
-// 判断输入模式：2个参数=从档案加载，4个参数=直接输入
-if (args.length === 2) {
-  const profile1 = loadProfile(args[0]);
-  const profile2 = loadProfile(args[1]);
-  
-  if (!profile1 || !profile2) {
-    console.log('❌ 未找到用户档案');
-    process.exit(1);
-  }
-  
-  name1 = profile1.name;
-  name2 = profile2.name;
-  bazi1 = profile1.bazi.year + ' ' + profile1.bazi.month + ' ' + profile1.bazi.day + ' ' + profile1.bazi.hour;
-  bazi2 = profile2.bazi.year + ' ' + profile2.bazi.month + ' ' + profile2.bazi.day + ' ' + profile2.bazi.hour;
-  
-  console.log('📋 从档案加载\n');
-} else {
-  name1 = args[0];
-  bazi1 = args[1];
-  name2 = args[2];
-  bazi2 = args[3];
-}
+const [name1, bazi1, name2, bazi2] = args;
 
 console.log(generateReport(name1, bazi1, name2, bazi2));
 

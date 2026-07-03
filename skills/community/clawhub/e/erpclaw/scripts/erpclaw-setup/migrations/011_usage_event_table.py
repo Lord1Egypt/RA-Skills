@@ -10,7 +10,7 @@ import argparse
 import os
 import sqlite3
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 # Canonical (permissive) definition — matches init_schema and the prior
 # erpclaw-growth definition verbatim so existing growth DBs are unaffected.

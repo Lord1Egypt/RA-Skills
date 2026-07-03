@@ -1,0 +1,11 @@
+# MBA Thesis Workflow - 可选依赖
+# 安装：pip install -r requirements-optional.txt
+# 或合并安装：pip install -r requirements.txt -r requirements-optional.txt
+
+# ============================================================
+# Layer 2 向量标题匹配（BGE-small-zh）
+# 安装后 Phase 1.3 归因速度从 30-90s 提升至 2-5s
+# 首次运行会自动下载 ~33MB 模型到 ~/.cache/huggingface/
+# 国内用户如遇 HuggingFace 连接超时，会自动走 hf-mirror.com 镜像
+# ============================================================
+sentence-transformers~=5.1

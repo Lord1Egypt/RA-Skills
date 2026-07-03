@@ -1,0 +1,14 @@
+# LYGO Kernel Eggs — book-brain reference stub
+# generated 2026-07-02T18:25:05.928748+00:00
+tamper_verdict: ALIGNED
+registry_merkle_root: ee79ae47c6150c557035fd4bf81b88f4126f2d263b5c6643b62b8e5c5edbba99
+git_head: 9d35cd95ccde
+retrieval: https://deepseekoracle.github.io/lygo-protocol-stack/KernelEggRetrieval.html
+cli: python tools/retrieve_kernel_egg.py --list
+
+egg:p0-nano-kernel sha256:606fe61ffe972721… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/606fe61ffe972721fe89cd7ff710270c237ec92ef533fd59b3e355285380443a.json
+egg:stack-anchor-hook sha256:584aed9fcfe54e60… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/584aed9fcfe54e602ad96b5829b839daf1389b4f8fe2050767467e4bb35bf39f.json
+egg:stack-orchestrator-slim sha256:091dd76165d85084… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/091dd76165d85084104e8eb6d5b8206e4fa7eeb89d791ea848dfeb2bd0f6bbdf.json
+egg:lattice-soa-index sha256:64d64a148699f829… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/64d64a148699f8293ce9336ca9a19a6d4010b19994afd19f07c0ae7c226db5c1.json
+egg:firmware-p04-drivers sha256:1d2a746ae99c7452… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/1d2a746ae99c74526cdd391ddb67cfa724d4e47a0e6f04e3de11c141dfae4c95.json
+egg:protocol-drivers-p2-p5 sha256:ba99cff475bc5c34… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/ba99cff475bc5c34b8e746e43b7c10847c8efbaaef861a5dd3c22d1907b07e25.json

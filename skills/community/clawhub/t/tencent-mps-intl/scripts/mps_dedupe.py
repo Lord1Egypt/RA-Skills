@@ -16,20 +16,20 @@ Supported deduplication modes (--mode, default PicInPic):
 
 Usage:
   # Simplest usage (default PicIn Pic mode, automatically waits for completion)
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4
 
   # Specify deduplication mode
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 \\
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \\
       --mode VerticalExtend
 
   # COS input (recommended)
-  python scripts/mps_dedupe.py --cos-input-key /input/video.mp4
+  python3 scripts/mps_dedupe.py --cos-input-key /input/video.mp4
 
   # Async submission (no waiting)
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
 
   # dry-run preview (including Extended Parameter)
-  python scripts/mps_dedupe.py --url https://example.com/video.mp4 --dry-run
+  python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --dry-run
 """
 
 import sys
@@ -61,7 +61,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Tencent Cloud SDK not installed, please run: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Tencent Cloud SDK not installed, please run: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:

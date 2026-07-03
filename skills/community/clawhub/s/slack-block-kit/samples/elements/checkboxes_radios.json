@@ -1,0 +1,44 @@
+{
+  "checkboxes": {
+    "type": "checkboxes",
+    "options": [
+      {
+        "text": {
+          "type": "mrkdwn",
+          "text": "*Valhalla*"
+        },
+        "value": "valhalla"
+      },
+      {
+        "text": {
+          "type": "mrkdwn",
+          "text": "*Pearl*"
+        },
+        "value": "pearl"
+      }
+    ],
+    "action_id": "node_checkboxes"
+  },
+  "radio_buttons": {
+    "type": "radio_buttons",
+    "options": [
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Restart now",
+          "emoji": true
+        },
+        "value": "restart_now"
+      },
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Schedule",
+          "emoji": true
+        },
+        "value": "schedule"
+      }
+    ],
+    "action_id": "restart_mode"
+  }
+}

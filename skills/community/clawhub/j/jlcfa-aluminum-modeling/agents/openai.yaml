@@ -1,0 +1,5 @@
+interface:
+  display_name: "JLCFA Aluminum Modeling"
+  short_description: "JLCFA aluminum enclosure design guidance"
+  brand_color: "#0F95EC"
+  default_prompt: "Use $jlcfa-aluminum-modeling to review this aluminum enclosure for JLCFA constraints."

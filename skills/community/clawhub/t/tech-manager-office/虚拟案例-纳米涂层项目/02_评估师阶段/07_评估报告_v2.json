@@ -1,0 +1,87 @@
+{
+  "report_id": "EVAL-20260619-001",
+  "project_id": "TM-20260619-001",
+  "evaluator_id": "evaluator-audit-01",
+  "evaluation_date": "2026-06-19",
+  "trl_assessment": {
+    "current_trl": 4,
+    "evidence": [
+      "3项核心专利已授权",
+      "小尺寸样品制备完成并通过基础测试",
+      "热循环疲劳测试>1000次",
+      "结合强度>25MPa"
+    ],
+    "confidence": "medium",
+    "key_gaps": [
+      "缺乏第三方检测报告",
+      "无中试报告",
+      "无长期稳定性数据"
+    ]
+  },
+  "trl_assessment_detail": {
+    "assessment_id": "TRL-20260619-001",
+    "assessment_date": "2026-06-19",
+    "trl_result": {
+      "current_trl": 4,
+      "trl_name": "组件/子系统验证（实验室环境）",
+      "evidence": [
+        "3项核心专利已授权（C类）",
+        "小尺寸样品制备完成（E类）",
+        "高温氧化环境测试通过（E类）",
+        "热循环疲劳测试>1000次（E类）",
+        "初步力学性能合格（E类）"
+      ],
+      "confidence": "medium",
+      "key_gaps": [
+        "缺乏第三方检测报告（B类）",
+        "无中试报告",
+        "无官方认证文件（A类）"
+      ]
+    },
+    "evidence_evaluation": {
+      "completeness": "partial",
+      "missing_items": ["第三方检测报告", "中试报告", "官方认证文件", "客户试用协议"],
+      "quality_assessment": "以E类内部文件为主，缺乏B类及以上第三方验证"
+    },
+    "gap_analysis": [
+      { "from_trl": 4, "to_trl": 5, "gap_description": "中试验证", "estimated_duration_months": 12, "estimated_investment": 1000, "key_bottleneck": "中试基地对接" },
+      { "from_trl": 5, "to_trl": 6, "gap_description": "系统原型演示", "estimated_duration_months": 12, "estimated_investment": 1500, "key_bottleneck": "主机厂合作" },
+      { "from_trl": 6, "to_trl": 7, "gap_description": "运行环境验证", "estimated_duration_months": 18, "estimated_investment": 2500, "key_bottleneck": "适航认证" }
+    ],
+    "conversion_path": {
+      "recommended_mode": "pilot_base",
+      "typical_partners": ["中试基地", "中国航发", "航空产业园", "产业投资基金"],
+      "funding_requirement": "4800-6500万",
+      "key_actions": ["对接中试基地", "组建工程化团队", "锁定供应商", "签订主机厂协议"]
+    },
+    "risk_estimation": {
+      "composite_success_rate": 0.35,
+      "risk_level": "中高风险",
+      "major_risks": [
+        { "risk": "中试失败率高", "probability": "高", "impact": "致命", "mitigation": "对接有经验的中试基地" },
+        { "risk": "主机厂配合度不足", "probability": "高", "impact": "高", "mitigation": "提前锁定排他性协议" },
+        { "risk": "适航认证周期长", "probability": "中", "impact": "高", "mitigation": "尽早启动认证准备" },
+        { "risk": "融资困难", "probability": "中", "impact": "高", "mitigation": "分阶段融资+政府专项" }
+      ]
+    }
+  },
+  "due_diligence": {
+    "l1_material": "partial",
+    "l2_technical": "feasible",
+    "l3_commercial": "questionable",
+    "l4_risk": "yellow"
+  },
+  "risk_assessment": [
+    { "risk_type": "tech", "risk_level": "medium", "description": "实验室到中试存在工程化风险，数据量有限缺乏统计显著性", "mitigation": "增加测试样品量，引入第三方验证" },
+    { "risk_type": "market", "risk_level": "high", "description": "主机厂认证周期3-5年，认证通过不确定", "mitigation": "尽早启动认证，与监管机构提前沟通" },
+    { "risk_type": "financial", "risk_level": "high", "description": "中试资金缺口2000万+，后续总需求4800-6500万", "mitigation": "分阶段融资，申请政府专项支持" },
+    { "risk_type": "team", "risk_level": "medium", "description": "团队偏学术，工程化和商业化能力不足", "mitigation": "引入产业合伙人，组建互补团队" },
+    { "risk_type": "ip", "risk_level": "low", "description": "3项核心专利已授权，但专利归属和许可方式尚未明确", "mitigation": "尽快明确IP归属，完善许可协议" },
+    { "risk_type": "legal", "risk_level": "medium", "description": "涉及军工保密资质和适航认证，合规复杂度高", "mitigation": "引入合规顾问，提前准备申报材料" }
+  ],
+  "conclusion": {
+    "grade": "B",
+    "summary": "纳米陶瓷涂层技术具有显著的国防和产业价值，技术指标达到国际先进水平。当前TRL4（组件验证完成），证据以内部文件为主，缺乏第三方验证。主要风险集中在：中试工程化挑战、主机厂认证周期长、资金需求大、团队产业化能力不足。建议采取渐进式跨越方案，优先对接中试基地，同步启动融资和主机厂合作。",
+    "recommendation": "proceed"
+  }
+}

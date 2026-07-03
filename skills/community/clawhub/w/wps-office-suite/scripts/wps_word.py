@@ -44,10 +44,13 @@ def main():
 
     p = sub.add_parser("format", help="格式")
     p.add_argument("--file", required=True)
-    p.add_argument("--align", default="center")
+    p.add_argument("--align", default="")
     p.add_argument("--font", default="")
     p.add_argument("--size", type=int, default=0)
-    p.add_argument("--indent", type=int, default=0)
+    p.add_argument("--bold", action="store_true")
+    p.add_argument("--color", default="")
+    p.add_argument("--space-after", type=float, default=0)
+    p.add_argument("--first-indent", type=float, default=0)
 
     p = sub.add_parser("export", help="导出")
     p.add_argument("--file", required=True)
@@ -65,7 +68,7 @@ def main():
     elif args.command == "edit":
         r = call_worker("edit_word", {"filepath": args.file, "text": args.text, "position": args.position})
     elif args.command == "format":
-        r = call_worker("format_word", {"filepath": args.file, "align": args.align, "font": args.font, "size": args.size, "indent": args.indent})
+        r = call_worker("format_word", {"filepath": args.file, "align": args.align, "font": args.font, "size": args.size, "bold": args.bold, "color": args.color, "space_after": args.space_after, "first_line_indent": args.first_indent})
     elif args.command == "export":
         r = call_worker("export_word", {"filepath": args.file, "format": args.format})
     elif args.command == "info":

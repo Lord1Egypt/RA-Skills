@@ -18,21 +18,21 @@
 
 ```bash
 # Simplest usage: omit --cos-input-key, automatically uses input/<filename> as COS Key
-python scripts/mps_cos_upload.py --local-file ./video.mp4
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4
 # Equivalent to: --cos-input-key input/video.mp4
 
 # Manually specify cos-input-key
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4
 
 # Show detailed logs
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --verbose
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --verbose
 
 # Specify bucket and region (overrides environment variables)
-python scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4 \
+python3 scripts/mps_cos_upload.py --local-file ./video.mp4 --cos-input-key input/video.mp4 \
     --bucket mybucket-125xxx --region ap-guangzhou
 
 # Upload an image file
-python scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
+python3 scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
 ```
 
 ---
@@ -59,20 +59,20 @@ python scripts/mps_cos_upload.py --local-file ./photo.jpg --verbose
 
 ```bash
 # Simplest usage: omit --local-file, automatically saves as ./<filename>
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4
 # Equivalent to: --local-file ./result.mp4
 
 # Manually specify local-file
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
 # Show detailed logs
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --verbose
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --verbose
 
 # Download to workspace directory (recommended path)
-python scripts/mps_cos_download.py --cos-input-key output/enhanced.mp4 --local-file /data/workspace/enhanced.mp4 --verbose
+python3 scripts/mps_cos_download.py --cos-input-key output/enhanced.mp4 --local-file /data/workspace/enhanced.mp4 --verbose
 
 # Specify bucket and region (overrides environment variables)
-python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \
+python3 scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \
     --bucket mybucket-125xxx --region ap-guangzhou
 ```
 
@@ -97,25 +97,25 @@ python scripts/mps_cos_download.py --cos-input-key output/result.mp4 --local-fil
 
 ```bash
 # List all files in the Bucket root directory
-python scripts/mps_cos_list.py
+python3 scripts/mps_cos_list.py
 
 # List files under a specific path
-python scripts/mps_cos_list.py --prefix output/transcode/
+python3 scripts/mps_cos_list.py --prefix output/transcode/
 
 # Fuzzy search for files with "video" in the filename
-python scripts/mps_cos_list.py --prefix output/ --search video
+python3 scripts/mps_cos_list.py --prefix output/ --search video
 
 # Exact match filename
-python scripts/mps_cos_list.py --prefix output/ --search "result.mp4" --exact
+python3 scripts/mps_cos_list.py --prefix output/ --search "result.mp4" --exact
 
 # Show full file URLs
-python scripts/mps_cos_list.py --prefix output/ --show-url
+python3 scripts/mps_cos_list.py --prefix output/ --show-url
 
 # Limit the number of returned results
-python scripts/mps_cos_list.py --prefix output/ --limit 50
+python3 scripts/mps_cos_list.py --prefix output/ --limit 50
 
 # List enhanced result files and show URLs
-python scripts/mps_cos_list.py --prefix /output/enhance/ --show-url --limit 20
+python3 scripts/mps_cos_list.py --prefix /output/enhance/ --show-url --limit 20
 ```
 
 ## Mandatory Rules

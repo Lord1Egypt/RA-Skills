@@ -27,7 +27,7 @@
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { buildHubHeaders, getHubUrl, getNodeId } = require('../a2aProtocol');
+const { buildHubHeaders, buildNodeScopedHubHeaders, getHubUrl, getNodeId } = require('../a2aProtocol');
 const { hubFetch } = require('../hubFetch');
 const { getEvomapPath } = require('../paths');
 const { resolveHubUrl: resolveDefaultHubUrl } = require('../../config');
@@ -70,6 +70,11 @@ function logStakeEvent(event, data) {
   } catch (_) {
     // sync-engine is optional in some test/CLI contexts
   }
+}
+
+function buildStakeHubHeaders() {
+  const buildHeaders = buildNodeScopedHubHeaders || buildHubHeaders;
+  return buildHeaders();
 }
 
 // Retry state machine: remembers last outcome classification so we can pick
@@ -241,7 +246,7 @@ async function ensureValidatorStake(opts) {
   try {
     res = await hubFetch(url, {
       method: 'POST',
-      headers: buildHubHeaders(),
+      headers: buildStakeHubHeaders(),
       body: JSON.stringify(body),
       signal: controller.signal,
     });

@@ -1,0 +1,11 @@
+{
+  "name": "slim",
+  "tagline": "Strip verbose CLI output before it hits the LLM.",
+  "description": "A pluggable pipe filter that trims noise from big command output — huge YAML/JSON dumps, lockfiles, long diffs, verbose install logs — so an agent spends its context budget on signal. Always-on lossless cleanups (ANSI, blank runs, repeats) plus opt-in per-command clamps to head+tail with a clear elision marker. Pure Python standard library.",
+  "category": "developer-tools",
+  "tags": ["context-efficiency", "cli", "pipe-filter", "agents", "tokens", "python"],
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://workloft.ai/labs",
+  "support_url": "https://workloft.ai"
+}

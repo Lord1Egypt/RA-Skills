@@ -1,0 +1,23 @@
+{
+  "printer": {
+    "name": "Bambu P1S",
+    "model": "P1S",
+    "serial": "0109C4A2200171",
+    "ip": "192.168.1.68",
+    "access_code": "31713703",
+    "username": "bblp"
+  },
+  "ports": {
+    "ftps": 990,
+    "mqtt": 8883,
+    "camera": 6000
+  },
+  "paths": {
+    "root": "/",
+    "upload": "/cache/",
+    "timelapse": "/timelapse/",
+    "recorder": "/recorder/",
+    "images": "/image/"
+  },
+  "note": "Node.js/Python 无法直连局域网（macOS 签名限制），所有操作通过 curl/perl/ruby 等系统签名工具完成"
+}

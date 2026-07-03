@@ -1,0 +1,10 @@
+{
+  "level": "L0",
+  "triggered_by": null,
+  "fail_count": {"warm_write": 0, "cold_write": 0, "index_write": 0, "warm_read": 0, "cold_read": 0},
+  "recovery_count": {"warm_write": 0, "cold_write": 0, "index_write": 0},
+  "first_fail_at": null,
+  "last_check_at": "2026-06-28T20:28:00",
+  "consecutive_fails": 0,
+  "history": []
+}

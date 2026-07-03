@@ -40,53 +40,53 @@ COS Storage Convention:
 Usage:
   # Minimal usage: URL input + default preset template 321002
   # (output to TENCENTCLOUD_COS_BUCKET/output/enhance/)
-  python mps_enhance.py --url https://example.com/video.mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4
 
   # COS input (recommended, using --cos-input-key)
-  python mps_enhance.py --cos-input-key /input/video/test.mp4
+  python3 mps_enhance.py --cos-input-key /input/video/test.mp4
 
   # Large-model enhancement preset (strength: strong)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
   # Comprehensive enhancement preset (strength: normal)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
   # Artifact repair preset (strength: strong)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
   # Custom resolution (width 1920, height auto-scaled)
-  python mps_enhance.py --url https://example.com/video.mp4 --width 1920
+  python3 mps_enhance.py --url https://example.com/video.mp4 --width 1920
 
   # Custom bitrate cap (unit: kbps)
-  python mps_enhance.py --url https://example.com/video.mp4 --bitrate 3000
+  python3 mps_enhance.py --url https://example.com/video.mp4 --bitrate 3000
 
   # Enable both color enhancement and low-light enhancement
-  python mps_enhance.py --url https://example.com/video.mp4 --color-enhance --low-light-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --color-enhance --low-light-enhance
 
   # Enable super-resolution (2×) + denoising + color enhancement
   # (cannot be used together with large-model enhancement)
-  python mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
   # Enable scratch repair (old film restoration scenario)
-  python mps_enhance.py --url https://example.com/video.mp4 --scratch-repair 0.8 --scene-type LQ_material
+  python3 mps_enhance.py --url https://example.com/video.mp4 --scratch-repair 0.8 --scene-type LQ_material
 
   # Use HDR enhancement
-  python mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10
+  python3 mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10
 
   # Enable frame interpolation (target 60 fps)
-  python mps_enhance.py --url https://example.com/video.mp4 --frame-rate 60
+  python3 mps_enhance.py --url https://example.com/video.mp4 --frame-rate 60
 
   # Specify enhancement scene (gaming video)
-  python mps_enhance.py --url https://example.com/video.mp4 --scene-type game
+  python3 mps_enhance.py --url https://example.com/video.mp4 --scene-type game
 
   # Enable audio enhancement (denoising + volume normalization + beautification)
-  python mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+  python3 mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
   # Custom codec and container format
-  python mps_enhance.py --url https://example.com/video.mp4 --codec h265 --container mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4 --codec h265 --container mp4
 
   # Dry run (print request parameters only, do not call the API)
-  python mps_enhance.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_enhance.py --url https://example.com/video.mp4 --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -123,7 +123,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -809,7 +809,7 @@ def process_media(args):
                                  title="Video Enhancement Effect Comparison", output_path=compare_path)
         else:
             print(f"\nNote: The task is being processed in the background. Use the following command to check progress:")  # NOCA:line-too-long(line cannot be shortened)
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -825,40 +825,40 @@ def main():
         epilog="""
 Examples:
   # URL input + default template (video enhancement 321002), output to TENCENTCLOUD_COS_BUCKET/output/enhance/
-  python mps_enhance.py --url https://example.com/video.mp4
+  python3 mps_enhance.py --url https://example.com/video.mp4
 
   # COS path input (recommended, use after local upload)
-  python mps_enhance.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
+  python3 mps_enhance.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
   /input/video/test.mp4
 
   # COS input (bucket and region auto-read from environment variables)
-  python mps_enhance.py --cos-input-key /input/video/test.mp4
+  python3 mps_enhance.py --cos-input-key /input/video/test.mp4
 
   # Large model enhancement (strength: strong, best quality)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
   # Comprehensive enhancement (strength: normal, balanced quality and efficiency)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
   # Artifact removal (deblocking, strength: strong)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
   # Super-resolution + denoising + color enhancement (combined)
-  python mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+  python3 mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
   # Old film restoration (scratch repair + low-light enhancement + color enhancement)
-  python mps_enhance.py --url https://example.com/video.mp4 \\
+  python3 mps_enhance.py --url https://example.com/video.mp4 \\
       --scratch-repair 0.8 --low-light-enhance --color-enhance --scene-type LQ_material
 
   # Game video enhancement (frame interpolation to 60fps + comprehensive enhancement)
-  python mps_enhance.py --url https://example.com/video.mp4 \\
+  python3 mps_enhance.py --url https://example.com/video.mp4 \\
       --preset comprehensive --frame-rate 60 --scene-type game
 
   # Audio enhancement (denoising + volume balancing + beautification)
-  python mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+  python3 mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
   # Dry run (print request parameters only)
-  python mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --dry-run
+  python3 mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --dry-run
 
 Enhancement preset descriptions (choose one, mutually exclusive):
   diffusion      Large model enhancement — diffusion model-based quality reconstruction, strongest effect, longer
@@ -1025,6 +1025,17 @@ Environment variables:
                              help="Automatically generate a comparison HTML page after task completion (optionally specify output path, auto-generated by default)")  # NOCA:line-too-long(line cannot be shortened)
 
     args = parser.parse_args()
+
+    # Auto-load environment variables (execute at entry to ensure all downstream functions can access)
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  Auto-load env failed: {e}", file=sys.stderr)
+
     # --url: if a local path is provided, automatically switch to local upload mode
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -1093,8 +1104,11 @@ Environment variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (environment variable): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     if args.template:

@@ -33,41 +33,41 @@ COS Storage Convention:
 
 Usage:
   # Voice cloning (local audio file)
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
   # Voice cloning (audio URL)
-  python mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
+  python3 mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
 
   # Short-text TTS (system voice ID)
-  python mps_dubbing.py --mode tts --text "Hello, welcome to Tencent Cloud!" --voice-id s1_2GSzVAf00hl
+  python3 mps_dubbing.py --mode tts --text "Hello, welcome to Tencent Cloud!" --voice-id s1_2GSzVAf00hl
 
   # Short-text TTS (save to file)
-  python mps_dubbing.py --mode tts --text "Hello, welcome!" --voice-id s1_xxx --output /tmp/output.wav
+  python3 mps_dubbing.py --mode tts --text "Hello, welcome!" --voice-id s1_xxx --output /tmp/output.wav
 
   # Clone + TTS workflow (clone first, then synthesize)
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
-  python mps_dubbing.py --mode tts --text "Hello" --voice-id <VoiceId from previous step>
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode tts --text "Hello" --voice-id <VoiceId from previous step>
 
   # Long-text TTS (async, specify voice ID)
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "This is a very long text..." --voice-id clone_v1_Q03FBduA
 
   # Long-text TTS (async, clone from video URL)
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "This is a very long text..." \\
       --clone-video-url https://example.com/train.mp4
 
   # Speech-to-speech (async, replace voice)
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 \\
       --clone-video-url https://example.com/train.mp4
 
   # Speech-to-speech (async, system voice ID)
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 --voice-id s1_2GSzVAf00hl
 
   # Dry Run (print request parameters only, no API call)
-  python mps_dubbing.py --mode tts --text "Hello" --voice-id s1_xxx --dry-run
+  python3 mps_dubbing.py --mode tts --text "Hello" --voice-id s1_xxx --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -109,7 +109,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -723,7 +723,7 @@ def run_async_dubbing(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\nNote: Task is processing in the background. Query status with:")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -753,41 +753,41 @@ Modes (--mode):
 
 Examples:
   # Voice cloning (local audio, recommended 10–20s clear single-speaker audio)
-  python mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+  python3 mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
   # Voice cloning (audio URL)
-  python mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
+  python3 mps_dubbing.py --mode clone --audio-url https://example.com/voice.mp4
 
   # Short-text TTS (system voice ID)
-  python mps_dubbing.py --mode tts --text "Hello, welcome to Tencent Cloud!" --voice-id s1_2GSzVAf00hl
+  python3 mps_dubbing.py --mode tts --text "Hello, welcome to Tencent Cloud!" --voice-id s1_2GSzVAf00hl
 
   # Short-text TTS (custom sample rate + pitch + output file)
-  python mps_dubbing.py --mode tts --text "Hello!" --voice-id s1_xxx \\
+  python3 mps_dubbing.py --mode tts --text "Hello!" --voice-id s1_xxx \\
       --sample-rate 44100 --pitch 2 --output /tmp/out.wav
 
   # Clone + TTS workflow
-  python mps_dubbing.py --mode clone --audio-file voice.wav
-  python mps_dubbing.py --mode tts --text "Hello" --voice-id <VoiceId from previous step>
+  python3 mps_dubbing.py --mode clone --audio-file voice.wav
+  python3 mps_dubbing.py --mode tts --text "Hello" --voice-id <VoiceId from previous step>
 
   # Long-text TTS (async, specify voice ID)
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "A very long text exceeding 2000 characters..." --voice-id clone_v1_Q03FBduA
 
   # Long-text TTS (async, clone from video URL)
-  python mps_dubbing.py --mode async-tts \\
+  python3 mps_dubbing.py --mode async-tts \\
       --text "Long text..." --clone-video-url https://example.com/train.mp4
 
   # Speech-to-speech (async, replace voice)
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 \\
       --clone-video-url https://example.com/train.mp4
 
   # Speech-to-speech (async, use specified voice ID)
-  python mps_dubbing.py --mode async-sts \\
+  python3 mps_dubbing.py --mode async-sts \\
       --url https://example.com/video.mp4 --voice-id s1_2GSzVAf00hl
 
   # Dry Run
-  python mps_dubbing.py --mode tts --text "Hello" --voice-id s1_xxx --dry-run
+  python3 mps_dubbing.py --mode tts --text "Hello" --voice-id s1_xxx --dry-run
 
 Supported languages (--text-lang / --audio-lang / --src-lang / --clone-video-lang):
   zh=Chinese  en=English  ja=Japanese  ko=Korean  de=German  fr=French

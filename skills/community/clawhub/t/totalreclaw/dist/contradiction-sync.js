@@ -16,8 +16,8 @@
  */
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
+import { envHomedir, envNumber, envString, envStringLower, } from './entry.js';
 import { computeEntityTrapdoor, isDigestBlob, } from './claims-helper.js';
 const requireWasm = createRequire(import.meta.url);
 let _wasm = null;
@@ -31,10 +31,10 @@ function getWasm() {
 // ---------------------------------------------------------------------------
 /** Where feedback, decisions, and weights live. `~/.totalreclaw/` by default. */
 function resolveStateDir() {
-    const override = process.env.TOTALRECLAW_STATE_DIR;
-    if (override && override.length > 0)
+    const override = envString('TOTALRECLAW_STATE_DIR');
+    if (override.length > 0)
         return override;
-    return path.join(os.homedir(), '.totalreclaw');
+    return path.join(envHomedir(), '.totalreclaw');
 }
 function ensureStateDir() {
     const dir = resolveStateDir();
@@ -292,7 +292,11 @@ function _resolveWithCandidatesCore(core, input, items, byId) {
     const { newClaim, newClaimId, newEmbedding, weightsJson, thresholdLower, thresholdUpper, nowUnixSeconds, logger } = input;
     let actionsJson;
     try {
-        actionsJson = core.resolveWithCandidates(JSON.stringify(newClaim), newClaimId, JSON.stringify(newEmbedding), JSON.stringify(items), weightsJson, thresholdLower, thresholdUpper, Math.floor(nowUnixSeconds), TIE_ZONE_SCORE_TOLERANCE);
+        actionsJson = core.resolveWithCandidates(JSON.stringify(newClaim), newClaimId, JSON.stringify(newEmbedding), JSON.stringify(items), weightsJson, thresholdLower, thresholdUpper, 
+        // wasm-bindgen declares `now_unix` as i64 → JS BigInt. Node ≥26 rejects
+        // the implicit Number→BigInt coercion that older runtimes tolerated, so
+        // wrap explicitly (same as the legacy path below + loadWeightsFile).
+        BigInt(Math.floor(nowUnixSeconds)), TIE_ZONE_SCORE_TOLERANCE);
     }
     catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
@@ -453,7 +457,7 @@ function _resolveWithLegacyPipeline(core, input, items, byId) {
 export async function detectAndResolveContradictions(input) {
     const { newClaim, newClaimId, newEmbedding, subgraphOwner, authKeyHex, encryptionKey, deps, logger, } = input;
     // Read env per-call so tests can toggle without module reload.
-    const raw = (process.env.TOTALRECLAW_AUTO_RESOLVE_MODE ?? '').trim().toLowerCase();
+    const raw = envStringLower('TOTALRECLAW_AUTO_RESOLVE_MODE');
     const mode = raw === 'off' ? 'off' : raw === 'shadow' ? 'shadow' : 'active';
     if (mode === 'off')
         return [];
@@ -687,15 +691,11 @@ export const TUNING_LOOP_MIN_INTERVAL_SECONDS = 3600;
  * empty, non-numeric, or negative.
  */
 export function getTuningLoopMinIntervalSeconds() {
-    const raw = process.env.TOTALRECLAW_TUNING_MIN_INTERVAL_OVERRIDE_SECONDS;
-    if (raw === undefined || raw === null || raw === '') {
-        return TUNING_LOOP_MIN_INTERVAL_SECONDS;
-    }
-    const parsed = Number(raw);
-    if (!Number.isFinite(parsed) || parsed < 0) {
-        return TUNING_LOOP_MIN_INTERVAL_SECONDS;
-    }
-    return parsed;
+    // envNumber returns the fallback for unset/empty/non-finite/negative —
+    // recovering the original 3-guard contract in one call.
+    return envNumber('TOTALRECLAW_TUNING_MIN_INTERVAL_OVERRIDE_SECONDS', TUNING_LOOP_MIN_INTERVAL_SECONDS, {
+        min: 0,
+    });
 }
 /**
  * Walk `decisions.jsonl` in reverse and find the most recent `supersede_existing`

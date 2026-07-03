@@ -1,0 +1,30 @@
+{
+  "name": "council",
+  "version": "0.1.0",
+  "description": "Topic-aware multi-agent council for structured debate and synthesis across engineering, sales, support, product, growth, ops, and strategy topics.",
+  "moltbot": {
+    "emoji": "🏛️",
+    "category": "thinking",
+    "files": {
+      "SKILL.md": "docs/skills/council/SKILL.md",
+      "Personas.md": "docs/skills/council/Personas.md",
+      "RoundStructure.md": "docs/skills/council/RoundStructure.md",
+      "OutputFormat.md": "docs/skills/council/OutputFormat.md",
+      "SelfHealing.md": "docs/skills/council/SelfHealing.md",
+      "ExecutorPrompt.md": "docs/skills/council/ExecutorPrompt.md"
+    },
+    "requires": {
+      "tools": ["sessions_spawn", "sessions_send", "sessions_history"]
+    },
+    "triggers": [
+      "council",
+      "quick council",
+      "engineering council",
+      "sales council",
+      "support council",
+      "product council",
+      "stress test this plan",
+      "multiple perspectives"
+    ]
+  }
+}

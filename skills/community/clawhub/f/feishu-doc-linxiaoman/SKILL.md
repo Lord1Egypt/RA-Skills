@@ -1,3 +1,14 @@
+---
+name: feishu-doc-linxiaoman
+description: "在飞书中创建、读取、追加、更新和删除文档内容，支持Markdown格式编辑与文档块管理。"
+source: ClawHub
+version: 1.0.0
+tags: [document, feishu, openclaw]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 飞书文档操作-林小满
+
 # Feishu Doc 技能
 
 ## 概述

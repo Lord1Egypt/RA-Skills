@@ -4,8 +4,8 @@
 
 # -- Constants ----------------------------------------------------------------
 
-AD_API_BASE="https://mainnet.auto-drive.autonomys.xyz/api"
-AD_DOWNLOAD_API="https://public.auto-drive.autonomys.xyz/api"
+AD_BASE_URL="https://mainnet.auto-drive.autonomys.xyz/api"
+AD_DOWNLOAD_URL="https://public.auto-drive.autonomys.xyz/api"
 AM_OPENCLAW_DIR="${OPENCLAW_DIR:-$HOME/.openclaw}"
 AM_ENV_FILE="$AM_OPENCLAW_DIR/.env"
 AM_CONFIG_FILE="$AM_OPENCLAW_DIR/openclaw.json"
@@ -21,7 +21,7 @@ NC='\033[0m'
 # Usage: am_install_hint <pkg> [pkg ...]
 am_install_hint() {
   case "$(uname -s 2>/dev/null)" in
-    Linux*)               echo "  Install: sudo apt install $*" >&2 ;;
+    Linux*)               echo "  Install: apt install $* (may require elevated privileges)" >&2 ;;
     Darwin*)              echo "  Install: brew install $*" >&2 ;;
     MINGW*|MSYS*|CYGWIN*) echo "  Install: winget install $* OR choco install $*" >&2 ;;
     *)                    echo "  Install: $*" >&2 ;;
@@ -72,7 +72,7 @@ automemory_verify_key() {
   local key="$1"
   echo "Verifying API key..."
   local response http_code body
-  response=$(curl -sS -w "\n%{http_code}" "$AD_API_BASE/accounts/@me" \
+  response=$(curl -sS -w "\n%{http_code}" "$AD_BASE_URL/accounts/@me" \
     -H "Authorization: Bearer $key" \
     -H "X-Auth-Provider: apikey")
   http_code=$(echo "$response" | tail -1)

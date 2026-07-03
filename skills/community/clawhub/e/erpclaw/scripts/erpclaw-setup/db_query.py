@@ -21,8 +21,13 @@ import uuid
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 
-# Add shared lib to path — try installed location first, fall back to bundled copy
-_LIB_INSTALLED = os.path.expanduser("~/.openclaw/erpclaw/lib")
+# Add shared lib to path — installed location first, then bundled copy. The
+# installed location resolves through the single ERPCLAW_HOME point of truth
+# (ADR-0017): unset ⇒ ~/.openclaw/erpclaw/lib, byte-identical to the historical
+# literal; Hermes sets ERPCLAW_HOME to its skill-dir install so the lib resolves
+# under the Hermes prefix, not ~/.openclaw.
+_LIB_INSTALLED = os.path.join(
+    os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib")
 _LIB_BUNDLED = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 
 _lib_found = False
@@ -55,7 +60,8 @@ _NOW = now()
 
 SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
 ASSETS_DIR = os.path.join(SKILL_DIR, "assets")
-BACKUP_DIR = os.path.expanduser("~/.openclaw/erpclaw/backups")
+BACKUP_DIR = os.path.join(
+    os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "backups")
 
 INDUSTRY_PROFILE_MAP = {
     "retail": "retail", "store": "retail", "shop": "retail", "ecommerce": "retail",
@@ -1145,7 +1151,7 @@ def chmod_db_files(db_path: str) -> None:
 
 
 def _link_shared_library() -> None:
-    """Symlink ~/.openclaw/erpclaw/lib -> bundled lib at the skill location.
+    """Symlink ``$ERPCLAW_HOME/lib`` -> bundled lib at the skill location.
 
     Single deterministic install-time setup. Replaces the v4.0.x self-heal
     copy mechanism, which the OpenClaw scanner flagged as self-modifying
@@ -1153,13 +1159,17 @@ def _link_shared_library() -> None:
     lifetime of the install; on `clawhub update`, the symlink target is
     automatically the new lib (no re-link needed).
 
-    Existing dependent skills (~430+ files) sys.path.insert the deployed
+    The link target resolves through the single ERPCLAW_HOME point of truth
+    (ADR-0017): unset ⇒ ~/.openclaw/erpclaw/lib, byte-identical to before;
+    Hermes sets ERPCLAW_HOME to its skill-dir install so the link lands under
+    the Hermes prefix. Existing dependent skills sys.path.insert the deployed
     path; the symlink keeps them working unchanged.
     """
     bundled_lib = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
     if not os.path.isdir(os.path.join(bundled_lib, "erpclaw_lib")):
         return
-    target = os.path.expanduser("~/.openclaw/erpclaw/lib")
+    target = os.path.join(
+        os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib")
     os.makedirs(os.path.dirname(target), exist_ok=True)
     if os.path.exists(target) or os.path.islink(target):
         if os.path.islink(target) and os.path.realpath(target) == os.path.realpath(bundled_lib):
@@ -1910,7 +1920,8 @@ def seed_permissions(conn, args):
 # Onboarding Wizard
 # ---------------------------------------------------------------------------
 
-ONBOARDING_STATE_DIR = os.path.expanduser("~/.openclaw/erpclaw")
+ONBOARDING_STATE_DIR = os.path.expanduser(
+    os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw"))
 ONBOARDING_STATE_FILE = os.path.join(ONBOARDING_STATE_DIR, "onboarding_state.json")
 
 VALID_CURRENCIES = ["USD", "EUR", "GBP", "CAD", "INR", "SGD", "AED"]

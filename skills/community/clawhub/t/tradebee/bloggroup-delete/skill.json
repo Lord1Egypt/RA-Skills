@@ -1,0 +1,124 @@
+{
+  "name": "bloggroup-delete",
+  "description": "A blog group deletion skill based on the Tradebee Website Builder Open API. It is used to batch delete one or more blog groups under a specified site language and returns separate success and failure ID lists.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Enabled site language. It must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "id_list": {
+        "type": "array",
+        "description": "Required. Blog group ID list, up to 100 items.",
+        "items": {
+          "type": "integer",
+          "description": "Blog group ID"
+        }
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Records the explicit user approval shown before deleting blog groups.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact blog group IDs."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation summary that restates the language and exact blog group IDs shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "id_list",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "success": {
+            "type": "array",
+            "description": "Successfully deleted items",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "Blog group ID"
+                },
+                "msg": {
+                  "type": "string",
+                  "description": "Success message"
+                }
+              },
+              "required": [
+                "id",
+                "msg"
+              ]
+            }
+          },
+          "fail": {
+            "type": "array",
+            "description": "Failed deletion items",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "Blog group ID"
+                },
+                "msg": {
+                  "type": "string",
+                  "description": "Failure message"
+                }
+              },
+              "required": [
+                "id",
+                "msg"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "fail"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

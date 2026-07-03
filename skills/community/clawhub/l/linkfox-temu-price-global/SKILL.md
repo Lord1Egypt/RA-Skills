@@ -1,7 +1,5 @@
 ---
 name: linkfox-temu-price-global
-version: 1.0.0
-category: product-sourcing
 description: Temu 全球站（非 US/EU）价格/供货价 API，经 LinkFox 网关转发 5 个接口（定价单、推荐价、SKU 供货价列表、批量改价等），默认 site=global。当用户提到 Temu Global 价格、全球站定价单、priceorder query、sku list price、查 SKU 供货价、改供货价、recommendedprice、baseprice recommend 时触发。美国站用 linkfox-temu-price-us；欧洲站用 linkfox-temu-price-eu；商品管理用 linkfox-temu-manage-product-global。
 ---
 
@@ -33,13 +31,19 @@ description: Temu 全球站（非 US/EU）价格/供货价 API，经 LinkFox 网
 | 半托管 `temu.goods.price.list.get`（`productSkuIds`） | `linkfox-temu-add-product-us` → `us_goods_price_list.py` |
 | 网关与 Temu token | 本 skill `scripts/` |
 
-## API Usage
+## 调用方式
 
-| 文档 | 内容 |
-|------|------|
-| [api.md](./references/api.md) | 网关、鉴权、错误码、典型流程 |
-| [partner-global-catalog.md](./references/partner-global-catalog.md) | 接口目录 + Partner URL + 脚本 |
-| [apis/README.md](./references/apis/README.md) | **按接口分文件**（`apis/<type-slug>.md`） |
+- **API 端点**：`POST /temu/proxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## 默认参数
 
@@ -164,3 +168,4 @@ python scripts/global_price_sku_list_price_query.py '{
 | `temu_file_download.py` | 加签文件下载（多 site） |
 
 授权说明：[references/access-token.md](./references/access-token.md)
+

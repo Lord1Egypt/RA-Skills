@@ -1,10 +1,13 @@
 # Email Extraction Patterns
 
-This document describes the patterns used for extracting calendar events and action items from forwarded emails.
+This document describes the patterns to use when extracting calendar events and
+action items from emails. There is no extraction script — you (the agent) read
+the email and extract events directly using natural language understanding. The
+patterns below are guidance for what to look for.
 
 ## Event Detection Patterns
 
-The extraction script looks for these patterns to identify potential calendar events:
+Look for these patterns to identify potential calendar events:
 
 ### Primary Event Keywords
 - meeting, call, sync, standup, review, demo, interview
@@ -23,7 +26,7 @@ The extraction script looks for these patterns to identify potential calendar ev
 
 ## Date Parsing
 
-The script recognizes these date formats:
+Recognize these date formats:
 
 ### With Year
 - January 15, 2026
@@ -82,7 +85,7 @@ Action items are checked for associated deadlines:
 
 ## Header Filtering
 
-The script automatically filters out email headers to focus on actual content:
+Ignore email headers and quoted boilerplate; focus on actual content:
 
 ### Filtered Headers
 - From:, Date:, Subject:, To:, Cc:, Bcc:
@@ -93,13 +96,16 @@ The script automatically filters out email headers to focus on actual content:
 
 ## Duplicate Detection
 
-When checking for existing calendar events, duplicates are identified by:
+When checking for existing calendar events (`check_duplicate.sh`), duplicates
+are identified by:
 
 1. **Same Date**: Events on the same calendar day
-2. **Similar Title**: 2+ keywords match between titles
-3. **Overlapping Time**: Within 1 hour of each other
+2. **Similar Title** (keyword match on the first 5 normalized words):
+   - Short titles (1-2 keywords): ALL keywords must match
+   - Longer titles (3+ keywords): at least 50% of keywords must match
 
-If a duplicate is found, the existing event is updated rather than creating a new one.
+If a duplicate is found, update the existing event rather than creating a new
+one. For ambiguous matches, use semantic judgement and confirm with the user.
 
 ## Edge Cases
 
@@ -108,15 +114,18 @@ If an email contains cancellation language:
 - "Cancelled", "Canceled", "Postponed", "Rescheduled"
 - "No longer happening", "Won't take place"
 
-The script should:
-1. Search for the existing event
-2. Either delete it or update title with "CANCELLED" prefix
+You should:
+1. Look up the existing event (`lookup_event.sh`, then `calendar_search.sh`)
+2. Either delete it (`calendar_delete.sh`) or update the title with a
+   "CANCELLED" prefix (`create_event.sh` with the existing event ID)
 
 ### Recurring Events
-Currently, the script extracts each occurrence as a separate event. Recurring patterns ("every Monday", "weekly") are noted but not expanded.
+Extract each occurrence as a separate event. Recurring patterns ("every Monday",
+"weekly") are noted; multi-day spans use `--rrule` (see gog-commands.md).
 
 ### Time Zones
-The script assumes all times are in the user's local timezone. Time zone information in emails is noted in the description but not used for conversion.
+Assume all times are in the user's local timezone. Time zone information in
+emails is noted in the description but not used for conversion.
 
 ### All-Day Events
 When detected, all-day events are created with:
@@ -126,55 +135,10 @@ When detected, all-day events are created with:
 
 This provides a visual block in the calendar while maintaining flexibility.
 
-## Output Format
+## What to Extract
 
-### Event Object
-```json
-{
-  "type": "event",
-  "title": "Meeting title",
-  "date": {
-    "month": "January",
-    "day": 15,
-    "year": 2026,
-    "month_num": 1
-  },
-  "time": {
-    "hour": 14,
-    "minute": 30
-  },
-  "is_full_day": false,
-  "source_text": "Original text that matched",
-  "context": "Surrounding text for reference",
-  "raw_line": "The exact line from the email"
-}
-```
-
-### Action Object
-```json
-{
-  "type": "action",
-  "text": "Action description",
-  "deadline": {
-    "month": "January",
-    "day": 17,
-    "year": 2026,
-    "month_num": 1
-  },
-  "source_line": "The exact line from the email"
-}
-```
-
-## Testing
-
-To test extraction on a sample email:
-
-```bash
-echo 'Your email content here' | python3 scripts/extract_events.py -
-```
-
-Or from a file:
-
-```bash
-python3 scripts/extract_events.py email.txt
-```
+For each event, produce the structured fields listed in SKILL.md "Extract
+Events" — `title`, `date`, `day_of_week`, `time`, `is_multi_day`,
+`is_recurring`, `confidence`, `urls`, and any `deadline_date` /
+`deadline_action` / `deadline_url`. Those values are then passed to
+`create_event.sh`.

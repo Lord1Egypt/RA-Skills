@@ -16,7 +16,7 @@ staging="$(mktemp -d)"
 trap 'rm -rf "$staging"' EXIT
 cp "$src" "$staging/autounattend.xml"
 
-# Windows looks for the label 'autounattend' is not required, but a clean ISO9660+Joliet at root is.
+# A clean ISO9660+Joliet with autounattend.xml at the root is what Windows Setup needs.
 if command -v genisoimage >/dev/null 2>&1; then
   genisoimage -quiet -J -r -V UNATTEND -o "$out" "$staging"
 elif command -v mkisofs >/dev/null 2>&1; then

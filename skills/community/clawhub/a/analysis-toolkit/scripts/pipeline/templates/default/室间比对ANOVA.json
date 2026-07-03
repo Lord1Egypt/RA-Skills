@@ -1,0 +1,40 @@
+{
+  "name": "室间比对ANOVA",
+  "description": "多组结果比对 — 分组统计 → ANOVA → F检验判定 → Z值分析",
+  "tags": [
+    "室间比对",
+    "ANOVA",
+    "Z值"
+  ],
+  "default_report": "室间比对ANOVA报告",
+  "steps": [
+    {
+      "name": "ANOVA分析",
+      "target": "scenarios.interlab_qc.interlab_comparison",
+      "params": {
+        "data": "%input%",
+        "lab_col": "实验室",
+        "value_col": "结果"
+      },
+      "description": "方差分析 + F检验"
+    },
+    {
+      "name": "Z值分析",
+      "target": "scenarios.interlab_qc.z_score_analysis",
+      "params": {
+        "data": "%input%",
+        "lab_col": "实验室",
+        "value_col": "结果"
+      },
+      "description": "ISO 13528 能力验证Z值"
+    },
+    {
+      "name": "比对报告",
+      "target": "scenarios.interlab_qc.interlab_report",
+      "params": {
+        "result": "%ANOVA分析%"
+      },
+      "description": "文本结论"
+    }
+  ]
+}

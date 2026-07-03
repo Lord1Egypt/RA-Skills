@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPT Candidate Picker</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-elevated: rgba(16, 22, 31, 0.88);
+      --bg-panel: rgba(18, 26, 37, 0.82);
+      --bg-panel-strong: rgba(10, 16, 24, 0.94);
+      --line: rgba(229, 221, 199, 0.12);
+      --line-strong: rgba(229, 221, 199, 0.24);
+      --text: #f4efe4;
+      --muted: #b7b0a0;
+      --muted-soft: #8f887c;
+      --accent: #6ec6ff;
+      --accent-strong: #95d7ff;
+      --accent-warm: #f4b860;
+      --danger: #ff8f7a;
+      --success: #4ec49a;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+      --radius-xl: 10px;
+      --radius-lg: 10px;
+      --radius-md: 8px;
+      --radius-sm: 6px;
+      --max-width: 1560px;
+      --candidate-width: 356px;
+      --candidate-gap: 18px;
+      --focus-width: 406px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(110, 198, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(244, 184, 96, 0.14), transparent 26%),
+        linear-gradient(135deg, #091019 0%, #0c131c 36%, #121a25 100%);
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 78%);
+    }
+    body::after {
+      opacity: 0.18;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.85) 0.7px, transparent 0.7px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.5) 0.7px, transparent 0.7px),
+        radial-gradient(circle at 35% 80%, rgba(255,255,255,0.45) 0.7px, transparent 0.7px);
+      background-size: 18px 18px, 24px 24px, 22px 22px;
+    }
+
+    button, textarea, input { font: inherit; }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 24px auto 56px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .stage-panel,
+    .action-panel {
+      height: auto;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .stage-panel .panel-body,
+    .action-panel .panel-body {
+      min-height: 0;
+    }
+
+    .action-panel {
+      position: sticky;
+      top: 18px;
+    }
+
+    .action-panel .panel-body {
+      grid-template-rows: minmax(0, 1fr) auto;
+      min-height: 0;
+      padding-bottom: 14px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(15, 22, 31, 0.93), rgba(8, 14, 21, 0.88));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    .panel-subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .panel-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .candidate-board {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .candidate-strip::-webkit-scrollbar,
+    .code-preview::-webkit-scrollbar,
+    .action-scroll::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .candidate-strip::-webkit-scrollbar-thumb,
+    .code-preview::-webkit-scrollbar-thumb,
+    .action-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    .candidate-strip::-webkit-scrollbar-track,
+    .code-preview::-webkit-scrollbar-track,
+    .action-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .slide-row {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18, 26, 37, 0.88), rgba(12, 18, 26, 0.92));
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+
+    .slide-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    }
+
+    .slide-row-title-wrap {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .slide-row-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .slide-row-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .slide-row-selection {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(244, 184, 96, 0.18);
+      color: #ffd59a;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .page-code,
+    .variant-chip {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(110, 198, 255, 0.18);
+      color: var(--accent-strong);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .page-title {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .page-meta,
+    .summary-meta {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .stage-shell {
+      position: relative;
+      border-radius: 0;
+      border: 0;
+      background:
+        linear-gradient(180deg, rgba(18, 28, 38, 0.82), rgba(10, 16, 24, 0.88)),
+        linear-gradient(135deg, #0f1922, #141e2a);
+      overflow: hidden;
+    }
+
+    .stage-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(13, 17, 23, 0.94) 0%, rgba(13, 17, 23, 0.25) 16%, rgba(13, 17, 23, 0.06) 34%, rgba(13, 17, 23, 0.06) 66%, rgba(13, 17, 23, 0.25) 84%, rgba(13, 17, 23, 0.94) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .focus-rail {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: var(--focus-width);
+      transform: translateX(-50%);
+      border-left: 3px solid rgba(244, 184, 96, 0.6);
+      border-right: 3px solid rgba(244, 184, 96, 0.6);
+      background: linear-gradient(180deg, rgba(244, 184, 96, 0.12), rgba(244, 184, 96, 0.05));
+      pointer-events: none;
+      z-index: 3;
+      box-shadow: 0 0 0 1px rgba(244, 184, 96, 0.14) inset;
+    }
+
+    .candidate-strip {
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      padding: 22px 0 26px;
+      z-index: 1;
+    }
+
+    .candidate-track {
+      display: flex;
+      gap: var(--candidate-gap);
+      align-items: stretch;
+      padding-inline: max(18px, calc(50% - (var(--candidate-width) / 2)));
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .candidate-card {
+      width: var(--candidate-width);
+      flex: 0 0 var(--candidate-width);
+      border: 1px solid rgba(229, 221, 199, 0.12);
+      border-radius: 16px;
+      background: rgba(18, 26, 37, 0.88);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      cursor: pointer;
+      scroll-snap-align: center;
+    }
+
+    .candidate-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 18px 26px rgba(0, 0, 0, 0.38);
+      border-color: rgba(110, 198, 255, 0.28);
+    }
+
+    .candidate-card.active {
+      border-color: rgba(244, 184, 96, 0.68);
+      background: rgba(42, 33, 19, 0.82);
+      box-shadow: 0 0 0 3px rgba(244, 184, 96, 0.18), 0 24px 34px rgba(0, 0, 0, 0.48);
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .candidate-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: linear-gradient(135deg, #1a2230, #0f1620);
+      border-bottom: 1px solid rgba(229, 221, 199, 0.1);
+    }
+
+    .candidate-meta {
+      padding: 14px 14px 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .candidate-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .candidate-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .candidate-note {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .candidate-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted-soft);
+    }
+
+    .candidate-state strong {
+      color: var(--accent-warm);
+      font-weight: 700;
+    }
+
+    .board-caption {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .primary,
+    .secondary,
+    .ghost {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .primary:hover,
+    .secondary:hover,
+    .ghost:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.32);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #8fd7ff, #5ba9ff);
+      color: #0b1521;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 18px 34px rgba(91, 169, 255, 0.22);
+    }
+
+    .primary:hover {
+      box-shadow: 0 22px 38px rgba(91, 169, 255, 0.28);
+      filter: brightness(1.05);
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .secondary:hover {
+      background: rgba(110, 198, 255, 0.12);
+      border-color: rgba(110, 198, 255, 0.34);
+    }
+
+    .ghost {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .ghost:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .action-scroll {
+      min-height: 0;
+      overflow-y: auto;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      padding-right: 4px;
+    }
+
+    .action-footer {
+      display: grid;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(8, 14, 21, 0), rgba(8, 14, 21, 0.98) 26%);
+    }
+
+    .code-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: rgba(18, 26, 37, 0.72);
+      backdrop-filter: blur(8px);
+      display: grid;
+      gap: 10px;
+    }
+
+    .code-preview {
+      width: 100%;
+      min-height: 118px;
+      max-height: 156px;
+      overflow: auto;
+      resize: vertical;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 10, 16, 0.76);
+      color: var(--text);
+      padding: 12px 14px;
+      line-height: 1.65;
+      white-space: pre;
+      font-family: "Consolas", "SFMono-Regular", monospace;
+      font-size: 13px;
+    }
+
+    .code-preview:focus {
+      outline: none;
+      border-color: rgba(110, 198, 255, 0.46);
+      box-shadow: 0 0 0 4px rgba(110, 198, 255, 0.08);
+    }
+
+    .helper-note {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted-soft);
+    }
+
+    .selection-status-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: rgba(18, 26, 37, 0.72);
+      backdrop-filter: blur(8px);
+      display: grid;
+      gap: 6px;
+    }
+
+    .selection-status-card strong {
+      font-size: 26px;
+      line-height: 1;
+      color: var(--accent-warm);
+    }
+
+    @media (max-width: 1280px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .action-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --candidate-width: 300px;
+        --focus-width: 340px;
+      }
+
+      .slide-row-head {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .shell {
+        width: min(calc(100% - 20px), var(--max-width));
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="workspace">
+      <div class="panel stage-panel">
+        <div class="panel-head">
+          <h2 class="panel-title">页面候选选择</h2>
+          <p class="panel-subtitle">所有页都放在同一个界面里：第一行选第一页，第二行选第二页，逐行往下点；每一行内部仍然是横向抽卡并自动把选中项居中。</p>
+        </div>
+        <div class="panel-body">
+          <div class="board-caption" id="selectionHint">当前是整页多行选图：每个页面一整行候选图，点中后会在本行自动居中；全部确认后直接复制下方编号结果即可。</div>
+          <div class="candidate-board" id="candidateBoard"></div>
+
+          <div class="button-row">
+            <button class="secondary" type="button" id="resetSelectionsButton">恢复默认选择</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel action-panel">
+        <div class="panel-head">
+          <h2 class="panel-title">当前选择与复制编号</h2>
+          <p class="panel-subtitle">选完后复制编号，把结果粘贴回当前对话，后续就按这组图去组装最终 PPT。</p>
+        </div>
+        <div class="panel-body">
+          <div class="action-scroll">
+            <div class="selection-status-card">
+              <span class="summary-meta">当前页编号</span>
+              <strong id="currentPageCode">—</strong>
+              <span class="summary-meta" id="currentPageVariantLabel">还没有加载候选。</span>
+            </div>
+
+            <div class="code-card">
+              <span class="summary-meta">复制给 AI 的编号</span>
+              <textarea class="code-preview" id="codePreview" readonly></textarea>
+              <p class="helper-note">建议直接复制这个编号结果。每一行都带页面号，所以 AI 能知道每一页最后采用的是哪张图。</p>
+            </div>
+          </div>
+
+          <div class="action-footer">
+            <div class="button-row">
+              <button class="primary" type="button" id="copyAllButton">复制全部编号</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const slideBlueprints = [
+      {
+        id: 'S01',
+        title: '首页｜研究答辩开场',
+        role: '首页',
+        subtitle: '封面主视觉 / 题目定调',
+        notes: [
+          '校徽更明显，主标题压得更稳',
+          '光感更克制，学术感更强',
+          '背景层次更丰富，但不要太花',
+          '标题和建筑关系更紧',
+          '大气云层更有空间感'
+        ],
+        palette: ['#bc5b28', '#a44d31', '#cc7d39', '#3f74b5', '#618cc8']
+      },
+      {
+        id: 'S02',
+        title: '目录页｜结构总览',
+        role: '目录页',
+        subtitle: '章节组织 / 导航能力',
+        notes: [
+          '目录区块更稳，章节对比更清楚',
+          '导航感更强，适合答辩结构',
+          '层次更轻，但顺序更清晰',
+          '右侧信息更完整，承载力更强',
+          '整体更有页面系统感'
+        ],
+        palette: ['#bc5b28', '#9b5f41', '#d08755', '#4d7fb7', '#7aa4d3']
+      },
+      {
+        id: 'S03',
+        title: '正文页｜关键结论承载',
+        role: '正文页',
+        subtitle: '信息承载 / 结论呈现',
+        notes: [
+          '结论块更强，数字更抓眼',
+          '左侧论点更规整，适合答辩汇报',
+          '视觉留白更好，重点更突出',
+          '图文关系更平衡，信息感更强',
+          '整体更像最终页，不像草图'
+        ],
+        palette: ['#bc5b28', '#b0602b', '#d38a46', '#4479b3', '#6b97cc']
+      }
+    ];
+
+    const defaultSelection = {
+      S01: '03',
+      S02: '02',
+      S03: '04'
+    };
+
+    const state = {
+      selectedPageId: 'S01',
+      selections: { ...defaultSelection }
+    };
+
+    const candidateBoard = document.getElementById('candidateBoard');
+    const codePreview = document.getElementById('codePreview');
+    const currentPageCode = document.getElementById('currentPageCode');
+    const currentPageVariantLabel = document.getElementById('currentPageVariantLabel');
+
+    const enrichedSlides = slideBlueprints.map(slide => ({
+      ...slide,
+      candidates: buildCandidates(slide)
+    }));
+
+    function buildCandidates(slide) {
+      return slide.palette.map((accent, index) => {
+        const number = String(index + 1).padStart(2, '0');
+        const code = `${slide.id}-${number}`;
+        return {
+          id: number,
+          code,
+          title: `第 ${number} 张`,
+          note: slide.notes[index],
+          image: makeSlideSvg(slide, accent, number)
+        };
+      });
+    }
+
+    function makeSlideSvg(slide, accent, number) {
+      const accent2 = slide.palette[(Number(number) + 1) % slide.palette.length];
+      const title = escapeSvgText(slide.title);
+      const subtitle = escapeSvgText(slide.subtitle);
+      const label = escapeSvgText(`${slide.id}-${number}`);
+      const variant = escapeSvgText(`Variant ${number}`);
+      const note = escapeSvgText(slide.notes[Number(number) - 1]);
+
+      const svg = `
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+          <defs>
+            <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+              <stop stop-color='#f7f1e7'/>
+              <stop offset='1' stop-color='#d9e7f5'/>
+            </linearGradient>
+            <linearGradient id='warm' x1='0' y1='0' x2='1' y2='1'>
+              <stop stop-color='${accent}' stop-opacity='.32'/>
+              <stop offset='1' stop-color='${accent2}' stop-opacity='.18'/>
+            </linearGradient>
+          </defs>
+          <rect width='1600' height='900' fill='url(#bg)'/>
+          <circle cx='1310' cy='130' r='260' fill='url(#warm)'/>
+          <rect x='92' y='82' width='1416' height='736' rx='42' fill='rgba(255,255,255,.62)' stroke='rgba(96,110,134,.18)'/>
+          <rect x='128' y='118' width='170' height='44' rx='22' fill='rgba(255,255,255,.78)'/>
+          <text x='160' y='148' font-size='24' fill='${accent}' font-family='Segoe UI, Arial, sans-serif' font-weight='700'>${label}</text>
+          <text x='132' y='238' font-size='38' fill='#66798a' font-family='Segoe UI, Arial, sans-serif'>${variant}</text>
+          <text x='132' y='336' font-size='84' fill='#211a13' font-family='Segoe UI, Arial, sans-serif' font-weight='700'>${title}</text>
+          <text x='132' y='390' font-size='28' fill='#5f6f7f' font-family='Segoe UI, Arial, sans-serif'>${subtitle}</text>
+          <rect x='132' y='458' width='758' height='248' rx='28' fill='rgba(255,255,255,.84)'/>
+          <rect x='926' y='458' width='248' height='114' rx='28' fill='rgba(255,255,255,.86)'/>
+          <rect x='926' y='592' width='248' height='114' rx='28' fill='rgba(255,255,255,.76)'/>
+          <rect x='1204' y='458' width='220' height='248' rx='28' fill='rgba(255,255,255,.72)'/>
+          <text x='170' y='538' font-size='34' fill='#30485e' font-family='Segoe UI, Arial, sans-serif'>• ${note}</text>
+          <text x='170' y='598' font-size='32' fill='#30485e' font-family='Segoe UI, Arial, sans-serif'>• 内容承载更接近最终稿</text>
+          <text x='170' y='658' font-size='32' fill='#30485e' font-family='Segoe UI, Arial, sans-serif'>• 适合做用户最终选图卡位</text>
+          <text x='962' y='528' font-size='52' fill='${accent}' font-family='Segoe UI, Arial, sans-serif' font-weight='700'>${number}</text>
+          <text x='962' y='562' font-size='24' fill='#6d5d4c' font-family='Segoe UI, Arial, sans-serif'>候选版本号</text>
+          <text x='962' y='662' font-size='40' fill='${accent2}' font-family='Segoe UI, Arial, sans-serif' font-weight='700'>Pick Me</text>
+          <text x='1236' y='536' font-size='24' fill='#6d5d4c' font-family='Segoe UI, Arial, sans-serif'>抽卡完成后</text>
+          <text x='1236' y='574' font-size='24' fill='#6d5d4c' font-family='Segoe UI, Arial, sans-serif'>只复制编号给 AI</text>
+          <path d='M1220 648 C1278 596 1340 562 1428 512' stroke='${accent}' stroke-width='8' fill='none' opacity='.46'/>
+        </svg>`;
+
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    function getLeadSlide() {
+      return enrichedSlides[0];
+    }
+
+    function getLeadCandidate() {
+      const slide = getLeadSlide();
+      return slide.candidates.find(candidate => candidate.id === state.selections[slide.id]) || slide.candidates[0];
+    }
+
+    function renderCandidateBoard() {
+      candidateBoard.innerHTML = enrichedSlides.map(slide => {
+        const selectedId = state.selections[slide.id];
+        const selectedCandidate = slide.candidates.find(candidate => candidate.id === selectedId) || slide.candidates[0];
+        return `
+          <section class="slide-row" data-slide-id="${slide.id}">
+            <div class="slide-row-head">
+              <div class="slide-row-title-wrap">
+                <span class="page-code">${slide.id}</span>
+                <h3 class="slide-row-title">${slide.title}</h3>
+                <p class="slide-row-subtitle">${slide.role} · ${slide.subtitle}</p>
+              </div>
+              <div class="slide-row-selection">当前已选：${selectedCandidate.code}</div>
+            </div>
+            <div class="stage-shell">
+              <div class="focus-rail" aria-hidden="true"></div>
+              <div class="candidate-strip" data-slide-id="${slide.id}">
+                <div class="candidate-track">
+                  ${slide.candidates.map(candidate => `
+                    <article class="candidate-card ${candidate.id === selectedId ? 'active' : ''}" data-slide-id="${slide.id}" data-candidate-id="${candidate.id}">
+                      <img class="candidate-image" src="${candidate.image}" alt="${escapeHtml(slide.title)} ${candidate.code}">
+                      <div class="candidate-meta">
+                        <div class="candidate-top">
+                          <span class="variant-chip">${candidate.code}</span>
+                          <span class="candidate-state">${candidate.id === selectedId ? '<strong>已选中</strong>' : '点击选中'}</span>
+                        </div>
+                        <h3 class="candidate-title">${candidate.title}</h3>
+                        <p class="candidate-note">${candidate.note}</p>
+                      </div>
+                    </article>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }).join('');
+    }
+
+    function updateSelectionStatus() {
+      const leadCandidate = getLeadCandidate();
+      currentPageCode.textContent = leadCandidate.code;
+      currentPageVariantLabel.textContent = `${leadCandidate.title} · ${leadCandidate.note}`;
+      codePreview.value = buildAllCodes();
+    }
+
+    function buildAllCodes() {
+      return enrichedSlides.map(slide => `${slide.id}-${state.selections[slide.id]}`).join('\n');
+    }
+
+    function buildCurrentCode() {
+      const leadSlide = getLeadSlide();
+      return `${leadSlide.id}-${state.selections[leadSlide.id]}`;
+    }
+
+    function centerSelectionForSlide(slideId, behavior = 'smooth') {
+      const strip = candidateBoard.querySelector(`.candidate-strip[data-slide-id="${slideId}"]`);
+      const selected = candidateBoard.querySelector(`.candidate-card.active[data-slide-id="${slideId}"]`);
+      if (!strip || !selected) return;
+      const target = selected.offsetLeft - (strip.clientWidth / 2) + (selected.clientWidth / 2);
+      const maxLeft = Math.max(0, strip.scrollWidth - strip.clientWidth);
+      const clamped = Math.max(0, Math.min(maxLeft, target));
+      strip.scrollTo({ left: clamped, behavior });
+    }
+
+    function centerAllSelections(behavior = 'auto') {
+      enrichedSlides.forEach(slide => centerSelectionForSlide(slide.id, behavior));
+    }
+
+    function updateSlideRowSelection(slideId) {
+      const slide = enrichedSlides.find(item => item.id === slideId);
+      if (!slide) return;
+      const selectedCandidate = slide.candidates.find(candidate => candidate.id === state.selections[slide.id]) || slide.candidates[0];
+      const row = candidateBoard.querySelector(`.slide-row[data-slide-id="${slideId}"]`);
+      if (!row) return;
+
+      const selectionLabel = row.querySelector('.slide-row-selection');
+      if (selectionLabel) selectionLabel.textContent = `当前已选：${selectedCandidate.code}`;
+
+      row.querySelectorAll('.candidate-card').forEach(card => {
+        const isActive = card.dataset.candidateId === selectedCandidate.id;
+        card.classList.toggle('active', isActive);
+
+        const stateLabel = card.querySelector('.candidate-state');
+        if (stateLabel) {
+          stateLabel.innerHTML = isActive ? '<strong>已选中</strong>' : '点击选中';
+        }
+      });
+    }
+
+    function selectCandidate(slideId, candidateId) {
+      const currentSelection = state.selections[slideId];
+      if (currentSelection === candidateId) {
+        centerSelectionForSlide(slideId, 'smooth');
+        return;
+      }
+
+      state.selections[slideId] = candidateId;
+      updateSlideRowSelection(slideId);
+      centerSelectionForSlide(slideId, 'smooth');
+      updateSelectionStatus();
+    }
+
+    async function copyText(text, successMessage) {
+      try {
+        await navigator.clipboard.writeText(text);
+        currentPageVariantLabel.textContent = successMessage;
+      } catch {
+        currentPageVariantLabel.textContent = '复制失败，请检查浏览器是否允许写入剪贴板。';
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function escapeSvgText(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+    }
+
+    candidateBoard.addEventListener('click', event => {
+      const card = event.target.closest('.candidate-card');
+      if (!card) return;
+      selectCandidate(card.dataset.slideId, card.dataset.candidateId);
+    });
+
+    document.getElementById('copyAllButton').addEventListener('click', () => copyText(buildAllCodes(), '全部编号已复制，回到当前对话粘贴即可。'));
+    document.getElementById('resetSelectionsButton').addEventListener('click', () => {
+      state.selections = { ...defaultSelection };
+      renderCandidateBoard();
+      updateSelectionStatus();
+    });
+
+    window.addEventListener('resize', centerAllSelections);
+
+    renderCandidateBoard();
+    updateSelectionStatus();
+  </script>
+</body>
+</html>

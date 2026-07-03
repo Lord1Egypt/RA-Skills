@@ -1,3 +1,14 @@
+---
+name: java-switch
+description: "在 macOS 上自动检测、安装并切换指定版本的 Java，配置 JAVA_HOME 和环境变量，支持持久化配置。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Java Switch
+
 # java-switch Skill
 
 ## Description

@@ -1,0 +1,18 @@
+{
+  "title": "测试 Skill",
+  "nodes": [
+    {"id": "entry", "type": "entry", "label": "用户调用", "role": "ai"},
+    {"id": "check", "type": "decision", "label": "OK?", "role": "decision"},
+    {"id": "exit", "type": "terminal", "label": "退出", "role": "terminal"},
+    {"id": "do", "type": "process", "label": "执行", "role": "ai"},
+    {"id": "end", "type": "terminal", "label": "结束", "role": "terminal"}
+  ],
+  "edges": [
+    {"from": "entry", "to": "check"},
+    {"from": "check", "to": "exit", "label": "否", "side": "left"},
+    {"from": "check", "to": "do", "label": "是", "side": "bottom"},
+    {"from": "do", "to": "end"}
+  ],
+  "branches": [],
+  "loops": []
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Xby Bazi helps an agent retrieve BaZi chart details, matching solar times, and Chinese calendar information through the XiaoBenYang API. <br>
+八字 MCP 是一款基于 AI 的八字计算器，提供八字排盘数据，用于性格分析和命运预测。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and external users can use this skill to route BaZi, solar/lunar date, gender, and calendar queries to the XiaoBenYang API and summarize the returned JSON for end users. <br>
+External users use this skill to retrieve Bazi chart details, possible solar times from a Bazi string, and Chinese almanac information for calendar or astrology workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: BaZi query inputs are sent to xiaobenyang.com through a third-party API. <br>
-Mitigation: Use the skill only when sharing those inputs with the XiaoBenYang service is acceptable. <br>
-Risk: The required XBY_APIKEY can be stored locally in a plaintext .env file. <br>
-Mitigation: Remove the key from .env when uninstalling the skill or when credential retention is no longer desired. <br>
+Risk: The skill requires a XiaoBenYang API key and stores it in a local .env file. <br>
+Mitigation: Treat the .env file as sensitive, avoid using the key on shared machines, and remove or rotate the key when access is no longer needed. <br>
+Risk: Bazi and calendar requests can include personal inputs such as birth time and gender that are sent to a third-party service. <br>
+Mitigation: Use the skill only with inputs the user agrees to share with XiaoBenYang and avoid sending unnecessary personal data. <br>
+Risk: Dependencies are declared with lower-bound version ranges rather than a pinned production set. <br>
+Mitigation: Pin and review dependency versions before production or managed deployment. <br>
 
 
 ## Reference(s): <br>
-- [Xby Bazi on ClawHub](https://clawhub.ai/cainingnk/xby-bazi) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
 - [XiaoBenYang](https://xiaobenyang.com) <br>
+- [XiaoBenYang MCP API](https://mcp.xiaobenyang.com) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown or text summaries of JSON API responses] <br>
+**Output Type(s):** [Text, JSON, API calls, Guidance] <br>
+**Output Format:** [Markdown summary with JSON-derived API results] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value before API calls can be made.] <br>
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key and sends requested birth or calendar inputs to the XiaoBenYang service.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

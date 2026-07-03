@@ -1,0 +1,59 @@
+{
+  "slug": "receipt-auditor",
+  "name": "Receipt & Expense Auditor",
+  "name_zh": "账单报销小助手",
+  "version": "1.0.0",
+  "author": "ClawHub Community",
+  "category": "finance",
+  "description": "Extract, categorize, and audit receipts and bills to generate expense reports and spot discrepancies.",
+  "description_zh": "输入账单/发票内容，自动分类汇总、识别异常、生成报销单。",
+  "model": "default",
+  "tags": [
+    "expense",
+    "receipt",
+    "audit",
+    "aa-split",
+    "reimbursement",
+    "finance",
+    "bill",
+    "accounting"
+  ],
+  "license": "MIT-0",
+  "homepage": "https://github.com/clawhub/skills/receipt-auditor",
+  "searchKeywords": {
+    "en": [
+      "receipt scanner",
+      "expense report",
+      "bill audit",
+      "aa calculator",
+      "receipt organizer",
+      "expense tracker"
+    ],
+    "zh": [
+      "发票整理",
+      "报销助手",
+      "账单核对",
+      "AA计算",
+      "小票识别",
+      "费用报销"
+    ]
+  },
+  "workflowSteps": [
+    "input-reading",
+    "extraction",
+    "classification",
+    "anomaly-detection",
+    "aa-split",
+    "report-generation",
+    "summary-report"
+  ],
+  "modes": [
+    "report",
+    "aa-split",
+    "audit"
+  ],
+  "firstSuccessPath": "receipt-auditor --mode report --items \"6/1 北京-上海高铁 553元\n6/1 上海汉庭酒店 380元x2晚\"",
+  "entrypoints": {
+    "cli": "scripts/audit.sh"
+  }
+}

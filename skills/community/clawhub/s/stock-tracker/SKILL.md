@@ -1,6 +1,6 @@
 ---
 name: "stock-tracker"
-version: "2.0.0"
+version: "2.2.0"
 description: "东方财富自选股公告追踪。三级过滤 + LLM分类摘要 + Web仪表盘，支持 agent 定时推送。"
 metadata:
   {
@@ -82,10 +82,9 @@ DIGEST_EMPTY:最近1天test板块无高价值公告
 bash dashboard.sh mygroup 15 eastmoney
 ```
 
-脚本自动执行三步：
-1. `stock_tracker.py --fetch-content` — 抓取公告 + 全文 + LLM 分类
-2. `daily_summary.py` — 生成摘要
-3. `dashboard.py` — 启动 Flask 仪表盘（默认端口 5001）
+脚本自动执行一步（摘要已集成到主流程）：
+1. `stock_tracker.py --fetch-content` — 抓取公告 + 全文 + LLM 分类 + 自动生成摘要
+2. `dashboard.py` — 启动 Flask 仪表盘（默认端口 5001）
 
 启动后浏览器访问 `http://localhost:5001`，按 Ctrl+C 停止。
 
@@ -94,6 +93,7 @@ bash dashboard.sh mygroup 15 eastmoney
 - 点击展开：懒加载公告详情（标题、日期、摘要、正文、原文链接）
 - 类型标签：`大类 / 小类`（如 `股权股本类 / 回购`）
 - 搜索过滤，响应式设计
+- CSV 导出：点击右上角「导出 CSV」下载近 30 天有价值公告
 
 ---
 
@@ -170,6 +170,32 @@ openclaw cron add \
   --message "运行股票公告扫描：cd {{SKILL_DIR}} && bash run.sh mygroup 15 eastmoney"
 ```
 ---
+
+## 公告过滤规则
+
+三级过滤体系自动跳过低价值公告：
+
+**第一级：正则过滤**（标题匹配，全文采集前）
+- 公司章程、信用评级、募集说明书
+- 债券程序性公告（付息、上市、摘牌、发行结果等）
+- 董事会报告、法律意见书
+- 股东会决议公告、投票表决结果
+- 薪酬制度、周年会通告
+- 担保类公告（提供担保、为xx担保、合计xx担保等）
+- 公司内部制度文件（管理制度、议事规则、工作细则等）
+- 回购注销+股权激励/限制性股票
+- 业绩说明会/业绩发布会
+- 限制性股票/股票期权预留授予、完成登记
+- 限制性股票作废（量小无市场影响）
+
+**第二级：LLM 价值判断**（全文采集后）
+- AI 判断公告是否包含实质经营信息
+- 按8大类64小类自动分类
+
+**第三级：LLM 摘要生成**（仅保留的公告）
+- 自动生成结构化摘要
+
+用户可随时指定新的过滤类型，我会自动添加到正则规则中。
 
 完整技术文档、公告分类体系、Token 消耗分析等详见 [GitHub](https://github.com/54Lynnn/stock-tracker)
 

@@ -1,202 +1,141 @@
 #!/usr/bin/env python3
-"""淘宝好券精选 - 商品查询
+"""淘宝好券精选 - list_items/get_detail/get_stats"""
 
-配合独立SCF函数 taobao-haoquan-proxy 使用。
-SCF负责：缓存全量数据(5min TTL) + 排序 + 分页 + 短链生成
-脚本负责：发送参数、接收结果、格式化输出、构建用户提示语
-
-3个工具：
-  list_items  — 分页浏览好券精选商品，支持4种排序
-  get_detail  — 获取单条商品详情
-  get_stats   — 频道统计与类目分布
-"""
-
+import os
 import sys
 import json
 import urllib.request
 import urllib.error
 
-# ===== 配置 =====
-PROXY_URL = "https://1439498936-fzfcb544nx.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
-
+PROXY_URL = os.environ.get("PROXY_URL", "https://1439498936-fzfcb544nx.ap-guangzhou.tencentscf.com")
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 TIMEOUT = 30
-PAGE_SIZE = 40
-SORT_LABELS = {
-    "sales_desc": "销量优先",
-    "price_asc": "价格从低到高",
-    "price_desc": "价格从高到低",
-    "commission_desc": "推荐热度优先",
-}
 
 
-def _scf_call(tool, params):
-    """调用SCF代理"""
-    payload = json.dumps({"tool": tool, "params": params}).encode("utf-8")
+def _call_proxy(tool_name, params):
+    """调用SCF代理 - type+params格式"""
+    body = json.dumps({"type": tool_name, "params": params}).encode("utf-8")
     req = urllib.request.Request(
-        PROXY_URL, data=payload,
+        PROXY_URL, data=body, method="POST",
         headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
     )
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        err = ""
+        try:
+            err = e.read().decode("utf-8", errors="replace")[:300]
+        except Exception:
+            pass
+        return {"ok": False, "error": "proxy error {}: {}".format(e.code, err)}
     except Exception as e:
-        return {"error": str(e)}
+        return {"ok": False, "error": "request error: {}".format(e)}
 
 
-def _format_item(item):
-    """格式化单条商品"""
-    return {
-        "title": item.get("title", ""),
-        "brand": item.get("brand_name", ""),
-        "shop": item.get("shop_title", ""),
-        "category": item.get("category_name", ""),
-        "price": item.get("final_price", ""),
-        "original_price": item.get("original_price", ""),
-        "coupon": item.get("coupon_info", ""),
-        "promo": item.get("promo_tags", ""),
-        "annual_sales": item.get("annual_vol", ""),
-        "image": item.get("pict_url", ""),
-        "buy_url": item.get("click_url", ""),
-        "coupon_url": item.get("coupon_url", ""),
-    }
+def _format_items(data):
+    """格式化商品列表"""
+    if not data.get("ok"):
+        return "查询失败：" + data.get("error", "未知错误")
+    items = data.get("data", [])
+    if not items:
+        return "暂无商品，请稍后再试"
+    total = data.get("total", len(items))
+    lines = ["共 {} 件好券精选好货：\n".format(total)]
+    for i, item in enumerate(items, 1):
+        title = item.get("title", "")
+        price = item.get("price", "")
+        final_price = item.get("final_price", "")
+        coupon = item.get("coupon_info", "")
+        sales = item.get("sales", "")
+        shop = item.get("shop_title", "")
+        click_url = item.get("click_url", "")
+        item_id = item.get("item_id", "")
+
+        if final_price and final_price != price:
+            price_str = "到手价¥{}（原价¥{}）".format(final_price, price)
+        else:
+            price_str = "¥{}".format(price)
+        coupon_str = " | 券{}".format(coupon) if coupon else ""
+        sales_str = " | 已售{}".format(sales) if sales else ""
+        shop_str = " | {}".format(shop) if shop else ""
+
+        line = "{}. {}{}{}\n   {}{}\n   item_id: {}".format(
+            i, title, coupon_str, sales_str, price_str, shop_str, item_id)
+        if click_url:
+            line += "\n   链接: {}".format(click_url)
+        lines.append(line)
+    lines.append("\n> 数据来源：淘宝好券精选频道")
+    return "\n\n".join(lines)
+
+
+def _format_detail(data):
+    """格式化商品详情"""
+    if not data.get("ok"):
+        return "查询失败：" + data.get("error", "未知错误")
+    item = data.get("data", {})
+    if not item:
+        return "未找到该商品信息"
+
+    title = item.get("title", "")
+    price = item.get("price", "")
+    final_price = item.get("final_price", "")
+    coupon = item.get("coupon_info", "")
+    sales = item.get("sales", "")
+    shop = item.get("shop_title", "")
+    category = item.get("category_name", "")
+    click_url = item.get("click_url", "")
+    item_id = item.get("item_id", "")
+    image = item.get("pict_url", "")
+
+    lines = [title]
+    lines.append("商品ID：{} | 店铺：{} | 分类：{}".format(item_id, shop, category))
+    if final_price and final_price != price:
+        lines.append("到手价：¥{}（原价¥{}）".format(final_price, price))
+        if coupon:
+            lines.append("优惠券：{}".format(coupon))
+    else:
+        lines.append("价格：¥{}".format(price))
+    if sales:
+        lines.append("销量：{}".format(sales))
+    if image:
+        lines.append("主图：{}".format(image))
+    if click_url:
+        lines.append("链接：{}".format(click_url))
+    return "\n".join(lines)
+
+
+def _format_stats(data):
+    """格式化频道统计"""
+    if not data.get("ok"):
+        return "查询失败：" + data.get("error", "未知错误")
+    stats = data.get("data", {})
+    if not stats:
+        return "暂无统计数据"
+    lines = ["淘宝好券精选频道统计："]
+    for k, v in stats.items():
+        lines.append("  {}: {}".format(k, v))
+    return "\n".join(lines)
 
 
 def tool_list_items(params):
-    """获取好券精选商品列表（分页+排序）"""
-    page = int(params.get("page", 1) or 1)
-    if page < 1:
-        page = 1
-    sort = params.get("sort", "sales_desc") or "sales_desc"
-
-    data = _scf_call("list", {"page": page, "sort": sort})
-
-    if "error" in data:
-        return json.dumps({
-            "content": "",
-            "summary": f"查询失败：{data['error']}，请稍后重试。"
-        }, ensure_ascii=False)
-
-    results = data.get("results", [])
-    total = data.get("total", 0)
-    total_pages = data.get("total_pages", 0)
-    page_size = data.get("page_size", PAGE_SIZE)
-    current_sort = data.get("sort", sort)
-
-    if not results:
-        return json.dumps({
-            "content": "",
-            "summary": "暂无好券精选好货，请稍后再试。"
-        }, ensure_ascii=False)
-
-    items = [_format_item(item) for item in results]
-
-    page_start = (page - 1) * page_size + 1
-    page_end = min(page * page_size, total)
-    has_more = page_end < total
-    sort_label = SORT_LABELS.get(current_sort, "销量优先")
-
-    hints = []
-    hints.append(f"好券精选共{total}条，天猫品牌好券合集，当前按「{sort_label}」排列。")
-    if has_more:
-        hints.append(f'第{page}/{total_pages}页，显示第{page_start}-{page_end}条，还有{total - page_end}条。说"下一页"查看更多。')
-    else:
-        hints.append(f"第{page}/{total_pages}页，显示第{page_start}-{page_end}条，已到最后一页。")
-
-    return json.dumps({
-        "content": json.dumps(items, ensure_ascii=False, indent=2),
-        "summary": " ".join(hints)
-    }, ensure_ascii=False)
+    page = params.get("page", 1)
+    sort = params.get("sort", 0)
+    data = _call_proxy("list_items", {"page": page, "sort": sort})
+    return json.dumps({"content": _format_items(data)}, ensure_ascii=False)
 
 
 def tool_get_detail(params):
-    """获取单条商品详情"""
     item_id = params.get("item_id", "")
-
     if not item_id:
-        return json.dumps({
-            "content": "",
-            "summary": "请提供商品ID（item_id）。"
-        }, ensure_ascii=False)
-
-    data = _scf_call("detail", {"item_id": item_id})
-
-    if "error" in data:
-        return json.dumps({
-            "content": "",
-            "summary": f"查询失败：{data['error']}，该商品可能已下架。"
-        }, ensure_ascii=False)
-
-    item = _format_item(data)
-
-    hints = []
-    title = item.get("title", "商品")
-    brand = item.get("brand", "")
-    price = item.get("price", "")
-    original = item.get("original_price", "")
-    coupon = item.get("coupon", "")
-    buy_url = item.get("buy_url", "")
-
-    hints.append(f"「{title}」")
-    if brand:
-        hints.append(f"品牌：{brand}")
-    if price:
-        if original and original != price:
-            try:
-                if float(original) > float(price or 0):
-                    hints.append(f"到手价¥{price}（原价¥{original}）")
-                else:
-                    hints.append(f"价格¥{price}")
-            except (ValueError, TypeError):
-                hints.append(f"价格¥{price}")
-        else:
-            hints.append(f"价格¥{price}")
-    if coupon:
-        hints.append(f"优惠：{coupon}")
-    if buy_url:
-        hints.append(f"购买链接：{buy_url}")
-    coupon_url = item.get("coupon_url", "")
-    if coupon_url:
-        hints.append(f"领券链接：{coupon_url}")
-
-    return json.dumps({
-        "content": json.dumps(item, ensure_ascii=False, indent=2),
-        "summary": " ".join(hints)
-    }, ensure_ascii=False)
+        return json.dumps({"error": "item_id参数必填"}, ensure_ascii=False)
+    data = _call_proxy("get_detail", {"item_id": item_id})
+    return json.dumps({"content": _format_detail(data)}, ensure_ascii=False)
 
 
 def tool_get_stats(params):
-    """获取频道统计信息"""
-    data = _scf_call("stats", {})
-
-    if "error" in data:
-        return json.dumps({
-            "content": "",
-            "summary": f"查询失败：{data['error']}，请稍后重试。"
-        }, ensure_ascii=False)
-
-    total = data.get("total_items", 0)
-    from_cache = data.get("from_cache", False)
-    cache_age = data.get("cache_age", 0)
-    cache_ttl = data.get("cache_ttl", 300)
-    categories = data.get("top_categories", [])
-
-    hints = []
-    hints.append(f"好券精选频道当前共{total}条精选好券（天猫品牌店占比98%+，优惠券覆盖率90%+）。")
-    if from_cache:
-        hints.append(f"数据缓存{cache_age}秒前刷新（{cache_ttl}秒TTL）。")
-    else:
-        hints.append("数据刚从官方API实时拉取。")
-
-    if categories:
-        cat_parts = [f"{c['name']}({c['count']}条)" for c in categories[:5]]
-        hints.append('热门类目：' + '、'.join(cat_parts) + '…说"看洗护"或"看零食"可按品类浏览。')
-
-    return json.dumps({
-        "content": json.dumps(data, ensure_ascii=False, indent=2),
-        "summary": " ".join(hints)
-    }, ensure_ascii=False)
+    data = _call_proxy("get_stats", {})
+    return json.dumps({"content": _format_stats(data)}, ensure_ascii=False)
 
 
 TOOLS = {
@@ -213,13 +152,13 @@ if __name__ == "__main__":
 
     tool = sys.argv[1]
     try:
-        args = json.loads(sys.argv[2]) if len(sys.argv) > 2 else {}
+        args = json.loads(sys.argv[2])
     except json.JSONDecodeError as e:
-        print(json.dumps({"error": f"参数JSON解析失败: {e}"}, ensure_ascii=False))
+        print(json.dumps({"error": "参数JSON解析失败: {}".format(e)}, ensure_ascii=False))
         sys.exit(1)
 
     if tool not in TOOLS:
-        print(json.dumps({"error": f"未知工具: {tool}，可用工具: {', '.join(TOOLS.keys())}"}, ensure_ascii=False))
+        print(json.dumps({"error": "未知工具: {}，可用工具: {}".format(tool, ", ".join(TOOLS.keys()))}, ensure_ascii=False))
         sys.exit(1)
 
     try:

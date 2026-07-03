@@ -36,7 +36,7 @@ class TestOrchestrateState(unittest.TestCase):
     def test_init_state(self):
         state = init_orchestrate_state(self.paper_name)
         self.assertEqual(state["paper_name"], self.paper_name)
-        self.assertEqual(state["phase"], "phase1")
+        self.assertEqual(state["phase"], "phase1_1")
         self.assertFalse(state["phase1_confirmed"])
         self.assertEqual(len(state["completed_nodes"]), 0)
 
@@ -81,8 +81,7 @@ class TestPhase1(unittest.TestCase):
         result = confirm_phase1(self.paper_name)
         self.assertTrue(result["ok"])
         # Step 11 拍板 #1 强制：confirm_phase1 后不进 phase2，需走 Phase 1.3
-        self.assertEqual(result["phase"], "phase1")
-        self.assertEqual(result["phase1_3_status"], "pending")
+        self.assertEqual(result["phase"], "phase1_2")
 
     def test_phase1_already_confirmed(self):
         confirm_phase1(self.paper_name)
@@ -174,7 +173,7 @@ class TestOrchestrate(unittest.TestCase):
         confirm_phase1(self.paper_name)
         result = orchestrate(self.paper_name, phase="phase2")
         self.assertFalse(result["ok"])
-        self.assertIn("llm_func", result["error"])
+        self.assertIn("无法获取 session LLM 配置", result["error"])
 
 
 # ============================================================

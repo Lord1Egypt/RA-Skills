@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-respiratory-rate-monitor-analysis"
 description: "Through fixed cameras on aquariums, the system analyzes fish gill-cover opening / closing motion video, detects periodic gill opening and closing, and calculates respiratory rate (breaths per minute). | 通过鱼缸固定摄像头，分析鱼类的鳃盖开合运动视频，检测鳃盖的周期性开启和闭合，计算呼吸频率（次/分钟）。当呼吸频率超过正常阈值（例如 > 80 次/分钟，具体依品种和水温而定）时，输出'缺氧预警'，提示用户检查水质（溶氧量）、水温或鱼的健康状态。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

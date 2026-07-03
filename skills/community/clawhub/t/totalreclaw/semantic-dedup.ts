@@ -12,6 +12,7 @@
  */
 
 import { cosineSimilarity } from './reranker.js';
+import { envNumber } from './entry.js';
 import type { ExtractedFact } from './extractor.js';
 
 // ---------------------------------------------------------------------------
@@ -23,14 +24,12 @@ import type { ExtractedFact } from './extractor.js';
  *
  * Configurable via TOTALRECLAW_SEMANTIC_DEDUP_THRESHOLD env var.
  * Must be a number in [0, 1]. Falls back to 0.9 if invalid or unset.
+ *
+ * Env read is centralized in entry.ts (env-reading seam, Task 1.3 of the
+ * OpenClaw native integration plan, 2026-06-21).
  */
 export function getSemanticDedupThreshold(): number {
-  const envVal = process.env.TOTALRECLAW_SEMANTIC_DEDUP_THRESHOLD;
-  if (envVal !== undefined) {
-    const parsed = parseFloat(envVal);
-    if (!isNaN(parsed) && parsed >= 0 && parsed <= 1) return parsed;
-  }
-  return 0.9;
+  return envNumber('TOTALRECLAW_SEMANTIC_DEDUP_THRESHOLD', 0.9, { min: 0, max: 1 });
 }
 
 // ---------------------------------------------------------------------------

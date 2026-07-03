@@ -158,7 +158,7 @@ Each move includes team, opponent, score, and (when set) Yahoo injury status (e.
 - `🔒` — player's game has already started (locked by Yahoo)
 - `📅` — player's team is off today
 
-In `--format json`, every entry in `swap_groups[].start`, `swap_groups[].bench`, `swap_groups[].reshuffle` (and the pitcher equivalents) carries a `status` field — empty string when the player has no Yahoo status. The flat `moves[]` and `pitcher_moves[]` arrays mirror the text view: they include only moves that are part of a bench-involving swap group (each tagged with a `swap_group` index). Pure active↔active reshuffles that are omitted from the text output are also omitted from JSON.
+In `--format json`, every entry in `swap_groups[].start`, `swap_groups[].bench`, `swap_groups[].reshuffle` (and the pitcher equivalents) carries a `status` field — empty string when the player has no Yahoo status. The flat `moves[]` and `pitcher_moves[]` arrays mirror the text view: they include every move that is part of a swap group (each tagged with a `swap_group` index), including pure active↔active reshuffles (e.g. moving a player from UTIL into an open position slot with no bench involved) — these appear as a `reshuffle`-only group with an empty `start`/`bench`.
 
 **Early-season preseason rank blending:** The optimizer blends Yahoo's preseason overall rank (OR) into player scores during the first weeks of the season, when current-year stats are too small a sample to be reliable. The blending schedule:
 - **Weeks 1–2**: Full weight — preseason rank contributes up to 15 bonus points (rank 1 gets the max, last-ranked gets 0)

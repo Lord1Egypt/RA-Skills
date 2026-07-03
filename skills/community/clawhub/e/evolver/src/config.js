@@ -85,9 +85,17 @@ const HUB_SEARCH_TIMEOUT_MS = envPositiveInt('EVOLVER_HUB_SEARCH_TIMEOUT_MS', 80
 const PUBLIC_DEFAULT_HUB_URL = 'https://evomap.ai';
 
 function resolveHubUrl() {
-  const raw = process.env.A2A_HUB_URL
-    || process.env.EVOMAP_HUB_URL
-    || process.env.EVOLVER_DEFAULT_HUB_URL
+  // Trim each candidate and fall through on empty/whitespace-only values.
+  // A trailing space in a `.env` value (common with quoted entries like
+  // A2A_HUB_URL="https://evomap.ai ") otherwise survives into endpoint
+  // construction: `hubUrl.replace(/\/+$/, '')` strips trailing slashes but
+  // NOT whitespace, producing "https://evomap.ai /a2a/events/poll" which
+  // fails URL validation (#580 Bug 1). `||` alone would also pick a
+  // whitespace-only override as "truthy", so trim-then-fall-through here.
+  const pick = (v) => { const t = (v == null ? '' : String(v)).trim(); return t || null; };
+  const raw = pick(process.env.A2A_HUB_URL)
+    || pick(process.env.EVOMAP_HUB_URL)
+    || pick(process.env.EVOLVER_DEFAULT_HUB_URL)
     || PUBLIC_DEFAULT_HUB_URL;
 
   if (process.env.EVOMAP_HUB_ALLOW_INSECURE !== '1') {

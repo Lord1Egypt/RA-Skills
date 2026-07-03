@@ -384,5 +384,5 @@ detail = order_detail(order_code=order['body']['orderCode'])
 
 ## 相关链接
 
-- [UU跑腿开放平台](https://open.uupt.com)
-- [API 文档](https://open.uupt.com/docs)
+- [UU跑腿开放平台](https://open.uupt.com/#/development/agentSkill/quickStart)
+- [GitHub地址](https://github.com/uupt-mcp/uupt-delivery-skill)

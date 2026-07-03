@@ -44,4 +44,4 @@ Export a resume JSON file to a styled HTML or PDF document.
 - Custom themes: any folder under `user-themes/<name>/`, or a direct path to a custom theme directory
 - Available languages: en, zh, ja, fr, de, es
 - PDF export renders a clean intermediary HTML before creating the final PDF
-- PDF export requires pdfkit or playwright installed
+- PDF export requires Playwright installed (`pip install playwright && playwright install chromium`)

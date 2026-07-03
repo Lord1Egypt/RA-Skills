@@ -1,0 +1,22 @@
+# ============================================
+# 生产环境配置覆盖 - Enterprise
+# ============================================
+#
+# ⚠ AI构建提示:
+# 覆盖 settings.yaml 中的开发默认值:
+#   - DEBUG = false
+#   - 日志级别 = WARNING
+#   - 数据库连接池增大
+#   - 启用所有安全特性
+#   - 设置生产级别的限流
+
+# debug: false
+# logging:
+#   level: WARNING
+#   format: json
+# database:
+#   pool_size: 50
+#   echo: false
+# limits:
+#   rate_limit: 1000
+#   rate_window: 60

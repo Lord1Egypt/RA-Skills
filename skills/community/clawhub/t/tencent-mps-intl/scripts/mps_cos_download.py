@@ -7,13 +7,13 @@ Features:
 
 Usage:
   # Simplest usage (local-file is omitted, automatically uses ./<cos-input-key filename>)
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
 
   # Manually specify local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # Specify bucket and region (overrides environment variables)
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
 
 Environment Variables:
@@ -23,6 +23,7 @@ Environment Variables:
   TENCENTCLOUD_COS_REGION  - COS Bucket region (default: ap-guangzhou)
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import os
 import sys
@@ -32,11 +33,6 @@ _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
 
 try:
-    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
-    _LOAD_ENV_AVAILABLE = True
-except ImportError:
-    _LOAD_ENV_AVAILABLE = False
-try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
@@ -45,7 +41,7 @@ except ImportError:
 try:
     from qcloud_cos import CosConfig, CosS3Client
 except ImportError:
-    print("Error: Tencent Cloud COS SDK not installed. Please run: pip install cos-python-sdk-v5", file=sys.stderr)
+    print("Error: Tencent Cloud COS SDK not installed. Please run: python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
     sys.exit(1)
 
 
@@ -57,14 +53,14 @@ def parse_args():
         epilog="""
 Examples:
   # Simplest usage: omit --local-file, automatically saves as ./<filename>
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
   # Equivalent to: --local-file ./result.mp4
 
   # Manually specify local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # Specify bucket and region
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
         """
     )

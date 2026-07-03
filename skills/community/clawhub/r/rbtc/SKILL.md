@@ -1,3 +1,14 @@
+---
+name: rbtc
+description: "Runs a patched Bitcoin Core node with built-in CPU mining, supporting configurable CPU usage, thread count, and automated secure updates."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# rBTC Miner
+
 # rBitcoin Agent Skill
 
 Bitcoin Core fork from genesis, upstream-pinned to official release tags.

@@ -1,10 +1,9 @@
 ---
 name: universal-translator
-description: Universal document translator supporting all formats. Use when user needs to translate Word, PDF, Excel, PowerPoint, HTML, Markdown, TXT files. Supports batch translation, terminology consistency, and format preservation. 全格式翻译、文档翻译、批量翻译。
-version: 1.0.3
+description: Framework for translating Word, PDF, Excel, PowerPoint, HTML, Markdown, TXT documents. Provides document parsing code — the AI agent's own LLM performs the actual translation.
+version: 1.0.5
 license: MIT-0
 metadata: {"openclaw": {"emoji": "🌍", "requires": {"bins": ["python3"], "env": []}}}
-dependencies: "pip install python-docx openpyxl python-pptx pymupdf beautifulsoup4"
 ---
 
 # Universal Translator
@@ -35,23 +34,23 @@ Translate any document format while preserving layout and formatting.
 
 ## Trigger Conditions
 
-- "Translate this document" / "翻译这个文档"
-- "Translate folder" / "翻译文件夹"
-- "Translate to English" / "翻译成英文"
-- "universal-translator"
+Only when the user asks to translate a document file (Word/PDF/Excel/PPT/HTML/MD/TXT) to another language.
 
 ---
 
 ## How Translation Works
 
-**Translation is performed by OpenClaw's configured LLM.**
+> ⚠️ **数据外发提醒**：文档内容由 AI 读取并逐段发送至配置中的 LLM 进行翻译。LLM 的运行位置（本地/远程）取决于 OpenClaw 配置。
 
-- The agent uses its built-in AI model to translate text
-- Translation quality depends on the configured LLM
-- Privacy: No data is sent to external translation APIs
-- The LLM may run locally or remotely depending on OpenClaw configuration
+This is a **Framework Skill**: it provides document parsing boilerplate (read Word/Excel/PPT/PDF files, iterate paragraphs/cells/shapes, write output). The AI agent's own LLM performs the actual translation.
 
-**Note**: Check your OpenClaw configuration to understand where the LLM runs.
+**Translation workflow:**
+1. Use the Python code below to open the document and extract text
+2. For each paragraph/cell/shape, translate the text using your LLM
+3. Write the translated text back into the document
+4. Save the output file
+
+**Note:** The `_translate_text` method is a stub — you MUST replace it with actual LLM translation. The stub exists only to let you test the parsing flow; do not use it in production.
 
 ## Python Code
 
@@ -84,13 +83,18 @@ class UniversalTranslator:
         
         return 'unknown'
     
-    def translate_word(self, input_path, output_path, target_lang='en'):
-        """Translate Word document"""
+    def translate_word(self, input_path, output_path, translator_fn):
+        """Translate Word document.
+        
+        Args:
+            translator_fn: callable(text, target_lang) -> translated_text
+                           Agent should pass its LLM translate function here.
+        """
         doc = Document(input_path)
         
         for para in doc.paragraphs:
             if para.text.strip():
-                translated = self._translate_text(para.text, target_lang)
+                translated = translator_fn(para.text, 'en')
                 para.clear()
                 para.add_run(translated)
         
@@ -98,51 +102,50 @@ class UniversalTranslator:
             for row in table.rows:
                 for cell in row.cells:
                     if cell.text.strip():
-                        translated = self._translate_text(cell.text, target_lang)
+                        translated = translator_fn(cell.text, 'en')
                         cell.text = translated
         
         doc.save(output_path)
         return output_path
     
-    def translate_excel(self, input_path, output_path, target_lang='en'):
-        """Translate Excel file"""
+    def translate_excel(self, input_path, output_path, translator_fn):
+        """Translate Excel file."""
         wb = openpyxl.load_workbook(input_path)
         
         for sheet in wb.worksheets:
             for row in sheet.iter_rows():
                 for cell in row:
                     if cell.value and isinstance(cell.value, str):
-                        translated = self._translate_text(cell.value, target_lang)
+                        translated = translator_fn(cell.value, 'en')
                         cell.value = translated
         
         wb.save(output_path)
         return output_path
     
-    def translate_pptx(self, input_path, output_path, target_lang='en'):
-        """Translate PowerPoint"""
+    def translate_pptx(self, input_path, output_path, translator_fn):
+        """Translate PowerPoint."""
         prs = Presentation(input_path)
         
         for slide in prs.slides:
             for shape in slide.shapes:
                 if hasattr(shape, 'text') and shape.text.strip():
-                    translated = self._translate_text(shape.text, target_lang)
+                    translated = translator_fn(shape.text, 'en')
                     shape.text = translated
         
         prs.save(output_path)
         return output_path
     
-    def translate_markdown(self, input_path, output_path, target_lang='en'):
-        """Translate Markdown file"""
+    def translate_markdown(self, input_path, output_path, translator_fn):
+        """Translate Markdown file."""
         with open(input_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Split into sections
         sections = content.split('\n\n')
         translated_sections = []
         
         for section in sections:
             if section.strip():
-                translated = self._translate_text(section, target_lang)
+                translated = translator_fn(section, 'en')
                 translated_sections.append(translated)
             else:
                 translated_sections.append('')
@@ -154,8 +157,8 @@ class UniversalTranslator:
         
         return output_path
     
-    def translate_folder(self, folder_path, output_folder, target_lang='en'):
-        """Translate all files in folder"""
+    def translate_folder(self, folder_path, output_folder, target_lang, translator_fn):
+        """Translate all files in folder."""
         os.makedirs(output_folder, exist_ok=True)
         
         results = []
@@ -169,52 +172,48 @@ class UniversalTranslator:
                     
                     try:
                         if format_type == 'word':
-                            self.translate_word(str(file_path), output_path, target_lang)
+                            self.translate_word(str(file_path), output_path, translator_fn)
                         elif format_type == 'excel':
-                            self.translate_excel(str(file_path), output_path, target_lang)
+                            self.translate_excel(str(file_path), output_path, translator_fn)
                         elif format_type == 'powerpoint':
-                            self.translate_pptx(str(file_path), output_path, target_lang)
+                            self.translate_pptx(str(file_path), output_path, translator_fn)
                         elif format_type in ['markdown', 'text']:
-                            self.translate_markdown(str(file_path), output_path, target_lang)
+                            self.translate_markdown(str(file_path), output_path, translator_fn)
                         
                         results.append({'file': file_path.name, 'status': 'success'})
                     except Exception as e:
                         results.append({'file': file_path.name, 'status': 'error', 'error': str(e)})
         
         return results
-    
-    def _translate_text(self, text, target_lang):
-        """Translate text using AI model"""
-        # The agent uses its AI model to translate
-        # This is done locally through OpenClaw's LLM
-        return f"[{target_lang.upper()}] {text}"
-
-# Example
-translator = UniversalTranslator()
-
-# Translate single file
-translator.translate_word('input.docx', 'output_en.docx', 'en')
-
-# Translate folder
-translator.translate_folder('/path/to/docs', '/path/to/translated', 'en')
-```
 
 ## Usage Examples
 
 ```
 User: "Translate this Word document to English"
-Agent: Use translate_word() function
+Agent: 
+  1. pip install python-docx (if not installed)
+  2. Use translator.translate_word() to parse .docx
+  3. For each paragraph, call your LLM to translate
+  4. Write translated text back, save output
 
 User: "Translate all files in this folder to Chinese"
-Agent: Use translate_folder() function
+Agent:
+  1. Ensure required libs are installed
+  2. Use translator.translate_folder() for parsing
+  3. Translate text via your LLM
+  4. Save all translated files
 
 User: "翻译这份PDF成日文"
-Agent: Extract text, translate, generate PDF
+Agent:
+  1. Extract text from PDF
+  2. Translate using your LLM
+  3. Save as new document
 ```
 
 ## Notes
 
-- Supports 50+ languages
-- Preserves original formatting
-- Batch processing support
-- Cross-platform compatible
+- Supports Word (.docx), Excel (.xlsx), PPT (.pptx), PDF, HTML, Markdown, TXT
+- The parsing code preserves original formatting — the AI agent only replaces text content
+- Install dependencies: `pip install python-docx openpyxl python-pptx`
+- For PDF support: `pip install pymupdf`
+- For HTML: `pip install beautifulsoup4`

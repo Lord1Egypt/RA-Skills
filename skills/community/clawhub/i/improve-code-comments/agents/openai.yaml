@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Code Comments"
+  short_description: "Audit and improve code comments only"
+  default_prompt: "Use $improve-code-comments to audit comments before making focused comment-only improvements."

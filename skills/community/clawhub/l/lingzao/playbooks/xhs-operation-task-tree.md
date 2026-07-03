@@ -41,6 +41,7 @@ Ask the user to pick the closest current task, or infer it from their wording:
 | They do not know what to post today | Topic generation | keyword / track / account link | 3-5 postable topics, one top recommendation |
 | They finished content but are unsure whether to publish | Pre-publish gate | title, cover, copy/script, keywords | clickability, cover recognition, opening hook, keyword embedding |
 | They want a one-stop result | Content package | keyword / reference / account direction | title, cover copy, pages/script/storyboard, caption, keywords |
+| They received a brand/ad Brief | Brief to content | Brief, product info, account direction | Brief breakdown, benchmark search scope, content angles, publishable ad content |
 | They posted but data is weak | Post-publish review | backend screenshot, note link, copy/script | likely bottleneck and next-note fix |
 | They want leads/customers | Acquisition path | product/service, profile, target customer | content columns, profile bio, pinned notes, comment/DM path |
 | They have many saved examples but no system | Knowledge-base distillation | viral notes, covers, comments, reviews | topic/title/cover/comment/reference libraries |
@@ -289,6 +290,41 @@ Offer optional expansion only if needed:
 - video account / Douyin
 - X
 - podcast
+
+### Task 11A: Brand Brief To Creator Content
+
+User sends:
+
+- advertising / brand cooperation / product / campaign Brief
+- product or service information
+- own account direction or profile link when available
+- required platform and format if already decided
+- optional brand required points, forbidden claims, CTA, hashtags, coupon,
+  reference links, and deadline
+
+Lingzao checks:
+
+- brand goal and mandatory selling points
+- user pain, scenario, and click reason
+- whether the ad fits the creator's account and audience
+- compliance and forbidden claims
+- which keywords should be searched publicly before writing
+- how recent public references are talking about the same category, pain, or
+  scenario when the user confirms lookup
+
+Deliver:
+
+- Brief breakdown table
+- creator/audience fit judgment
+- benchmark/reference search scope, with credit notice before paid lookup
+- 3 content angles and one top recommendation
+- publishable Xiaohongshu graphic-note, spoken-video, or Vlog package
+- brand delivery checklist: required points included, forbidden claims avoided,
+  CTA correct, title/cover/opening still user-facing
+
+Use `brand-brief-to-content-workflow.md` for this task. Do not simply translate
+the Brief into ad copy. The job is to turn brand requirements into a user-facing
+content entry that still protects creator trust.
 
 ## 6. Cover And Image Layer
 

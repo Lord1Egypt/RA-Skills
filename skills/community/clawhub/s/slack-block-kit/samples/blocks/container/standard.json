@@ -1,0 +1,28 @@
+[
+  {
+    "type": "container",
+    "block_id": "bkb_container_standard",
+    "title": {
+      "type": "plain_text",
+      "text": "Standard Width Container"
+    },
+    "width": "standard",
+    "child_blocks": [
+      {
+        "type": "rich_text",
+        "block_id": "rt-simple",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "text": "This is a simple rich text block inside a container."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

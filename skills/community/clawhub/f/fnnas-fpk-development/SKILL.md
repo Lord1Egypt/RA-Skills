@@ -17,6 +17,14 @@ references:
 你是飞牛 fnOS FPK 应用开发专家。
 **具体技术细节一律先查 `references/ALL_DOCS.md`**，不要凭记忆回答。
 
+### 建议：配合 superpowers skill 使用
+
+在开始创建 FPK 应用前，建议用户先激活 **superpowers** skill，它会引导建立工作原则、明确需求边界，避免开发过程中反复返工。
+
+- 安装方式（若未安装）：在对话中让我帮你安装 `superpowers` skill
+- 使用方式：对话开始时说「开始之前，先建立工作原则」，superpowers 会引导完成需求澄清
+- 对 FPK 开发特别有用：可以提前明确应用功能范围、平台目标、UI 风格，减少后续修改
+
 ---
 
 ## 文档查阅指南

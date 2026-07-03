@@ -29,8 +29,10 @@ QUERY_TOO_SHORT_ERROR = f"错误：查询关键词过短，最少需要 {MIN_QUE
 # ==========================================
 
 # 默认配置文件路径
-CONFIG_FILE = Path(__file__).parent.parent / "config.ini"
+SKILL_ROOT = Path(__file__).resolve().parent.parent
+CONFIG_FILE = SKILL_ROOT / "config.ini"
 DEFAULT_BASE_URL = "https://open.dknowc.cn/dependable/search/"
+SEARCH_RESULTS_DIR = SKILL_ROOT / "official-docs" / "search-results"
 REGISTER_URL = "https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC52434D1F&type=6"
 FIXED_SEGMENT_COUNT = 2
 FIXED_SIMPLIFIED = False
@@ -55,14 +57,46 @@ def normalize_time_filter(time: Optional[str]) -> Optional[str]:
     return value
 
 
-def normalize_base_url(base_url: str) -> str:
-    """规范化搜索接口地址。"""
-    base_url = (base_url or DEFAULT_BASE_URL).strip()
-    if not base_url:
-        return DEFAULT_BASE_URL
-    if not base_url.endswith("/"):
-        base_url += "/"
-    return base_url
+def is_relative_to(path: Path, parent: Path) -> bool:
+    """兼容旧 Python 版本的 Path.is_relative_to。"""
+    try:
+        path.relative_to(parent)
+        return True
+    except ValueError:
+        return False
+
+
+def resolve_config_path(config_path: Optional[Path] = None) -> Path:
+    """只允许读取 skill 默认 config.ini。"""
+    if config_path is None:
+        return CONFIG_FILE.resolve()
+    raw_path = config_path.expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (SKILL_ROOT / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+    if resolved != CONFIG_FILE.resolve():
+        raise ValueError(f"--config 只允许使用默认配置文件: {CONFIG_FILE}")
+    return resolved
+
+
+def resolve_output_json(output_path: str) -> Path:
+    """只允许将搜索结果写入 skill 的搜索结果目录。"""
+    raw_path = Path(output_path).expanduser()
+    if raw_path.is_absolute():
+        resolved = raw_path.resolve()
+    elif raw_path.parent == Path("."):
+        resolved = (SEARCH_RESULTS_DIR / raw_path.name).resolve()
+    else:
+        resolved = (SKILL_ROOT / raw_path).resolve()
+
+    if resolved.suffix.lower() != ".json":
+        resolved = resolved.with_suffix(".json")
+    if not is_relative_to(resolved, SEARCH_RESULTS_DIR.resolve()):
+        raise ValueError(f"输出文件必须位于搜索结果目录内: {SEARCH_RESULTS_DIR}")
+    return resolved
 
 
 def parse_list_values(values: Optional[list[str]]) -> list[str]:
@@ -96,14 +130,13 @@ def normalize_material_length(material_length: Optional[int]) -> int:
 
 def load_config(config_path: Optional[Path] = None) -> dict:
     """
-    从配置文件加载 API Key 和接口地址
+    从配置文件加载 API Key。搜索接口地址固定为 DEFAULT_BASE_URL，不从配置读取。
 
     配置文件格式 (config.ini):
     [dkag]
     api_key=your_api_key_here
-    base_url=https://open.dknowc.cn/dependable/search/
     """
-    config_path = config_path or CONFIG_FILE
+    config_path = resolve_config_path(config_path)
 
     if not config_path.exists():
         raise FileNotFoundError(
@@ -112,26 +145,21 @@ def load_config(config_path: Optional[Path] = None) -> dict:
             f"  {REGISTER_URL}\n"
             f"然后创建配置文件并添加你的 API Key:\n"
             f"  [dkag]\n"
-            f"  api_key=your_api_key_here\n"
-            f"  base_url={DEFAULT_BASE_URL}"
+            f"  api_key=your_api_key_here"
         )
 
     api_key = ''
-    base_url = DEFAULT_BASE_URL
     try:
         import configparser
         config = configparser.ConfigParser()
         config.read(config_path, encoding='utf-8')
         api_key = config.get('dkag', 'api_key', fallback='')
-        base_url = config.get('dkag', 'base_url', fallback=DEFAULT_BASE_URL)
     except Exception:
         # 简单的文件读取方式（兼容无 configparser 的情况）
         with open(config_path, 'r', encoding='utf-8') as f:
             for line in f:
                 if line.startswith('api_key='):
                     api_key = line.split('=', 1)[1].strip()
-                if line.startswith('base_url='):
-                    base_url = line.split('=', 1)[1].strip()
 
     if not api_key:
         raise ValueError(
@@ -141,8 +169,7 @@ def load_config(config_path: Optional[Path] = None) -> dict:
         )
     
     return {
-        "api_key": api_key,
-        "base_url": normalize_base_url(base_url)
+        "api_key": api_key
     }
 
 
@@ -324,12 +351,10 @@ def dkag_search(
             "min_length": MIN_QUERY_LENGTH
         }
 
-    # 获取 API Key 和接口地址
-    base_url = DEFAULT_BASE_URL
+    # 获取 API Key。搜索接口地址固定为 DEFAULT_BASE_URL。
     if not api_key:
         config = load_config(config_path)
         api_key = config["api_key"]
-        base_url = config["base_url"]
 
     normalized_time = normalize_time_filter(time)
     try:
@@ -349,9 +374,6 @@ def dkag_search(
             "error": True,
             "message": str(e)
         }
-
-    # 构建完整 URL
-    url = normalize_base_url(base_url)
 
     # 构建请求体（新接口格式）
     payload = {
@@ -395,7 +417,7 @@ def dkag_search(
 
     # 发送请求
     try:
-        response = requests.post(url, data=json.dumps(payload), headers=headers, timeout=30)
+        response = requests.post(DEFAULT_BASE_URL, data=json.dumps(payload), headers=headers, timeout=30)
         response.raise_for_status()
         result = response.json()
         
@@ -505,7 +527,7 @@ def main():
     # 输出结果
     output_json = json.dumps(result, ensure_ascii=False, indent=2)
     if args.output:
-        output_path = Path(args.output)
+        output_path = resolve_output_json(args.output)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(output_json, encoding="utf-8")
         print(f"✓ 搜索结果已保存: {output_path}")

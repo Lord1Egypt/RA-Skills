@@ -1,0 +1,15 @@
+{
+  "id": "model-fallback-retry",
+  "name": "Model Fallback Retry",
+  "description": "AI model fallback retry - captures LLM output for quota/limit analysis, supports 429/2056 rate limit detection",
+  "contracts": {
+    "hooks": ["agent_end", "model_call_ended"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

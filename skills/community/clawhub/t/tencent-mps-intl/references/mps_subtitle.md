@@ -49,22 +49,22 @@
 
 ```bash
 # ASR subtitle recognition (default)
-python scripts/mps_subtitle.py --url https://example.com/video.mp4
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4
 
 # ASR + translate to English (bilingual subtitles)
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
 # OCR hard subtitle recognition + translation
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
 # Multi-language translation (English + Japanese)
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
 # COS path input (recommended)
-python scripts/mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
+python3 scripts/mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
     --cos-input-key /input/video.mp4 --src-lang zh --translate en
 
 # Submit asynchronously then query task status
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --no-wait
-python scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
 ```

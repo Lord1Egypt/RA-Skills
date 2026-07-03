@@ -1,0 +1,62 @@
+[
+  {
+    "type": "data_table",
+    "caption": "Data table",
+    "rows": [
+      [
+        {
+          "type": "raw_text",
+          "text": "Name"
+        },
+        {
+          "type": "raw_text",
+          "text": "Amount"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Alpha"
+        },
+        {
+          "type": "raw_number",
+          "value": 10,
+          "text": "10"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Bravo"
+        },
+        {
+          "type": "raw_number",
+          "value": 2,
+          "text": "2"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Charlie"
+        },
+        {
+          "type": "raw_number",
+          "value": 100,
+          "text": "100"
+        }
+      ],
+      [
+        {
+          "type": "raw_text",
+          "text": "Delta"
+        },
+        {
+          "type": "raw_number",
+          "value": 5,
+          "text": "5"
+        }
+      ]
+    ]
+  }
+]

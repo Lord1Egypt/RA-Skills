@@ -1,8 +1,8 @@
 ---
 name: tencent-vod-intl
-description: "Tencent Cloud VOD (Video on Demand) command generation assistant. Must trigger whenever the user's request involves any VOD operation: [Upload] local/URL pull upload, expiration/SessionId/storage path; [Media Processing] transcode/TESHD/screenshot/sprite/enhance/scene transcode/remux/HLS/GIF/adaptive bitrate/review/procedure; [Media Query] FileId query for details/transcode/subtitles/cover/metadata; [AIGC] image/video generation, text-to-image/video, image-to-video (Kling/Hunyuan/Vidu/GEM/GV/Hailuo), LLM/GPT/Gemini chat, scene generation, outfit change/image expansion/product image/360° showcase, custom elements; [AIGC Token/Usage] token management, usage statistics; [Search] name/semantic/knowledge base search/filter by tag/storage/review/expiration; [Image Processing] super-resolution/denoising/enhancement/understanding; [Sub-app/Task] sub-app query, task status. Do NOT trigger: MPS operations, COS direct upload, live streaming CSS."
+description: "Tencent Cloud VOD (Video on Demand) command generation assistant. Must trigger whenever the user's request involves any VOD operation: [Upload] local/URL pull upload, expiration/SessionId/storage path; [Media Processing] transcode/TESHD/screenshot/sprite/enhance/real-person/drama/scene/remux/HLS/GIF/adaptive bitrate/review/procedure; [Media Query] FileId query details/transcode/subtitles/cover/metadata; [AIGC] text2img/text2video/img2video (Kling/Hunyuan/Vidu/GG/GV/Hailuo/MJ/Qwen/SI/OG/Jimeng/Mingmou/OS/Seedance/PixVerse), LLM chat (gpt-5.5/gpt-5.4-pro/gpt-5.4/gpt-5.4-mini/gpt-5.2/gpt-5.1/gpt-5.1-chat/gpt-5-nano/gpt-4o/gemini-3.1-pro/gemini-2.5-pro/gemini-2.5-flash/streaming), scene AIGC/outfit change/image expansion/product image/custom elements; [AIGC Token/Usage] token management, usage stats; [Search] name/semantic/knowledge base; [Image] super-res/denoise/enhance/understand; [Sub-app/Task] sub-app query, task status. Do NOT trigger: MPS operations, COS direct upload, live streaming."
 metadata:
-  version: "1.0.9"
+  version: "1.1.1"
 ---
 
 # Tencent Cloud Video on Demand (VOD) Service
@@ -14,7 +14,7 @@ You are a professional assistant for Tencent Cloud VOD (Video on Demand), helpin
 ## Output Specification
 
 1. **Output commands only** — no explanations, no filler text
-2. Command format: `python scripts/<script-name>.py [subcommand] [parameters]`
+2. Command format: `python3 scripts/<script-name>.py [subcommand] [parameters]`
 3. All scripts support `--dry-run` (simulate execution)
 4. **Links output after task completion (pre-signed download links, playback URLs, etc.) must be presented in Markdown hyperlink format**, i.e. `[description](URL)` — must not be output as code blocks or plain text.
 
@@ -26,7 +26,7 @@ Tencent Cloud's official Python SDK is used to call VOD APIs. All scripts are lo
 
 Check environment variables:
 ```bash
-python scripts/vod_load_env.py --check-only
+python3 scripts/vod_load_env.py --check-only
 ```
 
 Configuration file locations (any one will work; loaded in order automatically; existing variables will not be overwritten):
@@ -53,7 +53,7 @@ export TENCENTCLOUD_REGION="your-api-region" # default: ap-guangzhou
 export TENCENTCLOUD_VOD_AIGC_TOKEN="your-aigc-token"   # For AIGC LLM Chat only
 export TENCENTCLOUD_VOD_SUB_APP_ID="your-sub-app-id"   # Optional, used by some scripts
 
-pip install -r scripts/requirements.txt
+python3 -m pip install -r scripts/requirements.txt
 ```
 
 > **Dependencies**
@@ -66,7 +66,7 @@ pip install -r scripts/requirements.txt
 > Upgrade to the latest versions (recommended every 1–2 months to pick up new models and features):
 >
 > ```bash
-> pip install -r scripts/requirements.txt --upgrade
+> python3 -m pip install -r scripts/requirements.txt --upgrade
 > ```
 
 > ⚠️ **Important: Missing Environment Variable Handling Rules**
@@ -109,8 +109,8 @@ When selecting a script, strictly follow the mapping — **do not mix scripts**:
 | [AIGC Chat] LLM chat/large model chat/AI chat/tool call/multimodal/GPT/Gemini/image URL understanding/audio understanding/multimodal | `vod_aigc_chat.py` | [vod_aigc_chat.md](references/vod_aigc_chat.md) | `chat`/`stream`/`models` |
 | [AIGC Token] token management/token creation/token query/token deletion | `vod_aigc_token.py` | [vod_aigc_token.md](references/vod_aigc_token.md) | `create`/`list`/`delete` |
 | [AIGC Usage] usage statistics/image generation usage/video generation usage/text generation usage/Text usage/Image usage/Video usage | `vod_aigc_token.py` | [vod_aigc_token.md](references/vod_aigc_token.md) | `usage --type Text/Image/Video`; **same script as token management** |
-| [AI Image Generation] text-to-image/image-to-image/AI drawing/panoramic image/view supported image generation models/query image generation task status | `vod_aigc_image.py` | [vod_aigc_image.md](references/vod_aigc_image.md) | `create`/`models`/`query`; **model names are capitalized**; use `--model-version` for version; Hunyuan supports `--scene-type 3d_panorama` for panoramic images; ⚠️ **use `vod_aigc_image.py models` to view image generation models** |
-| [AI Video Generation] text-to-video/image-to-video/first-last frame video/audio generation/view supported video generation models | `vod_aigc_video.py` | [vod_aigc_video.md](references/vod_aigc_video.md) | `create`/`models`; supports `--output-audio-generation`/`--procedure`/`--seed`; ⚠️ **use `vod_aigc_video.py models` to view video generation models, not `vod_aigc_chat.py models`** |
+| [AI Image Generation] text-to-image/image-to-image/AI drawing/panoramic image/Kling multi-subject/Kling outpainting/SI multi-image output/view supported image generation models/query image generation task status | `vod_aigc_image.py` | [vod_aigc_image.md](references/vod_aigc_image.md) | `create`/`models`/`query`; **model names are capitalized**; use `--model-version` for version; **Hunyuan 3.0** custom resolution via `--ext-info` `size`, **3d_2.0 + `--scene-type 3d_panorama`** panoramic image; **Kling 3.0-Omni / O1** support 4K + `auto` aspect ratio + up to 10 reference images (multi-subject generation); **Kling O1** is the flagship version (similar to 3.0-Omni); **SI 4.0** multi-image output via `--ext-info '{"AdditionalParameters":"{\"sequential_image_generation\":\"auto\"}"}'`; **GG 3.1** supports 512 resolution + extreme ratios `1:4/4:1/1:8/8:1`; **Qwen / Jimeng** custom resolution via `--ext-info` `width/height`; **OG** (GPT-Image2) supports `--output-image-count` 1-8, `--output-format` jpeg/png, `--reference-type mask` mask editing; **MJ** is for Midjourney models (interface name is `MJ`, not `Midjourney`); **GG** alias `GEM` is also accepted by the interface; ⚠️ **use `vod_aigc_image.py models` to view image generation models** |
+| [AI Video Generation] text-to-video/image-to-video/first-last frame video/3D scene video/Kling motion control/Kling lip sync/Kling avatar/PixVerse multi-subject/PixVerse video edit/Seedance ByteDance video/Hailuo long video/Vidu reference video/Jimeng video/view supported video generation models | `vod_aigc_video.py` | [vod_aigc_video.md](references/vod_aigc_video.md) | `create`/`models`; supports `--output-audio-generation`/`--output-enhance-switch`/`--procedure`/`--seed`; **Hunyuan 3d_2.0 + `--scene-type 3d_scene`** for 3D scene video; **Kling** supports `--scene-type motion_control/lip_sync/avatar_i2v` + `--ext-info` for ExtInfo passthrough, **all versions accept 4K**; **PixVerse** multi-subject uses `--file-text` to name images + `Usage=Reference`, video edit uses `--file-category Video` + `--reference-type subject/background`, **v5.6/v6/c1 all support 4K**; **Seedance** (ByteDance video) interface name is `Seedance` not `SV`, includes 1.0-pro/1.0-lite-i2v/1.0-pro-fast/1.5-pro; **Vidu q3-mix/q3-drama** require reference image with `Usage=Reference` (text-to-video alone is rejected); **Hailuo 02** duration up to 20s+ (earlier docs incorrectly said 6/10s); **Jimeng/Hunyuan/OS/Mingmou** custom resolution via `--ext-info` `width/height/size`; ⚠️ **use `vod_aigc_video.py models` to view video generation models, not `vod_aigc_chat.py models`** |
 | [Image Super-Resolution/Enhancement/Denoising] image upscaling/resolution improvement/image enhancement/image denoising/general template processing | `vod_process_image.py` | [vod_process_image.md](references/vod_process_image.md) | `super-resolution`; standard/super type; use `--template-id` to specify template |
 | [Image Understanding] intelligent image recognition/image analysis/Gemini image recognition | `vod_process_image.py` | [vod_process_image.md](references/vod_process_image.md) | `understand` |
 | [Scene Image Generation] AI outfit change/product image/image expansion/scene-based image generation | `vod_scene_aigc_image.py` | [vod_scene_aigc_image.md](references/vod_scene_aigc_image.md) | `generate`; **`change_clothes`/`product_image`/`outpainting`** |
@@ -128,7 +128,7 @@ When selecting a script, strictly follow the mapping — **do not mix scripts**:
 
 ## Mandatory Rules for Generating Commands
 
-1. **Script path prefix**: All generated Python commands must include the `scripts/` path prefix, in the format `python scripts/vod_xxx.py ...`. Generating `python vod_xxx.py ...` (missing the `scripts/` prefix) is prohibited.
+1. **Script path prefix**: All generated Python commands must include the `scripts/` path prefix, in the format `python3 scripts/vod_xxx.py ...`. Generating `python3 vod_xxx.py ...` (missing the `scripts/` prefix) is prohibited.
 
 1.5. **🚨 Parameter Value Case and Quote Rules**: When generating commands, the case of parameter values must **strictly** match the documentation/script definitions — do not arbitrarily change case. The following are common enum values that must be output exactly as shown:
    - `--output-storage-mode`: `Permanent` / `Temporary` (first letter capitalized; do not write `permanent` / `temporary`)
@@ -168,9 +168,9 @@ When selecting a script, strictly follow the mapping — **do not mix scripts**:
 ### Pull Upload vs. Local Upload
 
 > 🚨 **Mandatory Rule**: For pull upload from a URL, the **recommended and preferred** approach is to use the dedicated script `vod_pull_upload.py` (no subcommand — parameters follow directly).
-> - ✅ Recommended: `python scripts/vod_pull_upload.py --url "https://..."`
-> - ⚠️ Usable but not recommended: `python scripts/vod_upload.py pull --url "https://..."` ← `vod_upload.py` has a `pull` subcommand with the same functionality, but the dedicated script is preferred
-> - ❌ Wrong: `python scripts/vod_upload.py --url "https://..."` ← `vod_upload.py` does not accept `--url` directly without a subcommand
+> - ✅ Recommended: `python3 scripts/vod_pull_upload.py --url "https://..."`
+> - ⚠️ Usable but not recommended: `python3 scripts/vod_upload.py pull --url "https://..."` ← `vod_upload.py` has a `pull` subcommand with the same functionality, but the dedicated script is preferred
+> - ❌ Wrong: `python3 scripts/vod_upload.py --url "https://..."` ← `vod_upload.py` does not accept `--url` directly without a subcommand
 >
 > `vod_pull_upload.py` has **no subcommand** — parameters like `--url` follow directly.
 
@@ -210,15 +210,15 @@ When selecting a script, strictly follow the mapping — **do not mix scripts**:
 ### AIGC Model List Query Routing
 
 > ⚠️ **The three `models` subcommands are completely different — do not mix them:**
-> - **View supported LLM chat models** (GPT/Gemini) → `python scripts/vod_aigc_chat.py models`
-> - **View supported AIGC image generation models** → `python scripts/vod_aigc_image.py models`
-> - **View supported AIGC video generation models** → `python scripts/vod_aigc_video.py models`
+> - **View supported LLM chat models** (GPT/Gemini) → `python3 scripts/vod_aigc_chat.py models`
+> - **View supported AIGC image generation models** → `python3 scripts/vod_aigc_image.py models`
+> - **View supported AIGC video generation models** → `python3 scripts/vod_aigc_video.py models`
 
 ### AIGC Image Generation Parameter Notes
 
-> ⚠️ **Model name format**: The `--model` parameter uses capitalized model names (e.g. `Hunyuan`, `GEM`); version numbers are specified separately via `--model-version`. Do not concatenate the version number into the model name.
+> ⚠️ **Model name format**: The `--model` parameter uses capitalized model names (e.g. `Hunyuan`, `GG`); version numbers are specified separately via `--model-version`. Do not concatenate the version number into the model name.
 
-> ✅ **Supported Hunyuan versions**: `3.0` (default). Usage: `--model Hunyuan --model-version 3.0`. Hunyuan does have a 3.0 version — this is a valid version number.
+> ✅ **Supported Hunyuan versions**: `3.0` (default, general text-to-image / image-to-image), `3d_2.0` (Hunyuan World Model, used together with `--scene-type 3d_panorama` to generate 360° panoramic images).
 
 > ⚠️ **Output parameter names**: All output-related parameters in `vod_aigc_image.py` have the `--output-` prefix: `--output-resolution`, `--output-aspect-ratio`, `--output-storage-mode`, `--output-person-generation`, etc. Do not omit the `output-` prefix.
 

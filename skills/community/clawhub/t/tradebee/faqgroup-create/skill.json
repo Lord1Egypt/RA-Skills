@@ -1,0 +1,89 @@
+{
+  "name": "faqgroup-create",
+  "description": "A FAQ group creation skill based on the Tradebee Website Builder Open API. It is used to create and publish a new FAQ group under a specified site language, with support for group name, brief description, and SEO data.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into. First call `languages-get`, then copy one exact `language` value the user confirms."
+      },
+      "faqgroup": {
+        "type": "object",
+        "description": "Required. Complete FAQ group payload for the new published FAQ group.",
+        "properties": {
+          "group_name": {
+            "type": "string",
+            "description": "Required. FAQ group name, up to 100 characters."
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. Short plain-text description, up to 300 characters."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. SEO metadata for search engines."
+          }
+        },
+        "required": [
+          "group_name"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact FAQ group creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact FAQ group payload to be created."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact FAQ group payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "faqgroup",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

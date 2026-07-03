@@ -1,5 +1,5 @@
 ## Description: <br>
-Assists with Chinese short-form web fiction from concept to finished draft, focusing on emotional tension, reversals, pacing, and manuscript formatting. <br>
+短篇网文写作。辅助短篇小说创作，从构思到成稿，聚焦情绪拉扯与节奏把控。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,40 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Writers and agents use this skill to plan, draft, revise, format, and quality-check Chinese short web fiction in local project files. It is aimed at story workflows that need emotional arc design, genre conventions, scene-by-scene drafting, and final prose cleanup. <br>
+External writers and developers use this skill to plan, draft, revise, and quality-check Chinese short web-fiction projects from concept through manuscript files. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill creates and edits local manuscript files, and its punctuation normalization script can modify files in place. <br>
-Mitigation: Run it in a dedicated story or project folder and keep backups or version control before applying in-place normalization. <br>
-Risk: The writing guidance includes genre and audience conventions that may not match every story, market, or reader group. <br>
-Mitigation: Review and override those conventions when they conflict with the intended audience, story goals, or inclusive representation. <br>
-Risk: Reference-based drafting can overfit source structure, tone, or market formulas if used without human judgment. <br>
-Mitigation: Use references as high-level craft signals, then review drafts for originality, fit, and platform requirements before publication. <br>
+Risk: The skill is designed to create and modify local draft files. <br>
+Mitigation: Use it in a project workspace where draft-file edits are expected, and review generated or changed files before relying on them. <br>
+Risk: Bundled local quality-check scripts may be run against draft files. <br>
+Mitigation: Review the proposed commands and run them only in the intended workspace. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-short-write) <br>
-- [OpenClaw source metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Format and structure](references/format-and-structure.md) <br>
-- [Output contract](references/output-contract.md) <br>
-- [Writing workflow](references/writing-workflow.md) <br>
-- [Writing craft](references/writing-craft.md) <br>
-- [Genre catalog](references/genre-catalog.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
-- [Anti-AI writing guide](references/anti-ai-writing.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/worldwonderer/skills/story-short-write) <br>
+- [OpenClaw Source Metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
+- [Output Contract](references/output-contract.md) <br>
+- [Writing Workflow](references/writing-workflow.md) <br>
+- [Quality Checklist](references/quality-checklist.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown manuscript and planning files with concise guidance and optional shell commands] <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
+**Output Format:** [Markdown prose, local draft files, and optional inline shell commands for quality checks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and edits local story project files such as settings, section outlines, manuscript text, continuity summaries, and prose quality checks.] <br>
+**Other Properties Related to Output:** [May create or edit local Chinese short-fiction project files and run bundled local Node/Python quality-check scripts.] <br>
 
 ## Skill Version(s): <br>
-1.1.8 (source: server release metadata; artifact frontmatter version 1.0.0) <br>
+1.1.10 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

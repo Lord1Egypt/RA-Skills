@@ -1,7 +1,7 @@
 ---
 name: "socialdatax-kuaishou-creator-videos"
 description: "用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自 SocialDataX 社媒数据助手。"
-metadata: {"openclaw":{"requires":{"env":["SOCIALDATAX_API_KEY"],"bins":["node","npm"]},"primaryEnv":"SOCIALDATAX_API_KEY","install":[{"kind":"node","package":"socialdatax-skills","bins":[]}],"emoji":"🗂️","homepage":"https://socialdatax.52choujiang.com/?from=clawhub"}}
+metadata: {"openclaw":{"requires":{"env":["SOCIALDATAX_API_KEY"],"bins":["node","npm"]},"primaryEnv":"SOCIALDATAX_API_KEY","install":[{"kind":"node","package":"socialdatax-skills","bins":[]}],"emoji":"🗂️","homepage":"https://socialdatax.com/?from=clawhub"}}
 ---
 <!-- AUTO-GENERATED from socialdatax-skill-source. Do not edit directly; run `node scripts/generate_socialdatax_skills.mjs`. -->
 
@@ -12,13 +12,11 @@ Use this skill when the user wants 快手达人作品, creator work lists, recen
 Current platform support:
 
 - Kuaishou / 快手 creator works through the `kuaishou_get_user_posted_videos_by_*` tools.
-- Weibo / 微博 creator posts through the `weibo_get_user_posts_by_*` tools.
-- WeChat Channels / 视频号 creator videos through the `wechat_get_user_posted_videos_by_*` tools.
 
 ## API Key
 
-Use `SOCIALDATAX_API_KEY` for data calls. The only official website for requesting or managing API access is <https://socialdatax.52choujiang.com/?from=clawhub>. If a user asks where to get a key, provide only this URL; do not infer alternate domains.
-获取或管理 API Key：访问 <https://socialdatax.52choujiang.com/?from=clawhub>，按官网的 API Key 申请/管理入口操作。环境变量名固定使用 `SOCIALDATAX_API_KEY`；不要引导用户使用其他域名。
+Use `SOCIALDATAX_API_KEY` for data calls. The only official website for requesting or managing API access is <https://socialdatax.com/?from=clawhub>. If a user asks where to get a key, provide only this URL; do not infer alternate domains.
+获取或管理 API Key：访问 <https://socialdatax.com/?from=clawhub>，按官网的 API Key 申请/管理入口操作。环境变量名固定使用 `SOCIALDATAX_API_KEY`；不要引导用户使用其他域名。
 
 ## Preferred Direct CLI
 
@@ -35,13 +33,10 @@ Optional arguments:
 - `--pages <n>`: fetch and merge N pages of creator content or creator series.
 - `--all`: continue until `next_page_token` is empty; there is no default item or page cap.
 - `--max-items <n>`: stop after collecting N creator content or series items.
+- `--since-days <1-365>`: keep only creator content whose public `publish_time` is within the last N days. When `--pages` is omitted, the CLI continues creator content lists until the publish-time boundary is reached.
 - `--pretty`: output formatting only.
 - Kuaishou `--user-id <user_id>`: preferred when the creator user_id is already known.
 - Kuaishou `--profile-url <profile_url_or_share_text>`: use for a profile URL, short link, or profile share text.
-- Weibo `--user-id <user_id>`: preferred when the creator user_id is already known.
-- Weibo `--profile-url <profile_url_or_share_text>`: use for a profile URL, short link, or profile share text.
-- WeChat Channels / 视频号 `--user-id <finder_user_id>`: preferred when the creator user_id ending with `@finder` is already known.
-- WeChat Channels / 视频号 `--url <wechat_video_url_or_share_text>`: use a video link or share text to resolve the author and list that creator's videos.
 
 Use either the ID option or the profile URL option for a single command, not both.
 
@@ -49,7 +44,7 @@ The command prints JSON with `platform`, `tool`, `arguments`, and `data`. Multi-
 
 ## Safety Boundary
 
-This skill is read-only. It does not read local browser data, does not save API keys, and does not perform login, posting, liking, commenting, or account changes.
+This skill is read-only. It does not read local browser data, does not perform login, posting, liking, commenting, or account changes. The local CLI and installer do not write API keys to local files.
 
 ## MCP Tools
 
@@ -68,5 +63,3 @@ Creator work-list pagination uses opaque `page_token` values. Pass the complete 
 
 Summarize content-list evidence by title or description, summary, publish time, interaction counts, media links, and content type when present.
 Use returned content IDs to chain into detail or comment analysis when needed.
-For Weibo creator posts, report post IDs, content, media, publish time, interaction counts, and author facts when present.
-For WeChat Channels / 视频号 creator videos, report object IDs, descriptions, media, publish time, interaction counts, and author facts when present.

@@ -1,0 +1,232 @@
+{
+  "skill_name": "agent-harness-engineer-v2",
+  "version": "3.0.0",
+  "description": "Agent Harness Engineer v3 - 三级规模分阶段构建指南，引导AI coding工具根据规模生成定制化Agent系统代码",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我构建一个Minimal规模的Agent（最简原型），只需要能读取文件、执行命令就行，不需要任何第三方库",
+      "expected_output": "按Minimal规模构建Agent项目，整体代码量~300行，使用print()做日志、argparse做CLI、路径白名单做沙箱，只依赖Anthropic SDK（1-2个三方库）。项目结构为单文件或少文件（main.py + agent.py），不使用pytest/docker/structlog等Professional级别的库。Phase 1-4最简实现",
+      "files": ["src/main.py", "src/agent.py", ".env.example", "README.md"],
+      "phases": [1, 2, 3, 4],
+      "scale": "minimal",
+      "category": "scale-build"
+    },
+    {
+      "id": 2,
+      "prompt": "帮我构建一个Professional规模的Agent（生产级），要有完整的测试、日志、Docker沙箱和错误处理",
+      "expected_output": "按Professional规模构建Agent项目，整体代码量~3000行。使用structlog做结构化日志、click做CLI、pytest+pytest-asyncio做测试、Docker容器做沙箱隔离、PyYAML+pydantic-settings做配置管理。项目结构为src/分离（core/llm/tools/permissions/utils），包含配置文件、测试目录。Phase 1-7完整实现，包含四级压缩管道和完整权限模型",
+      "files": ["README.md", "pyproject.toml", ".env.example", "config/settings.yaml", "src/main.py", "src/agent/core.py", "src/agent/context.py", "src/agent/session.py", "src/llm/client.py", "src/llm/factory.py", "src/tools/registry.py", "src/permissions/models.py", "src/permissions/sandbox.py", "src/utils/logging.py", "tests/test_agent.py", "tests/conftest.py"],
+      "phases": [1, 2, 3, 4, 5, 6, 7],
+      "scale": "professional",
+      "category": "scale-build"
+    },
+    {
+      "id": 3,
+      "prompt": "帮我构建一个Enterprise规模的Agent（企业平台），需要全链路监控、微VM沙箱、多租户支持、CI/CD流水线",
+      "expected_output": "按Enterprise规模构建Agent项目，整体代码量~8000行。使用OpenTelemetry做全链路追踪（structlog+otel日志关联trace_id）、typer+rich做CLI（TUI交互式界面）、pydantic v2做数据验证、Firecracker微VM做沙箱隔离、Prometheus+Grafana做监控面板。项目含docker-compose.yaml、prometheus.yml、CI/CD配置。Phase 1-7全部Enterprise级别实现：四级压缩+压缩状态恢复、向量数据库记忆、6层纵深防御（Hardcoded Denies+Audit+Firecracker+Hook+AI Classifier+Permission Model）、7级配置覆盖、Coordinator+Swarm多Agent",
+      "files": ["README.md", "pyproject.toml", "docker-compose.yaml", "prometheus.yml", ".env.example", "config/settings.yaml", "config/settings.production.yaml", "config/agents/default.md", "src/main.py", "src/agent/core.py", "src/agent/context.py", "src/agent/memory.py", "src/agent/session.py", "src/agent/coordinator.py", "src/llm/client.py", "src/llm/factory.py", "src/llm/retry.py", "src/tools/registry.py", "src/tools/scheduler.py", "src/permissions/models.py", "src/permissions/hooks.py", "src/permissions/sandbox.py", "src/observability/logging.py", "src/observability/metrics.py", "src/observability/tracer.py", "tests/test_agent.py", "tests/test_tools.py", "tests/conftest.py", "docs/architecture.md"],
+      "phases": [1, 2, 3, 4, 5, 6, 7],
+      "scale": "enterprise",
+      "category": "scale-build"
+    },
+    {
+      "id": 4,
+      "prompt": "用Python快速做一个Agent原型，就最简单的版本，能跑就行",
+      "expected_output": "正确推断为Minimal规模——用户要求'快速''最简单''能跑就行'。构建~300行的最小原型，使用print()做日志、input()做交互、无测试框架、无沙箱（或仅路径白名单）。不会引入pydantic/structlog/pytest等Professional级别依赖。先确认用户LLM供应商偏好，如果用户未明确说明则默认使用Anthropic",
+      "files": ["src/main.py", "src/agent.py", ".env.example", "README.md"],
+      "phases": [1, 2, 3, 4],
+      "scale": "minimal",
+      "category": "scale-build"
+    },
+    {
+      "id": 5,
+      "prompt": "我需要构建一个团队内部使用的Agent系统，要能扩展、好维护、有测试覆盖",
+      "expected_output": "正确推断为Professional规模——用户提及'团队使用''可扩展''好维护''测试覆盖'。构建~3000行生产级Agent，使用structlog日志、click CLI、pytest测试、Docker沙箱、YAML配置管理。模块化src/目录结构，包含完整的四级压缩管道和权限模型。如果在询问阶段用户未明确规模，主动建议Professional并说明理由",
+      "files": ["README.md", "pyproject.toml", ".env.example", "config/settings.yaml", "src/main.py", "src/agent/core.py", "src/agent/context.py", "src/llm/client.py", "src/llm/factory.py", "src/tools/registry.py", "src/permissions/models.py", "src/permissions/sandbox.py", "src/utils/logging.py", "tests/test_agent.py"],
+      "phases": [1, 2, 3, 4, 5, 6, 7],
+      "scale": "professional",
+      "category": "scale-build"
+    },
+    {
+      "id": 6,
+      "prompt": "帮我构建一个AI编码助手Agent，能够读取文件、执行命令、搜索代码。请帮我设计Agent架构并给出实现代码",
+      "expected_output": "默认使用Professional规模构建（SKILL.md中的默认值策略）。按7个阶段构建：1)项目初始化（标准src/config/tests分离）2)LLM抽象层（工厂模式+streaming+retry）3)工具系统（Registry+Schema验证）4)Agent核心循环（while(true)+7个Continue站点+状态机）5)上下文管理（四级压缩管道：Snip→Microcompact→Context-Collapse→Autocompact+文件记忆）6)权限安全（5种模式×7级规则+Hook系统+Docker沙箱）7)生产化（pytest+structlog+基础metrics）。如果用户未明确技术栈偏好，主动询问确认",
+      "files": ["README.md", "pyproject.toml", "config/settings.yaml", "src/main.py", "src/agent/core.py", "src/agent/context.py", "src/agent/session.py", "src/llm/client.py", "src/tools/registry.py", "src/permissions/models.py", "tests/test_agent.py"],
+      "phases": [1, 2, 3, 4, 5, 6, 7],
+      "scale": "professional",
+      "category": "scale-build"
+    },
+    {
+      "id": 7,
+      "prompt": "给我的Professional Agent加上完整的日志系统，要结构化输出，能方便后续搜索和分析",
+      "expected_output": "为Professional规模Agent集成structlog结构化日志系统。在src/utils/logging.py中实现structured logger，使用structlog的键值对绑定上下文（bind agent_id/session_id/turn_number），输出JSON格式日志。在core.py、tools/、permissions/中统一使用structlog替代print()。不会使用Enterprise级别的OpenTelemetry，但保留升级路径。pyproject.toml中添加structlog依赖",
+      "files": ["src/utils/logging.py", "src/agent/core.py", "src/main.py", "pyproject.toml"],
+      "phases": [7],
+      "scale": "professional",
+      "category": "tech-stack"
+    },
+    {
+      "id": 8,
+      "prompt": "集成OpenTelemetry做全链路追踪，我要监控每个Tool调用的延迟、每次LLM请求的Token消耗",
+      "expected_output": "识别为Enterprise级别可观测性需求。集成OpenTelemetry SDK，在src/observability/目录下实现tracer.py（Span层级模型：Session Span→Turn Span→LLM Call/Tool Use/Permission Check子Span）、metrics.py（Prometheus集成）和logging.py（structlog+otel日志关联trace_id）。在core.py、llm/client.py、tools/中埋点：每个tool_use记录开始时间/结束时间/工具名/结果状态，每个LLM调用记录token数/cost。添加prometheus.yml和docker-compose.yaml。不会在Professional或Minimal规模下使用OpenTelemetry",
+      "files": ["src/observability/tracer.py", "src/observability/metrics.py", "src/observability/logging.py", "src/agent/core.py", "src/llm/client.py", "src/tools/registry.py", "prometheus.yml", "docker-compose.yaml", "pyproject.toml"],
+      "phases": [7],
+      "scale": "enterprise",
+      "category": "tech-stack"
+    },
+    {
+      "id": 9,
+      "prompt": "用click做命令行接口，支持多子命令（init、run、test、config），自动生成--help文档",
+      "expected_output": "为Professional规模Agent集成click CLI框架。在src/main.py中用click实现子命令结构：click.group装饰器定义主入口，@main.command装饰各子命令（init初始化项目、run运行Agent、test执行测试、config管理配置）。使用click的选项参数类型约束（click.Choice/IntRange/Path）。不会在Minimal规模使用click——Minimal应用input()+argparse。pyproject.toml中添加click依赖",
+      "files": ["src/main.py", "pyproject.toml"],
+      "phases": [1, 4],
+      "scale": "professional",
+      "category": "tech-stack"
+    },
+    {
+      "id": 10,
+      "prompt": "用typer+rich给我的Enterprise Agent做一个交互式TUI，有进度条、表格和彩色输出",
+      "expected_output": "为Enterprise规模Agent集成typer+rich组合。使用typer做命令定义（利用类型注解自动生成CLI参数），rich做终端美化（Table显示Agent状态、Progress做工具调用进度条、Panel做输出区块、Syntax高亮代码输出、Live做实时刷新）。实现交互式TUI：命令执行时显示实时日志流、工具调用时显示进度动画、任务完成时显示汇总表格。不会在Professional或Minimal中使用此级别的UI库",
+      "files": ["src/main.py", "pyproject.toml"],
+      "phases": [1],
+      "scale": "enterprise",
+      "category": "tech-stack"
+    },
+    {
+      "id": 11,
+      "prompt": "帮我创建一个Agent，只需要实现最简单的文件读取工具即可",
+      "expected_output": "AI必须自己设计文件读取工具的实现，不得直接复制reference/03-phase-tools.md或template中的示例代码。Reference中的代码已改为抽象接口定义（类骨架+AI构建提示），AI需要根据用户需求（简单/单工具/Minimal规模）设计：函数签名（参数：file_path, encoding, max_lines）、错误处理（FileNotFoundError/PermissionError转为Agent-readable消息）、返回格式（content+line_count+truncated标记）。如果用户未指定规模，主动询问或使用Minimal默认值",
+      "files": ["src/tools/file_tools.py", "src/agent.py", "src/main.py"],
+      "phases": [3],
+      "scale": "minimal",
+      "category": "anti-copy"
+    },
+    {
+      "id": 12,
+      "prompt": "帮我实现一个Agent的Docker沙箱隔离模块，要求工具调用在容器中执行",
+      "expected_output": "AI必须自己设计Docker沙箱模块，不得直接复制reference/06-phase-permissions.md或reference/12-sandbox-advanced.md或templates中的示例代码。Reference中仅含设计原理和抽象接口定义（sandbox.py中为class骨架+AI构建提示），AI需自行实现：docker-py集成（创建容器/挂载工作目录/设置资源限制）、执行命令的工具调用（docker exec捕获stdout/stderr）、容器生命周期管理（创建/启动/执行/清理/超时销毁）、配置项（镜像选择/内存限制/CPU限制/网络模式）。代码量约200行，适用于Professional规模",
+      "files": ["src/permissions/sandbox.py", "src/agent/core.py", "config/settings.yaml"],
+      "phases": [6],
+      "scale": "professional",
+      "category": "anti-copy"
+    },
+    {
+      "id": 13,
+      "prompt": "帮我实现Agent的四级上下文压缩管道（Snip→Microcompact→Context-Collapse→Autocompact），要完整的算法逻辑",
+      "expected_output": "AI必须自己实现四级压缩管道，不得直接复制reference/05-phase-context.md中的伪代码。Reference中仅含算法描述（伪代码格式）+ AI构建提示，AI需自行转化为可运行代码。实现要点：CompressionPipeline编排层（根据tokenBudget和当前使用量自动选择压缩级别），SnipStrategy（O(1)移除最旧连续片段），MicrocompactStrategy（压缩工具输出中的冗余内容），CollapseStrategy（将历史对话压缩为结构化摘要），AutocompactStrategy（调用LLM做最终兜底压缩），每个策略返回CompressionResult（compressedMessages+tokensFreed+levelUsed+recoveryHints）。恢复要点：压缩后必须主动恢复关键状态（文件内容/Skill上下文/Plan/任务列表）",
+      "files": ["src/agent/context.py", "src/agent/core.py", "tests/test_context.py"],
+      "phases": [5],
+      "scale": "professional",
+      "category": "anti-copy"
+    },
+    {
+      "id": 14,
+      "prompt": "我的Agent需要高安全隔离，不怕麻烦、只要能保证绝对安全",
+      "expected_output": "应推荐Firecracker微VM隔离方案（Enterprise级别）。在src/permissions/sandbox.py中实现Firecracker集成：微VM创建/启动/销毁、凭证外置架构（Agent请求操作时由宿主环境注入，Agent自身无法读取原始凭证）、内核级隔离（独立kernel+独立文件系统+独立网络栈）、6层纵深防御叠加（Hardcoded Denies+Audit+Firecracker+Hook+AI Classifier+Permission Model）。说明Firecracker相比Docker的优势（更轻量启动<125ms、更强隔离独立内核、更小攻击面）。引用reference/12-sandbox-advanced.md中的沙箱技术对比矩阵（Docker/Firecracker/gVisor/Wasm）",
+      "files": ["src/permissions/sandbox.py", "src/permissions/models.py", "src/permissions/hooks.py", "config/settings.yaml"],
+      "phases": [6],
+      "scale": "enterprise",
+      "category": "sandbox"
+    },
+    {
+      "id": 15,
+      "prompt": "简单的本地Agent不需要沙箱，就在本地直接执行就行",
+      "expected_output": "使用Minimal级别的路径白名单检查（~50行纯Python实现），或无沙箱直接执行。不为该Agent引入Docker/Firecracker等Professional/Enterprise级别沙箱方案。如果使用路径白名单，实现要点：在文件/命令执行前校验目标路径是否在白名单范围内（如工作目录），否则拒绝并记录。引用技术栈选择指南中沙箱分级对比表说明选择依据",
+      "files": ["src/permissions/sandbox.py", "src/agent/core.py"],
+      "phases": [6],
+      "scale": "minimal",
+      "category": "sandbox"
+    },
+    {
+      "id": 16,
+      "prompt": "我的Professional Agent需要在Docker容器中隔离执行用户代码，要支持资源限制和超时控制",
+      "expected_output": "使用Professional级别的Docker容器隔离方案。在src/permissions/sandbox.py中实现docker-py集成：容器创建时设置内存限制（--memory）、CPU限制（--cpus）、网络模式（--network none用于高安全场景）、超时自动销毁、工作目录卷挂载。容器生命周期编码：创建→启动→exec_run执行→捕获输出→超时/成功后销毁。约200行代码。不会使用Firecracker（Enterprise级别），但保留升级路径说明",
+      "files": ["src/permissions/sandbox.py", "src/agent/core.py", "config/settings.yaml"],
+      "phases": [6],
+      "scale": "professional",
+      "category": "sandbox"
+    },
+    {
+      "id": 17,
+      "prompt": "我的Minimal Agent已经很稳定了，帮我升级到Professional。要加上完整的日志系统、测试框架、Docker沙箱和错误处理",
+      "expected_output": "执行Minimal→Professional升级迁移。不跳级到Enterprise。具体变更：1)日志：print()→structlog结构化日志（上下文绑定+JSON输出），重构所有日志调用点 2)测试：添加pytest+pytest-asyncio测试框架，补写test_agent.py/test_tools.py 3)沙箱：路径白名单→docker-py Docker容器隔离 4)配置：python-dotenv→YAML+pydantic-settings 5)上下文压缩：仅Snip→完整四级压缩管道 6)权限：命令黑名单→5种模式×7级规则+Hook系统 7)CLI：input()→click多子命令。确保不引入Enterprise级别依赖（OpenTelemetry/Firecracker/向量数据库）。引用技术栈分级选择指南确认所有选型",
+      "files": ["pyproject.toml", "src/utils/logging.py", "src/permissions/sandbox.py", "src/agent/context.py", "src/agent/core.py", "src/main.py", "tests/test_agent.py", "tests/test_tools.py", "tests/conftest.py", "config/settings.yaml"],
+      "phases": [1, 4, 5, 6, 7],
+      "scale": "professional",
+      "category": "migration"
+    },
+    {
+      "id": 18,
+      "prompt": "Professional Agent需要支持多用户多租户，升级到Enterprise。要加上全链路监控、多Agent协作和Firecracker隔离",
+      "expected_output": "执行Professional→Enterprise升级迁移。不跳级，但一次性升级所有维度到Enterprise。具体变更：1)可观测性：structlog→OpenTelemetry全链路追踪（Trace+Metrics+Logs三支柱，Span层级模型，Prometheus+Grafana监控面板）2)沙箱：Docker→Firecracker微VM（内核级隔离+凭证外置）3)多Agent：单Agent→Coordinator+Swarm多Agent（子Agent上下文隔离，96% Token节省）4)上下文压缩：四级管道→四级+压缩状态恢复 5)记忆：文件系统→向量数据库+自动做梦 6)配置：YAML→7级层级化配置覆盖（CLI>Flag>Policy>Managed>Local>Project>User）7)CI/CD：添加docker-compose.yaml、prometheus.yml、多Python版本矩阵测试、覆盖率门禁≥80%。保留原Professional代码结构基础进行扩展",
+      "files": ["src/observability/tracer.py", "src/observability/metrics.py", "src/observability/logging.py", "src/permissions/sandbox.py", "src/agent/coordinator.py", "src/agent/memory.py", "src/agent/context.py", "docker-compose.yaml", "prometheus.yml", "config/settings.production.yaml", "docs/architecture.md"],
+      "phases": [5, 6, 7, 9],
+      "scale": "enterprise",
+      "category": "migration"
+    },
+    {
+      "id": 19,
+      "prompt": "我的Agent现在功能都正常，但不加思索直接复制了reference里的代码。请帮我重构，让它变成我自己设计的实现",
+      "expected_output": "执行反拷贝重构——AI必须根据设计原理重新生成定制化代码。步骤：1)阅读reference中的抽象接口定义和设计原理，理解每个模块的设计意图 2)根据当前Agent的规模和使用场景，重新设计每个模块的代码（函数签名/类结构/错误处理/配置项）3)确保新代码与reference/template中的骨架代码有明显差异（变量命名/实现细节/扩展功能）4)保留相同的架构约束和设计原则（如Session WAL模式/四级压缩管道/6层防御），但具体实现路径不同。在代码中不能出现注释'directly copied from reference'或'adapted from template'等标记",
+      "files": ["src/agent/core.py", "src/agent/context.py", "src/permissions/sandbox.py", "src/tools/registry.py"],
+      "phases": [3, 4, 5, 6],
+      "scale": "professional",
+      "category": "anti-copy"
+    },
+    {
+      "id": 20,
+      "prompt": "帮我实现Session的WAL事件日志设计，要支持故障恢复和状态重放",
+      "expected_output": "在src/agent/session.py中实现基于WAL模式的Session设计（追加式事件日志）。实现5种事件类型（user_message/assistant_text/tool_use/tool_result/turn_start/turn_end），JSONL格式逐行追加，状态机（idle→running→idle/expired/error/paused），双重超时机制（turn_timeout 120s/session_idle_timeout 600s），replay()从JSONL重放恢复状态。Professional规模：JSONL文件持久化+每次flush防崩溃+UUID文件名+load()工厂恢复。Enterprise规模：JSONL+PostgreSQL双写+异步写入队列+一致性校验+gzip压缩归档+事件去重。Session=审计日志天然支持合规",
+      "files": ["src/agent/session.py", "src/agent/core.py", "tests/test_session.py"],
+      "phases": [5],
+      "scale": "professional",
+      "category": "integration"
+    },
+    {
+      "id": 21,
+      "prompt": "帮我集成MCP工具，需要用HTTP传输方式（远程Server），不要stdio",
+      "expected_output": "在MCP集成中选择HTTP+SSE传输协议（远程场景的标准选择）。实现Transport抽象接口（connect/send/receive/close），HTTP+SSE Transport实现：HTTP承载请求，SSE承载Server→Client推送。Professional规模：stdio+HTTP/SSE双协议、连接池min2-max5、工具发现内存缓存、指数退避重试5次max30s、无电路断路器。按协议选型决策树判断（需跨机器访问+不需要实时双向通信+不需要protobuf→HTTP+SSE）。说明为什么不选stdio（本地绑死）/ WebSocket（不需要全双工）/ gRPC（不需要protobuf契约）/ Local（需要安全隔离）",
+      "files": ["src/tools/mcp_client.py", "src/tools/mcp_transport.py", "src/tools/registry.py", "config/settings.yaml"],
+      "phases": [3],
+      "scale": "professional",
+      "category": "integration"
+    },
+    {
+      "id": 22,
+      "prompt": "帮我实现子Agent上下文隔离，我的多Agent系统现在Token消耗太大，每个子Agent都加载了完整的对话历史",
+      "expected_output": "实现子Agent上下文隔离设计。每个子Agent从空白messages列表启动（不继承父Agent对话历史），只接收sys_prompt+subtask，完成后只向父Agent返回结构化summary（不返回原始工具输出）。量化Token节省：10文件×5K tokens每个→10个子Agent独立处理→每个返回200 tokens摘要→父Agent仅需2K tokens→节省96%。结合Worktree隔离（Git worktree为每个子Agent提供独立文件系统视图），沙箱根目录绑定到worktree路径。引用reference/09-multi-agent.md中的隔离设计原理和节省量化分析",
+      "files": ["src/agent/coordinator.py", "src/agent/sub_agent.py", "src/agent/core.py"],
+      "phases": [4, 9],
+      "scale": "professional",
+      "category": "integration"
+    },
+    {
+      "id": 23,
+      "prompt": "我想用Node.js构建一个Professional Agent，支持多LLM供应商，包含完整的项目结构、测试和日志",
+      "expected_output": "按Professional规模构建Node.js版本Agent。技术栈选择：pino做结构化日志（替代structlog）、commander做CLI（替代click）、vitest做测试（替代pytest）、zod做数据验证（替代pydantic）、dockerode做Docker沙箱、convict做配置管理。项目结构为src/分离（agent/llm/tools/permissions/utils），包含package.json、.env.example、config/目录。Phase 1-7完整覆盖，每个阶段都有Node.js对应实现。引用技术栈选择指南中Node.js/TypeScript生态的分级推荐",
+      "files": ["README.md", "package.json", ".env.example", "config/settings.yaml", "src/main.js", "src/agent/core.js", "src/agent/context.js", "src/agent/session.js", "src/llm/client.js", "src/llm/factory.js", "src/tools/registry.js", "src/permissions/models.js", "src/permissions/sandbox.js", "src/utils/logger.js", "tests/test_agent.test.js"],
+      "phases": [1, 2, 3, 4, 5, 6, 7],
+      "scale": "professional",
+      "category": "scale-build"
+    },
+    {
+      "id": 24,
+      "prompt": "帮我构建一个Agent，要求使用OpenAI的GPT模型而不是Claude。需要支持streaming和token计数",
+      "expected_output": "在LLM抽象层中使用OpenAI作为provider。src/llm/providers/openai.py实现OpenAI客户端（使用openai SDK），支持streaming（SSE事件流yield逐chunk）和token计数（tiktoken库）。src/llm/factory.py中ProviderFactory根据配置文件中的provider字段（openai/anthropic/azure）动态实例化对应客户端，不硬编码任何供应商。配置文件中llm.provider设为openai，llm.model设gpt-4o。代码保持供应商无关——切换供应商只需改配置，不需改代码。Professional规模：工厂模式+streaming+retry",
+      "files": ["src/llm/providers/openai.py", "src/llm/factory.py", "src/llm/client.py", "config/settings.yaml", "pyproject.toml"],
+      "phases": [2],
+      "scale": "professional",
+      "category": "tech-stack"
+    },
+    {
+      "id": 25,
+      "prompt": "帮我实现Agent的6层纵深防御体系，从Hardcoded Denies到Permission Model，每一层都要有具体实现",
+      "expected_output": "在Phase 6中实现完整的6层纵深防御架构：Layer 6-Hardcoded Denies（编译期/启动期注入的不可变拒绝清单，settings.json/.claude/skills写保护）、Layer 5-Audit Logging（Session WAL即审计日志，全量记录不可删除）、Layer 4-Sandbox（文件系统隔离+网络隔离+进程隔离）、Layer 3-Hook System（26个事件×4种类型：PreToolUse/PostToolUse/UserPromptSubmit/Stop/SessionStart）、Layer 2-AI Classifier（YOLO自动批准：AI判断低风险操作直接放行）、Layer 1-Permission Model（5种模式：default/accept_edits/bypass_permissions/plan/accept_all × 7级规则层级）。核心不可变量：deny>settings rules>hook allow。代码不要直接复制reference/06-phase-permissions.md，AI必须根据规模自行设计实现",
+      "files": ["src/permissions/models.py", "src/permissions/hooks.py", "src/permissions/sandbox.py", "src/permissions/classifier.py", "src/agent/session.py", "config/hooks/pre-tool-use.py", "config/settings.yaml"],
+      "phases": [6],
+      "scale": "professional",
+      "category": "integration"
+    }
+  ]
+}

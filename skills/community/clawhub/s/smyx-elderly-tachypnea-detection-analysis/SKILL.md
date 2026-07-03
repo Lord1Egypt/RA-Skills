@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-tachypnea-detection-analysis"
 description: "Using a fixed bedroom camera (infrared or low-light), the system analyzes chest/abdominal motion of the elderly at rest (sleeping or quietly lying down) and computes the respiratory rate (breaths per minute). | 通过卧室固定摄像头（红外或微光），在老年人静息（睡眠或静卧）状态下分析其胸腹部起伏运动，计算呼吸频率（次/分钟）。当呼吸频率超过正常上限（默认24次/分，老年人静息正常值一般为12-20次/分）时，输出'呼吸急促'预警，提示家属或护理人员关注老年人是否有心肺疾病、发热或呼吸系统感染等潜在问题。"
-version: "1.0.2"
+version: "1.0.3"
 license: "MIT-0"
 ---
 

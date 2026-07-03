@@ -16,66 +16,66 @@ COS Storage Convention:
 
 Usage:
   # Minimal usage: default view (horizontal 0°, vertical 0°, medium shot)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg"
 
   # Left-side view (horizontal angle -90°)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90
 
   # Right-side view (horizontal angle 90°)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 90
 
   # Top-down view (vertical angle 45°)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --vertical-angle 45
 
   # Low-angle view (vertical angle -20°)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --vertical-angle -20
 
   # Left-side wide shot
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -120 --zoom wide
 
   # Right-side close shot
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 60 --zoom close
 
   # Combined: top-down + right-side + close shot
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 45 --vertical-angle 30 --zoom close
 
   # Use COS path input
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --cos-input-key "/input/product.jpg" \
       --horizontal-angle -90 --zoom wide
 
   # Use a local file (uploaded to COS automatically)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --local-file ./product.jpg \
       --horizontal-angle 90 --vertical-angle 30
 
   # Submit task only, do not wait for result (returns TaskId)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90 --no-wait
 
   # Dry Run (print request payload only, do not call the API)
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle 45 --vertical-angle 30 --zoom close --dry-run
 
   # Specify output directory and download results
-  python scripts/mps_image_multiview.py \
+  python3 scripts/mps_image_multiview.py \
       --url "https://example.com/image.jpg" \
       --horizontal-angle -90 --zoom wide \
       --download-dir ./results/
@@ -119,7 +119,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -388,6 +388,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     if args.local_file:
@@ -443,7 +449,7 @@ def main():
 
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module is unavailable. Please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -457,7 +463,7 @@ def main():
 
     if task_result is None:
         print("\n⚠️  Polling timed out. The task may still be processing.", file=sys.stderr)
-        print(f"   You can query it manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query it manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     err_msg = task_result.get("ErrMsg") or ""

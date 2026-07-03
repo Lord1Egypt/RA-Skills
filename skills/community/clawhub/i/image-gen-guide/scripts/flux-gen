@@ -1,0 +1,52 @@
+#!/bin/bash
+# flux-gen: Generate images using x/flux2-klein:4b model
+# Usage: flux-gen "prompt description"
+
+MODEL="x/flux2-klein:4b"
+OUTPUT_DIR="$HOME/Pictures/OpenClaw"
+WORK_DIR="/tmp/flux-work"
+
+# Create directories
+mkdir -p "$OUTPUT_DIR"
+mkdir -p "$WORK_DIR"
+
+# Check if prompt is provided
+if [ -z "$1" ]; then
+    echo "Usage: flux-gen \"prompt description\""
+    echo "Example: flux-gen \"A pixel art sword, 64x64, transparent background\""
+    exit 1
+fi
+
+# Clean any old PNGs in common locations
+rm -f "$WORK_DIR"/*.png
+rm -f "$HOME"/*.png
+
+# Change to work dir
+cd "$WORK_DIR"
+
+# Run the model quietly - suppress terminal noise
+echo "Generating: $1"
+echo "$1" | ollama run "$MODEL" >/dev/null 2>&1
+
+# Search for newly created PNG in multiple locations
+# Look in: work dir, home dir, /tmp, current dir
+sleep 1
+latest_png=$(find "$WORK_DIR" "$HOME" /tmp -maxdepth 2 -name "*.png" -mmin -1 2>/dev/null | head -1)
+
+if [ -n "$latest_png" ] && [ -f "$latest_png" ]; then
+    # Create a clean filename from the prompt
+    clean_name=$(echo "$1" | tr -cd 'a-zA-Z0-9' | head -c 50)
+    timestamp=$(date +%Y%m%d-%H%M%S)
+    new_filename="${clean_name}-${timestamp}.png"
+    
+    # Copy to OpenClaw folder (not move, in case model relies on it)
+    cp "$latest_png" "$OUTPUT_DIR/$new_filename"
+    echo "Image saved to: $OUTPUT_DIR/$new_filename"
+    echo "Done."
+else
+    echo "Error: Could not find generated image in last minute"
+    # Debug: list all PNGs
+    echo "Recent PNGs found:"
+    find "$WORK_DIR" "$HOME" /tmp -maxdepth 3 -name "*.png" 2>/dev/null | head -5
+    exit 1
+fi

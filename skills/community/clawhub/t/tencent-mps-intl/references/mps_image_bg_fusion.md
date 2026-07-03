@@ -80,65 +80,65 @@ Use cases: E-commerce product image background replacement, advertising material
 
 ```bash
 # Background fusion: subject image + background image (URL, wait for result)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-url "https://example.com/background.jpg"
 
 # Background fusion + additional Prompt (extra requirements for the fusion result)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-url "https://example.com/background.jpg" \
     --prompt "Replace the leaves in the background with yellow"
 
 # Background generation: subject image only + Prompt (no background image)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "Minimalist white marble tabletop, soft natural light"
 
 # Subject image using COS path input
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-cos-key "/input/product.jpg" \
     --bg-url "https://example.com/background.jpg"
 
 # Subject image + background image both using COS path input (using default Bucket from environment variables)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-cos-key "/input/product.jpg" \
     --bg-cos-key "/input/background.jpg"
 
 # Background image COS input, specifying a non-default Bucket
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --bg-cos-key "/input/bg.jpg" \
     --bg-cos-bucket mybucket-125xxx --bg-cos-region ap-shanghai
 
 # Background generation + fixed random seed (reproducible results)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "Modern minimalist living room background" \
     --random-seed 42
 
 # Specify output format and size
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "Outdoor lawn, bright sunshine" \
     --format PNG --image-size 4K
 
 # Submit task only, do not wait for result (returns TaskId)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "Minimalist white marble tabletop" \
     --no-wait
 
 # Manually query background fusion/generation task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 
 # Download background fusion result to local after task completion
 # Step 1: run background fusion task (result is saved to COS output path)
-python scripts/mps_image_bg_fusion.py \
+python3 scripts/mps_image_bg_fusion.py \
     --subject-url "https://example.com/product.jpg" \
     --prompt "Minimalist white marble tabletop"
 # Step 2: download output from COS to local file
-python scripts/mps_cos_download.py \
+python3 scripts/mps_cos_download.py \
     --cos-input-key /output/bgfusion/result.jpeg \
     --local-file /tmp/bgfusion_result.jpg
 ```

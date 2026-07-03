@@ -9,7 +9,7 @@ This skill guides you on how to search, filter, and analyze Amazon product data 
 
 ## Core Concepts
 
-SellerSprite Product Search provides access to a comprehensive Amazon product database with rich filtering dimensions. It supports real-time data (last 30 days) as well as monthly historical snapshots for year-over-year and month-over-month comparisons. Data spans multiple Amazon marketplaces including US, UK, DE, FR, JP, CA, IT, ES, MX, and IN.
+SellerSprite Product Search provides access to a comprehensive Amazon product database with rich filtering dimensions. It supports real-time data (last 30 days) as well as monthly historical snapshots for year-over-year and month-over-month comparisons. Supported `marketplace` codes are **only**: US, UK, DE, FR, JP, CA, IT, ES, MX, and IN (same as the gateway schema).
 
 **BSR (Best Sellers Rank)**: A lower BSR value means better sales performance in its category. A BSR of 1 means the top-selling product in that category. When a user says "BSR improved", it means the numeric value decreased; "BSR dropped" means the value increased.
 
@@ -29,7 +29,7 @@ SellerSprite Product Search provides access to a comprehensive Amazon product da
 | keyword | string | Search keyword; translate to the target marketplace language (e.g., English for US, German for DE) | - |
 | matchType | integer | 1 = Phrase match, 2 = Fuzzy match, 3 = Exact match | 1 |
 | excludeKeywords | string | Keywords to exclude from results | - |
-| marketplace | string | Marketplace code: US, UK, DE, FR, JP, CA, IT, ES, MX, IN | US |
+| marketplace | string | Marketplace code (allowed set only): US, UK, DE, FR, JP, CA, IT, ES, MX, IN | US |
 | nodeLabel | string | Amazon category name | - |
 | nodeIdPath | string | Amazon category node ID | - |
 | filterSubNode | boolean | Whether to filter by subcategory node (only effective when nodeLabel or nodeIdPath is set) | - |
@@ -49,6 +49,7 @@ SellerSprite Product Search provides access to a comprehensive Amazon product da
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | minUnits / maxUnits | integer | Monthly sales volume range |
+| minAmzUnit / maxAmzUnit | integer | Child-ASIN last-30-day sales range (**only** when querying last-30-day style data, e.g. `dataSnapshotMonth: "nearly"`) |
 | minUnitsGrowthRate / maxUnitsGrowthRate | number | Monthly sales growth rate (%) |
 | minBsr / maxBsr | integer | Main-category BSR rank range |
 | minBsrGrowthRate / maxBsrGrowthRate | number | BSR growth rate (%) |
@@ -107,14 +108,28 @@ Use the `order` object with two fields:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| field | string | Sort field: total_units, total_amount, bsr_rank, price, rating, reviews, profit, reviews_rate, available_date, questions, total_units_growth, total_amount_growth, reviews_increasement, bsr_rank_cv, bsr_rank_cr, amz_unit |
-| desc | string | "true" for descending, "false" for ascending |
+| field | string | Sort field: total_units, total_amount, bsr_rank, price, rating, reviews, profit, reviews_rate, available_date, questions, total_units_growth, total_amount_growth, reviews_increasement, bsr_rank_cv, bsr_rank_cr, amz_unit; use `""` when you intentionally omit a business sort key (per gateway schema) |
+| desc | string | `"true"` for descending, `"false"` for ascending |
 
 Default sort: `total_units` descending.
 
-## API Usage
+### Optional gateway / session fields
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/sellersprite_product_search.py` directly to run queries.
+If the hosting environment supplies them, you may pass `chatId`, `uid`, `requestId`, and `teamId` as strings (see `references/api.md`). They are not required for ad-hoc script calls.
+
+## 调用方式
+
+- **API 端点**：`POST /sellersprite/productSearch`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/sellersprite_product_search.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-sellersprite-product-search-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Usage Examples
 
@@ -232,6 +247,7 @@ Find products with monthly sales growth rate above 50%.
 - **Weight unit required**: If any weight filter is used, the `weightUnit` must also be provided
 - **Subcategory BSR**: The subcategory BSR rank filters only work when `filterSubNode` is set to `true`
 - **Listed time enum only**: The `listedWithinLastMonths` parameter only accepts specific values: 1, 3, 6, 12, or 24
+- **Child ASIN 30-day sales filters**: `minAmzUnit` / `maxAmzUnit` apply only to last-30-day style queries (typically `dataSnapshotMonth: "nearly"`); do not rely on them for historical `yyyyMM` snapshots
 
 ## User Expression & Scenario Quick Reference
 

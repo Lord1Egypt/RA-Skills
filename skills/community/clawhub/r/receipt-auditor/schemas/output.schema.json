@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReceiptAuditorOutput",
+  "description": "Output schema for the Receipt & Expense Auditor skill",
+  "type": "object",
+  "required": ["mode", "timestamp"],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Operating mode that produced this output",
+      "enum": ["report", "aa-split", "audit"]
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Report generation timestamp (ISO 8601)",
+      "format": "date-time"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code",
+      "default": "CNY"
+    },
+    "report": {
+      "type": "object",
+      "description": "Expense report (mode=report)",
+      "required": ["entries", "total"],
+      "properties": {
+        "entries": {
+          "type": "array",
+          "description": "Categorized expense entries",
+          "items": {
+            "type": "object",
+            "required": ["date", "category", "amount", "description"],
+            "properties": {
+              "date": { "type": "string", "description": "Date of the expense" },
+              "category": { "type": "string", "description": "Expense category" },
+              "amount": { "type": "number", "description": "Amount spent" },
+              "description": { "type": "string", "description": "Description of the expense" },
+              "notes": { "type": "string", "description": "Additional notes" }
+            }
+          }
+        },
+        "total": { "type": "number", "description": "Total expense amount" },
+        "categorySummary": {
+          "type": "array",
+          "description": "Expenses grouped by category",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "count": { "type": "integer" },
+              "total": { "type": "number" }
+            }
+          }
+        },
+        "anomalies": {
+          "type": "array",
+          "description": "Detected anomalies/warnings",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["duplicate", "missing-info", "amount-unusual", "pattern"] },
+              "description": { "type": "string" },
+              "severity": { "type": "string", "enum": ["low", "medium", "high"] }
+            }
+          }
+        }
+      }
+    },
+    "aaResult": {
+      "type": "object",
+      "description": "AA split result (mode=aa-split)",
+      "required": ["people", "totalVerified"],
+      "properties": {
+        "sharedPerPerson": { "type": "number", "description": "Shared cost per person" },
+        "people": {
+          "type": "array",
+          "description": "Per-person breakdown",
+          "items": {
+            "type": "object",
+            "required": ["name", "personalItemsTotal", "sharedShare", "totalPayable"],
+            "properties": {
+              "name": { "type": "string", "description": "Person's name" },
+              "personalItemsTotal": { "type": "number", "description": "Total of personal items" },
+              "sharedShare": { "type": "number", "description": "Share of shared items" },
+              "totalPayable": { "type": "number", "description": "Total amount this person should pay" }
+            }
+          }
+        },
+        "totalVerified": { "type": "number", "description": "Verified total across all people (should match original total)" }
+      }
+    },
+    "auditResult": {
+      "type": "object",
+      "description": "Audit result (mode=audit)",
+      "required": ["entries", "anomalies", "total"],
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string" },
+              "merchant": { "type": "string" },
+              "amount": { "type": "number" },
+              "flag": { "type": "string", "enum": ["normal", "duplicate", "suspicious"] }
+            }
+          }
+        },
+        "anomalies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "description": { "type": "string" },
+              "severity": { "type": "string" }
+            }
+          }
+        },
+        "total": { "type": "number" }
+      }
+    }
+  }
+}

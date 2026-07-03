@@ -1,0 +1,12 @@
+{
+  "name": "jeju-with-booking",
+  "version": "1.0.0",
+  "title": "济州岛with医院预约助手",
+  "description": "济州岛with医院 — 济州岛综合医院，提供皮肤科、整形、体检等医疗服务",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

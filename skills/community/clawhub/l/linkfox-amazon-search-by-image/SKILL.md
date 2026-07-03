@@ -1,6 +1,6 @@
 ---
 name: linkfox-amazon-search-by-image
-description: 基于图片的亚马逊跨站点视觉商品搜索。当用户想通过图片URL在亚马逊上查找外观相似的商品、按外观搜索竞品、找同款或视觉相似商品、在亚马逊上以图搜图、通过照片识别商品、发现相同视觉设计的替代品、image search, Amazon visual search, find similar products, visual search, similar items, competitor image search, reverse image lookup时触发此技能。即使用户未明确说"图片搜索"，只要用户提供了图片URL并希望查找匹配或相似的亚马逊商品，也应触发此技能。
+description: 基于图片的亚马逊跨站点视觉商品搜索，支持8个站点的以图搜图和视觉相似商品发现。当用户提到以图搜图、图片搜索、视觉搜索、找同款、外观相似商品、图片找货、竞品图片搜索、相似商品发现、image search, Amazon visual search, find similar products, reverse image lookup, visual search, similar items, competitor image search, product image match时触发此技能。即使用户未明确提及"图片搜索"，只要用户提供了图片URL并希望在亚马逊上查找匹配或相似的商品，也应触发此技能。
 ---
 
 # Amazon Image-Based Search
@@ -53,9 +53,30 @@ Default marketplace is **amazon.com** (US). Use amazon.com when the user does no
 
 **Important**: If the requested sort order is not in the supported list above, do NOT attempt to use any other tool or workaround to compensate. Inform the user of the supported sort options.
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/amazon_search_by_image.py` directly to run queries.
+- **API 端点**：`POST /amazon/searchByImage`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/amazon_search_by_image.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-amazon-search-by-image-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## Local Image Upload
+
+This tool requires a **publicly accessible image URL**. If the user provides a local image file path (e.g., `C:\Users\...\photo.png`, `/home/.../image.jpg`), you must upload it first to obtain a public URL.
+
+Run the upload script:
+```bash
+python scripts/upload_image.py /path/to/local/image.png
+```
+
+The script will return a public URL (valid for 24 hours) that can be used as the image URL parameter.
 
 ## Usage Examples
 

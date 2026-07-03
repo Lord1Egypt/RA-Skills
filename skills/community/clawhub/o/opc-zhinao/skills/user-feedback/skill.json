@@ -1,0 +1,31 @@
+{
+  "id": "user-feedback",
+  "name": "用户反馈收集",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "诊断完成后自动收集用户反馈，形成诊断-反馈-优化闭环",
+  "stage": null,
+  "stageName": "通用（跨阶段）",
+  "triggers": ["反馈", "评价", "建议"],
+  "modes": [
+    {
+      "name": "快速反馈",
+      "questions": 5,
+      "estimatedTime": "2分钟"
+    },
+    {
+      "name": "详细反馈",
+      "questions": 11,
+      "estimatedTime": "10分钟"
+    }
+  ],
+  "outputDir": "opc-feedback/",
+  "rules": [
+    "一次性展示所有问题，不逐题询问",
+    "每次新增反馈后必须同步更新summary",
+    "汇总必须重新统计所有反馈数据，不是增量更新"
+  ],
+  "files": {
+    "prompt": "prompt.md"
+  }
+}

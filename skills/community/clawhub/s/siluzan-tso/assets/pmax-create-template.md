@@ -18,7 +18,7 @@
 | 图片          | **只填 `imagePaths`** 指向本地 PNG/JPEG；`pmax-create` 会自动 multipart 上传并用 assetId 创建（勿把 Base64 提交进 Git）                                             |
 | 视频          | JSON 填 **`videoPath`**（别名 `video` 亦可）；`pmax-create` 成功后 **必定**经 PyAPI 上传并链接（含 `--json-out`）。已有 YouTube 用 `youtubeUrlOrId`                 |
 | 附加资产      | **必填** `campaignExtensions`：宣传信息 ≥20、结构化摘要 ≥20、站内链接 ≥6、leadForm、WhatsApp |
-| 文案数量      | 短标题 15、长 nga 5（Google API 上限，须填满）、描述 5 |
+| 文案数量      | 短标题 15、长标题 5（Google API 上限，须填满）、描述 5 |
 | Lead Gen 方案 | **默认**在 `campaignExtensions` 含 **`leadForm`**（B2B/询盘/留资）；仅 callouts/snippets 不算完整方案；用户明确不要才省略                                        |
 | 存量补表单    | 活动已创建时用 `ad extension lead-form`（见 `pmax-lead-form-template.md` 方式 B）                                                                                   |
 | 改已上线 PMax | 先 `ad pmax-get` 看 `_brandGuidelinesActive`；改品牌见 `pmax-api.md` § Brand Guidelines                                                                             |
@@ -61,9 +61,9 @@ siluzan-tso ad campaigns -a <accountId> --json-out ./snap
 | `assetGroupName`              | string     |      | 首个资产组名称；缺省由服务端生成                                                                                                                    |
 | `finalUrls`                   | string[]   |  ✅  | 至少 1 个 `https://` 落地页                                                                                                                         |
 | `businessName`                | string     |  ✅  | BUSINESS_NAME：1 条，≤25 字符                                                                                                                       |
-| `headlines`                   | string[]   |  ✅  | HEADLINE：3–15 条，每条 ≤30 字符（CJK×2）                                                                                                           |
-| `longHeadlines`               | string[]   |  ✅  | LONG_HEADLINE：1–5 条，每条 ≤90 字符                                                                                                                |
-| `descriptions`                | string[]   |  ✅  | DESCRIPTION：2–5 条，每条 ≤90 字符                                                                                                                  |
+| `headlines`                   | string[]   |  ✅  | HEADLINE：15 条（须填满），每条 ≤30 字符（CJK×2）                                                                                                           |
+| `longHeadlines`               | string[]   |  ✅  | LONG_HEADLINE：5 条（须填满），每条 ≤90 字符                                                                                                                |
+| `descriptions`                | string[]   |  ✅  | DESCRIPTION：5 条（须填满），每条 ≤90 字符                                                                                                                  |
 | `imagePaths.marketing`        | string     | ✅\* | MARKETING_IMAGE 横图 1.91:1，≤5MB（创建 JSON 1 张；资产组 API 最多 20）                                                                             |
 | `imagePaths.square`           | string     | ✅\* | SQUARE_MARKETING_IMAGE 方图 1:1，≤5MB（创建 1 张；最多 20）                                                                                         |
 | `imagePaths.logo`             | string     | ✅\* | LOGO 方图 1:1，≤5MB（创建 1 张；最多 5）                                                                                                            |

@@ -1,0 +1,20 @@
+# 敏感信息 - 切勿上传到 Git
+.env
+
+# 依赖目录
+node_modules/
+
+# 输出目录（生成的文件）
+output/
+
+# 临时文件
+*.log
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# 系统文件
+desktop.ini
+.Spotlight-V100
+.Trashes

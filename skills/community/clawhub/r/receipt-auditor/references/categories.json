@@ -1,0 +1,53 @@
+{
+  "categories": {
+    "交通": {
+      "en": "Transportation",
+      "keywords": ["高铁", "机票", "打车", "出租车", "地铁", "公交", "火车", "飞机", "出租车", "停车", "加油", "过路费", "高铁票", "动车", "机票"],
+      "aliases": ["transportation", "travel", "commute", "gas", "fuel", "parking", "toll"]
+    },
+    "住宿": {
+      "en": "Accommodation",
+      "keywords": ["酒店", "旅馆", "民宿", "青旅", "公寓", "招待所", "住宿", "租房", "宾馆", "汉庭", "如家", "全季"],
+      "aliases": ["hotel", "lodging", "stay", "hostel", "airbnb", "inn"]
+    },
+    "餐饮": {
+      "en": "Food & Beverage",
+      "keywords": ["午餐", "晚餐", "早餐", "吃饭", "外卖", "咖啡", "奶茶", "海底捞", "餐厅", "饭店", "零食", "水果"],
+      "aliases": ["food", "dining", "restaurant", "cafe", "lunch", "dinner", "breakfast", "takeout", "delivery"]
+    },
+    "办公": {
+      "en": "Office Supplies",
+      "keywords": ["文具", "打印", "复印", "办公用品", "快递", "邮寄", "纸张", "墨盒", "名片", "办公"],
+      "aliases": ["office", "stationery", "printing", "shipping", "postage", "supplies"]
+    },
+    "医疗": {
+      "en": "Healthcare",
+      "keywords": ["医院", "药", "体检", "医保", "看病", "挂号", "牙科", "眼科", "诊所", "药店"],
+      "aliases": ["medical", "health", "hospital", "pharmacy", "medicine", "doctor", "clinic"]
+    },
+    "娱乐": {
+      "en": "Entertainment",
+      "keywords": ["电影", "KTV", "游戏", "健身", "健身房", "游泳", "滑雪", "景点", "门票", "演出", "演唱会"],
+      "aliases": ["entertainment", "movie", "game", "fitness", "gym", "ticket", "show", "concert"]
+    },
+    "购物": {
+      "en": "Shopping",
+      "keywords": ["超市", "便利店", "商场", "网购", "淘宝", "京东", "拼多多", "百货", "衣服", "鞋子", "包"],
+      "aliases": ["shopping", "retail", "supermarket", "store", "mall", "online", "clothing"]
+    },
+    "通讯": {
+      "en": "Communication",
+      "keywords": ["话费", "手机", "宽带", "流量", "通话", "充值", "电话费", "网费"],
+      "aliases": ["phone", "mobile", "internet", "telecom", "broadband", "data"]
+    },
+    "其他": {
+      "en": "Other",
+      "keywords": [],
+      "aliases": ["other", "misc", "miscellaneous"]
+    }
+  },
+  "classificationRules": {
+    "description": "Classify each expense by matching merchant name or description against keywords. Use the first matching category; fall back to '其他'.",
+    "priority": ["交通", "住宿", "餐饮", "办公", "医疗", "娱乐", "购物", "通讯", "其他"]
+  }
+}

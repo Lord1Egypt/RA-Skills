@@ -6,18 +6,21 @@ set -euo pipefail
 #
 # mode:
 #   full    -> summarize to Markdown (requires OPENAI_API_KEY)
-#   extract -> transcript JSON only (--extract-only) + run prepare.py to build .txt
+#   extract -> internal transcript JSON path (--extract-only) + run prepare.py to build .txt
 #
 # Examples:
 #   run_youtube2md.sh "https://youtu.be/VIDEO_ID"
-#   run_youtube2md.sh "https://youtu.be/VIDEO_ID" full ./summaries/video.md Korean gpt-5-mini
+#   run_youtube2md.sh "https://youtu.be/VIDEO_ID" full ./summaries/video.md Korean gpt-5.4-mini
 #   run_youtube2md.sh "https://youtu.be/VIDEO_ID" extract ./summaries/video.json
 #
 # Optional env flags:
 #   YOUTUBE2MD_JSON=1                 add --json for machine-readable success/error output
 #   YOUTUBE2MD_STDOUT=1               add --stdout (do not write file)
 #   YOUTUBE2MD_OUT_DIR                add --out-dir <dir>
-#   YOUTUBE2MD_ALLOW_EXTRACT_FALLBACK=1 (default) auto-switch full -> extract when OPENAI_API_KEY is missing
+#   YOUTUBE2MD_DEFAULT_MODEL          default full-mode model when no model arg is passed (default: gpt-5.4-mini)
+#   YOUTUBE2MD_ALLOW_EXTRACT_FALLBACK=1 (default) auto-switch full -> simple output when OPENAI_API_KEY is missing
+#   YOUTUBE_COOKIES_PATH              forwarded to youtube2md for signed-in YouTube access
+#   YOUTUBE_COOKIE_HEADER             forwarded to youtube2md for signed-in YouTube access
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -35,7 +38,7 @@ run_youtube2md_cli() {
   fi
 
   echo "ERROR: youtube2md executable is required on PATH."
-  echo "Install once: npm i -g youtube2md@1.0.1"
+  echo "Install once: npm i -g youtube2md@1.0.2"
   return 13
 }
 
@@ -74,7 +77,7 @@ URL="${1:-}"
 MODE="${2:-full}"
 OUTPUT_PATH="${3:-}"
 LANGUAGE="${4:-}"
-MODEL="${5:-}"
+MODEL="${5:-${YOUTUBE2MD_DEFAULT_MODEL:-gpt-5.4-mini}}"
 
 # Security hardening: reject binary override to avoid arbitrary command/path execution.
 if [[ -n "${YOUTUBE2MD_BIN:-}" ]]; then
@@ -97,7 +100,7 @@ FALLBACK_FROM_FULL=0
 
 if [[ "$MODE" == "full" && -z "${OPENAI_API_KEY:-}" ]]; then
   if [[ "${YOUTUBE2MD_ALLOW_EXTRACT_FALLBACK:-1}" == "1" ]]; then
-    echo "WARN: OPENAI_API_KEY is missing; switching to extract mode"
+    echo "WARN: OPENAI_API_KEY is missing; switching to simple mode"
     MODE="extract"
     FALLBACK_FROM_FULL=1
 
@@ -181,7 +184,7 @@ if [[ "${YOUTUBE2MD_STDOUT:-0}" == "1" ]]; then
   echo "OK: youtube2md completed (stdout mode)"
 elif [[ "$MODE" == "extract" ]]; then
   if [[ "$FALLBACK_FROM_FULL" == "1" ]]; then
-    echo "INFO: completed in extract mode (full-mode fallback)"
+    echo "INFO: completed in simple mode (full-mode fallback)"
   fi
   echo "OK: transcript extracted"
 

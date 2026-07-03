@@ -73,40 +73,40 @@
 
 ```bash
 # Auto-erase subtitles in the lower-center area (template 101, must be explicitly specified)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 101
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 101
 
 # Remove subtitles and extract OCR subtitles (template 102)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 102
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 102
 
 # Advanced watermark removal (template 201)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 201
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 201
 
 # Face blurring (template 301)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 301
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 301
 
 # Face and license plate blurring (template 302)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 302
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 302
 
 # Aggressive erasure (area model, suitable for decorative/shadow subtitles)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --model area
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --model area
 
 # Use area preset — subtitles in the top half
-python scripts/mps_erase.py --url https://example.com/video.mp4 --position top-half
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --position top-half
 
 # Use area preset — subtitles in the bottom half
-python scripts/mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
 # Custom area (top 0-25% of the frame)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
 # Multi-area erasure (subtitles at both top and bottom)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
 # Remove subtitles + OCR extraction + translate to English (must use --template 102)
-python scripts/mps_erase.py --url https://example.com/video.mp4 --template 102 --translate en
+python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 102 --translate en
 
 # Query existing task results
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
 
 # Query task and download results locally
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/

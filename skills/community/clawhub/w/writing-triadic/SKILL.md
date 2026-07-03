@@ -1,15 +1,15 @@
 ﻿---
 name: writing-triadic
-version: 2.9.2
+version: 2.10.0
 license: MIT
 author: sallyface0
 description: >
-  Privacy-first 3-role writing framework with explicit consent controls. Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto with consent-gated memory. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions; v2.9.2 adds PRIVACY.md, consent gates for web research and style cloning, data minimization, and narrowed triggers. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained.
+  Privacy-first 3-role writing framework with explicit consent controls. Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto with consent-gated memory. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions; v2.9.2 adds PRIVACY.md, consent gates for web research and style cloning, data minimization, and narrowed triggers. v2.10 adds Template #17 (WeChat Official Account), expanded 2026 AI fatigue word lists, and 3 new end-to-end examples (style cloning+SEO, instant mode, long-form). Style Cloning Engine, Long-Form Chapter Manager, and 17 templates retained.
 ---
 
-# Writing Triadic v2.9.2 - 安全隐私加固版
+# Writing Triadic v2.10.0 — 示例与词表刷新版
 
-> **v2.9.2 升级:** 🔒 安全隐私加固 — 新增 PRIVACY.md、联网 consent gate、风格克隆隐私警告、数据最小化、收紧即兴模式触发。**v2.9.1 保留:** 新增 `session-state.md` 状态契约与角色交接检查，修正 Reader 在 SEO/风格克隆同时启用时的评分权重，所有扩展维度保持 100 分制。**v2.9 保留:** 🔎 SEO 内容优化模块。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16。📚 15 份参考文件。
+> **v2.10 升级:** 📝 新增 3 个端到端实战示例（风格克隆+SEO、即兴模式、长文档模式）、🆕 模板 #17 微信公众号文章、🔤 2026 年新模型 AI 疲劳词表扩充（中英文各 15+ 词）。**v2.9.2 保留:** 🔒 安全隐私加固。**v2.9.1 保留:** 状态契约与 100 分评分。**v2.9 保留:** SEO 模块。**v2.8 保留:** 🧬 风格克隆、📖 长文分章、🎓 开题报告。📚 15 份参考文件。
 
 ## 🔒 Security & Privacy
 

@@ -1,5 +1,5 @@
 name: bank_check_ocr
-version: 1.0.0
+version: 1.0.1
 description: 支持银行支票识别,精准提取支票号码、出票日期、大小写金额及出票人签章等。
 author: SCNet
 license: MIT

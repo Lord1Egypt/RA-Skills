@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed-camera public-place video to produce anonymous group-level emotion distributions, a 0-100 group-emotion index, and operational or safety guidance for venues such as malls and exhibitions. <br>
+Analyzes public-place image or video inputs with a remote service to produce anonymous group-level emotion distribution, a 0-100 group emotion index, region breakdowns, operational recommendations, safety guidance, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External venue operators, safety teams, and developers use this skill to analyze public-place video or report history for aggregate emotion trends, area-level indicators, and human-reviewed operational or safety recommendations. <br>
+External venue operators and developers use this skill to analyze fixed-camera public-place media from malls, exhibitions, scenic areas, museums, airports, and similar spaces. It supports customer-satisfaction monitoring, service-layout optimization, and human-reviewed public-safety triage based on aggregate emotion metrics. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Public-place video or video URLs and a stable identifier are sent to the publisher's cloud service. <br>
-Mitigation: Use the skill only for deployments with appropriate consent or signage, confirm retention limits, and prefer scoped pseudonymous identifiers over usernames or phone numbers. <br>
-Risk: User-linked history/report retrieval and local token storage can expose sensitive operational records if access is too broad. <br>
-Mitigation: Limit use to authorized operators, review local credential handling, and avoid storing or sharing identifiers beyond the deployment need. <br>
-Risk: Group emotion outputs can be overinterpreted as individual emotional diagnosis or used for automated intervention. <br>
-Mitigation: Use aggregate reports only as decision support, keep human review in the loop, and do not make individual decisions or automated interventions from the emotion index. <br>
+Risk: Public-place media is sent to the publisher's remote service for analysis. <br>
+Mitigation: Use only authorized footage, confirm visible notice and consent requirements for the deployment location, and review the publisher's retention and access-control terms before use. <br>
+Risk: The skill maintains local account or session state for report history. <br>
+Mitigation: Review how identity values and tokens are created, stored, transmitted, rotated, and deleted before installing in a shared or production environment. <br>
+Risk: Emotion-analysis outputs could be over-relied on for public-safety or customer-treatment decisions. <br>
+Mitigation: Treat results as aggregate operational signals requiring human review, and do not use them for individual identification, differential pricing, or automated intervention. <br>
 
 
 ## Reference(s): <br>
-- [Public Place Group Emotion Index API documentation](artifact/references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-public-place-group-emotion-index-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-public-place-group-emotion-index-analysis) <br>
+- [Third-party publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Skill usage demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and structured JSON reports] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON-style structured text with report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a public-place video file or URL and a user-scoped open-id; outputs may include report links, area breakdowns, and heatmap URLs.] <br>
+**Other Properties Related to Output:** [May write results to a user-specified file and may include cloud-hosted report export links.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+1.0.3 (source: frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

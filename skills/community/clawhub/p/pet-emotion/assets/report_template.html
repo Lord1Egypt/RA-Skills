@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宠物情绪识别报告 - {{TIMESTAMP}}</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+  background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:20px;
+}
+.card{
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
+  max-width:640px;
+  width:100%;
+  overflow:hidden;
+  margin:20px 0;
+}
+
+/* Header */
+.header{
+  background:linear-gradient(135deg,{{COLOR}} 0%,{{COLOR}}dd 100%);
+  color:#fff;
+  padding:30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:'';
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 60%);
+  animation:rotate 20s linear infinite;
+}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.header .emoji{
+  font-size:72px;
+  display:block;
+  margin-bottom:12px;
+  animation:bounce 2s ease-in-out infinite;
+  position:relative;
+  z-index:1;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.header h1{font-size:24px;font-weight:700;margin-bottom:6px;position:relative;z-index:1}
+.header .subtitle{font-size:14px;opacity:.85;position:relative;z-index:1}
+.header .confidence-wrap{margin-top:16px;position:relative;z-index:1}
+.header .confidence-label{font-size:13px;opacity:.8;margin-bottom:6px}
+.header .confidence-bar{
+  background:rgba(255,255,255,.25);
+  border-radius:12px;
+  height:10px;
+  overflow:hidden;
+}
+.header .confidence-fill{
+  background:#fff;
+  height:100%;
+  border-radius:12px;
+  transition:width 1.2s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 10px rgba(255,255,255,.5);
+}
+
+/* Image Section */
+.image-section{
+  padding:24px 30px;
+  text-align:center;
+  background:#fafafa;
+}
+.image-section img{
+  max-width:100%;
+  max-height:350px;
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,.1);
+  transition:transform .3s;
+}
+.image-section img:hover{transform:scale(1.02)}
+
+/* Badge Row */
+.badge-row{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:0 30px 20px;
+  flex-wrap:wrap;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:500;
+}
+.badge-species{background:#e3f2fd;color:#1565c0}
+.badge-emotion{background:#fce4ec;color:#c62828}
+
+/* Info Cards */
+.info-section{padding:0 30px 20px}
+.info-card{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 18px;
+  background:#f8f9fa;
+  border-radius:14px;
+  margin-bottom:12px;
+  border-left:4px solid {{COLOR}};
+  transition:transform .2s, box-shadow .2s;
+}
+.info-card:hover{transform:translateX(4px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.info-card .icon{
+  font-size:24px;
+  flex-shrink:0;
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border-radius:10px;
+}
+.info-card .content{flex:1}
+.info-card .label{font-size:12px;color:#999;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.info-card .value{font-size:15px;color:#333;line-height:1.6}
+
+/* Chart */
+.chart-section{padding:0 30px 25px}
+.chart-section h3{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:16px;
+  color:#333;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.chart-container{
+  position:relative;
+  height:280px;
+  background:#fafafa;
+  border-radius:14px;
+  padding:16px;
+}
+
+/* Emotion Scale */
+.emotion-scale{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:0 30px 25px;
+}
+.emotion-item{
+  text-align:center;
+  padding:12px 8px;
+  border-radius:12px;
+  background:#f8f9fa;
+  transition:all .3s;
+}
+.emotion-item.active{
+  background:{{COLOR}}15;
+  box-shadow:0 0 0 2px {{COLOR}};
+  transform:scale(1.05);
+}
+.emotion-item .e-emoji{font-size:28px;display:block;margin-bottom:4px}
+.emotion-item .e-name{font-size:12px;color:#666}
+.emotion-item .e-bar{height:4px;border-radius:2px;margin-top:6px;transition:width .8s}
+.emotion-item.active .e-name{color:{{COLOR}};font-weight:600}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:16px 30px 24px;
+  color:#bbb;
+  font-size:12px;
+  border-top:1px solid #f0f0f0;
+}
+.footer .powered{font-size:11px;margin-top:4px}
+
+/* Responsive */
+@media(max-width:480px){
+  .header{padding:24px 20px}
+  .header .emoji{font-size:56px}
+  .header h1{font-size:20px}
+  .info-section,.chart-section,.emotion-scale,.badge-row{padding-left:20px;padding-right:20px}
+  .image-section{padding:16px 20px}
+  .emotion-scale{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <!-- Header -->
+  <div class="header">
+    <span class="emoji">{{EMOTION_EMOJI}}</span>
+    <h1>{{SPECIES_LABEL}} · {{EMOTION}}</h1>
+    <div class="subtitle">AI 情绪识别分析</div>
+    <div class="confidence-wrap">
+      <div class="confidence-label">置信度 {{CONFIDENCE}}%</div>
+      <div class="confidence-bar">
+        <div class="confidence-fill" style="width:{{CONFIDENCE}}%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image -->
+  <div class="image-section">
+    <img src="{{IMAGE_SRC}}" alt="宠物照片" onerror="this.style.display='none';this.parentElement.innerHTML='<p style=color:#999;padding:40px>📷 图片无法显示</p>'">
+  </div>
+
+  <!-- Badges -->
+  <div class="badge-row" id="badgeRow"></div>
+
+  <!-- Analysis Details -->
+  <div class="info-section" id="infoSection"></div>
+
+  <!-- Emotion Scale -->
+  <div class="emotion-scale" id="emotionScale"></div>
+
+  <!-- Radar Chart -->
+  <div class="chart-section">
+    <h3>📊 情绪分布雷达图</h3>
+    <div class="chart-container">
+      <canvas id="emotionChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    🐱🐶 AI 宠物情绪识别 · {{TIMESTAMP}}
+    <div class="powered">Powered by DashScope qwen-vl-max · WorkBuddy Skill</div>
+  </div>
+</div>
+
+<script>
+// --- Data from Python ---
+const result = {
+  species: "{{SPECIES}}",
+  emotion: "{{EMOTION}}",
+  confidence: parseFloat("{{CONFIDENCE_DECIMAL}}"),
+  reason: "{{REASON}}",
+  suggestion: "{{SUGGESTION}}",
+  expression_desc: "{{EXPRESSION_DESC}}",
+  body_desc: "{{BODY_DESC}}",
+  color: "{{COLOR}}"
+};
+const emotionDistribution = {{EMOTION_DISTRIBUTION}};
+
+// --- Render Badges ---
+(function renderBadges() {
+  const row = document.getElementById('badgeRow');
+  const speciesLabel = result.species === 'dog' ? '🐕 狗狗' : result.species === 'cat' ? '🐈 猫咪' : '❓ 其他';
+  row.innerHTML = `
+    <span class="badge badge-species">${speciesLabel}</span>
+    <span class="badge badge-emotion" style="background:${result.color}20;color:${result.color}">${result.emotion}</span>
+  `;
+})();
+
+// --- Render Info Cards ---
+(function renderInfo() {
+  const section = document.getElementById('infoSection');
+  const cards = [];
+  
+  if (result.reason) {
+    cards.push({icon:'🔍', label:'判断依据', value:result.reason});
+  }
+  if (result.expression_desc) {
+    cards.push({icon:'😺', label:'面部表情', value:result.expression_desc});
+  }
+  if (result.body_desc) {
+    cards.push({icon:'🐾', label:'身体姿态', value:result.body_desc});
+  }
+  if (result.suggestion) {
+    cards.push({icon:'💡', label:'互动建议', value:result.suggestion});
+  }
+  
+  section.innerHTML = cards.map(c => `
+    <div class="info-card">
+      <div class="icon">${c.icon}</div>
+      <div class="content">
+        <div class="label">${c.label}</div>
+        <div class="value">${c.value}</div>
+      </div>
+    </div>
+  `).join('');
+})();
+
+// --- Render Emotion Scale ---
+(function renderScale() {
+  const scale = document.getElementById('emotionScale');
+  scale.innerHTML = emotionDistribution.map(e => {
+    const pct = Math.round(e.value * 100);
+    const isActive = e.name === result.emotion;
+    return `
+      <div class="emotion-item${isActive ? ' active' : ''}">
+        <span class="e-emoji">${e.emoji}</span>
+        <span class="e-name">${e.name}</span>
+        <div class="e-bar" style="width:${pct}%;background:${e.color}"></div>
+      </div>
+    `;
+  }).join('');
+})();
+
+// --- Render Radar Chart ---
+(function renderChart() {
+  const ctx = document.getElementById('emotionChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: emotionDistribution.map(d => d.emoji + ' ' + d.name),
+      datasets: [{
+        label: '情绪概率',
+        data: emotionDistribution.map(d => d.value),
+        backgroundColor: result.color + '20',
+        borderColor: result.color,
+        borderWidth: 2.5,
+        pointBackgroundColor: emotionDistribution.map(d => d.color),
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0,
+          max: 1,
+          ticks: { stepSize: 0.2, display: false, backdropColor: 'transparent' },
+          grid: { color: '#e0e0e0' },
+          angleLines: { color: '#e0e0e0' },
+          pointLabels: { font: { size: 13, family: "'PingFang SC','Microsoft YaHei',sans-serif" }, color: '#555' }
+        }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+---
+
+## Usage-Based Pricing Deep Dive Guide
+
+### Applicability Judgment Matrix
+
+| Usage Dimension | Suitable for Usage-Based | Not Suitable |
+|----------------|-------------------------|--------------|
+| API Calls | ✓ Naturally suited | — |
+| Storage Space | ✓ Clear cost correlation | — |
+| Compute Resources | ✓ Cloud-native | — |
+| Messages/Events | ✓ Predictable growth | ✗ High volatility hard to forecast |
+| Data Analysis Volume | ✓ Large customers pay more | ✗ Small customers feel expensive |
+| Collaboration Seats | — | ✗ Users dislike "head tax" limits |
+
+### AI Era Pricing Challenges
+
+| Challenge | Description | Response Strategy |
+|-----------|-------------|-------------------|
+| **Token Pricing** | Inference costs continuously dropping, fixed token pricing may lose competitiveness | Dynamic pricing or "outcome-based pricing" |
+| **Inference Cost Volatility** | Different models, different time periods have large cost variance | Cost-plus model, not fixed unit price |
+| **Agent Call Chains** | One user request may trigger multiple model calls | Price by "task completion" not "token count" |
+
+---
+
+## PLG (Product-Led Growth) Deep Dive
+
+### PLG Core Funnel
+
+```
+Acquisition → Activation → Retention → Revenue → Referral
+
+Key Metrics:
+- PQL (Product Qualified Leads): Product-qualified leads — judge purchase intent through product usage behavior
+- Time-to-Value (TTV): Time from signup to experiencing core value
+- PQL Conversion Rate: PQL → SQL → Closed Won
+```
+
+### Global PLG Maturity Model
+
+| Level | Name | Characteristics | Examples |
+|-------|------|----------------|----------|
+| **L1 - PLG Curious** | Experimenting with free trial or freemium | Basic self-serve signup, no product-qualified lead scoring | Traditional enterprise transitioning |
+| **L2 - PLG Emerging** | Self-serve funnel with basic PQL signals | Free tier with usage limits, basic product analytics | Many Series A/B startups |
+| **L3 - PLG Operational** | Full PLG motion with PQL scoring and sales handoff | Product-qualified accounts trigger sales outreach, PLS hybrid | Figma, Notion, Miro |
+| **L4 - PLG Native** | Product is the primary growth engine | Viral loops, network effects, self-serve revenue >50% | Canva, Airtable, Webflow |
+| **L5 - PLG Dominant** | PLG drives >70% of revenue with enterprise overlay | Enterprise sales only for top-tier, everything else self-serve | Atlassian (pre-enterprise push), Slack |
+
+### International PLG Benchmarks
+
+| Company | PLG Model | Free Tier | Key PLG Metric | Lesson |
+|---------|-----------|-----------|----------------|--------|
+| **Figma** | Freemium + Collaborative | 3 files free, unlimited collaborators | Collaborative design drives team adoption | Collaboration is the ultimate PLG hook |
+| **Canva** | Freemium + Template Marketplace | Free with watermark on premium elements | 150M+ MAU, 85% organic | Templates + ease of use = massive top-of-funnel |
+| **Miro** | Freemium + Team | 3 editable boards free | Team adoption within enterprises | Bottom-up within orgs, then top-down expansion |
+| **Airtable** | Freemium + Usage-Based | Unlimited bases, 1,200 records/base | Record limit as upgrade trigger | Usage-based limits create natural upgrade moments |
+| **Webflow** | Freemium + Site-Based | Free staging, paid hosting | Designer-to-developer handoff | Visual development creates lock-in |
+
+### Regional PLG Strategy Differences
+
+| Region | PLG Adoption | Key Adaptation | Notable Examples |
+|--------|-------------|----------------|-----------------|
+| **US** | Highest PLG maturity | Credit card self-serve, 14-day trials | Figma, Notion, Slack |
+| **EU** | Growing, GDPR-aware | Longer trials (30 days), data residency options | Miro, Airtable (EU hosting) |
+| **UK** | Similar to US | Mix of self-serve and sales-assisted | Monzo, Revolut Business |
+| **APAC (SEA)** | Emerging | Mobile-first PLG, local payment gateways, 30-60 day trials | Canva (Australia-origin) |
+| **APAC (India)** | Rapidly growing | Very long free tiers, INR pricing, WhatsApp-based onboarding | Zoho, Freshworks |
+| **Middle East** | Nascent | Relationship-driven, free POC common | Few pure PLG examples |
+| **LATAM** | Early stage | Localized pricing essential, WhatsApp support | Nubank (B2C PLG pioneer) |
+
+### PLG China Market Adaptation
+
+| Dimension | Global PLG | China PLG Adaptation |
+|-----------|-----------|---------------------|
+| Self-Serve Signup | Credit card self-serve | Must support WeChat Pay/Alipay + Fapiao (invoice) |
+| Free Trial | 14-30 days | Recommend 30-60 days (longer decision chain) |
+| Decision Model | Individual/small team trial → expand | Must cover both decision maker and user dual track |
+| Payment Conversion | Online self-serve upgrade | Often requires sales intervention (PLS model) |
+
+---
+
+## Product-Led Sales (PLS) Hybrid Model
+
+### PLS Hybrid GTM Model
+
+```
+PLG (Product-Led)              SLG (Sales-Led)
+     │                              │
+     ├── Self-serve signup/trial    ├── Enterprise customization
+     ├── In-product upgrade prompts ├── Contract negotiation
+     └── Self-serve payment         └── Invoice/procurement process
+                  │
+                  ▼
+          PLS (Product-Led Sales)
+     ┌─────────────────────────────┐
+     │ Use product usage data to   │
+     │ identify sales signals      │
+     │ Sales intervenes at key     │
+     │ moments                     │
+     │ 65% of buyers prefer hybrid │
+     └─────────────────────────────┘
+```
+
+### PQA (Product Qualified Account) Scoring Model
+
+| Dimension | Weight | Signal Examples |
+|-----------|--------|-----------------|
+| Product Usage Depth | 30% | Core feature usage frequency, advanced feature activation |
+| Team Size | 20% | Team members, department count |
+| Usage Growth | 20% | Month-over-month usage growth, new feature adoption speed |
+| Firmographics | 15% | Industry, company size, tech stack |
+| Intent Signals | 15% | Pricing page visits, upgrade button clicks, support inquiries |
+
+### McKinsey Key Finding
+
+> "Only a minority of PLG companies achieve outstanding performance — PLS is the key differentiator"
+> Pure PLG trap: Self-serve model struggles to cover enterprise complex needs
+> PLS core: Use product data to drive sales, not replace sales
+
+---
+
+## JTBD (Jobs-to-Be-Done) Framework
+
+### Core Principle
+
+Users "hire" products to complete a job, not to buy product features.
+
+### JTBD Statement Template
+
+```
+When [situation/context]
+I want to [motivation/functional job]
+So I can [expected outcome/emotional job]
+
+Example:
+When I need to report department budget execution to the CFO at month-end
+I want to quickly generate a visual report with YoY/MoM/budget variance
+So I can complete report preparation in 30 minutes without manually pulling data from 5 systems
+```
+
+### Four-Dimensional Analysis
+
+| Dimension | Analysis Question |
+|-----------|------------------|
+| **Time Urgency** | How often does this task need to be completed? What are the consequences of delay? |
+| **Decision Level** | Who makes this decision? Individual / Team / Organization? |
+| **Input Barriers** | What inputs are needed to complete this task? How difficult to obtain? |
+| **Output Requirements** | What format does the task output need? What precision level? |
+
+### Task Card Template
+
+| Field | Content |
+|-------|---------|
+| **JTBD ID** | JOB-001 |
+| **Task Description** | [One-sentence description of the task the user needs to complete] |
+| **Trigger Condition** | [Under what circumstances does the user need to complete this task] |
+| **Success Criteria** | [What counts as done well] |
+| **Current Solution** | [How the user does it now] |
+| **Pain Points** | [Shortcomings of current solution] |
+| **Ideal Experience** | [The ideal state the user expects] |
+
+---
+
+## Customer Success Metrics System
+
+### Core Metrics
+
+| Metric | Formula | Healthy Value | Warning Value |
+|--------|---------|---------------|---------------|
+| **NRR** (Net Revenue Retention) | (Beginning ARR + Expansion - Churn - Contraction) / Beginning ARR | >120% | <100% |
+| **GRR** (Gross Revenue Retention) | (Beginning ARR - Churn) / Beginning ARR | >90% | <80% |
+| **Churn Rate** | Churned customers / Beginning customers | <5% annualized | >10% annualized |
+| **Expansion Rate** | Expansion ARR / Beginning ARR | >20% | <10% |
+| **LTV:CAC** | Customer Lifetime Value / Acquisition Cost | >3:1 | <1:1 |
+
+### Global CS Maturity Model
+
+| Level | Name | Characteristics | CSM:Customer Ratio | Key Metrics |
+|-------|------|----------------|-------------------|-------------|
+| **L1 - Reactive** | Firefighting mode, respond to tickets | No dedicated CSM | 1:200+ | Ticket volume, response time |
+| **L2 - Proactive** | Scheduled check-ins, health scoring | 1:50-100 | 1:50-100 | Health score, NPS |
+| **L3 - Prescriptive** | Data-driven interventions, playbooks | 1:20-50 | 1:20-50 | NRR, Expansion Rate |
+| **L4 - Strategic** | Business outcome alignment, executive sponsorship | 1:5-20 | 1:5-20 | Customer ROI, Strategic adoption |
+| **L5 - Embedded** | CS is company-wide culture, product-led CS | 1:5-10 (enterprise only) | 1:5-10 | Customer Lifetime Value, Advocacy Rate |
+
+### International CS Benchmarks
+
+| Company | CS Approach | NRR | Key Practice |
+|---------|------------|-----|-------------|
+| **Salesforce** | Strategic CS + Trailblazer Community | ~120% | Customer success platform + community-driven learning |
+| **ServiceNow** | Prescriptive CS with impact model | ~125% | Value realization tracking, executive business reviews |
+| **Atlassian** | Product-led CS + Community | ~120% | Self-serve knowledge base, community forums, marketplace |
+| **HubSpot** | Tiered CS (digital → high-touch) | ~110% | Academy + certifications + partner ecosystem |
+
+### Customer Health Score (Health Score)
+
+| Dimension | Weight | Metrics |
+|-----------|--------|---------|
+| Product Usage | 40% | Login frequency, core feature usage rate, feature adoption depth |
+| Business Relationship | 30% | Contract expiration, payment timeliness, expansion history |
+| Satisfaction | 20% | NPS, CSAT, support ticket trends |
+| Risk Signals | 10% | Key contact departure, usage decline, competitor search activity |
+
+---
+
+## Product Roadmap Methodology (Now-Next-Later)
+
+### Now-Next-Later Three-Horizon Roadmap
+
+```
+Now (Current Quarter)     Next (Next 1-2 Quarters)     Later (Future)
+─────────────────    ──────────────────    ──────────────────
+Definitely doing          High priority, pending planning     Directional exploration
+Clear delivery timeline   Resources reserved                 No fixed timeline
+                          Requirements validated             Requirements pending validation
+```
+
+### Outcome-Based Roadmap
+
+Traditional Roadmap: Q1 build Feature A → Q2 build Feature B (Output-oriented)
+Outcome Roadmap: Q1 target increase activation rate 30% → Q2 target reduce churn 20% (Outcome-oriented)
+
+### Roadmap Communication Tips
+
+| Audience | Focus | Presentation Style |
+|----------|-------|-------------------|
+| **Executives / Board** | Strategic direction, ROI | Now-Next-Later + Key metrics |
+| **Sales / Customer Success** | When will what be delivered | Timeline + Feature list |
+| **Engineering Team** | Technical dependencies, resource needs | Sprint-level detailed plan |
+| **Customers** | When will their requests be done | "Doing / Planned / Considering" three categories |
+
+---
+
+## Global B2B SaaS Trends 2026
+
+### Global B2B SaaS Market Size
+
+| Metric | 2024 | 2026 (Projected) | CAGR |
+|--------|------|-----------------|------|
+| Global B2B SaaS Market | $275B | $350B+ | ~13% |
+| US B2B SaaS | $150B | $190B | ~12% |
+| EU B2B SaaS | $55B | $72B | ~14% |
+| APAC B2B SaaS | $40B | $58B | ~20% |
+| Middle East & Africa B2B SaaS | $8B | $12B | ~22% |
+| LATAM B2B SaaS | $7B | $11B | ~25% |
+
+*Sources: Gartner, IDC, Statista, Bessemer Venture Partners State of the Cloud 2025.*
+
+### Global B2B SaaS Top 10 Trends
+
+| # | Trend | Description | B2B PM Implication |
+|---|-------|-------------|-------------------|
+| 1 | **AI-Native SaaS** | AI is no longer a feature — it's the product foundation | PMs must understand AI capabilities and limitations as core competency |
+| 2 | **Vertical SaaS Explosion** | Industry-specific SaaS outgrowing horizontal SaaS 2:1 | Deep industry knowledge is the new moat; generalists lose to specialists |
+| 3 | **Platform Ecosystem Play** | From single product to platform + ISV ecosystem | Design open APIs, app marketplaces, developer communities from Day 1 |
+| 4 | **Usage-Based Pricing Ubiquity** | 70% of SaaS companies will offer usage-based by 2026 | Design product instrumentation to track value metrics, not just seats |
+| 5 | **Product-Led Sales (PLS) Dominance** | Hybrid GTM replacing pure PLG or pure SLG | Build PQL/PQA scoring, enable sales with product usage data |
+| 6 | **Composable SaaS** | Modular, API-first building blocks vs monolithic suites | Design for interoperability; customers want best-of-breed, not all-in-one |
+| 7 | **Global-by-Default** | SaaS companies launch globally from Day 1 | Multi-currency, multi-language, multi-region compliance from MVP |
+| 8 | **Embedded Finance & Payments** | SaaS platforms embedding financial services | Revenue diversification through payment processing, lending, insurance |
+| 9 | **Security & Compliance as Differentiator** | SOC 2, GDPR, FedRAMP becoming table stakes | Proactive compliance can be a competitive advantage, not just cost center |
+| 10 | **Community-Led Growth** | User communities driving acquisition, retention, and product feedback | Invest in community as product feature, not just marketing channel |
+
+### China SaaS Four Trends 2026
+
+| Trend | Description | B2B PM Implication |
+|-------|-------------|-------------------|
+| **AI Self-Service** | AI enables users to self-configure/analyze/troubleshoot | Reduce "ticket-driven" interaction patterns, design AI-assisted Onboarding |
+| **Verticalization (Vertical SaaS)** | General SaaS → Industry-specific SaaS | Deepen industry know-how, industry compliance/terminology/processes are the moat |
+| **Platform Ecosystem** | From single product to platform + ISV ecosystem | Design open APIs, app marketplace, developer community |
+| **Global Expansion (Going Global)** | Chinese SaaS expanding to SEA/Middle East/LATAM | Multi-language/multi-currency/multi-regulation adaptation, localized GTM strategy |
+
+---

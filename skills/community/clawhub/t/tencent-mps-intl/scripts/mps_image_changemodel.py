@@ -15,54 +15,54 @@ COS Storage Convention:
 
 Usage:
   # Minimal usage: original image URL + garment image URL (default body shape: hourglass)
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg"
 
   # Specify pear body shape
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --body-shape pear
 
   # Specify plus-size body shape + higher precision
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --body-shape plus-size --precision-scale 1.5
 
   # Use COS path for the original image
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --cos-input-key "/input/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --body-shape rectangle
 
   # Use COS path for the garment image
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-cos-key "/input/garment.jpg" \
       --body-shape apple
 
   # Use a local file for the original image (uploaded to COS automatically)
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --local-file ./model.jpg \
       --garment-url "https://example.com/garment.jpg" \
       --body-shape hourglass
 
   # Submit task only, do not wait for the result (returns TaskId)
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --no-wait
 
   # Preview request payload only (does not call the API)
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --body-shape pear --dry-run
 
   # Download outputs automatically after completion
-  python scripts/mps_image_changemodel.py \
+  python3 scripts/mps_image_changemodel.py \
       --url "https://example.com/model.jpg" \
       --garment-url "https://example.com/garment.jpg" \
       --download-dir ./results/
@@ -106,7 +106,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -408,6 +408,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     cred = get_credentials()
@@ -463,7 +469,7 @@ def main():
 
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module is unavailable. Please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -477,7 +483,7 @@ def main():
 
     if task_result is None:
         print("\n⚠️  Polling timed out. The task may still be processing.", file=sys.stderr)
-        print(f"   You can query it manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query it manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     err_msg = task_result.get("ErrMsg") or ""

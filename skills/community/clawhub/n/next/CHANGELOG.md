@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/es6kr/skills/compare/next-v0.4.2...next-v0.4.3) (2026-06-30)
+
+
+### Bug Fixes
+
+* **skills:** add procedural guards + standardize description scalar ([#66](https://github.com/es6kr/skills/issues/66)) ([fcc921f](https://github.com/es6kr/skills/commit/fcc921fba3928aad7421ecff888d5dcee5ae5655))
+
 ## [0.4.2](https://github.com/es6kr/skills/compare/next-v0.4.1...next-v0.4.2) (2026-06-19)
 
 

@@ -13,10 +13,21 @@
     result = poll_image_task(task_id, region="ap-guangzhou", interval=5, max_wait=300)
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import json
 import os
 import sys
 import time
+
+# 环境变量加载工具（同目录）；仅命令行直接运行时使用，不影响作为模块 import
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+try:
+    from mps_load_env import ensure_env_loaded as _ensure_env_loaded
+    _LOAD_ENV_AVAILABLE = True
+except ImportError:
+    _LOAD_ENV_AVAILABLE = False
 
 try:
     from tencentcloud.common import credential
@@ -25,7 +36,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -241,7 +252,7 @@ def poll_video_task(task_id, region="ap-guangzhou", interval=10, max_wait=1800, 
         elapsed += interval
 
     print(f"\n⚠️  等待超时（已等待 {max_wait}s），任务可能仍在处理中。")
-    print(f"   可手动查询：python scripts/mps_get_video_task.py --task-id {task_id}")
+    print(f"   可手动查询：python3 scripts/mps_get_video_task.py --task-id {task_id}")
     return None
 
 
@@ -305,7 +316,7 @@ def poll_image_task(task_id, region="ap-guangzhou", interval=5, max_wait=300, ve
         elapsed += interval
 
     print(f"\n⚠️  等待超时（已等待 {max_wait}s），任务可能仍在处理中。")
-    print(f"   可手动查询：python scripts/mps_get_image_task.py --task-id {task_id}")
+    print(f"   可手动查询：python3 scripts/mps_get_image_task.py --task-id {task_id}")
     return None
 
 
@@ -343,7 +354,7 @@ def auto_upload_local_file(local_path, cos_key=None, verbose=False):
         return None
 
     if not _COS_SDK_AVAILABLE:
-        print("错误：本地文件上传需要安装 COS SDK：pip install cos-python-sdk-v5", file=sys.stderr)
+        print("错误：本地文件上传需要安装 COS SDK：python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
         return None
 
     # 自动生成 cos_key
@@ -506,7 +517,7 @@ def auto_download_outputs(task_result, download_dir=".", verbose=False):
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
 
     if not _COS_SDK_AVAILABLE:
-        print("⚠️  未安装 COS SDK，跳过自动下载（pip install cos-python-sdk-v5）", file=sys.stderr)
+        print("⚠️  未安装 COS SDK，跳过自动下载（python3 -m pip install cos-python-sdk-v5）", file=sys.stderr)
         return []
 
     os.makedirs(download_dir, exist_ok=True)
@@ -627,7 +638,13 @@ def auto_gen_compare(task_result, input_url, media_type="video", title=None, out
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == '__main__':
-    import argparse
+    # 时序修复：先加载 .env，让 argparse default=os.environ.get(...) 能读到用户配置
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+        import argparse
 
     parser = argparse.ArgumentParser(
         description='腾讯云 MPS 任务轮询工具 - 支持音视频和图片任务',
@@ -635,16 +652,16 @@ if __name__ == '__main__':
         epilog="""
 使用示例:
   # 轮询音视频任务
-  python mps_poll_task.py --task-id 1234567890 --type video
+  python3 mps_poll_task.py --task-id 1234567890 --type video
 
   # 轮询图片任务
-  python mps_poll_task.py --task-id 1234567890 --type image
+  python3 mps_poll_task.py --task-id 1234567890 --type image
 
   # 指定区域和轮询参数
-  python mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
+  python3 mps_poll_task.py --task-id 1234567890 --region ap-beijing --interval 5 --max-wait 600
 
   # 详细输出模式
-  python mps_poll_task.py --task-id 1234567890 --verbose
+  python3 mps_poll_task.py --task-id 1234567890 --verbose
 
 环境变量:
   TENCENTCLOUD_SECRET_ID    - 腾讯云 SecretId（必需）
@@ -659,8 +676,8 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '--region',
-        default='ap-guangzhou',
-        help='MPS服务区域（默认: ap-guangzhou）'
+        default=os.environ.get('TENCENTCLOUD_API_REGION', 'ap-guangzhou'),
+        help='MPS 服务区域（优先读取 TENCENTCLOUD_API_REGION 环境变量，默认: ap-guangzhou）'
     )
     parser.add_argument(
         '--type',

@@ -1,0 +1,178 @@
+# EVEZ-OS — The Firmament
+# 7 microservices, 1 event spine, 1 mesh, infinite emergence
+#
+# Architecture:
+#   ┌──────────────────────────────────────────────────┐
+#   │                  EVENT SPINE (:9116)             │
+#   │           Append-only. Immutable. Truth.          │
+#   └───┬──────┬──────┬──────┬──────┬──────┬──────┬────┘
+#       │      │      │      │      │      │      │
+#   ┌───▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐
+#   │:9111 ││:9112││:9113││:9114││:9115││:9117││:9118│
+#   │CONSC ││DAW  ││VOICE││XDOM ││INVAR││MESH ││GATE │
+#   │ENGINE││AGENT││SYNTH││ENG  ││BATT ││HLTH ││WAY  │
+#   └──────┘└─────┘└─────┘└─────┘└─────┘└─────┘└─────┘
+#
+# Usage:
+#   make start     — Launch all services
+#   make stop      — Stop all services
+#   make health    — Check all services
+#   make test      — Run integration tests
+#   make logs      — Tail all logs
+
+version: '3.8'
+
+services:
+  event-spine:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.spine
+    container_name: evez-event-spine
+    ports:
+      - "9116:9116"
+    volumes:
+      - spine-data:/data
+    environment:
+      - EVEZ_NODE_NAME=Evez666
+      - EVEZ_NODE_IP=64.176.221.16
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9116/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  consciousness-engine:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.consciousness
+    container_name: evez-consciousness
+    ports:
+      - "9111:9111"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+      - EVEZ_NODE_NAME=Evez666
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9111/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  daw-agent:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.daw
+    container_name: evez-daw
+    ports:
+      - "9112:9112"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9112/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  machine-voice:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.voice
+    container_name: evez-voice
+    ports:
+      - "9113:9113"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9113/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  cross-domain:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.crossdomain
+    container_name: evez-crossdomain
+    ports:
+      - "9114:9114"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9114/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  invariance-battery:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.invariance
+    container_name: evez-invariance
+    ports:
+      - "9115:9115"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9115/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  mesh-health:
+    build:
+      context: ./src/services
+      dockerfile: Dockerfile.mesh
+    container_name: evez-mesh
+    ports:
+      - "9117:9117"
+    depends_on:
+      event-spine:
+        condition: service_healthy
+      consciousness-engine:
+        condition: service_healthy
+      daw-agent:
+        condition: service_healthy
+      machine-voice:
+        condition: service_healthy
+      cross-domain:
+        condition: service_healthy
+      invariance-battery:
+        condition: service_healthy
+    environment:
+      - SPINE_URL=http://event-spine:9116
+      - SIBLINGS=consciousness-engine:9111,daw-agent:9112,machine-voice:9113,cross-domain:9114,invariance-battery:9115,event-spine:9116
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9117/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+volumes:
+  spine-data:
+    driver: local
+
+networks:
+  default:
+    name: evez-firmament
+    driver: bridge

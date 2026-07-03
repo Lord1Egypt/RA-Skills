@@ -13,15 +13,14 @@ After completing any work on this skill, you must complete ALL of the following:
 cd ~/.openclaw/workspace/skills/email-to-calendar/scripts
 ./run_tests.sh
 ```
-All 154 tests must pass before proceeding.
+All 158 tests must pass before proceeding.
 
 ### 2. Update CHANGELOG.md
 Document what changed with today's date, following existing format.
 
 ### 3. Bump Version
-Update version in both files:
-- `package.json` - the `version` field
-- `SKILL.md` - the frontmatter `version` field
+Update the `version` field in the `SKILL.md` frontmatter (the single source of
+truth for the skill version).
 
 Version format: `MAJOR.MINOR.PATCH`
 - PATCH: Bug fixes, minor tweaks
@@ -42,12 +41,21 @@ git push origin master
 ```
 
 ### 6. Publish to ClawHub
+Install the CLI (`npm i -g clawhub`, needs Node >= 22) and authenticate once:
 ```bash
-export CLAWHUB_REGISTRY=https://auth.clawdhub.com
-clawhub publish ~/.openclaw/workspace/skills/email-to-calendar --version X.Y.Z
+clawhub login        # device flow; approve in the browser
+clawhub whoami       # confirm
 ```
 
-The `--version` flag is required due to a CLI bug.
+Preview, then publish from the repo root (pass `--version` to match SKILL.md):
+```bash
+clawhub skill publish . --version X.Y.Z --slug email-to-calendar --dry-run
+clawhub skill publish . --version X.Y.Z --slug email-to-calendar
+```
+
+Note: `package.json` must NOT contain an `openclaw` key — the CLI treats that as
+a plugin and refuses to publish it as a skill. (This repo no longer ships a
+`package.json`; skill metadata lives in the SKILL.md frontmatter.)
 
 ## File Structure
 
@@ -57,7 +65,7 @@ The `--version` flag is required due to a CLI bug.
 | `SETUP.md` | User configuration guide |
 | `BOOT.md` | Self-bootstrapping instructions |
 | `CHANGELOG.md` | Version history |
-| `package.json` | Skill metadata |
+| `LICENSE` | MIT license |
 | `scripts/` | Shell script wrappers |
 | `scripts/utils/` | Python utility modules |
 | `scripts/tests/` | Unit tests |
@@ -71,11 +79,11 @@ Tests use Python's built-in `unittest` module (no pip install required).
 # Run all tests
 ./scripts/run_tests.sh
 
-# Run specific test file
-python3 -m pytest scripts/tests/test_date_parser.py
+# Run a specific test file (via the runner)
+./scripts/run_tests.sh test_date_parser
 
 # Run with verbose output
-python3 -m unittest discover -v scripts/tests/
+python3 -m unittest discover -s scripts/tests -v
 ```
 
 ## Code Style

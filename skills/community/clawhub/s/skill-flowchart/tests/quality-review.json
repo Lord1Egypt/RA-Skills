@@ -1,0 +1,36 @@
+{
+  "title": "质量审查循环",
+  "subtitle": "多 loop · 右侧分支 · 连续决策",
+  "nodes": [
+    {"id": "entry",        "type": "entry",    "label": "提交代码",              "role": "ai"},
+    {"id": "lint",         "type": "process",  "label": "Lint 检查",             "role": "script"},
+    {"id": "lint_pass",    "type": "decision", "label": "Lint 通过？",           "role": "decision"},
+    {"id": "auto_fix",     "type": "process",  "label": "自动修复",              "role": "script"},
+    {"id": "test",         "type": "process",  "label": "单元测试",              "role": "script"},
+    {"id": "test_pass",    "type": "decision", "label": "测试通过？",            "role": "decision"},
+    {"id": "manual_fix",   "type": "process",  "label": "手动修复",              "role": "ai"},
+    {"id": "review",       "type": "process",  "label": "代码审查",              "role": "ai"},
+    {"id": "review_pass",  "type": "decision", "label": "审查通过？",            "role": "decision"},
+    {"id": "request_chg",  "type": "process",  "label": "请求修改",              "role": "ai"},
+    {"id": "deploy",       "type": "output",   "label": "部署上线",              "role": "output"}
+  ],
+  "edges": [
+    {"from": "entry",       "to": "lint",        "label": "",      "side": "bottom"},
+    {"from": "lint",        "to": "lint_pass",   "label": "",      "side": "bottom"},
+    {"from": "lint_pass",   "to": "test",        "label": "是",     "side": "bottom"},
+    {"from": "lint_pass",   "to": "auto_fix",    "label": "否",     "side": "left"},
+    {"from": "test",        "to": "test_pass",   "label": "",      "side": "bottom"},
+    {"from": "test_pass",   "to": "review",      "label": "是",     "side": "bottom"},
+    {"from": "test_pass",   "to": "manual_fix",  "label": "否",     "side": "right"},
+    {"from": "review",      "to": "review_pass", "label": "",      "side": "bottom"},
+    {"from": "review_pass", "to": "deploy",      "label": "是",     "side": "bottom"},
+    {"from": "review_pass", "to": "request_chg", "label": "否",     "side": "right"},
+    {"from": "request_chg", "to": "test",        "label": "",      "side": "bottom"}
+  ],
+  "branches": [],
+  "loops": [
+    {"from": "auto_fix",   "to": "lint",       "label": "重跑 Lint",     "path": "left_edge"},
+    {"from": "manual_fix", "to": "test",       "label": "重跑测试",     "path": "right_edge"}
+  ],
+  "legend": []
+}

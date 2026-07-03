@@ -6,7 +6,7 @@ Product slug: `binary-to-from-file-converter`
 
 x402 availability: not enabled for this product.
 
-## `base64_to_binary`
+## `base64-to-binary`
 
 Action slug: `base64-to-binary`
 
@@ -40,7 +40,7 @@ Generated JSON parameter schema:
 }
 ```
 
-## `base64_to_file`
+## `base64-to-file`
 
 Action slug: `base64-to-file`
 
@@ -107,7 +107,7 @@ Generated JSON parameter schema:
 }
 ```
 
-## `base64_to_hex`
+## `base64-to-hex`
 
 Action slug: `base64-to-hex`
 
@@ -141,7 +141,7 @@ Generated JSON parameter schema:
 }
 ```
 
-## `binary_to_base64`
+## `binary-to-base64`
 
 Action slug: `binary-to-base64`
 
@@ -175,7 +175,7 @@ Generated JSON parameter schema:
 }
 ```
 
-## `file_to_base64`
+## `file-to-base64`
 
 Action slug: `file-to-base64`
 
@@ -209,7 +209,7 @@ Generated JSON parameter schema:
 }
 ```
 
-## `hex_to_base64`
+## `hex-to-base64`
 
 Action slug: `hex-to-base64`
 

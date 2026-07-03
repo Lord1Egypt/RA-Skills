@@ -41,12 +41,11 @@ python3 scripts/dkag_search.py "搜索词" --area 地域 --clean --output result
 
 如果深知搜索异常、空结果或素材不足，必须先暂停并请用户选择下一步，不得自行切换到 Web Search/Web Fetch。
 
-
 ## Public 版 Key 缺失处理
 
 Public 渠道版不内置深知搜索 API Key。判断任务需要搜索时，在展示搜索方案前先确认本 Skill 目录下是否存在 `config.ini` 且 `api_key` 有效。
 
-如果未配置，必须暂停并提示用户通过 Clawhub 渠道注册链接注册并获取 API Key：
+如果未配置，必须暂停并提示用户通过 ClawHub 渠道注册链接注册并获取 API Key：
 
 ```text
 https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC52434D1F&type=6
@@ -66,7 +65,7 @@ https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC5
 
 执行搜索前必须向用户展示搜索方案，至少包括：
 
-- 搜索地域：如中国、广东省、广州市等。
+- 搜索地域：使用用户任务对应的国家、省或市，不预设具体地区。
 - 搜索内容：每条 query 的目的和关键词。
 - 素材类型：政策依据型、数据支撑型、参考案例型，并说明对应的深知搜索参数。
 - 使用边界：哪些材料可作为政策依据，哪些只能作为案例或表述参考。

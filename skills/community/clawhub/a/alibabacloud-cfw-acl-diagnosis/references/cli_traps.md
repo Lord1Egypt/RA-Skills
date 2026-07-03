@@ -1,95 +1,95 @@
-# 阿里云云防火墙 CLI 陷阱与注意事项
+# Alibaba Cloud Cloud Firewall CLI Pitfalls and Notes
 
-本文档记录在使用阿里云 CLI 诊断云防火墙时遇到的坑和解决方案。
+This document records pitfalls and solutions encountered when using the Alibaba Cloud CLI to diagnose Cloud Firewall issues.
 
-> ⚠️ 本 Skill 为只读诊断工具，本文档仅覆盖查询类命令的陷阱，不包含写操作。
-
----
-
-## 1. Region 问题
-
-### 误区：需要询问 Region
-
-**事实**：
-- 云防火墙是**全局服务**，规则配置与 Region 无关
-- 使用任意 Region（如 `cn-hangzhou`）调用 API 即可
-- **不需要询问用户资产所在的 Region**
+> ⚠️ This skill is a read-only diagnostic tool. This document only covers pitfalls for query commands and does not include write operations.
 
 ---
 
-## 2. 资产防护状态诊断陷阱
+## 1. Region Issues
 
-### 陷阱：规则存在但不生效 → 忘记检查 ProtectStatus
+### Myth: You need to ask for the Region
 
-**现象**：
-- 规则列表中能查到对应 ACL 规则
-- 但流量仍然没有被规则控制
+**Facts**:
+- Cloud Firewall is a **global service**. Rule configuration is independent of Region.
+- Any Region (e.g., `cn-hangzhou`) can be used to call the API.
+- **Do NOT ask the user for the Region where assets are located.**
 
-**根因**：
-- 资产的 `ProtectStatus` 为 `closed`（未开启防护）
-- 防护未开启时规则不生效，这是最常见问题
+---
 
-**诊断方法**：
+## 2. Asset Protection Status Diagnosis Trap
+
+### Trap: Rule exists but does not take effect → forgot to check ProtectStatus
+
+**Symptoms**:
+- The corresponding ACL rule can be found in the rule list.
+- Traffic is still not controlled by the rule.
+
+**Root Cause**:
+- The asset's `ProtectStatus` is `closed` (protection not enabled).
+- Rules do not take effect when protection is not enabled. This is the most common issue.
+
+**Diagnosis Method**:
 ```bash
-aliyun cloudfw describe-asset-list --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+aliyun cloudfw describe-asset-list --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
-查看 `ProtectStatus` 字段：
-- `open`：防护已开启 ✅
-- `closed`：防护未开启 ❌ → 告知用户需在控制台手动开启
+Check the `ProtectStatus` field:
+- `open`: Protection is enabled ✅
+- `closed`: Protection is not enabled ❌ → Instruct the user to enable it manually in the console.
 
 ---
 
-## 3. 引擎模式诊断陷阱
+## 3. Engine Mode Diagnosis Trap
 
-### 陷阱：域名规则在宽松模式下不生效 → 忘记检查 EngineMode/StrictMode
+### Trap: Domain rules do not take effect in loose mode → forgot to check EngineMode/StrictMode
 
-**现象**：
-- 配置了 `DestinationType=domain` 的规则
-- 但访问目标域名时规则不命中
+**Symptoms**:
+- A rule with `DestinationType=domain` is configured.
+- Access to the target domain does not match the rule.
 
-**根因**：
-- 互联网防火墙资产 `EngineMode=loose`，或 NAT 防火墙 `StrictMode=0`
-- 宽松模式下域名**不参与匹配**，仅四元组（源IP+目的IP+端口+协议）匹配
+**Root Cause**:
+- The Internet Firewall asset `EngineMode=loose`, or NAT Firewall `StrictMode=0`.
+- In loose mode, the **domain does not participate in matching**. Only the 4-tuple (source IP + destination IP + destination port + protocol) is matched.
 
-**诊断方法**：
-- 互联网防火墙：`describe-asset-list` → 查看目标资产的 `EngineMode` 字段
-- NAT 防火墙：`describe-nat-firewall-list` → 查看 `StrictMode` 字段
+**Diagnosis Method**:
+- Internet Firewall: `describe-asset-list` → check the `EngineMode` field of the target asset.
+- NAT Firewall: `describe-nat-firewall-list` → check the `StrictMode` field.
 
-**告知用户**：需在控制台将引擎模式切换为严格模式，才能让域名规则生效。
-
----
-
-## 4. NAT 防火墙 SNAT 源 IP 陷阱
-
-### 陷阱：规则源地址与实际流量源 IP 不匹配
-
-**现象**：
-- NAT 规则配置了内网 IP 段，但规则命中次数为 0
-
-**根因**：
-- NAT 防火墙检测的是 SNAT **转换后**的公网 IP，不是内网私网 IP
-- 规则源地址必须配置 SNAT 后的实际出口 IP
-
-**诊断方向**：
-- 告知用户通过 NAT 网关控制台查看 SNAT 表，确认实际出口 IP
-- 对比规则 Source 地址与 SNAT 出口 IP 是否匹配
+**Tell the user**: Switch the engine mode to strict mode in the console to make domain rules effective.
 
 ---
 
-## 5. 流量日志查询陷阱
+## 4. NAT Firewall SNAT Source IP Trap
 
-### 陷阱：设置 FlowType 导致无结果
+### Trap: Rule source address does not match the actual traffic source IP
 
-**现象**：查询流量日志返回空，但实际有流量
+**Symptoms**:
+- The NAT rule is configured with an internal IP range, but the rule hit count is 0.
 
-**根因**：`FlowType` 参数过滤掉了部分流量
+**Root Cause**:
+- NAT Firewall inspects the public IP **after SNAT translation**, not the internal private IP.
+- The rule source address must be configured as the actual egress IP after SNAT.
 
-**正确做法**：**不要设置 `FlowType` 参数**，保持为空即可查询所有流量。
+**Diagnosis Direction**:
+- Tell the user to check the SNAT table in the NAT Gateway console to confirm the actual egress IP.
+- Compare whether the rule Source address matches the SNAT egress IP.
 
-### 陷阱：时间戳单位
+---
 
-**时间转换**：
+## 5. Traffic Log Query Traps
+
+### Trap: Setting FlowType causes no results
+
+**Symptoms**: Traffic log query returns empty, but traffic actually exists.
+
+**Root Cause**: The `FlowType` parameter filters out some traffic.
+
+**Correct Approach**: **Do NOT set the `FlowType` parameter**. Leave it empty to query all traffic.
+
+### Trap: Timestamp Units
+
+**Time Conversion**:
 ```bash
 date -d "2026-04-01 11:25:00" +%s   # Linux
 date -j -f "%Y-%m-%d %H:%M:%S" "2026-04-01 11:25:00" +%s  # macOS
@@ -97,32 +97,32 @@ date -j -f "%Y-%m-%d %H:%M:%S" "2026-04-01 11:25:00" +%s  # macOS
 
 ---
 
-## 6. 分页查询陷阱
+## 6. Pagination Query Trap
 
-### 陷阱：默认只返回第一页，误认为"只有这些规则"
+### Trap: Only the first page is returned by default, mistakenly thinking "these are all the rules"
 
-**注意**：
-- 默认 `PageSize=10`，规则/资产较多时有多页
-- 必须检查 `TotalCount`，如 `TotalCount > PageSize`，需用 `--CurrentPage 2` 继续查询
-- 在得出"所有资产/规则"结论前，**必须查完所有页**
+**Notes**:
+- Default `PageSize=10`. When there are many rules/assets, there are multiple pages.
+- Must check `TotalCount`. If `TotalCount > PageSize`, continue querying with `--CurrentPage 2`.
+- Before concluding "all assets/rules", **must query all pages**.
 
 ---
 
-## 7. 凭证与 Profile 陷阱
+## 7. Credentials and Profile Traps
 
-| 禁止操作 | 原因 |
+| Prohibited Operation | Reason |
 |---------|------|
-| `--profile` 参数 | 评测系统 Forbidden 规则 |
-| `aliyun configure get` | 暴露 AK/SK，严重安全违规 |
-| `aliyun configure list` | 扫描所有 profile |
-| `cat ~/.aliyun/config.json` | 读取凭证文件 |
+| `--profile` parameter | Evaluation system Forbidden rule |
+| `aliyun configure get` | Exposes AK/SK, serious security violation |
+| `aliyun configure list` | Scans all profiles |
+| `cat ~/.aliyun/config.json` | Reads credential file |
 
-**正确做法**：依赖默认凭证链（环境变量或 `~/.aliyun/config.json` 默认 profile）。
+**Correct Approach**: Rely on the default credential chain (environment variables or default profile in `~/.aliyun/config.json`).
 
 ---
 
-## 8. 生效延迟
+## 8. Activation Delay
 
-规则修改后不会立即生效，有 **5-15 秒**的延迟。
+Rules do not take effect immediately after modification; there is a **5-15 second** delay.
 
-如果用户说"刚改完就测试，但不生效"→ 提醒等待片刻后重试。
+If the user says "I just modified it and tested, but it doesn't work" → remind them to wait a moment and retry.

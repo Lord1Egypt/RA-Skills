@@ -50,7 +50,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -66,13 +66,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -258,7 +261,9 @@ def process_by_procedure(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -340,7 +345,9 @@ def teshd_transcode(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -406,7 +413,9 @@ def remux(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -485,7 +494,9 @@ def video_enhance(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -566,7 +577,9 @@ def scene_transcode(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -643,7 +656,9 @@ def make_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -714,7 +729,9 @@ def make_animated_graphics(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -787,7 +804,9 @@ def sample_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -860,7 +879,9 @@ def image_sprite(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -937,7 +958,9 @@ def cover_by_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1004,7 +1027,9 @@ def adaptive_streaming(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1063,7 +1088,9 @@ def ai_content_review(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1122,7 +1149,9 @@ def ai_analysis(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1181,7 +1210,9 @@ def ai_recognition(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(content cannot be shortened)
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1190,6 +1221,79 @@ def ai_recognition(args):
     except Exception as e:
         print(f"AI content recognition failed: {e}")
         sys.exit(1)
+
+
+def print_task_outputs(result):
+    """Extract and print task outputs (FileUrl / FileId / SubjectId / etc).
+
+    Compatible with multiple task return structures, displayed by priority:
+    - Top-level FileId / FileUrl (upload / pull-upload tasks)
+    - SubjectId / ElementId (custom element tasks)
+    - Output.FileInfos[].{FileUrl, FileId} (AIGC / processing tasks)
+    - Output.FileUrl (some tasks)
+    - Error messages (FAIL state)
+    """
+    if not result:
+        return
+
+    task = result
+    for key in ('AigcImageTask', 'AigcVideoTask', 'TaskDetail', 'Data'):
+        if isinstance(result.get(key), dict):
+            task = result[key]
+            break
+
+    if task.get('Status') == 'FAIL' or task.get('ErrCode'):
+        err = task.get('Message') or task.get('ErrCodeExt') or 'Task failed'
+        print(f"⚠️  Error: {err}")
+        return
+
+    printed = False
+
+    for sid_key in ('SubjectId', 'ElementId', 'CustomElementId'):
+        if task.get(sid_key) or result.get(sid_key):
+            sid = task.get(sid_key) or result.get(sid_key)
+            print(f"\n🆔 {sid_key}: {sid}")
+            printed = True
+
+    if task.get('FileId') or result.get('FileId'):
+        fid = task.get('FileId') or result.get('FileId')
+        print(f"\n📂 FileId: {fid}")
+        printed = True
+    if task.get('FileUrl') or result.get('FileUrl'):
+        url = task.get('FileUrl') or result.get('FileUrl')
+        print(f"   URL    : {url}")
+        printed = True
+
+    output = task.get('Output') or result.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if file_infos:
+        print(f"\n📦 Output ({len(file_infos)} file(s)):")
+        for i, fi in enumerate(file_infos, 1):
+            url = fi.get('FileUrl') or fi.get('Url') or ''
+            fid = fi.get('FileId') or ''
+            ftype = fi.get('FileType') or fi.get('Type') or ''
+            prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+            label_parts = []
+            if ftype:
+                label_parts.append(ftype)
+            if fid:
+                label_parts.append(f"FileId={fid}")
+            if label_parts:
+                print(f"{prefix} {' '.join(label_parts)}")
+                if url:
+                    print(f"     URL: {url}")
+            elif url:
+                print(f"{prefix} URL: {url}")
+        printed = True
+    elif output.get('FileUrl'):
+        print(f"\n📦 Output URL: {output['FileUrl']}")
+        if output.get('FileId'):
+            print(f"   FileId    : {output['FileId']}")
+        printed = True
+
+    if not printed:
+        print(f"\n💡 Task completed (status: {task.get('Status', 'N/A')}); use --json for full response")
 
 
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
@@ -1232,19 +1336,28 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Load .env early so argparse `default=os.environ.get(...)` can read TENCENTCLOUD_VOD_SUB_APP_ID
+    # BUG FIX: argparse evaluates default at add_argument time, but .env was previously
+    # loaded inside get_credential(); the timing mismatch left SubAppId as None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD media processing tool - supports TESHD transcoding/remuxing/scene transcoding/screenshot/animated graphics, etc.',  # NOCA:line-too-long(content cannot be shortened)
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
-  python vod_process_media.py procedure --file-id <id> --procedure "SimpleAes"
-  python vod_process_media.py transcode --file-id <id>                        # TESHD (same source)
-  python vod_process_media.py transcode --file-id <id> --quality hd           # TESHD (720P)
-  python vod_process_media.py remux --file-id <id> --target-format mp4        # Remux to MP4
-  python vod_process_media.py enhance --file-id <id>                          # Video enhancement (general 1080P)
-  python vod_process_media.py enhance --file-id <id> --scene anime --resolution 4k  # Anime 4K enhancement
-  python vod_process_media.py scene-transcode --file-id <id> --scene short_drama
-  python vod_process_media.py snapshot --file-id <id> --definition 10001 --ext-time-offset-set "5s,10s"
+  python3 vod_process_media.py procedure --file-id <id> --procedure "SimpleAes"
+  python3 vod_process_media.py transcode --file-id <id>                        # TESHD (same source)
+  python3 vod_process_media.py transcode --file-id <id> --quality hd           # TESHD (720P)
+  python3 vod_process_media.py remux --file-id <id> --target-format mp4        # Remux to MP4
+  python3 vod_process_media.py enhance --file-id <id>                          # Video enhancement (general 1080P)
+  python3 vod_process_media.py enhance --file-id <id> --scene anime --resolution 4k  # Anime 4K enhancement
+  python3 vod_process_media.py scene-transcode --file-id <id> --scene short_drama
+  python3 vod_process_media.py snapshot --file-id <id> --definition 10001 --ext-time-offset-set "5s,10s"
 
 TESHD: same(100800)/flu(100810,360P)/sd(100820,540P)/hd(100830,720P)
 Remux: mp4(875)/hls(876)
@@ -1271,7 +1384,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     proc_parser.add_argument('--session-id', help='Deduplication identifier (duplicate within three days will return an error)')  # NOCA:line-too-long(content cannot be shortened)
     proc_parser.add_argument('--ext-info', help='Extended information')
     proc_parser.add_argument('--tasks-priority', type=int, help='Task priority')
-    proc_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    proc_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     proc_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     proc_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     proc_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1289,7 +1402,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)')  # NOCA:line-too-long(content cannot be shortened)
     teshd_parser.add_argument('--session-context', help='Source context, used to pass through user request information')
     teshd_parser.add_argument('--tasks-priority', type=int, help='Task priority (-10 to 10)')
-    teshd_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    teshd_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     teshd_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     teshd_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     teshd_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1306,7 +1419,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)')  # NOCA:line-too-long(content cannot be shortened)
     remux_parser.add_argument('--session-context', help='Source context, used to pass through user request information')
     remux_parser.add_argument('--tasks-priority', type=int, help='Task priority (-10 to 10)')
-    remux_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    remux_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     remux_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     remux_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     remux_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1326,7 +1439,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                  help='Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)')  # NOCA:line-too-long(content cannot be shortened)
     enhance_parser.add_argument('--session-context', help='Source context, used to pass through user request information')  # NOCA:line-too-long(content cannot be shortened)
     enhance_parser.add_argument('--tasks-priority', type=int, help='Task priority (-10 to 10)')
-    enhance_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    enhance_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     enhance_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     enhance_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     enhance_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1349,7 +1462,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)')  # NOCA:line-too-long(content cannot be shortened)
     scene_parser.add_argument('--session-context', help='Source context, used to pass through user request information')
     scene_parser.add_argument('--tasks-priority', type=int, help='Task priority (-10 to 10)')
-    scene_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    scene_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     scene_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     scene_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     scene_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1369,7 +1482,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     snap_parser.add_argument('--ext-info', help='Extended information')
     snap_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     snap_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(content cannot be shortened)
-    snap_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    snap_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     snap_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     snap_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     snap_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1389,7 +1502,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     gif_parser.add_argument('--ext-info', help='Extended information')
     gif_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     gif_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(content cannot be shortened)
-    gif_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    gif_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     gif_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     gif_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     gif_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1408,7 +1521,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     sample_parser.add_argument('--ext-info', help='Extended information')
     sample_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     sample_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(content cannot be shortened)
-    sample_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    sample_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     sample_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     sample_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     sample_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1427,7 +1540,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     sprite_parser.add_argument('--ext-info', help='Extended information')
     sprite_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     sprite_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(content cannot be shortened)
-    sprite_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    sprite_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     sprite_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     sprite_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     sprite_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1448,7 +1561,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     cover_parser.add_argument('--ext-info', help='Extended information')
     cover_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     cover_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(long SDK parameter or URL string)
-    cover_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    cover_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     cover_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     cover_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     cover_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1467,7 +1580,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     adaptive_parser.add_argument('--ext-info', help='Extended information')
     adaptive_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     adaptive_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(long SDK parameter or URL string)
-    adaptive_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    adaptive_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     adaptive_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     adaptive_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     adaptive_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1485,7 +1598,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     review_parser.add_argument('--ext-info', help='Extended information')
     review_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     review_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(long SDK parameter or URL string)
-    review_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    review_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     review_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     review_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     review_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1503,7 +1616,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     analysis_parser.add_argument('--ext-info', help='Extended information')
     analysis_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     analysis_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(long SDK parameter or URL string)
-    analysis_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    analysis_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     analysis_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     analysis_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     analysis_parser.add_argument('--json', action='store_true', help='JSON format output')
@@ -1521,7 +1634,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     recognition_parser.add_argument('--ext-info', help='Extended information')
     recognition_parser.add_argument('--tasks-priority', type=int, help='Task priority')
     recognition_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='Task status change notification mode')  # NOCA:line-too-long(long SDK parameter or URL string)
-    recognition_parser.add_argument('--region', default='ap-guangzhou', help='Region')
+    recognition_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='Region')
     recognition_parser.add_argument('--no-wait', action='store_true', help='Submit task only, do not wait for result')
     recognition_parser.add_argument('--max-wait', type=int, default=600, help='Maximum wait time (seconds)')
     recognition_parser.add_argument('--json', action='store_true', help='JSON format output')

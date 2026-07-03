@@ -7,13 +7,13 @@
 
 用法：
   # 最简用法（local-file 省略时自动使用 ./<cos-input-key 文件名>）
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
 
   # 手动指定 local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # 指定 bucket 和 region（覆盖环境变量）
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
 
 环境变量：
@@ -30,6 +30,14 @@ import sys
 # 加载环境变量模块（同目录）
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+
+# 依赖自动检查/升级：必须在 qcloud_cos 首次 import 之前调用
+try:
+    from mps_auto_upgrade import check_sdk_version as _check_sdk_version
+    _check_sdk_version()
+except ImportError:
+    pass
+
 try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
@@ -39,7 +47,7 @@ except ImportError:
 try:
     from qcloud_cos import CosConfig, CosS3Client
 except ImportError:
-    print("错误：未安装腾讯云 COS SDK。请运行：pip install cos-python-sdk-v5", file=sys.stderr)
+    print("错误：未安装腾讯云 COS SDK。请运行：python3 -m pip install cos-python-sdk-v5", file=sys.stderr)
     sys.exit(1)
 
 
@@ -51,14 +59,14 @@ def parse_args():
         epilog="""
 示例：
   # 最简用法：省略 --local-file，自动保存为 ./<文件名>
-  python mps_cos_download.py --cos-input-key output/result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4
   # 等价于：--local-file ./result.mp4
 
   # 手动指定 local-file
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4
 
   # 指定 bucket 和 region
-  python mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
+  python3 mps_cos_download.py --cos-input-key output/result.mp4 --local-file ./result.mp4 \\
       --bucket mybucket-125xxx --region ap-guangzhou
         """
     )

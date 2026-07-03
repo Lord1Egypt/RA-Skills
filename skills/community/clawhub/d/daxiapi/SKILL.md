@@ -1,6 +1,6 @@
 ---
 name: daxiapi
-description: '大虾皮(daxiapi.com)金融数据API服务入口，负责路由分发到具体分析skill。触发词：A股数据、市场数据、股票分析、板块分析、选股、市场复盘、财务分析、财报分析、ROE分析、杜邦分析、个股舆情、公告解读、研报解读、主力资金、资金流向、资金动向。适用场景：获取A股市场、板块、个股、财报、消息面、资金流向数据时的统一入口，根据用户需求分发到对应的专业skill。不适用场景：非A股市场分析、非金融数据分析、纯技术问答。
+description: '大虾皮(daxiapi.com)金融数据API服务入口，负责路由分发到具体分析skill。触发词：A股数据、市场数据、股票分析、板块分析、选股、市场复盘、财务分析、财报分析、ROE分析、杜邦分析、个股舆情、公告解读、研报解读、主力资金、资金流向、资金动向。适用场景：获取A股市场、板块、个股、财报、消息面、资金流向数据时的统一入口，根据用户需求分发到对应的专业skill。不适用场景：非A股市场分析、非金融数据分析、纯技术问答。'
 ---
 
 # 大虾皮 API 路由 Skill
@@ -146,9 +146,9 @@ description: '大虾皮(daxiapi.com)金融数据API服务入口，负责路由�
 
 | 命令 | 说明 | 示例 |
 |------|------|------|
-| `stock info <codes...>` | 根据股票代码获取详细信息（支持批量，最多20只） | `daxiapi stock info 000001 600031 300750` |
+| `stock info <codes...>` | 根据股票代码获取详细信息（支持批量，最多20只；`--mode intraday` 查询盘中快照） | `daxiapi stock info 000001 600031 300750` |
 | `stock gn <gnId>` | 根据概念板块ID获取该概念下的所有股票 | `daxiapi stock gn GN1234 --type ths` |
-| `stock pattern <pattern>` | 根据技术形态筛选股票（支持27种形态） | `daxiapi stock pattern vcp` |
+| `stock pattern <pattern>` | 根据技术形态筛选股票（支持27种形态；`--mode intraday` 查询盘中选股） | `daxiapi stock pattern vcp` |
 | `stock capital-flow <code>` | 获取个股主力资金流向（默认5天，最多30天） | `daxiapi stock capital-flow 600031 --days 10` |
 | `sql <condition>` | 使用SQL条件筛选股票（支持自定义条件组合、排序和数量限制） | `daxiapi sql "date='2026-06-17' AND rps_score>70 ORDER BY rps_score DESC LIMIT 20"` |
 
@@ -358,4 +358,3 @@ npx daxiapi-cli@latest config set token YOUR_TOKEN  # 重新配置
 
 - [API参考](references/api-reference.md) - 详细API参数说明
 - [字段说明](references/field-descriptions.md) - 专用名词和字段详细说明
-

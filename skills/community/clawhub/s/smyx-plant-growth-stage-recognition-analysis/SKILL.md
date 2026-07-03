@@ -1,7 +1,7 @@
 ---
 name: "plant-growth-stage-recognition-analysis"
 description: "Accurately identifies key growth stages of plants from germination to fruiting based on computer vision and deep learning, provides structured data for precision agriculture decision support. | 植物生长阶段识别技能，基于计算机视觉与深度学习算法，精准识别植物从发芽到结果的全生命周期关键生长阶段，为精准农业提供科学决策支持"
-version: "1.0.3"
+version: "1.0.5"
 license: "MIT-0"
 ---
 

@@ -1,0 +1,9 @@
+# Manifest — axiom-jwt-inspector (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+48b64941140b46b62ff3f68e24bab7aa289b2f8b2ef4fc77617030659eb94e71  README.md  (1022 bytes)
+b4f6771cabf8b1de41071aff298d971fa6d15ffad7d4bd6d7973d6589260bd9b  SKILL.md  (386 bytes)
+bf1bde35f9cc3310d3014619d686ef9bc5c2f65944201203d44ef4d90f5db0a0  axiom_jwt_inspector.py  (7580 bytes)
+9a7ae10a188a55b835d736ac44abc98a347859ca5fb8ef5d3b89d956ed8500d6  test_axiom_jwt_inspector.py  (2908 bytes)

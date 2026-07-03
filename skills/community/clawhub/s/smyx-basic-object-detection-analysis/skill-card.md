@@ -1,5 +1,5 @@
 ## Description: <br>
-Detects people, vehicles, non-motorized vehicles, pets, and parcels in video streams or images for general security surveillance scenarios. <br>
+Detects people, vehicles, non-motorized vehicles, pets, and parcels in surveillance images or videos and returns structured object-detection reports. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and security operations developers use this skill to submit surveillance images, videos, or media URLs for object detection, structured reports, and report-history retrieval. <br>
+External users and security operations teams use this skill to analyze surveillance images, video files, or media URLs for common object categories and to retrieve prior object-detection reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Surveillance images, videos, media URLs, identity metadata, and report history may be sent to the publisher's remote services. <br>
-Mitigation: Install only after approving remote processing for this data category and confirming retention, deletion, and access expectations with the publisher. <br>
-Risk: The skill can quietly create or reuse a persistent identity and store account tokens in a local SQLite database. <br>
-Mitigation: Run in an isolated workspace or approved agent environment, review local token storage, and clear stored credentials when the skill is no longer needed. <br>
-Risk: Historical report retrieval automatically queries the cloud service when matching user intent is detected. <br>
-Mitigation: Limit use to contexts where automatic report-history queries are acceptable and ensure users understand that report retrieval depends on remote account state. <br>
+Risk: Surveillance images, videos, or media URLs are processed by configured LifeEmergence cloud services. <br>
+Mitigation: Review endpoint configuration, processing and retention terms, and authorization requirements before use. <br>
+Risk: The skill silently creates or reuses identity state and stores tokens and report history in the workspace data directory. <br>
+Mitigation: Run the skill in an isolated workspace and define token deletion, revocation, and data cleanup procedures before deployment. <br>
+Risk: Object-detection output is intended for security management reference and may be incomplete or incorrect. <br>
+Mitigation: Require human review before using results for operational response or enforcement decisions. <br>
 
 
 ## Reference(s): <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Common analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-basic-object-detection-analysis) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-basic-object-detection-analysis) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+- [API Documentation](references/api_doc.md) <br>
+- [Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown and JSON text, with optional saved result files] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands] <br>
+**Output Format:** [Markdown or JSON object-detection reports, with optional saved text output.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include object counts, confidence-filtered detection results, risk or recognition notes, report links, and report-history tables.] <br>
+**Other Properties Related to Output:** [May include report links and cloud-fetched history tables; JSON detail is the default output level.] <br>
 
 ## Skill Version(s): <br>
-1.0.6 (source: server release evidence; artifact frontmatter lists 1.0.5) <br>
+1.0.7 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

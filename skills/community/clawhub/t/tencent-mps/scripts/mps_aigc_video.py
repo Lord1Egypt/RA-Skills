@@ -38,20 +38,20 @@ COS 存储配置（可选）：
 
 用法：
   # 文生视频：最简用法（Hunyuan 模型）
-  python mps_aigc_video.py --prompt "一只可爱的橘猫在阳光下伸懒腰"
+  python3 mps_aigc_video.py --prompt "一只可爱的橘猫在阳光下伸懒腰"
 
   # 指定模型和版本
-  python mps_aigc_video.py --prompt "赛博朋克城市夜景" --model Kling --model-version 2.5
+  python3 mps_aigc_video.py --prompt "赛博朋克城市夜景" --model Kling --model-version 2.5
 
   # 图生视频：首帧图片 + 描述
-  python mps_aigc_video.py --prompt "让画面动起来" \
+  python3 mps_aigc_video.py --prompt "让画面动起来" \
       --image-url https://example.com/photo.jpg
 
   # Kling 分镜：单分镜（自动智能拆分）
-  python mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
+  python3 mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
 
   # Kling 分镜：多分镜（自定义每个分镜）
-  python mps_aigc_video.py --model Kling --multi-shot --duration 12 \
+  python3 mps_aigc_video.py --model Kling --multi-shot --duration 12 \
       --multi-prompts-json '[
         {"index": 1, "prompt": "日出时分，从酒店窗户看城市天际线", "duration": "3"},
         {"index": 2, "prompt": "在咖啡馆享用早餐，窗外街道行人", "duration": "4"},
@@ -59,52 +59,52 @@ COS 存储配置（可选）：
       ]'
 
   # 首尾帧生视频（GV / Kling 2.1 / Vidu q2-pro）
-  python mps_aigc_video.py --prompt "过渡动画" --model GV \
+  python3 mps_aigc_video.py --prompt "过渡动画" --model GV \
       --image-url https://example.com/start.jpg \
       --last-image-url https://example.com/end.jpg
 
   # GV 多图参考（最多3张，指定 asset/style）
-  python mps_aigc_video.py --prompt "融合元素" --model GV \
+  python3 mps_aigc_video.py --prompt "融合元素" --model GV \
       --ref-image-url https://example.com/img1.jpg --ref-image-type asset \
       --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
   # Kling O1 参考视频（待编辑视频 + 保留原声）
-  python mps_aigc_video.py --prompt "将视频风格化" --model Kling --model-version O1 \
+  python3 mps_aigc_video.py --prompt "将视频风格化" --model Kling --model-version O1 \
       --ref-video-url https://example.com/video.mp4 --ref-video-type base --keep-original-sound yes
 
   # Mingmou 横转竖
-  python mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
+  python3 mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
 
   # 指定时长、分辨率、宽高比
-  python mps_aigc_video.py --prompt "日出延时" --model Kling --duration 10 \
+  python3 mps_aigc_video.py --prompt "日出延时" --model Kling --duration 10 \
       --resolution 1080P --aspect-ratio 16:9
 
   # Kling 动作控制场景
-  python mps_aigc_video.py --prompt "人物行走" --model Kling --scene-type motion_control
+  python3 mps_aigc_video.py --prompt "人物行走" --model Kling --scene-type motion_control
 
   # 去除水印 + 生成音频 + 背景音乐
-  python mps_aigc_video.py --prompt "产品展示" --model Kling \
+  python3 mps_aigc_video.py --prompt "产品展示" --model Kling \
       --no-logo --enable-audio true --enable-bgm
 
   # Vidu 错峰模式（48小时内生成）
-  python mps_aigc_video.py --prompt "自然风景" --model Vidu --off-peak
+  python3 mps_aigc_video.py --prompt "自然风景" --model Vidu --off-peak
 
   # 附加参数（JSON 格式，如相机控制）
-  python mps_aigc_video.py --prompt "飞越城市" --model Kling \
+  python3 mps_aigc_video.py --prompt "飞越城市" --model Kling \
       --additional-params '{"camera_control":{"type":"simple"}}'
 
   # 存储到 COS
-  python mps_aigc_video.py --prompt "宣传片" \
+  python3 mps_aigc_video.py --prompt "宣传片" \
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou
 
   # 仅创建任务（不等待结果）
-  python mps_aigc_video.py --prompt "延时摄影" --no-wait
+  python3 mps_aigc_video.py --prompt "延时摄影" --no-wait
 
   # 查询已有任务结果
-  python mps_aigc_video.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_video.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_aigc_video.py --prompt "测试视频" --dry-run
+  python3 mps_aigc_video.py --prompt "测试视频" --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -128,7 +128,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # COS SDK（可选，用于生成临时URL）
@@ -234,7 +234,7 @@ def get_cos_presigned_url(bucket: str, region: str, key: str,
         预签名 URL，失败返回 None
     """
     if not _COS_SDK_AVAILABLE:
-        print("警告：COS SDK 未安装，无法生成临时 URL。请安装：pip install cos-python-sdk-v5", 
+        print("警告：COS SDK 未安装，无法生成临时 URL。请安装：python3 -m pip install cos-python-sdk-v5", 
               file=sys.stderr)
         return None
     
@@ -284,7 +284,7 @@ def upload_to_cos(local_path: str, bucket: str, region: str,
     import uuid as _uuid
 
     if not _COS_SDK_AVAILABLE:
-        print("❌ 错误：COS SDK 未安装，无法上传本地文件。请安装：pip install cos-python-sdk-v5",
+        print("❌ 错误：COS SDK 未安装，无法上传本地文件。请安装：python3 -m pip install cos-python-sdk-v5",
               file=sys.stderr)
         sys.exit(1)
 
@@ -1373,7 +1373,7 @@ def run(args):
 
         if args.no_wait:
             print(f"\n提示：使用以下命令查询任务结果：")
-            print(f"  python mps_aigc_video.py --task-id {task_id}")
+            print(f"  python3 mps_aigc_video.py --task-id {task_id}")
             return result
 
         # 自动轮询等待结果
@@ -1428,16 +1428,16 @@ def main():
         epilog="""
 示例：
   # 文生视频（默认 Hunyuan 模型）
-  python mps_aigc_video.py --prompt "一只可爱的橘猫在阳光下伸懒腰"
+  python3 mps_aigc_video.py --prompt "一只可爱的橘猫在阳光下伸懒腰"
 
   # 指定 Kling 模型 2.5 版本 + 10秒时长
-  python mps_aigc_video.py --prompt "赛博朋克" --model Kling --model-version 2.5 --duration 10
+  python3 mps_aigc_video.py --prompt "赛博朋克" --model Kling --model-version 2.5 --duration 10
 
   # Kling 分镜：单分镜（自动智能拆分）
-  python mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
+  python3 mps_aigc_video.py --prompt "旅行日记，记录美好瞬间" --model Kling --multi-shot
 
   # Kling 分镜：多分镜（自定义每个分镜）
-  python mps_aigc_video.py --model Kling --multi-shot --duration 12 \\
+  python3 mps_aigc_video.py --model Kling --multi-shot --duration 12 \\
       --multi-prompts-json '[
         {"index": 1, "prompt": "日出时分，从酒店窗户看城市天际线", "duration": "3"},
         {"index": 2, "prompt": "在咖啡馆享用早餐，窗外街道行人", "duration": "4"},
@@ -1445,60 +1445,60 @@ def main():
       ]'
 
   # 图生视频（首帧图片 URL）
-  python mps_aigc_video.py --prompt "让画面动起来" --image-url https://example.com/photo.jpg
+  python3 mps_aigc_video.py --prompt "让画面动起来" --image-url https://example.com/photo.jpg
 
   # 图生视频（首帧图片 COS 路径）
-  python mps_aigc_video.py --prompt "让画面动起来" \\
+  python3 mps_aigc_video.py --prompt "让画面动起来" \\
       --image-cos-bucket mybucket-125xxx --image-cos-region ap-guangzhou --image-cos-key /input/photo.jpg
 
   # 首尾帧生视频（GV 模型）
-  python mps_aigc_video.py --prompt "过渡" --model GV \\
+  python3 mps_aigc_video.py --prompt "过渡" --model GV \\
       --image-url https://example.com/start.jpg \\
       --last-image-url https://example.com/end.jpg
 
   # GV 多图参考（URL）
-  python mps_aigc_video.py --prompt "融合" --model GV \\
+  python3 mps_aigc_video.py --prompt "融合" --model GV \\
       --ref-image-url https://example.com/img1.jpg --ref-image-type asset \\
       --ref-image-url https://example.com/img2.jpg --ref-image-type style
 
   # GV 多图参考（COS 路径）
-  python mps_aigc_video.py --prompt "融合" --model GV \\
+  python3 mps_aigc_video.py --prompt "融合" --model GV \\
       --ref-image-cos-bucket mybucket-125xxx --ref-image-cos-region ap-guangzhou --ref-image-cos-key /input/img1.jpg --ref-image-type asset \\
       --ref-image-cos-bucket mybucket-125xxx --ref-image-cos-region ap-guangzhou --ref-image-cos-key /input/img2.jpg --ref-image-type style
 
   # Kling O1 参考视频 + 保留原声
-  python mps_aigc_video.py --prompt "风格化" --model Kling --model-version O1 \\
+  python3 mps_aigc_video.py --prompt "风格化" --model Kling --model-version O1 \\
       --ref-video-url https://example.com/video.mp4 \\
       --ref-video-type base --keep-original-sound yes
 
   # Kling O1 参考视频（COS 路径，自动生成预签名 URL）
-  python mps_aigc_video.py --prompt "风格化" --model Kling --model-version O1 \\
+  python3 mps_aigc_video.py --prompt "风格化" --model Kling --model-version O1 \\
       --ref-video-cos-bucket mybucket-125xxx --ref-video-cos-region ap-guangzhou --ref-video-cos-key /input/video.mp4 \\
       --ref-video-type base --keep-original-sound yes
 
   # Mingmou 横转竖
-  python mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
+  python3 mps_aigc_video.py --prompt "横屏转竖屏" --model Mingmou --scene-type land2port
 
   # PixVerse v6（文生视频 + 10秒 + 21:9 + 1080p 画质）
-  python mps_aigc_video.py --prompt "电影级城市天际线" --model PixVerse --model-version v6 \\
+  python3 mps_aigc_video.py --prompt "电影级城市天际线" --model PixVerse --model-version v6 \\
       --duration 10 --aspect-ratio 21:9 --quality 1080p
 
   # PixVerse c1 图生视频 + 9:16 + 540p（短视频比例）
-  python mps_aigc_video.py --prompt "人物行走" --model PixVerse --model-version c1 \\
+  python3 mps_aigc_video.py --prompt "人物行走" --model PixVerse --model-version c1 \\
       --image-url https://example.com/first-frame.jpg --duration 5 --aspect-ratio 9:16 --quality 540p
 
   # 1080P + 16:9 + 去水印 + 音频 + BGM
-  python mps_aigc_video.py --prompt "产品展示" --model Kling \\
+  python3 mps_aigc_video.py --prompt "产品展示" --model Kling \\
       --resolution 1080P --aspect-ratio 16:9 --no-logo --enable-audio true --enable-bgm
 
   # Vidu 错峰模式
-  python mps_aigc_video.py --prompt "风景" --model Vidu --off-peak
+  python3 mps_aigc_video.py --prompt "风景" --model Vidu --off-peak
 
   # 查询任务结果
-  python mps_aigc_video.py --task-id 4-AigcVideo-c3b145ec76xxxx
+  python3 mps_aigc_video.py --task-id 4-AigcVideo-c3b145ec76xxxx
 
   # Dry Run（仅打印请求参数）
-  python mps_aigc_video.py --prompt "测试" --dry-run
+  python3 mps_aigc_video.py --prompt "测试" --dry-run
 
 支持的模型：
   Hunyuan     腾讯混元大模型（默认）

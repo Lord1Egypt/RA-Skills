@@ -56,73 +56,73 @@ COS Storage Conventions:
 
 Usage:
   # Simplest usage: URL input + default preset template 101 (auto erase lower-center subtitles)
-  python mps_erase.py --url https://example.com/video.mp4
+  python3 mps_erase.py --url https://example.com/video.mp4
 
   # COS path input (recommended — upload locally first, then use)
-  python mps_erase.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
+  python3 mps_erase.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
   /input/video/test.mp4
 
   # COS input (bucket and region auto-read from environment variables)
-  python mps_erase.py --cos-input-key /input/video/test.mp4
+  python3 mps_erase.py --cos-input-key /input/video/test.mp4
 
   # Subtitle removal + OCR extraction (template 102)
-  python mps_erase.py --url https://example.com/video.mp4 --template 102
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 102
 
   # Watermark removal — advanced (template 201)
-  python mps_erase.py --url https://example.com/video.mp4 --template 201
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 201
 
   # Face blur (template 301)
-  python mps_erase.py --url https://example.com/video.mp4 --template 301
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 301
 
   # Face and license plate blur (template 302)
-  python mps_erase.py --url https://example.com/video.mp4 --template 302
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 302
 
   # Aggressive erase mode (area model, larger erase area, for stylized/shadowed/animated subtitles)
-  python mps_erase.py --url https://example.com/video.mp4 --model area
+  python3 mps_erase.py --url https://example.com/video.mp4 --model area
 
   # Subtitle in upper half of video (using position preset)
-  python mps_erase.py --url https://example.com/video.mp4 --position top-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position top-half
 
   # Subtitle in lower half of video (using position preset)
-  python mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
   # Subtitle on left side of video (vertical subtitle layout)
-  python mps_erase.py --url https://example.com/video.mp4 --position left
+  python3 mps_erase.py --url https://example.com/video.mp4 --position left
 
   # Subtitle on right side of video (vertical subtitle layout)
-  python mps_erase.py --url https://example.com/video.mp4 --position right
+  python3 mps_erase.py --url https://example.com/video.mp4 --position right
 
   # Subtitle at top of video (custom auto-erase region: top 0–25% of frame)
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
   # Multi-region erase (subtitles at both top and bottom)
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
   # Region erase (fixed subtitle position — specify time range + region for direct erasure)
-  python mps_erase.py --url https://example.com/video.mp4 \
+  python3 mps_erase.py --url https://example.com/video.mp4 \
       --method custom --custom-area 0,0,0,0.8,0.99,0.95
 
   # Time-range + region erase (erase bottom region within first 10 seconds)
-  python mps_erase.py --url https://example.com/video.mp4 \
+  python3 mps_erase.py --url https://example.com/video.mp4 \
       --method custom --custom-area 0,10000,0,0.8,0.99,0.95
 
   # Subtitle removal + OCR subtitle extraction
-  python mps_erase.py --url https://example.com/video.mp4 --ocr
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr
 
   # Subtitle removal + OCR extraction + translate to English (short drama overseas distribution)
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
 
   # Subtitle removal + OCR extraction + translate to Japanese
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
 
   # OCR recognition for multilingual subtitles
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-lang multi
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-lang multi
 
   # Output subtitle format as SRT
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-format srt
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --subtitle-format srt
 
   # Dry run (print request parameters only, do not call the API)
-  python mps_erase.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_erase.py --url https://example.com/video.mp4 --dry-run
 
 Environment Variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -159,7 +159,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -647,7 +647,7 @@ def process_media(args):
                 auto_download_outputs(task_result, download_dir=download_dir)
         else:
             print(f"\nNote: The task is being processed in the background. Use the following command to check progress:")  # NOCA:line-too-long(line cannot be shortened)
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -663,63 +663,63 @@ def main():
         epilog="""
 Examples:
   # URL input + default template (subtitle removal 101), output to TENCENTCLOUD_COS_BUCKET/output/erase/
-  python mps_erase.py --url https://example.com/video.mp4
+  python3 mps_erase.py --url https://example.com/video.mp4
 
   # COS input (bucket and region auto-read from environment variables)
-  python mps_erase.py --cos-input-key /input/video/test.mp4
+  python3 mps_erase.py --cos-input-key /input/video/test.mp4
 
   # Subtitle removal with OCR subtitle extraction (template 102)
-  python mps_erase.py --url https://example.com/video.mp4 --template 102
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 102
 
   # Watermark removal - advanced (template 201)
-  python mps_erase.py --url https://example.com/video.mp4 --template 201
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 201
 
   # Face blur (template 301)
-  python mps_erase.py --url https://example.com/video.mp4 --template 301
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 301
 
   # Face and license plate blur (template 302)
-  python mps_erase.py --url https://example.com/video.mp4 --template 302
+  python3 mps_erase.py --url https://example.com/video.mp4 --template 302
 
   # Aggressive erasure (area model, suitable for stylized/shadowed/animated subtitles)
-  python mps_erase.py --url https://example.com/video.mp4 --model area
+  python3 mps_erase.py --url https://example.com/video.mp4 --model area
 
   # Subtitles in the upper half of the screen (using position preset)
-  python mps_erase.py --url https://example.com/video.mp4 --position top-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position top-half
 
   # Subtitles in the lower half of the screen (using position preset)
-  python mps_erase.py --url https://example.com/video.mp4 --position bottom-half
+  python3 mps_erase.py --url https://example.com/video.mp4 --position bottom-half
 
   # Subtitles on the left side (vertical subtitles)
-  python mps_erase.py --url https://example.com/video.mp4 --position left
+  python3 mps_erase.py --url https://example.com/video.mp4 --position left
 
   # Subtitles on the right side (vertical subtitles)
-  python mps_erase.py --url https://example.com/video.mp4 --position right
+  python3 mps_erase.py --url https://example.com/video.mp4 --position right
 
   # Custom subtitle region (top 0~25% of the frame)
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.25
 
   # Multi-region erasure (subtitles at both top and bottom)
-  python mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
+  python3 mps_erase.py --url https://example.com/video.mp4 --area 0,0,1,0.15 --area 0,0.75,1,1
 
   # Fixed-region erasure (subtitle position is fixed, erase the bottom region of the entire video)
-  python mps_erase.py --url https://example.com/video.mp4 \
+  python3 mps_erase.py --url https://example.com/video.mp4 \
       --method custom --custom-area 0,0,0,0.8,0.99,0.95
 
   # Erase within a specific time range (erase bottom region within the first 10 seconds)
-  python mps_erase.py --url https://example.com/video.mp4 \
+  python3 mps_erase.py --url https://example.com/video.mp4 \
       --method custom --custom-area 0,10000,0,0.8,0.99,0.95
 
   # Subtitle removal + OCR subtitle extraction
-  python mps_erase.py --url https://example.com/video.mp4 --ocr
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr
 
   # Subtitle removal + OCR extraction + translate to English (short drama overseas)
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate en
 
   # Subtitle removal + OCR extraction + translate to Japanese
-  python mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
+  python3 mps_erase.py --url https://example.com/video.mp4 --ocr --translate ja
 
   # Dry Run (print request parameters only)
-  python mps_erase.py --url https://example.com/video.mp4 --dry-run
+  python3 mps_erase.py --url https://example.com/video.mp4 --dry-run
 
 Preset Templates (--template):
   101   Subtitle removal (default)              — auto erasure + standard model
@@ -864,6 +864,17 @@ Environment Variables:
                              help="Automatically download results to the specified directory after task completion (default: no download; specify a path to enable auto-download)")  # NOCA:line-too-long(line cannot be shortened)
 
     args = parser.parse_args()
+
+    # Auto-load environment variables (execute at entry to ensure all downstream functions can access)
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  Auto-load env failed: {e}", file=sys.stderr)
+
     # --url: if the value is a local path, automatically switch to local upload mode
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url
@@ -974,8 +985,11 @@ Environment Variables:
 
     if cos_bucket_env:
         print(f"COS Bucket (env var): {cos_bucket_env}")
-    else:
-        print("❌ TENCENTCLOUD_COS_BUCKET not set. Please configure it before retrying.", file=sys.stderr)
+
+    # Final check: at least one of --output-bucket or TENCENTCLOUD_COS_BUCKET env var must provide a valid bucket
+    if not args.output_bucket and not cos_bucket_env:
+        print("❌ Output Bucket not specified. Please configure via --output-bucket or TENCENTCLOUD_COS_BUCKET env var and retry.",
+              file=sys.stderr)
         sys.exit(1)
 
     template_id = get_template_id(args)

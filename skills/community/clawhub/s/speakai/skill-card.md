@@ -11,35 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, employees, and external users use this skill to connect agents to a Speak AI workspace for transcription, meeting analysis, transcript search, media exports, clips, surveys, and workflow automation. <br>
+External users and developers use this skill to connect an agent to a Speak AI workspace for searching recordings, reading transcripts and insights, creating clips or exports, and managing meeting, recorder, folder, webhook, and automation workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The connector can access Speak AI workspace data according to the OAuth or API key permissions granted by the user. <br>
-Mitigation: Review connector permissions during OAuth, authorize only the intended Speak AI account, and revoke OAuth access or remove the connector when it is no longer needed. <br>
-Risk: Some tools can delete records, make bulk changes, create persistent automations or recorders, reanalyze content, or generate shareable exports. <br>
-Mitigation: Require explicit user confirmation with target IDs and consequences before risky actions, preview bulk changes, and provide rollback or disable instructions for persistent changes. <br>
-Risk: Transcripts, captions, AI insights, chat messages, and meeting content may contain untrusted instructions or sensitive text. <br>
-Mitigation: Treat media content as data rather than instructions, scope reads to the smallest useful set of records, and ask the user whether to redact or proceed if credentials or directives appear in content. <br>
+Risk: The skill can access meeting, transcript, media, and workspace data in Speak AI. <br>
+Mitigation: Use the narrowest OAuth or API permissions available, scope searches with filters, and retrieve only the records needed for the user's task. <br>
+Risk: Some tools can delete records, create shareable artifacts, or make persistent workspace changes such as webhooks, automations, recorders, and meeting assistants. <br>
+Mitigation: Require explicit user confirmation for destructive, bulk, sharing, reanalysis, and persistent actions, including target IDs and consequences before execution. <br>
+Risk: Transcript, caption, media, insight, and chat content may contain text that resembles agent instructions. <br>
+Mitigation: Treat workspace content as untrusted data and follow only the active user's instructions. <br>
 
 
 ## Reference(s): <br>
 - [Speak AI MCP installation guide](https://mcp.speakai.co) <br>
 - [Speak AI API reference](https://docs.speakai.co) <br>
-- [@speakai/mcp-server package](https://www.npmjs.com/package/@speakai/mcp-server) <br>
-- [ClawHub Speak AI skill page](https://clawhub.ai/speakai/skills/speakai) <br>
+- [Speak AI MCP server package](https://www.npmjs.com/package/@speakai/mcp-server) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and MCP tool-call recommendations] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown guidance with tool selections, configuration snippets, and concise user-facing results] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MCP tool calls that read, create, update, share, export, reanalyze, or delete Speak AI workspace records after appropriate confirmation.] <br>
+**Other Properties Related to Output:** [May call Speak AI MCP tools and resources when configured with OAuth or SPEAK_API_KEY.] <br>
 
 ## Skill Version(s): <br>
-1.13.2 (source: server release metadata and SKILL.md frontmatter) <br>
+1.13.8 (source: frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

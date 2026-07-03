@@ -1,0 +1,43 @@
+{
+  "shop_name": "我的店铺",
+  "platforms": {
+    "meituan": {
+      "enabled": false,
+      "shop_id": "",
+      "api_key": "",
+      "note": "美团外卖评价API需要商家在美团开放平台注册并获取凭证"
+    },
+    "eleme": {
+      "enabled": false,
+      "shop_id": "",
+      "api_key": "",
+      "note": "饿了么/淘宝闪购API需要在饿了么开放平台注册"
+    },
+    "jd": {
+      "enabled": false,
+      "shop_id": "",
+      "api_key": "",
+      "note": "京东外卖评价API需要在京东开放平台注册"
+    }
+  },
+  "alert_thresholds": {
+    "taste_negative_ratio": 30,
+    "_taste_note": "口味负面评价占比超过此值触发告警",
+    "delivery_issue_ratio": 15,
+    "_delivery_note": "配送问题提及率超过此值触发告警",
+    "service_negative_ratio": 20,
+    "_service_note": "服务负面评价占比超过此值触发告警",
+    "low_rating_threshold": 4.0,
+    "_rating_note": "平均评分低于此值触发告警",
+    "negative_surge_multiplier": 2.0,
+    "_surge_note": "差评率超过历史平均的N倍触发告警"
+  },
+  "notification": {
+    "enabled": false,
+    "wechat_work_webhook": "",
+    "_note": "支持企业微信机器人webhook推送告警"
+  },
+  "report_dir": "~/.food_review_monitor/reports",
+  "data_dir": "~/.food_review_monitor/data",
+  "csv_template_note": "支持的CSV列名：评价内容/评论内容, 评分/星级, 评价时间, 配送时长, 菜品/商品"
+}

@@ -1,0 +1,150 @@
+skills:
+  - id: ZC01_opportunity_intake
+    name: Opportunity Information Intake
+    purpose: Receive procurement announcements, information source links, screenshots, or group messages, and determine whether they represent valid opportunities.
+    inputs: [message_text, attachments, urls]
+    outputs: [opportunity_raw_record, source_type]
+
+  - id: ZC02_notice_summarizer
+    name: Procurement Announcement Summarizer
+    purpose: Extract project name, procuring entity, budget, registration period, submission deadline, procurement method, and other information.
+    inputs: [opportunity_raw_record]
+    outputs: [opportunity_brief]
+
+  - id: ZC03_document_parser
+    name: Procurement Document Parser
+    purpose: Parse procurement document structure, chapters, and core requirements.
+    inputs: [tender_document]
+    outputs: [document_outline, extracted_sections]
+
+  - id: ZC04_qualification_extractor
+    name: Qualification Requirements Extractor
+    purpose: Extract qualification threshold conditions including qualifications, track record, personnel, financials, creditworthiness, consortium, etc.
+    inputs: [extracted_sections]
+    outputs: [qualification_requirements]
+
+  - id: ZC05_scoring_extractor
+    name: Evaluation Criteria Extractor
+    purpose: Extract evaluation items and score weights for commercial, technical, pricing, service, case study, and other categories.
+    inputs: [extracted_sections]
+    outputs: [scoring_criteria]
+
+  - id: ZC06_submission_extractor
+    name: Submission Requirements Extractor
+    purpose: Extract submission deadline, format, seals/signatures, number of copies, electronic platform, CA certificate, bid bond, and other requirements.
+    inputs: [extracted_sections]
+    outputs: [submission_requirements]
+
+  - id: ZC07_bid_evaluator
+    name: Bid Feasibility Evaluator
+    purpose: Determine whether to recommend participating in bidding based on qualification thresholds, enterprise capabilities, budget, timeline, and risks.
+    inputs: [qualification_requirements, company_materials, project_context]
+    outputs: [bid_recommendation, risks, missing_capabilities]
+
+  - id: ZC08_material_matcher
+    name: Enterprise Material Matcher
+    purpose: Match enterprise qualifications, case studies, personnel, proposal materials, and historical response documents.
+    inputs: [requirements, company_materials]
+    outputs: [matched_materials, missing_materials]
+
+  - id: ZC09_task_decomposer
+    name: Bid Task Decomposer
+    purpose: Output bid task checklist, responsible persons, deadlines, and collaboration nodes.
+    inputs: [tender_analysis_report, submission_requirements]
+    outputs: [task_list, milestones]
+
+  - id: ZC10_outline_builder
+    name: Response Outline Builder
+    purpose: Output bid response outline based on procurement document requirements.
+    inputs: [tender_document_outline, scoring_criteria, submission_requirements]
+    outputs: [response_outline]
+
+  - id: ZC11_draft_writer
+    name: Response Draft Writer
+    purpose: Produce response proposal chapter drafts based on procurement requirements, templates, and case materials.
+    inputs: [response_outline, technical_materials, case_materials]
+    outputs: [technical_draft, sections_need_human_input]
+
+  - id: ZC12_business_checker
+    name: Commercial Document Checker
+    purpose: Verify the completeness of commercial documents including business license, qualification certificates, personnel, track record, authorizations, commitment letters, etc.
+    inputs: [business_documents, qualification_requirements]
+    outputs: [business_check_result, missing_items]
+
+  - id: ZC13_compliance_reviewer
+    name: Response Document Compliance Reviewer
+    purpose: Check for missing items, formatting, seals/signatures, page order, numbering, material sequence, and other issues against procurement documents.
+    inputs: [bid_draft, tender_requirements]
+    outputs: [compliance_issues, review_summary]
+
+  - id: ZC14_deviation_analyzer
+    name: Response Deviation Risk Analyzer
+    purpose: Check whether technical, commercial, or service commitments contain response deviations or internal contradictions.
+    inputs: [bid_draft, tender_requirements]
+    outputs: [deviation_risks, inconsistency_items]
+
+  - id: ZC15_clarification_generator
+    name: Clarification Question Generator
+    purpose: Generate clarification questions to be sent to the procuring entity or agency.
+    inputs: [tender_analysis_report, risks]
+    outputs: [clarification_questions]
+
+  - id: ZC16_retro_analyzer
+    name: Bid Retrospective Analyzer
+    purpose: Produce a retrospective report based on the bidding process and results, and accumulate reusable materials.
+    inputs: [bid_result, process_records, review_report]
+    outputs: [retro_report, reusable_assets]
+
+  - id: ZC17_material_digitizer
+    name: Material Structuring Verifier
+    purpose: Convert procurement documents, technical specifications, reference files, and industry knowledge bases into searchable text, and verify the completeness of evaluation tables, technical parameters, and key data.
+    inputs: [tender_documents, design_documents, sample_bids, knowledge_sources]
+    outputs: [digitized_material_index, missing_or_broken_sections, key_number_list]
+
+  - id: ZC18_score_model_builder
+    name: Evaluation Model Builder
+    purpose: Extract evaluation modules, score weights, scoring tiers, disqualification clauses, and objective scoring supporting materials, and build a "how to score" response model.
+    inputs: [scoring_criteria, qualification_requirements, submission_requirements]
+    outputs: [score_model_table, objective_material_checklist, response_depth_suggestion]
+
+  - id: ZC19_requirement_indexer
+    name: Disqualification Clause No-Deviation Indexer
+    purpose: Map technical, commercial, formatting, and submission requirements to our response, deviation status, and corresponding chapters to reduce disqualification risk.
+    inputs: [tender_requirements, business_terms, technical_requirements]
+    outputs: [no_deviation_index, rejection_risk_items, required_confirmations]
+
+  - id: ZC20_sample_comparator
+    name: Reference Document Comparison Analyzer
+    purpose: Compare reference response documents with the target project, identify borrowable structures, non-inheritable content, project information residuals, and chapters requiring rewriting.
+    inputs: [sample_bid_text, target_project_profile, design_documents]
+    outputs: [borrowable_elements, conflict_items, rewrite_scope]
+
+  - id: ZC21_scheme_architect
+    name: Response Proposal Architect
+    purpose: Produce complete response proposal chapter structure, pre-index table, page planning, and chapter writing anchors based on the evaluation model and technical specifications.
+    inputs: [score_model_table, no_deviation_index, design_documents, project_profile]
+    outputs: [service_scheme_structure, score_index_table, commitment_evidence_chain]
+
+  - id: ZC22_chapter_expander
+    name: Chapter Draft Expander
+    purpose: Produce project-specific body text based on technical specifications, industry standards, and chapter anchors, and expand specific execution rules, standard operating procedures, monthly breakdown plans, risk contingency plans, and acceptance documentation packages.
+    inputs: [service_scheme_structure, design_documents, knowledge_base, case_materials]
+    outputs: [chapter_drafts, sections_need_human_input, evidence_material_requests]
+
+  - id: ZC23_expression_polisher
+    name: Response Document Expression Polisher
+    purpose: Detect and replace templated mechanical expressions, internal evaluation strategy language, exaggerated rhetoric, and wording that does not comply with government procurement document standards.
+    inputs: [bid_draft, taboo_word_list]
+    outputs: [cleanup_report, replacement_suggestions, remaining_risk_phrases]
+
+  - id: ZC24_chart_planner
+    name: Chart Placeholder and Chart Indexer
+    purpose: Produce chart placeholder indexes, key flowchart/Gantt chart/organizational chart lists, and chart placement positions based on response proposal chapters.
+    inputs: [service_scheme_structure, chapter_drafts, score_model_table]
+    outputs: [chart_catalog, chart_placeholders, chart_generation_brief]
+
+  - id: ZC25_consistency_checker
+    name: Pre-Submission Consistency Checker
+    purpose: Verify consistency of project name, reference number, procuring entity, key data, performance period, reference residuals, commercial responses, and disqualification risks.
+    inputs: [final_bid_draft, tender_documents, design_documents, no_deviation_index]
+    outputs: [consistency_check_report, fatal_risks, final_confirmation_items]

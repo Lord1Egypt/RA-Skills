@@ -1,0 +1,79 @@
+{
+  "emoji": "⚽",
+  "primaryEnv": "FS_USERNAME",
+  "requires": {
+    "env": [
+      "FS_USERNAME"
+    ],
+    "pip": []
+  },
+  "envVars": [
+    {
+      "name": "FS_USERNAME",
+      "required": true,
+      "description": "Your agent username on propSPACE. Auto-created on first run."
+    },
+    {
+      "name": "FS_PASSWORD",
+      "required": false,
+      "description": "Account password (min 6 chars). Default: 'simmer-wc-bot'. Set a strong value for production bots."
+    },
+    {
+      "name": "FS_BASE_URL",
+      "required": false,
+      "description": "FunctionSpace engine URL. Default: mech-v0-4 engine (https://fs-engine-api-mech-v0-4.onrender.com)."
+    },
+    {
+      "name": "FS_ROUND",
+      "required": false,
+      "description": "Round to trade, e.g. 'MD3'. Default: auto-detects the highest open round."
+    },
+    {
+      "name": "BRAVE_API_KEY",
+      "required": false,
+      "description": "Brave Search API key for scripts/enrich_from_web.py (optional — improves pick quality with expert sentiment)."
+    },
+    {
+      "name": "FS_RECIPE_SHAPE",
+      "required": false,
+      "description": "Belief recipe shape: 'multimodal' density recipe (default) or 'normal' Gaussian baseline."
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "main.py"
+  },
+  "tunables": [
+    {
+      "env": "FS_MAX_COLLATERAL",
+      "type": "number",
+      "default": 333,
+      "range": [50, 1000],
+      "step": 10,
+      "label": "Play-money per trade (3 picks × this = total stake)"
+    },
+    {
+      "env": "FS_MIN_EDGE",
+      "type": "number",
+      "default": 0.05,
+      "range": [0.01, 0.30],
+      "step": 0.01,
+      "label": "Min edge threshold for --all-markets mode (fraction)"
+    },
+    {
+      "env": "FS_MARKET_FILTER",
+      "type": "string",
+      "default": "",
+      "label": "Market title keyword filter ('' = all markets)"
+    },
+    {
+      "env": "FS_RECIPE_SHAPE",
+      "type": "select",
+      "default": "multimodal",
+      "options": ["multimodal", "normal"],
+      "label": "Belief recipe shape"
+    }
+  ]
+}

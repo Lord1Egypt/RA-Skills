@@ -58,7 +58,8 @@ The canonical machine-readable schema is in `references/resume-schema.json`. Kee
 ## Notes
 
 - Store spoken languages under `skills.languages`, not `personal.languages`.
-- `personal.photo` is optional and hidden by default in all built-in themes. Provide a file path (relative to the HTML output location), an http(s) URL, or a data: base64 URI. Enable rendering in a custom theme via CSS (`.resume-photo { display: block; ... }`). Only include a photo when the target market expects one — many regions penalize photo resumes.
+- `personal.linkedin` and `personal.github` should be full `https://` profile URLs.
+- `personal.photo` is optional and hidden by default in all built-in themes. Provide a relative path, absolute local file path, `file://` URL, `https://` URL, or a `data:` URI. Plain `http://` photo URLs are rejected. Enable rendering in a custom theme via CSS (`.resume-photo { display: block; ... }`). Only include a photo when the target market expects one — many regions penalize photo resumes.
 - Imported PDFs may initially produce rough entries or raw text. Normalize these into canonical fields before final export.
 
 ## Rich Text (Emphasis)

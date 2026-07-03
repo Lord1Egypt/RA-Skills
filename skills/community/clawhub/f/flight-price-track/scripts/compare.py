@@ -26,7 +26,7 @@ import urllib.error
 # 配置
 # ============================================================
 
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
 # 代理地址
 SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"

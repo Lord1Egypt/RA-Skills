@@ -1,0 +1,47 @@
+{
+  "wm": "坤图_GIS:V5.0",
+  "description": "GeoKG 地理知识图谱关系三元组",
+  "version": "5.0",
+  "triples": [
+    {"s": "GIS-KB-01-020", "p": "双向引用", "o": "GIS-KB-01-040", "desc": "坐标系统与投影 ↔ 中国三大坐标系实战"},
+    {"s": "GIS-KB-01-020", "p": "WGS84↔CGCS2000转换", "o": "GIS-KB-05-320", "desc": "坐标系统 → GNSS测量"},
+    {"s": "GIS-KB-01-02E", "p": "扩充EPSG全集", "o": "GIS-KB-01-020", "desc": "V5扩展: 坐标系码表 → 坐标系模块"},
+    {"s": "GIS-KB-01-04E", "p": "扩充七参数/北斗RTK", "o": "GIS-KB-01-040", "desc": "V5扩展: 地方坐标 → 三大坐标系"},
+    {"s": "GIS-KB-02-050", "p": "引用标准号", "o": "GIS-KB-02-060", "desc": "国标体系 → 数据生产流程"},
+    {"s": "GIS-KB-02-050", "p": "引用标准号", "o": "GIS-KB-02-070", "desc": "国标体系 → 质量检查"},
+    {"s": "GIS-KB-02-060", "p": "生产→质检", "o": "GIS-KB-02-070", "desc": "数据生产 → 质量检查"},
+    {"s": "GIS-KB-02-070", "p": "质检→汇交", "o": "GIS-KB-02-080", "desc": "质量检查 → 成果汇交"},
+    {"s": "GIS-KB-02-090", "p": "新标准体系", "o": "GIS-KB-02-050", "desc": "新型基础测绘 → 国标体系"},
+    {"s": "GIS-KB-02-050", "p": "国标↔OGC映射", "o": "GIS-KB-06-400", "desc": "国标体系 ↔ OGC国际标准"},
+    {"s": "GIS-KB-03-120", "p": "功能对标", "o": "GIS-KB-03-130", "desc": "ArcGIS Pro ↔ QGIS"},
+    {"s": "GIS-KB-03-120", "p": "版本双轨", "o": "GIS-KB-03-380", "desc": "ArcGIS Pro 3.6 ↔ 3.7差异"},
+    {"s": "GIS-KB-03-140", "p": "CASS→GDB→ArcGIS", "o": "GIS-KB-03-120", "desc": "CASS → ArcGIS Pro"},
+    {"s": "GIS-KB-03-140", "p": "南方数码协同", "o": "GIS-KB-03-150", "desc": "CASS ↔ iData"},
+    {"s": "GIS-KB-03-170", "p": "万能转换互补", "o": "GIS-KB-03-180", "desc": "GlobalMapper ↔ FME"},
+    {"s": "GIS-KB-03-190", "p": "坐标统一/点云配准", "o": "GIS-KB-03-360", "desc": "多源融合 → LiDAR360"},
+    {"s": "GIS-KB-03-MG", "p": "国产对标", "o": "GIS-KB-03-160", "desc": "MapGIS ↔ SuperMap"},
+    {"s": "GIS-KB-04-270", "p": "SAM/遥感/GIS LLM", "o": "GIS-KB-04-27E", "desc": "AI_GIS → GeoAI工程化扩展"},
+    {"s": "GIS-KB-04-27E", "p": "LangSAM+本地RAG", "o": "GIS-KB-06-450", "desc": "GeoAI工程化 → Agent范式"},
+    {"s": "GIS-KB-06-450", "p": "范式实现", "o": "AGENT_ENGINE", "desc": "Agent范式 → 多Agent引擎"},
+    {"s": "CGCS2000", "p": "法定基准", "o": "ArcGIS_Pro", "desc": "CGCS2000是所有国产GIS软件的法定坐标基准"},
+    {"s": "CGCS2000", "p": "法定基准", "o": "QGIS", "desc": "CGCS2000 ↔ QGIS"},
+    {"s": "CGCS2000", "p": "法定基准", "o": "SuperMap", "desc": "CGCS2000 ↔ SuperMap"},
+    {"s": "GB/T_24356", "p": "质量检验依据", "o": "DLG_DEM_DOM", "desc": "GB/T 24356 → 成果质量检验"},
+    {"s": "GeoParquet", "p": "替代Shapefile", "o": "VECTOR_FMT", "desc": "GeoParquet是Shapefile的云原生替代"},
+    {"s": "COPC", "p": "云原生点云", "o": "LiDAR360", "desc": "COPC格式 → LiDAR360直接支持"},
+    {"s": "agents/orchestrator", "p": "调度5类Agent", "o": "GIS_TASK", "desc": "Orchestrator → 数据探查/处理/质检/合规/文档"},
+    {"s": "GeoEvolve", "p": "四层自动更新", "o": "KNOWLEDGE_BASE", "desc": "自进化引擎 → 知识库增量更新"},
+    {"s": "七阶段流程", "p": "串行链路", "o": "DLG建库", "desc": "需求→探查→方案→预处理→执行→自检→归档"}
+  ],
+  "stats": {
+    "total_triples": 30,
+    "entities": {
+      "knowledge_base": 43,
+      "software": 9,
+      "coordinate_systems": 5,
+      "standards": 4,
+      "formats": 5,
+      "algorithms": 5
+    }
+  }
+}

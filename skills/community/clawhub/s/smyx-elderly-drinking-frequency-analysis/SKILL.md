@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-drinking-frequency-analysis"
 description: "Using a fixed camera in the living room or kitchen, the system analyzes video of the water-cup placement area (e.g., coffee table, dining table), detects hand-to-cup contact actions (pickup, putdown), and counts daily cup-pickup events (an indirect proxy for water intake). | 通过客厅或厨房固定摄像头，分析水杯放置区域（如茶几、餐桌）的视频，检测手部与水杯的接触动作（拿起、放下），统计每日水杯拿起次数（间接反映饮水量）。当每日拿起次数低于预设阈值（如每天少于6次）时，输出'脱水风险'提醒，建议家属或护理人员督促老人增加饮水。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

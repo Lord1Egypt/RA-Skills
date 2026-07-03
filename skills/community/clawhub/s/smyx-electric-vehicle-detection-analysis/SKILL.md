@@ -1,7 +1,7 @@
 ---
 name: "electric-vehicle-detection-analysis"
 description: "Automatically detects electric motorcycles and e-bikes in restricted areas based on computer vision. It supports real-time detection for both video streams and images, counts the number of illegal parking or driving instances, and triggers violation alerts to assist with safety management in parks, communities, and organizations. | 电动车智能检测技能，基于计算机视觉自动检测禁行区域内的电动摩托车/电动车，支持视频流和图片实时检测，统计违规停放/行驶数量，触发违规预警，助力园区/社区/单位安全管理"
-version: "1.0.7"
+version: "1.0.8"
 license: "MIT-0"
 ---
 
@@ -29,9 +29,7 @@ Specifically designed for security management in industrial parks, communities, 
 
 ## 🎬 技能演示 | Skill Demo
 
-![技能演示预览图](assets/guide.jpg)
-
-[▶️ 点击查看技能演示](https://lifeemergence.com/guide.html)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
 ---
 
@@ -43,13 +41,13 @@ Specifically designed for security management in industrial parks, communities, 
 
 ### 2. 🛠️ 能力范围
 
-| 能力类型 | 具体能力 |
-|---|---|
-| 🎬 视频/图片分析 | 支持监控视频与静态图片分析 |
-| 🛵 电动车检测 | 电动车物体检测、电动摩托车识别 |
-| 📊 违规统计 | 违规停放统计、违规行驶计数 |
-| 🚦 风险预警 | 违规等级预警 |
-| 📝 管理辅助 | 管理建议生成 |
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 支持监控视频与静态图片分析 |
+| 2 | 电动车物体检测、电动摩托车识别 |
+| 3 | 违规停放统计、违规行驶计数 |
+| 4 | 违规等级预警 |
+| 5 | 管理建议生成 |
 
 ### 3. ⚡ 触发条件
 
@@ -173,7 +171,7 @@ requests>=2.28.0
 
 ## 📜 历史报告清单输出规范 | Report List Format
 
-当显示历史分析报告清单的时候，从接口返回 JSON 数据中提取字段 `reportImageUrl` 作为超链接地址，且自动转化为如下 Markdown 表格格式输出。
+当显示历史分析报告清单的时候，从接口返回 JSON 数据中提取字段 `` 作为超链接地址，且自动转化为如下 Markdown 表格格式输出。
 
 ### 📌 固定输出列
 
@@ -183,7 +181,7 @@ requests>=2.28.0
 | 检测类型 | 从接口返回数据中提取 |
 | 分析时间 | 从接口返回数据中提取 |
 | 违规数量 | 从接口返回数据中提取 |
-| 点击查看 | 使用 `[🔗 查看报告](reportImageUrl)` 格式的超链接 |
+| 点击查看 | 使用 `[🔗 查看报告]()` 格式的超链接 |
 
 ### 🧾 表格输出示例
 

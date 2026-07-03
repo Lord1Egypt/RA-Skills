@@ -147,42 +147,42 @@ Supports 40+ languages including Chinese, English, Japanese, Korean, and more. C
 # ── Voice Cloning (clone) ─────────────────────────────────────────────────────
 
 # Clone voice from a local audio file (recommended: 10–20 s, single speaker, clear speech)
-python scripts/mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-file /path/to/voice.wav
 
 # Clone voice from an audio URL
-python scripts/mps_dubbing.py --mode clone --audio-url https://example.com/voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-url https://example.com/voice.wav
 
 # Clone voice from an audio URL, specifying the audio language
-python scripts/mps_dubbing.py --mode clone \
+python3 scripts/mps_dubbing.py --mode clone \
     --audio-url https://example.com/voice.mp4 --audio-lang en
 
 # ── Short-text TTS (tts) ──────────────────────────────────────────────────────
 
 # Minimal call (using a system voice)
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello, welcome to Tencent Cloud voice synthesis!" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..."
 
 # Specify output file path
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello, welcome!" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output /tmp/output.wav
 
 # Adjust sample rate and pitch
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello" \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --sample-rate 44100 --pitch 2 --output /tmp/out.wav
 
 # English synthesis
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Artificial intelligence changes the world." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --text-lang en
 
 # Long text auto-switches to async (no need to change --mode)
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "This is a very long text exceeding 2000 characters..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --download-dir ./output/
@@ -190,17 +190,17 @@ python scripts/mps_dubbing.py --mode tts \
 # ── Clone voice then synthesize ───────────────────────────────────────────────
 
 # Step 1: Clone voice — note the returned VoiceId
-python scripts/mps_dubbing.py --mode clone --audio-file voice.wav
+python3 scripts/mps_dubbing.py --mode clone --audio-file voice.wav
 
 # Step 2: Synthesize speech using the obtained VoiceId
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello, this is the cloned voice." \
     --voice-id "v1_<VoiceId from previous step>"
 
 # ── Long-text TTS (async-tts) ─────────────────────────────────────────────────
 
 # Specify VoiceId, write output to COS, then download locally after completion
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "This is a long text, suitable for async processing..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --url "https://<bucket>.cos.ap-guangzhou.myqcloud.com/input/placeholder.wav" \
@@ -208,14 +208,14 @@ python scripts/mps_dubbing.py --mode async-tts \
     --download-dir ./output/
 
 # Use a COS file as input, clone voice from video
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "Long text..." \
     --clone-video-url https://example.com/train.mp4 \
     --cos-input-key /input/placeholder.wav \
     --output-dir /output/tts/
 
 # Submit task only, do not wait (query manually later)
-python scripts/mps_dubbing.py --mode async-tts \
+python3 scripts/mps_dubbing.py --mode async-tts \
     --text "Long text..." \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --url "https://example.com/any_accessible.mp4" \
@@ -224,20 +224,20 @@ python scripts/mps_dubbing.py --mode async-tts \
 # ── Speech-to-Speech (async-sts) ──────────────────────────────────────────────
 
 # Replace voice in a video using a specified VoiceId
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --url https://example.com/video.mp4 \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output-dir /output/sts/ \
     --download-dir ./output/
 
 # Replace voice in a video by cloning from a reference video on the fly
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --url https://example.com/video.mp4 \
     --clone-video-url https://example.com/train.mp4 \
     --output-dir /output/sts/
 
 # Use COS input file
-python scripts/mps_dubbing.py --mode async-sts \
+python3 scripts/mps_dubbing.py --mode async-sts \
     --cos-input-key /input/video.mp4 \
     --voice-id "v1_Pi1pR9Q9UHqVOrQ0YpZFwL+Q/..." \
     --output-dir /output/sts/ \
@@ -246,12 +246,12 @@ python scripts/mps_dubbing.py --mode async-sts \
 # ── Other ─────────────────────────────────────────────────────────────────────
 
 # Query existing task results
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
 
 # Query task and download results locally
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
 
 # Dry run (print request parameters only, do not call the API)
-python scripts/mps_dubbing.py --mode tts \
+python3 scripts/mps_dubbing.py --mode tts \
     --text "Hello" --voice-id "v1_xxx..." --dry-run
 ```

@@ -1,0 +1,119 @@
+name: RFQSharedDimensions
+type: semantic_ontology
+description: |
+  RFQ 共享一致性维度 + resource_spec 雪花维度。
+  被 rfq-period-model.yml 与 rfq-ondemand-model.yml 共同引用。
+  各 model 文件的事实通过 dimension 名字引用本表条目；命名稳定后不要重命名。
+source_evidence:
+  partner_api_doc: https://support.huaweicloud.com/api-bpconsole/bcloud_01002.html
+
+# ============================================================
+# CONFORMED DIMENSIONS
+# ============================================================
+dimensions:
+  - name: Dim_Project
+    kind: scope_dimension
+    business_key: project_id
+    source_operations: [IAM/KeystoneListProjects, IAM/KeystoneListAuthProjects]
+    attributes: [id, name, domain_id, parent_id, enabled]
+
+  - name: Dim_CloudServiceType
+    kind: conformed_dimension
+    business_key: service_type_code
+    source_operations: [BSS/ListServiceTypes]
+    attributes: [service_type_code, service_type_name, abbreviation]
+    sample_record: { service_type_code: hws.service.type.ec2, service_type_name: 弹性云服务器, abbreviation: ECS }
+    sample_dataset: { path: samples/bss/ListServiceTypes/, total_count: 872 }
+
+  - name: Dim_ResourceType
+    kind: conformed_dimension
+    business_key: resource_type_code
+    parent_dimension: Dim_CloudServiceType
+    source_operations: [BSS/ListResourceTypes, BSS/ListServiceResources]
+    attributes: [resource_type_code, resource_type_name, resource_type_desc, service_type_code]
+    sample_record: { resource_type_code: hws.resource.type.vm, resource_type_name: 云主机, service_type_code: hws.service.type.ec2 }
+    sample_dataset: { path: samples/bss/ListResourceTypes/, total_count: 2464 }
+    bridge_lookup: { operation: BSS/ListServiceResources, param: service_type_code }
+
+  - name: Dim_Region
+    kind: conformed_dimension
+    business_key: region_code
+    source_documents: [https://developer.huaweicloud.com/endpoint]
+    attributes: [region_code, region_name, site]
+    notes: hcloud 无统一 region 字典 API；以官方 endpoint 页为准
+
+  - name: Dim_AvailabilityZone
+    kind: snowflake_dimension
+    business_key: az_code
+    parent_dimension: Dim_Region
+    source_operations: [ECS/NovaListAvailabilityZones]
+    attributes: [az_code, az_state]
+
+  - name: Dim_MeasureUnit
+    kind: conformed_dimension
+    business_key: measure_id
+    source_operations: [BSS/ListMeasureUnits]
+    attributes: [measure_id, measure_name, abbreviation, measure_type]
+    notes: RFQ 用到的 measure_id 取值与用途见 related-commands.md 字段对照（size_measure_id / usage_measure_id）
+
+# ============================================================
+# RESOURCE_SPEC SNOWFLAKE
+# ============================================================
+  - name: Dim_ResourceSpec
+    kind: abstract_dimension
+    business_key: resource_spec
+    resolved_by:
+      - Dim_ResourceSpec_ECS
+      - Dim_ResourceSpec_RDS
+      - Dim_ResourceSpec_DCS
+      - Dim_ResourceSpec_EVS
+      - Dim_ResourceSpec_EncodedConstant
+    selection_rule:
+      - { when: "cloud_service_type == hws.service.type.ec2",        use: Dim_ResourceSpec_ECS }
+      - { when: "cloud_service_type == hws.service.type.ebs",        use: Dim_ResourceSpec_EVS }
+      - { when: "cloud_service_type in [hws.service.type.vpc, hws.service.type.eip]", use: Dim_ResourceSpec_EncodedConstant }
+      - { when: "cloud_service_type starts_with hws.service.type.rds", use: Dim_ResourceSpec_RDS }
+      - { when: "cloud_service_type == hws.service.type.dcs",        use: Dim_ResourceSpec_DCS }
+      - { default: ask_user_or_consult_official_doc }
+
+  - name: Dim_ResourceSpec_ECS
+    kind: snowflake_dimension
+    business_key: flavor_id
+    source_operations: [ECS/ListFlavors, ECS/NovaListFlavors, ECS/NovaListFlavorsDetails]
+    rfq_transform:
+      rule: "resource_spec = flavor_id + os_suffix（.linux / .win）"   # OS 默认策略见 SKILL.md
+    attributes: [flavor_id, name, vcpus, ram]
+
+  - name: Dim_ResourceSpec_RDS
+    kind: snowflake_dimension
+    business_key: spec_code
+    source_operations: [RDS/ListFlavors, RDS/ListEngineFlavors]
+    attributes: [spec_code, db_engine, instance_mode]
+    notes: spec_code 直接作为 resource_spec；无 OS 后缀
+
+  - name: Dim_ResourceSpec_DCS
+    kind: snowflake_dimension
+    business_key: spec_code
+    source_operations: [DCS/ListFlavors]
+    attributes: [spec_code, capacity, cache_mode]
+
+  - name: Dim_ResourceSpec_EVS
+    kind: encoded_or_catalog_dimension
+    business_key: volume_type_code
+    source_operations: [EVS/CinderListVolumeTypes]
+    rfq_pairing: { requires_resource_size: true, size_measure_id: 17 }
+    notes: 云硬盘类型码清单见 related-commands.md resource_spec_lookup（命令层为唯一真源）
+
+  - name: Dim_ResourceSpec_EncodedConstant
+    kind: encoded_constant_dimension
+    business_key: constant_code
+    source_documents: [https://support.huaweicloud.com/api-bpconsole/bcloud_01002.html]
+    rfq_pairing:
+      bandwidth: { requires_resource_size: true, size_measure_id: 15 }
+      eip:       { requires_resource_size: false }
+    notes: 无 List API；带宽/EIP 常量表（code + size_measure_id）见 related-commands.md resource_spec_lookup 编码常量段（命令层为唯一真源）
+
+evidence_boundary:
+  - ECS resource_spec 必须带 .linux/.win 后缀；OS 未指定时的默认策略归 SKILL.md（safe-default .linux，Spec Review 披露）。
+  - 具体 code / spec / measure 取值清单归 related-commands.md；本表只描述维度形态与配对规则，不复制取值。
+  - 维度样本为 partner 视角；客户/伙伴账号可见范围可能不同。

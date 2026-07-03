@@ -1,0 +1,57 @@
+{
+  "name": "总误差评估",
+  "description": "基于CLSI EP21的总误差(Total Error)评估 — 计算偏倚、随机误差、TE、判定性能",
+  "tags": [
+    "total_error",
+    "accuracy",
+    "bias",
+    "precision"
+  ],
+  "default_report": "总误差报告",
+  "steps": [
+    {
+      "name": "描述统计",
+      "target": "operations.operators.calc_mean",
+      "params": {
+        "values": "%input.values%"
+      },
+      "description": "计算均值"
+    },
+    {
+      "name": "标准偏差",
+      "target": "operations.operators.calc_sd",
+      "params": {
+        "values": "%input.values%"
+      },
+      "description": "计算SD"
+    },
+    {
+      "name": "偏倚",
+      "target": "operations.operators.calc_bias",
+      "params": {
+        "mean": "%描述统计%",
+        "reference": "%input.reference%"
+      },
+      "description": "偏倚 = mean - reference"
+    },
+    {
+      "name": "总误差",
+      "target": "operations.total_error.calc_te_from_values",
+      "params": {
+        "values": "%input.values%",
+        "reference": "%input.reference%",
+        "t_crit": "%input.t_crit%"
+      },
+      "description": "TE = |bias| + t_crit × SD（含全部分量）"
+    },
+    {
+      "name": "判定",
+      "target": "operations.total_error.calc_te_judgment",
+      "params": {
+        "te_relative": "%总误差.te_relative%",
+        "te_allowable": "%input.te_allowable%"
+      },
+      "description": "与允许总误差TEa比较"
+    }
+  ]
+}

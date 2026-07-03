@@ -1,5 +1,5 @@
 ## Description: <br>
-Howtocook is an API-backed recipe assistant for recipe search, category filtering, meal planning, shopping-list guidance, and daily menu recommendations. <br>
+An MCP-based recipe recommendation skill that queries recipes, filters categories, creates meal plans, and suggests daily menus through the Xiaobenyang API. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use Howtocook to retrieve recipes, filter by food category, generate weekly meal plans for 1-10 diners based on allergies and avoided ingredients, and produce shopping-list style guidance through the Xiaobenyang service. <br>
+External users and cooking assistants use this skill to retrieve recipe details, browse recipe categories, and generate meal recommendations or weekly meal plans based on people count, allergies, and avoided ingredients. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill requires a Xiaobenyang API key and stores it in a local .env file, which can expose credentials if the file is shared or committed. <br>
-Mitigation: Keep the .env file out of source control and shared folders, prefer environment variables where practical, and rotate the API key if exposure is suspected. <br>
-Risk: Recipe and meal-planning answers depend on the upstream Xiaobenyang service and should not be fabricated when the API key is missing or an upstream call fails. <br>
-Mitigation: Ask the user for the required API key before use, call the provided tools for recipe data, and surface upstream errors clearly instead of inventing results. <br>
+Risk: The skill saves the required Xiaobenyang API key in a local .env file. <br>
+Mitigation: Use it only from a protected, non-shared directory; exclude .env from source control and rotate the key if exposure is suspected. <br>
+Risk: The skill depends on a user-provided Xiaobenyang API key before it can return API-backed recipe results. <br>
+Mitigation: Prompt for the key when it is missing and avoid fabricating recipe data when the key is unavailable. <br>
 
 
 ## Reference(s): <br>
-- [Howtocook ClawHub listing](https://clawhub.ai/cainingnk/howtocook) <br>
-- [Xiaobenyang service](https://xiaobenyang.com) <br>
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/howtocook) <br>
+- [Xiaobenyang API key portal](https://xiaobenyang.com) <br>
 - [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown summaries of API JSON responses] <br>
+**Output Type(s):** [Text, Markdown, Guidance] <br>
+**Output Format:** [Markdown summaries of API-backed JSON results] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Xiaobenyang API key in XBY_APIKEY or a local .env file; recipe tools accept category, query, allergies, avoided items, and people count parameters.] <br>
+**Other Properties Related to Output:** [May include recipe details, category-filtered lists, weekly meal plans, shopping lists, and direct meal suggestions.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+1.0.1 (source: server release; artifact frontmatter lists 1.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

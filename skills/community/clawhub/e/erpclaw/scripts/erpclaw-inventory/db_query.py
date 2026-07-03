@@ -20,7 +20,7 @@ from decimal import Decimal, InvalidOperation
 
 # Add shared lib to path
 try:
-    sys.path.insert(0, os.path.expanduser("~/.openclaw/erpclaw/lib"))
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     from erpclaw_lib.db import get_connection, ensure_db_exists, DEFAULT_DB_PATH
     from erpclaw_lib.decimal_utils import to_decimal, round_currency
     from erpclaw_lib.validation import check_input_lengths
@@ -64,11 +64,30 @@ ENTRY_TYPE_MAP = {
     "issue": "material_issue",
     "transfer": "material_transfer",
     "manufacture": "manufacture",
+    # User-friendly aliases for the S6 typed-dispatch paths
+    "repack": "repack",
+    "subcontract": "send_to_subcontractor",
+    "consume": "material_consumption",
     # Also accept DB values directly
     "material_receipt": "material_receipt",
     "material_issue": "material_issue",
     "material_transfer": "material_transfer",
+    "send_to_subcontractor": "send_to_subcontractor",
+    "material_consumption": "material_consumption",
 }
+
+# Repack cost-balance tolerance: total input value must equal total output value
+# within this Decimal band ($0.01 rounding allowance). A repack neither creates
+# nor destroys inventory value — it only re-packages it, so cost-in must equal
+# cost-out. The constant is a single point of truth (S6 §Validation rules).
+REPACK_COST_TOLERANCE = Decimal("0.01")
+
+# Warehouse types a subcontractor sub-store may legitimately be (S6 §Validation).
+SUBCONTRACTOR_WAREHOUSE_TYPES = ("transit", "production")
+
+# Work-order statuses that accept material consumption (an "active" work order).
+# draft/completed/stopped/cancelled cannot consume; not_started/in_process can.
+ACTIVE_WORK_ORDER_STATUSES = ("not_started", "in_process")
 
 
 
@@ -725,11 +744,13 @@ def list_warehouses(conn, args):
 def add_stock_entry(conn, args):
     """Create a stock entry in draft."""
     if not args.entry_type:
-        err("--entry-type is required (receive|issue|transfer|manufacture)")
+        err("--entry-type is required "
+            "(receive|issue|transfer|manufacture|repack|subcontract|consume)")
     entry_type = ENTRY_TYPE_MAP.get(args.entry_type)
     if not entry_type:
         err(f"Invalid --entry-type '{args.entry_type}'. "
-             f"Valid: receive, issue, transfer, manufacture")
+             f"Valid: receive, issue, transfer, manufacture, "
+             f"repack, subcontract, consume")
     if not args.company_id:
         err("--company-id is required")
     if not args.posting_date:
@@ -745,6 +766,50 @@ def add_stock_entry(conn, args):
     items = _parse_json_arg(args.items, "items")
     if not items or not isinstance(items, list):
         err("--items must be a non-empty JSON array")
+
+    # --- S6 entry-level validation for the typed-dispatch paths ---------------
+    # These checks are entry-wide (one parent reference), so run them once before
+    # the per-item loop rather than per line.
+    purpose_ref_type = None
+    purpose_ref_id = None
+
+    if entry_type == "send_to_subcontractor":
+        # Materials move OUT to a supplier sub-store; that warehouse must be a
+        # transit or production warehouse (a real subcontractor staging store),
+        # never a normal stores/rejected warehouse.
+        sub_wh_id = args.supplier_warehouse_id
+        if not sub_wh_id:
+            err("--supplier-warehouse-id is required for a subcontract transfer")
+        wh_t = Table("warehouse")
+        wh_q = (Q.from_(wh_t).select(wh_t.id, wh_t.warehouse_type)
+                .where(wh_t.id == P()))
+        wh_row = conn.execute(wh_q.get_sql(), (sub_wh_id,)).fetchone()
+        if not wh_row:
+            err(f"Subcontractor warehouse {sub_wh_id} not found")
+        if wh_row["warehouse_type"] not in SUBCONTRACTOR_WAREHOUSE_TYPES:
+            err(f"Subcontractor warehouse {sub_wh_id} has warehouse_type "
+                f"'{wh_row['warehouse_type']}'; must be one of "
+                f"{'/'.join(SUBCONTRACTOR_WAREHOUSE_TYPES)}")
+        purpose_ref_type = "subcontracting_warehouse"
+        purpose_ref_id = sub_wh_id
+
+    elif entry_type == "material_consumption":
+        # Raw materials are issued against an active work order.
+        wo_id = args.work_order_id
+        if not wo_id:
+            err("--work-order-id is required for material consumption")
+        wo_t = Table("work_order")
+        wo_q = (Q.from_(wo_t).select(wo_t.id, wo_t.status)
+                .where(wo_t.id == P()))
+        wo_row = conn.execute(wo_q.get_sql(), (wo_id,)).fetchone()
+        if not wo_row:
+            err(f"Work order {wo_id} not found")
+        if wo_row["status"] not in ACTIVE_WORK_ORDER_STATUSES:
+            err(f"Work order {wo_id} is '{wo_row['status']}'; material can only "
+                f"be consumed against an active work order "
+                f"({'/'.join(ACTIVE_WORK_ORDER_STATUSES)})")
+        purpose_ref_type = "work_order"
+        purpose_ref_id = wo_id
 
     se_id = str(uuid.uuid4())
     naming = get_next_name(conn, "stock_entry", company_id=args.company_id)
@@ -781,8 +846,14 @@ def add_stock_entry(conn, args):
         from_wh = item.get("from_warehouse_id")
         to_wh = item.get("to_warehouse_id")
 
+        # A repack line is directional: an INPUT line is consumed (from_wh only),
+        # an OUTPUT line is produced (to_wh only). Auto-filling BOTH from the
+        # company default would erase that distinction, so repack lines opt out of
+        # the dual fallback below.
+        is_repack_line = (entry_type == "repack")
+
         # Fall back to company's default warehouse if item-level warehouse not specified
-        if not to_wh or not from_wh:
+        if (not to_wh or not from_wh) and not is_repack_line:
             dw_t = Table("company")
             dw_q = Q.from_(dw_t).select(dw_t.default_warehouse_id).where(dw_t.id == P())
             dw_row = conn.execute(dw_q.get_sql(), (args.company_id,)).fetchone()
@@ -816,6 +887,30 @@ def add_stock_entry(conn, args):
                 total_incoming += amount
             if from_wh:
                 total_outgoing += amount
+        elif entry_type == "repack":
+            # A repack line is either an INPUT (consumed, from_wh only) or an
+            # OUTPUT (produced, to_wh only). Exactly one of from/to must be set.
+            if bool(from_wh) == bool(to_wh):
+                err(f"Item {i}: a repack line needs exactly one of "
+                    f"from_warehouse_id (input) or to_warehouse_id (output)")
+            if to_wh:
+                total_incoming += amount
+            else:
+                total_outgoing += amount
+        elif entry_type == "send_to_subcontractor":
+            # Move stock OUT of from_wh to the (validated) subcontractor sub-store.
+            # The destination is the entry-level supplier_warehouse_id, not a
+            # per-line to_warehouse; force it so the SLE builder posts both legs.
+            if not from_wh:
+                err(f"Item {i}: from_warehouse_id is required for a subcontract transfer")
+            to_wh = purpose_ref_id  # validated supplier sub-store
+            total_incoming += amount
+            total_outgoing += amount
+        elif entry_type == "material_consumption":
+            # Raw materials issued against the work order — consumed from from_wh.
+            if not from_wh:
+                err(f"Item {i}: from_warehouse_id is required for material consumption")
+            total_outgoing += amount
 
         item_rows_to_insert.append((
             str(uuid.uuid4()), se_id, item_id, str(round_currency(qty)),
@@ -826,19 +921,35 @@ def add_stock_entry(conn, args):
 
     value_diff = round_currency(total_incoming - total_outgoing)
 
+    # A repack neither creates nor destroys inventory value: total input value
+    # must equal total output value within the $0.01 rounding tolerance. This is
+    # the cost-balance invariant (S6 §Validation rules). It also guarantees both
+    # an input and an output line exist (a zero on either side breaks balance for
+    # any non-trivial repack, and a fully-zero repack is meaningless).
+    if entry_type == "repack":
+        if total_incoming <= 0 or total_outgoing <= 0:
+            err("A repack needs at least one input line (consumed) and one "
+                "output line (produced)")
+        if abs(total_incoming - total_outgoing) > REPACK_COST_TOLERANCE:
+            err(f"Repack is not cost-balanced: input value "
+                f"{round_currency(total_outgoing)} != output value "
+                f"{round_currency(total_incoming)} "
+                f"(tolerance ${REPACK_COST_TOLERANCE})")
+
     # Insert parent stock_entry first (FK target for stock_entry_item)
     se_t = Table("stock_entry")
     se_q = Q.into(se_t).columns(
         "id", "naming_series", "stock_entry_type", "posting_date",
         "total_incoming_value", "total_outgoing_value", "value_difference",
+        "purpose_reference_type", "purpose_reference_id",
         "status", "company_id",
-    ).insert(P(), P(), P(), P(), P(), P(), P(), "draft", P())
+    ).insert(P(), P(), P(), P(), P(), P(), P(), P(), P(), "draft", P())
     conn.execute(
         se_q.get_sql(),
         (se_id, naming, entry_type, args.posting_date,
          str(round_currency(total_incoming)),
          str(round_currency(total_outgoing)),
-         str(value_diff), args.company_id),
+         str(value_diff), purpose_ref_type, purpose_ref_id, args.company_id),
     )
 
     # Now insert child stock_entry_item rows
@@ -858,6 +969,62 @@ def add_stock_entry(conn, args):
          "total_incoming_value": str(round_currency(total_incoming)),
          "total_outgoing_value": str(round_currency(total_outgoing)),
          "value_difference": str(value_diff)})
+
+
+def add_repack_stock_entry(conn, args):
+    """Convenience wrapper: a one-input/one-output repack in a single warehouse.
+
+    Builds the two-line --items payload (consume from_item, produce to_item, both
+    in --warehouse) and delegates to add_stock_entry with --entry-type repack, so
+    the cost-balance invariant + repack dispatch live in exactly one place.
+    """
+    if not args.warehouse:
+        err("--warehouse is required for a repack")
+    if not args.from_item_id or not args.to_item_id:
+        err("--from-item-id and --to-item-id are required for a repack")
+    if not args.from_qty or not args.to_qty:
+        err("--from-qty and --to-qty are required for a repack")
+
+    items = [
+        {"item_id": args.from_item_id, "qty": args.from_qty,
+         "from_warehouse_id": args.warehouse},
+    ]
+    out_line = {"item_id": args.to_item_id, "qty": args.to_qty,
+                "to_warehouse_id": args.warehouse}
+    # An explicit --standard-rate values the produced item; otherwise it falls
+    # back to the item's standard_rate (same rule as add_stock_entry lines).
+    if args.standard_rate:
+        out_line["rate"] = args.standard_rate
+    items.append(out_line)
+
+    args.entry_type = "repack"
+    args.items = json.dumps(items)
+    add_stock_entry(conn, args)
+
+
+def add_material_consumption(conn, args):
+    """Convenience wrapper: issue one raw material against a work order.
+
+    Builds the single-line --items payload (consume --item-id from --warehouse)
+    and delegates to add_stock_entry with --entry-type material_consumption.
+    """
+    if not args.warehouse:
+        err("--warehouse is required for material consumption")
+    if not args.work_order_id:
+        err("--work-order-id is required for material consumption")
+    if not args.item_id:
+        err("--item-id is required for material consumption")
+    if not args.qty:
+        err("--qty is required for material consumption")
+
+    line = {"item_id": args.item_id, "qty": args.qty,
+            "from_warehouse_id": args.warehouse}
+    if args.rate:
+        line["rate"] = args.rate
+
+    args.entry_type = "material_consumption"
+    args.items = json.dumps([line])
+    add_stock_entry(conn, args)
 
 
 # ---------------------------------------------------------------------------
@@ -1081,6 +1248,87 @@ def submit_stock_entry(conn, args):
                     "serial_number": item.get("serial_numbers"),
                     "fiscal_year": fiscal_year,
                 })
+        elif entry_type == "repack":
+            # Each repack line is single-direction (enforced at add time):
+            #   input line  → from_wh set → consume (negative qty)
+            #   output line → to_wh set   → produce (positive qty at its rate)
+            # The cost-balance invariant (input value == output value) was already
+            # verified at draft, so the SLE pair nets to zero stock-value change.
+            if to_wh:
+                sle_entries.append({
+                    "item_id": item["item_id"],
+                    "warehouse_id": to_wh,
+                    "actual_qty": str(round_currency(qty)),
+                    "incoming_rate": str(round_currency(rate)),
+                    "batch_id": item.get("batch_id"),
+                    "serial_number": item.get("serial_numbers"),
+                    "fiscal_year": fiscal_year,
+                    # The produced item must carry a stated value, never $0.
+                    "require_rate": True,
+                })
+            else:
+                sle_entries.append({
+                    "item_id": item["item_id"],
+                    "warehouse_id": from_wh,
+                    "actual_qty": str(round_currency(-qty)),
+                    "incoming_rate": "0",
+                    "batch_id": item.get("batch_id"),
+                    "serial_number": item.get("serial_numbers"),
+                    "fiscal_year": fiscal_year,
+                })
+        elif entry_type == "send_to_subcontractor":
+            # Transfer OUT: negative at from_wh, positive at the subcontractor
+            # sub-store (to_wh was forced to the validated supplier warehouse at
+            # add time). The sub-store leg inherits the source valuation.
+            sle_entries.append({
+                "item_id": item["item_id"],
+                "warehouse_id": from_wh,
+                "actual_qty": str(round_currency(-qty)),
+                "incoming_rate": "0",
+                "batch_id": item.get("batch_id"),
+                "serial_number": item.get("serial_numbers"),
+                "fiscal_year": fiscal_year,
+            })
+            sle_entries.append({
+                "item_id": item["item_id"],
+                "warehouse_id": to_wh,
+                "actual_qty": str(round_currency(qty)),
+                "incoming_rate": str(round_currency(rate)),
+                "batch_id": item.get("batch_id"),
+                "serial_number": item.get("serial_numbers"),
+                "fiscal_year": fiscal_year,
+            })
+        elif entry_type == "material_consumption":
+            # Issue raw materials against the work order: negative at from_wh.
+            sle_entries.append({
+                "item_id": item["item_id"],
+                "warehouse_id": from_wh,
+                "actual_qty": str(round_currency(-qty)),
+                "incoming_rate": "0",
+                "batch_id": item.get("batch_id"),
+                "serial_number": item.get("serial_numbers"),
+                "fiscal_year": fiscal_year,
+            })
+
+    # Hard-reservation enforcement (ADR-0026): a material_issue can never drive
+    # available stock below the sum of that warehouse's ACTIVE reservations for
+    # the item. available = actual_qty - SUM(active reserved_qty). Computed and
+    # blocked BEFORE any SLE is written (single-transaction; full rollback). This
+    # is what makes reservations "hard" rather than a cosmetic column.
+    if entry_type == "material_issue":
+        issue_per_key = {}  # (item_id, from_warehouse_id) -> total issue qty
+        for item_row in items:
+            il = row_to_dict(item_row)
+            key = (il["item_id"], il.get("from_warehouse_id"))
+            issue_per_key[key] = issue_per_key.get(key, Decimal("0")) + to_decimal(il["quantity"])
+        for (item_id, from_warehouse_id), issue_qty in issue_per_key.items():
+            if not from_warehouse_id:
+                continue
+            available = _available_qty(conn, item_id, from_warehouse_id)
+            if issue_qty > available:
+                err(f"Cannot issue {issue_qty} of item {item_id} from warehouse "
+                    f"{from_warehouse_id}: only {available} available (actual minus "
+                    f"active reservations). Release a reservation first.")
 
     # Insert SLE entries via shared lib
     try:
@@ -2625,21 +2873,35 @@ def get_projected_qty(conn, args):
         Decimal("0"),
     ))
 
-    # 3. Reserved qty: confirmed SO items not yet fully delivered
-    # SO statuses that indicate pending delivery: confirmed, partially_delivered
-    so_rows = conn.execute(
-        """SELECT soi.quantity, soi.delivered_qty
-        FROM sales_order_item soi
-        JOIN sales_order so_ ON so_.id = soi.sales_order_id
-        WHERE soi.item_id = ?
-          AND (soi.warehouse_id = ? OR soi.warehouse_id IS NULL)
-          AND so_.status IN ('confirmed', 'partially_delivered')""",
+    # 3. Reserved qty (ADR-0026): read PERSISTED active stock_reservation_entry
+    # rows for this (item, warehouse). When no persisted rows exist, FALL BACK to
+    # the original SO-derived computation (confirmed SO items not yet delivered),
+    # so existing callers see no behavioral change and the return shape is
+    # unchanged (reserved_qty stays Decimal-as-text).
+    res_rows = conn.execute(
+        "SELECT reserved_qty FROM stock_reservation_entry "
+        "WHERE item_id = ? AND warehouse_id = ? AND status = 'active'",
         (args.item_id, args.warehouse_id),
     ).fetchall()
-    reserved_qty = round_currency(sum(
-        (max(to_decimal(r["quantity"]) - to_decimal(r["delivered_qty"]), Decimal("0")) for r in so_rows),
-        Decimal("0"),
-    ))
+    if res_rows:
+        reserved_qty = round_currency(sum(
+            (to_decimal(r["reserved_qty"]) for r in res_rows), Decimal("0"),
+        ))
+    else:
+        # Fallback: SO statuses indicating pending delivery (confirmed, partially_delivered).
+        so_rows = conn.execute(
+            """SELECT soi.quantity, soi.delivered_qty
+            FROM sales_order_item soi
+            JOIN sales_order so_ ON so_.id = soi.sales_order_id
+            WHERE soi.item_id = ?
+              AND (soi.warehouse_id = ? OR soi.warehouse_id IS NULL)
+              AND so_.status IN ('confirmed', 'partially_delivered')""",
+            (args.item_id, args.warehouse_id),
+        ).fetchall()
+        reserved_qty = round_currency(sum(
+            (max(to_decimal(r["quantity"]) - to_decimal(r["delivered_qty"]), Decimal("0")) for r in so_rows),
+            Decimal("0"),
+        ))
 
     projected_qty = round_currency(actual_qty + ordered_qty - reserved_qty)
 
@@ -3014,6 +3276,842 @@ def list_item_suppliers(conn, args):
     ok({"count": len(results), "item_suppliers": results})
 
 
+# ===========================================================================
+# Wave 2 M5: putaway + pick list + persisted hard reservation (ADR-0026).
+# Warehouse-level granularity V1; no bin schema (pick_list_item.source_warehouse_bin
+# is a free-TEXT hint only). erpclaw-inventory owns + writes all four tables.
+# ===========================================================================
+
+# Reservation lifecycle states (CHECK in stock_reservation_entry.status).
+RESERVATION_STATUSES = ("active", "released", "consumed")
+# Voucher types a reservation may bind to (CHECK in voucher_type).
+RESERVATION_VOUCHER_TYPES = ("sales_order", "pick_list", "manual")
+# Pick-list lifecycle states.
+PICK_LIST_STATUSES = ("draft", "submitted", "picked", "completed", "cancelled")
+
+
+def _active_reserved_qty(conn, item_id, warehouse_id, exclude_reservation_id=None):
+    """SUM(reserved_qty) over ACTIVE stock_reservation_entry rows for an
+    (item, warehouse), as Decimal. Optionally excludes one reservation id (used
+    when re-checking headroom while editing/releasing a specific reservation).
+
+    This is the single point of truth for "how much of this warehouse's stock is
+    already promised" — read by get-projected-qty (reserved_qty), add-reservation,
+    submit-pick-list, and submit-stock-entry's material_issue hard-block.
+    """
+    sql = ("SELECT reserved_qty FROM stock_reservation_entry "
+           "WHERE item_id = ? AND warehouse_id = ? AND status = 'active'")
+    params = [item_id, warehouse_id]
+    if exclude_reservation_id is not None:
+        sql += " AND id != ?"
+        params.append(exclude_reservation_id)
+    rows = conn.execute(sql, params).fetchall()
+    return sum((to_decimal(r["reserved_qty"]) for r in rows), Decimal("0"))
+
+
+def _available_qty(conn, item_id, warehouse_id, exclude_reservation_id=None):
+    """Available-to-reserve / available-to-issue for an (item, warehouse):
+
+        available = actual_qty - SUM(active reservation reserved_qty)
+
+    This is the hard-reservation invariant of ADR-0026: a consumption can never
+    drive available below the sum of active reservations. actual_qty comes from
+    the SLE balance (the same source get-stock-balance uses).
+    """
+    balance = get_stock_balance(conn, item_id, warehouse_id)
+    actual = to_decimal(balance["qty"])
+    reserved = _active_reserved_qty(conn, item_id, warehouse_id, exclude_reservation_id)
+    return round_currency(actual - reserved)
+
+
+def _next_pick_list_name(conn):
+    """Generate the next PICK-YYYY-NNNN name from the pick_list table itself.
+
+    Self-contained (owning-module table only): counts existing pick_list rows for
+    the current year by the PICK-YYYY- prefix and increments. Zero-padded to 4.
+    """
+    year = datetime.now(timezone.utc).year
+    prefix = f"PICK-{year}-"
+    row = conn.execute(
+        "SELECT name FROM pick_list WHERE name LIKE ? ORDER BY name DESC LIMIT 1",
+        (prefix + "%",),
+    ).fetchone()
+    if row and row["name"]:
+        try:
+            seq = int(row["name"].rsplit("-", 1)[1]) + 1
+        except (ValueError, IndexError):
+            seq = 1
+    else:
+        seq = 1
+    return f"{prefix}{seq:04d}"
+
+
+# --- Putaway rules ---------------------------------------------------------
+
+def add_putaway_rule(conn, args):
+    """Add a warehouse-routing rule. At least one of --match-item / --match-item-group."""
+    if not args.name:
+        err("--name is required")
+    if not args.target_warehouse_id:
+        err("--target-warehouse is required")
+    if not args.match_item_id and not args.match_item_group:
+        err("At least one of --match-item or --match-item-group is required")
+
+    company_id = resolve_company_id(conn,
+                                    getattr(args, 'company_id', None),
+                                    getattr(args, 'company_name', None))
+
+    wh_t = Table("warehouse")
+    wh = conn.execute(Q.from_(wh_t).select(wh_t.id).where(wh_t.id == P()).get_sql(),
+                      (args.target_warehouse_id,)).fetchone()
+    if not wh:
+        err(f"Target warehouse {args.target_warehouse_id} not found")
+
+    if args.match_item_id:
+        item_t = Table("item")
+        it = conn.execute(Q.from_(item_t).select(item_t.id).where(item_t.id == P()).get_sql(),
+                          (args.match_item_id,)).fetchone()
+        if not it:
+            err(f"Match item {args.match_item_id} not found")
+
+    priority = args.priority if args.priority is not None else 100
+    rule_id = str(uuid.uuid4())
+    conn.execute(
+        "INSERT INTO putaway_rule (id, name, priority, match_item_id, match_item_group, "
+        "target_warehouse_id, company_id, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, 1)",
+        (rule_id, args.name, priority, args.match_item_id, args.match_item_group,
+         args.target_warehouse_id, company_id),
+    )
+    audit(conn, "erpclaw-inventory", "add-putaway-rule", "putaway_rule", rule_id,
+          new_values={"name": args.name, "priority": priority,
+                      "target_warehouse_id": args.target_warehouse_id})
+    conn.commit()
+    ok({"putaway_rule_id": rule_id, "name": args.name, "priority": priority})
+
+
+def list_putaway_rules(conn, args):
+    """List putaway rules (optionally active-only), in match precedence order."""
+    company_id = resolve_company_id(conn,
+                                    getattr(args, 'company_id', None),
+                                    getattr(args, 'company_name', None))
+    sql = "SELECT * FROM putaway_rule WHERE company_id = ?"
+    params = [company_id]
+    if getattr(args, 'active_only', False):
+        sql += " AND is_active = 1"
+    # Match precedence: item match before item_group, then priority ASC.
+    sql += (" ORDER BY CASE WHEN match_item_id IS NOT NULL THEN 0 ELSE 1 END, "
+            "priority ASC, created_at ASC")
+    rows = conn.execute(sql, params).fetchall()
+    results = [row_to_dict(r) for r in rows]
+    ok({"count": len(results), "putaway_rules": results})
+
+
+def update_putaway_rule(conn, args):
+    """Update a putaway rule's mutable fields."""
+    if not args.id:
+        err("--id is required")
+    rule = conn.execute("SELECT * FROM putaway_rule WHERE id = ?", (args.id,)).fetchone()
+    if not rule:
+        err(f"Putaway rule {args.id} not found")
+
+    data, updated = {}, []
+    if args.name is not None:
+        data["name"] = args.name; updated.append("name")
+    if args.priority is not None:
+        data["priority"] = args.priority; updated.append("priority")
+    if args.target_warehouse_id is not None:
+        wh_t = Table("warehouse")
+        if not conn.execute(Q.from_(wh_t).select(wh_t.id).where(wh_t.id == P()).get_sql(),
+                            (args.target_warehouse_id,)).fetchone():
+            err(f"Target warehouse {args.target_warehouse_id} not found")
+        data["target_warehouse_id"] = args.target_warehouse_id; updated.append("target_warehouse_id")
+    if args.match_item_group is not None:
+        data["match_item_group"] = args.match_item_group; updated.append("match_item_group")
+    if not updated:
+        err("No fields to update")
+    data["updated_at"] = now()
+    sql, params = dynamic_update("putaway_rule", data, where={"id": args.id})
+    conn.execute(sql, params)
+    audit(conn, "erpclaw-inventory", "update-putaway-rule", "putaway_rule", args.id,
+          new_values={"updated_fields": updated})
+    conn.commit()
+    ok({"putaway_rule_id": args.id, "updated_fields": updated})
+
+
+def delete_putaway_rule(conn, args):
+    """Soft-delete a putaway rule (is_active=0)."""
+    if not args.id:
+        err("--id is required")
+    rule = conn.execute("SELECT * FROM putaway_rule WHERE id = ?", (args.id,)).fetchone()
+    if not rule:
+        err(f"Putaway rule {args.id} not found")
+    conn.execute(
+        "UPDATE putaway_rule SET is_active = 0, updated_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "delete-putaway-rule", "putaway_rule", args.id,
+          new_values={"is_active": 0})
+    conn.commit()
+    ok({"putaway_rule_id": args.id, "deactivated": True})
+
+
+def _resolve_putaway_target(conn, company_id, item_id, item_group_value):
+    """Return the target_warehouse_id of the highest-precedence active rule that
+    matches an item, or None. Precedence: item match > item_group match; within a
+    class, priority ASC (deterministic — same input always routes the same way)."""
+    # 1. Item-level match (highest precedence).
+    row = conn.execute(
+        "SELECT target_warehouse_id FROM putaway_rule "
+        "WHERE company_id = ? AND is_active = 1 AND match_item_id = ? "
+        "ORDER BY priority ASC, created_at ASC LIMIT 1",
+        (company_id, item_id),
+    ).fetchone()
+    if row:
+        return row["target_warehouse_id"]
+    # 2. Item-group match (fallback).
+    if item_group_value:
+        row = conn.execute(
+            "SELECT target_warehouse_id FROM putaway_rule "
+            "WHERE company_id = ? AND is_active = 1 AND match_item_group = ? "
+            "ORDER BY priority ASC, created_at ASC LIMIT 1",
+            (company_id, item_group_value),
+        ).fetchone()
+        if row:
+            return row["target_warehouse_id"]
+    return None
+
+
+def apply_putaway_on_receipt(conn, args):
+    """Compute putaway routing for a submitted material_receipt stock entry.
+
+    Deterministic: returns, per received line, the target warehouse the active
+    putaway rules route it to (item match > item_group match, then priority ASC).
+    A standalone read/plan helper — it does NOT mutate the SLE here; callers use
+    the routing to drive a follow-on cross-warehouse material_transfer. Same rules
+    + same input = same routing.
+    """
+    if not args.stock_entry_id:
+        err("--stock-entry SE is required")
+    se = conn.execute("SELECT * FROM stock_entry WHERE id = ?", (args.stock_entry_id,)).fetchone()
+    if not se:
+        err(f"Stock entry {args.stock_entry_id} not found")
+    se_dict = row_to_dict(se)
+    if se_dict["stock_entry_type"] != "material_receipt":
+        err(f"Putaway applies to material_receipt only (entry is '{se_dict['stock_entry_type']}')")
+    company_id = se_dict["company_id"]
+
+    items = conn.execute(
+        "SELECT * FROM stock_entry_item WHERE stock_entry_id = ? ORDER BY id",
+        (args.stock_entry_id,),
+    ).fetchall()
+
+    routes = []
+    for row in items:
+        line = row_to_dict(row)
+        item_id = line["item_id"]
+        ig = conn.execute(
+            "SELECT ig.name AS gname FROM item i "
+            "LEFT JOIN item_group ig ON ig.id = i.item_group_id WHERE i.id = ?",
+            (item_id,),
+        ).fetchone()
+        item_group_value = ig["gname"] if ig else None
+        target = _resolve_putaway_target(conn, company_id, item_id, item_group_value)
+        routes.append({
+            "item_id": item_id,
+            "received_warehouse_id": line.get("to_warehouse_id"),
+            "target_warehouse_id": target,
+            "needs_transfer": bool(target and target != line.get("to_warehouse_id")),
+            "qty": str(round_currency(to_decimal(line["quantity"]))),
+        })
+    ok({"stock_entry_id": args.stock_entry_id, "routes": routes,
+        "routed_count": sum(1 for r in routes if r["target_warehouse_id"])})
+
+
+# --- Pick lists ------------------------------------------------------------
+
+def create_pick_list(conn, args):
+    """Create a draft pick list + items from open lines of a sales order."""
+    if not args.sales_order_id:
+        err("--from-sales-order SO is required")
+    so = conn.execute("SELECT * FROM sales_order WHERE id = ?", (args.sales_order_id,)).fetchone()
+    if not so:
+        err(f"Sales order {args.sales_order_id} not found")
+    so_dict = row_to_dict(so)
+    if so_dict["status"] not in ("confirmed", "partially_delivered"):
+        err(f"Cannot create pick list: sales order is '{so_dict['status']}' "
+            f"(must be 'confirmed' or 'partially_delivered')")
+
+    so_items = conn.execute(
+        "SELECT * FROM sales_order_item WHERE sales_order_id = ? ORDER BY id",
+        (args.sales_order_id,),
+    ).fetchall()
+    # Open lines = quantity - delivered_qty > 0.
+    open_lines = []
+    for row in so_items:
+        soi = row_to_dict(row)
+        remaining = to_decimal(soi["quantity"]) - to_decimal(soi["delivered_qty"])
+        if remaining > 0:
+            open_lines.append((soi, remaining))
+    if not open_lines:
+        err("Sales order has no open lines to pick")
+
+    # from_warehouse: first SO line warehouse, else company default warehouse.
+    from_wh = next((soi["warehouse_id"] for soi, _ in open_lines if soi.get("warehouse_id")), None)
+    if not from_wh and args.warehouse_id:
+        from_wh = args.warehouse_id
+    if not from_wh:
+        err("No source warehouse on the sales order lines; pass --warehouse-id")
+
+    pick_id = str(uuid.uuid4())
+    pick_name = _next_pick_list_name(conn)
+    conn.execute(
+        "INSERT INTO pick_list (id, name, sales_order_id, from_warehouse_id, status, company_id) "
+        "VALUES (?, ?, ?, ?, 'draft', ?)",
+        (pick_id, pick_name, args.sales_order_id, from_wh, so_dict["company_id"]),
+    )
+    line_ids = []
+    for soi, remaining in open_lines:
+        li_id = str(uuid.uuid4())
+        conn.execute(
+            "INSERT INTO pick_list_item (id, pick_list_id, item_id, expected_qty, picked_qty) "
+            "VALUES (?, ?, ?, ?, '0')",
+            (li_id, pick_id, soi["item_id"], str(round_currency(remaining))),
+        )
+        line_ids.append(li_id)
+
+    audit(conn, "erpclaw-inventory", "create-pick-list", "pick_list", pick_id,
+          new_values={"name": pick_name, "sales_order_id": args.sales_order_id,
+                      "line_count": len(line_ids)})
+    conn.commit()
+    ok({"pick_list_id": pick_id, "name": pick_name, "from_warehouse_id": from_wh,
+        "line_count": len(line_ids)})
+
+
+def add_pick_list_item(conn, args):
+    """Add a line to a draft pick list."""
+    if not args.pick_list_id:
+        err("--pick-list P is required")
+    if not args.item_id:
+        err("--item I is required")
+    if not args.qty:
+        err("--qty Q is required")
+    pl = conn.execute("SELECT * FROM pick_list WHERE id = ?", (args.pick_list_id,)).fetchone()
+    if not pl:
+        err(f"Pick list {args.pick_list_id} not found")
+    if pl["status"] != "draft":
+        err(f"Cannot add line: pick list is '{pl['status']}' (must be 'draft')")
+    item = conn.execute("SELECT id FROM item WHERE id = ?", (args.item_id,)).fetchone()
+    if not item:
+        err(f"Item {args.item_id} not found")
+    try:
+        qty = to_decimal(args.qty)
+    except (InvalidOperation, ValueError):
+        err(f"--qty must be a number: {args.qty}")
+    if qty <= 0:
+        err("--qty must be > 0")
+
+    li_id = str(uuid.uuid4())
+    conn.execute(
+        "INSERT INTO pick_list_item (id, pick_list_id, item_id, expected_qty, picked_qty, source_warehouse_bin) "
+        "VALUES (?, ?, ?, ?, '0', ?)",
+        (li_id, args.pick_list_id, args.item_id, str(round_currency(qty)), args.source_bin),
+    )
+    audit(conn, "erpclaw-inventory", "add-pick-list-item", "pick_list_item", li_id,
+          new_values={"pick_list_id": args.pick_list_id, "item_id": args.item_id})
+    conn.commit()
+    ok({"pick_list_item_id": li_id, "pick_list_id": args.pick_list_id,
+        "item_id": args.item_id, "expected_qty": str(round_currency(qty))})
+
+
+def submit_pick_list(conn, args):
+    """Submit a draft pick list: validate availability + create active reservations.
+
+    Blocked if any line's expected_qty exceeds available qty (actual - active
+    reservations) at the source warehouse. Single transaction: every reservation
+    is written or none. Status draft -> submitted.
+    """
+    if not args.id:
+        err("--id is required")
+    pl = conn.execute("SELECT * FROM pick_list WHERE id = ?", (args.id,)).fetchone()
+    if not pl:
+        err(f"Pick list {args.id} not found")
+    pl_dict = row_to_dict(pl)
+    if pl_dict["status"] != "draft":
+        err(f"Cannot submit: pick list is '{pl_dict['status']}' (must be 'draft')")
+
+    lines = conn.execute(
+        "SELECT * FROM pick_list_item WHERE pick_list_id = ?", (args.id,)
+    ).fetchall()
+    if not lines:
+        err("Pick list has no items")
+
+    from_wh = pl_dict["from_warehouse_id"]
+    # Aggregate expected qty per item (a list may repeat an item across lines).
+    per_item = {}
+    for row in lines:
+        li = row_to_dict(row)
+        per_item[li["item_id"]] = per_item.get(li["item_id"], Decimal("0")) + to_decimal(li["expected_qty"])
+
+    # Hard pre-check: every item's total expected must fit in available qty.
+    for item_id, need in per_item.items():
+        available = _available_qty(conn, item_id, from_wh)
+        if need > available:
+            err(f"Cannot submit pick list: item {item_id} needs {need} but only "
+                f"{available} available at warehouse {from_wh} (actual minus active reservations).")
+
+    # All lines fit — create one active reservation per item (single transaction).
+    res_ids = []
+    for item_id, need in per_item.items():
+        res_id = str(uuid.uuid4())
+        conn.execute(
+            "INSERT INTO stock_reservation_entry (id, voucher_type, voucher_id, item_id, "
+            "warehouse_id, reserved_qty, status, company_id) "
+            "VALUES (?, 'pick_list', ?, ?, ?, ?, 'active', ?)",
+            (res_id, args.id, item_id, from_wh, str(round_currency(need)), pl_dict["company_id"]),
+        )
+        res_ids.append(res_id)
+
+    conn.execute(
+        "UPDATE pick_list SET status = 'submitted', updated_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "submit-pick-list", "pick_list", args.id,
+          new_values={"status": "submitted", "reservations_created": len(res_ids)})
+    conn.commit()
+    ok({"pick_list_id": args.id, "pick_list_status": "submitted",
+        "reservations_created": len(res_ids)})
+
+
+def mark_picked(conn, args):
+    """Record actual picked qty on a pick list line. When every line is fully
+    picked (picked_qty == expected_qty), the pick list flips to 'picked'."""
+    if not args.pick_list_id:
+        err("--pick-list P is required")
+    if not args.item_id:
+        err("--item I is required")
+    if args.picked_qty is None:
+        err("--picked-qty Q is required")
+    pl = conn.execute("SELECT * FROM pick_list WHERE id = ?", (args.pick_list_id,)).fetchone()
+    if not pl:
+        err(f"Pick list {args.pick_list_id} not found")
+    if pl["status"] not in ("submitted", "picked"):
+        err(f"Cannot mark picked: pick list is '{pl['status']}' (must be 'submitted' or 'picked')")
+    line = conn.execute(
+        "SELECT * FROM pick_list_item WHERE pick_list_id = ? AND item_id = ? LIMIT 1",
+        (args.pick_list_id, args.item_id),
+    ).fetchone()
+    if not line:
+        err(f"Item {args.item_id} not on pick list {args.pick_list_id}")
+    try:
+        picked = to_decimal(args.picked_qty)
+    except (InvalidOperation, ValueError):
+        err(f"--picked-qty must be a number: {args.picked_qty}")
+    if picked < 0:
+        err("--picked-qty must be >= 0")
+    expected = to_decimal(line["expected_qty"])
+    if picked > expected:
+        err(f"--picked-qty {picked} exceeds expected {expected}")
+
+    conn.execute(
+        "UPDATE pick_list_item SET picked_qty = ? WHERE id = ?",
+        (str(round_currency(picked)), line["id"]),
+    )
+
+    # Full pick = every line picked_qty == expected_qty (and at least one line).
+    # Compared as Decimal in Python (TEXT-stored money sorts lexically, not
+    # numerically, so an SQL string comparison would be wrong).
+    all_lines = conn.execute(
+        "SELECT expected_qty, picked_qty FROM pick_list_item WHERE pick_list_id = ?",
+        (args.pick_list_id,),
+    ).fetchall()
+    fully_picked = bool(all_lines) and all(
+        to_decimal(r["picked_qty"]) == to_decimal(r["expected_qty"]) for r in all_lines
+    )
+    if fully_picked:
+        conn.execute(
+            "UPDATE pick_list SET status = 'picked', updated_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+            (args.pick_list_id,),
+        )
+    audit(conn, "erpclaw-inventory", "mark-picked", "pick_list_item", line["id"],
+          new_values={"picked_qty": str(round_currency(picked)), "fully_picked": fully_picked})
+    conn.commit()
+    ok({"pick_list_id": args.pick_list_id, "item_id": args.item_id,
+        "picked_qty": str(round_currency(picked)), "fully_picked": fully_picked,
+        "pick_list_status": "picked" if fully_picked else pl["status"]})
+
+
+def complete_pick_list(conn, args):
+    """Complete a picked pick list: flip its reservations to 'consumed', mark the
+    list 'completed', and (if SO-linked) generate a delivery note via the selling
+    skill (cross-skill subprocess — selling owns delivery_note)."""
+    if not args.id:
+        err("--id is required")
+    pl = conn.execute("SELECT * FROM pick_list WHERE id = ?", (args.id,)).fetchone()
+    if not pl:
+        err(f"Pick list {args.id} not found")
+    pl_dict = row_to_dict(pl)
+    if pl_dict["status"] != "picked":
+        err(f"Cannot complete: pick list is '{pl_dict['status']}' (must be 'picked')")
+
+    # Flip this pick list's active reservations to consumed.
+    consumed = conn.execute(
+        "UPDATE stock_reservation_entry SET status = 'consumed', "
+        "consumed_at = CAST(CURRENT_TIMESTAMP AS TEXT) "
+        "WHERE voucher_type = 'pick_list' AND voucher_id = ? AND status = 'active'",
+        (args.id,),
+    ).rowcount
+
+    conn.execute(
+        "UPDATE pick_list SET status = 'completed', updated_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "complete-pick-list", "pick_list", args.id,
+          new_values={"status": "completed", "reservations_consumed": consumed})
+    conn.commit()
+
+    # Cross-skill: generate a delivery note from the SO (selling owns the table).
+    # The subprocess must hit the SAME DB this connection operates on, so resolve
+    # the path from --db-path or the ERPCLAW_DB_PATH the gateway/tests set.
+    delivery_note_id = None
+    if pl_dict.get("sales_order_id"):
+        target_db = getattr(args, "db_path", None) or os.environ.get("ERPCLAW_DB_PATH")
+        delivery_note_id = _create_delivery_note_via_selling(
+            pl_dict["sales_order_id"], target_db)
+
+    ok({"pick_list_id": args.id, "pick_list_status": "completed",
+        "reservations_consumed": consumed, "delivery_note_id": delivery_note_id})
+
+
+def _create_delivery_note_via_selling(sales_order_id, db_path):
+    """Invoke selling's create-delivery-note via subprocess (selling owns
+    delivery_note). Best-effort: returns the new DN id or None. Mirrors the
+    established cross-skill subprocess pattern (erpclaw-billing run-billing)."""
+    import subprocess
+    selling = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "..", "erpclaw-selling", "db_query.py")
+    if not os.path.isfile(selling):
+        return None
+    cmd = [sys.executable, selling, "--action", "create-delivery-note",
+           "--sales-order-id", sales_order_id]
+    if db_path:
+        cmd += ["--db-path", db_path]
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        if proc.returncode == 0:
+            out = json.loads(proc.stdout)
+            if out.get("status") == "ok":
+                dn = out.get("delivery_note")
+                if isinstance(dn, dict):
+                    return dn.get("id")
+                return out.get("delivery_note_id")
+    except (subprocess.TimeoutExpired, json.JSONDecodeError, Exception):
+        pass
+    return None
+
+
+def cancel_pick_list(conn, args):
+    """Cancel a pick list: release its active reservations (active -> released)
+    and set status 'cancelled'. Reservations are freed, not consumed."""
+    if not args.id:
+        err("--id is required")
+    pl = conn.execute("SELECT * FROM pick_list WHERE id = ?", (args.id,)).fetchone()
+    if not pl:
+        err(f"Pick list {args.id} not found")
+    if pl["status"] in ("completed", "cancelled"):
+        err(f"Cannot cancel: pick list is '{pl['status']}'")
+
+    released = conn.execute(
+        "UPDATE stock_reservation_entry SET status = 'released', "
+        "released_at = CAST(CURRENT_TIMESTAMP AS TEXT) "
+        "WHERE voucher_type = 'pick_list' AND voucher_id = ? AND status = 'active'",
+        (args.id,),
+    ).rowcount
+    conn.execute(
+        "UPDATE pick_list SET status = 'cancelled', updated_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "cancel-pick-list", "pick_list", args.id,
+          new_values={"status": "cancelled", "reservations_released": released,
+                      "reason": args.reason})
+    conn.commit()
+    ok({"pick_list_id": args.id, "pick_list_status": "cancelled",
+        "reservations_released": released})
+
+
+# --- Manual reservations ---------------------------------------------------
+
+def add_reservation(conn, args):
+    """Create a manual active reservation. Blocked if qty > available."""
+    if not args.voucher_type:
+        err(f"--voucher-type is required (one of: {', '.join(RESERVATION_VOUCHER_TYPES)})")
+    if args.voucher_type not in RESERVATION_VOUCHER_TYPES:
+        err(f"--voucher-type must be one of: {', '.join(RESERVATION_VOUCHER_TYPES)}")
+    if not args.item_id:
+        err("--item I is required")
+    # --warehouse W (plan) maps to the repack --warehouse flag (dest 'warehouse');
+    # also accept --warehouse-id.
+    warehouse_id = args.warehouse_id or getattr(args, 'warehouse', None)
+    if not warehouse_id:
+        err("--warehouse W is required")
+    if not args.qty:
+        err("--qty Q is required")
+
+    item = conn.execute("SELECT id FROM item WHERE id = ?", (args.item_id,)).fetchone()
+    if not item:
+        err(f"Item {args.item_id} not found")
+    wh = conn.execute("SELECT id, company_id FROM warehouse WHERE id = ?", (warehouse_id,)).fetchone()
+    if not wh:
+        err(f"Warehouse {warehouse_id} not found")
+    try:
+        qty = to_decimal(args.qty)
+    except (InvalidOperation, ValueError):
+        err(f"--qty must be a number: {args.qty}")
+    if qty <= 0:
+        err("--qty must be > 0")
+    # 'manual' may omit a voucher_id; sales_order / pick_list must supply one.
+    voucher_id = args.voucher_id
+    if args.voucher_type != "manual" and not voucher_id:
+        err(f"--voucher-id is required for voucher-type '{args.voucher_type}'")
+
+    available = _available_qty(conn, args.item_id, warehouse_id)
+    if qty > available:
+        err(f"Cannot reserve {qty}: only {available} available at warehouse "
+            f"{warehouse_id} (actual minus active reservations).")
+
+    company_id = wh["company_id"]
+    res_id = str(uuid.uuid4())
+    conn.execute(
+        "INSERT INTO stock_reservation_entry (id, voucher_type, voucher_id, item_id, "
+        "warehouse_id, reserved_qty, status, company_id) "
+        "VALUES (?, ?, ?, ?, ?, ?, 'active', ?)",
+        (res_id, args.voucher_type, voucher_id, args.item_id, warehouse_id,
+         str(round_currency(qty)), company_id),
+    )
+    audit(conn, "erpclaw-inventory", "add-reservation", "stock_reservation_entry", res_id,
+          new_values={"item_id": args.item_id, "warehouse_id": warehouse_id,
+                      "reserved_qty": str(round_currency(qty))})
+    conn.commit()
+    ok({"reservation_id": res_id, "item_id": args.item_id,
+        "warehouse_id": warehouse_id, "reserved_qty": str(round_currency(qty)),
+        "reservation_status": "active"})
+
+
+def release_reservation(conn, args):
+    """Release an active reservation (active -> released). Blocked if not active."""
+    if not args.id:
+        err("--id is required")
+    res = conn.execute("SELECT * FROM stock_reservation_entry WHERE id = ?", (args.id,)).fetchone()
+    if not res:
+        err(f"Reservation {args.id} not found")
+    if res["status"] != "active":
+        err(f"Cannot release: reservation is '{res['status']}' (must be 'active')")
+    conn.execute(
+        "UPDATE stock_reservation_entry SET status = 'released', "
+        "released_at = CAST(CURRENT_TIMESTAMP AS TEXT) WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "release-reservation", "stock_reservation_entry", args.id,
+          new_values={"status": "released", "reason": args.reason})
+    conn.commit()
+    ok({"reservation_id": args.id, "reservation_status": "released"})
+
+
+def list_reservations(conn, args):
+    """List reservations, optionally filtered by item / warehouse / status."""
+    sql = "SELECT * FROM stock_reservation_entry WHERE 1=1"
+    params = []
+    if args.item_id:
+        sql += " AND item_id = ?"; params.append(args.item_id)
+    warehouse_id = args.warehouse_id or getattr(args, 'warehouse', None)
+    if warehouse_id:
+        sql += " AND warehouse_id = ?"; params.append(warehouse_id)
+    # --status is overloaded (item status) at the parser level; accept the
+    # canonical --reservation-status, else a --status value if it names a
+    # reservation state.
+    status = getattr(args, 'reservation_status', None) or getattr(args, 'item_status', None)
+    if status:
+        if status not in RESERVATION_STATUSES:
+            err(f"--status must be one of: {', '.join(RESERVATION_STATUSES)}")
+        sql += " AND status = ?"; params.append(status)
+    sql += " ORDER BY reserved_at DESC"
+    rows = conn.execute(sql, params).fetchall()
+    results = [row_to_dict(r) for r in rows]
+    ok({"count": len(results), "reservations": results})
+
+
+# --- Item alternatives (S7, item-global) -----------------------------------
+
+def add_item_alternative(conn, args):
+    """Add a directional item-global substitute relationship.
+
+    Required: --item I, --alternative A.
+    Optional: --priority P (default 100; lower = preferred), --conversion-factor C
+    (Decimal, default '1'), --notes "...".
+
+    Rejects self-reference (item == alternative) and a duplicate (item, alternative)
+    pair. (a,b) and (b,a) are BOTH valid distinct rows — the relationship is
+    directional, so adding the reverse is not a duplicate.
+    """
+    item_id = args.item_id
+    alternative_id = getattr(args, 'alternative_item_id', None)
+    if not item_id:
+        err("--item is required")
+    if not alternative_id:
+        err("--alternative is required")
+    if item_id == alternative_id:
+        err("An item cannot be its own alternative (--item and --alternative must differ)")
+
+    item_t = Table("item")
+    if not conn.execute(Q.from_(item_t).select(item_t.id).where(item_t.id == P()).get_sql(),
+                        (item_id,)).fetchone():
+        err(f"Item {item_id} not found")
+    if not conn.execute(Q.from_(item_t).select(item_t.id).where(item_t.id == P()).get_sql(),
+                        (alternative_id,)).fetchone():
+        err(f"Alternative item {alternative_id} not found")
+
+    # Duplicate (item, alternative) pair blocked. The reverse pair (b,a) is a
+    # distinct, allowed row — only the exact same direction is rejected.
+    dup = conn.execute(
+        "SELECT id FROM item_alternative WHERE item_id = ? AND alternative_item_id = ?",
+        (item_id, alternative_id),
+    ).fetchone()
+    if dup:
+        err(f"Alternative {alternative_id} already exists for item {item_id}")
+
+    conversion_factor = to_decimal(args.conversion_factor or "1")
+    if conversion_factor <= 0:
+        err("--conversion-factor must be greater than 0")
+    priority = args.priority if args.priority is not None else 100
+
+    alt_id = str(uuid.uuid4())
+    conn.execute(
+        "INSERT INTO item_alternative (id, item_id, alternative_item_id, priority, "
+        "conversion_factor, notes, is_active) VALUES (?, ?, ?, ?, ?, ?, 1)",
+        (alt_id, item_id, alternative_id, priority,
+         str(round_currency(conversion_factor)), args.notes),
+    )
+    audit(conn, "erpclaw-inventory", "add-item-alternative", "item_alternative", alt_id,
+          new_values={"item_id": item_id, "alternative_item_id": alternative_id,
+                      "priority": priority})
+    conn.commit()
+    ok({"item_alternative_id": alt_id, "item_id": item_id,
+        "alternative_item_id": alternative_id, "priority": priority,
+        "conversion_factor": str(round_currency(conversion_factor))})
+
+
+def list_item_alternatives(conn, args):
+    """List item alternatives, optionally filtered by --item (the primary item),
+    active-only by default. Ordered by priority ASC (preferred first)."""
+    sql = ("SELECT ia.*, i.item_code AS alternative_item_code, "
+           "i.item_name AS alternative_item_name "
+           "FROM item_alternative ia "
+           "LEFT JOIN item i ON i.id = ia.alternative_item_id WHERE 1=1")
+    params = []
+    if args.item_id:
+        sql += " AND ia.item_id = ?"; params.append(args.item_id)
+    if getattr(args, 'active_only', False):
+        sql += " AND ia.is_active = 1"
+    sql += " ORDER BY ia.item_id, ia.priority ASC, ia.created_at ASC"
+    rows = conn.execute(sql, params).fetchall()
+    results = [row_to_dict(r) for r in rows]
+    ok({"count": len(results), "item_alternatives": results})
+
+
+def get_best_alternative_for_item(conn, args):
+    """Return the highest-priority active alternative for --item that has enough
+    stock to cover --required-qty at --warehouse.
+
+    Ranking: priority ASC (lower = preferred); ties broken by available qty at the
+    warehouse (more available wins). Required qty is measured against the
+    alternative's own available stock, adjusted by its conversion_factor:
+    a substitute with conversion_factor 2 needs 2x the units to replace 1 unit of
+    the primary, so the qty of substitute needed = required_qty * conversion_factor.
+
+    With no --warehouse, stock is not checked — the highest-priority active
+    alternative is returned. No match (none in stock / none defined) is a clean
+    exit-0 result, not an error.
+    """
+    item_id = args.item_id
+    if not item_id:
+        err("--item is required")
+    item_t = Table("item")
+    if not conn.execute(Q.from_(item_t).select(item_t.id).where(item_t.id == P()).get_sql(),
+                        (item_id,)).fetchone():
+        err(f"Item {item_id} not found")
+
+    required_qty = to_decimal(args.qty) if getattr(args, 'qty', None) else Decimal("0")
+    if required_qty < 0:
+        err("--required-qty cannot be negative")
+    warehouse_id = args.warehouse_id or getattr(args, 'warehouse', None)
+    if warehouse_id:
+        wh_t = Table("warehouse")
+        if not conn.execute(Q.from_(wh_t).select(wh_t.id).where(wh_t.id == P()).get_sql(),
+                            (warehouse_id,)).fetchone():
+            err(f"Warehouse {warehouse_id} not found")
+
+    # Active candidates, ordered by priority ASC (created_at as a deterministic
+    # secondary key). The available-qty tie-break is applied in Python because it
+    # needs the SLE-balance read (not a column).
+    rows = conn.execute(
+        "SELECT ia.*, i.item_code AS alternative_item_code, "
+        "i.item_name AS alternative_item_name "
+        "FROM item_alternative ia "
+        "LEFT JOIN item i ON i.id = ia.alternative_item_id "
+        "WHERE ia.item_id = ? AND ia.is_active = 1 "
+        "ORDER BY ia.priority ASC, ia.created_at ASC",
+        (item_id,),
+    ).fetchall()
+
+    candidates = []
+    for r in rows:
+        d = row_to_dict(r)
+        conv = to_decimal(d.get("conversion_factor") or "1")
+        if warehouse_id:
+            available = _available_qty(conn, d["alternative_item_id"], warehouse_id)
+            needed = round_currency(required_qty * conv)
+            if available < needed:
+                continue  # not enough stock to substitute
+            d["available_qty"] = str(available)
+        else:
+            d["available_qty"] = None
+        d["required_substitute_qty"] = str(round_currency(required_qty * conv))
+        candidates.append((d, to_decimal(str(d.get("priority"))),
+                           _available_qty(conn, d["alternative_item_id"], warehouse_id)
+                           if warehouse_id else Decimal("0")))
+
+    if not candidates:
+        ok({"item_id": item_id, "warehouse_id": warehouse_id,
+            "required_qty": str(round_currency(required_qty)),
+            "best_alternative": None,
+            "message": "No active alternative with sufficient stock"})
+        return
+
+    # priority ASC (already sorted), tie-break by available qty DESC.
+    candidates.sort(key=lambda c: (c[1], -c[2]))
+    best = candidates[0][0]
+    ok({"item_id": item_id, "warehouse_id": warehouse_id,
+        "required_qty": str(round_currency(required_qty)),
+        "best_alternative": best})
+
+
+def remove_item_alternative(conn, args):
+    """Soft-delete an item alternative (is_active=0). Idempotent on an already
+    inactive row; errors only on an unknown id."""
+    if not args.id:
+        err("--id is required")
+    row = conn.execute("SELECT * FROM item_alternative WHERE id = ?", (args.id,)).fetchone()
+    if not row:
+        err(f"Item alternative {args.id} not found")
+    conn.execute(
+        "UPDATE item_alternative SET is_active = 0 WHERE id = ?",
+        (args.id,),
+    )
+    audit(conn, "erpclaw-inventory", "remove-item-alternative", "item_alternative", args.id,
+          new_values={"is_active": 0})
+    conn.commit()
+    ok({"item_alternative_id": args.id, "deactivated": True})
+
+
 # ---------------------------------------------------------------------------
 # Action dispatch
 # ---------------------------------------------------------------------------
@@ -3030,6 +4128,8 @@ ACTIONS = {
     "update-warehouse": update_warehouse,
     "list-warehouses": list_warehouses,
     "add-stock-entry": add_stock_entry,
+    "add-repack-stock-entry": add_repack_stock_entry,
+    "add-material-consumption": add_material_consumption,
     "get-stock-entry": get_stock_entry,
     "list-stock-entries": list_stock_entries,
     "submit-stock-entry": submit_stock_entry,
@@ -3064,6 +4164,26 @@ ACTIONS = {
     "add-item-supplier": add_item_supplier,
     "list-item-suppliers": list_item_suppliers,
     "status": status_action,
+    # Wave 2 M5: putaway + pick list + persisted hard reservation (ADR-0026).
+    "add-putaway-rule": add_putaway_rule,
+    "list-putaway-rules": list_putaway_rules,
+    "update-putaway-rule": update_putaway_rule,
+    "delete-putaway-rule": delete_putaway_rule,
+    "apply-putaway-on-receipt": apply_putaway_on_receipt,
+    "create-pick-list": create_pick_list,
+    "add-pick-list-item": add_pick_list_item,
+    "submit-pick-list": submit_pick_list,
+    "mark-picked": mark_picked,
+    "complete-pick-list": complete_pick_list,
+    "cancel-pick-list": cancel_pick_list,
+    "add-reservation": add_reservation,
+    "release-reservation": release_reservation,
+    "list-reservations": list_reservations,
+    # Wave 2 S7: item-global alternatives / substitutes.
+    "add-item-alternative": add_item_alternative,
+    "list-item-alternatives": list_item_alternatives,
+    "get-best-alternative-for-item": get_best_alternative_for_item,
+    "remove-item-alternative": remove_item_alternative,
 }
 
 
@@ -3106,6 +4226,15 @@ def main():
     parser.add_argument("--entry-type")
     parser.add_argument("--posting-date")
     parser.add_argument("--items")  # JSON
+    # S6 typed-dispatch parents
+    parser.add_argument("--supplier-warehouse-id")  # send_to_subcontractor target
+    parser.add_argument("--work-order-id")          # material_consumption parent
+    # add-repack-stock-entry / add-material-consumption convenience-wrapper flags
+    parser.add_argument("--warehouse")              # repack same-warehouse
+    parser.add_argument("--from-item-id")
+    parser.add_argument("--from-qty")
+    parser.add_argument("--to-item-id")
+    parser.add_argument("--to-qty")
 
     # Stock entry list filters
     parser.add_argument("--status-filter", dest="se_status")
@@ -3132,7 +4261,7 @@ def main():
     parser.add_argument("--max-qty")
     parser.add_argument("--valid-from")
     parser.add_argument("--valid-to")
-    parser.add_argument("--qty")
+    parser.add_argument("--qty", "--required-qty")  # --required-qty: S7 get-best-alternative
     parser.add_argument("--party-id")
     parser.add_argument("--currency")
     parser.add_argument("--is-buying")
@@ -3163,6 +4292,30 @@ def main():
     parser.add_argument("--supplier-id")
     parser.add_argument("--min-order-qty")
     parser.add_argument("--lead-time-days")
+
+    # Wave 2 M5: putaway + pick list + reservation (ADR-0026)
+    parser.add_argument("--id")  # putaway_rule / pick_list / reservation id
+    parser.add_argument("--target-warehouse", dest="target_warehouse_id")
+    parser.add_argument("--match-item", dest="match_item_id")
+    parser.add_argument("--match-item-group", dest="match_item_group")
+    parser.add_argument("--active-only", action="store_true")
+    parser.add_argument("--stock-entry", dest="stock_entry_id")  # apply-putaway-on-receipt
+    parser.add_argument("--from-sales-order", dest="sales_order_id")
+    parser.add_argument("--pick-list", dest="pick_list_id")
+    parser.add_argument("--source-bin")  # free-TEXT hint only (no bin schema in V1)
+    parser.add_argument("--picked-qty")
+    parser.add_argument("--reservation-status", dest="reservation_status")
+    # Plan signatures use the short --item form (add-reservation,
+    # add-pick-list-item). Register it explicitly so argparse resolves the exact
+    # match instead of erroring on the --item-* abbrev. (--warehouse already
+    # exists for repack with dest 'warehouse'; add-reservation reads warehouse
+    # from --warehouse-id, falling back to --warehouse, in its handler.)
+    parser.add_argument("--item", dest="item_id")
+    # Wave 2 S7: item-global alternatives. --alternative is the substitute item;
+    # --required-qty is registered as an alias on --qty (above).
+    parser.add_argument("--alternative", dest="alternative_item_id")
+    parser.add_argument("--conversion-factor")
+    parser.add_argument("--notes")
 
     # Search / filters
     parser.add_argument("--search")

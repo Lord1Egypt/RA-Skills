@@ -1,7 +1,7 @@
 ---
 name: agentmetal
 description: Spin up a real Linux server (VPS / cloud instance) in under 60 seconds, then SSH in and run commands on it — paid with USDC over x402 or card, no signup, no dashboard. Use when you want to rent a box, deploy something, run a command on a real machine, or host a service.
-version: 0.2.0
+version: 0.3.2
 homepage: https://agentmetal.dev
 tags: vps, server, hosting, deploy, infrastructure, x402, usdc, ssh, exec
 metadata:
@@ -30,9 +30,9 @@ add storage → manage (reboot / diagnostics) → extend → destroy.** Humans c
 
 | plan | vCPU / RAM / disk | price (USDC/day) | monthly (card) |
 |------|-------------------|------------------|----------------|
-| `nano`   | 2 / 2 GB / 40 GB   | $0.40 | $9  |
-| `small`  | 3 / 4 GB / 80 GB   | $0.80 | $18 |
-| `medium` | 4 / 8 GB / 160 GB  | $1.60 | $36 |
+| `nano`   | 2 / 2 GB / 40 GB   | $1.20 | $30 |
+| `small`  | 3 / 4 GB / 80 GB   | $2.20 | $55 |
+| `medium` | 4 / 8 GB / 160 GB  | $4.20 | $99 |
 
 Leases are prepaid, `1`–`30` days, **no refunds**. Pay per day; extend anytime.
 **Add-ons:** block storage at $0.01/GB/day (auto-mounted) and bandwidth at $2/TB beyond the
@@ -66,14 +66,14 @@ Every paid call is the same two-step dance:
      "x402Version": 2,
      "accepts": [{ "scheme": "exact", "network": "eip155:8453",
                    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-                   "amount": "2800000", "payTo": "0x…", "maxTimeoutSeconds": 120 }],
+                   "amount": "1200000", "payTo": "0x…", "maxTimeoutSeconds": 120 }],
      "resource": { "url": "https://api.agentmetal.dev/v1/servers" },
      "card": { "checkout_url": "https://…" }   // optional human card rail
    }
    ```
 2. Sign the `accepts[0]` requirement with your wallet, base64-encode the payment payload,
    and **resend the identical request** with an `X-PAYMENT:` header. On success you get
-   `201` and the server details. (`amount` is atomic USDC — 6 decimals; `2800000` = $2.80.)
+   `201` and the server details. (`amount` is atomic USDC — 6 decimals; `1200000` = $1.20.)
 
 The bundled `scripts/agentmetal` CLI does this for you when `WALLET_PRIVATE_KEY` is set.
 

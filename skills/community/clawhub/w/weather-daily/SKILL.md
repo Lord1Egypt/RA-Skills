@@ -48,6 +48,12 @@ metadata:
       - 天气预报
       - 推送
       - daily
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
 ---
 
 # weather-daily
@@ -68,16 +74,47 @@ metadata:
 
 ## 📋 功能说明
 
+> 城市/单位/语言等资料由 Agent 从 MEMORY.md 读出后作为 `--city/--units/--lang` 参数传入（见下方「用户资料」）。
+
 | 指令 | 脚本 | 说明 |
 |------|------|------|
-| 今日天气 | `morning-push.js <userId>` | 今日温度/湿度/风力/分时预报/穿衣/出行建议 |
-| 明日预告 | `evening-push.js <userId>` | 明日天气预告 + 提醒 + 后天预览 |
-| 一周预报 | `forecast.js <userId>` | 未来7天逐日天气 + 趋势 + 穿衣建议 |
-| 下周周报 | `weekly-push.js <userId>` | 每周六推送下周天气 + 最佳出行日 |
-| 月度概况 | `monthly-push.js <userId>` | 每月末推送下月气候 + 分旬预测 |
-| 开启推送 | `push-toggle.js on <userId>` | 定时推送（早/晚/周报/月报） |
+| 今日天气 | `morning-push.js <userId> --city <城市> --units <..> --lang <..>` | 今日温度/湿度/风力/分时预报/穿衣/出行建议 |
+| 明日预告 | `evening-push.js <userId> --city <城市> ...` | 明日天气预告 + 提醒 + 后天预览 |
+| 一周预报 | `forecast.js <userId> --city <城市> ...` | 未来7天逐日天气 + 趋势 + 穿衣建议 |
+| 下周周报 | `weekly-push.js <userId> --city <城市> ...` | 每周六推送下周天气 + 最佳出行日 |
+| 月度概况 | `monthly-push.js <userId> --city <城市> ...` | 每月末推送下月气候 + 分旬预测 |
+| 开启推送 | `push-toggle.js on <userId> --city <城市> ...` | 定时推送（早/晚/周报/月报），资料烘焙进 cron |
 | 关闭推送 | `push-toggle.js off <userId>` | 停止全部推送 |
-| 推送状态 | `push-toggle.js status <userId>` | 查看当前推送配置 |
+| 推送状态 | `push-toggle.js status <userId>` | 提示从 MEMORY.md 查看推送配置 |
+
+---
+
+## 📇 用户资料 (存于原生 MEMORY.md，脚本不落盘)
+
+本 skill **不向磁盘写任何用户数据**。用户的城市、单位、语言、推送时间、时区全部保存在 OpenClaw 原生 **MEMORY.md** 中，由 Agent 读写、跨会话保留。
+
+**流程：**
+
+1. 新用户 → 运行 `register.js`，它会输出一段 `<!-- weather-daily:profile:<userId> -->` markdown 区块。**把该区块写入 MEMORY.md。**
+2. 后续会话 / 手动查询 → 先**读取 MEMORY.md** 中该区块拿到城市/单位/语言，作为 `--city/--units/--lang` 参数传给推送脚本。
+3. 开启推送 → 把城市/单位/语言作为参数传给 `push-toggle.js on`，这些字段会被**烘焙进 cron 任务命令**，使无头定时推送无需读取任何文件。
+4. 修改城市 / 单位 → 更新 MEMORY.md 区块，并重新运行 `push-toggle.js on` 覆盖 cron。
+
+资料区块格式示例：
+
+```markdown
+<!-- weather-daily:profile:alice -->
+## Weather profile · alice
+- userId: alice
+- city: 上海
+- units: °C / metric
+- language: 中文 (zh)
+- morningTime: 07:00
+- eveningTime: 21:00
+- timezone: Asia/Shanghai
+- push: enabled telegram 07:00/21:00
+<!-- /weather-daily:profile -->
+```
 
 ---
 
@@ -119,32 +156,55 @@ metadata:
 
 ---
 
-## 🔧 脚本说明
+## 🔧 脚本说明（全部纯计算，无文件写入）
 
-### 注册用户
+### 注册用户（输出 MEMORY.md 资料区块，由 Agent 写入原生记忆）
 
 ```bash
-node scripts/register.js <userId> <city> [units] [morningTime] [eveningTime]
+node scripts/register.js <userId> <city> [units] [morningTime] [eveningTime] [language] [timezone]
 # 示例：
 node scripts/register.js alice 上海
-node scripts/register.js bob Beijing imperial 08:00 22:00
+node scripts/register.js bob "New York" imperial 08:00 22:00 en America/New_York
 ```
 
-### 推送管理
+register 不写任何文件；它打印一段 `<!-- weather-daily:profile:<userId> -->` 区块，请存入 MEMORY.md。
+
+### 推送管理（城市/单位/语言从 MEMORY.md 读出作为参数；cron 由运行时管理）
 
 ```bash
-node scripts/push-toggle.js on <userId> [--morning 07:00] [--evening 21:00] [--channel telegram]
+node scripts/push-toggle.js on <userId> --city <城市> [--units metric|imperial] [--lang zh|en] \
+     [--morning 07:00] [--evening 21:00] [--channel telegram] [--timezone Asia/Shanghai]
 node scripts/push-toggle.js off <userId>
 node scripts/push-toggle.js status <userId>
 ```
 
 支持渠道：`telegram` / `feishu` / `slack` / `discord`
 
+### 手动查询（同样从 MEMORY.md 传入城市/单位/语言）
+
+```bash
+node scripts/morning-push.js <userId> --city <城市> --units <metric|imperial> --lang <zh|en>
+node scripts/forecast.js     <userId> --city <城市> --units <..> --lang <..>
+```
+
+---
+
+## 📁 数据与隐私 (Data & Privacy)
+
+- **无文件写入**：所有脚本都是纯计算（构建搜索/推送 prompt、生成资料区块、发出 cron 协议），**不向磁盘写入任何用户数据**，也**不读取任何用户文件**，符合 clawhub 无 `fs` 写入规范。
+- **原生记忆**：用户的城市、单位、语言、推送时间与时区保存在 OpenClaw 原生 `MEMORY.md`，由你本机的 Agent 管理，不经过任何外部服务。
+- **推送隔离**：`telegram`/`feishu`/`slack`/`discord` 由 openclaw 运行时投递，skill 不调用任何渠道 API、不持有 token。
+- **删除资料**：删除 MEMORY.md 中对应的 `<!-- weather-daily:profile:<userId> -->` 区块即清除该用户的全部配置。
+
 ---
 
 ## ⚠️ 注意事项
 
-1. 使用前须先注册：`node scripts/register.js <userId> <city>`
+1. 使用前须先注册：`node scripts/register.js <userId> <city>`，并把输出的资料区块存入 MEMORY.md
 2. 无需 API Key，天气数据通过 WebSearch 实时搜索获取
-3. 用户偏好存储在 `data/users/<userId>.json`，仅含城市/单位/时间等配置，不含天气内容
+3. 城市/单位/语言等配置存于原生 MEMORY.md（脚本不落盘），推送时作为参数传入并烘焙进 cron
 4. 搜索结果受 WebSearch 实时性限制，极端天气预警以官方气象部门发布为准
+
+---
+
+*Version: 1.1.0 · Updated: 2026-07-02*

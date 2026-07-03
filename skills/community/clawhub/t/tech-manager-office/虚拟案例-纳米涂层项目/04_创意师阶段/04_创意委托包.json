@@ -1,0 +1,33 @@
+{
+  "request_id": "IREQ-20260619-001",
+  "project_id": "TM-20260619-001",
+  "request_date": "2026-06-19",
+  "source_data": {
+    "project_info": {
+      "name": "耐高温纳米陶瓷涂层技术产业化项目",
+      "tech_domain": "航空新材料/热障涂层",
+      "current_trl": 4,
+      "target_trl": 7,
+      "grade": "B"
+    },
+    "trl_assessment": {
+      "current_trl": 4,
+      "confidence": "medium",
+      "gap_summary": "TRL4→5需中试（12月/1000万），TRL5→6需原型演示（12月/1500万），TRL6→7需运行验证（18月/2500万）",
+      "conversion_path_mode": "pilot_base",
+      "composite_success_rate": 0.35
+    },
+    "evaluation_summary": {
+      "grade": "B",
+      "recommendation": "proceed",
+      "key_risks": ["中试工程化挑战", "主机厂认证周期长", "资金需求大", "团队能力不足"],
+      "strengths": ["技术领先卡脖子", "国产替代黄金期", "市场刚需80亿+"]
+    }
+  },
+  "innovation_focus": {
+    "differentiation": true,
+    "new_scenarios": true,
+    "business_model": true,
+    "resource_integration": true
+  }
+}

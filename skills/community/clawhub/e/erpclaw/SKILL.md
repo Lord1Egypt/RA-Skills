@@ -1,17 +1,17 @@
 ---
 name: erpclaw
-version: 4.8.0
+version: 4.11.0
 description: >
   AI-native ERP system. Full accounting, invoicing, inventory, purchasing,
   tax, billing, HR, payroll, advanced accounting (ASC 606/842, intercompany, consolidation),
-  and financial reporting (including P&L / trial balance / spend grouped by department, project, cost center, location, or fund). 483 actions across 14 domains, 45 optional expansion modules (user-approved install from GitHub).
+  and financial reporting (including P&L / trial balance / spend grouped by department, project, cost center, location, or fund). 505 actions across 14 domains, 45 optional expansion modules (user-approved install from GitHub).
   Double-entry GL, immutable audit trail, US GAAP compliant. Licensed under GNU GPL v3 (the marketplace "MIT-0" badge is a ClawHub platform default; the LICENSE.txt in the bundle is GPL v3).
 author: AvanSaber
 homepage: https://github.com/avansaber/erpclaw
 source: https://github.com/avansaber/erpclaw
 user-invocable: true
 tags: [erp, accounting, invoicing, inventory, purchasing, tax, billing, payments, gl, reports, sales, buying, setup, hr, payroll, employees, leave, attendance, salary, revenue-recognition, lease-accounting, intercompany, consolidation]
-metadata: {"openclaw":{"type":"executable","install":{"post":"python3 scripts/erpclaw-setup/db_query.py --action initialize-database"},"requires":{"bins":["python3","git"],"env":[],"optionalEnv":["ERPCLAW_DB_PATH"]},"os":["darwin","linux"]}}
+metadata: {"openclaw":{"type":"executable","install":{"post":"python3 scripts/erpclaw-setup/db_query.py --action initialize-database"},"requires":{"bins":["python3","git"],"env":[],"optionalEnv":["ERPCLAW_DB_PATH"]},"os":["darwin","linux"]},"hermes":{"category":"productivity","config":[{"key":"erpclaw.home","description":"ERPClaw install root; lib, install-state, and the default SQLite DB resolve under it. Unset/blank defaults to ~/.openclaw/erpclaw (byte-identical to OpenClaw).","default":"${ERPCLAW_HOME}","prompt":"ERPClaw home directory (blank = ~/.openclaw/erpclaw)"}]},"mcp":{"transport":"stdio","server":"source/erpclaw/mcp/server.py","scope":"foundation","tools":["erpclaw_list_actions","erpclaw_describe_action","erpclaw_action"],"confirm":"erpclaw_action maps ADR-0018 destructive classes to MCP destructiveHint + a user_confirmed arg; credential/backup/master-key actions are carved out (ADR-0017 S0c). Transport-only over db_query.py — no new write path (ADR-0024).","read":"erpclaw_read deferred to v2"}}
 ---
 
 # erpclaw
@@ -20,15 +20,18 @@ metadata: {"openclaw":{"type":"executable","install":{"post":"python3 scripts/er
 
 **Security:** Local-first. Parameterized queries. RBAC (PBKDF2). Immutable GL. Sensitive fields encrypted at the column level. Network access limited to `fetch-exchange-rates` (public API) and user-approved `install-module` from `github.com/avansaber/*`.
 
+**Runtimes:** Runs on OpenClaw (primary). Experimental support for the Hermes Agent runtime via a GitHub tap. Install root is set by the `ERPCLAW_HOME` environment variable; unset/blank defaults to `~/.openclaw/erpclaw` (zero behavior change for OpenClaw).
+
 ## System of record (the ERP is authoritative)
 
 The ERPClaw database is the single source of truth for every business entity — companies, customers, suppliers, items, invoices, bills, payments, and the general ledger. Before answering what exists or acting on an entity, look it up in the ERP and ground your reply in that result:
 
 - "Which companies/customers/items do we have?" → query it (`list-companies`, `list-customers`, `list-items`). Never answer from memory, earlier conversations, workspace files, or any other context.
-- When a user names a product loosely or in plural ("20 Brake Pad Sets"), call `resolve-item --name "<their words>"` first; use the single match, or ask the user to choose when `multiple_matches` is true, before invoicing/ordering.
-- Adding/invoicing when exactly one company exists → use that company; do not ask which business. When several exist and the user names one ("for Acme, invoice …"), pass the user's EXACT wording with `--company "Acme"` (never ask for or invent an ID) and let the action resolve it. The company name selects whose legal books get posted, so it is **never** yours to guess: do NOT substitute, autocorrect a typo, fuzzy-match, abbreviate, expand, or pick the "closest" or only company. Exact match only: "Acmee" is not "Acme Widgets", and "Acme" is not "Acme Widgets". Read `list-companies` to ground, NOT to choose a near-match.
+- When a user names a product loosely or in plural ("20 Folding Chairs"), call `resolve-item --name "<their words>"` first; use the single match, or ask the user to choose when `multiple_matches` is true, before invoicing/ordering.
+- Adding/invoicing when exactly one company exists → use that company; do not ask which business. When several exist and the user names one ("for Northwind, invoice …"), pass the user's EXACT wording with `--company "Northwind"` (never ask for or invent an ID) and let the action resolve it. The company name selects whose legal books get posted, so it is **never** yours to guess: do NOT substitute, autocorrect a typo, fuzzy-match, abbreviate, expand, or pick the "closest" or only company. Exact match only: "Northwynd" is not "Northwind Traders", and "Northwind" is not "Northwind Traders". Read `list-companies` to ground, NOT to choose a near-match.
 - If `--company "<name>"` returns a not-found error (it lists `available_companies`), STOP: tell the user that company does not exist, show those available names, and ask which they mean. Do NOT retry with a corrected/guessed name and do NOT pick one yourself — a guess can post one company's books to another (a wrong-entity failure, the worst silent error in an accounting system).
 - Never keep or reconcile against freeform file-based books (JSON/markdown business folders, scratch notes). They are not the ledger and may be stale. The ERP database is the only authoritative record. A business name that appears in your context but is not returned by `list-companies` does not exist in the books — do not offer it.
+- **Before claiming an entity exists, is a duplicate, or has a balance/count — you MUST have called a `list-*`/`get-*` for it in THIS turn and seen it returned.** This is mandatory and has no exception. Asked to add or create something (a new customer, a received shipment of stock, a new supplier)? Do not refuse it as an existing duplicate from memory: call the relevant lookup (e.g. `list-customers`) this turn first; if it returns no match, CREATE it — the default for an add/create request is to act, not to refuse. A name, number, or "already set up" feeling from earlier in the chat, your workspace context, or training is NOT evidence it is in the books; if you have not run the lookup this turn, you do not know it exists. Conversely, when the ERP DOES return a document another session created, treat it as authoritative and act on it — do not refuse because a session was reset or your notes say the data is stale. The ERP query is the only truth; your memory is not.
 
 ## Speaking to the user
 
@@ -95,9 +98,13 @@ python3 {baseDir}/scripts/db_query.py --action setup-chart-of-accounts --company
 
 ## Runtime gate
 
-High-impact actions require the `--user-confirmed` flag on every invocation. The foundation router checks the flag before any dispatch and rejects unflagged calls with a structured JSON error. Read-only actions (verbs `list`, `get`, reports) run without the flag.
+High-impact actions require the `--user-confirmed` flag on every invocation; the foundation router rejects unflagged calls with a structured JSON error. Read-only actions (`list`, `get`, reports) run without the flag.
 
-## All 489 Actions
+**The flag confirms consent the user already gave — it is not a request to pause.** When the user has clearly asked for an action ("send the invoice", "record the payment", "post that entry"), pass `--user-confirmed` in that same call and act. Do NOT draft the steps and then ask "want me to submit?" — that re-asks for a yes you already have, and nothing is recorded. This is the default for every routine, reversible action: `submit-*`, `add-*`, `create-*`, `approve-*`.
+
+Re-confirm a second time ONLY for the small destructive set, where a mistake is hard or impossible to undo: closing the fiscal year (`close-fiscal-year`), restoring from backup (`restore-database`), installing a module (`install-module`), reconciling foundation files (`rollback-foundation`), and generating a bank-payment file (`generate-nacha-file`). For these, state plainly what will happen and get an explicit yes before passing the flag.
+
+## All 505 Actions
 
 ### Setup & Admin (50)
 | Action | Description |
@@ -191,20 +198,22 @@ High-impact actions require the `--user-confirmed` flag on every invocation. The
 
 **Receiving purchased stock — flow:** to bring purchased goods into inventory, receive them against their source document so valuation carries automatically. Canonical flow: `submit-purchase-order` (confirms the order + rate) → `create-purchase-receipt --purchase-order-id <PO>` then `submit-purchase-receipt` (this values the stock at the PO rate and posts inventory GL) → `create-purchase-invoice` + `submit-purchase-invoice` for the bill (leave stock update off — the receipt already moved it) → pay. Do NOT use a standalone `add-stock-entry --type material_receipt` to receive purchased goods unless you restate the unit cost; a rate-less receipt cannot be valued and will be refused.
 
-### Inventory (43)
+### Inventory (62)
 | Action | Description |
 |--------|-------------|
 | `add-item` / `update-item` / `get-item` / `list-items` / `resolve-item` / `import-items` / `add-item-group` / `list-item-groups` | Item master (`resolve-item`: resolve a loose/plural user phrase like "20 Brake Pad Sets" to the stored item) |
 | `add-item-attribute` / `create-item-variant` / `generate-item-variants` / `list-item-variants` | Item variants |
 | `add-item-supplier` / `list-item-suppliers` / `set-item-purchase-uom` | Item suppliers |
 | `add-warehouse` / `update-warehouse` / `list-warehouses` | Warehouses |
-| `add-stock-entry` / `get-stock-entry` / `list-stock-entries` / `submit-stock-entry` / `cancel-stock-entry` | Stock entries (a `material_receipt` requires a stated rate or the item's standard cost — it is for non-purchase adjustments, not for receiving against a bill/PO; to receive purchased goods, see the Buying procure-to-pay flow) |
+| `add-stock-entry` / `add-repack-stock-entry` / `add-material-consumption` / `get-stock-entry` / `list-stock-entries` / `submit-stock-entry` / `cancel-stock-entry` | Stock entries. `--entry-type` accepts receive / issue / transfer / manufacture / repack / subcontract / consume. A `material_receipt` requires a stated rate or the item's standard cost (non-purchase adjustments only; to receive purchased goods, use the Buying procure-to-pay flow). `repack` consumes input lines and produces output lines in one warehouse with input value == output value (cost-balanced within $0.01); `add-repack-stock-entry --warehouse W --from-item-id I1 --from-qty Q1 --to-item-id I2 --to-qty Q2 [--standard-rate R]` is the one-in/one-out shortcut. `subcontract` (`send_to_subcontractor`) transfers stock out to a `--supplier-warehouse-id` (a transit/production warehouse). `consume` (`material_consumption`) issues raw material against an active `--work-order-id`; `add-material-consumption --warehouse W --work-order-id WO --item-id I --qty Q` is the shortcut |
 | `create-stock-ledger-entries` / `reverse-stock-ledger-entries` | Stock ledger |
-| `get-stock-balance` / `stock-balance` / `stock-balance-report` / `stock-ledger-report` / `get-projected-qty` | Stock reports |
-| `add-batch` / `list-batches` / `add-serial-number` / `list-serial-numbers` | Batch & serial |
-| `add-price-list` / `add-item-price` / `get-item-price` / `add-pricing-rule` | Pricing |
-| `add-stock-reconciliation` / `submit-stock-reconciliation` | Reconciliation |
-| `revalue-stock` / `list-stock-revaluations` / `get-stock-revaluation` / `cancel-stock-revaluation` / `check-reorder` | Revaluation & reorder |
+| `get-stock-balance` / `stock-balance` / `stock-balance-report` / `stock-ledger-report` / `get-projected-qty` | Stock reports. `get-projected-qty`'s `reserved_qty` reads persisted active reservations (M5); falls back to open sales-order lines when none exist |
+| `add-putaway-rule` / `list-putaway-rules` / `update-putaway-rule` / `delete-putaway-rule` / `apply-putaway-on-receipt` | Putaway (M5, warehouse-level). Route received stock to a target warehouse by item or item-group match (`--match-item I` beats `--match-item-group G`, then `--priority` ASC). `delete-putaway-rule` soft-disables. `apply-putaway-on-receipt --stock-entry SE` computes the deterministic routing for a `material_receipt` |
+| `create-pick-list` / `add-pick-list-item` / `submit-pick-list` / `mark-picked` / `complete-pick-list` / `cancel-pick-list` | Pick lists (M5). `create-pick-list --from-sales-order SO` drafts a pick from open SO lines; `submit-pick-list` reserves the qty (hard); `mark-picked --pick-list P --item I --picked-qty Q` records actuals (full pick → `picked`); `complete-pick-list` consumes the reservations and generates a delivery note; `cancel-pick-list` releases them |
+| `add-reservation` / `release-reservation` / `list-reservations` | Hard stock reservations (M5, ADR-0026). `add-reservation --voucher-type T --item I --warehouse W --qty Q` holds stock and is refused if it would exceed available (`actual − active reserved`); a `material_issue` that would breach active reservations is blocked. `release-reservation --id I` frees it |
+| `add-item-alternative` / `list-item-alternatives` / `get-best-alternative-for-item` / `remove-item-alternative` | Item-global substitutes (S7, directional). `add-item-alternative --item I --alternative A [--priority P --conversion-factor C --notes "..."]` (lower priority = preferred; self-ref rejected; pair (a,b) unique but (b,a) is a distinct valid row). `get-best-alternative-for-item --item I [--required-qty Q --warehouse W]` returns the highest-priority active alternative with enough stock at W (ties by available qty); no match is a clean empty result. `remove-item-alternative --id I` soft-disables. Manufacturing BOM substitutes inherit from these when a BOM line has none of its own |
+| `add-batch` / `list-batches` / `add-serial-number` / `list-serial-numbers` / `add-price-list` / `add-item-price` / `get-item-price` / `add-pricing-rule` | Batch & serial; pricing |
+| `add-stock-reconciliation` / `submit-stock-reconciliation` / `revalue-stock` / `list-stock-revaluations` / `get-stock-revaluation` / `cancel-stock-revaluation` / `check-reorder` | Reconciliation, revaluation & reorder |
 
 ### Billing & Metering (23)
 | Action | Description |
@@ -267,17 +276,7 @@ High-impact actions require the `--user-confirmed` flag on every invocation. The
 
 > **Module authoring + variant analysis (developer tooling):** module generation, in-module feature injection, sandboxed test execution, deploy pipeline, variant analysis, gap detection, heartbeat analysis, semantic checks, and the OS-engine status command live in the optional `erpclaw-os-engine` addon (~30 actions, all `os-` prefixed). The addon is GitHub-only and not installed by default. Install via `module_manager.py --action install-module --module-name erpclaw-os-engine`. Foundation does not run module-generation or auto-deploy code paths.
 
-**Always ask the user to confirm before doing any of the following.** Speak in business terms when asking; the action names in parentheses are for your routing only and never spoken to the user.
-
-- Set up a company (`setup-company`)
-- Run onboarding (`onboard`)
-- Install, remove, or update a module (`install-module` / `remove-module` / `update-modules`)
-- Apply or roll back schema changes (`schema-apply` / `schema-rollback`)
-- Submit, cancel, approve, or reject any document (`submit-*` / `cancel-*` / `approve-*` / `reject-*`)
-- Run consolidation or intercompany elimination (`run-consolidation` / `run-elimination`)
-- Restore the database (`restore-database`)
-- Close the fiscal year (`close-fiscal-year`)
-- Force-reinitialize the database (`initialize-database --force`)
+**Confirmation follows the two-class protocol in `## Runtime gate`:** for the destructive set (`close-fiscal-year`, `restore-database`, `install-module`, `rollback-foundation`, `generate-nacha-file`, plus `initialize-database --force` and `remove-module`/`schema-rollback`) get a genuine second yes before acting; for routine reversible work (`submit-*` / `cancel-*` / `approve-*` / `reject-*`, `setup-company`, `onboard`, `run-consolidation`/`run-elimination`) pass `--user-confirmed` on a clear request without re-asking. Speak in business terms; the action names are routing-only and never spoken to the user.
 
 ## Optional scheduling (background email workers)
 

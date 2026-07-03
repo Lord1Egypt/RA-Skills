@@ -88,64 +88,64 @@
 # ===== 大模型增强模板（推荐优先使用） =====
 
 # 真人场景 - 升至 1080P（推荐用于真人实拍视频）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003
 
 # 真人场景 - 升至 4K（超高清修复）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327007
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327007
 
 # 漫剧场景 - 升至 1080P
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327004
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327004
 
 # 漫剧场景 - 升至 4K（推荐用于动漫视频超清修复）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327008
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327008
 
 # 抖动优化 - 升至 1080P（减少帧间抖动与纹理跳变）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327010
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327010
 
 # 细节最强 - 升至 4K（极致细节修复）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327016
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327016
 
 # 人脸保真 - 升至 1080P（推荐用于人像/写真/访谈视频）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327018
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327018
 
 # ===== 自定义参数模式 =====
 
 # 大模型增强（效果最强）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset diffusion --diffusion-type strong
 
 # 综合增强（平衡效果与效率）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset comprehensive --comprehensive-type normal
 
 # 去伪影（针对压缩产生的伪影修复）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --preset artifact --artifact-type strong
 
 # 超分 + 降噪 + 色彩增强
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution --denoise --color-enhance
 
 # HDR + 插帧 60fps
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10 --frame-rate 60
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --hdr HDR10 --frame-rate 60
 
 # ===== 音频分离 =====
 
 # 提取人声（去除背景音乐）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate vocal
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate vocal
 
 # 提取背景声（去除人声）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate background
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate background
 
 # 提取伴奏（去除人声，保留音乐）
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate accompaniment
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-separate accompaniment
 
 # 音频增强：降噪 + 音量均衡 + 美化
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --audio-denoise --volume-balance --audio-beautify
 
 # ===== 输出编码控制 =====
 
 # 增强后输出为 H265 + 1080P + 指定码率
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution \
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --super-resolution \
     --codec h265 --width 1920 --height 1080 --bitrate 4000
 
 # 异步提交后查询任务状态
-python scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003 --no-wait
-python scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
+python3 scripts/mps_enhance.py --url https://example.com/video.mp4 --template 327003 --no-wait
+python3 scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
 ```

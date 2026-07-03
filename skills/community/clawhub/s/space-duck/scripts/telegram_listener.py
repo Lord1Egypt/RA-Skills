@@ -102,7 +102,7 @@ PENDING_TTL = 600  # 10 minutes; matches the MC dispatch window
 # 0.3.7 — local pulse marker; doctor.py reads this for offline-detection.
 PULSE_FILE = Path.home() / '.space-duck' / 'listener-pulse.json'
 PULSE_INTERVAL = 90      # platform self-pulse every 90s
-SKILL_VERSION = '0.4.15'
+SKILL_VERSION = '0.4.18'
 # 0.3.9 — Auto-approved-action memory. When the owner taps "Approve &
 # remember" on action_kind X, X is added here with expires_at = now+24h.
 # Future X dispatches auto-execute (with audit) until the entry expires.
@@ -789,7 +789,9 @@ def _preflight_bind_state(beak_key, sd_id, api_base, verbose=False):
             url, headers={'Authorization': f'Bearer {beak_key}'}, method='GET')
         with urllib.request.urlopen(req, timeout=8) as r:
             d = json.loads(r.read())
-        state = (d.get('state') or '').upper()
+        # 0.4.17 — the endpoint returns `binding_state` (never `state`);
+        # reading `state` made preflight report UNKNOWN even when VERIFIED.
+        state = (d.get('binding_state') or d.get('state') or '').upper()
         if state == 'VERIFIED':
             return True, state, ''
         if state in ('DEGRADED',):
@@ -959,6 +961,38 @@ class _Handler(BaseHTTPRequestHandler):
         if self.config and self.config.get('verbose'):
             super().log_message(format, *args)
 
+    def _run_hook(self, on_message, payload, idem):
+        # Run the --on-message hook, full verified payload on stdin.
+        # Returns the hook's stdout (used only by the --auto-reply path).
+        # Safe to call from a background thread.
+        try:
+            # shlex-split so multi-token forms (`python3 /path/x.py`) work;
+            # no shell, no injection. Fall back to the raw string if split
+            # fails or is empty so single-token users aren't broken.
+            argv = on_message
+            try:
+                _argv_split = shlex.split(on_message)
+                if _argv_split:
+                    argv = _argv_split
+            except Exception:
+                pass
+            proc = subprocess.run(
+                argv, input=json.dumps(payload).encode(),
+                capture_output=True, timeout=self.config.get('hook_timeout', 60))
+            if proc.returncode != 0:
+                print(f'[HOOK-FAIL] rc={proc.returncode} idem={idem[:8]} '
+                      f'stderr={proc.stderr[:200]!r}', file=sys.stderr)
+                return ''
+            return proc.stdout.decode('utf-8', errors='replace').rstrip('\n')
+        except subprocess.TimeoutExpired:
+            print(f'[HOOK-TIMEOUT] idem={idem[:8]} '
+                  f'killed after {self.config.get("hook_timeout", 60)}s',
+                  file=sys.stderr)
+            return ''
+        except Exception as e:
+            print(f'[HOOK-EXC] {e}', file=sys.stderr)
+            return ''
+
     def do_GET(self):
         if self.path == '/healthz':
             return self._json(200, {'ok': True, 'service': 'space-duck-telegram-listener'})
@@ -1016,6 +1050,39 @@ class _Handler(BaseHTTPRequestHandler):
         # peck metadata and have nothing for send_peck to resolve.
         event_type = payload.get('event', '')
         peck_id_for_mirror = payload.get('peck_id') or ''
+
+        # 0.4.18 — peck.approval_request interception. The platform's
+        # approval fan-out ships the canonical envelope with
+        # event='peck.received' on the BODY (semantics live in the
+        # X-SpaceDuck-Event header + approval_required flag), so before
+        # this block the listener mirrored it to inbox/ and fed it to the
+        # brain hook as if it were a delivered message — the brain would
+        # burn tokens auto-replying to a peck the owner hadn't approved
+        # yet. Intercept here: print a loud actionable card with the
+        # exact decide commands (the pending row in DDB is the source of
+        # truth — no local marker file, markers-need-sweeps). The brain
+        # hook only sees it with the explicit --approval-hook opt-in.
+        hdr_event = self.headers.get('X-SpaceDuck-Event', '')
+        if payload.get('approval_required') or hdr_event == 'peck.approval_request':
+            sender = payload.get('sender_name') or payload.get(
+                'sender_spaceduck_id', '?')[:8]
+            preview = (payload.get('message') or '')[:300]
+            decide = Path(__file__).resolve().parent / 'check_pecks.py'
+            print(
+                f'[APPROVAL-REQUEST] peck={peck_id_for_mirror} from={sender}\n'
+                f'  message: {preview!r}\n'
+                f'  approve: python3 {decide} --approve {peck_id_for_mirror}\n'
+                f'  deny:    python3 {decide} --deny {peck_id_for_mirror}',
+                file=sys.stderr)
+            if self.config.get('approval_hook') and self.config.get('on_message'):
+                threading.Thread(
+                    target=self._run_hook,
+                    args=(self.config['on_message'], payload, idem),
+                    daemon=True).start()
+            return self._json(200, {'received': True, 'idempotency_key': idem,
+                                    'handled_by': 'peck_approval_request',
+                                    'pending_approval': True})
+
         if event_type == 'peck.received' and peck_id_for_mirror:
             try:
                 PECK_INBOX_DIR.mkdir(parents=True, exist_ok=True)
@@ -1052,37 +1119,30 @@ class _Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 print(f'[OWNER-APPROVAL-EXC] {e}', file=sys.stderr)
 
-        reply_text = ''
         on_message = self.config.get('on_message')
+
+        # 0.4.16 (C3) — async-ACK. When a hook is wired but --auto-reply is
+        # OFF, the hook owns its own outbound dispatch (reply_with_claude.sh
+        # forks a detached worker; peck_responder.py calls send_peck). The
+        # brain can take 30-90s, but the platform's forward urlopen times
+        # out at ~10s — a slow-but-healthy reply was being counted as a
+        # FAILED forward, pushing the binding toward DEGRADED/REVOKE. Break
+        # the coupling: ACK 200 to the platform now, run the hook in a
+        # daemon thread. (ThreadingHTTPServer already gives each request its
+        # own thread, but returning before the slow brain finishes is what
+        # keeps us under the platform's forward timeout.)
+        # With --auto-reply we must run synchronously to capture stdout, so
+        # that path stays blocking — and remains a foot-gun (see SKILL.md).
+        if on_message and not self.config.get('auto_reply'):
+            threading.Thread(
+                target=self._run_hook, args=(on_message, payload, idem),
+                daemon=True).start()
+            return self._json(200, {'received': True, 'idempotency_key': idem,
+                                    'dispatched': 'async'})
+
+        reply_text = ''
         if on_message:
-            try:
-                # 0.3.14 — shlex-split the hook string so multi-token forms
-                # like `python3 /path/to/peck_responder.py` work. Pre-0.3.14
-                # subprocess.run(on_message, ...) without shell=True treated
-                # the whole string as a single binary path on POSIX, which
-                # silently `FileNotFoundError`'d every inbound and the
-                # platform got a 200 → no reply ever fired.
-                # argv parsed via shlex (no shell, no injection risk).
-                # If shlex.split fails or yields empty, fall back to the
-                # raw string so we don't make things worse for users
-                # already relying on the single-token form.
-                argv = on_message
-                try:
-                    _argv_split = shlex.split(on_message)
-                    if _argv_split:
-                        argv = _argv_split
-                except Exception:
-                    pass
-                proc = subprocess.run(
-                    argv, input=json.dumps(payload).encode(),
-                    capture_output=True, timeout=self.config.get('hook_timeout', 60))
-                if proc.returncode != 0:
-                    print(f'[HOOK-FAIL] rc={proc.returncode} stderr={proc.stderr[:200]!r}',
-                          file=sys.stderr)
-                else:
-                    reply_text = proc.stdout.decode('utf-8', errors='replace').rstrip('\n')
-            except Exception as e:
-                print(f'[HOOK-EXC] {e}', file=sys.stderr)
+            reply_text = self._run_hook(on_message, payload, idem)
 
         # Auto-reply via send-as if enabled + hook produced output.
         if self.config.get('auto_reply') and reply_text:
@@ -1145,6 +1205,12 @@ def main(argv=None):
                         'Useful for local debug.')
     p.add_argument('--no-janitor', action='store_true',
                    help='Disable the 10-min pending-approvals TTL janitor.')
+    p.add_argument('--approval-hook', action='store_true',
+                   help='Also forward peck.approval_request envelopes to '
+                        'the --on-message hook (for custom owner-notify '
+                        'brains). Default OFF: approval requests are '
+                        'logged with decide commands but never auto-'
+                        'replied to by the brain.')
     args = p.parse_args(argv)
 
     beak_key = _load_beak_key()
@@ -1162,6 +1228,7 @@ def main(argv=None):
         'skip_hmac': args.unsafe_skip_hmac,
         'owner_approval': args.owner_approval,
         'strict_consent': args.strict_consent,
+        'approval_hook': args.approval_hook,
     }
     sd_id = _load_spaceduck_id()
 

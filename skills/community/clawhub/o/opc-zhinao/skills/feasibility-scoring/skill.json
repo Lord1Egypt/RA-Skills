@@ -1,0 +1,38 @@
+{
+  "id": "feasibility-scoring",
+  "name": "可行度打分系统",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "量化评分系统，从需求可行性、市场空间、个人匹配度三个维度评估创业Idea的综合可行度",
+  "stage": null,
+  "stageName": "通用（跨阶段）",
+  "triggers": ["可行度", "打分", "评分", "可行性评估"],
+  "scoring": {
+    "dimensions": [
+      {
+        "name": "需求可行性",
+        "weight": 0.4,
+        "subDimensions": ["痛点明确度", "付费意愿", "替代方案", "频次依赖"]
+      },
+      {
+        "name": "市场空间",
+        "weight": 0.3,
+        "subDimensions": ["市场规模", "竞争程度", "增长趋势"]
+      },
+      {
+        "name": "个人匹配度",
+        "weight": 0.3,
+        "subDimensions": ["技能匹配", "时间匹配", "预算匹配"]
+      }
+    ],
+    "levels": [
+      { "min": 80, "max": 100, "label": "高度可行", "icon": "🟢" },
+      { "min": 60, "max": 79, "label": "可行但需突破", "icon": "🟡" },
+      { "min": 40, "max": 59, "label": "有挑战", "icon": "🟠" },
+      { "min": 0, "max": 39, "label": "不可行", "icon": "🔴" }
+    ]
+  },
+  "files": {
+    "prompt": "prompt.md"
+  }
+}

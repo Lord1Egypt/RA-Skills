@@ -16,20 +16,36 @@ caliper run path/to/spec.eval.yaml --k 3
 caliper run path/to/spec.eval.yaml --k 3 --baseline
 
 # Run against a different backend or model without editing the spec
-caliper run path/to/spec.eval.yaml --model claude-api:claude-sonnet-4-6
+caliper run path/to/spec.eval.yaml --model codex:gpt-5-codex
 caliper run path/to/spec.eval.yaml --model codex
-caliper run path/to/spec.eval.yaml --judge-model claude-api:claude-haiku-4-5-20251001
+caliper run path/to/spec.eval.yaml --judge-model claude-code:claude-haiku-4-5-20251001
 
 # Browse past results
 caliper list
 caliper report path/to/spec.eval.yaml
+
+# Compare two saved runs of the same eval (ablation: full vs. shortened, or over time)
+caliper compare full-eval short-eval           # spec name -> latest run, or a results-JSON path
+caliper compare a.json b.json --format json     # per-task Δ, regression flags, for scripting
 ```
+
+`caliper compare <A> <B>` diffs two already-saved runs task by task: tasks are
+matched by name, `Δ = b − a`, a negative Δ flags a regression (any-below), and a
+side with no usable attempts shows `—` (unmeasured, never a regression) so
+infra/judge noise can't fake a loss.
 
 ## Inspecting failures
 
 After any `caliper run`, failed tasks are shown automatically with their output
-and `assert_evidence` — no extra command needed. If a failure is still unclear,
-use `--verbose` to see full output for all tasks (including passing ones):
+and `assert_evidence` — no extra command needed. Each attempt is tagged with an
+`outcome`: a real `task_fail` reads as `✗`, while *unusable* attempts
+(`infra_error` from a rate-limit / spending-cap, `timeout`, or `judge_error`)
+read as `⊘` and are excluded from the pass@k denominator, with a separate
+"N unusable" count in the summary — so a throttled or judge-flaked run is not
+mistaken for a skill regression. If `caliper run --fail-fast N` stopped a task
+after repeated `infra_error` / `timeout` outcomes, the report marks it as
+`ABORTED` and shows how many attempts ran. If a failure is still unclear, use
+`--verbose` to see full output for all tasks (including passing ones):
 
 ```bash
 # Full output for all tasks (passing + failing), untruncated
@@ -108,7 +124,5 @@ Add `assert:` when the outcome is a fact that an LLM judge might guess wrong:
 | `claude-code` | Claude Code CLI | Default for most skills |
 | `codex` | Codex CLI | For Codex-targeted skills |
 | `pi` | pi CLI (authenticated) | For pi / agentskills.io skills; native `--skill` loading |
-| `claude-api` | `ANTHROPIC_API_KEY` | No CLI needed |
-| `openai-api` | `OPENAI_API_KEY` | No CLI needed |
 
-Skill backend and judge backend are independent.
+Skill backend and judge backend are independent. Every backend is a CLI agent; for API billing, configure a CLI with an API key rather than selecting a separate backend.

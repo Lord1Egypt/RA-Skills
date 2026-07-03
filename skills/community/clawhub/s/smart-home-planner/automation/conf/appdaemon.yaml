@@ -1,0 +1,34 @@
+# AppDaemon Configuration — Dual Platform (Mijia + HomeKit)
+# Usage: appdaemon -c .
+
+appdaemon:
+  latitude: 39.9042
+  longitude: 116.4074
+  elevation: 43
+  time_zone: Asia/Shanghai
+  plugins:
+    mijia:
+      type: mijia
+      namespace: mijia
+      poll_interval: 30
+      smart_poll: true
+      fast_poll_interval: 10
+      slow_poll_interval: 60
+      occupancy_sensors:
+        - "1100470123"
+        - "blt.3.1jvqone644k00"
+      devices_file: devices.yaml
+    homekit:
+      type: homebridge
+      namespace: homekit
+      homebridge_url: "http://localhost:8581"
+      username: "admin"
+      password: "admin"
+      poll_interval: 30
+      devices_file: devices.yaml
+
+logs:
+  main_log:
+    filename: logs/appdaemon.log
+  error_log:
+    filename: logs/error.log

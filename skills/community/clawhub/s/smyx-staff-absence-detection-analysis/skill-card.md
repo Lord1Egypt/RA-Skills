@@ -1,5 +1,5 @@
 ## Description: <br>
-Monitors whether personnel remain on duty in specified workplace areas by submitting video or images to a cloud computer-vision service and returning absence status, duration, and history reports. <br>
+Real-time monitoring of personnel on-duty status in specific areas using computer vision and human pose estimation to detect leaving-post and absence events, support configurable thresholds, and return structured monitoring reports. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Operations, safety, and facilities teams use this skill to analyze workplace camera video or images for leave-post and absence events in fixed-duty areas such as production lines, monitoring rooms, service windows, guard posts, toll stations, and business halls. The skill can also retrieve cloud-stored historical absence reports for a supplied user identifier. <br>
+Operations, safety, and facilities teams use this skill to analyze workplace camera images, videos, or media URLs for personnel absence and leaving-post events. It can also retrieve cloud-hosted historical reports associated with the automatically managed user identity. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends workplace images or video, user identifiers, and generated absence reports to the configured LifeEmergence cloud service. <br>
-Mitigation: Use only with approved media and identifiers, review configured API endpoints before deployment, and apply applicable employee notice, consent, and data-retention controls. <br>
-Risk: A development private-IP configuration is present in the artifact and could be inappropriate for production use. <br>
-Mitigation: Confirm production deployments use the intended public service configuration and do not rely on development endpoints. <br>
+Risk: The skill sends workplace images, videos, or media URLs to the vendor's cloud service for analysis. <br>
+Mitigation: Use only with media that the organization is authorized to process, and confirm employee notice, consent, retention, and vendor-processing requirements before deployment. <br>
+Risk: Reports are tied to an automatically managed identity, and the skill can silently create or reuse that identity. <br>
+Mitigation: Review whether silent identity creation and cloud history retrieval meet internal privacy and account-governance policies before enabling historical report queries. <br>
+Risk: The security evidence says credentials or tokens may be stored and reused for cloud requests with limited user control. <br>
+Mitigation: Run in an isolated agent workspace, restrict access to local skill data files, and rotate or revoke service credentials according to the vendor's process if the workspace is shared or decommissioned. <br>
 
 
 ## Reference(s): <br>
-- [Personnel Absence Monitoring API Documentation](references/api_doc.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/18072937735/smyx-staff-absence-detection-analysis) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-staff-absence-detection-analysis) <br>
+- [API documentation](artifact/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown or JSON analysis reports with optional saved text output] <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
+**Output Format:** [Markdown report text or structured JSON, with optional saved output files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local media paths or media URLs, an open-id user identifier, media type, confidence threshold, and absence threshold; can return current analysis results or historical report listings.] <br>
+**Other Properties Related to Output:** [Reports may include detection status, absence counts, duration statistics, recommendations, cloud report links, and historical report lists.] <br>
 
 ## Skill Version(s): <br>
-1.0.6 (source: server release metadata; skill frontmatter reports 1.0.4) <br>
+1.0.7 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

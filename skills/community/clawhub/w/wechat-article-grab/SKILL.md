@@ -1,194 +1,77 @@
 ---
 name: wechat-article-reader
-description: "Use when user shares a WeChat public account article link, asks to search/list articles by account name, queries trending articles by keyword, or needs WeChat article content read and summarized."
+description: "抓取微信文章正文、搜索公众号、查文章列表、爆款查询"
 metadata:
-  {
-    "openclaw":
-      {
-        "allowed-tools": ["exec", "read", "write", "edit"],
-      },
-  }
+  allowed-tools: ["exec", "read", "write", "edit"]
 ---
 
 # 微信公众号文章读取器
 
-## 模式选择
-
-| 场景 | 用哪个 |
-|---|---|
-| 我有文章链接，想看全文 | 模式一 |
-| 我有**多个**文章链接，想对比内容 | 模式一（并行） |
-| 我知道公众号名，想查它发了什么 | 模式二 |
-| 我不知道看什么，想找热门文章 | 模式三 |
-| 我有文章链接，想查互动数据 | 模式四 |
-| 我想知道哪些公众号在这个领域表现好 | 模式五 |
-| 我想深度分析爆款文章的创作技巧 | 模式三（分析） |
-
----
-
-## 模式一：单篇文章URL（无需Cookie）
-
-有文章链接时使用，直接抓取正文。
-
+## 入口
 ```bash
-python3 gzh_article.py fetch "<url>"
+cd ~/.openclaw/agents/xingchen/workspace/skills/wechat-article-reader
+python3 scripts/gzh_article.py <command> [args]
 ```
 
-**多文章并行：** 多个 URL 之间无依赖，务必并行调用以节省时间。
+## 环境变量配置
 
-```bash
-python3 gzh_article.py fetch "<url1>" &
-python3 gzh_article.py fetch "<url2>" &
-wait
-```
+详见 `env-guide.md`（MPTEXT_API_KEY 和 Cookie 的获取与配置说明）。
 
-> ⚠️ `stats` 仅对**爆款文章**（已在三方聚合库中）有效，新发布的深度文章通常查不到。如只需正文内容，直接用 `fetch` 即可，无需调用 `stats`。
+## 命令（12个）
 
----
+### 常用命令
+| 命令 | 说明 |
+|------|------|
+| `fetch "<url>"` | 抓取单篇文章全文（标题+正文），curl 优先，不需要公众号名 |
+| `full "公众号名" [数量]` | 列出某公众号文章+每篇预览前800字，不含阅读量 |
+| `list "公众号名" [数量]` | 列出文章标题+摘要digest，不含正文 |
+| `mpsearch "<关键字>"` | 按名称搜索公众号，返回名称和fakeid |
+| `stats "<url>"` | 拿文章标题搜 trends API，返回相似爆款文章的互动数据（新文章可能无结果） |
+| `trends "<关键词>"` | 查某关键词下的爆款文章列表，含阅读/点赞/评论数据 |
+| `compare --accounts "名1,名2" [--count N]` | 对比多个公众号的文章列表 |
+| `compare --urls "url1,url2"` | 对比多个链接对应的公众号文章列表 |
+| `compare "<关键词>"` | 按关键词查爆款文章（不是对比，是搜索） |
+| `resolve "<标题>"` | 根据标题搜索并匹配文章链接 |
 
-## 模式二：按公众号名称搜索文章列表（需要Cookie）
+### 专用命令
+| 命令 | 说明 |
+|------|------|
+| `mparticles "<fakeid>" [数量]` | 从 fakeid 查文章列表 |
+| `mparticles_by_url "<url>" [数量]` | 从 URL 提取 biz 再查文章列表（URL 需含 `__biz`） |
+| `mpinfo "<fakeid>"` | 查公众号主体信息（公司名、是否认证、原创文章数） |
+| `mpdownload "<url>" [格式]` | 下载文章正文（mptext 方式，不含标题） |
 
-查某个公众号最新N篇文章，支持日期筛选和正文预览。
+## 自动降级链路
 
-```bash
-python3 gzh_article.py list "公众号名称" [文章数] [--preview] [--start-date YYYY-MM-DD] [--end-date YYYY-MM-DD]
-```
+### 3 层路径
+| 命令 | P1 | P2 | P3 |
+|------|----|----|-----|
+| fetch | curl（免费） | mptext | Cookie |
+| compare --urls | biz→mptext | 正文识别账号名→mptext | Cookie |
+| mparticles_by_url | biz→mptext | 正文识别账号名→mptext | Cookie |
 
-- 不带 `--preview`：只输出文章列表
-- 带 `--preview`：列表 + 每篇正文预览（约800字）
+### 2 层路径
+| 命令 | P1 | P2 |
+|------|----|----|
+| list | mptext | Cookie |
+| full | mptext | Cookie |
+| compare --accounts | mptext | Cookie |
+| resolve | mptext | Cookie |
+| mpsearch | mptext | Cookie |
+| mparticles | mptext | Cookie |
+| mpdownload | mptext | curl |
 
-> ⚠️ API 有访问深度限制，历史文章可能不完整。
+### 单路径
+| 命令 | 唯一路径 |
+|------|----------|
+| stats | trends API |
+| trends | trends API |
+| mpinfo | mptext |
 
----
+## 已知局限
+- **fetch 内容截断**：JS验证拦截的文章只能拿 ~800 字，换 P2 可能完整
+- **mparticles_by_url**：URL 不含 `__biz` 时走正文识别公众号名路径，无需 biz
+- **stats**：仅对爆款文章有效，新文章无结果时提示"所有关键词查询均失败"
+- **历史列表不全**：原生 API 最多约 436 篇
 
-## 模式三：爆款文章查询（全网）
-
-按关键词搜全网热门文章，不需要 Cookie。输出文字格式（标题、链接、互动数据、摘要）。
-
-```bash
-python3 gzh_article.py trends "<关键词>" [--max-items N] [--start-date YYYY-MM-DD]
-```
-
-示例：
-
-```bash
-python3 gzh_article.py trends "AI" --max-items 5
-python3 gzh_article.py trends "职场沟通" --max-items 10
-python3 gzh_article.py trends ""                    # 全网热门，默认15条
-```
-
-数据来源：第三方聚合接口，涵盖低粉高阅读 / 10万+阅读 / 原创靠前 / 数据增长。
-
-**输出包含**：标题、链接、公众号、发布时间、粉丝数、类别、互动数据、文章摘要
-
-### 5 维度分析（可选）
-
-当用户需要深度分析时，可对文章进行 5 维度解读：
-
-1. **爆款原因** — 为什么被转发
-2. **内容特点** — 选题角度、结构、风格
-3. **受众匹配** — 打动了谁
-4. **可复制性** — 能借鉴什么
-5. **数据解读** — 互动数据说明什么
-
-**触发词**：分析、点评、深度解读、5维度
-
----
-
-## 模式四：查询特定文章的互动数据
-
-通过文章 URL 查询该文章的互动数据（点赞/评论/分享/阅读）。
-
-```bash
-python3 gzh_article.py stats "<url>"
-```
-
-> ⚠️ **仅对爆款文章有效**。刚发布的新文章、深度长文通常不在三方聚合库中，查询会返回"未收录"。此时应直接使用 `fetch` 获取正文内容进行分析，不必重试 `stats`。
-
-## 模式五：多公众号对比
-
-按公众号聚合数据，对比各账号表现（粉丝、平均阅读、平均互动等）。
-
-```bash
-# 关键词搜索（无需Cookie）
-python3 gzh_article.py compare "<关键词>" [数量]
-
-# 指定公众号对比（需要Cookie）
-python3 gzh_article.py compare --accounts 量子位,AI科技迷,差评
-
-# 指定链接对比（需要Cookie）
-python3 gzh_article.py compare --urls "<url1>","<url2>"
-```
-
-示例输出：
-```
-📊 公众号数据对比: AI
-
-公众号              粉丝    文章   平均阅读   平均点赞   平均评论
------------------------------------------------------------------
-量子位              100w      3     8.5万     1,200        89
-AI科技迷             50w      2     3.2万       450        32
-...
------------------------------------------------------------------
-共 2 个公众号 | 5 篇文章
-```
-
----
-
-## 泛化词治理（重要规则）
-
-**核心规则**：识别为泛化词时，**必须先输出细分词推荐并等待用户选择**，禁止直接调用脚本。
-
-| 泛化词类型 | 示例 | 处理方式 |
-|------------|------|----------|
-| 行业大类词 | 职场、情感、育儿、AI | 先问"拓展/不拓展" |
-| 细分词 | 职场沟通、亲子教育、恋爱技巧 | 直接搜索，无需询问 |
-
-**泛化词判断原则**：
-- 无场景/属性修饰 = 泛化词（如"职场"）
-- 有具体场景/修饰 = 细分词（如"职场沟通"）
-
-**执行流程**：
-1. 用户说"职场类爆款" → 识别"职场"为泛化词
-2. 回复细分词列表，询问"拓展/不拓展"
-3. 用户回复后，才调用脚本执行查询
-
-### 意图识别与筛选
-
-| 意图类型 | 特征 | 筛选侧重 |
-|----------|------|----------|
-| 泛浏览型 | 无明确目标，想看热门 | 全站热门数据 |
-| 明确需求型 | 有具体目标/场景 | 意图匹配度优先 |
-| 数据需求型 | 关注数据表现 | 互动数/阅读数优先 |
-
-### 推荐理由要求
-
-每条结果需包含 ≥15 字推荐理由，基于：
-- 为什么符合用户意图
-- 为什么数据表现好
-- 内容有什么独特价值
-
-### 细分引导
-
-展示完爆款数据后，**必须主动给出 10 个可继续深挖的细分赛道词**，引导下一轮查询。
-
-### 直接输出文字数据
-
-趋势查询完成后直接输出文字格式（标题、链接、公众号、时间、互动数据），不再生成 HTML 文件。
-
----
-
-## Cookie 配置（模式二需要）
-
-1. 登录 https://mp.weixin.qq.com
-2. F12 → Network → 刷新页面 → 点击任一请求 → Headers → 复制 Cookie
-3. 保存到：`scripts/skill.env`（格式：每个 cookie key=value 单独一行）
-
-> Cookie 会过期，失效后重新获取。
-
----
-
-## 局限性
-
-- **模式二**：微信 list_ex API 只返回约 436 篇最新文章，更早的历史无法翻到
-- **模式四**：数据来自第三方聚合，非微信官方，可能有少量延迟
+详细说明见 `references/priority.md`

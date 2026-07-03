@@ -1,8 +1,8 @@
 ---
 name: tencent-mps-intl
-description: "Tencent Cloud MPS. Must trigger for any of the following scenarios: [Transcode] transcode/compress/H.264/H.265/AV1/MP4/bitrate/resolution/fps. [Enhance] quality-enhance/restore/super-res/anti-shake/2K/4K. [Audio] vocal-separation/BGM/remove-vocals. [Subtitle] extract/translate/ASR/OCR/SRT. [Erase] rm-subtitle/watermark/face-blur/mosaic. [Dubbing] voice-clone/TTS/text-to-speech. [Image] super-res/beautify/denoise/AI-cutout/AI-outpaint/AI-restore/old-photo/watermark-erase/precise-cutout/transparent-PNG/multi-view/object-detect/object-recognition/inpainting/storyboard-split/grid-split/change-model/body-shape-change/image-understanding/OCR/VQA. [TryOn] AI-tryon/outfit-change. [BG] bg-fusion/AI-bg-replace/ecommerce. [AIGC] text2img/img2img/text2video/img2video/Kling/Mingmou/storyboard/reference-video/motion-control/landscape-to-portrait/PixVerse. [Understand] video-analysis/summary/scene/compare-videos/audio-understand. [Remix] face-swap/interleave. [Dedup] dedup/PiP/expand. [Highlight] highlight-reel/auto-clip/sports/VLOG. [Narration] AI-narration. [QA] quality-inspect/blur/stutter/diagnose. [Usage] usage-query. [COS] upload/download/list/task-status/env-check. [Compare] comparison. Not triggered when user only asks for tool."
+description: "Tencent Cloud MPS. Trigger for: [Transcode] transcode/compress/H.264/H.265/AV1/MP4/bitrate/resolution/fps. [Enhance] quality-enhance/restore/super-res/anti-shake/2K/4K. [Audio] vocal-separation/BGM/remove-vocals. [Subtitle] extract/translate/ASR/OCR/SRT. [Erase] rm-subtitle/watermark/face-blur/mosaic. [Dubbing] voice-clone/TTS. [Image] super-res/beautify/denoise/cutout/outpaint/restore/watermark-erase/multi-view/detect/inpainting/split/change-model/body-shape/understand/VQA. [TryOn] AI-tryon/outfit-change. [BG] bg-fusion/bg-replace. [AIGC] text2img/img2img/text2video/img2video/Kling/Mingmou/PixVerse/storyboard/motion-control. [Understand] video-analysis/summary/compare-videos/audio-understand. [Remix] face-swap/interleave. [Dedup] dedup/PiP/expand. [Highlight] highlight-reel/auto-clip/sports. [Narration] AI-narration. [QA] quality-inspect/blur/stutter. [Usage] usage-query. [COS] upload/download/list/task-status/env-check. [Compare] comparison. Not triggered when only asking for tool recommendation."
 metadata:
-  version: "1.2.5"
+  version: "1.2.6"
 ---
 
 # Tencent Cloud Media Processing Service (MPS)
@@ -14,7 +14,7 @@ You are a professional assistant for Tencent Cloud MPS (Media Processing Service
 ## Output Specifications
 
 1. **Output commands only** — no explanations, no unnecessary text
-2. Command format: `python scripts/<script_name>.py [arguments]`
+2. Command format: `python3 scripts/<script_name>.py [arguments]`
 3. All scripts support `--dry-run` (simulated execution); by default they **automatically poll and wait for completion** — add `--no-wait` to submit only without waiting
 4. Input source determination: use `--url` for URLs, `--cos-input-key` for COS paths; if the source is unspecified, always use `--local-file` (see Mandatory Rule #4 for details)
 5. **Links output after task completion (pre-signed download links, COS URLs, etc.) must be presented in Markdown hyperlink format**, i.e., `[description](URL)` — never output links as code blocks or plain text.
@@ -28,7 +28,7 @@ Calls MPS API via the official Tencent Cloud Python SDK. All scripts are located
 
 Check environment variables:
 ```bash
-python scripts/mps_load_env.py --check-only
+python3 scripts/mps_load_env.py --check-only
 ```
 If variables are not configured, clearly remind the user to configure them in `~/.env` (user-level dotenv, highest priority) or `<SKILL_DIR>/.env` (script directory level) or `~/.bashrc` or `~/.profile`. **Do not ask for credentials from the user.**
 **`<SKILL_DIR>` is the directory where `tencent-mps-intl` resides.**
@@ -73,20 +73,20 @@ Available regions: `ap-hongkong`, `ap-singapore`, `ap-bangkok`, `ap-jakarta`, `a
 
 This Skill uses the **official Tencent Cloud SDKs** to invoke MPS API and COS storage:
 
-- `tencentcloud-sdk-python` (official Tencent Cloud SDK) — invokes MPS API, used by 19 scripts
-- `cos-python-sdk-v5` (official Tencent Cloud SDK) — uploads / downloads / lists COS objects, used by 10 scripts
+- `tencentcloud-sdk-python` (official Tencent Cloud SDK) — invokes MPS API
+- `cos-python-sdk-v5` (official Tencent Cloud SDK) — uploads / downloads / lists COS objects
 - `python-dotenv` — used by `mps_load_env.py` to auto-load dotenv-style environment variable files
 
 > `mps_gen_compare.py` is a local utility script with no external dependencies.
 
 First-time install:
 ```bash
-pip install -r scripts/requirements.txt
+python3 -m pip install -r scripts/requirements.txt
 ```
 
 Upgrade to the latest versions (recommended every 1–2 months to pick up new models and features):
 ```bash
-pip install -r scripts/requirements.txt --upgrade
+python3 -m pip install -r scripts/requirements.txt --upgrade
 ```
 
 ## Async Task Description
@@ -130,10 +130,10 @@ Script selection must strictly follow the mapping — **no mixing allowed**:
 | Image repaint / inpainting / partial edit / replace specified region | `mps_image_repaint.py` | [mps_image_repaint.md](references/mps_image_repaint.md) | Repaints regions marked by a mask image plus a prompt instruction; **mask image and `--prompt` are required** (`ScheduleId=30061`) |
 | Storyboard split / grid split / comic panel split / split frames | `mps_image_split.py` | [mps_image_split.md](references/mps_image_split.md) | Intelligently splits storyboards or comic grids into individual frames, supports text-erasure control (`ScheduleId=30050`); processing is relatively long, around 2 minutes |
 | Change model / body shape change / swap model for garment display | `mps_image_changemodel.py` | [mps_image_changemodel.md](references/mps_image_changemodel.md) | Keeps the garment unchanged while changing the model body shape; requires a garment image (`ScheduleId=30110`); **garment image is required** |
-| Image try-on / AI fitting / clothing replacement / model outfit change | `mps_image_tryon.py` | [mps_image_tryon.md](references/mps_image_tryon.md) | Generates try-on results from model image + clothing image; normal scenarios support 1–2 clothing images, underwear scenario (`--schedule-id 30101`) supports only 1 |
+| Image try-on / AI fitting / clothing replacement / model outfit change | `mps_image_tryon.py` | [mps_image_tryon.md](references/mps_image_tryon.md) | Generates try-on results from model image + clothing images (1-4); supports 3 models: `WAND-tryon-1.0-lite` / `WAND-tryon-1.0-flash` (default) / `WAND-tryon-1.0-pro` |
 | Image background fusion / background replacement / product image background change / AI background generation / auto-generate background from text description / e-commerce background generation | `mps_image_bg_fusion.py` | [mps_image_bg_fusion.md](references/mps_image_bg_fusion.md) | Pass subject image + background image for compositing, or pass subject image only + `--prompt` to auto-generate background; see references for details |
 | AI image generation (text-to-image/image-to-image/panoramic image) | `mps_aigc_image.py` | [mps_aigc_image.md](references/mps_aigc_image.md) | AIGC image generation; supported models: `Hunyuan` (default, `--scene-type 3d_panorama` for panoramic image) / `GEM` (versions `2.5`/`3.0`/`3.1`, supports multi-image reference) / `Qwen` / `Vidu` (version `q2`) / `Kling` (versions `2.1`/`O1`/`3.0`/`3.0-Omni`) / `OG` (versions `image2_low`/`image2_medium`/`image2_high`) |
-| AI video generation (text-to-video/image-to-video/storyboard generation) | `mps_aigc_video.py` | [mps_aigc_video.md](references/mps_aigc_video.md) | AIGC video generation; **Kling model supports storyboard feature**; **reference video supported by Kling model only**; **SceneType strictly maps to model**: `motion_control`→Kling / `land2port`→Mingmou / `template_effect`→Vidu / `3d_scene`→Hunyuan; **PixVerse model** (versions `v5.6`/`v6`/`c1`, duration 1~15s, aspect ratios `16:9`/`4:3`/`1:1`/`3:4`/`9:16`/`2:3`/`3:2`/`21:9`, `--quality` supports `360p`/`540p`/`720p`/`1080p`); **Hailuo model** (versions `02`/`2.3`/`2.3-fast`); **GV model** (versions `3.1`/`3.1-fast`) |
+| AI video generation (text-to-video/image-to-video/storyboard generation) | `mps_aigc_video.py` | [mps_aigc_video.md](references/mps_aigc_video.md) | AIGC video generation; **Kling model supports storyboard feature**; **reference video supported by Kling model only**; **SceneType strictly maps to model**: `motion_control`→Kling / `land2port`→Mingmou / `template_effect`→Vidu / `3d_scene`→Hunyuan; **PixVerse model** (versions `v5.6`/`v6`/`c1`, duration 1~15s, aspect ratios `16:9`/`4:3`/`1:1`/`3:4`/`9:16`/`2:3`/`3:2`/`21:9`, `--quality` supports `360p`/`540p`/`720p`/`1080p`); **Hailuo model** (versions `02`/`2.3`/`2.3-fast`); **GV model** (versions `3.1`/`3.1-fast`); **OS model** (version `2.0`, duration `4`/`8`/`12`s, default 8s, supports `--enable-audio`) |
 | Audio/video content understanding (scene/summary/content analysis) / **compare and analyze two audio/video clips** / **compare and analyze two audio clips** / audio content understanding | `mps_av_understand.py` | [mps_av_understand.md](references/mps_av_understand.md) | Large model understanding, **must provide `--mode` and `--prompt`**; for comparing two videos/audio clips, pass the second clip — see references for details |
 | Video deduplication / video anti-duplication (picture-in-picture/video expansion/vertical fill/horizontal fill) | `mps_dedupe.py` | [mps_dedupe.md](references/mps_dedupe.md) | `--mode` can be omitted, defaults to `PicInPic`; see references for details |
 | Video remix (face swap/person swap/video interleaving AB) | `mps_vremake.py` | [mps_vremake.md](references/mps_vremake.md) | **Must provide `--mode`**; see references for details |
@@ -161,7 +161,7 @@ Script selection must strictly follow the mapping — **no mixing allowed**:
 
 ## Mandatory Rules for Command Generation
 
-1. **Script path prefix**: All generated Python commands must include the `scripts/` path prefix, in the format `python scripts/mps_xxx.py ...`. Generating commands like `python mps_xxx.py ...` (missing the scripts/ prefix) is prohibited.
+1. **Script path prefix**: All generated Python commands must include the `scripts/` path prefix, in the format `python3 scripts/mps_xxx.py ...`. Generating commands like `python3 mps_xxx.py ...` (missing the scripts/ prefix) is prohibited.
 
 2. **No placeholders**: All parameter values must be real values. If the user has not provided a required value, **ask first** — do not use placeholders like `<video URL>`, `YOUR_URL`, etc.
 
@@ -178,7 +178,7 @@ Script selection must strictly follow the mapping — **no mixing allowed**:
 5. **Combination tasks must generate all commands separately**: When a user request involves multiple scripts, you must generate a **separate, complete command** for each script — do not omit any.
 6. **Behavioral modifier usage note**: When the user says `dry run`, `don't wait`, `preview the command first`, `submit the task first`, `get the task ID first`, etc., this Skill must still be triggered — these words only affect command parameters (`--dry-run` or `--no-wait`) and do not affect task type determination.
 7. **`--no-wait` usage rules**: When the user says "don't wait", "just get the task ID", "no need to wait for results", "async submit", "submit the task first", the command **must include `--no-wait`**. By default it is not added (i.e., auto-poll and wait for results by default); only add it when the user explicitly expresses intent not to wait.
-8. **`mps_load_env.py` usage rules**: When the user says "check environment variables", "verify if the configuration is correct", "check configuration", you must generate the command `python scripts/mps_load_env.py --check-only` — the `--check-only` parameter must not be omitted.
+8. **`mps_load_env.py` usage rules**: When the user says "check environment variables", "verify if the configuration is correct", "check configuration", you must generate the command `python3 scripts/mps_load_env.py --check-only` — the `--check-only` parameter must not be omitted.
 
 ## API Reference
 
@@ -198,5 +198,5 @@ Script selection must strictly follow the mapping — **no mixing allowed**:
 | `mps_usage.py` | [DescribeUsageData](https://cloud.tencent.com/document/product/862/125919) |
 | `mps_get_video_task.py` | [DescribeTaskDetail](https://cloud.tencent.com/document/api/862/37614) |
 | `mps_get_image_task.py` | [DescribeImageTaskDetail](https://cloud.tencent.com/document/api/862/112897) |
-| `mps_image_tryon.py` | [ProcessImage ScheduleId=30100/30101](https://cloud.tencent.com/document/product/862/112896) |
+| `mps_image_tryon.py` | [ProcessImage ImageTask.AiTryOnConfig](https://cloud.tencent.com/document/product/862/112896) |
 | `mps_image_bg_fusion.py` | [ProcessImage ScheduleId=30060](https://cloud.tencent.com/document/product/862/112896) |

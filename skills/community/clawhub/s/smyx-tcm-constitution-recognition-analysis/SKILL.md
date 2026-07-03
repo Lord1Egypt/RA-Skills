@@ -1,7 +1,7 @@
 ---
 name: "tcm-constitution-recognition-analysis"
 description: "Determines nine TCM constitution types including Yin deficiency, Yang deficiency, Qi deficiency, phlegm-dampness, and blood stasis through facial features and physical signs, and provides personalized health preservation and conditioning suggestions. | 中医体质识别分析技能，通过面部特征与体征判别阴虚、阳虚、气虚、痰湿、血瘀等九种中医体质类型，给出个性化养生调理建议"
-version: "1.0.4"
+version: "1.0.5"
 license: "MIT-0"
 ---
 
@@ -30,7 +30,7 @@ Based on TCM Constitution Theory and AI image recognition technology, this featu
 
 ## 🎬 技能演示 | Skill Demo
 
-[▶️ 点击查看技能详细介绍](https://lifeemergence.com/guide.html)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
 ---
 
@@ -42,13 +42,13 @@ Based on TCM Constitution Theory and AI image recognition technology, this featu
 
 ### 2. 🛠️ 能力范围
 
-| 能力类型 | 具体能力 |
-|---|---|
-| 🖼️ 面部信息分析 | 面部特征提取、面色与光泽辅助分析 |
-| 🧘 体质类型判别 | 基于中医理论识别九种体质类型 |
-| 📊 评分与倾向 | 体质评分、主要体质、次要体质倾向分析 |
-| 🌿 养生调理 | 个性化饮食、运动、生活习惯、穴位按摩建议 |
-| 📚 历史报告 | 查询历史中医体质识别分析报告清单 |
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 面部特征提取、面色与光泽辅助分析 |
+| 2 | 基于中医理论识别九种体质类型 |
+| 3 | 体质评分、主要体质、次要体质倾向分析 |
+| 4 | 个性化饮食、运动、生活习惯、穴位按摩建议 |
+| 5 | 查询历史中医体质识别分析报告清单 |
 
 ### 3. 🌈 支持判别的九种体质
 
@@ -138,7 +138,7 @@ requests>=2.28.0
 | 上游系统有内部身份参数 | 由脚本静默接收并使用 |
 | 上游系统未提供内部身份参数 | 脚本会自动复用本地缺省用户 |
 | 本地缺省用户不存在 | 脚本会自动创建并在后续任务中复用 |
-| 对用户输出 | 只展示分析进度、分析结果和报告链接，不展示内部身份值 |
+| 对用户输出 | 只展示分析进度、分析结果，不展示内部身份值 |
 
 #### 🔒 关键约束
 
@@ -192,28 +192,6 @@ requests>=2.28.0
 | 🧑‍⚕️ 医疗边界 | **重要提示**：本识别结果仅供中医养生参考，不能替代专业中医师诊断，身体不适请及时就医 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
-
----
-
-## 📜 历史报告清单输出规范 | Report List Format
-
-当显示历史分析报告清单的时候，从接口返回 JSON 数据中提取字段 `reportImageUrl` 作为超链接地址，且自动转化为如下 Markdown 表格格式输出。
-
-### 📌 固定输出列
-
-| 列名 | 生成规则 |
-|---|---|
-| 报告名称 | 使用 `中医体质识别报告-{记录id}` 形式拼接 |
-| 主要体质 | 从接口返回数据中提取 |
-| 分析时间 | 从接口返回数据中提取 |
-| 平和评分 | 从接口返回数据中提取 |
-| 点击查看 | 使用 `[🔗 查看报告](reportImageUrl)` 格式的超链接 |
-
-### 🧾 表格输出示例
-
-| 报告名称 | 主要体质 | 分析时间 | 平和评分 | 点击查看 |
-|----------|----------|----------|----------|----------|
-| 中医体质识别报告 -20260328221000001 | 气虚质 | 2026-03-28 22:10:00 | 85/100 | [🔗 查看报告](https://example.com/report?id=xxx) |
 
 ---
 

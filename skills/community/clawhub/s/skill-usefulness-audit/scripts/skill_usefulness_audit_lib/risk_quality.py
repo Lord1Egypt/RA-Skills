@@ -15,6 +15,7 @@ def normalized_relative_path(root: Path, path: Path) -> str:
 def audit_definition_relative_paths() -> set[str]:
     base = Path("scripts") / "skill_usefulness_audit_lib"
     return {
+        (base / "common.py").as_posix(),
         (base / "constants.py").as_posix(),
         (base / "reporting.py").as_posix(),
         (base / "risk_signatures.py").as_posix(),

@@ -14,6 +14,8 @@
     "lint:webhook": "node scripts/lint_webhook_design.mjs",
     "artifacts": "node scripts/generate_guidance_artifacts.mjs",
     "runtime": "node scripts/run_skill_runtime.mjs --json",
+    "cli:bundle": "node scripts/build_cli_bundle.mjs",
+    "cli:verify": "node scripts/verify_cli_bundle.mjs",
     "test": "node tests/run_skill_tests.mjs",
     "test:structure": "node tests/run_structure_tests.mjs",
     "test:behavior": "node tests/run_behavior_tests.mjs",

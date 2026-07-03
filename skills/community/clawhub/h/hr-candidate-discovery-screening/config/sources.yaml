@@ -1,0 +1,145 @@
+conferences:
+  - key: cvpr
+    name: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    aliases: [CVPR]
+    type: conference
+    index_strategy: cvf
+    year_indexes:
+      2025: https://openaccess.thecvf.com/CVPR2025?day=all
+      2026: https://openaccess.thecvf.com/CVPR2026?day=all
+    publication_dates:
+      2025: 2025-06-11
+      2026: 2026-06-05
+    official_domains: [openaccess.thecvf.com]
+    collector: official_html
+  - key: eccv
+    name: European Conference on Computer Vision
+    aliases: [ECCV]
+    type: conference
+    crossref_query: Computer Vision ECCV
+    official_domains: [ecva.net, link.springer.com]
+    collector: crossref
+  - key: iccv
+    name: IEEE/CVF International Conference on Computer Vision
+    aliases: [ICCV]
+    type: conference
+    index_strategy: cvf
+    year_indexes:
+      2025: https://openaccess.thecvf.com/ICCV2025?day=all
+    publication_dates:
+      2025: 2025-10-19
+    official_domains: [openaccess.thecvf.com]
+    collector: official_html
+  - key: iclr
+    name: International Conference on Learning Representations
+    aliases: [ICLR]
+    type: conference
+    venue_id_template: ICLR.cc/{year}/Conference
+    official_domains: [openreview.net]
+    collector: openreview
+  - key: icml
+    name: International Conference on Machine Learning
+    aliases: [ICML]
+    type: conference
+    index_strategy: pmlr
+    year_indexes:
+      2025: https://proceedings.mlr.press/v267/
+    official_domains: [proceedings.mlr.press]
+    collector: official_html
+  - key: acl
+    name: Annual Meeting of the Association for Computational Linguistics
+    aliases: [ACL]
+    type: conference
+    xml_collections:
+      2025:
+        - https://raw.githubusercontent.com/acl-org/acl-anthology/master/data/xml/2025.acl.xml
+    official_domains: [aclanthology.org]
+    collector: acl_xml
+  - key: neurips
+    name: Conference on Neural Information Processing Systems
+    aliases: [NeurIPS, NIPS]
+    type: conference
+    venue_id_template: NeurIPS.cc/{year}/Conference
+    official_domains: [openreview.net, proceedings.neurips.cc]
+    collector: openreview
+  - key: aaai
+    name: AAAI Conference on Artificial Intelligence
+    aliases: [AAAI]
+    type: conference
+    issns: [2374-3468, 2159-5399]
+    official_domains: [ojs.aaai.org, doi.org]
+    collector: crossref
+
+journals:
+  - key: tpami
+    name: IEEE Transactions on Pattern Analysis and Machine Intelligence
+    issns: [0162-8828, 1939-3539]
+    official_domains: [computer.org, ieee.org]
+    collector: crossref
+  - key: ijcv
+    name: International Journal of Computer Vision
+    issns: [0920-5691, 1573-1405]
+    official_domains: [link.springer.com]
+    collector: crossref
+  - key: jmlr
+    name: Journal of Machine Learning Research
+    issns: [1532-4435]
+    type: journal
+    index_strategy: jmlr
+    year_indexes:
+      2025: https://www.jmlr.org/papers/v26/
+      2026: https://www.jmlr.org/papers/v27/
+    official_domains: [jmlr.org]
+    collector: official_html
+  - key: aij
+    name: Artificial Intelligence
+    issns: [0004-3702, 1872-7921]
+    official_domains: [sciencedirect.com]
+    collector: crossref
+  - key: jair
+    name: Journal of Artificial Intelligence Research
+    issns: [1076-9757]
+    official_domains: [jair.org]
+    collector: crossref
+  - key: tacl
+    name: Transactions of the Association for Computational Linguistics
+    issns: [2307-387X]
+    official_domains: [direct.mit.edu]
+    collector: crossref
+  - key: computational-linguistics
+    name: Computational Linguistics
+    issns: [0891-2017, 1530-9312]
+    official_domains: [direct.mit.edu]
+    collector: crossref
+  - key: taslp
+    name: IEEE/ACM Transactions on Audio, Speech, and Language Processing
+    issns: [2329-9290, 2329-9304]
+    official_domains: [ieee.org]
+    collector: crossref
+  - key: tmlr
+    name: Transactions on Machine Learning Research
+    issns: [2835-8856]
+    type: journal
+    venue_id: TMLR
+    official_domains: [jmlr.org, openreview.net]
+    collector: openreview
+  - key: tnnls
+    name: IEEE Transactions on Neural Networks and Learning Systems
+    issns: [2162-237X, 2162-2388]
+    official_domains: [ieee.org]
+    collector: crossref
+  - key: pattern-recognition
+    name: Pattern Recognition
+    issns: [0031-3203, 1873-5142]
+    official_domains: [sciencedirect.com]
+    collector: crossref
+  - key: tip
+    name: IEEE Transactions on Image Processing
+    issns: [1057-7149, 1941-0042]
+    official_domains: [ieee.org]
+    collector: crossref
+  - key: tois
+    name: ACM Transactions on Information Systems
+    issns: [1046-8188, 1558-2868]
+    official_domains: [dl.acm.org]
+    collector: crossref

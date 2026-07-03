@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# slim launcher — pluggable filter that strips verbose CLI output before it
+# reaches the LLM. Usage: `cmd | slim [--cmd "cmd ..."] [--report]`
+#                     or:  `slim [--report] -- cmd args...`
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec env PYTHONPATH="$here" python3 -m slim.cli "$@"

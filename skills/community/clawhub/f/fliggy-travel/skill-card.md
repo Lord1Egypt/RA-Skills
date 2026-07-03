@@ -1,5 +1,5 @@
 ## Description: <br>
-零配置即装即用｜11项工具酒店机票门票火车票万豪｜含图片和预订链接｜飞猪官方数据直连 <br>
+飞猪旅行 helps agents search Fliggy and Amap-powered travel information for itineraries, hotels, flights, train tickets, attraction tickets, food, local transport, and Marriott hotel options. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users use this skill to ask a ClawHub agent for travel planning and travel search help, including trains, flights, hotels, attractions, food, local transport, and Marriott hotel options. <br>
+External users and travel-planning agents use this skill to search travel options, compare prices and schedules, build trip plans, and receive booking links for review outside the agent. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Travel plans, addresses, route queries, and similar location details are sent through the skill's cloud proxy services. <br>
-Mitigation: Avoid entering highly sensitive home or work addresses and private itinerary details unless the user trusts the publisher and proxy handling. <br>
-Risk: Travel prices, schedules, availability, and booking links can change after the skill returns results. <br>
-Mitigation: Confirm final prices, availability, and terms on the linked booking page before making travel decisions. <br>
+Risk: Travel searches are sent to external flyai/Fliggy services and may include itinerary details. <br>
+Mitigation: Avoid entering highly sensitive travel details unless necessary and install only if this data flow is acceptable. <br>
+Risk: Returned booking links lead to external sites where prices, availability, and purchase terms can change. <br>
+Mitigation: Review booking pages directly before purchasing and treat returned prices and availability as informational. <br>
+Risk: The skill depends on an external CLI and remote travel APIs. <br>
+Mitigation: Approve installation deliberately and review results before using them for travel decisions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/fliggy-travel) <br>
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/fliggy-travel) <br>
 - [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown or plain text travel results with prices, schedules, image links, booking links, and itinerary guidance when available] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown-style travel search results with prices, schedules, images, booking links, and trip guidance when available] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include real-time travel data and external booking links; prices and availability can change.] <br>
+**Other Properties Related to Output:** [Outputs are informational; booking and payment are completed on external Fliggy app or web pages.] <br>
 
 ## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact _meta.json) <br>
+1.3.3 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

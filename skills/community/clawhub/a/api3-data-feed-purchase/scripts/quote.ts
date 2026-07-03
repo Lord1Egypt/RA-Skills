@@ -1,54 +1,27 @@
 import { ethers } from 'ethers';
-import {
-  findChainByAlias,
-  getApi3Market,
-  initializeStaticProvider,
-  computeSubscriptionPrices,
-  readPricingMerkleTree,
-} from '@api3/dapi-management';
+import { prepareSubscription, findChainById } from './utils.ts';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function main() {
-  const args = process.argv.slice(2);
-  if (args.length < 3) {
-    console.error('Usage: ts-node quote.ts <dapiName> <chainAlias> <deviationThreshold>');
-    process.exit(1);
-  }
+  const [,, chainId, dapiName, deviationArg] = process.argv;
+  if (!chainId || !dapiName || !deviationArg) throw new Error('Usage: ts-node scripts/quote.ts <chainId> <dapiName> <deviationThresholdInPercentage>');
+  const deviationThresholdInPercentage = Number(deviationArg);
+  if (isNaN(deviationThresholdInPercentage) || deviationThresholdInPercentage <= 0) throw new Error('deviationThresholdInPercentage must be a positive number (e.g. 0.5, 1, 2.5, 5)');
 
-  const [dapiName, chainAlias, devThresholdStr] = args;
-  const deviationThreshold = Number(devThresholdStr);
-  const chain = findChainByAlias(chainAlias);
-  if (!chain) {
-    console.error(`Chain not found: ${chainAlias}`);
-    process.exit(1);
-  }
-  const provider = initializeStaticProvider(chain.alias);
-  const { api3Market } = getApi3Market(chain.id, provider);
-  const { subscriptions: merkleTreeSubscriptions } = await readPricingMerkleTree(chain.id, dapiName);
-  const subscriptions = await computeSubscriptionPrices(api3Market, dapiName, provider, merkleTreeSubscriptions);
-  const subscription = subscriptions.find(
-    (sub) => sub.updateParameters.deviationThreshold === deviationThreshold
-  );
+  const { duration, price, fundsToSend, sponsorWallet } = await prepareSubscription(null, chainId, dapiName, deviationThresholdInPercentage);
+  const chain = findChainById(chainId);
 
-  if (!subscription) {
-    console.error('No subscription found matching the deviation threshold.', {
-      dapiName,
-      chainAlias,
-      deviationThreshold,
-      availableSubscriptions: subscriptions.map(s => s.updateParameters.deviationThreshold)
-    });
-    process.exit(1);
-  }
-
-  const priceInEther = ethers.formatEther(BigInt(subscription.price));
-  console.log('Parameters and Calculated Price:', {
-    "Feed Name": dapiName,
-    "Chain": chainAlias,
-    "Heartbeat Interval": subscription.updateParameters.heartbeatInterval,
-    "Deviation Threshold": subscription.updateParameters.deviationThreshold,
-    "Subscription Duration": subscription.duration,
-    "Price (ETH)": priceInEther
-  });
-
+  console.log('*'.repeat(50));
+  console.log(`dAPI:      ${dapiName}`);
+  console.log(`Chain:     ${chain.name} (id: ${chainId})`);
+  console.log(`Deviation: ${deviationThresholdInPercentage}%`);
+  console.log(`Duration:  ${duration}s (${Math.round(duration / 86400)} days)`);
+  console.log(`Price:     ${ethers.formatEther(price)} ETH`);
+  console.log(`Amount to send: ${ethers.formatEther(fundsToSend)} ETH`);
+  console.log(`Sponsor wallet: ${sponsorWallet}`);
+  console.log('*'.repeat(50));
 }
 
 main();

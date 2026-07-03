@@ -154,12 +154,25 @@ TABLE_TO_SKILL = {
 }
 
 
-def table_exists(conn: sqlite3.Connection, table_name: str) -> bool:
-    """Check if a table exists in the database."""
-    row = conn.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
-        (table_name,),
-    ).fetchone()
+def table_exists(conn, table_name: str) -> bool:
+    """Check if a table exists in the database. Dialect-aware (closes pending M19;
+    Wave 1B F3 surfaced it on PostgreSQL): SQLite catalogs tables in ``sqlite_master``;
+    PostgreSQL has no such relation and uses ``information_schema.tables``. Mirrors
+    ``gl_invariants._table_exists``; the ``?`` placeholder is dialect-translated by the
+    connection wrapper."""
+    from erpclaw_lib.db import get_dialect
+    if get_dialect() == "postgresql":
+        row = conn.execute(
+            "SELECT 1 FROM information_schema.tables "
+            "WHERE table_schema NOT IN ('pg_catalog', 'information_schema') "
+            "AND table_name=?",
+            (table_name,),
+        ).fetchone()
+    else:
+        row = conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+            (table_name,),
+        ).fetchone()
     return row is not None
 
 

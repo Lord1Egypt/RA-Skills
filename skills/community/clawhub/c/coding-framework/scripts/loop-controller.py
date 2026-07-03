@@ -162,6 +162,22 @@ def check_heartbeat(state: dict, timeout: int = DEFAULT_HEARTBEAT_TIMEOUT) -> di
         return {"healthy": True, "message": "无法解析更新时间"}
 
 
+def is_sloppify_round(state: dict, iteration: int) -> bool:
+    """判断当前轮次是否为 De-Sloppify 清理轮次。（v10.3 新增）
+    
+    De-Sloppify 模式在实现轮次之间插入清理轮次，保持代码简洁。
+    例如 interval=2 时：实现1, 实现2, 清理, 实现3, 实现4, 清理, ...
+    """
+    sloppify = state.get("sloppify", {})
+    if not sloppify.get("enabled"):
+        return False
+    
+    interval = sloppify.get("interval", 2)
+    # 每 (interval+1) 轮中，最后一轮是清理轮次
+    # 例如 interval=2: 第3轮(3%3=0)、第6轮(6%3=0)是清理轮次
+    return iteration > 0 and (iteration % (interval + 1)) == 0
+
+
 # ─── Git 集成（v10.2 新增）────────────────────────────────────────────────────
 
 def is_git_repo() -> bool:
@@ -308,6 +324,19 @@ def cmd_init(args: argparse.Namespace) -> None:
         "metadata": {},
         "pid": os.getpid(),  # v10.1: 记录进程 ID
         "auto_commit": getattr(args, 'auto_commit', False),  # v10.2: Git 自动提交
+        # v10.3: De-Sloppify 清理轮次
+        "sloppify": {
+            "enabled": getattr(args, 'sloppify', False),
+            "interval": getattr(args, 'sloppify_interval', 2),
+            "focus": [
+                "删除测试语言/框架行为的测试用例",
+                "删除类型系统已保证的冗余运行时检查",
+                "删除过度防御性的错误处理",
+                "删除 console.log / 注释掉的代码",
+                "删除未使用的导入和变量",
+                "简化冗余的条件判断",
+            ],
+        },
         "created_at": now_iso(),
         "updated_at": now_iso(),
     }
@@ -357,6 +386,8 @@ def cmd_check(args: argparse.Namespace) -> None:
 
     if mode == "fixed":
         should_continue = current < max_iter
+        # v10.3: 判断是否为清理轮次
+        is_sloppify = is_sloppify_round(state, current + 1) if should_continue else False
         output_result({
             "action": "check",
             "should_continue": should_continue,
@@ -365,6 +396,8 @@ def cmd_check(args: argparse.Namespace) -> None:
             "remaining": max(0, max_iter - current),
             "reason": "固定次数未用完" if should_continue else "已达最大次数",
             "heartbeat": heartbeat,
+            "is_sloppify_round": is_sloppify,  # v10.3
+            "sloppify_focus": state.get("sloppify", {}).get("focus", []) if is_sloppify else [],
         })
         return
 
@@ -381,6 +414,9 @@ def cmd_check(args: argparse.Namespace) -> None:
 
         check = state.get("completion_check", {})
         condition_met = evaluate_condition(check, state)
+        
+        # v10.3: 判断是否为清理轮次
+        is_sloppify = is_sloppify_round(state, current + 1) if not condition_met else False
 
         output_result({
             "action": "check",
@@ -390,6 +426,8 @@ def cmd_check(args: argparse.Namespace) -> None:
             "condition_met": condition_met,
             "reason": "完成条件已满足" if condition_met else "继续迭代",
             "heartbeat": heartbeat,
+            "is_sloppify_round": is_sloppify,  # v10.3
+            "sloppify_focus": state.get("sloppify", {}).get("focus", []) if is_sloppify else [],
         })
         return
 
@@ -419,6 +457,9 @@ def cmd_check(args: argparse.Namespace) -> None:
             })
             return
 
+        # v10.3: 判断是否为清理轮次
+        is_sloppify = is_sloppify_round(state, current + 1)
+
         output_result({
             "action": "check",
             "should_continue": True,
@@ -428,6 +469,8 @@ def cmd_check(args: argparse.Namespace) -> None:
             "remaining": max(0, max_iter - current),
             "reason": "继续迭代",
             "heartbeat": heartbeat,
+            "is_sloppify_round": is_sloppify,  # v10.3
+            "sloppify_focus": state.get("sloppify", {}).get("focus", []) if is_sloppify else [],
         })
         return
 
@@ -681,6 +724,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_init.add_argument("--force", action="store_true", help="强制重置已存在的循环")
     p_init.add_argument("--auto-commit", action="store_true",
                         help="v10.2: 每次迭代前自动创建 Git 提交和 tag，支持回滚")
+    # v10.3: De-Sloppify 清理轮次
+    p_init.add_argument("--sloppify", action="store_true",
+                        help="v10.3: 启用 De-Sloppify 清理轮次（每 N 轮实现后加 1 轮清理）")
+    p_init.add_argument("--sloppify-interval", type=int, default=2,
+                        help="v10.3: De-Sloppify 间隔（默认每 2 轮实现后加 1 轮清理）")
 
     p_check = subparsers.add_parser("check", help="检查是否应继续迭代")
     p_check.add_argument("--state", help="状态文件路径 (默认: loop-state.json)")

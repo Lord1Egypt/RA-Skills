@@ -1,25 +1,33 @@
-# config.json 示例（路由 A 邮箱 + B/C 线上 API）
-
-将下列字段合并进本 Skill 目录下的 `config.json`。**勿**把真实 Key 提交到公开仓库。
-
-```json
-{
-  "hifleet_api_key": "在 HiFleet / mytonnages 网站获取的 API Key（与账号绑定、按次计费）",
-  "hifleet_liner_api_base": "https://api.hifleet.com/openclaw/vessel/charter/liner",
-  "hifleet_charter_api_base": "https://api.hifleet.com/openclaw/vessel/charter",
-  "charter_enrich_url": "https://api.hifleet.com/openclaw/vessel/charter/enrich-row",
-  "mail_parse_interval_minutes": 10,
-  "imap_host": "imap.example.com",
-  "imap_port": 993,
-  "email": "user@example.com",
-  "email_password": "第三方客户端密码（本地存储，勿提交仓库）"
-}
-```
-
-- **`hifleet_api_key`**：**路由 B（班轮）、C（预抵）必填**；路由 A 补充船舶信息也需要。或 **`HIFLEET_API_KEY`**。见 **`FIRST_SETUP.md` §C**。  
-- **邮箱字段**：**仅路由 A**；见 **`WORKFLOW_1_MAIL.md`**。  
-- **`hifleet_liner_api_base`**：路由 B；班轮解锁 `POST …/liner/unlock`。  
-- **`hifleet_charter_api_base`**：路由 A 档案/portid、**路由 C** 预抵查询根路径。  
-- **`charter_enrich_url`**：路由 A 单行补充信息（IMO/tags/档案），默认公网 **`…/enrich-row`**。  
-- **`mail_parse_interval_minutes`**：邮件定时解析，默认 **10** 分钟（**`MAIL_PARSE_SCHEDULE.md`**）。
-
+# config.json example (mytonnages — routes A + C)
+
+```json
+{
+  "hifleet_api_key": "from HiFleet website",
+  "hifleet_charter_api_base": "https://api.hifleet.com/openclaw/vessel/charter",
+  "hifleet_liner_api_base": "https://api.hifleet.com/openclaw/vessel/charter/liner",
+  "charter_enrich_url": "https://api.hifleet.com/openclaw/vessel/charter/enrich-row",
+  "mail_parse_interval_minutes": 10,
+  "imap_host": "imap.example.com",
+  "imap_port": 993,
+  "imap_mailbox": "INBOX",
+  "email": "user@example.com",
+  "email_password": "app password (local only)",
+  "smtp_host": "smtp.example.com",
+  "smtp_port": 465,
+  "mail_preview_host": "0.0.0.0",
+  "mail_preview_port": 8765,
+  "mail_preview_base_url": "http://localhost:8765",
+  "mail_preview_token": ""
+}
+```
+
+**Liner API base** (`hifleet_liner_api_base`): route C **port suggest** (`GET …/ports/suggest`) and **contact unlock** (`POST …/unlock`, `typeCode=product_will_arrive_charter` — **`CONTACT_API.md`**). Also used by **`hifleet-schedule`**.
+
+| SMTP | 说明 |
+|------|------|
+| `smtp_host` / `smtp_port` | 回复邮件用；`email` / `email_password` 与 IMAP 相同。未填 `smtp_host` 时按 `imap_host` 推断（如 `imap.gmail.com` → `smtp.gmail.com`） |
+| `smtp_use_ssl` | 可选；默认 port `465` 为 SSL，`587` 为 STARTTLS |
+
+回复流程见 **`MAIL_REPLY.md`**。
+
+Optional locale: environment **`HIFLEET_USER_LOCALE`** (`en`, `zh`, `zh-TW`, …).

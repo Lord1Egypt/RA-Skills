@@ -66,49 +66,49 @@ Applicable scenarios: e-commerce main image expansion, social media cover adapta
 
 ```bash
 # Simplest usage: expand to 16:9 by aspect ratio
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9"
 
 # Convert portrait image to landscape
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/vertical.jpg" \
     --aspect-ratio "16:9"
 
 # Specify target width and height in pixels
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --image-width 1920 --image-height 1080
 
 # Specify only target width
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --local-file /tmp/product.jpg \
     --image-width 1024
 
 # Local file input, square canvas
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --local-file /tmp/product.jpg \
     --aspect-ratio "1:1"
 
 # COS path input
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --cos-input-key "/input/banner.jpg" \
     --aspect-ratio "21:9"
 
 # Submit task only without waiting for result
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9" \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9" \
     --download-dir /tmp/results/
 
 # Manually query outpainting task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

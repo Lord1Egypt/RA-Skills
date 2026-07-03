@@ -1,3 +1,14 @@
+---
+name: csam-shield
+description: "Detects, blocks, and reports Child Sexual Abuse Material using AI-driven image, video, and behavior analysis with automatic NCMEC reporting and evidence pres..."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Csam Shield
+
 # CSAM Shield
 
 ## Metadata

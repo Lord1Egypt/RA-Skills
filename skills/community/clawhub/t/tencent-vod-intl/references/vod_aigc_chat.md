@@ -106,7 +106,7 @@ When using `--messages`, the content of multimodal messages is a Part array:
 No additional parameters required; run directly to list all currently supported models:
 
 ```bash
-python scripts/vod_aigc_chat.py models
+python3 scripts/vod_aigc_chat.py models
 ```
 
 Current supported models list:
@@ -155,21 +155,21 @@ Current supported models list:
 
 #### Non-streaming Chat (Wait for Full Response)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "Introduce Tencent Cloud in one sentence"
 ```
 
 #### Streaming Output (Progressive Display)
 ```bash
-python scripts/vod_aigc_chat.py stream \
+python3 scripts/vod_aigc_chat.py stream \
     --model gemini-2.5-flash \
     --message "Write a poem about cloud computing"
 ```
 
 #### Streaming Output and Save to File
 ```bash
-python scripts/vod_aigc_chat.py stream \
+python3 scripts/vod_aigc_chat.py stream \
     --model gemini-2.5-flash \
     --message "Explain in detail the differences between H.264 and H.265 encoding formats" \
     --output-file /output/vod-chat/stream_result.txt
@@ -177,7 +177,7 @@ python scripts/vod_aigc_chat.py stream \
 
 #### List All Supported Models
 ```bash
-python scripts/vod_aigc_chat.py models
+python3 scripts/vod_aigc_chat.py models
 ```
 
 ---
@@ -186,7 +186,7 @@ python scripts/vod_aigc_chat.py models
 
 #### With System Prompt
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --system "You are a professional video processing expert" \
     --message "What is the difference between H.264 and H.265?"
@@ -194,7 +194,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Enable Reasoning/Thinking Mode (for Complex Logic/Math)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.4 \
     --thinking \
     --message "Please analyze the time complexity of the following code..."
@@ -202,7 +202,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Specify Thinking Level
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-pro \
     --reasoning-effort high \
     --message "Please solve a complex mathematical proof problem"
@@ -210,7 +210,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Image Understanding (Multimodal)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "Please describe the content of this image" \
     --image-url "https://example.com/image.jpg"
@@ -218,7 +218,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Video/File Understanding (Gemini Models)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-flash \
     --message "Please summarize the main content of this video" \
     --file-url "https://example.com/video.mp4" \
@@ -227,7 +227,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Audio Understanding (Gemini Models)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-flash \
     --message "Please transcribe this audio" \
     --audio-base64 "<base64-encoded audio data>" \
@@ -236,7 +236,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Multi-turn Conversation (JSON Format)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --messages '[
         {"role":"system","content":"You are a video expert"},
@@ -248,7 +248,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Control Output Randomness
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --temperature 0.2 \
     --message "Please calculate precisely: 1024 * 768 = ?"
@@ -260,7 +260,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Register Weather Query Tool, tool_choice=auto
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "What is the weather like in Beijing today?" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"Get weather for a specified city","parameters":{"type":"object","properties":{"city":{"type":"string","description":"City name"}},"required":["city"]}}}]' \
@@ -269,7 +269,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Register Tool but Disable Invocation (tool_choice=none)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "What is the weather like in Beijing today?" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"Get weather for a specified city","parameters":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}}]' \
@@ -278,7 +278,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### dry-run Preview Request Body (with tools and tool_choice)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "What is the weather like in Beijing today?" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"Get weather","parameters":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}}]' \
@@ -292,7 +292,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Full Response in JSON Format (with Usage Statistics)
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "Hello" \
     --json
@@ -300,7 +300,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Structured JSON Schema Output
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "List 3 video encoding formats, each with a name and description field" \
     --response-format json_schema
@@ -308,7 +308,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Save Result to File
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "Write an article about AI" \
     --output-file /output/vod-chat/result.json
@@ -316,7 +316,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### Hide Token Usage
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "Hello" \
     --no-usage

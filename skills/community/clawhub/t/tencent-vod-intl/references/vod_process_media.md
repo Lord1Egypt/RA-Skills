@@ -8,8 +8,8 @@
 | `transcode --template same` | `transcode --quality same` | Use `--quality` for TESHD transcoding |
 | `scene-transcode --resolution 720` | `transcode --quality hd` | Use `transcode --quality` for TESHD; use `scene-transcode --scene` for scene-based transcoding |
 | `process --file-id <id> --animated-graphic-task-set ...` | `gif --file-id <id> --definition 10` | Use the dedicated `gif` subcommand for GIF conversion; there is no `process` subcommand |
-| `tccli vod Process Media --Ai Analysis Task ...` | `python scripts/vod_process_media.py ai-analysis --file-id <id> --definition <id>` | AI content analysis must use the `ai-analysis` subcommand — **tccli is forbidden**; `--definition` is required |
-| `tccli vod Process Media --Ai Recognition Task ...` | `python scripts/vod_process_media.py ai-recognition --file-id <id> --definition <id>` | AI content recognition must use the `ai-recognition` subcommand — **tccli is forbidden**; `--definition` is required |
+| `tccli vod Process Media --Ai Analysis Task ...` | `python3 scripts/vod_process_media.py ai-analysis --file-id <id> --definition <id>` | AI content analysis must use the `ai-analysis` subcommand — **tccli is forbidden**; `--definition` is required |
+| `tccli vod Process Media --Ai Recognition Task ...` | `python3 scripts/vod_process_media.py ai-recognition --file-id <id> --definition <id>` | AI content recognition must use the `ai-recognition` subcommand — **tccli is forbidden**; `--definition` is required |
 | `adaptive-streaming --subtitle-ids "z8gnlH,abc123"` | `adaptive-streaming --subtitle-set "z8gnlH,abc123"` | **🚨 Use `--subtitle-set` to bind subtitles for adaptive bitrate streaming — not `--subtitle-ids`** |
 
 ---
@@ -362,19 +362,19 @@
 
 ```bash
 # Same as source (default, high quality low bitrate)
-python scripts/vod_process_media.py transcode --file-id <FileId>
+python3 scripts/vod_process_media.py transcode --file-id <FileId>
 
 # HD 720P
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality hd
 
 # SD 540P (cost-saving)
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality sd
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality sd
 
 # Smooth 360P (bandwidth-saving)
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality flu
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality flu
 
 # JSON output
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --json
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --json
 ```
 
 ---
@@ -387,17 +387,17 @@ python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --
 
 ```bash
 # Remux to MP4
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4
 
 # Remux to HLS
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format hls
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format hls
 
 # Remux to HLS + set task priority + pass through source context
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 \
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 \
     --target-format hls --tasks-priority 5 --session-context "remux-ctx"
 
 # JSON output
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4 --json
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4 --json
 ```
 
 ---
@@ -406,19 +406,19 @@ python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target
 
 ```bash
 # General scene 1080P (default)
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989
 
 # Live action / short drama scene 720P
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 720
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 720
 
 # Live action / short drama scene 4K
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k
 
 # Anime scene 2K
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene anime --resolution 2k
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene anime --resolution 2k
 
 # Pass through context + set priority
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k \
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k \
     --session-context "enhance-ctx" --tasks-priority 3 --json
 ```
 
@@ -430,22 +430,22 @@ python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scen
 
 ```bash
 # Short drama 1080P overall best (all defaults)
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 --scene short_drama
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 --scene short_drama
 
 # E-commerce 720P bitrate first
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene ecommerce --resolution 720 --priority bitrate
 
 # Feed stream 480P quality first
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene feed --resolution 480 --priority quality
 
 # Specify sub-application + JSON output
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene short_drama --sub-app-id 251007502 --json
 
 # dry-run preview request
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene short_drama --resolution 1080 --priority best --dry-run
 ```
 
@@ -455,14 +455,14 @@ python scripts/vod_process_media.py scene-transcode --file-id 528548548798527148
 
 ```bash
 # Basic analysis
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10
 
 # Specify sub-application + JSON output
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 \
     --sub-app-id 251007502 --json
 
 # Submit only, do not wait
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 --no-wait
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 --no-wait
 ```
 
 ---
@@ -471,10 +471,10 @@ python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --
 
 ```bash
 # Basic recognition
-python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10
 
 # Specify sub-application + JSON output
-python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10 \
     --sub-app-id 251007502 --json
 ```
 
@@ -484,10 +484,10 @@ python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989
 
 ```bash
 # Basic snapshot
-python scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10
 
 # Multiple watermarks + specify snapshot time offsets
-python scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10 \
     --ext-time-offset-set "5s,10s,15s" --watermark-set "10001,10002"
 ```
 

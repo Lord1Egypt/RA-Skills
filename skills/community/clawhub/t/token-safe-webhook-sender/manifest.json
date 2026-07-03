@@ -1,6 +1,6 @@
 {
   "id": "token_safe_webhook_sender",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Webhook Token Security (Zero‑Exposure Edition)",
   "description": "Secure webhook token management using MGC Blackbox. Supports DingTalk, WeCom, Feishu, Telegram, Slack and more. Store webhook tokens locally in encrypted form, retrieve at runtime without exposing to AI models.",
   "author": "MirginCipher Team",
@@ -34,7 +34,7 @@
   },
   "changelog": [
     {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "changes": ["Initial release with webhook token zero-exposure pattern"]
     }
   ]

@@ -1,5 +1,5 @@
 ## Description: <br>
-Knowledge base skill that wraps the clawsqlite knowledge CLI for ingest/search/show. <br>
+Knowledge base skill that uses the published clawsqlite CLI for ingest, search, show, and maintenance workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent operators use this skill to let agents ingest URLs or local notes into a SQLite-backed knowledge base, search it with FTS, vector, or hybrid retrieval, and show stored records. It can also call the underlying CLI to produce interest reports from the current knowledge base. <br>
+Developers and agents use this skill to operate a configured clawsqlite knowledge instance through the official CLI, including ingest, search, record inspection, maintenance, and analysis workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs the third-party clawsqlite PyPI package. <br>
-Mitigation: Install it only in environments that trust that package source and review dependency installation behavior before deployment. <br>
-Risk: Fetched webpages, notes, and generated knowledge artifacts can be stored on disk. <br>
-Mitigation: Use a dedicated knowledge root and avoid ingesting secrets, regulated data, private internal URLs, or confidential notes unless the storage location is trusted. <br>
-Risk: Configured scraper, embedding, and small-LLM providers may receive or process ingested content or search text. <br>
-Mitigation: Review provider configuration before use and run `clawsqlite knowledge doctor --json` to check paths, vector index, embedding, and small-LLM settings. <br>
-Risk: Interest reports summarize stored knowledge and may expose sensitive themes or source material. <br>
-Mitigation: Review `report_interest` output behavior and generated report locations before enabling reports in shared or production workflows. <br>
+Risk: The bootstrap step runs a shell installer that installs the clawsqlite Python package from PyPI. <br>
+Mitigation: Install only in environments where running that bootstrap and installing the PyPI package are acceptable. <br>
+Risk: Ingested URLs, notes, and documents become persistent knowledge-base content. <br>
+Mitigation: Avoid secrets or sensitive documents unless the configured providers and storage locations in clawsqlite.toml are trusted. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ernestyu/clawsqlite-knowledge) <br>
 - [clawsqlite homepage](https://github.com/ernestyu/clawsqlite) <br>
+- [ClawHub skill page](https://clawhub.ai/ernestyu/skills/clawsqlite-knowledge) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with optional Markdown report files and status text] <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
+**Output Format:** [Markdown instructions with shell commands and JSON-producing CLI examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns structured success or error data from the underlying clawsqlite knowledge CLI, including next-step hints when configuration or dependencies are missing.] <br>
+**Other Properties Related to Output:** [CLI examples commonly request structured JSON output from clawsqlite.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill frontmatter) <br>
+1.0.7 (source: server release metadata, SKILL.md frontmatter, manifest.yaml) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/document-translation-assistant/input.schema.json",
+  "title": "Document Translation Assistant Input",
+  "description": "Schema for document translation input",
+  "type": "object",
+  "required": ["content", "target_language"],
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "Document text content to translate"
+    },
+    "source_language": {
+      "type": "string",
+      "description": "Source language code (auto-detect if omitted)",
+      "default": "auto"
+    },
+    "target_language": {
+      "type": "string",
+      "description": "Target language code (e.g., en, zh, ja, ko)",
+      "minLength": 2
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["tech", "legal", "marketing", "general"],
+      "description": "Domain mode for translation style",
+      "default": "general"
+    },
+    "output_mode": {
+      "type": "string",
+      "enum": ["bilingual", "translated_only", "both"],
+      "description": "Output format preference",
+      "default": "bilingual"
+    },
+    "glossary": {
+      "type": "object",
+      "description": "Pre-defined terminology glossary (source_term -> translated_term)",
+      "additionalProperties": { "type": "string" },
+      "example": { "microservices": "微服务", "API gateway": "API 网关" }
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "preserve_code_blocks": { "type": "boolean", "default": true },
+        "preserve_links": { "type": "boolean", "default": true },
+        "preserve_frontmatter": { "type": "boolean", "default": true },
+        "preserve_tables": { "type": "boolean", "default": true },
+        "term_consistency_check": { "type": "boolean", "default": true },
+        "context_coherence_review": { "type": "boolean", "default": true },
+        "glossary_persistence": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "additionalProperties": false
+}

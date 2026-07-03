@@ -1,7 +1,7 @@
 ---
 name: email-to-calendar
-version: 1.13.1
-description: Extract calendar events from emails and create calendar entries. Supports two modes: (1) Direct inbox monitoring - scans all emails for events, or (2) Forwarded emails - processes emails you forward to a dedicated address. Features smart onboarding, event tracking, pending invite reminders, undo support, silent activity logging, deadline detection with separate reminder events, email notifications for action-required items, and provider abstraction for future extensibility.
+version: 1.13.3
+description: Turn emails into Google Calendar events. Scans your Gmail inbox (or only forwarded emails) to extract meetings, appointments, RSVPs, and deadlines, then creates and updates calendar entries after you confirm. Reads Gmail and manages Google Calendar through the gog CLI; can send deadline-reminder emails, archive and label processed mail, delete events on undo, and stores event-tracking state locally (no external servers or telemetry). Features smart onboarding, duplicate detection, pending-invite reminders, 24-hour undo, silent activity logging, separate deadline reminder events, and provider abstraction. Use for forwarded-email-to-calendar, auto-creating events from your inbox, and extracting meetings and RSVP deadlines from email.
 ---
 
 > **CRITICAL RULES - READ BEFORE PROCESSING ANY EMAIL**
@@ -30,6 +30,19 @@ description: Extract calendar events from emails and create calendar entries. Su
 Extract calendar events and action items from emails, present them for review, and create/update calendar events with duplicate detection and undo support.
 
 **First-time setup:** See [SETUP.md](SETUP.md) for configuration options and smart onboarding.
+
+## What This Skill Accesses
+
+For transparency, so every email and calendar action is expected and disclosed:
+
+- **Reads Gmail** — lists/searches unread mail and reads message bodies to find events.
+- **Manages Google Calendar** — creates and updates events; deletes events only when you undo a change.
+- **Sends email** — optional deadline-reminder notifications to you, only when `deadline_notifications.enabled` is `true` in config.
+- **Modifies Gmail labels** — marks processed mail as read and/or archives it, per the `email_handling` config.
+- **Runs locally** — shells out to the `gog` CLI and the bundled wrapper scripts in `scripts/`; never downloads or runs remote/unknown binaries.
+- **Stores state locally** — event tracking, pending invites, changelog, and activity logs as JSON under your data dir. No external servers, telemetry, or data sharing.
+
+Event creation always requires explicit confirmation, and changes are undoable within 24 hours.
 
 ## Reading Email Content
 

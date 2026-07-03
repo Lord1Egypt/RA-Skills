@@ -22,47 +22,47 @@ Subcommands:
 
 Usage examples:
   # Basic chat
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.1 \
       --message "Hello, please introduce Tencent Cloud VOD"
 
   # Streaming output
-  python scripts/vod_aigc_chat.py stream \
+  python3 scripts/vod_aigc_chat.py stream \
       --token <YOUR_API_TOKEN> \
       --model gemini-2.5-flash \
       --message "Write a poem about cloud computing"
 
   # With system prompt
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.1 \
       --system "You are a professional video processing expert" \
       --message "What is the difference between H.264 and H.265?"
 
   # Multi-turn conversation (specify full messages in JSON format)
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.1 \
       --messages '[{"role":"user","content":"Hello"},{"role":"assistant","content":"Hello!"},' \
       '{"role":"user","content":"Introduce yourself"}]'
 
   # Image understanding
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.1 \
       --message "Please describe the content of this image" \
       --image-url "https://example.com/image.jpg"
 
   # Enable reasoning/thinking mode
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.4 \
       --message "Please solve a math problem: ..." \
       --thinking
 
   # Function Calling (tool use)
-  python scripts/vod_aigc_chat.py chat \
+  python3 scripts/vod_aigc_chat.py chat \
       --token <YOUR_API_TOKEN> \
       --model gpt-5.1 \
       --message "What is the weather like in Beijing today?" \
@@ -73,7 +73,7 @@ Usage examples:
 
   # Read token from environment variable
   export TENCENTCLOUD_VOD_AIGC_TOKEN=<YOUR_API_TOKEN>
-  python scripts/vod_aigc_chat.py chat --model gpt-5.1 --message "Hello"
+  python3 scripts/vod_aigc_chat.py chat --model gpt-5.1 --message "Hello"
 """
 
 import argparse
@@ -105,7 +105,7 @@ if _LOAD_ENV_AVAILABLE and not os.environ.get("TENCENTCLOUD_VOD_AIGC_TOKEN"):
 try:
     import requests
 except ImportError:
-    print("❌ Missing dependency, please install first: pip install requests", file=sys.stderr)
+    print("❌ Missing dependency, please install first: python3 -m pip install requests", file=sys.stderr)
     sys.exit(1)
 
 # ─────────────────────────────────────────────

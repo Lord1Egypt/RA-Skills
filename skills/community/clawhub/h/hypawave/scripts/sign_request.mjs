@@ -20,6 +20,7 @@
  * Body-less (GET/DELETE): pass { body: null, privKey } → header-only signature.
  *
  * CLI:
+ *   node sign_request.mjs --gen                                         # generate a new identity key (save as $HYPAWAVE_PRIVKEY)
  *   echo '{"amount":1,...}' | node sign_request.mjs --key <privhex>     # signed POST body
  *   node sign_request.mjs --key <privhex> --bodyless                    # header-only (GET/DELETE)
  *   node sign_request.mjs --selftest                                    # verify against llms.txt vector
@@ -118,10 +119,23 @@ async function selftest() {
   process.exit(ok ? 0 : 1);
 }
 
+// ── Generate a fresh secp256k1 identity key ─────────────────────────────────
+// One-time seller setup: emits a new private key to save as $HYPAWAVE_PRIVKEY,
+// plus its derived pubkey (your Hypawave identity). The key IS your account —
+// back it up; losing it means losing control of your offers.
+function genKey() {
+  const privBytes = secp.utils.randomPrivateKey();
+  const privKey = Buffer.from(privBytes).toString("hex");
+  const pubKey = Buffer.from(secp.getPublicKey(privBytes, true)).toString("hex");
+  console.error("Generated a new secp256k1 identity key. Save the private key as $HYPAWAVE_PRIVKEY and back it up — it controls your offers (separate from your payout wallet).");
+  console.log(JSON.stringify({ HYPAWAVE_PRIVKEY: privKey, pubkey: pubKey }, null, 2));
+}
+
 // ── CLI ─────────────────────────────────────────────────────────────────────
 async function main() {
   const argv = process.argv.slice(2);
   if (argv.includes("--selftest")) return selftest();
+  if (argv.includes("--gen")) return genKey();
 
   const keyIdx = argv.indexOf("--key");
   const privKey = (keyIdx >= 0 ? argv[keyIdx + 1] : process.env.HYPAWAVE_PRIVKEY) || "";

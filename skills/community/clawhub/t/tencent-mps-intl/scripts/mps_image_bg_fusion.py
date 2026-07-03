@@ -19,45 +19,45 @@ COS Storage Convention:
 
 Usage:
   # Background fusion (subject + background image, wait for result)
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --bg-url "https://example.com/background.jpg"
 
   # Background fusion + additional Prompt
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --bg-url "https://example.com/background.jpg" \\
       --prompt "Replace the leaves in the background with yellow"
 
   # Background generation (only subject + Prompt, no background image)
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "Minimalist white marble tabletop, soft natural light"
 
   # Subject image using COS path input
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-cos-key "/input/product.jpg" \\
       --bg-url "https://example.com/background.jpg"
 
   # Subject + background image both using COS path input
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-cos-key "/input/product.jpg" \\
       --bg-cos-key "/input/background.jpg"
 
   # Background generation + fixed random seed
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "Modern minimalist living room background" \\
       --random-seed 42
 
   # Submit task only, don't wait for result (returns TaskId)
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "Minimalist white marble tabletop" \\
       --no-wait
 
   # Specify output format and size
-  python scripts/mps_image_bg_fusion.py \\
+  python3 scripts/mps_image_bg_fusion.py \\
       --subject-url "https://example.com/product.jpg" \\
       --prompt "Outdoor lawn, sunny day" \\
       --format PNG --image-size 4K
@@ -101,7 +101,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -126,12 +126,18 @@ def get_credentials():
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        print("❌ TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not found", file=sys.stderr)
-        print("   Please configure them in ~/.env or <SKILL_DIR>/.env", file=sys.stderr)
         if _LOAD_ENV_AVAILABLE:
-            from mps_load_env import _print_setup_hint
-            _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-        sys.exit(1)
+            print("[load_env] Environment variables not set, attempting to auto-load from system files...", file=sys.stderr)
+            _ensure_env_loaded(verbose=True)
+            secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
+            secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
+        if not secret_id or not secret_key:
+            print("❌ TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY not found", file=sys.stderr)
+            print("   Please configure them in ~/.env or <SKILL_DIR>/.env", file=sys.stderr)
+            if _LOAD_ENV_AVAILABLE:
+                from mps_load_env import _print_setup_hint
+                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
+            sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
@@ -421,6 +427,12 @@ def parse_args():
 # =============================================================================
 
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     # Command line secrets override environment variables
@@ -479,7 +491,7 @@ def main():
     # Poll and wait for result
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module not available, please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -493,7 +505,7 @@ def main():
 
     if task_result is None:
         print(f"\n⚠️  Polling timed out, task may still be processing.", file=sys.stderr)
-        print(f"   You can query manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     # Output final result

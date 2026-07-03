@@ -87,7 +87,7 @@ Cross-reference insider cluster buys + congressional STOCK Act trades + analyst 
 2. `GET /api/v1/politicians/activity?lookbackDays=7` for recent congressional purchases (filter to PURCHASE)
 3. `GET /api/v1/analyst/activity?lookbackDays=7` for market-wide analyst actions (filter client-side to `actionType=="UPGRADE"`; the API has no server-side `types=` filter)
 
-**Synthesize as:** intersect the three ticker lists. Report tickers in 2+ of the three buckets, with a one-liner on each: "NVDA: 4 insiders bought ($2.1M), 1 senator purchased $50k-$100k, 2 analyst upgrades."
+**Synthesize as:** intersect the three ticker lists. Report tickers in 2+ of the three buckets, with a one-liner on each: "NVDA: 4 insiders bought ($2.1M), 1 senator purchased $50k-$100k, 2 analyst upgrades." If the intersection is empty (common on quiet weeks), say so plainly and fall back to the strongest single-bucket names as runners-up (top insider cluster-buys, then congressional purchases), rather than forcing a convergence claim or returning a blank.
 
 This is a screen no free data source produces: convergence is the signal.
 
@@ -114,7 +114,7 @@ Stocks where price action and sentiment disagree. A bullish gap (price down, sen
 Before an earnings report, agents and users want to know: is the smart-money / sentiment positioning bullish or bearish?
 
 **Synthesis pattern:**
-1. `GET /api/v1/calendar/earnings?ticker={T}` for the next report date and consensus EPS (`data.earnings[0].earningsDate` + `confirmed`); empty means the company is outside the forward window, so ask the user for the date instead
+1. `GET /api/v1/calendar/earnings?ticker={T}` for the next report date and consensus EPS (`data.earnings[0].earningsDate` + `confirmed`); empty means the company is outside the forward window: fall back to `periodLabel` from `analyst/{T}/estimates` (step 5) as the reporting-period proxy for the timing framing, and only ask the user for the date if that is also absent
 2. `GET /api/v1/stocks/{T}/profile` to confirm the ticker exists and pull sector/industry context
 3. `GET /api/v2/metrics/entity/{T}/metric/sentiment?startTime={now-30d in epoch ms}&endTime={now in epoch ms}` for the 30-day trend
 4. `GET /api/v1/insider/trades/{T}?lookbackDays=60` for 60-day insider activity
@@ -130,7 +130,7 @@ Before an earnings report, agents and users want to know: is the smart-money / s
 Which sectors are in greed, which in fear, and what stocks are driving each.
 
 **Synthesis pattern:**
-1. `GET /api/v2/market-mood` for composite market mood + sector breakdowns. The response is flat but the composite is nested under `market` (`market.currentScore`, `market.phase`, `market.weeklyChange`), NOT at the root. `sectors` is a string-keyed dict (not an array) with overlapping GICS labels (`Technology` and `Information Technology`, `Healthcare` and `Health Care`, etc.); iterate the dict values and dedupe these overlaps before ranking top and bottom
+1. `GET /api/v2/market-mood` for composite market mood + sector breakdowns. The response is flat but the composite is nested under `market` (`market.currentScore`, `market.phase`, `market.weeklyChange`), NOT at the root. `sectors` is a string-keyed dict (not an array) with overlapping GICS labels (`Technology` and `Information Technology`, `Healthcare` and `Health Care`, etc.); iterate the dict values and dedupe these overlaps before ranking top and bottom (keep the higher-scoring variant of each pair)
 2. For each sector with `weeklyChange > +5` or `< -5`: `GET /api/v1/insights/market` (no params), then client-side filter the returned `data[]` to insights whose `insightText` mentions tickers known to belong to that sector (cross-reference with `GET /api/v1/stocks/descriptions?tickers=A,B,C` if you need the sector mapping). The endpoint itself has no server-side sector filter.
 3. Report top 2 movers (positive) and bottom 2 (negative)
 
@@ -162,7 +162,7 @@ For the full schema, see https://sentisense.ai/skill.md.
 
 ### Institutional 13F (Public, preview)
 - `GET /api/v1/institutional/quarters`: call this FIRST to get valid `reportDate` values
-- `GET /api/v1/institutional/holders/{T}?reportDate={Q}`: top holders (`data.holders[]` sorted by largest position)
+- `GET /api/v1/institutional/holders/{T}?reportDate={Q}`: top holders (`data.holders[]` sorted by largest position; fields include `filerName`, `shares`, `valueUsd`, `changeType`, `sharesChangePct`, not `institutionName`/`value`)
 
 ### Analyst ratings (Public, preview)
 - `GET /api/v1/analyst/{T}/consensus`: price target band, distribution
@@ -171,7 +171,7 @@ For the full schema, see https://sentisense.ai/skill.md.
 - `GET /api/v1/analyst/activity?lookbackDays=N`: market-wide actions (filter client-side on `actionType`)
 
 ### AI insights (Public, preview)
-- `GET /api/v1/insights/stock/{T}`: AI signals for a ticker (ranked by importance: relevance, confidence, and recency; first item is the headline signal)
+- `GET /api/v1/insights/stock/{T}`: AI signals for a ticker (ranked by importance: relevance, confidence, and recency; first item is the headline signal, but confidence can outweigh recency, so check its `generatedAt` and flag the age rather than implying it is breaking news)
 - `GET /api/v1/insights/stock/{T}/types`: list available insight types (Public, no authentication required, no quota cost)
 - `GET /api/v1/insights/market`: top market-wide signals
 

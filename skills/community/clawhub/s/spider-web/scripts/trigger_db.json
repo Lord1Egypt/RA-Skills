@@ -1,0 +1,2016 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generated_at": "2026-06-19 14:04:49",
+    "total_skills": 54,
+    "total_triggers": 465,
+    "unique_triggers": 453,
+    "overlap_triggers": 11,
+    "avg_per_skill": 8.6
+  },
+  "skills": {
+    "agent-decision": [
+      "Agent决策",
+      "Agent可行性",
+      "Agent开发",
+      "做Agent应用",
+      "AI Agent评估",
+      "智能体决策",
+      "搭建Agent",
+      "Agent分析报告",
+      "agent decision",
+      "AI助手开发",
+      "多智能体系统",
+      "Agent选型"
+    ],
+    "ai-career-planner": [
+      "技能差距",
+      "包含",
+      "技术"
+    ],
+    "ai-dev-engineer": [
+      "AI开发",
+      "AI工程师",
+      "AI全栈",
+      "LLM应用开发",
+      "Agent开发",
+      "RAG开发",
+      "Prompt工程",
+      "模型微调",
+      "AI部署",
+      "AI后端",
+      "AI前端",
+      "搭建AI应用",
+      "AI系统设计",
+      "AI架构",
+      "MLOps",
+      "LLMOps",
+      "AgentOps",
+      "AI安全",
+      "Prompt注入",
+      "AI合规",
+      "模型网关",
+      "智能路由",
+      "AI dev",
+      "LLM app",
+      "AI fullstack",
+      "build AI app",
+      "AI system design",
+      "AI safety",
+      "guardrails"
+    ],
+    "ai-pm": [
+      "AI产品经理",
+      "AI PM",
+      "写PRD",
+      "竞品分析",
+      "Prompt设计",
+      "Agent工作流",
+      "RAG设计",
+      "AI评估",
+      "需求分析",
+      "产品方案",
+      "模型选型",
+      "AI功能设计",
+      "ai product manager",
+      "PRD生成",
+      "技术可行性评估",
+      "AI产品设计"
+    ],
+    "aioom": [
+      "内存占用高",
+      "清理内存",
+      "查看内存",
+      "启动aioom",
+      "打开aioom界面"
+    ],
+    "amazon-product-research": [
+      "阶段",
+      "amazon",
+      "asin"
+    ],
+    "amazon-review-analyzer": [
+      "痛点"
+    ],
+    "article-metaphor-illustrator": [
+      "可读性强的极简强",
+      "段落适合流程图"
+    ],
+    "auto-bookkeeping": [
+      "记账",
+      "消费",
+      "花了",
+      "买了",
+      "收到",
+      "今天花",
+      "记一笔",
+      "查账",
+      "账单报告",
+      "auto-bookkeeping",
+      "支出",
+      "收入"
+    ],
+    "contract-review": [
+      "合同审查",
+      "审合同",
+      "合同风险",
+      "合同分析",
+      "审查合同",
+      "contract review",
+      "帮我看看合同",
+      "合同审核",
+      "法律风险分析"
+    ],
+    "data-analyst": [
+      "分析数据",
+      "数据分析",
+      "帮我分析数据",
+      "数据报告",
+      "EDA",
+      "data analysis",
+      "analyze data",
+      "生成数据报告",
+      "数据可视化",
+      "探索性分析"
+    ],
+    "desktop-pet": [
+      "桌面宠物",
+      "宠物陪伴",
+      "情绪安慰",
+      "desktop pet",
+      "virtual pet",
+      "电子宠物"
+    ],
+    "divorce-guide": [
+      "绂诲搴旇瘔",
+      "琚捣璇夌濠? 鏀跺埌绂诲浼犵エ",
+      "绂诲绛旇京鐘? 绂诲琚憡",
+      "绂诲鎬庝箞鍔? 瀵规柟璧疯瘔绂诲",
+      "绂诲搴旇瘔绛旇京",
+      "濡備綍搴旇瘔绂诲",
+      "绂诲瀹樺徃",
+      "绂诲璇夎琚憡",
+      "divorce defense",
+      "绂诲璐骇鎬庝箞鍒? 瀛╁瓙鎶氬吇鏉? 鎰熸儏鐮磋璇佹嵁",
+      "绂诲璇佹嵁鏀堕泦",
+      "绂诲娉曞緥鍜ㄨ"
+    ],
+    "ecommerce-analyzer": [
+      "电商分析",
+      "商品分析",
+      "比价",
+      "多平台对比",
+      "帮我看看这个商品",
+      "分析这个链接",
+      "这个值不值",
+      "ecommerce analyzer",
+      "商品对比报告",
+      "价格分析",
+      "同款比价"
+    ],
+    "ecommerce-image-diagnosis": [
+      "主图诊断",
+      "详情页诊断",
+      "商品图分析",
+      "主图优化",
+      "详情页分析",
+      "电商图片诊断",
+      "帮我看看主图",
+      "分析详情页",
+      "主图好不好",
+      "主图转化率",
+      "ecommerce image diagnosis"
+    ],
+    "ecommerce-interest-analyzer": [
+      "电商兴趣度分析",
+      "商品兴趣分析",
+      "用户兴趣度",
+      "浏览行为分析",
+      "商品诊断",
+      "转化率分析",
+      "ecommerce interest",
+      "抖音电商分析",
+      "电商商品分析",
+      "帮我分析商品"
+    ],
+    "fde": [
+      "FDE",
+      "前沿部署工程师",
+      "驻场工程师",
+      "forward deployed engineer",
+      "客户现场部署",
+      "AI落地最后一公里",
+      "Echo-Delta",
+      "企业AI落地",
+      "定制化AI方案",
+      "业务价值交付"
+    ],
+    "fifteen-five-plan": [
+      "十五五规划",
+      "十五五解读",
+      "十五五政策",
+      "十五五问答",
+      "规划对比",
+      "十四五十五五对比",
+      "十五五分析报告"
+    ],
+    "finance-daily-report": [
+      "财经日报",
+      "今日财经",
+      "股市日报",
+      "每日财经",
+      "金融日报",
+      "finance daily report",
+      "股市行情",
+      "大盘分析",
+      "今日股市"
+    ],
+    "fishing-hotspot-push": [
+      "钓鱼热点",
+      "今日鱼情",
+      "附近钓点",
+      "哪里出鱼",
+      "钓鱼推送",
+      "钓鱼情报",
+      "fishing hotspot"
+    ],
+    "fishing-trip-planner": [
+      "钓鱼行程",
+      "钓鱼规划",
+      "钓鱼攻略",
+      "出海钓鱼",
+      "钓鱼行程报告",
+      "fishing trip planner"
+    ],
+    "flower-care": [
+      "识花",
+      "这是什么花",
+      "花卉识别",
+      "植物识别",
+      "养花",
+      "怎么养",
+      "养护指南",
+      "花生病了",
+      "病虫害",
+      "帮我看看这盆花",
+      "植物养护",
+      "flower identification",
+      "plant care"
+    ],
+    "food-nutrition": [
+      "食物营养成分",
+      "每日",
+      "个性化饮食建议"
+    ],
+    "food-review-monitor": [
+      "外卖评价监控",
+      "评价分析",
+      "差评预警",
+      "口味监测",
+      "配送异常",
+      "review monitor",
+      "外卖差评",
+      "顾客评价分析",
+      "外卖数据监控"
+    ],
+    "football-data": [
+      "足球积分榜",
+      "查赛程",
+      "球队信息",
+      "球员数据",
+      "足球数据",
+      "H2H",
+      "赛前分析",
+      "football standings",
+      "查排名",
+      "联赛数据"
+    ],
+    "gaokao-volunteer": [
+      "全国",
+      "分数匹配"
+    ],
+    "harmonyos-decision": [
+      "鸿蒙开发决策",
+      "鸿蒙可行性",
+      "鸿蒙能不能做",
+      "做鸿蒙应用",
+      "鸿蒙APP评估",
+      "鸿蒙原生开发",
+      "HarmonyOS决策",
+      "harmonyos decision",
+      "鸿蒙调研",
+      "鸿蒙分析报告"
+    ],
+    "hot-product-analyzer": [
+      "爆款拆解",
+      "爆款分析",
+      "爆款规律",
+      "选品分析",
+      "类目分析",
+      "什么好卖",
+      "hot product",
+      "商品分析报告",
+      "市场分析",
+      "竞品拆解"
+    ],
+    "invoice-reimbursement": [
+      "发票报销",
+      "发票识别",
+      "整理报销",
+      "报销单",
+      "发票录入",
+      "invoice reimbursement",
+      "帮我看看发票",
+      "录入发票",
+      "报销报告",
+      "查发票"
+    ],
+    "logistics-care": [
+      "物流轨迹",
+      "安抚话术"
+    ],
+    "lol-analyst": [
+      "查战绩",
+      "LOL数据",
+      "英雄联盟",
+      "排位分析",
+      "对局分析",
+      "查段位",
+      "英雄熟练度",
+      "上分建议",
+      "lol analyst"
+    ],
+    "mbti-test": [
+      "MBTI 测试",
+      "mbti",
+      "sbti 测试",
+      "16 型人格",
+      "人格测试",
+      "性格测试",
+      "我是什么人格",
+      "测测我的人格"
+    ],
+    "miniprogram-decision": [
+      "小程序决策",
+      "小程序可行性",
+      "小程序能不能做",
+      "开发小程序",
+      "小程序评估",
+      "小程序调研",
+      "miniprogram decision",
+      "小程序选型",
+      "小程序分析报告"
+    ],
+    "nba-analyst": [
+      "比分",
+      "nba",
+      "key"
+    ],
+    "personal-ip-planner": [
+      "个人IP",
+      "IP规划",
+      "IP分析",
+      "个人品牌",
+      "IP可行性",
+      "打造IP",
+      "做个人IP",
+      "IP定位",
+      "IP报告",
+      "个人IP评估",
+      "personal IP",
+      "IP strategy",
+      "我想做一个XX的IP",
+      "帮我规划个人IP",
+      "IP怎么做",
+      "自媒体IP"
+    ],
+    "pet-emotion": [
+      "拍照识别宠物情绪",
+      "宠物情绪",
+      "宠物表情",
+      "猫咪心情",
+      "狗狗情绪",
+      "猫狗情绪",
+      "宠物表情识别",
+      "看看我家猫",
+      "看看我家狗",
+      "帮我看看宠物",
+      "pet emotion",
+      "pet mood"
+    ],
+    "psycho-assess": [
+      "心理测评",
+      "心理评估",
+      "心理测试",
+      "测测心理",
+      "抑郁症测试",
+      "焦虑症测试",
+      "压力测试",
+      "自尊测试",
+      "人格测试",
+      "心理健康",
+      "psycho assess",
+      "psychological test"
+    ],
+    "saas-decision": [
+      "SaaS决策",
+      "SaaS可行性",
+      "SaaS评估",
+      "SaaS能不能做",
+      "开发SaaS",
+      "SaaS分析报告",
+      "SaaS调研",
+      "软件即服务决策",
+      "saas decision",
+      "SaaS选型",
+      "SaaS创业评估",
+      "做SaaS产品"
+    ],
+    "sales-forecast": [
+      "销量预测",
+      "销售预测",
+      "预测销量",
+      "趋势预测",
+      "sales forecast",
+      "用Chronos预测",
+      "时序预测"
+    ],
+    "skill-manager": [
+      "技能管理",
+      "skill管理",
+      "管理技能",
+      "skill manager",
+      "列出技能",
+      "技能列表",
+      "审计技能",
+      "技能审计",
+      "删除技能",
+      "创建技能",
+      "技能健康检查",
+      "清理技能",
+      "技能打包",
+      "重复技能检测"
+    ],
+    "skill_2053078990332825600": [
+      "email",
+      "check"
+    ],
+    "skill_2053081626394972160": [
+      "create",
+      "you",
+      "create"
+    ],
+    "skill_2053082097175687168": [
+      "remove",
+      "use",
+      "detects"
+    ],
+    "skill_2053083248287678464": [
+      "triggers",
+      "gtm",
+      "based",
+      "use"
+    ],
+    "skill_2054902471873105920": [
+      "微信公众号封面图",
+      "并上传封面"
+    ],
+    "spider-web": [
+      "蜘蛛网系统",
+      "触发词匹配",
+      "技能路由",
+      "智能匹配",
+      "技能调度",
+      "触发词网络",
+      "spider web",
+      "skill router",
+      "trigger match",
+      "串并联匹配",
+      "触发词数据库",
+      "技能触发词映射",
+      "查技能匹配",
+      "这个触发哪个技能",
+      "哪个技能可以处理",
+      "match skill",
+      "技能推荐",
+      "我应该用哪个技能",
+      "route to skill",
+      "触发词管理"
+    ],
+    "sports-health": [
+      "运动记录",
+      "今天运动",
+      "跑步",
+      "健身",
+      "卡路里消耗",
+      "运动计划",
+      "训练方案",
+      "运动报告",
+      "做了什么运动",
+      "exercise",
+      "workout",
+      "记运动"
+    ],
+    "storage-clean": [
+      "帮我看看存储",
+      "清理磁盘",
+      "存储空间不足",
+      "扫描垃圾文件",
+      "磁盘清理",
+      "storage clean",
+      "disk cleanup"
+    ],
+    "storage-clean.backup": [
+      "帮我看看存储",
+      "清理磁盘",
+      "存储空间不足",
+      "扫描垃圾文件",
+      "磁盘清理",
+      "storage clean",
+      "disk cleanup"
+    ],
+    "tech-career-transition": [
+      "计算机转行",
+      "程序员转行",
+      "IT转行",
+      "技术转岗",
+      "开发转产品",
+      "转管理",
+      "技术职业规划",
+      "tech career transition",
+      "码农转行",
+      "计算机职业规划",
+      "技术岗转型"
+    ],
+    "tender-analyzer": [
+      "技能",
+      "架构图",
+      "与迭代追踪",
+      "pdf",
+      "docx",
+      "xlsx"
+    ],
+    "tool-tutorial-generator": [
+      "生成教程",
+      "软件教程",
+      "工具教程",
+      "学习指南",
+      "怎么用XX",
+      "XX教程",
+      "XX入门",
+      "XX使用指南",
+      "帮我学XX",
+      "tutorial generator",
+      "软件学习报告"
+    ],
+    "website-decision": [
+      "网站决策",
+      "网站可行性",
+      "网站评估",
+      "网站能不能做",
+      "网站分析报告",
+      "website decision",
+      "建站评估",
+      "网站调研"
+    ],
+    "zhihu-publish-attach": [
+      "auto",
+      "zhihu",
+      "linux",
+      "chrome",
+      "vnc",
+      "agent",
+      "triggers"
+    ]
+  },
+  "skill_names_index": {
+    "agent-decision": "agent-decision",
+    "ai-career-planner": "ai-career-planner",
+    "ai-dev-engineer": "ai-dev-engineer",
+    "ai-pm": "ai-pm",
+    "aioom": "aioom",
+    "amazon-product-research": "amazon-product-research",
+    "amazon-review-analyzer": "amazon-review-analyzer",
+    "article-metaphor-illustrator": "article-metaphor-illustrator",
+    "auto-bookkeeping": "auto-bookkeeping",
+    "contract-review": "contract-review",
+    "data-analyst": "data-analyst",
+    "desktop-pet": "desktop-pet",
+    "divorce-guide": "divorce-guide",
+    "ecommerce-analyzer": "ecommerce-analyzer",
+    "ecommerce-image-diagnosis": "ecommerce-image-diagnosis",
+    "ecommerce-interest-analyzer": "ecommerce-interest-analyzer",
+    "fde": "fde",
+    "fifteen-five-plan": "fifteen-five-plan",
+    "finance-daily-report": "finance-daily-report",
+    "fishing-hotspot-push": "fishing-hotspot-push",
+    "fishing-trip-planner": "fishing-trip-planner",
+    "flower-care": "flower-care",
+    "food-nutrition": "food-nutrition",
+    "food-review-monitor": "food-review-monitor",
+    "football-data": "football-data",
+    "gaokao-volunteer": "gaokao-volunteer",
+    "harmonyos-decision": "harmonyos-decision",
+    "hot-product-analyzer": "hot-product-analyzer",
+    "invoice-reimbursement": "invoice-reimbursement",
+    "logistics-care": "logistics-care",
+    "lol-analyst": "lol-analyst",
+    "mbti-test": "mbti-test",
+    "miniprogram-decision": "miniprogram-decision",
+    "nba-analyst": "nba-analyst",
+    "personal-ip-planner": "personal-ip-planner",
+    "pet-emotion": "pet-emotion",
+    "psycho-assess": "psycho-assess",
+    "saas-decision": "saas-decision",
+    "sales-forecast": "sales-forecast",
+    "skill-manager": "skill-manager",
+    "skill_2053078990332825600": "skill_2053078990332825600",
+    "skill_2053081626394972160": "skill_2053081626394972160",
+    "skill_2053082097175687168": "skill_2053082097175687168",
+    "skill_2053083248287678464": "skill_2053083248287678464",
+    "skill_2054902471873105920": "skill_2054902471873105920",
+    "spider-web": "spider-web",
+    "sports-health": "sports-health",
+    "storage-clean": "storage-clean",
+    "storage-clean.backup": "storage-clean.backup",
+    "tech-career-transition": "tech-career-transition",
+    "tender-analyzer": "tender-analyzer",
+    "tool-tutorial-generator": "tool-tutorial-generator",
+    "website-decision": "website-decision",
+    "zhihu-publish-attach": "zhihu-publish-attach"
+  },
+  "reverse_index": {
+    "agent决策": [
+      "agent-decision"
+    ],
+    "agent可行性": [
+      "agent-decision"
+    ],
+    "agent开发": [
+      "agent-decision",
+      "ai-dev-engineer"
+    ],
+    "做agent应用": [
+      "agent-decision"
+    ],
+    "ai agent评估": [
+      "agent-decision"
+    ],
+    "智能体决策": [
+      "agent-decision"
+    ],
+    "搭建agent": [
+      "agent-decision"
+    ],
+    "agent分析报告": [
+      "agent-decision"
+    ],
+    "agent decision": [
+      "agent-decision"
+    ],
+    "ai助手开发": [
+      "agent-decision"
+    ],
+    "多智能体系统": [
+      "agent-decision"
+    ],
+    "agent选型": [
+      "agent-decision"
+    ],
+    "技能差距": [
+      "ai-career-planner"
+    ],
+    "包含": [
+      "ai-career-planner"
+    ],
+    "技术": [
+      "ai-career-planner"
+    ],
+    "ai开发": [
+      "ai-dev-engineer"
+    ],
+    "ai工程师": [
+      "ai-dev-engineer"
+    ],
+    "ai全栈": [
+      "ai-dev-engineer"
+    ],
+    "llm应用开发": [
+      "ai-dev-engineer"
+    ],
+    "rag开发": [
+      "ai-dev-engineer"
+    ],
+    "prompt工程": [
+      "ai-dev-engineer"
+    ],
+    "模型微调": [
+      "ai-dev-engineer"
+    ],
+    "ai部署": [
+      "ai-dev-engineer"
+    ],
+    "ai后端": [
+      "ai-dev-engineer"
+    ],
+    "ai前端": [
+      "ai-dev-engineer"
+    ],
+    "搭建ai应用": [
+      "ai-dev-engineer"
+    ],
+    "ai系统设计": [
+      "ai-dev-engineer"
+    ],
+    "ai架构": [
+      "ai-dev-engineer"
+    ],
+    "mlops": [
+      "ai-dev-engineer"
+    ],
+    "llmops": [
+      "ai-dev-engineer"
+    ],
+    "agentops": [
+      "ai-dev-engineer"
+    ],
+    "ai安全": [
+      "ai-dev-engineer"
+    ],
+    "prompt注入": [
+      "ai-dev-engineer"
+    ],
+    "ai合规": [
+      "ai-dev-engineer"
+    ],
+    "模型网关": [
+      "ai-dev-engineer"
+    ],
+    "智能路由": [
+      "ai-dev-engineer"
+    ],
+    "ai dev": [
+      "ai-dev-engineer"
+    ],
+    "llm app": [
+      "ai-dev-engineer"
+    ],
+    "ai fullstack": [
+      "ai-dev-engineer"
+    ],
+    "build ai app": [
+      "ai-dev-engineer"
+    ],
+    "ai system design": [
+      "ai-dev-engineer"
+    ],
+    "ai safety": [
+      "ai-dev-engineer"
+    ],
+    "guardrails": [
+      "ai-dev-engineer"
+    ],
+    "ai产品经理": [
+      "ai-pm"
+    ],
+    "ai pm": [
+      "ai-pm"
+    ],
+    "写prd": [
+      "ai-pm"
+    ],
+    "竞品分析": [
+      "ai-pm"
+    ],
+    "prompt设计": [
+      "ai-pm"
+    ],
+    "agent工作流": [
+      "ai-pm"
+    ],
+    "rag设计": [
+      "ai-pm"
+    ],
+    "ai评估": [
+      "ai-pm"
+    ],
+    "需求分析": [
+      "ai-pm"
+    ],
+    "产品方案": [
+      "ai-pm"
+    ],
+    "模型选型": [
+      "ai-pm"
+    ],
+    "ai功能设计": [
+      "ai-pm"
+    ],
+    "ai product manager": [
+      "ai-pm"
+    ],
+    "prd生成": [
+      "ai-pm"
+    ],
+    "技术可行性评估": [
+      "ai-pm"
+    ],
+    "ai产品设计": [
+      "ai-pm"
+    ],
+    "内存占用高": [
+      "aioom"
+    ],
+    "清理内存": [
+      "aioom"
+    ],
+    "查看内存": [
+      "aioom"
+    ],
+    "启动aioom": [
+      "aioom"
+    ],
+    "打开aioom界面": [
+      "aioom"
+    ],
+    "阶段": [
+      "amazon-product-research"
+    ],
+    "amazon": [
+      "amazon-product-research"
+    ],
+    "asin": [
+      "amazon-product-research"
+    ],
+    "痛点": [
+      "amazon-review-analyzer"
+    ],
+    "可读性强的极简强": [
+      "article-metaphor-illustrator"
+    ],
+    "段落适合流程图": [
+      "article-metaphor-illustrator"
+    ],
+    "记账": [
+      "auto-bookkeeping"
+    ],
+    "消费": [
+      "auto-bookkeeping"
+    ],
+    "花了": [
+      "auto-bookkeeping"
+    ],
+    "买了": [
+      "auto-bookkeeping"
+    ],
+    "收到": [
+      "auto-bookkeeping"
+    ],
+    "今天花": [
+      "auto-bookkeeping"
+    ],
+    "记一笔": [
+      "auto-bookkeeping"
+    ],
+    "查账": [
+      "auto-bookkeeping"
+    ],
+    "账单报告": [
+      "auto-bookkeeping"
+    ],
+    "auto-bookkeeping": [
+      "auto-bookkeeping"
+    ],
+    "支出": [
+      "auto-bookkeeping"
+    ],
+    "收入": [
+      "auto-bookkeeping"
+    ],
+    "合同审查": [
+      "contract-review"
+    ],
+    "审合同": [
+      "contract-review"
+    ],
+    "合同风险": [
+      "contract-review"
+    ],
+    "合同分析": [
+      "contract-review"
+    ],
+    "审查合同": [
+      "contract-review"
+    ],
+    "contract review": [
+      "contract-review"
+    ],
+    "帮我看看合同": [
+      "contract-review"
+    ],
+    "合同审核": [
+      "contract-review"
+    ],
+    "法律风险分析": [
+      "contract-review"
+    ],
+    "分析数据": [
+      "data-analyst"
+    ],
+    "数据分析": [
+      "data-analyst"
+    ],
+    "帮我分析数据": [
+      "data-analyst"
+    ],
+    "数据报告": [
+      "data-analyst"
+    ],
+    "eda": [
+      "data-analyst"
+    ],
+    "data analysis": [
+      "data-analyst"
+    ],
+    "analyze data": [
+      "data-analyst"
+    ],
+    "生成数据报告": [
+      "data-analyst"
+    ],
+    "数据可视化": [
+      "data-analyst"
+    ],
+    "探索性分析": [
+      "data-analyst"
+    ],
+    "桌面宠物": [
+      "desktop-pet"
+    ],
+    "宠物陪伴": [
+      "desktop-pet"
+    ],
+    "情绪安慰": [
+      "desktop-pet"
+    ],
+    "desktop pet": [
+      "desktop-pet"
+    ],
+    "virtual pet": [
+      "desktop-pet"
+    ],
+    "电子宠物": [
+      "desktop-pet"
+    ],
+    "绂诲搴旇瘔": [
+      "divorce-guide"
+    ],
+    "琚捣璇夌濠? 鏀跺埌绂诲浼犵エ": [
+      "divorce-guide"
+    ],
+    "绂诲绛旇京鐘? 绂诲琚憡": [
+      "divorce-guide"
+    ],
+    "绂诲鎬庝箞鍔? 瀵规柟璧疯瘔绂诲": [
+      "divorce-guide"
+    ],
+    "绂诲搴旇瘔绛旇京": [
+      "divorce-guide"
+    ],
+    "濡備綍搴旇瘔绂诲": [
+      "divorce-guide"
+    ],
+    "绂诲瀹樺徃": [
+      "divorce-guide"
+    ],
+    "绂诲璇夎琚憡": [
+      "divorce-guide"
+    ],
+    "divorce defense": [
+      "divorce-guide"
+    ],
+    "绂诲璐骇鎬庝箞鍒? 瀛╁瓙鎶氬吇鏉? 鎰熸儏鐮磋璇佹嵁": [
+      "divorce-guide"
+    ],
+    "绂诲璇佹嵁鏀堕泦": [
+      "divorce-guide"
+    ],
+    "绂诲娉曞緥鍜ㄨ": [
+      "divorce-guide"
+    ],
+    "电商分析": [
+      "ecommerce-analyzer"
+    ],
+    "商品分析": [
+      "ecommerce-analyzer"
+    ],
+    "比价": [
+      "ecommerce-analyzer"
+    ],
+    "多平台对比": [
+      "ecommerce-analyzer"
+    ],
+    "帮我看看这个商品": [
+      "ecommerce-analyzer"
+    ],
+    "分析这个链接": [
+      "ecommerce-analyzer"
+    ],
+    "这个值不值": [
+      "ecommerce-analyzer"
+    ],
+    "ecommerce analyzer": [
+      "ecommerce-analyzer"
+    ],
+    "商品对比报告": [
+      "ecommerce-analyzer"
+    ],
+    "价格分析": [
+      "ecommerce-analyzer"
+    ],
+    "同款比价": [
+      "ecommerce-analyzer"
+    ],
+    "主图诊断": [
+      "ecommerce-image-diagnosis"
+    ],
+    "详情页诊断": [
+      "ecommerce-image-diagnosis"
+    ],
+    "商品图分析": [
+      "ecommerce-image-diagnosis"
+    ],
+    "主图优化": [
+      "ecommerce-image-diagnosis"
+    ],
+    "详情页分析": [
+      "ecommerce-image-diagnosis"
+    ],
+    "电商图片诊断": [
+      "ecommerce-image-diagnosis"
+    ],
+    "帮我看看主图": [
+      "ecommerce-image-diagnosis"
+    ],
+    "分析详情页": [
+      "ecommerce-image-diagnosis"
+    ],
+    "主图好不好": [
+      "ecommerce-image-diagnosis"
+    ],
+    "主图转化率": [
+      "ecommerce-image-diagnosis"
+    ],
+    "ecommerce image diagnosis": [
+      "ecommerce-image-diagnosis"
+    ],
+    "电商兴趣度分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "商品兴趣分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "用户兴趣度": [
+      "ecommerce-interest-analyzer"
+    ],
+    "浏览行为分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "商品诊断": [
+      "ecommerce-interest-analyzer"
+    ],
+    "转化率分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "ecommerce interest": [
+      "ecommerce-interest-analyzer"
+    ],
+    "抖音电商分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "电商商品分析": [
+      "ecommerce-interest-analyzer"
+    ],
+    "帮我分析商品": [
+      "ecommerce-interest-analyzer"
+    ],
+    "fde": [
+      "fde"
+    ],
+    "前沿部署工程师": [
+      "fde"
+    ],
+    "驻场工程师": [
+      "fde"
+    ],
+    "forward deployed engineer": [
+      "fde"
+    ],
+    "客户现场部署": [
+      "fde"
+    ],
+    "ai落地最后一公里": [
+      "fde"
+    ],
+    "echo-delta": [
+      "fde"
+    ],
+    "企业ai落地": [
+      "fde"
+    ],
+    "定制化ai方案": [
+      "fde"
+    ],
+    "业务价值交付": [
+      "fde"
+    ],
+    "十五五规划": [
+      "fifteen-five-plan"
+    ],
+    "十五五解读": [
+      "fifteen-five-plan"
+    ],
+    "十五五政策": [
+      "fifteen-five-plan"
+    ],
+    "十五五问答": [
+      "fifteen-five-plan"
+    ],
+    "规划对比": [
+      "fifteen-five-plan"
+    ],
+    "十四五十五五对比": [
+      "fifteen-five-plan"
+    ],
+    "十五五分析报告": [
+      "fifteen-five-plan"
+    ],
+    "财经日报": [
+      "finance-daily-report"
+    ],
+    "今日财经": [
+      "finance-daily-report"
+    ],
+    "股市日报": [
+      "finance-daily-report"
+    ],
+    "每日财经": [
+      "finance-daily-report"
+    ],
+    "金融日报": [
+      "finance-daily-report"
+    ],
+    "finance daily report": [
+      "finance-daily-report"
+    ],
+    "股市行情": [
+      "finance-daily-report"
+    ],
+    "大盘分析": [
+      "finance-daily-report"
+    ],
+    "今日股市": [
+      "finance-daily-report"
+    ],
+    "钓鱼热点": [
+      "fishing-hotspot-push"
+    ],
+    "今日鱼情": [
+      "fishing-hotspot-push"
+    ],
+    "附近钓点": [
+      "fishing-hotspot-push"
+    ],
+    "哪里出鱼": [
+      "fishing-hotspot-push"
+    ],
+    "钓鱼推送": [
+      "fishing-hotspot-push"
+    ],
+    "钓鱼情报": [
+      "fishing-hotspot-push"
+    ],
+    "fishing hotspot": [
+      "fishing-hotspot-push"
+    ],
+    "钓鱼行程": [
+      "fishing-trip-planner"
+    ],
+    "钓鱼规划": [
+      "fishing-trip-planner"
+    ],
+    "钓鱼攻略": [
+      "fishing-trip-planner"
+    ],
+    "出海钓鱼": [
+      "fishing-trip-planner"
+    ],
+    "钓鱼行程报告": [
+      "fishing-trip-planner"
+    ],
+    "fishing trip planner": [
+      "fishing-trip-planner"
+    ],
+    "识花": [
+      "flower-care"
+    ],
+    "这是什么花": [
+      "flower-care"
+    ],
+    "花卉识别": [
+      "flower-care"
+    ],
+    "植物识别": [
+      "flower-care"
+    ],
+    "养花": [
+      "flower-care"
+    ],
+    "怎么养": [
+      "flower-care"
+    ],
+    "养护指南": [
+      "flower-care"
+    ],
+    "花生病了": [
+      "flower-care"
+    ],
+    "病虫害": [
+      "flower-care"
+    ],
+    "帮我看看这盆花": [
+      "flower-care"
+    ],
+    "植物养护": [
+      "flower-care"
+    ],
+    "flower identification": [
+      "flower-care"
+    ],
+    "plant care": [
+      "flower-care"
+    ],
+    "食物营养成分": [
+      "food-nutrition"
+    ],
+    "每日": [
+      "food-nutrition"
+    ],
+    "个性化饮食建议": [
+      "food-nutrition"
+    ],
+    "外卖评价监控": [
+      "food-review-monitor"
+    ],
+    "评价分析": [
+      "food-review-monitor"
+    ],
+    "差评预警": [
+      "food-review-monitor"
+    ],
+    "口味监测": [
+      "food-review-monitor"
+    ],
+    "配送异常": [
+      "food-review-monitor"
+    ],
+    "review monitor": [
+      "food-review-monitor"
+    ],
+    "外卖差评": [
+      "food-review-monitor"
+    ],
+    "顾客评价分析": [
+      "food-review-monitor"
+    ],
+    "外卖数据监控": [
+      "food-review-monitor"
+    ],
+    "足球积分榜": [
+      "football-data"
+    ],
+    "查赛程": [
+      "football-data"
+    ],
+    "球队信息": [
+      "football-data"
+    ],
+    "球员数据": [
+      "football-data"
+    ],
+    "足球数据": [
+      "football-data"
+    ],
+    "h2h": [
+      "football-data"
+    ],
+    "赛前分析": [
+      "football-data"
+    ],
+    "football standings": [
+      "football-data"
+    ],
+    "查排名": [
+      "football-data"
+    ],
+    "联赛数据": [
+      "football-data"
+    ],
+    "全国": [
+      "gaokao-volunteer"
+    ],
+    "分数匹配": [
+      "gaokao-volunteer"
+    ],
+    "鸿蒙开发决策": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙可行性": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙能不能做": [
+      "harmonyos-decision"
+    ],
+    "做鸿蒙应用": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙app评估": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙原生开发": [
+      "harmonyos-decision"
+    ],
+    "harmonyos决策": [
+      "harmonyos-decision"
+    ],
+    "harmonyos decision": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙调研": [
+      "harmonyos-decision"
+    ],
+    "鸿蒙分析报告": [
+      "harmonyos-decision"
+    ],
+    "爆款拆解": [
+      "hot-product-analyzer"
+    ],
+    "爆款分析": [
+      "hot-product-analyzer"
+    ],
+    "爆款规律": [
+      "hot-product-analyzer"
+    ],
+    "选品分析": [
+      "hot-product-analyzer"
+    ],
+    "类目分析": [
+      "hot-product-analyzer"
+    ],
+    "什么好卖": [
+      "hot-product-analyzer"
+    ],
+    "hot product": [
+      "hot-product-analyzer"
+    ],
+    "商品分析报告": [
+      "hot-product-analyzer"
+    ],
+    "市场分析": [
+      "hot-product-analyzer"
+    ],
+    "竞品拆解": [
+      "hot-product-analyzer"
+    ],
+    "发票报销": [
+      "invoice-reimbursement"
+    ],
+    "发票识别": [
+      "invoice-reimbursement"
+    ],
+    "整理报销": [
+      "invoice-reimbursement"
+    ],
+    "报销单": [
+      "invoice-reimbursement"
+    ],
+    "发票录入": [
+      "invoice-reimbursement"
+    ],
+    "invoice reimbursement": [
+      "invoice-reimbursement"
+    ],
+    "帮我看看发票": [
+      "invoice-reimbursement"
+    ],
+    "录入发票": [
+      "invoice-reimbursement"
+    ],
+    "报销报告": [
+      "invoice-reimbursement"
+    ],
+    "查发票": [
+      "invoice-reimbursement"
+    ],
+    "物流轨迹": [
+      "logistics-care"
+    ],
+    "安抚话术": [
+      "logistics-care"
+    ],
+    "查战绩": [
+      "lol-analyst"
+    ],
+    "lol数据": [
+      "lol-analyst"
+    ],
+    "英雄联盟": [
+      "lol-analyst"
+    ],
+    "排位分析": [
+      "lol-analyst"
+    ],
+    "对局分析": [
+      "lol-analyst"
+    ],
+    "查段位": [
+      "lol-analyst"
+    ],
+    "英雄熟练度": [
+      "lol-analyst"
+    ],
+    "上分建议": [
+      "lol-analyst"
+    ],
+    "lol analyst": [
+      "lol-analyst"
+    ],
+    "mbti 测试": [
+      "mbti-test"
+    ],
+    "mbti": [
+      "mbti-test"
+    ],
+    "sbti 测试": [
+      "mbti-test"
+    ],
+    "16 型人格": [
+      "mbti-test"
+    ],
+    "人格测试": [
+      "mbti-test",
+      "psycho-assess"
+    ],
+    "性格测试": [
+      "mbti-test"
+    ],
+    "我是什么人格": [
+      "mbti-test"
+    ],
+    "测测我的人格": [
+      "mbti-test"
+    ],
+    "小程序决策": [
+      "miniprogram-decision"
+    ],
+    "小程序可行性": [
+      "miniprogram-decision"
+    ],
+    "小程序能不能做": [
+      "miniprogram-decision"
+    ],
+    "开发小程序": [
+      "miniprogram-decision"
+    ],
+    "小程序评估": [
+      "miniprogram-decision"
+    ],
+    "小程序调研": [
+      "miniprogram-decision"
+    ],
+    "miniprogram decision": [
+      "miniprogram-decision"
+    ],
+    "小程序选型": [
+      "miniprogram-decision"
+    ],
+    "小程序分析报告": [
+      "miniprogram-decision"
+    ],
+    "比分": [
+      "nba-analyst"
+    ],
+    "nba": [
+      "nba-analyst"
+    ],
+    "key": [
+      "nba-analyst"
+    ],
+    "个人ip": [
+      "personal-ip-planner"
+    ],
+    "ip规划": [
+      "personal-ip-planner"
+    ],
+    "ip分析": [
+      "personal-ip-planner"
+    ],
+    "个人品牌": [
+      "personal-ip-planner"
+    ],
+    "ip可行性": [
+      "personal-ip-planner"
+    ],
+    "打造ip": [
+      "personal-ip-planner"
+    ],
+    "做个人ip": [
+      "personal-ip-planner"
+    ],
+    "ip定位": [
+      "personal-ip-planner"
+    ],
+    "ip报告": [
+      "personal-ip-planner"
+    ],
+    "个人ip评估": [
+      "personal-ip-planner"
+    ],
+    "personal ip": [
+      "personal-ip-planner"
+    ],
+    "ip strategy": [
+      "personal-ip-planner"
+    ],
+    "我想做一个xx的ip": [
+      "personal-ip-planner"
+    ],
+    "帮我规划个人ip": [
+      "personal-ip-planner"
+    ],
+    "ip怎么做": [
+      "personal-ip-planner"
+    ],
+    "自媒体ip": [
+      "personal-ip-planner"
+    ],
+    "拍照识别宠物情绪": [
+      "pet-emotion"
+    ],
+    "宠物情绪": [
+      "pet-emotion"
+    ],
+    "宠物表情": [
+      "pet-emotion"
+    ],
+    "猫咪心情": [
+      "pet-emotion"
+    ],
+    "狗狗情绪": [
+      "pet-emotion"
+    ],
+    "猫狗情绪": [
+      "pet-emotion"
+    ],
+    "宠物表情识别": [
+      "pet-emotion"
+    ],
+    "看看我家猫": [
+      "pet-emotion"
+    ],
+    "看看我家狗": [
+      "pet-emotion"
+    ],
+    "帮我看看宠物": [
+      "pet-emotion"
+    ],
+    "pet emotion": [
+      "pet-emotion"
+    ],
+    "pet mood": [
+      "pet-emotion"
+    ],
+    "心理测评": [
+      "psycho-assess"
+    ],
+    "心理评估": [
+      "psycho-assess"
+    ],
+    "心理测试": [
+      "psycho-assess"
+    ],
+    "测测心理": [
+      "psycho-assess"
+    ],
+    "抑郁症测试": [
+      "psycho-assess"
+    ],
+    "焦虑症测试": [
+      "psycho-assess"
+    ],
+    "压力测试": [
+      "psycho-assess"
+    ],
+    "自尊测试": [
+      "psycho-assess"
+    ],
+    "心理健康": [
+      "psycho-assess"
+    ],
+    "psycho assess": [
+      "psycho-assess"
+    ],
+    "psychological test": [
+      "psycho-assess"
+    ],
+    "saas决策": [
+      "saas-decision"
+    ],
+    "saas可行性": [
+      "saas-decision"
+    ],
+    "saas评估": [
+      "saas-decision"
+    ],
+    "saas能不能做": [
+      "saas-decision"
+    ],
+    "开发saas": [
+      "saas-decision"
+    ],
+    "saas分析报告": [
+      "saas-decision"
+    ],
+    "saas调研": [
+      "saas-decision"
+    ],
+    "软件即服务决策": [
+      "saas-decision"
+    ],
+    "saas decision": [
+      "saas-decision"
+    ],
+    "saas选型": [
+      "saas-decision"
+    ],
+    "saas创业评估": [
+      "saas-decision"
+    ],
+    "做saas产品": [
+      "saas-decision"
+    ],
+    "销量预测": [
+      "sales-forecast"
+    ],
+    "销售预测": [
+      "sales-forecast"
+    ],
+    "预测销量": [
+      "sales-forecast"
+    ],
+    "趋势预测": [
+      "sales-forecast"
+    ],
+    "sales forecast": [
+      "sales-forecast"
+    ],
+    "用chronos预测": [
+      "sales-forecast"
+    ],
+    "时序预测": [
+      "sales-forecast"
+    ],
+    "技能管理": [
+      "skill-manager"
+    ],
+    "skill管理": [
+      "skill-manager"
+    ],
+    "管理技能": [
+      "skill-manager"
+    ],
+    "skill manager": [
+      "skill-manager"
+    ],
+    "列出技能": [
+      "skill-manager"
+    ],
+    "技能列表": [
+      "skill-manager"
+    ],
+    "审计技能": [
+      "skill-manager"
+    ],
+    "技能审计": [
+      "skill-manager"
+    ],
+    "删除技能": [
+      "skill-manager"
+    ],
+    "创建技能": [
+      "skill-manager"
+    ],
+    "技能健康检查": [
+      "skill-manager"
+    ],
+    "清理技能": [
+      "skill-manager"
+    ],
+    "技能打包": [
+      "skill-manager"
+    ],
+    "重复技能检测": [
+      "skill-manager"
+    ],
+    "email": [
+      "skill_2053078990332825600"
+    ],
+    "check": [
+      "skill_2053078990332825600"
+    ],
+    "create": [
+      "skill_2053081626394972160"
+    ],
+    "you": [
+      "skill_2053081626394972160"
+    ],
+    "remove": [
+      "skill_2053082097175687168"
+    ],
+    "use": [
+      "skill_2053082097175687168",
+      "skill_2053083248287678464"
+    ],
+    "detects": [
+      "skill_2053082097175687168"
+    ],
+    "triggers": [
+      "skill_2053083248287678464",
+      "zhihu-publish-attach"
+    ],
+    "gtm": [
+      "skill_2053083248287678464"
+    ],
+    "based": [
+      "skill_2053083248287678464"
+    ],
+    "微信公众号封面图": [
+      "skill_2054902471873105920"
+    ],
+    "并上传封面": [
+      "skill_2054902471873105920"
+    ],
+    "蜘蛛网系统": [
+      "spider-web"
+    ],
+    "触发词匹配": [
+      "spider-web"
+    ],
+    "技能路由": [
+      "spider-web"
+    ],
+    "智能匹配": [
+      "spider-web"
+    ],
+    "技能调度": [
+      "spider-web"
+    ],
+    "触发词网络": [
+      "spider-web"
+    ],
+    "spider web": [
+      "spider-web"
+    ],
+    "skill router": [
+      "spider-web"
+    ],
+    "trigger match": [
+      "spider-web"
+    ],
+    "串并联匹配": [
+      "spider-web"
+    ],
+    "触发词数据库": [
+      "spider-web"
+    ],
+    "技能触发词映射": [
+      "spider-web"
+    ],
+    "查技能匹配": [
+      "spider-web"
+    ],
+    "这个触发哪个技能": [
+      "spider-web"
+    ],
+    "哪个技能可以处理": [
+      "spider-web"
+    ],
+    "match skill": [
+      "spider-web"
+    ],
+    "技能推荐": [
+      "spider-web"
+    ],
+    "我应该用哪个技能": [
+      "spider-web"
+    ],
+    "route to skill": [
+      "spider-web"
+    ],
+    "触发词管理": [
+      "spider-web"
+    ],
+    "运动记录": [
+      "sports-health"
+    ],
+    "今天运动": [
+      "sports-health"
+    ],
+    "跑步": [
+      "sports-health"
+    ],
+    "健身": [
+      "sports-health"
+    ],
+    "卡路里消耗": [
+      "sports-health"
+    ],
+    "运动计划": [
+      "sports-health"
+    ],
+    "训练方案": [
+      "sports-health"
+    ],
+    "运动报告": [
+      "sports-health"
+    ],
+    "做了什么运动": [
+      "sports-health"
+    ],
+    "exercise": [
+      "sports-health"
+    ],
+    "workout": [
+      "sports-health"
+    ],
+    "记运动": [
+      "sports-health"
+    ],
+    "帮我看看存储": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "清理磁盘": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "存储空间不足": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "扫描垃圾文件": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "磁盘清理": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "storage clean": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "disk cleanup": [
+      "storage-clean",
+      "storage-clean.backup"
+    ],
+    "计算机转行": [
+      "tech-career-transition"
+    ],
+    "程序员转行": [
+      "tech-career-transition"
+    ],
+    "it转行": [
+      "tech-career-transition"
+    ],
+    "技术转岗": [
+      "tech-career-transition"
+    ],
+    "开发转产品": [
+      "tech-career-transition"
+    ],
+    "转管理": [
+      "tech-career-transition"
+    ],
+    "技术职业规划": [
+      "tech-career-transition"
+    ],
+    "tech career transition": [
+      "tech-career-transition"
+    ],
+    "码农转行": [
+      "tech-career-transition"
+    ],
+    "计算机职业规划": [
+      "tech-career-transition"
+    ],
+    "技术岗转型": [
+      "tech-career-transition"
+    ],
+    "技能": [
+      "tender-analyzer"
+    ],
+    "架构图": [
+      "tender-analyzer"
+    ],
+    "与迭代追踪": [
+      "tender-analyzer"
+    ],
+    "pdf": [
+      "tender-analyzer"
+    ],
+    "docx": [
+      "tender-analyzer"
+    ],
+    "xlsx": [
+      "tender-analyzer"
+    ],
+    "生成教程": [
+      "tool-tutorial-generator"
+    ],
+    "软件教程": [
+      "tool-tutorial-generator"
+    ],
+    "工具教程": [
+      "tool-tutorial-generator"
+    ],
+    "学习指南": [
+      "tool-tutorial-generator"
+    ],
+    "怎么用xx": [
+      "tool-tutorial-generator"
+    ],
+    "xx教程": [
+      "tool-tutorial-generator"
+    ],
+    "xx入门": [
+      "tool-tutorial-generator"
+    ],
+    "xx使用指南": [
+      "tool-tutorial-generator"
+    ],
+    "帮我学xx": [
+      "tool-tutorial-generator"
+    ],
+    "tutorial generator": [
+      "tool-tutorial-generator"
+    ],
+    "软件学习报告": [
+      "tool-tutorial-generator"
+    ],
+    "网站决策": [
+      "website-decision"
+    ],
+    "网站可行性": [
+      "website-decision"
+    ],
+    "网站评估": [
+      "website-decision"
+    ],
+    "网站能不能做": [
+      "website-decision"
+    ],
+    "网站分析报告": [
+      "website-decision"
+    ],
+    "website decision": [
+      "website-decision"
+    ],
+    "建站评估": [
+      "website-decision"
+    ],
+    "网站调研": [
+      "website-decision"
+    ],
+    "auto": [
+      "zhihu-publish-attach"
+    ],
+    "zhihu": [
+      "zhihu-publish-attach"
+    ],
+    "linux": [
+      "zhihu-publish-attach"
+    ],
+    "chrome": [
+      "zhihu-publish-attach"
+    ],
+    "vnc": [
+      "zhihu-publish-attach"
+    ],
+    "agent": [
+      "zhihu-publish-attach"
+    ]
+  },
+  "skipped": [],
+  "errors": []
+}

@@ -1,6 +1,6 @@
 ---
 name: wq-buddy
-description: "Provides CLI tools (`wq`) and a specialized Alpha Miner sub-agent for WorldQuant BRAIN. Use for backtesting alpha expressions, searching BRAIN data fields, analyzing field characteristics, browsing datasets, querying operators, checking competition progress, and submitting alphas. For simple single-expression backtests, use CLI directly. For complex workflows (field exploration, batch backtesting, strategy iteration, submission management), spawn the Alpha Miner agent which has its own domain knowledge base."
+description: "Provides CLI tools (`wq`) and a specialized Alpha Miner sub-agent for WorldQuant BRAIN. Use for backtesting alpha expressions, searching BRAIN data fields, analyzing field characteristics, browsing datasets, querying operators, checking competition progress, and submitting alphas. For simple single-expression backtests, use CLI directly. For complex workflows (field exploration, batch backtesting, strategy iteration, submission management), spawn the Alpha Miner agent which has its own domain knowledge base. Also includes a local Web UI (`wq webui`) for browsing the SQLite database (alphas / field tests / data fields / batches) with auto-login sharing credentials with the CLI."
 metadata:
   openclaw:
     emoji: "📊"
@@ -57,7 +57,7 @@ npm install -g wq-buddy
 
 ```json
 {
-  "version": "v1.0.8",
+  "version": "v1.0.9",
   "credentials": {
     "username": "你的BRAIN账号",
     "password": "你的BRAIN密码"
@@ -111,6 +111,17 @@ wq backtest "rank(ts_momentum(close, 60))"
 wq search "operating cash flow"
 wq analyze fnd2_ebitdm
 wq stats
+wq check <alpha_id>          # 检查 Alpha 是否可提交
+wq submit <alpha_id>         # 提交 Alpha
+wq list                      # 列出本地 Alpha
+wq user                      # 当前账号信息
+wq operators                 # 查运算符清单
+wq datasets                  # 查数据集清单
+wq competitions              # 查竞赛进度
+wq correlations <alpha_id>   # 查 Alpha 相关性
+wq update-status <alpha_id>  # 同步提交状态
+wq export                    # 导出 CSV
+wq docs                      # 输出完整文档
 ```
 
 ### 模式 B：专业 — 构建并 spawn Alpha Miner Agent
@@ -146,7 +157,15 @@ Alpha Miner Agent 不是一个空的通用 Agent。它的知识文件在 `wq-bud
 ├─ 单条表达式回测 → CLI: wq backtest "expr"
 ├─ 搜索一两个字段 → CLI: wq search "keyword"
 ├─ 快速查看统计 → CLI: wq stats
-│
+├─ 检查 Alpha 是否可提交 → CLI: wq check <id>
+├─ 提交 Alpha → CLI: wq submit <id>
+├─ 同步提交状态 → CLI: wq update-status <id>
+├─ 列出本地 Alpha → CLI: wq list
+├─ 查当前账号 → CLI: wq user
+├─ 查运算符 / 数据集 / 竞赛清单 → CLI: wq operators / wq datasets / wq competitions
+├─ 查 Alpha 相关性 → CLI: wq correlations <id>
+├─ 导出 CSV → CLI: wq export
+
 └─ 以下场景 → spawn Alpha Miner Agent：
    ├─ 批量回测（≥5 条表达式）
    ├─ 需要了解字段特性（覆盖率/频率/范围 六项分析）
@@ -154,3 +173,15 @@ Alpha Miner Agent 不是一个空的通用 Agent。它的知识文件在 `wq-bud
    ├─ 需要策略设计（从想法到可提交 Alpha 的全流程）
    └─ 需要管理提交状态（可提交→确认→已通过 闭环）
 ```
+
+---
+
+## 四、Web UI
+
+WQBuddy 自带本地 Web UI（http://localhost:9876），用于浏览 SQLite 数据。**仅供本地使用**。
+
+启动：`npm run db-viewer`（源码）或全局安装后运行 `wq` 包内的 `dist/db-viewer/server.js`。
+
+登录：与 CLI 凭证打通，任意一边登录后另一边自动免密。
+
+详细使用、功能列表、设计原则见 [WEBUI.md](WEBUI.md)。

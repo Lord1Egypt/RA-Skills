@@ -44,7 +44,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -60,13 +60,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -578,6 +581,15 @@ def search_media(args):
 
 
 def main():
+    # Load .env early so argparse `default=os.environ.get(...)` can read TENCENTCLOUD_VOD_SUB_APP_ID
+    # BUG FIX: argparse evaluates default at add_argument time, but .env was previously
+    # loaded inside get_credential(); the timing mismatch left SubAppId as None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD Search Media Tool (SearchMedia)',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -592,46 +604,46 @@ Scenario Notes:
 
 Examples:
   # ✅ Fuzzy search by name (main app)
-  python vod_search_media.py --names "my video"
+  python3 vod_search_media.py --names "my video"
 
   # Search by FileId (main app)
-  python vod_search_media.py --file-ids 387702292285462759
+  python3 vod_search_media.py --file-ids 387702292285462759
 
   # ✅ Fuzzy search by name (specified app)
-  python vod_search_media.py --names "my video" --sub-app-id 1500046806
+  python3 vod_search_media.py --names "my video" --sub-app-id 1500046806
 
   # ✅ Fuzzy match by app name + name search
-  python vod_search_media.py --names "my video" --app-name "test app"
+  python3 vod_search_media.py --names "my video" --app-name "test app"
 
   # Search video files
-  python vod_search_media.py --names "test" --categories Video
+  python3 vod_search_media.py --names "test" --categories Video
 
   # Search image files
-  python vod_search_media.py --names "cover" --categories Image
+  python3 vod_search_media.py --names "cover" --categories Image
 
   # Search by tags
-  python vod_search_media.py --tags "sports" "basketball"
+  python3 vod_search_media.py --tags "sports" "basketball"
 
   # Search by creation time range
-  python vod_search_media.py --names "meeting" \\
+  python3 vod_search_media.py --names "meeting" \\
       --create-after "2026-01-01T00:00:00+08:00" \\
       --create-before "2026-03-31T23:59:59+08:00"
 
   # Sort by creation time descending
-  python vod_search_media.py --names "test" \\
+  python3 vod_search_media.py --names "test" \\
       --sort-field CreateTime --sort-order Desc
 
   # Paginated query
-  python vod_search_media.py --names "video" --offset 0 --limit 20
+  python3 vod_search_media.py --names "video" --offset 0 --limit 20
 
   # Return basic info only
-  python vod_search_media.py --names "video" --filters basicInfo
+  python3 vod_search_media.py --names "video" --filters basicInfo
 
   # JSON format output
-  python vod_search_media.py --names "video" --json
+  python3 vod_search_media.py --names "video" --json
 
   # Preview request parameters
-  python vod_search_media.py --names "video" --dry-run
+  python3 vod_search_media.py --names "video" --dry-run
         '''
     )
 
@@ -716,7 +728,7 @@ Examples:
                               help='Show detailed information (including URLs, etc.)')
     output_group.add_argument('--json', action='store_true',
                               help='Output full response in JSON format')
-    output_group.add_argument('--region', default='ap-guangzhou',
+    output_group.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                               help='Region, default ap-guangzhou')
     output_group.add_argument('--dry-run', action='store_true',
                               help='Preview request parameters without actually executing')

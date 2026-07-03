@@ -2,14 +2,14 @@
 name: siluzan-cso
 description: >-
   丝路赞内容运营平台（CSO）。**凡涉及以下任一类业务，必须先加载并使用本 skill**。
-  (1) **文案生成与改稿**：选题、爆款拆解、新写成稿（视频脚本、博客、公众号、口播稿、配文、标题、评论区回复文案等）须走本 skill。
-  **改稿润色**：用户给出已有正文并要求润色、改稿、口语化、保留原意、优化表达、审稿等——**必须加载本 skill**，走 content-writer 流程；**禁止**当普通聊天改字或直接输出。
-  **同义触发**：写稿/内容创作/脚本/口播/成稿/改稿/润色/帮我改改/优化这段…（未说「文案」也视同文案任务）。
-  (2) **人设管理**：运营账号人设卡（定位、受众、腔调、话题边界）；反推/生成/查询/保存，非角色扮演、非广告画像。
-  (3) **内容发布与运营**（YouTube/TikTok/Instagram/LinkedIn/X/Facebook）：运营媒体账号、OAuth、**账号分组**（独有，不进 siluzan-tso）、发布（视频/图文）、任务/重试、素材上传、**封面截取(extract-cover)**、AI 内容规划、播放/粉丝报表；**网页端页面链接**查 `references/web-pages.md`。
+  (1) **文案生成与改稿**：选题、爆款拆解、新写成稿（公众号、小红书、**视频口播/字幕/配音/分镜脚本**、博客、改稿润色、评论区回复等）须走 `three-lib-content-workflow/content-writer.workflow.md`；**禁止**直接成稿或聊天润色。
+  **视频脚本 vs 发布 Caption**：口播/字幕/分镜走 content-writer；上传发布框 Caption 走 `overseas-b2b-social-post`。
+  (2) **人设管理**：运营账号人设卡（styleGuide）；反推/查询/保存。
+  (3) **发布与运营**（YouTube/TikTok/Instagram/LinkedIn/X/Facebook）：OAuth、**账号分组**、发布、任务/重试、upload、**extract-cover**、planning、报表。
   (4) **RAG 知识库**：品牌/产品问答与写稿事实依据。
-  **高频误路由**：写文案/改稿/评论回复禁直接成稿或聊天润色、禁联网代替 rag query；发布/截封面禁口头教程，须调 CLI。
-  **账号不明先问**：仅运营媒体账号可用；广告账户走 siluzan-tso。
+  **海外 B2B 社媒贴文/Caption**：走独立 skill `overseas-b2b-social-post`，不在本 skill 文案流程内。
+  **高频误路由**：写文案禁联网代替 rag query；发布/截封面须调 CLI。
+  **账号不明先问**：仅运营媒体账号；广告账户走 siluzan-tso。
 license: MIT
 allowed-tools: Bash(siluzan-cso:*) Read Write
 metadata:
@@ -28,13 +28,15 @@ metadata:
     评论区,回复文案,页面链接,web-pages,任务管理,
     RAG,知识库,rag,素材库,绩效,粉丝,播放,report,planning,内容规划,站内信
   not_for: >-
-    广告账户,广告投放,余额,消耗,统计,开户,关键词出价,Google Ads,Bing Ads,Yandex,TSO,siluzan-tso,MCC,BC,BM
+    广告账户,广告投放,余额,消耗,统计,开户,关键词出价,Google Ads,Bing Ads,Yandex,TSO,siluzan-tso,MCC,BC,BM;
+    海外 B2B 社媒贴文/Caption（走 overseas-b2b-social-post）
   when_to_use: >-
     用户要在丝路赞 CSO 写内容、管人设 styleGuide、向社交媒体运营账号发布、查企业 RAG、
     上传素材/截封面、查发布任务或运营报表、管理账号分组时使用。
   anti_patterns: >-
-    写文案：禁止模型直接成稿；禁止 web_search/联网检索代替 siluzan-cso rag query；须 Read content-writer.workflow.md。
-    发布：禁止只讲 App/网页操作或联网查平台手册；须 Read publish.md 并执行 list-accounts→upload→publish→task。
+    写文案/视频脚本：须 Read content-writer.workflow.md；禁止 web_search 代替 rag query。
+    海外社媒贴文/Caption：勿进 content-writer，用 overseas-b2b-social-post。
+    发布：禁止只讲 App/网页操作；须 Read publish.md 并执行 list-accounts→upload→publish→task。
   high_risk_tasks: copywriting,publish
 compatibility: Requires siluzan-cso-cli installed and authenticated via `siluzan-cso login`
 ---
@@ -80,12 +82,12 @@ Windows 注意：部分 Agent 客户端通过 PowerShell / cmd 代执行命令�
 
 ## 能力范围
 
-| 业务流程               | 手段                                                    | 说明                                     |
-| ---------------------- | ------------------------------------------------------- | ---------------------------------------- |
-| **发布与运营**         | 下方 CLI 命令 + `references/*.md`                       | 上传、发布、任务、报表、账号、规划等     |
-| **文案生产（子流程）** | `three-lib-content-workflow/content-writer.workflow.md` | 选题、三库、口播/公众号/成稿、审稿、改稿 |
+| 业务流程       | 手段                                                    | 说明                                 |
+| -------------- | ------------------------------------------------------- | ------------------------------------ |
+| **发布与运营** | 下方 CLI 命令 + `references/*.md`                       | 上传、发布、任务、报表、账号、规划等 |
+| **文案生产**   | `three-lib-content-workflow/content-writer.workflow.md` | 选题、三库、口播/视频脚本/公众号/成稿、改稿 |
 
-两类流程同属 CSO 业务。文案生产流程嵌套在本 skill 内，见下文「三库内容工作流」。
+两类流程同属 CSO 业务。**海外 B2B 社媒贴文/Caption** 为独立 skill `overseas-b2b-social-post`，不在本包内。
 
 ## 命令索引
 
@@ -113,23 +115,23 @@ Windows 注意：部分 Agent 客户端通过 PowerShell / cmd 代执行命令�
 
 ## 常见业务场景 → 阅读哪个文件
 
-| 用户在做什么                                                                                         | 先阅读                                                  |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| 首次安装 / 登录 / 更新                                                                               | `references/setup.md`                                   |
-| 发布视频或图文                                                                                       | `references/publish.md`                                 |
-| 上传素材                                                                                             | `references/upload.md`                                  |
-| 截取视频封面                                                                                         | `references/extract-cover.md`                           |
-| 文案写完落盘后校验字数 / 检查内部内容泄漏                                                            | `references/validate-content.md`                        |
-| 查发布记录 / 处理失败                                                                                | `references/task.md`                                    |
-| 查账号数据 / 运营报表                                                                                | `references/report.md`                                  |
-| 查找账号 ID 或账号详情                                                                               | `references/list-accounts.md`                           |
-| 账号 Token 失效 / 重新授权                                                                           | `references/authorize.md`                               |
-| 管理账号分组                                                                                         | `references/account-group.md`                           |
-| AI 内容规划                                                                                          | `references/planning.md`                                |
-| 需要给用户提供后台页面链接                                                                           | `references/web-pages.md`                               |
-| 拉取人设 / styleGuide（写稿前）/ 保存人设                                                            | `references/persona.md`                                 |
-| 写稿时检索素材库 RAG 片段（三库拆素材等）                                                            | `references/rag.md`                                     |
-| 选题 / 三库拆解 / 口播文案/公众号文章/其他文案 / 人设卡 / 代表作品反推人设 / 文章审稿打分 / 精准改稿 | `three-lib-content-workflow/content-writer.workflow.md` |
+| 用户在做什么                                                                  | 先阅读                                                  |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 首次安装 / 登录 / 更新                                                        | `references/setup.md`                                   |
+| 发布视频或图文                                                                | `references/publish.md`                                 |
+| 上传素材                                                                      | `references/upload.md`                                  |
+| 截取视频封面                                                                  | `references/extract-cover.md`                           |
+| 文案写完落盘后校验字数 / 检查内部内容泄漏                                     | `references/validate-content.md`                        |
+| 查发布记录 / 处理失败                                                         | `references/task.md`                                    |
+| 查账号数据 / 运营报表                                                         | `references/report.md`                                  |
+| 查找账号 ID 或账号详情                                                        | `references/list-accounts.md`                           |
+| 账号 Token 失效 / 重新授权                                                    | `references/authorize.md`                               |
+| 管理账号分组                                                                  | `references/account-group.md`                           |
+| AI 内容规划                                                                   | `references/planning.md`                                |
+| 需要给用户提供后台页面链接                                                    | `references/web-pages.md`                               |
+| 拉取人设 / styleGuide（写稿前）/ 保存人设                                     | `references/persona.md`                                 |
+| 写稿时检索素材库 RAG 片段（三库拆素材等）                                     | `references/rag.md`                                     |
+| 选题 / 三库拆解 / 口播或视频脚本 / 公众号文章 / 改稿润色 / 人设卡 / 反推人设 / 审稿打分 | `three-lib-content-workflow/content-writer.workflow.md` |
 
 ---
 
@@ -150,7 +152,7 @@ rag query ──需要知识库 ID──► rag list（按用户意图自动选�
 
 ## RAG 知识库检索工作流
 
-> 详细检索策略见 `references/rag.md`，以下为决策摘要。
+> 详细检索策略见 `references/rag.md`；**确定用哪个库**见 `references/core/knowledge-base-resolution.md`。以下为决策摘要。
 
 ### 何时使用 RAG
 
@@ -160,7 +162,11 @@ rag query ──需要知识库 ID──► rag list（按用户意图自动选�
 
 ### 四步执行流程
 
-**Step 1 — 获取知识库**（只在任务开始时调用一次）
+**Step 0 — 检查已选库**（优先于 list）
+
+若上下文有 `<knowledge_base_selection>`，直接取其 `comid` 作 `--folder-id`，**跳过 Step 1–2**。详见 `references/core/knowledge-base-resolution.md`。
+
+**Step 1 — 获取知识库**（无已选库时，只在任务开始时调用一次）
 
 ```bash
 # 列出所有已建索引的根级知识库（落盘后用脚本读 id，见 references/core/tips.md）
@@ -170,7 +176,7 @@ siluzan-cso rag list --rag-only --json-out ./snap-cso
 siluzan-cso rag list --folder-id <父文件夹id> --rag-only --json-out ./snap-cso
 ```
 
-**Step 2 — 选择知识库**（按名称语义匹配）
+**Step 2 — 选择知识库**（无已选库时，按名称语义匹配）
 
 - 用户提到品牌名 → 找名称最匹配的文件夹，记录 `id`
 - 多品牌 → `--folder-id id1,id2`（逗号分隔）
@@ -221,6 +227,7 @@ siluzan-cso rag query -q "产品 卖点 故事" --tags "产品资产库" --parti
 
 ### 硬规范
 
+- **知识库确定**：涉及 RAG、planning、三库写稿等品牌/企业素材前，先 Read `references/core/knowledge-base-resolution.md`；上下文有 `<knowledge_base_selection>` 时直接用 `comid`，**跳过** `rag list` / `planning enterprises`。
 - **数据处理纪律（防工具死循环，最高优先级）**：先 Read `references/core/agent-conventions.md`。要点：读取/列表/检索/详情类命令一律 `--json-out <路径>` 落盘，stdout 仅一行摘要 + agentHint；**禁止对 stdout 写翻页循环**，**禁止**用 Read/cat 打开落盘业务 `*.json`，先读 `*.outline.txt` 再用 `node -e` 读 JSON；已有 JSON 不重跑、查无结果即停。脚本食谱见 `references/core/tips.md`。
 - **不确定时先读文档**：遇到不熟悉的命令，先查对应 references 文件，不猜参数。
 - **先查账号再操作**：对具体账号做操作前，先用 `list-accounts --name <名称> --media-type <平台>` 确认账号存在且 Token 有效。

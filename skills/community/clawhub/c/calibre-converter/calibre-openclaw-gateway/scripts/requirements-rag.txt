@@ -1,0 +1,12 @@
+PyMuPDF
+EbookLib
+pytesseract
+Pillow
+pdf2image
+markdownify
+beautifulsoup4
+numpy
+sentence-transformers
+ollama
+chromadb
+python-dotenv

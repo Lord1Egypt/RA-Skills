@@ -1,6 +1,6 @@
 ---
 name: siluzan-tso
-description: 丝路赞 TSO 广告平台（Google/Bing/Yandex/TikTok/Kwai/MetaAd），凡涉及丝路赞/TSO、投广告、出价预算、广告账户管理须加载本 skill。【§零·最高优先】网址/域名/官网/链接/落地页+诊断/检测/监测/评估/体检/报告等词（含用户混说的「网络诊断/网络检测/网络监测」）→直接P8 website-diagnosis，禁止走P9行业分析或P1账户诊断、禁止A/B/C/D追问；细则见 references/core/intent-routing.md §零。【报告/诊断消歧】其余报告类话术禁止默认某一CLI——行业/市场/战略→P9 market-analysis；Google账户ID+健康诊断→P1 google-ads-diagnosis；账户ID+周期/月度→P4；Meta/TikTok/Bing周期→P4/P4-FB；多账户对比→P3/P5；OKKI周报→P6；Google询盘→P7；官网+明确要搜索广告方案/关键词表→W3；平台优化报告列表/推送→W7；对象仍不清→Read intent-routing.md。【账户】列表/余额/消耗/激活账单（W1）、多账户余额预警 balance-scan（P2）、多户消耗汇总 accounts-digest（P3）、六大媒体开户与进度（W2）、分享/解绑/MCC/BC/BM/权限（W9）。【投放】Google搜索系列方案与 campaign-validate/create（W3）、系列/组/广告/关键词 CRUD/拒审、PMax 创建与素材、AI智投草稿 batch（W4）、拓词 keyword suggest（W5）、AI广告优化 optimize（W6）、优化合规 SOP。【财务】充值/钱包、转账记录、发票/开票/抬头（W8）；写操作审计与 restore。【运营】智能预警 forewarning 创建/启停/记录（W10）、TikTok/Meta 线索 clue（W11）、日周巡检（W12）、宿主编排/投放自控/异常监控（hosted-automation）。【其他】RAG 知识库检索、Meta/Facebook 周期与诊断 HTML、Google/Meta 周期 Excel、多账户 google-analysis-batch。
+description: 丝路赞 TSO 广告平台（Google/Bing/Yandex/TikTok/Kwai/MetaAd），凡涉及丝路赞/TSO、投广告、出价预算、广告账户管理，或需要做行业分析/市场分析/行业分析报告（含「写一份 XX 行业报告」「电商/制造/医疗等行业报告」「市场调查/战略市场/KA 市场报告」「竞品/GTM/市场格局/行业趋势」等，无论是否提及丝路赞/广告/客户）须加载本 skill。【§零·最高优先】网址/域名/官网/链接/落地页+诊断/检测/监测/评估/体检/报告等词（含用户混说的「网络诊断/网络检测/网络监测」）→直接P8 website-diagnosis，禁止走P9行业分析或P1账户诊断、禁止A/B/C/D追问；细则见 references/core/intent-routing.md §零。【§零·B·次高优先】未命中§零时，行业/市场分析报告类话术→必走P9 market-analysis collect+render出HTML，禁止纯WebSearch/WebFetch在对话里写Markdown/HTML当终稿、禁止改走P8/P1/P4/W5/google-analysis；细则见 references/core/intent-routing.md §零·B。【§零·C·关键词规划】Google Ads/谷歌广告拓词、关键词规划/推荐、Keyword Planner、长尾关键词、月搜索量/搜索量、竞争度、核心词/种子词扩词（含「阅读网址/文章/页面后针对核心词出带搜索量词表」，无论是否提及丝路赞/TSO/账户）→必走W5 keyword suggest --google-only --json-out，禁止WebSearch/WebFetch编造搜索量当终稿；细则见 references/core/intent-routing.md §零·C。【报告/诊断消歧】其余报告类话术禁止默认某一CLI——行业/市场/战略/行业分析报告→P9 market-analysis（必走collect+render，禁止纯WebSearch代替）；Google账户ID+健康诊断→P1 google-ads-diagnosis；账户ID+周期/月度→P4；Meta/TikTok/Bing周期→P4/P4-FB；多账户对比→P3/P5；OKKI周报→P6；Google询盘→P7；官网+明确要搜索广告方案/campaign JSON→W3；仅要词表+搜索量/竞争度→W5；平台优化报告列表/推送→W7；对象仍不清→Read intent-routing.md。【账户】列表/余额/消耗/激活账单（W1）、多账户余额预警 balance-scan（P2）、多户消耗汇总 accounts-digest（P3）、六大媒体开户与进度（W2）、分享/解绑/MCC/BC/BM/权限（W9）。【投放】Google搜索系列方案与 campaign-validate/create（W3）、系列/组/广告/关键词 CRUD/拒审、PMax 创建与素材、AI智投草稿 batch（W4）、拓词 keyword suggest（W5）、AI广告优化 optimize（W6）、优化合规 SOP。【财务】充值/钱包、转账记录、发票/开票/抬头（W8）；写操作审计与 restore。【运营】智能预警 forewarning 创建/启停/记录（W10）、TikTok/Meta 线索 clue（W11）、日周巡检（W12）、宿主编排/投放自控/异常监控（hosted-automation）。【其他】RAG 知识库检索、Meta/Facebook 周期与诊断 HTML、Google/Meta 周期 Excel、多账户 google-analysis-batch。
 license: MIT
 compatibility: 需要 Node.js 18+、已安装 siluzan-tso-cli，通过 send-login-code + login 或 config set 完成鉴权
 metadata:
@@ -22,7 +22,7 @@ allowed-tools: Bash(siluzan-tso:*) Read Write
 
 > **Agent 纪律（每个新任务必读）**：先 Read `references/core/agent-conventions.md`（唯一规则真相源：加载纪律、数据处理协议、时间/币种、批量约束、交付前自检），再按下方路由表 Read「必读文档」与对应工作流卡片。禁止跨话题复用参数记忆；数据类任务一律 `--json-out` + **仅用代码**读落盘 JSON（脚本示例见 `references/core/tips.md`）。
 >
-> **报告 / 分析类统一消歧（必读）**：用户话术含「报告 / 诊断 / 分析 / 检测 / 监测 / 月报 / 周报」等，或对象不清（只有「帮我出份报告」）→ **必须先 Read `references/core/intent-routing.md`**。**§零 优先**：**网址/域名/官网/链接 + 诊断类词**（含用户说的「网络诊断/网络检测」）→ **直接 P8**，禁止走 P9/P1；再按 §一 定唯一工作流。**禁止**见「报告」就默认 P4 周期或 P1 诊断。
+> **报告 / 分析类统一消歧（必读）**：用户话术含「报告 / 诊断 / 分析 / 检测 / 监测 / 月报 / 周报」等，或对象不清（只有「帮我出份报告」）→ **必须先 Read `references/core/intent-routing.md`**。**§零 优先**：**网址/域名/官网/链接 + 诊断类词**（含用户说的「网络诊断/网络检测」）→ **直接 P8**，禁止走 P9/P1。**§零·B 次优先**：未命中 §零 的**行业/市场分析报告**（行业分析、市场分析、行业分析报告、「写一份 XX 行业报告」、战略/KA 市场报告、竞品/GTM 等，**无论是否提及丝路赞/广告**）→ **100% 走 P9 `market-analysis collect`+`render`**，**禁止**纯 WebSearch/WebFetch 在对话里写 Markdown/HTML 当终稿，**禁止**改走 P8/P1/P4/W5。**§零·C 关键词规划**：**拓词 / Keyword Planner / 长尾关键词 / 月搜索量 / 竞争度 / 核心词扩词**（含读 URL/文章后出 Google 词表，**无论是否提及丝路赞/账户**）→ **100% 走 W5 `keyword suggest --google-only --json-out`**，**禁止** WebSearch 编造搜索量。再按 §一 定唯一工作流。**禁止**见「报告」就默认 P4 周期或 P1 诊断。
 >
 > **默认交付格式**：用户未指定格式时，网站诊断 P8、Meta 周期 P4-FB、战略市场 P9、**Google 广告诊断 P1** 默认 **HTML**（各自 `render` 子命令），Google 周期 P4 默认 HTML；**禁止**仅交付 Markdown 摘要或纯 JSON 充当终稿。
 
@@ -86,7 +86,7 @@ siluzan-tso -h   # 查看帮助
 | 广告系列/组/广告/关键词 CRUD / 拒审 | W3 | `references/google-ads/google-ads.md` |
 | PMax 系列 | W3 | **`assets/pmax-create-template.json`**（先 Read）+ `assets/pmax-create-template.md` + `references/google-ads/pmax-api.md` |
 | AI 智投草稿 list/get/update/publish | W4 | `references/google-ads/google-ads.md`（§ ad batch） |
-| 拓词 / keyword / 关键词规划 | W5 | `references/analytics/keyword-planner-workflows.md`（客户背景先 `references/analytics/rag.md`） |
+| 拓词 / keyword / 关键词规划 / **月搜索量** / **竞争度** / Keyword Planner / 长尾词 / 核心词扩词 | **W5** | `references/analytics/keyword-planner-workflows.md`（**§零·C 强制**；客户背景先 `references/analytics/rag.md`） |
 | AI 广告优化记录 / 建议 | W6 | `references/operations/optimize.md` |
 | 优化/合规 SOP | W3 / W6 | `references/google-ads/rules/README.md` |
 

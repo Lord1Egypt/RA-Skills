@@ -1,0 +1,4 @@
+== 概览 ==  parts=2 flags=3 wires=4 sheets=0 nets≈3
+
+🔴 零长度导线 (1):
+  - wire wz @(300, 300) 零长度（DRC 会报错）

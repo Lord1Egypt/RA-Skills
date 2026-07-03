@@ -24,37 +24,37 @@ COS 存储约定：
   当未显式指定 --output-dir，自动使用 /output/quality_control/ 作为输出目录。
 用法：
   # 基础：对视频 URL 发起质检（默认模板 60，检测画面模糊/花屏等画面问题）
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4
 
   # 播放兼容性检测（模板 70）：检测视频能否正常播放、播放卡顿、播放异常等兼容性问题
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 70
 
   # 画面质量检测（模板 60，默认）：检测画面模糊、花屏、画面受损等画面内容问题
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --definition 60
 
   # 音频质检（模板 50）：检测音频质量、音频事件等音频内容问题
-  python scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/audio.mp3 --definition 50
 
   # COS输入（推荐，使用 --cos-input-key）
-  python scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
+  python3 scripts/mps_qualitycontrol.py --cos-input-key /input/video.mp4
 
   # COS路径输入（推荐，本地上传后使用）
-  python scripts/mps_qualitycontrol.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video.mp4  # NOCA:line-too-long(long SDK parameter or URL string)
+  python3 scripts/mps_qualitycontrol.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/video.mp4  # NOCA:line-too-long(long SDK parameter or URL string)
 
   # 异步模式（只提交任务，不等待结果）
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --no-wait
 
   # 查询已有任务结果
-  python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # JSON 格式输出
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --json
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --json
 
   # dry-run 模式（只打印参数，不实际调用）
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --dry-run
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --dry-run
 
   # 指定地域
-  python scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --region ap-guangzhou
+  python3 scripts/mps_qualitycontrol.py --url https://example.com/video.mp4 --region ap-guangzhou
 
 参数规范：
   所有命令行参数必须使用连字符形式（--no-wait、--dry-run 等），
@@ -90,7 +90,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误: 未安装腾讯云 SDK，请运行: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误: 未安装腾讯云 SDK，请运行: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -466,11 +466,11 @@ def main():
     #       下划线形式（--no_wait）不被 argparse 识别，会作为未知参数静默忽略，
     #       导致逻辑错误且难以排查，因此在此提前拦截并给出明确提示。
     _underscore_map = {
-        "--output-dir":  "--output-dir",
-        "--notify-url":  "--notify-url",
-        "--no-wait":     "--no-wait",
-        "--dry-run":     "--dry-run",
-        "--json-output": "--json",
+        "--output_dir":  "--output-dir",
+        "--notify_url":  "--notify-url",
+        "--no_wait":     "--no-wait",
+        "--dry_run":     "--dry-run",
+        "--json_output": "--json",
     }
     for raw_arg in sys.argv[1:]:
         arg_name = raw_arg.split("=")[0]
@@ -604,7 +604,7 @@ def main():
 
     if args.no_wait:
         print("ℹ️  异步模式，使用以下命令查询结果：")
-        print(f"   python scripts/mps_get_video_task.py --task-id {task_id}")
+        print(f"   python3 scripts/mps_get_video_task.py --task-id {task_id}")
         return
 
     try:

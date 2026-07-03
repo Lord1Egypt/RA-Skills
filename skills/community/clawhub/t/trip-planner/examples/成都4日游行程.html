@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成都4日游 · 行程计划（带爸妈·悠闲版）</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐼</text></svg>">
+<!-- Leaflet (OpenStreetMap, no API key). Degrades gracefully if it fails to load. -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Disable browser scroll-restoration so our localStorage restore wins -->
+<script>if('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+<style>
+:root {
+  --bg:#ffffff; --bg2:#f7f6f2; --bg3:#f0ede6; --bg4:#e8e4db;
+  --text:#1a1a18; --text2:#5a5a56; --text3:#8a8a84;
+  --border:rgba(0,0,0,0.11);
+  --purple:#534AB7; --purple-light:#EEEDFE; --purple-dark:#3C3489; --purple-mid:#7F77DD;
+  --teal:#0F6E56;   --teal-light:#E1F5EE;   --teal-dark:#085041;   --teal-mid:#1D9E75;
+  --coral:#993C1D;  --coral-light:#FAECE7;  --coral-dark:#712B13;  --coral-mid:#D85A30;
+  --amber:#BA7517;  --amber-light:#FAEEDA;  --amber-dark:#854F0B;  --amber-mid:#EF9F27;
+  --blue:#185FA5;   --blue-light:#E6F1FB;   --blue-dark:#0C447C;   --blue-mid:#378ADD;
+  --green:#3B6D11;  --green-light:#EAF3DE;  --green-dark:#27500A;  --green-mid:#639922;
+  --red:#A32D2D;    --red-light:#FCEBEB;    --red-dark:#791F1F;
+  --pink:#993556;   --pink-light:#FBEAF0;
+  --radius:10px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#1e1e1c; --bg2:#252523; --bg3:#2c2c2a; --bg4:#333330;
+    --text:#e8e6de; --text2:#a8a69e; --text3:#706e68;
+    --border:rgba(255,255,255,0.1);
+    --purple-light:#26215C; --teal-light:#04342C; --coral-light:#4A1B0C;
+    --amber-light:#412402; --blue-light:#042C53; --green-light:#173404;
+    --red-light:#501313; --pink-light:#4B1528;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;}
+.page{max-width:900px;margin:0 auto;padding:32px 24px 100px;}
+/* Safety net: if a div escapes .page due to a tag mismatch, body still constrains width */
+body>*:not(.page){max-width:900px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;}
+
+/* ── Global width normalisation ── */
+.card,.callout,.poi,.transport,.toc,table,.two-col,.steps,.map-card,.checklist,.highlight-box,.hotel{
+  width:100%;max-width:100%;box-sizing:border-box;
+}
+/* Wide tables may scroll horizontally on the table element itself */
+table{overflow-x:auto;display:block;}
+
+/* ── Themed hero header ── */
+.header{position:relative;overflow:hidden;text-align:center;color:#f4f3ff;
+  border-radius:18px;padding:54px 28px 40px;margin:0 0 42px;
+  background:linear-gradient(160deg,#27408b 0%,#3a3f8f 45%,#1d8a6e 100%);}
+.header h1{font-size:30px;font-weight:700;margin-bottom:10px;letter-spacing:-0.5px;
+  position:relative;z-index:1;color:#fff;}
+.header .subtitle{font-size:14px;margin-bottom:18px;position:relative;z-index:1;
+  color:rgba(255,255,255,0.82);line-height:1.7;}
+.tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:20px;
+  font-size:12px;font-weight:600;color:#fff;
+  background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.28);}
+
+.theme-night {background:linear-gradient(160deg,#1a1f4b 0%,#2d2a6e 38%,#0f6e56 100%);}
+.theme-ocean {background:linear-gradient(160deg,#0b3a6f 0%,#1167a8 45%,#1d9e9e 100%);}
+.theme-sunset{background:linear-gradient(160deg,#6e2545 0%,#c0432f 50%,#e7972a 100%);}
+.theme-forest{background:linear-gradient(160deg,#123421 0%,#1f6e4e 50%,#3f8a3a 100%);}
+.theme-city  {background:linear-gradient(160deg,#232a45 0%,#34407a 50%,#4d6fae 100%);}
+.theme-sakura{background:linear-gradient(160deg,#8a3a6b 0%,#b65a86 45%,#7b6fd0 100%);}
+.theme-snow  {background:linear-gradient(160deg,#243b63 0%,#3f6fb0 55%,#86b6e6 100%);}
+.theme-desert{background:linear-gradient(160deg,#5e3417 0%,#b5762f 52%,#dcab53 100%);}
+
+.deco-stars::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0.85;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%,#fff 50%,transparent),
+    radial-gradient(1.2px 1.2px at 28% 60%,#fff 50%,transparent),
+    radial-gradient(1.6px 1.6px at 47% 30%,#fff 50%,transparent),
+    radial-gradient(1.1px 1.1px at 63% 70%,#fff 50%,transparent),
+    radial-gradient(1.7px 1.7px at 78% 18%,#fff 50%,transparent),
+    radial-gradient(1.2px 1.2px at 88% 52%,#fff 50%,transparent),
+    radial-gradient(1.3px 1.3px at 38% 82%,#fff 50%,transparent),
+    radial-gradient(1.1px 1.1px at 70% 40%,#fff 50%,transparent);}
+.deco-glow::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0.5;
+  background:radial-gradient(40% 60% at 80% 12%,rgba(255,255,255,0.35),transparent 70%),
+            radial-gradient(46% 64% at 14% 90%,rgba(255,255,255,0.18),transparent 70%);}
+
+/* TOC — hierarchical outline style */
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:44px;}
+.toc-title{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;}
+.toc-l1{margin-bottom:2px;}
+.toc-l1>a{display:flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;
+  font-size:14px;font-weight:600;padding:5px 6px;border-radius:6px;transition:background 0.12s;}
+.toc-l1>a:hover{background:var(--bg3);}
+.toc-l1>a .sec-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.toc-l2{padding-left:22px;margin-top:1px;margin-bottom:3px;}
+.toc-l2 a{display:flex;align-items:center;gap:7px;color:var(--blue);text-decoration:none;
+  font-size:13px;padding:3px 6px;border-radius:5px;transition:background 0.12s;
+  border-left:2px solid var(--border);}
+.toc-l2 a:hover{background:var(--bg3);text-decoration:none;}
+.toc-l2 a .sec-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;opacity:0.7;}
+
+/* Section */
+.section{margin-bottom:60px;}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2.5px solid var(--border);}
+.section-num{min-width:36px;height:36px;padding:0 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+.section-header .sh-text{flex:1;}
+.section h2{font-size:23px;font-weight:700;}
+.section .sh-sub{font-size:13px;color:var(--text2);font-weight:500;margin-top:2px;}
+
+/* ── Cards ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:16px;}
+.card h3{font-size:17px;font-weight:700;margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.card h4{font-size:14px;font-weight:700;margin:20px 0 8px;padding-left:10px;
+  border-left:3px solid var(--border);color:var(--text);line-height:1.4;}
+.card h5{font-size:13px;font-weight:600;margin:14px 0 6px;color:var(--text2);letter-spacing:0.02em;}
+.card p{margin-bottom:10px;line-height:1.8;}
+.card p:last-child{margin-bottom:0;}
+.card ul,.card ol{padding-left:22px;margin-bottom:10px;}
+.card li{margin-bottom:6px;line-height:1.8;font-size:14px;}
+
+.highlight-box{background:var(--bg3);border-left:3.5px solid var(--blue);border-radius:0 10px 10px 0;padding:16px 20px;margin:14px 0;}
+.highlight-box .hl-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:8px;opacity:0.75;}
+
+/* Callouts */
+.callout{border-radius:9px;padding:14px 18px;margin:14px 0;display:flex;gap:13px;}
+.callout-icon{font-size:15px;flex-shrink:0;margin-top:3px;line-height:1;}
+.callout-body{flex:1;}
+.callout-body > strong{display:block;font-size:13px;font-weight:700;margin-bottom:5px;}
+.callout-body p strong,.callout-body li strong{display:inline;font-size:inherit;font-weight:700;}
+.callout-body p,.callout-body li{font-size:14px;margin:0 0 4px;line-height:1.7;}
+.callout-body ul{padding-left:18px;margin:0;}
+.info{background:var(--blue-light);border:1px solid rgba(24,95,165,0.18);}
+.info .callout-icon::before{content:"💡";}
+.tip{background:var(--teal-light);border:1px solid rgba(15,110,86,0.18);}
+.tip .callout-icon::before{content:"✦";color:var(--teal);font-size:13px;}
+.warn{background:var(--amber-light);border:1px solid rgba(186,117,23,0.2);}
+.warn .callout-icon::before{content:"⚠";color:var(--amber);}
+.must{background:var(--red-light);border:1px solid rgba(163,45,45,0.22);}
+.must .callout-icon::before{content:"★";color:var(--red);}
+.avoid{background:var(--pink-light);border:1px solid rgba(153,53,86,0.2);}
+.avoid .callout-icon::before{content:"✗";color:var(--pink);font-size:13px;}
+.weather{background:var(--purple-light);border:1px solid rgba(83,74,183,0.2);}
+.weather .callout-icon::before{content:"🌧";}
+
+/* Tables (incl. budget) */
+table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0;}
+th{background:var(--bg3);font-weight:600;padding:10px 14px;text-align:left;border:1px solid var(--border);}
+td{padding:10px 14px;border:1px solid var(--border);vertical-align:middle;line-height:1.7;}
+tr:nth-child(even) td{background:var(--bg2);}
+.budget td.num,.budget th.num{text-align:right;font-variant-numeric:tabular-nums;}
+.budget tr.dayhead td{font-weight:700;background:var(--bg3);color:var(--text);border-top:2px solid var(--border);}
+.budget tr.subtotal td{font-weight:600;background:var(--bg2);color:var(--text2);}
+.budget tr.total td{font-weight:700;background:var(--blue-light);border-top:2px solid var(--blue);}
+
+/* Collapsible details */
+details{border:1px solid var(--border);border-radius:9px;margin-bottom:10px;overflow:visible;}
+summary{padding:13px 18px;font-weight:600;font-size:14px;cursor:pointer;background:var(--bg2);display:flex;align-items:center;gap:8px;list-style:none;user-select:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"▶";font-size:9px;color:var(--text3);transition:transform 0.2s;flex-shrink:0;}
+details[open] summary::before{transform:rotate(90deg);}
+.details-body{padding:18px 20px;}
+.details-body p{margin-bottom:8px;font-size:14px;}
+
+/* Numbered steps */
+.steps{margin:8px 0;}
+.step{display:flex;gap:14px;margin-bottom:16px;}
+.step-num{width:28px;height:28px;border-radius:50%;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{flex:1;font-size:14px;line-height:1.75;}
+.step-body > strong{display:block;margin-bottom:4px;}
+.step-body p strong,.step-body li strong{display:inline;font-weight:700;}
+
+/* ── POI card ── */
+.poi{position:relative;border-left:4px solid var(--border);}
+.poi .poi-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;
+  padding-bottom:0;border-bottom:none;}
+.poi .poi-time{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;
+  background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:2px 9px;flex-shrink:0;}
+.poi h3{font-size:17px;font-weight:700;margin:0;padding:0;border:none;flex:1;min-width:0;}
+.poi .poi-meta{display:flex;flex-wrap:wrap;gap:7px;margin:4px 0 10px;}
+.meta-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
+  background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:3px 11px;color:var(--text2);}
+.meta-chip .mc-ico{font-size:12px;opacity:0.85;}
+.poi .poi-tip{font-size:13px;color:var(--text2);background:var(--bg);border:1px dashed var(--border);
+  border-radius:7px;padding:8px 12px;margin-top:8px;line-height:1.6;}
+.poi .poi-tip::before{content:"💬 ";opacity:0.8;}
+
+/* Day overview strip */
+.day-meta{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 18px;}
+.day-meta .meta-chip{background:var(--bg2);}
+.day-meta .spend{background:var(--green-light);border-color:rgba(59,109,17,0.3);color:var(--green-dark);}
+
+/* ── Transit connector ── */
+.transit{display:flex;justify-content:center;align-items:center;gap:8px;margin:-4px 0 12px;
+  font-size:12.5px;color:var(--text2);}
+.transit .tpill{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);
+  border:1px solid var(--border);border-radius:20px;padding:3px 12px;font-weight:600;white-space:nowrap;}
+.transit .tarrow{color:var(--text3);font-size:13px;}
+
+/* ── Transport segment card ── */
+.transport{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--blue);
+  border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;}
+.transport .tr-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.transport .tr-ico{font-size:20px;flex-shrink:0;}
+.transport .tr-title{font-size:15px;font-weight:700;}
+.transport .tr-route{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0;}
+.transport .tr-node{text-align:center;min-width:84px;}
+.transport .tr-node .t-time{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;}
+.transport .tr-node .t-place{font-size:12px;color:var(--text2);margin-top:2px;}
+.transport .tr-arrow{flex:1;min-width:60px;text-align:center;color:var(--text3);font-size:12px;
+  border-top:2px dashed var(--border);position:relative;top:8px;}
+.transport .tr-arrow span{position:relative;top:-10px;background:var(--bg2);padding:0 8px;}
+.transport .tr-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;}
+.transport .tr-price{font-size:14px;font-weight:700;color:var(--green-dark);}
+.btn-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+  text-decoration:none;color:var(--blue-dark);background:var(--blue-light);
+  border:1px solid rgba(24,95,165,0.25);border-radius:7px;padding:5px 12px;transition:filter .12s;}
+.btn-link:hover{filter:brightness(0.96);}
+
+/* ── Multi-platform price comparison ── */
+.price-compare{margin-top:11px;border-top:1px dashed var(--border);padding-top:9px;}
+.price-compare .pc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;
+  color:var(--text3);margin-bottom:6px;}
+.pc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;padding:3px 0;}
+.pc-row .pc-plat{color:var(--text2);}
+.pc-row .pc-price{font-variant-numeric:tabular-nums;font-weight:600;}
+.pc-row.cheapest .pc-plat{color:var(--green-dark);font-weight:600;}
+.pc-row.cheapest .pc-price{color:var(--green-dark);}
+.pc-row.cheapest .pc-plat::after{content:" ✓ 最低";font-size:11px;font-weight:700;color:var(--green-dark);}
+
+/* ── Hotel option card ── */
+.hotel{border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin:12px 0;background:var(--bg);}
+.hotel:first-of-type{margin-top:4px;}
+.hotel .h-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:6px;}
+.hotel .h-name{font-size:15px;font-weight:700;}
+.hotel .h-rating{display:inline-flex;align-items:baseline;gap:4px;margin-left:auto;font-size:12px;color:var(--text3);white-space:nowrap;}
+.hotel .h-rating b{font-size:15px;color:var(--green-dark);font-variant-numeric:tabular-nums;}
+.chain-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;
+  background:var(--teal-light);color:var(--teal-dark);border:1px solid rgba(15,110,86,0.25);
+  border-radius:5px;padding:1px 8px;}
+.hotel .h-meta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
+.review-check{font-size:12.5px;line-height:1.65;background:var(--bg2);border:1px solid var(--border);
+  border-radius:7px;padding:9px 12px;margin:8px 0;}
+.review-check .rc-title{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;
+  color:var(--text3);margin-bottom:4px;}
+.review-check .rc-good{color:var(--green-dark);font-weight:600;}
+.review-check .rc-bad{color:var(--coral-dark);font-weight:600;}
+.rank-tag{display:inline-block;font-size:10px;font-weight:700;border-radius:4px;padding:1px 7px;}
+.rank-tag.rec{background:var(--green-light);color:var(--green-dark);}
+.rank-tag.alt{background:var(--bg3);color:var(--text2);}
+
+/* ── Checklist ── */
+.checklist{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 20px;margin-bottom:16px;}
+.checklist label{display:flex;align-items:flex-start;gap:10px;padding:7px 4px;font-size:14px;
+  cursor:pointer;border-bottom:1px solid var(--border);line-height:1.6;}
+.checklist label:last-child{border-bottom:none;}
+.checklist input[type=checkbox]{width:17px;height:17px;margin-top:3px;flex-shrink:0;accent-color:var(--teal);cursor:pointer;}
+.checklist input:checked + span{color:var(--text3);text-decoration:line-through;}
+
+/* ── Embedded Leaflet map ── */
+.map-card{padding:0;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg2);margin-bottom:16px;}
+#map{height:440px;width:100%;}
+@media(max-width:580px){#map{height:340px;}}
+.map-hint{font-size:12px;color:var(--text3);padding:8px 16px;border-top:1px solid var(--border);}
+.map-legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 16px;border-top:1px solid var(--border);}
+.leg-item{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--text2);}
+.leg-dot{width:13px;height:13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);flex-shrink:0;}
+.pin{width:24px;height:24px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid #fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.45);}
+.leaflet-popup-content{font-size:13px;line-height:1.5;}
+
+/* Two-column layout */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:580px){.two-col{grid-template-columns:1fr;}}
+
+/* Badges */
+.badge{display:inline-block;padding:2px 9px;border-radius:4px;font-size:11px;font-weight:600;margin-right:4px;}
+.b-purple{background:var(--purple-light);color:var(--purple-dark);}
+.b-teal{background:var(--teal-light);color:var(--teal-dark);}
+.b-coral{background:var(--coral-light);color:var(--coral-dark);}
+.b-amber{background:var(--amber-light);color:var(--amber-dark);}
+.b-blue{background:var(--blue-light);color:var(--blue-dark);}
+.b-green{background:var(--green-light);color:var(--green-dark);}
+.b-red{background:var(--red-light);color:var(--red-dark);}
+
+/* ── Chips ── */
+.chips{display:flex;flex-wrap:wrap;gap:6px 7px;margin:8px 0;}
+.chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border);
+  border-radius:20px;padding:3px 11px;font-size:12px;font-weight:600;color:var(--text2);
+  white-space:nowrap;line-height:1.7;}
+.chip.star{background:var(--amber-light);border-color:rgba(186,117,23,0.3);color:var(--amber-dark);}
+.chip.muted{opacity:0.72;border-style:dashed;font-weight:500;}
+
+/* Section color accents */
+.sec-purple .section-num{background:var(--purple-light);color:var(--purple-dark);}
+.sec-purple .section h2{color:var(--purple-dark);}
+.sec-purple .poi{border-left-color:var(--purple);}
+.sec-purple .step-num{background:var(--purple-light);color:var(--purple-dark);}
+.sec-teal .section-num{background:var(--teal-light);color:var(--teal-dark);}
+.sec-teal .section h2{color:var(--teal-dark);}
+.sec-teal .poi{border-left-color:var(--teal);}
+.sec-teal .step-num{background:var(--teal-light);color:var(--teal-dark);}
+.sec-coral .section-num{background:var(--coral-light);color:var(--coral-dark);}
+.sec-coral .section h2{color:var(--coral-dark);}
+.sec-coral .poi{border-left-color:var(--coral);}
+.sec-coral .step-num{background:var(--coral-light);color:var(--coral-dark);}
+.sec-amber .section-num{background:var(--amber-light);color:var(--amber-dark);}
+.sec-amber .section h2{color:var(--amber-dark);}
+.sec-amber .poi{border-left-color:var(--amber);}
+.sec-amber .step-num{background:var(--amber-light);color:var(--amber-dark);}
+.sec-blue .section-num{background:var(--blue-light);color:var(--blue-dark);}
+.sec-blue .section h2{color:var(--blue-dark);}
+.sec-blue .poi{border-left-color:var(--blue);}
+.sec-blue .step-num{background:var(--blue-light);color:var(--blue-dark);}
+.sec-green .section-num{background:var(--green-light);color:var(--green-dark);}
+.sec-green .section h2{color:var(--green-dark);}
+.sec-green .poi{border-left-color:var(--green);}
+.sec-green .step-num{background:var(--green-light);color:var(--green-dark);}
+.sec-red .section-num{background:var(--red-light);color:var(--red-dark);}
+.sec-red .section h2{color:var(--red-dark);}
+.sec-red .poi{border-left-color:var(--red);}
+.sec-red .step-num{background:var(--red-light);color:var(--red-dark);}
+
+/* ── Floating section navigator ── */
+#nav-btn{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  width:34px;height:34px;border-radius:8px;
+  background:var(--bg2);color:var(--text2);
+  border:1px solid var(--border);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 6px rgba(0,0,0,0.18);
+  transition:background 0.15s,color 0.15s,box-shadow 0.15s;
+  font-size:15px;line-height:1;
+}
+#nav-btn:hover{background:var(--bg3);color:var(--text);box-shadow:0 2px 12px rgba(0,0,0,0.22);}
+#nav-panel{
+  position:fixed;bottom:66px;right:24px;z-index:9998;
+  background:var(--bg);border:1px solid var(--border);border-radius:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.18);
+  width:240px;max-height:65vh;overflow-y:auto;
+  padding:8px 0;
+  opacity:0;transform:translateY(8px) scale(0.97);
+  pointer-events:none;transition:opacity 0.15s,transform 0.15s;
+}
+#nav-panel.open{opacity:1;transform:none;pointer-events:auto;}
+#nav-panel a{
+  display:flex;align-items:center;gap:9px;
+  padding:6px 14px;font-size:13px;color:var(--text);
+  text-decoration:none;line-height:1.4;
+  transition:background 0.1s;
+}
+#nav-panel a:hover{background:var(--bg2);}
+#nav-panel .nav-title{
+  font-size:10px;font-weight:700;color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.08em;
+  padding:0 14px 5px;border-bottom:1px solid var(--border);margin-bottom:3px;
+}
+
+/* ── Mobile adaptation (≤640px) ── phones get tighter spacing, stacked transport
+   routes, wrapped price rows and a full-width floating nav. Required on every trip page;
+   check_html.py fails the build without it. */
+@media(max-width:640px){
+  .page{padding:16px 12px 76px;}
+  body>*:not(.page){padding-left:12px;padding-right:12px;}
+  .header{padding:30px 16px 24px;margin-bottom:28px;border-radius:13px;}
+  .header h1{font-size:21px;letter-spacing:0;line-height:1.35;}
+  .header .subtitle{font-size:12.5px;margin-bottom:13px;}
+  .tags{gap:6px;}
+  .tag{padding:4px 10px;font-size:11.5px;}
+  .toc{padding:14px 13px;margin-bottom:28px;}
+  .section{margin-bottom:38px;}
+  .section-header{gap:10px;margin-bottom:15px;padding-bottom:10px;}
+  .section-num{min-width:30px;height:30px;font-size:12.5px;}
+  .section h2{font-size:18.5px;}
+  .card{padding:14px 13px;}
+  .card h3{font-size:15.5px;}
+  .callout{padding:11px 11px;gap:9px;margin:11px 0;}
+  table{font-size:12.5px;}
+  th,td{padding:7px 7px;}
+  .poi .poi-head{gap:8px;}
+  .transport{padding:13px 13px;}
+  .transport .tr-route{flex-direction:column;align-items:flex-start;gap:3px;}
+  .transport .tr-node{display:flex;align-items:baseline;gap:8px;text-align:left;min-width:0;}
+  .transport .tr-node .t-time{font-size:16px;}
+  .transport .tr-arrow{flex:none;width:auto;text-align:left;border:none;padding-left:24px;}
+  .transport .tr-arrow span{position:static;background:none;padding:0;}
+  .transport .tr-arrow span::before{content:"↓ ";}
+  .pc-row{flex-direction:column;align-items:flex-start;gap:1px;padding:6px 0;
+    border-bottom:1px dotted var(--border);}
+  .pc-row:last-child{border-bottom:none;}
+  .transit{flex-wrap:wrap;}
+  .hotel{padding:12px 11px;}
+  .hotel .h-rating{margin-left:0;width:100%;}
+  .checklist{padding:11px 13px;}
+  #map{height:320px;}
+  #nav-btn{right:12px;bottom:12px;}
+  #nav-panel{left:12px;right:12px;width:auto;bottom:54px;max-height:55vh;}
+  html,body{max-width:100%;overflow-x:hidden;}
+  .transit .tpill,.chip,.hotel .h-rating,.meta-chip{white-space:normal;}
+  .transit{margin-left:0;margin-right:0;}
+  .header,.toc,.card,.callout,.transport,.hotel,.poi,.checklist,.day-meta,.tags,.price-compare{
+    max-width:100%;box-sizing:border-box;}
+  .header *,.card *,.callout *{max-width:100%;box-sizing:border-box;overflow-wrap:break-word;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HERO HEADER -->
+<div class="header theme-forest deco-glow">
+  <h1>成都 · 4日悠闲游（带爸妈版）</h1>
+  <p class="subtitle">上海 → 成都 · 2026/7/15（周三）– 7/18（周六）· 本人 + 爸妈 3 人 · 悠闲节奏 · 少走路多坐下</p>
+  <div class="tags">
+    <span class="tag">🐼 大熊猫基地</span>
+    <span class="tag">🌶️ 地道川菜</span>
+    <span class="tag">👨‍👩‍👦 银发友好 · 每天 2–4 个点</span>
+    <span class="tag">🐢 悠闲节奏</span>
+    <span class="tag">💰 中等预算 · 人均约 ¥4,200</span>
+    <span class="tag">⏱️ 4 天 3 晚</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">目录</div>
+  <div class="toc-l1">
+    <a href="#overview"><span class="sec-dot" style="background:var(--blue-mid)"></span>行程概览 &amp; 地图</a>
+  </div>
+  <div class="toc-l1">
+    <a href="#stay"><span class="sec-dot" style="background:var(--coral-mid)"></span>住宿备选（3 选 · 连锁近地铁）</a>
+  </div>
+  <div class="toc-l1">
+    <a href="#day1"><span class="sec-dot" style="background:var(--purple-mid)"></span>Day 1 · 抵达 &amp; 春熙路缓步</a>
+    <div class="toc-l2">
+      <a href="#day1-p1"><span class="sec-dot" style="background:var(--purple-mid)"></span>春熙路 · 太古里</a>
+      <a href="#day1-p2"><span class="sec-dot" style="background:var(--purple-mid)"></span>IFS 楼顶熊猫 &amp; 晚餐</a>
+    </div>
+  </div>
+  <div class="toc-l1">
+    <a href="#day2"><span class="sec-dot" style="background:var(--teal-mid)"></span>Day 2 · 大熊猫基地 &amp; 宽窄巷子</a>
+    <div class="toc-l2">
+      <a href="#day2-p1"><span class="sec-dot" style="background:var(--teal-mid)"></span>大熊猫繁育研究基地</a>
+      <a href="#day2-p2"><span class="sec-dot" style="background:var(--teal-mid)"></span>宽窄巷子</a>
+    </div>
+  </div>
+  <div class="toc-l1">
+    <a href="#day3"><span class="sec-dot" style="background:var(--coral-mid)"></span>Day 3 · 武侯祠 / 锦里 / 茶馆</a>
+    <div class="toc-l2">
+      <a href="#day3-p1"><span class="sec-dot" style="background:var(--coral-mid)"></span>武侯祠</a>
+      <a href="#day3-p2"><span class="sec-dot" style="background:var(--coral-mid)"></span>锦里</a>
+      <a href="#day3-p3"><span class="sec-dot" style="background:var(--coral-mid)"></span>人民公园 · 鹤鸣茶社</a>
+      <a href="#day3-p4"><span class="sec-dot" style="background:var(--coral-mid)"></span>晚餐 · 陈麻婆豆腐总店</a>
+    </div>
+  </div>
+  <div class="toc-l1">
+    <a href="#day4"><span class="sec-dot" style="background:var(--amber-mid)"></span>Day 4 · 杜甫草堂 &amp; 返程</a>
+    <div class="toc-l2">
+      <a href="#day4-p1"><span class="sec-dot" style="background:var(--amber-mid)"></span>杜甫草堂</a>
+      <a href="#day4-p2"><span class="sec-dot" style="background:var(--amber-mid)"></span>浣花溪畔午餐 · 取行李</a>
+    </div>
+  </div>
+  <div class="toc-l1">
+    <a href="#budget"><span class="sec-dot" style="background:var(--green-mid)"></span>预算估算（按天小计）</a>
+  </div>
+  <div class="toc-l1">
+    <a href="#checklist"><span class="sec-dot" style="background:var(--amber-mid)"></span>出发前清单</a>
+  </div>
+</div>
+
+<!-- ════ OVERVIEW + MAP ════ -->
+<div class="sec-blue" id="overview">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">🗺️</div>
+    <div class="sh-text"><h2>行程概览 &amp; 地图</h2>
+      <div class="sh-sub">4 天 3 晚 · 成都市区 · 每天 2–4 个主要点 · 银发友好</div></div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hl-label">一句话概览</div>
+    <p>Day 1 中午抵达后只安排春熙路一带轻松落脚；Day 2 一早看最活跃的大熊猫（坐观光车少走路），午休后逛宽窄巷子；Day 3 武侯祠—锦里—人民公园喝盖碗茶（坐着休息 2 小时）—陈麻婆豆腐晚餐；Day 4 上午杜甫草堂，午饭茶歇后傍晚航班返程。全程住春熙路近地铁，点与点之间能打车就打车。</p>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon"></div>
+    <div class="callout-body"><strong>本计划的假设（非交互模式 · 如不符请告知再调）</strong>
+      <ul>
+        <li><strong>日期</strong>：「下个月中旬」按 <strong>2026/7/15（周三）– 7/18（周六）</strong> 编排，整体结论对 7 月中旬任意 4 天均适用。</li>
+        <li><strong>人数与房间</strong>：本人 + 爸妈共 <strong>3 人、2 间房</strong>（爸妈一间、本人一间）。</li>
+        <li><strong>爸妈年龄</strong>：按 <strong>60 周岁以上</strong>估算门票优惠（多数景点凭身份证免票/免预约）；若未满 60 请按全价预留。</li>
+        <li><strong>预算</strong>：中等档 —— 经济连锁酒店（全季/汉庭/如家档）、市内地铁 + 打车结合。</li>
+        <li><strong>价格标注</strong>：国内机票<strong>全平台列表价均为裸价（无一例外，航司官网也是——吉祥官网订单页实测：票面 ¥1,150 + 机建燃油 ¥200）</strong>。本页机票总价 = 实查裸价 + <strong>机建 ¥50 + 燃油附加 ¥150（2026-06-05 起标准，随油价频繁调整，出票时请再查）= ¥200/段</strong>。推荐的 HO1119/HO1060 携程当日未售，<strong>飞猪裸价最低</strong>（2026-06-12 实查）；酒店为<strong>携程 + 飞猪实查价</strong>；市内打车费按<strong>高德实测里程 × 成都出租车计价标准</strong>估算（起步 ¥8-9 含 2 km、1.9 元/km、超 10 km 加收 50% 返空费，来源：成都本地宝/省政府听证公告），以实时计价为准。价格随时浮动，出票/订房前请再核一遍。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- The embedded map -->
+  <div class="map-card">
+    <div id="map"></div>
+    <div class="map-legend" id="map-legend"></div>
+    <div class="map-hint">点击地图后可用滚轮缩放；点击图钉看停留点信息。地图数据 © OpenStreetMap 贡献者。</div>
+  </div>
+
+  <div class="card">
+    <h3 id="ov-weather">7 月中旬天气 &amp; 银发出行要点</h3>
+    <p><strong>湿热 + 雨季</strong>：成都 7 月平均气温约 <strong>22–33°C</strong>，闷热潮湿；全年降水集中在 7–8 月，常见午后/夜间阵雨（成都多「夜雨」）。</p>
+    <ul>
+      <li><strong>避暑节奏</strong>：户外景点都排在<strong>上午</strong>（熊猫也只在早上活跃），正午回酒店或茶馆休息，傍晚再出门。</li>
+      <li><strong>随身必备</strong>：折叠伞（晴雨两用）、防晒帽、藿香正气液、爸妈的常用药。</li>
+      <li><strong>少走路</strong>：每天步行控制在 4,000–6,500 步；熊猫基地坐观光车，点间 3 km 以上一律打车（成都起步价便宜）。</li>
+    </ul>
+    <div class="callout weather" style="margin:10px 0 0;">
+      <div class="callout-icon"></div>
+      <div class="callout-body"><strong>全程雨天 Plan B</strong>
+        <p>大雨改去 <strong>金沙遗址博物馆</strong>（全程室内，门票 ¥70、60 岁以上免票，9:00–18:00、17:00 停止入馆；通常周一闭馆，但 <strong>7 月不闭馆</strong>）；或就近钻进 <strong>IFS / 太古里</strong> 商场内吃喝休息。出发前 3 天再看一次「成都未来一周天气预报」。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════ 住宿备选 (HOTELS) ════ -->
+<div class="sec-coral" id="stay">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">🏨</div>
+    <div class="sh-text"><h2>住宿备选</h2><div class="sh-sub">看的是评论区 · 优先连锁 · 携程/飞猪实查价（2026-06-12）· 高德评价交叉</div></div>
+  </div>
+  <div class="card">
+    <h3 id="stay-list">春熙路 / 天府广场 · 近地铁（3 选）</h3>
+    <p style="font-size:13px;color:var(--text2);">按「市中心 + 近地铁 + 连锁」假设选址（已订酒店可忽略本节）：春熙路—天府广场一带是本行程 4 天的几何中心，地铁 1/2/3 号线都在脚下，去熊猫基地（3 号线直达）和各景点都顺。带爸妈优先连锁：卫生与服务有底线，出问题好投诉。</p>
+
+    <div class="hotel">
+      <div class="h-head">
+        <span class="rank-tag rec">推荐</span>
+        <span class="chain-badge">🏨 华住 · 全季</span>
+        <span class="h-name">全季酒店（成都太古里春熙路店）</span>
+        <span class="h-rating">携程点评 1,243 · <b>4.8</b></span>
+      </div>
+      <div class="h-meta">
+        <span class="meta-chip"><span class="mc-ico">📍</span>春熙路站 790 m / 天府广场站 750 m（携程实测距离）</span>
+        <span class="meta-chip"><span class="mc-ico">🚇</span>3 号线直达熊猫大道（去熊猫基地）</span>
+        <span class="meta-chip"><span class="mc-ico">🛏️</span>建议 1 大床 + 1 双床 共 2 间</span>
+      </div>
+      <div class="review-check">
+        <div class="rc-title">评论体检（读的是评论区，不是简介）</div>
+        <p><span class="rc-good">可信</span>（浏览器实读点评区）：1,243 条、总分 4.8，卫生/设施/环境/服务分项<strong>全部 4.8</strong>；近一周仍有新点评（6/7–6/11），差评仅 15 条（1.2%）且无「卫生/隔音/偷换房型」类复发主题；华住 5.0「晓山青」新装修、配送机器人，热门标签「早餐很棒(118)」「前台热情(102)」。<span class="rc-bad">注意</span>：好评文风模板化偏重（华住系常见鼓励性点评），订前仍建议按「最新 + 低分」再扫一遍；高德地图同店仅 2 条评价（店新，其中 1 星是员工薪资抱怨、并非住客体验），样本过小仅作参考。核心商圈房，订房备注「高楼层安静房」。</p>
+      </div>
+      <div class="price-compare">
+        <div class="pc-title">每晚价 · 浏览器实查于 2026-06-12（7/15–7/18 三晚均价 · 价格随时浮动）</div>
+        <div class="pc-row cheapest"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://hotel.fliggy.com/hotel_list3.htm?cityName=%E6%88%90%E9%83%BD&checkIn=2026-07-15&checkOut=2026-07-18&keywords=%E5%85%A8%E5%AD%A3%E5%A4%AA%E5%8F%A4%E9%87%8C" target="_blank" rel="noopener">飞猪 · 实查</a></span><span class="pc-price">¥436 起（4.7 分 · 1,451 条）</span></div>
+        <div class="pc-row"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://hotels.ctrip.com/hotels/detail/?cityId=28&hotelId=133457358&checkIn=2026-07-15&checkOut=2026-07-18" target="_blank" rel="noopener">携程 · 实查</a></span><span class="pc-price">¥454–535（无早，随优惠资格浮动）· 含早 ¥495 起</span></div>
+        <div class="pc-row"><span class="pc-plat">华住会（实测）</span><span class="pc-price">官网查不到价；会员价未必更低（企业铂金实测不及携程）——以 OTA 实查为准</span></div>
+      </div>
+    </div>
+
+    <div class="hotel">
+      <div class="h-head">
+        <span class="rank-tag alt">次选</span>
+        <span class="chain-badge">🏨 华住 · 汉庭</span>
+        <span class="h-name">汉庭酒店（成都天府广场太古里店）</span>
+        <span class="h-rating">携程点评 1,447 · <b>4.7</b></span>
+      </div>
+      <div class="h-meta">
+        <span class="meta-chip"><span class="mc-ico">📍</span>地铁 1/2 号线天府广场站旁</span>
+        <span class="meta-chip"><span class="mc-ico">🚶</span>到人民公园约 1 站 / 步行 15 min</span>
+        <span class="meta-chip"><span class="mc-ico">🛏️</span>房型较新 · 经济型</span>
+      </div>
+      <div class="review-check">
+        <div class="rc-title">评论体检</div>
+        <p><span class="rc-good">可信</span>（浏览器实读列表区）：1,447 条、4.7 分，置顶引述「地理位置优越，几步路就是春熙路」，36 分钟前仍有人预订——活跃真实。<span class="rc-bad">注意</span>：经济型房间偏小，爸妈行李多会觉得局促；本轮未逐条读其差评区，订前按「最新 + 低分」排序再扫一遍。</p>
+      </div>
+      <div class="price-compare">
+        <div class="pc-title">每晚价 · 浏览器实查于 2026-06-12（7/15–7/18 · 价格随时浮动）</div>
+        <div class="pc-row cheapest"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://hotels.ctrip.com/hotels/list?cityId=28&searchWord=%E6%B1%89%E5%BA%AD%E9%85%92%E5%BA%97(%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%B9%BF%E5%9C%BA%E5%A4%AA%E5%8F%A4%E9%87%8C%E5%BA%97)&checkin=2026-07-15&checkout=2026-07-18" target="_blank" rel="noopener">携程 · 实查</a></span><span class="pc-price">¥296 起（大床房，挂牌 ¥315）</span></div>
+        <div class="pc-row"><span class="pc-plat">飞猪 · 实查</span><span class="pc-price">同商圈汉庭 ¥307–351 起（飞猪店名口径不同、未能一对一对应，订前核对门店地址）</span></div>
+      </div>
+    </div>
+
+    <div class="hotel">
+      <div class="h-head">
+        <span class="rank-tag alt">备选 · 更省</span>
+        <span class="chain-badge">🏨 首旅如家</span>
+        <span class="h-name">如家精选酒店（成都春熙路太古里店）</span>
+        <span class="h-rating">携程点评 1,390 · <b>4.8</b></span>
+      </div>
+      <div class="h-meta">
+        <span class="meta-chip"><span class="mc-ico">📍</span>近春熙路 · 天府广场（携程区域标注）</span>
+        <span class="meta-chip"><span class="mc-ico">🛏️</span>如家「精选」档 · 比全季省一档</span>
+        <span class="meta-chip"><span class="mc-ico">💰</span>预算再省一档</span>
+      </div>
+      <div class="review-check">
+        <div class="rc-title">评论体检</div>
+        <p><span class="rc-good">可信</span>（浏览器实读列表区）：1,390 条、4.8 分，置顶引述「早餐非常丰富，夜里很安静」——隔音与早餐正是银发出行最在意的两项。<span class="rc-bad">注意</span>：原计划中的「如家(春熙路西段天府广场地铁站店)」在携程<strong>查无此店</strong>，已换成这家可订的精选店；本轮未逐条读其差评区，订前按「最新 + 低分」排序再扫一遍。</p>
+      </div>
+      <div class="price-compare">
+        <div class="pc-title">每晚价 · 浏览器实查于 2026-06-12（7/15–7/18 · 价格随时浮动）</div>
+        <div class="pc-row cheapest"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://hotels.ctrip.com/hotels/list?cityId=28&searchWord=%E5%A6%82%E5%AE%B6%E7%B2%BE%E9%80%89%E9%85%92%E5%BA%97(%E6%88%90%E9%83%BD%E6%98%A5%E7%86%99%E8%B7%AF%E5%A4%AA%E5%8F%A4%E9%87%8C%E5%BA%97)&checkin=2026-07-15&checkout=2026-07-18" target="_blank" rel="noopener">携程 · 实查</a></span><span class="pc-price">¥343 起（商务大床，挂牌 ¥382）</span></div>
+        <div class="pc-row"><span class="pc-plat">飞猪</span><span class="pc-price">查询时触发验证码拦截，未读价（标签页已留在原地，登录/过验证后可续查）</span></div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin:10px 0 0;">
+      <div class="callout-icon"></div>
+      <div class="callout-body"><strong>选房原则（评论压过品牌）</strong>
+        <p>连锁优先只是底线，<strong>同品牌不同分店差距很大</strong>——例如搜索中「汉庭(春熙路地铁站店)」评价就明显分化（位置好评 vs 卫生/设施差评），故未列入备选。订任何一家前：按「最新 + 低分」排序读 20 条，出现<strong>卫生差/有虫/隔音差/偷换房型</strong>复发项就换店。7 月暑期是旺季，<strong>建议提前 2–3 周锁房</strong>。「集团 App 会员价更低」是迷思——实测华住会企业铂金会员价并不比携程便宜，且华住会官网根本查不到价；<strong>以携程/飞猪当日实查价为准</strong>，高德评价可作真实性交叉信源。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════ DAY 1 ════ -->
+<div class="sec-purple" id="day1">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">D1</div>
+    <div class="sh-text"><h2>Day 1 · 抵达 &amp; 春熙路缓步</h2>
+      <div class="sh-sub">周三 7/15 · 湿热 22–33°C · 抵达日只排轻量活动</div></div>
+  </div>
+
+  <div class="day-meta">
+    <span class="meta-chip spend"><span class="mc-ico">💰</span>当日 ¥480</span>
+    <span class="meta-chip"><span class="mc-ico">👣</span>~3,500 步（≈ 2.5 km）</span>
+    <span class="meta-chip"><span class="mc-ico">📍</span>2 个主要点</span>
+  </div>
+
+  <div class="transport">
+    <div class="tr-head"><span class="tr-ico">✈️</span><span class="tr-title">去程 · 上海 → 成都（浏览器实查 2026-06-12 · 出票前请再核）</span></div>
+    <div class="tr-route">
+      <div class="tr-node"><div class="t-time">08:10</div><div class="t-place">上海 浦东 T2</div></div>
+      <div class="tr-arrow"><span>吉祥 HO1119 · 直达 3h15m · 含早餐</span></div>
+      <div class="tr-node"><div class="t-time">11:25</div><div class="t-place">成都 天府 T2</div></div>
+    </div>
+    <div class="tr-foot">
+      <span class="tr-price">总价 ¥1,320 起/人（飞猪裸价 ¥1,120 + 税费 ¥200）</span>
+      <span class="meta-chip"><span class="mc-ico">🛫</span>省钱选：HO1039 07:20 经停岳阳 12:10 到 · 总价 ¥970 起（飞猪 ¥770+税；省 ¥350，多 1.5h + 多一次起降，带老人酌情）</span>
+      <a class="btn-link" href="https://www.juneyaoair.com/flightQuery?depCity=%E4%B8%8A%E6%B5%B7-SHA&arrCity=%E6%88%90%E9%83%BD-CTU&depDate=2026-07-15&routeType=OW" target="_blank" rel="noopener">官网查实时票价 ↗</a>
+    </div>
+    <div class="price-compare">
+      <div class="pc-title">多平台实查 · 2026-06-12 · 全平台均为裸价（航司官网也不例外），总价 = 裸价 + 税费 ¥200/段</div>
+      <div class="pc-row cheapest"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://sjipiao.fliggy.com/flight_search_result.htm?tripType=0&depCity=SHA&arrCity=CTU&depDate=2026-07-15&depCityName=%E4%B8%8A%E6%B5%B7&arrCityName=%E6%88%90%E9%83%BD" target="_blank" rel="noopener">飞猪 · HO1119 直达</a></span><span class="pc-price">¥1,120 裸 → 总 ¥1,320 ✓（携程未售此班）</span></div>
+      <div class="pc-row"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://www.juneyaoair.com/flightQuery?depCity=%E4%B8%8A%E6%B5%B7-SHA&arrCity=%E6%88%90%E9%83%BD-CTU&depDate=2026-07-15&routeType=OW" target="_blank" rel="noopener">吉祥官网 · HO1119</a></span><span class="pc-price">¥1,150 裸 → 总 ¥1,350（订单页实测；官网价值＝独家班次/有券时更低/改签直连）</span></div>
+      <div class="pc-row"><span class="pc-plat">更省备选 · 东航 MU9197 08:00 虹桥 → 10:55 天府 直达</span><span class="pc-price">飞猪 ¥1,000 裸 → 总 ¥1,200（比 HO1119 省 ¥120/人，虹桥出发，C919 共享）</span></div>
+      <div class="pc-row"><span class="pc-plat">省钱选 HO1039（经停岳阳）</span><span class="pc-price">飞猪 ¥770 / 携程 ¥790 / 官网 ¥800 裸 → 总 ¥970 起</span></div>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin:0 0 16px;">
+    <div class="callout-icon"></div>
+    <div class="callout-body"><strong>机场判断（实查后更新）：主力班次落天府，进城账要算清</strong>
+      <p>双流 CTU 离市区近（约 17 km）、天府 TFU 远。落双流的直飞也有（HO5939 13:10 浦东 → 16:25 双流，官网裸价 ¥1,430 → 总约 ¥1,630），但比 HO1119 贵 ¥310/人。按天府落地算账（<strong>高德实测</strong>）：打车 62.3 km / 约 58 min，按计价标准约 <strong>¥210 一车</strong>（含 ¥39 高速费，以实时计价为准）；地铁 18 号线转 1 号线 1h24m、<strong>¥11/人</strong>（换乘有电梯，带行李 + 老人仍建议打车）。HO1119 11:25 落地 → 取行李 → 打车进城，<strong>13:30 前到酒店</strong>，午休后再出门，不赶。</p>
+    </div>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">16:00</span>
+      <h3 id="day1-p1">春熙路 · 太古里 缓步</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 1.5h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>免费（开放街区）</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>全天 · 店铺约 10:00–22:00（以各店为准）</span>
+      <span class="meta-chip"><span class="mc-ico">🚇</span>酒店楼下 · 零通勤</span>
+    </div>
+    <p>住处楼下就是成都最核心的商圈：太古里的川西院落式建筑 + 大慈寺（免费，平坦无台阶负担），适合下午茶节奏慢慢走。爸妈累了随处有商场可坐、有空调。</p>
+    <p class="poi-tip">抵达日不安排正经景点——把体力留给明早的熊猫。太古里地面平整、电梯齐全，是最省力的「第一站」。</p>
+    <details>
+      <summary>更多：落地后动线</summary>
+      <div class="details-body">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><strong>天府机场 → 酒店</strong>打车 62.3 km / 约 58 min（高德实测），按计价标准约 ¥210 一车（含 ¥39 高速费）；也可地铁 18 号线转 1 号线（1h24m · ¥11/人，换乘有电梯），带行李 + 老人建议直接打车。</div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><strong>13:30 前到店</strong>开好两间房（15:00 前若不能入住先寄存行李、附近吃午饭）、爸妈午休一小时，16:00 再下楼。</div></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚶 约 400 m · 步行 6 min（全程平路）</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">18:00</span>
+      <h3 id="day1-p2">IFS 楼顶大熊猫雕塑 &amp; 第一顿川菜</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 2h（含晚餐）</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>雕塑平台 免费</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>商场营业时间内 · 以商场公告为准</span>
+      <span class="meta-chip"><span class="mc-ico">🛗</span>电梯直达 7 层平台</span>
+    </div>
+    <p>IFS 国金中心楼顶的「爬墙大熊猫」是成都地标合影位，电梯直达、不费腿。拍完照就在商场内或总府路一带吃第一顿川菜——商场里坐着舒服，适合刚下飞机的老人。</p>
+    <div class="chips">
+      <span class="chip star">★ 钟水饺（总府路老字号）</span>
+      <span class="chip">龙抄手</span>
+      <span class="chip">夫妻肺片</span>
+      <span class="chip muted">商场内川菜馆（环境好 · 微辣可调）</span>
+    </div>
+    <p class="poi-tip">点菜跟服务员说「微辣 / 鸳鸯口味」，成都馆子都能调；老字号小吃店营业时间以店内为准。</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ════ DAY 2 ════ -->
+<div class="sec-teal" id="day2">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">D2</div>
+    <div class="sh-text"><h2>Day 2 · 大熊猫基地（早场）&amp; 宽窄巷子</h2>
+      <div class="sh-sub">周四 7/16 · 湿热 · 一早看熊猫最活跃 · 正午回酒店午休</div></div>
+  </div>
+
+  <div class="day-meta">
+    <span class="meta-chip spend"><span class="mc-ico">💰</span>当日 ¥605</span>
+    <span class="meta-chip"><span class="mc-ico">👣</span>~6,000 步（≈ 4.5 km · 含基地内坐观光车）</span>
+    <span class="meta-chip"><span class="mc-ico">📍</span>2 个主要点</span>
+  </div>
+
+  <div class="callout must" style="margin:0 0 16px;">
+    <div class="callout-icon"></div>
+    <div class="callout-body"><strong>必办：门票提前 14 天线上实名预约</strong>
+      <p>熊猫基地<strong>所有游客须线上实名预约</strong>，可提前 14 日在官方微信公众号/小程序或美团、携程等授权平台购票（成人 ¥55）。<strong>60 周岁及以上老人免预约</strong>，刷本人身份证原件直接入园（优惠票价以官网为准）——所以只需给自己约一张，爸妈带好身份证即可。7 月暑期是高峰，自己的票<strong>开售当天就抢早上场（7:30–12:00 入园）</strong>。</p>
+    </div>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">08:00</span>
+      <h3 id="day2-p1">成都大熊猫繁育研究基地</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 3.5h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>成人 ¥55 · 60+ 优惠以官网为准</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>夏季 7:30 入园 · 18:00 闭园</span>
+      <span class="meta-chip"><span class="mc-ico">🚐</span>观光车 ¥30/人（强烈建议）</span>
+    </div>
+    <p>本次行程的核心。熊猫<strong>只在清晨凉快时活跃</strong>，9 点后开始睡觉、11 点后基本「瘫」——所以 8 点前进园是看熊猫打闹啃竹子的唯一窗口。园区很大且有坡，<strong>一进门就买观光车票（¥30）坐到山顶月亮产房，再顺坡往下慢慢走</strong>，全程下坡省一半体力，最适合老人。</p>
+    <p class="poi-tip">7 月有机会看到当年新生的熊猫幼崽（月亮产房）。园内遮荫一般，给爸妈备好帽子和水；轮椅/婴儿车可租借，咨询游客中心。</p>
+    <details>
+      <summary>更多：如何前往 · 园内动线</summary>
+      <div class="details-body">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><strong>去程（推荐打车）</strong>酒店直接打车 15.4 km / 约 34 min（高德实测；按计价标准约 ¥39），7:25 出发 8:00 到南大门，三人打车比地铁省力划算。</div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><strong>公共交通备选</strong>地铁 3 号线春熙路 → 熊猫大道站 A 口，出站乘 408 区间接驳车（¥2，夏季 6:45 起）直达基地南大门。</div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><strong>园内</strong>观光车直上月亮产房（幼崽）→ 顺路下行看亚成年/成年熊猫别墅 → 11:30 前出园，避开正午暴晒。</div></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚕 约 15.4 km · 打车 34 min（高德实测 · 回酒店午休 2.5h，老人必需）</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">16:30</span>
+      <h3 id="day2-p2">宽窄巷子（傍晚场）</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 2h（含晚餐）</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>免费（开放街区）</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>全天开放 · 店铺约 10:00–22:00（以各店为准）</span>
+      <span class="meta-chip"><span class="mc-ico">🚕</span>酒店打车约 3 km · 10 min</span>
+    </div>
+    <p>清末民初的川西院落街区，宽巷子、窄巷子、井巷子三条平行老巷，路面平整好走。傍晚日头弱、灯笼渐亮，比正午舒服得多。走累了随处有院子茶馆能坐。</p>
+    <div class="chips">
+      <span class="chip star">★ 三大炮（现做现摔）</span>
+      <span class="chip">糖油果子</span>
+      <span class="chip">蛋烘糕</span>
+      <span class="chip muted">院落盖碗茶（歇脚）</span>
+    </div>
+    <div class="callout avoid" style="margin:8px 0 0;">
+      <div class="callout-icon"></div>
+      <div class="callout-body"><strong>避雷</strong>
+        <p>巷内「采耳/茶艺表演」先问清价再坐下（市价采耳约 ¥30–100，远高于此即为宰客）；正餐别在巷子里解决——景区餐溢价高，晚餐可步行/打车到巷口外的奎星楼街或回春熙路吃。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout weather" style="margin:0 0 16px;">
+    <div class="callout-icon"></div>
+    <div class="callout-body"><strong>当天雨天 Plan B</strong>
+      <p>熊猫基地小雨照常（熊猫雨天反而精神，备伞即可）；若大雨，上午改 <strong>金沙遗址博物馆</strong>（室内，7 月周一也开馆），熊猫基地与 Day 3 上午对调。</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════ DAY 3 ════ -->
+<div class="sec-coral" id="day3">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">D3</div>
+    <div class="sh-text"><h2>Day 3 · 武侯祠 / 锦里 / 人民公园茶馆</h2>
+      <div class="sh-sub">周五 7/17 · 三国文化 + 老成都慢生活 · 中途坐茶馆休息 2h</div></div>
+  </div>
+
+  <div class="day-meta">
+    <span class="meta-chip spend"><span class="mc-ico">💰</span>当日 ¥575</span>
+    <span class="meta-chip"><span class="mc-ico">👣</span>~6,000 步（≈ 4.5 km · 茶馆久坐拆分上下午）</span>
+    <span class="meta-chip"><span class="mc-ico">📍</span>4 个点（武侯祠+锦里同园区）</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">09:30</span>
+      <h3 id="day3-p1">武侯祠博物馆</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 2h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>全价 ¥50 · 老人优惠以官网为准</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>文物区 9:00–18:00（17:00 停售）</span>
+      <span class="meta-chip"><span class="mc-ico">🚕</span>酒店打车约 4 km · 15 min</span>
+    </div>
+    <p>中国唯一君臣合祀祠庙（刘备 + 诸葛亮），红墙竹影是经典取景位。园内平路为主、树荫多，上午 9:30 进园避开旅行团高峰和正午暑气。门票提前 14 天在官网或官方微信公众号预售。</p>
+    <p class="poi-tip">红墙夹道（「红墙竹影」）在文物区西侧，早上人少光线好，给爸妈拍合影就在这。</p>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚶 同园区 · 步行 2 min</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">11:30</span>
+      <h3 id="day3-p2">锦里古街 · 小吃午餐</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 1.5h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>免费</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>约 5:00–23:00（以景区公告为准）</span>
+    </div>
+    <p>武侯祠旁的仿古街，挨着出口顺路逛。午餐就在街内小吃解决：一人来几样、大家分着尝，比坐馆子凉快随性。</p>
+    <div class="chips">
+      <span class="chip star">★ 钵钵鸡</span>
+      <span class="chip">伤心凉粉</span>
+      <span class="chip">叶儿粑</span>
+      <span class="chip">三合泥</span>
+      <span class="chip muted">竹叶粉蒸肉</span>
+    </div>
+    <p class="poi-tip">小吃单价景区档（¥10–25/份），尝鲜即可不必吃饱——晚上有正餐。街内人多，给爸妈找檐下座位轮流去买。</p>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚕 约 2.5 km · 打车 10 min（约 ¥10）</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">14:30</span>
+      <h3 id="day3-p3">人民公园 · 鹤鸣茶社（坐下来 2 小时）</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 2h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>公园免费 · 茶 ¥13–30/位</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>茶社白天营业 · 打烊时间以店内为准</span>
+      <span class="meta-chip"><span class="mc-ico">🪑</span>竹椅久坐 · 正合老人节奏</span>
+    </div>
+    <p>1923 年开业的百年茶社，竹椅、盖碗、老虎灶——这两个小时不是「景点」，是过成都人的日子：喝茶、摆龙门阵、看人来人往。正午最热的时段全程坐在树荫下，是给爸妈量身定做的下午。</p>
+    <p class="poi-tip">想体验采耳（掏耳朵）先讲价：市价约 ¥30–100。80 岁以上老人鹤鸣茶社可免费喝茶（以店内公告为准）。</p>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚶 约 1.2 km · 步行 18 min（或 🚕 5 min 直达）</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">17:45</span>
+      <h3 id="day3-p4">晚餐 · 陈麻婆豆腐（骡马市总店）</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 1.5h</span>
+      <span class="meta-chip"><span class="mc-ico">💰</span>人均约 ¥53</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>11:30–14:30 / 17:30–21:00</span>
+      <span class="meta-chip"><span class="mc-ico">📍</span>青羊区东华门街51号（成都体育中心对面）</span>
+    </div>
+    <p>1862 年创号、麻婆豆腐的「祖店」——地道川菜这顿是正主。砂锅麻婆豆腐麻辣鲜香配米饭，再点份不辣的开水白菜或咸烧白给爸妈中和。17:30 开门即到，免排队、吃完天还没黑。</p>
+    <p class="poi-tip">饭后步行 10 分钟可到天府广场看夜景喷泉（免费、平路），再地铁 2 号线一站回春熙路——收尾刚好。</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ════ DAY 4 ════ -->
+<div class="sec-amber" id="day4">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">D4</div>
+    <div class="sh-text"><h2>Day 4 · 杜甫草堂 &amp; 返程</h2>
+      <div class="sh-sub">周六 7/18 · 上午一个点 · 傍晚航班从容返程</div></div>
+  </div>
+
+  <div class="day-meta">
+    <span class="meta-chip spend"><span class="mc-ico">💰</span>当日 ¥490</span>
+    <span class="meta-chip"><span class="mc-ico">👣</span>~4,000 步（≈ 3 km）</span>
+    <span class="meta-chip"><span class="mc-ico">📍</span>1 个主要点 + 返程</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">09:00</span>
+      <h3 id="day4-p1">杜甫草堂博物馆</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 2h</span>
+      <span class="meta-chip"><span class="mc-ico">🎫</span>全价 ¥50 · 60 岁以上刷身份证免费</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>9:00–18:00（17:00 停售）</span>
+      <span class="meta-chip"><span class="mc-ico">🚕</span>酒店打车 5.7 km · 约 21 min（高德实测）</span>
+    </div>
+    <p>杜甫流寓成都的故居园林，竹林、流水、茅屋，清晨最凉快清净。园内全程平路、长椅多，是收官日的舒服一站。<strong>60 周岁以上持身份证原件刷证免费入馆</strong>（已核实），本人提前 14 天在「杜甫草堂博物馆」公众号实名购票（¥50）。</p>
+    <p class="poi-tip">早上 8:30 退房、行李寄存前台（午后取）再出发；爸妈记得带身份证原件，免票直接刷证进。</p>
+  </div>
+
+  <div class="transit">
+    <span class="tarrow">↓</span>
+    <span class="tpill">🚶 出门即浣花溪畔 · 步行 5 min</span>
+  </div>
+
+  <div class="card poi">
+    <div class="poi-head">
+      <span class="poi-time">11:30</span>
+      <h3 id="day4-p2">浣花溪畔午餐 · 回酒店取行李</h3>
+    </div>
+    <div class="poi-meta">
+      <span class="meta-chip"><span class="mc-ico">⏱️</span>停留 1.5h</span>
+      <span class="meta-chip"><span class="mc-ico">💰</span>人均约 ¥60</span>
+      <span class="meta-chip"><span class="mc-ico">🕒</span>餐厅营业时间以店内为准</span>
+    </div>
+    <p>草堂周边餐馆密集，挑一家坐下吃顿不赶的午饭（最后一顿川菜，把没吃到的补上：回锅肉、宫保鸡丁、甜烧白）。13:30 打车回酒店取行李、稍作休整，14:50 出发去天府机场。</p>
+    <div class="callout warn" style="margin:8px 0 0;">
+      <div class="callout-icon"></div>
+      <div class="callout-body"><strong>赶飞机缓冲</strong>
+        <p>国内航班提前 <strong>1.5h</strong> 到机场。按实查推荐的 <strong>HO1060（17:30 天府起飞）</strong>倒推：14:50 从市中心出发 → 高德实测约 1 小时车程 → 16:00 前到天府 T2，值机安检从容有余。若改订 HO1098（14:30 起飞）：上午需压缩——8 点进草堂、10:00 出来取行李、10:30 直奔机场，午饭改机场简餐。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport">
+    <div class="tr-head"><span class="tr-ico">✈️</span><span class="tr-title">返程 · 成都 → 上海（浏览器实查 2026-06-12 · 出票前请再核）</span></div>
+    <div class="tr-route">
+      <div class="tr-node"><div class="t-time">17:30</div><div class="t-place">成都 天府 T2</div></div>
+      <div class="tr-arrow"><span>吉祥 HO1060 · 直飞 2h40m</span></div>
+      <div class="tr-node"><div class="t-time">20:10</div><div class="t-place">上海 虹桥 T2</div></div>
+    </div>
+    <div class="tr-foot">
+      <span class="tr-price">总价 ¥1,180 起/人（飞猪裸价 ¥980 + 税费 ¥200）</span>
+      <span class="meta-chip"><span class="mc-ico">🛬</span>落虹桥离市区近 · 20:10 到，老人到家不熬夜</span>
+      <a class="btn-link" href="https://www.juneyaoair.com/flightQuery?depCity=%E6%88%90%E9%83%BD-CTU&arrCity=%E4%B8%8A%E6%B5%B7-SHA&depDate=2026-07-18&routeType=OW" target="_blank" rel="noopener">官网查实时票价 ↗</a>
+    </div>
+    <div class="price-compare">
+      <div class="pc-title">多平台实查 · 2026-06-12 · 全平台均为裸价（航司官网也不例外），总价 = 裸价 + 税费 ¥200/段</div>
+      <div class="pc-row cheapest"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://sjipiao.fliggy.com/flight_search_result.htm?tripType=0&depCity=CTU&arrCity=SHA&depDate=2026-07-18&depCityName=%E6%88%90%E9%83%BD&arrCityName=%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener">飞猪 · HO1060 直达虹桥</a></span><span class="pc-price">¥980 裸 → 总 ¥1,180 ✓（携程未售此班）</span></div>
+      <div class="pc-row"><span class="pc-plat"><a class="btn-link" style="padding:1px 8px" href="https://www.juneyaoair.com/flightQuery?depCity=%E6%88%90%E9%83%BD-CTU&arrCity=%E4%B8%8A%E6%B5%B7-SHA&depDate=2026-07-18&routeType=OW" target="_blank" rel="noopener">吉祥官网 · HO1060</a></span><span class="pc-price">¥1,010 裸 → 总 ¥1,210</span></div>
+      <div class="pc-row"><span class="pc-plat">备选 HO1098 14:30 → 17:15 浦东（上午需压缩）</span><span class="pc-price">飞猪 ¥980 / 携程 ¥1,000 / 官网 ¥1,010 裸 → 总 ¥1,180 起</span></div>
+      <div class="pc-row"><span class="pc-plat">更省：春秋 9C8820 20:10→22:50 虹桥</span><span class="pc-price">携程 ¥953 / 飞猪 ¥1,000 裸（剩3张）→ 总 ¥1,153 起 · 廉航，托运行李另购，到家近午夜</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════ BUDGET ════ -->
+<div class="sec-green" id="budget">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">💰</div>
+    <div class="sh-text"><h2>预算估算</h2><div class="sh-sub">3 人合计 · 不含购物 · 单位 ¥ · 机票=实查裸价+税费¥200/段、酒店为携程/飞猪实查（2026-06-12）</div></div>
+  </div>
+  <div class="card">
+    <table class="budget">
+      <thead><tr><th>项目</th><th class="num">明细</th><th class="num">小计 (¥)</th></tr></thead>
+      <tbody>
+        <tr class="dayhead"><td colspan="3">固定大项（往返机票 + 住宿）</td></tr>
+        <tr><td>往返机票（3 人 · 飞猪裸价+税费：[¥1,120+200] + [¥980+200]）</td><td class="num">¥2,500 ×3</td><td class="num">7,500</td></tr>
+        <tr><td>住宿 2 间 × 3 晚（全季 · 携程含早口径；飞猪 ¥436 起不含早）</td><td class="num">约 ¥495 ×6 间夜</td><td class="num">2,970</td></tr>
+        <tr class="subtotal"><td colspan="2">固定大项小计</td><td class="num">10,470</td></tr>
+
+        <tr class="dayhead"><td colspan="3">Day 1 · 抵达 &amp; 春熙路</td></tr>
+        <tr><td>餐饮（晚餐 + 小吃）</td><td class="num">3 人</td><td class="num">250</td></tr>
+        <tr><td>市内交通（天府机场打车进城 ≈¥210 估 + 零星）</td><td class="num">—</td><td class="num">230</td></tr>
+        <tr class="subtotal"><td colspan="2">Day 1 小计（= 当日 ¥480）</td><td class="num">480</td></tr>
+
+        <tr class="dayhead"><td colspan="3">Day 2 · 熊猫基地 &amp; 宽窄巷子</td></tr>
+        <tr><td>熊猫基地门票（按全价预留，60+ 优惠以官网为准）</td><td class="num">¥55 ×3</td><td class="num">165</td></tr>
+        <tr><td>园内观光车</td><td class="num">¥30 ×3</td><td class="num">90</td></tr>
+        <tr><td>餐饮（午晚 + 巷内小吃）</td><td class="num">3 人</td><td class="num">260</td></tr>
+        <tr><td>市内交通（打车往返基地 ≈¥78 估 + 巷子段）</td><td class="num">—</td><td class="num">90</td></tr>
+        <tr class="subtotal"><td colspan="2">Day 2 小计（= 当日 ¥605）</td><td class="num">605</td></tr>
+
+        <tr class="dayhead"><td colspan="3">Day 3 · 武侯祠 / 锦里 / 茶馆</td></tr>
+        <tr><td>武侯祠门票（按全价预留，老人优惠以官网为准）</td><td class="num">¥50 ×3</td><td class="num">150</td></tr>
+        <tr><td>鹤鸣茶社茶位</td><td class="num">约 ¥25 ×3</td><td class="num">75</td></tr>
+        <tr><td>餐饮（锦里小吃 + 陈麻婆晚餐）</td><td class="num">3 人</td><td class="num">300</td></tr>
+        <tr><td>市内交通（打车 ×3 段）</td><td class="num">—</td><td class="num">50</td></tr>
+        <tr class="subtotal"><td colspan="2">Day 3 小计（= 当日 ¥575）</td><td class="num">575</td></tr>
+
+        <tr class="dayhead"><td colspan="3">Day 4 · 杜甫草堂 &amp; 返程</td></tr>
+        <tr><td>杜甫草堂门票（爸妈 60+ 免费）</td><td class="num">¥50 ×1</td><td class="num">50</td></tr>
+        <tr><td>餐饮（午餐）</td><td class="num">3 人</td><td class="num">200</td></tr>
+        <tr><td>市内交通（草堂往返 ≈¥30 + 送机天府 ≈¥210 估）</td><td class="num">—</td><td class="num">240</td></tr>
+        <tr class="subtotal"><td colspan="2">Day 4 小计（= 当日 ¥490）</td><td class="num">490</td></tr>
+
+        <tr class="total"><td colspan="2">合计（3 人 · 不含购物 · 人均约 ¥4,200）</td><td class="num">¥12,620</td></tr>
+      </tbody>
+    </table>
+    <div class="callout tip" style="margin-top:12px;">
+      <div class="callout-icon"></div>
+      <div class="callout-body"><strong>省钱点</strong>
+        <p>爸妈 60 岁以上多数景点免票/优惠（杜甫草堂已核实免费，熊猫基地、武侯祠优惠以官网为准——上表按全价预留，实际大概率更省）；酒店以携程/飞猪当日实查为准（「会员价更低」实测是迷思）；机票全平台都是裸价、记得 +¥200/段 税费再比价（本例飞猪最低，官网查独家班次和券），提前 2–3 周买、避开周五周日高峰班次。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════ PRE-DEPARTURE CHECKLIST ════ -->
+<div class="sec-amber" id="checklist">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✅</div>
+    <div class="sh-text"><h2>出发前清单</h2><div class="sh-sub">勾选状态会自动保存在本机</div></div>
+  </div>
+  <div class="card">
+    <h3>必订 / 必办（按截止时间排序）</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>机票出票（实查推荐：去程 HO1119 08:10 浦东→11:25 天府 总价 ¥1,320 / 返程 HO1060 17:30 天府→20:10 虹桥 总价 ¥1,180——两班携程未售、飞猪裸价最低；全平台显示均为裸价，下单前确认总价已含 ¥200/段 税费；价格随时浮动，出票前再核）</span></label>
+      <label><input type="checkbox"><span>酒店锁房 2 间 × 3 晚（7 月暑期旺季，提前 2–3 周；订前读「最新+低分」评论）</span></label>
+      <label><input type="checkbox"><span>熊猫基地门票：开放预约首日（入园前 14 天）给自己约「上午场」；爸妈 60+ 免预约刷身份证</span></label>
+      <label><input type="checkbox"><span>武侯祠门票：提前 14 天官网/公众号预约</span></label>
+      <label><input type="checkbox"><span>杜甫草堂：本人公众号实名购票；爸妈 60+ 刷证免费</span></label>
+      <label><input type="checkbox"><span>出发前 3 天看「成都未来一周天气预报」，确认哪天启用雨天 Plan B</span></label>
+    </div>
+  </div>
+  <div class="card">
+    <h3>必带物品（银发出行版）</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>全家身份证原件（老人刷证免票/免预约全靠它）</span></label>
+      <label><input type="checkbox"><span>爸妈常用药（按天分装）+ 医保卡 + 藿香正气液/防暑药</span></label>
+      <label><input type="checkbox"><span>晴雨两用折叠伞 + 防晒帽（7 月湿热多阵雨）</span></label>
+      <label><input type="checkbox"><span>舒适防滑的旧鞋（别穿新鞋）+ 速干衣物</span></label>
+      <label><input type="checkbox"><span>充电宝 + 老人手机开好「乘车码/健康码」类小程序</span></label>
+      <label><input type="checkbox"><span>少量现金（茶馆/小摊偶尔好用）</span></label>
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;color:var(--text3);font-size:12px;padding:24px 0 8px;border-top:1px solid var(--border);margin-top:20px;">
+  成都4日游行程（带爸妈 · 悠闲版）· 仅供参考 · 标注「估价/以官网为准」的价格与时间请在出行前再次核对 · 本计划只查询不代订
+</div>
+
+</div><!-- closes .page -->
+
+<!-- ── Floating section navigator ── -->
+<button id="nav-btn" title="行程导航" aria-label="行程导航">≡</button>
+<div id="nav-panel" role="navigation" aria-label="行程列表">
+  <div class="nav-title">行程导航</div>
+  <div id="nav-list"></div>
+</div>
+
+<script>
+/* ════════════ MAP DATA ════════════ */
+var TRIP = {
+  center: [30.672, 104.075], zoom: 12,
+  days: [
+    { label: 'Day 1', color: '#534AB7', stops: [
+      { name: '春熙路 · 太古里', lat: 30.6534, lng: 104.0823, time: '16:00' },
+      { name: 'IFS 楼顶熊猫 & 晚餐', lat: 30.6522, lng: 104.0797, time: '18:00' }
+    ]},
+    { label: 'Day 2', color: '#0F6E56', stops: [
+      { name: '大熊猫繁育研究基地（南大门）', lat: 30.7327, lng: 104.1508, time: '08:00' },
+      { name: '宽窄巷子', lat: 30.6699, lng: 104.0553, time: '16:30' }
+    ]},
+    { label: 'Day 3', color: '#993C1D', stops: [
+      { name: '武侯祠', lat: 30.6426, lng: 104.0482, time: '09:30' },
+      { name: '锦里', lat: 30.6428, lng: 104.0497, time: '11:30' },
+      { name: '人民公园 · 鹤鸣茶社', lat: 30.6627, lng: 104.0607, time: '14:30' },
+      { name: '陈麻婆豆腐（骡马市总店）', lat: 30.6648, lng: 104.0706, time: '17:45' }
+    ]},
+    { label: 'Day 4', color: '#BA7517', stops: [
+      { name: '杜甫草堂', lat: 30.6592, lng: 104.0285, time: '09:00' },
+      { name: '天府机场 T2（返程 HO1060）', lat: 30.3192, lng: 104.4410, time: '16:00' }
+    ]},
+    { label: '住宿 · 全季春熙路太古里(推荐)', color: '#D85A30', stops: [
+      { name: '全季酒店（成都太古里春熙路店）', lat: 30.6540, lng: 104.0815, time: '' }
+    ]}
+  ]
+};
+
+/* ════════════ Leaflet init (degrades gracefully) ════════════ */
+(function(){
+  if (typeof L === 'undefined') return;                 // CDN failed / offline
+  var el = document.getElementById('map');
+  if (!el || !window.TRIP || !TRIP.days) return;
+  var map = L.map('map', { scrollWheelZoom: false })
+              .setView(TRIP.center || [0,0], TRIP.zoom || 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '© OpenStreetMap'
+  }).addTo(map);
+  map.on('click', function(){ map.scrollWheelZoom.enable(); });
+
+  var all = [], legend = document.getElementById('map-legend');
+  TRIP.days.forEach(function(day){
+    var pts = [];
+    (day.stops || []).forEach(function(s, si){
+      if (typeof s.lat !== 'number' || typeof s.lng !== 'number') return;
+      var ll = [s.lat, s.lng]; pts.push(ll); all.push(ll);
+      var icon = L.divIcon({ className:'', iconSize:[24,24], iconAnchor:[12,12],
+        html:'<div class="pin" style="background:'+day.color+'">'+(si+1)+'</div>' });
+      L.marker(ll, {icon:icon}).addTo(map)
+        .bindPopup('<b>'+day.label+' · '+(si+1)+'</b><br>'+s.name+(s.time?'<br>🕒 '+s.time:''));
+    });
+    if (pts.length > 1)
+      L.polyline(pts, {color:day.color, weight:3, opacity:0.75, dashArray:'6 7'}).addTo(map);
+    if (legend){
+      var item = document.createElement('span'); item.className = 'leg-item';
+      item.innerHTML = '<span class="leg-dot" style="background:'+day.color+'"></span>'+day.label;
+      legend.appendChild(item);
+    }
+  });
+  if (all.length) map.fitBounds(all, { padding:[34,34], maxZoom:15 });
+  setTimeout(function(){ map.invalidateSize(); }, 250);
+})();
+
+/* ════════════ Scroll-position memory ════════════ */
+(function(){
+  var SK = 'tp:' + location.pathname;
+  function doRestore(y, tries){
+    if (tries <= 0) return;
+    if (document.body.scrollHeight >= y + window.innerHeight * 0.5){
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      window.scrollTo({ top: y, behavior: 'instant' });
+    } else {
+      setTimeout(function(){ doRestore(y, tries - 1); }, 120);
+    }
+  }
+  function tryRestore(){
+    var raw = localStorage.getItem(SK);
+    if (raw !== null && +raw > 0) doRestore(+raw, 25);
+  }
+  window.addEventListener('load', function(){ setTimeout(tryRestore, 80); });
+  window.addEventListener('pageshow', function(e){ if (e.persisted) setTimeout(tryRestore, 80); });
+  var saving = false;
+  window.addEventListener('scroll', function(){
+    if (!saving){ saving = true;
+      requestAnimationFrame(function(){
+        if (window.scrollY > 0) localStorage.setItem(SK, window.scrollY);
+        saving = false;
+      });
+    }
+  }, { passive:true });
+})();
+
+/* ════════════ Checklist persistence (per-file, in localStorage) ════════════ */
+(function(){
+  var boxes = document.querySelectorAll('.checklist input[type=checkbox]');
+  boxes.forEach(function(cb, i){
+    var key = 'tpchk:' + location.pathname + ':' + i;
+    if (localStorage.getItem(key) === '1') cb.checked = true;
+    cb.addEventListener('change', function(){
+      localStorage.setItem(key, cb.checked ? '1' : '0');
+    });
+  });
+})();
+
+/* ════════════ Floating navigator: hierarchical heading tracking ════════════ */
+(function(){
+  var COLORS = {
+    purple:'#534AB7', teal:'#0F6E56', coral:'#993C1D',
+    amber:'#BA7517',  blue:'#185FA5', green:'#3B6D11', red:'#A32D2D'
+  };
+  if (window.matchMedia('(prefers-color-scheme:dark)').matches) COLORS = {
+    purple:'#AFA9EC', teal:'#5DCAA5', coral:'#F0997B',
+    amber:'#EF9F27',  blue:'#85B7EB', green:'#97C459', red:'#F09595'
+  };
+  var list  = document.getElementById('nav-list');
+  var btn   = document.getElementById('nav-btn');
+  var panel = document.getElementById('nav-panel');
+  if (!list || !btn || !panel) return;
+
+  var anchors = [];
+  var secs = document.querySelectorAll(
+    '[id].sec-purple,[id].sec-teal,[id].sec-coral,[id].sec-amber,[id].sec-blue,[id].sec-green,[id].sec-red'
+  );
+  secs.forEach(function(sec){
+    var hdr = sec.querySelector('.section-header');
+    if (!hdr) return;
+    var num   = (hdr.querySelector('.section-num')||{}).textContent || '';
+    var ttl   = (hdr.querySelector('h2')||{}).textContent || '';
+    var cls   = (sec.className||'').match(/sec-(\w+)/);
+    var color = cls ? (COLORS[cls[1]] || '#888') : '#888';
+
+    var row = document.createElement('a');
+    row.href = '#' + sec.id;
+    row.style.cssText = 'display:flex;align-items:center;gap:8px;padding:7px 14px 5px;'+
+      'font-size:13px;font-weight:600;color:inherit;text-decoration:none;'+
+      'transition:background 0.1s;margin-top:2px;';
+    var badge = document.createElement('span');
+    badge.textContent = num;
+    badge.style.cssText = 'min-width:22px;height:20px;border-radius:4px;font-size:10px;font-weight:700;'+
+      'display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 3px;'+
+      'background:'+color+';color:#fff;';
+    var lbl = document.createElement('span');
+    lbl.textContent = ttl;
+    lbl.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+    row.appendChild(badge); row.appendChild(lbl);
+    row.addEventListener('click', function(){ panel.classList.remove('open'); });
+    list.appendChild(row);
+    anchors.push({ el: hdr, link: row, level: 0, color: color });
+
+    sec.querySelectorAll('.card h3').forEach(function(h3, i){
+      if (!h3.id) h3.id = sec.id + '-s' + i;
+    });
+    sec.querySelectorAll('.card h3[id]').forEach(function(h3){
+      var sub = document.createElement('a');
+      sub.href = '#' + h3.id;
+      sub.style.cssText = 'display:flex;align-items:center;gap:7px;'+
+        'padding:3px 14px 3px 32px;font-size:12px;color:var(--text2,#a8a69e);'+
+        'text-decoration:none;transition:background 0.1s,color 0.1s;'+
+        'border-left:2px solid transparent;margin-left:0;';
+      var dot = document.createElement('span');
+      dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:'+color+';'+
+        'flex-shrink:0;opacity:0.5;transition:opacity 0.1s;';
+      var slbl = document.createElement('span');
+      slbl.textContent = h3.textContent.replace(/^\s*[\d§.]+\s*/, '');
+      slbl.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+      sub.appendChild(dot); sub.appendChild(slbl);
+      sub.addEventListener('click', function(){ panel.classList.remove('open'); });
+      list.appendChild(sub);
+      anchors.push({ el: h3, link: sub, level: 1, dot: dot, color: color });
+    });
+  });
+
+  var active = null;
+  function setActive(a){
+    if (active === a) return;
+    if (active){
+      active.link.style.background = '';
+      if (active.level === 0){ active.link.style.fontWeight = '600'; active.link.style.color = ''; }
+      else { active.link.style.color = 'var(--text2,#a8a69e)';
+             active.link.style.borderLeftColor = 'transparent';
+             if (active.dot) active.dot.style.opacity = '0.5'; }
+    }
+    active = a;
+    if (!a) return;
+    a.link.style.background = 'var(--bg3,#2c2c2a)';
+    if (a.level === 0){ a.link.style.fontWeight = '700'; a.link.style.color = 'var(--text,#e8e6de)'; }
+    else { a.link.style.color = 'var(--text,#e8e6de)';
+           a.link.style.borderLeftColor = a.color || '#378ADD';
+           if (a.dot) a.dot.style.opacity = '1'; }
+    if (panel.classList.contains('open')) a.link.scrollIntoView({ block:'nearest' });
+  }
+  function updateActive(){
+    var threshold = window.innerHeight * 0.30, best = null;
+    for (var i = 0; i < anchors.length; i++){
+      var rect = anchors[i].el.getBoundingClientRect();
+      if (rect.top <= threshold) best = anchors[i]; else break;
+    }
+    if (!best && anchors.length) best = anchors[0];
+    setActive(best);
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(function(){ updateActive(); ticking = false; }); }
+  }, { passive:true });
+  setTimeout(updateActive, 300);
+  window.addEventListener('load', function(){ setTimeout(updateActive, 200); });
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open') && active)
+      setTimeout(function(){ active.link.scrollIntoView({ block:'nearest' }); }, 160);
+  });
+  document.addEventListener('click', function(e){
+    if (!panel.contains(e.target) && e.target !== btn) panel.classList.remove('open');
+  });
+})();
+</script>
+
+</body>
+</html>

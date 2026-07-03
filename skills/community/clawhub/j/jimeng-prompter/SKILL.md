@@ -1,15 +1,15 @@
 ---
 name: jimeng-prompter
-version: 3.0.1
+version: 3.1.0
 license: MIT
 author: sallyface0
 description: >
-  Privacy-first universal prompt engineer for Jimeng AI (即梦) — Seedance 2.0 video + Seedream 4.0/4.5/5.0 image generation. v3.0: Writing Triadic methodology integrated — Mini Creator intent distillation, Mini Executor dual-pass prompt crafting, visual fatigue word detection per style, cross-style blend matching, lightweight evolution engine with consent-gated preferences. v3.0.1: PRIVACY.md, consent gates for evolution memory write/read, privacy notices.
+  Privacy-first universal prompt engineer for Jimeng AI (即梦) — Seedance 2.0 video + Seedream 4.0/4.5/5.0 image generation. v3.0: Writing Triadic methodology integrated — Mini Creator intent distillation, Mini Executor dual-pass prompt crafting, visual fatigue word detection per style, cross-style blend matching, lightweight evolution engine with consent-gated preferences. v3.0.1: PRIVACY.md, consent gates for evolution memory write/read, privacy notices. v3.1.0: Missing PRIVACY.md fix, 2026 visual fatigue word expansion.
 ---
 
-# 即梦 Prompt 大师 v3.0.1 — 安全隐私加固版
+# 即梦 Prompt 大师 v3.1.0 — Bug 修复 + 疲劳词表刷新
 
-> 面向即梦全栈（Seedance 2.0 视频 + Seedream 4.x/5.0 图片）的提示词专家。v3.0.1 安全隐私加固：进化记忆写入前征求同意、PRIVACY.md、数据保留策略。
+> 面向即梦全栈（Seedance 2.0 视频 + Seedream 4.x/5.0 图片）的提示词专家。v3.1.0 修复 PRIVACY.md 缺失问题，扩充 2026 年视觉疲劳词表。
 
 ## 🔒 Security & Privacy
 
@@ -637,6 +637,21 @@ Writing Triadic 的"按模板维护疲劳词表"移植到即梦。Prompt Crafter
 4. **全局通用疲劳词**（适用于所有风格）：
    - `8K, HDR, masterpiece, best quality, cinematic lighting, ultra-detailed, intricate details, breathtaking, stunning, award-winning, trending on, hyperrealistic, photorealistic`
    - 这些词在黑名单底层，任何提示词中出现即删除
+
+### 🆕 2026 新增全局疲劳词（v3.1.0）
+
+以下为 2026 年主流 AI 图像/视频模型（Midjourney V7、DALL-E 4、Flux 2、SD4）输出中的新增高频套话：
+
+- `ultra-detailed, hyper-detailed, extremely detailed` → 改用具体描述：`fine brushstrokes, visible texture grain`
+- `professional photography, professional grade` → 改用：`editorial color grading, studio lighting setup`
+- `gorgeous, magnificent, splendid` → 改用具体感官描述
+- `perfect composition, perfect lighting` → 改用：`rule of thirds framing, golden ratio crop`
+- `8K resolution, 16K resolution` → 改用：`2K resolution, sharp focus`（即梦不支持 8K+）
+- `trending on artstation, trending on instagram` → 改用具体平台风格描述
+- `insanely detailed, mind-blowing` → 改用克制的质感词
+- `ray tracing, global illumination` → 改用：`natural light bounce, ambient occlusion`
+- `octane render, unreal engine 5` → 改用：`physically based rendering, accurate material response`（除非确实要 PBR 质感）
+- `dreamy, ethereal, magical` → 改用具体的光线和氛围描述
 
 ---
 

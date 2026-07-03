@@ -1,0 +1,103 @@
+{
+  "emoji": "⚽",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY",
+      "SOLANA_PRIVATE_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer SDK API key — get from simmer.markets/dashboard"
+    },
+    {
+      "name": "SOLANA_PRIVATE_KEY",
+      "required": true,
+      "description": "Solana wallet private key (base58) for signing DFlow trades. Kalshi has no managed-wallet mode — self-custody only. Never commit."
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "soccer_trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_SOCCER_ENTRY_EDGE",
+      "type": "number",
+      "default": 0.06,
+      "range": [0.02, 0.30],
+      "step": 0.01,
+      "label": "Min edge to trade (fraction)"
+    },
+    {
+      "env": "SIMMER_SOCCER_EXIT_THRESHOLD",
+      "type": "number",
+      "default": 0.90,
+      "range": [0.50, 0.99],
+      "step": 0.01,
+      "label": "Sell when implied prob reaches this"
+    },
+    {
+      "env": "SIMMER_SOCCER_MAX_POSITION_USD",
+      "type": "number",
+      "default": 5.00,
+      "range": [1, 500],
+      "step": 1,
+      "label": "Max position size (USD)"
+    },
+    {
+      "env": "SIMMER_SOCCER_SIZING_PCT",
+      "type": "number",
+      "default": 0.04,
+      "range": [0.01, 0.20],
+      "step": 0.01,
+      "label": "Smart-sizing % of portfolio per trade"
+    },
+    {
+      "env": "SIMMER_SOCCER_MAX_TRADES_PER_RUN",
+      "type": "number",
+      "default": 5,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Max trades per scan cycle"
+    },
+    {
+      "env": "SIMMER_SOCCER_MARKET_TYPES",
+      "type": "string",
+      "default": "winner,totals,spread",
+      "label": "Market types to trade (winner,totals,spread)"
+    },
+    {
+      "env": "SIMMER_SOCCER_MIN_LIQUIDITY",
+      "type": "number",
+      "default": 500,
+      "range": [0, 50000],
+      "step": 100,
+      "label": "Min market liquidity USD (0 = disabled)"
+    },
+    {
+      "env": "SIMMER_SOCCER_SLIPPAGE_MAX",
+      "type": "number",
+      "default": 0.10,
+      "range": [0.03, 0.50],
+      "step": 0.01,
+      "label": "Max acceptable slippage"
+    },
+    {
+      "env": "SIMMER_SOCCER_HOME_BOOST",
+      "type": "number",
+      "default": 0.12,
+      "range": [0.0, 0.40],
+      "step": 0.01,
+      "label": "Home advantage (log-scale goal boost)"
+    }
+  ]
+}

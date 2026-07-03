@@ -1,7 +1,7 @@
 ---
 name: "contactless-vital-signs-monitoring-analysis"
 description: "Non-contact detection of heart rate, respiration, blood oxygen, and heart rate variability. No wearable devices are required; monitoring is achieved solely through camera footage. | 无感生命体征监测分析技能，非接触检测心率、呼吸、血氧、心率变异性，无需穿戴设备，通过摄像头画面即可监测"
-version: "1.0.5"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

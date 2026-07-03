@@ -22,8 +22,7 @@
 
 - **Cause**: PDF generation tools not installed
 - **Solutions**:
-  - Install Playwright (preferred): `pip install playwright && playwright install chromium`
-  - Or install pdfkit: `pip install pdfkit` and `brew install wkhtmltopdf`
+  - Install Playwright: `pip install playwright==1.60.0 && playwright install chromium`
   - Verify installation by running the tool's test command
 
 ## Theme or CSS not found

@@ -1,6 +1,6 @@
 interface:
   display_name: "灵造"
-  short_description: "创作者公开内容与公众号文章研究 Skill"
+  short_description: "小红书/抖音创作者研究与自媒体运营 Skill"
   emoji: "🔎"
   homepage: "https://lingzao.atian.vip"
 requires:

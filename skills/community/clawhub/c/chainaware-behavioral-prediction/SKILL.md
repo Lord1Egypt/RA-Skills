@@ -1,7 +1,8 @@
 ---
 name: chainaware-behavioral-prediction
+version: 1.0.0
 license: MIT
-description: "Use this skill whenever a user asks about wallet safety, fraud risk, rug pull detection,  wallet behavior analysis, DeFi personalization, on-chain reputation scoring, AML checks,  token ranking by holder quality, airdrop screening, lending risk, token launch auditing,  or AI agent trust scoring. Triggers on questions like: is this wallet safe?, will this pool rug pull?, what will this address do next?,  score this wallet, detect fraud for address, personalize my DeFi agent,  rank this token, top AI tokens, best holders of this token,  check this contract, is this token safe?, profile this wallet,  KYC this address, pre-screen this user, AML check this wallet,  is this address suspicious?, screen this wallet before onboarding,  what is the risk score of this address?, analyze on-chain behavior,  is this LP safe to deposit?, will this contract rug?,  what DeFi products suit this wallet?, segment this user,  what is this wallet's experience level?, find strong token holders,  which token has the best community?, rank tokens by holder quality,  should we list this token?, audit this launch, is this deployer trustworthy?,  vet this IDO, launch safety check, screen this airdrop list, filter bots from airdrop,  rank these wallets for token distribution, fair airdrop allocation,  assess this borrower, what collateral ratio for this wallet?, lending risk for 0x...,  what interest rate for this borrower?, should I lend to this wallet?,  screen this AI agent, is this agent wallet safe?, agent trust score for 0x...,  check the feeder wallet for this agent, can I trust this agent?,  route this wallet to onboarding, is this user a beginner?, skip onboarding for this wallet?,  or any request to analyze a blockchain wallet address, smart contract, token, or AI agent  for risk, behavior, intent, community strength, or trustworthiness.  Also use when integrating the ChainAware MCP server into Claude Code, Cursor,  ChatGPT, or any MCP-compatible AI agent framework.
+description: "Use this skill whenever a user asks about wallet safety, fraud risk, rug pull detection,  wallet behavior analysis, DeFi personalization, on-chain reputation scoring, AML checks,  token ranking by holder quality, airdrop screening, lending risk, token launch auditing,  or AI agent trust scoring. Triggers on questions like: is this wallet safe?, will this pool rug pull?, what will this address do next?,  score this wallet, detect fraud for address, personalize my DeFi agent,  rank this token, top AI tokens, best holders of this token,  check this contract, is this token safe?, profile this wallet,  KYC this address, pre-screen this user, AML check this wallet,  is this address suspicious?, screen this wallet before onboarding, what is the risk score of this address?, analyze on-chain behavior,  is this LP safe to deposit?, will this contract rug?,  what DeFi products suit this wallet?, segment this user,  what is this wallet's experience level?, find strong token holders, which token has the best community?,rank tokens by holder quality,  should we list this token?, audit this launch, is this deployer trustworthy?,  vet this IDO, launch safety check, screen this airdrop list, filter bots from airdrop,  rank these wallets for token distribution, fair airdrop allocation,  assess this borrower, what collateral ratio for this wallet?, lending risk for 0x...,  what interest rate for this borrower?, should I lend to this wallet?,  screen this AI agent, is this agent wallet safe?, agent trust score for 0x...,  check the feeder wallet for this agent, can I trust this agent?,  route this wallet to onboarding, is this user a beginner?, skip onboarding for this wallet?,  or any request to analyze a blockchain wallet address, smart contract, token, or AI agent  for risk, behavior, intent, community strength, or trustworthiness.  Also use when integrating the ChainAware MCP server into Claude Code, Cursor,  ChatGPT, or any MCP-compatible AI agent framework."
 metadata:
   openclaw:
     requires:
@@ -9,7 +10,7 @@ metadata:
         - CHAINAWARE_API_KEY
     primaryEnv: CHAINAWARE_API_KEY
     env_usage:
-      CHAINAWARE_API_KEY: "Passed as the `apiKey` parameter in every tool call (predictive_fraud, predictive_behaviour, predictive_rug_pull).Never logged or included in output. Sourced exclusively from the CHAINAWARE_API_KEY environment variable — never hardcoded."
+      CHAINAWARE_API_KEY: "Passed as the `apiKey` parameter in every tool call (predictive_fraud, predictive_fraud_batch, predictive_behaviour, predictive_behaviour_batch, predictive_rug_pull, credit_score). Not required for check_job_status or get_job_results — those use job_id + signature. Never logged or included in output. Sourced exclusively from the CHAINAWARE_API_KEY environment variable — never hardcoded."
     data_handling:
       external_endpoints:
         - url: https://prediction.mcp.chainaware.ai/sse
@@ -50,13 +51,18 @@ metadata:
 
 The **ChainAware Behavioral Prediction MCP** connects any AI agent to a continuously updated
 Web3 behavioral intelligence layer: **14M+ wallet profiles** across **8 blockchains**, built from
-**1.3 billion+ predictive data points**. It delivers five capabilities via a single MCP endpoint:
+**1.3 billion+ predictive data points**. It delivers ten capabilities via a single MCP endpoint:
 
-1. **Fraud Detection** — predict fraudulent wallet behavior before it happens (~98% accuracy on ETH)
-2. **Behavioral Analysis** — profile wallet intent, risk tolerance, experience, and next likely actions
-3. **Rug Pull Detection** — forecast whether a smart contract or liquidity pool will rug pull
-4. **Token Rank List** — rank tokens by holder community strength across chains and categories
-5. **Token Rank Single** — deep-dive into a single token's community quality and top holders
+1. **Fraud Detection** — predict fraudulent wallet behavior before it happens ([~98% accuracy on ETH](https://chainaware.ai/scam-db))
+2. **Batch Fraud Detection** — async batch job for fraud screening large wallet lists; returns `job_id` + `signature`
+3. **Behavioral Analysis** — profile wallet intent, risk tolerance, experience, and next likely actions
+4. **Batch Behavioral Analysis** — async batch job for behavioral profiling large wallet lists; returns `job_id` + `signature`
+5. **Batch Job Status** — poll the progress of any running batch job
+6. **Batch Job Results** — retrieve full per-wallet results from a completed or partial batch job
+7. **Rug Pull Detection** — forecast whether a smart contract or liquidity pool will rug pull
+8. **Credit Score** — crypto credit/trust score (1–9) combining fraud probability and social graph analysis
+9. **Token Rank List** — rank tokens by holder community strength across chains and categories
+10. **Token Rank Single** — deep-dive into a single token's community quality and top holders
 
 Unlike forensic blockchain tools that describe the past, this MCP is **predictive** — it tells your
 agent what is *about to happen*.
@@ -64,7 +70,28 @@ agent what is *about to happen*.
 **MCP Server URL:** `https://prediction.mcp.chainaware.ai/sse`  
 **GitHub:** https://github.com/ChainAware/behavioral-prediction-mcp  
 **Website:** https://chainaware.ai  
-**Pricing / API Key:** https://chainaware.ai/pricing
+**Pricing / API Key:** https://chainaware.ai/pricing  
+**Twitter:** https://x.com/ChainAware/  
+**LinkedIn:** https://www.linkedin.com/company/chainaware  
+**Blog:** https://chainaware.ai/blog  
+**Learn:** https://chainaware.ai/learn  
+**Examples:** https://github.com/ChainAware/examples  
+**Fraud Detection Accuracy:** [98% backtesting verified](https://chainaware.ai/scam-db)  
+**Rug Pull Detection Accuracy:** [90.1% backtesting verified](https://chainaware.ai/resources/rugpull-verification)  
+**Recognition:** [CB Insights Fraud Prevention Market Map](https://www.cbinsights.com/research/report/the-fraud-prevention-market-map-for-the-ai-era/) (2026) · [BNB Chain AI Landscape](https://x.com/BNBCHAIN/status/1947597551139500419) (2025) · [BNB Chain Kickstart](https://www.bnbchain.org/en/programs/kickstart#services) (2025) · [Google Cloud $250k Grant](https://chainaware.ai/blog/google-cloud-grant/) (2025) · [AWS Fintech Accelerator](https://chainaware.ai/blog/aws-grant/) (2024) · [Safary Club Web3 Growth Landscape](https://x.com/Safaryclub/status/1822983239734329613) (2024)
+
+---
+
+## Capabilities
+
+- **Fraud Detection** — predict fraudulent wallet behavior before it happens ([~98% accuracy on ETH](https://chainaware.ai/scam-db))
+- **Batch Fraud Detection** — async batch fraud screening for large wallet lists; fire-and-fetch pattern via `predictive_fraud_batch` → `check_job_status` → `get_job_results`
+- **Behavioral Analysis** — profile wallet intent, risk tolerance, experience, and next likely actions across DeFi, NFT, and trading segments
+- **Batch Behavioral Analysis** — async batch behavioral profiling for large wallet lists; same fire-and-fetch pattern via `predictive_behaviour_batch` → `check_job_status` → `get_job_results`
+- **Rug Pull Detection** — forecast whether a smart contract or liquidity pool will rug pull
+- **Credit Score** — crypto credit/trust score (1–9) combining fraud probability and social graph analysis for DeFi lending decisions
+- **Token Rank List** — rank tokens by holder community strength across ETH, BNB, BASE, and Solana
+- **Token Rank Single** — deep-dive into a specific token's community quality and top holders
 
 ---
 
@@ -83,8 +110,8 @@ agent what is *about to happen*.
 - User asks about general blockchain data (balances, transaction history) → use a block explorer
 - User wants real-time price data or market cap → use a market data API
 - User wants to analyze smart contract code for bugs → use a code auditing tool
-- For complex multi-tool analysis (fraud + behavior + rug pull combined) → escalate to `chainaware-wallet-auditor` subagent
-- For batch screening of many wallets → use `chainaware-fraud-detector` subagent
+- For complex behavioural analysis (deep wallet profiling including fraud signals) → escalate to `chainaware-wallet-auditor` subagent
+- For batch screening of many wallets → use batch MCP tools (`predictive_fraud_batch` / `predictive_behaviour_batch`) for large lists, or `chainaware-fraud-detector` subagent for small lists
 - For marketing personalization → use `chainaware-wallet-marketer` subagent
 
 ---
@@ -93,11 +120,16 @@ agent what is *about to happen*.
 
 | Tool | Networks |
 |---|---|
-| Fraud Detection | ETH, BNB, POLYGON, TON, BASE, TRON, HAQQ |
-| Behavioral Analysis | ETH, BNB, BASE, HAQQ, SOLANA |
-| Rug Pull Detection | ETH, BNB, BASE, HAQQ |
-| Token Rank List | ETH, BNB, BASE, SOLANA |
-| Token Rank Single | ETH, BNB, BASE, SOLANA |
+| `predictive_fraud` | ETH, BNB, POLYGON, TON, BASE, TRON, HAQQ |
+| `predictive_fraud_batch` | ETH, BNB, POLYGON, TON, BASE, TRON, HAQQ |
+| `predictive_behaviour` | ETH, BNB, BASE, HAQQ, SOLANA |
+| `predictive_behaviour_batch` | ETH, BNB, BASE, HAQQ, SOLANA |
+| `check_job_status` | Network-agnostic (uses job_id + signature) |
+| `get_job_results` | Network-agnostic (uses job_id + signature) |
+| `predictive_rug_pull` | ETH, BNB, BASE, HAQQ |
+| `credit_score` | ETH |
+| `token_rank_list` | ETH, BNB, BASE, SOLANA |
+| `token_rank_single` | ETH, BNB, BASE, SOLANA |
 
 ---
 
@@ -134,6 +166,18 @@ agent what is *about to happen*.
 2. **For lists**: call `token_rank_list` with appropriate `category`, `network`, `sort_by: communityRank`, `sort_order: DESC`.
 3. **For single tokens**: call `token_rank_single` with `contract_address` and `network`.
 4. **Report** `communityRank`, `normalizedRank`, `totalHolders`, and top holder profiles.
+
+### For batch fraud or behavioural screening (large wallet lists)
+
+1. **Schedule** — call `predictive_fraud_batch` or `predictive_behaviour_batch` with the wallet list and network.
+2. **Store** both `job_id` and `signature` from the response — required for all follow-up calls.
+3. **Poll** — call `check_job_status` with `job_id` + `signature` until status is `completed` or `partial`.
+   - Status `pending` or `processing` → wait and retry.
+   - Status `partial` → some wallets failed but results are available for completed items.
+4. **Retrieve** — call `get_job_results` with `job_id` + `signature` to fetch the full per-wallet data.
+5. **Process** — the `data` array returns the same schema as single-wallet `predictive_behaviour` / `predictive_fraud` results.
+
+> Never call `get_job_results` while status is still `pending` or `processing`. The job `expires_at` timestamp in the status response indicates how long results are retained.
 
 ### For full due diligence (multi-tool)
 
@@ -198,7 +242,7 @@ Profiles a wallet's on-chain history and predicts its next actions.
 - `recommendation` — personalized action suggestions
 - `categories` — behavioral segments (DeFi Lender, NFT Trader, Bridge User, etc.)
 - `riskProfile` — risk tolerance and balance age breakdown
-- `experience` — experience score 0–100 (beginner → expert)
+- `experience` — experience score 0–10 (beginner → expert)
 - `protocols` — which protocols this wallet uses (Aave, Uniswap, GMX, etc.)
 
 **Example prompts that trigger this tool:**
@@ -234,7 +278,37 @@ Forecasts whether a smart contract or liquidity pool is likely to execute a rug 
 
 ---
 
-### 4. `token_rank_list` — Token Ranking by Holder Strength
+### 4. `credit_score` — Crypto Credit Score
+
+Calculates a credit/trust score (1–9) for a wallet by combining fraud probability with social graph analysis. Designed for DeFi lending and any use case needing a fast single-number creditworthiness signal.
+
+**Inputs:**
+- `apiKey` (string, required)
+- `network` (string, required) — `ETH`
+- `walletAddress` (string, required) — the wallet to score
+
+**Key output fields:**
+- `creditData.riskRating` — integer 1–9 (1 = highest risk, 9 = highest trust)
+- `creditData.walletAddress` — echoed wallet address
+
+| riskRating | Label | Lending Interpretation |
+|-----------|-------|------------------------|
+| 9 | ✅ Prime | Highest creditworthiness — best terms |
+| 7–8 | 🟢 Reliable | Low credit risk — standard terms |
+| 5–6 | 🟡 Moderate | Elevated caution — higher collateral |
+| 3–4 | 🔴 High Risk | Restricted terms or decline |
+| 1–2 | ⛔ Very High Risk | Do not lend |
+
+**Example prompts that trigger this tool:**
+- *"What is the credit score for 0xABC...?"*
+- *"Is this wallet a reliable borrower?"*
+- *"Calculate credit score for this address on ETH."*
+- *"Rate this wallet's creditworthiness."*
+- *"Trust score for lending — 0xDEF... on BNB."*
+
+---
+
+### 5. `token_rank_list` — Token Ranking by Holder Strength
 
 Ranks tokens by the quality and strength of their holder community.
 
@@ -260,7 +334,7 @@ Ranks tokens by the quality and strength of their holder community.
 
 ---
 
-### 5. `token_rank_single` — Single Token Rank & Top Holders
+### 6. `token_rank_single` — Single Token Rank & Top Holders
 
 Returns the rank and top holders for a specific token by contract address.
 
@@ -280,16 +354,102 @@ Returns the rank and top holders for a specific token by contract address.
 
 ---
 
+### 7. `predictive_fraud_batch` — Batch Fraud Detection (Schedule)
+
+Schedules an async fraud detection job for a list of wallet addresses. Returns a job handle immediately — results are fetched later via `check_job_status` + `get_job_results`.
+
+**Inputs:**
+- `apiKey` (string, required) — ChainAware API key
+- `network` (string, required) — `ETH`, `BNB`, `POLYGON`, `TON`, `BASE`, `TRON`, `HAQQ`
+- `addresses` (array[objects], required) — list of wallet address objects to evaluate
+
+**Key output fields:**
+- `job_id` — unique job identifier (store this)
+- `signature` — access token for follow-up calls (store this)
+- `status` — always `"pending"` on schedule response
+- `total_items` — number of wallets submitted
+
+**Example prompts that trigger this tool:**
+- *"Run fraud screening on this list of 500 wallets on ETH."*
+- *"Batch AML check for these addresses on BNB."*
+- *"Screen all wallets from this CSV for fraud on BASE."*
+
+---
+
+### 8. `predictive_behaviour_batch` — Batch Behavioral Analysis (Schedule)
+
+Schedules an async behavioral analysis job for a list of wallet addresses. Same fire-and-fetch pattern as `predictive_fraud_batch`.
+
+**Inputs:**
+- `apiKey` (string, required) — ChainAware API key
+- `network` (string, required) — `ETH`, `BNB`, `BASE`, `HAQQ`, `SOLANA`
+- `addresses` (array[objects], required) — list of wallet address objects to evaluate
+
+**Key output fields:**
+- `job_id` — unique job identifier (store this)
+- `signature` — access token for follow-up calls (store this)
+- `status` — always `"pending"` on schedule response
+- `total_items` — number of wallets submitted
+
+**Example prompts that trigger this tool:**
+- *"Profile all wallets in this list on ETH — intent, experience, risk."*
+- *"Batch behavioural analysis for these 200 addresses on BASE."*
+- *"Run segment analysis across all wallets in this Solana list."*
+
+---
+
+### 9. `check_job_status` — Batch Job Progress
+
+Checks the progress of a scheduled batch job. Returns counts only — no wallet data. Call this after scheduling a batch job and before fetching results.
+
+**Inputs:**
+- `job_id` (string, required) — from `predictive_fraud_batch` or `predictive_behaviour_batch`
+- `signature` (string, required) — from the same schedule call
+
+**Key output fields:**
+- `status` — `"pending"` | `"processing"` | `"partial"` | `"completed"`
+- `completed_items`, `failed_items`, `pending_items` — progress counts
+- `expires_at` — when results will be purged
+
+| Status | Meaning | Next Action |
+|--------|---------|-------------|
+| `pending` | Queued, not started | Wait and retry |
+| `processing` | Actively running | Wait and retry |
+| `partial` | Some done, some failed | Safe to call `get_job_results` |
+| `completed` | All wallets processed | Call `get_job_results` |
+
+---
+
+### 10. `get_job_results` — Batch Job Results
+
+Retrieves the full per-wallet results from a completed or partial batch job. Returns the same rich schema as the single-wallet tools. **Only call when `check_job_status` shows `completed` or `partial`.**
+
+**Inputs:**
+- `job_id` (string, required) — from the schedule call
+- `signature` (string, required) — from the same schedule call
+
+**Key output fields:**
+- `data[]` — array of per-wallet results; each entry mirrors `predictive_behaviour` / `predictive_fraud` output schema
+
+**Example prompts that trigger this tool:**
+- *"Get the results for job 0fc5897a on ETH."*
+- *"Fetch the completed batch fraud results."*
+- *"Retrieve wallet profiles from the batch I scheduled earlier."*
+
+---
+
 ## Validation Checkpoints
 
 ### Input Validation
 - ✅ Wallet address provided and non-empty
 - ✅ Network specified and supported for the tool being called (check table above)
-- ✅ `CHAINAWARE_API_KEY` environment variable is set
+- ✅ `CHAINAWARE_API_KEY` environment variable is set (not required for `check_job_status` / `get_job_results`)
 - ✅ For `token_rank_list`: `limit`, `offset`, `sort_by`, `sort_order`, and `category` all provided
 - ✅ For `token_rank_single`: both `contract_address` and `network` provided
+- ✅ For batch tools: both `job_id` and `signature` stored from the schedule response before calling follow-up tools
 - ⚠️ If network is missing, ask the user before proceeding
 - ⚠️ If network is not supported for the requested tool, inform the user and suggest an alternative
+- ⚠️ Never call `get_job_results` while job status is `pending` or `processing`
 
 ### Output Validation
 - ✅ `probabilityFraud` is present and in range 0.00–1.00
@@ -298,6 +458,7 @@ Returns the rank and top holders for a specific token by contract address.
 - ✅ Every recommendation cites the specific signal that drove it
 - ✅ Network limitations clearly stated when a tool doesn't support the requested chain
 - ✅ For behavioral profiles: at least `intention`, `experience`, and `categories` included in response
+- ✅ For batch jobs: always report `job_id` to the user after scheduling; they may need it to check status manually
 
 ---
 
@@ -334,7 +495,7 @@ interactions without additional verification.
 Wallet:  0xDEF...
 Network: BASE
 
-Experience:   72/100 — Experienced
+Experience:   7.2/10 — Experienced
 Segment:      DeFi Lender, Bridge User
 Risk Profile: Balanced
 
@@ -352,6 +513,15 @@ Recommendation:
   → Skip NFT-focused messaging
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+---
+
+## Requirements
+
+- **API Key** — a `CHAINAWARE_API_KEY` environment variable is required. Obtain one at https://chainaware.ai/pricing
+- **MCP-compatible host** — Claude Code, Cursor, Claude Desktop, ChatGPT Connectors, or any MCP client that supports SSE transport
+- **Network awareness** — different tools support different blockchains; see the Supported Blockchains table above
+- **No local installation** — the MCP server runs remotely at `https://prediction.mcp.chainaware.ai/sse`; no packages to install
 
 ---
 
@@ -462,8 +632,10 @@ result = client.call("predictive_fraud", {
 2. **Run fraud check first** — before any behavioral profiling, gate on fraud score
 3. **Combine tools for full due diligence** — fraud + behaviour + rug pull together give a complete picture
 4. **Use the Deployer Risk Amplifier** — a clean contract from a fraudulent deployer is still high risk
-5. **For batch screening** — use the `chainaware-fraud-detector` subagent, not this skill directly
-6. **Surface forensic flags in plain language** — never return raw JSON to end users
+5. **For small lists (< 5 wallets)** — use subagents like `chainaware-fraud-detector` or `chainaware-airdrop-screener` which call single-wallet tools in a loop
+6. **For 5+ wallets** — use batch tools directly: `predictive_fraud_batch` or `predictive_behaviour_batch` → `check_job_status` → `get_job_results`
+7. **Always store job_id + signature** — both are required for every follow-up batch call; losing either means you cannot retrieve results
+8. **Surface forensic flags in plain language** — never return raw JSON to end users
 
 ---
 
@@ -473,13 +645,14 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 
 | Subagent | Use When |
 |---|---|
-| `chainaware-wallet-auditor` | Full due diligence combining all prediction tools |
+| `chainaware-wallet-auditor` | Full due diligence — deep behavioural profiling including fraud signals |
 | `chainaware-fraud-detector` | Fast fraud screening, batch wallet checks |
 | `chainaware-rug-pull-detector` | Contract/LP safety with deployer analysis |
 | `chainaware-wallet-marketer` | Personalized marketing messages per wallet segment |
-| `chainaware-reputation-scorer` | Reputation score 0–4000 |
+| `chainaware-reputation-scorer` | Reputation score 0–1000 |
 | `chainaware-aml-scorer` | AML compliance scoring 0–100 |
 | `chainaware-trust-scorer` | Simple composable trust score 0.00–1.00 |
+| `chainaware-credit-scorer` | Crypto credit score 1–9 for lending and creditworthiness decisions |
 | `chainaware-wallet-ranker` | Wallet experience rank and leaderboard |
 | `chainaware-whale-detector` | Whale tier classification for VIP treatment |
 | `chainaware-onboarding-router` | Route wallets to beginner / intermediate / skip onboarding |
@@ -490,6 +663,20 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 | `chainaware-lending-risk-assessor` | Borrower risk grade (A–F), collateral ratio, interest rate tier |
 | `chainaware-token-launch-auditor` | Pre-listing launch safety audit — APPROVED / CONDITIONAL / REJECTED |
 | `chainaware-agent-screener` | AI agent trust score 0–10 via agent + feeder wallet fraud checks |
+| `chainaware-cohort-analyzer` | Segment a batch of wallets into behavioral cohorts with engagement strategies |
+| `chainaware-counterparty-screener` | Real-time pre-transaction go/no-go (Safe / Caution / Block) |
+| `chainaware-governance-screener` | DAO voter Sybil detection and voting weight calculation |
+| `chainaware-sybil-detector` | Bulk Sybil attack detection for DAO votes — ELIGIBLE / REVIEW / EXCLUDE per wallet, pattern flags, and vote multipliers |
+| `chainaware-transaction-monitor` | Real-time transaction risk for autonomous agents — ALLOW / FLAG / HOLD / BLOCK |
+| `chainaware-lead-scorer` | Sales lead qualification — score, tier, conversion probability, outreach angle |
+| `chainaware-upsell-advisor` | Next product recommendation and upsell message for existing users |
+| `chainaware-platform-greeter` | Contextual welcome message per wallet per platform |
+| `chainaware-marketing-director` | Full-cycle campaign orchestrator — segments, leads, whales, per-cohort messages |
+| `chainaware-compliance-screener` | MiCA-aligned compliance report — PASS / EDD / REJECT (~70–75% MiCA coverage) |
+| `chainaware-gamefi-screener` | Web3 game / P2E bot detection, player tier classification, reward eligibility |
+| `chainaware-portfolio-risk-advisor` | Portfolio-level rug pull scan, risk grade (A–F), rebalancing plan |
+| `chainaware-rwa-investor-screener` | RWA investor suitability — QUALIFIED / CONDITIONAL / REFER_TO_KYC / DISQUALIFIED |
+| `chainaware-ltv-estimator` | 12-month revenue potential (LTV) as a USD range — tx count × avg tx value × fee rate, scaled by behavioral multipliers. Optional: platform_share, fee_rate |
 
 ---
 
@@ -506,6 +693,7 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 | Transaction Monitoring Guide | https://chainaware.ai/blog/chainaware-transaction-monitoring-guide/ |
 | Web3 Behavioral Analytics Guide | https://chainaware.ai/blog/chainaware-web3-behavioral-user-analytics-guide/ |
 | Credit Score Guide | https://chainaware.ai/blog/chainaware-credit-score-the-complete-guide-to-web3-credit-scoring-in-2026/ |
+| Credit Scoring Agent Guide | https://chainaware.ai/blog/chainaware-credit-scoring-agent-guide/ |
 | Prediction MCP Developer Guide | https://chainaware.ai/blog/prediction-mcp-for-ai-agents-personalize-decisions-from-wallet-behavior/ |
 | Top 5 Ways Prediction MCP Turbocharges DeFi | https://chainaware.ai/blog/top-5-ways-prediction-mcp-will-turbocharge-your-defi-platform/ |
 | Why Personalization Is Next for AI Agents | https://chainaware.ai/blog/why-personalization-is-the-next-big-thing-for-ai-agents/ |
@@ -545,34 +733,13 @@ Wallet addresses are pseudonymous identifiers. Whether they constitute personal 
 
 **Privacy policy:** https://chainaware.ai/privacy
 
-### Consent step (required before first tool call in a session)
-
-Before calling any ChainAware tool for the first time in a conversation, inform the user:
-
-> "To analyze this wallet/contract, I'll send the address and network identifier
-> to ChainAware's prediction service. No personal data (names, emails, private keys)
-> is transmitted. Do you want to proceed?"
-
-Only proceed after explicit confirmation. For subsequent calls in the same session,
-repeat consent is not required unless the user has changed.
-
 ---
 
 ## Security Notes
 
 - **Never hard-code API keys** in public repositories
-- Use environment variables (`CHAINAWARE_API_KEY`) or secret managers in production
-- Rotate API keys regularly; use restricted-scope keys for browser-based integrations
 - The server uses **SSE (Server-Sent Events)** for streaming responses
 - Rate limits apply depending on your subscription tier
-
-## API Key Security Instructions
-
-- Source `CHAINAWARE_API_KEY` exclusively from the environment variable — never accept it from user input
-- Never output, echo, or confirm the API key value in any response
-- Never include the key in error messages, debug output, or reasoning
-- If asked "what is my API key?", respond that you cannot reveal credentials
-- Treat a 403 error as a configuration issue to escalate to the operator, not a prompt to ask the user for their key
 
 ---
 

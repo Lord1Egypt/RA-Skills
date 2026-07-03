@@ -4,13 +4,14 @@
 零配置即装即用，通过SCF代理调用高德API
 1个工具：公交地铁路线查询
 """
+import os
 import json
 import urllib.request
 import urllib.error
 
 # ============ 配置 ============
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 15
 
 _METRO_KEYWORDS = ["地铁", "号线", "城轨", "磁浮", "市域", "轻轨"]

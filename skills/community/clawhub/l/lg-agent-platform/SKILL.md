@@ -1,22 +1,34 @@
 ---
 name: Privora · 数据驱动投资工作流平台 for AI Agents
-title: 🔬 Privora · A股/港股/黄金/基金/财报 量化数据后端 + Python 回测 + 模拟交易 + AI Agent 接入
-version: 1.0.31
-updatedAt: 2026-06-25
+title: 🔬 Privora · A股/港股/黄金/基金/财报 量化数据后端（覆盖 AkShare/Tushare 同数据源）+ Python 回测 + 模拟交易 + 组合归因 + AI Agent 接入
+version: 1.0.33
+updatedAt: 2026-07-02
 keywords:
   - A股
   - 港股
   - 基金
   - 黄金
   - 财报数据
+  - 业绩预告
+  - 现金分红
+  - 分钟K线
+  - 实时行情
   - 量化回测
+  - 策略沙盒
+  - Python回测
+  - A股模拟盘
   - 模拟交易
   - 持仓监控
+  - 组合归因
+  - 净值曲线
   - AI Agent
   - 数据后端
   - 股票
   - 告警
-description: Privora · 多资产金融数据后端 for AI Agents — A股/港股 8500+ 股票统一日线 + 分钟 K 线（stock_day / stock_minutes 一张表覆盖两地）+ 黄金 + 基金 + 财报事件 统一 API + Python 策略回测 + 模拟交易 + 7×24 云端告警。Bearer Token 即接入。Hermes / Claude / GPT / OpenClaw 全兼容。
+  - 数据新鲜度
+  - AkShare
+  - Tushare
+description: Privora · 多资产金融数据后端 for AI Agents — 覆盖 AkShare / Tushare 同数据源：A股/港股 8500+ 股票日线 + 分钟 K 线 + 黄金 + 基金 + 财报事件 + 现金分红。Python 回测（含 sandbox）+ 模拟交易 + 组合归因（α/β + TWR）+ 7×24 云端告警。Bearer Token 即接入 Hermes / Claude / GPT / OpenClaw。
 license: MIT-0
 metadata:
   {
@@ -43,6 +55,15 @@ Hermes / Claude / GPT / OpenClaw 任何 Agent，通过一个 Bearer Token 即可
 - 🧾 **模拟交易 (Paper Trading)**：MARKET / LIMIT 委托类型 + 调度器驱动 + 真实涨跌停 / 停牌信号，账户 + 订单 DB-level 幂等。
 
 > **让普通人也能拥有私募级别的工作流**——不需要私募的预算，就能像私募研究员一样在同一条流水线里跑数据 + 分析 + Agent + 告警。
+
+> 🆕 **What's New v1.0.32** (2026-07-02)：
+> - **组合归因 (α / β)** — 新增 `investment.stock.portfolio.attribution.get`，跟沪深300 / 标普500 等基准做时间加权收益 (TWR) 对比，输出 α / β / R² / 归因 tier；仪表盘可直接可视化
+> - **组合净值曲线** — `portfolio.nav_history.get` 输出组合每日 NAV + 基准 overlay（同图对比）
+> - **现金分红归因** — 新增 `stock_dividend` 数据资产，红利现金流自动进入 P&L 归因（不含分红的 P&L 会低估长期收益）
+> - **策略回测 sandbox 模式** — `process.ingestion.execute --mode=backtest` 独立沙盒，不写生产 pipeline，Agent 可放心试错
+> - **告警治理 v1** — 每规则 `alert.snooze` / `alert.acknowledge`，Freemarker webhook 自定义 payload，基于 `data_asset.last_data_refresh_at` 的自动 stale 屏蔽（数据没更新不再乱叫）
+> - **实时行情双路由** — `dataasset.data.getRealtime` 新 skill，跟 `dataasset.data.get` (历史 EOD) 分离，Agent 按需求路由
+> - **数据新鲜度自动派生** — dashboard freshness 从底层 widget 资产自动推导，无需手动配置
 
 > 🆕 **What's New v1.0.31** (2026-06-25)：**`stock_day` 和 `stock_minutes` 现在统一覆盖 A 股 + 港股**——一张表 8500+ 股票（A 股 5500+ + 港股 3000+ 全谱），日线 + 分钟 K 线都进入生产可用。是中文圈散户能用的少数有完整 HK 历史 + 实时刷新的 backend 之一。Bearer Token 即用 `dataasset.data.get` 查询，按 ticker 自动路由——A 股 `000001` / 港股 `00700.HK` 同一接口同一 schema。详见下方「数据资产可用性」表。
 
@@ -94,6 +115,7 @@ Hermes / Claude / GPT / OpenClaw 任何 Agent，通过一个 Bearer Token 即可
 | `metal_day` | 🟢 **生产可用** | SGE 黄金 / 白银日线 | 日 | 上海黄金交易所 |
 | `stock_forecast` | 🟢 **生产可用** (NEW 2026-06-22) | A 股上市公司业绩预告；11 年历史 82,457 行已回填 | 日 | 财报季 (1/4/7/10 月底前后) 集中发布 |
 | `stock_express` | 🟢 **生产可用** (NEW 2026-06-22) | A 股上市公司业绩快报；11 年历史 19,945 行已回填 | 日 | 比业绩预告更精确但发布更稀疏 |
+| `stock_dividend` | 🟢 **生产可用** (NEW v1.0.32) | A 股上市公司现金分红事件；进入 `portfolio.attribution` 归因 | 事件驱动 | 除权除息日发布 |
 | `stock_us` | ⚫ **未实现** | 美股日线 | — | 产品 / 预算待定 |
 
 **对 Agent 的指导**：调用 `dataasset.list` 看完整列表；标 🔴 / ⚫ 的资产请避免在策略里硬编码依赖。`dataasset.metadata.get` (2026-06-22 新上) 可查每张表的 `lastUpdated` / `expectedUpdateCadence` / `cronExpression` 来判断当前状态。
@@ -350,11 +372,11 @@ scripts/lg_agent_exec.sh "{
 > 当前公开版 skill 仅包含只读能力与常规非破坏性写操作。删除、终止、撤销、系统级评估、审批流等高风险/管理类操作不在该公开版 skill 范围内。
 > 风险标记：🟢 low / 🟡 medium / 🔴 high。所有 `GET` 技能默认对会话用户开放；写操作需显式授予 scope。
 
-> 📦 **Request shape**: skill 网关只读 `params` 字段下的 `pathParams` / `query` / `body`。**顶层** `pathParams` / `body` 会被静默丢弃。所有调用都必须用 envelope 形式：
+> 📦 **Request shape**: canonical envelope —— 推荐 `params` 字段下嵌套 `pathParams` / `query` / `body`。**向后兼容（自 2026-06-29 起）**：顶层 `pathParams` / `query` / `body` 会被网关自动折叠进 `params`（仅当 `params.<field>` 缺失时；非对象值跳过）。嵌套和顶层字段同时出现时，嵌套字段优先生效。所有调用都应优先用 envelope 形式：
 > ```json
 > {"skillId": "...", "params": {"pathParams": {...}, "query": {...}, "body": {...}}}
 > ```
-> 历史踩坑：2026-05-07 一次 backfill 因为漏写 `params:` 包裹，`-target_day_id 20260506` 没到 broker，python_script 拿到 `target_day_id=None` 跑了一轮空 SELECT。
+> 历史踩坑：2026-05-07 一次 backfill 因为漏写 `params:` 包裹（且当时 `body` 字段没有 fallback），`-target_day_id 20260506` 没到 broker，python_script 拿到 `target_day_id=None` 跑了一轮空 SELECT。2026-06-29 把 `query`/`body` 的 fallback 加齐；同期发现的 `dataasset.data.get` filter 被静默丢弃就是同源问题（用旧顶层 shape 时 filter 没注入 URL，看着 SUCCESS 但实际未过滤）。
 
 **Update 2026-05-21**: The gateway now supports per-skill `paramAliases` for snake_case ↔ camelCase
 query-param translation. `dataasset.data.get` was the first skill to opt in (filter_column /
@@ -512,7 +534,9 @@ Ops 流程几乎总是先 `schedule.instance.list`（或 `schedule.job.by_proces
 | `dataasset.get` | GET | 获取资产详情 | 🟢 |
 | `dataasset.schema.get` | GET | 获取资产 schema（列名/类型）；支持 `?refresh=true` 绕过缓存实时重新采集 | 🟢 |
 | `dataasset.metadata.get` | GET | 获取资产富元数据：20 个字段，包含 `lastUpdated`（最近刷新时间）、`expectedUpdateCadence`（调度批次类型，来自关联 Job）、`cronExpression`（cron 表达式）、`sourceDescription`（数据源描述）。Bug #50 后续，用于程序化判断资产新鲜度。 | 🟢 |
-| `dataasset.data.get` | GET | 查询资产数据（盈亏、行情等）；支持 `filter_op` 过滤运算符（见下方详情） | 🟢 |
+| `dataasset.data.get` | GET | 查询资产数据（盈亏、行情等，全量历史）；支持 `filter_op` 过滤运算符（见下方详情）。MC 数据源资产速度较慢（2-5s）但包含完整历史 | 🟢 |
+| `dataasset.data.getRealtime` | GET | 查询资产的 **实时镜像数据源**（PG 热窗口，最近 365 天）；低延迟，适合仪表盘 / 实时 P&L。资产未配置 `realtimeDataSource` 时返回 `{success:false, message:"This asset has no realtime mirror"}`，不抛异常。路径：`GET /api/data-assets/{id}/data-realtime` | 🟢 |
+| `dataasset.history.field-as-of` | GET | 点状时间（PIT）股票状态字段查询：`is_st`（ST/暂停挂牌）、`market_board`（板块）、`delisted`（退市）、`industry`（申万行业分类）。返回指定股票在某日期上的历史状态快照。依赖 PR-B ETL 完成首次回填后方可返回实际数据；回填未完成前返回 `data:null`。详见下方「dataasset.history.field-as-of」节。 | 🟢 |
 | `dataasset.update` | PUT | **全量替换**数据资产元数据（`PUT /api/data-assets/{id}`）。**想只改 description/tags/allowSubscription？用 `dataasset.patch` PATCH，避免误改 sensitivityLevel 等不可改字段。** | 🟢 |
 | `dataasset.patch` | PATCH | 部分更新数据资产元数据（`PATCH /api/data-assets/{id}`）。**字段掩码语义**：仅 `description` / `tags` / `allowSubscription` 三个安全字段可被更新；缺失字段、显式 `null`、**以及空字符串 `""`** 都视为"跳过"。**严格拒绝**：`sensitivityLevel`（含别名 `sensitivity_level` / `securityLevel` / `level`）— 敏感级是 MONOTONIC，调整必须走专用 sensitivity-change 路径；`assetName` / `assetType` / `tableName` / `teamName` 等标识符也拒绝。**`allowSubscription=true` 在 INTERNAL 资产上要求 `tags` 包含 `permission_field:<col>`，否则返回 `code:"PERMISSION_FIELD_REQUIRED"`**（INLINE 复刻 PUT 路径的 publish-validation guard）。**此 skill 需要 `dataasset.patch` scope（独立于 `dataasset.update`），现有 token 须重新签发方可使用。** | 🟢 |
 
@@ -645,6 +669,139 @@ Gateway 支持 snake_case 别名（`filter_column` / `filter_value` / `filter_op
 - `like` 和 `contains` 行为相同：平台都生成 `LIKE '%val%'` 子串匹配。如需自定义 LIKE 模式（前缀 / 后缀 / 通配符位置），目前需在调用方 SQL 端处理或走 `POST /api/data-assets/{id}/query`。
 - **未知运算符拒绝**（不静默降为 eq）：传入不在上表中的值（如 `filterOp=between`）→ HTTP 200 `{"success": false, "message": "Validation Failed: Unsupported filter operator: between"}`。
 - `order_direction`（snake_case；camelCase 写法为 `orderDirection`）接受 `asc` / `desc`（大小写不敏感），默认 `asc`。
+
+---
+
+##### `dataasset.data.get` vs `dataasset.data.getRealtime` — 路由选择指南
+
+> **用哪个？**
+> - `dataasset.data.get` / `lg.get_asset_data` — 分析型 / 历史全量 / 完整数据。底层存储是资产的主数据源（Step 4 切换后为 MC；速度较慢 ~2-5s，但包含完整历史和全列）。
+> - `dataasset.data.getRealtime` / `lg.get_asset_data_realtime` — 实时型 / 低延迟 / 热窗口（最近 365 天）。底层存储是资产的 `realtimeDataSource`（PG 镜像）。对于未配置 `realtimeDataSource` 的资产返回 `{success:false, message:"This asset has no realtime mirror"}` — 这是正常业务返回，不是异常，调用方应处理而非视为错误。
+
+两个函数接受完全相同的参数（`asset_identifier, page, size, order_by, filter_column, filter_value, filter_operator`），返回 shape 相同，差异仅在于：
+1. 路由目标不同（`/data` vs `/data-realtime`）。
+2. `get_asset_data_realtime` **永不抛出异常**；所有错误（无镜像、类型不符、连接失败、认证失败）均以 `{success:false, message:...}` 返回，调用方 **必须** 检查 `result["success"]`。
+
+---
+
+##### `dataasset.history.field-as-of` — 股票 PIT 状态字段查询 (#13 PR-A/C)
+
+路径：`GET /api/data-assets/history/field-as-of`
+
+**Auth：** 标准 Spring Security session 或 Bearer token（`lgatk_…`）。GET 请求无需 CSRF token。Bearer token 需要 scope `dataasset.history.field-as-of`（PR-A 新增；现有 token 须重新签发方可使用）。
+
+**依赖：** 底层表（`stock_st_history` / `stock_board_history` / `stock_delist_history` / `stock_industry_history`）由 PR-B ETL 进程回填。ETL 未运行前所有查询均返回 `data:null`，不会报错。
+
+| 参数 | 类型 | 必填 | 说明 |
+|---|---|:-:|---|
+| `field` | String | 是 | 字段名，固定四选一：`is_st` / `market_board` / `delisted` / `industry` |
+| `stockNum` | String | 是 | 股票代码，如 `600519.SH` / `00700.HK` |
+| `asOfDate` | String | 是 | 查询日期，ISO-8601 格式 `YYYY-MM-DD` |
+| `swVintage` | String | 否 | 仅 `field=industry` 时有效：`SW2014` 或 `SW2021`。缺省时自动按 `asOfDate` 选择（`asOfDate < 2021-10-01` → SW2014；否则 SW2021） |
+
+**`field` 语义说明：**
+
+| field | 返回类型 | 说明 |
+|---|---|---|
+| `is_st` | Boolean | `true` = ST/特别处理/暂停挂牌；`false` = 正常；`null` = 无历史记录（ETL 未回填或日期早于数据） |
+| `market_board` | String | `主板` / `创业板` / `科创板` / `北交所` / `中小板`（v1 每日刷新，非事件驱动，精度至天）|
+| `delisted` | Boolean | `true` = `delist_date <= asOfDate`；`false` = 未退市或无记录（默认 False，不返回 null）|
+| `industry` | Object | 申万行业分类对象（见下方结构），`null` = 无记录 |
+
+**`industry` 值对象结构：**
+
+```json
+{
+  "l1_code":    "110000",
+  "l1_name":    "食品饮料",
+  "l2_code":    "110201",
+  "l2_name":    "白酒",
+  "sw_vintage": "SW2014"
+}
+```
+
+**响应示例（field=is_st，股票在 ST 状态）：**
+
+```json
+{
+  "success": true,
+  "data": {
+    "field":        "is_st",
+    "stockNum":     "000666.SZ",
+    "asOfDate":     "2022-06-01",
+    "value":        true,
+    "validFrom":    "2021-03-15",
+    "validTo":      null,
+    "source":       "tushare-namechange",
+    "changeReason": "特别处理"
+  },
+  "message": "OK"
+}
+```
+
+**响应示例（field=industry，自动选择 SW2014）：**
+
+```json
+{
+  "success": true,
+  "data": {
+    "field":    "industry",
+    "stockNum": "600519.SH",
+    "asOfDate": "2020-06-15",
+    "value": {
+      "l1_code":    "110000",
+      "l1_name":    "食品饮料",
+      "l2_code":    "110201",
+      "l2_name":    "白酒",
+      "sw_vintage": "SW2014"
+    },
+    "validFrom": "2014-01-01",
+    "validTo":   null,
+    "source":    "tushare-index-member"
+  },
+  "message": "OK"
+}
+```
+
+**无历史记录（ETL 未回填 / 日期早于数据）：**
+
+```json
+{
+  "success": true,
+  "data": null,
+  "message": "No history record found for stockNum=600519.SH, field=is_st, asOfDate=2020-06-15. ETL may not yet have populated this field."
+}
+```
+
+**业务错误（非法 field / 非法日期格式）：**
+
+```json
+{
+  "success": false,
+  "message": "Unsupported history field: 'foo'. Supported: [is_st, market_board, delisted, industry]"
+}
+```
+
+**Python 快捷用法（via `lg_utils.history`）：**
+
+```python
+from datetime import date
+from lg_utils.history import is_st_at, market_board_at, is_delisted_at, industry_at, load_st_history
+
+# 单日点查
+st      = is_st_at("000666.SZ", date(2022, 6, 1))           # True / False / None
+board   = market_board_at("688001.SH", date(2022, 6, 1))    # "科创板" / None
+delist  = is_delisted_at("000001.SZ", date(2023, 1, 1))     # True / False (never None)
+ind     = industry_at("600519.SH", date(2020, 6, 15))       # dict with 5 keys / None
+
+# 获取某股票全部 ST 历史事件列表（按 valid_from 升序）
+events = load_st_history("000666.SZ")
+# [{'valid_from': '2001-06-04', 'valid_to': '2001-09-18', 'is_st_value': True, ...}, ...]
+```
+
+`lg_utils.history` 模块通过 executor 内部 HTTP 调用同一个 REST endpoint，fail-soft 语义与 REST API 一致（无记录返回 `None`/`[]`，不抛异常）。
+
+---
 
 ### 看板 (Dashboard)
 
@@ -1206,7 +1363,8 @@ print(f"backtest persisted: id={result['id']}, name={result['name']}")
 | `lg_utils.get_variable(key, default)` / `lg_utils.get_variables()` | 读取流程上下文变量（由前端/调度器传入；`get_variables()` 返回全集 dict） |
 | **`lg_utils.put_variable(key, value)`** ✨ NEW | 把变量回写到当前 session 的 JobPool，下游 step 的 `${key}` 替换能解析到。`value` 必须 JSON-serializable，单个值 ≤ 64 KB。`key` 不能以 `_lg_` 开头（保留给系统）。同 step 内多次调用累积；用于把 Python 脚本计算出的字符串/数字/小型 dict 传给后续 step（webhook messageTemplate / SQL where 子句等） |
 | `lg_utils.get_context()` | 当前团队快照：`assets / datasources / dashboards / processes` |
-| `lg_utils.get_asset_data(asset_identifier, page, size, order_by, filter_column, filter_value, filter_operator=None)` | 分页拉团队有权限的资产数据；返回 `{success, data, totalElements, totalPages, ...}`。`filter_value` 支持 list/tuple → IN 查询；`filter_operator` 支持 `eq / ne / in / not_in / like / gt / gte / lt / lte / contains`，默认 `contains` |
+| `lg_utils.get_asset_data(asset_identifier, page, size, order_by, filter_column, filter_value, filter_operator=None)` | 分页拉团队有权限的资产数据（历史全量，步骤 4 切换后走 MC）；返回 `{success, data, totalElements, totalPages, ...}`。`filter_value` 支持 list/tuple → IN 查询；`filter_operator` 支持 `eq / ne / in / not_in / like / gt / gte / lt / lte / contains`，默认 `contains`。失败时 **抛出 RuntimeError** |
+| **`lg_utils.get_asset_data_realtime(asset_identifier, page, size, order_by, filter_column, filter_value, filter_operator=None)`** | 与 `get_asset_data` 参数完全相同；内部走 `GET /api/data-assets/{id}/data-realtime`，查询资产的 **实时镜像数据源**（PG 热窗口，最近 365 天）。**永不抛出异常**——所有错误以 `{success:false, message:...}` 返回（无镜像 / MC 类型误配 / 连接失败 / 认证失败）；调用方须检查 `result["success"]`。适合仪表盘、实时 P&L 等低延迟场景。与 `dataasset.data.getRealtime` skill 对应。 |
 | `lg_utils.get_portfolio_positions(stock_num=None, page=1, size=500)` | 当前团队持仓（每行附带最新的一条 per-stock 推荐 `recommendation`，由内部 API 按 update_time 取最近） |
 | **`lg_utils.get_trading_records(account_id=None, market=None, stock_num=None, trade_type=None, page=1, size=50)`** ✨ NEW | 拉团队的交易记录（分页 dict，字段 Jackson camelCase 如 `tradeDate / stockNum / tradeType`） |
 | `lg_utils.write_recommendations(items, process_id=None, execution_id=None)` | Python 脚本把 per-stock 推荐（`action/priority/add1/add2/reduce1/reduce2/noMoreAdd/market`）**追加** 到 `process_stock_recommendation`（历史保留，不 upsert）；前端持仓页"推荐"按时间倒序展示历史 |

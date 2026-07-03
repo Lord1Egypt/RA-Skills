@@ -19,49 +19,49 @@ COS Storage Convention:
 
 Usage:
   # Padding by aspect ratio (expand to 16:9)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --aspect-ratio "16:9"
 
   # Padding by aspect ratio (square)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --aspect-ratio "1:1"
 
   # Padding by target pixel size (width + height)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --image-width 1280 --image-height 720
 
   # Specify only target width (height adapts automatically)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --image-width 1920
 
   # Use COS path input
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --cos-input-key "/input/photo.jpg" \
       --aspect-ratio "4:3"
 
   # Use a local file (uploaded to COS automatically)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --local-file "/path/to/image.jpg" \
       --aspect-ratio "16:9"
 
   # Submit task only, do not wait for result (returns TaskId)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --aspect-ratio "16:9" \
       --no-wait
 
   # Dry Run (print request payload only, do not call the API)
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --image-width 1280 --image-height 720 \
       --dry-run
 
   # Specify output directory and download results
-  python scripts/mps_image_padding.py \
+  python3 scripts/mps_image_padding.py \
       --url "https://example.com/image.jpg" \
       --aspect-ratio "16:9" \
       --output-dir "/output/my_padding/" \
@@ -106,7 +106,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -369,6 +369,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     if args.local_file:
@@ -428,7 +434,7 @@ def main():
 
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module is unavailable. Please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -442,7 +448,7 @@ def main():
 
     if task_result is None:
         print("\n⚠️  Polling timed out. The task may still be processing.", file=sys.stderr)
-        print(f"   You can query it manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query it manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     err_msg = task_result.get("ErrMsg") or ""

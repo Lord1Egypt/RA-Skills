@@ -2,9 +2,9 @@
 
 ## 调用说明
 
-- **网关路由**：`POST ehunt/temu/temuCategorySearch`（完整：`https://tool-gateway.linkfox.com/ehunt/temu/temuCategorySearch`）。
+- **网关路由**：`POST ehunt/temu/temuCategorySearch`（完整：`${LINKFOX_TOOL_GATEWAY}/ehunt/temu/temuCategorySearch`）。
 - **MCP 展示名**：Temu 品类查询（确切工具名以当前环境下发的工具元数据为准）。
-- **鉴权**：请求头 `Authorization: <LINKFOXAGENT_API_KEY>`。
+- **鉴权**：请求头 `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取。
 - **数据范围**：查询已写入本地库的 EHunt Temu 品类；库内数据需先通过 **`ehunt/temu/syncTemuCategory`**（MCP 展示名：Temu 品类同步）完成同步。本地检索不计费。
 
 ## 请求参数（JSON）
@@ -46,7 +46,7 @@
 
 - **网关**：`https://tool-gateway.linkfox.com`（可用 `LINKFOX_TOOL_GATEWAY_BASE` 覆盖）
 - **默认路径段**：`ehunt/temu/temuCategorySearch`（可用 `LINKFOX_EHUNT_TEMU_CATEGORY_SEARCH_PATH` 覆盖）
-- **鉴权**：`LINKFOXAGENT_API_KEY`（申请见 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre ）
+- **鉴权**：`LINKFOXAGENT_API_KEY`（申请见 https://skill.linkfox.com/linkfoxskills/guide.htm ）
 
 ```bash
 export LINKFOXAGENT_API_KEY="<your-key>"

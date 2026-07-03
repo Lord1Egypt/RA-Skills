@@ -31,23 +31,23 @@ COS 存储约定：
 
 用法：
   # 短剧单集解说（默认含擦除，输出1个视频）
-  python mps_narrate.py --url https://example.com/drama_ep01.mp4 --scene short-drama
+  python3 mps_narrate.py --url https://example.com/drama_ep01.mp4 --scene short-drama
 
   # COS输入（推荐，使用 --cos-input-key）
-  python mps_narrate.py --cos-input-key /input/drama_ep01.mp4 --scene short-drama
+  python3 mps_narrate.py --cos-input-key /input/drama_ep01.mp4 --scene short-drama
 
   # 短剧三集合并解说，输出3个不同版本
-  python mps_narrate.py \\
+  python3 mps_narrate.py \\
       --url https://example.com/ep01.mp4 \\
       --extra-urls https://example.com/ep02.mp4 https://example.com/ep03.mp4 \\
       --scene short-drama \\
       --output-count 3
 
   # 原视频无字幕，关闭擦除
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
 
   # Dry Run（预览转义后的 ExtendedParameter）
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -84,7 +84,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -361,7 +361,7 @@ def process_media(args):
         else:
             print()
             print(f"提示：任务在后台处理中，可使用以下命令查询进度：")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -377,31 +377,31 @@ def main():
         epilog="""
 示例：
   # URL输入 + 默认场景（short-drama，含擦除），输出到 TENCENTCLOUD_COS_BUCKET/output/narrate/
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
 
   # COS路径输入（推荐，本地上传后使用）
-  python mps_narrate.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_narrate.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key /input/drama.mp4 --scene short-drama
 
   # COS输入（bucket 和 region 自动从环境变量获取）
-  python mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # 原视频无字幕，关闭擦除
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
 
   # 多集视频合并解说（第一集用 --url，后续集用 --extra-urls）
-  python mps_narrate.py \\
+  python3 mps_narrate.py \\
       --url https://example.com/ep01.mp4 \\
       --extra-urls https://example.com/ep02.mp4 https://example.com/ep03.mp4 \\
       --scene short-drama
 
   # 输出3个不同版本的视频
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
 
   # Dry Run（仅打印请求参数）
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
 
   # 不等待任务完成，仅提交
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
 
 预设场景：
   short-drama          短剧视频，画面上有字幕（默认，含擦除）
@@ -453,6 +453,17 @@ def main():
                         help="任务完成后自动下载结果到指定目录（默认：不下载；指定路径后自动下载）")
 
     args = parser.parse_args()
+
+    # 自动加载环境变量（入口处立即执行，确保后续所有函数都能拿到变量）
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  自动加载 env 失败：{e}", file=sys.stderr)
+
     # --url 本地路径自动转换为本地上传模式
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url

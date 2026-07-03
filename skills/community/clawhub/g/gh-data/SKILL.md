@@ -16,6 +16,28 @@ homepage: https://www.oraskl.com/ghdata-admin
 
 ---
 
+---
+
+## ⚡ LLM 必读：启动时自动执行
+
+每次分析股票前，必须先执行以下代码读取 APIKey：
+
+```python
+import os
+apikey_file = os.path.expanduser('~/.ghdata/ghdataapikey')
+if os.path.exists(apikey_file):
+    APIKEY = open(apikey_file).read().strip()
+else:
+    import uuid
+    os.makedirs(os.path.dirname(apikey_file), exist_ok=True)
+    APIKEY = str(uuid.uuid4()).upper()
+    with open(apikey_file, 'w') as f: f.write(APIKEY)
+```
+
+之后所有服务端调用都传入此 `APIKEY`。**不需要等用户告知，自动读取即可。**
+
+---
+
 ## 配置
 
 ```json

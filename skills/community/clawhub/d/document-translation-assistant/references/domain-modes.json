@@ -1,0 +1,99 @@
+{
+  "title": "Domain Translation Modes",
+  "description": "Configuration for each domain mode: terminology, tone, and preservation rules",
+  "version": "1.0.0",
+  "modes": {
+    "tech": {
+      "label": "Technical",
+      "description": "API docs, README, technical guides, developer documentation",
+      "tone": "precise, concise, unambiguous",
+      "preservation_rules": {
+        "code_blocks": "preserve exact (never translate)",
+        "inline_code": "preserve exact",
+        "commands": "preserve exact",
+        "file_paths": "preserve exact",
+        "variable_names": "preserve exact",
+        "cli_output": "preserve exact",
+        "error_messages": "optionally translate for user-facing, preserve for developer-facing",
+        "configuration": "preserve keys, optionally translate values",
+        "comments": "translate if inline, preserve if block-level code comment"
+      },
+      "term_extraction_priority": [
+        "API names", "function/method names", "CLI commands",
+        "protocol names", "error codes", "framework names",
+        "database terms", "cloud service names"
+      ],
+      "common_terms": {
+        "deploy": "部署",
+        "microservices": "微服务",
+        "API gateway": "API 网关",
+        "load balancer": "负载均衡器",
+        "database": "数据库",
+        "authentication": "认证",
+        "authorization": "授权"
+      }
+    },
+    "legal": {
+      "label": "Legal",
+      "description": "Contracts, Terms of Service, privacy policies, legal notices",
+      "tone": "formal, precise, authoritative",
+      "preservation_rules": {
+        "article_numbering": "preserve structure (Article 1, 第一条)",
+        "defined_terms": "capitalize consistently, preserve cross-references",
+        "legal_citations": "preserve exact format",
+        "signature_blocks": "preserve names, dates, titles",
+        "dates": "convert format per locale but keep semantic meaning",
+        "currencies": "preserve amount and currency code",
+        "governing_law_clauses": "translate statute names, preserve citations",
+        "definitions_section": "high-precision translation required",
+        "boilerplate": "standard form, minimal creativity"
+      },
+      "term_extraction_priority": [
+        "defined terms", "legal doctrines", "remedy types",
+        "contract clause categories", "legal entities", "regulatory bodies"
+      ],
+      "common_terms": {
+        "indemnification": "赔偿",
+        "force majeure": "不可抗力",
+        "confidential information": "保密信息",
+        "intellectual property": "知识产权",
+        "breach of contract": "违约",
+        "governing law": "管辖法律",
+        "liquidated damages": "违约金"
+      },
+      "disclaimer": "WARNING: This is an AI-generated translation for reference only. It is NOT a certified legal translation. Consult a qualified legal translator for legally binding documents."
+    },
+    "marketing": {
+      "label": "Marketing",
+      "description": "Landing pages, blog posts, product copy, social media",
+      "tone": "engaging, persuasive, culturally adapted",
+      "preservation_rules": {
+        "brand_names": "never translate",
+        "slogans": "recreate rather than literal translate",
+        "CTAs": "adapt to local convention, not literal",
+        "product_names": "never translate",
+        "testimonials": "preserve meaning, adapt phrasing naturally",
+        "pricing": "convert currency format only on request"
+      },
+      "term_extraction_priority": [
+        "brand names", "product names", "feature names",
+        "USPs", "CTAs", "value propositions"
+      ]
+    },
+    "general": {
+      "label": "General",
+      "description": "Default mode for documents that don't fit other categories",
+      "tone": "natural, fluent, accurate",
+      "preservation_rules": {
+        "headings": "translate preserved structure",
+        "paragraph_text": "translate naturally",
+        "lists": "preserve numbering, translate items",
+        "tables": "preserve structure, translate cell text",
+        "quotes": "preserve attribution, adapt quote naturally"
+      },
+      "term_extraction_priority": [
+        "repeated nouns", "named entities", "acronyms"
+      ]
+    }
+  }
+}

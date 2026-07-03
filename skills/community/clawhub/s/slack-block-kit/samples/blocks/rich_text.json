@@ -1,0 +1,33 @@
+[
+  {
+    "type": "rich_text",
+    "elements": [
+      {
+        "type": "rich_text_section",
+        "elements": [
+          {
+            "type": "text",
+            "text": "Result: ",
+            "style": {
+              "bold": true
+            }
+          },
+          {
+            "type": "text",
+            "text": "gateway came back clean"
+          }
+        ]
+      },
+      {
+        "type": "rich_text_preformatted",
+        "language": "javascript",
+        "elements": [
+          {
+            "type": "text",
+            "text": "const ok = true;\nconsole.log({ ok });"
+          }
+        ]
+      }
+    ]
+  }
+]

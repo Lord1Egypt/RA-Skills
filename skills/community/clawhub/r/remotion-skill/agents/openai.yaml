@@ -1,0 +1,10 @@
+interface:
+  display_name: "Remotion"
+  short_description: "Build React-based videos with Remotion best practices"
+  default_prompt: "Use $remotion to design, debug, or improve a Remotion video composition."
+metadata:
+  tags:
+    - remotion
+    - video
+    - react
+    - animation

@@ -1,5 +1,5 @@
 ## Description: <br>
-Socialcannon helps agents publish, schedule, analyze, and manage social media content across Twitter/X, Facebook, Instagram, LinkedIn, TikTok, and YouTube through the SocialCannon API and optional MCP integration. <br>
+Publish, schedule, and manage social media posts across Twitter/X, Facebook, Instagram, LinkedIn, TikTok, and YouTube with calendar analysis, A/B testing, engagement inbox workflows, content repurposing, timing suggestions, auto-scheduling, and UTM tracking. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Agents use this skill to authenticate with SocialCannon, connect social accounts, create and schedule posts, upload media, inspect calendars and analytics, manage engagement replies, run A/B tests, repurpose content, and generate tracked links. <br>
+External developers and agent users use this skill to operate SocialCannon's social publishing API, including account setup, posting, scheduling, analytics, engagement replies, media uploads, content repurposing, and platform-specific publishing constraints. <br>
 
 ### Deployment Geography for Use: <br>
-Global, subject to SocialCannon availability and the user's connected social-platform accounts, tier limits, and platform policies. <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can perform live public-facing actions, including publishing, replying, deleting posts, disconnecting accounts, repurposing content in post mode, running immediate A/B tests, and uploading media when credentials are available. <br>
-Mitigation: Preview content, verify account and post IDs, confirm destructive or public actions before execution, and prefer scheduled or preview modes when available. <br>
-Risk: The skill requires sensitive SocialCannon client credentials and OAuth-connected social accounts. <br>
-Mitigation: Store credentials in environment variables, restrict access to the agent runtime, and rotate or revoke credentials if exposure is suspected. <br>
-Risk: Uploaded media can become publicly accessible and platform-specific requirements can cause failed or unintended posts. <br>
-Mitigation: Upload only media intended for public use and verify platform requirements such as TikTok privacy levels and Instagram or TikTok media requirements before posting. <br>
+Risk: The skill can guide actions that publish posts, replies, or repurposed content to connected social accounts. <br>
+Mitigation: Require explicit user approval and review final content, target account, platform options, and schedule before any publishing or public reply action. <br>
+Risk: The skill uses SocialCannon client secrets and bearer tokens for account-level API access. <br>
+Mitigation: Keep client secrets and bearer tokens out of prompts, logs, and shared transcripts; rotate credentials if exposure is suspected. <br>
+Risk: Account disconnect and post deletion endpoints can remove integrations or published content. <br>
+Mitigation: Confirm the specific account or post identifier and the intended irreversible effect before disconnecting accounts or deleting posts. <br>
+Risk: Platform-specific constraints can cause failed or non-compliant posts, especially for TikTok privacy settings and media requirements. <br>
+Mitigation: Check platform capabilities and validation responses before posting; for TikTok, fetch creator info and choose an allowed privacy level before submitting. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/miprinia/socialcannon) <br>
 - [SocialCannon homepage](https://socialcannon.app) <br>
-- [SocialCannon MCP package](https://www.npmjs.com/package/@socialcannon/mcp) <br>
+- [@socialcannon/mcp package](https://www.npmjs.com/package/@socialcannon/mcp) <br>
+- [ClawHub Socialcannon skill page](https://clawhub.ai/miprinia/skills/socialcannon) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with curl examples, JSON request and response shapes, and MCP configuration snippets.] <br>
-**Output Parameters:** [SOCIALCANNON_CLIENT_ID, SOCIALCANNON_CLIENT_SECRET, Bearer token, account IDs, post IDs, media URLs, content, dates, platform options, and endpoint-specific fields.] <br>
-**Other Properties Related to Output:** [Requires curl for REST examples and SocialCannon credentials; generated actions can publish, schedule, delete, reply, upload media, and manage connected accounts.] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
+**Output Format:** [Markdown with curl commands, JSON request and response examples, and MCP configuration snippets] <br>
+**Output Parameters:** [1D] <br>
+**Other Properties Related to Output:** [Requires SocialCannon client credentials and connected social accounts; some workflows can publish, reply publicly, disconnect accounts, or delete posts.] <br>
 
 ## Skill Version(s): <br>
-1.8.0 <br>
+1.8.3 (source: SKILL.md frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

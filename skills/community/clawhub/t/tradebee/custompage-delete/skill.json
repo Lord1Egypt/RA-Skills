@@ -1,0 +1,76 @@
+{
+  "name": "custompage-delete",
+  "description": "A custom page delete skill based on the Tradebee Website Builder Open API. It is used to move one or more custom pages to the recycle bin under a specified site language.",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to delete from, such as `en` or `fr`."
+      },
+      "id_list": {
+        "type": "array",
+        "description": "Required. Custom page ID list, up to 100 items.",
+        "items": {
+          "type": "integer",
+          "description": "Target custom page ID"
+        }
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact custom page delete request after seeing the final language and custom page IDs.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact custom page IDs to be moved to the recycle bin."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact custom page IDs shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "id_list",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  }
+}

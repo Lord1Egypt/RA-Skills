@@ -8,6 +8,7 @@
 - `data`：含 `cargo`、`openvessels` 数组；无则 `[]`。每条船/货单独对象。  
 - 未提及：`null`；日期 `YYYY-MM-DD`；今年缺省年份与 `SKILL.md` Notes 一致。  
 - 港口：尽量 UN/LOCODE；多港用 `+`。  
+- **联系方式**：送大模型前正文须脱敏；**落库前**从原文 `body_text` 抽取 `联系电话`、`即时通讯` 写入 SQLite（见 **`WORKFLOW_2_MAIL.md` §2.3.5**）。  
 - **对用户展示（路由 A）**：货盘「装港消约期开始日期」「装港消约期结束日期」、船盘「OPEN开始日期」「OPEN结束日期」在对话中**合并为一行 `Laycan：yyyy/MM/dd~yyyy/MM/dd`**，**不要**分两行写开始/结束；本 JSON **键名不变**，便于 `charter_facts_tool` 入库。
 
 ## JSON 结构（须严格遵守键名）

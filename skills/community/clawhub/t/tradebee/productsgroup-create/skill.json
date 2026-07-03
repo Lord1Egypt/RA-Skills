@@ -1,0 +1,135 @@
+{
+  "name": "productsgroup-create",
+  "description": "A product group creation skill based on the Tradebee Website Builder Open API. It is used to create a new product group under a specified site language, with support for parent group, group name, tags, and brief description.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code to publish into, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "productsgroup": {
+        "type": "object",
+        "description": "Required. Complete product group payload for the new published product group.",
+        "properties": {
+          "parent_productsgroup_id": {
+            "type": "integer",
+            "description": "Optional. Parent group ID. Omit this field or set `0` to create a top-level group. If provided, select one exact `productsgroup_id` from `productsgroup-read`."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Required. Product group name, up to 200 characters."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Required. Provide 1 to 6 unique keyword tags. Each tag must contain 3 to 50 characters.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. Short plain-text description, up to 4,000 characters."
+          },
+          "section": {
+            "type": "object",
+            "description": "Optional. Product group page custom decoration HTML fragments. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed in each fragment. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit for each fragment is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating `top` or `bottom`, call `rule-get` with the exact selected `language` and the exact matching scene `productsgroup.section.top` or `productsgroup.section.bottom`. Do not guess, translate, normalize, shorten, or rename either `language` or `scene`. The fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method.",
+            "properties": {
+              "top": {
+                "type": "string",
+                "description": "Optional. Product group page header decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with the exact scene value `productsgroup.section.top`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              },
+              "bottom": {
+                "type": "string",
+                "description": "Optional. Product group page footer decoration fragment. HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Generate this fragment only after calling `rule-get` with the exact scene value `productsgroup.section.bottom`, and follow the returned fragment structure rules instead of using inline style attributes as the main styling method."
+              }
+            }
+          }
+        },
+        "required": [
+          "group_name",
+          "tags"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact product group creation request after seeing the final language and payload.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact product group payload to be created. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language and exact product group payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "productsgroup",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Created product group ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the created product group page. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "productsgroup_id",
+          "url"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "productsgroup.parent_productsgroup_id": {
+      "skill": "productsgroup-read",
+      "field": "list[].productsgroup_id",
+      "mode": "select",
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Omit this field or set it to `0` to create a top-level group. If creating a child group, select a parent group ID from `productsgroup-read` under the same language."
+    }
+  }
+}

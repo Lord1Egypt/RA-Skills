@@ -1,0 +1,10 @@
+{
+  "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_WEBHOOK_KEY",
+  "management_webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=MANAGEMENT_WEBHOOK_KEY",
+  "notification_settings": {
+    "send_new_complaint": true,
+    "send_escalation": true,
+    "send_overdue": true,
+    "send_follow_up": true
+  }
+}

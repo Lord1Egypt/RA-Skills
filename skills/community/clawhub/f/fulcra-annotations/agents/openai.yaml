@@ -1,4 +1,4 @@
 interface:
   display_name: "Fulcra Annotations"
   short_description: "Create, list, and record Fulcra annotations from agents."
-  default_prompt: "Create or record a Fulcra annotation."
+  default_prompt: "Create, list, or record a Fulcra annotation only when the user explicitly asks for Fulcra annotation work."

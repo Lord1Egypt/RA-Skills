@@ -1,0 +1,58 @@
+{
+  "description": "Role categories and transferable skill mappings for career advisor.",
+  "version": "1.0.0",
+  "role_families": [
+    {
+      "family": "Engineering (IC)",
+      "roles": ["Senior Engineer", "Staff Engineer", "Principal Engineer"],
+      "core_skills": ["System Design", "Code Review", "Architecture", "Performance Optimization"],
+      "adjacent_roles": ["Tech Lead", "Solution Architect", "SRE"]
+    },
+    {
+      "family": "Engineering Management",
+      "roles": ["Tech Lead", "Engineering Manager", "VP Engineering"],
+      "core_skills": ["Team Leadership", "Project Management", "Stakeholder Management", "Technical Strategy"],
+      "adjacent_roles": ["Product Manager", "CTO"]
+    },
+    {
+      "family": "Data & AI",
+      "roles": ["Data Engineer", "Data Scientist", "ML Engineer", "AI Engineer"],
+      "core_skills": ["Python", "SQL", "Machine Learning", "Statistics", "Data Pipelines"],
+      "adjacent_roles": ["Software Engineer", "BI Analyst", "Research Scientist"]
+    },
+    {
+      "family": "Infrastructure & DevOps",
+      "roles": ["SRE", "DevOps Engineer", "Cloud Architect", "Platform Engineer"],
+      "core_skills": ["Linux", "Kubernetes", "CI/CD", "Monitoring", "Cloud (AWS/GCP/Azure)"],
+      "adjacent_roles": ["Backend Engineer", "Security Engineer"]
+    },
+    {
+      "family": "Product & Design",
+      "roles": ["Product Manager", "Technical Product Manager", "Product Designer"],
+      "core_skills": ["User Research", "Roadmapping", "Data Analysis", "Cross-functional Communication"],
+      "adjacent_roles": ["Engineering Manager", "Growth Lead"]
+    }
+  ],
+  "transferable_skill_map": {
+    "Software Engineer → AI Engineer": {
+      "overlap_skills": ["Python", "System Design", "Data Structures"],
+      "gap_skills": ["PyTorch/TensorFlow", "MLOps", "Statistics"],
+      "bridge_effort": "Moderate"
+    },
+    "Backend → SRE": {
+      "overlap_skills": ["Linux", "Networking", "Databases"],
+      "gap_skills": ["Kubernetes", "Monitoring Stack", "Incident Response"],
+      "bridge_effort": "Easy"
+    },
+    "Engineer → Product Manager": {
+      "overlap_skills": ["Technical Understanding", "Problem Solving", "Data Analysis"],
+      "gap_skills": ["User Research", "Roadmapping", "Stakeholder Management"],
+      "bridge_effort": "Hard"
+    }
+  },
+  "difficulty_tiers": {
+    "Easy": {"timeline_months": "1-3", "success_rate": 0.8},
+    "Moderate": {"timeline_months": "3-6", "success_rate": 0.6},
+    "Hard": {"timeline_months": "6-12", "success_rate": 0.4}
+  }
+}

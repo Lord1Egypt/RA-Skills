@@ -1,5 +1,5 @@
 ## Description: <br>
-Story Long Write helps agents plan, draft, revise, and maintain long-form Chinese web fiction projects, including worldbuilding, characters, outlines, chapters, and continuity tracking. <br>
+Assists long-form Chinese web-novel creation from concept and outline through chapter drafting, revision, continuity tracking, and quality checks. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,42 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Fiction authors and writing agents use this skill to develop long-form web novels from topic selection through setting, outline, drafting, revision, and quality checks. It is intended for dedicated fiction projects where the agent can create and update project files for chapters, outlines, references, and continuity tracking. <br>
+Writers and writing agents use this skill to plan, draft, continue, and revise serialized Chinese web novels while maintaining outlines, character state, plot threads, pacing, and style constraints. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill is designed to create and modify outlines, chapters, and tracking files. <br>
-Mitigation: Install and run it only in dedicated fiction project workspaces, and review file changes before accepting them. <br>
-Risk: Comparator-book workflows and reusable plot modules could be applied too literally. <br>
-Mitigation: Use references for high-level inspiration and original story development; replace characters, events, scenes, and plot beats rather than reworking another author's specific material. <br>
-Risk: Some writing guidance includes gendered audience assumptions. <br>
-Mitigation: Review those assumptions for the intended readership and override them when they do not fit the project. <br>
-Risk: The included punctuation normalization script can rewrite prose punctuation in target chapter files. <br>
-Mitigation: Run normalization on selected chapter files only and review the diff when preserving exact punctuation is important. <br>
+Risk: The skill can create, rewrite, and normalize story project files during drafting and revision. <br>
+Mitigation: Install it in a dedicated writing project, keep backups, and review batch edits before relying on them. <br>
+Risk: Dialogue and conflict guidance may include aggressive fictional characterization advice. <br>
+Mitigation: Treat this material as fiction-writing guidance only, not as real-life communication coaching. <br>
+Risk: Generated prose, outlines, and continuity updates may introduce plot, style, or continuity errors. <br>
+Mitigation: Review outputs against the outline, character state, and quality checklist before publishing or continuing the story. <br>
 
 
 ## Reference(s): <br>
-- [Story Long Write on ClawHub](https://clawhub.ai/worldwonderer/skills/story-long-write) <br>
-- [OpenClaw source link from metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Artifact Protocols](references/artifact-protocols.md) <br>
-- [Daily Writing Workflow](references/workflow-daily.md) <br>
-- [Revision Workflow](references/workflow-revision.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [Anti-AI Writing Guide](references/anti-ai-writing.md) <br>
-- [Banned Words](references/banned-words.md) <br>
+- [OpenClaw source metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
+- [Artifact protocols](references/artifact-protocols.md) <br>
+- [Daily continuation workflow](references/workflow-daily.md) <br>
+- [Revision workflow](references/workflow-revision.md) <br>
+- [Quality checklist](references/quality-checklist.md) <br>
+- [Anti-AI writing guide](references/anti-ai-writing.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose, project files, and inline shell commands] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown prose, structured project files, and local script commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese fiction-planning guidance and chapter prose; may create or update outlines, chapters, setting files, tracking files, and quality-check outputs.] <br>
+**Other Properties Related to Output:** [May create or update story project files such as outlines, drafts, setting files, and tracking documents.] <br>
 
 ## Skill Version(s): <br>
-1.1.8 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+1.1.11 (source: server release metadata; skill frontmatter says 1.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

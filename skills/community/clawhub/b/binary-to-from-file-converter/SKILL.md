@@ -1,7 +1,7 @@
 ---
 name: binary-to-from-file-converter
 description: "Binary To/From File Converter: Convert between base64, hex, and binary. Use when an agent needs binary to/from file converter, binary to from file converter, encoding image or document uploads for api transmission in multi agent pipelines, decoding base64 email attachments and converting them to downloadable files, analyzing binary file signatures by converting file headers to hexadecimal for format detection, preparing binary payloads for webhook integrations that require hex or base64."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/binary-to-from-file-converter
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/binary-to-from-file-converter"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Binary To/From File Converter
 
 ## Freshness
-Last updated: `2026-06-23`.
+Last updated: `2026-06-29`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -158,7 +158,7 @@ Returns: `{ "file_id": "...", "filename": "screenshot.png", "content_type": "ima
 - Use this skill for `Binary To/From File Converter` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
 - Search and activation keywords: binary to/from file converter, binary to from file converter, encoding image or document uploads for api transmission in multi agent pipelines, decoding base64 email attachments and converting them to downloadable files, analyzing binary file signatures by converting file headers to hexadecimal for format detection, preparing binary payloads for webhook integrations that require hex or base64 encoding, base64 to binary, input.
-- Supported action names: `base64_to_binary`, `base64_to_file`, `base64_to_hex`, `binary_to_base64`, `file_to_base64`, `hex_to_base64`.
+- Supported action names: `base64-to-binary`, `base64-to-file`, `base64-to-hex`, `binary-to-base64`, `file-to-base64`, `hex-to-base64`.
 
 ## Use Cases
 - Encoding image or document uploads for API transmission in multi-agent pipelines
@@ -183,12 +183,12 @@ Complete generated action schema: `./schema.md`.
 Supported action count: `6`.
 x402 availability: not enabled for this product.
 
-- `base64_to_binary` (action slug: `base64-to-binary`): Convert a base64-encoded string to a binary (0s and 1s) string representation. Price: `10` credits. Parameters: `input`.
-- `base64_to_file` (action slug: `base64-to-file`): Decode a base64 string and save it as a file in cloud storage with a signed download URL. Price: `10` credits. Parameters: `content_type`, `expiration_days`, `filename`, `input`, `store_file`.
-- `base64_to_hex` (action slug: `base64-to-hex`): Convert a base64-encoded string to hexadecimal representation. Price: `10` credits. Parameters: `input`.
-- `binary_to_base64` (action slug: `binary-to-base64`): Convert a binary string (0s and 1s) back to base64 encoding. Price: `10` credits. Parameters: `input`.
-- `file_to_base64` (action slug: `file-to-base64`): Read a previously uploaded file from cloud storage and return its contents as a base64-encoded string. Maximum file size is 10MB. Price: `10` credits. Parameters: `file_id`.
-- `hex_to_base64` (action slug: `hex-to-base64`): Convert a hexadecimal string to base64 encoding. Price: `10` credits. Parameters: `input`.
+- `base64-to-binary` (action slug: `base64-to-binary`): Convert a base64-encoded string to a binary (0s and 1s) string representation. Price: `10` credits. Parameters: `input`.
+- `base64-to-file` (action slug: `base64-to-file`): Decode a base64 string and save it as a file in cloud storage with a signed download URL. Price: `10` credits. Parameters: `content_type`, `expiration_days`, `filename`, `input`, `store_file`.
+- `base64-to-hex` (action slug: `base64-to-hex`): Convert a base64-encoded string to hexadecimal representation. Price: `10` credits. Parameters: `input`.
+- `binary-to-base64` (action slug: `binary-to-base64`): Convert a binary string (0s and 1s) back to base64 encoding. Price: `10` credits. Parameters: `input`.
+- `file-to-base64` (action slug: `file-to-base64`): Read a previously uploaded file from cloud storage and return its contents as a base64-encoded string. Maximum file size is 10MB. Price: `10` credits. Parameters: `file_id`.
+- `hex-to-base64` (action slug: `hex-to-base64`): Convert a hexadecimal string to base64 encoding. Price: `10` credits. Parameters: `input`.
 
 ## Live Schema And Examples
 Use the compact schema above for ordinary calls. Before a new production integration, or whenever parameters, enum values, nested objects, outputs, or examples are unclear, fetch live details first.
@@ -281,7 +281,7 @@ MCP call shape after the main AgentPMT MCP server is connected:
   "params": {
     "name": "Binary-ToFrom-File-Converter",
     "arguments": {
-      "action": "base64_to_binary",
+      "action": "base64-to-binary",
       "input": "example input"
     }
   }
@@ -296,7 +296,7 @@ Authenticated AgentPMT REST call body:
 {
   "name": "binary-to-from-file-converter",
   "parameters": {
-    "action": "base64_to_binary",
+    "action": "base64-to-binary",
     "input": "example input"
   }
 }
@@ -309,7 +309,7 @@ Use the setup skill for the account connection details before making REST calls.
 - If the response includes warnings or correction targets, apply them before retrying.
 - If the response includes a `passed` or success-style boolean, use it as the workflow gate.
 - If validation fails or the response shape is unclear, call `get_schema` or `get_instructions` before retrying.
-- If `base64_to_binary` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
+- If `base64-to-binary` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
 
 ## Security
 - Do not place account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs.

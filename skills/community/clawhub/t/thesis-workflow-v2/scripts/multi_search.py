@@ -23,6 +23,7 @@ multi_search.py - 多工具并行检索引擎
 """
 
 import json
+import os
 import subprocess
 import threading
 import time
@@ -159,7 +160,18 @@ def _arxiv_search(query: str, max_results: int = 3) -> List[SearchResult]:
 def _openalex_search(query: str, max_results: int = 3) -> List[SearchResult]:
     """OpenAlex 学术文献搜索（通过 scholar-search.py）"""
     try:
-        script_path = "/Users/hehe9737/.openclaw/workspace/skills/academic-research/scripts/scholar-search.py"
+        # 动态计算路径，避免硬编码 home 目录
+        _skill_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        _candidate = os.path.normpath(os.path.join(
+            _skill_root, "..", "..", "academic-research", "scripts", "scholar-search.py"
+        ))
+        # Fallback：直接用 openclaw workspace 下 sibling skill 的绝对路径
+        if os.path.exists(_candidate):
+            script_path = _candidate
+        else:
+            script_path = os.path.expanduser(
+                "~/.openclaw/workspace/skills/academic-research/scripts/scholar-search.py"
+            )
         cmd = [
             "python3", script_path,
             "search", query,

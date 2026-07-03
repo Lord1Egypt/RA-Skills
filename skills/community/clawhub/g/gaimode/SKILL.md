@@ -1,3 +1,14 @@
+---
+name: gaimode
+description: "Perform Google AI Mode searches using your local Google cookies to get live sports scores, stock prices, news, weather, and AI summaries."
+source: ClawHub
+version: 1.1.0
+tags: [ai, google, realtime, search]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Google AI Mode Search
+
 # gaimode - Google AI Mode Search
 
 **Search Google AI Mode from any OpenClaw agent!**

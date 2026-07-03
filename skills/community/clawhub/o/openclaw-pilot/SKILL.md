@@ -1,3 +1,14 @@
+---
+name: openclaw-pilot
+description: "Convert rough project ideas into a human-readable blueprint and a clean OpenClaw execution packet for safe, scoped implementation and continuation."
+source: ClawHub
+version: 0.3.0-beta.2
+tags: [execution, openclaw, orchestration, planning, project-planning, prompt-engineering, workflow]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# OpenClaw Pilot
+
 # OpenClaw Pilot
 
 Compile rough ideas into an executable blueprint and a clean OpenClaw execution packet.

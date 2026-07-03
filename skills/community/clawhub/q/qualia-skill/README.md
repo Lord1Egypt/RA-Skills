@@ -29,33 +29,74 @@ More models coming soon.
 
 ## Setup
 
-1. Get a Qualia API key from the [Qualia app](https://app.qualiastudios.dev/)
-2. Set the environment variable:
-   ```bash
-   export QUALIA_API_KEY="your-api-key"
-   ```
+### 1. Install from ClawHub / OpenClaw
 
-### Verify your install
+Use the short ClawHub slug:
+
+```bash
+openclaw skills install qualia-skill
+```
+
+Current OpenClaw installers may **not** accept owner-qualified slugs such as `@fabbe1999/qualia-skill` or `fabbe1999/qualia-skill`. If either of those fails, install with the short slug above.
+
+Manual install is also fine:
+
+```bash
+mkdir -p ~/.openclaw/workspace/skills
+git clone https://github.com/fabbe1999/qualia-agent-skill ~/.openclaw/workspace/skills/qualia-skill
+```
+
+### 2. Configure the API key
+
+Get a Qualia API key from the [Qualia app](https://app.qualiastudios.dev/) under Settings -> API Keys.
+
+For a shell session:
+
+```bash
+export QUALIA_API_KEY="your-api-key"
+```
+
+For OpenClaw, add the key under `skills.entries.qualia.env` in `~/.openclaw/openclaw.json`:
+
+```json5
+{
+  skills: {
+    entries: {
+      qualia: {
+        enabled: true,
+        env: {
+          QUALIA_API_KEY: "your-api-key"
+        }
+      }
+    }
+  }
+}
+```
+
+You can also use OpenClaw's `apiKey` secret-ref mechanism if your installation uses managed secrets. Keep the key out of prompts, screenshots, and git.
+
+### 3. Verify the skill is active and usable
+
+After installing, start a new agent turn/session so OpenClaw reloads workspace skills. Then run:
+
+```bash
+python3 ~/.openclaw/workspace/skills/qualia-skill/scripts/qualia.py doctor
+```
+
+Or, from inside this repo:
 
 ```bash
 python3 scripts/qualia.py doctor
 ```
 
-Three checks (API key set, auth/connectivity, models endpoint), PASS/FAIL each, exit 0 when all pass. Run it first; it catches a bad key or network issue before you waste a training launch.
+Three checks (API key set, auth/connectivity, models endpoint), PASS/FAIL each, exit 0 when all pass. Run it first; it catches a missing config entry, bad key, or network issue before you waste a training launch.
 
-### OpenClaw
+If `openclaw skills install` says installation completed but the agent does not mention the Qualia skill on the next turn, check that:
 
-Copy this skill to your workspace:
-```bash
-cp -r qualia-agent-skill ~/.openclaw/workspace/skills/qualia
-```
-
-Or install via ClawHub (coming soon):
-```bash
-clawhub install qualia
-```
-
-Then add `"qualia"` to your agent's skills list in `openclaw.json`.
+1. the files exist at `~/.openclaw/workspace/skills/qualia-skill/SKILL.md`;
+2. the skill is not disabled under `skills.entries.qualia.enabled`;
+3. `QUALIA_API_KEY` is configured for the agent environment; and
+4. you started a fresh agent turn/session after installing.
 
 ### Claude Code / Other Agents
 

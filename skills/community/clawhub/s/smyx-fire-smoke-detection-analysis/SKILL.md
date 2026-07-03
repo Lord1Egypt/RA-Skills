@@ -1,7 +1,7 @@
 ---
 name: "fire-smoke-detection-analysis"
 description: "Detects fire and smoke in video scenes. Supports both video stream and image analysis. Suitable for fire early warning scenarios such as security surveillance, forest fire prevention, and industrial parks. | 烟火检测技能，对视频场景中火情和烟雾进行检测，支持视频流和图片检测，适用于安防监控、森林防火、工业园区等火灾预警场景"
-version: "1.0.6"
+version: "1.0.7"
 license: "MIT-0"
 ---
 

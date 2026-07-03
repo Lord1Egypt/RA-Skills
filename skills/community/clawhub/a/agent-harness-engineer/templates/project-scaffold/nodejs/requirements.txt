@@ -1,0 +1,18 @@
+# Node.js Agent项目依赖
+
+# LLM客户端
+@anthropic-ai/sdk
+openai
+axios
+
+# 数据处理
+cheerio
+js-yaml
+dotenv
+
+# 测试
+jest
+
+# 开发工具
+nodemon
+eslint

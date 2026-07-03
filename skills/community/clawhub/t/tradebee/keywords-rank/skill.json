@@ -1,0 +1,190 @@
+{
+  "name": "keywords-rank",
+  "description": "Keyword ranking analytics based on the Tradebee Website Builder Open API. It is used to retrieve keyword ranking records, the latest rank value, and rank history.",
+  "version": "2.0.1",
+  "input": {
+    "type": "object",
+    "properties": {
+      "keywords": {
+        "type": "string",
+        "description": "Optional. Exact keyword filter. Omit this field to read all keyword ranking records. If provided, it must be one exact non-empty keyword string. `keywords` and `rank` are mutually exclusive: omit both to read all records, or provide exactly one of them."
+      },
+      "rank": {
+        "type": "integer",
+        "description": "Optional. Top-N rank filter. Omit this field to read all keyword ranking records. If provided, it must be one integer from 1 to 999. For example, `rank=100` means return keywords ranked within the top 100 positions, not only keywords whose rank equals 100. `keywords` and `rank` are mutually exclusive: omit both to read all records, or provide exactly one of them."
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1. Pagination must follow the server-returned `pagination.has_next_page` and `pagination.next_page`. Do not infer pages from `total_page` or manually increment `current_page`. When `has_next_page=true`, `next_page` must be used as the next request page number. When `has_next_page=false`, pagination requests must stop."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Items per page, range 1-10"
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, which may be `null` on failure",
+        "properties": {
+          "pagination": {
+            "type": "object",
+            "description": "Pagination result",
+            "properties": {
+              "current_page": {
+                "type": "integer",
+                "description": "Current page number"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Items per page"
+              },
+              "total_page": {
+                "type": "integer",
+                "description": "Total number of pages"
+              },
+              "total_count": {
+                "type": "integer",
+                "description": "Total number of records"
+              },
+              "has_next_page": {
+                "type": "boolean",
+                "description": "Whether a next page exists"
+              },
+              "next_page": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Next page number, or `null` if there is no next page"
+              }
+            },
+            "required": [
+              "current_page",
+              "page_size",
+              "total_page",
+              "total_count",
+              "has_next_page",
+              "next_page"
+            ]
+          },
+          "list": {
+            "type": "array",
+            "description": "Keyword ranking record list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "keywords_rank_guid": {
+                  "type": "string",
+                  "description": "Unique keyword ranking identifier"
+                },
+                "keywords": {
+                  "type": "string",
+                  "description": "Keyword text"
+                },
+                "referer": {
+                  "type": "string",
+                  "description": "Source URL"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "Latest ranking value. `-1` means unknown."
+                },
+                "rank_history": {
+                  "type": "array",
+                  "description": "Historical ranking records",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rank_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Ranking snapshot date"
+                      },
+                      "popularity": {
+                        "type": "integer",
+                        "description": "Keyword popularity"
+                      },
+                      "rank": {
+                        "type": "integer",
+                        "description": "Historical rank value. `-1` means unknown."
+                      },
+                      "current_url": {
+                        "type": "string",
+                        "description": "Ranked page URL"
+                      },
+                      "search_context": {
+                        "type": "object",
+                        "description": "Search context for the ranking snapshot",
+                        "properties": {
+                          "country": {
+                            "type": "string",
+                            "description": "Search country"
+                          },
+                          "language": {
+                            "type": "string",
+                            "description": "Search language"
+                          },
+                          "referer": {
+                            "type": "string",
+                            "description": "Search source URL"
+                          }
+                        },
+                        "required": [
+                          "country",
+                          "language",
+                          "referer"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "rank_date",
+                      "popularity",
+                      "rank",
+                      "current_url",
+                      "search_context"
+                    ]
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  }
+}

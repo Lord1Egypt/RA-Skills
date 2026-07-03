@@ -49,7 +49,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -75,13 +75,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -337,7 +340,7 @@ def search_by_semantics(args):
         if search_results:
             sample_file_id = search_results[0].get("FileId", "xxx")
             print("💡 Next steps:")
-            print(f"  View media details: python scripts/vod_describe_media.py --file-id {sample_file_id}" +
+            print(f"  View media details: python3 scripts/vod_describe_media.py --file-id {sample_file_id}" +
                   (f" --sub-app-id {sub_app_id}" if sub_app_id else ""))
 
         return result
@@ -360,13 +363,22 @@ def search_by_semantics(args):
 
 
 def main():
+    # Load .env early so argparse `default=os.environ.get(...)` can read TENCENTCLOUD_VOD_SUB_APP_ID
+    # BUG FIX: argparse evaluates default at add_argument time, but .env was previously
+    # loaded inside get_credential(); the timing mismatch left SubAppId as None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD Semantic Media Search Tool — Search video content imported into the knowledge base using natural language',  # NOCA:line-too-long(long SDK parameter or URL string)
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Prerequisites:
   Media files must first be imported into the knowledge base via ImportMediaKnowledge:
-    python scripts/vod_import_media_knowledge.py import \\
+    python3 scripts/vod_import_media_knowledge.py import \\
         --sub-app-id 1500046806 --file-id 5285485487985271487
 
   After import, the large model performs content understanding on the video (summary, ASR, etc.).
@@ -378,53 +390,53 @@ Difference from SearchMedia:
 
 Examples:
   # Basic semantic search
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "beach video with sunset"
 
   # Search by application name + semantic query
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --app-name "Test Application" \\
       --text "scene with someone running"
 
   # Limit number of results
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "meeting discussion content" \\
       --limit 5
 
   # Search only video files
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "cats playing" \\
       --categories Video
 
   # Filter by tags
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "amazing goal" \\
       --tags "sports" "soccer"
 
   # Filter by person (search segments containing specified person)
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "speech content" \\
       --persons "John Doe"
 
   # Specify search task type
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "product introduction" \\
       --task-types AiAnalysis.DescriptionTask
 
   # JSON format output
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "beach video with sunset" \\
       --json
 
   # Preview request parameters (without actual execution)
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "beach video with sunset" \\
       --dry-run
@@ -465,7 +477,7 @@ Examples:
                               help='Show detailed information')
     output_group.add_argument('--json', action='store_true',
                               help='Output the full response in JSON format')
-    output_group.add_argument('--region', default='ap-guangzhou',
+    output_group.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                               help='Region, default ap-guangzhou')
     output_group.add_argument('--dry-run', action='store_true',
                               help='Preview request parameters without actual execution')

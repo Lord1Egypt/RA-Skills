@@ -8,6 +8,7 @@
 - privateKey 必须来自 create_order 云端创单接口返回字段，并仅以内存参数传入本模块。
 """
 
+from typing import Optional
 import base64
 import json
 from datetime import datetime
@@ -27,7 +28,7 @@ ALIPAY_CONFIG = {
 }
 
 
-def _require_runtime_private_key(private_key_string: str | None):
+def _require_runtime_private_key(private_key_string: Optional[str]):
     """Load runtime-only Alipay private key; never persist or print it."""
     if not private_key_string or not str(private_key_string).strip():
         raise ValueError("缺少支付宝 privateKey：必须使用 create_order 接口返回字段，且禁止本地硬编码/落盘。")
@@ -47,7 +48,7 @@ def _alipay_urlencode(params: dict) -> str:
     return "&".join(f"{k}={parse.quote(str(v), safe='')}" for k, v in sorted(params.items()))
 
 
-def extract_private_key_from_order(order_result: dict | None) -> str:
+def extract_private_key_from_order(order_result: Optional[dict]) -> str:
     """从 create_order 返回对象中提取 privateKey；不打印、不保存。"""
     if not isinstance(order_result, dict):
         raise ValueError("创单结果格式异常，无法读取 privateKey。")
@@ -86,7 +87,7 @@ def create_payment_with_cloud_order(
     subject: str,
     package_name: str,
     uses: int,
-    private_key_string: str | None = None,
+    private_key_string: Optional[str] = None,
 ):
     """
     创建支付宝「当面付」二维码（无需跳转H5，直接扫码支付）。
@@ -189,7 +190,7 @@ def _create_h5_payment(
     subject: str,
     package_name: str,
     uses: int,
-    private_key_string: str | None = None,
+    private_key_string: Optional[str] = None,
 ):
     """
     创建支付宝 H5/网页支付链接（降级方案）。
@@ -245,7 +246,7 @@ def _create_h5_payment(
     }
 
 
-def query_alipay_trade_status(out_trade_no: str, private_key_string: str | None = None):
+def query_alipay_trade_status(out_trade_no: str, private_key_string: Optional[str] = None):
     """查询支付宝订单状态；签名私钥必须由调用方以内存参数传入。"""
     private_key = _require_runtime_private_key(private_key_string)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

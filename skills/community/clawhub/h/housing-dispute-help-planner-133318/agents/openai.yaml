@@ -1,0 +1,7 @@
+interface:
+  display_name: "Housing Dispute Help Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $housing-dispute-help-planner to help me People repeatedly need a practical, repeatable way to handle Hello Landing Dispute - Furnished Apartments."
+
+policy:
+  allow_implicit_invocation: true

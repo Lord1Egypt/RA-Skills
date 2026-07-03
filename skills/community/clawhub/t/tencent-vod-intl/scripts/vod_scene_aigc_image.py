@@ -30,7 +30,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -46,13 +46,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -225,7 +228,9 @@ def create_scene_aigc_image_task(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ Wait timed out ({args.max_wait}s), task is still running")
-                print(f"📋 You can query manually later: python scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(long SDK parameter or URL string)
+                print(f"📋 You can query manually later: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")  # NOCA:line-too-long(long SDK parameter or URL string)
+            else:
+                print_task_outputs(wait_result)
 
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -303,6 +308,79 @@ def query_task(args):
         sys.exit(1)
 
 
+def print_task_outputs(result):
+    """Extract and print task outputs (FileUrl / FileId / SubjectId / etc).
+
+    Compatible with multiple task return structures, displayed by priority:
+    - Top-level FileId / FileUrl (upload / pull-upload tasks)
+    - SubjectId / ElementId (custom element tasks)
+    - Output.FileInfos[].{FileUrl, FileId} (AIGC / processing tasks)
+    - Output.FileUrl (some tasks)
+    - Error messages (FAIL state)
+    """
+    if not result:
+        return
+
+    task = result
+    for key in ('AigcImageTask', 'AigcVideoTask', 'TaskDetail', 'Data'):
+        if isinstance(result.get(key), dict):
+            task = result[key]
+            break
+
+    if task.get('Status') == 'FAIL' or task.get('ErrCode'):
+        err = task.get('Message') or task.get('ErrCodeExt') or 'Task failed'
+        print(f"⚠️  Error: {err}")
+        return
+
+    printed = False
+
+    for sid_key in ('SubjectId', 'ElementId', 'CustomElementId'):
+        if task.get(sid_key) or result.get(sid_key):
+            sid = task.get(sid_key) or result.get(sid_key)
+            print(f"\n🆔 {sid_key}: {sid}")
+            printed = True
+
+    if task.get('FileId') or result.get('FileId'):
+        fid = task.get('FileId') or result.get('FileId')
+        print(f"\n📂 FileId: {fid}")
+        printed = True
+    if task.get('FileUrl') or result.get('FileUrl'):
+        url = task.get('FileUrl') or result.get('FileUrl')
+        print(f"   URL    : {url}")
+        printed = True
+
+    output = task.get('Output') or result.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if file_infos:
+        print(f"\n📦 Output ({len(file_infos)} file(s)):")
+        for i, fi in enumerate(file_infos, 1):
+            url = fi.get('FileUrl') or fi.get('Url') or ''
+            fid = fi.get('FileId') or ''
+            ftype = fi.get('FileType') or fi.get('Type') or ''
+            prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+            label_parts = []
+            if ftype:
+                label_parts.append(ftype)
+            if fid:
+                label_parts.append(f"FileId={fid}")
+            if label_parts:
+                print(f"{prefix} {' '.join(label_parts)}")
+                if url:
+                    print(f"     URL: {url}")
+            elif url:
+                print(f"{prefix} URL: {url}")
+        printed = True
+    elif output.get('FileUrl'):
+        print(f"\n📦 Output URL: {output['FileUrl']}")
+        if output.get('FileId'):
+            print(f"   FileId    : {output['FileId']}")
+        printed = True
+
+    if not printed:
+        print(f"\n💡 Task completed (status: {task.get('Status', 'N/A')}); use --json for full response")
+
+
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
     """Wait for task completion"""
     print(f"\nWaiting for task to complete (TaskId: {task_id})...")
@@ -338,6 +416,15 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 
 
 def main():
+    # Load .env early so argparse `default=os.environ.get(...)` can read TENCENTCLOUD_VOD_SUB_APP_ID
+    # BUG FIX: argparse evaluates default at add_argument time, but .env was previously
+    # loaded inside get_credential(); the timing mismatch left SubAppId as None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     check_sdk_version()
     parser = argparse.ArgumentParser(
         description='VOD Scene-based AIGC Image Generation Tool\nBased on CreateSceneAigcImageTask API',
@@ -345,7 +432,7 @@ def main():
         epilog='''
 Examples:
   # AI outfit change scene
-  python vod_scene_aigc_image.py generate \\
+  python3 vod_scene_aigc_image.py generate \\
     --sub-app-id 251007502 \\
     --scene-type change_clothes \\
     --input-files "File:3704211xxx" \\
@@ -353,7 +440,7 @@ Examples:
     --change-prompt "open the shirt a little"
 
   # AI product image generation scene
-  python vod_scene_aigc_image.py generate \\
+  python3 vod_scene_aigc_image.py generate \\
     --sub-app-id 251007502 \\
     --scene-type product_image \\
     --input-files "File:3704211xxx" "File:3704211yyy" \\
@@ -362,7 +449,7 @@ Examples:
     --output-image-count 6
 
   # Query task
-  python vod_scene_aigc_image.py query --task-id "251007502-SceneAigcImageTask-xxx"
+  python3 vod_scene_aigc_image.py query --task-id "251007502-SceneAigcImageTask-xxx"
 
 Scene types:
   - change_clothes: AI outfit change
@@ -449,7 +536,7 @@ Input file format:
                            help='Reserved field, used for special purposes')
 
     # Common parameters
-    gen_parser.add_argument('--region', default='ap-guangzhou',
+    gen_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                            help='Region (default: ap-guangzhou)')
     gen_parser.add_argument('--no-wait', action='store_true',
                            help='Submit task only, do not wait for result')
@@ -467,7 +554,7 @@ Input file format:
     query_parser.add_argument('--sub-app-id', type=int,
                              default=int(os.environ.get('TENCENTCLOUD_VOD_SUB_APP_ID', 0)) or None,
                              help='Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)')  # NOCA:line-too-long(long SDK parameter or URL string)
-    query_parser.add_argument('--region', default='ap-guangzhou',
+    query_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                              help='Region')
     query_parser.add_argument('--json', action='store_true',
                              help='Output in JSON format')

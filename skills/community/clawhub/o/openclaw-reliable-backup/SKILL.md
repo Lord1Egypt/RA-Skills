@@ -1,3 +1,14 @@
+---
+name: openclaw-reliable-backup
+description: "提供 OpenClaw 自动化每日备份、变更前快照、邮件发送、备份管理及恢复指导，确保数据高可靠性和安全。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# openclaw-reliable-backup
+
 name: openclaw-reliable-backup
 description: |
   执行 OpenClaw 的自动化、高可靠性备份与安全管理。功能包括：每日定时完整备份、文件修改前自动创建快照、通过邮件发送备份、管理备份生命周期、提供紧急恢复指南。当用户提到"备份"、"回滚"、"快照"、"恢复系统"、"修改配置前备份"、"清理旧备份"、"查看备份状态"、"设置备份"时触发。

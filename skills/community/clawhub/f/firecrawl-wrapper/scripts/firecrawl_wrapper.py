@@ -41,10 +41,15 @@ def api_get(path):
     except Exception as e:
         return {"success": False, "error": str(e)}
 
+def _warn_data_transmission(what):
+    print(json.dumps({"warning": f"⚠️  {what}将被发送至 Firecrawl API（api.firecrawl.dev）进行处理。"}), file=sys.stderr)
+
+
 def cmd_scrape(args):
     url = args[0] if args else ""
     if not url or not url.startswith(("http://", "https://")):
         return {"success": False, "error": "请输入正确的网址，以 http:// 或 https:// 开头"}
+    _warn_data_transmission(f"页面内容 {url}")
     formats = ["markdown"]
     result = api_post("/v2/scrape", {"url": url, "formats": formats})
     if result.get("success"):
@@ -69,6 +74,7 @@ def cmd_search(args):
     limit = int(args[1]) if len(args) > 1 else 5
     if not query:
         return {"success": False, "error": "请输入搜索关键词"}
+    _warn_data_transmission(f"搜索关键词 \"{query}\"")
     result = api_post("/v2/search", {"query": query, "limit": limit})
     if result.get("success"):
         results = result.get("data", {}).get("web", [])
@@ -88,6 +94,7 @@ def cmd_map(args):
     url = args[0] if args else ""
     if not url or not url.startswith(("http://", "https://")):
         return {"success": False, "error": "请输入正确的网址，以 http:// 或 https:// 开头"}
+    _warn_data_transmission(f"网站结构 {url}")
     result = api_post("/v1/map", {"url": url})
     if result.get("success"):
         links = result.get("links", [])
@@ -104,6 +111,7 @@ def cmd_crawl(args):
     max_pages = int(args[1]) if len(args) > 1 else 50
     if not url or not url.startswith(("http://", "https://")):
         return {"success": False, "error": "请输入正确的网址，以 http:// 或 https:// 开头"}
+    _warn_data_transmission(f"网站 {url} 的全部页面内容（上限 {max_pages} 页）")
     result = api_post("/v1/crawl", {"url": url, "maxPages": max_pages, "scrapeOptions": {"formats": ["markdown"]}})
     if result.get("success"):
         job_id = result.get("id", "")
@@ -166,6 +174,7 @@ def cmd_interact(args):
         return {"success": False, "error": "请输入正确的网址"}
     if not prompt:
         return {"success": False, "error": "请输入操作说明，例如：search for mechanical keyboard"}
+    _warn_data_transmission(f"页面内容 {url} 及操作指令 \"{prompt}\"")
     scrape_result = api_post("/v2/scrape", {"url": url, "formats": ["markdown"]})
     if not scrape_result.get("success"):
         return scrape_result
@@ -191,6 +200,7 @@ def cmd_extract(args):
         return {"success": False, "error": "请输入正确的网址"}
     if not prompt:
         return {"success": False, "error": "请输入提取说明，例如：帮我找出所有产品的名称和价格"}
+    _warn_data_transmission(f"页面内容 {url} 及提取要求 \"{prompt}\"")
     body = {"url": url, "prompt": prompt}
     result = api_post("/v1/extract", body, timeout=120)
     if result.get("success"):

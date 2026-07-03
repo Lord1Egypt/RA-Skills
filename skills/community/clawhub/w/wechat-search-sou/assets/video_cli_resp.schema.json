@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "微信搜一搜视频搜索 - API出参",
+    "description": "微信搜一搜视频搜索实时搜索视频, API出参Schema详解",
+    "properties": {
+        "docid": {
+            "type": "string",
+            "description": "微信视频文档ID"
+        },
+        "exportid": {
+            "type": "string",
+            "description": "微信视频导出ID"
+        },
+        "datetime": {
+            "type": "string",
+            "description": "微信视频发布时间"
+        },
+        "duration": {
+            "type": "string",
+            "description": "微信视频时长"
+        },
+        "image": {
+            "type": "string",
+            "description": "微信视频封面"
+        },
+        "like_num": {
+            "type": "string",
+            "description": "微信视频点赞数"
+        },
+        "pubtime": {
+            "type": "number",
+            "description": "微信视频发布时间时间戳"
+        },
+        "author_name": {
+            "type": "string",
+            "description": "微信视频作者昵称"
+        },
+        "author_avatar": {
+            "type": "string",
+            "description": "微信视频作者头像"
+        },
+        "title": {
+            "type": "string",
+            "description": "微信视频标题"
+        }
+    }
+}

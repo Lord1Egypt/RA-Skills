@@ -1,0 +1,37 @@
+{
+  "deck": {
+    "source": "",
+    "source_rights": "owned|licensed|external-reference|unknown",
+    "usage_boundary": "private draft|internal review|public sharing|client delivery|training|publication",
+    "export_target": "pptx|native-dynamic-pptx|html-preview|dynamic-html|feishu-slides|multi",
+    "visual_system": "",
+    "logical_slide_count": 0,
+    "physical_slide_count": 0,
+    "content_lock": "content_lock.md",
+    "verification_report": "verification-report.md"
+  },
+  "slides": [
+    {
+      "logical_slide_id": "S01",
+      "title": "",
+      "content_lock_ref": "content_lock.md#slide-1",
+      "physical_slide_ids": ["pptx-slide-1"],
+      "editable_text_objects": [],
+      "must_keep_editable_text": [],
+      "visual_objects": [],
+      "images": [],
+      "charts": [],
+      "tables": [],
+      "asset_provenance": [],
+      "source_labels": [],
+      "rasterization_tradeoff": "none",
+      "verification": {
+        "nonblank_render": "unknown",
+        "text_overflow": "unknown",
+        "editable_core_text": "unknown",
+        "visual_structure_preserved": "unknown",
+        "source_labels_present": "unknown"
+      }
+    }
+  ]
+}

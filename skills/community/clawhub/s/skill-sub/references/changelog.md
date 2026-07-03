@@ -1,63 +1,3 @@
-## [1.29.1] - 2026-06-16
-
-### 修复
-- `--fixed-rules` 修复参数解析（逗号分词 bug）
-- 修复循环顺序：fixed-rules 过滤移到 break 之前
-- cmd_bump 新增 --fixed-rules 支持
-
----## [1.31.0] - 2026-06-16
-
-### 修复
-- v1.29.1: 步骤蓝图索引、链文件夹结构、链规划器
-
----
-
-## [1.30.0] - 2026-06-16
-
-### 修复
-- v1.29.1: 步骤蓝图索引、链文件夹结构、链规划器
-
----
-
-## [1.29.0] - 2026-06-16
-
-### 新增
-- extract_step_semantics: 步骤语义提取，从 SKILL.md 自动提取 I/O 线索
-- step_indexer.py: 步骤蓝图索引器，支持 scan/search/info/status/rebuild
-- step_link_validator.py: 步骤衔接校验器，自动检测 I/O 缺口并生成粘连点建议
-- chain_planner.py: 链规划流水线，统一"搜索→校验→创建"全流程
-- 链文件夹结构：每条链私有目录 chains/{name}/chain.json + blueprints.json + backups/
-- check-health: 链健康检查命令，md5 快速校验 SKILL.md 变化
-
-### 改进
-- 同义词字典 + n-gram 匹配，提升意图搜索精度
-- I/O 提取 fallback：正则取不到时从步骤名推断
-- 链蓝皮书私有化：独立于全局索引，链自包含
-- classify_milestones 统一为 7 条规则
-- PathManager 统一路径逻辑
-
-### 修复
-- 删除死代码 loop_branch_renderer.py
-- 修复三处脚本中重复的 DEFAULT_DATA_DIR_RAW/SKILL_DIR/DATA_DIR 行
-- 技能能力扫描钩子集成 step_link_validator 自动化校验
-
----
-
-## [1.28.1] - 2026-06-16
-
-## 1.28.0 (2026-06-16)
-
-### 标准化改造（skill-standardization refactor）
-
-- 修复 R-11：产出物路径违规（将 settings.py 路径引用置入代码块）
-- 修复 R-17：SKILL.md 超 230 行限制（循环与分支编排拆分至 references/loop_branch.md，原 242 行 → 现 188 行）
-- 修复 R-07：触发条件章节补充否定条件内容
-- 修复 R-15：permissions.md 补充 skill-standardization 权限说明头部
-- 自动修复 R-25：章节顺序调整、空行精简、表格格式规范化、触发条件格式修正
-- 渐进式文件索引表补充：LICENSE.md、loop_branch.md
-- 术语统一与写作规范修复（writing_standards 自动修正）
-- 新增 references/loop_branch.md 渐进式加载拆分文件
-
 ## 1.27.1 (2026-06-05)
 
 ### 修复
@@ -72,7 +12,7 @@
 - **调度强制注册机制**：创建含 schedule 的链后**立即**输出强制注册提醒（不等执行日）；新增 register-schedule CLI 子命令将 registered 标记置为 true
 - **执行计划注册提醒**：chain_executor.py 检测未注册调度并输出强制提醒
 
-### 更新
+### 变更
 
 - **chain_manager.py**：新增 register-schedule CLI 子命令；创建成功后含 schedule 时立即输出强制注册提醒
 - **chain_executor.py**：新增 unregistered_schedule 检测，计划输出顶部含强制注册提醒
@@ -97,7 +37,7 @@
 - **auto_safe 自动化检测**：`chain_flow_validator` 自动计算链是否可全自动执行（无 manual 粘连点且无 ask 模式），输出 `auto_safe` 布尔字段供平台使用
 - **调度强制注册机制**：创建含 `schedule` 的链后**立即**输出强制注册提醒（不等执行日）；新增 `register-schedule` CLI 子命令将 `registered` 标记置为 `true`；`chain_executor.py` 执行计划检测未注册调度并输出强制提醒
 
-### 更新
+### 变更
 
 - **`chain_manager.py`**：`validate_chain` 适配 adhesion 类型；新增 `check-gaps` / `schedule` / `register-schedule` CLI 子命令；`create_chain` 和 `update` 自动调用 `flow_validator` + `structure_checker` 校验；新增 `user_specified`、`schedule` 字段和对应 CLI 参数；新增定时关键词强制检测逻辑；创建成功后含 schedule 时立即输出强制注册提醒
 - **`chain_schema.md`**：新增类型 D 粘连点步骤、`user_specified` 字段、`auto_safe` 字段、`schedule` 字段（含 `registered`）及 Schedule 定义章节

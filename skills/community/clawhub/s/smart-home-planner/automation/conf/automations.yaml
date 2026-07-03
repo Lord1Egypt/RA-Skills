@@ -1,0 +1,93 @@
+# Automations — Cross-platform (Mijia + HomeKit)
+# HA-compatible format with platform routing via entity_id
+
+# === Mijia-only automations ===
+
+- id: living_room_music
+  alias: "客厅有人就播放音乐"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_living_room"
+      to: "on"
+  condition:
+    - condition: time
+      after: "08:00:00"
+      before: "23:00:00"
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: "scene.music_mode"
+  mode: single
+
+- id: living_room_light_auto
+  alias: "客厅有人自动开灯"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_living_room"
+      to: "on"
+  condition:
+    - condition: time
+      after: "18:00:00"
+      before: "23:30:00"
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: "light.living_room"
+    - service: light.turn_on
+      target:
+        entity_id: "light.living_room_window"
+  mode: single
+
+- id: away_mode
+  alias: "离家模式"
+  trigger:
+    - platform: state
+      entity_id: "sensor.occupy_living_room"
+      to: "off"
+      for: "00:05:00"
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: "light.living_room"
+    - service: light.turn_off
+      target:
+        entity_id: "light.living_room_window"
+  mode: single
+
+# === Cross-platform automations (Mijia sensor → HomeKit device) ===
+# Uncomment and adjust entity_ids when you have HomeKit devices configured
+
+# - id: mijia_sensor_homekit_light
+#   alias: "米家传感器触发 HomeKit 灯"
+#   trigger:
+#     - platform: state
+#       entity_id: "sensor.occupy_living_room"    # Mijia sensor
+#       to: "on"
+#   condition:
+#     - condition: time
+#       after: "18:00:00"
+#       before: "23:00:00"
+#   action:
+#     - service: light.turn_on
+#       target:
+#         entity_id: "light.hallway_homekit"       # HomeKit light
+#   mode: single
+
+# - id: away_all_platforms
+#   alias: "离家关闭所有平台设备"
+#   trigger:
+#     - platform: state
+#       entity_id: "sensor.occupy_living_room"
+#       to: "off"
+#       for: "00:05:00"
+#   action:
+#     - service: light.turn_off
+#       target:
+#         entity_id: "light.living_room"           # Mijia light
+#     - service: light.turn_off
+#       target:
+#         entity_id: "light.hallway_homekit"       # HomeKit light
+#     - service: scene.turn_on
+#       target:
+#         entity_id: "scene.away"                  # Mijia scene
+#   mode: single

@@ -1,0 +1,15 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: []
+    properties:
+      sefariaApiBase:
+        type: string
+        description: "Custom Sefaria API base URL (default: https://www.sefaria.org/api)"
+        default: "https://www.sefaria.org/api"
+  commandFunction:
+    |-
+    config => ({command: 'npx', args: ['-y', 'sefaria-mcp-server']})

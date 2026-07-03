@@ -1,7 +1,7 @@
 ---
 name: firecrawl-wrapper
 description: Web data for everyone. Powered by Firecrawl. Scrape, search, crawl, interact with websites — all in plain language. No technical skills needed.
-version: 1.1.0
+version: 1.1.1
 license: MIT-0
 metadata:
   openclaw:
@@ -14,6 +14,12 @@ metadata:
 # Firecrawl Wrapper
 
 **由 [Firecrawl](https://github.com/firecrawl/firecrawl) 提供底层技术支持。这是一个简化封装，让不懂技术的用户也能直接用上 Firecrawl 的强大能力。**
+
+> ⚠️ **数据外发提醒**：所有搜索关键词、网页 URL、页面内容、操作指令均会被发送至 Firecrawl API（api.firecrawl.dev）进行处理。请勿输入涉及敏感/机密内容的 URL 或关键词。
+>
+> ⚠️ **交互操作风险**：interact 功能可以填写表单、点击按钮、登录账号、下载文件。使用前请确认目标网站是你自己的或你有权操作，避免误操作。
+>
+> ⚠️ **爬取整站注意**：crawl 功能会批量访问目标网站上的页面，请尊重网站的 robots.txt 和服务条款。大量爬取可能对目标服务器造成负担。
 
 > 💡 **无需任何配置即可使用**。Firecrawl 当前有免费额度，开箱即用。
 > 用量超出后可自行订阅 Firecrawl 并配置 API Key。
@@ -58,7 +64,7 @@ Powered by Firecrawl 🔥
 
 ### 1. 搜索
 
-用户说 "搜一下" "帮我找" "搜索"：
+只有当用户**明确表达想查找网络信息**时才使用。以下情况**不触发**：用户日常闲聊、询问概念解释、查询本地信息。
 
 ```
 scripts/firecrawl_wrapper.py search <query> [条数]
@@ -84,7 +90,7 @@ scripts/firecrawl_wrapper.py search <query> [条数]
 
 ### 2. 抓取页面
 
-用户说 "帮我抓一下" "看看这个页面" "把内容拿出来":
+当用户**提供了具体的 URL** 并要求获取页面内容时使用。不要主动猜测 URL 去抓取。
 
 ```
 scripts/firecrawl_wrapper.py scrape <url>
@@ -107,7 +113,7 @@ scripts/firecrawl_wrapper.py scrape <url>
 
 ### 3. 发现页面结构
 
-用户说 "看看有哪些页面" "整理站点结构":
+当用户想了解**某个已知网站的结构**（有哪些子页面/链接）时使用。
 
 ```
 scripts/firecrawl_wrapper.py map <url>
@@ -127,11 +133,10 @@ scripts/firecrawl_wrapper.py map <url>
 
 ### 4. 爬取整站
 
-用户说 "全部爬下来" "把整个网站的内容都导出来":
+只有当用户**明确要求爬取整个网站或批量获取大量页面**时才使用。默认上限 50 页，用户可指定更多。
 
 ```
 scripts/firecrawl_wrapper.py crawl <url> [max_pages]
-```
 
 默认 50 页，用户可以说 "我要 200 页"。
 
@@ -163,9 +168,13 @@ scripts/firecrawl_wrapper.py crawl <url> [max_pages]
 
 ---
 
-### 5. 交互操作（最强大的功能）
+### 5. 交互操作
 
-用户说 "帮我在亚马逊上搜索机械键盘" "打开这个页面帮我填表" "登录后下载报告":
+> ⚠️ **操作风险**：interact 可以填写表单、点击按钮、登录账号、下载文件。**执行前务必先向用户确认**，让用户明白即将在哪个网站上执行什么操作。
+
+当用户要求**在指定网页上执行点击、搜索、填表、登录等操作**时使用。操作前须确认：
+1. 用户确实想操作这个网站
+2. 用户清楚操作的内容（如搜索关键词、填表内容）
 
 ```
 scripts/firecrawl_wrapper.py interact <url> "<操作说明>"
@@ -199,7 +208,7 @@ AI：正在打开亚马逊搜索...
 
 ### 6. 智能提取
 
-用户说 "提取这个页面的表格数据" "帮我整理产品信息" "找出所有联系方式":
+当用户想**从指定页面中提取结构化数据**（表格、产品列表、联系方式等）时使用。用户须提供 URL 和提取要求。
 
 ```
 scripts/firecrawl_wrapper.py extract <url> "<提取要求>"

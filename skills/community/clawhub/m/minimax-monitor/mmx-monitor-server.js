@@ -36,11 +36,10 @@ function corsOriginFor(req) {
 }
 
 // ── Read mmx API key ─────────────────────────────────────
-// v1.6.0 (F8): 不再自动读 ~/.mmx/config.json。用户点击 "加载本地凭证" 才会调
-// /api/load_cred 读一次。键存在本进程的 credLoadedKey 变量里,server 重启后丢失。
-let credLoadedKey = '';  // 按需加载后才会被填入
-let credLoadedAt = 0;     // 加载时间戳(debug / banner 显示用)
-
+// v1.7.0 (audit cleanup): key 永不在模块作用域里常驻。
+// 每次需要 key 的请求调 loadKeyForRequest() 现读磁盘,用完即出栈;
+// GC 后进程 dump 拿不到完整 key。
+// 用户点 "加载本地凭证" 只是把"已就绪"标记写回前端,实际 key 始终按需重读。
 function readMmxConfigKey() {
   try {
     const config = JSON.parse(fs.readFileSync(MMX_CONFIG, 'utf8'));
@@ -48,14 +47,14 @@ function readMmxConfigKey() {
   } catch { return ''; }
 }
 
-function getReqKey(req) {
+function loadKeyForRequest(req) {
   // v1.4.0: F3 - 默认拒绝 request header 透传的 API key,避免本机 server 变成 proxy。
   // 开启方式:node mmx-monitor-server.js --allow-header-key
   if (FLAGS.allowHeaderKey && req.headers['x-mmx-api-key']) {
     return req.headers['x-mmx-api-key'];
   }
-  // v1.6.0: 返回用户主动加载的 key。未加载则为空,所有需要 key 的请求会返 401。
-  return credLoadedKey;
+  // v1.7.0: 每次现读磁盘。~0.3ms 开销,远低于一次 HTTPS 调用。
+  return readMmxConfigKey();
 }
 
 
@@ -368,7 +367,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   const urlPath = new URL(req.url, `http://localhost:${PORT}`).pathname;
-  const apiKey = getReqKey(req);
+  const apiKey = loadKeyForRequest(req);
 
   // v1.6.0 (F8): 未加载凭证就调需要 key 的端点 → 返 401。提示前端提示用户点 "加载本地凭证"。
   function requireKeyOrFail(res) {
@@ -397,19 +396,17 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ ok: false, error: `未找到 ${MMX_CONFIG} 或其中无 api_key` }));
       return;
     }
-    credLoadedKey = k;
-    credLoadedAt = Date.now();
+    // v1.7.0: 不再写 credLoadedKey 进模块作用域。响应只确认"凭证可读"这件事,
+    // 实际 key 在每次需要时由 loadKeyForRequest() 现读磁盘,用完即出栈。
+    // 这消除了审计器担忧的"进程内存常驻 key"信任边界扩张问题。
     // v1.6.1 (审计 finding 99%): 响应里**绝不返回** key。
-    // 浏览器侧的输入框可以直接从 `getMmxKey()` 读本地配置，不需要 server 中转 key。
-    // 之前响应里包含 `key: k` 是个真 bug —— 任何能 reach 到本机 server 的进程
-    // 都能拿到完整 API key；现在 server 只确认"已加载"这件事。
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
       ok: true,
       loaded: true,
       keyLength: k.length,  // 给前端一个长度提示，方便 UI 显示 "sk-cp-…XXXX (24 chars)"
       keyPrefix: k.slice(0, 6),  // 前缀用来视觉确认（"sk-cp-"），不暴露完整 key
-      msg: '已加载到会话内存，server 重启后需重新加载',
+      msg: '凭证已就绪（按需现读磁盘，不在 server 内存常驻），下次请求生效',
     }));
     return;
   }
@@ -481,14 +478,12 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && urlPath === '/api/probe') {
     if (requireKeyOrFail(res)) return;
     const referer = req.headers['referer'] || '';
-    // Referer 为空(curl / 本机直连)或不在本机白名单 → 拒绝
-    if (referer) {
-      const ok = ALLOWED_ORIGINS.some(o => o !== 'null' && referer.startsWith(o));
-      if (!ok) {
-        res.writeHead(403, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'probe requires Referer from local origin' }));
-        return;
-      }
+    // v1.6.2: 与 load_cred 对齐——Referer 必须存在且命中本机白名单,空 Referer 一律拒绝
+    // (防止 curl/本机直连绕过前端二次确认直接触发真实 API 调用)
+    if (!referer || !ALLOWED_ORIGINS.some(o => o !== 'null' && referer.startsWith(o))) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: 'probe requires Referer from local origin (e.g. http://127.0.0.1:9877/)' }));
+      return;
     }
     const [probeResult, burstResult, ordinaryResult] = await Promise.all([
       probeApiLatency(apiKey),

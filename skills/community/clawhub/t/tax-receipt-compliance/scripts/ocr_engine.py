@@ -416,15 +416,73 @@ class OCREngine:
         return round(filled_fields / total_fields, 2) if total_fields > 0 else 0.0
 
 
+def manual_input():
+    """手动输入发票信息（OCR识别失败时的替代方案）"""
+    print("=" * 50)
+    print("  手动输入发票信息")
+    print("  （适用于OCR识别失败或图片模糊的情况）")
+    print("=" * 50)
+    print()
+
+    data = {}
+    data['invoice_type'] = input("发票类型（增值税专用发票/增值税普通发票/增值税电子发票）: ").strip() or '未知类型'
+    data['invoice_code'] = input("发票代码（10-12位数字）: ").strip()
+    data['invoice_number'] = input("发票号码（8-20位数字）: ").strip()
+    data['invoice_date'] = input("开票日期（如 2026年06月28日）: ").strip()
+    data['seller_name'] = input("销售方名称: ").strip()
+    data['buyer_name'] = input("购买方名称（可选）: ").strip()
+    amount_str = input("金额（不含税）: ").strip()
+    data['amount'] = float(amount_str) if amount_str else 0.0
+    tax_rate_str = input("税率（如 0.13）: ").strip()
+    data['tax_rate'] = float(tax_rate_str) if tax_rate_str else 0.0
+    tax_str = input("税额: ").strip()
+    data['tax_amount'] = float(tax_str) if tax_str else 0.0
+    total_str = input("价税合计: ").strip()
+    data['total'] = float(total_str) if total_str else 0.0
+    data['remark'] = input("备注/费用说明（可选）: ").strip()
+
+    data['success'] = True
+    data['confidence'] = 1.0  # 手动输入视为完全可信
+    data['timestamp'] = datetime.now().isoformat()
+    data['source'] = 'manual_input'
+
+    # 金额勾稽检查
+    if data['amount'] > 0 and data['tax_amount'] > 0:
+        expected = round(data['amount'] + data['tax_amount'], 2)
+        actual = data['total']
+        if actual > 0 and abs(expected - actual) > 0.01:
+            print(f"\n⚠️ 金额勾稽警告：金额({data['amount']}) + 税额({data['tax_amount']}) = {expected}，与价税合计({actual})不一致！")
+
+    return data
+
+
 def main():
     """命令行入口"""
     parser = argparse.ArgumentParser(description='发票OCR识别引擎')
-    parser.add_argument('--input', required=True, help='输入图片路径或目录')
+    parser.add_argument('--input', help='输入图片路径或目录')
     parser.add_argument('--output', help='输出JSON文件路径（可选）')
     parser.add_argument('--tesseract', help='Tesseract可执行文件路径')
     parser.add_argument('--lang', default='chi_sim+eng', help='识别语言')
+    parser.add_argument('--manual', action='store_true', help='手动输入发票信息（无需图片，适用于OCR失败的情况）')
 
     args = parser.parse_args()
+
+    # 手动输入模式
+    if args.manual:
+        output_data = manual_input()
+        if args.output:
+            with open(args.output, 'w', encoding='utf-8') as f:
+                json.dump(output_data, f, ensure_ascii=False, indent=2)
+            print(f"\n结果已保存到: {args.output}")
+        else:
+            print(json.dumps(output_data, ensure_ascii=False, indent=2))
+        print("\n✅ 手动输入完成，数据可直接用于生成报销单。")
+        return
+
+    if not args.input:
+        print("ERROR: 请使用 --input 指定图片路径，或使用 --manual 手动输入")
+        parser.print_help()
+        sys.exit(1)
 
     # 初始化OCR引擎
     try:

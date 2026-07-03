@@ -64,7 +64,7 @@ else
     '{filename: $fn, mimeType: $mt, uploadOptions: {}}')
 fi
 
-RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_API_BASE/uploads/file" \
+RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_BASE_URL/uploads/file" \
   "${AUTH_HEADERS[@]}" \
   -H "Content-Type: application/json" \
   -d "$UPLOAD_BODY")
@@ -86,7 +86,7 @@ fi
 
 # Step 2: Upload chunk
 echo "Uploading file data..." >&2
-RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_API_BASE/uploads/file/$UPLOAD_ID/chunk" \
+RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_BASE_URL/uploads/file/$UPLOAD_ID/chunk" \
   "${AUTH_HEADERS[@]}" \
   -F "file=@$FILE_PATH" \
   -F "index=0")
@@ -100,7 +100,7 @@ fi
 
 # Step 3: Complete upload → get CID
 echo "Completing upload..." >&2
-RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_API_BASE/uploads/$UPLOAD_ID/complete" \
+RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$AD_BASE_URL/uploads/$UPLOAD_ID/complete" \
   "${AUTH_HEADERS[@]}")
 HTTP_CODE=$(echo "$RESPONSE" | tail -1)
 BODY=$(echo "$RESPONSE" | sed '$d')

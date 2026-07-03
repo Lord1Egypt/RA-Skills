@@ -6,7 +6,7 @@
 
 > 面向运行 Nginx 或 Apache 的 Linux 主机的双平面监控系统，并通过宝塔（BT-Panel）API 提供**轻量级集中式远程监控**——一台 Agent，纳管多台服务器，目标主机零安装。
 
-[![Version](https://img.shields.io/badge/version-1.5.1-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)]()
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-success.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-CentOS%2FUbuntu%2FDebian-lightgrey.svg)](https://linux.org)
@@ -51,6 +51,66 @@
 - 自动化生成日报、周报和月报，掌握流量、性能和安全趋势
 - 识别可疑 IP、404 扫描、5xx 峰值和 SSH 暴破行为
 - 以白名单、TTL 和审计留痕为前提，安全启用自动化干预
+
+---
+
+## v1.6.1 新增内容
+
+### SRE 多主题视觉系统（亮色 / 暗色 / 自动）
+
+- **动态主题切换器**：在页面右上角集成了带下拉菜单的主题切换按钮，支持“自动（跟随系统配置）”、“亮色”和“暗色”模式。
+- **图表配色同步适配**：切换主题时，JS 会自动同步修改 Chart.js 的网格线颜色、刻度字体颜色、图例文字颜色，并动态调整 CPU 轴（蓝色）与 QPS 轴（紫色）的配色对比度，重新绘制以保证亮色模式下的高清晰度。
+- **状态持久化**：用户选择的主题模式会自动存储在浏览器的 `localStorage` 中，刷新或重新打开页面仍可保持当前的首选项设置。
+
+### 移动端与 PC 端自适应响应式布局
+
+- **网格折叠**：通过 CSS Media Queries，在平板尺寸下（宽度 < 1024px）将顶部的 4 块核心环形图自动折叠为 2x2 网格，而在手机尺寸下（宽度 < 768px）则自动折叠为单列上下排布，同时双栏列表也会自动折叠为单列。
+- **表格防挤压滑动**：为所有数据表格外层包裹了具有滚动条的 `.table-wrapper` 容器，设置了最小宽度，防止移动端窄屏下表格文字拥挤、折行或页面布局被撑坏，移动端用户可横向轻滑查看完整数据。
+- **缩进与字号微调**：在小屏幕下自动将页面边距从 `24px` 缩减至 `12px`，并智能缩小环形图和文字字号以适配手机视口。
+
+---
+
+## v1.6.0 新增内容
+
+### 内置可视化网页看板 (Visual SRE Dashboard)
+
+Server-Mate 现在内置了一个极轻量级的可视化网页控制台，并在 Daemon 守护进程模式下运行：
+- **现代化 UI 设计**：采用高级感的深色科技风格设计，内置 SVG 实时环形指标仪（CPU、内存、Swap、主磁盘使用率）和毛玻璃卡片布局。
+- **实时波形趋势**：集成了 Chart.js 库，可在前端自动渲染系统 CPU 负载和各监控站点累加 QPS 的实时历史趋势图（保存最近 60 个采样点）。
+- **SRE 控制面板**：在页面上直观展示当前的活跃系统告警、Top 5 高 CPU 进程列表、各站点的当前 QPS/累积请求/错误率/下行流出流量/响应延迟统计表，以及当前防火墙的拦截封禁 IP 列表与过期时间。
+- **零包依赖与极简集成**：基于 Python 标准库 `http.server` 实现后台常驻线程服务，免安装任何第三方框架。可通过 `--dashboard` 命令行标志或在配置中指定 `dashboard.enabled: true` 和自定义端口（如 `8000`），完美支持 Nginx 反向代理嵌入个人网站。
+
+### AI 联动主动安全防御墙 (AI Security Shield)
+
+将传统的基于阈值的封禁防线升级为基于 LLM 大模型智能审计的动态防御墙：
+- **安全审计**：当 IP 触碰传统防线（如 IP 请求并发瞬时过高或 CPU 告警下的高并发 IP）时，Agent 自动收集其近期的 15 条真实请求细节（URL 路径、访问方法、状态码、User-Agent 等），发送给大模型进行审计。
+- **精准分类防误封**：由 AI 智能研判是属于恶意漏洞扫描（如频繁探测 `.git` 或 `.env`）、恶意 CC 慢速攻击，还是正常的搜索引擎爬虫或授权 API 客户端。
+- **动态缓存**：审计结果（`llm_shield_cache`）缓存 24 小时，避免高频请求大模型，有效节约 Token 消耗。
+
+### 配置文件直接声明 API Key (Standalone Mode)
+
+- 支持在不依赖 OpenClaw 环境变量的情况下独立运行。用户可直接在 `config.yaml` 文件的 `notifications.reports.ai_analysis.api_key` 中填写 API Key，以独立执行监控、故障自查与 AI 诊断。
+
+---
+
+## v1.5.2 新增内容
+
+### AI 智能诊断缓存
+
+为了防止在重复告警（例如 CPU 爆满且长期未恢复时，cron 每 10 分钟运行一次导致频繁推送）下重复请求大模型造成 Token 极大浪费，Server-Mate 新增了诊断缓存机制。
+- **缓存复用**：在 `server_agent_state.json` 状态中保存最近一次 AI 诊断结果。在设定的冷却期内（可配置 `ai_cooldown_seconds`，默认 3600 秒 = 1 小时）如果发生相同站点的同类告警，直接复用已有的诊断结果，拒绝重复调用大模型，可节约 90% 以上的 Token 开销。
+- **缓存徽章**：对于使用缓存结果的告警，推送消息中会展示 `【AI: 缓存】` 徽章。
+
+### 精准 CPU 与进程指标采样
+
+将 CPU 指标采集重构为双阶段采样，中间加入 1.0 秒的基准延时。
+- **消除误报**：消除了由于 Python 解析大日志时自身的瞬间 CPU 占用以及自身启动开销导致的 100ms 采样瞬时误报。
+- **真实进程占用率**：修复了由于 `psutil` 单次采样限制导致的所有进程 CPU 使用率均显示为 `0.0%` 的问题，现在可获取到准确、真实的 Top 5 CPU 占用进程。
+
+### CPU 爆满联动封禁 (CPU Spike Auto-Ban)
+
+将 `auto_ban` 与 `cpu_high` / `iowait_high` 告警进行联动，实现针对慢接口（如 `/responses`）应用级 CC 攻击的自动拦截。
+- **动态防御**：当系统 CPU 爆满且开启 `ban_on_cpu_spike` 时，Agent 会自动扫描 summary 窗口内的访问请求。若发现有非白名单客户端 IP 的平均请求速率超过 `cpu_spike_rpm_threshold`（默认 60 RPM），将自动触发封锁该 IP（如执行 `iptables`），利用 OpenClaw 的最高权限从根本上阻断攻击源，使服务器快速恢复正常。
 
 ---
 

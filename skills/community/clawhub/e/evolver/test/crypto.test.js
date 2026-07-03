@@ -152,6 +152,21 @@ describe('decrypt authentication', () => {
     const badIv = crypto.randomBytes(IV_BYTES);
     assert.throws(() => decrypt(parts.ciphertext, key, badIv, parts.authTag));
   });
+
+  // #285: with authTagLength pinned to TAG_BYTES on createDecipheriv, a
+  // truncated authentication tag must be rejected outright rather than
+  // accepted as a weaker authenticator. Without the explicit length, Node's
+  // GCM decipher would accept short tags.
+  it('rejects a truncated auth tag (authTagLength enforcement, #285)', () => {
+    const key = generateKey();
+    const parts = encrypt('trusted payload', key);
+    const truncated = parts.authTag.subarray(0, 8); // 8 of 16 bytes
+    assert.throws(
+      () => decrypt(parts.ciphertext, key, parts.iv, truncated),
+      /authentication tag length/i,
+      'an 8-byte tag must be rejected, not accepted as a weaker authenticator'
+    );
+  });
 });
 
 describe('pack / unpack', () => {

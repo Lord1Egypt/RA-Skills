@@ -1,67 +1,3 @@
-# 基于skill-standardization渐进式披露规范的权限说明
-
-本文档由 `skill-standardization` 权限扫描器自动维护。
-
-## 风险等级
-
-**LOW**（实际权重: 0.2）
-
-## 权限总览
-
-| 权限类别 | 涉及项数 | 风险等级 |
-|-----------|----------|----------|
-| `subprocess_call` | 0 项 | ✅ LOW |
-| `file_delete` | 0 项 | ✅ LOW |
-| `network_access` | 1 项 | 🔴 HIGH |
-| `sensitive_access` | 0 项 | ✅ LOW |
-| `critical_write` | 0 项 | ✅ LOW |
-
-## 高权限操作说明
-
-- **网络访问**（1 项，unified）
-
-
-## 权限详细说明
-
-### 子进程调用（subprocess）
-
-**无**。
-
-
-### 文件删除
-
-**无**。
-
-
-### 网络访问（1 项）
-
-> **功能说明**：技能需要通过网络连接到外部服务或远程仓库。
-> **授权方式**：unified
-
-| 文件 | 行号 | 匹配内容 | 功能说明 |
-|------|------|----------|----------|
-| `scripts\settings.py` | 21 | `urllib` | 中风险操作，可批量统一授权 |
-
-
-### 敏感信息访问
-
-**无**。
-
-
-### 关键位置写入
-
-**无**。
-
-
-## 授权方式说明
-
-- **immediate（即时授权）**：每次执行前需获得用户批准
-- **unified（统一授权）**：首次执行前获得用户批准，后续不再询问
-- **silent（静默授权）**：无需用户交互，自动执行并记录
-
-<!-- fp:risk=LOW|sensitive=0|critical_write=0|network=1|delete=0|subprocess=0|issues=1 -->
----
-
 # 权限说明
 
 权限扫描风险等级：**MEDIUM**
@@ -104,4 +40,4 @@
 
 ---
 
-**注**：本文件由 skill-standardization 自动生成（R-15 修复）。
+**注**：本文件由 skill-standardization v2.24.0 自动生成（R-15 修复），实际风险等级由 `scripts/permission_checker.py` 扫描结果决定。

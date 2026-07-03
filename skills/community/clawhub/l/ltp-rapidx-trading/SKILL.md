@@ -1,6 +1,6 @@
 ---
 name: ltp-rapidx-trading
-version: 1.0.15
+version: 1.0.16
 description: Use when an agent needs to operate RapidX through MCP or CLI for portfolio reads, market reads, order preview, order submit/replace/cancel, position management, algo orders, or explicit live trading verification.
 ---
 

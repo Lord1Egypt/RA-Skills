@@ -20,14 +20,16 @@
 | ② 待解析队列 | 取尚未写入 `charter_facts.sqlite3` 的 `message_id`（或插件标记为 unparsed） |
 | ③ 脱敏 | **2.3.5** 规则 |
 | ④ 解析 | **2.4** + **`PARSE_SCHEMA.md`** |
-| ⑤ 落库 | `python scripts/charter_facts_tool.py save -f …` |
+| ⑤ 落库 | `python scripts/charter_facts_tool.py save -f …`（JSON 含 `body_text` 原文时自动回填联系方式） |
 | ⑥ 富化 | `python scripts/charter_facts_tool.py enrich`（enrich-row **与 portid 解耦**；**每行 portid 必须尝试入库**，见 **`CHARTER_ENRICH_API.md` §2**） |
+
+**联系方式**：步骤 ④ 送模用脱敏正文；步骤 ⑤ 落库前从 **`body_text`（原文）** 抽取电话/邮箱/微信等写入 `联系电话`、`即时通讯`（`extract_contacts.py`）。
 
 **一键脚本（推荐）**：`python scripts/mail_parse_loop.py --once`（单轮：IMAP 增量 → 解析/待解析队列 → `save` → `enrich`）；常驻 `python scripts/mail_parse_loop.py --daemon`。  
 助手在 OpenClaw 计划任务中可每 **10 分钟**调用 `--once`，**勿**要求用户手写 cron。
 
 - 若本机有 **`charter_ai`**（或设置 `HIFLEET_CHARTER_AI_ROOT`），脚本自动调用大模型完成 **2.4** 解析。  
-- 否则将脱敏后的邮件写入 **`mail_pending/`**，由助手读取后解析，并将完整 JSON 放入 **`mail_parsed_inbox/`**（含 `message_id`、`parsed` 等），下一轮 `--once` 自动 `save`。
+- 否则将脱敏后的邮件写入 **`mail_pending/`**，由助手读取后解析，并将完整 JSON 放入 **`mail_parsed_inbox/`**（须含 `message_id`、`parsed`、**`body_text` 原文正文** 等），下一轮 `--once` 自动 `save`。
 
 ---
 
@@ -35,7 +37,7 @@
 
 - **OpenClaw / 宿主计划任务**：每 **10 分钟**触发一次上述流水线（由助手配置或用户点确认，**勿**要求用户手写 cron 语法）。  
 - **对话内兜底**：用户提问前若距上次解析 **>10 分钟**，助手可先跑**一轮**流水线再检索；**不得**替代常驻定时任务。  
-- **失败**：记录错误；下一轮重试；向用户说明「部分新邮件尚未解析完成」。
+- **失败**：记录错误；下一轮重试；向用户说明「部分新邮件尚未解析完成」。若出现 `LLM response did not contain a JSON object` 等解析失败，须用 **`LLM_TOKEN_LIMITS.md`** + **`scripts/i18n_messages.py`** 向用户提示调高输入/输出 token（`mail_parse_loop` 的 `parse_hints` 字段）；**勿**只报技术堆栈。
 
 ---
 

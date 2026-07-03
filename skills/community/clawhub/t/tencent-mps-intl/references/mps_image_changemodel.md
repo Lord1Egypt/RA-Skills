@@ -72,59 +72,59 @@ Applicable scenarios: e-commerce model replacement, showcasing the same outfit o
 
 ```bash
 # Simplest usage: source image URL + garment image URL (default body shape: hourglass)
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg"
 
 # Set target body shape to pear
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --body-shape pear
 
 # Plus-size body shape
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/coat.jpg" \
     --body-shape plus-size
 
 # Increase precision for detail-sensitive scenarios
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --precision-scale 1.5
 
 # Local source image + COS garment image
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --local-file /tmp/model.jpg \
     --garment-cos-key "/input/garment.jpg"
 
 # COS source image + COS garment image
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --cos-input-key "/input/model.jpg" \
     --garment-cos-key "/input/garment.jpg"
 
 # Garment image from a non-default Bucket
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-cos-key "/clothes/summer_dress.jpg" \
     --garment-cos-bucket mybucket-125xxx \
     --garment-cos-region ap-shanghai
 
 # Submit task only without waiting for result
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_changemodel.py \
+python3 scripts/mps_image_changemodel.py \
     --url "https://example.com/model.jpg" \
     --garment-url "https://example.com/dress.jpg" \
     --download-dir /tmp/results/
 
 # Manually query change-model task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

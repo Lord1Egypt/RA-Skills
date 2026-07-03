@@ -1,17 +1,17 @@
 /**
- * tr-cli-json-output.test.ts (3.3.9-rc.1)
+ * tr-cli-json-output.test.ts (Phase 3.3 — recall retired, native memory_search)
  *
- * Asserts that tr-cli.ts correctly handles --json flag for all commands
+ * Asserts that tr-cli.ts correctly handles --json flag for the KEPT commands
  * by statically analysing the source. Since the CLI requires live relay
  * credentials for functional calls, we verify the code structure:
  *
  *   1. status --json: cmdStatus receives jsonMode param and writes JSON
  *   2. remember --json: cmdRemember pops --json flag, outputs JSON shape
- *   3. recall --json: cmdRecall pops --json flag + --limit, outputs JSON shape
- *   4. pair --json: delegates to pair-cli-relay outputMode='json' path
- *   5. All JSON outputs contain the expected required keys (via source grep)
- *
- * Additionally, verifies the --limit flag is handled in cmdRecall.
+ *   3. pair --json: delegates to pair-cli-relay outputMode='json' path
+ *   4. recall is RETIRED — the dispatch case surfaces a pointer at memory_search,
+ *      not a recall handler. (Recall is now native via the bundled
+ *      memory_search / memory_get tools.)
+ *   5. All JSON outputs of kept commands contain the expected required keys.
  *
  * Run with: `npx tsx tr-cli-json-output.test.ts`
  */
@@ -41,17 +41,13 @@ const trCliPath = path.join(__dirname, 'tr-cli.ts');
 const src = fs.readFileSync(trCliPath, 'utf8');
 
 // ---------------------------------------------------------------------------
-// 1. popFlag helper exists (used by status, remember, recall)
+// 1. popFlag helper exists (used by status, remember, forget, export)
+//    (popLimitFlag was recall-only and is asserted ABSENT in section 4.)
 // ---------------------------------------------------------------------------
 
 assert(
   /function popFlag/.test(src),
   'tr-cli.ts: popFlag helper function defined',
-);
-
-assert(
-  /function popLimitFlag/.test(src),
-  'tr-cli.ts: popLimitFlag helper function defined',
 );
 
 // ---------------------------------------------------------------------------
@@ -105,34 +101,36 @@ assert(
 );
 
 // ---------------------------------------------------------------------------
-// 4. recall --json + --limit
+// 4. recall is RETIRED (Phase 3.3)
+//    Recall is now native (bundled memory_search / memory_get tools).
+//    The dispatch case must surface a clear pointer, NOT call a handler.
 // ---------------------------------------------------------------------------
 
 assert(
-  /async function cmdRecall\(rawArgs: string\[\]\)/.test(src),
-  'tr-cli.ts: cmdRecall accepts rawArgs parameter',
+  !/async function cmdRecall/.test(src),
+  'tr-cli.ts: cmdRecall handler removed (recall retired — native memory_search)',
 );
 
 assert(
-  /popFlag\(rawArgs, '--json'\)/.test(src) || /popFlag\(argsAfterJson.*'--json'\)/.test(src),
-  "tr-cli.ts: cmdRecall calls popFlag for --json",
+  !/popLimitFlag/.test(src),
+  'tr-cli.ts: popLimitFlag removed (was recall-only; --limit retired with tr recall)',
 );
 
 assert(
-  /popLimitFlag/.test(src),
-  'tr-cli.ts: cmdRecall uses popLimitFlag for --limit',
+  !/from '\.\/subgraph-search\.js'/.test(src),
+  'tr-cli.ts: no longer imports subgraph-search.js (recall-only import removed)',
 );
 
-// JSON shape: {"results":[{"text":"...","score":0.8}]}
+// The dispatch case for 'recall' must still exist (so stale prompts get an
+// actionable pointer instead of "unknown command").
+const recallCase = src.match(/case 'recall':[\s\S]*?break;/);
 assert(
-  src.includes('"results"'),
-  'tr-cli.ts: recall --json output includes results key',
+  recallCase !== null,
+  "tr-cli.ts: dispatch still has a 'recall' case (retirement pointer for stale prompts)",
 );
-
-// Each result object must have text and score
 assert(
-  src.includes('"text"') && src.includes('"score"'),
-  'tr-cli.ts: recall --json result objects include text and score keys',
+  recallCase !== null && /retired|memory_search/.test(recallCase[0]),
+  "tr-cli.ts: 'recall' dispatch case surfaces a retirement pointer (mentions retired/memory_search)",
 );
 
 // ---------------------------------------------------------------------------
@@ -174,9 +172,10 @@ assert(
 );
 
 // ---------------------------------------------------------------------------
-// 7b. On-chain wiring (3.3.12-rc.4) — remember/recall/forget MUST use the
+// 7b. On-chain wiring (3.3.12-rc.4) — remember/forget MUST use the
 //     subgraph + UserOp paths, NOT the defunct /v1/store and /v1/search
 //     HTTP endpoints (those return 404 since the on-chain pivot).
+//     (Recall was retired in Phase 3.3 — native memory_search now.)
 // ---------------------------------------------------------------------------
 
 assert(
@@ -194,16 +193,6 @@ assert(
   "tr-cli.ts: imports deriveSmartAccountAddress (Smart Account owner derivation)",
 );
 
-assert(
-  /from '\.\/subgraph-search\.js'/.test(src),
-  "tr-cli.ts: imports from subgraph-search.js (subgraph query path)",
-);
-
-assert(
-  src.includes('searchSubgraph'),
-  "tr-cli.ts: imports searchSubgraph for recall (replaces api.search /v1/search)",
-);
-
 // cmdRemember must call the on-chain path
 const rememberFn = src.match(/async function cmdRemember[\s\S]*?\n\}\n/);
 assert(
@@ -213,17 +202,6 @@ assert(
 assert(
   rememberFn !== null && !/ctx\.apiClient\.store\b/.test(rememberFn[0]),
   "tr-cli.ts: cmdRemember does NOT call ctx.apiClient.store (the /v1/store path is dead)",
-);
-
-// cmdRecall must call searchSubgraph
-const recallFn = src.match(/async function cmdRecall[\s\S]*?\n\}\n/);
-assert(
-  recallFn !== null && recallFn[0].includes('searchSubgraph'),
-  "tr-cli.ts: cmdRecall calls searchSubgraph (NOT api.search)",
-);
-assert(
-  recallFn !== null && !/ctx\.apiClient\.search\b/.test(recallFn[0]),
-  "tr-cli.ts: cmdRecall does NOT call ctx.apiClient.search (the /v1/search path is dead)",
 );
 
 // cmdForget must exist + call submitFactBatchOnChain (tombstone path)

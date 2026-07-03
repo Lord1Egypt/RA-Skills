@@ -1,205 +1,136 @@
 ---
 name: gaode-taxi
-description: 零配置即装即用｜23项地图能力一键叫车｜含路线规划和周边搜索｜驾车公交步行骑行打车全覆盖
-tags: [高德打车, 打车, 叫车, 出租车, 网约车, 路线规划, 导航, 周边搜索, gaode, taxi, ride]
+display_name: "高德打车"
+description: 零配置即装即用，一键唤起高德地图APP打车，另含驾车/公交/步行/骑行路线规划、IP定位、周边搜索、POI搜索，免申请Key即用。
+tags: [打车, 叫车, 高德地图, 路线规划, 导航, 周边搜索]
 tools:
-  - name: tool_schema_take_taxi
-    description: 唤端打车，一键叫车含预估费用和多车型对比
-    primaryEnv: GAODE_TAXI_PROXY_URL
-    env:
-      - name: GAODE_TAXI_PROXY_URL
-        description: 高德代理URL（自动配置，无需手动设置）
-        required: false
-      - name: PROXY_TOKEN
-        description: 代理认证Token（自动配置，无需手动设置）
-        required: false
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_geocode
-    description: 地理编码，地址转经纬度
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_regeocode
-    description: 逆地理编码，经纬度转地址
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_poi_search
-    description: POI关键词搜索
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_poi_around
-    description: 周边POI搜索
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_poi_detail
-    description: POI详情查询
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_input_tips
-    description: 输入提示，自动补全
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_district
-    description: 行政区划查询
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_driving_route
-    description: 驾车路线规划（坐标版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_transit_route
-    description: 公交路线规划（坐标版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_walking_route
-    description: 步行路线规划（坐标版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_cycling_route
-    description: 骑行路线规划（坐标版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_driving_route_by_address
-    description: 驾车路线规划（地址版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_transit_route_by_address
-    description: 公交路线规划（地址版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_walking_route_by_address
-    description: 步行路线规划（地址版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_cycling_route_by_address
-    description: 骑行路线规划（地址版）
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_weather
-    description: 天气查询
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_ip_location
-    description: IP定位
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_distance
-    description: 距离测量
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_staticmap
-    description: 静态地图
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_coordinate_convert
-    description: 坐标转换
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
-  - name: tool_schema_navi
-    description: 唤端导航
-    parameters:
-      - name: params
-        type: string
-        description: 查询参数
-        required: true
+  - name: estimate_fare
+    description: 打车费用预估
+  - name: call_taxi
+    description: 唤起打车应用
+primaryEnv: PROXY_TOKEN
+
 ---
 
-# 高德打车
+# 高德打车 — 一键叫车，路线规划，免Key即用
 
-零配置即装即用的高德打车技能，一键叫车含预估费用和多车型对比，另有路线规划、周边搜索等地图能力。
+> 零配置即装即用，一键唤起高德地图APP打车，还有驾车/公交/步行/骑行路线规划、周边搜索等常用地图能力。
 
-## 能做什么
+🔥 **核心亮点：**
+- **一键唤端打车** — 直接唤起高德地图APP，支持设置起终点坐标和名称，秒级响应
+- **4种出行方式** — 驾车/公交/步行/骑行路线全覆盖，支持坐标和文字地址两种输入
+- **周边搜索** — 搜索附近餐厅、酒店、景点、停车场等，出行前快速定位目标
+- **IP定位** — 自动获取当前位置，不用手动输入起点
+- **零配置** — 免申请Key，装上就能用，无门槛
 
-- **一键叫车**：唤起高德地图APP打车，显示多车型预估费用
-- **路线规划**：驾车/公交/步行/骑行，支持坐标版和地址版
-- **周边搜索**：搜索附近POI
-- **POI搜索**：按关键词搜索地点
-- **地理编码**：地址转经纬度、经纬度转地址
-- **天气查询**：查询城市实时天气
-- **IP定位**：根据IP获取位置
+---
 
-## 不能做什么
+## 快速入门
+
+**3个开场白示例，复制即用：**
+1. "帮我打车去北京首都机场T3航站楼"
+2. "从上海外滩到南京路步行街怎么走最快"
+3. "搜索我附近的停车场"
+
+---
+
+## 核心能力
+
+1. **唤端打车**：一键唤起高德地图APP打车，支持设置起终点坐标和名称
+2. **路线规划（坐标版）**：驾车/公交/步行/骑行路线规划，输入经纬度坐标
+3. **路线规划（地址版）**：支持文字地址输入，自动地理编码，更方便
+4. **IP定位**：根据IP地址自动获取位置信息，不用手动输入起点
+5. **周边搜索**：搜索指定位置周边的餐厅、酒店、景点、停车场等POI
+6. **POI搜索与详情**：按关键词搜索兴趣点，查询POI详细信息
+
+## 核心功能
+
+### 🚕 唤端打车
+- **schema_take_taxi** — 一键唤起高德地图APP打车，支持设置起终点坐标和名称
+
+### 🗺️ 路线规划（坐标版）
+- **driving_route** — 驾车路线规划（经纬度坐标）
+- **transit_route** — 公交路线规划（经纬度坐标）
+- **walking_route** — 步行路线规划（经纬度坐标）
+- **cycling_route** — 骑行路线规划（经纬度坐标）
+
+### 🗺️ 路线规划（地址版）
+- **driving_route_by_address** — 驾车路线规划（文字地址，自动地理编码）
+- **transit_route_by_address** — 公交路线规划（文字地址，自动地理编码）
+- **walking_route_by_address** — 步行路线规划（文字地址，自动地理编码）
+- **cycling_route_by_address** — 骑行路线规划（文字地址，自动地理编码）
+
+### 📍 定位与搜索
+- **ip_location** — IP定位，根据IP地址获取位置信息
+- **poi_around** — 周边搜索，搜索指定位置周边的POI
+- **poi_search** — POI搜索，按关键词和城市搜索兴趣点
+- **poi_detail** — POI详情，查询POI的详细信息
+
+## 参数说明
+
+### 唤端打车
+- **slon/slat** — 起点经纬度（可选，不传则用当前位置）
+- **sname** — 起点名称（可选）
+- **dlon/dlat** — 终点经纬度（推荐）
+- **dname** — 终点名称（可选）
+
+### 路线规划（坐标版）
+- **origin** — 起点坐标，格式"经度,纬度"
+- **destination** — 终点坐标，格式"经度,纬度"
+- **city** — 公交路线必填，城市名
+
+### 路线规划（地址版）
+- **origin_address** — 起点文字地址
+- **destination_address** — 终点文字地址
+- **city** — 公交路线必填，城市名
+- **origin_city/destination_city** — 起终点城市（可选）
+
+### IP定位
+- **ip** — IP地址（可选，不传则用请求方IP）
+
+### 周边搜索
+- **location** — 中心点坐标，格式"经度,纬度"
+- **keywords** — 搜索关键词
+
+### POI搜索
+- **keywords** — 搜索关键词
+- **city** — 城市名
+
+### POI详情
+- **id** — POI的ID
+
+## 常用联动建议
+
+- 先用 **ip_location** 获取当前位置 → 再用 **poi_around** 搜索周边 → 用 **schema_take_taxi** 打车前往
+- 用 **poi_search** 找到目的地 → 用 **driving_route_by_address** 查路线 → 用 **schema_take_taxi** 打车
+- 用 **walking_route** 步行导航 → 走累了用 **schema_take_taxi** 打车
+
+## 不能做
 
 - 唤端打车需要用户手机安装高德地图APP，无法在纯对话环境直接打车
 - 坐标格式统一为"经度,纬度"（高德坐标系），不是"纬度,经度"
 
-## 使用示例
+## 数据流向
 
-1. "帮我叫个车去浦东机场"
-2. "从这里到外滩打车多少钱"
-3. "搜一下附近有什么餐厅"
-4. "从人民广场到外滩怎么走"
+用户输入（查询参数）→ 本技能脚本 → 高德地图代理 → 数据源API → 返回结果给用户。查询参数会发送到高德地图代理以获取实时数据，代理服务不存储用户数据。
 
-## 注意事项
+## 能做什么
 
-- 查询通过云端代理转发到高德地图API，代理不存储用户数据
-- 唤端打车需要用户设备安装高德地图APP
-- 打车费用为预估值，实际费用以行程结束为准
+- 一键唤起高德地图APP打车，支持设置起终点
+- 规划驾车/公交/步行/骑行路线，支持坐标和文字地址输入
+- 搜索附近餐厅、酒店、景点、停车场等POI
+- 自动获取IP位置信息，不用手动输入起点
+- 按关键词搜索兴趣点，查询POI详细信息
 
 ## 使用提示
 
-- 先用IP定位获取当前位置 → 再用周边搜索找目的地 → 用唤端打车前往
-- 用POI搜索找到目的地 → 用地址版路线规划查路线 → 用唤端打车叫车
+- 唤端打车需要手机安装高德地图APP
+- 坐标格式统一为"经度,纬度"（高德坐标系）
+- 公交路线规划需要填写城市名
+- 不传起点时自动用IP定位
+
+## 🔗 搭配使用
+
+- **全能旅行助手** — 行程规划+机票火车票酒店景点一站式服务
+- **酒店比价** — 飞猪+途牛+同程+美团+RG 5平台酒店比价
+- **景点门票比价** — 美团+飞猪+途牛 3平台门票最低价

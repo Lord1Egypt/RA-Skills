@@ -663,7 +663,11 @@ sediment load forecasting. Engineering Applications of Computational Fluid Mecha
 - **格式保持原则**：修正后文献输出格式 = 原始输入格式。逐条识别并保持一致，不改变用户原始引用的格式体系
 - **FUZZY_MATCH处理原则**：不瞎编修正内容，保留原始引用并明确标注存疑，要求用户手动核实
 - **隐私保护**：用户上传的内容仅用于本次核查，不做存储
-- **验证链接格式**：SmartLib 详情页（通过 Gateway 代理访问）+ 原始数据库来源链接（Source_Link，300+数据库，100%覆盖率）
+- **验证链接格式**：⚠️ **必须从 detail API 返回中提取，严禁拼凑/猜测 URL**
+  - SmartLib 详情页：取自 `Identifier_DetailURL` 字段（如 `https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=xxx`）
+  - 原始数据库来源链接：取自 `Source[*].Source_Link` 字段（Scopus/WoS/CNKI/万方/维普等，平均4.75个/篇）
+  - **错误案例（禁止）**：`https://data.smart.vipslib.com/document/detail?id=xxx` — 这个路径不存在！
+  - 获取流程：`POST /search` 代理 `Articledetail` 接口 → 解析响应 `Data.Source` 数组 → 提取每个 `Source_Link` + `Identifier_DetailURL`
 - **统计分析触发条件**：文献数量 >= 3 时自动输出，少于3条时跳过
 - **输出格式**：HTML报告文件，差异内容使用 `[删除]`/`[新增]` 文字标记（CSS样式区分颜色）
 - **下载兼容性**：使用 Blob+createObjectURL 实现，兼容 file:// / http:// / https:// 所有环境

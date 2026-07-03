@@ -14,6 +14,29 @@ const ERROR_LABELS = {
   unknown: "未知",
 };
 
+const SESSION_LABELS = {
+  prompt_aborted: "Prompt 中断",
+  tool_execution_failed: "工具失败",
+  shell_parse_error: "Shell 解析",
+  session_takeover: "会话接管",
+  task_timeout: "任务超时",
+  browser_workflow_failed: "浏览器流程",
+  permission_denied: "权限拒绝",
+  config_error: "配置错误",
+  external_side_effect_risk: "外部副作用",
+  unknown_session_error: "未知会话错误",
+};
+
+const STATUS_LABELS = {
+  queued: "待恢复",
+  injected: "已注入",
+  retrying: "重试中",
+  recovered: "已恢复",
+  failed: "失败",
+  manual_required: "需人工",
+  skipped: "已跳过",
+};
+
 let refreshTimer = null;
 let localInstanceId = null;
 let selectedInstance = "all";
@@ -28,10 +51,19 @@ function qs() {
 }
 
 function formatMs(ms) {
-  if (ms < 1000) return `${ms}ms`;
-  if (ms < 60_000) return `${(ms / 1000).toFixed(1)}s`;
-  if (ms < 3_600_000) return `${(ms / 60_000).toFixed(1)}m`;
-  return `${(ms / 3_600_000).toFixed(1)}h`;
+  if (!Number.isFinite(Number(ms)) || Number(ms) < 0) return "invalid";
+  ms = Number(ms);
+  if (ms === 0) return "0s";
+  if (ms < 60_000) {
+    const seconds = ms / 1000;
+    return `${seconds >= 10 ? Math.round(seconds) : seconds.toFixed(1)}s`;
+  }
+  if (ms < 3_600_000) {
+    const minutes = ms / 60_000;
+    return `${Number.isInteger(minutes) ? minutes : minutes.toFixed(1)}分钟`;
+  }
+  const hours = ms / 3_600_000;
+  return `${Number.isInteger(hours) ? hours : hours.toFixed(1)}小时`;
 }
 
 function toast(msg) {
@@ -94,7 +126,15 @@ function renderMetrics(overview) {
       : overview.instances?.find((i) => i.id === overview.instance)?.label ?? overview.instance;
 
   if (!today) {
-    el.innerHTML = `<p class="empty">暂无今日数据（${instLabel}）</p>`;
+    el.innerHTML = `
+      <div class="metric"><div class="label">范围</div><div class="value" style="font-size:0.95rem">${instLabel}</div></div>
+      <div class="metric"><div class="label">今日调用</div><div class="value">0</div></div>
+      <div class="metric"><div class="label">今日失败</div><div class="value">0</div></div>
+      <div class="metric"><div class="label">今日成功率</div><div class="value ok">100%</div></div>
+      <div class="metric"><div class="label">活跃重试</div><div class="value">${Object.keys(overview.activeRetries || {}).length}</div></div>
+      <div class="metric"><div class="label">会话待恢复</div><div class="value">${overview.sessionRetriesSummary?.pending ?? 0}</div></div>
+      <div class="metric"><div class="label">需人工处理</div><div class="value ${overview.sessionRetriesSummary?.manualRequired ? "bad" : ""}">${overview.sessionRetriesSummary?.manualRequired ?? 0}</div></div>
+    `;
     return;
   }
   const rateClass = today.successRate >= 95 ? "ok" : "bad";
@@ -105,6 +145,8 @@ function renderMetrics(overview) {
     <div class="metric"><div class="label">今日成功率</div><div class="value ${rateClass}">${today.successRate}%</div></div>
     <div class="metric"><div class="label">本小时失败</div><div class="value">${hour?.failedCalls ?? 0}</div></div>
     <div class="metric"><div class="label">活跃重试</div><div class="value">${Object.keys(overview.activeRetries || {}).length}</div></div>
+    <div class="metric"><div class="label">会话待恢复</div><div class="value">${overview.sessionRetriesSummary?.pending ?? 0}</div></div>
+    <div class="metric"><div class="label">需人工处理</div><div class="value ${overview.sessionRetriesSummary?.manualRequired ? "bad" : ""}">${overview.sessionRetriesSummary?.manualRequired ?? 0}</div></div>
   `;
 }
 
@@ -166,6 +208,53 @@ function renderRecentErrors(errors) {
         ? `<span class="instance-tag">${e.instanceLabel}</span>`
         : "";
       return `<li>${tag}[${t}] ${e.errorLabel || e.errorType}: ${(e.errorMessage || "").slice(0, 50)}</li>`;
+    })
+    .join("");
+}
+
+function renderSessionRetries(data) {
+  const summaryEl = $("#sessionRetrySummary");
+  const listEl = $("#sessionRetries");
+  const summary = data?.summary || data?.sessionRetriesSummary || {};
+  const records = data?.records || data?.sessionRetries || [];
+  const topCategory = Object.entries(summary.byCategory || {})
+    .filter(([, n]) => n > 0)
+    .sort((a, b) => b[1] - a[1])[0];
+
+  summaryEl.innerHTML = `
+    <div class="mini-metric"><span>总数</span><strong>${summary.total ?? 0}</strong></div>
+    <div class="mini-metric"><span>待恢复</span><strong>${summary.pending ?? 0}</strong></div>
+    <div class="mini-metric"><span>可重试</span><strong>${summary.retryable ?? 0}</strong></div>
+    <div class="mini-metric warn"><span>需人工</span><strong>${summary.manualRequired ?? 0}</strong></div>
+    <p class="empty">${topCategory ? `主要类型：${SESSION_LABELS[topCategory[0]] || topCategory[0]} × ${topCategory[1]}` : "暂无会话级错误"}</p>
+  `;
+
+  if (!records.length) {
+    listEl.innerHTML = '<li class="empty">暂无会话或工具恢复记录</li>';
+    return;
+  }
+
+  listEl.innerHTML = records
+    .slice(0, 12)
+    .map((r) => {
+      const time = new Date(r.updatedAt || r.createdAt).toLocaleTimeString();
+      const tag = r.instanceLabel
+        ? `<span class="instance-tag">${r.instanceLabel}</span>`
+        : "";
+      const statusClass =
+        r.status === "manual_required" || r.status === "failed"
+          ? "danger"
+          : r.status === "queued" || r.status === "retrying"
+            ? "warn"
+            : "ok";
+      const target = r.toolName || r.taskId || r.runId || r.sessionKey || "session";
+      return `
+        <li>
+          ${tag}<span class="status-badge ${statusClass}">${STATUS_LABELS[r.status] || r.status}</span>
+          <strong>${SESSION_LABELS[r.category] || r.category}</strong>
+          <span class="queue-meta">${time} · ${target} · ${r.attempt}/${r.maxAttempts}</span>
+          <p>${(r.errorMessage || "").slice(0, 120)}</p>
+        </li>`;
     })
     .join("");
 }
@@ -275,6 +364,7 @@ async function refreshAll() {
     renderErrorChart(overview.today);
     renderActiveRetries(overview.activeRetries);
     renderRecentErrors(overview.recentErrors);
+    renderSessionRetries(overview);
     await renderModels();
     await renderStrategies();
     const inst = getInstance();

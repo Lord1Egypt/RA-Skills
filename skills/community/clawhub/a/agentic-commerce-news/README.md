@@ -2,6 +2,10 @@
 
 > Agentic Commerce Weekly Briefing — scans the past 7 days of X/Twitter, industry media, and VC announcements for startups, products, funding rounds, and opinions endorsed by influential voices (VCs, founders, AI leaders) in the agentic commerce space, then produces a structured news briefing.
 
+### 📰 [Read the latest briefing](./briefings/2026-06-29.md) · [archive](./briefings/)
+
+Every week's output is published in [`briefings/`](./briefings/) — read one before installing; the archive **is** the demo.
+
 ## What it does
 
 A news aggregation skill focused on **agentic commerce** — the rapidly evolving space where AI agents shop, compare, check out, and pay on behalf of humans. On every invocation, it:
@@ -55,6 +59,8 @@ openclaw cron add \
 - Every item must include a source link
 - Minimum 5 items (a quiet week is OK — do not pad with stale news)
 - Exclude pure PR / sponsored content
+- Publish dates of top items are confirmed on the source page, not inferred from search snippets
+- Items covered in the previous briefing (see [`briefings/`](./briefings/)) don't repeat unless there's a material new development
 
 ## Output Format
 
@@ -123,6 +129,16 @@ Restart your Claude Code session to pick it up.
 - Claude Code ≥ 1.0 (requires the `WebSearch` tool)
 - (Optional) `CronCreate` tool or `openclaw cron` — for scheduled execution
 - **No** API keys or external services required
+
+## Privacy & Data Sources
+
+This skill reads only **publicly available** information and stores **no personal data**:
+
+- **Sources**: public web search results, public posts on X/Twitter, public industry blogs and media, and publicly announced VC funding data.
+- **No personal data is collected or stored.** Results are used only for in-session synthesis of the briefing — nothing is persisted to disk or sent to any third-party server beyond the standard web-search / web-fetch calls Claude already performs.
+- **No credentials required.** The skill needs no API keys, tokens, or logins.
+- **Tools used**: `WebSearch` and `WebFetch` (read-only). Optionally `CronCreate` (Claude Code) or `openclaw cron` only if you explicitly ask it to run on a schedule.
+- Please respect the terms of service of any source consulted.
 
 ## Customization
 

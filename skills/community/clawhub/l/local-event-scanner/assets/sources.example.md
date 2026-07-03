@@ -49,4 +49,4 @@ Primary sources:
 - If no location is requested, use the default location.
 - Preserve source links for every candidate event.
 - Prefer public pages, public event listings, venue listings, newsletters, and ticketing pages.
-- Check for new primary-source suggestions only after `event-scanner-add-to-calendar` is used. Send suggestions in chat only, and only when the added event came from a source not covered here.
+- Check for new primary-source suggestions only after `local-event-scanner-add-to-calendar` is used. Send suggestions in chat only, and only when the added event came from a source not covered here.

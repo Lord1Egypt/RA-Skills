@@ -20,6 +20,12 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {
+  envHomedir,
+  envNumber,
+  envString,
+  envStringLower,
+} from './entry.js';
+import {
   computeEntityTrapdoor,
   isDigestBlob,
   type AutoResolveMode,
@@ -145,9 +151,9 @@ export interface DecisionLogEntry {
 
 /** Where feedback, decisions, and weights live. `~/.totalreclaw/` by default. */
 function resolveStateDir(): string {
-  const override = process.env.TOTALRECLAW_STATE_DIR;
-  if (override && override.length > 0) return override;
-  return path.join(os.homedir(), '.totalreclaw');
+  const override = envString('TOTALRECLAW_STATE_DIR');
+  if (override.length > 0) return override;
+  return path.join(envHomedir(), '.totalreclaw');
 }
 
 function ensureStateDir(): string {
@@ -508,7 +514,10 @@ function _resolveWithCandidatesCore(
       weightsJson,
       thresholdLower,
       thresholdUpper,
-      Math.floor(nowUnixSeconds),
+      // wasm-bindgen declares `now_unix` as i64 → JS BigInt. Node ≥26 rejects
+      // the implicit Number→BigInt coercion that older runtimes tolerated, so
+      // wrap explicitly (same as the legacy path below + loadWeightsFile).
+      BigInt(Math.floor(nowUnixSeconds)),
       TIE_ZONE_SCORE_TOLERANCE,
     );
   } catch (err) {
@@ -738,7 +747,7 @@ export async function detectAndResolveContradictions(
   } = input;
 
   // Read env per-call so tests can toggle without module reload.
-  const raw = (process.env.TOTALRECLAW_AUTO_RESOLVE_MODE ?? '').trim().toLowerCase();
+  const raw = envStringLower('TOTALRECLAW_AUTO_RESOLVE_MODE');
   const mode: AutoResolveMode =
     raw === 'off' ? 'off' : raw === 'shadow' ? 'shadow' : 'active';
 
@@ -1004,15 +1013,11 @@ export const TUNING_LOOP_MIN_INTERVAL_SECONDS = 3600;
  * empty, non-numeric, or negative.
  */
 export function getTuningLoopMinIntervalSeconds(): number {
-  const raw = process.env.TOTALRECLAW_TUNING_MIN_INTERVAL_OVERRIDE_SECONDS;
-  if (raw === undefined || raw === null || raw === '') {
-    return TUNING_LOOP_MIN_INTERVAL_SECONDS;
-  }
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed) || parsed < 0) {
-    return TUNING_LOOP_MIN_INTERVAL_SECONDS;
-  }
-  return parsed;
+  // envNumber returns the fallback for unset/empty/non-finite/negative —
+  // recovering the original 3-guard contract in one call.
+  return envNumber('TOTALRECLAW_TUNING_MIN_INTERVAL_OVERRIDE_SECONDS', TUNING_LOOP_MIN_INTERVAL_SECONDS, {
+    min: 0,
+  });
 }
 
 /** A single row from feedback.jsonl — matches Rust `FeedbackEntry`. */

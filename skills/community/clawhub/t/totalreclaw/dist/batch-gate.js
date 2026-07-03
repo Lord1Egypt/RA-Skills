@@ -16,11 +16,14 @@
  * Sibling work-leaves wire `shouldBatchOnChain` into `submitFactBatchOnChain`
  * (TS) and `agent/lifecycle.py` (Python mirror in `batch_gate.py`); this
  * module ships the primitive only.
+ *
+ * Env read is centralized in entry.ts (env-reading seam, Task 1.3 of the
+ * OpenClaw native integration plan, 2026-06-21).
  */
+import { isGnosisBatchEnabledAtBoot } from './entry.js';
 const GNOSIS_CHAIN_ID = 100;
-const BATCH_ENABLED_AT_BOOT = (process.env.TOTALRECLAW_GNOSIS_BATCH_ENABLED ?? '').toLowerCase() !== 'false';
 export function shouldBatchOnChain(chainId) {
-    if (!BATCH_ENABLED_AT_BOOT)
+    if (!isGnosisBatchEnabledAtBoot())
         return false;
     return chainId === GNOSIS_CHAIN_ID;
 }

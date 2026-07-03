@@ -29,14 +29,14 @@ async function withServer(run) {
   const silent = { log() {}, warn() {}, error() {} };
   const handler = buildModelsHandler({ anthropicProxy: mockAnthropic, openAIProxy: mockOpenAI, logger: silent });
   const srv = new ProxyHttpServer({ 'GET /v1/models': handler }, { port: 0, logger: silent });
-  srv.token = 'e2e-token';
+  srv.token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
   srv.server = http.createServer((req, res) => srv._handleRequest(req, res));
   const port = await new Promise((resolve) => srv.server.listen(0, '127.0.0.1', () => resolve(srv.server.address().port)));
   srv.actualPort = port;
 
   const get = (headers) => new Promise((resolve, reject) => {
     const req = http.request({ host: '127.0.0.1', port, path: '/v1/models', method: 'GET',
-      headers: { authorization: 'Bearer e2e-token', ...headers } }, (res) => {
+      headers: { authorization: 'Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', ...headers } }, (res) => {
       const chunks = [];
       res.on('data', (d) => chunks.push(d));
       res.on('end', () => resolve({ status: res.statusCode, bytes: Buffer.concat(chunks) }));
@@ -89,12 +89,12 @@ test('GET /v1/models surfaces an upstream 401 (no key) instead of 404', async ()
     });
     // swap in a one-off server for this case
     const srv = new ProxyHttpServer({ 'GET /v1/models': handler }, { port: 0, logger: { log() {}, warn() {}, error() {} } });
-    srv.token = 'e2e-token';
+    srv.token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
     srv.server = http.createServer((req, res) => srv._handleRequest(req, res));
     const port = await new Promise((resolve) => srv.server.listen(0, '127.0.0.1', () => resolve(srv.server.address().port)));
     srv.actualPort = port;
     const res = await new Promise((resolve, reject) => {
-      const req = http.request({ host: '127.0.0.1', port, path: '/v1/models', method: 'GET', headers: { authorization: 'Bearer e2e-token' } }, (r) => {
+      const req = http.request({ host: '127.0.0.1', port, path: '/v1/models', method: 'GET', headers: { authorization: 'Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' } }, (r) => {
         const ch = []; r.on('data', (d) => ch.push(d)); r.on('end', () => resolve({ status: r.statusCode, bytes: Buffer.concat(ch) }));
       });
       req.on('error', reject); req.end();

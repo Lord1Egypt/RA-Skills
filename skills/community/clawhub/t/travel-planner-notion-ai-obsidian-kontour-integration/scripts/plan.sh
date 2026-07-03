@@ -451,25 +451,25 @@ def place_planning_metadata(dest_name):
     """
     metadata = {
         'kyoto': {
-            'Fushimi Inari': {'zone': 'south/east Kyoto', 'setting': 'outdoor', 'lat': 34.9671, 'lng': 135.7727},
-            'Kiyomizu-dera': {'zone': 'east Kyoto', 'setting': 'outdoor', 'lat': 34.9949, 'lng': 135.7850},
-            'Gion District': {'zone': 'east/central Kyoto', 'setting': 'both', 'lat': 35.0038, 'lng': 135.7786},
-            'Kinkaku-ji': {'zone': 'north Kyoto', 'setting': 'outdoor', 'lat': 35.0394, 'lng': 135.7292},
-            'Arashiyama Bamboo': {'zone': 'west Kyoto', 'setting': 'outdoor', 'lat': 35.0170, 'lng': 135.6719},
+            'Fushimi Inari': {'zone': 'south/east Kyoto', 'setting': 'outdoor'},
+            'Kiyomizu-dera': {'zone': 'east Kyoto', 'setting': 'outdoor'},
+            'Gion District': {'zone': 'east/central Kyoto', 'setting': 'both'},
+            'Kinkaku-ji': {'zone': 'north Kyoto', 'setting': 'outdoor'},
+            'Arashiyama Bamboo': {'zone': 'west Kyoto', 'setting': 'outdoor'},
         },
         'tokyo': {
-            'Tsukiji Outer Market': {'zone': 'central/east Tokyo', 'setting': 'both', 'lat': 35.6655, 'lng': 139.7707},
-            'Senso-ji Temple': {'zone': 'east Tokyo', 'setting': 'outdoor', 'lat': 35.7148, 'lng': 139.7967},
-            'Akihabara': {'zone': 'east/central Tokyo', 'setting': 'indoor', 'lat': 35.6984, 'lng': 139.7730},
-            'Meiji Shrine': {'zone': 'west Tokyo', 'setting': 'outdoor', 'lat': 35.6764, 'lng': 139.6993},
-            'Shibuya Crossing': {'zone': 'west Tokyo', 'setting': 'outdoor', 'lat': 35.6595, 'lng': 139.7005},
+            'Tsukiji Outer Market': {'zone': 'central/east Tokyo', 'setting': 'both'},
+            'Senso-ji Temple': {'zone': 'east Tokyo', 'setting': 'outdoor'},
+            'Akihabara': {'zone': 'east/central Tokyo', 'setting': 'indoor'},
+            'Meiji Shrine': {'zone': 'west Tokyo', 'setting': 'outdoor'},
+            'Shibuya Crossing': {'zone': 'west Tokyo', 'setting': 'outdoor'},
         },
         'paris': {
-            'Montmartre': {'zone': 'north Paris', 'setting': 'outdoor', 'lat': 48.8867, 'lng': 2.3431},
-            'Louvre Museum': {'zone': 'central Paris', 'setting': 'indoor', 'lat': 48.8606, 'lng': 2.3376},
-            'Notre-Dame': {'zone': 'central Paris', 'setting': 'both', 'lat': 48.8530, 'lng': 2.3499},
-            "Musée d'Orsay": {'zone': 'central/west Paris', 'setting': 'indoor', 'lat': 48.8600, 'lng': 2.3266},
-            'Eiffel Tower': {'zone': 'west Paris', 'setting': 'outdoor', 'lat': 48.8584, 'lng': 2.2945},
+            'Montmartre': {'zone': 'north Paris', 'setting': 'outdoor'},
+            'Louvre Museum': {'zone': 'central Paris', 'setting': 'indoor'},
+            'Notre-Dame': {'zone': 'central Paris', 'setting': 'both'},
+            "Musée d'Orsay": {'zone': 'central/west Paris', 'setting': 'indoor'},
+            'Eiffel Tower': {'zone': 'west Paris', 'setting': 'outdoor'},
         },
     }
     return metadata.get((dest_name or '').lower(), {})
@@ -516,8 +516,7 @@ def build_day_plan_continuity(dest_data, suggested_places, constraint_details):
         'paris': ['Montmartre', 'Louvre Museum', 'Notre-Dame', "Musée d'Orsay", 'Eiffel Tower'],
     }
 
-    place_meta = place_planning_metadata(dest_name)
-    zone_map = {name: meta['zone'] for name, meta in place_meta.items()} or zone_maps.get(dest_key, {})
+    zone_map = {name: meta['zone'] for name, meta in place_planning_metadata(dest_name).items()} or zone_maps.get(dest_key, {})
     preferred_order = preferred_orders.get(dest_key, [])
     by_name = {place['name']: place for place in suggested_places}
     ordered_names = [name for name in preferred_order if name in by_name]
@@ -553,17 +552,12 @@ def build_day_plan_continuity(dest_data, suggested_places, constraint_details):
                 reason = f'end nearby in {zone}, keeping the final leg compact'
             else:
                 reason = f'finish in {zone} after a single planned transfer from {previous_zone}'
-        segment = {
+        segments.append({
             'time_of_day': slot,
             'place': name,
             'zone': zone,
             'continuity_reason': reason,
-        }
-        meta = place_meta.get(name, {})
-        if meta.get('lat') is not None and meta.get('lng') is not None:
-            segment['lat'] = meta['lat']
-            segment['lng'] = meta['lng']
-        segments.append(segment)
+        })
 
     transitions = []
     for left, right in zip(segments, segments[1:]):
@@ -590,64 +584,6 @@ def build_output_polish(ctx, dest_data, destination_comparison, risk_fallbacks):
     small, stable surface for turning the JSON into a clearer user reply with
     sections, rationale, next actions, and a concise response template.
     """
-    def build_decision_confidence():
-        evidence = []
-        missing = []
-        open_decisions_local = ctx.get('open_decisions', [])
-
-        if dest_data:
-            evidence.append('destination found in bundled reference data')
-        elif ctx.get('destination'):
-            missing.append('destination not found in bundled reference data')
-        else:
-            missing.append('destination')
-
-        if ctx.get('suggested_places'):
-            evidence.append('ranked suggested places with why_chosen factors')
-        elif destination_comparison:
-            evidence.append('destination comparison decision matrix available')
-        else:
-            missing.append('ranked place or destination-choice evidence')
-
-        if ctx.get('day_plan_continuity'):
-            evidence.append('day-flow continuity scaffold available')
-        elif 'dates/duration' not in open_decisions_local and ctx.get('destination'):
-            missing.append('day-flow continuity scaffold')
-
-        if ctx.get('budget'):
-            evidence.append('budget preference captured')
-        else:
-            missing.append('budget')
-
-        if ctx.get('constraint_details'):
-            evidence.append('explicit traveler constraints captured')
-        elif 'constraints' in open_decisions_local:
-            missing.append('traveler constraints')
-
-        if risk_fallbacks:
-            evidence.append('risk fallback warnings generated')
-
-        high_priority_missing = [item for item in open_decisions_local if item in {'destination', 'dates/duration', 'travelers', 'budget', 'interests'}]
-        if high_priority_missing:
-            level = 'low'
-            summary = f"Needs clarification on {', '.join(high_priority_missing[:2])} before a reliable recommendation."
-        elif risk_fallbacks:
-            level = 'medium'
-            summary = 'Good first-pass recommendation, but fallback risks need live validation before final itinerary.'
-        elif ctx.get('suggested_places') or destination_comparison:
-            level = 'high'
-            summary = 'Strong offline first-pass recommendation; ready to expand after routine live checks.'
-        else:
-            level = 'low'
-            summary = 'Insufficient recommendation evidence; ask the next discovery question first.'
-
-        return {
-            'level': level,
-            'summary': summary,
-            'evidence': evidence[:4],
-            'missing_evidence': missing[:4],
-        }
-
     sections = []
     destination = ctx.get('destination', {})
     if destination:
@@ -702,6 +638,21 @@ def build_output_polish(ctx, dest_data, destination_comparison, risk_fallbacks):
         missing = ', '.join(ctx.get('open_decisions', [])[:3]) or 'remaining trip details'
         rationale.append(f"Prioritize filling {missing} before producing a final itinerary.")
 
+    confidence_drivers = []
+    if destination_comparison:
+        confidence_drivers.append(f"ranked {len(destination_comparison.get('options', []))} destination option(s) with decision-matrix evidence")
+    if ctx.get('suggested_places'):
+        confidence_drivers.append(f"scored {len(ctx['suggested_places'])} place candidate(s) with why-chosen factors")
+    if ctx.get('day_plan_continuity'):
+        confidence_drivers.append('built a day-flow scaffold to reduce backtracking')
+    if risk_fallbacks:
+        confidence_drivers.append(f"surfaced {len(risk_fallbacks)} fallback warning(s) before final itinerary work")
+    if ctx.get('constraint_details'):
+        captured = ', '.join(sorted(ctx['constraint_details'].keys()))
+        confidence_drivers.append(f"captured explicit constraints: {captured}")
+    if not confidence_drivers:
+        confidence_drivers.append('limited structured evidence so the next response should stay in discovery mode')
+
     actions = []
     open_decisions = ctx.get('open_decisions', [])
     if open_decisions:
@@ -754,6 +705,15 @@ def build_output_polish(ctx, dest_data, destination_comparison, risk_fallbacks):
     summary_subject = primary_place or 'the current plan'
     decision_summary = f"Recommend {summary_subject}; {readiness}."
 
+    status_line = {
+        'readiness': readiness,
+        'recommended_focus': summary_subject,
+        'evidence_count': len(confidence_drivers),
+        'fallback_count': len(risk_fallbacks),
+        'open_decisions_count': len(open_decisions),
+        'next_owner': 'user' if open_decisions else 'operator',
+    }
+
     checklist = []
     if open_decisions:
         checklist.append({
@@ -786,52 +746,170 @@ def build_output_polish(ctx, dest_data, destination_comparison, risk_fallbacks):
             'status': 'next',
         })
 
-    brief_sections = []
-    if destination:
-        snapshot_bits = [destination.get('name', 'selected destination')]
-        if ctx.get('duration_days'):
-            snapshot_bits.append(f"{ctx['duration_days']} days")
-        if ctx.get('travelers', {}).get('adults'):
-            snapshot_bits.append(f"{ctx['travelers']['adults']} traveler(s)")
-        if ctx.get('budget'):
-            budget_bits = []
-            if ctx['budget'].get('tier'):
-                budget_bits.append(ctx['budget']['tier'])
-            if ctx['budget'].get('cap'):
-                cap = ctx['budget']['cap']
-                budget_bits.append(f"cap {cap.get('currency', 'USD')} {cap.get('amount')}")
-            if budget_bits:
-                snapshot_bits.append('/'.join(str(bit) for bit in budget_bits))
-        brief_sections.append({'label': 'Snapshot', 'text': ' • '.join(snapshot_bits)})
-    elif destination_comparison:
-        brief_sections.append({'label': 'Snapshot', 'text': f"Comparing {', '.join(option['name'] for option in destination_comparison.get('options', [])[:3])}"})
+    first_check = checklist[0]
+    if first_check['owner'] == 'user':
+        prompt_text = first_check['action']
+        prompt_reason = 'This is the highest-impact traveler clarification before the next planning pass.'
+    else:
+        prompt_text = first_check['action']
+        prompt_reason = 'This is the highest-impact operator validation before presenting or expanding the plan.'
+    next_step_prompt = {
+        'audience': first_check['owner'],
+        'prompt': prompt_text,
+        'reason': prompt_reason,
+        'source': 'next_action_checklist[0]',
+    }
 
-    if rationale:
-        brief_sections.append({'label': 'Rationale', 'text': rationale[0]})
     if risk_fallbacks:
-        fallback = risk_fallbacks[0]['fallback']
-        brief_sections.append({'label': 'Backup', 'text': f"{risk_fallbacks[0]['warning']} Backup: {fallback['nearest_viable_alternative']}."})
-    if actions:
-        brief_sections.append({'label': 'Next', 'text': next_question or actions[0]})
+        readiness_tone = 'caution'
+        readiness_code = 'needs_live_validation'
+    elif open_decisions:
+        readiness_tone = 'needs_input'
+        readiness_code = 'needs_clarification'
+    else:
+        readiness_tone = 'ready'
+        readiness_code = 'ready_to_expand'
 
-    decision_confidence = build_decision_confidence()
+    decision_badges = [
+        {
+            'label': 'Readiness',
+            'value': readiness_code,
+            'tone': readiness_tone,
+        },
+        {
+            'label': 'Next owner',
+            'value': first_check['owner'],
+            'tone': 'action',
+        },
+        {
+            'label': 'Fallbacks',
+            'value': f"{len(risk_fallbacks)} warning(s)",
+            'tone': 'caution' if risk_fallbacks else 'clear',
+        },
+    ]
+    if destination_comparison:
+        decision_badges.append({
+            'label': 'Decision mode',
+            'value': 'destination_comparison',
+            'tone': 'compare',
+        })
+    elif ctx.get('day_plan_continuity'):
+        decision_badges.append({
+            'label': 'Decision mode',
+            'value': 'day_flow_scaffold',
+            'tone': 'sequence',
+        })
+
+    markdown_sections = [
+        {
+            'heading': 'Recommendation',
+            'body': decision_summary,
+        },
+        {
+            'heading': 'Why this fits',
+            'body': ' '.join(rationale[:2]) if rationale else 'Use the strongest available fit evidence from the structured fields.',
+        },
+        {
+            'heading': 'Watch-outs',
+            'body': risk_fallbacks[0]['warning'] if risk_fallbacks else 'No major first-pass fallback warning from offline data.',
+        },
+        {
+            'heading': 'Next step',
+            'body': f"{next_step_prompt['prompt']} ({next_step_prompt['audience']})",
+        },
+    ]
+    presentation_markdown = '\n\n'.join(
+        f"### {section['heading']}\n{section['body']}" for section in markdown_sections
+    )
+
+    handoff_brief = {
+        'title': f"Planning handoff — {summary_subject}",
+        'decision': decision_summary,
+        'rationale_bullets': rationale[:3],
+        'watch_out': risk_fallbacks[0]['warning'] if risk_fallbacks else 'No major first-pass fallback warning from offline data.',
+        'next_action': {
+            'owner': next_step_prompt['audience'],
+            'prompt': next_step_prompt['prompt'],
+            'reason': next_step_prompt['reason'],
+        },
+        'evidence_drivers': confidence_drivers[:3],
+    }
+
+    quick_reply_card = {
+        'title': f"Best next move: {summary_subject}",
+        'subtitle': readiness,
+        'bullets': [
+            rationale[0] if rationale else 'Use the strongest available fit evidence from the structured fields.',
+            confidence_drivers[0] if confidence_drivers else 'Evidence is limited; stay in discovery mode.',
+        ],
+        'caveat': risk_fallbacks[0]['warning'] if risk_fallbacks else 'No major first-pass fallback warning from offline data.',
+        'next_ask': next_step_prompt['prompt'],
+        'cta': 'Reply with the missing detail so I can expand this into a timed, budget-aware itinerary.' if next_step_prompt['audience'] == 'user' else 'Verify the operator checklist item, then expand the plan.',
+    }
+
+    reply_options = []
+    if open_decisions:
+        missing_key = open_decisions[0]
+        reply_options.append({
+            'label': f"Answer {missing_key}",
+            'value': f"clarify:{missing_key}",
+            'owner': 'user',
+            'reason': 'Resolves the highest-priority missing decision before itinerary expansion.',
+        })
+    if risk_fallbacks:
+        fallback_name = risk_fallbacks[0]['fallback']['nearest_viable_alternative']
+        reply_options.append({
+            'label': f"Use backup: {fallback_name}",
+            'value': 'accept:fallback',
+            'owner': 'user',
+            'reason': 'Lets the plan degrade gracefully if the top anchor is closed, weather-mismatched, or over-constrained.',
+        })
+    if ctx.get('day_plan_continuity'):
+        reply_options.append({
+            'label': 'Expand timed day flow',
+            'value': 'expand:day_flow',
+            'owner': 'operator',
+            'reason': 'Converts the continuity scaffold into timed morning, afternoon, and evening blocks.',
+        })
+    elif destination_comparison:
+        reply_options.append({
+            'label': f"Compare around {destination_comparison.get('recommended_option')}",
+            'value': 'expand:comparison',
+            'owner': 'operator',
+            'reason': 'Turns the recommendation into a side-by-side user explanation with tradeoffs.',
+        })
+    if not reply_options:
+        reply_options.append({
+            'label': 'Build detailed itinerary',
+            'value': 'expand:itinerary',
+            'owner': 'operator',
+            'reason': 'All core discovery fields are ready enough for itinerary expansion.',
+        })
+    reply_options = reply_options[:3]
 
     return {
         'compact_sections': sections,
         'decision_summary': decision_summary,
-        'decision_confidence': decision_confidence,
         'decision_rationale': rationale[:3],
+        'confidence_drivers': confidence_drivers[:5],
+        'status_line': status_line,
         'next_step_actions': actions[:4],
         'next_action_checklist': checklist[:4],
+        'next_step_prompt': next_step_prompt,
+        'decision_badges': decision_badges,
+        'handoff_brief': handoff_brief,
+        'quick_reply_card': quick_reply_card,
+        'reply_options': reply_options,
+        'presentation_markdown': {
+            'format': 'compact markdown draft',
+            'sections': markdown_sections,
+            'text': presentation_markdown,
+            'tone': 'scannable, decisive, and clear about the next action',
+        },
         'response_template': {
             'format': 'four-line operator draft',
             'lines': template_lines,
             'tone': 'concise, evidence-led, and action-oriented',
-        },
-        'user_visible_brief': {
-            'format': 'compact labeled summary',
-            'sections': brief_sections[:4],
-            'rendering_note': 'Use these labels verbatim for a short user-facing reply before expanding into a full itinerary.',
         },
     }
 

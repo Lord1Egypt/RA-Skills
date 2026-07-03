@@ -9,6 +9,7 @@
   python3 compare.py advisor --hotel "上海外滩华尔道夫" --city "上海" --check-in 2026-07-01 --check-out 2026-07-03
 """
 
+import os
 import argparse
 import json
 import re
@@ -20,7 +21,7 @@ from datetime import datetime, timedelta
 # 配置
 # ============================================================
 
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
 SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"

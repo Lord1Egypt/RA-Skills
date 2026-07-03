@@ -9,6 +9,13 @@ let useMock = args.includes('--mock');
 
 const TUNIU_API_KEY = process.env.TUNIU_API_KEY || '';
 
+// 优先 npx（减少直接依赖用户可写 npm 全局目录）
+function resolveTuniu() {
+  return { useNpx: true };
+}
+
+const tuniuExec = resolveTuniu();
+
 // Auto-detect mock mode: no API key or placeholder key
 if (!useMock && (!TUNIU_API_KEY || TUNIU_API_KEY.startsWith('your_'))) {
   useMock = true;
@@ -65,21 +72,20 @@ if (useMock) {
       options: getMockHotels('北京') },
   ];
 
-  const desktopPath = path.join(process.env.USERPROFILE || '~', 'Desktop');
+  // Mock 模式也默认写入本地 output/
+  const outDir = path.join(__dirname, '..', 'output');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   const data = { routes, hotels };
-  const dataFile = path.join(desktopPath, '5city-trip.json');
+  const dataFile = path.join(outDir, '5city-trip.json');
   fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
   console.log('\n[Mock] Data saved to:', dataFile);
   process.exit(0);
 }
 
 // === Real mode: API key available ===
-const tuniuPath = path.join(
-  process.env.APPDATA || process.env.HOME || '',
-  'npm', 'node_modules', 'tuniu-cli', 'bin', 'tuniu.js'
-);
 
 // Passenger info - use env vars, never hardcode
+// 注意：默认情况下我们不会把乘客敏感信息写入输出文件。
 const passengerInfo = {
   name: process.env.PASSENGER_NAME || 'Passenger',
   id: process.env.PASSENGER_ID || '',
@@ -88,7 +94,11 @@ const passengerInfo = {
 
 // Call Tuniu CLI
 function callTuniu(server, tool, params) {
-  const result = spawnSync('node', [tuniuPath, 'call', server, tool, '-a', JSON.stringify(params)], {
+  const baseArgs = ['tuniu', 'call', server, tool, '-a', JSON.stringify(params)];
+  const spawnCmd = tuniuExec.useNpx ? 'npx' : 'node';
+  const spawnArgs = tuniuExec.useNpx ? baseArgs : [tuniuExec.bin || '', ...baseArgs];
+
+  const result = spawnSync(spawnCmd, spawnArgs, {
     env: { ...process.env, TUNIU_API_KEY },
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'pipe'],
@@ -176,11 +186,16 @@ function queryHotel(city, checkIn, checkOut) {
 // Main function
 function main() {
   const tripData = {
-    passenger: passengerInfo,
     startDate: '2026-05-04',
     routes: [],
     hotels: []
   };
+
+  // 仅在用户显式要求时附加乘客信息（默认不附加，避免无意持久化 PII）
+  const shouldAttachPassenger = process.argv.includes('--include-passenger');
+  if (shouldAttachPassenger) {
+    tripData.passenger = passengerInfo;
+  }
 
   // 1. Hangzhou -> Nanjing (train)
   tripData.routes.push({
@@ -230,13 +245,33 @@ function main() {
     options: queryHotel('北京', '2026-05-07', '2026-05-08')
   });
 
-  // Save data
-  const desktopPath = path.join(process.env.USERPROFILE || '~', 'Desktop');
-  const dataFile = path.join(desktopPath, '5city-trip.json');
-  fs.writeFileSync(dataFile, JSON.stringify(tripData, null, 2));
-  console.log('Data saved to:', dataFile);
+  // === 保存数据（默认写入本地 output/ 目录）===
+  const saveArgs = process.argv.slice(2);
+  const useDesktop = saveArgs.includes('--desktop');
+  const includePassenger = saveArgs.includes('--include-passenger');
 
-  return tripData;
+  const baseDir = useDesktop
+    ? path.join(process.env.USERPROFILE || process.env.HOME || '.', 'Desktop')
+    : path.join(__dirname, '..', 'output');
+
+  if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir, { recursive: true });
+
+  // 默认不把乘客敏感信息写入持久化文件
+  const toSave = { ...tripData };
+  if (!includePassenger) {
+    delete toSave.passenger;
+  } else if (includePassenger) {
+    console.warn('⚠️  --include-passenger 已启用，乘客姓名/证件信息将被写入输出文件。请仅在个人受控环境使用！');
+  }
+
+  const dataFile = path.join(baseDir, '5city-trip.json');
+  fs.writeFileSync(dataFile, JSON.stringify(toSave, null, 2));
+  console.log('Data saved to:', dataFile);
+  if (useDesktop) {
+    console.warn('⚠️  使用 --desktop 选项，文件写入用户桌面。');
+  }
+
+  return toSave;
 }
 
 if (require.main === module) {

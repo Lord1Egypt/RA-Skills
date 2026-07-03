@@ -3,15 +3,13 @@
  * weather-daily — next-month weather overview prompt generator (sent at month end)
  * Runs on 28–31 of each month; script checks internally whether today is the last day.
  *
+ * Profile fields (city/units/language) are passed as CLI flags by the agent
+ * from MEMORY.md. This script performs NO filesystem reads or writes.
+ *
  * Usage:
- *   node monthly-push.js <userId>
+ *   node monthly-push.js <userId> [--city <city>] [--units metric|imperial] [--lang zh|en]
  *   node monthly-push.js <userId> --force   # skip last-day check
  */
-
-const fs = require('fs');
-const path = require('path');
-
-const USERS_DIR = path.join(__dirname, '../data/users');
 
 function sanitizeId(value) {
   if (typeof value !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(value)) {
@@ -21,22 +19,9 @@ function sanitizeId(value) {
   return value;
 }
 
-function safeUserPath(userId) {
-  const resolved = path.resolve(USERS_DIR, `${userId}.json`);
-  if (!resolved.startsWith(path.resolve(USERS_DIR) + path.sep)) {
-    console.error('❌ Illegal path');
-    process.exit(1);
-  }
-  return resolved;
-}
-
-function loadUser(userId) {
-  const f = safeUserPath(userId);
-  if (!fs.existsSync(f)) {
-    console.error(`❌ User ${userId} not found. Run: node register.js ${userId} <city>`);
-    process.exit(1);
-  }
-  return JSON.parse(fs.readFileSync(f, 'utf8'));
+function flag(args, name) {
+  const i = args.indexOf(name);
+  return (i !== -1 && args[i + 1]) ? args[i + 1] : undefined;
 }
 
 function isLastDayOfMonth(date) {
@@ -47,7 +32,7 @@ function isLastDayOfMonth(date) {
 
 const args = process.argv.slice(2);
 if (!args[0]) {
-  console.error('Usage: node monthly-push.js <userId> [--force]');
+  console.error('Usage: node monthly-push.js <userId> [--city <city>] [--units metric|imperial] [--lang zh|en] [--force]');
   process.exit(1);
 }
 
@@ -59,12 +44,10 @@ if (!force && !isLastDayOfMonth(now)) {
   process.exit(0);
 }
 
-const user = loadUser(userId);
-
-const city  = user.city  || '上海';
-const units = user.units || 'metric';
+const city  = flag(args, '--city')  || '上海';
+const units = flag(args, '--units') || 'metric';
 const unit  = units === 'metric' ? 'C' : 'F';
-const lang  = user.language || ((/[\u4e00-\u9fa5]/.test(city)) ? 'zh' : 'en');
+const lang  = flag(args, '--lang')  || ((/[一-龥]/.test(city)) ? 'zh' : 'en');
 
 const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 const nextYear  = nextMonth.getFullYear();

@@ -21,7 +21,7 @@ from .config import *
 from .skill import skill
 
 # import_path_common()
-from skills.smyx_common.scripts.util import RequestUtil
+from skills.smyx_common.scripts.util import RequestUtil, OpenIdUtil
 
 # 从config导入常量
 SUPPORTED_FORMATS = ConstantEnum.SUPPORTED_FORMATS
@@ -43,7 +43,7 @@ def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
     try:
-        output_content = skill.get_output_analysis_list()
+        output_content = skill.get_output_analysis_list(open_id=open_id)
         return output_content
 
     except requests.exceptions.RequestException as e:
@@ -55,10 +55,12 @@ def main():
     parser = argparse.ArgumentParser(description="视频分析工具")
     parser.add_argument("--input", help="本地MP4视频文件路径")
     parser.add_argument("--url", help="网络视频MP4的URL地址")
-    parser.add_argument("--open-id", required=True, help="当前用户的OpenID/UserId/用户名/手机号")
+    # 内部兼容参数：不在 --help 中展示，不要求用户输入。
+    parser.add_argument("--open-id", required=False, help=argparse.SUPPRESS)
     parser.add_argument("--list", action='store_true', help="显示视频历史列表清单")
     parser.add_argument("--api-url", help="服务端API地址")
-    parser.add_argument("--api-key", help="API访问密钥（必需）")
+    # 内部兼容参数：不在 --help 中展示，不要求用户输入。
+    parser.add_argument("--api-key", help=argparse.SUPPRESS)
     parser.add_argument("--output", help="结果输出文件路径")
     parser.add_argument("--detail", choices=["basic", "standard", "json"],
                         default=ConstantEnum.DEFAULT__OUTPUT_LEVEL,
@@ -69,8 +71,7 @@ def main():
     args = parser.parse_args()
 
     try:
-        if args.open_id:
-            ConstantEnumBase.CURRENT__OPEN_ID = args.open_id
+        OpenIdUtil.resolve_current_open_id(args.open_id, use_current=bool(args.open_id))
 
         # 检查必需参数
         if args.list:

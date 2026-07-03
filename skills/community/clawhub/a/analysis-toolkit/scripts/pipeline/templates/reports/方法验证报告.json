@@ -1,0 +1,16 @@
+{
+  "name": "方法验证报告",
+  "description": "方法验证特色报告 — 校准曲线参数 + LOD/LOQ结果 + 曲线不确定度",
+  "type": "report",
+  "tags": ["calibration", "LOD", "LOQ", "uncertainty", "validation"],
+  "report": {
+    "title": "方法验证标准曲线报告",
+    "sections": [
+      {"type": "calibration_summary", "source": "%标准曲线%", "title": "校准曲线参数"},
+      {"type": "lod_loq_card", "source": "%检出限定量限%", "title": "检出限 / 定量限"},
+      {"type": "uncertainty_curve_card", "source": "%曲线不确定度%", "title": "曲线不确定度"},
+      {"type": "data_table", "source": "%标准曲线%", "title": "回归详细统计",
+       "fields": ["slope", "intercept", "r2", "syx", "n"]}
+    ]
+  }
+}

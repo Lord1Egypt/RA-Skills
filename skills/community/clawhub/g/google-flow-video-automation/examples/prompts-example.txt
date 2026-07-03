@@ -1,0 +1,51 @@
+# Google Flow 提示词示例
+
+# ⚠️ 关键要求：每条提示词必须以 "Video of" 开头！
+# 否则 Google Flow AI 会解析为图片生成模式，生成 JPG 而非 MP4
+
+# 使用英文提示词效果更佳！
+# 每条提示词占一行
+
+# ==================== 动物系列 ====================
+
+# 马从屏幕走出
+Video of a joyful horse magically stepping out of a glowing screen into the viewer's outstretched hands, warm cinematic lighting, 4k
+
+# 狗从屏幕走出
+Video of a happy golden dog leaping out of a bright screen into the viewer's open hands, playful and magical, cinematic
+
+# 猫从屏幕走出
+Video of a cute cat jumping out of a tablet screen, surprised expression, soft lighting, 4k
+
+# ==================== 科幻系列 ====================
+
+# 机器人从屏幕走出
+Video of a futuristic robot stepping out of a holographic screen into the real world, neon lights, cyberpunk style
+
+# 外星人从屏幕走出
+Video of a friendly alien crawling out of a spaceship monitor, glowing green light, sci-fi movie style
+
+# ==================== 奇幻系列 ====================
+
+# 仙女从屏幕走出
+Video of a beautiful fairy flying out of an enchanted mirror, sparkling pixie dust, fantasy style
+
+# 龙从屏幕走出
+Video of a small dragon crawling out of a magical portal on a computer screen, fire breath, epic fantasy
+
+# ==================== 日常系列 ====================
+
+# 小孩从屏幕走出
+Video of a happy child popping out of a family photo frame, warm sunlight, heartwarming moment
+
+# 圣诞老人从屏幕走出
+Video of Santa Claus jumping out of a fireplace screen, snowflakes, Christmas magic
+
+# ==================== 使用建议 ====================
+
+# 1. ⚠️ 必须以 "Video of" 开头（或者 "A video of"、"Generate a video of"）
+# 2. 描述要具体：动作、表情、光线、风格
+# 3. 加上关键词：cinematic, 4k, warm lighting, magical
+# 4. 避免太复杂的场景（Google Flow 擅长简单主体+动作）
+# 5. 测试不同风格：realistic, anime, cyberpunk, fantasy
+# 6. 如果提示词不是以视频关键词开头，generate-one.js 会自动添加 "Video of " 前缀

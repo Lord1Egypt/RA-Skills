@@ -33,7 +33,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>广告数据报告 — 商务风格版式参考</title>
     <!-- Tailwind CSS（Play CDN）：布局与工具类 -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -87,33 +87,96 @@
           display: none !important;
         }
       }
+
+
+
+      /* 移动端原生适配（≤768px，内联） */
+      @supports (padding: env(safe-area-inset-bottom)) {
+        body {
+          padding-left: env(safe-area-inset-left, 0);
+          padding-right: env(safe-area-inset-right, 0);
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+
+        body {
+          overflow-x: clip;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        main {
+          padding-left: max(12px, env(safe-area-inset-left, 0px));
+          padding-right: max(12px, env(safe-area-inset-right, 0px));
+        }
+
+        .mobile-scroll-hint {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 12px;
+          color: #94a3b8;
+          padding: 8px 4px 4px;
+        }
+
+        .overflow-x-auto {
+          margin-inline: -4px;
+          padding-inline: 4px 12px;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        [id$="Chart"],
+        .h-72,
+        .h-64 {
+          height: clamp(220px, 58vw, 288px) !important;
+          min-height: 220px;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .mobile-scroll-hint {
+          display: none !important;
+        }
+      }
+
+      @media print {
+        .mobile-scroll-hint {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
-    <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <main class="mx-auto max-w-5xl px-3 py-6 sm:px-6 sm:py-8">
       <!-- ========== 组件：报告页眉（对应 md 顶部「统计区间 / 账户」） ========== -->
-      <header class="mb-10 border-b-2 border-brand-600 pb-6">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <header class="mb-8 border-b-2 border-brand-600 pb-5 sm:mb-10 sm:pb-6">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
               Siluzan · 投放分析
             </p>
-            <h1 class="mt-1 text-2xl font-bold tracking-tight text-brand-700 sm:text-3xl">
+            <h1 class="mt-1 text-xl font-bold tracking-tight text-brand-700 sm:text-3xl">
               <i class="fa-solid fa-chart-line mr-2 text-brand-600" aria-hidden="true"></i>
               数据报告标题
             </h1>
           </div>
-          <div class="flex flex-wrap gap-2 text-sm text-slate-600">
+          <div class="flex flex-col gap-2 text-sm text-slate-600 sm:flex-row sm:flex-wrap sm:gap-2">
             <span
-              class="inline-flex items-center rounded-full bg-white px-3 py-1 shadow-sm ring-1 ring-slate-200"
+              class="inline-flex min-h-[44px] w-full items-center rounded-xl bg-white px-3 py-2 shadow-sm ring-1 ring-slate-200 sm:w-auto sm:rounded-full sm:py-1"
             >
               <i class="fa-regular fa-building mr-2 text-slate-400" aria-hidden="true"></i>
               账户：<strong id="accountName" class="font-semibold text-slate-800">示例账户</strong>
             </span>
             <span
-              class="inline-flex items-center rounded-full bg-white px-3 py-1 shadow-sm ring-1 ring-slate-200"
+              class="inline-flex min-h-[44px] w-full items-center rounded-xl bg-white px-3 py-2 shadow-sm ring-1 ring-slate-200 sm:w-auto sm:rounded-full sm:py-1"
             >
-              <i class="fa-regular fa-calendar mr-2 text-slate-400" aria-hidden="true"></i>
               区间：<strong id="reportPeriod" class="font-semibold text-slate-800"
                 >2026-03-01 ~ 2026-03-07</strong
               >
@@ -149,7 +212,7 @@
           适用于总览接口：消耗、展示、点击、转化、CTR、CPC、CPA 等；环比用徽章区分涨跌。
         </p>
 
-        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <article class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
             <div class="flex items-center justify-between text-slate-500">
               <span class="text-xs font-medium">消耗</span>
@@ -227,7 +290,8 @@
           >
           漏斗式概览（表格 + 序号）
         </h2>
-        <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+          <p class="mobile-scroll-hint no-print">← 左右滑动查看更多列 →</p>
           <table class="min-w-full divide-y divide-slate-200 text-sm">
             <thead class="bg-slate-50">
               <tr>
@@ -368,6 +432,7 @@
           明细表（广告结构 / 关键词）
         </h2>
         <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+          <p class="mobile-scroll-hint no-print">← 左右滑动查看更多列 →</p>
           <table class="min-w-[640px] w-full divide-y divide-slate-200 text-left text-sm">
             <thead class="sticky top-0 z-10 bg-slate-100 text-slate-700">
               <tr>

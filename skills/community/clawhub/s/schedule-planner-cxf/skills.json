@@ -1,0 +1,8 @@
+{
+  "name": "schedule-planner-cxf",
+  "version": "1.0.8",
+  "description": "全能出行管家技能 - 处理用户生活类出行场景，提供有温度、能感知场景、会主动共情的交互体验",
+  "author": "cryptocxf",
+  "tags": ["travel", "trip-planning", "flight", "hotel"],
+  "entry": "scripts/generate-trip-page.js"
+}

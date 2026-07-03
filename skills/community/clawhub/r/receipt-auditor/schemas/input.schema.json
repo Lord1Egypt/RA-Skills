@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReceiptAuditorInput",
+  "description": "Input schema for the Receipt & Expense Auditor skill",
+  "type": "object",
+  "required": ["mode"],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Operating mode",
+      "enum": ["report", "aa-split", "audit"],
+      "default": "report"
+    },
+    "items": {
+      "type": "string",
+      "description": "Raw bill/receipt text, one item per line. Each line: date merchant amount (and optional quantity)."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (default: CNY)",
+      "default": "CNY"
+    },
+    "language": {
+      "type": "string",
+      "description": "Output language",
+      "enum": ["zh", "en"],
+      "default": "zh"
+    },
+    "aaConfig": {
+      "type": "object",
+      "description": "AA split configuration (mode=aa-split)",
+      "properties": {
+        "totalAmount": {
+          "type": "number",
+          "description": "Total bill amount"
+        },
+        "peopleCount": {
+          "type": "integer",
+          "description": "Number of people to split among",
+          "minimum": 2
+        },
+        "peopleItems": {
+          "type": "array",
+          "description": "Individual ordered items per person",
+          "items": {
+            "type": "object",
+            "required": ["name", "items"],
+            "properties": {
+              "name": { "type": "string", "description": "Person's name" },
+              "items": {
+                "type": "array",
+                "description": "Items this person ordered",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "price"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "price": { "type": "number" }
+                  }
+                }
+              },
+              "drinksOnly": { "type": "boolean", "description": "This person only had drinks", "default": false }
+            }
+          }
+        },
+        "sharedItems": {
+          "type": "array",
+          "description": "Items shared by everyone",
+          "items": {
+            "type": "object",
+            "required": ["name", "price"],
+            "properties": {
+              "name": { "type": "string" },
+              "price": { "type": "number" },
+              "quantity": { "type": "integer", "default": 1 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "mode": "report",
+      "items": "6/1 北京-上海高铁 553元\n6/1 上海汉庭酒店 380元x2晚\n6/2 客户午餐 268元\n6/2 上海-北京机票 820元\n6/2 机场打车 156元"
+    },
+    {
+      "mode": "aa-split",
+      "aaConfig": {
+        "totalAmount": 468,
+        "peopleCount": 4,
+        "peopleItems": [
+          { "name": "张三", "items": [{ "name": "毛肚", "price": 68 }] },
+          { "name": "李四", "items": [{ "name": "虾滑", "price": 58 }] },
+          { "name": "王五", "items": [{ "name": "饮料", "price": 18 }] },
+          { "name": "赵六", "items": [{ "name": "牛肉", "price": 88 }] }
+        ],
+        "sharedItems": [
+          { "name": "锅底+蔬菜+主食", "price": 236 }
+        ]
+      }
+    },
+    {
+      "mode": "audit",
+      "items": "6/1 超市 128.50\n6/1 超市 128.50\n6/2 咖啡店 35.00\n6/3 健身房 299.00\n6/3 健身房 299.00\n6/5 加油站 420.00"
+    }
+  ]
+}

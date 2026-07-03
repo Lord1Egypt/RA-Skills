@@ -1,0 +1,15 @@
+{
+  "name": "marketing-skills-cn",
+  "version": "1.0.0",
+  "description": "中文营销全栈Skills — 小红书/抖音/公众号/朋友圈/电商文案/SEO",
+  "author": "拾珍小栈",
+  "license": "Apache-2.0",
+  "language": "zh-CN",
+  "tags": ["marketing", "营销", "小红书", "抖音", "SEO", "文案", "增长"],
+  "triggers": ["小红书", "抖音", "公众号", "朋友圈", "营销文案", "SEO", "电商文案", "转化率", "涨粉", "种草"],
+  "platforms": ["Claude Code", "OpenClaw", "Cursor", "Codex", "Gemini CLI"],
+  "pricing": {
+    "retail": 149,
+    "currency": "CNY"
+  }
+}

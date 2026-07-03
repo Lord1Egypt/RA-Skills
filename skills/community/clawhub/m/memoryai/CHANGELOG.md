@@ -1,5 +1,24 @@
 # Changelog
 
+## v2.4.0 (2026-07-02)
+
+- **Removed:** `sync` command and the legacy `guard` alias — fully retired.
+  Context is now kept healthy per message via `track`; no background job needed.
+- **Changed:** `track` output simplified to a clean `SAVE_NOW` / `OK` signal —
+  the agent just calls `save` when prompted. No internal session details exposed.
+- **Docs:** SKILL.md + README rewritten as product-facing. Internal mechanics
+  (endpoints, session windowing, consolidation) are no longer documented.
+
+## v2.3.0 (2026-06-03) — DEPRECATION
+
+- **Deprecated:** `sync` command — server endpoint `POST /v1/bot/session/sync`
+  now returns **HTTP 410 Gone**. The DB-backed phase machine is superseded by:
+  - `POST /v1/bot/session/message` — per-message in-memory rolling 3-session
+  - `POST /v1/bot/session/auto-cycle` — atomic compress + bootstrap on spawn
+- **Removal:** the `sync` command will be deleted from skill-build in v2.4.0.
+- **Action for existing crons:** stop calling `sync`; switch to per-message
+  hook + auto-cycle on spawn signal.
+
 ## v2.1.0 (2026-05-23)
 
 - **New:** `sync` command — unified guard + rolling in 1 call (replaces `guard`)

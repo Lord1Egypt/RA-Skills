@@ -1,5 +1,5 @@
 ## Description: <br>
-Specq Intel Sales helps electronic chemical sales and presales teams generate structured account intelligence packs with history recall, feedback capture, and multi-task progress tracking. <br>
+SpecQ Intel Sales helps semiconductor sales and pre-sales teams turn customer, product, visit, loss-review, and competitor context into an eight-module sales-intelligence brief. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Sales and presales teams use this skill before customer meetings to assemble an eight-module intelligence pack from product, customer, application, history, and public-source inputs. It also supports customer-history lookup, win/loss feedback capture, and resumable multi-task preparation. <br>
+Sales engineers and pre-sales teams use this skill before customer meetings to generate structured account strategy for electronic chemicals in the semiconductor supply chain. It recalls local sales memory, optionally searches public competitor context, and produces customer needs, technical comparisons, risks, opportunities, and next actions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may store and reuse sensitive customer sales history. <br>
-Mitigation: Use it only with trusted MCP and local memory stores, avoid unnecessary customer identifiers, and confirm stored memories can be inspected, deleted, or disabled. <br>
-Risk: Security evidence notes weak user controls and inconsistent anonymization around customer history. <br>
-Mitigation: Review generated packs before sharing, verify customer names are desensitized, and restrict use to approved customer-data workflows. <br>
+Risk: The skill can store sales and customer information in persistent local memory. <br>
+Mitigation: Review the local data directory, avoid entering sensitive customer data unless approved, and establish retention or deletion controls before deployment. <br>
+Risk: When optional API keys are configured, search, embedding, or transcription content may be sent to external services. <br>
+Mitigation: Use approved providers only, redact sensitive content before external processing, and leave optional API keys unset for sensitive or offline workflows. <br>
+Risk: The security evidence flags under-disclosed local database, arbitrary URL, third-party processing, and persistent memory capabilities. <br>
+Mitigation: Constrain reachable sources, review URLs before use, disclose permissions to users, and run the skill in an environment with appropriate network and file-system limits. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/daizehua-wq/skills/specq-intel-sales) <br>
-- [Packaged skill instructions](artifact/SKILL.md) <br>
+- [Publisher profile](https://clawhub.ai/user/daizehua-wq) <br>
+- [README.md](artifact/README.md) <br>
+- [SKILL.md](artifact/SKILL.md) <br>
+- [OpenCode Prompt v2.0](artifact/docs/OpenCode_Prompt_v2.0.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown intelligence packs with optional JSON insight summaries and configuration snippets] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown intelligence briefs, structured JSON tool results, concise chat or email summaries, and setup snippets.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Eight-module account intelligence output with source labels, historical memory context, conflict indicators, and a feedback reminder.] <br>
+**Other Properties Related to Output:** [Default output is an eight-module Markdown brief with source labels and an optional historical-memory block; document and slide modes return outlines for manual follow-up.] <br>
 
 ## Skill Version(s): <br>
-1.1.5 (source: server evidence release.version) <br>
+2.3.2 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

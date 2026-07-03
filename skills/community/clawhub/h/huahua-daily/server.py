@@ -31,7 +31,7 @@ import base64
 import mimetypes
 import re
 import threading
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 from typing import Optional
 
 import httpx
@@ -80,6 +80,7 @@ def _get_download_lock() -> asyncio.Lock:
 # ── Estimates 内存缓存（TTL=60s，避免同 session 内多工具调用重复拉取相同基金估算）──────
 _estimate_cache: dict = {}  # {code: {"data": {...}, "ts": float}}
 _ESTIMATE_TTL = 60  # seconds
+_DATA_SOURCE_MODES = {"huahua", "a", "b", "c"}
 # ── Validation helpers ────────────────────────────────────────────────────────
 
 # 图片文件大小限制（10MB）
@@ -88,6 +89,28 @@ _MAX_IMAGE_SIZE = 10 * 1024 * 1024
 # 允许的图片 MIME 类型
 _ALLOWED_IMAGE_MIMES = {
     "image/jpeg", "image/png", "image/webp", "image/gif", "image/bmp",
+}
+
+_CONFIRMED_EMPTY_PORTFOLIO_KEYS = {
+    "funds",
+    "archivedLedger",
+    "deletedFundsMeta",
+    "dismissedDividendKeys",
+    "userPreferences",
+    "groups",
+    "watchlistGroups",
+    "globalTags",
+    "tagDisplayCount",
+    "fieldConfigs",
+    "watchlistFieldConfigs",
+    "nightWatchCodes",
+    "purchaseLimitWatchItems",
+    "purchaseLimitWatchNightDefaultsMigrated",
+    "marketIndexSelection",
+    "emptyPortfolioConfirmed",
+    "clearedAt",
+    "timestamp",
+    "version",
 }
 
 def _clear_session_caches() -> None:
@@ -127,6 +150,11 @@ def _validate_fund_code(code: str) -> str:
         raise ValueError(f"基金代码必须是 6 位数字，收到：{code}")
     return normalized
 
+
+def _normalize_data_source_mode(value) -> str:
+    normalized = str(value or "huahua").strip().lower()
+    return normalized if normalized in _DATA_SOURCE_MODES else "huahua"
+
 def _validate_amount(amount: float) -> float:
     """验证交易金额。"""
     if not isinstance(amount, (int, float)):
@@ -150,6 +178,12 @@ def _validate_date(date_str: str) -> str:
     except ValueError:
         raise ValueError(f"无效的日期：{date_str}")
     return date_str
+
+
+def _beijing_date_string() -> str:
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    return datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -188,9 +222,28 @@ async def _get(path: str, params: dict = None) -> dict:
     except httpx.HTTPStatusError as e:
         raise RuntimeError(f"服务器返回错误 {e.response.status_code}，请稍后重试。")
 
-async def _post(path: str, body: dict = None) -> dict:
+async def _get_optional(path: str, params: dict = None) -> Optional[dict]:
+    """GET helper that returns None for 404 while preserving auth errors."""
     try:
-        r = await _get_client().post(_url(path), json=body or {}, headers=_headers())
+        r = await _get_client().get(_url(path), params=params, headers=_headers())
+        if r.status_code == 401:
+            raise ValueError("Agent Token 无效或已过期，请在 App 重新生成并更新配置。")
+        if r.status_code == 403:
+            raise ValueError("无访问权限，请确认 Agent Token 正确，且账号为 PRO 会员。")
+        if r.status_code == 404:
+            return None
+        r.raise_for_status()
+        return r.json()
+    except ValueError:
+        raise
+    except httpx.TimeoutException:
+        raise RuntimeError("请求超时，请稍后重试。")
+    except httpx.HTTPStatusError as e:
+        raise RuntimeError(f"服务器返回错误 {e.response.status_code}，请稍后重试。")
+
+async def _post(path: str, body: dict = None, params: dict = None) -> dict:
+    try:
+        r = await _get_client().post(_url(path), params=params, json=body or {}, headers=_headers())
         if r.status_code == 401:
             raise ValueError("Agent Token 无效或已过期，请在 App 重新生成并更新配置。")
         if r.status_code == 403:
@@ -270,23 +323,92 @@ async def _delete(path: str) -> dict:
         raise RuntimeError(f"服务器返回错误 {e.response.status_code}，请稍后重试。")
 
 
-def _unwrap_sync_payload(raw: dict) -> dict:
+def _parse_sync_payload(data) -> dict:
+    parsed = data
+    try:
+        for _ in range(4):
+            if isinstance(parsed, str):
+                parsed = json.loads(parsed)
+                continue
+            if isinstance(parsed, dict) and isinstance(parsed.get("data"), (dict, str)):
+                parsed = parsed["data"]
+                continue
+            break
+        if isinstance(parsed, dict):
+            return parsed
+    except Exception:
+        return {}
+    return {}
+
+
+def _is_valid_fund_code_value(value) -> bool:
+    return bool(re.fullmatch(r"\d{6}", str(value or "").strip()))
+
+
+def _is_restorable_fund(fund) -> bool:
+    return isinstance(fund, dict) and _is_valid_fund_code_value(fund.get("code"))
+
+
+def _is_empty_plain_object(value) -> bool:
+    return isinstance(value, dict) and len(value) == 0
+
+
+def _summarize_sync_payload(parsed: dict) -> dict:
+    funds = parsed.get("funds")
+    has_funds_array = isinstance(funds, list)
+    fund_items = funds if has_funds_array else []
+    restorable = [fund for fund in fund_items if _is_restorable_fund(fund)]
+    empty_portfolio_confirmed = parsed.get("emptyPortfolioConfirmed") is True
+    is_confirmed_empty = (
+        bool(parsed)
+        and not any(key not in _CONFIRMED_EMPTY_PORTFOLIO_KEYS for key in parsed.keys())
+        and has_funds_array
+        and len(fund_items) == 0
+        and empty_portfolio_confirmed
+        and (
+            "archivedLedger" not in parsed
+            or _is_empty_plain_object(parsed.get("archivedLedger"))
+        )
+        and (
+            "deletedFundsMeta" not in parsed
+            or _is_empty_plain_object(parsed.get("deletedFundsMeta"))
+        )
+    )
+    return {
+        "has_payload": bool(parsed),
+        "has_funds_array": has_funds_array,
+        "fund_count": len(fund_items),
+        "restorable_fund_count": len(restorable),
+        "portfolio_fund_count": sum(1 for fund in restorable if fund.get("isWatchlist") is not True),
+        "watchlist_fund_count": sum(1 for fund in restorable if fund.get("isWatchlist") is True),
+        "empty_portfolio_confirmed": empty_portfolio_confirmed,
+        "is_confirmed_empty_portfolio_snapshot": is_confirmed_empty,
+        "has_restorable_sync_payload": len(restorable) > 0 or is_confirmed_empty,
+    }
+
+
+def _portfolio_payload_source(raw: dict, fallback: str = "") -> str:
+    if raw.get("version") == "portfolio-v1":
+        return "structured_portfolio"
+    return fallback or "structured_portfolio"
+
+
+def _unwrap_sync_payload(raw: dict, source: str = "") -> dict:
     json_data = raw.get("json_data") or "{}"
     updated_at = raw.get("updated_at", "")
     etag = raw.get("etag", "")
-    try:
-        parsed = json.loads(json_data)
-        if isinstance(parsed, str):
-            parsed = json.loads(parsed)
-        if isinstance(parsed, dict) and isinstance(parsed.get("data"), dict):
-            parsed = parsed["data"]
-        if not isinstance(parsed, dict):
-            parsed = {}
-    except Exception:
+    parsed = _parse_sync_payload(json_data)
+    if not isinstance(parsed, dict):
         parsed = {}
+    summary = _summarize_sync_payload(parsed)
+    parsed["_meta_summary"] = summary
     parsed["_meta_updated_at"] = updated_at
     parsed["_meta_etag"] = etag
-    parsed["_meta_size_bytes"] = len(json_data.encode("utf-8"))
+    parsed["_meta_data_source"] = _portfolio_payload_source(raw, source)
+    json_text = json_data if isinstance(json_data, str) else json.dumps(json_data, ensure_ascii=False)
+    parsed["_meta_size_bytes"] = raw.get("size_bytes") or len(json_text.encode("utf-8"))
+    for key, value in summary.items():
+        parsed[f"_meta_{key}"] = value
     return parsed
 
 
@@ -353,25 +475,19 @@ def _summarize_import_items(items: list[dict]) -> dict:
     }
 
 
-# ── 精度工具（严格对齐前端 _round，消除 IEEE 754 差异）───────────────────────────
+# ── 精度工具（严格对齐前端 roundMetricValue，消除 IEEE 754 差异）──────────────────
 #
-# 前端 _round(v, d)：Number(`${Math.round(Number(`${v}e+${d}`))}e-${d}`)
-#   1. `${v}` 先转字符串，再拼成指数形式后 Number() 解析，避免 IEEE 754 乘法漂移
-#      （如 1.005*100 在 float 中实为 100.4999...，导致 round 结果偏低）
-#   2. Math.round 向 +∞ 舍入（正数同四舍五入，负数 -.5 → 0）
-#
-# Python 对齐实现：
-#   - Decimal(repr(v)) 利用 Python repr 给出精确字符串（同 JS `${v}`）
-#   - * Decimal(10**d) 精确乘法，等效 Number(`${v}e+${d}`)
-#   - math.floor(x + 0.5) 完全等同 JS Math.round
+# 前端 roundMetricValue 使用十进制字符串 + BigInt 缩放，按 half-up 规则保留小数。
+# 负数也按绝对值 half-up 后恢复符号（即 ties away from zero）。
 
 def _js_round(v: float, d: int) -> float:
-    """精确对齐前端 _round(v, d)。"""
+    """精确对齐前端 roundMetricValue(v, d)：十进制 half-up，负数远离 0。"""
     if not math.isfinite(v):
         return 0.0
     try:
-        shifted = float(Decimal(repr(v)) * Decimal(10 ** d))
-        return math.floor(shifted + 0.5) / (10 ** d)
+        sign = -1 if v < 0 else 1
+        shifted = float(abs(Decimal(repr(v))) * Decimal(10 ** d))
+        return sign * (math.floor(shifted + 0.5) / (10 ** d))
     except Exception:
         return round(v, d)
 
@@ -379,21 +495,29 @@ def _r2(v: float) -> float: return _js_round(v, 2)
 def _r4(v: float) -> float: return _js_round(v, 4)
 def _r6(v: float) -> float: return _js_round(v, 6)
 
-def _r2_pct(holding_profit: float, cost_total: float) -> float:
+def _ratio_pct(numerator: float, denominator: float) -> Optional[float]:
     """
-    对齐前端 returnRate：Math.round((holdingProfit / costTotal) * 10000) / 100。
-    使用 math.floor(v + 0.5) 而非 int(v + 0.5)：
-    - int() 向零截断，对负值行为与 JS Math.round 不同（负半数向 +∞ 舍入）
-    - math.floor(x + 0.5) 精确复现 JS Math.round 的 round-half-toward-+∞ 语义
-    示例：returnRate = -0.6% 时，int(-0.1)=0 给出 0%，floor(-0.1)=-1 给出 -0.01%（正确）
+    对齐前端 calcRatioPercent(numerator, denominator)：
+    分母无效返回 null；有效时按 half-up 保留 2 位百分比。
     """
-    if cost_total <= 0:
-        return 0.0
+    if not math.isfinite(numerator) or not math.isfinite(denominator) or denominator <= 0:
+        return None
     try:
-        v = holding_profit / cost_total
-        return math.floor(v * 10000 + 0.5) / 100
+        value = (Decimal(repr(numerator)) / Decimal(repr(denominator)) * Decimal("100")).quantize(
+            Decimal("0.01"),
+            rounding=ROUND_HALF_UP,
+        )
+        return float(value)
     except Exception:
-        return 0.0
+        return None
+
+
+def _to_float(value, default: float = 0.0) -> float:
+    try:
+        candidate = float(value)
+        return candidate if math.isfinite(candidate) else default
+    except (TypeError, ValueError):
+        return default
 
 
 # ── 收益计算（严格对齐前端 calculateFundStats 逻辑）──────────────────────────────
@@ -418,6 +542,41 @@ def _sort_txs(txs: list[dict]) -> list[dict]:
     return [item for _, item in indexed]
 
 
+def _resolve_amount(tx: dict) -> float:
+    amount = _to_float(tx.get("amount"))
+    if amount > 0:
+        return amount
+    shares = _to_float(tx.get("shares"))
+    nav = _to_float(tx.get("nav"))
+    return _r2(shares * nav) if shares > 0 and nav > 0 else 0.0
+
+
+def _resolve_buy_shares(tx: dict) -> float:
+    shares = _to_float(tx.get("shares"))
+    if shares > 0:
+        return _r6(shares)
+    amount = _to_float(tx.get("amount"))
+    fee = _to_float(tx.get("fee"))
+    net_amount = _r2(max(0.0, amount - fee))
+    nav = _to_float(tx.get("nav"))
+    return _r6(net_amount / nav) if nav > 0 and net_amount > 0 else 0.0
+
+
+def _resolve_sell_shares(tx: dict) -> float:
+    shares = _to_float(tx.get("shares"))
+    if shares > 0:
+        return _r6(shares)
+    amount = _to_float(tx.get("amount"))
+    nav = _to_float(tx.get("nav"))
+    return _r6(amount / nav) if nav > 0 and amount > 0 else 0.0
+
+
+def _is_valid_correction_tx(tx: dict) -> bool:
+    shares = _to_float(tx.get("shares"), float("nan"))
+    nav = _to_float(tx.get("nav"), float("nan"))
+    return math.isfinite(shares) and math.isfinite(nav) and shares >= 0 and nav > 0
+
+
 def _calc_correction_delta_total(txs: list[dict]) -> float:
     """对齐前端 getCorrectionDeltas：重放交易序列，计算每笔 CORRECTION 的成本变化量之和。"""
     current_shares = 0.0
@@ -426,18 +585,12 @@ def _calc_correction_delta_total(txs: list[dict]) -> float:
     for tx in _sort_txs([t for t in txs if t.get("status") == "CONFIRMED"]):
         tx_type = tx.get("type", "")
         if tx_type == "BUY":
-            buy_shares = tx.get("shares") or 0
-            buy_amount = tx.get("amount") or 0
-            if buy_shares <= 0 and (tx.get("nav") or 0) > 0 and buy_amount > 0:
-                buy_shares = buy_amount / tx["nav"]
-            if buy_amount <= 0 and buy_shares > 0 and (tx.get("nav") or 0) > 0:
-                buy_amount = _r2(buy_shares * tx["nav"])
+            buy_shares = _resolve_buy_shares(tx)
+            buy_amount = _resolve_amount(tx)
             current_shares = _r6(current_shares + buy_shares)
             current_cost_total = _r2(current_cost_total + buy_amount)
         elif tx_type == "SELL":
-            sell_shares = tx.get("shares") or 0
-            if sell_shares <= 0 and (tx.get("nav") or 0) > 0 and (tx.get("amount") or 0) > 0:
-                sell_shares = tx["amount"] / tx["nav"]
+            sell_shares = _resolve_sell_shares(tx)
             sold_cost = _r2(current_cost_total * min(sell_shares, current_shares) / current_shares) if current_shares > 0 else 0
             current_shares = _r6(current_shares - sell_shares)
             current_cost_total = _r2(current_cost_total - sold_cost)
@@ -445,19 +598,36 @@ def _calc_correction_delta_total(txs: list[dict]) -> float:
                 current_shares = 0.0
                 current_cost_total = 0.0
         elif tx_type == "DIVIDEND_REINVEST":
-            reinvest_shares = tx.get("shares") or 0
-            if reinvest_shares <= 0 and (tx.get("nav") or 0) > 0 and (tx.get("amount") or 0) > 0:
-                reinvest_shares = tx["amount"] / tx["nav"]
+            reinvest_shares = _to_float(tx.get("shares"))
+            if reinvest_shares <= 0 and _to_float(tx.get("nav")) > 0 and _to_float(tx.get("amount")) > 0:
+                reinvest_shares = _to_float(tx.get("amount")) / _to_float(tx.get("nav"))
             current_shares = _r6(current_shares + reinvest_shares)
         elif tx_type == "CORRECTION":
-            if (tx.get("nav") or 0) <= 0:
+            if not _is_valid_correction_tx(tx):
                 continue
-            new_cost_total = _r2(tx.get("shares", 0) * tx["nav"])
+            new_cost_total = _r2(_to_float(tx.get("shares")) * _to_float(tx.get("nav")))
             delta_amount = _r2(new_cost_total - current_cost_total)
             delta_total = _r2(delta_total + delta_amount)
-            current_shares = _r6(tx.get("shares", 0))
+            current_shares = _r6(_to_float(tx.get("shares")))
             current_cost_total = new_cost_total
     return delta_total
+
+
+def _calc_change_profit(shares: float, base_nav: float, change_percent, current_nav) -> float:
+    if not math.isfinite(shares) or shares <= 0:
+        return 0.0
+    if not math.isfinite(base_nav) or base_nav <= 0:
+        return 0.0
+    pct = _to_float(str(change_percent).replace("%", ""), float("nan")) if change_percent is not None else float("nan")
+    nav = _to_float(current_nav, float("nan"))
+    if math.isfinite(nav) and nav > 0:
+        diff = nav - base_nav
+        diff_growth_rate = (diff / base_nav) * 100
+        if not math.isfinite(pct) or abs(diff_growth_rate - pct) <= 0.05:
+            return _r2(shares * diff)
+    if not math.isfinite(pct):
+        return 0.0
+    return _r2(shares * base_nav * pct / 100)
 
 
 def _calc_fund_stats(fund: dict, est: Optional[dict] = None) -> dict:
@@ -465,101 +635,102 @@ def _calc_fund_stats(fund: dict, est: Optional[dict] = None) -> dict:
     计算单条记录的统计字段，逻辑对齐前端 calculateFundStats。
 
     关键对齐点：
-    1. marketValue / holdingProfit / returnRate 均基于官方净值（lastNav），
-       不受盘中估算影响（前端 getFundOfficialNav 的语义）。
-    2. todayProfit = shares × (estimatedNav - prevNav)，用 prevNav（估算基准净值）
-       而非 lastNav，避免 QDII / 新建仓场景下的偏差。
-    3. 若 source == 'reset'（盘前重置）或 source == 'timeout'，忽略 estimatedNav，todayProfit = 0。
-    4. returnRate 使用 _r2_pct 对齐前端 Math.round(v*10000)/100 语义。
+    1. currentMarketValue / holdingProfit 只基于 fund.lastNav（官方净值），
+       不用估值接口返回的 dwjz 回填，完全对齐 getFundOfficialNav。
+    2. dayProfit 使用 estimatedNav 与 estimatedChangePercent 双路径兜底，
+       对齐 calculateFundChangeProfit / calculateDisplayedDayProfit。
+    3. source == 'reset' 时今日市场收益为 0；现金分红仍按 displayDate 计入。
+    4. 收益率分母无效时返回 None，对齐 calcRatioPercent。
     """
-    shares: float = fund.get("holdingShares", 0) or 0
-    cost_per_share: float = fund.get("holdingCost", 0) or 0
-    last_nav: float = 0
-    # 云快照只提供最后一次官方净值基线；优先采用本次估值接口返回的官方净值，
-    # 兼容旧云快照没有 lastNav 的用户，避免错误退化为 1.0。
-    for raw_nav in (
-        est.get("dwjz"), est.get("lastNav"), est.get("last_nav"), fund.get("lastNav"),
-    ):
-        try:
-            candidate = float(raw_nav or 0)
-        except (TypeError, ValueError):
-            continue
-        if candidate > 0:
-            last_nav = candidate
-            break
-    realized: float = fund.get("realizedProfit", 0) or 0
-
-    # 估算信息（timeout 帧视同无估算，对齐前端拒收逻辑）
     est = est or {}
-    source: str = est.get("source") or fund.get("source") or ""
-    _ignore_est = source in ("reset", "timeout")
-    estimated_nav_raw: float = est.get("estimatedNav") or est.get("nav") or 0
-    estimated_nav: float = estimated_nav_raw if (estimated_nav_raw > 0 and not _ignore_est) else 0
-
-    # prevNav：当日涨跌比较基准（前一交易日官方净值）
-    # 估算接口返回字段名为 prev_dwjz（字符串），优先取实时值；
-    # 降级顺序：est.prev_dwjz → est.prevNav(兼容) → fund.prevNav(云同步存储) → last_nav
-    _prev_raw = est.get("prev_dwjz") or est.get("prevNav") or fund.get("prevNav") or 0
-    try:
-        prev_nav = float(_prev_raw) or last_nav
-    except (TypeError, ValueError):
-        prev_nav = last_nav
-
-    official_nav: float = last_nav if last_nav > 0 else 0
-    # 旧云快照且行情源只返回盘中估值时，用本次估值作为临时计价基线；
-    # 两者都缺失则保持 0 并显式标记不可计价，绝不再伪造净值 1.0。
-    valuation_nav: float = official_nav or estimated_nav
-    valuation_available = valuation_nav > 0
+    shares = _to_float(fund.get("holdingShares"))
+    safe_shares = shares if shares > 0 else 0.0
+    cost_per_share = _to_float(fund.get("holdingCost"))
+    official_nav = _to_float(fund.get("lastNav"))
+    if official_nav <= 0:
+        official_nav = 0.0
+    valuation_available = official_nav > 0
 
     # ── 基于官方净值的稳定字段（对齐前端 currentMarketValue / holdingProfit）──
     _stored_cost_total = fund.get("holdingCostTotal")
-    cost_total = _r2(_stored_cost_total) if _stored_cost_total is not None else _r2(shares * cost_per_share)
-    market_value = _r2(shares * valuation_nav) if valuation_available else 0.0
-    holding_profit = _r2(market_value - cost_total) if valuation_available else 0.0
-    total_profit = _r2(holding_profit + realized) if valuation_available else realized
-    return_rate = _r2_pct(holding_profit, cost_total) if valuation_available else 0.0
+    fallback_cost_total = _r2(safe_shares * cost_per_share) if safe_shares > 0 and cost_per_share > 0 else 0.0
+    stored_cost_total = _to_float(_stored_cost_total, float("nan"))
+    cost_total = stored_cost_total if safe_shares > 0 and math.isfinite(stored_cost_total) and stored_cost_total >= 0 else fallback_cost_total
 
-    # ── 今日盈亏：estimatedNav vs prevNav（对齐前端 calculateFundDayProfit）──────
-    if estimated_nav > 0 and prev_nav > 0 and shares > 0:
-        today_profit = _r2((estimated_nav - prev_nav) * shares)
-    else:
-        today_profit = 0.0
-
-    _effective_date = fund.get("displayDate") or time.strftime("%Y-%m-%d")
-    _cash_dividend_today = 0.0
+    txs = fund.get("transactions") or []
     _buy_total = 0.0
-    for tx in fund.get("transactions") or []:
+    _total_sold = 0.0
+    for tx in txs:
+        if tx.get("status", "") != "CONFIRMED":
+            continue
+        tx_type = tx.get("type", "")
+        if tx_type == "BUY":
+            _buy_total = _r2(_buy_total + _resolve_amount(tx))
+        elif tx_type == "SELL":
+            _total_sold = _r2(_total_sold + _resolve_amount(tx))
+    _correction_delta = _calc_correction_delta_total(txs)
+    total_invested = _r2(_buy_total + _correction_delta)
+
+    market_value = _r2(safe_shares * official_nav) if valuation_available else 0.0
+    holding_profit = _r2(market_value - cost_total) if valuation_available else 0.0
+    sold_cost = _r2(max(0.0, total_invested - cost_total)) if total_invested > 0 else 0.0
+    realized_fallback = _r2(_total_sold - sold_cost) if total_invested > 0 else 0.0
+    raw_realized = _to_float(fund.get("realizedProfit"), float("nan"))
+    realized = raw_realized if math.isfinite(raw_realized) else realized_fallback
+    total_profit = _r2(holding_profit + realized)
+    holding_return_rate = _ratio_pct(holding_profit, cost_total) if valuation_available else None
+
+    source = str(est.get("source") or fund.get("source") or "")
+    estimated_nav = _to_float(
+        est.get("estimatedNav")
+        or est.get("nav")
+        or fund.get("estimatedNav")
+    )
+    if estimated_nav <= 0:
+        estimated_nav = 0.0
+    prev_nav = _to_float(est.get("prev_dwjz") or est.get("prevNav") or fund.get("prevNav"))
+    estimated_change_percent = est.get("estimatedChangePercent")
+    if estimated_change_percent is None:
+        estimated_change_percent = est.get("gszzl")
+    if estimated_change_percent is None:
+        estimated_change_percent = fund.get("estimatedChangePercent")
+    if source == "reset":
+        today_profit = 0.0
+    else:
+        today_profit = _calc_change_profit(safe_shares, prev_nav, estimated_change_percent, estimated_nav)
+    day_base_market_value = _r2(safe_shares * prev_nav) if source != "reset" and safe_shares > 0 and prev_nav > 0 else 0.0
+
+    _effective_date = est.get("display_date") or fund.get("displayDate") or _beijing_date_string()
+    _cash_dividend_today = 0.0
+    for tx in txs:
         tx_status = tx.get("status", "")
         if tx_status != "CONFIRMED":
             continue
         tx_type = tx.get("type", "")
-        if tx_type == "BUY":
-            _buy_total += tx.get("amount") or 0
-        elif (tx_type == "DIVIDEND_CASH"
+        if (tx_type == "DIVIDEND_CASH"
               and (tx.get("confirmDate") or tx.get("date")) == _effective_date):
-            _cash_dividend_today += tx.get("amount") or 0
-    _correction_delta = _calc_correction_delta_total(fund.get("transactions") or [])
+            _cash_dividend_today = _r2(_cash_dividend_today + _to_float(tx.get("amount")))
     today_profit = _r2(today_profit + _cash_dividend_today)
-    total_invested = _r2(_buy_total + _correction_delta)
-
-    display_nav = estimated_nav if estimated_nav > 0 else official_nav
-
     return {
         "marketValue": market_value,
+        "currentMarketValue": market_value,
         "costPerShare": _r4(cost_per_share),
         "costTotal": cost_total,
-        "holdingShares": _r6(shares),
+        "holdingShares": _r6(safe_shares),
         "holdingProfit": holding_profit,
         "realizedProfit": _r2(realized),
         "totalProfit": total_profit,
         "totalInvested": total_invested,
-        "returnRate": return_rate,
+        "returnRate": holding_return_rate,
+        "holdingReturnRate": holding_return_rate,
         "todayProfit": today_profit,
-        "currentNav": display_nav,
+        "dayProfit": today_profit,
+        "dayBaseMarketValue": day_base_market_value,
+        "currentNav": official_nav,
         "lastNav": official_nav if official_nav > 0 else None,
         "valuationAvailable": valuation_available,
         "estimatedNav": estimated_nav if estimated_nav > 0 else None,
-        "estimatedChangePercent": est.get("estimatedChangePercent"),
+        "estimatedChangePercent": estimated_change_percent,
     }
 
 
@@ -568,7 +739,11 @@ def _calc_fund_stats(fund: dict, est: Optional[dict] = None) -> dict:
 # 并发控制：限制同时请求后端的批次数量，避免触发速率限制
 _estimate_semaphore = asyncio.Semaphore(3)
 
-async def _fetch_estimates(codes: list) -> dict:
+async def _fetch_estimates(
+    codes: list,
+    default_data_source_mode: str = "huahua",
+    data_source_mode_by_code: Optional[dict] = None,
+) -> dict:
     """
     批量获取今日估算数据，60s 内存缓存。
     get_records() 和 get_item_estimate() 共用此函数，同 session 内不重复请求。
@@ -576,12 +751,24 @@ async def _fetch_estimates(codes: list) -> dict:
     source='timeout' 的结果不写入缓存，避免后端瞬时超时污染后续请求。
     """
     now = time.monotonic()
+    default_mode = _normalize_data_source_mode(default_data_source_mode)
+    mode_by_code = {
+        _validate_fund_code(str(code)): _normalize_data_source_mode(mode)
+        for code, mode in (data_source_mode_by_code or {}).items()
+        if re.fullmatch(r"\d{6}", str(code or "").strip())
+    }
+
+    def mode_for(code: str) -> str:
+        return mode_by_code.get(code, default_mode)
+
+    def cache_key(code: str) -> str:
+        return f"{code}:{mode_for(code)}"
 
     # 分离缓存命中 vs 需要请求
     result: dict = {}
     miss_codes: list = []
     for code in codes:
-        entry = _estimate_cache.get(code)
+        entry = _estimate_cache.get(cache_key(code))
         if entry and now - entry["ts"] < _ESTIMATE_TTL:
             result[code] = entry["data"]
         else:
@@ -601,7 +788,15 @@ async def _fetch_estimates(codes: list) -> dict:
 
     async def _fetch_batch(batch: list) -> dict:
         async with _estimate_semaphore:
-            return await _post("/api/estimate/batch", {"codes": batch})
+            return await _post("/api/estimate/batch", {
+                "codes": batch,
+                "defaultDataSourceMode": default_mode,
+                "dataSourceModeByCode": {
+                    code: mode_for(code)
+                    for code in batch
+                    if mode_for(code) != default_mode or code in mode_by_code
+                },
+            })
 
     responses = await asyncio.gather(
         *[_fetch_batch(batch) for batch in batches],
@@ -620,7 +815,8 @@ async def _fetch_estimates(codes: list) -> dict:
                 if item.get("source") == "timeout":
                     result[code_key] = item
                 else:
-                    _estimate_cache[code_key] = {"data": item, "ts": now}
+                    mode = _normalize_data_source_mode(item.get("dataSourceMode") or mode_for(code_key))
+                    _estimate_cache[f"{code_key}:{mode}"] = {"data": item, "ts": now}
                     result[code_key] = item
 
     return result
@@ -669,15 +865,18 @@ async def get_tool_manifest() -> dict:
                 "get_groups",
                 "get_tags",
                 "get_night_watchlist",
+                "get_purchase_limit_watchlist",
             ],
             "market": [
                 "search_item",
                 "get_item_estimate",
+                "get_fund_source_previews",
                 "get_item_detail",
                 "get_item_history",
                 "get_item_dividends",
                 "get_fund_timeline",
                 "get_fund_fees",
+                "get_batch_fund_fees",
                 "get_fund_period_rank",
                 "get_batch_fund_period_ranks",
                 "get_fund_profile",
@@ -686,6 +885,8 @@ async def get_tool_manifest() -> dict:
                 "get_daily_rank",
                 "get_status",
                 "get_overview",
+                "get_sector_wind",
+                "get_yesterday_rank",
                 "get_fund_flow",
                 "get_indices",
                 "get_holder_ranking",
@@ -711,10 +912,12 @@ async def get_tool_manifest() -> dict:
                 "get_community_authorization",
                 "authorize_community",
                 "revoke_community_authorization",
-                "sync_community_returns",
                 "follow_community_user",
             ],
             "trade": ["request_transaction", "get_agent_requests", "update_agent_request"],
+            "personal_reports": [
+                "submit_personal_strategy_report",
+            ],
             "imports": [
                 "import_holding_screenshots",
                 "import_transaction_screenshots",
@@ -729,6 +932,14 @@ async def get_tool_manifest() -> dict:
         "safety": {
             "direct_trading": False,
             "trade_flow": "request_transaction 只创建待确认信号，必须由用户在 App 内确认。",
+            "personal_report_write": True,
+            "personal_report_flow": "submit_personal_strategy_report 只投递到当前 Agent Token 所属用户的报告中心；不能广播，不能指定 user_id。",
+            "personal_report_required_scope": "messages:write",
+            "public_report_write": False,
+            "cloud_sync_read": "get_records/get_summary/get_raw_sync_data 读取云端实时同步主数据；固定使用结构化组合接口，不读取云端历史备份快照。",
+            "cloud_sync_write": False,
+            "cloud_history_snapshot_write": False,
+            "empty_portfolio_restore": "已确认的空组合主数据会被识别为合法可恢复状态，但 MCP 不提供恢复或覆盖写入工具。",
             "destructive_tools": [],
         },
     }
@@ -782,14 +993,21 @@ async def get_item_detail(code: str) -> dict:
 
 
 @mcp.tool()
-async def get_item_estimate(codes: list[str]) -> dict:
+async def get_item_estimate(
+    codes: list[str],
+    default_data_source_mode: str = "huahua",
+    data_source_mode_by_code: Optional[dict] = None,
+) -> dict:
     """
     批量获取项目今日实时估算净值（最多 50 个）。
     适合查询"现在涨了多少""今天净值多少"等日常行情问题，比 get_item_detail 轻量得多。
     结果在同一 session 内缓存 60 秒，与 get_records 共享缓存，无重复网络请求。
+    支持新版后端多行情源：default_data_source_mode / data_source_mode_by_code。
 
     Args:
         codes: 项目编号列表，如 ["000001", "110022"]，最多 50 个
+        default_data_source_mode: 默认行情源模式：huahua/a/b/c。
+        data_source_mode_by_code: 可选，每只基金单独指定行情源模式。
     """
     _require_token()
     # 验证并去重基金代码
@@ -805,8 +1023,29 @@ async def get_item_estimate(codes: list[str]) -> dict:
             continue  # 跳过无效代码
     if not validated_codes:
         return {"data": []}
-    estimate_map = await _fetch_estimates(validated_codes)
+    estimate_map = await _fetch_estimates(
+        validated_codes,
+        default_data_source_mode=default_data_source_mode,
+        data_source_mode_by_code=data_source_mode_by_code,
+    )
     return {"data": list(estimate_map.values())}
+
+
+@mcp.tool()
+async def get_fund_source_previews(code: str) -> dict:
+    """
+    获取单只基金在多个行情源下的实时估算预览。
+    适合用户询问"不同数据源现在差多少"或需要选择基金级 dataSourceMode 时调用。
+
+    Args:
+        code: 项目编号，如 "000001"
+
+    Returns:
+        dict 包含 code 和 data，其中 data 通常是 huahua/a/b/c 到估算帧的映射。
+    """
+    _require_token()
+    validated_code = _validate_fund_code(code)
+    return await _get(f"/api/estimate/source-previews/{validated_code}")
 
 
 @mcp.tool()
@@ -848,7 +1087,7 @@ async def get_item_dividends(code: str) -> list:
 
 
 @mcp.tool()
-async def get_fund_timeline(code: str) -> list:
+async def get_fund_timeline(code: str, source_mode: str = "huahua") -> list:
     """
     获取指定项目今日分时估值走势（每隔几分钟一个数据点，盘中更新）。
     适合了解今日净值走势曲线，判断入场时机。
@@ -856,18 +1095,22 @@ async def get_fund_timeline(code: str) -> list:
 
     Args:
         code: 项目编号，如 "000001"
+        source_mode: 行情源模式：huahua/a/b/c。
     """
     _require_token()
     validated_code = _validate_fund_code(code)
-    data = await _get(f"/api/fund/today-timeline/{validated_code}")
+    data = await _get(
+        f"/api/fund/today-timeline/{validated_code}",
+        params={"sourceMode": _normalize_data_source_mode(source_mode)},
+    )
     return data if isinstance(data, list) else []
 
 
 @mcp.tool()
 async def get_fund_fees(code: str) -> dict:
     """
-    获取项目费率信息，包括申购费率、赎回费率、管理费率、托管费率等。
-    在制定买卖决策时可参考手续费成本。
+    获取项目交易规则，包括确认天数、申购状态、QDII/限大额日累计限购金额等。
+    在制定买卖决策时可参考确认周期、限购状态和手续费成本。
 
     Args:
         code: 项目编号，如 "000001"
@@ -875,6 +1118,31 @@ async def get_fund_fees(code: str) -> dict:
     _require_token()
     validated_code = _validate_fund_code(code)
     return await _get(f"/api/fund/fees/{validated_code}")
+
+
+@mcp.tool()
+async def get_batch_fund_fees(codes: list[str]) -> dict:
+    """
+    批量获取基金费率、申购状态、限购规则。最多 50 个代码。
+    适合配合 get_purchase_limit_watchlist 一次性检查限购观察列表。
+
+    Args:
+        codes: 6 位基金代码列表。
+    """
+    _require_token()
+    validated_codes = []
+    seen = set()
+    for code in codes[:50]:
+        try:
+            normalized = _validate_fund_code(code)
+            if normalized not in seen:
+                validated_codes.append(normalized)
+                seen.add(normalized)
+        except ValueError:
+            continue
+    if not validated_codes:
+        return {"data": {}, "truncated": False, "limit": 50}
+    return await _post("/api/fund/fees/batch", {"codes": validated_codes})
 
 
 @mcp.tool()
@@ -979,7 +1247,45 @@ async def get_overview() -> dict:
     适合快速了解今日整体情况。
     """
     _require_token()
-    return await _get("/api/market/overview")
+    async def safe_get(name: str, path: str, params: dict = None):
+        try:
+            return name, await _get(path, params=params)
+        except Exception as exc:
+            return name, {"error": str(exc)}
+
+    catalog = await _get("/api/market/indices/catalog")
+    default_codes = catalog.get("defaultCodes", []) if isinstance(catalog, dict) else []
+    default_codes = [str(code) for code in default_codes if code][:10]
+    results = await asyncio.gather(
+        safe_get("status", "/api/market/status"),
+        safe_get("todayRank", "/api/fund/today-rank"),
+        safe_get("sectorWind", "/api/market/sector-wind"),
+        safe_get("yesterdayRank", "/api/market/yesterday-rank"),
+        safe_get("indices", "/api/market/indices/latest", params={"codes": ",".join(default_codes)}) if default_codes else asyncio.sleep(0, result=("indices", {"quotes": []})),
+    )
+    overview = {name: value for name, value in results}
+    overview["instrumentCatalog"] = catalog
+    return overview
+
+
+@mcp.tool()
+async def get_sector_wind() -> dict:
+    """
+    获取市场板块风向数据，包含领涨/领跌板块和数据时间。
+    适合单独回答"今天哪些板块强/弱"。
+    """
+    _require_token()
+    return await _get("/api/market/sector-wind")
+
+
+@mcp.tool()
+async def get_yesterday_rank() -> dict:
+    """
+    获取上一交易日基金涨跌榜。
+    适合回答"昨天哪些基金涨得多/跌得多"，或和今日榜做对比。
+    """
+    _require_token()
+    return await _get("/api/market/yesterday-rank")
 
 
 @mcp.tool()
@@ -1001,8 +1307,13 @@ async def get_indices() -> list:
     获取主要指数实时数据（上证、深证、创业板、沪深300、纳斯达克等）。
     """
     _require_token()
-    data = await _get("/api/market/indices")
-    return data if isinstance(data, list) else []
+    catalog = await _get("/api/market/indices/catalog")
+    default_codes = catalog.get("defaultCodes", []) if isinstance(catalog, dict) else []
+    code_str = ",".join(str(code) for code in default_codes if code)
+    if not code_str:
+        return []
+    data = await _get("/api/market/indices/latest", params={"codes": code_str})
+    return data.get("quotes", []) if isinstance(data, dict) else []
 
 
 @mcp.tool()
@@ -1017,7 +1328,7 @@ async def get_holder_ranking() -> dict:
 
 
 @mcp.tool()
-async def get_night_estimate(codes: list[str], force: bool = False) -> dict:
+async def get_night_estimate(codes: list[str], force: bool = False, view: str = "forecast") -> dict:
     """
     获取QDII基金的夜间实时估值（美股/港股盘后/盘前交易时段）。
     返回每只基金的盘后涨跌幅、持仓穿透明细、汇率变动等数据。
@@ -1026,6 +1337,7 @@ async def get_night_estimate(codes: list[str], force: bool = False) -> dict:
     Args:
         codes: 基金代码列表，如 ["016665", "018147"]，最多 50 个
         force: 是否强制刷新（跳过服务端缓存），默认 false
+        view: forecast（预测口径）或 last_close（上一收盘快照口径）
     """
     _require_token()
     validated_codes = []
@@ -1044,6 +1356,8 @@ async def get_night_estimate(codes: list[str], force: bool = False) -> dict:
     params = {"codes": code_str}
     if force:
         params["force"] = "true"
+    if view in {"forecast", "last_close"}:
+        params["view"] = view
     return await _get("/api/market/night-est", params=params)
 
 
@@ -1052,7 +1366,7 @@ async def get_night_watchlist() -> dict:
     """
     获取用户在 App「夜盘估值」页面手动添加的基金代码列表。
 
-    数据来自最近一次云同步快照的 nightWatchCodes 字段；典型用法是把
+    数据来自云端实时同步主数据的 nightWatchCodes 字段；典型用法是把
     返回的 codes 作为参数传给 get_night_estimate，实现 "拉取用户自选
     夜盘基金的最新估值" 的端到端调用，无需用户在对话中手动报代码。
 
@@ -1063,7 +1377,7 @@ async def get_night_watchlist() -> dict:
         - has_customized: 用户是否自定义过（False 表示用户从未修改，
           App 端会回退到内置默认列表；此时返回的 codes 为空，Agent
           可以提示用户先去 App 添加夜盘自选）
-        - dataUpdatedAt: 云同步快照时间
+        - dataUpdatedAt: 云端实时同步主数据时间
     """
     _require_token()
     portfolio = await _download_portfolio()
@@ -1073,6 +1387,52 @@ async def get_night_watchlist() -> dict:
     return {
         "codes": codes,
         "count": len(codes),
+        "has_customized": has_customized,
+        "dataUpdatedAt": portfolio.get("_meta_updated_at", ""),
+    }
+
+
+@mcp.tool()
+async def get_purchase_limit_watchlist() -> dict:
+    """
+    获取用户在 App「限购观察」中保存的基金列表。
+
+    数据来自云端实时同步主数据的 purchaseLimitWatchItems 字段。新版 App 会把
+    夜盘默认基金并入限购观察列表；旧版本或尚未同步过该功能的主数据可能没有此字段。
+
+    Returns:
+        dict 包含：
+        - items: 观察项列表，含 code/name/type/addedAt/snapshot
+        - codes: 6 位基金代码列表，可传给 get_fund_fees 批量检查申购状态
+        - count: 观察项数量
+        - has_customized: 云端主数据是否包含该字段
+        - dataUpdatedAt: 云端实时同步主数据时间
+    """
+    _require_token()
+    portfolio = await _download_portfolio()
+    raw = portfolio.get("purchaseLimitWatchItems")
+    has_customized = isinstance(raw, list)
+    items = []
+    seen = set()
+    if has_customized:
+        for item in raw:
+            if not isinstance(item, dict):
+                continue
+            code = str(item.get("code") or "").strip()
+            if not _is_valid_fund_code_value(code) or code in seen:
+                continue
+            seen.add(code)
+            items.append({
+                "code": code,
+                "name": str(item.get("name") or "").strip(),
+                "type": str(item.get("type") or "").strip(),
+                "addedAt": item.get("addedAt") or "",
+                "snapshot": item.get("snapshot") if isinstance(item.get("snapshot"), dict) else None,
+            })
+    return {
+        "items": items,
+        "codes": [item["code"] for item in items],
+        "count": len(items),
         "has_customized": has_customized,
         "dataUpdatedAt": portfolio.get("_meta_updated_at", ""),
     }
@@ -1227,7 +1587,8 @@ async def get_next_trading_day(date: str) -> dict:
 
 async def _download_portfolio() -> dict:
     """
-    下载云同步数据并解析 JSON。
+    下载云端实时同步主数据并解析 JSON。
+    固定读取结构化组合接口，不读取旧同步大包或云端历史备份快照。
     使用 30s 内存缓存 + asyncio.Lock 双检锁，避免并发调用时发出重复下载请求。
     """
     now = time.monotonic()
@@ -1241,44 +1602,74 @@ async def _download_portfolio() -> dict:
         if _portfolio_cache["data"] is not None and now - _portfolio_cache["ts"] < _PORTFOLIO_TTL:
             return _portfolio_cache["data"]
 
-        raw = await _get("/api/sync/download")
-        parsed = _unwrap_sync_payload(raw if isinstance(raw, dict) else {})
+        raw, source = await _download_portfolio_raw()
+        parsed = _unwrap_sync_payload(raw if isinstance(raw, dict) else {}, source=source)
         _portfolio_cache["data"] = parsed
         _portfolio_cache["ts"] = now
         return parsed
 
 
+async def _download_portfolio_raw() -> tuple[dict, str]:
+    """
+    Return raw portfolio payload from the canonical structured source.
+
+    `/api/portfolio/snapshot` is the current realtime-sync master data source.
+    """
+    structured = await _get("/api/portfolio/snapshot")
+    return structured if isinstance(structured, dict) else {}, "structured_portfolio"
+
+
 @mcp.tool()
 async def get_sync_meta() -> dict:
     """
-    获取云端同步快照元信息，不下载完整数据。
-    返回 updated_at、etag、size_bytes，用于判断 App 数据是否已经同步到云端。
+    获取云端实时同步主数据元信息，不下载完整数据。
+    返回 updated_at、etag、size_bytes 和历史快照摘要，用于判断 App 数据是否已经同步到云端。
     """
     _require_token()
-    return await _get("/api/sync/meta")
+    meta = await _get("/api/sync/meta")
+    if isinstance(meta, dict):
+        restorable_count = int(meta.get("restorable_fund_count") or 0)
+        empty_confirmed = meta.get("empty_portfolio_confirmed") is True
+        has_empty_tombstone = (
+            empty_confirmed
+            and meta.get("has_funds_array") is True
+            and int(meta.get("fund_count") or 0) == 0
+        )
+        meta["has_restorable_sync_payload"] = restorable_count > 0 or has_empty_tombstone
+        meta["data_source"] = _portfolio_payload_source(meta)
+        meta["history_snapshot"] = {
+            "latest_snapshot_created_at": meta.get("latest_snapshot_created_at"),
+            "latest_snapshot_etag": meta.get("latest_snapshot_etag"),
+            "latest_snapshot_source": meta.get("latest_snapshot_source"),
+        }
+    return meta
 
 
 @mcp.tool()
 async def get_raw_sync_data(include_json_text: bool = False) -> dict:
     """
-    获取完整云同步快照。默认返回解析后的 JSON，不返回原始 JSON 字符串以节省上下文。
+    获取完整云端实时同步主数据。默认返回解析后的 JSON，不返回原始 JSON 字符串以节省上下文。
 
-    云同步快照包含 funds、groups、watchlistGroups、globalTags、字段显示配置等。
-    profit ledger 是 App 可由交易记录和历史净值重建的派生数据；当前云同步快照通常不包含 ledger。
+    实时同步主数据包含 funds、groups、watchlistGroups、globalTags、字段显示配置、
+    nightWatchCodes、purchaseLimitWatchItems、marketIndexSelection 等。
+    profit ledger 是 App 可由交易记录和历史净值重建的派生数据；当前主数据通常不包含 ledger。
 
     Args:
-        include_json_text: 是否同时返回服务端原始 json_data 字符串；只有做备份/迁移时才建议开启。
+        include_json_text: 是否同时返回服务端原始 json_data 字符串；只有做导出/迁移审计时才建议开启。
     """
     _require_token()
-    raw = await _get("/api/sync/download")
-    parsed = _unwrap_sync_payload(raw if isinstance(raw, dict) else {})
+    raw, source = await _download_portfolio_raw()
+    parsed = _unwrap_sync_payload(raw if isinstance(raw, dict) else {}, source=source)
     result = {
         "data": {k: v for k, v in parsed.items() if not k.startswith("_meta_")},
         "meta": {
             "updated_at": parsed.get("_meta_updated_at", ""),
             "etag": parsed.get("_meta_etag", ""),
+            "data_source": parsed.get("_meta_data_source", source),
             "size_bytes": parsed.get("_meta_size_bytes", 0),
             "contains_ledger": "ledger" in parsed,
+            "contains_archived_ledger": "archivedLedger" in parsed,
+            **parsed.get("_meta_summary", {}),
         },
     }
     if include_json_text:
@@ -1289,7 +1680,7 @@ async def get_raw_sync_data(include_json_text: bool = False) -> dict:
 @mcp.tool()
 async def get_transactions(code: str = "", include_pending: bool = True) -> dict:
     """
-    获取云同步快照中的交易流水。默认返回全部基金；传入 code 时只返回该基金。
+    获取云端实时同步主数据中的交易流水。默认返回全部基金；传入 code 时只返回该基金。
 
     Args:
         code: 可选，6 位基金代码。
@@ -1361,22 +1752,22 @@ async def get_tags() -> dict:
 @mcp.tool()
 async def get_records(include_transactions: bool = False) -> dict:
     """
-    获取用户持仓记录，并自动计算今日收益、累计收益、市值、收益率等字段。
-    需要 Agent Token 且账号需开通会员才能使用云同步功能。
+    获取用户持仓记录，并自动计算今日收益、持有收益、累计收益、市值、持有收益率等字段。
+    需要 Agent Token 且账号需开通会员才能使用云端实时同步数据。
 
-    数据来自最近一次云同步（dataUpdatedAt 字段）。若刚在 App 中刷新了净值或新增了交易，
-    请先在 App 设置页手动触发"立即同步"后再查询，以获取最新数据。
+    数据来自云端实时同步主数据（dataUpdatedAt 字段）。若刚在 App 中刷新了净值或新增了交易，
+    请先确认 App 实时同步已完成后再查询，以获取最新数据。
 
     返回结构：
     - holdings: 有持仓的记录列表（含实时收益计算）
     - watchlist: 观察列记录（无持仓，仅供参考）
-    - summary: 持仓汇总（总市值/今日收益/持有收益/持有收益率/累计收益/收益率/在途金额）
+    - summary: 持仓汇总（总市值/今日收益/持有收益/持有收益率/累计收益/在途金额）
+      - todayProfitRate: 今日/昨日收益率（todayProfit / totalDayBaseMarketValue × 100%，分母为归属日组合期初市值）
+      - totalDayBaseMarketValue: 今日/昨日收益率使用的组合期初市值
       - totalHoldingProfit: 持有收益总额（市值 - 成本，不含落袋/已实现收益）
       - totalHoldingReturnRate: 持有收益率（totalHoldingProfit / totalCost × 100%，仅反映浮动亏盈）
-      - cumulativeProfit: 累计收益（持有收益 + 已实现收益，含落袋）
-      - totalReturnRate: 累计收益率（cumulativeProfit / totalCost × 100%，含落袋，综合回报率）
-      注意：totalReturnRate ≠ totalHoldingReturnRate，前者含已实现收益，后者仅持仓浮动
-    - dataUpdatedAt: 云同步数据的最后更新时间（UTC），展示给用户让其知晓数据新鲜度
+      - cumulativeProfit: 累计收益（持有收益 + 已实现收益，含落袋；不代表用户所有平台/历史交易的完整累计）
+    - dataUpdatedAt: 云端实时同步主数据的最后更新时间（UTC），展示给用户让其知晓数据新鲜度
 
     Args:
         include_transactions: 是否在每条记录中附带原始 transactions。默认 false 以节省上下文。
@@ -1387,6 +1778,8 @@ async def get_records(include_transactions: bool = False) -> dict:
     portfolio = await _download_portfolio()
     funds: list = portfolio.get("funds", [])
     data_updated_at: str = portfolio.get("_meta_updated_at", "")
+    data_source: str = portfolio.get("_meta_data_source", "")
+    snapshot_summary: dict = portfolio.get("_meta_summary", {})
 
     # 2. 找出有持仓的项目编号
     held_codes = [f["code"] for f in funds if (f.get("holdingShares") or 0) > 0]
@@ -1394,7 +1787,21 @@ async def get_records(include_transactions: bool = False) -> dict:
     # 3. 并行批量获取今日估算数值（共享 60s 缓存）
     estimate_map: dict = {}
     if held_codes:
-        estimate_map = await _fetch_estimates(held_codes)
+        user_preferences = portfolio.get("userPreferences") if isinstance(portfolio.get("userPreferences"), dict) else {}
+        default_mode = _normalize_data_source_mode(user_preferences.get("fundDataSourceMode"))
+        mode_by_code = {}
+        for fund in funds:
+            code = str(fund.get("code") or "").strip()
+            if not _is_valid_fund_code_value(code):
+                continue
+            fund_mode = fund.get("dataSourceMode")
+            if fund_mode or code not in mode_by_code:
+                mode_by_code[code] = _normalize_data_source_mode(fund_mode or default_mode)
+        estimate_map = await _fetch_estimates(
+            held_codes,
+            default_data_source_mode=default_mode,
+            data_source_mode_by_code=mode_by_code,
+        )
 
     # 4. 计算每条记录的收益字段，剥离原始 transactions（减少 token 消耗）
     holdings = []
@@ -1428,7 +1835,7 @@ async def get_records(include_transactions: bool = False) -> dict:
             {"date": tx.get("date"), "amount": tx.get("amount"), "note": tx.get("note")}
             for tx in txs if tx.get("status") == "PENDING" and tx.get("type") == "BUY"
         ]
-        in_transit_amount = _r2(sum((tx.get("amount") or 0) for tx in pending_buy_txs))
+        in_transit_amount = _r2(sum(_to_float(tx.get("amount")) for tx in pending_buy_txs))
         enriched["inTransitAmount"] = in_transit_amount
         if pending_buy_txs:
             enriched["pendingBuyTransactions"] = pending_buy_txs
@@ -1458,16 +1865,18 @@ async def get_records(include_transactions: bool = False) -> dict:
     total_cumulative_profit = 0.0
     total_in_transit = 0.0
     total_invested = 0.0
+    total_day_base_market_value = 0.0
     for f in holdings:
         total_market_value = _r2(total_market_value + f.get("marketValue", 0))
         total_cost = _r2(total_cost + f.get("costTotal", 0))
         total_today_profit = _r2(total_today_profit + f.get("todayProfit", 0))
+        total_day_base_market_value = _r2(total_day_base_market_value + f.get("dayBaseMarketValue", 0))
         total_holding_profit = _r2(total_holding_profit + f.get("holdingProfit", 0))
         total_cumulative_profit = _r2(total_cumulative_profit + f.get("totalProfit", 0))
         total_in_transit = _r2(total_in_transit + f.get("inTransitAmount", 0))
         total_invested = _r2(total_invested + f.get("totalInvested", 0))
-    total_return_rate = _r2_pct(total_cumulative_profit, total_invested) if total_invested > 0 else 0.0
-    total_holding_return_rate = _r2_pct(total_holding_profit, total_cost)
+    total_holding_return_rate = _ratio_pct(total_holding_profit, total_cost)
+    today_profit_rate = _ratio_pct(total_today_profit, total_day_base_market_value)
 
     return {
         "holdings": holdings,
@@ -1477,32 +1886,87 @@ async def get_records(include_transactions: bool = False) -> dict:
             "totalMarketValue": total_market_value,
             "totalCost": total_cost,
             "todayProfit": total_today_profit,
+            "todayProfitRate": today_profit_rate,
+            "totalDayBaseMarketValue": total_day_base_market_value,
             "totalHoldingProfit": total_holding_profit,
             "totalHoldingReturnRate": total_holding_return_rate,
             "cumulativeProfit": total_cumulative_profit,
             "totalInvested": total_invested,
-            "totalReturnRate": total_return_rate,
             "heldItemCount": len(holdings),
             "totalInTransitAmount": total_in_transit,
+            "emptyPortfolioConfirmed": snapshot_summary.get("empty_portfolio_confirmed", False),
+            "isConfirmedEmptyPortfolioSnapshot": snapshot_summary.get("is_confirmed_empty_portfolio_snapshot", False),
+            "hasRestorableSyncPayload": snapshot_summary.get("has_restorable_sync_payload", False),
+            "dataSource": data_source,
         },
+        "snapshotSummary": snapshot_summary,
         "dataUpdatedAt": data_updated_at,
+        "dataSource": data_source,
     }
 
 
 @mcp.tool()
 async def get_summary() -> dict:
     """
-    获取持仓总览摘要（总市值、今日收益、累计收益、收益率）。
+    获取持仓总览摘要（总市值、今日收益、今日收益率、持有收益、持有收益率、累计收益）。
     输出比 get_records 更精简（不含每只基金明细），适合快速查询资产概况。
+    今日收益率 todayProfitRate 使用 todayProfit / totalDayBaseMarketValue，
+    即归属日组合期初市值口径，不使用当前总市值。
 
-    返回的 dataUpdatedAt 字段表示云同步数据的更新时间，请将此时间告知用户，
-    让其了解数据是否为最新（若时间较旧，提示用户在 App 触发同步）。
+    返回的 dataUpdatedAt 字段表示云端实时同步主数据的更新时间，请将此时间告知用户，
+    让其了解数据是否为最新（若时间较旧，提示用户在 App 确认实时同步已完成）。
     """
     _require_token()
     result = await get_records()
     summary = result.get("summary", {})
     summary["dataUpdatedAt"] = result.get("dataUpdatedAt", "")
     return summary
+
+
+@mcp.tool()
+async def submit_personal_strategy_report(
+    title: str,
+    summary: str,
+    payload: dict,
+    client_message_id: str = "",
+) -> dict:
+    """
+    将用户自己的 Agent 生成的个人策略报告投递到当前用户报告中心。
+
+    认证要求：
+    - 需要当前用户自己的 Agent Token。
+    - Token 需要显式包含 messages:write scope；不要使用 hermes:write。
+
+    安全边界：
+    - 只写当前 Agent Token 所属用户的报告中心。
+    - 不能广播，不能指定 user_id，不能调用 /api/hermes/reports。
+    - 可基于用户明确授权读取的持仓、交易和行情数据生成个人报告。
+
+    Args:
+        title: 报告标题，如 "7月1日 个人组合复盘"。
+        summary: 报告列表摘要，最多 500 字。
+        payload: 策略报告 JSON，建议包含 kind/date/body/sections/themes/riskNotes。
+        client_message_id: 当前用户内幂等 ID，如 personal:2026-07-01:evening。
+    """
+    _require_token()
+    clean_title = str(title or "").strip()
+    clean_summary = str(summary or "").strip()
+    if not clean_title:
+        raise ValueError("title 不能为空")
+    if not clean_summary:
+        raise ValueError("summary 不能为空")
+    if not isinstance(payload, dict) or not payload:
+        raise ValueError("payload 必须是非空对象")
+
+    body = {
+        "type": "STRATEGY_REPORT",
+        "title": clean_title,
+        "summary": clean_summary,
+        "payload": payload,
+    }
+    if client_message_id:
+        body["clientMessageId"] = str(client_message_id).strip()
+    return await _post("/api/agent/messages", body)
 
 
 @mcp.tool()
@@ -1916,38 +2380,6 @@ async def revoke_community_authorization() -> dict:
     """
     _require_token()
     return await _delete("/api/community/authorize")
-
-
-@mcp.tool()
-async def sync_community_returns(
-    weekly_return: float,
-    monthly_return: float,
-    total_return: float,
-    fund_count: int,
-    top_fund_code: str = "",
-    top_fund_name: str = "",
-) -> dict:
-    """
-    将用户收益率数据同步到喵舍社区，用于排行榜排名。
-    通常由 App 自动调用；Agent 可在用户明确要求刷新排名时手动触发。
-
-    Args:
-        weekly_return: 近一周收益率（百分比数值，如 5.2 表示 +5.2%）
-        monthly_return: 近一月收益率
-        total_return: 累计总收益率
-        fund_count: 持仓基金数量
-        top_fund_code: 第一重仓基金代码（可选）
-        top_fund_name: 第一重仓基金名称（可选）
-    """
-    _require_token()
-    return await _post("/api/community/sync-returns", {
-        "weekly_return": weekly_return,
-        "monthly_return": monthly_return,
-        "total_return": total_return,
-        "fund_count": fund_count,
-        "top_fund_code": top_fund_code,
-        "top_fund_name": top_fund_name,
-    })
 
 
 @mcp.tool()

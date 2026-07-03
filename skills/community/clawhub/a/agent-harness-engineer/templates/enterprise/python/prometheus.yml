@@ -1,0 +1,21 @@
+# ============================================
+# Prometheus 指标收集配置
+# ============================================
+#
+# ⚠ AI构建提示:
+# 配置以下 scrape jobs:
+#   1. agent-api: 应用指标
+#   2. redis: 缓存指标
+#   3. postgres: 数据库指标
+#   4. celery: 任务队列指标
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# TODO: 生成 scrape_configs
+# scrape_configs:
+#   - job_name: "agent-api"
+#     static_configs:
+#       - targets: ["agent-api:9090"]
+pass

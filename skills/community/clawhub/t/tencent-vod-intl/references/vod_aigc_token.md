@@ -79,24 +79,24 @@
 
 #### Create Token (First-Time Use)
 ```bash
-python scripts/vod_aigc_token.py create
+python3 scripts/vod_aigc_token.py create
 # If a Token already exists, you will be prompted whether to overwrite it. Enter y or yes to continue, or press Enter to cancel.
 ```
 
 #### Query Token List
 ```bash
-python scripts/vod_aigc_token.py list
+python3 scripts/vod_aigc_token.py list
 ```
 
 #### Delete a Specific Token
 ```bash
-python scripts/vod_aigc_token.py delete --api-token tok_abc123
+python3 scripts/vod_aigc_token.py delete --api-token tok_abc123
 ```
 
 #### Specify Sub-Application ID (Required for accounts created after December 2023)
 ```bash
-python scripts/vod_aigc_token.py create --sub-app-id 1500000001
-python scripts/vod_aigc_token.py list   --sub-app-id 1500000001
+python3 scripts/vod_aigc_token.py create --sub-app-id 1500000001
+python3 scripts/vod_aigc_token.py list   --sub-app-id 1500000001
 ```
 
 ---
@@ -105,7 +105,7 @@ python scripts/vod_aigc_token.py list   --sub-app-id 1500000001
 
 #### Query Text Generation Usage (Current Month)
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Text \
     --start 2026-03-01 \
     --end 2026-03-31
@@ -113,7 +113,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### Query Video Generation Usage
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Video \
     --start 2026-03-01 \
     --end 2026-03-31
@@ -121,7 +121,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### Query Image Generation Usage (JSON Format)
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Image \
     --start 2026-03-01 \
     --end 2026-03-31 \
@@ -130,7 +130,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### Preview Parameters with dry-run
 ```bash
-python scripts/vod_aigc_token.py --dry-run usage \
+python3 scripts/vod_aigc_token.py --dry-run usage \
     --type Text \
     --start 2026-03-01 \
     --end 2026-03-31

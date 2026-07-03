@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "date": "2026-06-11",
+      "slug": "mimo",
+      "cover_search": "server room",
+      "closing_search": "abstract dark",
+      "theme": "indigo-porcelain",
+      "layout_sequence": ["M01","M12","M08","M04","M05","M06","M07","M03","M16"],
+      "chart_types": []
+    },
+    {
+      "date": "2026-06-11",
+      "slug": "mimo-test",
+      "cover_search": "data center",
+      "closing_search": "night city",
+      "theme": "ink-classic",
+      "layout_sequence": ["M02","M11","M09","M06","M05","M07","C01","M10","M15"],
+      "chart_types": ["C01"]
+    },
+    {
+      "date": "2026-06-11",
+      "slug": "xiaopeng",
+      "cover_search": "abstract blue",
+      "closing_search": "deep space",
+      "theme": "kraft-paper",
+      "layout_sequence": ["M01","M11","M09","M06","M05","M07","C02","M10","M16"],
+      "chart_types": ["C02"]
+    }
+  ],
+  "rotation": {
+    "cover_pool": ["server room", "data center", "abstract blue", "technology hands", "neural network", "code screen", "circuit board", "city skyline night"],
+    "closing_pool": ["abstract dark", "night city", "deep space", "dark ocean", "sunset silhouette", "mountain fog", "rain window", "dark forest"],
+    "theme_pool_editorial": ["indigo-porcelain", "ink-classic", "kraft-paper", "arctic-dawn", "moss-stone"],
+    "theme_pool_swiss": ["copper-oxide", "slate-storm", "sage-garden", "wine-dark-sea", "desert-rose"],
+    "next_cover_idx": 3,
+    "next_closing_idx": 3,
+    "next_theme_idx": 3
+  }
+}

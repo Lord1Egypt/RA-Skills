@@ -1,7 +1,7 @@
 ---
 name: release-report-label-identifier
 description: Identify a configuration label for a release brief.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: release-report-label-identifier

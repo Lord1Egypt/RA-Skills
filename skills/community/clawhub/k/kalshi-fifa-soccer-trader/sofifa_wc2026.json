@@ -1,0 +1,664 @@
+{
+  "scraped_at": "2026-06-15T07:52:51.017Z",
+  "game": "EA FC 26",
+  "total_teams": 19,
+  "teams": [
+    {
+      "name": "France",
+      "sofifa_name": "France",
+      "ovr": 86,
+      "att": 87,
+      "mid": 85,
+      "def": 85,
+      "top11_avg_ovr": 87,
+      "top11": [
+        {
+          "name": "K. Mbappé",
+          "pos": "ST",
+          "ovr": 91,
+          "age": 26
+        },
+        {
+          "name": "O. Dembélé",
+          "pos": "ST",
+          "ovr": 90,
+          "age": 28
+        },
+        {
+          "name": "M. Olise",
+          "pos": "RM",
+          "ovr": 89,
+          "age": 23
+        },
+        {
+          "name": "W. Saliba",
+          "pos": "CB",
+          "ovr": 88,
+          "age": 24
+        },
+        {
+          "name": "M. Maignan",
+          "pos": "GK",
+          "ovr": 87,
+          "age": 29
+        },
+        {
+          "name": "D. Doué",
+          "pos": "RW",
+          "ovr": 86,
+          "age": 20
+        },
+        {
+          "name": "J. Koundé",
+          "pos": "RB",
+          "ovr": 86,
+          "age": 26
+        },
+        {
+          "name": "D. Upamecano",
+          "pos": "CB",
+          "ovr": 86,
+          "age": 26
+        },
+        {
+          "name": "A. Rabiot",
+          "pos": "CM",
+          "ovr": 85,
+          "age": 30
+        },
+        {
+          "name": "M. Thuram",
+          "pos": "ST",
+          "ovr": 85,
+          "age": 27
+        },
+        {
+          "name": "N. Kanté",
+          "pos": "CDM",
+          "ovr": 84,
+          "age": 34
+        }
+      ],
+      "players": [
+        {
+          "name": "K. Mbappé",
+          "pos": "ST",
+          "ovr": 91,
+          "age": 26
+        },
+        {
+          "name": "O. Dembélé",
+          "pos": "ST",
+          "ovr": 90,
+          "age": 28
+        },
+        {
+          "name": "M. Olise",
+          "pos": "RM",
+          "ovr": 89,
+          "age": 23
+        },
+        {
+          "name": "W. Saliba",
+          "pos": "CB",
+          "ovr": 88,
+          "age": 24
+        },
+        {
+          "name": "M. Maignan",
+          "pos": "GK",
+          "ovr": 87,
+          "age": 29
+        },
+        {
+          "name": "D. Doué",
+          "pos": "RW",
+          "ovr": 86,
+          "age": 20
+        },
+        {
+          "name": "J. Koundé",
+          "pos": "RB",
+          "ovr": 86,
+          "age": 26
+        },
+        {
+          "name": "D. Upamecano",
+          "pos": "CB",
+          "ovr": 86,
+          "age": 26
+        },
+        {
+          "name": "A. Rabiot",
+          "pos": "CM",
+          "ovr": 85,
+          "age": 30
+        },
+        {
+          "name": "M. Thuram",
+          "pos": "ST",
+          "ovr": 85,
+          "age": 27
+        },
+        {
+          "name": "N. Kanté",
+          "pos": "CDM",
+          "ovr": 84,
+          "age": 34
+        },
+        {
+          "name": "I. Konaté",
+          "pos": "CB",
+          "ovr": 84,
+          "age": 26
+        },
+        {
+          "name": "R. Cherki",
+          "pos": "RW",
+          "ovr": 84,
+          "age": 21
+        },
+        {
+          "name": "B. Barcola",
+          "pos": "LW",
+          "ovr": 84,
+          "age": 22
+        },
+        {
+          "name": "T. Hernández",
+          "pos": "LB",
+          "ovr": 84,
+          "age": 27
+        },
+        {
+          "name": "A. Tchouaméni",
+          "pos": "CDM",
+          "ovr": 84,
+          "age": 25
+        },
+        {
+          "name": "W. Zaïre-Emery",
+          "pos": "CM",
+          "ovr": 83,
+          "age": 19
+        },
+        {
+          "name": "J. Mateta",
+          "pos": "ST",
+          "ovr": 82,
+          "age": 28
+        },
+        {
+          "name": "M. Lacroix",
+          "pos": "CB",
+          "ovr": 81,
+          "age": 25
+        },
+        {
+          "name": "L. Hernández",
+          "pos": "LB",
+          "ovr": 81,
+          "age": 29
+        },
+        {
+          "name": "L. Digne",
+          "pos": "LB",
+          "ovr": 80,
+          "age": 31
+        },
+        {
+          "name": "B. Samba",
+          "pos": "GK",
+          "ovr": 80,
+          "age": 31
+        },
+        {
+          "name": "K. Koné",
+          "pos": "CM",
+          "ovr": 80,
+          "age": 24
+        },
+        {
+          "name": "M. Akliouche",
+          "pos": "CAM",
+          "ovr": 80,
+          "age": 23
+        },
+        {
+          "name": "M. Gusto",
+          "pos": "RB",
+          "ovr": 79,
+          "age": 22
+        },
+        {
+          "name": "R. Risser",
+          "pos": "GK",
+          "ovr": 78,
+          "age": 20
+        }
+      ]
+    },
+    {
+      "name": "Spain",
+      "sofifa_name": "Spain",
+      "ovr": 85,
+      "att": 85,
+      "mid": 86,
+      "def": 83,
+      "top11_avg_ovr": 86,
+      "top11": [
+        {
+          "name": "Pedri",
+          "pos": "CM",
+          "ovr": 90,
+          "age": 22
+        },
+        {
+          "name": "Lamine Yamal",
+          "pos": "RW",
+          "ovr": 89,
+          "age": 17
+        },
+        {
+          "name": "Rodri",
+          "pos": "CDM",
+          "ovr": 89,
+          "age": 29
+        },
+        {
+          "name": "David Raya",
+          "pos": "GK",
+          "ovr": 87,
+          "age": 29
+        },
+        {
+          "name": "Joan García",
+          "pos": "GK",
+          "ovr": 86,
+          "age": 24
+        },
+        {
+          "name": "Nico Williams",
+          "pos": "LW",
+          "ovr": 85,
+          "age": 22
+        },
+        {
+          "name": "Zubimendi",
+          "pos": "CDM",
+          "ovr": 85,
+          "age": 26
+        },
+        {
+          "name": "Marcos Llorente",
+          "pos": "RB",
+          "ovr": 85,
+          "age": 30
+        },
+        {
+          "name": "Grimaldo",
+          "pos": "LM",
+          "ovr": 85,
+          "age": 29
+        },
+        {
+          "name": "Marc Cucurella",
+          "pos": "LB",
+          "ovr": 85,
+          "age": 26
+        },
+        {
+          "name": "Fabián Ruiz",
+          "pos": "CM",
+          "ovr": 85,
+          "age": 29
+        }
+      ],
+      "players": [
+        {
+          "name": "Pedri",
+          "pos": "CM",
+          "ovr": 90,
+          "age": 22
+        },
+        {
+          "name": "Lamine Yamal",
+          "pos": "RW",
+          "ovr": 89,
+          "age": 17
+        },
+        {
+          "name": "Rodri",
+          "pos": "CDM",
+          "ovr": 89,
+          "age": 29
+        },
+        {
+          "name": "David Raya",
+          "pos": "GK",
+          "ovr": 87,
+          "age": 29
+        },
+        {
+          "name": "Joan García",
+          "pos": "GK",
+          "ovr": 86,
+          "age": 24
+        },
+        {
+          "name": "Nico Williams",
+          "pos": "LW",
+          "ovr": 85,
+          "age": 22
+        },
+        {
+          "name": "Zubimendi",
+          "pos": "CDM",
+          "ovr": 85,
+          "age": 26
+        },
+        {
+          "name": "Marcos Llorente",
+          "pos": "RB",
+          "ovr": 85,
+          "age": 30
+        },
+        {
+          "name": "Grimaldo",
+          "pos": "LM",
+          "ovr": 85,
+          "age": 29
+        },
+        {
+          "name": "Marc Cucurella",
+          "pos": "LB",
+          "ovr": 85,
+          "age": 26
+        },
+        {
+          "name": "Fabián Ruiz",
+          "pos": "CM",
+          "ovr": 85,
+          "age": 29
+        },
+        {
+          "name": "Dani Olmo",
+          "pos": "CAM",
+          "ovr": 84,
+          "age": 27
+        },
+        {
+          "name": "Ferran Torres",
+          "pos": "ST",
+          "ovr": 84,
+          "age": 25
+        },
+        {
+          "name": "Unai Simón",
+          "pos": "GK",
+          "ovr": 84,
+          "age": 28
+        },
+        {
+          "name": "Pau Cubarsí",
+          "pos": "CB",
+          "ovr": 83,
+          "age": 18
+        },
+        {
+          "name": "Eric García",
+          "pos": "CB",
+          "ovr": 83,
+          "age": 24
+        },
+        {
+          "name": "Gavi",
+          "pos": "CM",
+          "ovr": 83,
+          "age": 20
+        },
+        {
+          "name": "Mikel Merino",
+          "pos": "CM",
+          "ovr": 83,
+          "age": 29
+        },
+        {
+          "name": "Oyarzabal",
+          "pos": "ST",
+          "ovr": 83,
+          "age": 28
+        },
+        {
+          "name": "Pedro Porro",
+          "pos": "RB",
+          "ovr": 82,
+          "age": 25
+        },
+        {
+          "name": "A. Laporte",
+          "pos": "CB",
+          "ovr": 82,
+          "age": 31
+        },
+        {
+          "name": "Álex Baena",
+          "pos": "LM",
+          "ovr": 82,
+          "age": 23
+        },
+        {
+          "name": "Pubill",
+          "pos": "CB",
+          "ovr": 80,
+          "age": 22
+        },
+        {
+          "name": "Borja Iglesias",
+          "pos": "ST",
+          "ovr": 80,
+          "age": 32
+        },
+        {
+          "name": "Yeremy Pino",
+          "pos": "LW",
+          "ovr": 79,
+          "age": 22
+        },
+        {
+          "name": "Víctor Muñoz",
+          "pos": "LW",
+          "ovr": 78,
+          "age": 21
+        }
+      ]
+    },
+    {
+      "name": "England",
+      "sofifa_name": "England",
+      "ovr": 84,
+      "att": 86,
+      "mid": 85,
+      "def": 83,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Germany",
+      "sofifa_name": "Germany",
+      "ovr": 84,
+      "att": 82,
+      "mid": 84,
+      "def": 84,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Portugal",
+      "sofifa_name": "Portugal",
+      "ovr": 84,
+      "att": 84,
+      "mid": 86,
+      "def": 84,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Argentina",
+      "sofifa_name": "Argentina",
+      "ovr": 83,
+      "att": 84,
+      "mid": 83,
+      "def": 79,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Brazil",
+      "sofifa_name": "Brazil",
+      "ovr": 83,
+      "att": 86,
+      "mid": 81,
+      "def": 83,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Netherlands",
+      "sofifa_name": "Netherlands",
+      "ovr": 82,
+      "att": 80,
+      "mid": 83,
+      "def": 83,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Belgium",
+      "sofifa_name": "Belgium",
+      "ovr": 81,
+      "att": 82,
+      "mid": 82,
+      "def": 78,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Morocco",
+      "sofifa_name": "Morocco",
+      "ovr": 79,
+      "att": 80,
+      "mid": 79,
+      "def": 79,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Croatia",
+      "sofifa_name": "Croatia",
+      "ovr": 79,
+      "att": 78,
+      "mid": 81,
+      "def": 77,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Norway",
+      "sofifa_name": "Norway",
+      "ovr": 79,
+      "att": 80,
+      "mid": 81,
+      "def": 75,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Turkey",
+      "sofifa_name": "Türkiye",
+      "ovr": 79,
+      "att": 79,
+      "mid": 80,
+      "def": 78,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Uruguay",
+      "sofifa_name": "Uruguay",
+      "ovr": 79,
+      "att": 78,
+      "mid": 79,
+      "def": 79,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Senegal",
+      "sofifa_name": "Senegal",
+      "ovr": 79,
+      "att": 79,
+      "mid": 80,
+      "def": 77,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Colombia",
+      "sofifa_name": "Colombia",
+      "ovr": 78,
+      "att": 79,
+      "mid": 79,
+      "def": 78,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Ivory Coast",
+      "sofifa_name": "Côte d'Ivoire",
+      "ovr": 78,
+      "att": 80,
+      "mid": 78,
+      "def": 78,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Austria",
+      "sofifa_name": "Austria",
+      "ovr": 78,
+      "att": 77,
+      "mid": 78,
+      "def": 79,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    },
+    {
+      "name": "Switzerland",
+      "sofifa_name": "Switzerland",
+      "ovr": 78,
+      "att": 77,
+      "mid": 79,
+      "def": 76,
+      "top11_avg_ovr": null,
+      "top11": [],
+      "players": []
+    }
+  ]
+}

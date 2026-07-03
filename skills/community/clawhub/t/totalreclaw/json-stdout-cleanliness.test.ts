@@ -1,6 +1,6 @@
 /**
- * Regression test for issue #128 — registerTool breadcrumbs must be gated
- * so they do NOT bleed into `openclaw agent --json` stdout.
+ * Regression test for issue #128 — register-time breadcrumbs must not bleed
+ * into `openclaw agent --json` stdout.
  *
  * Background
  * ----------
@@ -12,16 +12,22 @@
  * call as an ops-debug breadcrumb, but in OpenClaw `api.logger.info` ends
  * up on stdout (decorated with `[plugins] `).
  *
- * Fix: gate every "I just registered tool X" breadcrumb behind
- * `CONFIG.verboseRegister`, which is OFF by default. Ops can opt back in
- * with `TOTALRECLAW_VERBOSE_REGISTER=1` or `TOTALRECLAW_DEBUG=1`.
+ * History
+ * -------
+ * Phase 3.2 (this branch) RETIRED the legacy `totalreclaw_*` agent tools
+ * (totalreclaw_pair, totalreclaw_report_qa_bug, etc.) and replaced them
+ * with native `memory_search` / `memory_get` tools registered through the
+ * host's MemoryPluginCapability via `registerNativeMemory`. The old
+ * `CONFIG.verboseRegister`-gated breadcrumbs for the retired tools were
+ * removed along with the tools themselves.
  *
- * What this asserts
- * -----------------
- *   1. The literal "registerTool(totalreclaw_pair) returned" log appears
- *      ONLY inside an `if (CONFIG.verboseRegister) { ... }` block.
- *   2. The literal "totalreclaw_report_qa_bug registered" log (the RC-only
- *      breadcrumb) is also gated.
+ * What this asserts NOW
+ * ---------------------
+ *   1. The retired-tool breadcrumbs are GONE from index.ts (regression
+ *      guard — re-adding them would re-introduce the stdout leak).
+ *   2. The CURRENT native-registration breadcrumb exists exactly once and
+ *      lives inside the `registerNativeMemory` try/catch (so a failure
+ *      in the native path does not emit a false-success breadcrumb).
  *   3. Mock-runtime check: a stdout sink wrapping `JSON.parse` of every
  *      line emitted by the plugin in `--json` simulation succeeds (no log
  *      lines, only the JSON body). Approximated by feeding our gated
@@ -29,6 +35,9 @@
  *      single-line valid JSON object.
  *   4. `CONFIG.verboseRegister` reads `TOTALRECLAW_VERBOSE_REGISTER`
  *      AND falls through to `TOTALRECLAW_DEBUG`. Default false.
+ *      (CONFIG.verboseRegister is still defined in config.ts and still
+ *      honored by any future verbose-gated log; we assert it stays correct
+ *      so the mechanism is ready if ops needs to re-add a breadcrumb.)
  *
  * Run with: `npx tsx json-stdout-cleanliness.test.ts`
  */
@@ -54,35 +63,65 @@ const INDEX_PATH = path.resolve(import.meta.dirname, 'index.ts');
 const SRC = fs.readFileSync(INDEX_PATH, 'utf-8');
 
 // ---------------------------------------------------------------------------
-// Test 1 — `registerTool(totalreclaw_pair) returned` log is gated.
+// Test 1 — retired-tool breadcrumbs are GONE from index.ts.
+//
+// Phase 3.2 retired totalreclaw_pair / totalreclaw_report_qa_bug (and the
+// rest of the totalreclaw_* agent tools). Their register-time breadcrumbs
+// were removed because the underlying `api.logger.info` call leaks to
+// stdout in OpenClaw (issue #128). Re-adding either literal to index.ts
+// would re-introduce the stdout leak — this is a regression guard.
 // ---------------------------------------------------------------------------
 {
-  const banner = "registerTool(totalreclaw_pair) returned";
-  const idx = SRC.indexOf(banner);
-  assert(idx > 0, 'totalreclaw_pair breadcrumb still present in source (sanity)');
-
-  // Walk backwards to find the start of the enclosing block. The previous
-  // ~40 lines must contain `if (CONFIG.verboseRegister)` so the log is
-  // gated. We scan a 1500-char window, conservative for the comment block
-  // that precedes the gate.
-  const window = SRC.slice(Math.max(0, idx - 1500), idx);
+  const retired = [
+    'registerTool(totalreclaw_pair) returned',
+    'totalreclaw_report_qa_bug registered',
+  ];
+  for (const banner of retired) {
+    assert(
+      !SRC.includes(banner),
+      `retired breadcrumb "${banner}" is NOT present in index.ts (Phase 3.2 retire)`,
+    );
+  }
+  // Belt-and-suspenders: no `registerTool(<literal>) returned` style
+  // breadcrumb for ANY totalreclaw_* agent tool has leaked back in.
+  const totalreclawToolBreadcrumb = /registerTool\(\s*totalreclaw_[a-z_]+\s*\)\s+returned/;
   assert(
-    /if\s*\(\s*CONFIG\.verboseRegister\s*\)\s*\{/.test(window),
-    'totalreclaw_pair breadcrumb is wrapped in `if (CONFIG.verboseRegister) { ... }`',
+    !totalreclawToolBreadcrumb.test(SRC),
+    'no `registerTool(totalreclaw_*) returned` breadcrumb of any kind in index.ts',
   );
 }
 
 // ---------------------------------------------------------------------------
-// Test 2 — `totalreclaw_report_qa_bug registered` (RC log) is gated.
+// Test 2 — the CURRENT native-registration breadcrumb exists and is scoped
+// to the registerNativeMemory try/catch.
+//
+// The single remaining register-time success log is the native capability
+// breadcrumb at the end of register(). It is emitted via api.logger.info
+// unconditionally (NOT behind CONFIG.verboseRegister), because it is the
+// only ops-visible signal that the native memory pipeline came up. We
+// assert it exists exactly once and that its preceding line is the
+// registerNativeMemory() call (so a try/catch failure cannot emit a
+// false-success breadcrumb — the log is inside the try, before the catch).
 // ---------------------------------------------------------------------------
 {
-  const banner = "totalreclaw_report_qa_bug registered";
+  const banner = 'registered native MemoryPluginCapability + memory_search/memory_get tools';
+  const count = SRC.split(banner).length - 1;
+  assert(count === 1, `native registration breadcrumb present exactly once (got ${count})`);
+
   const idx = SRC.indexOf(banner);
-  assert(idx > 0, 'totalreclaw_report_qa_bug breadcrumb present in source');
-  const window = SRC.slice(Math.max(0, idx - 1500), idx);
+  // Walk backwards ~300 chars — the registerNativeMemory(api, ...) call
+  // must precede the breadcrumb (both inside the same try block).
+  const window = SRC.slice(Math.max(0, idx - 300), idx);
   assert(
-    /if\s*\(\s*CONFIG\.verboseRegister\s*\)\s*\{/.test(window),
-    'totalreclaw_report_qa_bug breadcrumb is wrapped in `if (CONFIG.verboseRegister) { ... }`',
+    /registerNativeMemory\s*\(/.test(window),
+    'native breadcrumb is preceded by the registerNativeMemory() call (inside the try)',
+  );
+  // Walk forwards ~500 chars — the catch block must follow, so a
+  // registration failure routes to api.logger.warn, not the success log.
+  const after = SRC.slice(idx, idx + 500);
+  assert(
+    /}\s*catch\s*\(/.test(after),
+    'native breadcrumb is followed by a catch block (failure does not emit false-success)',
   );
 }
 

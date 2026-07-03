@@ -1,0 +1,20 @@
+{
+  "name": "perfly-agent-sync",
+  "displayName": "Perfly Agent Sync",
+  "description": "Agent instructions for summarizing local coding work and submitting selected worklog items to Perfly through MCP.",
+  "version": "1.0.1",
+  "homepage": "https://perfly.dev",
+  "entrypoint": "SKILL.md",
+  "language": "en",
+  "requires": {
+    "mcpServers": [
+      "perfly"
+    ],
+    "tools": [
+      "perfly_check_connection",
+      "perfly_get_ingestion_policy",
+      "perfly_preview_work_items",
+      "perfly_add_work_items"
+    ]
+  }
+}

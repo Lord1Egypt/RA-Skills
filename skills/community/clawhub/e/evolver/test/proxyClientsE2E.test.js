@@ -18,6 +18,7 @@ const path = require('node:path');
 const { ProxyHttpServer } = require('../src/proxy/server/http.js');
 const { buildMessagesHandler } = require('../src/proxy/router/messages_route.js');
 const { buildResponsesHandler } = require('../src/proxy/router/responses_route.js');
+const { hashTraceValue } = require('../src/proxy/trace/extractor.js');
 
 const enc = new TextEncoder();
 const sse = (parts) => new ReadableStream({ start(c) { for (const p of parts) c.enqueue(enc.encode(p)); c.close(); } });
@@ -68,14 +69,14 @@ async function withServer(run) {
   };
   // Bypass start() so we never write the operator's real settings.json; wire token + port by hand (read-only auth).
   const srv = new ProxyHttpServer(routes, { port: 0, logger: silent });
-  srv.token = 'e2e-token';
+  srv.token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
   srv.server = http.createServer((req, res) => srv._handleRequest(req, res));
   const port = await new Promise((resolve) => srv.server.listen(0, '127.0.0.1', () => resolve(srv.server.address().port)));
   srv.actualPort = port;
 
   const call = ({ path: reqPath = '/v1/messages', headers, body }) => new Promise((resolve, reject) => {
     const req = http.request({ host: '127.0.0.1', port, path: reqPath, method: 'POST',
-      headers: { 'content-type': 'application/json', authorization: 'Bearer e2e-token', 'x-api-key': 'sk-client', ...headers } }, (res) => {
+      headers: { 'content-type': 'application/json', authorization: 'Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'x-api-key': 'sk-client', ...headers } }, (res) => {
       const chunks = [];
       res.on('data', (d) => chunks.push(d));
       res.on('end', () => resolve({ status: res.statusCode, bytes: Buffer.concat(chunks) }));
@@ -120,7 +121,8 @@ test('Claude Code (/v1/messages) — session, usage, finish, response id over re
     const ccN = rows.find((r) => r.client === 'claude-code' && !r.isStream);
     const ccS = rows.find((r) => r.client === 'claude-code' && r.isStream);
     assert.ok(ccN && ccS, 'both claude rows captured');
-    assert.equal(ccN.sessionId, 'sess-CC-uuid-1');     // inner session_id, not the whole user_id blob
+    assert.equal(ccN.sessionId, hashTraceValue('sess-CC-uuid-1', 'session_id_sha256'));
+    assert.doesNotMatch(JSON.stringify(rows), /sess-CC-uuid-1/);
     assert.equal(ccN.input_tokens, 40); assert.equal(ccN.output_tokens, 12);
     assert.equal(ccN.cacheReadTokens, 5);
     assert.equal(ccN.finishReason, 'end_turn');
@@ -142,7 +144,8 @@ test('cursor (/v1/messages, Anthropic mode) — x-cursor-session-id + usage over
     const cN = rows.find((r) => r.client === 'cursor' && !r.isStream);
     const cS = rows.find((r) => r.client === 'cursor' && r.isStream);
     assert.ok(cN && cS, 'both cursor rows captured');
-    assert.equal(cN.sessionId, 'cur-sess-9');
+    assert.equal(cN.sessionId, hashTraceValue('cur-sess-9', 'session_id_sha256'));
+    assert.doesNotMatch(JSON.stringify(rows), /cur-sess-9/);
     assert.equal(cN.input_tokens, 40); assert.equal(cN.output_tokens, 12);
     assert.equal(cS.input_tokens, 40); assert.equal(cS.output_tokens, 12);
   });

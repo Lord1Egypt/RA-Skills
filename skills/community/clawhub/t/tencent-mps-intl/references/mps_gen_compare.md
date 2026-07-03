@@ -28,7 +28,6 @@
 | `--labels` | No | `"Original" "Enhanced"` | Custom left/right labels, format: `--labels "Left Label" "Right Label"` |
 | `-o` / `--output` | No | `evals/test_result/compare_<timestamp>.html` | Output HTML file path |
 | `--type` | No | Auto-detect | Force media type: `video` or `image` |
-| `--dry-run` | No | — | Dry run, does not actually generate output |
 
 ## Comparison Capabilities
 
@@ -42,7 +41,7 @@
 ### Video Enhancement Before/After Comparison
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/video.mp4" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/video_enhanced.mp4" \
     --title "4K Enhancement Effect Comparison" \
@@ -52,7 +51,7 @@ python scripts/mps_gen_compare.py \
 ### Image Super-Resolution Before/After Comparison
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/photo.jpg" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/photo_sr.jpg" \
     --title "Image Super-Resolution Effect Comparison" \
@@ -63,7 +62,7 @@ python scripts/mps_gen_compare.py \
 ### Watermark Removal Before/After Comparison
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original "https://example.cos.ap-guangzhou.myqcloud.com/input/video.mp4" \
     --enhanced "https://example.cos.ap-guangzhou.myqcloud.com/output/video_erased.mp4" \
     --title "Watermark Removal Effect Comparison" \
@@ -73,7 +72,7 @@ python scripts/mps_gen_compare.py \
 ### Multiple Comparisons
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --pairs \
     "https://xxx.cos/input1.mp4,https://xxx.cos/output1.mp4" \
     "https://xxx.cos/input2.jpg,https://xxx.cos/output2.jpg" \
@@ -83,7 +82,7 @@ python scripts/mps_gen_compare.py \
 ### Local File Comparison (Auto-uploads to COS and Generates Links)
 
 ```bash
-python scripts/mps_gen_compare.py \
+python3 scripts/mps_gen_compare.py \
     --original /data/workspace/input.mp4 \
     --enhanced /data/workspace/output.mp4 \
     --title "Processing Effect Comparison"

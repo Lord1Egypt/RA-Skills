@@ -23,14 +23,24 @@ mps_load_env.py — 腾讯云 MPS 视频译制 Skill 环境变量自动加载工
     ensure_env_loaded()
 
 诊断模式（独立运行）：
-    python mps_load_env.py                   # 实际加载并打印结果
-    python mps_load_env.py --check-only      # 仅检查当前进程环境变量状态
-    python mps_load_env.py --dry-run         # 模拟执行（不实际加载）
-    python mps_load_env.py --verbose         # 显示详细加载日志
+    python3 mps_load_env.py                   # 实际加载并打印结果
+    python3 mps_load_env.py --check-only      # 仅检查当前进程环境变量状态
+    python3 mps_load_env.py --dry-run         # 模拟执行（不实际加载）
+    python3 mps_load_env.py --verbose         # 显示详细加载日志
 """
 
 import os
 import sys
+
+# 依赖自动检查/升级：在 dotenv 首次 import 之前调用（auto_upgrade 会把 python-dotenv 一并装好）
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+try:
+    from mps_auto_upgrade import check_sdk_version as _check_sdk_version
+    _check_sdk_version()
+except ImportError:
+    pass
 
 try:
     from dotenv import load_dotenv
@@ -68,7 +78,7 @@ def load_env_files(verbose: bool = False) -> dict:
         if verbose:
             print(
                 "[load_env] python-dotenv 未安装，无法加载 .env 文件。"
-                "请运行: pip install -r scripts/requirements.txt",
+                "请运行: python3 -m pip install -r scripts/requirements.txt",
                 file=sys.stderr,
             )
         return {}
@@ -170,7 +180,7 @@ COS 桶管理：   https://console.cloud.tencent.com/mps/workflows/buckets
     export TENCENTCLOUD_SECRET_KEY=<您的 SecretKey>
 
 ⚠️  安全提示：请通过安全渠道配置密钥，避免提交到代码仓库。
-   如需安装 python-dotenv：pip install -r scripts/requirements.txt
+   如需安装 python-dotenv：python3 -m pip install -r scripts/requirements.txt
 
 配置完成后，请重新发起对话即可。
 """
@@ -285,7 +295,7 @@ if __name__ == "__main__":
     print("=== 加载 dotenv 文件 ===", flush=True)
     if not _DOTENV_AVAILABLE:
         print(
-            "❌ python-dotenv 未安装。请运行: pip install -r scripts/requirements.txt",
+            "❌ python-dotenv 未安装。请运行: python3 -m pip install -r scripts/requirements.txt",
             file=sys.stderr,
         )
         sys.exit(1)

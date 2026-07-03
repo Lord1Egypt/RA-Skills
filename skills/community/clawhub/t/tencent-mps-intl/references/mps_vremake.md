@@ -67,7 +67,7 @@
 # ===== Face Swap =====
 
 # Face swap mode (--src-faces and --dst-faces in one-to-one mapping, automatically waits for completion)
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src1.png https://example.com/src2.png \
     --dst-faces https://example.com/dst1.jpg https://example.com/dst2.jpg
@@ -75,30 +75,30 @@ python scripts/mps_vremake.py --url https://example.com/video.mp4 \
 # ===== Person Swap =====
 
 # Person swap mode (front-facing full-body photos)
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapCharacter \
     --src-character https://example.com/src_fullbody.png \
     --dst-character https://example.com/dst_fullbody.png
 
 # ===== Video Interleaving (AB) =====
 
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode AB
 
 # ===== General =====
 
 # Async submission (add --no-wait to submit only without waiting)
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src.png \
     --dst-faces https://example.com/dst.png \
     --no-wait
 
 # Query existing task results
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 
 # dry-run preview
-python scripts/mps_vremake.py --url https://example.com/video.mp4 \
+python3 scripts/mps_vremake.py --url https://example.com/video.mp4 \
     --mode SwapFace \
     --src-faces https://example.com/src.png \
     --dst-faces https://example.com/dst.png \

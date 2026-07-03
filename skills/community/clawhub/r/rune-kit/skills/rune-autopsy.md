@@ -183,6 +183,45 @@ Generated: [date]
 
 Call `rune-journal.md` to record that autopsy ran, the overall health score, and the surgery queue.
 
+### Step 5b — Emit comprehension.json
+
+Write `.rune/comprehension.json` conforming to `compiler/schemas/comprehension.schema.json`.
+This is ADDITIVE — do not modify RESCUE-REPORT.md or any other output.
+
+Populate from the module analysis already completed in Steps 1–4:
+
+```json
+{
+  "project": "<project name>",
+  "generated_at": "<ISO 8601 timestamp>",
+  "source": "autopsy",
+  "health_score": <overall score 0-100 from Step 3>,
+  "layers": [
+    { "id": "<layer-id>", "name": "<human name>", "color": "<code|service|data|domain|docs|infra|concept>" }
+  ],
+  "domains": [],
+  "modules": [
+    {
+      "id": "<relative file path>",
+      "name": "<module name>",
+      "layer": "<layer id>",
+      "type": "file",
+      "complexity": "<simple|moderate|complex — map from health score: 80+=simple, 60-79=moderate, <60=complex>",
+      "files": 1,
+      "summary": "<one-line health finding — e.g. 'Score 42/100 — high cyclomatic complexity, no tests'>"
+    }
+  ],
+  "edges": []
+}
+```
+
+Rules:
+- `modules[]` — include ALL modules scored in Step 3 (this is the full health inventory, not just entry points).
+- `layers[]` — derive from the project's architectural layers detected by scout.
+- `health_score` — MUST be the weighted overall score computed in Step 3, not an estimate.
+- `edges[]` — leave empty; autopsy does not trace cross-file dependencies (that is the visualizer's job).
+- Overwrite any existing `.rune/comprehension.json` — this is a generated emit, not human-written content.
+
 ### Step 6 — Report
 
 Output a summary of the findings:
@@ -277,6 +316,7 @@ Known failure modes for this skill. Check these before declaring done.
 - All major modules scored across all 6 dimensions
 - Git archaeology run (hotspots, stale files, dead code candidates identified)
 - RESCUE-REPORT.md written to project root with Mermaid dependency diagram
+- .rune/comprehension.json written with health_score populated + all scored modules in modules[] conforming to comprehension.schema.json
 - journal called with health score and surgery queue
 - Autopsy Report emitted with overall health tier and top-3 issues
 
@@ -288,6 +328,7 @@ Known failure modes for this skill. Check these before declaring done.
 | RESCUE-REPORT.md | Markdown + Mermaid | project root |
 | Surgery queue (priority order) | Ordered list | RESCUE-REPORT.md |
 | Git archaeology findings | Bash output + summary | inline |
+| Comprehension graph | JSON | `.rune/comprehension.json` |
 | Journal entry | Text | via `journal` L3 |
 
 ## Cost Profile
@@ -515,7 +556,7 @@ External evaluation produces a verdict that flows to other skills:
 - AVOID → terminate; document rationale in `.rune/decisions/`
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

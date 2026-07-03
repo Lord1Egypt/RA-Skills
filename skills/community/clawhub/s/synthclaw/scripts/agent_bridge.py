@@ -8,6 +8,7 @@ if package_path and package_path not in sys.path:
     sys.path.append(package_path)
 
 from synthclaw.blender.device import configure_render_engine
+from synthclaw.blender.compositor import ensure_composite_node
 
 def update_value_nodes(params):
     """
@@ -62,6 +63,7 @@ def main():
     
     # STEP 1: Set render engine FIRST (before any modifications)
     configure_render_engine()
+    ensure_composite_node(bpy.context.scene)
     
     # STEP 2: Update Value Nodes
     updated_nodes = update_value_nodes(params)

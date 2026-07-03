@@ -1,6 +1,6 @@
 # Uandai Programmatic API Guide
 
-**Docs-Version:** 2026.06.25 (spec v1.10)  
+**Docs-Version:** 2026.06.30 (spec v1.10)  
 **OpenAPI:** `{API_ORIGIN}/openapi.json`  
 **Related:** [Agent packaging guide](./agent-packaging.md) — create the upload zip first.  
 **Subscribers (OpenClaw gateway):** [OpenClaw integration guide](./openclaw-integration.md).
@@ -677,6 +677,114 @@ Authorization: Bearer <access_token>
 GET /v1/auth/me
 Authorization: Bearer <access_token>
 ```
+
+### Profile display name
+
+Set or clear the public reviewer display name (snapshotted on review create/update).
+
+```http
+PATCH /v1/me/profile
+Authorization: Bearer <access_token>
+Content-Type: application/json
+
+{ "display_name": "Jane" }
+```
+
+Pass `null` or `""` to clear. Max 64 characters after trim.
+
+### Agent reviews (subscriber)
+
+Verified users with an active/grace subscription **or** at least one completed invocation may leave one review per agent.
+
+```http
+POST /v1/reviews
+Authorization: Bearer <access_token>
+Content-Type: application/json
+
+{
+  "agent_id": 42,
+  "stars": 5,
+  "review_text": "Optional text, max 500 chars"
+}
+```
+
+| Method | Path | Auth | Notes |
+|--------|------|------|-------|
+| `POST` | `/v1/reviews` | User | Create (`201`) |
+| `PUT` | `/v1/reviews/{id}` | User | Update own review (24h cooldown after create → `403` `review_edit_cooldown`) |
+| `DELETE` | `/v1/reviews/{id}` | User | Hard delete (`204`) |
+| `GET` | `/v1/reviews/agents/{agent_id}` | Public | Paginated visible reviews; `?sort=newest\|oldest\|highest\|lowest` |
+| `GET` | `/v1/reviews/agents/{agent_id}/aggregate` | Public | `{ average_rating, review_count, star_counts }` |
+| `GET` | `/v1/reviews/agents/{agent_id}/eligibility` | User | Pre-check for create (`eligible`, `basis`, `code`) |
+| `GET` | `/v1/reviews/agents/{agent_id}/me` | User | Own review or JSON `null` |
+| `POST` | `/v1/reviews/{id}/report` | User | Flag inappropriate (`201`; duplicate → `409` `review_already_reported`) |
+| `POST` | `/v1/reviews/{id}/trainer-response` | Trainer owner | Public reply, max 1000 chars |
+
+Public `ReviewResponse` exposes `reviewer_display_name` only — no `user_id`, email, or moderation fields.
+
+**List envelope (`ReviewListResponse`):**
+
+```json
+{
+  "items": [],
+  "total": 27,
+  "limit": 20,
+  "offset": 0,
+  "has_more": true
+}
+```
+
+**Aggregate (detail histogram):**
+
+```json
+{
+  "agent_id": 42,
+  "average_rating": 4.3,
+  "review_count": 27,
+  "star_counts": { "1": 1, "2": 2, "3": 4, "4": 8, "5": 12 }
+}
+```
+
+**Eligibility pre-check:**
+
+```json
+{ "eligible": false, "basis": null, "code": "review_not_eligible" }
+```
+
+**Flag inappropriate (Play Store-style):**
+
+```http
+POST /v1/reviews/{review_id}/report
+Authorization: Bearer <access_token>
+Content-Type: application/json
+
+{ "reason": "inappropriate" }
+```
+
+Author cannot report own review (`403`). One report per user per review (`409` `review_already_reported`).
+
+**Marketplace listing sort** (`GET /v1/listings`):
+
+| `sort` | Behavior |
+|--------|----------|
+| `newest` | Default — newest agents first |
+| `rating_desc` | Highest `average_rating` first (ties: more reviews, then id) |
+| `rating_asc` | Lowest `average_rating` first |
+| `reviews_desc` | Most `review_count` first |
+
+Listings include aggregates (no histogram on cards):
+
+```json
+{
+  "id": 42,
+  "average_rating": 4.3,
+  "review_count": 27
+}
+```
+
+When `review_count` is `0`, `average_rating` is `null`.
+
+Postman: `postman/collections/Hydra MVP/reviews/`. OpenAPI: `GET /docs/openapi/reviews`.
 
 ---
 

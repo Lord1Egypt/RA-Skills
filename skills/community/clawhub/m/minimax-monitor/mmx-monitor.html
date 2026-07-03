@@ -216,7 +216,8 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
   // v1.4.0: F13 - 默认不自动加载 localStorage 里的 key。每次启动需要重新输入。
   // v1.6.0: 行为改为“启动不自动加载；但若用户以前勾过记住 24h 且未过期，恢复时仍走原恢复逻辑”（见下方 startup 函数）。
   // 勾选 "记住 24 小时" 后才临时写入 localStorage，期限到自动清除。
-  var apiKey='';
+  var apiKey=''; // 保留仅用于用户手动输入 key 走 header 的场景 (--allow-header-key 调试用)
+  var credLoaded=false; // v1.7.0: 用户已授权读本地凭证的标记。true 后所有调用不传 header,server 按需读 ~/.mmx/config.json (key 不进进程内存)。
   var timers={refresh:REFRESH_INT,reset:0};
   var tickId=null;
   function fmt(s){if(s<=0)return'即将重置';var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;if(h>=24){var d=Math.floor(h/24);h=h%24;return d+'天'+h+'小时'+(m>0?m+'分':'');}if(h>0)return h+'小时'+m+'分';if(m>0)return m+'分'+sec+'秒';return sec+'秒';}
@@ -226,7 +227,10 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
   function showError(msg){var el=document.getElementById('errorBanner');document.getElementById('errorMsg').textContent=msg;el.style.display='block';}
   function tick(){for(var k in timers)if(k!=='reset')timers[k]=Math.max(0,timers[k]-1);document.getElementById('stripRefresh').textContent=fmt(timers.refresh);document.getElementById('stripReset').textContent=timers.reset>0?'剩余 '+fmt(timers.reset):'已重置';if(timers.refresh<=0){timers.refresh=REFRESH_INT;fetchQuota();}}
   function fetchQuota(){
-    var h={};if(apiKey)h['X-MMX-API-Key']=apiKey;
+    // v1.7.0: 始终不传 X-MMX-API-Key header。server 默认从 ~/.mmx/config.json 按需读,
+    // 避免前端持有 key (合规于 v1.6.1 安全加固: load_cred 响应不含完整 key)。
+    // v1.7.0 新增: key 也不再常驻 server 进程内存,每次请求现读磁盘用完即出栈。
+    var h={};
     document.getElementById('errorBanner').style.display='none';
     fetch(API_BASE+'/api/token_plan',{headers:h}).then(function(r){
       // v1.6.0: 区分 401 / 网络错误 / 其他。401 = key 未加载，不是服务未启动。
@@ -252,7 +256,7 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
     if(!window.confirm('即将发起 5 次 MiniMax chat completion 请求（×~180 token 上限），计入套餐配额。\n\n确认继续吗？'))return;
     var btn=document.getElementById('btnProbe');if(btn){btn.disabled=true;btn.textContent='⏳ 测试中...';}
     var h={};
-    if(apiKey)h['X-MMX-API-Key']=apiKey;
+    // v1.6.6: 同 fetchQuota, 不传 key header。
     fetch(API_BASE+'/api/probe',{headers:h})
       .then(function(r){return r.json();})
       .then(function(d){
@@ -296,8 +300,17 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
     // v1.6.0 (F9): 删 localStorage 24h 记忆机制。每次重启重新输入。
     // v1.6.0 (F8): 不再启动自动读 ~/.mmx/config.json。用户点 "加载本地凭证" 按钮才读。
     document.getElementById('btnSave').onclick=function(){
-      var raw=document.getElementById('apiKeyInput').value.trim();
-      if(raw)apiKey=raw;
+      // v1.6.2: 如果之前 "加载本地凭证" 过,input 里的内容是占位符不是真 key,
+      // 不要覆盖内存里的 apiKey;只有用户手动修改过(input 内容被改动)才采用。
+      var inputEl=document.getElementById('apiKeyInput');
+      var raw=inputEl.value.trim();
+      var loaded=inputEl.getAttribute('data-loaded')==='1';
+      if(loaded && raw==='••••••••'){
+        // 占位符 + 已加载标记 → 沿用内存 key,不要覆盖
+      }else if(raw){
+        apiKey=raw;
+        inputEl.removeAttribute('data-loaded');
+      }
       startMon();
     };
     // v1.6.0: "加载本地凭证" 按钮 → confirm → 调 /api/load_cred
@@ -310,9 +323,13 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
       xhr.onload=function(){
         try{
           var d=JSON.parse(xhr.responseText);
-          if(xhr.status===200 && d.ok && d.key){
-            apiKey=d.key;
-            document.getElementById('apiKeyInput').value=d.key;
+          if(xhr.status===200 && d.ok && d.loaded){
+            // v1.7.0: server 响应不回完整 key,前端不持有 key,只设 credLoaded=true 标记。
+            // 后续 token_plan / probe 调用不传 X-MMX-API-Key header,
+            // server 每次按需读 ~/.mmx/config.json 用完即出栈 —— 整条链路不需要任何进程持有 key。
+            credLoaded=true;
+            document.getElementById('apiKeyInput').value='••••••••'; // 占位符,提示用户已加载
+            document.getElementById('apiKeyInput').setAttribute('data-loaded','1');
             btn.textContent='✅ 已加载';
           }else{
             btn.textContent='❌ '+(d.error||('HTTP '+xhr.status));

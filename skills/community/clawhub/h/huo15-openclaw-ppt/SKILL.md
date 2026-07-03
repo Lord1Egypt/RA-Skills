@@ -702,4 +702,3 @@ hero/section/big_stat/cta 的文本在 `fit_font_size(text, width, base_size)` �
 - **v3.0.x** — 4 套基础（Apple 发布会 + Apple.com + 小红书博主 + 复古胶片）
 - **v2.x** — 小红书品牌风 + 竖版 9:16
 - **v1.x** — Jobs 暗蓝默认风格
-

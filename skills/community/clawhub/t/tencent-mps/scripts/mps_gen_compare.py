@@ -11,21 +11,22 @@
 
 用法：
   # 单组对比（自动检测媒体类型）
-  python mps_gen_compare.py --original <原始URL> --enhanced <增强URL>
+  python3 mps_gen_compare.py --original <原始URL> --enhanced <增强URL>
 
   # 指定标题和输出
-  python mps_gen_compare.py --original <URL1> --enhanced <URL2> --title "视频增强" -o result.html
+  python3 mps_gen_compare.py --original <URL1> --enhanced <URL2> --title "视频增强" -o result.html
 
   # 多组对比
-  python mps_gen_compare.py --pairs "<原始1>,<增强1>" "<原始2>,<增强2>"
+  python3 mps_gen_compare.py --pairs "<原始1>,<增强1>" "<原始2>,<增强2>"
 
   # 本地文件（自动上传 COS）
-  python mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
+  python3 mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
 
   # 从 JSON 配置
-  python mps_gen_compare.py --config compare_config.json
+  python3 mps_gen_compare.py --config compare_config.json
 """
 
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import json
 import os
@@ -571,20 +572,20 @@ def parse_args():
         epilog="""
 示例：
   # 单组对比
-  python mps_gen_compare.py --original https://xxx.cos/input.mp4 --enhanced https://xxx.cos/output.mp4
+  python3 mps_gen_compare.py --original https://xxx.cos/input.mp4 --enhanced https://xxx.cos/output.mp4
 
   # 指定标题和标签
-  python mps_gen_compare.py --original <URL1> --enhanced <URL2> \\
+  python3 mps_gen_compare.py --original <URL1> --enhanced <URL2> \\
       --title "视频增强效果" --labels "原片" "增强后"
 
   # 多组对比
-  python mps_gen_compare.py --pairs "orig1.mp4,enh1.mp4" "orig2.jpg,enh2.jpg"
+  python3 mps_gen_compare.py --pairs "orig1.mp4,enh1.mp4" "orig2.jpg,enh2.jpg"
 
   # 本地文件（自动上传 COS）
-  python mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
+  python3 mps_gen_compare.py --original /data/input.mp4 --enhanced /data/output.mp4
 
   # 从 JSON 配置
-  python mps_gen_compare.py --config compare.json
+  python3 mps_gen_compare.py --config compare.json
         """)
 
     # 单组对比

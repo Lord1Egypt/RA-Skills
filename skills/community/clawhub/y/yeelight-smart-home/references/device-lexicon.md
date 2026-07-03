@@ -22,7 +22,7 @@ Extract slots, not IDs. A good SkillRequest keeps these slots visible for Runtim
 | Looks like installed entity | 客厅主灯、餐厅灯组、回家情景、离家自动化 | `entity.list`/domain list/detail first; ask clarification on collisions. |
 | Looks like product family | S系列筒灯、120射灯、青空灯、跑道屏 | Use product/schema or design context; do not claim it exists in the home. |
 | Looks like symptom | 网关离线、灯不亮、自动化没触发 | Route to diagnostics, preserving symptom words and target candidates. |
-| Looks like organization | 首页排序、收藏、房间、区域、分组 | Route to home-room-area/groups reference and pending-plan writes when persistent. |
+| Looks like organization | 首页排序、收藏、房间、区域、分组 | Route to home-room-area/groups reference and Runtime writes when persistent. |
 | Looks like installer/pairing | 配网、绑定、扫码、BLE、添加设备 | Do not simulate onboarding; use Runtime block/manual guidance unless reviewed. |
 
 ## Device Language Families
@@ -56,10 +56,13 @@ Extract slots, not IDs. A good SkillRequest keeps these slots visible for Runtim
 
 | Series | Interpretation | Preserve |
 | --- | --- | --- |
-| D系列 | 产品系列词，用于保留用户自然描述 | 防眩、基础智能 |
-| E系列 | 产品系列词，用于区分同类灯具候选 | 调光、深防眩 |
-| S系列 | 产品系列词，用于区分同类灯具候选 | 高显指、高性能 |
-| P系列 | 产品系列词，用于设计或选型语境 | 高端、创新 |
+| S系列/S20/S21 | 高性能照明系列词，适合主照明、显色、深防眩或高要求空间的候选描述 | 高显指、深防眩、主照明、高性能 |
+| E系列/E20 | 常用全屋照明系列词，适合作为筒灯、射灯、调光和全屋铺设候选描述 | 全屋适用、调光、性价比、深防眩 |
+| E+系列/E14/E27 | 基础替换和螺纹接口类产品词，适合保留为产品搜索或替换灯泡语境 | 螺纹接口、替换便捷、基础调光 |
+| P系列/P20/P21 | 高端或创新设计系列词，适合方案设计、产品咨询和选型语境 | 高端、创新、设计感 |
+| D系列 | 控制面板和开关系列词，优先进入面板、旋钮、开关、情景按键语境 | 跑道屏、旋钮、全面屏、智能开关 |
+| M系列/M20 | Matter 生态产品词，适合产品咨询和跨平台兼容语境，不证明已安装能力 | Matter、跨平台、Apple/Google 兼容 |
+| C系列 | 消费级或基础智能产品词，适合产品咨询和模糊搜索语境 | 基础智能、消费级 |
 
 ## Recognition Rules
 
@@ -69,6 +72,17 @@ Extract slots, not IDs. A good SkillRequest keeps these slots visible for Runtim
 - If the user names several devices, keep their order and pass natural descriptions to Runtime instead of resolving IDs yourself.
 - Treat every product word as a candidate phrase. Installed devices, current state and writable capability must come from Runtime evidence.
 
+## Requirement Normalization Rules
+
+| Rule | Detail |
+| --- | --- |
+| 后文覆盖前文 | 同一目标被连续修改时，后续明确表达优先；保留被覆盖原因在内部判断中，不向 Runtime 发送冲突参数。 |
+| 同房间聚合 | 把同一房间内的灯具、同类型成组、情景和自动化先聚合，再生成一个拓扑计划。 |
+| 保留设计特征 | 设备词必须保留系列、颜色、形状、尺寸、开孔、功率、光束角、安装方式、版本词等可影响选品的线索。 |
+| 错别字宽容 | 口语、同音、俗称只作为理解候选；最终仍以产品候选证据和 Runtime 结果为准。 |
+| 不扩大目标 | 局部需求只作用于相关房间、路径、桌面、餐桌或设备组；不要自动扩大到全屋。 |
+| 缺失项最小澄清 | 只有当目标、时间、触发、动作或产品约束不足以生成安全计划时，才问一个最小问题。 |
+
 ## Normalized Aliases
 
 | User wording | Normalized wording | Kind |
@@ -77,17 +91,32 @@ Extract slots, not IDs. A good SkillRequest keeps these slots visible for Runtim
 | 厘米 | cm | unit |
 | 八瓦 | 8w | number_unit |
 | 七十五 | 75 | number |
+| 三十六度 | 36° | number_unit |
+| 三十六 | 36 | number |
+| 十五度 | 15° | number_unit |
+| 二十四度 | 24° | number_unit |
 | 艾斯系列 | S系列 | phonetic |
+| 艾思系列 | S系列 | phonetic |
+| 艾思 | S系列 | phonetic |
+| 爱斯系列 | S系列 | phonetic |
+| 爱思系列 | S系列 | phonetic |
+| 爱思 | S系列 | phonetic |
 | 120射灯 | E20射灯 | folk_name |
+| 120度射灯 | E20射灯 | folk_name |
+| 一二零射灯 | E20射灯 | folk_name |
 | 一来 | 易来 | phonetic |
+| 夜来 | 易来 | phonetic |
 | 干节点 | 干接点 | synonym |
+| 乾接点 | 干接点 | synonym |
 | 开合帘 | 窗帘 | folk_name |
 | 小夜灯 | 夜灯 | folk_name |
+| 槽位 | 设计槽位 | design_slot |
+| 占位设备 | 设计槽位 | design_slot |
 
 ## Ambiguity Handling
 
 - "客厅灯" may mean one device, a light group, every light in the room, or a scene target. Keep location and role separate.
 - "有人传感器" or "感应器" is sensor vocabulary, not proof that the user's home has that sensor.
 - "120射灯" or "S系列筒灯" is product language. Do not assume installed target, model id, or capability from it.
-- Old automatic device-addition or default-device assumptions are blocked. Adding, pairing or onboarding devices requires a reviewed Runtime path or official manual guidance.
+- Physical pairing/onboarding assumptions are blocked. Lighting design slots are allowed only through Runtime execution and must not be described as online devices.
 - For product selection or lighting design, mention candidate families only as candidate guidance when Runtime or the user's request asks for design/recommendation context.

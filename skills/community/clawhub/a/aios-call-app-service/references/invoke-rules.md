@@ -247,5 +247,5 @@ aios-apps-invoke-cli status
 - 需要底层 ID 时，先用本体定义的查询或绑定把展示文本解析成真实 ID，再发正式请求
 - JSON 字符串统一双引号；shell 转义按当前 shell 处理
 - 遇到 `invalid JSON param for body` 时，先检查 JSON 和引号
-- 本体标成行 ID 的字段默认按 `int` 处理
+- `ID` 类字段（如 `ID`、`订单ID`、`ContactId` 等），默认按 `int` 类型处理
 - 不要只看字段名猜含义

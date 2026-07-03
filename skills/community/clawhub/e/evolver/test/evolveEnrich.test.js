@@ -110,6 +110,18 @@ describe('enrich', () => {
     assert.equal(result.observations.dry_run, false);
   });
 
+  it('preserves forcedGeneId/requiredGeneId through enrich (forced-selection wiring guard)', async () => {
+    // enrich is the one stage between hub directive parsing and the selector that currently
+    // carries these fields only implicitly via `return { ...ctx }`. If a future refactor builds
+    // an explicit return object and drops them, forced selection silently no-ops. Lock it here.
+    baseStubs();
+    delete require.cache[require.resolve('../src/evolve/pipeline/enrich')];
+    const { enrich } = require('../src/evolve/pipeline/enrich');
+    const result = await enrich(buildCtx({ forcedGeneId: 'gene_forced_1', requiredGeneId: 'gene_required_2' }));
+    assert.equal(result.forcedGeneId, 'gene_forced_1', 'forcedGeneId must survive enrich to reach the selector');
+    assert.equal(result.requiredGeneId, 'gene_required_2', 'requiredGeneId must survive enrich to reach the selector');
+  });
+
   it('throws when recordOutcomeFromState fails (blocking — no memoryless evolution)', async () => {
     baseStubs();
     mockMods['memoryGraphAdapter'] = {

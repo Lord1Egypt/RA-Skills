@@ -11,21 +11,22 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and automation engineers use this skill to design or migrate scheduled OpenClaw jobs so each run loads current prompts, policies, model rules, and delivery settings. It is intended for cron jobs, reminders, digests, briefings, background agents, and reusable automation standards. <br>
+Developers and engineers use this skill to design, review, and migrate scheduled automations so each run loads current manifests, prompts, policy, model selection, and delivery configuration. It is intended for cron jobs, briefings, reminders, digests, monitors, and background agent workflows that must avoid stale scheduler payloads or session state. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Applying schedule or delivery changes directly can trigger live notifications, public posts, or production mutations before the behavior is validated. <br>
-Mitigation: Use dry-run generation, separate delivery and scheduler tests, and require explicit approval before enabling live sends or production mutations. <br>
-Risk: Cron registrations or persistent sessions may preserve stale prompt, model, policy, or delivery details. <br>
-Mitigation: Keep the scheduler as a thin trigger and load the manifest, prompt, policy files, model policy, and delivery contract at runtime. <br>
-Risk: Outbound delivery can fail or route incorrectly when session metadata does not match the provider-required target format. <br>
-Mitigation: Define provider-aware delivery contracts and test final outbound delivery independently from scheduler announce behavior. <br>
+Risk: Generated job manifests or scheduler entries may enable live sends, public posts, production writes, or customer-facing schedule changes before they have been reviewed. <br>
+Mitigation: Review each generated manifest and scheduler entry, keep delivery targets explicit, and require approval before enabling live delivery or production mutations. <br>
+Risk: Scheduled automations can keep using stale prompts, policies, model choices, delivery routes, or session state if runtime inputs are embedded in scheduler payloads. <br>
+Mitigation: Use thin scheduler references and make each run load current manifest, prompt, policy, model, and delivery files at runtime; verify the registered scheduler payload and selected execution substrate. <br>
+Risk: Deterministic high-frequency jobs may unnecessarily consume LLM tokens or introduce model latency if routed through an agent runner. <br>
+Mitigation: Use a non-agent runner for deterministic jobs unless a written justification shows that runtime reasoning or natural-language generation is required. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/daniel-refahi-ikara/skills/dr-schedule-manager) <br>
 - [Architecture patterns for reliable scheduled jobs](references/architecture-patterns.md) <br>
 - [Migration checklist for stale scheduled jobs](references/migration-checklist.md) <br>
 - [Reliability review for scheduled job architecture](references/reliability-review.md) <br>
@@ -34,13 +35,13 @@ Mitigation: Define provider-aware delivery contracts and test final outbound del
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON manifest examples and checklist-style recommendations] <br>
+**Output Type(s):** [Text, Markdown, Configuration, Code, Shell commands, Guidance] <br>
+**Output Format:** [Markdown guidance with JSON configuration examples and optional shell command recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed architecture patterns, manifest structure, verification plans, checkpoint gates, and rollout recommendations.] <br>
+**Other Properties Related to Output:** [May include manifest structures, execution substrate recommendations, migration steps, verification plans, checkpoint gates, and reliability tradeoffs.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+1.1.0 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

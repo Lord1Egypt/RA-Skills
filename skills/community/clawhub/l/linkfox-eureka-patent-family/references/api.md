@@ -2,9 +2,9 @@
 
 ## 调用规范
 
-- **请求地址**：`https://tool-gateway.linkfox.com/eureka/patentFamily`
+- **请求地址**：`${LINKFOX_TOOL_GATEWAY}/tool-eureka/patentFamily`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
 
 ## 请求参数
 
@@ -65,7 +65,7 @@ POST Body（JSON）：
 ### 通过公开号查询
 
 ```bash
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentFamily \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentFamily \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"patentNumber": "US10000001B2"}'
@@ -74,7 +74,7 @@ curl -X POST https://tool-gateway.linkfox.com/eureka/patentFamily \
 ### 通过专利ID查询
 
 ```bash
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentFamily \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentFamily \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"patentId": "5af83e12-xxxx-xxxx-xxxx-xxxxxxxxxxxx"}'
@@ -83,7 +83,7 @@ curl -X POST https://tool-gateway.linkfox.com/eureka/patentFamily \
 ### 批量查询多个公开号
 
 ```bash
-curl -X POST https://tool-gateway.linkfox.com/eureka/patentFamily \
+curl -X POST https://tool-gateway.linkfox.com/tool-eureka/patentFamily \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"patentNumber": "US10000001B2,EP3000001A1,CN112345678A"}'

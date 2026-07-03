@@ -1,0 +1,12 @@
+{
+  "name": "jd-booking",
+  "version": "1.0.0",
+  "title": "JD皮肤科预约助手",
+  "description": "JD皮肤科 — 韩国首尔江南区人气皮肤科，以水光针/皮肤管理/玻尿酸闻名",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

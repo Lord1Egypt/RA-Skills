@@ -9,7 +9,8 @@ from core.models import TrendingArticle, ScoredArticle
 def merge_and_sort(
     articles: List[TrendingArticle],
     keyword: str = '',
-    max_items: int = 10
+    max_items: int = 10,
+    min_relevance: float = 1.0
 ) -> List[ScoredArticle]:
     """
     Merge articles from all categories, deduplicate, score and sort.
@@ -18,8 +19,9 @@ def merge_and_sort(
     1. Merge all category articles into candidate pool
     2. Deduplicate by photoId
     3. Score each article
-    4. Global sort by score (relevance articles first)
-    5. Ensure category diversity
+    4. Filter out weak-relevance articles (relevance_score < min_relevance)
+    5. Global sort by score (relevance articles first)
+    6. Ensure category diversity
     """
     from trends.scoring import score_article
 
@@ -38,14 +40,35 @@ def merge_and_sort(
         s = score_article(article, keyword, article.category_key)
         scored.append(s)
 
+    # Filter: drop articles that don't match at least 2 keywords (multi-keyword mode)
+    # or have zero relevance score (single keyword mode)
+    keywords_list = [k.strip() for k in keyword.split(',') if k.strip()]
+    kw_count = len(keywords_list)
+    if kw_count > 1:
+        # Multi-keyword: must match at least 2 keywords to be considered relevant
+        filtered = [s for s in scored if s.matched_keyword_count >= 2]
+        if not filtered:
+            # Fallback: show articles with at least 1 keyword match, sorted by match count
+            filtered = [s for s in scored if s.matched_keyword_count >= 1]
+            if filtered:
+                # Re-sort by matched_keyword_count desc, then final_score desc
+                filtered.sort(key=lambda x: (x.matched_keyword_count, x.final_score), reverse=True)
+                # Ensure diversity on fallback results
+                return ensure_category_diversity(filtered, max_items)
+    else:
+        # Single keyword: require relevance_score > 0
+        filtered = [s for s in scored if s.relevance_score > 0]
+        if not filtered:
+            filtered = scored  # Fallback: show all
+
     # Sort: relevance > score (descending)
-    scored.sort(key=lambda x: (
+    filtered.sort(key=lambda x: (
         1 if x.relevance_score > 0 else 0,
         x.final_score
     ), reverse=True)
 
     # Ensure diversity
-    return ensure_category_diversity(scored, max_items)
+    return ensure_category_diversity(filtered, max_items)
 
 
 def ensure_category_diversity(

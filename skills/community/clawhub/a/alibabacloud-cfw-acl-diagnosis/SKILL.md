@@ -2,22 +2,22 @@
 name: alibabacloud-cfw-acl-diagnosis
 description: >
   Alibaba Cloud Cloud Firewall ACL rule read-only diagnostic assistant.
-  
+
   **Trigger Scenarios**: Diagnose ACL rules not taking effect, troubleshoot Internet/NAT/VPC firewall traffic issues, query traffic logs, check matched rules, get configuration guidance (console manual operation).
-  
+
   **Supported firewall types**: Internet Firewall, NAT Boundary Firewall, VPC Boundary Firewall
-  
+
   **Keywords**: Cloud Firewall rules not taking effect, Internet Firewall ACL diagnosis, NAT Firewall policy not working, VPC Boundary Firewall rule diagnosis, firewall rule diagnosis
-  
+
   ⚠️ **DO NOT use** for WAF issues - use alibabacloud-waf-rule-management skill instead.
-  
+
   TEXT-ONLY console guidance. Queries and diagnosis only, no configuration changes.
 license: Apache-2.0
 compatibility: >
   Requires Alibaba Cloud CLI (aliyun-cli >= 3.3.0) and aliyun-cli-cloudfw plugin.
   Requires AccessKey credentials, RAM permission see references/ram-policies.md.
   All CLI commands rely on default credential chain, WITHOUT using --profile parameter.
-  All Alibaba Cloud service calls must set User-Agent to AlibabaCloud-Agent-Skills.
+  See the Observability section for User-Agent and session-id requirements.
 metadata:
   domain: aiops
   owner: cloudfw-team
@@ -39,12 +39,12 @@ allowed-tools: Bash Read
 - ❌ Do NOT reference any memory, experience, or external knowledge — ONLY this SKILL.md and CLI outputs
 - ❌ **NEVER create any file in any way** — do NOT use write_file, create_file, Bash redirection (`>`, `>>`, `tee`), or any other file-writing mechanism
 
-**【强制拦截】Pre-output Self-Check (MANDATORY before generating ANY reply):**
+**HARD BLOCK Pre-output Self-Check (MANDATORY before generating ANY reply):**
 > Before writing any response, internally verify: Have I called write_file, create_file, or any Bash redirection? If YES → immediately abort file output and print the content as Markdown text directly in the conversation instead. Violation of this rule causes immediate task failure.
 
 **All diagnosis reports MUST start with:**
 ```
-⚠️ 声明：本工具为只读诊断助手，仅提供分析和配置建议，不会执行任何配置变更操作。
+⚠️ Disclaimer: This tool is a read-only diagnostic assistant. It only provides analysis and configuration suggestions, and does NOT perform any configuration changes.
 ```
 
 **Allowed queries only**: `aliyun cloudfw describe-*` | `aliyun sls get-logs-v2` | `aliyun actiontrail lookup-events`
@@ -59,26 +59,43 @@ See `references/security_rules.md` for complete prohibitions list.
 
 | User Intent | Keywords | Action |
 |------------|----------|--------|
-| **Configuration Query** | 「如何配置」/「怎么设置」/「配置流程」/「规则怎么写」/「配置步骤」 | → **CONFIG PATH**: Read `references/configuration_guide.md`, output steps directly in conversation. **NO CLI commands, NO firewall queries.** |
-| **Diagnosis / Troubleshooting** | 「不生效」/「没效果」/「被拦截」/「HitTimes=0」/「流量日志」/「排查」 | → **DIAGNOSIS PATH**: IMMEDIATELY start Step 0 with information already provided. DO NOT wait for more input. |
-| 「安全组」/「Security Group」 | — | NOT this skill (use aliyun ecs commands) |
-| 「防火墙」without qualifier | — | ASK: Cloud Firewall or Security Group? |
+| **Configuration Query** | "how to configure" / "configuration steps" / "how to set up" / "rule writing" / "configuration guide" | → **CONFIG PATH**: Read `references/configuration_guide.md`, output steps directly in conversation. **NO CLI commands, NO firewall queries.** |
+| **Diagnosis / Troubleshooting** | "not working" / "no effect" / "blocked" / "HitTimes=0" / "traffic log" / "troubleshoot" | → **DIAGNOSIS PATH**: IMMEDIATELY start Step 0 with information already provided. DO NOT wait for more input. |
+| "Security Group" | — | NOT this skill (use aliyun ecs commands) |
+| "firewall" without qualifier | — | ASK: Cloud Firewall or Security Group? |
 
 **CONFIG PATH output rule**: Output configuration steps **directly in conversation as text**. Reference `references/configuration_guide.md` for content. Do NOT run any CLI commands.
 
 ---
 
-## Setup
+## Observability
 
-### Step 0.0: AI-Mode (REQUIRED Before Any CLI Commands)
+All Alibaba Cloud service calls performed by this skill MUST use the following User-Agent (UA) template and session-id rule so that every diagnostic workflow is traceable.
 
-```bash
-aliyun configure ai-mode enable
-aliyun configure ai-mode set-user-agent --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis"
-aliyun plugin update
+### User-Agent Template
+
+```text
+AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}
 ```
 
-**At workflow end**: `aliyun configure ai-mode disable`
+- Replace `{{SESSION_ID}}` with a real session identifier at runtime.
+- The placeholder form MUST be preserved in documentation and command examples.
+
+### Session-ID Generation Rule
+
+1. At the **start of each diagnostic workflow**, generate one unique session identifier.
+2. Format: lowercase UUIDv4 (e.g., `a1b2c3d4-e5f6-7890-abcd-ef1234567890`).
+3. Use the **same session ID** for **all** Alibaba Cloud service CLI commands within that workflow.
+4. Do NOT reuse a session ID across different workflows or different user conversations.
+
+### Scope Rule
+
+- **Alibaba Cloud service API calls** (e.g., `aliyun cloudfw describe-*`, `aliyun sls get-logs-v2`, `aliyun actiontrail lookup-events`) MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"`.
+- **Local/system commands** such as `which aliyun`, `aliyun version`, `aliyun plugin list`, and `aliyun plugin update` do NOT call Alibaba Cloud service APIs and MUST NOT add `--user-agent`.
+
+---
+
+## Setup
 
 ### Prerequisites Check
 
@@ -87,7 +104,7 @@ which aliyun && aliyun version
 aliyun plugin list  # Confirm aliyun-cli-cloudfw installed
 ```
 
-**Install plugin if missing**: `aliyun plugin install cloudfw`  
+**Install plugin if missing** (requires explicit user confirmation before execution): `aliyun plugin install cloudfw`  
 **Credentials**: `ALIBABA_CLOUD_ACCESS_KEY_ID` / `ALIBABA_CLOUD_ACCESS_KEY_SECRET` env vars. See `references/ram-policies.md`.  
 **Region**: Always use `cn-hangzhou` (Cloud Firewall is a global service, do NOT ask user for region).
 
@@ -132,9 +149,9 @@ Extract from user message — **do NOT re-ask what user already provided**:
 
 | Firewall | Command |
 |----------|---------|
-| Internet | `aliyun cloudfw describe-control-policy --Direction <in\|out> --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis` |
-| NAT | `aliyun cloudfw describe-nat-firewall-control-policy --NatFirewallId <ID> --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis` |
-| VPC | `aliyun cloudfw describe-vpc-firewall-control-policy --VpcFirewallId <ID> --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis` |
+| Internet | `aliyun cloudfw describe-control-policy --Direction <in\|out> --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"` |
+| NAT | `aliyun cloudfw describe-nat-firewall-control-policy --NatFirewallId <ID> --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"` |
+| VPC | `aliyun cloudfw describe-vpc-firewall-control-policy --VpcFirewallId <ID> --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"` |
 
 Record: `Source`, `Destination`, `DestinationType`, `AclAction`, `Order`, `Release`.
 
@@ -145,12 +162,12 @@ Record: `Source`, `Destination`, `DestinationType`, `AclAction`, `Order`, `Relea
 ### Step 2: Pre-checks (ALL 3 in order — NO skipping, NO guessing)
 
 **Check 2.1: Asset/Firewall Status**
-- Internet FW: `aliyun cloudfw describe-asset-list --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis`
+- Internet FW: `aliyun cloudfw describe-asset-list --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"`
   - `ProtectStatus=open` ✅ | other values ❌ (most common cause of rules not working)
   - Record `EngineMode`: `strict` / `loose`
-- NAT FW: `aliyun cloudfw describe-nat-firewall-list --PageNo 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis`
+- NAT FW: `aliyun cloudfw describe-nat-firewall-list --PageNo 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"`
   - Check firewall exists and status normal; record `StrictMode`: `0`=loose / `1`=strict
-- VPC FW: `aliyun cloudfw describe-vpc-firewall-list --CurrentPage 1 --PageSize 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis`
+- VPC FW: `aliyun cloudfw describe-vpc-firewall-list --CurrentPage 1 --PageSize 50 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"`
   - Check firewall exists and status normal
 
 **Check 2.2: Policy Matches Asset**
@@ -161,7 +178,7 @@ Record: `Source`, `Destination`, `DestinationType`, `AclAction`, `Order`, `Relea
 - `Release=true` ✅ | `Release=false` ❌
 
 ---
-**🔴 [强制中断节点] Step 2 Branch Gate — HARD STOP**
+**🔴 MANDATORY STOP POINT — Step 2 Branch Gate — HARD STOP**
 
 IF any Check result is FAIL:
 1. **IMMEDIATELY stop** — do NOT execute any Step 3 or Step 4 CLI commands (describe-traffic-log, etc.)
@@ -182,12 +199,12 @@ IF all Checks PASS → proceed to Step 3.
 # Internet FW
 aliyun cloudfw describe-traffic-log --FirewallType InternetFirewall --Direction <in|out> \
   --SourceCode yundun [--StartTime <unix>] [--EndTime <unix>] [--SrcIP <ip>] [--DstIP <ip>] \
-  --CurrentPage 1 --PageSize 10 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --CurrentPage 1 --PageSize 10 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 
 # NAT FW
 aliyun cloudfw describe-traffic-log --FirewallType NatFirewall --SourceCode yundun \
   [--StartTime <unix>] [--EndTime <unix>] \
-  --CurrentPage 1 --PageSize 10 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis
+  --CurrentPage 1 --PageSize 10 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-cfw-acl-diagnosis/{{SESSION_ID}}"
 ```
 
 **Critical**: `SourceCode=yundun` required. Do NOT set `FlowType` (causes no results). `RuleResult`: **0=allow, 2=deny**.  
@@ -212,35 +229,35 @@ See `references/diagnosis.md` for full diagnosis framework, L7 pre-match mechani
 
 ## Output Format
 
-**【严格排版指令】MANDATORY — read before writing a single word of output:**
+**STRICT FORMATTING INSTRUCTION — MANDATORY: read before writing a single word of output:**
 - Output MUST match the template below EXACTLY — no extra headings, no greeting, no background paragraphs
 - Total output MUST NOT exceed 30 lines. If content would exceed 30 lines, apply auto-truncation:
-  - 诊断结论: 1 line max
-  - 预检结果 table: ≤5 rows
-  - 修复建议: ≤3 bullet points
-  - 验证方法: 1 line
+  - Diagnosis conclusion: 1 line max
+  - Pre-check result table: ≤5 rows
+  - Remediation suggestions: ≤3 bullet points
+  - Verification method: 1 line
   - Delete ALL explanatory text beyond these limits
 - ❌ NEVER write output to any file — print directly in conversation as Markdown text
 
 ```markdown
-⚠️ 声明：本工具为只读诊断助手，仅提供分析和配置建议，不会执行任何配置变更操作。
+⚠️ Disclaimer: This tool is a read-only diagnostic assistant. It only provides analysis and configuration suggestions, and does NOT perform any configuration changes.
 
-## 诊断结论
-[一句话根因，不超过50字]
+## Diagnosis Conclusion
+[One-sentence root cause, max 50 characters]
 
-## 预检结果（Step 2）
-| 检查项 | CLI 实际值 | 状态 |
-|-------|-----------|------|
+## Pre-check Results (Step 2)
+| Check Item | Actual CLI Value | Status |
+|-----------|------------------|--------|
 | ProtectStatus | [from describe-asset-list] | PASS/FAIL |
 | EngineMode / StrictMode | [value] | loose/strict |
-| 流量方向 | [in/out] | PASS/FAIL |
+| Traffic Direction | [in/out] | PASS/FAIL |
 | Release | [true/false] | PASS/FAIL |
-| 策略匹配 | [分析] | PASS/FAIL |
+| Policy Match | [analysis] | PASS/FAIL |
 
-## 修复建议
-[控制台操作步骤，每步一行，最多3条]
+## Remediation Suggestions
+[Console operation steps, one per line, max 3 items]
 
-验证方法：[一行描述]
+Verification Method: [one-line description]
 ```
 
 **Rules**:

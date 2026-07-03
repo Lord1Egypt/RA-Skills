@@ -1,0 +1,15 @@
+# QA QuickCheck 配置示例
+# 复制此文件为 openclaw.json 中的 skills.qa-quickcheck 配置段
+
+# 默认测试模式：未指定模式时使用
+# 可选值：quick | standard
+default_mode: standard
+
+# 动态测试的目标服务地址
+base_url: "http://localhost:3000"
+
+# 单次 HTTP 请求超时时间（毫秒）
+test_timeout: 30000
+
+# 是否在 Standard 模式报告末尾自动显示升级引导
+show_upgrade_hint: true

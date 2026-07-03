@@ -69,49 +69,49 @@
 
 ```bash
 # 最简用法：文本 prompt 检测
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "猫"
 
 # 多目标检测（多个 prompt）
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "猫" \
     --prompt "狗"
 
 # 点选检测
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --point "320,240"
 
 # 多点选
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --point "100,200" \
     --point "500,300"
 
 # 增加返回数量，降低置信度阈值
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/crowd.jpg" \
     --prompt "人" \
     --top-k 10 \
     --confidence-threshold 0.3
 
 # 启用物体描述
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/product.jpg" \
     --prompt "商品" \
     --describe \
     --description-language zh
 
 # 启用抠图返回
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "汽车" \
     --return-cutout
 
 # 本地文件 + 完整参数
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --local-file /tmp/photo.jpg \
     --prompt "人脸" \
     --top-k 5 \
@@ -121,13 +121,13 @@ python scripts/mps_image_detect.py \
     --description-language zh
 
 # 只提交任务，不等待结果
-python scripts/mps_image_detect.py \
+python3 scripts/mps_image_detect.py \
     --url "https://example.com/scene.jpg" \
     --prompt "猫" \
     --no-wait
 
 # 手动查询检测任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

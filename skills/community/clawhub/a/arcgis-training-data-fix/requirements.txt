@@ -1,0 +1,4 @@
+numpy
+Pillow
+# GDAL (osgeo) 是可选依赖，ArcGIS Pro 环境自带
+# 如果运行环境没有GDAL，脚本会自动降级使用PIL读取影像

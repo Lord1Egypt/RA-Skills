@@ -17,41 +17,41 @@ COS Storage Convention:
 
 Usage:
   # Use URL input for visual question answering
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --url "https://example.com/photo.jpg" \
       --prompt "Describe the content of this image"
 
   # Use COS input for OCR text extraction
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --cos-input-key "/input/document.jpg" \
       --prompt "Recognize all text in the image"
 
   # Specify a shortcut model definition ID
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --url "https://example.com/photo.jpg" \
       --prompt "What objects are in the image?" \
       --definition 10002
 
   # Specify a model name + temperature
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --url "https://example.com/photo.jpg" \
       --prompt "Analyze the composition and color of this image" \
       --model-name "Google/gemini-2.5-flash-pro" \
       --temperature 0.7
 
   # Use a local file (uploaded to COS automatically)
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --local-file ./photo.jpg \
       --prompt "What animal is this?"
 
   # Submit task only, do not wait for result (returns TaskId)
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --url "https://example.com/photo.jpg" \
       --prompt "Describe the image content" \
       --no-wait
 
   # Dry-run mode: print request payload only
-  python scripts/mps_image_comprehend.py \
+  python3 scripts/mps_image_comprehend.py \
       --url "https://example.com/photo.jpg" \
       --prompt "Recognize the text in the image" \
       --dry-run
@@ -95,7 +95,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -380,6 +380,12 @@ def parse_args():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # Timing fix: load .env before argparse so `default=os.environ.get(...)` can read user config
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
     args = parse_args()
 
     cred = get_credentials()
@@ -433,7 +439,7 @@ def main():
 
     if not _POLL_AVAILABLE:
         print("⚠️  Polling module is unavailable. Please query manually:", file=sys.stderr)
-        print(f"   python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         print(json.dumps({"TaskId": task_id}, ensure_ascii=False, indent=2))
         return
 
@@ -447,7 +453,7 @@ def main():
 
     if task_result is None:
         print("\n⚠️  Polling timed out. The task may still be processing.", file=sys.stderr)
-        print(f"   You can query it manually: python scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
+        print(f"   You can query it manually: python3 scripts/mps_get_image_task.py --task-id {task_id}", file=sys.stderr)
         sys.exit(1)
 
     err_msg = task_result.get("ErrMsg") or ""

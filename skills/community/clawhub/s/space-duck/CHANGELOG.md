@@ -1,5 +1,82 @@
 # Space Duck skill — changelog
 
+## 0.4.19 — 2026-07-03
+
+**Poll mode becomes the default onboarding path, with adaptive cadence.**
+(Duck Transport Easy-Mode goal, Phase 1 — zero tunnel/domain/webhook setup.)
+
+- `peck_listener.py --poll`: adaptive cadence. ACTIVE interval (`--interval`,
+  default 3s) inside an activity window (`--active-window`, default 300s)
+  opened by delivering a peck or by a local send; IDLE otherwise
+  (`--idle-interval`, default 60s). Error backoff (429/5xx/network,
+  Retry-After honored, 60s cap) overrides cadence, unchanged. `--no-adaptive`
+  restores the fixed pre-0.4.19 interval exactly.
+- `send_peck.py`: touches `~/.space-duck/poll_wake` on every successful send.
+  A sleeping poll loop watches the wake file at ≤1s granularity and polls
+  immediately — reply latency never rides the idle cadence.
+- SKILL.md: poll mode documented as the DEFAULT receive path (install → pair
+  → `--poll`); webhook listener + `bind_telegram.py --forward-url` reframed
+  as the server-grade tier for ducks with a stable public URL. Nothing
+  removed; push transport unchanged.
+- Verified on the isolated rig: `testrig/run_stage9_poll_adaptive.py` PASS
+  (idle backoff, immediate wake ≤2.5s, active cadence, mailbox poll delivery
+  + ack, window expiry re-idle, legacy fixed mode). School gained faithful
+  `/beak/peck/inbox` + `/beak/peck/inbox/ack` (ms timestamps, X-Beak-Key).
+
+## 0.4.18 — 2026-07-03
+
+**Intercept `peck.approval_request` before the brain hook.**
+
+- `telegram_listener.py`: the platform's approval fan-out ships the canonical
+  envelope with `event='peck.received'` on the body plus
+  `approval_required: true`, tagging the semantics only via the
+  `X-SpaceDuck-Event: peck.approval_request` header. The listener treated it
+  as a normal delivered peck: mirrored it to `inbox/` and dispatched the
+  brain hook — so the duck could "answer" a peck that was never delivered,
+  while the owner's real decision surface (approve/deny) stayed invisible on
+  the listener side.
+- Now detected via `approval_required` OR the header, **before** the mirror
+  block: not mirrored to `inbox/`, brain hook NOT invoked, and a loud
+  `[APPROVAL-REQUEST]` card is printed to stderr with ready-to-run
+  `check_pecks.py --approve <id>` / `--deny <id>` commands. Response reports
+  `handled_by: peck_approval_request`, `pending_approval: true`.
+- New opt-in `--approval-hook` flag: forwards the approval envelope to the
+  `--on-message` hook anyway, for operators who want programmatic approval
+  handling. Default stays hook-silent.
+- Verified on the isolated rig (stage-8): approval envelope → intercepted,
+  not mirrored, hook not run, card printed; plain `peck.received` still
+  mirrors + dispatches the hook (no regression).
+
+## 0.4.17 — 2026-07-02
+
+**Fix preflight bind-state key — network-wide listener crash-loop.**
+
+- `telegram_listener.py` preflight read `d['state']` from
+  `/beak/telegram/byob-status`, but the endpoint returns `binding_state`.
+  Every listener network-wide therefore saw `UNKNOWN` even when VERIFIED and
+  crash-looped on startup unless run with `--skip-preflight` (Wayne's duck
+  hit exactly this).
+- Preflight now accepts `binding_state`, keeping `state` as a legacy
+  fallback.
+
+## 0.4.16 — 2026-06-28
+
+**Plain-DM brain wiring (C1) + async-ACK forward path (C3 skill-side).**
+
+- C1: `setup_listeners_supervised.sh` now wires `reply_with_claude.sh` into
+  `telegram_listener` via `--on-message`, so verified plain DMs actually get a
+  composed reply. Before this the listener accepted + owner-approved inbound
+  DMs but had no hook to answer — the root cause of "duck looks connected but
+  never replies to DMs." `--auto-reply` is intentionally NOT passed: the hook
+  forks its own detached worker and sends its own threaded reply, so
+  `--auto-reply` would double-send and its hook-timeout would race the brain.
+- C3 (skill-side): `telegram_listener.do_POST` now returns 200 in <1s and runs
+  the message hook in a daemon thread when a hook is wired without
+  `--auto-reply`. A slow brain (30-90s) no longer exceeds the platform's 10s
+  forward urlopen timeout, which previously surfaced as ambiguous forward
+  failures and (pre-Lambda-v861) counted toward the 30-strike auto-revoke.
+  Pairs with the Lambda v861 guard that no longer penalizes timeouts.
+
 ## 0.4.15 — 2026-06-27
 
 **Fix telegram_listener SIGTERM deadlock (Wayne 0.4.x force-SIGKILL on restart).**

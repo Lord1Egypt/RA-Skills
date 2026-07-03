@@ -1,7 +1,7 @@
 {
   "name": "weiliaozi-skill",
-  "version": "2.1.0",
-  "description": "尉缭子分析法 - 按本质、条件、得失、先后、对手进行结构化分析。五栏分析框架。",
+  "version": "2.2.0",
+  "description": "尉缭子分析法 - 融汇黄帝、太公望、孙武、吴起、齐桓公五位先贤思想，按本质、条件、得失、先后、对手进行结构化分析的五栏框架。",
   "author": "phoenixlucky",
   "license": "MIT",
   "repository": {

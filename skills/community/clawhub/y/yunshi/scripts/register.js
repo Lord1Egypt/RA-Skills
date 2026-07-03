@@ -4,8 +4,6 @@
  * 用于命令行快速注册新用户
  */
 
-const fs = require('fs');
-const path = require('path');
 const { getLunarMonth, isAfterLiChun } = require('./jieqi');
 const { runFullAnalysis } = require('./bazi-analysis');
 
@@ -267,17 +265,22 @@ function createProfile(userId, name, gender, birthDate, birthTime, birthPlace, s
 }
 
 /**
- * 保存档案
+ * 渲染档案为 MEMORY.md 区块（供 Agent 写入原生记忆，脚本本身不落盘）
  */
-function saveProfile(userId, profile) {
-  const dir = path.join(__dirname, '../data/profiles');
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-
-  const filePath = path.join(dir, `${userId}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(profile, null, 2), 'utf8');
-  return filePath;
+function renderMemoryBlock(profile) {
+  const p = profile.profile || {};
+  const b = profile.bazi || {};
+  const focus = (profile.preferences?.focusAreas || []).join('、');
+  return `<!-- yunshi:profile:${profile.userId} -->
+## 命理档案 · ${profile.name}
+- userId: ${profile.userId}
+- 出生: ${p.birthDate} ${p.birthTime}（${p.birthPlace || '未知'}，${p.gender}）
+- 真太阳时: ${p.trueSolarDate} ${p.trueSolarTime}（修正 ${p.solarCorrectionMin}分，${p.solarCorrectionCity || '未识别城市'}）
+- 八字: ${b.year} ${b.month} ${b.day} ${b.hour}
+- 日主: ${b.dayStem}（${b.zodiac}）· 子时派: ${b.sect}
+- 关注领域: ${focus || '事业、财运、健康'}
+- 家庭成员: （按需在此追加 配偶/父母/子女 的姓名与八字）
+<!-- /yunshi:profile -->`;
 }
 
 // 主入口
@@ -346,13 +349,10 @@ console.log(`  地点: ${birthPlace}`);
 console.log(`  子时: ${sect === 1 ? '晚子时(23点后算次日)' : '早子时(23点后算当日)'}`);
 console.log('');
 
-// 创建档案
+// 创建档案（纯计算，不落盘）
 const profile = createProfile(userId, name, gender, birthDate, birthTime, birthPlace, sect);
 
-// 保存
-const filePath = saveProfile(userId, profile);
-
-console.log('✅ 注册成功！\n');
+console.log('✅ 八字已排定！\n');
 
 // 真太阳时提示
 const sc = profile.profile.solarCorrectionMin;
@@ -375,26 +375,17 @@ console.log(`  日柱: ${profile.bazi.day}`);
 console.log(`  时柱: ${profile.bazi.hour}`);
 console.log(`  日主: ${profile.bazi.dayStem} (${profile.bazi.zodiac})`);
 console.log('');
-console.log(`📁 档案已保存: ${filePath}`);
+
+// 输出 MEMORY.md 区块，供 Agent 写入原生记忆（脚本不落盘，符合 clawhub 无文件写入规范）
+console.log('📇 请将以下档案写入 MEMORY.md（原生记忆，跨会话保留）：');
+console.log('```markdown');
+console.log(renderMemoryBlock(profile));
+console.log('```');
+console.log('');
+console.log('💡 开启每日运程推送（把上面的八字/关注领域作为参数传入）：');
+console.log(`   node scripts/push-toggle.js on ${userId} --name "${name}" \\`);
+console.log(`     --bazi "${profile.bazi.year} ${profile.bazi.month} ${profile.bazi.day} ${profile.bazi.hour}" \\`);
+console.log(`     --daystem ${profile.bazi.dayStem} --focus 事业,财运,健康 --channel telegram`);
 console.log('');
 
-// 自动开启推送（如果指定了 --push 参数）
-const pushIdx = args.indexOf('--push');
-if (pushIdx !== -1) {
-  const channel = args[args.indexOf('--channel') + 1] || 'telegram';
-  const morning = args[args.indexOf('--morning') + 1] || '08:00';
-  const evening = args[args.indexOf('--evening') + 1] || '20:00';
-  console.log('⏳ 正在开启每日推送...');
-  try {
-    const { enablePush } = require('./push-toggle');
-    enablePush(userId, { morning, evening, channel });
-  } catch (e) {
-    console.error('推送开启失败:', e.message);
-  }
-} else {
-  console.log('💡 提示：运行以下命令开启每日运程推送：');
-  console.log(`   node scripts/push-toggle.js on ${userId}`);
-  console.log('');
-}
-
-module.exports = { createProfile, saveProfile };
+module.exports = { createProfile, renderMemoryBlock };

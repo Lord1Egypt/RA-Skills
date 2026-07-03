@@ -1,0 +1,62 @@
+{
+  "id": "skill1-idea-feasibility",
+  "name": "Idea可行性研判",
+  "version": "1.2.0",
+  "author": "李屹镒（公众号：科技新潮。视频号：小李君与AI）",
+  "description": "验证需求真伪，确认个人匹配度，完成可行性研判",
+  "stage": 1,
+  "stageName": "构思期",
+  "graduationCondition": "需求验证通过 + 个人匹配度≥60 + 存在可行赛道",
+  "triggers": ["创业Idea", "想法", "点子", "可行性", "需求验证", "赛道分析"],
+  "inputs": [
+    {
+      "name": "industry",
+      "label": "行业赛道",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "idea",
+      "label": "创业想法",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "hasProduct",
+      "label": "是否有成型产品",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "name": "hasCompany",
+      "label": "是否注册公司",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "name": "hasPaidUsers",
+      "label": "是否有付费用户",
+      "type": "boolean",
+      "required": false,
+      "skipWhen": { "hasProduct": false }
+    },
+    {
+      "name": "background",
+      "label": "个人背景与资源",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "需求真伪校验",
+    "个人匹配度测评",
+    "竞品格局分析",
+    "可行度评估",
+    "品牌命名查冲突",
+    "数据合规风险评估"
+  ],
+  "files": {
+    "prompt": "prompt.md",
+    "code": "index.ts"
+  }
+}

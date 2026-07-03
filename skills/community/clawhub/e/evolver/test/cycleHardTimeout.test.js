@@ -114,14 +114,29 @@ describe('index.js daemon loop hard-timeout structure', () => {
     );
   });
 
-  it('on CYCLE_TIMEOUT, force-respawns + exits with code 1', () => {
-    // v1.79.1: the inline spawn was extracted into spawnReplacementProcess()
-    // so the CYCLE_TIMEOUT branch can share the Windows-aware policy used
-    // elsewhere. The branch must still call the helper and then exit(1).
+  it('on CYCLE_TIMEOUT, delegates timeout policy and respawn exits with code 1', () => {
     assert.match(
       source,
-      /error\.code === 'CYCLE_TIMEOUT'[\s\S]*?spawnReplacementProcess\(\{[\s\S]*?reason: 'cycle_hard_timeout'[\s\S]*?process\.exit\(1\)/,
-      'CYCLE_TIMEOUT branch must call spawnReplacementProcess and exit(1)'
+      /error\.code === 'CYCLE_TIMEOUT'[\s\S]*?handleCycleTimeout\(\{[\s\S]*?spawnReplacementFn: spawnReplacementProcess/,
+      'CYCLE_TIMEOUT branch must delegate policy to handleCycleTimeout'
+    );
+    assert.match(
+      source,
+      /timeoutAction\.action === 'respawn'[\s\S]*?releaseLock\(\)[\s\S]*?process\.exit\(1\)/,
+      'respawn action must release lock and exit(1)'
+    );
+  });
+
+  it('on non-fatal CYCLE_TIMEOUT, waits for original evolve.run() to settle', () => {
+    assert.match(
+      source,
+      /timeoutAction\.action === 'continue'[\s\S]*?await waitForTimedOutEvolvePromise\(evolvePromise\)/,
+      'continue action must wait for the timed-out evolve.run() before the next cycle'
+    );
+    assert.doesNotMatch(
+      source,
+      /timeoutAction\.action === 'continue'[\s\S]*?observeTimedOutEvolvePromise\(evolvePromise\)/,
+      'continue action must not only observe the timed-out evolvePromise'
     );
   });
 });

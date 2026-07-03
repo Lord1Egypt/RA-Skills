@@ -11,31 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to add HTTP firmware update workflows to Unihiker K10 Arduino projects, including projects that need AP/STA networking or an ESP-NOW maintenance mode instead of USB updates. <br>
+Developers and engineers use this skill to add scriptable HTTP firmware updates to Unihiker K10 Arduino projects without relying on USB or ArduinoOTA. It is especially relevant for AP/STA deployments and ESP-NOW projects that need an explicit OTA maintenance mode. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: HTTP OTA examples can expose firmware flashing to anyone who can reach the device endpoint if access control is not added. <br>
-Mitigation: Use only on trusted isolated networks or add a unique per-device credential or token, a short-lived physical maintenance mode, and firmware signature or hash verification before deployment. <br>
-Risk: The examples include a default AP credential, which can make unauthorized access easier if copied unchanged. <br>
-Mitigation: Replace default AP credentials such as 12345678 with deployment-specific credentials and disable OTA mode when maintenance is complete. <br>
+Risk: Copyable examples expose firmware reflashing over plain HTTP with weak default Wi-Fi credentials and no access control. <br>
+Mitigation: Use a unique per-device password or token, require an explicit short-lived maintenance mode such as a button press, and avoid exposing the OTA endpoint on untrusted networks. <br>
+Risk: Firmware uploads may be accepted without integrity validation. <br>
+Mitigation: Validate firmware signatures or hashes before applying OTA updates. <br>
+Risk: ESP-NOW or time-critical control behavior can conflict with Wi-Fi networking and flash writes during OTA. <br>
+Mitigation: Enter a dedicated OTA maintenance mode, align Wi-Fi and ESP-NOW channels when needed, and pause ESP-NOW sends and control loops while upload is active. <br>
+Risk: An incorrect partition table can overwrite K10 AI model regions or fail because no OTA partition is available. <br>
+Mitigation: Use OTA app partitions that end before the documented model, voice_data, and fr regions, and perform the first partition-table change by USB. <br>
 
 
 ## Reference(s): <br>
 - [K10 HTTP OTA Implementation Guide](references/ota-implementation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rockets-cn/unihiker-k10-ota) <br>
+- [ClawHub skill page](https://clawhub.ai/rockets-cn/skills/unihiker-k10-ota) <br>
+- [Publisher profile](https://clawhub.ai/user/rockets-cn) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with code blocks and helper scripts] <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
+**Output Format:** [Markdown with inline C++, CSV, bash, PowerShell, and Python examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Arduino CLI commands, C++ firmware snippets, partition table guidance, and Python or PowerShell OTA upload helpers.] <br>
+**Other Properties Related to Output:** [Produces firmware integration guidance, partition table configuration, OTA endpoint code, and upload commands for Unihiker K10 Arduino projects.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+1.0.2 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

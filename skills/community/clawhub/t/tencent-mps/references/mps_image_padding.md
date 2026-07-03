@@ -67,49 +67,49 @@
 
 ```bash
 # 最简用法：按宽高比扩展为 16:9
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9"
 
 # 竖屏转横屏
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/vertical.jpg" \
     --aspect-ratio "16:9"
 
 # 指定目标宽高（像素）
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --image-width 1920 --image-height 1080
 
 # 只指定目标宽度
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --local-file /tmp/product.jpg \
     --image-width 1024
 
 # 本地文件输入，正方形画布
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --local-file /tmp/product.jpg \
     --aspect-ratio "1:1"
 
 # COS 路径输入
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --cos-input-key "/input/banner.jpg" \
     --aspect-ratio "21:9"
 
 # 只提交任务，不等待结果
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9" \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_padding.py \
+python3 scripts/mps_image_padding.py \
     --url "https://example.com/photo.jpg" \
     --aspect-ratio "16:9" \
     --download-dir /tmp/results/
 
 # 手动查询扩图任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

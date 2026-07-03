@@ -1,49 +1,52 @@
-# SpecQ 攻单情报包 — 电子化学品销售 Skill v1.3
+---
+name: specq-intel-sales
+slug: specq-intel-sales
+displayName: SpecQ 攻单情报包
+description: "SpecQ — 半导体产业链销售攻单情报包。输入客户+产品，AI 自动整理暗知识（拜访记录/丢单复盘/竞品情报），生成八模块攻单策略，提高成交率。阶段一聚焦电子化学品。"
+version: "2.3.1"
+author: daizehua-wq
+license: Apache-2.0
+tags: [sales, semiconductor, intel, crm, dark-knowledge]
+---
 
-> 版本：v1.3 | 更新：2026-06-24 | 强化数据来源标注 + 防 MCP 绕过规则
+# SpecQ Skill v2.3 — 半导体产业链销售攻单情报包
 
-## ⛔ 强制规则（最高优先级）
-
-1. **情报包生成必须走 SpecQ MCP** — 禁止用自身 web_search 替代 specq_generate_intel
-2. **MCP 不可用时告知用户** — "SpecQ MCP 服务不可用，请稍后重试"，不要 fallback 到自主搜索
-3. **数据来源必须标注** — 每个模块末尾标明来源（knowledge.db / 公开资料 / 经验推断）
-4. **不能凭空编造数据** — 不确定的地方必须标注 [经验推断]
+> 整理暗知识（拜访记录 + 丢单复盘 + 竞品情报）→ 客户画像 + 使用场景 + 竞品动态 + 成交策略 → 提高成交率 | 阶段一聚焦电子化学品 | v2.3 零配置
 
 ## 📦 安装指引
 
-### OpenClaw
+本 Skill 的 MCP Server 为纯本地进程，Agent 安装后自动以 stdio 模式启动，无需部署服务器。v2.3 起通过 MCP Sampling 协议复用 Agent 的 LLM，无需单独配置 API Key。
 
-本 Skill 已接入 OpenClaw MCP：
-```bash
-openclaw skills install daizehua-wq/specq-intel-sales
-```
-MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-API-Key）
+### 前置依赖
 
-⚠️ 注意：远程服务器仅供 DAO 内部使用。公开用户请使用 v2.0 本地独立模式（见下方 WorkBuddy 说明）。
+1. Python 3.10+
+2. `pip install -r requirements.txt`
 
-### WorkBuddy（腾讯桌面 Agent）
+### Agent 配置
 
-**v2.0 起，Skill 完全本地运行，不依赖远程服务器。**
-
-1. 在 WorkBuddy 技能面板搜索 `specq-intel-sales` 安装
-2. 依赖安装：`pip install fastmcp chromadb httpx`
-3. 配置 `~/.workbuddy/mcp.json`：
+Agent 通过 stdio 启动 MCP Server：
 
 ```json
 {
   "mcpServers": {
     "specq": {
-      "command": "python3",
-      "args": ["/your/path/to/specq_mcp_client.py"],
-      "env": {
-        "SEARCH_API_KEY": "(可选) Brave Search API Key"
-      }
+      "command": "python",
+      "args": ["mcp_server.py"]
     }
   }
 }
 ```
 
-**本地能力**：本地 knowledge.db（41企业+43工艺）、本地 chromadb 暗数据、联网搜索（可选）、LLM 走 WorkBuddy 当前模型。
+### 外部 API 依赖（可选）
+
+SpecQ 核心功能零依赖即可运行。以下为可选增强：
+
+| 功能 | 需要 | 不配的影响 |
+|---|---|---|
+| Embedding 语义搜索 | `EMBEDDING_API_KEY` | 自动降级为本地哈希向量，精度略低 |
+| 联网搜索 | `SEARCH_API_KEY`（Brave Search） | 搜索返回空，不影响情报包生成 |
+
+---
 
 ## 适用场景
 
@@ -64,7 +67,7 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 
 | Tool | 输入 | 输出 | 说明 |
 |---|---|---|---|
-| `specq_memory` | action, query/content/category... | 记忆操作结果 | **v1.1 新增：三层记忆** |
+| `specq_memory` | action, query/content/category... | 记忆操作结果 | 三层记忆 |
 | `specq_generate_intel` | product, application, scenario | 八模块情报包 Markdown | 核心生成 |
 | `specq_extract_insights` | customer_id（可选）, limit | 结构化洞察 JSON | 暗数据提取 |
 | `specq_log_visit` | customer_id, content, visit_date, visit_type | 拜访记录 ID | 沉淀拜访 |
@@ -72,7 +75,7 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 
 ---
 
-## v1.3 工作流（先召回→再生成→交叉验证→增量追加）
+## v2.3 工作流（MCP Sampling + 三层记忆）
 
 ```
 用户输入
@@ -81,46 +84,32 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
   ├─ 有未完成任务 → 提示："上次 XX 还没完成，继续吗？"
   └─ 新任务 → 继续
   ↓
-② 长期记忆召回（specq_memory.recall，必执行）
-  → 语义搜索该客户/产品/应用的历史拜访、丢单、情报包
-  → 同时调 specq_extract_insights 提取结构化洞察
+② 长期记忆召回（specq_memory.recall）
+  → 语义搜索该客户/产品的历史拜访、丢单记录、偏好
   ↓
 ③ 提取三字段（product / application / scenario）
-  → 不全则追问
+  → 如果三字段不全 → 追问
   ↓
-④ 联网搜索（Agent 负责搜，结果传给 specq_generate_intel）
-  → 搜行业动态、竞品信息、技术标准等公开数据
-  → 整理为 JSON 数组，作为 search_results 参数传入
+④ 暗数据注入（ChromaDB 记忆召回 + 联网搜索）
+  ├─ 有暗数据 → 注入到情报包
+  └─ 无暗数据 → 标记 [经验推断]
   ↓
-⑤ 暗数据交叉验证（与历史记忆对比，关键步骤）
-  ├─ 有历史暗数据 → 注入到 context_block，标注「已有暗数据 X 条」
-  ├─ 本次新发现 → 标注「🆕 本次新增」
-  ├─ 数据冲突 → 标注「⚠️ 与历史记录冲突：旧值=XX，新值=YY」
-  ├─ 无暗数据 → 模块 4/5/6 标注「[经验推断，暂无销售数据]」
-  └─ 暗数据规则：只追加，不删除。新数据补充到旧数据之后
+⑤ 生成情报包（specq_generate_intel → MCP Sampling 调 Agent LLM）
   ↓
-⑤ 生成情报包（specq_generate_intel）
-  → context_block 传入历史记忆
-  → LLM 在情报包中呈现新旧数据对比
+⑥ 自动写回 ChromaDB（category=intel）
   ↓
-⑥ 输出八模块情报包
+⑦ 输出八模块情报包
 
 【历史记忆】（独立上下文块）
-- 2026-06-23 拜访深南电路：关注粗糙度 Ra<0.3μm，竞品安美特
-- 2026-05-15 丢单记录：嫌价格高 20%
+- 2026-06-20 拜访：关注粗糙度，竞品安美特
+- 2026-05-15 丢单：嫌价格高 20%
 
-【本次情报包】（八模块，带数据来源标注）
-...
-🆕 本次新增发现：...
-⚠️ 数据冲突提示：...
+【本次情报包】（八模块）
+...（带数据来源标注）...
 
-  ↓
-⑦ 增量回写暗数据（只追加，不覆盖）
-  ├─ save(category=intel)：本次情报包摘要
-  ├─ save(category=insight)：本次新发现的结构化洞察
-  └─ 老数据保留，新数据追加在末尾
   ↓
 ⑧ 更新工作记忆（specq_memory.set_plan）
+  → 标记当前任务完成
   ↓
 ⑨ ⚠️ 必提醒："见完客户后告诉我结果，我帮你记录"
 ```
@@ -134,19 +123,9 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 - 模块 4/5/6 标注 `[经验推断，暂无销售数据支撑]`
 
 ### 场景 B：老客户（有记忆数据）
-- 先 recall → 召回历史拜访 + 丢单记录 + 历史情报包
-- 交叉验证：对比新旧数据
-  - 新发现（历史无记录）→ 标注 🆕 追加
-  - 数据一致 → 标注 ✅ 复核确认
-  - 数据冲突 → 标注 ⚠️ 两值并列，提醒确认
+- 先 recall → 召回历史拜访 + 丢单记录
 - 注入到独立上下文块【历史记忆】
 - 情报包模块 4/5/6 有真实数据来源标注
-
-### 场景 F：暗数据交叉验证（v1.3 新增）
-- 每次情报包生成前，recall 历史暗数据
-- 情报包生成后，对比本次生成内容与历史记录
-- 新发现追加到暗数据（save），不删老数据
-- 冲突数据同时保留新旧两条，标注时间戳
 
 ### 场景 C：仅查历史
 - recall → 结构化展示历史记忆
@@ -157,7 +136,7 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 - 同时 save(category="feedback") 写入长期记忆
 - outcome: won（成交）/ lost（丢单）/ follow_up（跟进中）
 
-### 场景 E：多任务（v1.1 新增）
+### 场景 E：多任务
 - get_plan 检查进度 → 知道做到哪了
 - set_plan 设定/更新任务列表
 - 中断后恢复：用户说"继续" → get_plan → 知道从哪开始
@@ -174,15 +153,6 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 | `insight` | extract_insights 结构化发现 | "深南电路对粗糙度敏感度：高" | 180 天 |
 | `preference` | 用户显式偏好 | "David 偏好先看竞品对比" | 永久 |
 
-## 暗数据操作规则（v1.3）
-
-1. **只追加，不删除** — 新数据 save，老数据保留
-2. **交叉验证** — 生成情报包前先 recall，对比新旧数据
-3. **冲突处理** — 新旧数据冲突时两值并列标注时间戳，不取其一
-4. **去重策略** — 内容相似度 >80% 时追加 `[更新: YYYY-MM-DD]`，不新建记录
-5. **自动回写** — 情报包生成后自动 save(category=intel)，无需手动
-6. **按 API Key 隔离** — 每个用户的暗数据仅自己可见，不可跨用户访问
-
 ---
 
 ## 输出规格
@@ -191,7 +161,7 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 
 | 模块 | 内容 | 数据来源 |
 |---|---|---|
-| 1. 产品概览 | 产品定义、核心功能、适用工艺段 | 公开资料 + knowledge.db |
+| 1. 产品概览 | 产品定义、核心功能、适用工艺段 | 公开资料 + 联网搜索 |
 | 2. 技术指标对比 | 关键参数 vs 竞品/行业标准 | 公开资料 + 暗数据 |
 | 3. 竞品格局 | 主要竞品、市占、差异化 | 公开资料 |
 | 4. 客户关注指标 | 该客户/行业重点技术指标 | 暗数据 / [经验推断] |
@@ -235,3 +205,43 @@ MCP Server 地址：`http://119.91.223.127:8001/mcp`（HTTP SSE，已配置 X-AP
 - 自动推送情报包到飞书/邮件
 - 竞品实时价格
 - 记忆合并/去重
+
+---
+
+## 常见问题
+
+**Q: 我的客户数据安全吗？**
+
+情报包输出中客户真实名称会被脱敏为行业标签。暗数据存储在本地 ChromaDB 和 JSON 文件中，不上传任何第三方服务器。整个 Skill 在内网环境运行。
+
+**Q: 需要配置 API Key 吗？**
+
+v2.3 起不需要。SpecQ 通过 MCP Sampling 协议直接复用 Agent 的 LLM，安装即可使用。
+
+**Q: 需要部署服务器吗？**
+
+不需要。v2.2 起 SpecQ MCP Server 为纯本地进程，Agent 通过 stdio 直接启动。
+
+**Q: 怎么开始用？**
+
+直接说"帮我做XX产品的情报包，客户XX，关注XX"，Skill 会自动引导补全缺失的参数。不需要先读文档。
+
+**Q: 支持哪些输出格式？**
+
+Markdown（默认，完整八模块）、邮件（摘要+主题）、聊天（300字精简）。Word 和 PPT 格式正在开发中。
+
+**Q: 新客户没有历史数据怎么办？**
+
+Skill 会自动跳过记忆召回，标注 `[经验推断]` 生成情报包。见完客户后用 `feedback` 记录结果，下次就有数据了。
+
+**Q: 联网搜索能用吗？**
+
+联网搜索使用 Brave Search API，需要申请免费 API Key 并设置环境变量 `SEARCH_API_KEY`。不配 Key 时搜索返回空结果，不影响情报包主流程。
+
+**Q: 离线能用吗？**
+
+可以。情报包生成、拜访记录、记忆召回均离线运行。仅联网搜索和 Embedding 增强需要外部 API，缺失时会自动降级。
+
+**Q: Word / PPT 导出能用吗？**
+
+正在开发中。当前 `output_format="docx"` 或 `"ppt"` 会返回结构化大纲，供手动制作参考。Markdown 格式功能完整。

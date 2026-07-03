@@ -1,26 +1,36 @@
-# RAM 权限清单
+# RAM Permission List
 
-本 Skill 执行所需的 RAM 权限（只读，无写权限）：
+The RAM permissions required by this skill are read-only only; no write permissions are needed.
 
-## 云防火墙查询权限
+## Cloud Firewall Query Permissions
 
-`yundun-cloudfw:DescribeAssetList` — 查询互联网防火墙防护资产列表及防护状态
+`yundun-cloudfw:DescribeAssetList` — Query Internet Firewall protected asset list and protection status.
 
-`yundun-cloudfw:DescribePolicyAdvancedConfig` — 查询互联网防火墙全局严格模式配置
+`yundun-cloudfw:DescribePolicyAdvancedConfig` — Query Internet Firewall global strict-mode configuration.
 
-`yundun-cloudfw:DescribeControlPolicy` — 查询互联网防火墙 ACL 规则列表
+`yundun-cloudfw:DescribeControlPolicy` — Query Internet Firewall ACL rule list.
 
-`yundun-cloudfw:DescribeVpcFirewallList` — 查询 VPC 边界防火墙实例列表
+`yundun-cloudfw:DescribeVpcFirewallList` — Query VPC boundary firewall instance list.
 
-`yundun-cloudfw:DescribeVpcFirewallControlPolicy` — 查询 VPC 边界防火墙 ACL 规则列表
+`yundun-cloudfw:DescribeVpcFirewallControlPolicy` — Query VPC boundary firewall ACL rule list.
 
-`yundun-cloudfw:DescribeNatFirewallList` — 查询 NAT 边界防火墙实例列表
+`yundun-cloudfw:DescribeNatFirewallList` — Query NAT boundary firewall instance list.
 
-`yundun-cloudfw:DescribeNatFirewallControlPolicy` — 查询 NAT 边界防火墙 ACL 规则列表
+`yundun-cloudfw:DescribeNatFirewallControlPolicy` — Query NAT boundary firewall ACL rule list.
 
-`yundun-cloudfw:DescribeTrafficLog` — 查询流量日志（需已开通日志分析功能）
+`yundun-cloudfw:DescribeTrafficLog` — Query traffic logs (requires the log analysis feature to be enabled).
 
-## 说明
+## SLS Query Permissions
 
-以上权限均包含在阿里云托管策略 `AliyunYundunCloudFirewallReadOnlyAccess` 中，
-推荐直接为诊断用 RAM 用户授予此托管策略，无需逐条配置。
+`log:GetLogs` — Query logs through `aliyun sls get-logs-v2`.
+
+## ActionTrail Query Permissions
+
+`actiontrail:LookupEvents` — Query operation history through `aliyun actiontrail lookup-events`.
+
+## Notes
+
+- All permissions listed above are read-only. This skill does not invoke any Create/Update/Delete APIs.
+- The skill relies on the default credential chain (environment variables or the default profile in `~/.aliyun/config.json`). It never uses the `--profile` parameter, never runs `aliyun configure get`, and never runs `aliyun configure list`.
+- The Cloud Firewall `yundun-cloudfw:Describe*` permissions are included in the Alibaba Cloud managed policy `AliyunYundunCloudFirewallReadOnlyAccess`. You can attach this managed policy to the RAM user or role used for diagnosis.
+- If you use `aliyun sls get-logs-v2` or `aliyun actiontrail lookup-events`, ensure the corresponding `log:GetLogs` and `actiontrail:LookupEvents` permissions are also granted.

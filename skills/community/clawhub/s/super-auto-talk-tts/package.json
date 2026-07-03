@@ -1,0 +1,24 @@
+{
+  "name": "auto-talk-tts",
+  "version": "1.0.0",
+  "description": "Auto-speak every message using edge-tts. Installs node-edge-tts if needed and speaks asynchronously.",
+  "main": "auto-speak",
+  "scripts": {
+    "test": "echo 'Testing auto-talk-tts...' && auto-speak 'This is a test. If you can hear this, it is working!'"
+  },
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "auto-speak",
+    "voice",
+    "audio"
+  ],
+  "author": "Stefano",
+  "license": "MIT",
+  "dependencies": {
+    "node-edge-tts": "^1.0.0"
+  },
+  "bin": {
+    "auto-speak": "./auto-speak"
+  }
+}

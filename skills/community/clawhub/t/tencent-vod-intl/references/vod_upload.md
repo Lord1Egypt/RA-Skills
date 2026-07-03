@@ -111,19 +111,19 @@
 
 #### Basic Upload (Auto-infer Media Type)
 ```bash
-python scripts/vod_upload.py upload --file /path/to/video.mp4
+python3 scripts/vod_upload.py upload --file /path/to/video.mp4
 ```
 
 #### Specify Media Name
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-name "My Highlight Video"
 ```
 
 #### Specify Media Type
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file video.mov \
     --media-type mp4 \
     --media-name "Format Conversion"
@@ -131,63 +131,63 @@ python scripts/vod_upload.py upload \
 
 #### Upload with Cover Image
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --cover-file /path/to/cover.jpg
 ```
 
 #### Specify Category
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --class-id 10
 ```
 
 #### Automatically Trigger Task Flow After Upload
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --procedure "Long Video Preset"
 ```
 
 #### Specify StorageRegion
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --storage-region ap-beijing
 ```
 
 #### Specify Storage Path (FileID+Path Mode Only)
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-storage-path "/videos/2026-03/my-video.mp4"
 ```
 
 #### Pass Through Context Information
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --source-context "client:app_v1"
 ```
 
 #### JSON Output
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --json
 ```
 
 #### Verbose Output
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --verbose
 ```
 
 #### dry-run Preview Parameters
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-name "My Video" \
     --dry-run
@@ -199,14 +199,14 @@ python scripts/vod_upload.py upload \
 
 #### Upload Audio File
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/audio.mp3 \
     --media-name "Background Music"
 ```
 
 #### Upload Image File
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/image.jpg \
     --media-name "Cover Image"
 ```
@@ -218,20 +218,20 @@ python scripts/vod_upload.py upload \
 #### Batch Upload (Using Shell Loop)
 ```bash
 for f in /path/to/videos/*.mp4; do
-    python scripts/vod_upload.py upload --file "$f"
+    python3 scripts/vod_upload.py upload --file "$f"
 done
 ```
 
 #### Upload and Save Result to File
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --json > upload_result.json
 ```
 
 #### Conditionally Check Upload Success
 ```bash
-RESULT=$(python scripts/vod_upload.py upload --file video.mp4 --json)
+RESULT=$(python3 scripts/vod_upload.py upload --file video.mp4 --json)
 FILE_ID=$(echo "$RESULT" | jq -r '.commit.FileId')
 if [ "$FILE_ID" != "null" ]; then
     echo "Upload successful, FileId: $FILE_ID"

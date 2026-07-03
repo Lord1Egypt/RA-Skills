@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sol's Blog Composer</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --surface2: #242424;
+    --border: #333;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 18px; font-weight: 600; color: var(--accent2); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .git-status { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: var(--surface2); color: var(--text-dim); }
+  .git-status.dirty { background: var(--warning); color: black; }
+  .git-status.clean { background: var(--success); color: white; }
+  .status { font-size: 13px; color: var(--text-dim); }
+
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: var(--surface); padding: 0 24px; position: sticky; top: 57px; z-index: 99; }
+  .tab { padding: 12px 20px; font-size: 14px; color: var(--text-dim); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+
+  .panel { display: none; padding: 24px; min-height: calc(100vh - 130px); }
+  .panel.active { display: block; }
+
+  /* WRITE PANEL */
+  .write-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 0; height: calc(100vh - 200px); }
+  .editor-pane, .preview-pane { background: var(--surface); border: 1px solid var(--border); overflow: auto; }
+  .editor-pane { border-radius: var(--radius) 0 0 var(--radius); }
+  .preview-pane { border-radius: 0 var(--radius) var(--radius) 0; border-left: none; }
+  .pane-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); border-bottom: 1px solid var(--border); background: var(--surface2); }
+  .pane-header .actions { display: flex; gap: 8px; }
+  .pane-header button { font-size: 11px; padding: 3px 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); border-radius: 4px; cursor: pointer; }
+  .pane-header button:hover { border-color: var(--accent); color: var(--text); }
+  textarea { width: 100%; height: calc(100% - 36px); background: transparent; color: var(--text); font-family: 'SF Mono', 'Fira Code', monospace; font-size: 14px; line-height: 1.6; padding: 16px; border: none; resize: none; outline: none; }
+  .preview-content { padding: 16px 24px; font-size: 15px; line-height: 1.7; }
+  .preview-content h1 { font-size: 28px; margin-bottom: 8px; color: var(--accent2); }
+  .preview-content h2 { font-size: 20px; margin: 24px 0 8px; color: var(--text); }
+  .preview-content h3 { font-size: 16px; margin: 20px 0 6px; color: var(--text); }
+  .preview-content p { margin-bottom: 12px; }
+  .preview-content code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .preview-content pre { background: var(--surface2); padding: 16px; border-radius: var(--radius); overflow-x: auto; margin: 16px 0; }
+  .preview-content pre code { background: none; padding: 0; }
+  .preview-content blockquote { border-left: 3px solid var(--accent); padding-left: 16px; color: var(--text-dim); margin: 16px 0; }
+  .preview-content ul, .preview-content ol { margin: 12px 0 12px 24px; }
+  .preview-content li { margin-bottom: 6px; }
+  .preview-content hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .preview-content strong { color: var(--text); }
+  .preview-content em { color: var(--text-dim); }
+  .preview-content table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+  .preview-content td, .preview-content th { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+  .preview-content th { background: var(--surface2); }
+
+  /* METADATA PANEL */
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
+  input, select, textarea { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 10px 12px; border-radius: var(--radius); font-size: 14px; outline: none; transition: border-color 0.15s; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; font-family: inherit; }
+  select { cursor: pointer; }
+  .meta-stats { display: flex; gap: 24px; margin-top: 24px; padding: 16px; background: var(--surface2); border-radius: var(--radius); max-width: 800px; }
+  .stat { text-align: center; }
+  .stat .value { font-size: 24px; font-weight: 600; color: var(--accent2); }
+  .stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-top: 4px; }
+
+  /* TEMPLATES PANEL */
+  .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .template-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: all 0.15s; }
+  .template-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .template-card h3 { font-size: 16px; margin-bottom: 8px; color: var(--accent2); }
+  .template-card p { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+  .template-card .template-icon { font-size: 32px; margin-bottom: 12px; }
+
+  /* PUBLISH PANEL */
+  .publish-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; }
+
+  /* GENERATE PANEL */
+  .generate-layout { display: grid; grid-template-columns: 380px 1fr; gap: 24px; height: calc(100vh - 200px); }
+  .generate-form { display: flex; flex-direction: column; gap: 16px; overflow-y: auto; padding-right: 8px; }
+  .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .checkbox-card { display: flex; flex-direction: column; padding: 10px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: all 0.15s; }
+  .checkbox-card:hover { border-color: var(--accent); }
+  .checkbox-card input { display: none; }
+  .checkbox-card:has(input:checked) { border-color: var(--accent); background: rgba(99, 102, 241, 0.1); }
+  .checkbox-card input:checked + .checkbox-label { color: var(--accent2); }
+  .checkbox-label { font-size: 13px; font-weight: 500; color: var(--text); }
+  .checkbox-desc { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .checkbox-simple { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .checkbox-simple input { width: 16px; height: 16px; accent-color: var(--accent); }
+  .checkbox-simple span { font-size: 13px; color: var(--text); }
+  .generate-actions { display: flex; gap: 8px; margin-top: 8px; }
+  .gen-status { padding: 12px; border-radius: var(--radius); font-size: 13px; margin-top: 8px; }
+  .gen-status.loading { background: rgba(99, 102, 241, 0.1); color: var(--accent2); }
+  .gen-status.error { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+  .gen-status.success { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+  .generate-preview { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .generate-preview .pane-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); border-bottom: 1px solid var(--border); background: var(--surface2); }
+  .generate-preview .pane-header button { font-size: 11px; padding: 3px 8px; background: var(--accent); border: none; color: white; border-radius: 4px; cursor: pointer; }
+  .generate-preview .pane-header button:hover { background: var(--accent2); }
+  .gen-output { flex: 1; overflow-y: auto; padding: 16px 20px; font-size: 14px; line-height: 1.7; color: var(--text); }
+  .gen-output h1 { font-size: 22px; color: var(--accent2); margin-bottom: 8px; }
+  .gen-output h2 { font-size: 18px; margin: 20px 0 8px; }
+  .gen-output h3 { font-size: 15px; margin: 16px 0 6px; }
+  .gen-output p { margin-bottom: 10px; }
+  .gen-output code { background: var(--surface2); padding: 2px 5px; border-radius: 3px; font-size: 12px; }
+  .gen-output pre { background: var(--surface2); padding: 12px; border-radius: var(--radius); overflow-x: auto; margin: 12px 0; }
+  .gen-output pre code { background: none; padding: 0; }
+  .gen-output blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--text-dim); margin: 12px 0; }
+  .publish-summary h2 { font-size: 20px; margin-bottom: 20px; }
+  .summary-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .summary-row .key { color: var(--text-dim); }
+  .summary-row .value { color: var(--text); font-weight: 500; }
+  .publish-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .btn { padding: 12px 24px; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-success { background: var(--success); color: white; }
+  .btn-success:hover { opacity: 0.9; }
+  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); }
+  .btn-danger { background: var(--danger); color: white; }
+  .btn-danger:hover { opacity: 0.9; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-loading { opacity: 0.7; }
+
+  /* POST LIST */
+  .post-list-section h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 12px; }
+  .post-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .post-item:hover { border-color: var(--accent); }
+  .post-item.active { border-color: var(--accent2); background: var(--surface2); }
+  .post-item .title { font-size: 14px; font-weight: 500; flex: 1; }
+  .post-item .date { font-size: 12px; color: var(--text-dim); margin-left: 16px; white-space: nowrap; }
+  .post-item .badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; margin-left: 8px; }
+  .post-item .badge.draft { background: var(--warning); color: black; }
+  .post-item .badge.published { background: var(--success); color: white; }
+  .post-item .delete-btn { opacity: 0; background: var(--danger); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 8px; transition: opacity 0.15s; }
+  .post-item:hover .delete-btn { opacity: 1; }
+  .search-box { width: 100%; padding: 10px 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-size: 14px; margin-bottom: 12px; outline: none; }
+  .search-box:focus { border-color: var(--accent); }
+  .search-box::placeholder { color: var(--text-dim); }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; padding: 12px 20px; background: var(--success); color: white; border-radius: var(--radius); font-size: 14px; font-weight: 500; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 1000; }
+  .toast.show { opacity: 1; }
+  .toast.error { background: var(--danger); }
+  .toast.warning { background: var(--warning); color: black; }
+
+  /* New post button */
+  .new-post-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; }
+  .new-post-btn:hover { background: var(--accent2); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sol's Blog Composer</h1>
+  <div class="header-right">
+    <div class="git-status" id="git-status">Checking...</div>
+    <div class="status" id="status">Ready</div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="write">Write</div>
+  <div class="tab" data-tab="generate">Generate</div>
+  <div class="tab" data-tab="preview">Preview</div>
+  <div class="tab" data-tab="metadata">Metadata</div>
+  <div class="tab" data-tab="templates">Templates</div>
+  <div class="tab" data-tab="publish">Publish</div>
+</div>
+
+<!-- WRITE PANEL -->
+<div class="panel active" id="panel-write">
+  <div class="write-layout">
+    <div class="editor-pane">
+      <div class="pane-header">
+        <span>Markdown</span>
+        <div class="actions">
+          <button onclick="syncMetaFromEditor()">Sync Metadata</button>
+          <button onclick="formatBold()">Bold</button>
+          <button onclick="formatCode()">Code</button>
+        </div>
+      </div>
+      <textarea id="editor" placeholder="Start writing...">---
+title: 
+date: 2026-06-15
+layout: post
+description: 
+categories: [reflections]
+tags: []
+---
+
+# </textarea>
+    </div>
+    <div class="preview-pane">
+      <div class="pane-header">Preview</div>
+      <div class="preview-content" id="preview">Start typing to see preview...</div>
+    </div>
+  </div>
+</div>
+
+<!-- GENERATE PANEL -->
+<div class="panel" id="panel-generate">
+  <div class="generate-layout">
+    <div class="generate-form">
+      <h2 style="color: var(--accent2); margin-bottom: 20px;">Generate with AI</h2>
+
+      <div class="field full">
+        <label>Topic / Idea</label>
+        <input type="text" id="gen-topic" placeholder="What should this post be about?">
+      </div>
+
+      <div class="field full">
+        <label>Post Types (select one or more)</label>
+        <div class="checkbox-grid">
+          <label class="checkbox-card">
+            <input type="checkbox" name="gen-types" value="deep-dive" checked>
+            <span class="checkbox-label">Deep Dive</span>
+            <span class="checkbox-desc">Comprehensive analysis with technical depth</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="gen-types" value="analysis">
+            <span class="checkbox-label">Analysis</span>
+            <span class="checkbox-desc">News + context + opinion on recent events</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="gen-types" value="reflection">
+            <span class="checkbox-label">Reflection</span>
+            <span class="checkbox-desc">Personal take, observations, philosophical</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="gen-types" value="tutorial">
+            <span class="checkbox-label">Tutorial</span>
+            <span class="checkbox-desc">Step-by-step guide, how-to, reproducible</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Tone</label>
+        <select id="gen-tone">
+          <option value="technical">Technical</option>
+          <option value="accessible" selected>Accessible</option>
+          <option value="balanced">Balanced</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Length</label>
+        <select id="gen-length">
+          <option value="short">Short (~400 words)</option>
+          <option value="medium" selected>Medium (~800 words)</option>
+          <option value="long">Long (~1500 words)</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label class="checkbox-simple">
+          <input type="checkbox" id="gen-research" checked>
+          <span>Research first (search the web for context)</span>
+        </label>
+      </div>
+
+      <div class="generate-actions">
+        <button class="btn btn-primary" id="gen-btn" onclick="generatePost()">
+          Generate Post
+        </button>
+        <button class="btn btn-secondary" onclick="clearGenerate()">Clear</button>
+      </div>
+
+      <div class="gen-status" id="gen-status" style="display: none;"></div>
+    </div>
+
+    <div class="generate-preview">
+      <div class="pane-header">
+        <span>Generated Output</span>
+        <button onclick="useGenerated()">Use in Editor</button>
+      </div>
+      <div class="gen-output" id="gen-output">
+        <p style="color: var(--text-dim); padding: 20px;">Generated content will appear here. Review it, then click "Use in Editor" to edit before posting.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PREVIEW PANEL -->
+<div class="panel" id="panel-preview">
+  <div class="preview-content" id="preview-full" style="max-width: 720px; margin: 0 auto;">Start typing to see full preview...</div>
+</div>
+
+<!-- METADATA PANEL -->
+<div class="panel" id="panel-metadata">
+  <div class="meta-grid">
+    <div class="field full">
+      <label>Title</label>
+      <input type="text" id="meta-title" placeholder="Post title...">
+    </div>
+    <div class="field full">
+      <label>Description (for SEO + social)</label>
+      <input type="text" id="meta-description" placeholder="One sentence summary...">
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="meta-category">
+        <option value="reflections">Reflections</option>
+        <option value="tutorials">Tutorials</option>
+        <option value="news">News</option>
+        <option value="guides">Guides</option>
+        <option value="deep-dives">Deep Dives</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="meta-date">
+    </div>
+    <div class="field full">
+      <label>Tags (comma separated)</label>
+      <input type="text" id="meta-tags" placeholder="openclaw, skills, ai, agents">
+    </div>
+  </div>
+  <div class="meta-stats">
+    <div class="stat"><div class="value" id="stat-words">0</div><div class="label">Words</div></div>
+    <div class="stat"><div class="value" id="stat-chars">0</div><div class="label">Characters</div></div>
+    <div class="stat"><div class="value" id="stat-reading">0</div><div class="label">Min Read</div></div>
+    <div class="stat"><div class="value" id="stat-headings">0</div><div class="label">Headings</div></div>
+  </div>
+</div>
+
+<!-- TEMPLATES PANEL -->
+<div class="panel" id="panel-templates">
+  <div class="template-grid">
+    <div class="template-card" onclick="applyTemplate('tutorial')">
+      <div class="template-icon">📚</div>
+      <h3>Tutorial</h3>
+      <p>Step-by-step guide with prerequisites, numbered steps, code examples, and troubleshooting section.</p>
+    </div>
+    <div class="template-card" onclick="applyTemplate('reflection')">
+      <div class="template-icon">💭</div>
+      <h3>Reflection</h3>
+      <p>Honest first-person post about what I learned, what I got wrong, and what I'd do differently.</p>
+    </div>
+    <div class="template-card" onclick="applyTemplate('news')">
+      <div class="template-icon">📰</div>
+      <h3>News</h3>
+      <p>Weekly AI news digest with brief summaries, key links, and one thing worth paying attention to.</p>
+    </div>
+    <div class="template-card" onclick="applyTemplate('guide')">
+      <div class="template-icon">🛠️</div>
+      <h3>Guide</h3>
+      <p>Comprehensive reference on a topic. Structured with table of contents, sections, and examples.</p>
+    </div>
+    <div class="template-card" onclick="applyTemplate('deep-dive')">
+      <div class="template-icon">🔬</div>
+      <h3>Deep Dive</h3>
+      <p>Technical exploration of a single topic in depth. Assumes intermediate knowledge. Code-heavy.</p>
+    </div>
+    <div class="template-card" onclick="applyTemplate('mistakes')">
+      <div class="template-icon">🔧</div>
+      <h3>Mistakes I Made</h3>
+      <p>Document a real mistake, what caused it, how to avoid it, and what I learned. Anti-patterns as content.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLISH PANEL -->
+<div class="panel" id="panel-publish">
+  <div class="publish-layout">
+    <div class="publish-summary">
+      <h2>Publish</h2>
+      <div class="summary-row"><span class="key">Title</span><span class="value" id="summary-title">—</span></div>
+      <div class="summary-row"><span class="key">Date</span><span class="value" id="summary-date">—</span></div>
+      <div class="summary-row"><span class="key">Category</span><span class="value" id="summary-category">—</span></div>
+      <div class="summary-row"><span class="key">Tags</span><span class="value" id="summary-tags">—</span></div>
+      <div class="summary-row"><span class="key">Reading Time</span><span class="value" id="summary-reading">—</span></div>
+      <div class="summary-row"><span class="key">Word Count</span><span class="value" id="summary-words">—</span></div>
+      <div class="summary-row"><span class="key">Status</span><span class="value" id="summary-status">—</span></div>
+      <div class="publish-actions">
+        <button class="btn btn-success" id="btn-publish" onclick="publishPost()">Publish to GitHub Pages</button>
+        <button class="btn btn-secondary" onclick="saveDraft()">Save Draft</button>
+        <button class="btn btn-danger" id="btn-discard" onclick="discardPost()" style="display:none">Discard</button>
+      </div>
+    </div>
+    <div class="post-list-section">
+      <button class="new-post-btn" onclick="newPost()">+ New Post</button>
+      <input type="text" class="search-box" id="post-search" placeholder="Search posts..." oninput="filterPosts()">
+      <div id="post-list-items"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// State
+let currentFilename = null;
+let isDirty = false;
+let allPosts = [];
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'preview') {
+      document.getElementById('preview-full').innerHTML = renderMarkdown(document.getElementById('editor').value);
+    }
+    if (tab.dataset.tab === 'publish') {
+      checkGitStatus();
+    }
+  });
+});
+
+// Markdown renderer
+function renderMarkdown(text) {
+  if (!text) return '<p style="color:#888">Start typing to see preview...</p>';
+  text = text.replace(/^---[\s\S]*?---\n/, '');
+  text = text.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  text = text.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  text = text.replace(/^### (.+)$/gm, '<h3>$3</h3>');
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+  text = text.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+  text = text.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+  text = text.replace(/^---$/gm, '<hr>');
+  text = text.replace(/^- (.+)$/gm, '<li>$1</li>');
+  text = text.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+  text = text.replace(/\|(.+)\|/g, (m) => {
+    const cells = m.split('|').filter(c => c.trim());
+    if (cells.some(c => /-+/.test(c))) return '';
+    const isHeader = !m.includes('<ul>');
+    const tag = isHeader ? 'th' : 'td';
+    return '<tr>' + cells.map(c => `<${tag}>${c.trim()}</${tag}>`).join('') + '</tr>';
+  });
+  text = text.replace(/(<tr>.*<\/tr>\n?)+/g, '<table>$&</table>');
+  text = text.replace(/\n\n/g, '</p><p>');
+  text = '<p>' + text + '</p>';
+  text = text.replace(/<p><(h[123]|blockquote|ul|pre|hr|table)/g, '<$1');
+  text = text.replace(/<\/(h[123]|blockquote|ul|pre|hr|table)><\/p>/g, '</$1>');
+  return text;
+}
+
+// Editor
+const editor = document.getElementById('editor');
+const preview = document.getElementById('preview');
+
+editor.addEventListener('input', () => {
+  preview.innerHTML = renderMarkdown(editor.value);
+  isDirty = true;
+  updateStats();
+  updatePublishSummary();
+  updateDiscardButton();
+});
+
+function updateStats() {
+  const text = editor.value.replace(/^---[\s\S]*?---\n/, '');
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  const chars = text.length;
+  const readTime = Math.max(1, Math.round(words / 200));
+  const headings = (text.match(/^#{1,3} /gm) || []).length;
+  document.getElementById('stat-words').textContent = words;
+  document.getElementById('stat-chars').textContent = chars;
+  document.getElementById('stat-reading').textContent = readTime;
+  document.getElementById('stat-headings').textContent = headings;
+  return { words, chars, readTime, headings };
+}
+
+// Metadata sync
+function syncMetaFromEditor() {
+  const content = editor.value;
+  const fmMatch = content.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!fmMatch) { showToast('No front matter found', 'warning'); return; }
+  const lines = fmMatch[1].split('\n');
+  const meta = {};
+  for (const line of lines) {
+    const idx = line.indexOf(':');
+    if (idx > 0) {
+      const k = line.slice(0, idx).trim();
+      const v = line.slice(idx+1).trim();
+      meta[k] = v;
+    }
+  }
+  if (meta.title) document.getElementById('meta-title').value = meta.title;
+  if (meta.description) document.getElementById('meta-description').value = meta.description;
+  if (meta.categories) {
+    const cat = meta.categories.replace(/[\[\]]/g, '');
+    document.getElementById('meta-category').value = cat || 'reflections';
+  }
+  if (meta.date) document.getElementById('meta-date').value = meta.date.slice(0,10);
+  if (meta.tags) {
+    const tags = meta.tags.replace(/[\[\]]/g, '').replace(/"/g, '');
+    document.getElementById('meta-tags').value = tags;
+  }
+  showToast('Metadata synced from editor');
+}
+
+function syncEditorFromMeta() {
+  let content = editor.value;
+  const title = document.getElementById('meta-title').value;
+  const description = document.getElementById('meta-description').value;
+  const category = document.getElementById('meta-category').value;
+  const date = document.getElementById('meta-date').value;
+  const tags = document.getElementById('meta-tags').value;
+
+  const tagItems = tags.split(',').map(t => `"${t.trim()}"`).filter(t => t !== '""').join(', ');
+  const tagStr = tagItems ? `[${tagItems}]` : '[]';
+
+  const newFm = `---
+title: ${title}
+date: ${date}
+layout: post
+description: ${description}
+categories: [${category}]
+tags: ${tagStr}
+---
+
+`;
+  const bodyMatch = content.match(/^---\n[\s\S]*?\n---\n([\s\S]*)$/);
+  const body = bodyMatch ? bodyMatch[1] : content;
+  content = newFm + body;
+  editor.value = content;
+  preview.innerHTML = renderMarkdown(content);
+  isDirty = true;
+  updateStats();
+  updatePublishSummary();
+}
+
+['meta-title', 'meta-description', 'meta-category', 'meta-date', 'meta-tags'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    syncEditorFromMeta();
+    isDirty = true;
+    updateDiscardButton();
+  });
+});
+
+// Quick format buttons
+function formatBold() {
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+  const selected = editor.value.slice(start, end);
+  const wrapped = `**${selected || 'bold text'}**`;
+  editor.value = editor.value.slice(0, start) + wrapped + editor.value.slice(end);
+  editor.selectionStart = start + 2;
+  editor.selectionEnd = start + 2 + (selected.length || 9);
+  editor.focus();
+  preview.innerHTML = renderMarkdown(editor.value);
+  isDirty = true;
+}
+
+function formatCode() {
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+  const selected = editor.value.slice(start, end);
+  if (selected.includes('\n')) {
+    editor.value = editor.value.slice(0, start) + '```\n' + selected + '\n```' + editor.value.slice(end);
+  } else {
+    editor.value = editor.value.slice(0, start) + '`' + (selected || 'code') + '`' + editor.value.slice(end);
+  }
+  editor.focus();
+  preview.innerHTML = renderMarkdown(editor.value);
+  isDirty = true;
+}
+
+// Templates
+const TEMPLATES = {
+  tutorial: `---
+title: 
+date: ${ymd()}
+layout: post
+description: 
+categories: [tutorials]
+tags: []
+---
+
+# Tutorial: [Topic]
+
+**Time to read:** X min | **Difficulty:** Beginner | **Prerequisites:** None
+
+## What You'll Learn
+- 
+
+## Prerequisites
+- 
+
+## Step 1: [First Step]
+
+## Step 2: [Second Step]
+
+## Step 3: [Third Step]
+
+## Troubleshooting
+| Problem | Solution |
+|---------|----------|
+|  |  |
+
+## What's Next
+Now that you've [completed X], try [next step].
+`,
+  reflection: `---
+title: 
+date: ${ymd()}
+layout: post
+description: 
+categories: [reflections]
+tags: []
+---
+
+# [What I Thought I Knew vs What I Actually Learned]
+
+I thought I understood [topic]. Then [something happened that showed me I didn't].
+
+## What I Got Wrong
+[Specific misconception]
+
+## What Actually Happened
+[The real picture]
+
+## What I'd Do Differently
+[The right approach, now that I know]
+
+---
+
+The thing about [topic] is that [insight]. I'm still figuring out the rest.
+`,
+  news: `---
+title: AI News — ${fmtDate()}
+date: ${ymd()}
+layout: post
+description: This week's AI developments worth knowing about.
+categories: [news]
+tags: []
+---
+
+# AI News — ${fmtDate()}
+
+**X stories this week.** Here's what matters.
+
+## The Big One
+[One sentence summary]
+
+[2-3 sentences of context]
+
+## The Numbers
+- [Metric 1]
+- [Metric 2]
+
+## One Thing Worth Paying Attention To
+[Something small but potentially significant]
+
+## Links
+- [Title](url) — brief description
+`,
+  guide: `---
+title: The Complete Guide to [Topic]
+date: ${ymd()}
+layout: post
+description: Everything you need to know about [topic].
+categories: [guides]
+tags: []
+---
+
+# The Complete Guide to [Topic]
+
+**Estimated reading time:** X min.
+
+## Table of Contents
+1. [Section 1](#section-1)
+2. [Section 2](#section-2)
+
+---
+
+## Section 1: [Basics]
+
+## Section 2: [Intermediate]
+
+## Key Takeaways
+- [Point 1]
+- [Point 2]
+`,
+  'deep-dive': `---
+title: Deep Dive: [Technical Topic]
+date: ${ymd()}
+layout: post
+description: A technical exploration of [topic].
+categories: [deep-dives]
+tags: []
+---
+
+# Deep Dive: [Technical Topic]
+
+**For:** Intermediate to advanced readers
+
+---
+
+## Background
+[Why this topic matters]
+
+## The Problem
+[What specific problem does this solve?]
+
+## The Solution
+
+\`\`\`python
+# Real code example
+def example():
+    pass
+\`\`\`
+
+## Trade-offs
+| Approach | Pros | Cons |
+|----------|------|------|
+| A |  |  |
+
+## When to Use This
+[Specific scenarios]
+`,
+  mistakes: `---
+title: The Mistake I Keep Making with [Topic]
+date: ${ymd()}
+layout: post
+description: 
+categories: [reflections]
+tags: []
+---
+
+# The Mistake I Keep Making with [Topic]
+
+Here's a mistake I keep making. Every few weeks, I do [the thing], and every time I remember why [the right way] is the right way.
+
+## What I Do Wrong
+[Specific wrong behavior]
+
+## Why I Keep Doing It
+[The temptation]
+
+## What Goes Wrong
+[Specific consequences]
+
+## The Right Way
+[The correct approach]
+
+---
+
+If this sounds familiar — you're not alone.
+`
+};
+
+function ymd() { return new Date().toISOString().split('T')[0]; }
+function fmtDate() { return new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+
+function applyTemplate(name) {
+  const t = TEMPLATES[name];
+  if (!t) return;
+  editor.value = t;
+  preview.innerHTML = renderMarkdown(t);
+  isDirty = true;
+  updateStats();
+  updatePublishSummary();
+  updateDiscardButton();
+  showToast('Template applied: ' + name);
+  document.querySelector('[data-tab="write"]').click();
+  document.getElementById('meta-date').value = ymd();
+}
+
+// Publish summary
+function updatePublishSummary() {
+  const title = document.getElementById('meta-title').value || 'Untitled';
+  const date = document.getElementById('meta-date').value || ymd();
+  const category = document.getElementById('meta-category').value;
+  const tags = document.getElementById('meta-tags').value || '—';
+  const stats = updateStats();
+  document.getElementById('summary-title').textContent = title;
+  document.getElementById('summary-date').textContent = date;
+  document.getElementById('summary-category').textContent = category;
+  document.getElementById('summary-tags').textContent = tags;
+  document.getElementById('summary-reading').textContent = stats.readTime + ' min';
+  document.getElementById('summary-words').textContent = stats.words + ' words';
+  document.getElementById('summary-status').textContent = currentFilename ? 'Editing existing' : 'New post';
+}
+
+// Generate post
+let generatedContent = '';
+
+async function generatePost() {
+  const topic = document.getElementById('gen-topic').value.trim();
+  if (!topic) {
+    showToast('Please enter a topic', 'error');
+    return;
+  }
+
+  const types = Array.from(document.querySelectorAll('input[name="gen-types"]:checked')).map(c => c.value);
+  if (types.length === 0) {
+    showToast('Select at least one post type', 'error');
+    return;
+  }
+
+  const tone = document.getElementById('gen-tone').value;
+  const length = document.getElementById('gen-length').value;
+  const research = document.getElementById('gen-research').checked;
+
+  const btn = document.getElementById('gen-btn');
+  const status = document.getElementById('gen-status');
+  const output = document.getElementById('gen-output');
+
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+  status.style.display = 'block';
+  status.className = 'gen-status loading';
+  status.textContent = research ? 'Researching the web...' : 'Generating without research...';
+  output.innerHTML = '<p style="color: var(--text-dim);">Generating...</p>';
+
+  try {
+    const response = await fetch('/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic, types, tone, length, research })
+    });
+
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+
+    generatedContent = data.content;
+    output.innerHTML = renderMarkdown(generatedContent);
+    status.className = 'gen-status success';
+    status.textContent = 'Generated successfully. Review below, then click "Use in Editor" to edit before posting.';
+    showToast('Generated! Review and use when ready');
+  } catch (e) {
+    status.className = 'gen-status error';
+    status.textContent = 'Generation failed: ' + e.message;
+    output.innerHTML = '<p style="color: var(--danger);">Generation failed. Try again or adjust your settings.</p>';
+    showToast('Generation failed', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Generate Post';
+  }
+}
+
+function clearGenerate() {
+  document.getElementById('gen-topic').value = '';
+  document.querySelectorAll('input[name="gen-types"]').forEach(c => c.checked = c.value === 'deep-dive');
+  document.getElementById('gen-tone').value = 'accessible';
+  document.getElementById('gen-length').value = 'medium';
+  document.getElementById('gen-research').checked = true;
+  document.getElementById('gen-output').innerHTML = '<p style="color: var(--text-dim); padding: 20px;">Generated content will appear here. Review it, then click "Use in Editor" to edit before posting.</p>';
+  document.getElementById('gen-status').style.display = 'none';
+  generatedContent = '';
+}
+
+function useGenerated() {
+  if (!generatedContent) {
+    showToast('Nothing to use - generate a post first', 'error');
+    return;
+  }
+
+  const topic = document.getElementById('gen-topic').value.trim();
+  const types = Array.from(document.querySelectorAll('input[name="gen-types"]:checked')).map(c => c.value);
+  const category = types.includes('tutorial') ? 'tutorials' : types.includes('analysis') ? 'news' : 'reflections';
+
+  // Build front matter
+  const titleMatch = generatedContent.match(/^#\s+(.+)$/m);
+  const title = titleMatch ? titleMatch[1].trim() : topic;
+
+  const frontmatter = `---
+title: ${title}
+date: ${ymd()}
+layout: post
+description: 
+categories: [${category}]
+tags: [${types.join(', ')}]
+---
+
+`;
+
+  editor.value = frontmatter + generatedContent;
+  document.getElementById('meta-title').value = title;
+  document.getElementById('meta-category').value = category;
+  document.getElementById('meta-tags').value = types.join(', ');
+
+  preview.innerHTML = renderMarkdown(frontmatter + generatedContent);
+  updateStats();
+  updatePublishSummary();
+  isDirty = true;
+
+  document.querySelector('[data-tab="write"]').click();
+  showToast('Content loaded into editor - review and post when ready');
+}
+
+// New post
+function newPost() {
+  currentFilename = null;
+  editor.value = `---
+title: 
+date: ${ymd()}
+layout: post
+description: 
+categories: [reflections]
+tags: []
+---
+
+# `;
+  preview.innerHTML = renderMarkdown(editor.value);
+  document.getElementById('meta-title').value = '';
+  document.getElementById('meta-description').value = '';
+  document.getElementById('meta-category').value = 'reflections';
+  document.getElementById('meta-date').value = ymd();
+  document.getElementById('meta-tags').value = '';
+  isDirty = false;
+  updateStats();
+  updatePublishSummary();
+  updateDiscardButton();
+  document.querySelector('[data-tab="write"]').click();
+  // Highlight no post
+  document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
+}
+
+// Publish
+async function publishPost() {
+  // First sync metadata into editor
+  syncEditorFromMeta();
+
+  const btn = document.getElementById('btn-publish');
+  btn.disabled = true;
+  btn.classList.add('btn-loading');
+  btn.textContent = 'Publishing...';
+  document.getElementById('status').textContent = 'Publishing to GitHub...';
+
+  const content = editor.value;
+  const title = document.getElementById('meta-title').value || 'Untitled';
+  const date = document.getElementById('meta-date').value || ymd();
+  const description = document.getElementById('meta-description').value || '';
+  const category = document.getElementById('meta-category').value;
+  const tags = document.getElementById('meta-tags').value || '';
+
+  // Generate filename
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const filename = `${date}-${slug}.md`;
+
+  try {
+    const response = await fetch('/publish', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ filename, content, title, date, description, category, tags })
+    });
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+
+    if (data.already) {
+      showToast('No changes to publish', 'warning');
+    } else {
+      showToast('Published: ' + title);
+      currentFilename = filename;
+    }
+    isDirty = false;
+    checkGitStatus();
+    loadPostList();
+  } catch (e) {
+    showToast('Publish failed: ' + e.message, 'error');
+  }
+
+  btn.disabled = false;
+  btn.classList.remove('btn-loading');
+  btn.textContent = 'Publish to GitHub Pages';
+  document.getElementById('status').textContent = 'Ready';
+  updateDiscardButton();
+}
+
+function saveDraft() {
+  syncEditorFromMeta();
+  const content = editor.value;
+  const title = document.getElementById('meta-title').value || 'Untitled';
+  const date = document.getElementById('meta-date').value || ymd();
+  const description = document.getElementById('meta-description').value || '';
+  const category = document.getElementById('meta-category').value;
+  const tags = document.getElementById('meta-tags').value || '';
+
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const filename = `${date}-${slug}.md`;
+
+  fetch('/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ filename, content })
+  }).then(r => r.json()).then(data => {
+    if (data.error) { showToast('Save failed: ' + data.error, 'error'); return; }
+    currentFilename = filename;
+    isDirty = false;
+    showToast('Draft saved: ' + title);
+    loadPostList();
+    updateDiscardButton();
+  }).catch(e => showToast('Save failed: ' + e.message, 'error'));
+}
+
+async function discardPost() {
+  if (!currentFilename) return;
+  if (!confirm('Delete this post from GitHub?')) return;
+  try {
+    const response = await fetch('/discard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: currentFilename })
+    });
+    const data = await response.json();
+    showToast('Post deleted');
+    newPost();
+    loadPostList();
+  } catch (e) {
+    showToast('Delete failed: ' + e.message, 'error');
+  }
+}
+
+function updateDiscardButton() {
+  const btn = document.getElementById('btn-discard');
+  btn.style.display = currentFilename ? 'inline-block' : 'none';
+}
+
+// Post list
+async function loadPostList() {
+  const container = document.getElementById('post-list-items');
+  try {
+    const response = await fetch('/posts');
+    allPosts = await response.json();
+    renderPostList(allPosts);
+  } catch (e) {
+    container.innerHTML = '<p style="color:#888">Could not load posts</p>';
+  }
+}
+
+function renderPostList(posts) {
+  const container = document.getElementById('post-list-items');
+  const search = document.getElementById('post-search').value.toLowerCase();
+  const filtered = posts.filter(p => 
+    p.title.toLowerCase().includes(search) || 
+    p.filename.toLowerCase().includes(search)
+  );
+  container.innerHTML = filtered.map(p => {
+    const isActive = p.filename === currentFilename ? 'active' : '';
+    return `<div class="post-item ${isActive}" onclick="loadPost('${p.filename}')">
+      <span class="title">${p.title}</span>
+      <span>
+        <span class="date">${p.date}</span>
+        <button class="delete-btn" onclick="event.stopPropagation(); deletePost('${p.filename}')">Delete</button>
+      </span>
+    </div>`;
+  }).join('');
+}
+
+function filterPosts() {
+  renderPostList(allPosts);
+}
+
+async function loadPost(filename) {
+  try {
+    const response = await fetch('/post?filename=' + encodeURIComponent(filename));
+    const data = await response.json();
+    currentFilename = filename;
+
+    // Set metadata fields
+    document.getElementById('meta-title').value = data.title || '';
+    document.getElementById('meta-description').value = data.description || '';
+    document.getElementById('meta-category').value = data.categories || 'reflections';
+    document.getElementById('meta-date').value = data.date ? data.date.slice(0,10) : '';
+    document.getElementById('meta-tags').value = data.tags || '';
+
+    // Set editor content
+    editor.value = data.content;
+    preview.innerHTML = renderMarkdown(data.content);
+    isDirty = false;
+    updateStats();
+    updatePublishSummary();
+    updateDiscardButton();
+
+    // Highlight active post
+    document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.post-item').forEach(p => {
+      if (p.onclick.toString().includes(filename)) p.classList.add('active');
+    });
+
+    showToast('Loaded: ' + data.title);
+    document.querySelector('[data-tab="write"]').click();
+  } catch (e) {
+    showToast('Could not load post', 'error');
+  }
+}
+
+async function deletePost(filename) {
+  if (!confirm('Delete ' + filename + '?')) return;
+  try {
+    const response = await fetch('/discard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename })
+    });
+    showToast('Deleted: ' + filename);
+    if (currentFilename === filename) newPost();
+    loadPostList();
+  } catch (e) {
+    showToast('Delete failed', 'error');
+  }
+}
+
+// Git status
+async function checkGitStatus() {
+  try {
+    const response = await fetch('/git-status');
+    const data = await response.json();
+    const el = document.getElementById('git-status');
+    if (data.output && data.output.trim()) {
+      el.textContent = 'Changes pending';
+      el.className = 'git-status dirty';
+    } else {
+      el.textContent = 'Clean';
+      el.className = 'git-status clean';
+    }
+  } catch (e) {
+    document.getElementById('git-status').textContent = 'Error';
+  }
+}
+
+// Toast
+function showToast(msg, type='success') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast ' + type + ' show';
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// Init
+document.getElementById('meta-date').value = ymd();
+loadPostList();
+updateStats();
+updatePublishSummary();
+checkGitStatus();
+setInterval(checkGitStatus, 30000);
+</script>
+</body>
+</html>

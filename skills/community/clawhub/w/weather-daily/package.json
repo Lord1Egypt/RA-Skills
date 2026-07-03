@@ -1,6 +1,6 @@
 {
   "name": "weather-daily",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Daily weather briefing for any city — morning conditions, what to wear, umbrella forecast, evening preview, extreme weather alerts. No API key. Works worldwide.",
   "keywords": [
     "天气",

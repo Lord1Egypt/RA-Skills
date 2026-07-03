@@ -1,0 +1,19 @@
+[
+  {
+    "type": "video",
+    "title": {
+      "type": "plain_text",
+      "text": "Demo clip",
+      "emoji": true
+    },
+    "title_url": "https://example.com/demo",
+    "description": {
+      "type": "plain_text",
+      "text": "Short product walkthrough.",
+      "emoji": true
+    },
+    "video_url": "https://example.com/demo.mp4",
+    "alt_text": "Demo clip",
+    "thumbnail_url": "https://example.com/demo-thumbnail.png"
+  }
+]

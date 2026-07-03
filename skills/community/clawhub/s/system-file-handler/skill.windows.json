@@ -1,0 +1,29 @@
+{
+  "name": "go-fs-mcp-skill",
+  "displayName": "文件系统 MCP 技能",
+  "version": "1.0.0",
+  "category": "filesystem",
+  "description": "通过 MCP stdio 协议调用外部文件系统服务。",
+  "author": "go-fs-mcp",
+  "trigger": [
+    "列出目录",
+    "读取文件",
+    "写入文件",
+    "创建文件夹",
+    "删除文件",
+    "移动文件"
+  ],
+  "parameters": {
+    "toolName": { "type": "string", "required": true },
+    "params": { "type": "object", "required": true }
+  },
+  "config": {
+    "mcp_command": "C:\\path\\to\\go-fs-mcp-server.exe",
+    "mcp_args": [],
+    "timeout": 10
+  },
+  "openclaw": {
+    "entry": "go-fs-mcp-skill.exe",
+    "runtime": "binary"
+  }
+}

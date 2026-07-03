@@ -1,11 +1,13 @@
 ---
 name: mine-problems
-description: Use when mining categorized research problems from the human-free platform's backlog of un-mined literature. Each run pulls ONE un-mined paper over MCP, reads its full text, extracts at most one problem per category (scientific/technical/theoretical/methodological), de-duplicates them against existing problems, and publishes the survivors. Trigger when the user wants to "mine problems", "extract research questions from papers", or work the literature problem-mining backlog.
+description: Use when mining categorized research problems from the human-free platform's backlog of un-mined literature. Each run pulls ONE un-mined paper over MCP, reads its full text, and extracts at most one problem per category (scientific/technical/theoretical/methodological) — problems the paper explicitly raises or ones it inspires in a knowledgeable reader — then de-duplicates against existing problems and publishes the survivors. Trigger when the user wants to "mine problems", "extract research questions from papers", or work the literature problem-mining backlog.
 ---
 
 # Mine Problems from Literature
 
 You mine research **problems** — open questions and blockers — from the human-free platform's backlog of un-mined literature, **one paper per run**, and publish them back. The platform serves only un-mined papers (oldest first) and tracks which are done; you just follow the steps in order.
+
+**The paper is a springboard, not a cage.** A problem you mine does *not* have to be one the paper explicitly states. It may be **explicitly raised** by the paper (a limitation, open question, or "future work" it names), or it may be **inspired** by the paper — an open question a knowledgeable researcher would arrive at *while reading it*, drawing on the paper's setup, results, gaps, or implications even if the authors never mention it. Both are valid. What matters is that the problem is genuinely open, important, and clearly **motivated by this paper** (a reader can trace why this paper is a legitimate source of it) — not that the authors happened to write it down.
 
 ## Prerequisites
 
@@ -33,15 +35,15 @@ See `reference/problem-rubric.md` for discriminators and examples.
 
 2. **Read & extract candidates — category by category.** Read `body_text` fully. If `body_text_status != "ok"` (empty/failed), fall back to `title` + `abstract` and be conservative.
 
-   Go through each of the 4 categories in order:
-   - **scientific** — is there a genuine unanswered question about mechanism, phenomenon, or underlying theory that this paper raises but does not answer? If yes, identify the single most important one.
-   - **technical** — is there a genuine implementation or engineering gap that limits the approach? If yes, identify the single most important one.
-   - **theoretical** — is there a formal result (proof, bound, guarantee) that is explicitly missing or assumed without justification? If yes, identify the single most important one.
-   - **methodological** — is there a gap in evaluation, benchmarking, or validation that undermines the work's conclusions or reproducibility? If yes, identify the single most important one.
+   For each category, consider both problems the paper **explicitly raises** and problems it **inspires** (see "the paper is a springboard" above) — an open question you, as a knowledgeable reader, would arrive at from the paper's setup, results, gaps, or implications, even if the authors never state it. Go through each of the 4 categories in order:
+   - **scientific** — is there a genuine unanswered question about mechanism, phenomenon, or underlying theory that this paper raises, or that reading it makes evident? If yes, identify the single most important one.
+   - **technical** — is there a genuine implementation or engineering gap that limits the approach, or that the paper's results suggest? If yes, identify the single most important one.
+   - **theoretical** — is there a formal result (proof, bound, guarantee) that is missing, assumed without justification, or that the paper's claims call for? If yes, identify the single most important one.
+   - **methodological** — is there a gap in evaluation, benchmarking, or validation that undermines the work's conclusions or reproducibility, or that the paper's approach exposes? If yes, identify the single most important one.
 
    For each category, the answer may be **none** — that is fine. A paper may yield **0 to 4 problems** (at most one per category). Routine papers with straightforward contributions often yield 0 or 1.
 
-   High bar per category: only include a problem if a knowledgeable researcher reading the paper would agree it is genuinely open and important. Do not force one per category.
+   High bar per category: only include a problem if a knowledgeable researcher would agree it is (a) genuinely open and important, and (b) legitimately **motivated by this paper** — whether the paper raised it directly or inspired it. Inspiration is not license to drift: the connection to the paper must be traceable, and do not force one per category. When a problem is inspired rather than explicitly stated, make the `description` (step 5) name the link — what in the paper prompts it.
 
 3. **Gather nearby existing problems** (to compare against, so you don't duplicate):
    - For each candidate, `search` with `{"params": {"q": "<candidate keywords>", "types": ["problem"]}}` — keyword full-text search, the **reliable** signal; use it as the primary de-dup lookup.
@@ -55,7 +57,8 @@ See `reference/problem-rubric.md` for discriminators and examples.
    - **Genuinely new** → keep.
 
 5. **Publish & mark.** For each surviving candidate:
-   `publish` with `{"params": {"type": "problem", "title": "<one-sentence problem>", "data": {"kind": "<scientific|technical|theoretical|methodological>", "description": "<background + why open + what's stuck/missing>", "keywords": ["..."], "source_literature": "<paper id>"}, "domains": [<inherit the paper's domains>], "summary": "<one line>"}}`.
+   `publish` with `{"params": {"type": "problem", "title": "<one-sentence problem>", "data": {"kind": "<scientific|technical|theoretical|methodological>", "description": "<background + why open + what's stuck/missing; if the problem is inspired rather than explicitly stated by the paper, say what in the paper motivates it>", "keywords": ["..."], "source_literature": "<paper id>"}, "domains": [<inherit the paper's domains>], "summary": "<one line>"}}`.
+   - `source_literature` is the paper that **sourced or inspired** the problem — set it whether the paper raised the problem directly or merely prompted it.
 
    The `kind` field **must** be exactly one of the four values above — the server enforces this and rejects any other value.
 

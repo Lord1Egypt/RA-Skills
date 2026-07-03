@@ -1,7 +1,5 @@
 ---
 name: linkfox-amazon-store-customer-feedback
-version: 0.0.1
-category: product-sourcing
 description: 亚马逊店铺买家反馈洞察（与 linkfox-amazon-store-auth 等同系列），经 /spApi/developerProxy 调用 SP-API Customer Feedback v2024-06-01：getItemReviewTopics、getItemBrowseNode、getBrowseNodeReviewTopics、getItemReviewTrends、getBrowseNodeReviewTrends、getBrowseNodeReturnTopics、getBrowseNodeReturnTrends。当用户提到评论主题、评价趋势、退货主题、browse node 反馈、Customer Feedback API、MENTIONS、STAR_RATING_IMPACT、ASIN 评论洞察、类目节点评价 时触发。
 ---
 
@@ -10,6 +8,20 @@ description: 亚马逊店铺买家反馈洞察（与 linkfox-amazon-store-auth �
 本 skill 与 **`linkfox-amazon-store-auth`** 等同属 **Amazon Store** 系列：先 **`POST /spApi/storeTokens`**，再 **`POST /spApi/developerProxy`** 转发 **GET**。
 
 > 说明：接口属于 **Customer Feedback（买家评论/退货洞察）**，不是 Orders 订单 API。订单见 **`linkfox-amazon-store-orders`**。
+
+## 调用方式
+
+- **API 端点**：`POST /spApi/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-amazon-store-customer-feedback-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## 官方参考索引
 
@@ -81,3 +93,4 @@ python scripts/get_browse_node_review_topics.py '{"sellerId":"A1...","region":"N
 
 ---
 *更多跨境 skill：[LinkFox Skills](https://skill.linkfox.com/)*
+

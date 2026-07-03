@@ -16,6 +16,12 @@
 - 可选生成识别校验图，方便人工检查棋子识别是否准确。
 - 支持在不重新拍照的情况下追加“AI 推荐”和“人工录入”的无提子落子历史，并在结果图上连续编号。
 
+## 推荐部署方式：飞书图片机器人
+
+推荐优先使用[飞书图片机器人部署方式](./integrations/feishu/README.md)。它通过飞书长连接接收棋盘照片，运行 KataGo 的机器主动连出到飞书，不需要公网 webhook 服务或隧道；日常使用时直接在飞书里发图即可，比让 LLM 反复处理图片更快。
+
+已可直接体验的围棋高参飞书机器人（无须自行部署）：[https://applink.feishu.cn/T97DbgVIGt1W](https://applink.feishu.cn/T97DbgVIGt1W)
+
 ## 环境要求
 
 - Python 3.10+
@@ -77,45 +83,6 @@ python3 scripts/next_move.py /path/to/board.jpg \
 | ![透视矫正后的棋盘识别校验图](./docs/examples/recognition-warped-overlay.jpg) | ![干净棋盘上的下一手推荐结果](./docs/examples/recommendation-clean-board.jpg) |
 
 上面的示例来自 `./docs/examples/input-board.jpg`。在该局面中以白棋行棋、`--level all --visits 80` 运行时，示例结果推荐白棋走 `L5`。实际推荐会随模型、访问数和配置略有变化。
-
-## HTTP 交互模式（可选，比 LLM 更快）
-
-这是一种**新增**的使用方式，原有的 LLM / 命令行用法完全不受影响，依然可用。当你需要快速反复分析多张照片、不想每次都走慢速的 LLM 往返时，可以用一个网页加公网隧道：在页面上选择**轮到谁下（黑/白）**和**落子水平（初级/中级/高级）**，上传棋盘照片，直接通过 HTTP 拿到下一手推荐结果图。页面背后调用的还是同一个 `scripts/next_move.py`。
-
-整体分两部分：
-
-1. **常驻 HTTP 服务**（`scripts/launch_skill_server.py`）。启动一次即可，资源占用很小，一直开着。它负责网页 + `/api/analyze`，并保持一个 Cloudflare quick tunnel，把当前公网隧道地址写到状态文件 `~/.go-next-move/tunnel_url`。隧道重连换了域名时，文件会自动更新。
-2. **一次性取链接命令**（`scripts/mint_link.py`）。当用户需要链接时由智能体运行：用共享密钥现签一个 token（默认 5 小时），读当前隧道地址，打印 `https://<隧道域名>/?token=<token>`。token 每次都是新的，隧道地址用当前的。
-
-在装有 KataGo 的宿主机上启动常驻服务（只需一次）：
-
-```bash
-python3 scripts/launch_skill_server.py
-```
-
-需要时取一条新链接（很快，不启动任何东西）：
-
-```bash
-python3 scripts/mint_link.py
-```
-
-运维约定：
-
-- token 过期（默认 5 小时）后，重新运行 `mint_link.py` 取新链接发出去即可。
-- 隧道地址在服务 / cloudflared 重启时可能变化；`mint_link.py` 每次都读当前地址，所以现签的链接总是正确的。
-- 想在过期前吊销所有已发链接：`mint_link.py --rotate-secret`（轮换共享密钥）。
-- token 是无状态 HMAC（见 `scripts/skill_token.py`），服务端无需保存每个 token 状态即可校验。密钥默认在 `~/.go-next-move/secret`，可用 `GO_NEXT_MOVE_SECRET` 或 `--secret-path` 覆盖。
-- 默认隧道需要 PATH 中有 `cloudflared`（`brew install cloudflared`）。服务端会调用 `next_move.py`，所以宿主机仍需安装 KataGo。局域网/测试可用 `--no-tunnel`。
-
-### OpenClaw 沙箱部署
-
-当智能体跑在 OpenClaw 的 Docker 沙箱里时，KataGo 和 `cloudflared` 都在宿主机上，沙箱里没有。按现有 `~/.openclaw/bin/go-next-move-host` 同样的宿主桥接方式部署：
-
-1. 在宿主机上先把常驻服务跑起来（只需一次）。可手动 / 用 launchd 跑 `python3 scripts/launch_skill_server.py`，或把 `scripts/go-next-move-serve-host.example` 安装到 `~/.openclaw/bin/go-next-move-serve`（它会把服务后台化，保证 elevated 命令返回后服务继续活着）。
-2. 把 `scripts/go-next-move-link-host.example` 安装到 `~/.openclaw/bin/go-next-move-link`，并把它的绝对路径加进 `~/.openclaw/exec-approvals.json` 里该智能体的白名单（和 `go-next-move-host` 一样）。
-3. 用户需要链接时，智能体用 `elevated: true` 运行 `go-next-move-link`，它会打印一条新的 `https://<隧道域名>/?token=<token>` 交给用户。需要吊销旧链接时加 `--rotate-secret`。
-
-两个宿主脚本都写死了宿主机的 Python/KataGo/模型绝对路径，因为 elevated 的 `system.run` 会剥离环境里的 `PATH`/`PYTHON*`。
 
 ## 坐标格式
 

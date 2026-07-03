@@ -112,6 +112,11 @@ _MONEY_EXCEPTIONS = {
     "total_sections",
     "total_periods_per_cycle",
     "total_minutes_delivered",
+    # crmadv campaign engagement counts + drip delay (INTEGER is correct). Pre-existing
+    # crmadv_campaign_template columns; surfaced 2026-06-15 when Wave 1B F2's new tables
+    # shifted static-parser coverage of the growth module (main had under-parsed them).
+    "total_sent", "total_opened", "total_clicked", "total_bounced",
+    "total_unsubscribed", "total_steps", "delay_hours",
     # Boolean/flag columns that happen to match patterns
     "tax_deductible",
     "allows_extra_credit",

@@ -18,7 +18,7 @@ Because QGA runs as SYSTEM, run the uninstall in a **scheduled task as the domai
 
 Required parameters that prevent the known hangs/failures:
 - `-LocalAdministratorPassword <SecureString>` — else it prompts and blocks under NonInteractive.
-- `-RemoveDnsDelegation:$false` — else it stalls on external parent DNS (Cloudflare) it can't reach.
+- `-RemoveDnsDelegation:$false` — else it stalls on external parent DNS (Cloudflare etc.) it can't reach.
 - `-SkipPreChecks` — skips the `Test-` phase that has hung in the field.
 - `-Force -NoRebootOnCompletion` — no reboot prompt; you control the reboot after verifying.
 

@@ -18,45 +18,45 @@ Core Parameters:
 
 Usage:
   # Basic: Video content understanding
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video \\
       --prompt "Analyze the main content, scenes and key information of this video"
 
   # Audio mode (audio is auto-extracted when uploading video)
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode audio \\
       --prompt "Perform speech recognition on this audio and output the complete text"
 
   # Comparative analysis (two audio/video files)
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video1.mp4 \\
       --extend-url https://example.com/video2.mp4 \\
       --mode audio \\
       --prompt "Compare these two audio clips and analyze the differences in performance level"
 
   # COS input (recommended, using --cos-input-key)
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --cos-input-key /input/video.mp4 \\
       --mode video \\
       --prompt "Summarize the video content"
 
   # Async mode (submit task only, don't wait)
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "Analyze video content" --no-wait
 
   # Query existing task result
-  python scripts/mps_av_understand.py --task-id 1234567890-WorkflowTask-xxxxx
+  python3 scripts/mps_av_understand.py --task-id 1234567890-WorkflowTask-xxxxx
 
   # JSON format output
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "Analyze video content" --json
 
   # dry-run mode (preview parameters, don't call API)
-  python scripts/mps_av_understand.py \\
+  python3 scripts/mps_av_understand.py \\
       --url https://example.com/video.mp4 \\
       --mode video --prompt "Analyze video content" --dry-run
 """
@@ -90,7 +90,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Tencent Cloud SDK not installed, please run: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Tencent Cloud SDK not installed, please run: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -173,6 +173,9 @@ def create_understand_task(
     prompt: str = "",
     extend_urls: list = None,
     region: str = DEFAULT_REGION,
+    output_bucket: str = None,
+    output_region: str = None,
+    output_dir: str = "/output/av_understand/",
 ) -> str:
     """
     Submit an audio/video understanding task, returns TaskId.
@@ -205,6 +208,26 @@ def create_understand_task(
         sys.exit(1)
 
     req.InputInfo = input_info
+
+    # ── OutputStorage ──
+    # SDK contract: required when InputInfo.Type == "URL"; optional when Type == "COS" (defaults to input location)
+    out_bucket = output_bucket or os.environ.get("TENCENTCLOUD_COS_BUCKET", "")
+    out_region = output_region or os.environ.get("TENCENTCLOUD_COS_REGION", region)
+    if input_info.Type == "URL" and not out_bucket:
+        print(
+            "Error: Output bucket is required when using URL input; please specify --output-bucket or set TENCENTCLOUD_COS_BUCKET env var",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    if out_bucket:
+        output_storage = models.TaskOutputStorage()
+        output_storage.Type = "COS"
+        cos_output = models.CosOutputStorage()
+        cos_output.Bucket = out_bucket
+        cos_output.Region = out_region
+        output_storage.CosOutputStorage = cos_output
+        req.OutputStorage = output_storage
+        req.OutputDir = output_dir if output_dir.startswith("/") else f"/{output_dir}"
 
     # ── AiAnalysisTask ──
     ai_task = models.AiAnalysisTaskInput()
@@ -364,7 +387,11 @@ def main():
     # Output control
     parser.add_argument("--no-wait",    action="store_true", help="Async mode: submit task only, don't wait for result")
     parser.add_argument("--json",       action="store_true", dest="json_output", help="JSON format output")
-    parser.add_argument("--output-dir", help="Save result JSON to specified directory")
+    parser.add_argument("--output-dir", help="Save result JSON to specified local directory")
+    parser.add_argument("--output-bucket", help="API output COS Bucket (defaults to TENCENTCLOUD_COS_BUCKET)")
+    parser.add_argument("--output-region", help="API output COS Region (defaults to TENCENTCLOUD_COS_REGION)")
+    parser.add_argument("--output-cos-dir", default="/output/av_understand/",
+                        help="API output COS directory (default: /output/av_understand/)")
     parser.add_argument("--dry-run",    action="store_true", help="Only print parameter preview, don't call API")
 
     parser.add_argument("-v", "--verbose", action="store_true", help="Show detailed log information")
@@ -486,6 +513,9 @@ def main():
             prompt=args.prompt,
             extend_urls=args.extend_urls,
             region=args.region,
+            output_bucket=args.output_bucket,
+            output_region=args.output_region,
+            output_dir=args.output_cos_dir,
         )
         print("✅ Audio/video understanding task submitted successfully!")
         print(f"   TaskId: {task_id}")

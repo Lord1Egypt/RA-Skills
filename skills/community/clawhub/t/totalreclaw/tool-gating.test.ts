@@ -1,15 +1,23 @@
 /**
- * Tests for the 3.2.0 before_tool_call gating predicate.
+ * Tests for the before_tool_call gating predicate (Phase 3.3 — native gate).
+ *
+ * Context: Task 3.2 retired the 19 `totalreclaw_*` agent tools. The agent
+ * now reads memories via the bundled NATIVE `memory_search` / `memory_get`
+ * tools (MemoryPluginCapability registered in index.ts). This gate now
+ * targets those natives so an unpaired agent gets an actionable pointer
+ * to `tr pair --url-pin` instead of silently seeing "no memories" from
+ * the adapter's fail-soft path.
  *
  * Asserted properties:
- *   1. Every expected memory tool is in GATED_TOOL_NAMES.
- *   2. Non-memory tools (upgrade, migrate, setup, onboarding_start) are NOT gated.
+ *   1. The native memory tools (memory_search, memory_get) ARE gated.
+ *   2. Retired totalreclaw_* tool names are NOT in the gate (no phantom gating
+ *      of tools that cannot be called — was the Task 3.3 dead-ref bug).
  *   3. state=active never blocks gated tools.
- *   4. state=fresh blocks gated tools with a non-secret pointer.
+ *   4. state=fresh blocks gated tools with a non-secret pointer that references
+ *      `tr pair --url-pin` (the CLI pair surface, since totalreclaw_pair is gone).
  *   5. state=null (resolution failure) blocks gated tools (safer default).
  *   6. Unknown tool names pass through unblocked.
- *   7. The blockReason is non-secret and references the CLI wizard path.
- *   8. GATED_TOOL_NAMES is an array that can be iterated.
+ *   7. GATED_TOOL_NAMES is a frozen iterable array.
  *
  * Run with: npx tsx tool-gating.test.ts
  */
@@ -39,22 +47,11 @@ const ACTIVE: OnboardingState = { onboardingState: 'active', createdBy: 'generat
 const FRESH: OnboardingState = { onboardingState: 'fresh', version: '3.2.0' };
 
 // ---------------------------------------------------------------------------
-// 1. Expected gated tools
+// 1. Expected gated tools — the NATIVE memory tools only
 // ---------------------------------------------------------------------------
 const EXPECTED_GATED = [
-  'totalreclaw_remember',
-  'totalreclaw_recall',
-  'totalreclaw_forget',
-  'totalreclaw_export',
-  'totalreclaw_status',
-  'totalreclaw_consolidate',
-  'totalreclaw_pin',
-  'totalreclaw_unpin',
-  // 3.3.1-rc.2: retype + set_scope are gated (require onboarding state=active).
-  'totalreclaw_retype',
-  'totalreclaw_set_scope',
-  'totalreclaw_import_from',
-  'totalreclaw_import_batch',
+  'memory_search',
+  'memory_get',
 ];
 for (const t of EXPECTED_GATED) {
   assert(isGatedToolName(t), `gated list contains "${t}"`);
@@ -62,12 +59,26 @@ for (const t of EXPECTED_GATED) {
 
 // ---------------------------------------------------------------------------
 // 2. Tools that must NOT be gated
+//    - The retired totalreclaw_* agent tools (Task 3.2). They can no longer
+//      be called, so gating them is dead code — this guards the regression
+//      the Task 3.3 report flagged.
+//    - The native pair surface is intentionally NOT gated (users must be
+//      able to start onboarding before the vault is active).
 // ---------------------------------------------------------------------------
 const EXPECTED_NOT_GATED = [
-  'totalreclaw_upgrade',
-  'totalreclaw_migrate',
-  'totalreclaw_setup',
-  'totalreclaw_onboarding_start',
+  // Retired in Task 3.2 — phantom-gating these was the dead-ref bug.
+  'totalreclaw_remember',
+  'totalreclaw_recall',
+  'totalreclaw_forget',
+  'totalreclaw_export',
+  'totalreclaw_status',
+  'totalreclaw_pin',
+  'totalreclaw_unpin',
+  'totalreclaw_pair',
+  'totalreclaw_import_status',
+  // An unrelated bundled tool must always pass through.
+  'read_file',
+  'write_file',
 ];
 for (const t of EXPECTED_NOT_GATED) {
   assert(!isGatedToolName(t), `NOT gated: "${t}"`);
@@ -89,7 +100,7 @@ for (const t of EXPECTED_GATED) {
   const d = decideToolGate(t, FRESH);
   assert(d.block === true, `fresh + ${t} → blocked`);
   assert(typeof d.blockReason === 'string' && d.blockReason.length > 0, `fresh + ${t} → blockReason present`);
-  assert(d.blockReason!.includes('openclaw totalreclaw onboard'), `fresh + ${t} → blockReason references CLI`);
+  assert(d.blockReason!.includes('tr pair --url-pin'), `fresh + ${t} → blockReason references the CLI pair surface (tr pair --url-pin)`);
   // Defensive: the blockReason must NEVER leak a mnemonic (there's no mnemonic
   // to leak in this predicate, but guard against future regressions).
   assert(!d.blockReason!.match(/[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+\s+[a-z]+/),
@@ -100,9 +111,9 @@ for (const t of EXPECTED_GATED) {
 // 5. state=null (resolution failure) → blocks gated tools
 // ---------------------------------------------------------------------------
 {
-  const d = decideToolGate('totalreclaw_remember', null);
+  const d = decideToolGate('memory_search', null);
   assert(d.block === true, 'null state + gated tool → blocked (safer default)');
-  const d2 = decideToolGate('totalreclaw_remember', undefined);
+  const d2 = decideToolGate('memory_search', undefined);
   assert(d2.block === true, 'undefined state + gated tool → blocked (safer default)');
 }
 
@@ -130,7 +141,7 @@ for (const t of EXPECTED_GATED) {
   // verify length stays the same after a mutation attempt).
   const before = GATED_TOOL_NAMES.length;
   try {
-    (GATED_TOOL_NAMES as unknown as string[]).push('totalreclaw_hack');
+    (GATED_TOOL_NAMES as unknown as string[]).push('memory_hack');
   } catch {
     // expected in strict mode
   }

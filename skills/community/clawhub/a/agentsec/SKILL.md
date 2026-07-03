@@ -5,7 +5,7 @@ description: >
   installed skills against the OWASP Agentic Skills Top 10, checking skills
   before running them, gating CI/CD on skill safety, or generating audit
   reports (text, JSON, SARIF, HTML) for stakeholders.
-version: 0.3.3
+version: 0.4.0
 license: MIT
 homepage: https://agentsec.sh
 author: semiotic-ai
@@ -219,18 +219,18 @@ CLI flags always override config file values. Omit `"platform"` and `"path"` to 
 
 Every audit checks all ten risk categories:
 
-| ID    | Risk                    |
-| ----- | ----------------------- |
-| AST01 | Malicious Skills        |
-| AST02 | Supply Chain Compromise |
-| AST03 | Over-Privileged Skills  |
-| AST04 | Insecure Metadata       |
-| AST05 | Unsafe Deserialization  |
-| AST06 | Weak Isolation          |
-| AST07 | Update Drift            |
-| AST08 | Poor Scanning           |
-| AST09 | No Governance           |
-| AST10 | Cross-Platform Reuse    |
+| ID    | Risk                            |
+| ----- | ------------------------------- |
+| AST01 | Malicious Skills                |
+| AST02 | Supply Chain Compromise         |
+| AST03 | Over-Privileged Skills          |
+| AST04 | Insecure Metadata               |
+| AST05 | Untrusted External Instructions |
+| AST06 | Weak Isolation                  |
+| AST07 | Update Drift                    |
+| AST08 | Poor Scanning                   |
+| AST09 | No Governance                   |
+| AST10 | Cross-Platform Reuse            |
 
 ## AST-10 Web3 Annex (auto-detected)
 

@@ -1,5 +1,5 @@
 ## Description: <br>
-Controls a remote Chrome browser via HTTP API for permitted web automation, form filling, navigation, page inspection, screenshots, VNC-native interaction, and DOM actions. <br>
+Control a remote Chrome browser via HTTP API for web automation, form filling, navigation, page inspection, accessibility-tree snapshots, text extraction, screenshots, DOM actions, and VNC actions on sites the user owns or has permission to access. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to operate a remote Chrome session for web navigation, form filling, page inspection, and visual or VNC-based workflows on sites they own or have permission to access. <br>
+Developers and agents use this skill to drive a remote browser session for permitted web automation, navigation, form workflows, page inspection, and visual or VNC-level verification. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can navigate pages and perform browser actions that affect accounts, forms, or other web state. <br>
-Mitigation: Use it only on sites the user owns or has permission to access, review planned actions, and verify state changes after each meaningful action. <br>
-Risk: Credentials, login codes, or payment details could be exposed if entered directly into chat, commands, or logs. <br>
-Mitigation: Use the documented request-fill flow for sensitive values and avoid placing secrets in review bundles or command examples. <br>
-Risk: Stored browser sessions can preserve cookies, local storage, IndexedDB, service workers, and cache data across reconnects. <br>
-Mitigation: Delete stored sessions when they are no longer needed and limit access to authenticated users who are expected to operate the browser session. <br>
+Risk: Remote browser use sends browsing activity through rb.all-completed.com. <br>
+Mitigation: Install only if that backend is acceptable for the intended work and use the skill only on sites the user owns or has permission to access. <br>
+Risk: Stored sessions can preserve authenticated browser profiles and sensitive state. <br>
+Mitigation: Prefer ephemeral sessions for sensitive work, delete stored sessions when finished, and avoid retaining logged-in profiles unless reuse is intentional. <br>
+Risk: State-changing browser actions can succeed at the API layer without changing the page as intended. <br>
+Mitigation: Verify important actions with the cheapest suitable follow-up check, such as status, text extraction, accessibility snapshots, or a targeted screenshot. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vasyaod/skills/remote-browser) <br>
-- [Remote Browser Service API base URL](https://rb.all-completed.com) <br>
+- [ClawHub Skill Page](https://clawhub.ai/vasyaod/skills/remote-browser) <br>
+- [Remote Browser Service Base URL](https://rb.all-completed.com) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, API calls] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request and response examples] <br>
+**Output Type(s):** [text, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with HTTP API examples and curl command blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active remote browser session; authentication may use a bearer token or API key.] <br>
+**Other Properties Related to Output:** [Requires an active browser session and may use RBS_BASE_URL and AC_API_KEY configuration.] <br>
 
 ## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+1.0.9 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

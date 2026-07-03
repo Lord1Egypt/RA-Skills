@@ -1,0 +1,128 @@
+{
+  "name": "blog-delete",
+  "description": "A blog deletion skill based on the Tradebee Website Builder Open API. It is used to move one or more blogs under a specified site language to the recycle bin and supports batch deletion by blog ID list.",
+  "version": "2.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Enabled site language. It must be selected from `languages-get` after user confirmation. Automatic selection or system inference is not allowed."
+      },
+      "id_list": {
+        "type": "array",
+        "description": "Required. Blog ID list, up to 100 items. Matching blogs will be moved to the recycle bin.",
+        "items": {
+          "type": "integer",
+          "description": "Blog ID"
+        }
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Records the explicit user approval shown before moving blogs to the recycle bin.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language and exact blog IDs."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation summary that restates the language and exact blog IDs shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "id_list",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "success": {
+            "type": "array",
+            "description": "Successfully recycled items",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "Blog ID"
+                },
+                "msg": {
+                  "type": "string",
+                  "description": "Success message"
+                }
+              },
+              "required": [
+                "id",
+                "msg"
+              ]
+            }
+          },
+          "fail": {
+            "type": "array",
+            "description": "Failed deletion items",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "Blog ID"
+                },
+                "msg": {
+                  "type": "string",
+                  "description": "Failure message"
+                }
+              },
+              "required": [
+                "id",
+                "msg"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "fail"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    }
+  },
+  "notes": [
+    "This delete action moves blogs to the recycle bin instead of permanently removing them.",
+    "If a blog is deleted by mistake, it can be restored from the recycle bin."
+  ]
+}

@@ -1,0 +1,102 @@
+# ============================================================
+# AI Email Agent — 电商客服智能邮件自动回复系统配置
+# ============================================================
+
+# ---- 邮件服务器 ----
+imap:
+  server: "imap.gmail.com"
+  port: 993
+  username: "support@example.com"
+  password: "${IMAP_PASSWORD}"       # 优先读环境变量
+  mailbox: "INBOX"
+  poll_interval_seconds: 120         # 每 2 分钟拉取一次
+
+smtp:
+  server: "smtp.gmail.com"
+  port: 587
+  username: "support@example.com"
+  password: "${SMTP_PASSWORD}"
+  use_tls: true
+  sender_name: "AI 客服助手"
+
+# ---- LLM 配置 ----
+llm:
+  provider: "openai"                 # openai | deepseek | qwen | custom
+  api_key: "${LLM_API_KEY}"
+  base_url: "https://api.openai.com/v1"
+  model: "gpt-4o-mini"
+  # DeepSeek 用户替换为:
+  # base_url: "https://api.deepseek.com/v1"
+  # model: "deepseek-chat"
+  max_tokens: 800
+  temperature: 0.1                   # 分类任务用低温
+
+# ---- 规则引擎 ----
+rules:
+  blacklist_domains:                 # 已知垃圾域，直接过滤
+    - "spam-marketing.com"
+    - "fake-offers.net"
+  blacklist_keywords:                # 邮件正文含以下关键词 → 垃圾
+    - "cheap viagra"
+    - "make money fast"
+    - "SEO services"
+  legal_keywords:                    # 触发最高升级
+    - "lawyer"
+    - "attorney"
+    - "sue"
+    - "legal action"
+    - "court"
+    - "律师"
+    - "起诉"
+  social_threat_keywords:            # 社交媒体威胁
+    - "tweet"
+    - "post"
+    - "expose"
+    - "review bomb"
+    - "曝光"
+    - "差评"
+  safety_keywords:                   # 安全隐患
+    - "injured"
+    - "electric shock"
+    - "fire"
+    - "allergic"
+    - "受伤"
+    - "触电"
+    - "过敏"
+
+# ---- 升级与通知 ----
+escalation:
+  notification_channels:
+    wecom_webhook: "${WECOM_WEBHOOK_URL}"    # 企业微信机器人 Webhook
+    feishu_webhook: "${FEISHU_WEBHOOK_URL}"  # 飞书机器人 Webhook (可选)
+    sms_enabled: false
+  sla:
+    p0_response_minutes: 30           # P0 紧急：30 分钟响应
+    p1_response_minutes: 60           # P1 重要：1 小时
+    p2_response_minutes: 240          # P2 一般：4 小时
+
+# ---- 知识库 (RAG) ----
+knowledge_base:
+  enabled: true
+  db_path: "data/knowledge_base.db"   # ChromaDB / SQLite 向量库
+  embedding_model: "text-embedding-3-small"
+  # 预置 FAQ 文件路径
+  faq_files:
+    - "data/faq_zh.md"
+    - "data/faq_en.md"
+
+# ---- 数据库 ----
+database:
+  path: "data/tickets.db"
+
+# ---- 语言支持 ----
+languages:
+  p0: ["en", "zh-CN"]                 # 原生模板
+  p1: ["ja", "ko", "es"]             # LLM 翻译 + 本地化
+  p2: ["fr", "de", "ar"]             # LLM 实时翻译
+  p3: ["*"]                           # 零样本 + 英文附带
+
+# ---- 监控 ----
+monitoring:
+  dashboard_port: 8080
+  stats_retention_days: 90

@@ -5,8 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Get 笔记"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.1"
   services: ["getnote"]
+  icon: "https://static.oomol.com/logo/third-party/getnote.png"
 ---
 
 # Get 笔记

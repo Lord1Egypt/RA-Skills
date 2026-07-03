@@ -1,0 +1,43 @@
+{
+  "id": "openclaw-action-gate",
+  "name": "OpenClaw Action Gate",
+  "description": "Scope-owned Discord ingress/egress gate",
+  "enabledByDefault": false,
+  "activation": {
+    "onStartup": true,
+    "onCapabilities": [
+      "hook"
+    ]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable Action Gate hook behavior. Defaults to false."
+      },
+      "modeDefault": {
+        "type": "string",
+        "enum": [
+          "disabled",
+          "observe",
+          "enforce",
+          "public_frozen"
+        ],
+        "default": "observe",
+        "description": "Default gate mode when no protected-scope mode is set."
+      },
+      "serviceUrl": {
+        "type": "string",
+        "description": "Optional external Action Gate service URL. Embedded local mode is used when unset."
+      },
+      "failClosedProtectedPublicSends": {
+        "type": "boolean",
+        "default": true,
+        "description": "Deny protected public sends when adapter integrity is bad."
+      }
+    }
+  }
+}

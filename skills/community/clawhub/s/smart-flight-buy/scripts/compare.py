@@ -17,11 +17,7 @@ import sys
 import time
 from datetime import datetime, timedelta
 
-# HTTP请求
-try:
-    from coze_workload_identity import requests as coze_requests
-except ImportError:
-    coze_requests = None
+# HTTP请求（纯urllib实现，跨平台兼容）
 
 # ============================================================
 # 配置
@@ -323,20 +319,20 @@ def buy_or_wait(price, from_city, to_city, dep_date, all_prices=None):
 # ============================================================
 
 def http_post(url, body, timeout=25):
-    if coze_requests is not None:
-        resp = coze_requests.post(url, json=body, headers=HEADERS, timeout=timeout, verify=True)
-        return resp.json()
-    else:
-        import urllib.request
-        import urllib.error
-        import ssl
-        data = json.dumps(body, ensure_ascii=False).encode("utf-8")
-        req = urllib.request.Request(url, data=data, headers=HEADERS, method="POST")
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = True
-        ctx.verify_mode = ssl.CERT_REQUIRED
-        with urllib.request.urlopen(req, timeout=timeout, context=ctx) as resp:
+    import urllib.request
+    import urllib.error
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=HEADERS, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        err = ""
+        try: err = e.read().decode("utf-8", errors="replace")[:300]
+        except: pass
+        return {"error": f"HTTP {e.code}: {err}"}
+    except Exception as e:
+        return {"error": str(e)}
 
 
 # ============================================================

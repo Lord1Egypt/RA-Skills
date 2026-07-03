@@ -1,0 +1,22 @@
+[
+  {
+    "type": "container",
+    "block_id": "bkb_container_image",
+    "title": {
+      "type": "plain_text",
+      "text": "Image Gallery"
+    },
+    "child_blocks": [
+      {
+        "type": "image",
+        "block_id": "image-1",
+        "image_url": "https://images.pexels.com/photos/257532/pexels-photo-257532.jpeg",
+        "alt_text": "A sample landscape image",
+        "image_width": 400,
+        "image_height": 300,
+        "image_bytes": 50000,
+        "fallback": "A sample landscape image"
+      }
+    ]
+  }
+]

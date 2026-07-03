@@ -48,7 +48,7 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"需要指出的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"值得注意的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"(?<!不)可以说[，,]", "保留实质判断，删除提示语。"),
-    ("medium", "side-commentary", r"综上所述[，,]", "确认是否只是重复上一段；可直接写结论或删除。"),
+    ("medium", "side-commentary", r"综上所述[，,。：:；;]", "确认是否只是重复上一段；可直接写结论或删除。"),
     ("medium", "side-commentary", r"为了便于理解", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
@@ -68,8 +68,8 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
     ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
-    ("medium", "casual", r"这个钱花得值", "改为投入产出关系较为清晰。"),
-    ("medium", "casual", r"老板关心", "改为决策层重点关注。"),
+    ("medium", "casual", r"这个钱花得值", "改为资金使用必要性和预期效果，并保留依据边界。"),
+    ("medium", "casual", r"老板关心", "改为相关负责人关注该事项，不无依据升级为领导高度关注。"),
     ("low", "empty-filler", r"全面赋能", "确认是否有具体机制支撑。"),
     ("low", "empty-filler", r"提供有力支撑", "确认是否有具体支撑对象、机制或结果。"),
     ("low", "empty-filler", r"奠定坚实基础", "确认是否有具体基础内容和后续事项。"),
@@ -242,6 +242,17 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
     return any("附件" in item for item in window)
 
 
+def body_lines(lines: list[str]) -> list[str]:
+    """Return draft body lines before explicit external confirmation notes."""
+    note_start = re.compile(r"^\s*(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息)")
+    result: list[str] = []
+    for line in lines:
+        if note_start.search(line):
+            break
+        result.append(line)
+    return result
+
+
 def supported_three_part_listing(snippet: str) -> bool:
     parts = re.split(r"一是|二是|三是", snippet, maxsplit=3)
     if len(parts) < 4:
@@ -392,11 +403,13 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
 def scan(path_label: str, text: str, include_format: bool = False, include_structure: bool = False) -> list[Finding]:
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
+    lines_to_scan = body_lines(lines)
+    text_to_scan = "\n".join(lines_to_scan)
 
     patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
     in_fence = False
-    for line_index, line in enumerate(lines):
+    for line_index, line in enumerate(lines_to_scan):
         line_no = line_index + 1
         stripped = line.strip()
         if stripped.startswith("```"):
@@ -448,7 +461,7 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 )
 
     if include_format:
-        western_list_count = sum(1 for line in lines if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
+        western_list_count = sum(1 for line in lines_to_scan if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
         if western_list_count >= 8:
             findings.append(
                 Finding(
@@ -462,11 +475,11 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
             )
 
     if include_structure:
-        findings.extend(duplicate_findings(path_label, lines))
-        findings.extend(structured_smell_findings(path_label, text, lines))
+        findings.extend(duplicate_findings(path_label, lines_to_scan))
+        findings.extend(structured_smell_findings(path_label, text_to_scan, lines_to_scan))
 
     for term, threshold in REPEAT_TERMS.items():
-        count = text.count(term)
+        count = text_to_scan.count(term)
         if count >= threshold:
             findings.append(
                 Finding(

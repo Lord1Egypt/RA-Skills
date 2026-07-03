@@ -23,3 +23,5 @@ CLI **自动** GET 活动详情，无需手填开关：
 ## 字段
 
 与 `pmax-create` 资产组部分相同（`name`、`finalUrls`、标题/描述、营销图）。`campaignId` 必填。
+
+文案数量与 `pmax-create-template.md` 一致：`headlines` 15 条、`longHeadlines` 5 条、`descriptions` 5 条（均须填满；`pmax-validate` 同款门禁）。

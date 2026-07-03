@@ -11,12 +11,26 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const ENV = ['EVOLUTION_DIR', 'MEMORY_DIR', 'EVOLVER_REPO_ROOT', 'EVOLVER_REUSE_ATTRIBUTION', 'MEMORY_GRAPH_SYNC_HUB', 'A2A_HUB_URL', 'EVOLVER_OUTCOME_REPORT', 'EVOMAP_HUB_ALLOW_INSECURE', 'A2A_NODE_SECRET'];
+const ENV = [
+  'EVOLUTION_DIR',
+  'MEMORY_DIR',
+  'EVOLVER_REPO_ROOT',
+  'EVOLVER_HOME',
+  'EVOLVER_REUSE_ATTRIBUTION',
+  'MEMORY_GRAPH_SYNC_HUB',
+  'A2A_HUB_URL',
+  'EVOLVER_OUTCOME_REPORT',
+  'EVOMAP_HUB_ALLOW_INSECURE',
+  'A2A_NODE_SECRET',
+  'EVOMAP_NODE_SECRET',
+  'A2A_NODE_SECRET_VERSION',
+  'EVOMAP_NODE_SECRET_VERSION',
+];
 
 function fresh(p) { const r = require.resolve(p); delete require.cache[r]; return require(r); }
 function reloadAll() {
   // config + paths are read by memoryGraph; reload so env changes take effect.
-  for (const m of ['../src/config', '../src/gep/paths', '../src/gep/assetCallLog', '../src/gep/assetStore', '../src/gep/memoryGraph']) {
+  for (const m of ['../src/config', '../src/gep/paths', '../src/gep/a2aProtocol', '../src/gep/assetCallLog', '../src/gep/assetStore', '../src/gep/memoryGraph']) {
     try { delete require.cache[require.resolve(m)]; } catch (_) {}
   }
 }
@@ -28,6 +42,7 @@ describe('P4-a Slice A — reuse attribution', () => {
     saved = {};
     for (const k of ENV) { saved[k] = process.env[k]; delete process.env[k]; }
     process.env.EVOLUTION_DIR = tmp;
+    process.env.EVOLVER_HOME = path.join(tmp, '.evomap');
     reloadAll();
   });
   afterEach(() => {

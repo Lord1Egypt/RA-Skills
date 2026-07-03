@@ -6,12 +6,15 @@ smyx_payment - 交互式充值流程（正式版本）
 import sys
 import os
 import re
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from recharge import get_recharge_packages, generate_recharge_detail
-from alipay_pay import create_order
+# 确保正确的模块路径
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # 项目根目录
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 脚本所在目录
+
+from .recharge import get_recharge_packages, generate_recharge_detail
+from .alipay_pay import create_order
 from datetime import datetime
-from skills.smyx_payment.scripts.open_id import require_open_id
+from .open_id import require_open_id
 
 def get_user_input(prompt, default=""):
     """获取用户输入"""
@@ -37,14 +40,21 @@ def main():
     print("\n📋 系统提示：请先查看所有充值套餐")
     print()
     
-    packages = get_recharge_packages()
+    from .package_config import get_display_packages
+    packages = get_display_packages()
     print("请选择充值套餐：\n")
     for pkg in packages:
         print(f"  {pkg.get('id')}. {pkg['name']}")
-        print(f"     💰 充值金额：¥{pkg['amount']}元")
-        print(f"     📊 可用次数：{pkg['uses']}次")
-        if pkg.get('remark'):
-            print(f"     💡 备注：{pkg['remark']}")
+        if pkg.get('contact_only'):
+            print(f"     💰 充值金额：{pkg['amount']}")
+            print(f"     📊 可用次数：{pkg['uses']}")
+            print(f"     💡 备注：{pkg.get('remark', '联系客服定制')}")
+            print(f"     📧 联系方式：product@lifeemergence.com")
+        else:
+            print(f"     💰 充值金额：¥{pkg['amount']}元")
+            print(f"     📊 可用次数：{pkg['uses']}次")
+            if pkg.get('remark'):
+                print(f"     💡 备注：{pkg['remark']}")
         print()
     
     # ========== 步骤 2: 用户选择套餐 ==========
@@ -54,15 +64,21 @@ def main():
     print("\n⚠️  提示：必须先选择套餐，才能自动关联充值账号")
     
     while True:
-        choice = get_user_input("\n请输入套餐编号 (0-3)")
+        choice = get_user_input("\n请输入套餐编号 (0-4)")
         try:
             package_id = int(choice)
             selected_package = next((pkg for pkg in packages if pkg.get("id") == package_id), None)
             if selected_package:
+                if selected_package.get('contact_only'):
+                    print(f"📞 您选择了定制套餐：{selected_package['name']}")
+                    print(f"💡 定制套餐需要联系客服处理")
+                    print(f"📧 联系邮箱：product@lifeemergence.com")
+                    print(f"💬 联系备注：{selected_package['remark']}")
+                    return False
                 break
-            print("❌ 无效选项，请输入 0-3")
+            print("❌ 无效选项，请输入 0-4")
         except ValueError:
-            print("❌ 请输入数字 0-3")
+            print("❌ 请输入数字 0-4")
     
     print(f"\n✅ 已选择套餐：{selected_package['name']}")
     print(f"   充值金额：¥{selected_package['amount']}元")

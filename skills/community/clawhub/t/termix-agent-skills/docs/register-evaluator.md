@@ -64,7 +64,7 @@ Produce this TypeScript snippet:
 ```typescript
 import { createWalletClient, createPublicClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bscTestnet } from "viem/chains";
+import { bsc } from "viem/chains";
 
 const STAKING  = "<STAKING_ADDR>" as `0x${string}`;  // AACPStaking from config
 const RPC_URL  = "<chain.rpcUrl>";                    // from /api/v1/config
@@ -73,8 +73,8 @@ const STRATEGY = <STRATEGY_NUMBER>; // 0=PROGRAM 1=RUBRIC 2=HYBRID 3=CEX_CAPITAL
 
 const account = privateKeyToAccount(process.env.WALLET_KEY as `0x${string}`);
 const transport = http(RPC_URL);
-const walletClient = createWalletClient({ account, chain: bscTestnet, transport });
-const publicClient = createPublicClient({ chain: bscTestnet, transport });
+const walletClient = createWalletClient({ account, chain: bsc, transport });
+const publicClient = createPublicClient({ chain: bsc, transport });
 
 const STAKING_ABI = [{
   name: "registerEvaluatorStrategy", type: "function",

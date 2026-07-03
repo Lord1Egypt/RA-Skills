@@ -9,6 +9,8 @@ Code, Codex, OpenClaw, and similar agent runtimes.
 
 - `SKILL.md`: user-facing usage instructions. Keep it short and command-focused.
 - `VERSION`: distributed Skill version.
+- `assets/lingzao-logo.png`: packaged Lingzao logo asset used by agent
+  metadata and marketplaces that read bundled assets.
 - `skill-card.md`: ClawHub-facing summary card. The current ClawHub CLI filters
   this generated card out of runtime publish artifacts.
 - `scripts/setup.sh`: wrapper and saved-config setup.
@@ -54,14 +56,68 @@ distribution. The canonical release runbook is
 Current packaging boundary:
 
 - `clawhub skill publish` filters root `skill-card.md` from publish artifacts.
-- `scripts/release-skill-r2.ts` includes `SKILL.md`, `VERSION`, `agents/`,
-  `playbooks/`, `scripts/`, and `skills/`, but not `skill-card.md`.
+- `scripts/release-skill-r2.ts` includes `SKILL.md`, `VERSION`, `assets/`,
+  `agents/`, `playbooks/`, `scripts/`, and `skills/`, but not
+  `skill-card.md`.
 - Therefore `skill-card.md` is a repository-maintained marketplace summary and
   review source. Do not assume publishing updates a visible ClawHub card unless
   `clawhub inspect` proves it.
 
 ## Change Log
 
+- 2026-06-30 17:34 +0800: bumped `VERSION` to `0.1.69`, added
+  `assets/lingzao-logo.png`, and updated `agents/openai.yaml`; reason was
+  shipping the Lingzao logo inside the Skill package so agent runtimes or
+  marketplaces that read bundled assets can render the brand icon while
+  SkillHub keeps using its platform-uploaded icon. `scripts/release-skill-r2.ts`
+  and release docs now include `assets/` in the packaging boundary, and the
+  release script now excludes generated Python bytecode from archives;
+  verification passed with `npm ci` (existing audit warnings only),
+  `git diff --check`, YAML parse, Python compile, `npm run skill:package`,
+  zip/manifest inspection for `assets/lingzao-logo.png` and no `.pyc`,
+  `npm run typecheck`, `npm run lint`, and focused Skill unit tests.
+- 2026-06-30 11:13 +0800: rebased the brand Brief and benchmark-copy workflow
+  changes on top of the SkillHub main-Skill copy update and kept `VERSION` at
+  `0.1.68`; reason was preserving the Chinese WorkBuddy/SkillHub first screen
+  while adding `brand-brief-to-content-workflow.md`, benchmark-copy template
+  extraction routing, and the matching marketplace/agent metadata; verification
+  passed with `git diff --check`, trailing-whitespace scan, YAML parse via
+  Ruby, Python compile for Skill scripts, and `npm run skill:package`.
+- 2026-06-30 09:58 +0800: bumped `VERSION` to `0.1.67` and updated
+  `SKILL.md`, `skill-card.md`, `agents/openai.yaml`, and
+  `agents/openclaw.yaml`; reason was optimizing the main Lingzao Skill for
+  SkillHub/WorkBuddy Chinese users without splitting runtime Skills, making the
+  first screen explain the free playbook routing layer, API Key/credit
+  boundary, task router, FAQ, and creator-operation positioning. Review
+  follow-up narrowed keyword suggestions wording to Xiaohongshu only, matching
+  the public `search-suggestions` platform boundary; verification passed with
+  `git diff --check`, trailing-whitespace scan, YAML parse via Ruby, Python
+  compile for Skill scripts, and `npm run skill:package`.
+- 2026-06-29 09:41 +0800: bumped `VERSION` to `0.1.68` and updated
+  `playbooks/draft-rewrite-and-benchmark-workflow.md`; reason was A Tian's
+  product calibration that users with changing benchmark copy but a stable
+  framework need Lingzao to absorb the template before writing. The draft
+  rewrite workflow now routes "有固定框架 / 套框架 / 对标文案仿写 / 风格差不多"
+  requests through a benchmark-copy template extraction flow: first separate
+  structure, style parameters, replaceable slots, non-copyable parts, user
+  truth material, and a quality gate, then fill the user's own topic, product,
+  account direction, city, experience, or customer pain into 1-3 publishable
+  versions. This prevents agents from only copying surface phrasing, repeating
+  the same failed hook, or producing empty lookalike drafts.
+- 2026-06-27 15:48 +0800: added
+  `playbooks/brand-brief-to-content-workflow.md`; reason was A Tian's request
+  to make advertising / brand cooperation Brief breakdown a first-class
+  self-media Skill workflow. The new playbook parses brand goals, required
+  points, forbidden claims, audience, creator/account fit, deliverables, CTA,
+  and compliance risk; then, after search-credit framing, looks up recent
+  public references by product category, user pain, scenario, audience, and
+  public keywords instead of blindly searching the brand name. It turns the
+  Brief into Top 3 content angles, a recommended Xiaohongshu graphic-note,
+  spoken-video, or Vlog package, and a brand delivery checklist so ads can stay
+  user-facing instead of becoming hard-sell copy. `SKILL.md`,
+  `xhs-operation-task-tree.md`, OpenAI agent metadata, and `skill-card.md` were
+  updated to route "拆 Brief / 品牌 Brief / 商单怎么写 / Brief 进去后出内容"
+  requests into this workflow.
 - 2026-06-26 11:38 +0800: bumped `VERSION` to `0.1.66` and updated
   `scripts/lingzao_client.py`, `SKILL.md`, `skill-card.md`, and Skill CLI
   tests; reason was making `get-article-detail --output /tmp/article.md` save

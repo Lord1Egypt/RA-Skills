@@ -33,41 +33,41 @@ COS 存储配置（可选）：
 
 用法：
   # 文生图：最简用法（Hunyuan 模型）
-  python mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
+  python3 mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
 
   # 指定模型和版本
-  python mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.0
+  python3 mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.0
 
   # 文生图 + 反向提示词
-  python mps_aigc_image.py --prompt "美丽的风景画" --negative-prompt "人物、动物、文字"
+  python3 mps_aigc_image.py --prompt "美丽的风景画" --negative-prompt "人物、动物、文字"
 
   # 文生图 + 提示词增强
-  python mps_aigc_image.py --prompt "日落海滩" --enhance-prompt
+  python3 mps_aigc_image.py --prompt "日落海滩" --enhance-prompt
 
   # 图生图：参考图片 + 描述
-  python mps_aigc_image.py --prompt "将这张照片变成油画风格" \
+  python3 mps_aigc_image.py --prompt "将这张照片变成油画风格" \
       --image-url https://example.com/photo.jpg
 
   # GEM 多图参考（最多3张，支持 asset/style 参考类型）
-  python mps_aigc_image.py --prompt "融合这些元素" --model GEM \
+  python3 mps_aigc_image.py --prompt "融合这些元素" --model GEM \
       --image-url https://example.com/img1.jpg --image-ref-type asset \
       --image-url https://example.com/img2.jpg --image-ref-type style
 
   # 指定宽高比和分辨率
-  python mps_aigc_image.py --prompt "全景山水画" --aspect-ratio 16:9 --resolution 2K
+  python3 mps_aigc_image.py --prompt "全景山水画" --aspect-ratio 16:9 --resolution 2K
 
   # 存储到 COS
-  python mps_aigc_image.py --prompt "产品海报" \
+  python3 mps_aigc_image.py --prompt "产品海报" \
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou --cos-bucket-path aigc_output
 
   # 仅创建任务（不等待结果）
-  python mps_aigc_image.py --prompt "星空" --no-wait
+  python3 mps_aigc_image.py --prompt "星空" --no-wait
 
   # 查询已有任务结果
-  python mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # Dry Run（仅打印请求参数，不实际调用 API）
-  python mps_aigc_image.py --prompt "测试图片" --dry-run
+  python3 mps_aigc_image.py --prompt "测试图片" --dry-run
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -91,7 +91,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("错误：请先安装腾讯云 SDK：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 # COS SDK（可选，用于生成临时URL）
@@ -182,7 +182,7 @@ def get_cos_presigned_url(bucket: str, region: str, key: str,
         预签名 URL，失败返回 None
     """
     if not _COS_SDK_AVAILABLE:
-        print("警告：COS SDK 未安装，无法生成临时 URL。请安装：pip install cos-python-sdk-v5", 
+        print("警告：COS SDK 未安装，无法生成临时 URL。请安装：python3 -m pip install cos-python-sdk-v5", 
               file=sys.stderr)
         return None
     
@@ -232,7 +232,7 @@ def upload_to_cos(local_path: str, bucket: str, region: str,
     import uuid as _uuid
 
     if not _COS_SDK_AVAILABLE:
-        print("❌ 错误：COS SDK 未安装，无法上传本地文件。请安装：pip install cos-python-sdk-v5",
+        print("❌ 错误：COS SDK 未安装，无法上传本地文件。请安装：python3 -m pip install cos-python-sdk-v5",
               file=sys.stderr)
         sys.exit(1)
 
@@ -793,7 +793,7 @@ def run(args):
 
         if args.no_wait:
             print(f"\n提示：使用以下命令查询任务结果：")
-            print(f"  python mps_aigc_image.py --task-id {task_id}")
+            print(f"  python3 mps_aigc_image.py --task-id {task_id}")
             return result
 
         # 自动轮询等待结果
@@ -844,37 +844,37 @@ def main():
         epilog="""
 示例：
   # 文生图（默认 Hunyuan 模型）
-  python mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
+  python3 mps_aigc_image.py --prompt "一只可爱的橘猫在阳光下打盹"
 
   # 指定 GEM 模型 3.0 版本
-  python mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.0
+  python3 mps_aigc_image.py --prompt "赛博朋克城市夜景" --model GEM --model-version 3.0
 
   # 文生图 + 反向提示词 + 提示词增强
-  python mps_aigc_image.py --prompt "美丽的风景画" --negative-prompt "人物、动物" --enhance-prompt
+  python3 mps_aigc_image.py --prompt "美丽的风景画" --negative-prompt "人物、动物" --enhance-prompt
 
   # 图生图（参考图片 + 描述）
-  python mps_aigc_image.py --prompt "油画风格" --image-url https://example.com/photo.jpg
+  python3 mps_aigc_image.py --prompt "油画风格" --image-url https://example.com/photo.jpg
 
   # GEM 多图参考（最多3张，指定参考类型）
-  python mps_aigc_image.py --prompt "融合元素" --model GEM \\
+  python3 mps_aigc_image.py --prompt "融合元素" --model GEM \\
       --image-url https://example.com/img1.jpg --image-ref-type asset \\
       --image-url https://example.com/img2.jpg --image-ref-type style
 
   # 指定宽高比 + 分辨率
-  python mps_aigc_image.py --prompt "全景山水画" --aspect-ratio 16:9 --resolution 2K
+  python3 mps_aigc_image.py --prompt "全景山水画" --aspect-ratio 16:9 --resolution 2K
 
   # 结果存储到 COS
-  python mps_aigc_image.py --prompt "产品海报" \\
+  python3 mps_aigc_image.py --prompt "产品海报" \\
       --cos-bucket-name mybucket-125xxx --cos-bucket-region ap-guangzhou
 
   # 查询任务结果
-  python mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
+  python3 mps_aigc_image.py --task-id 1234567890-xxxxxxxxxxxxx
 
   # 仅创建任务不等待
-  python mps_aigc_image.py --prompt "星空" --no-wait
+  python3 mps_aigc_image.py --prompt "星空" --no-wait
 
   # Dry Run（仅打印请求参数）
-  python mps_aigc_image.py --prompt "测试" --dry-run
+  python3 mps_aigc_image.py --prompt "测试" --dry-run
 
 支持的模型：
   Hunyuan     腾讯混元大模型（默认），支持 --scene-type 3d_panorama（全景图）

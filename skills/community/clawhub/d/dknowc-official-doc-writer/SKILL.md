@@ -20,6 +20,11 @@ description: |
 
 ## 工作原则
 
+- 首次使用时先运行 `python3 scripts/initialize.py` 检查 Python、依赖、搜索配置和字体。初始化不要求用户提供单位或个人信息，也不上传检测结果。
+- 仅在用户明确同意保存常用设置时，使用 `--save` 写入本机 `config/user_profile.json`；不得主动索取与当前公文无关的信息。
+- 用户未配置发文机关、文号前缀或地域时，仍可生成文档：分别使用 `XX单位`、`XX〔年份〕XX号` 等醒目占位符，地域则根据当前任务询问或保持未指定。交付时提醒用户核对占位符。
+- 不得根据示例、历史文档或搜索地域猜测用户所属单位，不得把任何具体客户名称作为默认值。
+
 - 简单短文本任务可以直接完成，不强制走完整流水线。
 - 只有在政策、数据、案例、文号、标准等支撑材料必要时才搜索。
 - 搜索逻辑遵循 `reference/search_policy.md`，素材四分类和来源限制不得改变。
@@ -36,12 +41,11 @@ description: |
 - 任一关键步骤出现异常时，必须暂停并向用户确认下一步；不得自行跳过搜索、改用 Web 搜索、改写任务目标或继续生成正式结果。
 - 生成前后按任务风险调用 `reference/review_checklist.md`。
 
-
 ## Public 版 API Key 引导
 
 本版本不内置深知搜索 API Key。只要任务需要政策、数据、案例、标准或其他外部素材检索，在展示搜索方案前必须先确认本 Skill 目录下是否已配置 `config.ini` 且包含有效 `api_key`。
 
-如未配置或搜索脚本提示 API Key 缺失，不得继续执行搜索或改用其他搜索工具；必须先向用户说明："深知写作助手的政策、数据和案例检索依赖深知可信搜索，首次使用需要注册并配置 API Key。" 然后给出 Clawhub 渠道注册链接：
+如未配置或搜索脚本提示 API Key 缺失，不得继续执行搜索或改用其他搜索工具；必须先向用户说明："深知写作助手的政策、数据和案例检索依赖深知可信搜索，首次使用需要注册并配置 API Key。" 然后给出 ClawHub 渠道注册链接：
 
 ```text
 https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC52434D1F&type=6
@@ -94,7 +98,7 @@ https://platform.dknowc.cn/auth/#/register?channel=2787E171-B0E5-4328-9946-47AC5
 
 搜索方案必须包含：
 
-- 搜索地域：如中国、广东省、广州市等。
+- 搜索地域：使用用户任务对应的国家、省或市，不预设具体地区。
 - 搜索内容：每条 query 的目的。
 - 素材类型：仅列政策依据型、数据支撑型、参考案例型。表述参考型不作为独立搜索项，只从已召回材料中吸收表达方式。
 - 使用边界：哪些材料可作为政策依据，哪些只能作为案例或表述参考。
@@ -145,6 +149,8 @@ python3 scripts/merge_search_results.py result1.json result2.json --output merge
 
 写作时正文不加引用标记。执行过搜索时，在文末单独列素材使用情况，格式见 `reference/search_guide.md`。
 
+对工作总结、工作要点、实施方案、专项整治方案、会议讲话、研讨发言、汇报材料等长篇材料，生成正文前还应读取 `reference/standards/99_可选参考_常用句式和结构.md`，内部完成结构选择、小标题策略和段落功能分配。该文件只提供通用写作方法，不得机械套用参考句式，也不得用表达增强替代事实、措施和责任。
+
 执行过搜索时，生成正文前必须读取 `reference/material_usage_guidance.md`。它只提供材料使用原则，不强制套用固定结构；写作时应优先满足用户任务和文种要求，再把政策、数据、案例材料转化为支撑观点的内容。
 
 执行过搜索时，知识专库链接必须逐条从搜索结果 JSON 的 `knowledgeBase` 字段复制，不得手写、猜测、改写或使用合并文件中丢失来源的链接。若某个搜索结果没有 `knowledgeBase`，按搜索异常处理规则请用户确认。
@@ -156,12 +162,25 @@ python3 scripts/merge_search_results.py result1.json result2.json --output merge
 - 执行过搜索
 - 请示、复函、政策依据型报告
 - 管理办法、实施方案、调研报告
+- 工作总结、工作要点、专项整治方案、会议讲话、研讨发言、汇报材料等长篇材料
 - 用户要求正式 Word 或红头文件
 - 用户明确要求检查、审核、把关
 
 审查清单见 `reference/review_checklist.md`。发现问题时先列问题，再说明修改建议。
 
 ## Word 输出
+
+首次使用或用户要求检查环境时：
+
+```bash
+python3 scripts/initialize.py
+```
+
+用户明确授权保存常用设置时，才执行：
+
+```bash
+python3 scripts/initialize.py --organization "用户提供的单位" --doc-prefix "用户提供的前缀" --region "用户提供的地域" --save
+```
 
 需要生成 Word 时，正文必须使用 `reference/output_guide.md` 支持的 Markdown 格式。
 

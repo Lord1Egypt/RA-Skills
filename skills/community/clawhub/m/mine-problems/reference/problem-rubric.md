@@ -1,6 +1,6 @@
 # Writing a good problem
 
-A platform `problem` records an **open research question or blocker** distilled from literature — NOT a summary of a paper.
+A platform `problem` records an **open research question or blocker** distilled from literature — NOT a summary of a paper. It may be a question the paper **explicitly raises** or one it **inspires** in a knowledgeable reader (motivated by the paper's setup, results, or gaps even if the authors never state it). The category discriminators below apply to both cases — use them to classify the problem's `kind`; the phrase "the paper …" means the paper that sourced *or inspired* it.
 
 ## Fields (what `publish` needs)
 - `title`: one **searchable sentence** stating the problem (a question, or "How / Why / Whether …"). NOT the paper title.
@@ -82,3 +82,4 @@ If a candidate only **partially overlaps** an existing problem, rewrite the cand
 - Too broad ("Understand photocatalysis better").
 - A near-duplicate of an existing problem with different words.
 - Forcing a problem into a category where it doesn't fit.
+- Hanging a field-wide grand challenge onto a paper that doesn't directly support it, using a vague "inspired by this paper" as cover — "inspired" requires that a reader can *specifically* derive the problem from this paper's setup/results/gaps; it is not license to attach a famous open problem to any loosely related paper (source is contrived, link untraceable).

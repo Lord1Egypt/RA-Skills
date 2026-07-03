@@ -140,6 +140,52 @@ function jsonResponse(body, status) {
     assert.strictEqual(result, null, 'substring fallback must not match unrelated titles');
   });
 
+  // --- classifyFailure: local triage before opening a public issue --------
+  const { classifyFailure } = require('../src/gep/issueReporter');
+
+  // host_no_transcript: nothing for evolver to evolve from
+  assert.strictEqual(
+    classifyFailure({ signals: ['failure_loop_detected'], recentEvents: [], sessionLog: '' }).bucket,
+    'host_no_transcript', 'empty session log -> host_no_transcript');
+  assert.strictEqual(
+    classifyFailure({ signals: [], recentEvents: [], sessionLog: 'foo [NO SESSION LOGS FOUND] bar' }).bucket,
+    'host_no_transcript', 'sentinel -> host_no_transcript');
+
+  // host_provider_error: a provider 400 the host emitted (not evolver core)
+  assert.strictEqual(
+    classifyFailure({ signals: [], recentEvents: [], sessionLog: '[LLM ERROR] 400 field MaxTokens invalid, should be in [1, 65536]' }).bucket,
+    'host_provider_error', 'provider MaxTokens error -> host_provider_error');
+
+  // local_gene_no_blast: locally-generated gene whose cycles change nothing
+  assert.strictEqual(
+    classifyFailure({
+      signals: ['failure_loop_detected', 'ban_gene:sha256:14cc0b42'],
+      recentEvents: [
+        { outcome: { status: 'failed' }, blast_radius: { files: 0, lines: 0 } },
+        { outcome: { status: 'failed' }, blast_radius: { files: 0, lines: 0 } },
+      ],
+      sessionLog: 'Result: SUCCESS ... Files changed: 0 (metadata-only cycle)',
+    }).bucket,
+    'local_gene_no_blast', 'local sha256 gene + zero blast -> local_gene_no_blast');
+
+  // unclassified (default-open): published gene, productive blast, real transcript -> still filed
+  assert.strictEqual(
+    classifyFailure({
+      signals: ['failure_loop_detected', 'ban_gene:gene_gep_repair_from_errors'],
+      recentEvents: [{ outcome: { status: 'failed' }, blast_radius: { files: 3, lines: 40 } }],
+      sessionLog: 'TypeError: cannot read property x of undefined at src/gep/foo.js:10',
+    }).bucket,
+    'unclassified', 'published gene + productive blast + real log -> filed (unclassified)');
+
+  // a productive failure on a locally-generated gene is NOT suppressed
+  assert.strictEqual(
+    classifyFailure({
+      signals: ['failure_loop_detected', 'ban_gene:gene_auto_2ce76294'],
+      recentEvents: [{ outcome: { status: 'failed' }, blast_radius: { files: 2, lines: 9 } }],
+      sessionLog: 'some real evolution transcript with an actual error',
+    }).bucket,
+    'unclassified', 'local gene but productive blast -> not local_gene_no_blast');
+
   console.log('issueReporter.test.js: OK');
 })().catch(function (err) {
   console.error(err);

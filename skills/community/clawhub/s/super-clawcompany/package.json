@@ -1,0 +1,25 @@
+{
+  "name": "clawcompany",
+  "version": "1.0.0",
+  "description": "AI 虚拟团队协作系统 - 一人企业家，无限可能",
+  "main": "src/index.js",
+  "bin": {
+    "clawcompany": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": ["openclaw", "ai-team", "automation", "clawhub"],
+  "author": "Felix Miao",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["ai-team", "automation", "coding"],
+    "icon": "🦞",
+    "displayName": "ClawCompany",
+    "description": "AI 虚拟团队协作系统"
+  }
+}

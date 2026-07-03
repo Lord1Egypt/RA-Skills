@@ -1,5 +1,5 @@
 ## Description: <br>
-Primary-school math coaching skill that grades worksheet photos or wrong questions, tracks weak points and learning progress, explains concepts for parents and students, and generates printable PDF/HTML practice aligned with grade, semester, textbook, exam, and holiday plans. <br>
+Primary-school math coaching skill created to help my first-grade daughter Zhizhi: grade worksheet photos or wrong questions, track weak points and learning progress, explain concepts for parents and students, and generate printable PDF/HTML practice aligned with grade, semester, textbook, exam, and holiday plans. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,41 +11,40 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Parents, tutors, and learning agents use this skill to review primary-school math work, diagnose recurring weak points, maintain local learning records, and produce targeted printable practice. It also supports optional GitHub sync, public child-facing worksheet publishing, and scheduled reminder setup when the parent explicitly enables those features. <br>
+Parents and tutors use this skill to grade primary-school math work, diagnose weak points, explain concepts, track progress, and generate printable practice for a child. It can also help manage local learning records, optional GitHub sync, public worksheet publishing, and scheduled reminders when the user enables those features. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Optional GitHub sync, Pages publishing, and scheduled reminders can change or expose student learning data if enabled without care. <br>
-Mitigation: Leave these features disabled unless intentionally needed; before enabling sync or public links, confirm repository visibility, avoid committing student identifiers or answer keys, and know how to revoke the deploy key and remove cron jobs. <br>
-Risk: Worksheet photo grading can be unreliable when handwriting, teacher marks, diagrams, or context are unclear. <br>
-Mitigation: Grade only clear evidence, mark uncertain items as need-confirmation, and ask for a clearer photo or missing context before updating learning records. <br>
-Risk: Scheduled automation could be mistaken for permission to write records or generate worksheets automatically. <br>
-Mitigation: Use scheduled tasks for reminders and suggestions by default; allow record writes or automatic worksheet generation only when the parent explicitly enables those settings. <br>
-Risk: Public worksheet publishing can accidentally reveal answers, diagnosis notes, or private learning history. <br>
-Mitigation: Publish only child-facing HTML/PDF worksheet files and public-safe metadata; keep answer keys, diagnosis details, and sensitive learning records out of the public site. <br>
+Risk: The skill can manage a child's learning records through GitHub sync, public worksheet links, SSH deploy keys, and scheduled reminders. <br>
+Mitigation: Install only for a local-first math coaching workspace, review `.zhizhi-math-coach/config.json`, and enable cloud sync, Pages, deploy keys, or cron settings only when the repository privacy and exposure are acceptable. <br>
+Risk: Public publishing can expose worksheet metadata or learning files if the user configures a public repository or Pages workflow too broadly. <br>
+Mitigation: Publish only child-facing worksheet HTML/PDF files and keep answer keys, diagnosis records, memories, weak-point histories, student photos, and textbook files out of public output. <br>
+Risk: Automatic pull, commit, push, publish, or reminder registration can change local or remote learning-workspace state after configuration is enabled. <br>
+Mitigation: Treat `.zhizhi-math-coach/config.json` as the consent boundary, verify auto-pull, auto-commit, auto-push, auto-publish, and cron settings before use, and keep automation limited to reminders unless explicit record writes or worksheet generation are requested. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linzi007/zhizhi-math-coach) <br>
-- [OpenClaw Quickstart](references/openclaw-quickstart.md) <br>
-- [Grading Diagnosis Rubric](references/grading-diagnosis-rubric.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/linzi007/skills/zhizhi-math-coach) <br>
+- [Daily Grading Workflow](references/daily-grading-workflow.md) <br>
+- [Grading And Diagnosis Rubric](references/grading-diagnosis-rubric.md) <br>
 - [Worksheet Generation](references/worksheet-generation.md) <br>
+- [Worksheet Standards](references/worksheet-standards.md) <br>
+- [Curriculum Alignment](references/curriculum-alignment.md) <br>
 - [GitHub Sync Authorization](references/github-sync-authorization.md) <br>
 - [GitHub Pages Publishing](references/github-pages-publishing.md) <br>
 - [OpenClaw Automation](references/automation-openclaw.md) <br>
-- [Advanced GitHub Setup Guide](https://github.com/linzi007/zhizhi-math-coach-openclaw/blob/main/docs/github-advanced-setup.zh-CN.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON worksheet specs, HTML/PDF worksheet files, answer keys, shell commands, and local configuration files.] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown, JSON worksheet specs, local files, shell commands, and configuration guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local learning records and worksheet artifacts; GitHub sync, Pages publishing, and scheduled reminders are optional and gated by explicit configuration.] <br>
+**Other Properties Related to Output:** [May create or update local learning records, worksheet HTML/PDF files, answer keys, configuration files, GitHub sync state, Pages output, and scheduled reminder settings when enabled by the user.] <br>
 
 ## Skill Version(s): <br>
-0.2.13 (source: server release evidence) <br>
+0.2.14 (source: server release evidence, created 2026-06-29T05:36:17Z) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

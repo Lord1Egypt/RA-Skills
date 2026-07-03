@@ -13,6 +13,34 @@ Raw-input commands (`press`, `hover`, `drag`, `mouse-*`, `key-down`, `key-up`) a
 
 `--headed` is a global flag and also applies to every `batch` entry.
 
+### `--wait-for` / `--wait-for-gone` (global)
+
+Three global flags poll the accessibility tree until a compact selector matches (or, with `--wait-for-gone`, until it no longer matches), then return a snapshot envelope:
+
+```bash
+agent-desktop snapshot --app Finder -w "button:OK"
+agent-desktop click @e5 -w ":Saved!"
+agent-desktop click @e5 --wait-for-gone "progressindicator" --wait-timeout 5000
+```
+
+| Flag | Short | Default | Meaning |
+|------|-------|---------|---------|
+| `--wait-for <SELECTOR>` | `-w` | — | Block until an element matching `<SELECTOR>` is present |
+| `--wait-for-gone <SELECTOR>` | — | — | Block until no element matches (mutually exclusive with `--wait-for`) |
+| `--wait-timeout <MS>` | — | `30000` | Poll budget; on expiry exit `1` with `kind: "wait_timeout"`, `predicate: "selector"` |
+
+**Selector grammar:** one `role:text` string split on the first `:`. Examples: `"button:Submit"` (role + text), `"button"` (role only), `":Saved!"` (text only). Matching uses the same `find` matcher (`node_matches`); text searches name, value, and description.
+
+**Supported commands:** `snapshot` plus the 16 ref-resolving actions (`click`, `type`, `set-value`, `scroll`, …) — 17 commands total. Other commands (`find`, `launch`, …) return `INVALID_ARGS`. Workaround: `snapshot --app Foo -w "button:Login"`.
+
+**Post-action waits** poll the **acted-on ref's own window** (`entry.source_window_id`, scoped to `entry.source_app`), not the frontmost window — critical in headless and multi-window apps where the terminal or a sibling window has focus. The action result is preserved under `after_action` in the returned envelope.
+
+**Success shape:** a match returns the full snapshot envelope (`app`, `window`, `ref_count`, `snapshot_id`, `tree`) plus `elapsed_ms` and `matched_selector`. The one exception is `--wait-for-gone` when the target **app or window has itself closed**: there is no tree left to capture, so the success payload is the compact `{ "matched_selector", "gone": true, "target_absent": true, "elapsed_ms" }`. On timeout the `wait_timeout` error `details` carry `last_error` (when a poll errored) and the `snapshot_id` of the last tree built.
+
+**Snapshot constraints:** `--root` and `--wait-for`/`--wait-for-gone` are mutually exclusive (`INVALID_ARGS`). Batch items never inherit an outer `-w` (use per-item flows or run `snapshot -w` separately).
+
+**Timeout envelope:** exit `1`, `error.code` `TIMEOUT`, `error.details.kind` `"wait_timeout"`, `error.details.snapshot_id` holds the last built tree for inspection. Post-action timeouts also embed `error.details.after_action`.
+
 #### Which gestures have a headless path
 
 The command surface is platform-agnostic: every ref action builds an `Action` and calls the platform adapter, which owns the headless-vs-physical implementation. The table below is the **macOS (Phase 1) adapter's** behavior — a gesture is headless-capable there only when macOS exposes an accessibility action for it. If a future Windows (UIA) or Linux (AT-SPI) adapter exposes a headless path for `double-click`/`triple-click`, that command lights up headlessly on that platform with **no change to the command or core** — only the adapter changes (`hover`/`drag` are modeled as raw cursor gestures, so they stay physical everywhere by design).
@@ -27,7 +55,7 @@ The command surface is platform-agnostic: every ref action builds an `Action` an
 | `drag` / drop | no | dragging *is* a cursor press-move-release; no general AX drag. Native cross-app drop needs the OS dragging-session/pasteboard protocol that synthetic events cannot start (works for same-view source-tracked gestures and web/Electron mouse-DnD) |
 | menu bar (`--surface menubar`) | enumerate/open | the app menu bar is readable and openable; SwiftUI `CommandMenu` items accept AXPress but do not route to their action closure (a SwiftUI limitation, like its Slider) — native AppKit menu items fire. `.contextMenu` item selection works. |
 
-All ref-based interaction commands accept `--snapshot <snapshot_id>`. Omit it for the active session's latest saved snapshot, or pass the `snapshot_id` returned by `snapshot` to keep scripts pinned to the exact ref map they observed. Explicit snapshot IDs do not require also passing `--session`.
+All ref-based interaction commands accept `--snapshot <snapshot_id>`. Omit it for the active session's latest saved snapshot, or pass the `snapshot_id` returned by `snapshot` to keep scripts pinned to the exact ref map they observed. Explicit snapshot IDs do not require also passing `--session`. After `session start`, implicit latest resolves inside the new session; snapshots taken before the boundary need explicit `--snapshot <old-id>`.
 
 Success responses for ref actions include a `steps` array when the activation chain recorded attempts: each entry is `{ "label": "AXPress", "outcome": "attempted" | "skipped" | "succeeded" }` in execution order, showing which activation path produced the result.
 
@@ -175,17 +203,19 @@ agent-desktop press cmd+a --app "TextEdit"
 **Key names:** `return`, `escape`, `tab`, `space`, `delete`, `up`, `down`, `left`, `right`, `f1`-`f12`
 **Modifiers:** `cmd`, `ctrl`, `alt`, `shift` — combine with `+`
 
+Dangerous shortcuts (e.g. `cmd+q`, `ctrl+cmd+q`, `cmd+alt+esc`, `cmd+shift+delete`) are refused with `POLICY_DENIED`. Normalization covers modifier order and key-name aliases (`escape`/`esc`, `backspace`/`delete`). The block is the **platform adapter's** decision, not core's — the calling agent stays in control: pass `--force` to send a flagged combo anyway (`agent-desktop press cmd+q --force`). `--force` is available on `press`, `key-down`, and `key-up`.
+
 ### key-down
 ```bash
 agent-desktop key-down shift
 ```
-Holds a key or modifier down. Must be paired with `key-up`.
+Holds a key or modifier down. Must be paired with `key-up`. The blocked-combo guard (same set as `press`) is enforced per invocation. **Known limitation:** because the tool is stateless per call, an agent could hold modifiers across separate `key-down` calls to assemble a blocked combo; that cross-invocation case is not guarded — a stateful guard arrives with the Phase-4 daemon.
 
 ### key-up
 ```bash
 agent-desktop key-up shift
 ```
-Releases a held key or modifier.
+Releases a held key or modifier. The blocked-combo guard (same set as `press`) applies per invocation.
 
 ## Mouse
 

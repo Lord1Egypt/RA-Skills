@@ -1,0 +1,21 @@
+{
+  "name": "@urufu/agent-steward",
+  "private": true,
+  "type": "module",
+  "description": "Urufu gēmu agent steward — read portfolio, gasless claim with viem signing",
+  "bin": {
+    "urufu-steward": "./urufu-steward.mjs"
+  },
+  "scripts": {
+    "check": "node urufu-steward.mjs check",
+    "claim": "node urufu-steward.mjs claim",
+    "mint": "node urufu-steward.mjs mint",
+    "mint-preview": "node urufu-steward.mjs mint-preview",
+    "pack-hermes": "node package-hermes.mjs",
+    "install-hermes": "node install-hermes.mjs",
+    "test": "node --test policy.test.mjs steward.test.mjs mint.test.mjs"
+  },
+  "dependencies": {
+    "viem": "^2.48.4"
+  }
+}

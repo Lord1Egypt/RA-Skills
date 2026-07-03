@@ -1,0 +1,451 @@
+{
+  "contractVersion": "1.0",
+  "requestId": "lighting-design-full-home-example",
+  "locale": "zh-CN",
+  "utterance": "帮我设计添加一个易来新家家庭，客厅一个吸顶灯，2个黑色格栅灯，2个白色嵌入式射灯，次卧四个筒灯，主卧一个方形吸顶灯，4个36度射灯，3个爱思系列筒射灯，卫生间一个夙夜版青空灯。相同类型自动成组，客厅有离家和回家模式，主卧灯每天9点亮起来。",
+  "intent": "lighting.design.import",
+  "parameters": {
+    "name": "易来新家家庭",
+    "key": "home-yilai-new",
+    "gatewayName": "默认网关",
+    "rooms": [
+      {
+        "key": "living",
+        "name": "客厅",
+        "deviceSlots": [
+          {
+            "key": "living-ceiling-1",
+            "name": "客厅吸顶灯",
+            "product": {
+              "skuCode": "1-000000031",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "Yeelight Pro M20 吸顶灯 C450",
+              "category": "吸顶灯",
+              "series": "M20",
+              "notes": "客厅基础照明，支持亮度与色温编排。"
+            }
+          },
+          {
+            "key": "living-grille-1",
+            "name": "客厅黑色格栅灯1",
+            "product": {
+              "skuCode": "1-000002044",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "P20 明装磁吸格栅灯-5头",
+              "category": "格栅灯",
+              "series": "P20",
+              "notes": "黑色格栅灯，适合客厅重点与层次照明。"
+            }
+          },
+          {
+            "key": "living-grille-2",
+            "name": "客厅黑色格栅灯2",
+            "product": {
+              "skuCode": "1-000002044",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "P20 明装磁吸格栅灯-5头",
+              "category": "格栅灯",
+              "series": "P20",
+              "notes": "与客厅黑色格栅灯1成组。"
+            }
+          },
+          {
+            "key": "living-spot-1",
+            "name": "客厅白色嵌入式射灯1",
+            "product": {
+              "skuCode": "1-000001247",
+              "capabilityPid": 198661,
+              "productComponentId": 4,
+              "productName": "M20 嵌入式射灯-3寸",
+              "category": "射灯",
+              "series": "M20",
+              "notes": "白色嵌入式射灯，补充客厅局部照明。"
+            }
+          },
+          {
+            "key": "living-spot-2",
+            "name": "客厅白色嵌入式射灯2",
+            "product": {
+              "skuCode": "1-000001247",
+              "capabilityPid": 198661,
+              "productComponentId": 4,
+              "productName": "M20 嵌入式射灯-3寸",
+              "category": "射灯",
+              "series": "M20",
+              "notes": "与客厅白色嵌入式射灯1成组。"
+            }
+          }
+        ],
+        "groups": [
+          {
+            "key": "living-grille-group",
+            "name": "客厅格栅灯组",
+            "slotKeys": [
+              "living-grille-1",
+              "living-grille-2"
+            ],
+            "groupCategory": "lighting",
+            "groupCapability": "colorTemperature"
+          },
+          {
+            "key": "living-spot-group",
+            "name": "客厅射灯组",
+            "slotKeys": [
+              "living-spot-1",
+              "living-spot-2"
+            ],
+            "groupCategory": "lighting",
+            "groupCapability": "colorTemperature"
+          }
+        ]
+      },
+      {
+        "key": "secondary-bedroom",
+        "name": "次卧",
+        "deviceSlots": [
+          {
+            "key": "secondary-downlight-1",
+            "name": "次卧筒灯1",
+            "product": {
+              "skuCode": "1-000003857",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "D系列嵌入式筒灯-3寸",
+              "category": "筒灯",
+              "series": "D系列",
+              "notes": "次卧均匀基础照明。"
+            }
+          },
+          {
+            "key": "secondary-downlight-2",
+            "name": "次卧筒灯2",
+            "product": {
+              "skuCode": "1-000003857",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "D系列嵌入式筒灯-3寸",
+              "category": "筒灯",
+              "series": "D系列",
+              "notes": "次卧均匀基础照明。"
+            }
+          },
+          {
+            "key": "secondary-downlight-3",
+            "name": "次卧筒灯3",
+            "product": {
+              "skuCode": "1-000003857",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "D系列嵌入式筒灯-3寸",
+              "category": "筒灯",
+              "series": "D系列",
+              "notes": "次卧均匀基础照明。"
+            }
+          },
+          {
+            "key": "secondary-downlight-4",
+            "name": "次卧筒灯4",
+            "product": {
+              "skuCode": "1-000003857",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "D系列嵌入式筒灯-3寸",
+              "category": "筒灯",
+              "series": "D系列",
+              "notes": "次卧均匀基础照明。"
+            }
+          }
+        ],
+        "groups": [
+          {
+            "key": "secondary-downlight-group",
+            "name": "次卧筒灯组",
+            "slotKeys": [
+              "secondary-downlight-1",
+              "secondary-downlight-2",
+              "secondary-downlight-3",
+              "secondary-downlight-4"
+            ],
+            "groupCategory": "lighting",
+            "groupCapability": "colorTemperature"
+          }
+        ]
+      },
+      {
+        "key": "master-bedroom",
+        "name": "主卧",
+        "deviceSlots": [
+          {
+            "key": "master-ceiling-1",
+            "name": "主卧方形吸顶灯",
+            "product": {
+              "skuCode": "1-000000031",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "Yeelight Pro M20 吸顶灯 C450",
+              "category": "吸顶灯",
+              "series": "M20",
+              "notes": "主卧基础照明和晨起自动化主光。"
+            }
+          },
+          {
+            "key": "master-spot36-1",
+            "name": "主卧36度射灯1",
+            "product": {
+              "skuCode": "1-000005105",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "E+系列嵌入式射灯-75开孔-36度",
+              "category": "射灯",
+              "series": "E+系列",
+              "notes": "36度重点照明。"
+            }
+          },
+          {
+            "key": "master-spot36-2",
+            "name": "主卧36度射灯2",
+            "product": {
+              "skuCode": "1-000005105",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "E+系列嵌入式射灯-75开孔-36度",
+              "category": "射灯",
+              "series": "E+系列",
+              "notes": "36度重点照明。"
+            }
+          },
+          {
+            "key": "master-spot36-3",
+            "name": "主卧36度射灯3",
+            "product": {
+              "skuCode": "1-000005105",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "E+系列嵌入式射灯-75开孔-36度",
+              "category": "射灯",
+              "series": "E+系列",
+              "notes": "36度重点照明。"
+            }
+          },
+          {
+            "key": "master-spot36-4",
+            "name": "主卧36度射灯4",
+            "product": {
+              "skuCode": "1-000005105",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "E+系列嵌入式射灯-75开孔-36度",
+              "category": "射灯",
+              "series": "E+系列",
+              "notes": "36度重点照明。"
+            }
+          },
+          {
+            "key": "master-s-series-1",
+            "name": "主卧爱思筒射灯1",
+            "product": {
+              "skuCode": "1-000004861",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "S系列嵌入式射灯-75开孔-36度-12W",
+              "category": "筒射灯",
+              "series": "S系列",
+              "notes": "爱思系列筒射灯，强化主卧高端层次。"
+            }
+          },
+          {
+            "key": "master-s-series-2",
+            "name": "主卧爱思筒射灯2",
+            "product": {
+              "skuCode": "1-000004861",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "S系列嵌入式射灯-75开孔-36度-12W",
+              "category": "筒射灯",
+              "series": "S系列",
+              "notes": "爱思系列筒射灯，强化主卧高端层次。"
+            }
+          },
+          {
+            "key": "master-s-series-3",
+            "name": "主卧爱思筒射灯3",
+            "product": {
+              "skuCode": "1-000004861",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "S系列嵌入式射灯-75开孔-36度-12W",
+              "category": "筒射灯",
+              "series": "S系列",
+              "notes": "爱思系列筒射灯，强化主卧高端层次。"
+            }
+          }
+        ],
+        "groups": [
+          {
+            "key": "master-spot36-group",
+            "name": "主卧36度射灯组",
+            "slotKeys": [
+              "master-spot36-1",
+              "master-spot36-2",
+              "master-spot36-3",
+              "master-spot36-4"
+            ],
+            "groupCategory": "lighting",
+            "groupCapability": "colorTemperature"
+          },
+          {
+            "key": "master-s-series-group",
+            "name": "主卧爱思筒射灯组",
+            "slotKeys": [
+              "master-s-series-1",
+              "master-s-series-2",
+              "master-s-series-3"
+            ],
+            "groupCategory": "lighting",
+            "groupCapability": "colorTemperature"
+          }
+        ]
+      },
+      {
+        "key": "bathroom",
+        "name": "卫生间",
+        "deviceSlots": [
+          {
+            "key": "bathroom-skylight-1",
+            "name": "卫生间夙夜版青空灯",
+            "product": {
+              "skuCode": "1-000003810",
+              "capabilityPid": 198666,
+              "productComponentId": 4,
+              "productName": "Nightingale青空灯夙夜版Pro",
+              "category": "青空灯",
+              "series": "Nightingale",
+              "notes": "卫生间舒适体验照明。"
+            }
+          }
+        ],
+        "groups": []
+      }
+    ],
+    "scenes": [
+      {
+        "key": "living-away",
+        "name": "客厅离家模式",
+        "actions": [
+          {
+            "targetType": "room",
+            "targetKey": "living",
+            "targetName": "客厅",
+            "rank": 0,
+            "set": {
+              "power": false
+            }
+          }
+        ]
+      },
+      {
+        "key": "living-home",
+        "name": "客厅回家模式",
+        "actions": [
+          {
+            "targetType": "device",
+            "targetKey": "living-ceiling-1",
+            "targetName": "客厅吸顶灯",
+            "rank": 0,
+            "delay": 0,
+            "duration": 800,
+            "set": {
+              "power": true,
+              "brightness": 65,
+              "colorTemperature": 3800
+            }
+          },
+          {
+            "targetType": "group",
+            "targetKey": "living-grille-group",
+            "targetName": "客厅格栅灯组",
+            "rank": 1,
+            "delay": 500,
+            "duration": 800,
+            "set": {
+              "power": true,
+              "brightness": 55,
+              "colorTemperature": 3500
+            }
+          },
+          {
+            "targetType": "group",
+            "targetKey": "living-spot-group",
+            "targetName": "客厅射灯组",
+            "rank": 2,
+            "delay": 900,
+            "duration": 800,
+            "set": {
+              "power": true,
+              "brightness": 45,
+              "colorTemperature": 3200
+            }
+          }
+        ]
+      }
+    ],
+    "automations": [
+      {
+        "key": "master-9am",
+        "name": "主卧9点亮灯",
+        "actions": [
+          {
+            "targetType": "device",
+            "targetKey": "master-ceiling-1",
+            "targetName": "主卧方形吸顶灯",
+            "rank": 0,
+            "duration": 1200,
+            "set": {
+              "power": true,
+              "brightness": 60,
+              "colorTemperature": 3000
+            }
+          },
+          {
+            "targetType": "group",
+            "targetKey": "master-spot36-group",
+            "targetName": "主卧36度射灯组",
+            "rank": 1,
+            "delay": 400,
+            "duration": 1200,
+            "set": {
+              "power": true,
+              "brightness": 40,
+              "colorTemperature": 3000
+            }
+          },
+          {
+            "targetType": "group",
+            "targetKey": "master-s-series-group",
+            "targetName": "主卧爱思筒射灯组",
+            "rank": 2,
+            "delay": 800,
+            "duration": 1200,
+            "set": {
+              "power": true,
+              "brightness": 35,
+              "colorTemperature": 3000
+            }
+          }
+        ],
+        "trigger": {
+          "conditionKind": "alarm",
+          "time": "09:00:00"
+        },
+        "activeWindow": {
+          "start": "00:00:00",
+          "end": "23:59:59"
+        },
+        "repeat": "daily"
+      }
+    ]
+  }
+}

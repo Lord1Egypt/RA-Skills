@@ -64,51 +64,51 @@ Applicable scenarios: 3D product showcase, multi-angle product preview, e-commer
 
 ```bash
 # Simplest usage: default parameters (front view)
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg"
 
 # Rotate horizontally by 45 degrees
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 45
 
 # Top-down angle (vertical rotation by 30 degrees)
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --vertical-angle 30
 
 # Combined rotation + close-up view
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle -90 \
     --vertical-angle 15 \
     --zoom close
 
 # Wide shot view
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --local-file /tmp/shoe.jpg \
     --horizontal-angle 180 \
     --zoom wide
 
 # COS path input
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --cos-input-key "/input/bag.jpg" \
     --horizontal-angle 60
 
 # Submit task only without waiting for result
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 45 \
     --no-wait
 
 # Download result to a local directory after completion
-python scripts/mps_image_multiview.py \
+python3 scripts/mps_image_multiview.py \
     --url "https://example.com/product.jpg" \
     --horizontal-angle 90 \
     --download-dir /tmp/results/
 
 # Manually query multi-view task status
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

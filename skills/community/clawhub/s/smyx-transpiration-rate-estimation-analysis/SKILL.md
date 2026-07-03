@@ -1,7 +1,7 @@
 ---
 name: "smyx-transpiration-rate-estimation-analysis"
 description: "AI-powered transpiration rate estimation for indoor plants. From smart planters or fixed cameras, uses thermal infrared images of leaves (preferred) — or regular RGB images combined with ambient temperature/humidity — to estimate the leaf-to-air temperature difference, combines radiation/humidity parameters (sensor or model-inferred), and computes a relative transpiration rate index (0-100%). Transpiration rate correlates with root water-uptake activity, indirectly reflecting root health and water transport capacity. Helps determine whether the plant is water-stressed, has damaged roots, or is under environmental stress. Scenarios: smart planters, indoor green plant care, plant factories, research greenhouses. | 通过智能花盆或固定摄像头采集植物叶片的红外热成像图像（或普通RGB图像结合环境温湿度数据），利用AI模型估算叶片温度与空气温度的差值，结合辐射、湿度等参数（可由传感器提供或模型内估），计算植物蒸腾速率的相对值（0-100%）。蒸腾速率与根系吸水活力正相关，可间接反映根系健康及水分输送能力。该技能有助于判断植物是否缺水、根系受损或环境胁迫。应用场景：智能花盆、室内绿植养护、植物工厂、科研温室。"
-version: "1.0.1"
+version: "1.0.2"
 license: "MIT-0"
 ---
 
@@ -153,7 +153,7 @@ python -m scripts.smyx_transpiration_rate_estimation_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供养护参考，不提供土壤水分具体数值；持续异常建议结合土壤水分计或根系检查 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📁 格式支持 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown 表格格式输出，包含"报告名称"、"植物类别"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`蒸腾速率估算报告-{记录id}`形式拼接, "点击查看"列使用`[🔗 查看报告](reportImageUrl)`格式的超链接，用户点击即可直接跳转到对应的完整报告页面。 |
+| 📁 格式支持 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown 表格格式输出，包含"报告名称"、"植物类别"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`蒸腾速率估算报告-{记录id}`形式拼接, "点击查看"列使用`[🔗 查看报告]()`格式的超链接，用户点击即可直接跳转到对应的完整报告页面。 |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

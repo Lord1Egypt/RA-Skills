@@ -1,0 +1,51 @@
+name: seo-traffic-page-generator
+version: 1.0.0
+description: 基于企业知识库批量生成 SEO 引流页，输入 N 个关键词，一次性返回 N 个独立页面，内容互不重复
+author: WorkBuddy
+
+model:
+  provider: anthropic
+  name: claude-sonnet-4-5
+  temperature: 0.7
+  max_tokens: 4096
+
+inputs:
+  - name: keywords
+    type: array
+    items: string
+    required: true
+    description: 关键词列表，输入几个生成几个页面
+
+rag:
+  provider: siluzan-cso
+  queries:
+    - id: keywords_context
+      template: "{{keywords | join: ' '}}"
+      top_k: 10
+      purpose: 召回与所有关键词相关的案例和产品描述
+    - id: company_profile
+      template: "company profile brand overview services"
+      top_k: 5
+      purpose: 召回企业档案和品牌信息
+    - id: trust_assets
+      template: "certification award trust partnership media"
+      top_k: 4
+      purpose: 召回资质荣誉
+    - id: faq_pool
+      template: "FAQ question answer product service"
+      top_k: 8
+      purpose: 召回问答素材池，供各页面分配使用
+    - id: reviews
+      template: "customer review testimonial satisfaction feedback"
+      top_k: 3
+      purpose: 召回真实客户评价，无数据时由 Claude 生成虚构评价
+  merge: union
+  dedup: true
+
+prompts:
+  system: prompts/system.md
+  user: prompts/user.md
+
+output:
+  schema: schemas/output.json
+  format: json

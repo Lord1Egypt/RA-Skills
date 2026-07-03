@@ -1,6 +1,7 @@
 ---
 name: agentic-commerce-news
 description: "Agentic Commerce Weekly Briefing — Scans X/Twitter, industry media, and VC announcements from the past 7 days to surface startups, products, funding rounds, and opinions endorsed by influential voices (VCs, founders, AI leaders) in the agentic commerce space, then produces a structured news briefing. Supports scheduled execution (e.g., daily at 8am). Use whenever the user mentions agentic commerce news, AI commerce updates, AI shopping agent startups, agent checkout products, or invokes /agentic-commerce-news. Also trigger on requests like 'what's new in agentic commerce this week', 'who's funding AI shopping startups', or 'set up a daily digest of agentic commerce updates' — even when the user doesn't name the skill explicitly."
+allowed-tools: WebSearch, WebFetch
 ---
 
 # Agentic Commerce News
@@ -87,6 +88,18 @@ From Phase 1 results, filter strictly:
 - **Drop** anything that's just a rehash of old news
 - For promising leads, do a quick targeted search to confirm details (funding amount, investor names, product specifics)
 
+**Source date spot-check (mandatory):** search-result snippets routinely misreport dates, and SEO farms recycle old news with fresh timestamps. Before finalizing, WebFetch the actual source page for **at least the top 3 items** and for **any item whose date is fuzzy** ("recently", "this month", undated). Confirm the publish date on the page itself. If a date can't be confirmed inside the 7-day window, either drop the item or include it with an explicit date caveat visible in the card — never present an unverified date as fact.
+
+### Phase 2.5: Dedupe against previous briefings
+
+If a `briefings/` directory exists alongside this SKILL.md (it does in the git repo), read the **most recent** briefing file before finalizing:
+
+- **Skip** any item already covered in the previous briefing, unless there is a material new development this week (a new funding stage, GA after a beta, a major partner joining, a reversal).
+- When you keep a follow-up item, say what's *new* in the first line and add "(follow-up to last week)" so readers see continuity, not repetition.
+- Cross-week repetition is the fastest way to make a weekly briefing feel worthless — when in doubt, cut.
+
+If no archive is available (e.g., skill installed standalone), skip this phase silently.
+
 ### Phase 3: Classify into the Agentic Commerce Stack
 
 Organize qualifying items into layers:
@@ -158,6 +171,8 @@ Close with 3-5 short observations:
 - **Source links are mandatory.** No link, no inclusion.
 - **Minimum 5 items.** If it's a quiet week, 5 is OK. If you can't find 5, say so honestly rather than padding with old news.
 - **No pay-to-play.** Exclude items that only appear in sponsored content.
+- **Dates are verified, not assumed.** Top items and fuzzy-dated items must have their publish date confirmed on the source page (Phase 2), not inferred from a search snippet.
+- **No cross-week repeats.** An item covered in the previous briefing only returns with a material new development, labeled as a follow-up (Phase 2.5).
 
 ## Language
 

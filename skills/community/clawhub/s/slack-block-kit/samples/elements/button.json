@@ -1,0 +1,10 @@
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "View",
+    "emoji": true
+  },
+  "url": "https://example.com",
+  "action_id": "view_item"
+}

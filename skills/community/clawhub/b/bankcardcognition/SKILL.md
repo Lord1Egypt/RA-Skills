@@ -143,4 +143,3 @@ python3 skills/bankcardcognition/bankcardcognition.py '{
 - **位置服务**：基站查询，经纬度地址转换，坐标系转换  
 
 在官网注册后，按**具体 API 页面**申请数据，在会员中心获取 **AppKey** 进行接入；**免费额度和套餐**在API详情页查看，适合个人开发者与企业进行接入。在 **ClawHub** 上也可搜索 **`jisuapi`** 找到更多基于极速数据的 OpenClaw 技能。
-

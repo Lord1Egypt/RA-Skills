@@ -48,31 +48,31 @@
 
 ```bash
 # 最简用法（默认 PicInPic 模式，自动等待完成）
-python scripts/mps_dedupe.py --url https://example.com/video.mp4
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4
 
 # 垂直填充去重
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode VerticalExtend
 
 # 水平填充去重
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode HorizontalExtend
 
 # 视频扩展去重（COS 输入）
-python scripts/mps_dedupe.py --cos-input-key /input/video.mp4 \
+python3 scripts/mps_dedupe.py --cos-input-key /input/video.mp4 \
     --mode BackgroundExtend
 
 # 本地文件（自动上传到 COS）
-python scripts/mps_dedupe.py --local-file ./video.mp4
+python3 scripts/mps_dedupe.py --local-file ./video.mp4
 
 # 异步提交（不等待，获取 TaskId 后可用 mps_get_video_task.py 查询）
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 --no-wait
 
 # 完成后自动下载结果到本地
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --download-dir /data/workspace/output/
 
 # dry-run 预览
-python scripts/mps_dedupe.py --url https://example.com/video.mp4 \
+python3 scripts/mps_dedupe.py --url https://example.com/video.mp4 \
     --mode BackgroundExtend --dry-run
 ```

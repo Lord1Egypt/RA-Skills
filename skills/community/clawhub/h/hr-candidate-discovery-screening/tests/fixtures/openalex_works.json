@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "next_cursor": null
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W1",
+      "doi": "https://doi.org/10.1000/boundary",
+      "title": "Boundary Paper",
+      "publication_date": "2025-06-11",
+      "type": "proceedings-article",
+      "is_retracted": false,
+      "abstract_inverted_index": {
+        "vision": [0],
+        "language": [1],
+        "model": [2]
+      },
+      "keywords": [{"display_name": "Vision-language model"}],
+      "primary_location": {
+        "landing_page_url": "https://openaccess.thecvf.com/content/CVPR2025/html/test.html",
+        "source": {"display_name": "CVPR"}
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {"id": "https://openalex.org/A1", "display_name": "Li Ming"},
+          "raw_affiliation_strings": ["Tsinghua University"]
+        }
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2",
+      "doi": null,
+      "title": "Accepted Paper",
+      "publication_date": "2026-06-11",
+      "type": "journal-article",
+      "is_retracted": false,
+      "abstract_inverted_index": null,
+      "keywords": [],
+      "primary_location": {
+        "landing_page_url": "https://jmlr.org/papers/v27/test.html",
+        "source": {"display_name": "Journal of Machine Learning Research"}
+      },
+      "authorships": []
+    },
+    {
+      "id": "https://openalex.org/W3",
+      "doi": "https://doi.org/10.1000/old",
+      "title": "Old Paper",
+      "publication_date": "2025-06-10",
+      "type": "journal-article",
+      "is_retracted": false,
+      "abstract_inverted_index": null,
+      "keywords": [],
+      "primary_location": {
+        "landing_page_url": "https://jmlr.org/papers/v26/old.html",
+        "source": {"display_name": "Journal of Machine Learning Research"}
+      },
+      "authorships": []
+    },
+    {
+      "id": "https://openalex.org/W4",
+      "doi": "https://doi.org/10.1000/retracted",
+      "title": "Retracted Paper",
+      "publication_date": "2026-01-01",
+      "type": "journal-article",
+      "is_retracted": true,
+      "abstract_inverted_index": null,
+      "keywords": [],
+      "primary_location": {
+        "landing_page_url": "https://jmlr.org/papers/v27/retracted.html",
+        "source": {"display_name": "Journal of Machine Learning Research"}
+      },
+      "authorships": []
+    },
+    {
+      "id": "https://openalex.org/W5",
+      "doi": null,
+      "title": "Preprint Only",
+      "publication_date": "2026-01-02",
+      "type": "preprint",
+      "is_retracted": false,
+      "abstract_inverted_index": null,
+      "keywords": [],
+      "primary_location": {
+        "landing_page_url": "https://arxiv.org/abs/2601.00001",
+        "source": {"display_name": "arXiv"}
+      },
+      "authorships": []
+    }
+  ]
+}

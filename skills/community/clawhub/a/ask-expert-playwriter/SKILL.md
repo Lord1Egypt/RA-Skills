@@ -1,3 +1,14 @@
+---
+name: ask-expert-playwriter
+description: "使用 Playwriter 控制已登录的 Chrome 浏览器，通过 AI 助手获取专业建议，适合需登录账号的 AI 网站操作。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 问专家 - Playwriter模式
+
 # 问专家技能 - 使用 Playwriter 控制已登录的浏览器
 
 ## 技能描述

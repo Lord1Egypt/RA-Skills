@@ -10,47 +10,20 @@ import logging
 import os
 import re
 import time
-from typing import Optional
+from typing import Optional, Any
 
 import requests
 
-logger = logging.getLogger(__name__)
+from error_handler import APIError, handle_error
+from config_manager import ConfigManager
 
-DEFAULT_MODEL = "gpt-4o-mini"
-DEFAULT_TIMEOUT = 30
+logger: logging.Logger = logging.getLogger(__name__)
 
-_ENV_PATH = None
-
-
-def _get_env_path() -> str:
-    global _ENV_PATH
-    if _ENV_PATH is None:
-        _ENV_PATH = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"
-        )
-    return _ENV_PATH
-
-
-def _load_env_key(key: str) -> Optional[str]:
-    path = _get_env_path()
-    if not os.path.exists(path):
-        return None
-    try:
-        with open(path, "r") as f:
-            for line in f:
-                line = line.strip()
-                if line.startswith("#") or "=" not in line:
-                    continue
-                k, _, v = line.partition("=")
-                if k.strip() == key:
-                    val = v.strip().strip("\"'")
-                    return val if val else None
-    except (OSError, UnicodeDecodeError) as e:
-        logger.debug("读取 .env 失败: %s", e)
-    return None
+DEFAULT_MODEL: str = "gpt-4o-mini"
+DEFAULT_TIMEOUT: int = 30
 
 # A股公告分类：大类 -> 小类列表
-A_CATEGORY_MAP = {
+A_CATEGORY_MAP: dict[str, list[str]] = {
     "招股类": ["申报稿", "申报反馈", "招股说明书", "发行定价", "发行结果", "上市公告书"],
     "财务报告类": ["业绩预告", "业绩快报", "季度报告", "半年报告", "年度报告", "补充更正"],
     "重大事项类": ["利润分配", "股份增减持", "资金投向", "资产重组", "收购兼并", "重大合同", "股权激励", "关联交易", "借贷担保", "委托理财", "违纪违规", "政策影响", "人事变动"],
@@ -62,7 +35,7 @@ A_CATEGORY_MAP = {
 }
 
 # 港股公告分类：大类 -> 小类列表
-HK_CATEGORY_MAP = {
+HK_CATEGORY_MAP: dict[str, list[str]] = {
     "业绩快报": ["业绩预告", "季度业绩", "中期业绩", "末期业绩", "业绩发布会"],
     "财务报告": ["环境及管治报告", "季度报告", "中期报告", "年度报告"],
     "上市文件": ["预览资料", "发售以供认购", "招股说明书", "公开招股", "供股", "资本化发行", "介绍上市", "发售现有证券", "聆讯资料", "其它上市文件"],
@@ -75,14 +48,14 @@ HK_CATEGORY_MAP = {
 
 def _get_category(market: str, subtype: str) -> str:
     """根据市场和小类，查询对应的大类"""
-    category_map = HK_CATEGORY_MAP if market == "港股" else A_CATEGORY_MAP
+    category_map: dict[str, list[str]] = HK_CATEGORY_MAP if market == "港股" else A_CATEGORY_MAP
     for category, subtypes in category_map.items():
         if subtype in subtypes:
             return category
     return "一般公告类" if market != "港股" else "一般公告"
 
 
-SYSTEM_PROMPT = """你是上市公司公告分类专家。请按以下两步操作：
+SYSTEM_PROMPT: str = """你是上市公司公告分类专家。请按以下两步操作：
 
 **第一步：分类** — 根据公告标题，判断它属于哪个 category（大类）和 type（小类）。
 
@@ -153,24 +126,24 @@ class LLMJudge:
         enabled: bool = True,
         timeout: int = DEFAULT_TIMEOUT,
         retries: int = 2,
-    ):
-        self.api_key = api_key
-        self.base_url = base_url.rstrip("/")
-        self.model = model
-        self.enabled = enabled
-        self.timeout = timeout
-        self.retries = retries
+    ) -> None:
+        self.api_key: str = api_key
+        self.base_url: str = base_url.rstrip("/")
+        self.model: str = model
+        self.enabled: bool = enabled
+        self.timeout: int = timeout
+        self.retries: int = retries
 
-        self._chat_url = f"{self.base_url}/chat/completions"
-        self._headers = {
+        self._chat_url: str = f"{self.base_url}/chat/completions"
+        self._headers: dict[str, str] = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
 
         # 统计信息
-        self.stats = {"total": 0, "valuable": 0, "skip": 0, "error": 0}
+        self.stats: dict[str, int] = {"total": 0, "valuable": 0, "skip": 0, "error": 0}
 
-    def judge(self, title: str, stock_name: str = "", market: str = "A股") -> dict:
+    def judge(self, title: str, stock_name: str = "", market: str = "A股") -> dict[str, Any]:
         """判断公告标题是否有价值，并返回类型分类
 
         Args:
@@ -186,14 +159,14 @@ class LLMJudge:
 
         self.stats["total"] += 1
 
-        user_msg = f"标题：{title}"
+        user_msg: str = f"标题：{title}"
         if stock_name:
             user_msg += f"\n股票：{stock_name}"
         user_msg += f"\n市场：{market}"
 
         for attempt in range(self.retries + 1):
             try:
-                resp = requests.post(
+                resp: requests.Response = requests.post(
                     self._chat_url,
                     headers=self._headers,
                     json={
@@ -209,20 +182,20 @@ class LLMJudge:
                     timeout=self.timeout,
                 )
                 resp.raise_for_status()
-                data = resp.json()
-                message = data.get("choices", [{}])[0].get("message", {})
-                content = (message.get("content") or "").strip()
-                reasoning = (message.get("reasoning_content") or "").strip()
+                data: dict[str, Any] = resp.json()
+                message: dict[str, Any] = data.get("choices", [{}])[0].get("message", {})
+                content: str = (message.get("content") or "").strip()
+                reasoning: str = (message.get("reasoning_content") or "").strip()
 
                 # 优先解析 JSON content
                 if content:
                     try:
-                        parsed = json.loads(content)
-                        subtype = parsed.get("type", "个股其他公告")
-                        category = parsed.get("category", "")
+                        parsed: dict[str, Any] = json.loads(content)
+                        subtype: str = parsed.get("type", "个股其他公告")
+                        category: str = parsed.get("category", "")
                         if not category:
                             category = _get_category(market, subtype)
-                        result = {
+                        result: dict[str, Any] = {
                             "valuable": parsed.get("judge", True),
                             "category": category,
                             "type": subtype,
@@ -231,17 +204,17 @@ class LLMJudge:
                         result = {"valuable": True, "category": "一般公告类", "type": "个股其他公告"}
                 else:
                     # reasoning 模型可能 content 为空，从 reasoning 末尾提取结论
-                    combined = reasoning.lower()
-                    is_valuable = True  # fail-open
+                    combined: str = reasoning.lower()
+                    is_valuable: bool = True  # fail-open
                     try:
-                        json_match = re.search(r'\{[^}]*"judge"\s*:\s*(true|false)[^}]*\}', combined)
+                        json_match: Optional[re.Match[str]] = re.search(r'\{[^}]*"judge"\s*:\s*(true|false)[^}]*\}', combined)
                         if json_match:
                             is_valuable = json_match.group(1) == "true"
                         elif re.search(r'judge\s*[:=]\s*(true|false)', combined):
-                            m = re.search(r'judge\s*[:=]\s*(true|false)', combined)
+                            m: Optional[re.Match[str]] = re.search(r'judge\s*[:=]\s*(true|false)', combined)
                             is_valuable = m.group(1) == "true"
                         else:
-                            tail = combined[-100:]
+                            tail: str = combined[-100:]
                             if re.search(r'(无价值|没有价值|不值得|跳过|skip)', tail):
                                 is_valuable = False
                     except (IndexError, TypeError, AttributeError):
@@ -257,24 +230,25 @@ class LLMJudge:
 
                 return result
 
-            except (requests.RequestException, json.JSONDecodeError) as e:
-                logger.warning(
-                    "LLM 调用失败 (attempt %d/%d): %s", attempt + 1, self.retries + 1, e
-                )
+            except requests.RequestException as e:
+                handle_error(APIError(f"LLM调用失败: {e}"), context="LLMJudge.judge")
                 if attempt < self.retries:
                     time.sleep((attempt + 1) * 2)
                 continue
+            except json.JSONDecodeError as e:
+                handle_error(APIError(f"LLM响应解析失败: {e}"), context="LLMJudge.judge")
+                continue
 
         self.stats["error"] += 1
-        logger.warning("LLM 调用全部失败，默认视为有价值: [%s] %s", stock_name, title[:40])
+        handle_error(APIError("LLM调用全部失败"), context="LLMJudge.judge")
         return {"valuable": True, "category": "一般公告类", "type": "个股其他公告"}
 
     def report(self) -> str:
         """返回 LLM 判断统计信息"""
-        total = self.stats["total"]
+        total: int = self.stats["total"]
         if total == 0:
             return "LLM 未进行任何判断"
-        skip_pct = self.stats["skip"] / total * 100
+        skip_pct: float = self.stats["skip"] / total * 100
         return (
             f"LLM 判断: 共 {total} 条, "
             f"有价值 {self.stats['valuable']} 条, "
@@ -283,17 +257,25 @@ class LLMJudge:
         )
 
     @classmethod
-    def from_config(cls, config: dict) -> "LLMJudge":
-        """从配置字典 + .env 文件创建 LLMJudge 实例
+    def from_config(cls, config) -> "LLMJudge":
+        """从配置创建 LLMJudge 实例
 
         api_key 优先从 .env 文件读取（LLM_API_KEY 变量），
         config.json 中不再存储敏感信息。
         """
-        llm_cfg = config.get("llm", {})
-        if not llm_cfg.get("enabled", False):
+        from config_manager import ConfigManager, AppConfig
+        
+        if isinstance(config, AppConfig):
+            app_config: AppConfig = config
+            config_manager: ConfigManager = ConfigManager()
+        else:
+            config_manager = ConfigManager()
+            app_config = config_manager.load()
+        
+        if not app_config.llm.enabled:
             return cls(api_key="", enabled=False)
 
-        api_key = _load_env_key("LLM_API_KEY")
+        api_key: Optional[str] = config_manager.get_llm_api_key()
         if not api_key:
             logger.warning(
                 "LLM 已启用但 .env 中未配置 LLM_API_KEY，已自动禁用"
@@ -302,9 +284,9 @@ class LLMJudge:
 
         return cls(
             api_key=api_key,
-            base_url=llm_cfg.get("base_url", "https://api.openai.com/v1"),
-            model=llm_cfg.get("model", DEFAULT_MODEL),
+            base_url=app_config.llm.base_url,
+            model=app_config.llm.model,
             enabled=True,
-            timeout=llm_cfg.get("timeout", DEFAULT_TIMEOUT),
-            retries=llm_cfg.get("retries", 2),
+            timeout=app_config.llm.timeout,
+            retries=app_config.llm.retries,
         )

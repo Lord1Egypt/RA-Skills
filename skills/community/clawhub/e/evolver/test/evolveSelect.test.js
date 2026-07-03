@@ -42,6 +42,13 @@ function teardownTmpEnv(tmpDir, origEnv) {
   try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) { /* best-effort */ }
 }
 
+function readMemoryGraphEvents(graphPath) {
+  return fs.readFileSync(graphPath, 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
+}
+
 // ---------------------------------------------------------------------------
 // computeAdaptiveStrategyPolicy
 // ---------------------------------------------------------------------------
@@ -161,6 +168,116 @@ describe('selectAndMutate', () => {
     const result = await select.selectAndMutate(ctx);
     assert.equal(result.cycleNum, 7);
     assert.equal(result.someField, 'preserved');
+  });
+
+  it('passes ctx.forcedGeneId into gene selection', async () => {
+    const genes = [
+      {
+        type: 'Gene',
+        id: 'gene_repair_runtime',
+        category: 'repair',
+        signals_match: ['error'],
+        strategy: ['fix the error'],
+        validation: ['node -e "true"'],
+      },
+      {
+        type: 'Gene',
+        id: 'gene_forced_runtime',
+        category: 'optimize',
+        signals_match: ['unrelated'],
+        strategy: ['honor runtime override'],
+        validation: ['node -e "true"'],
+      },
+    ];
+    const result = await select.selectAndMutate({
+      ...baseCtx,
+      genes,
+      signals: ['error'],
+      forcedGeneId: 'gene_forced_runtime',
+    });
+
+    assert.ok(result.selectedGene);
+    assert.equal(result.selectedGene.id, 'gene_forced_runtime');
+    assert.equal(result.selector.selectionPath, 'forced_gene');
+  });
+
+  it('records forced gene provenance when memory preference exists', async () => {
+    const genes = [
+      {
+        type: 'Gene',
+        id: 'gene_memory_preferred',
+        category: 'repair',
+        signals_match: ['error', 'exception', 'failed'],
+        strategy: ['fix the preferred error'],
+        validation: ['node -e "true"'],
+      },
+      {
+        type: 'Gene',
+        id: 'gene_forced_runtime',
+        category: 'optimize',
+        signals_match: ['unrelated'],
+        strategy: ['honor runtime override'],
+        validation: ['node -e "true"'],
+      },
+    ];
+    const result = await select.selectAndMutate({
+      ...baseCtx,
+      genes,
+      signals: ['error', 'exception', 'failed'],
+      memoryAdvice: {
+        bannedGeneIds: new Set(),
+        preferredGeneId: 'gene_memory_preferred',
+        totalAttempts: 1,
+      },
+      forcedGeneId: 'gene_forced_runtime',
+    });
+
+    assert.ok(result.selectedGene);
+    assert.equal(result.selectedGene.id, 'gene_forced_runtime');
+    assert.equal(result.selectedBy, 'forced_gene');
+    assert.equal(result.selector.selectionPath, 'forced_gene');
+    assert.equal(result.selector.memoryUsed, false);
+
+    const events = readMemoryGraphEvents(process.env.MEMORY_GRAPH_PATH);
+    const hypothesis = events.find((event) => event.kind === 'hypothesis');
+    const attempt = events.find((event) => event.kind === 'attempt');
+    assert.ok(hypothesis, 'hypothesis event should be recorded');
+    assert.ok(attempt, 'attempt event should be recorded');
+    assert.equal(hypothesis.action.selected_by, 'forced_gene');
+    assert.equal(attempt.action.selected_by, 'forced_gene');
+    assert.notEqual(hypothesis.action.selected_by, 'memory_graph+selector');
+    assert.notEqual(attempt.action.selected_by, 'memory_graph+selector');
+  });
+
+  it('passes ctx.requiredGeneId into gene selection', async () => {
+    const genes = [
+      {
+        type: 'Gene',
+        id: 'gene_repair_runtime',
+        category: 'repair',
+        signals_match: ['error'],
+        strategy: ['fix the error'],
+        validation: ['node -e "true"'],
+      },
+      {
+        type: 'Gene',
+        id: 'gene_required_runtime',
+        category: 'optimize',
+        signals_match: ['unrelated'],
+        strategy: ['honor required runtime override'],
+        validation: ['node -e "true"'],
+      },
+    ];
+    const result = await select.selectAndMutate({
+      ...baseCtx,
+      genes,
+      signals: ['error'],
+      requiredGeneId: 'gene_required_runtime',
+    });
+
+    assert.ok(result.selectedGene);
+    assert.equal(result.selectedGene.id, 'gene_required_runtime');
+    assert.equal(result.selector.selectionPath, 'forced_gene');
   });
 
   it('sets mutationInnovateMode true when IS_RANDOM_DRIFT is true', async () => {

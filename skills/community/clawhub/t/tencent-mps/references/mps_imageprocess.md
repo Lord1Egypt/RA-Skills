@@ -96,62 +96,62 @@
 
 ```bash
 # 超分辨率 2 倍放大
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --super-resolution
 
 # 高级超分至 4K
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --advanced-sr --sr-width 3840 --sr-height 2160
 
 # 降噪 + 色彩增强 + 细节增强
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg \
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg \
     --denoise weak --color-enhance normal --sharp-enhance 0.8
 
 # 综合增强（画质整体提升）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance normal
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance normal
 
 # 综合增强 + 超分（强力修复低质量图片）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong --super-resolution
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --quality-enhance strong --super-resolution
 
 # 美颜（美白 + 瘦脸 + 大眼）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg \
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg \
     --beauty Whiten:50 --beauty BeautyThinFace:30 --beauty EnlargeEye:40
 
 # 自动擦除水印
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --erase-detect watermark
 
 # 添加盲水印
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "MPS"
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --add-watermark "MPS"
 
 # 转为 WebP 格式 + 质量 80
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --format WebP --quality 80
 
 # 滤镜（轻胶片风格，强度 70）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --filter Qingjiaopian:70
 
 # 缩放（等比缩放至宽 800 高 600 以内）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-mode lfit --resize-width 800 --resize-height 600
 
 # 缩放（指定长边为 1920，等比缩放）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-long-side 1920
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-long-side 1920
 
 # === 编排场景（AI 控制台预置能力，仅需输入图片 + schedule-id） ===
 # AI 图片理解（30200）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
 
 # AI 抠图（30030）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
 
 # AI 图片修复（30040，老照片/划痕修复）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
 # AI 前景提取（30031）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
 
 # AI 扩图（30010）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
 
 # AI 文字水印擦除（30000）
-python scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
+python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
 # 查询图片处理任务状态
-python scripts/mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
 ```

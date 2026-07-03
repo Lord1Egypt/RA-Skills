@@ -1,8 +1,9 @@
 ---
 name: swift-macos
-description: Comprehensive macOS app development with Swift 6.2, SwiftUI, SwiftData, Swift Concurrency, Foundation Models, Swift Testing, ScreenCaptureKit, and app distribution. Use when building native Mac apps, implementing windows/scenes/navigation/menus/toolbars, SwiftData models and queries, modern concurrency, on-device AI, testing, screen/audio capture, menu bar apps, AppKit bridges, login items, process monitoring, or App Store and Developer ID distribution. Triggers on macOS app, SwiftUI macOS, SwiftData, Swift concurrency, Foundation Models, Swift Testing, ScreenCaptureKit, screen capture, screen recording, AVFoundation, MenuBarExtra, NSViewRepresentable, notarize, login item, and process monitoring.
+description: Comprehensive macOS app development with Swift 6.3, SwiftUI, SwiftData, Swift Concurrency, Foundation Models, Swift Testing, ScreenCaptureKit, and app distribution. Use when building native Mac apps, implementing windows/scenes/navigation/menus/toolbars, SwiftData models and queries, modern concurrency, on-device AI, testing, screen/audio capture, menu bar apps, AppKit bridges, login items, process monitoring, or App Store and Developer ID distribution. Triggers on macOS app, SwiftUI macOS, SwiftData, Swift concurrency, Foundation Models, Swift Testing, ScreenCaptureKit, screen capture, screen recording, AVFoundation, MenuBarExtra, NSViewRepresentable, notarize, login item, and process monitoring.
 metadata:
-  version: "0.5.0"
+  version: "0.6.1"
+  upstream: "swift@6.3.3, xcode@26.6"
   openclaw:
     homepage: https://github.com/tenequm/skills/tree/main/skills/swift-macos
     emoji: "🍎"
@@ -14,9 +15,9 @@ metadata:
         - xcodebuild
 ---
 
-# macOS App Development - Swift 6.2
+# macOS App Development - Swift 6.3
 
-Build native macOS apps with Swift 6.2 (latest: 6.2.4, Feb 2026), SwiftUI, SwiftData, and macOS 26 Tahoe. Target macOS 14+ for SwiftData/@Observable, macOS 15+ for latest SwiftUI, macOS 26 for Liquid Glass and Foundation Models.
+Build native macOS apps with Swift 6.3 (latest: 6.3.3, bundled in Xcode 26.6, Jun 2026), SwiftUI, SwiftData, and macOS 26 Tahoe (26.5 current). Target macOS 14+ for SwiftData/@Observable, macOS 15+ for latest SwiftUI, macOS 26 for Liquid Glass and Foundation Models. For the WWDC 2026 beta stack (macOS 27, Xcode 27, Swift 6.4, shipping fall 2026), see `references/fall-2026-releases.md`.
 
 ## Quick Start
 
@@ -219,7 +220,7 @@ Enable iCloud capability, then `.modelContainer(for: Model.self)` auto-syncs. Co
 
 For model attributes, background contexts, batch ops, undo/redo, and testing, see SwiftData references below.
 
-## Concurrency (Swift 6.2)
+## Concurrency (Swift 6.2+)
 
 ### Default MainActor Isolation
 
@@ -387,7 +388,7 @@ For complete distribution guide, see `references/distribution.md`.
 ## SPM
 
 ```swift
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3
 let package = Package(
     name: "MyApp",
     platforms: [.macOS(.v14)],
@@ -405,7 +406,7 @@ For build plugins, macros, and Swift Build, see `references/spm-build.md`.
 
 ## Liquid Glass (macOS 26)
 
-Apps rebuilt with Xcode 26 SDK get automatic Liquid Glass styling. Use `.glassEffect()` for custom glass surfaces, `GlassEffectContainer` for custom hierarchies. Opt out: `UIDesignRequiresCompatibility = YES` in Info.plist (keeps legacy visual style; Apple positions this as a temporary migration aid).
+Apps rebuilt with Xcode 26 SDK get automatic Liquid Glass styling. Use `.glassEffect()` for custom glass surfaces, `GlassEffectContainer` for custom hierarchies. Opt out (Xcode 26 only): `UIDesignRequiresCompatibility = YES` in Info.plist keeps the legacy visual style - a temporary migration aid. Apps rebuilt with Xcode 27 (beta) can no longer opt out; the key is ignored and Liquid Glass is mandatory (see `references/fall-2026-releases.md`).
 
 ## ScreenCaptureKit
 
@@ -469,6 +470,7 @@ See `references/architecture.md` for all patterns with examples.
 
 | File | When to read |
 |------|-------------|
+| `references/fall-2026-releases.md` | WWDC 2026 beta stack: macOS 27, Xcode 27, Swift 6.4, Foundation Models next-gen, Core AI, Spatial Preview, mandatory Liquid Glass |
 | **SwiftUI & macOS** | |
 | `references/app-lifecycle.md` | Window management, scenes, DocumentGroup, MenuBarExtra gotchas, async termination, LSUIElement issues |
 | `references/swiftui-macos.md` | Sidebar, Inspector, Table, forms, popovers, sheets, search |

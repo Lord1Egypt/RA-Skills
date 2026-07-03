@@ -1,5 +1,5 @@
 ## Description: <br>
-Generates styled Chinese Markdown articles from webpage content for WeChat, Zhihu, Juejin, Xiaohongshu, and Toutiao formats, with optional rewriting and image handling. <br>
+Claw Markdown Gen converts webpage articles into styled Markdown posts for WeChat, Zhihu, Juejin, Xiaohongshu, and Toutiao, with rewriting, word-count control, image keywording, and optional AI image generation. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and content creators use this skill to turn captured webpage text and image metadata into polished Markdown articles for common Chinese publishing platforms. It supports article rewriting, style-specific formatting, original-image placeholders, and optional AI image generation for heavy rewrite mode. <br>
+External users and content creators use this skill through the ClawMarkDown Chrome extension to turn webpage articles into publishable Markdown posts in common Chinese platform styles. It supports light, medium, and heavy rewriting, image placement, image keyword annotations, and optional AI-generated images. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Selected webpage text, image metadata, nearby image context, and optional AI image prompts may be sent to configured model or image API services. <br>
-Mitigation: Use approved pages and providers, avoid confidential dashboards or private content unless authorized, and configure a dedicated image API key. <br>
-Risk: Generated Markdown may preserve sensitive context from the source article or image metadata. <br>
-Mitigation: Review the generated article and keyword comments before publishing or sharing externally. <br>
+Risk: Webpage text, image metadata, and heavy-mode image prompts may be sent through the AI workflow or a configured image-generation API. <br>
+Mitigation: Avoid using AI image generation on private dashboards, account pages, confidential documents, or other sensitive webpage content. <br>
+Risk: Optional image generation depends on a user-provided API key and endpoint. <br>
+Mitigation: Use a trusted image API endpoint, keep the API key scoped, and rotate or revoke the key if exposure is suspected. <br>
+Risk: Rewriting and generated imagery can change tone, emphasis, or factual detail before publication. <br>
+Mitigation: Review the final Markdown and any generated images before publishing or sharing externally. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/webkixi/skills/claw-markdown-gen) <br>
-- [Image Handling Reference](references/image-handling.md) <br>
-- [Chinese Humanization Reference](references/ren-zh.md) <br>
-- [WeChat Style Configuration](references/styles/wechat_common_style.json) <br>
-- [Zhihu Style Configuration](references/styles/zhihu_common_style.json) <br>
-- [Juejin Style Configuration](references/styles/juejin_common_style.json) <br>
-- [Xiaohongshu Style Configuration](references/styles/xiaohongshu_common_style.json) <br>
-- [Toutiao Style Configuration](references/styles/toutiao_common_style.json) <br>
+- [ClawHub skill page](https://clawhub.ai/webkixi/skills/claw-markdown-gen) <br>
+- [Claw Markdown Gen repository](https://github.com/webkixi/claw-markdown-gen) <br>
+- [ClawMarkDown main project](https://github.com/webkixi/clawmark) <br>
+- [Image handling reference](artifact/references/image-handling.md) <br>
+- [Humanized Chinese writing reference](artifact/references/ren-zh.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown article content with image placeholders, keyword comments, and optional image-generation post-processing commands] <br>
+**Output Format:** [Markdown article content with image placeholders, keyword comments, and optional generated-image links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include IMAGE and AI_IMAGE placeholders, Markdown image links, keyword HTML comments, and a version-update notice when invoked by an older plugin version.] <br>
+**Other Properties Related to Output:** [May require IMAGE_API_KEY and IMAGE_API_URL for heavy-mode AI image generation.] <br>
 
 ## Skill Version(s): <br>
-2.2.3 (source: frontmatter and server release evidence) <br>
+2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

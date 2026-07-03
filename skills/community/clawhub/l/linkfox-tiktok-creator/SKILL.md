@@ -1,25 +1,33 @@
 ---
 name: linkfox-tiktok-creator
-version: 1.0.0
-category: product-sourcing
-description: TikTok 达人（Creator/affiliate creator）数据与可购物视频技能，经 LinkFox 网关代理调用 TikTok Shop 达人开放接口：达人主页/档案、达人绑定店铺商品、橱窗商品、可购物视频的上传/内容预检/发布/发布状态查询。需要达人 access_token（user_type=1），由 linkfox-tiktok-auth 以 appType=creator 授权获得。当用户提到 TikTok 达人、TikTok creator、达人主页、达人档案、达人资料、达人店铺商品、达人绑定店铺商品、达人橱窗商品、showcase 商品、上传可购物视频、发布可购物视频、视频发布状态、视频内容预检、shoppable video、affiliate creator、TikTok 带货达人信息、TikTok creator profile、shop products、showcase products、post shoppable video、video status、precheck 时触发此技能。即使用户未写 EHunt/紫鸟，只要需求是查 TikTok Shop 达人的资料、绑定商品或可购物视频带货操作，也应触发。
+description: TikTok 达人（Creator/affiliate creator）数据与可购物视频技能，经 LinkFox 网关代理调用 TikTok Shop 达人开放接口：达人主页/档案、达人绑定店铺商品、橱窗商品、可购物视频的上传/内容预检/发布/发布状态查询。需要达人 access_token（user_type=1），由 linkfox-tiktok-video-auth 完成达人授权后取得。当用户提到 TikTok 达人、TikTok creator、达人主页、达人档案、达人资料、达人店铺商品、达人绑定店铺商品、达人橱窗商品、showcase 商品、上传可购物视频、发布可购物视频、视频发布状态、视频内容预检、shoppable video、affiliate creator、TikTok 带货达人信息、TikTok creator profile、shop products、showcase products、post shoppable video、video status、precheck 时触发此技能。即使用户未写 EHunt/紫鸟，只要需求是查 TikTok Shop 达人的资料、绑定商品或可购物视频带货操作，也应触发。**不含达人授权**（授权请用 linkfox-tiktok-video-auth）。
 ---
 
 # TikTok 达人（Creator）数据
 
 本 skill 通过 **LinkFox 网关 → 紫鸟代理 → TikTok Shop 达人(affiliate_creator)开放接口**，提供 TikTok 带货达人的数据查询（达人资料、绑定店铺商品、橱窗商品）与可购物视频带货操作（上传、内容预检、发布、状态查询）。全部接口收录在 `references/api.md`。
 
-> 📌 **前置依赖**：本 skill 需要 **达人 access_token（`user_type=1`）**。请先用 `linkfox-tiktok-auth` 以 **`appType=creator`** 完成达人授权并取得 `accessToken`，再作为本 skill 调用的 `ttsAccessToken` 传入。
+> 📌 **前置依赖**：本 skill 需要 **达人 access_token（`user_type=1`）**。请先用 **`linkfox-tiktok-video-auth`** 完成达人授权，经 `/tiktokVideo/accountTokens` 取得 `accessToken`，再作为本 skill 调用的 `ttsAccessToken` 传入。**勿使用** `linkfox-tiktok-auth`（`/tiktokShop`）做达人授权。
 
 ## Core Concepts
 
 - **调用链路**：业务请求统一经 LinkFox 网关的 **`/tiktokShop/developerProxy`** 转发：传入 **`appType=creator`**、TikTok Shop API 的相对 `path`（如 `affiliate_creator/202508/profiles`）、`method` 与达人令牌 `ttsAccessToken`；紫鸟自动注入 `app_key` / `timestamp` / `sign`，并透传 TikTok 原始响应。达人接口的 `appType` 必须为 `creator`（脚本已默认）。
-- **达人令牌**：`ttsAccessToken` 为达人 access_token（`user_type=1`），来自 `linkfox-tiktok-auth`（`appType=creator`）。令牌过期时回到该 skill 刷新。
+- **达人令牌**：`ttsAccessToken` 为达人 access_token（`user_type=1`），来自 **`linkfox-tiktok-video-auth`**。令牌过期时回到该 skill 刷新。
 - **响应透传**：网关返回 `httpStatus` / `contentType` / `body`，其中 `body` 为 TikTok 原始 JSON 字符串；TikTok 业务层的成功/失败以其 `code` / `message` 为准。
 
-## API Usage
+## 调用方式
 
-本 skill 经 LinkFox 网关代理调用，详见 `references/api.md`。
+- **API 端点**：`POST /tiktokShop/developerProxy`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/creator_proxy.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-tiktok-creator-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ### Available Scripts
 
@@ -53,14 +61,14 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 4. **发布**：Post Shoppable Video（接口 5，传 `file_id` + `product_id` + 标题/封面）→ 拿 `video.id`
 5. **查发布状态**：Get Shoppable Video Status（接口 6，凭 `video_id`）→ `post_status` 为 `SUCCESS`/`FAIL`/`PROCESSING`
 
-> 所有调用都需先经 `linkfox-tiktok-auth`（`appType=creator`）拿到达人 `accessToken` 作为 `ttsAccessToken`。
+> 所有调用都需先经 **`linkfox-tiktok-video-auth`** 拿到达人 `accessToken` 作为 `ttsAccessToken`。
 
 ## Display Rules
 
 1. **只呈现数据**：展示达人资料字段即可，不做主观评价。
 2. **令牌安全**：不要明文输出完整 `ttsAccessToken`，仅展示掩码。
 3. **错误说明**：失败时依据 TikTok 业务 `code` / `message` 与网关 `httpStatus` 解释原因。
-4. **前置校验**：无达人令牌时，先引导用户经 `linkfox-tiktok-auth`（`appType=creator`）授权。
+4. **前置校验**：无达人令牌时，先引导用户经 **`linkfox-tiktok-video-auth`** 授权。
 
 ## Important Limitations
 
@@ -85,7 +93,7 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 | "看看达人的带货信息" | 达人数据查询（按已收录接口） |
 
 **Not applicable**：
-- TikTok 达人授权本身 → 用 `linkfox-tiktok-auth`（`appType=creator`）。
+- TikTok 达人授权本身 → 用 **`linkfox-tiktok-video-auth`**（勿用 `linkfox-tiktok-auth`）。
 - TikTok 选品 / 商品销量（EchoTik 等数据源）→ 由对应 skill 负责。
 
 **Feedback**：
@@ -98,30 +106,7 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 
 按 `references/api.md` 中的规范调用 Feedback API，不要打断用户的主流程。
 
-<!-- LF_LARGE_RESPONSE_BLOCK -->
-## Handling Large Responses
 
-To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
-
-```
-python scripts/response_io.py run --script scripts/creator_proxy.py --out-dir <DIR> '<params>'
-python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
-```
-
-> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data — do not commit them. Files are not auto-deleted; clean up when the task is done.
-
-`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
-
-**When to prefer this pattern** — apply your judgment based on the response characteristics, e.g.:
-- High field count per record, or fields you don't need
-- Batch/paginated results (multiple items per call)
-- Long-text fields (descriptions, reviews, HTML, time series)
-- Output reused across later steps rather than consumed immediately
-
-For small, single-use responses, calling the main script directly is fine.
-
-⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
-<!-- /LF_LARGE_RESPONSE_BLOCK -->
 
 ---
 *For more high-quality, professional cross-border e-commerce skills, visit [LinkFox Skills](https://skill.linkfox.com/).*

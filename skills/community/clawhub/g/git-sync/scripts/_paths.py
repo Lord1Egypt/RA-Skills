@@ -27,7 +27,7 @@ CACHE_DIR    = SKILLS_ROOT / ".standardization" / "git-sync" / "cache"
 TEMP_DIR     = STD_DIR / "temp"
 
 # ── 仓库与分发目录 ──────────────────────────────────
-WORK_REPO    = Path.home() / ".workbuddy" / "workbuddy-skills"
+WORK_REPO    = Path.home() / "WorkBuddy" / "workbuddy-skills"
 DIST_DIR     = SKILLS_ROOT / ".dist"
 README_FILE  = WORK_REPO / "README.md"
 

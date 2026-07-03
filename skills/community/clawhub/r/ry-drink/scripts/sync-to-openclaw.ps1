@@ -27,7 +27,7 @@ Next steps:
 1. Align cs-agent workspace (merchant-system install will do this), or:
    docker exec $Container sh -c 'grep workspace ~/.openclaw/agents.json || true'
 2. Set skill env (or re-install ry-drink from merchant UI):
-   RY_DRINK_API_BASE=http://192.168.0.66:8080/user-biz
+   RY_DRINK_API_BASE=http://10.200.100.32:9302
    RY_DRINK_SAAS_ID=sf8b00e05  RY_DRINK_Tenant_ID=5  RY_DRINK_SHOP_ID=8
 3. Restart gateway if needed, then test booking and check merchant-biz log for 预约订座消息已推送
 "@

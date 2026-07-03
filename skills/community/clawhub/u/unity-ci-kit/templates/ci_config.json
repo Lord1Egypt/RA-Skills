@@ -1,0 +1,11 @@
+{
+    "_comment": "Unity CI Agent 配置文件 — 按项目自定义",
+    "unity_version": "2022.3.62f3c1",
+    "unity_path": "",
+    "execute_method": "StarVanguard.Editor.AutoCI.RunCI",
+    "project_path": "",
+    "log_file": "ci_output.log",
+    "result_file": "ci_result.json",
+    "timeout_seconds": 600,
+    "close_editor": true
+}

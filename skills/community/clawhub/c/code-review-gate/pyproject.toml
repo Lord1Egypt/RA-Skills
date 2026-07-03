@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "code-review-gate"
+version = "0.2.0"
+description = "AI Code Review Gate — structured 7-dimension review with blocking gate"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "bandit>=1.7",
+]

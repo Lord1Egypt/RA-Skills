@@ -1,0 +1,27 @@
+﻿name: huawei-cloud-cce-storage-failure-diagnoser
+level: L3
+domain: diagnosis-remediation
+description: Diagnose CCE Kubernetes storage failures across PVC provisioning, binding, attach/mount, runtime IO, capacity, permission, and teardown stages with Markdown reports.
+tools:
+  - huawei_storage_failure_diagnose
+  - huawei_get_cce_pvcs
+  - huawei_get_cce_pvs
+  - huawei_get_cce_storageclasses
+  - huawei_get_cce_volumeattachments
+  - huawei_get_cce_node_stats_summary
+  - huawei_get_cce_everest_csi_logs
+  - huawei_get_cce_events
+  - huawei_get_cce_pods
+  - huawei_get_kubernetes_nodes
+  - huawei_list_evs
+  - huawei_get_evs_metrics
+  - huawei_list_sfs
+  - huawei_list_sfs_turbo
+  - huawei_list_security_groups
+  - huawei_list_vpc_acls
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

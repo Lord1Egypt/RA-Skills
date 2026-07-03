@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>护工助手 - 护理团队全流程管理</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --sidebar-bg: #1a2332;
+  --sidebar-hover: #243447;
+  --sidebar-active: #2d4a6b;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --white: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --radius: 10px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); display:flex; min-height:100vh; }
+/* Sidebar */
+.sidebar { width:240px; min-width:240px; background:var(--sidebar-bg); color:#e2e8f0; display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; z-index:100; overflow-y:auto; }
+.sidebar-logo { padding:20px; font-size:20px; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; gap:10px; }
+.sidebar-logo span { font-size:26px; }
+.sidebar-nav { flex:1; padding:12px 0; }
+.nav-group { margin-bottom:4px; }
+.nav-group-title { padding:12px 20px 6px; font-size:11px; text-transform:uppercase; color:#64748b; letter-spacing:1px; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:10px 20px; cursor:pointer; transition:all 0.15s; font-size:14px; border-left:3px solid transparent; margin:2px 0; }
+.nav-item:hover { background:var(--sidebar-hover); }
+.nav-item.active { background:var(--sidebar-active); border-left-color:var(--primary); color:#fff; }
+.nav-item .icon { font-size:18px; width:24px; text-align:center; }
+.nav-badge { background:var(--danger); color:#fff; font-size:11px; border-radius:10px; padding:1px 7px; margin-left:auto; }
+.sidebar-footer { padding:16px 20px; border-top:1px solid rgba(255,255,255,0.08); font-size:12px; color:#64748b; display:flex; gap:8px; }
+.sidebar-footer button { background:rgba(255,255,255,0.1); border:none; color:#94a3b8; padding:6px 10px; border-radius:6px; cursor:pointer; font-size:11px; }
+.sidebar-footer button:hover { background:rgba(255,255,255,0.2); color:#fff; }
+/* Main */
+.main { margin-left:240px; flex:1; padding:24px; }
+.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+.header h1 { font-size:24px; font-weight:700; }
+.header-right { display:flex; align-items:center; gap:12px; }
+.header-date { color:var(--text-secondary); font-size:14px; }
+.btn { padding:8px 16px; border-radius:8px; border:none; font-size:14px; cursor:pointer; font-weight:500; transition:all 0.15s; display:inline-flex; align-items:center; gap:6px; }
+.btn-primary { background:var(--primary); color:#fff; }
+.btn-primary:hover { background:#1d4ed8; }
+.btn-success { background:var(--success); color:#fff; }
+.btn-success:hover { background:#15803d; }
+.btn-danger { background:var(--danger); color:#fff; }
+.btn-danger:hover { background:#b91c1c; }
+.btn-outline { background:transparent; border:1px solid var(--border); color:var(--text-secondary); }
+.btn-outline:hover { border-color:var(--primary); color:var(--primary); }
+.btn-sm { padding:4px 10px; font-size:12px; }
+.btn-icon { width:32px; height:32px; padding:0; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; }
+/* Cards */
+.stat-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin-bottom:24px; }
+.stat-card { background:var(--white); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--card-shadow); }
+.stat-card .label { font-size:13px; color:var(--text-secondary); margin-bottom:6px; }
+.stat-card .value { font-size:32px; font-weight:700; }
+.stat-card .sub { font-size:12px; color:var(--text-secondary); margin-top:4px; }
+.stat-card.blue { border-left:4px solid var(--primary); }
+.stat-card.green { border-left:4px solid var(--success); }
+.stat-card.orange { border-left:4px solid var(--warning); }
+.stat-card.red { border-left:4px solid var(--danger); }
+/* Content panels */
+.content-panel { display:none; }
+.content-panel.active { display:block; }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.panel-header h2 { font-size:20px; }
+/* Tables */
+.table-wrap { background:var(--white); border-radius:var(--radius); box-shadow:var(--card-shadow); overflow:hidden; }
+table { width:100%; border-collapse:collapse; }
+th, td { padding:12px 16px; text-align:left; font-size:13px; }
+th { background:#f8fafc; color:var(--text-secondary); font-weight:600; border-bottom:2px solid var(--border); }
+td { border-bottom:1px solid var(--border); }
+tr:hover td { background:#f8fafc; }
+.badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:600; }
+.badge-success { background:var(--success-light); color:var(--success); }
+.badge-warning { background:var(--warning-light); color:var(--warning); }
+.badge-danger { background:var(--danger-light); color:var(--danger); }
+.badge-primary { background:var(--primary-light); color:var(--primary); }
+/* Forms */
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:13px; font-weight:600; margin-bottom:4px; color:var(--text-secondary); }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:8px; font-size:14px; transition:border 0.15s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-light); }
+.form-group textarea { resize:vertical; min-height:60px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+/* Modal */
+.modal-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; }
+.modal-overlay.active { display:flex; }
+.modal { background:var(--white); border-radius:12px; padding:24px; width:90%; max-width:600px; max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+.modal h3 { font-size:18px; margin-bottom:16px; }
+.modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
+/* Tabs */
+.tabs { display:flex; gap:0; margin-bottom:16px; background:var(--white); border-radius:var(--radius); padding:4px; box-shadow:var(--card-shadow); }
+.tab { padding:8px 20px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:500; color:var(--text-secondary); border:none; background:none; }
+.tab.active { background:var(--primary); color:#fff; }
+/* Filters */
+.filters { display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
+.filters select, .filters input { padding:8px 12px; border:1px solid var(--border); border-radius:8px; font-size:13px; }
+/* Vital sign cards */
+.vital-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:12px; margin-bottom:16px; }
+.vital-card { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); text-align:center; }
+.vital-card .vital-name { font-size:13px; color:var(--text-secondary); margin-bottom:6px; }
+.vital-card .vital-value { font-size:28px; font-weight:700; }
+.vital-card .vital-unit { font-size:12px; color:var(--text-secondary); }
+.vital-card .vital-time { font-size:11px; color:var(--text-secondary); margin-top:4px; }
+.vital-card.abnormal { border:2px solid var(--danger); background:var(--danger-light); }
+.vital-card.abnormal .vital-value { color:var(--danger); }
+/* Med tracker */
+.med-tracker { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; }
+.med-card { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); }
+.med-card .med-name { font-weight:700; font-size:15px; margin-bottom:4px; }
+.med-card .med-info { font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
+.med-card .med-slots { display:flex; gap:8px; flex-wrap:wrap; }
+.med-slot { padding:5px 12px; border-radius:6px; font-size:12px; border:1px solid var(--border); cursor:pointer; transition:all 0.15s; }
+.med-slot.taken { background:var(--success-light); border-color:var(--success); color:var(--success); }
+.med-slot.missed { background:var(--danger-light); border-color:var(--danger); color:var(--danger); }
+.med-slot.pending { background:#f1f5f9; }
+.med-slot:hover { transform:scale(1.05); }
+/* Dashboard alerts */
+.alert-list { display:flex; flex-direction:column; gap:8px; }
+.alert-item { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:8px; font-size:13px; }
+.alert-item.warning { background:var(--warning-light); }
+.alert-item.danger { background:var(--danger-light); }
+.alert-item .alert-icon { font-size:20px; }
+/* Report block */
+.report-block { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--card-shadow); margin-bottom:16px; line-height:1.8; font-size:14px; }
+.report-block h3 { color:var(--primary); margin-bottom:12px; font-size:16px; }
+.report-block .section-title { font-weight:700; color:var(--text); margin:12px 0 6px; font-size:14px; }
+/* Empty state */
+.empty-state { text-align:center; padding:60px 20px; color:var(--text-secondary); }
+.empty-state .empty-icon { font-size:48px; margin-bottom:12px; }
+.empty-state p { font-size:14px; margin-bottom:16px; }
+/* Chart container */
+.chart-wrap { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--card-shadow); margin-bottom:16px; }
+.chart-wrap h3 { margin-bottom:12px; font-size:15px; }
+canvas { width:100%; max-height:300px; }
+/* Staff cards */
+.staff-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:16px; }
+.staff-card { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--card-shadow); text-align:center; }
+.staff-card .avatar { width:56px; height:56px; border-radius:50%; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; margin:0 auto 10px; }
+.staff-card .staff-name { font-weight:700; font-size:16px; }
+.staff-card .staff-role { font-size:12px; color:var(--text-secondary); }
+.staff-card .staff-info { font-size:12px; color:var(--text-secondary); margin-top:6px; }
+/* Responsive */
+@media (max-width:768px) {
+  .sidebar { width:60px; min-width:60px; }
+  .sidebar-logo { justify-content:center; font-size:0; }
+  .sidebar-logo span { font-size:24px; }
+  .nav-item { justify-content:center; padding:12px; }
+  .nav-item span:not(.icon) { display:none; }
+  .nav-group-title { display:none; }
+  .nav-badge { display:none; }
+  .main { margin-left:60px; }
+  .form-row, .form-row-3 { grid-template-columns:1fr; }
+}
+.toast { position:fixed; top:20px; right:20px; padding:12px 20px; border-radius:8px; color:#fff; font-size:14px; z-index:300; transform:translateX(120%); transition:transform 0.3s; }
+.toast.show { transform:translateX(0); }
+.toast.success { background:var(--success); }
+.toast.error { background:var(--danger); }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo"><span>🏥</span> 护工助手</div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">总览</div>
+      <div class="nav-item active" data-panel="dashboard"><span class="icon">📊</span><span>工作台</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">核心业务</div>
+      <div class="nav-item" data-panel="patients"><span class="icon">👤</span><span>患者管理</span><span class="nav-badge" id="patient-count">0</span></div>
+      <div class="nav-item" data-panel="diary"><span class="icon">📋</span><span>护理日志</span></div>
+      <div class="nav-item" data-panel="medication"><span class="icon">💊</span><span>用药管理</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">健康监测</div>
+      <div class="nav-item" data-panel="vitals"><span class="icon">📊</span><span>生命体征</span></div>
+      <div class="nav-item" data-panel="diet"><span class="icon">🍽️</span><span>饮食管理</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">团队协作</div>
+      <div class="nav-item" data-panel="team"><span class="icon">👥</span><span>护工团队</span></div>
+      <div class="nav-item" data-panel="handover"><span class="icon">🔄</span><span>交接班</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">其他</div>
+      <div class="nav-item" data-panel="reports"><span class="icon">📝</span><span>家属报告</span></div>
+      <div class="nav-item" data-panel="emergency"><span class="icon">🚨</span><span>应急处理</span></div>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="exportData()">📥 导出数据</button>
+    <button onclick="importDataPrompt()">📤 导入数据</button>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<div class="main" id="main-content">
+  <!-- Dynamic content rendered by JS -->
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ========== DATA LAYER ==========
+const STORAGE_KEY = 'caregiver_data_v1';
+
+const defaultData = {
+  team: [],
+  patients: [],
+  careDiary: [],
+  medications: [],
+  medicationLogs: [],
+  vitalSigns: [],
+  dietRecords: [],
+  shiftHandovers: [],
+  emergencyContacts: [],
+  emergencyProtocols: [
+    { id: 1, title: '跌倒应急处理', category: '意外', steps: ['立即检查意识和伤情，勿随意移动','如有出血立即止血包扎','测量生命体征并记录','通知医生和家属','持续观察至进一步处理'] },
+    { id: 2, title: '窒息/噎食急救', category: '急救', steps: ['判断气道阻塞程度','意识清醒者采用海姆立克法','意识丧失者立即CPR','同时呼叫120','通知家属及主管'] },
+    { id: 3, title: '心脏骤停', category: '急救', steps: ['确认意识，呼叫无反应','立即呼叫120','开始CPR（胸外按压30:人工呼吸2）','取AED（如有）','持续CPR至急救人员到达'] },
+    { id: 4, title: '低血糖处理', category: '内科', steps: ['意识清醒者立即口服葡萄糖或含糖饮料','15分钟后复测血糖','如无改善重复给糖并就医','意识不清者勿经口喂食，立即就医','通知医生调整降糖方案'] },
+    { id: 5, title: '发热处理', category: '内科', steps: ['测量体温确认发热程度','38.5°C以下物理降温（温水擦浴）','38.5°C以上遵医嘱用药','补充水分，观察精神状态','持续高热或伴其他症状及时就医'] },
+    { id: 6, title: '走失应对', category: '安全', steps: ['立即报告主管和家属','回忆最后出现时间和地点','组织人员在机构内外搜寻','同时查看监控录像','必要时报警（110）'] }
+  ]
+};
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? { ...defaultData, ...JSON.parse(raw) } : { ...defaultData };
+  } catch(e) { return { ...defaultData }; }
+}
+
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+let data = loadData();
+function refreshData() { data = loadData(); }
+
+// ========== UTILS ==========
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function fmtDate(d) { return new Date(d).toISOString().slice(0,10); }
+function fmtTime(d) { return new Date(d).toTimeString().slice(0,5); }
+function today() { return fmtDate(new Date()); }
+
+function showToast(msg, type='success') {
+  const t = $('#toast');
+  t.textContent = msg; t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ========== NAVIGATION ==========
+let currentPanel = 'dashboard';
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    currentPanel = item.dataset.panel;
+    renderPanel(currentPanel);
+  });
+});
+
+function renderPanel(panel) {
+  currentPanel = panel;
+  refreshData();
+  switch(panel) {
+    case 'dashboard': renderDashboard(); break;
+    case 'patients': renderPatients(); break;
+    case 'diary': renderDiary(); break;
+    case 'medication': renderMedication(); break;
+    case 'vitals': renderVitals(); break;
+    case 'diet': renderDiet(); break;
+    case 'reports': renderReports(); break;
+    case 'emergency': renderEmergency(); break;
+    case 'team': renderTeam(); break;
+    case 'handover': renderHandover(); break;
+  }
+  updateBadges();
+}
+
+function updateBadges() {
+  $('#patient-count').textContent = data.patients.length;
+  const todayMeds = data.medications.filter(m => {
+    const logs = data.medicationLogs.filter(l => l.medicationId === m.id && l.date === today());
+    return logs.length === 0 || logs.some(l => !l.taken);
+  });
+  // Could add medication alert badge here
+}
+
+// ========== MODAL ==========
+function openModal(title, contentHtml, onSave) {
+  $('#modal-content').innerHTML = `
+    <h3>${title}</h3>
+    ${contentHtml}
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">取消</button>
+      <button class="btn btn-primary" id="modal-save-btn">保存</button>
+    </div>
+  `;
+  $('#modal-overlay').classList.add('active');
+  $('#modal-save-btn').addEventListener('click', () => { onSave(); closeModal(); });
+}
+
+function closeModal() { $('#modal-overlay').classList.remove('active'); }
+$('#modal-overlay').addEventListener('click', (e) => { if(e.target === $('#modal-overlay')) closeModal(); });
+
+// ========== DASHBOARD ==========
+function renderDashboard() {
+  const todayStr = today();
+  const todayDiary = data.careDiary.filter(d => d.date === todayStr);
+  const todayMeds = data.medications.filter(m => {
+    const logs = data.medicationLogs.filter(l => l.medicationId === m.id && l.date === todayStr);
+    return logs.some(l => !l.taken) || logs.length === 0;
+  });
+  const abnormalVitals = data.vitalSigns.filter(v => v.date === todayStr).filter(v => {
+    if (v.temperature && (v.temperature < 36 || v.temperature > 37.5)) return true;
+    if (v.heartRate && (v.heartRate < 60 || v.heartRate > 100)) return true;
+    if (v.bloodSugar && (v.bloodSugar < 3.9 || v.bloodSugar > 11.1)) return true;
+    if (v.spo2 && v.spo2 < 95) return true;
+    return false;
+  });
+  const pendingHandovers = data.shiftHandovers.filter(h => !h.confirmed);
+
+  const html = `
+    <div class="header"><h1>📊 护理工作台</h1><div class="header-right"><span class="header-date">📅 ${todayStr}</span></div></div>
+    <div class="stat-cards">
+      <div class="stat-card blue"><div class="label">在院患者</div><div class="value">${data.patients.length}</div><div class="sub">特级${data.patients.filter(p=>p.careLevel==='特级').length} 一级${data.patients.filter(p=>p.careLevel==='一级').length} 二级${data.patients.filter(p=>p.careLevel==='二级').length} 三级${data.patients.filter(p=>p.careLevel==='三级').length}</div></div>
+      <div class="stat-card green"><div class="label">今日护理记录</div><div class="value">${todayDiary.length}</div><div class="sub">已完成护理活动</div></div>
+      <div class="stat-card ${todayMeds.length > 0 ? 'orange' : 'green'}"><div class="label">待完成用药</div><div class="value">${todayMeds.length}</div><div class="sub">${todayMeds.length > 0 ? '有药品待服用' : '今日用药已全部完成'}</div></div>
+      <div class="stat-card ${abnormalVitals.length > 0 ? 'red' : 'green'}"><div class="label">体征异常</div><div class="value">${abnormalVitals.length}</div><div class="sub">${abnormalVitals.length > 0 ? '有异常体征需关注' : '体征正常'}</div></div>
+    </div>
+    ${pendingHandovers.length > 0 ? `
+    <div class="alert-list" style="margin-bottom:16px">
+      <div class="alert-item warning"><span class="alert-icon">⚠️</span> 有 ${pendingHandovers.length} 条交接班记录待确认</div>
+    </div>` : ''}
+    ${abnormalVitals.length > 0 ? `
+    <div class="alert-list" style="margin-bottom:16px">
+      ${abnormalVitals.map(v => {
+        const p = data.patients.find(x => x.id === v.patientId);
+        const issues = [];
+        if (v.temperature && (v.temperature < 36 || v.temperature > 37.5)) issues.push(`体温${v.temperature}°C`);
+        if (v.heartRate && (v.heartRate < 60 || v.heartRate > 100)) issues.push(`心率${v.heartRate}`);
+        if (v.bloodSugar && (v.bloodSugar < 3.9 || v.bloodSugar > 11.1)) issues.push(`血糖${v.bloodSugar}`);
+        if (v.spo2 && v.spo2 < 95) issues.push(`血氧${v.spo2}%`);
+        return `<div class="alert-item danger"><span class="alert-icon">🔴</span> <strong>${p ? p.name : '未知患者'}</strong> - ${issues.join(' / ')} <small>${v.time}</small></div>`;
+      }).join('')}
+    </div>` : ''}
+    <div class="table-wrap">
+      <table><thead><tr><th>患者</th><th>护理等级</th><th>责任护工</th><th>今日护理</th><th>用药状态</th><th>最近体征</th></tr></thead><tbody>
+        ${data.patients.map(p => {
+          const diaryCount = todayDiary.filter(d => d.patientId === p.id).length;
+          const pMeds = data.medications.filter(m => m.patientId === p.id);
+          const medDone = pMeds.filter(m => {
+            const logs = data.medicationLogs.filter(l => l.medicationId === m.id && l.date === todayStr);
+            return logs.every(l => l.taken);
+          });
+          const latestVital = data.vitalSigns.filter(v => v.patientId === p.id).sort((a,b) => b.date+b.time > a.date+a.time ? 1 : -1)[0];
+          const vitalsStr = latestVital ? `体温${latestVital.temperature||'-'}°C 血压${latestVital.bloodPressure||'-'} 心率${latestVital.heartRate||'-'}` : '暂无';
+          const caregiver = data.team.find(t => t.id === p.assignedCaregiver);
+          return `<tr>
+            <td><strong>${p.name}</strong></td>
+            <td><span class="badge badge-${p.careLevel==='特级'?'danger':p.careLevel==='一级'?'warning':'primary'}">${p.careLevel}</span></td>
+            <td>${caregiver ? caregiver.name : '未分配'}</td>
+            <td>${diaryCount}条</td>
+            <td>${pMeds.length === 0 ? '<span class="badge badge-success">无用药</span>' : medDone.length === pMeds.length ? '<span class="badge badge-success">已完成</span>' : `<span class="badge badge-warning">${medDone.length}/${pMeds.length}</span>`}</td>
+            <td><small>${vitalsStr}</small></td>
+          </tr>`;
+        }).join('')}
+        ${data.patients.length === 0 ? '<tr><td colspan="6" style="text-align:center;color:var(--text-secondary);padding:30px">暂未添加患者，请先在"患者管理"中添加</td></tr>' : ''}
+      </tbody></table>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+// ========== PATIENTS ==========
+function renderPatients(filterCaregiver = '') {
+  let patients = data.patients;
+  if (filterCaregiver) patients = patients.filter(p => p.assignedCaregiver === filterCaregiver);
+  
+  const html = `
+    <div class="header"><h1>👤 患者管理</h1><button class="btn btn-primary" onclick="showAddPatient()">+ 添加患者</button></div>
+    <div class="filters">
+      <select onchange="renderPatients(this.value)" id="patient-filter-caregiver">
+        <option value="">全部责任护工</option>
+        ${data.team.map(t => `<option value="${t.id}" ${filterCaregiver===t.id?'selected':''}>${t.name}</option>`).join('')}
+      </select>
+      <select onchange="filterPatientsByLevel(this.value)">
+        <option value="">全部护理等级</option>
+        <option value="特级">特级</option><option value="一级">一级</option><option value="二级">二级</option><option value="三级">三级</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table id="patient-table"><thead><tr><th>姓名</th><th>年龄</th><th>性别</th><th>床位</th><th>护理等级</th><th>责任护工</th><th>家属联系</th><th>操作</th></tr></thead><tbody>
+        ${patients.map(p => {
+          const caregiver = data.team.find(t => t.id === p.assignedCaregiver);
+          return `<tr>
+            <td><strong>${p.name}</strong>${p.allergies ? '<br><small style="color:var(--danger)">⚠ '+p.allergies+'</small>' : ''}</td>
+            <td>${p.age}</td><td>${p.gender}</td><td>${p.bedNo || '-'}</td>
+            <td><span class="badge badge-${p.careLevel==='特级'?'danger':p.careLevel==='一级'?'warning':'primary'}">${p.careLevel}</span></td>
+            <td>${caregiver ? caregiver.name : '<span style="color:var(--text-secondary)">未分配</span>'}</td>
+            <td><small>${p.familyContact || '-'} ${p.familyPhone || ''}</small></td>
+            <td>
+              <button class="btn btn-outline btn-sm" onclick="showEditPatient('${p.id}')">编辑</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deletePatient('${p.id}')">删除</button>
+            </td>
+          </tr>`;
+        }).join('')}
+        ${patients.length === 0 ? '<tr><td colspan="8" style="text-align:center;color:var(--text-secondary);padding:30px">暂无患者，点击"+ 添加患者"开始</td></tr>' : ''}
+      </tbody></table>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function filterPatientsByLevel(level) {
+  const rows = document.querySelectorAll('#patient-table tbody tr');
+  rows.forEach(row => {
+    if (!level) { row.style.display = ''; return; }
+    const badge = row.querySelector('.badge');
+    row.style.display = badge && badge.textContent === level ? '' : 'none';
+  });
+}
+
+function showAddPatient() {
+  openModal('添加患者', `
+    <div class="form-row"><div class="form-group"><label>姓名 *</label><input id="f-name"></div><div class="form-group"><label>年龄</label><input id="f-age" type="number"></div></div>
+    <div class="form-row"><div class="form-group"><label>性别</label><select id="f-gender"><option>男</option><option>女</option></select></div><div class="form-group"><label>床位号</label><input id="f-bedNo"></div></div>
+    <div class="form-group"><label>护理等级 *</label><select id="f-careLevel"><option>三级</option><option>二级</option><option>一级</option><option>特级</option></select></div>
+    <div class="form-group"><label>病史</label><textarea id="f-history" placeholder="如：高血压、糖尿病"></textarea></div>
+    <div class="form-group"><label>过敏史/禁忌</label><input id="f-allergies" placeholder="如：青霉素过敏"></div>
+    <div class="form-row"><div class="form-group"><label>家属姓名</label><input id="f-familyContact"></div><div class="form-group"><label>家属电话</label><input id="f-familyPhone"></div></div>
+    <div class="form-group"><label>责任护工</label><select id="f-caregiver"><option value="">未分配</option>${data.team.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}</select></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes"></textarea></div>
+  `, () => {
+    const name = $('#f-name').value.trim();
+    if (!name) return showToast('请输入患者姓名', 'error');
+    data.patients.push({
+      id: genId(), name, age: $('#f-age').value, gender: $('#f-gender').value, bedNo: $('#f-bedNo').value,
+      careLevel: $('#f-careLevel').value, history: $('#f-history').value, allergies: $('#f-allergies').value,
+      familyContact: $('#f-familyContact').value, familyPhone: $('#f-familyPhone').value,
+      assignedCaregiver: $('#f-caregiver').value, notes: $('#f-notes').value, createdAt: today()
+    });
+    saveData(data); renderPatients(); showToast('患者添加成功');
+  });
+}
+
+function showEditPatient(id) {
+  const p = data.patients.find(x => x.id === id);
+  if (!p) return;
+  openModal('编辑患者', `
+    <div class="form-row"><div class="form-group"><label>姓名 *</label><input id="f-name" value="${p.name}"></div><div class="form-group"><label>年龄</label><input id="f-age" type="number" value="${p.age||''}"></div></div>
+    <div class="form-row"><div class="form-group"><label>性别</label><select id="f-gender"><option ${p.gender==='男'?'selected':''}>男</option><option ${p.gender==='女'?'selected':''}>女</option></select></div><div class="form-group"><label>床位号</label><input id="f-bedNo" value="${p.bedNo||''}"></div></div>
+    <div class="form-group"><label>护理等级</label><select id="f-careLevel">${['三级','二级','一级','特级'].map(l => `<option ${p.careLevel===l?'selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="form-group"><label>病史</label><textarea id="f-history">${p.history||''}</textarea></div>
+    <div class="form-group"><label>过敏史/禁忌</label><input id="f-allergies" value="${p.allergies||''}"></div>
+    <div class="form-row"><div class="form-group"><label>家属姓名</label><input id="f-familyContact" value="${p.familyContact||''}"></div><div class="form-group"><label>家属电话</label><input id="f-familyPhone" value="${p.familyPhone||''}"></div></div>
+    <div class="form-group"><label>责任护工</label><select id="f-caregiver"><option value="">未分配</option>${data.team.map(t => `<option value="${t.id}" ${p.assignedCaregiver===t.id?'selected':''}>${t.name}</option>`).join('')}</select></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes">${p.notes||''}</textarea></div>
+  `, () => {
+    Object.assign(p, {
+      name: $('#f-name').value.trim(), age: $('#f-age').value, gender: $('#f-gender').value, bedNo: $('#f-bedNo').value,
+      careLevel: $('#f-careLevel').value, history: $('#f-history').value, allergies: $('#f-allergies').value,
+      familyContact: $('#f-familyContact').value, familyPhone: $('#f-familyPhone').value,
+      assignedCaregiver: $('#f-caregiver').value, notes: $('#f-notes').value
+    });
+    saveData(data); renderPatients(); showToast('患者信息已更新');
+  });
+}
+
+function deletePatient(id) {
+  if (!confirm('确定删除该患者及其所有关联的护理记录、用药记录、体征数据？此操作不可撤销！')) return;
+  const pid = id;
+  data.patients = data.patients.filter(p => p.id !== pid);
+  data.careDiary = data.careDiary.filter(d => d.patientId !== pid);
+  data.medications = data.medications.filter(m => m.patientId !== pid);
+  data.vitalSigns = data.vitalSigns.filter(v => v.patientId !== pid);
+  data.dietRecords = data.dietRecords.filter(d => d.patientId !== pid);
+  saveData(data); renderPatients(); showToast('患者已删除');
+}
+
+// ========== CARE DIARY ==========
+let diaryFilterPatient = '';
+let diaryFilterDate = today();
+
+function renderDiary() {
+  let records = data.careDiary;
+  if (diaryFilterPatient) records = records.filter(r => r.patientId === diaryFilterPatient);
+  if (diaryFilterDate) records = records.filter(r => r.date === diaryFilterDate);
+  records.sort((a,b) => b.date+b.time > a.date+a.time ? 1 : -1);
+
+  const html = `
+    <div class="header"><h1>📋 护理日志</h1><button class="btn btn-primary" onclick="showAddDiary()">+ 记录护理</button></div>
+    <div class="filters">
+      <select onchange="diaryFilterPatient=this.value;renderDiary()">
+        <option value="">全部患者</option>
+        ${data.patients.map(p => `<option value="${p.id}" ${diaryFilterPatient===p.id?'selected':''}>${p.name}</option>`).join('')}
+      </select>
+      <input type="date" value="${diaryFilterDate}" onchange="diaryFilterDate=this.value;renderDiary()">
+      <span style="font-size:13px;color:var(--text-secondary)">共 ${records.length} 条记录</span>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>时间</th><th>患者</th><th>护理类型</th><th>内容</th><th>时长</th><th>护工</th><th>备注</th><th>操作</th></tr></thead><tbody>
+        ${records.map(r => {
+          const p = data.patients.find(x => x.id === r.patientId);
+          const c = data.team.find(x => x.id === r.caregiverId);
+          return `<tr>
+            <td>${r.date} ${r.time||''}</td>
+            <td><strong>${p ? p.name : '未知'}</strong></td>
+            <td><span class="badge badge-primary">${r.type}</span></td>
+            <td>${r.content}</td>
+            <td>${r.duration||'-'}</td>
+            <td>${c ? c.name : '-'}</td>
+            <td><small>${r.notes||''}</small></td>
+            <td><button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteDiary('${r.id}')">删除</button></td>
+          </tr>`;
+        }).join('')}
+        ${records.length === 0 ? '<tr><td colspan="8" style="text-align:center;color:var(--text-secondary);padding:30px">暂无护理记录</td></tr>' : ''}
+      </tbody></table>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function showAddDiary() {
+  const types = ['翻身', '擦洗', '口腔护理', '会阴护理', '康复训练', '心理疏导', '生命体征测量', '给药', '喂食', '排泄护理', '管道护理', '压疮护理', '其他'];
+  openModal('记录护理活动', `
+    <div class="form-group"><label>患者 *</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}">${p.name} (${p.careLevel})</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>日期</label><input id="f-date" type="date" value="${today()}"></div><div class="form-group"><label>时间</label><input id="f-time" type="time" value="${fmtTime(new Date())}"></div></div>
+    <div class="form-group"><label>护理类型 *</label><select id="f-type">${types.map(t => `<option>${t}</option>`).join('')}</select></div>
+    <div class="form-group"><label>护理内容</label><textarea id="f-content" placeholder="详细描述护理内容"></textarea></div>
+    <div class="form-row"><div class="form-group"><label>时长（分钟）</label><input id="f-duration" type="number" placeholder="如：30"></div><div class="form-group"><label>执行护工</label><select id="f-caregiverId"><option value="">选择护工</option>${data.team.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}</select></div></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes" placeholder="异常情况、注意事项"></textarea></div>
+  `, () => {
+    const patientId = $('#f-patientId').value;
+    const type = $('#f-type').value;
+    const content = $('#f-content').value.trim();
+    if (!patientId || !content && !type) return showToast('请填写必要信息', 'error');
+    data.careDiary.push({
+      id: genId(), patientId, date: $('#f-date').value, time: $('#f-time').value,
+      type, content, duration: $('#f-duration').value, caregiverId: $('#f-caregiverId').value,
+      notes: $('#f-notes').value
+    });
+    saveData(data); renderDiary(); showToast('护理记录已保存');
+  });
+}
+
+function deleteDiary(id) {
+  if (!confirm('确定删除此护理记录？')) return;
+  data.careDiary = data.careDiary.filter(d => d.id !== id);
+  saveData(data); renderDiary(); showToast('记录已删除');
+}
+
+// ========== MEDICATION ==========
+let medFilterPatient = '';
+
+function renderMedication() {
+  let meds = data.medications;
+  if (medFilterPatient) meds = meds.filter(m => m.patientId === medFilterPatient);
+  const todayStr = today();
+
+  const html = `
+    <div class="header"><h1>💊 用药管理</h1><button class="btn btn-primary" onclick="showAddMedication()">+ 添加用药计划</button></div>
+    <div class="filters">
+      <select onchange="medFilterPatient=this.value;renderMedication()">
+        <option value="">全部患者</option>
+        ${data.patients.map(p => `<option value="${p.id}" ${medFilterPatient===p.id?'selected':''}>${p.name}</option>`).join('')}
+      </select>
+    </div>
+    <div class="med-tracker" id="med-tracker">
+      ${meds.map(m => {
+        const p = data.patients.find(x => x.id === m.patientId);
+        const todayLogs = data.medicationLogs.filter(l => l.medicationId === m.id && l.date === todayStr);
+        const slots = m.frequency.split(',').map(s => s.trim());
+        const allTaken = slots.length > 0 && slots.every(s => todayLogs.some(l => l.slot === s && l.taken));
+        return `
+          <div class="med-card" style="${m.endDate && m.endDate < todayStr ? 'opacity:0.5' : ''}">
+            <div class="med-name">💊 ${m.name} ${m.endDate && m.endDate < todayStr ? '<span class="badge badge-warning">已停药</span>' : ''}</div>
+            <div class="med-info">${p?p.name:'未知'} | 剂量: ${m.dosage} | ${m.startDate} ~ ${m.endDate||'持续'} | 库存: ${m.stock||'N/A'}</div>
+            <div class="med-slots">
+              ${slots.map(s => {
+                const log = todayLogs.find(l => l.slot === s);
+                const cls = log ? (log.taken ? 'taken' : 'missed') : 'pending';
+                const label = log ? (log.taken ? s + ' ✓已服' : s + ' ✗未服') : s;
+                return `<span class="med-slot ${cls}" onclick="toggleMedSlot('${m.id}','${s}')" title="点击切换状态">${label}</span>`;
+              }).join('')}
+            </div>
+            <div style="margin-top:8px">
+              <button class="btn btn-outline btn-sm" onclick="showEditMedication('${m.id}')">编辑</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteMedication('${m.id}')">删除</button>
+            </div>
+          </div>`;
+      }).join('')}
+      ${meds.length === 0 ? '<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">💊</div><p>暂无用药计划</p></div>' : ''}
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function toggleMedSlot(medId, slot) {
+  const todayStr = today();
+  const existing = data.medicationLogs.find(l => l.medicationId === medId && l.date === todayStr && l.slot === slot);
+  if (existing) {
+    existing.taken = !existing.taken;
+  } else {
+    data.medicationLogs.push({ id: genId(), medicationId: medId, date: todayStr, slot, taken: true });
+  }
+  saveData(data); renderMedication();
+}
+
+function showAddMedication() {
+  openModal('添加用药计划', `
+    <div class="form-group"><label>患者 *</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>药品名称 *</label><input id="f-name"></div><div class="form-group"><label>剂量</label><input id="f-dosage" placeholder="如：5mg/片，每次1片"></div></div>
+    <div class="form-group"><label>服药频次 *</label><input id="f-frequency" placeholder="如：早餐后,午餐后,晚餐后（逗号分隔）"></div>
+    <div class="form-row"><div class="form-group"><label>开始日期</label><input id="f-startDate" type="date" value="${today()}"></div><div class="form-group"><label>结束日期</label><input id="f-endDate" type="date" placeholder="留空表示持续"></div></div>
+    <div class="form-row"><div class="form-group"><label>库存数量</label><input id="f-stock" type="number" placeholder="剩余片数/支数"></div><div class="form-group"><label>低库存预警</label><input id="f-stockAlert" type="number" placeholder="低于此数值提醒"></div></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes" placeholder="服用说明、注意事项"></textarea></div>
+  `, () => {
+    const name = $('#f-name').value.trim();
+    const frequency = $('#f-frequency').value.trim();
+    const patientId = $('#f-patientId').value;
+    if (!name || !frequency || !patientId) return showToast('请填写药品名称、频次和患者', 'error');
+    data.medications.push({
+      id: genId(), patientId, name, dosage: $('#f-dosage').value, frequency,
+      startDate: $('#f-startDate').value, endDate: $('#f-endDate').value,
+      stock: $('#f-stock').value, stockAlert: $('#f-stockAlert').value, notes: $('#f-notes').value
+    });
+    saveData(data); renderMedication(); showToast('用药计划已添加');
+  });
+}
+
+function showEditMedication(id) {
+  const m = data.medications.find(x => x.id === id);
+  if (!m) return;
+  openModal('编辑用药计划', `
+    <div class="form-group"><label>患者</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}" ${m.patientId===p.id?'selected':''}>${p.name}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>药品名称 *</label><input id="f-name" value="${m.name}"></div><div class="form-group"><label>剂量</label><input id="f-dosage" value="${m.dosage||''}"></div></div>
+    <div class="form-group"><label>服药频次</label><input id="f-frequency" value="${m.frequency}"></div>
+    <div class="form-row"><div class="form-group"><label>开始日期</label><input id="f-startDate" type="date" value="${m.startDate}"></div><div class="form-group"><label>结束日期</label><input id="f-endDate" type="date" value="${m.endDate||''}"></div></div>
+    <div class="form-row"><div class="form-group"><label>库存</label><input id="f-stock" type="number" value="${m.stock||''}"></div><div class="form-group"><label>低库存预警</label><input id="f-stockAlert" type="number" value="${m.stockAlert||''}"></div></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes">${m.notes||''}</textarea></div>
+  `, () => {
+    Object.assign(m, {
+      patientId: $('#f-patientId').value, name: $('#f-name').value.trim(), dosage: $('#f-dosage').value,
+      frequency: $('#f-frequency').value.trim(), startDate: $('#f-startDate').value, endDate: $('#f-endDate').value,
+      stock: $('#f-stock').value, stockAlert: $('#f-stockAlert').value, notes: $('#f-notes').value
+    });
+    saveData(data); renderMedication(); showToast('用药计划已更新');
+  });
+}
+
+function deleteMedication(id) {
+  if (!confirm('确定删除此用药计划？')) return;
+  data.medications = data.medications.filter(m => m.id !== id);
+  data.medicationLogs = data.medicationLogs.filter(l => l.medicationId !== id);
+  saveData(data); renderMedication(); showToast('用药计划已删除');
+}
+
+// ========== VITAL SIGNS ==========
+let vitalPatientId = '';
+
+function renderVitals() {
+  vitalPatientId = vitalPatientId || (data.patients[0]?.id || '');
+  const patient = data.patients.find(p => p.id === vitalPatientId);
+  const vitals = data.vitalSigns.filter(v => v.patientId === vitalPatientId).sort((a,b) => b.date+b.time > a.date+a.time ? 1 : -1);
+  const latest = vitals[0];
+
+  const html = `
+    <div class="header"><h1>📊 生命体征追踪</h1><button class="btn btn-primary" onclick="showAddVital()">+ 记录体征</button></div>
+    <div class="filters">
+      <select onchange="vitalPatientId=this.value;renderVitals()">
+        <option value="">选择患者</option>
+        ${data.patients.map(p => `<option value="${p.id}" ${vitalPatientId===p.id?'selected':''}>${p.name}</option>`).join('')}
+      </select>
+    </div>
+    ${patient ? `
+    <div class="vital-grid">
+      ${vitalCard('体温', latest?.temperature||'-', '°C', '36.0-37.2', latest?.temperature && (latest.temperature<36||latest.temperature>37.5))}
+      ${vitalCard('血压(收缩)', latest?.bloodPressure?.split('/')[0]||'-', 'mmHg', '90-140', latest?.bloodPressure && (parseInt(latest.bloodPressure)<90||parseInt(latest.bloodPressure)>140))}
+      ${vitalCard('血压(舒张)', latest?.bloodPressure?.split('/')[1]||'-', 'mmHg', '60-90', latest?.bloodPressure && (parseInt(latest.bloodPressure.split('/')[1])<60||parseInt(latest.bloodPressure.split('/')[1])>90))}
+      ${vitalCard('心率', latest?.heartRate||'-', 'bpm', '60-100', latest?.heartRate && (latest.heartRate<60||latest.heartRate>100))}
+      ${vitalCard('血糖', latest?.bloodSugar||'-', 'mmol/L', '3.9-6.1', latest?.bloodSugar && (latest.bloodSugar<3.9||latest.bloodSugar>11.1))}
+      ${vitalCard('血氧', latest?.spo2||'-', '%', '≥95', latest?.spo2 && latest.spo2<95)}
+    </div>
+    <div class="chart-wrap">
+      <h3>30天趋势图</h3>
+      <canvas id="vital-chart"></canvas>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>日期</th><th>时间</th><th>体温(°C)</th><th>血压</th><th>心率</th><th>血糖</th><th>血氧</th><th>备注</th><th>操作</th></tr></thead><tbody>
+        ${vitals.slice(0, 30).map(v => `<tr>
+          <td>${v.date}</td><td>${v.time}</td>
+          <td style="color:${v.temperature&&(v.temperature<36||v.temperature>37.5)?'var(--danger)':''}">${v.temperature||'-'}</td>
+          <td>${v.bloodPressure||'-'}</td>
+          <td style="color:${v.heartRate&&(v.heartRate<60||v.heartRate>100)?'var(--danger)':''}">${v.heartRate||'-'}</td>
+          <td style="color:${v.bloodSugar&&(v.bloodSugar<3.9||v.bloodSugar>11.1)?'var(--danger)':''}">${v.bloodSugar||'-'}</td>
+          <td style="color:${v.spo2&&v.spo2<95?'var(--danger)':''}">${v.spo2 ? v.spo2+'%' : '-'}</td>
+          <td><small>${v.notes||''}</small></td>
+          <td><button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteVital('${v.id}')">删除</button></td>
+        </tr>`).join('')}
+        ${vitals.length===0?'<tr><td colspan="9" style="text-align:center;color:var(--text-secondary);padding:30px">暂无体征记录</td></tr>':''}
+      </tbody></table>
+    </div>
+    ` : '<div class="empty-state"><div class="empty-icon">📊</div><p>请先选择患者</p></div>'}
+  `;
+  $('#main-content').innerHTML = html;
+  if (patient && vitals.length > 1) setTimeout(drawVitalChart, 100, vitals);
+}
+
+function vitalCard(name, value, unit, normal, abnormal) {
+  return `<div class="vital-card ${abnormal ? 'abnormal' : ''}">
+    <div class="vital-name">${name}</div>
+    <div class="vital-value">${value}</div>
+    <div class="vital-unit">${unit} <small>(${normal})</small></div>
+  </div>`;
+}
+
+function drawVitalChart(vitals) {
+  const canvas = document.getElementById('vital-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.parentElement.clientWidth - 40;
+  const h = 250;
+  canvas.width = w; canvas.height = h;
+
+  const recent = vitals.slice(0, 30).reverse();
+  if (recent.length < 2) { ctx.fillStyle='#64748b'; ctx.font='14px sans-serif'; ctx.textAlign='center'; ctx.fillText('数据不足，至少需要2条记录',w/2,h/2); return; }
+
+  // Draw chart frame
+  const pad = { top: 20, right: 40, bottom: 40, left: 50 };
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+
+  // Background
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+
+  // Grid
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (plotH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke();
+  }
+
+  // Plot temperature line
+  const temps = recent.map(r => parseFloat(r.temperature)).filter(t => !isNaN(t));
+  if (temps.length > 1) {
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    recent.forEach((r, i) => {
+      const t = parseFloat(r.temperature);
+      if (isNaN(t)) return;
+      const x = pad.left + (plotW / (recent.length - 1)) * i;
+      const y = pad.top + plotH - ((t - 35) / 5) * plotH;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    // Dots
+    recent.forEach((r, i) => {
+      const t = parseFloat(r.temperature);
+      if (isNaN(t)) return;
+      const x = pad.left + (plotW / (recent.length - 1)) * i;
+      const y = pad.top + plotH - ((t - 35) / 5) * plotH;
+      ctx.fillStyle = t < 36 || t > 37.5 ? '#dc2626' : '#2563eb';
+      ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI*2); ctx.fill();
+    });
+  }
+
+  // Y axis labels
+  ctx.fillStyle = '#64748b'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++) {
+    const val = 35 + (5 - i);
+    const y = pad.top + (plotH / 4) * i;
+    ctx.fillText(val + '°C', pad.left - 8, y + 4);
+  }
+
+  // X axis labels
+  ctx.textAlign = 'center';
+  recent.forEach((r, i) => {
+    if (i % Math.ceil(recent.length / 10) === 0 || i === recent.length - 1) {
+      const x = pad.left + (plotW / (recent.length - 1)) * i;
+      ctx.fillText(r.date.slice(5), x, h - pad.bottom + 20);
+    }
+  });
+
+  // Legend
+  ctx.fillStyle = '#dc2626'; ctx.fillRect(w - 120, 8, 12, 12);
+  ctx.fillStyle = '#64748b'; ctx.textAlign = 'left';
+  ctx.fillText('体温趋势', w - 104, 18);
+}
+
+function showAddVital() {
+  if (data.patients.length === 0) { showToast('请先添加患者', 'error'); return; }
+  openModal('记录生命体征', `
+    <div class="form-group"><label>患者 *</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}" ${vitalPatientId===p.id?'selected':''}>${p.name}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>日期</label><input id="f-date" type="date" value="${today()}"></div><div class="form-group"><label>时间</label><input id="f-time" type="time" value="${fmtTime(new Date())}"></div></div>
+    <div class="form-row-3">
+      <div class="form-group"><label>体温(°C)</label><input id="f-temperature" type="number" step="0.1" placeholder="36.5"></div>
+      <div class="form-group"><label>血压(mmHg)</label><input id="f-bloodPressure" placeholder="120/80"></div>
+      <div class="form-group"><label>心率(bpm)</label><input id="f-heartRate" type="number" placeholder="72"></div>
+    </div>
+    <div class="form-row-3">
+      <div class="form-group"><label>血糖(mmol/L)</label><input id="f-bloodSugar" type="number" step="0.1" placeholder="5.6"></div>
+      <div class="form-group"><label>血氧(%)</label><input id="f-spo2" type="number" placeholder="98"></div>
+      <div class="form-group"><label>呼吸(次/分)</label><input id="f-respiratory" type="number" placeholder="16"></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes"></textarea></div>
+  `, () => {
+    const patientId = $('#f-patientId').value;
+    if (!patientId) return showToast('请选择患者', 'error');
+    data.vitalSigns.push({
+      id: genId(), patientId, date: $('#f-date').value, time: $('#f-time').value,
+      temperature: $('#f-temperature').value, bloodPressure: $('#f-bloodPressure').value,
+      heartRate: $('#f-heartRate').value, bloodSugar: $('#f-bloodSugar').value,
+      spo2: $('#f-spo2').value, respiratory: $('#f-respiratory').value, notes: $('#f-notes').value
+    });
+    vitalPatientId = patientId;
+    saveData(data); renderVitals(); showToast('体征记录已保存');
+  });
+}
+
+function deleteVital(id) {
+  if (!confirm('确定删除此体征记录？')) return;
+  data.vitalSigns = data.vitalSigns.filter(v => v.id !== id);
+  saveData(data); renderVitals(); showToast('记录已删除');
+}
+
+// ========== DIET ==========
+let dietPatientId = '';
+let dietDate = today();
+
+function renderDiet() {
+  dietPatientId = dietPatientId || (data.patients[0]?.id || '');
+  const records = data.dietRecords.filter(r => r.patientId === dietPatientId && r.date === dietDate);
+  const mealTypes = ['早餐', '午餐', '晚餐', '加餐'];
+
+  const html = `
+    <div class="header"><h1>🍽️ 饮食管理</h1><button class="btn btn-primary" onclick="showAddDiet()">+ 记录饮食</button></div>
+    <div class="filters">
+      <select onchange="dietPatientId=this.value;renderDiet()">
+        ${data.patients.map(p => `<option value="${p.id}" ${dietPatientId===p.id?'selected':''}>${p.name}</option>`).join('')}
+      </select>
+      <input type="date" value="${dietDate}" onchange="dietDate=this.value;renderDiet()">
+    </div>
+    ${mealTypes.map(mt => {
+      const mealRecords = records.filter(r => r.mealType === mt);
+      return `<div class="report-block">
+        <div class="section-title">${mt} ${mealRecords.length > 0 ? '✅' : '⭕'}</div>
+        ${mealRecords.length > 0 ? mealRecords.map(r => `<div style="font-size:13px;line-height:1.6">🍽️ ${r.food} ${r.notes ? '<br><small style="color:var(--text-secondary)">📝 '+r.notes+'</small>' : ''}</div>`).join('') : '<div style="color:var(--text-secondary);font-size:13px">暂无记录</div>'}
+      </div>`;
+    }).join('')}
+    <div class="table-wrap" style="margin-top:16px">
+      <table><thead><tr><th>日期</th><th>餐次</th><th>食物</th><th>备注</th><th>操作</th></tr></thead><tbody>
+        ${records.map(r => `<tr>
+          <td>${r.date}</td><td><span class="badge badge-primary">${r.mealType}</span></td>
+          <td>${r.food}</td><td><small>${r.notes||''}</small></td>
+          <td><button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteDiet('${r.id}')">删除</button></td>
+        </tr>`).join('')}
+        ${records.length === 0 ? '<tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:30px">暂无饮食记录</td></tr>' : ''}
+      </tbody></table>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function showAddDiet() {
+  if (data.patients.length === 0) { showToast('请先添加患者', 'error'); return; }
+  openModal('记录饮食', `
+    <div class="form-group"><label>患者</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}" ${dietPatientId===p.id?'selected':''}>${p.name}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>日期</label><input id="f-date" type="date" value="${today()}"></div><div class="form-group"><label>餐次</label><select id="f-mealType"><option>早餐</option><option>午餐</option><option>晚餐</option><option>加餐</option></select></div></div>
+    <div class="form-group"><label>食物内容</label><textarea id="f-food" placeholder="描述食物内容和分量"></textarea></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes" placeholder="进食情况、特殊需求"></textarea></div>
+  `, () => {
+    const food = $('#f-food').value.trim();
+    if (!food) return showToast('请填写食物内容', 'error');
+    data.dietRecords.push({
+      id: genId(), patientId: $('#f-patientId').value, date: $('#f-date').value,
+      mealType: $('#f-mealType').value, food, notes: $('#f-notes').value
+    });
+    dietPatientId = $('#f-patientId').value;
+    dietDate = $('#f-date').value;
+    saveData(data); renderDiet(); showToast('饮食记录已保存');
+  });
+}
+
+function deleteDiet(id) {
+  if (!confirm('确定删除此饮食记录？')) return;
+  data.dietRecords = data.dietRecords.filter(d => d.id !== id);
+  saveData(data); renderDiet(); showToast('记录已删除');
+}
+
+// ========== FAMILY REPORTS ==========
+function renderReports() {
+  const patients = data.patients;
+  const todayStr = today();
+
+  const html = `
+    <div class="header"><h1>📝 家属报告</h1><div><select id="report-patient" onchange="generateReport()" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px"><option value="">选择患者生成报告</option>${patients.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}</select></div></div>
+    <div id="report-content">
+      <div class="empty-state"><div class="empty-icon">📝</div><p>选择患者后自动生成护理报告</p></div>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function generateReport() {
+  const patientId = document.getElementById('report-patient')?.value;
+  if (!patientId) return;
+  const p = data.patients.find(x => x.id === patientId);
+  if (!p) return;
+
+  const todayStr = today();
+  const weekAgo = fmtDate(new Date(Date.now() - 7*86400000));
+  const caregiver = data.team.find(t => t.id === p.assignedCaregiver);
+  const todayDiary = data.careDiary.filter(d => d.patientId === patientId && d.date === todayStr);
+  const weekVitals = data.vitalSigns.filter(v => v.patientId === patientId && v.date >= weekAgo).sort((a,b) => b.date+b.time > a.date+a.time ? 1 : -1);
+  const latestVital = weekVitals[0];
+  const todayMeds = data.medications.filter(m => m.patientId === patientId);
+  const medStatus = todayMeds.map(m => {
+    const logs = data.medicationLogs.filter(l => l.medicationId === m.id && l.date === todayStr);
+    const taken = logs.every(l => l.taken);
+    return { name: m.name, taken, dosage: m.dosage };
+  });
+  const todayDiet = data.dietRecords.filter(d => d.patientId === patientId && d.date === todayStr);
+
+  const reportHtml = `
+    <div class="report-block" id="printable-report">
+      <h3>📋 ${p.name} 护理日报 — ${todayStr}</h3>
+      <p style="color:var(--text-secondary);font-size:13px">护理等级：${p.careLevel} | 责任护工：${caregiver ? caregiver.name : '未分配'} | 床位：${p.bedNo||'无'}</p>
+      <div class="section-title">📊 今日生命体征</div>
+      ${latestVital ? `
+        <p>体温：<strong>${latestVital.temperature||'-'}°C</strong> | 血压：<strong>${latestVital.bloodPressure||'-'} mmHg</strong> | 心率：<strong>${latestVital.heartRate||'-'} bpm</strong></p>
+        <p>血糖：<strong>${latestVital.bloodSugar||'-'} mmol/L</strong> | 血氧：<strong>${latestVital.spo2 ? latestVital.spo2+'%' : '-'}</strong></p>
+      ` : '<p style="color:var(--text-secondary)">今日暂无体征记录</p>'}
+      <div class="section-title">💊 用药情况</div>
+      ${medStatus.length > 0 ? medStatus.map(m => `<p>${m.name} (${m.dosage})：<span style="color:${m.taken?'var(--success)':'var(--danger)'}">${m.taken ? '✅ 已服用' : '❌ 未服用'}</span></p>`).join('') : '<p style="color:var(--text-secondary)">暂无用药计划</p>'}
+      <div class="section-title">📋 今日护理活动</div>
+      ${todayDiary.length > 0 ? todayDiary.map(d => `<p>• [${d.time}] ${d.type}：${d.content} ${d.notes ? '<br><small style="color:var(--text-secondary)">备注：'+d.notes+'</small>' : ''}</p>`).join('') : '<p style="color:var(--text-secondary)">今日暂无护理记录</p>'}
+      <div class="section-title">🍽️ 今日饮食</div>
+      ${todayDiet.length > 0 ? todayDiet.map(d => `<p>• ${d.mealType}：${d.food} ${d.notes ? '<small style="color:var(--text-secondary)">('+d.notes+')</small>' : ''}</p>`).join('') : '<p style="color:var(--text-secondary)">今日暂无饮食记录</p>'}
+      <div class="section-title">⚠️ 注意事项</div>
+      <p>${p.allergies ? '过敏史/禁忌：<strong style="color:var(--danger)">'+p.allergies+'</strong><br>' : ''}病史：${p.history||'无特殊'} ${p.notes ? '<br>备注：'+p.notes : ''}</p>
+      <p style="margin-top:20px;color:var(--text-secondary);font-size:12px">报告生成时间：${new Date().toLocaleString()} | 此报告由护工助手自动生成</p>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-primary" onclick="copyReport()">📋 复制报告</button>
+    </div>
+  `;
+  document.getElementById('report-content').innerHTML = reportHtml;
+}
+
+function copyReport() {
+  const report = document.getElementById('printable-report');
+  if (!report) return;
+  const text = report.innerText;
+  navigator.clipboard.writeText(text).then(() => showToast('报告已复制到剪贴板'));
+}
+
+// ========== EMERGENCY ==========
+function renderEmergency() {
+  const html = `
+    <div class="header"><h1>🚨 应急处理</h1><button class="btn btn-primary" onclick="showAddEmergencyContact()">+ 紧急联系人</button></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <h3 style="margin-bottom:12px">📋 应急预案</h3>
+        ${data.emergencyProtocols.map(ep => `
+          <div class="report-block" style="margin-bottom:12px">
+            <div class="section-title">${ep.title} <span class="badge badge-warning">${ep.category}</span></div>
+            <ol style="padding-left:20px;font-size:13px;line-height:1.8">
+              ${ep.steps.map(s => `<li>${s}</li>`).join('')}
+            </ol>
+          </div>
+        `).join('')}
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">📞 紧急联系人</h3>
+        ${data.emergencyContacts.length > 0 ? data.emergencyContacts.map(c => `
+          <div class="report-block" style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>${c.name}</strong> - ${c.relation}</div>
+              <div style="display:flex;gap:6px">
+                <a href="tel:${c.phone}" style="color:var(--primary);text-decoration:none;font-size:13px">📞 ${c.phone}</a>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteEmergencyContact('${c.id}')">删除</button>
+              </div>
+            </div>
+            ${c.notes ? '<div style="font-size:12px;color:var(--text-secondary);margin-top:4px">'+c.notes+'</div>' : ''}
+          </div>
+        `).join('') : '<p style="color:var(--text-secondary)">暂无紧急联系人</p>'}
+        <div class="report-block" style="background:var(--danger-light);border:1px solid var(--danger)">
+          <div class="section-title" style="color:var(--danger)">🆘 通用紧急电话</div>
+          <p style="font-size:14px;line-height:2">急救：<strong style="color:var(--danger)">120</strong> | 报警：<strong style="color:var(--danger)">110</strong> | 火警：<strong style="color:var(--danger)">119</strong></p>
+        </div>
+      </div>
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function showAddEmergencyContact() {
+  openModal('添加紧急联系人', `
+    <div class="form-row"><div class="form-group"><label>姓名</label><input id="f-name"></div><div class="form-group"><label>关系</label><input id="f-relation" placeholder="如：主治医生、家属"></div></div>
+    <div class="form-group"><label>电话</label><input id="f-phone" type="tel"></div>
+    <div class="form-group"><label>备注</label><input id="f-notes"></div>
+  `, () => {
+    if (!$('#f-name').value.trim()) return showToast('请填写姓名', 'error');
+    data.emergencyContacts.push({ id: genId(), name: $('#f-name').value.trim(), relation: $('#f-relation').value, phone: $('#f-phone').value, notes: $('#f-notes').value });
+    saveData(data); renderEmergency(); showToast('联系人已添加');
+  });
+}
+
+function deleteEmergencyContact(id) {
+  data.emergencyContacts = data.emergencyContacts.filter(c => c.id !== id);
+  saveData(data); renderEmergency(); showToast('联系人已删除');
+}
+
+// ========== TEAM ==========
+function renderTeam() {
+  const html = `
+    <div class="header"><h1>👥 护工团队</h1><button class="btn btn-primary" onclick="showAddTeamMember()">+ 添加护工</button></div>
+    <div class="staff-grid">
+      ${data.team.map(t => {
+        const patientCount = data.patients.filter(p => p.assignedCaregiver === t.id).length;
+        return `<div class="staff-card">
+          <div class="avatar">${t.name.charAt(0)}</div>
+          <div class="staff-name">${t.name}</div>
+          <div class="staff-role">${t.role||'护工'}</div>
+          <div class="staff-info">📞 ${t.phone||'未填写'}</div>
+          <div class="staff-info">👤 负责患者：${patientCount}人</div>
+          <div style="margin-top:10px;display:flex;gap:6px;justify-content:center">
+            <button class="btn btn-outline btn-sm" onclick="showEditTeamMember('${t.id}')">编辑</button>
+            <button class="btn btn-outline btn-sm" style="color:var(--danger)" onclick="deleteTeamMember('${t.id}')">删除</button>
+          </div>
+        </div>`;
+      }).join('')}
+      ${data.team.length === 0 ? '<div class="empty-state"><div class="empty-icon">👥</div><p>暂未添加护工团队成员</p></div>' : ''}
+    </div>
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function showAddTeamMember() {
+  openModal('添加护工', `
+    <div class="form-row"><div class="form-group"><label>姓名 *</label><input id="f-name"></div><div class="form-group"><label>角色</label><input id="f-role" placeholder="如：主管护工/责任护工"></div></div>
+    <div class="form-row"><div class="form-group"><label>电话</label><input id="f-phone" type="tel"></div><div class="form-group"><label>班次</label><select id="f-shift"><option>白班 (08:00-16:00)</option><option>中班 (16:00-00:00)</option><option>夜班 (00:00-08:00)</option><option>全天</option></select></div></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes"></textarea></div>
+  `, () => {
+    if (!$('#f-name').value.trim()) return showToast('请填写姓名', 'error');
+    data.team.push({ id: genId(), name: $('#f-name').value.trim(), role: $('#f-role').value, phone: $('#f-phone').value, shift: $('#f-shift').value, notes: $('#f-notes').value });
+    saveData(data); renderTeam(); showToast('护工已添加');
+  });
+}
+
+function showEditTeamMember(id) {
+  const t = data.team.find(x => x.id === id);
+  if (!t) return;
+  openModal('编辑护工', `
+    <div class="form-row"><div class="form-group"><label>姓名</label><input id="f-name" value="${t.name}"></div><div class="form-group"><label>角色</label><input id="f-role" value="${t.role||''}"></div></div>
+    <div class="form-row"><div class="form-group"><label>电话</label><input id="f-phone" value="${t.phone||''}"></div><div class="form-group"><label>班次</label><select id="f-shift">${['白班 (08:00-16:00)','中班 (16:00-00:00)','夜班 (00:00-08:00)','全天'].map(s => `<option ${t.shift===s?'selected':''}>${s}</option>`).join('')}</select></div></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes">${t.notes||''}</textarea></div>
+  `, () => {
+    Object.assign(t, { name: $('#f-name').value.trim(), role: $('#f-role').value, phone: $('#f-phone').value, shift: $('#f-shift').value, notes: $('#f-notes').value });
+    saveData(data); renderTeam(); showToast('护工信息已更新');
+  });
+}
+
+function deleteTeamMember(id) {
+  if (!confirm('确定删除该护工？其负责的患者将变为未分配状态。')) return;
+  data.patients.forEach(p => { if (p.assignedCaregiver === id) p.assignedCaregiver = ''; });
+  data.team = data.team.filter(t => t.id !== id);
+  saveData(data); renderTeam(); showToast('护工已删除');
+}
+
+// ========== SHIFT HANDOVER ==========
+function renderHandover() {
+  const handovers = [...data.shiftHandovers].sort((a,b) => b.date+b.time > a.date+a.time ? 1 : -1);
+
+  const html = `
+    <div class="header"><h1>🔄 交接班</h1><button class="btn btn-primary" onclick="showAddHandover()">+ 添加交接记录</button></div>
+    ${handovers.map(h => {
+      const from = data.team.find(t => t.id === h.fromCaregiverId);
+      const to = data.team.find(t => t.id === h.toCaregiverId);
+      const patient = data.patients.find(p => p.id === h.patientId);
+      return `<div class="report-block">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <div>
+            <div class="section-title">🔄 ${h.date} ${h.time} ${h.confirmed ? '✅ 已确认' : '⏳ 待确认'}</div>
+            <p style="font-size:13px">患者：<strong>${patient ? patient.name : '未知'}</strong> | 交班人：${from ? from.name : '-'} → 接班人：${to ? to.name : '-'}</p>
+          </div>
+          ${!h.confirmed ? `<button class="btn btn-success btn-sm" onclick="confirmHandover('${h.id}')">确认接班</button>` : ''}
+        </div>
+        <div class="section-title" style="font-size:13px">📋 本班护理摘要</div>
+        <p style="font-size:13px">${h.summary}</p>
+        ${h.tasks ? `<div class="section-title" style="font-size:13px">📌 待办事项</div><p style="font-size:13px">${h.tasks}</p>` : ''}
+        ${h.notes ? `<div style="font-size:12px;color:var(--text-secondary);margin-top:8px">📝 ${h.notes}</div>` : ''}
+      </div>`;
+    }).join('')}
+    ${handovers.length === 0 ? '<div class="empty-state"><div class="empty-icon">🔄</div><p>暂无交接班记录</p></div>' : ''}
+  `;
+  $('#main-content').innerHTML = html;
+}
+
+function showAddHandover() {
+  openModal('添加交接班记录', `
+    <div class="form-group"><label>患者</label><select id="f-patientId">${data.patients.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>日期</label><input id="f-date" type="date" value="${today()}"></div><div class="form-group"><label>时间</label><input id="f-time" type="time" value="${fmtTime(new Date())}"></div></div>
+    <div class="form-row"><div class="form-group"><label>交班人</label><select id="f-from">${data.team.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}</select></div><div class="form-group"><label>接班人</label><select id="f-to">${data.team.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}</select></div></div>
+    <div class="form-group"><label>本班护理摘要</label><textarea id="f-summary" placeholder="总结本班次完成的护理工作"></textarea></div>
+    <div class="form-group"><label>待办事项</label><textarea id="f-tasks" placeholder="下一班需要注意的事项"></textarea></div>
+    <div class="form-group"><label>备注</label><textarea id="f-notes"></textarea></div>
+  `, () => {
+    const patientId = $('#f-patientId').value;
+    if (!patientId) return showToast('请选择患者', 'error');
+    data.shiftHandovers.push({
+      id: genId(), patientId, date: $('#f-date').value, time: $('#f-time').value,
+      fromCaregiverId: $('#f-from').value, toCaregiverId: $('#f-to').value,
+      summary: $('#f-summary').value, tasks: $('#f-tasks').value,
+      notes: $('#f-notes').value, confirmed: false
+    });
+    saveData(data); renderHandover(); showToast('交接记录已保存');
+  });
+}
+
+function confirmHandover(id) {
+  const h = data.shiftHandovers.find(x => x.id === id);
+  if (!h) return;
+  h.confirmed = true;
+  saveData(data); renderHandover(); showToast('交接班已确认');
+}
+
+// ========== DATA IMPORT/EXPORT ==========
+function exportData() {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `caregiver_backup_${today()}.json`;
+  a.click(); URL.revokeObjectURL(url);
+  showToast('数据已导出');
+}
+
+function importDataPrompt() {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = '.json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        if (!imported.patients && !imported.team) { showToast('无效的备份文件', 'error'); return; }
+        data = { ...defaultData, ...imported };
+        saveData(data);
+        renderPanel(currentPanel);
+        showToast('数据导入成功');
+      } catch(err) { showToast('文件解析失败', 'error'); }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderPanel('dashboard');
+});
+</script>
+</body>
+</html>

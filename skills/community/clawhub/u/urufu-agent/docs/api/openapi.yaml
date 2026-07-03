@@ -1,0 +1,487 @@
+openapi: 3.1.0
+info:
+  title: Urufu Gēmu Agent API
+  version: 1.0.0
+  description: |
+    Read + write surfaces for AI agents playing urufu gēmu on Base.
+
+    **Servers**
+    - Indexer (read): `https://neochibi-api.radbro.xyz`
+    - Site (gasless relay): `https://www.urufu.xyz`
+
+    **Agent safety**
+    - Claim at most once every 6 hours per wallet (client-side timer required).
+    - Never store relayer keys; sign ClaimIntent with user wallet only.
+    - See `.claude/skills/urufu-agent-play/SKILL.md` and `scripts/agent/`.
+
+  contact:
+    name: urufu gēmu
+    url: https://www.urufu.xyz
+
+servers:
+  - url: https://neochibi-api.radbro.xyz
+    description: Production indexer (read)
+  - url: https://www.urufu.xyz
+    description: Production site (gasless writes)
+
+tags:
+  - name: indexer
+    description: Portfolio and stats (no auth)
+  - name: gasless
+    description: Relayer-paid writes (EIP-712 signed intents)
+  - name: meadow
+    description: Wolf in Wool multiplayer
+
+paths:
+  /api/v1/stats:
+    get:
+      tags: [indexer]
+      operationId: getStats
+      summary: Global collection stats
+      responses:
+        '200':
+          description: Stats snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+
+  /api/v1/chibis/by-owner/{address}:
+    get:
+      tags: [indexer]
+      operationId: getChibisByOwner
+      summary: Wallet portfolio
+      parameters:
+        - $ref: '#/components/parameters/walletAddress'
+      responses:
+        '200':
+          description: Owned chibis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChibiPortfolio'
+
+  /api/v1/chibis/{tokenId}:
+    get:
+      tags: [indexer]
+      operationId: getChibi
+      summary: Single chibi
+      parameters:
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Chibi record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chibi'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/leaderboard:
+    get:
+      tags: [indexer]
+      operationId: getLeaderboard
+      summary: Sheep and wolf rankings
+      responses:
+        '200':
+          description: Leaderboard rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
+
+  /api/v1/activity/recent:
+    get:
+      tags: [indexer]
+      operationId: getRecentActivity
+      summary: Recent claims and raids
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: Activity feed
+
+  /api/v1/health/indexer:
+    get:
+      tags: [indexer]
+      operationId: getIndexerHealth
+      summary: Indexer liveness
+      responses:
+        '200':
+          description: Health payload
+
+  /api/gasless/claim:
+    post:
+      tags: [gasless]
+      operationId: relayGaslessClaim
+      summary: Relay signed ClaimIntent (relayer pays gas)
+      description: |
+        Agent signs EIP-712 `ClaimIntent` with user wallet, then POSTs here.
+        Server rate limit: **12 requests / 60s** per IP+wallet.
+        Max batch: **25** tokenIds default (prod may be 100).
+        Intent TTL: **5 minutes** max.
+      servers:
+        - url: https://www.urufu.xyz
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GaslessClaimRequest'
+      responses:
+        '200':
+          description: Relayed transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GaslessClaimResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          description: Rate limited — agent must wait 1 hour
+        '503':
+          description: Relayer not configured or unfunded
+
+  /api/randomness/free-mint:
+    post:
+      tags: [gasless]
+      operationId: relayGaslessFreeMint
+      summary: Relay signed MintIntent for free allowlist phase (relayer pays gas)
+      description: |
+        Agent signs EIP-712 `MintIntent` (domain `UrufuRandomness`) with user wallet.
+        Only **free payment** phases (payment enum 0). Requires merkle proof when phase has allowlist root.
+        Mint cooldown: agent should enforce **24h** between mints unless user overrides.
+      servers:
+        - url: https://www.urufu.xyz
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GaslessFreeMintRequest'
+      responses:
+        '200':
+          description: Relayed mint transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GaslessFreeMintResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          description: Randomness signer or mint relayer not configured
+
+  /allowlists/{root}.json:
+    get:
+      tags: [indexer]
+      operationId: getAllowlistManifest
+      summary: Merkle allowlist manifest for mint proof lookup
+      servers:
+        - url: https://www.urufu.xyz
+      parameters:
+        - name: root
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{64}$'
+      responses:
+        '200':
+          description: Allowlist manifest with proofs
+        '404':
+          description: Unknown root
+
+    post:
+      tags: [meadow]
+      operationId: createMeadowRoom
+      summary: Create Wolf in Wool room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeadowPlayerProfile'
+      responses:
+        '201':
+          description: Room session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeadowRoomResponse'
+
+  /api/v1/wolf-wool/rooms/{roomId}/join:
+    post:
+      tags: [meadow]
+      operationId: joinMeadowRoom
+      summary: Join existing room
+      parameters:
+        - $ref: '#/components/parameters/roomId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeadowPlayerProfile'
+      responses:
+        '201':
+          description: Room session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeadowRoomResponse'
+
+  /api/v1/wolf-wool/rooms/{roomId}:
+    get:
+      tags: [meadow]
+      operationId: getMeadowSnapshot
+      summary: Room snapshot (poll fallback)
+      parameters:
+        - $ref: '#/components/parameters/roomId'
+        - name: playerId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Game snapshot
+
+components:
+  parameters:
+    walletAddress:
+      name: address
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^0x[a-fA-F0-9]{40}$'
+    roomId:
+      name: roomId
+      in: path
+      required: true
+      schema:
+        type: string
+
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+
+    Stats:
+      type: object
+      properties:
+        totalChibis:
+          type: integer
+        sheepCount:
+          type: integer
+        wolfCount:
+          type: integer
+        raidsTotal:
+          type: integer
+        raidsSuccess:
+          type: integer
+        cursorBlock:
+          type: integer
+        claimedUru:
+          type: string
+        claimedWeth:
+          type: string
+        raidedUru:
+          type: string
+        raidedWeth:
+          type: string
+
+    ChibiPortfolio:
+      type: object
+      properties:
+        owner:
+          type: string
+        count:
+          type: integer
+        chibis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chibi'
+
+    Chibi:
+      type: object
+      properties:
+        tokenId:
+          type: integer
+        owner:
+          type: string
+        role:
+          type: string
+          enum: [sheep, wolf, '']
+        zone:
+          type: string
+        artSlot:
+          type: integer
+        mintedAt:
+          type: integer
+        updatedAt:
+          type: integer
+
+    Leaderboard:
+      type: object
+      additionalProperties: true
+
+    GaslessClaimRequest:
+      type: object
+      required:
+        - chainId
+        - contract
+        - user
+        - tokenIds
+        - nonce
+        - tokenIdsHash
+        - intentDeadline
+        - intentSignature
+      properties:
+        chainId:
+          type: integer
+          example: 8453
+        contract:
+          type: string
+          description: ChibiLiquidityVault address
+          example: '0x9cCD1f59543c4160B658233DaD0D197CFa964c2F'
+        user:
+          type: string
+          description: Wallet that signed the intent
+        tokenIds:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+        nonce:
+          type: string
+          description: Current claimNonce(user) on vault
+        tokenIdsHash:
+          type: string
+          description: keccak256(abi.encode(uint256[], tokenIds))
+        intentDeadline:
+          type: string
+          description: Unix seconds, max 5 min from now
+        intentSignature:
+          type: string
+          description: EIP-712 signature over ClaimIntent
+
+    GaslessClaimResponse:
+      type: object
+      properties:
+        txHash:
+          type: string
+        relayer:
+          type: string
+        count:
+          type: integer
+
+    GaslessFreeMintRequest:
+      type: object
+      required:
+        - chainId
+        - contract
+        - user
+        - phaseId
+        - quantity
+        - nonce
+        - paramsHash
+        - intentDeadline
+        - intentSignature
+        - merkleProof
+      properties:
+        chainId:
+          type: integer
+          example: 8453
+        contract:
+          type: string
+          description: ChibiMinter address
+        user:
+          type: string
+        phaseId:
+          type: integer
+        quantity:
+          type: integer
+        nonce:
+          type: string
+          description: mintNonce(user) on minter
+        paramsHash:
+          type: string
+          description: mintParamsHash(phaseId, quantity, 0)
+        intentDeadline:
+          type: string
+        intentSignature:
+          type: string
+          description: EIP-712 MintIntent signature
+        merkleProof:
+          type: array
+          items:
+            type: string
+
+    GaslessFreeMintResponse:
+      type: object
+      properties:
+        txHash:
+          type: string
+        signer:
+          type: string
+        relayer:
+          type: string
+        count:
+          type: integer
+
+    MeadowPlayerProfile:
+      type: object
+      properties:
+        displayName:
+          type: string
+        avatarKey:
+          type: string
+        avatarUrl:
+          type: string
+
+    MeadowRoomResponse:
+      type: object
+      properties:
+        roomId:
+          type: string
+        playerId:
+          type: string
+        token:
+          type: string
+        webSocketUrl:
+          type: string
+        snapshot:
+          type: object
+          additionalProperties: true
+
+  securitySchemes: {}
+
+# WebSocket (documented for MCP agents — not OpenAPI-native):
+# wss://{indexer}/api/v1/wolf-wool/rooms/{roomId}/ws?playerId=&token=
+# Client messages: hello, input, interact, kill, report, vote, chat (see meadow types)

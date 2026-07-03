@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-景点门票比价：美团+飞猪+途牛三平台景点门票比价 + 购票决策建议
+景点门票比价 v2.0.1 - 美团+飞猪+途牛三平台景点门票比价 + 购票决策建议
 通过SCF代理查询美团CPS/飞猪/途牛实时景点门票价格
 
 用法:
-  python3 compare.py search --city "北京" [--keyword "故宫"] [--level 5A] [--category 博物馆]
-  python3 compare.py compare --name "故宫博物院" --city "北京"
-
+  python3 compare.py --city "北京" [--keyword "故宫"] [--level 5A] [--category 博物馆]
+  python3 compare.py --city "北京" --name "故宫博物院"
+  python3 compare.py --city "北京" --name "故宫博物院" --advisor
 """
 
-import os
 import argparse
 import json
 import re
@@ -17,13 +17,13 @@ import sys
 import threading
 import urllib.request
 import urllib.error
-
+from datetime import datetime
 
 # ============================================================
 # 配置
 # ============================================================
 
-PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PROXY_TOKEN = ""
 
 SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
@@ -34,21 +34,38 @@ HEADERS = {
     "X-Proxy-Token": PROXY_TOKEN,
 }
 
-# 美团CPS排除关键词（非门票商品）
-MEITUAN_EXCLUDE_KEYWORDS = [
-    "讲解", "导览", "精讲", "大咖", "讲师", "陪玩",
-    "夜游", "日游", "亲子", "家庭", "套票", "跟团",
-    "一日游", "半日游", "多日游", "接送", "包车", "直通车",
-    "大巴", "自驾", "自由行", "酒店", "小团", "纯玩团",
-    "晚·", "天晚", "套餐", "摄影", "旅拍", "跟拍",
-    "接驳", "摆渡", "游船",
-    "门票+", "+门票", "+导览", "+精讲",
-    "3h", "3小时", "2h", "2小时",
-    "打卡", "升旗", "观光巴士", "铛铛车", "漫游",
-    "年卡", "月卡", "次卡", "平日卡", "周末卡", "贵宾卡",
-    "双人", "2人", "三人", "3人", "多人",
+# 景点等级 -> 价格分位基准（门票价格，单位：元）
+LEVEL_PRICE_REF = {
+    "5A": (30, 120, 400),
+    "4A": (15, 60, 200),
+    "3A": (5, 30, 100),
+    "无等级": (0, 50, 200),
+}
+
+# 景点类型 -> 价格偏移系数
+CATEGORY_PRICE_FACTOR = {
+    "主题乐园": 2.5, "水上乐园": 1.8, "动物园": 1.5, "海洋馆": 1.8,
+    "博物馆": 0.6, "历史古迹": 0.8, "风景名胜": 1.0, "公园乐园": 1.2,
+    "宗教场所": 0.5, "城市观光": 0.7, "沙滩海岛": 1.2, "温泉": 1.5,
+    "滑雪场": 2.0, "剧院剧场": 1.5,
+}
+
+# 旺季月份（全国通用）
+PEAK_MONTHS = {1, 2, 7, 8, 10}
+
+# 美团CPS景点搜索排除关键词（非纯门票商品）
+# v2.0.1: 扩展关键词列表
+EXCLUDE_KEYWORDS = [
+    "讲解", "导览", "夜游", "日游", "亲子", "家庭", "套票", "跟团",
+    "一日游", "半日游", "接送", "包车", "直通车", "大巴", "自驾",
+    "自由行", "多日游", "酒店", "小团", "纯玩团", "晚·", "天晚",
+    "套餐", "摄影", "旅拍", "跟拍", "接驳", "摆渡", "游船",
+    "门票+", "+门票", "+导览", "+精讲", "3h", "3小时", "2h", "2小时",
+    "打卡", "升旗", "观光巴士", "铛铛车", "漫游", "年卡", "月卡",
+    "次卡", "平日卡", "周末卡", "贵宾卡", "双人", "2人", "三人", "3人", "多人",
+    # v2.0.1新增：通玩卡/皮划艇等
     "通玩卡", "畅玩卡", "通卡", "皮划艇", "划船", "游艇",
-    "漂流", "温泉", "滑雪", "演出", "实景",
+    "漂流", "温泉", "滑雪", "演出", "实景", "精讲", "大咖", "讲师", "陪玩",
 ]
 
 # ============================================================
@@ -106,6 +123,54 @@ def _clean_img_url(url):
     return url.split("@")[0].strip()
 
 
+def _get_price_level(price, category="", level=""):
+    level_key = level if level in LEVEL_PRICE_REF else "无等级"
+    low, mid, high = LEVEL_PRICE_REF[level_key]
+    factor = 1.0
+    for cat_key, cat_factor in CATEGORY_PRICE_FACTOR.items():
+        if cat_key in category:
+            factor = cat_factor
+            break
+    low *= factor
+    mid *= factor
+    high *= factor
+    if price <= low:
+        return "低价", "🟢"
+    elif price <= mid:
+        return "均价", "🟡"
+    elif price <= high:
+        return "偏高", "🟠"
+    else:
+        return "偏贵", "🔴"
+
+
+def _is_peak_season():
+    return datetime.now().month in PEAK_MONTHS
+
+
+# ============================================================
+# v2.0.1: POI名称匹配校验
+# ============================================================
+
+def _poi_name_match(poi_name, target_name):
+    """poiName匹配校验：确保美团的景点和目标景点一致"""
+    if not poi_name or not target_name:
+        return False
+    # 直接包含
+    if target_name in poi_name or poi_name in target_name:
+        return True
+    # 去除常见后缀再比较
+    for suffix in ["风景名胜区", "风景区", "景区", "度假区", "公园", "旅游区"]:
+        poi_name = poi_name.replace(suffix, "")
+        target_name = target_name.replace(suffix, "")
+    if target_name in poi_name or poi_name in target_name:
+        return True
+    # 字符重叠度
+    overlap = sum(1 for c in target_name if c in poi_name)
+    min_len = min(len(target_name), len(poi_name))
+    return overlap >= max(2, int(min_len * 0.5))
+
+
 # ============================================================
 # 飞猪数据提取
 # ============================================================
@@ -116,6 +181,7 @@ def _parse_fliggy_result(data, name):
     items = data.get("data", {}).get("itemList", [])
     if not items:
         return None
+    # 精确匹配优先
     match = None
     for item in items:
         iname = item.get("name", "")
@@ -162,6 +228,7 @@ def _parse_tuniu_result(data, name):
     if not tickets:
         return None
 
+    # 找成人单票最低价
     adult_price = None
     for t in tickets:
         if t is None:
@@ -175,6 +242,7 @@ def _parse_tuniu_result(data, name):
         elif pt == "不限人群" and tt in ("单票", "门票"):
             if adult_price is None or (p and p < adult_price):
                 adult_price = p
+    # 没有纯成人票取最低价
     if adult_price is None:
         for t in tickets:
             if t is None:
@@ -194,6 +262,7 @@ def _parse_tuniu_result(data, name):
         if overlap < min(2, len(name)):
             name_mismatch = True
 
+    # 全部票型
     all_tickets = []
     for t in tickets:
         if t is None:
@@ -213,7 +282,6 @@ def _parse_tuniu_result(data, name):
             "enter_type": t.get("enterTypeName", ""),
             "satisfaction": t.get("satisfaction"),
             "remark_num": t.get("remarkNum", 0),
-            "loss_name": t.get("lossName", ""),
         })
 
     def _sort_key(x):
@@ -233,56 +301,55 @@ def _parse_tuniu_result(data, name):
 
 
 # ============================================================
-# 美团CPS数据提取
+# 美团CPS数据提取（v2.0.1: 三层过滤 + _poi_name_match校验）
 # ============================================================
 
 def _parse_meituan_search(data, name):
+    """从美团CPS搜索结果中提取比价数据（v2.0.1三层过滤）"""
     if not data or "error" in data:
         return None
     products = data.get("data", {}).get("products", [])
     if not products:
         return None
 
-    # poiName 匹配校验：确保美团的景点和目标景点一致
-    def _poi_name_match(poi_name, target_name):
-        if not poi_name or not target_name:
-            return False
-        if target_name in poi_name or poi_name in target_name:
-            return True
-        for suffix in ["风景名胜区", "风景区", "景区", "度假区", "公园", "旅游区"]:
-            poi_name = poi_name.replace(suffix, "")
-            target_name = target_name.replace(suffix, "")
-        if target_name in poi_name or poi_name in target_name:
-            return True
-        overlap = sum(1 for c in target_name if c in poi_name)
-        min_len = min(len(target_name), len(poi_name))
-        return overlap >= max(2, int(min_len * 0.5))
-
+    # 三层过滤找成人纯门票
     adult_product = None
     is_package = False
+
+    # 第一层：含成人/全价/标准且不含排除词，且poiName匹配
     for p in products:
         pname = p.get("name", "")
         poi_name = p.get("poiName", "")
+        # v2.0.1新增：校验poiName是否匹配目标景点
         if not _poi_name_match(poi_name, name):
             continue
-        if any(kw in pname for kw in MEITUAN_EXCLUDE_KEYWORDS):
+        if any(kw in pname for kw in EXCLUDE_KEYWORDS):
             continue
-        if pname.count("+") >= 2:
-            continue
-        if any(kw in pname for kw in ["成人", "全价", "标准", "通票", "大通票"]):
+        if any(kw in pname for kw in ["成人", "全价", "标准", "大通票", "通票"]):
             adult_product = p
             break
+
+    # 第二层：不含排除词的第一个，且poiName匹配
     if not adult_product:
         for p in products:
             pname = p.get("name", "")
             poi_name = p.get("poiName", "")
+            # v2.0.1新增：校验poiName是否匹配目标景点
             if not _poi_name_match(poi_name, name):
                 continue
-            if not any(kw in pname for kw in MEITUAN_EXCLUDE_KEYWORDS):
-                if pname.count("+") >= 2:
-                    continue
+            if not any(kw in pname for kw in EXCLUDE_KEYWORDS):
                 adult_product = p
                 break
+
+    # 第三层：兜底取第一个poiName匹配的
+    if not adult_product:
+        for p in products:
+            poi_name = p.get("poiName", "")
+            if _poi_name_match(poi_name, name):
+                adult_product = p
+                is_package = True
+                break
+
     if not adult_product:
         return None
 
@@ -299,6 +366,25 @@ def _parse_meituan_search(data, name):
         "product_view_sign": product_view_sign,
         "is_package": is_package,
     }
+
+
+def _fetch_meituan_referral_link(product_view_sign):
+    """获取美团CPS推广链接"""
+    if not product_view_sign:
+        return ""
+    link_data = _post(SCF_MEITUAN_URL, {
+        "type": "get_referral_link",
+        "params": {
+            "productViewSign": product_view_sign,
+            "platform": 2,
+            "bizLine": 4,
+            "linkType": 1,
+        }
+    })
+    if "error" not in link_data:
+        rmap = link_data.get("referralLinkMap", {})
+        return rmap.get("1", rmap.get("2", ""))
+    return ""
 
 
 # ============================================================
@@ -384,33 +470,36 @@ def cmd_compare(name, city):
         ("meituan", SCF_MEITUAN_URL, {"type": "query_coupon", "params": {"searchText": name, "platform": 2, "bizLine": 4}}),
     ])
 
-    fliggy = _parse_fliggy_result(results.get("fliggy"), name)
-    tuniu = _parse_tuniu_result(results.get("tuniu"), name)
-    meituan = _parse_meituan_search(results.get("meituan"), name)
+    # 解析飞猪
+    fliggy_raw = results.get("fliggy", {})
+    fliggy = None
+    if "error" not in fliggy_raw:
+        items = fliggy_raw.get("data", {}).get("itemList", [])
+        if items:
+            fliggy = _parse_fliggy_result(fliggy_raw, name)
 
-    # 美团获取推广链接
+    # 解析途牛
+    tuniu_raw = results.get("tuniu", {})
+    tuniu = None
+    if "error" not in tuniu_raw:
+        tuniu = _parse_tuniu_result(tuniu_raw, name)
+
+    # 解析美团搜索
+    meituan_raw = results.get("meituan", {})
+    meituan = _parse_meituan_search(meituan_raw, name)
+
+    # 美团获取推广链接（需二次调用）
     if meituan and meituan.get("product_view_sign"):
-        link_data = _post(SCF_MEITUAN_URL, {
-            "type": "get_referral_link",
-            "params": {
-                "productViewSign": meituan["product_view_sign"],
-                "platform": 2,
-                "bizLine": 4,
-                "linkType": 1,
-            }
-        })
-        if "error" not in link_data:
-            rmap = link_data.get("referralLinkMap", {})
-            meituan["url"] = rmap.get("1", rmap.get("2", ""))
+        meituan["url"] = _fetch_meituan_referral_link(meituan["product_view_sign"])
 
-    # 图片：优先飞猪mainPic，美团备选
+    # 图片：优先飞猪mainPic（景区实景图），其次美团headUrl
     image = ""
     if fliggy and fliggy.get("image"):
         image = fliggy["image"]
     elif meituan and meituan.get("image"):
         image = meituan["image"]
 
-    # 景点基础信息
+    # 景点基础信息（取飞猪的）
     poi_level = fliggy.get("level", "") if fliggy else ""
     poi_category = fliggy.get("category", "") if fliggy else ""
     poi_address = fliggy.get("address", "") if fliggy else ""
@@ -418,6 +507,8 @@ def cmd_compare(name, city):
 
     # 汇总比价
     comparison = []
+
+    # 美团数据
     if meituan:
         meituan_note = ""
         pname = meituan.get("product_name", "")
@@ -432,6 +523,8 @@ def cmd_compare(name, city):
             "url": meituan.get("url", ""),
             "note": meituan_note,
         })
+
+    # 飞猪数据
     if fliggy:
         comparison.append({
             "platform": "飞猪",
@@ -440,27 +533,38 @@ def cmd_compare(name, city):
             "url": fliggy.get("url", ""),
             "note": "",
         })
+
+    # 途牛数据
     if tuniu:
         comparison.append({
             "platform": "途牛",
             "price": tuniu.get("price"),
             "ticket_name": "成人票",
             "url": tuniu.get("url", ""),
-            "note": "⚠️ 匹配可能有误" if tuniu.get("name_mismatch") else "",
+            "note": "⚠️匹配可能有误" if tuniu.get("name_mismatch") else "",
         })
 
-    # 排序：价格升序，同价飞猪优先
+    # 排序：有价格按价格升序，同价飞猪优先（有佣金）
     def _cmp_sort(x):
         p = x["price"] if x["price"] is not None else 99999
         platform_order = {"飞猪": 0, "美团": 1, "途牛": 2}.get(x["platform"], 3)
         return (p, platform_order)
     comparison.sort(key=_cmp_sort)
 
+    # 最低价和可省
     all_prices = [c["price"] for c in comparison if c["price"] is not None]
     lowest_price = min(all_prices) if all_prices else None
     savings = max(all_prices) - min(all_prices) if len(all_prices) >= 2 else None
 
-    tuniu_tickets = tuniu.get("all_tickets", []) if tuniu else []
+    # 途牛全部票型
+    tuniu_all_tickets = tuniu.get("all_tickets", []) if tuniu else []
+
+    # 价格水平
+    price_level = ""
+    price_emoji = ""
+    if lowest_price is not None:
+        level_str = poi_level if poi_level in LEVEL_PRICE_REF else "无等级"
+        price_level, price_emoji = _get_price_level(lowest_price, poi_category, level_str)
 
     return {
         "success": True,
@@ -474,9 +578,160 @@ def cmd_compare(name, city):
         "comparison": comparison,
         "lowest_price": lowest_price,
         "savings": savings,
-        "tuniu_tickets": tuniu_tickets,
+        "price_level": price_level,
+        "price_emoji": price_emoji,
+        "tuniu_tickets": tuniu_all_tickets[:30],
+        "tuniu_total": len(tuniu_all_tickets),
     }
 
+
+def cmd_advisor(name, city, ticket_type="成人票"):
+    """购票决策建议"""
+    compare_result = cmd_compare(name, city)
+
+    if not compare_result["success"]:
+        return compare_result
+
+    lowest_price = compare_result.get("lowest_price")
+    level = compare_result.get("level", "").replace("A", "")
+    category = compare_result.get("category", "")
+    tuniu_tickets = compare_result.get("tuniu_tickets", [])
+    comparison = compare_result.get("comparison", [])
+    savings = compare_result.get("savings")
+
+    # 5维决策分析
+    dimensions = {}
+
+    # 维度1：价格水平
+    if lowest_price is not None:
+        price_level, price_emoji = _get_price_level(lowest_price, category, level)
+        dimensions["price_level"] = {
+            "label": "价格水平",
+            "value": f"{price_emoji} {price_level}",
+            "detail": f"当前最低价 ¥{lowest_price:.0f}",
+        }
+    else:
+        dimensions["price_level"] = {"label": "价格水平", "value": "⚪ 无价格数据", "detail": "暂无实时报价"}
+
+    # 维度2：平台价差
+    if savings is not None and savings > 0:
+        dimensions["platform_diff"] = {
+            "label": "平台价差",
+            "value": f"💰 可省 ¥{savings:.0f}",
+            "detail": f"平台间差价 ¥{savings:.0f}，选最低价平台",
+        }
+    elif len(comparison) >= 2:
+        dimensions["platform_diff"] = {"label": "平台价差", "value": "🟰 各平台同价", "detail": "各平台价格一致，任选即可"}
+    else:
+        dimensions["platform_diff"] = {"label": "平台价差", "value": "⚪ 仅单一平台", "detail": "只有一个平台报价"}
+
+    # 维度3：折扣力度（先占位）
+    dimensions["discount"] = {"label": "折扣力度", "value": "⚪ 无明显折扣", "detail": "当前无特殊优惠"}
+
+    # 维度4：满意度
+    avg_satisfaction = None
+    max_remarks = 0
+    for t in tuniu_tickets:
+        s = t.get("satisfaction")
+        r = t.get("remark_num", 0)
+        if s is not None:
+            if avg_satisfaction is None:
+                avg_satisfaction = s
+            else:
+                avg_satisfaction = (avg_satisfaction + s) / 2
+            max_remarks = max(max_remarks, r)
+
+    if avg_satisfaction is not None:
+        if avg_satisfaction >= 95:
+            sat_label = "🌟 极高"
+        elif avg_satisfaction >= 90:
+            sat_label = "👍 较高"
+        elif avg_satisfaction >= 80:
+            sat_label = "👌 一般"
+        else:
+            sat_label = "⚠️ 偏低"
+        dimensions["satisfaction"] = {
+            "label": "游客满意度",
+            "value": f"{sat_label} {avg_satisfaction:.0f}%",
+            "detail": f"评价数 {max_remarks}",
+        }
+    else:
+        dimensions["satisfaction"] = {"label": "游客满意度", "value": "⚪ 暂无数据", "detail": "无满意度评价"}
+
+    # 维度5：季节建议
+    peak = _is_peak_season()
+    if peak:
+        dimensions["season"] = {"label": "季节因素", "value": "旺季 🔥", "detail": "旅游旺季，建议提前购票，现场可能限流"}
+    else:
+        dimensions["season"] = {"label": "季节因素", "value": "淡季 ✅", "detail": "旅游淡季，票价稳定，入园压力小"}
+
+    # 筛选指定票型
+    if ticket_type == "成人票":
+        matched_tickets = [t for t in tuniu_tickets if "成人" in t.get("person_type", "")]
+        if not matched_tickets:
+            matched_tickets = [t for t in tuniu_tickets if "不限" in t.get("person_type", "")]
+    elif ticket_type:
+        matched_tickets = [t for t in tuniu_tickets
+                           if ticket_type in t.get("person_type", "") or ticket_type in t.get("name", "")]
+    else:
+        matched_tickets = tuniu_tickets
+    if not matched_tickets:
+        matched_tickets = tuniu_tickets[:5]
+
+    # 更新折扣维度
+    adult_discounts = [t for t in matched_tickets
+                       if ("成人" in t.get("person_type", "") or "不限" in t.get("person_type", ""))
+                       and t.get("discount") is not None and t.get("discount", 10) < 10]
+    if adult_discounts:
+        best_discount = min(t["discount"] for t in adult_discounts)
+        best_name = [t["name"] for t in adult_discounts if t["discount"] == best_discount][0]
+        dimensions["discount"] = {"label": "折扣力度", "value": f"🏷️ {best_discount}折", "detail": f"「{best_name}」折扣最优"}
+    elif any(t.get("discount") is not None and t.get("discount", 10) < 10 for t in tuniu_tickets):
+        other_discounts = [t["discount"] for t in tuniu_tickets if t.get("discount") is not None and t.get("discount", 10) < 10]
+        if other_discounts:
+            best_other = min(other_discounts)
+            dimensions["discount"] = {"label": "折扣力度", "value": f"🏷️ {best_other}折(儿童/老人)", "detail": "成人票无折扣，儿童/老人票有优惠"}
+
+    # 综合决策
+    signal = "🟢 建议购买"
+    reason_parts = []
+
+    if lowest_price is not None:
+        price_level_val, _ = _get_price_level(lowest_price, category, level)
+        if price_level_val == "低价":
+            signal = "🟢 建议购买"
+            reason_parts.append("价格处于低位")
+        elif price_level_val == "均价":
+            signal = "🟡 价格适中"
+            reason_parts.append("价格处于正常水平")
+        elif price_level_val == "偏高":
+            signal = "🟠 建议观望"
+            reason_parts.append("价格偏高，可关注优惠")
+        else:
+            signal = "🔴 暂不建议"
+            reason_parts.append("价格偏贵，建议等优惠或选替代景点")
+
+    if savings and savings > 20:
+        reason_parts.append(f"平台间可省¥{savings:.0f}")
+
+    if peak:
+        reason_parts.append("旺季建议提前购票")
+
+    reason = "；".join(reason_parts) if reason_parts else "建议按需购买"
+
+    return {
+        "success": True,
+        "attraction": name,
+        "city": city,
+        "level": compare_result.get("level", ""),
+        "signal": signal,
+        "reason": reason,
+        "dimensions": dimensions,
+        "recommended_tickets": matched_tickets[:5],
+        "lowest_price": lowest_price,
+        "best_platform": comparison[0]["platform"] if comparison else "",
+        "best_url": comparison[0].get("url", "") if comparison else "",
+    }
 
 
 # ============================================================
@@ -484,30 +739,26 @@ def cmd_compare(name, city):
 # ============================================================
 
 def main():
-    parser = argparse.ArgumentParser(description="景点门票比价")
-    subparsers = parser.add_subparsers(dest="command")
-
-    # search
-    p_search = subparsers.add_parser("search", help="搜索景点")
-    p_search.add_argument("--city", required=True, help="城市")
-    p_search.add_argument("--keyword", default="", help="关键词")
-    p_search.add_argument("--level", default="", help="景区等级(5A/4A/3A)")
-    p_search.add_argument("--category", default="", help="景点类型")
-
-    # compare
-    p_compare = subparsers.add_parser("compare", help="门票三平台比价")
-    p_compare.add_argument("--name", required=True, help="景点名称")
-    p_compare.add_argument("--city", required=True, help="城市")
+    parser = argparse.ArgumentParser(description="景点门票比价 v2.0.1 - 美团+飞猪+途牛三平台比价")
+    parser.add_argument("--city", required=True, help="城市名，如：北京、上海")
+    parser.add_argument("--keyword", default="", help="搜索关键词，如：故宫、迪士尼")
+    parser.add_argument("--level", default="", help="景区等级，5A/4A/3A")
+    parser.add_argument("--category", default="", help="景点类型，如：博物馆、主题乐园")
+    parser.add_argument("--name", default="", help="景点名称（用于比价模式），如：故宫博物院")
+    parser.add_argument("--advisor", action="store_true", help="输出购票决策建议（需配合--name使用）")
+    parser.add_argument("--ticket-type", default="成人票", help="票型筛选（advisor模式），默认成人票")
 
     args = parser.parse_args()
 
-    if args.command == "search":
-        result = cmd_search(args.city, args.keyword, args.level, args.category)
-    elif args.command == "compare":
-        result = cmd_compare(args.name, args.city)
+    if args.name:
+        # 比价模式
+        if args.advisor:
+            result = cmd_advisor(args.name, args.city, args.ticket_type)
+        else:
+            result = cmd_compare(args.name, args.city)
     else:
-        parser.print_help()
-        return
+        # 搜索模式
+        result = cmd_search(args.city, args.keyword, args.level, args.category)
 
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

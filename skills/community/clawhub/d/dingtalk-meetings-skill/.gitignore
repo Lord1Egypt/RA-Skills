@@ -1,0 +1,5 @@
+# 本地配置文件（不提交）
+references/dingtalk.config
+
+# 参会人 userId 缓存（不提交）
+references/contacts.cache

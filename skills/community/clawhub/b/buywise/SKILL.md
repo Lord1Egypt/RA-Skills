@@ -8,6 +8,12 @@ description: |
   Just tell BuyWise what you want to buy — it handles the rest.
 
 keywords: shopping assistant, price comparison, buy or wait, deal checker, is it worth buying, fake discount, fake sale, discount detection, product review, review analysis, review summary, alternatives, best deal, best price, lowest price, price tracker, price history, Amazon price history, buy timing, pre-purchase research, save money, shopping decision, shopping guide, consumer guide, product research, shopping advisor, Amazon, eBay, AliExpress, Temu, JD, Taobao, Tmall, Pinduoduo, CamelCamelCamel, smzdm, Double 11, 11.11, 618 sale, Black Friday, Cyber Monday, cross-border shopping, budget alternative, all-time low
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
 metadata:
   openclaw:
     runtime:

@@ -1,44 +1,45 @@
 ## Description: <br>
-End-to-end encrypted, decentralized memory for OpenClaw agents, with setup, remember, recall, import, export, consolidation, and CLI fallback workflows. <br>
+End-to-end encrypted, decentralized memory for OpenClaw, with native recall through memory_search and memory_get and background fact capture. <br>
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill is for research and development only. <br>
 
 ## Publisher: <br>
 [p-diogo](https://clawhub.ai/user/p-diogo) <br>
 
 ### License/Terms of Use: <br>
-MIT-0 <br>
+MIT <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to add encrypted, portable long-term memory to OpenClaw agents, including account setup, memory storage and recall, import/export, and maintenance actions. <br>
+OpenClaw users and agent developers use this skill to add persistent encrypted memory, recall user facts, and guide setup or recovery flows without putting recovery phrases into chat. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The security review flags this release as suspicious because it can read broad local agent logs, change OpenClaw configuration, restart the gateway, and store some decrypted memory content locally. <br>
-Mitigation: Install only after reviewing local OpenClaw configuration changes and files under ~/.totalreclaw, and avoid production or shared machines unless those behaviors are acceptable. <br>
-Risk: The skill handles wallet-style recovery material and sensitive credentials as part of account setup and encrypted memory access. <br>
-Mitigation: Use the browser-based pairing flow or explicit setup path, never paste a recovery phrase into chat, and rotate credentials if a phrase is exposed. <br>
-Risk: Automatic memory extraction can use LLM/provider credentials and process conversation content. <br>
-Mitigation: Review extraction settings and provider credentials before enabling the skill, and prefer explicit setup when tighter control is required. <br>
+Risk: The security evidence places this release in Review before install because it can read recent OpenClaw session logs and use configured model credentials for extraction. <br>
+Mitigation: Install only when TotalReclaw is intended to be the memory backend, use a dedicated model API key, and review extraction settings before use. <br>
+Risk: The skill writes TotalReclaw credentials and state under the user's home directory. <br>
+Mitigation: Keep the recovery phrase private, use the browser pairing flow, and re-pair if a recovery phrase is exposed in chat. <br>
+Risk: The skill can change OpenClaw plugin configuration and restart the gateway. <br>
+Mitigation: Review the install and setup flow in a controlled environment before enabling it in a regular OpenClaw workspace. <br>
+Risk: This is a release-candidate build whose release evidence says it is not recommended for production. <br>
+Mitigation: Prefer a stable release unless the user specifically needs to test this RC version. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/p-diogo/totalreclaw) <br>
-- [TotalReclaw Homepage](https://totalreclaw.xyz) <br>
-- [OpenClaw Setup Guide](https://github.com/p-diogo/totalreclaw/blob/main/docs/guides/openclaw-setup.md) <br>
+- [ClawHub listing](https://clawhub.ai/p-diogo/skills/totalreclaw) <br>
+- [TotalReclaw homepage](https://totalreclaw.xyz) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool calls, shell commands, and JSON results] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update local TotalReclaw and OpenClaw configuration and can return plaintext memory exports when requested.] <br>
+**Other Properties Related to Output:** [May include account setup URLs, PINs, CLI commands, memory recall guidance, and status or export instructions.] <br>
 
 ## Skill Version(s): <br>
-3.3.12-rc.12 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+3.3.12-rc.19 (source: server release, SKILL.md frontmatter, package.json, skill.json) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

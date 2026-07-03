@@ -14,7 +14,12 @@ Executor 执行时自动注入"全局词表 + 当前模板专属词表"两层过
 只要出现以下词汇，立刻打破人类读者的沉浸感，需严格清洗。
 
 ### 英文灾区
+
+**经典 AI 套话**
 `delve into`, `tapestry`, `testament`, `realm`, `landscape`, `Maps`, `unlock`, `symphony`, `crucial`, `foster`, `beacon`, `moreover`, `furthermore`, `additionally`, `underscores`, `highlights`, `stands as`, `serves as`, `acts as`, `it is worth noting that`, `it is important to`, `not only... but also...`
+
+**🆕 2026 新模型高频词 (GPT-5 / Claude 4 / DeepSeek V4)**
+`I appreciate you bringing that up`, `Let me break this down`, `Here's the thing`, `It's worth emphasizing`, `Let me paint a picture`, `At the end of the day`, `I'd be happy to help`, `Great question!`, `You raise an excellent point`, `Let me walk you through`, `I want to highlight`, `It's important to remember`, `Let me be clear`, `To put it simply`, `The reality is`, `What this means is`, `In practical terms`, `The bottom line`
 
 ### 中文灾区
 
@@ -29,6 +34,9 @@ Executor 执行时自动注入"全局词表 + 当前模板专属词表"两层过
 
 **程度副词滥用**
 频繁使用"极大地"、"深刻地"、"完美地"等缺乏具体数据支撑的空洞修饰词
+
+**🆕 2026 新模型高频词 (MiMo / DeepSeek V4 / Qwen3)**
+"说到底"、"本质上"、"你可能会问"、"我们不妨换个角度"、"这一点非常关键"、"不可否认"、"值得一提的是"、"某种程度上"、"换个角度想"、"你有没有想过"、"说白了就是"、"这就引出了一个问题"、"有意思的是"、"坦白说"、"不得不说"、"从某种意义上说"、"这就是为什么"、"换句话说"
 
 ---
 

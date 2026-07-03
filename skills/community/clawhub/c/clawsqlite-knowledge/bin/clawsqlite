@@ -1,0 +1,79 @@
+#!/usr/bin/env sh
+set -eu
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+SKILL_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
+LOCAL_TARGET="$SKILL_DIR/.clawsqlite-python"
+
+if [ "${XDG_DATA_HOME:-}" ]; then
+  INSTANCE_BASE="$XDG_DATA_HOME/clawsqlite-knowledge"
+else
+  INSTANCE_BASE="$HOME/.local/share/clawsqlite-knowledge"
+fi
+DEFAULT_INSTANCE_REGISTRY="$INSTANCE_BASE/default_instance_home"
+
+if [ "${PYTHON:-}" ]; then
+  PYTHON_BIN="$PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN="python"
+else
+  echo "ERROR: python3 was not found." >&2
+  echo "NEXT: install Python 3.10+ or set PYTHON=/path/to/python, then rerun bootstrap_deps.sh." >&2
+  exit 2
+fi
+
+if [ -d "$LOCAL_TARGET" ]; then
+  PYTHONPATH="$LOCAL_TARGET${PYTHONPATH:+:$PYTHONPATH}"
+  export PYTHONPATH
+fi
+
+if ! "$PYTHON_BIN" -m clawsqlite_cli --help >/dev/null 2>&1; then
+  echo "ERROR: clawsqlite Python package is not usable from this skill wrapper." >&2
+  echo "NEXT: cd $SKILL_DIR && bash bootstrap_deps.sh" >&2
+  exit 2
+fi
+
+needs_instance_home() {
+  case "${1:-}" in
+    knowledge)
+      case "${2:-}" in
+        ""|-h|--help|help) return 1 ;;
+      esac
+      if [ "${2:-}" = "maintenance" ] && [ "${3:-}" = "init-config" ]; then
+        return 1
+      fi
+      return 0
+      ;;
+    admin)
+      case "${2:-}" in
+        ""|-h|--help|help) return 1 ;;
+      esac
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+if needs_instance_home "$@" && [ ! -f "./clawsqlite.toml" ]; then
+  if [ -f "$DEFAULT_INSTANCE_REGISTRY" ]; then
+    DEFAULT_INSTANCE_HOME=$(sed -n '1p' "$DEFAULT_INSTANCE_REGISTRY")
+    if [ -n "$DEFAULT_INSTANCE_HOME" ] && [ -f "$DEFAULT_INSTANCE_HOME/clawsqlite.toml" ]; then
+      cd "$DEFAULT_INSTANCE_HOME"
+    else
+      echo "ERROR: registered default clawsqlite knowledge instance is not usable." >&2
+      echo "DETAIL: $DEFAULT_INSTANCE_REGISTRY -> $DEFAULT_INSTANCE_HOME" >&2
+      echo "NEXT: run '$0 knowledge maintenance init-config --instance default' or cd to a valid instance home." >&2
+      exit 2
+    fi
+  else
+    echo "ERROR: current directory is not a clawsqlite knowledge instance home, and no default instance registry was found." >&2
+    echo "ERROR_KIND: default_instance_required" >&2
+    echo "DETAIL: missing $DEFAULT_INSTANCE_REGISTRY" >&2
+    echo "NEXT: run '$0 knowledge maintenance init-config --instance default', or cd to an existing directory that contains clawsqlite.toml." >&2
+    exit 2
+  fi
+fi
+
+exec "$PYTHON_BIN" -m clawsqlite_cli "$@"

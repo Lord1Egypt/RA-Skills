@@ -1,0 +1,37 @@
+[
+  {
+    "type": "container",
+    "block_id": "bkb_container_collapsible",
+    "title": {
+      "type": "plain_text",
+      "text": "Collapsible Container (Expanded)"
+    },
+    "is_collapsible": true,
+    "default_collapsed": false,
+    "child_blocks": [
+      {
+        "type": "rich_text",
+        "block_id": "rt-simple",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "text": "This is a simple rich text block inside a container."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "block_id": "section-1",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*Section title*\nThis is a section block with markdown text inside the container."
+        }
+      }
+    ]
+  }
+]

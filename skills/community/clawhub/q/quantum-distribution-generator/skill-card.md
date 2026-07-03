@@ -1,5 +1,5 @@
 ## Description: <br>
-Quantum Distribution Generator helps agents request probability distribution samples, Monte Carlo samples, and random walks through AgentPMT-hosted remote tool calls. <br>
+Quantum Distribution Generator guides agents in calling AgentPMT-hosted tools for sampling probability distributions, Monte Carlo samples, and random walks. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and analysts use this skill when an agent needs to generate exponential, Poisson, binomial, beta, gamma, Monte Carlo, or random-walk samples for simulation, risk analysis, queuing models, A/B testing, Bayesian estimation, or related statistical workflows. <br>
+Developers and agents use this skill to generate AgentPMT MCP or REST calls for statistical sampling tasks such as risk analysis, queue modeling, A/B testing, stochastic simulation, Bayesian sampling, and random walk modeling. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can invoke a paid external AgentPMT API. <br>
-Mitigation: Enable it only for workflows that intentionally use AgentPMT sampling calls, and confirm account, credential, credit, or payment setup before invocation. <br>
-Risk: The skill may require sensitive account, wallet, or payment credentials through the AgentPMT setup path. <br>
-Mitigation: Use the setup guidance for credential handling and do not place secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
-Risk: Broad activation keywords such as beta, source, and count could trigger the skill for unrelated requests. <br>
-Mitigation: Invoke it only when the user explicitly needs statistical sampling, simulation, or the named Quantum Distribution Generator operations. <br>
+Risk: AgentPMT calls send requests to a remote paid service and may consume credits. <br>
+Mitigation: Use the skill only when remote AgentPMT statistical sampling is intended, confirm account setup, and review request parameters before execution. <br>
+Risk: Credential, token, wallet, or payment details could be exposed if placed in prompts or logs during setup. <br>
+Mitigation: Use the separate AgentPMT setup guidance for credential handling and keep secrets out of prompts, logs, and product-specific requests. <br>
+Risk: Cached schemas or examples can become stale for production integrations. <br>
+Mitigation: Fetch live schema or instructions before production use or when parameters, outputs, enum values, or examples are unclear. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/quantum-distribution-generator) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/quantum-distribution-generator) <br>
+- [Quantum Distribution Generator marketplace page](https://www.agentpmt.com/marketplace/quantum-distribution-generator) <br>
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/quantum-distribution-generator) <br>
+- [Quantum Distribution Generator Schema](artifact/schema.md) <br>
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, configuration] <br>
-**Output Format:** [Markdown instructions with JSON request examples and JSON tool responses from AgentPMT calls] <br>
+**Output Type(s):** [guidance, markdown, configuration, API calls] <br>
+**Output Format:** [Markdown with JSON request examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill uses AgentPMT account setup and paid remote calls; supported operations include beta, binomial, exponential, gamma, montecarlo_sample, poisson, and randomwalk.] <br>
+**Other Properties Related to Output:** [Describes MCP and REST invocation shapes, schema lookup steps, and supported action parameters; remote tool responses are JSON.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+1.0.1 (source: release evidence and frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

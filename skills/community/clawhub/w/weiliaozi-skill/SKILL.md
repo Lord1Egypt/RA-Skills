@@ -1,7 +1,7 @@
 ---
 name: weiliaozi-skill
-description: Structured analysis using the Wei Liaozi five-lens framework. Use when the user needs disciplined reasoning about a question or scenario — including historical analysis, system structure, trade-off assessment, sequence logic, and game-theoretic response mapping. Framework: Essence -> Conditions -> Gains-Losses -> Sequence -> Opponent. Think in order, no skipping steps. Respond in the same language as the user's question.
-version: 2.1.0
+description: Structured analysis using the Wei Liaozi five-lens framework — a synthesis of pre-Qin strategic thought drawing on Huangdi (rational analysis), Jiang Ziya (civil-military governance), Sun Wu (adaptive strategy), Wu Qi (discipline and command), and Duke Huan of Qi (stratified gains). Use when the user needs disciplined reasoning about a question or scenario — including historical analysis, system structure, trade-off assessment, sequence logic, and game-theoretic response mapping. Framework: Essence -> Conditions -> Gains-Losses -> Sequence -> Opponent. Think in order, no skipping steps. Respond in the same language as the user's question.
+version: 2.2.0
 language: follow_user
 run_as: subagent
 allowed_tools:
@@ -27,6 +27,29 @@ allowed_tools:
 《尉缭子》的核心分析方法，不是依赖正面对抗，而是先理解结构、约束、利益分配，再决定节奏与博弈方式。The core of *Wei Liaozi* analysis is not frontal confrontation by default, but understanding structure, constraints, and incentive alignment before determining sequence and game logic.
 
 **尉缭在嬴政手下做事，不容有误——本 Skill 的分析同样不容敷衍。** 每一条判断必须有据可依，每一处不确定必须标明，绝不以模糊措辞替代严谨推理。**Wei Liao served under King Zheng of Qin, where no mistake was tolerated — this Skill holds itself to the same standard.** Every judgment must be evidence-backed, every uncertainty must be marked, and vague language must never replace rigorous reasoning.
+
+---
+
+## 思想渊源 | Intellectual Heritage
+
+《尉缭子》是先秦兵家思想的集大成之作，并非独出心裁，而是融汇了五位先贤的核心洞见，将其提炼为一套可操作的理性分析框架。每一栏背后，都站着一位或多位先贤的思考。*Wei Liaozi* is the culmination of pre-Qin military thought — not an original invention, but a synthesis of five earlier masters' core insights, refined into a practical, rational analysis framework. Each lens has its intellectual lineage.
+
+> **黄帝** · 尉缭子借黄帝之口说"先稽我智"（先审视自己的智慧），将战略从占卜迷信转向人间事理——理性分析之始。→ **本质栏**
+> **Huangdi** · Wei Liaozi reframed strategy from divination to human affairs: "First examine my own wisdom." Rational analysis begins here. → **Essence**
+
+> **太公望（姜太公）** · 提出"官分文武，惟王之二术也"，文武兼治是统御框架之基；"不战而服"是最高胜战理念。→ **条件栏 + 对手栏**
+> **Jiang Ziya (Tai Gong)** · Dual civil-military governance is the foundation of command; "subduing without battle" is the highest form of victory. → **Conditions + Opponent**
+
+> **孙武** · "胜兵似水"、"奇正相生"、"知己知彼"——尉缭子继承其核心概念，但更强调制度与组织而非战术奇巧。→ **得失栏 + 先后栏 + 对手栏**
+> **Sun Wu (Sun Tzu)** · "Victorious army like water," "regular and extraordinary tactics," "know yourself and your enemy" — inherited conceptually, but with greater weight on institutions over tactics. → **Gains-Losses + Sequence + Opponent**
+
+> **吴起** · 尉缭子三次引述吴起事迹：与士卒同甘苦、不为个人勇武所动、军纪先于战功——治军与自律之极则。→ **条件栏 + 先后栏**
+> **Wu Qi** · Cited three times: shared hardship with troops, discipline over individual valor, command before combat. The ultimate standard of military governance. → **Conditions + Sequence**
+
+> **齐桓公（管仲改革）** · "王国富民，伯国富士，谨存之国富大夫，亡国富食府"——分层治理逻辑为系统分析提供结构视角。→ **得失栏（系统分析）**
+> **Duke Huan of Qi (via Guan Zhong)** · "A kingly state enriches its people, a hegemonic state enriches its soldiers" — stratified governance as a system-analysis lens. → **Gains-Losses (systemic)**
+
+这五位先贤的思想，不是装饰，而是每一栏分析背后的判断依据。**运用本框架时，你有意或无意地站在他们的肩膀上。** These five are not decoration — they are the reasoning foundation behind each lens. **When you use this framework, you stand — consciously or not — on their shoulders.**
 
 ---
 
@@ -124,33 +147,40 @@ allowed_tools:
 
 ### 1. 本质 | Essence
 
+> **渊源 | Heritage:** 黄帝「先稽我智」——先审视自己的智慧，不依赖天象占卜。尉缭子将战略从神秘主义拉回人间事理。**Huangdi**: "First examine my own wisdom" — strategy grounded in human affairs, not divination.
+
 先看问题的底层结构，不被表象带偏。See the underlying structure, not the surface.
 
 **重点 | Focus:**
 - 真实驱动 | Real drivers: resources, institutions, incentives, information
-- 核心变量 | Core variables
-- 表面 vs 本质 | Symptoms vs root causes
+- 核心变量 | Core variables — 尉缭子所谓「人事而已」| What is ultimately about human arrangements
+- 表面 vs 本质 | Symptoms vs root causes — 祛魅，不把运气当能力 | Demystify: don't mistake luck for skill
 
 **问 | Ask:**
 - 这件事真正由什么驱动？What's actually driving this?
 - 哪些现象只是表层结果？What are just surface symptoms?
+- 如果剥离所有不可控的外部因素，剩下的核心变量是什么？Strip away uncontrollable external factors — what core variable remains? (黄帝问)
 - 改变哪个变量，结果会明显改变？Which variable, if changed, would significantly change the outcome?
 
 ---
 
 ### 2. 条件 | Conditions
 
+> **渊源 | Heritage:** 太公望「官分文武」——文武兼治是基础；吴起与士卒同甘苦、不赏私勇——纪律与资源的双重要求。**Jiang Ziya**: dual civil-military foundation. **Wu Qi**: shared hardship as prerequisite, discipline before reward.
+
 再看现在有没有做这件事的基础。Check if the basis for action exists.
 
 **重点 | Focus:**
-- 自身条件 | Internal: capital, people, technology, time, organization
+- 自身条件 | Internal: capital, people, technology, time, organization — 太公望所谓「富国强兵」| The foundation of prosperity and strength
 - 外部条件 | External: policy, market, environment, partners
-- 硬约束 | Hard constraints: cannot be wished away
+- 硬约束 | Hard constraints: cannot be wished away — 吴起所谓「不和于国，不可以出军」| Without internal harmony, no campaign should begin
+- **纪律条件 | Discipline condition:** 组织有没有纪律基础？吴起三问：将不恤士？赏罚不明？令不素行？| Does the organization have the discipline base? Wu Qi's three checks: commander indifferent? rewards unclear? orders not consistently followed?
 
 **问 | Ask:**
 - 现在有没有启动这件事的基础？Do we have the foundation to start?
 - 最关键的短板是什么？What's the key gap?
 - 哪些约束是硬限制，不能靠意志突破？Which constraints are hard limits?
+- **纪律条件（吴起问）**：上下是否同甘共苦？命令能否一贯执行？个人勇武与组织纪律孰先？**Discipline check (Wu Qi)**: Do leaders share hardship? Are orders consistently followed? Does discipline override individual heroism?
 
 若涉及系统性分析，额外检查三项条件 | For systemic analysis, check three conditions:
 - 财力持续性 | Sustained resource capacity
@@ -161,33 +191,42 @@ allowed_tools:
 
 ### 3. 得失 | Gains-Losses
 
+> **渊源 | Heritage:** 孙武「知己知彼、百战不殆」——算清楚再打；齐桓公「王国富民，伯国富士」——收益不只看账面，更要看结构。**Sun Wu**: "Know yourself and your enemy, and you will never be defeated" — calculate before acting. **Duke Huan of Qi**: stratified gains — who benefits at each layer?
+
 再算这件事值不值得做。Calculate if the action is worth taking.
 
 **重点 | Focus:**
 - 短期 vs 长期收益 | Short-term vs long-term returns
 - 显性 vs 隐性成本 | Visible vs hidden costs
 - 最坏情况能不能承受 | Whether worst case is bearable
+- **分层得失（齐桓公问）**：同一行动对不同层级（民/士/大夫/府库）的得失可能完全不同 | **Stratified gains (Duke Huan lens)**: the same action distributes differently across levels (people/soldiers/officials/treasury)
 
 **问 | Ask:**
 - 赢了能得到什么，多久兑现？What do we win and when?
 - 代价除了钱还有什么？What's the cost beyond money?
 - 如果判断错了，最坏损失能不能承受？Can we absorb the worst loss?
+- **分层问（齐桓公）**：谁受益？谁承担成本？上层激励与下层实际是否一致？**Stratified check (Duke Huan)**: Who gains? Who bears the cost? Do incentives align across levels?
+- **孙武问**：我方优势是否足以抵消对手的有利条件？可胜之势确立了吗？**Sun Wu check**: Does our advantage outweigh the opponent's favorable conditions? Is victory truly achievable?
 
 ---
 
 ### 4. 先后 | Sequence
 
+> **渊源 | Heritage:** 孙武「胜兵似水」——水避高趋下，兵避实击虚，自然流动而非蛮力硬推；吴起「不赏私勇」——未按次序行动的勇者当斩，顺序即纪律。**Sun Wu**: "A victorious army is like water" — flows naturally, avoids strength, seeks weakness. **Wu Qi**: "Do not reward private courage" — acting out of sequence undermines discipline; order itself is a form of control.
+
 再定顺序、节奏和路径。Set order, pace, and path.
 
 **重点 | Focus:**
-- 优先级 | Priority: solve survival and bottleneck problems first
-- 节奏 | Rhythm: fast action + controlled pacing
-- 路径 | Path: phase the move, not one-shot
+- 优先级 | Priority: solve survival and bottleneck problems first — 吴起所谓「先治其本」| Fix the root before the branch
+- 节奏 | Rhythm: fast action + controlled pacing — 孙武所谓「其疾如风，其徐如林」| Swift as wind, steady as forest
+- 路径 | Path: phase the move, not one-shot — 避实击虚，水到渠成 | Avoid strength, strike weakness; let flow carry the action
 
 **问 | Ask:**
 - 什么必须先做，不做就无法推进？What must be done first?
 - 哪一步是杠杆点？Which step is the leverage point?
 - 能否拆成三步以内推进？Can it be broken into ≤3 steps?
+- **孙武问**：对手的薄弱点在哪里？我方优势能否自然流向那里？**Sun Wu check**: Where is the opponent's weakness? Can our advantage flow naturally toward it?
+- **吴起问**：每一步是否都有人为此负责？是否有纪律保障每步得到执行？**Wu Qi check**: Is someone accountable for each step? Is there discipline to ensure execution?
 
 若问题涉及对抗性场景，优先分析以下顺序的合理性 | For adversarial scenarios, analyze this sequence's rationale:
 1. 先干扰对方计划 | Disrupt plans first: misdirection, amplifying existing doubts
@@ -200,17 +239,23 @@ allowed_tools:
 
 ### 5. 对手 | Opponent
 
+> **渊源 | Heritage:** 孙武「知己知彼」、「兵者诡道」——对手思考是战略起点；太公望「不战而服」——最高胜利不是击垮对手，而是让对手失去行动必要。**Sun Wu**: "Know yourself and your enemy" and "War is the way of deception" — opponent analysis is the starting point of strategy. **Jiang Ziya**: "Subdue without battle" — the highest victory removes the need to fight at all.
+
 最后看博弈，对方不会静止不动。End with the game theory view — opponents don't stand still.
 
 **重点 | Focus:**
 - 对手能力 | Opponent capability: strength, resources, style
 - 对手动机 | Opponent motive: defend, attack, delay, ally, bargain
 - 反应树 | Response tree after your move
+- **孙武「诡道」视角**：对手可能在隐藏真实能力和意图 | **Sun Wu deception lens**: Opponents may be masking true capability and intent
+- **太公望「全胜」视角**：是否存在让对手不战而退或主动合作的路径？| **Jiang Ziya total-victory lens**: Is there a path where the opponent yields or aligns without confrontation?
 
 **问 | Ask:**
 - 对方最可能的两种反应是什么？What are the two most likely responses?
 - 对方的最优应对会不会削弱你的收益？Will their best response reduce your gains?
 - 你如何提前布置应对反制？How do you pre-position countermeasures?
+- **孙武问**：对方的"不可胜"条件是什么——什么情况下对方无法被击败？**Sun Wu check**: What makes the opponent invulnerable — under what conditions can they not be defeated?
+- **太公望问**：能否在不动用主要资源的情况下改变对方的动机结构？是否存在双方收益不冲突的路径？**Jiang Ziya check**: Can the opponent's incentive structure be changed without committing major resources? Is there a non-conflicting path?
 
 ---
 

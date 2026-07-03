@@ -147,5 +147,3 @@ xlsx: /path/to/miaoxiang/mx_finance_data/mx_finance_data_9535fe18.xlsx
 | --- | --- |
 | `mx_finance_data_<查询id>.xlsx` | 结构化数据表，包含请求的实体与指标 |
 | `mx_finance_data_<查询id>_description.txt` | 包含查询逻辑说明、字段含义及**配额截断提示** |
-
-

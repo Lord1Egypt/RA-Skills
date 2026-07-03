@@ -1,15 +1,9 @@
 ---
 name: bid-collection
-<<<<<<< HEAD
-description: 招投标商机采集 — 7x24自动监控全网招投标公开信息，智能筛选适配公司业务范围的高价值商机线索
-=======
-description: Tender & procurement lead collection — 24/7 automated scraping of public tender/procurement notices, intelligently filtering high-value leads matching your business scope
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
-argument-hint: [scan|monitor|report|list-sources|add-source] [keywords] [--days=N] [--budget-min=N] [--budget-max=N]
-allowed-tools: [WebSearch, WebFetch, Read, Write, Glob, Grep, Bash]
+description: 招投标商机采集 — 7x24自动监控全网招投标公开信息，智能筛选适配公司业务范围的高价值商机线索。
+version: 1.0.0
 ---
 
-<<<<<<< HEAD
 # 🎯 招投标商机采集 Skill
 
 招投标商机采集是一个自动化监控与采集工具，覆盖各级政府公共资源交易平台、国企采购平台、行业招投标网站及第三方信息平台，精准抓取适配公司业务范围的招投标商机线索，实现招投标项目**早发现、早跟进、早布局**，助力公司业务拓展与项目落地。
@@ -180,9 +174,15 @@ User types /bid-collection
 
 ### 管理监控源
 
+> ⚠️ **安全警告：** 添加自定义监控源后，本技能将向该域名发起网络请求（WebSearch/WebFetch）并抓取内容。请**仅添加您信任的公开招投标信息平台**。添加不可信来源可能导致：
+> - 技能处理来自不可信源的恶意或误导性内容
+> - 向非预期第三方暴露扫描关键词（搜索请求会附带查询参数）
+> - 攻击面扩张
+
 ```
 /bid-collection list-sources
 /bid-collection add-source https://example-bid-platform.cn
+/bid-collection remove-source <url>            # 移除监控源
 =======
 ## Core Collection Scope
 
@@ -313,9 +313,15 @@ Covers all stages of the procurement lifecycle:
 
 ### Manage Monitoring Sources
 
+> ⚠️ **Security Notice:** Adding a custom source will cause this skill to send web requests (WebSearch/WebFetch) to that domain and ingest content from it. **Only add trusted public tender/procurement platforms.** Adding untrusted sources may:
+> - Expose searching keywords to unexpected third parties (search queries are sent as request parameters)
+> - Cause the skill to process malicious or misleading content from untrusted sources
+> - Expand the network attack surface of your environment
+
 ```
 /bid-collection list-sources
 /bid-collection add-source https://example-bid-platform.com
+/bid-collection remove-source <url>            # Remove a monitoring source
 >>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
 ```
 

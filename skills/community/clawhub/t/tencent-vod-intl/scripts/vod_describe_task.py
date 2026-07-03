@@ -116,7 +116,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("Error: Please install the Tencent Cloud SDK first: pip install tencentcloud-sdk-python")
+    print("Error: Please install the Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -131,13 +131,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # Verify all required variables (SECRET_ID/KEY/SUB_APP_ID)
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
@@ -948,29 +951,38 @@ def wait_for_task(args):
 
 def main():
     check_sdk_version()
+    # Load .env early so that `argparse default=os.environ.get(...)` sees the values.
+    # Bug fix: previously SubAppId default was evaluated at add_argument time,
+    # but .env was loaded inside get_credential() — too late, causing SubAppId=None.
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description="VOD Task Detail Query Tool - Query task execution status and results (supports tasks within the last 3 days)",  # NOCA:line-too-long(long output string or URL, cannot be shortened)
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   # Query task status
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135
 
   # Wait for task completion (up to 10 minutes)
   # Default behavior: wait for task completion
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135
   
   # Query current status only, do not wait
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --no-wait
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --no-wait
 
   # Output full response in JSON format
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --json
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --json
 
   # Verbose output (including output URLs, etc.)
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --verbose
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --verbose
 
   # Specify sub-application ID
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --sub-app-id 1500046806
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --sub-app-id 1500046806
 
 Task status descriptions:
   WAITING    - Waiting
@@ -989,7 +1001,7 @@ Task status descriptions:
         default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
         help="Sub-application ID (can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)",
     )
-    parser.add_argument("--region", default="ap-guangzhou", help="Region (default: ap-guangzhou)")
+    parser.add_argument("--region", default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help="Region (default: ap-guangzhou)")
     parser.add_argument("--no-wait", action="store_true", help="Query current status only, do not wait for completion")
     parser.add_argument("--max-wait", type=int, default=600, help="Maximum wait time in seconds (default: 600)")
     parser.add_argument("--interval", type=int, default=5, help="Polling interval in seconds (default: 5)")

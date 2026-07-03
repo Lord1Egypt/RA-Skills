@@ -23,7 +23,7 @@ import argparse
 import os
 import sqlite3
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 
 # children/referencing tables first
 _DROP_ORDER = [

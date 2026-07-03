@@ -1,7 +1,7 @@
 ---
 name: tencentmap-jsapi-gl-skill
 description: 腾讯地图 JavaScript GL（JSAPIGL）开发指南。适用于地图应用或者工具的编写。在编写、审查或调试使用腾讯地图 API的代码时应运用此技能。适用于涉及地图初始化、覆盖物展示、图层控制、事件处理、控件交互、可视化渲染、地图工具、检索、路线规划、查地址、行政区划、ip定位、几何计算、三维模型展示、性能优化的任务。当用户提及 腾讯地图、 jsapi、jsapi-gl或相关地图开发需求时自动触发。
-version: 1.0.1
+version: 1.0.2
 metadata: { "openclaw": { "requires": { "bins": [""], "env": ["TMAP_JSAPI_KEY"] }, "primaryEnv": "TMAP_JSAPI_KEY" } }
 ---
 
@@ -60,6 +60,15 @@ metadata: { "openclaw": { "requires": { "bins": [""], "env": ["TMAP_JSAPI_KEY"] 
 
 - **可视化 Demos**: `references/visualization/demos/` (44个html文件)
   - 按图层类型分类：弧线图、散点图、热力图、轨迹图、蜂窝图、区域图、水晶体等
+
+## 前置检查：API Key
+
+有 Key（env 变量 `TMAP_JSAPI_KEY` 或 `~/.tencentmap/tempkey.json`）直接使用；无 Key 时向用户输出以下选项：
+
+> - **申请临时体验 Key（推荐）**：手机验证即可，14 天有效
+> - **前往官网注册正式 Key**：https://lbs.qq.com/dev/console/key/manage
+
+用户选择"申请临时 Key" → 读取 `tempkey-guide.md` 按其中步骤执行
 
 ## 工作流程
 
@@ -159,14 +168,13 @@ heat.setData([
 
 ### JS API GL
 
-1. **API Key**: 使用腾讯地图API需要申请Key，通过环境变量 `TMAP_JSAPI_KEY` 配置，在代码中使用 `{TMAP_JSAPI_KEY}` 引用
-2. **版本**: 当前为 GL 版本，支持3D地图和WebGL渲染
-3. **浏览器兼容**: 现代浏览器，IE11+（需polyfill）
-4. **坐标系**: 使用 gcj02 坐标系
-5. **地图创建（重要）**: 地图创建的容器一定要有固定宽高，尤其是flex布局下
-6. **API使用（重要）**: 所有功能的API调用都必须使用文档中出现的接口、属性、事件，不能自己编造；
-7. **API传参（重要）**: 所有的API传入参数必须严格遵守api文档中说明的格式，如果不确定就去看看对应demo，包括demo中的数据格式；
-8. **附加库的使用**: 使用附加库需要在API加载URL中添加 `libraries` 参数
+1. **版本**: 当前为 GL 版本，支持3D地图和WebGL渲染
+2. **浏览器兼容**: 现代浏览器，IE11+（需polyfill）
+3. **坐标系**: 使用 gcj02 坐标系
+4. **地图创建（重要）**: 地图创建的容器一定要有固定宽高，尤其是flex布局下
+5. **API使用（重要）**: 所有功能的API调用都必须使用文档中出现的接口、属性、事件，不能自己编造；
+6. **API传参（重要）**: 所有的API传入参数必须严格遵守api文档中说明的格式，如果不确定就去看看对应demo，包括demo中的数据格式；
+7. **附加库的使用**: 使用附加库需要在API加载URL中添加 `libraries` 参数
 
 | 附加库 | libraries 值 | 命名空间 | 说明 |
 |--------|-------------|----------|------|

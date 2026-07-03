@@ -1,0 +1,40 @@
+{
+  "name": "室内质控全流程",
+  "description": "从原始数据到精密度报告 — 多水平精密度分析 → 重复限性检查 → 质控图",
+  "tags": [
+    "室内质控",
+    "精密度",
+    "质控图"
+  ],
+  "default_report": "室内质控报告",
+  "steps": [
+    {
+      "name": "精密度分析",
+      "target": "scenarios.internal_qc.internal_precision_analysis",
+      "params": {
+        "data": "%input%",
+        "level_col": "水平",
+        "value_col": "结果",
+        "n_replicates": 3
+      },
+      "description": "各水平SD/RSD/均值/中位数 + 合成标准差"
+    },
+    {
+      "name": "质控图",
+      "target": "scenarios.internal_qc.control_chart",
+      "params": {
+        "data": "%input%",
+        "value_col": "结果"
+      },
+      "description": "Levey-Jennings 控制图"
+    },
+    {
+      "name": "精密度报告",
+      "target": "scenarios.internal_qc.precision_report",
+      "params": {
+        "result": "%精密度分析%"
+      },
+      "description": "文本摘要"
+    }
+  ]
+}

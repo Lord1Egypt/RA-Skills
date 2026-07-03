@@ -1,7 +1,7 @@
 ---
 name: "elderly-fall-detection-analysis"
 description: "Utilizes vision and radar technology for contactless detection of falls. It triggers alarms within seconds and is suitable for home safety monitoring of elderly people living alone. | 老人跌倒检测技能，视觉/雷达无感识别摔倒倒地，秒级触发报警，适用于独居老人居家安全监测场景"
-version: "1.0.5"
+version: "1.0.6"
 license: "MIT-0"
 ---
 

@@ -249,16 +249,18 @@ def clear_hil_pause(state: Dict[str, Any]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # 简单测试
+    # 简单测试（仅 python3 state_manager.py test 调用）
     import sys
+    import tempfile
     if len(sys.argv) > 1 and sys.argv[1] == "test":
+        _tmp = tempfile.gettempdir()
         state = create_state(
             "测试论文",
             version="v1.0",
             planned_chapters=["chapter1", "chapter2", "chapter3"],
-            workspace="/tmp",
+            workspace=_tmp,
         )
-        print(f"✨ 已创建: {state_path_for('测试论文', '/tmp')}")
+        print(f"✨ 已创建: {state_path_for('测试论文', _tmp)}")
         print(format_state_summary(state))
-        delete_state("测试论文", "/tmp")
+        delete_state("测试论文", _tmp)
         print("🧹 已清理")

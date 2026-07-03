@@ -99,7 +99,21 @@ curl -X POST "https://rb.all-completed.com/api/sessions" \
 # Ephemeral (start from metadata/fork but don't save): {"ephemeral": true}
 ```
 
-Sessions idle for 5 min are closed. Use `POST .../ping` to keep alive.
+**Session lifecycle — closing a connection does NOT close the session.** Persistent
+sessions live until a **5-minute idle timeout** or an **explicit terminate**, not when
+your CDP/VNC connection drops:
+
+- **CDP (`/ws`)**: while connected the pod is pinned (`active_ws_connections > 0`, never
+  reaped). On disconnect it is **kept alive** and the 5-min idle clock restarts — so a
+  reconnecting client (e.g. Playwright `connectOverCDP`, which connects/disconnects a lot)
+  doesn't churn the pod. Only `ephemeral` sessions are deleted immediately on last disconnect.
+- **VNC (`/vnc/ws`)**: same as CDP — while a viewer streams the session is pinned
+  (`active_ws_connections > 0`), so it isn't reaped mid-view; on disconnect the pod is kept and
+  the idle clock restarts.
+- **Activity that restarts the 5-min clock**: opening a CDP/VNC connection, `GET .../status`,
+  `GET .../{session_id}`, and `POST .../ping`.
+- **To close immediately** instead of waiting out the idle timeout: `DELETE /api/sessions/{session_id}`
+  (or `terminate_session`). On teardown the profile is saved.
 
 Maximum 1 concurrent session per user. If creation returns 429 or WebSocket closes with a limit error: **wait a bit** (previous session may still be shutting down) **and/or close the previous session** via `DELETE /api/sessions/{session_id}` before retrying.
 
@@ -424,7 +438,7 @@ curl "https://rb.all-completed.com/api/sessions/{session_id}/html" \
 - **Readability vs raw** — `/text` (default) strips nav/footer/ads; `?mode=raw` returns full `innerText`.
 - **Interactive filter** — `?filter=interactive` on `/json` reduces nodes by ~75% for action tasks.
 - **VNC vs DOM** — Use `/action` for selectors/refs in the page DOM. Use `/vnc/action` and `/vnc/screenshot` for pixel-level automation and UI outside the DOM.
-- **Stored sessions** — Sessions persist to S3 and are restored on reopen. The **whole browser profile** is captured (cookies, localStorage, sessionStorage, IndexedDB, **Service Workers**, Cache Storage, metadata) and restored as one consistent unit, so apps that keep their login in IndexedDB/Service Workers (e.g. Telegram Web) come back **logged in**, not just at the login page. List with `GET /api/stored-sessions`, then reopen by creating a session with the same `session_id` (HTTP/WebSocket). If `url` is not provided on connect, the saved page URL is used for redirect. Use `GET/PUT /api/stored-sessions/{session_id}` to read or update metadata (e.g. redirect URL). To move or edit individual persisted blobs without a live browser, use `GET/PUT /api/stored-sessions/{session_id}/cookies` (JSON array of cookie objects), `GET/PUT .../local-storage`, `GET/PUT .../session-storage` (both JSON objects with string keys and string values), `GET/PUT .../indexeddb` (IndexedDB snapshot object), and `GET/PUT .../cache-storage` (Cache Storage snapshot object). `DELETE /api/stored-sessions/{session_id}` wipes all persisted state for a session.
+- **Stored sessions** — Sessions persist to S3 and are restored on reopen. The **whole browser profile** is captured (cookies, localStorage, sessionStorage, IndexedDB, **Service Workers**, Cache Storage, metadata) and restored as one consistent unit, so apps that keep their login in IndexedDB/Service Workers (e.g. Telegram Web) come back **logged in**, not just at the login page. List with `GET /api/stored-sessions`, then reopen by creating a session with the same `session_id` (HTTP/WebSocket). If `url` is not provided on connect, the saved page URL is used for redirect. Use `GET/PUT /api/stored-sessions/{session_id}` to read or update metadata: `url` (redirect on reopen), `description` (free-text human label, max 500 chars, returned in the list endpoint's `descriptions` map), `width`/`height` (default resolution), `encrypt_with_api_key`. To move or edit individual persisted blobs without a live browser, use `GET/PUT /api/stored-sessions/{session_id}/cookies` (JSON array of cookie objects), `GET/PUT .../local-storage`, `GET/PUT .../session-storage` (both JSON objects with string keys and string values), `GET/PUT .../indexeddb` (IndexedDB snapshot object), and `GET/PUT .../cache-storage` (Cache Storage snapshot object). `DELETE /api/stored-sessions/{session_id}` wipes all persisted state for a session.
 
 ## Limitations & fallbacks
 

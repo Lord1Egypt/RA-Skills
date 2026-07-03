@@ -1,7 +1,7 @@
 ---
 name: "smyx-kitchen-stove-left-on-detection-analysis"
 description: "Using a fixed kitchen camera (must be able to capture the stove area), the system analyzes video in real time to detect whether there is human activity in the kitchen area, and at the same time identifies stove flames or heat sources (e.g., thermal/infrared features) to determine whether the gas stove is on. | 通过厨房固定摄像头（需能拍摄到灶台区域）实时分析视频，检测厨房区域内是否有人体活动，同时识别灶台火焰或热源（如红外特征）以判断燃气灶是否处于开启状态。当检测到厨房无人连续超过预设时间（默认10分钟）且灶火仍处于开启状态时，输出'忘关火'预警，可联动智能燃气阀自动关闭阀门，并推送提醒至家属或护理人员手机，预防火灾和燃气泄漏事故。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

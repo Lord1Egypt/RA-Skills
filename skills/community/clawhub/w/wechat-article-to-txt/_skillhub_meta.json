@@ -1,0 +1,9 @@
+{
+  "name": "wechat-article-to-txt",
+  "slug": "wechat-article-to-txt",
+  "version": "1.0.0",
+  "installedAt": 1779005334884,
+  "source": "local",
+  "iconSource": "wechat-article-to-txt",
+  "preinstalledTemplate": false
+}

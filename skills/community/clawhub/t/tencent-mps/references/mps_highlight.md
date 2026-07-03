@@ -56,34 +56,34 @@
 
 ```bash
 # 足球赛事精彩集锦
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football
 
 # 篮球赛事
-python scripts/mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
+python3 scripts/mps_highlight.py --cos-input-key /input/basketball.mp4 --scene basketball
 
 # 短剧影视高光
-python scripts/mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
+python3 scripts/mps_highlight.py --cos-input-key /input/drama.mp4 --scene short-drama
 
 # VLOG 全景相机
-python scripts/mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
+python3 scripts/mps_highlight.py --url https://example.com/vlog.mp4 --scene vlog-panorama
 
 # 普通 VLOG（指定输出片段数最多 10 个）
-python scripts/mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
+python3 scripts/mps_highlight.py --cos-input-key /input/vlog.mp4 --scene vlog --top-clip 10
 
 # 自定义场景（带 prompt 和 scenario）
-python scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
+python3 scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
     --scene custom --prompt "滑雪场景，输出人物高光" --scenario "滑雪"
 
 # 自定义场景 + 指定片段数
-python scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
+python3 scripts/mps_highlight.py --url https://example.com/skiing.mp4 \
     --scene custom --prompt "滑雪场景" --scenario "滑雪" --top-clip 8
 
 # 仅提交任务，不等待结果
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --no-wait
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --no-wait
 
 # Dry Run（预览请求参数）
-python scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --dry-run
+python3 scripts/mps_highlight.py --cos-input-key /input/football.mp4 --scene football --dry-run
 
 # 查询任务状态
-python scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
 ```

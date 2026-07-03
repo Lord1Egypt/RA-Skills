@@ -10,7 +10,47 @@ const PLATFORMS = {
   opencode: { name: 'opencode', configDir: '.opencode', detector: '.opencode' },
 };
 
+// Detect the host agent from runtime environment signals, which are far more
+// reliable than scanning for `.claude` / `.cursor` directories when both exist
+// on disk (e.g. under $HOME). Precedence when signals conflict (#590):
+//   1. strong Claude Code signals (set only by the Claude Code runtime)
+//   2. Cursor signals
+//   3. Codex signals
+//   4. CLAUDE_PROJECT_DIR — a weak Claude alias some hosts (incl. Cursor's
+//      Claude integration) export, so it loses to explicit Cursor signals.
+function detectPlatformFromEnv(env = process.env) {
+  const hasStrongClaudeSignal = env.CLAUDECODE || env.CLAUDE_CODE_ENTRYPOINT;
+  if (hasStrongClaudeSignal) {
+    return 'claude-code';
+  }
+
+  const hasCursorSignal =
+    env.CURSOR_TRACE_ID ||
+    env.CURSOR_SESSION_ID ||
+    env.CURSOR_PROJECT_DIR ||
+    env.CURSOR_AGENT ||
+    String(env.TERM_PROGRAM || '').toLowerCase() === 'cursor';
+  if (hasCursorSignal) {
+    return 'cursor';
+  }
+  const hasCodexSignal =
+    env.CODEX_THREAD_ID ||
+    env.CODEX_SHELL ||
+    env.CODEX_CI ||
+    env.CODEX_INTERNAL_ORIGINATOR_OVERRIDE;
+  if (hasCodexSignal) {
+    return 'codex';
+  }
+  if (env.CLAUDE_PROJECT_DIR) {
+    return 'claude-code';
+  }
+  return null;
+}
+
 function detectPlatform(cwd) {
+  const envPlatform = detectPlatformFromEnv();
+  if (envPlatform) return envPlatform;
+
   const root = cwd || process.cwd();
   const home = os.homedir();
   for (const [id, meta] of Object.entries(PLATFORMS)) {
@@ -20,6 +60,37 @@ function detectPlatform(cwd) {
     if (fs.existsSync(path.join(home, meta.detector))) return id;
   }
   return null;
+}
+
+// Quote `value` as a single shell argument for the host that runs hook
+// `command` strings (POSIX sh, or cmd.exe on Windows).
+function shellQuoteForHost(value) {
+  const raw = String(value);
+  if (process.platform === 'win32') {
+    return `"${raw.replace(/"/g, '\\"')}"`;
+  }
+  return `'${raw.replace(/'/g, "'\\''")}'`;
+}
+
+// Build a hook `command` that runs `scriptPath` with node WITHOUT exposing the
+// path bytes to the shell. The absolute path is base64-encoded into a `node -e`
+// wrapper that decodes it and spawns the real script with `shell:false`, so
+// spaces / `$()` / backticks / `%VAR%` in the path can never be expanded by sh
+// or cmd.exe (#590). The plaintext basename is appended as a final, inert arg
+// so uninstall/reinstall can still match evolver-owned hooks by command
+// substring (see isEvolverHookCommand) even though the path itself is encoded.
+//
+// Shared across adapters so there is exactly one implementation to audit.
+function buildSafeNodeHookCommand(scriptPath) {
+  const encodedPath = Buffer.from(String(scriptPath), 'utf8').toString('base64');
+  const js = [
+    "const{spawnSync}=require('child_process')",
+    `const p=Buffer.from('${encodedPath}','base64').toString('utf8')`,
+    "const r=spawnSync(process.execPath,[p],{stdio:'inherit',shell:false})",
+    "if(r.error){console.error(r.error.message||String(r.error));process.exit(1)}",
+    "process.exit(r.status==null?1:r.status)",
+  ].join(';');
+  return `node -e ${shellQuoteForHost(js)} ${path.basename(scriptPath)}`;
 }
 
 function resolveConfigRoot(platformId, cwd) {
@@ -74,16 +145,30 @@ function mergeWithHooksUnion(target, source) {
       const tArr = Array.isArray(target.hooks[event]) ? target.hooks[event] : null;
       const sArr = Array.isArray(source.hooks[event]) ? source.hooks[event] : null;
       if (tArr && sArr) {
-        const isEvolverOwned = (entry) => {
-          const cmds = collectCommands(entry);
-          return cmds.some(c => c.includes('evolver-session') || c.includes('evolver-signal') || c.includes('evolver-task-recall'));
-        };
-        const userEntries = tArr.filter(e => !isEvolverOwned(e));
+        const userEntries = tArr
+          .map(stripEvolverCommands)
+          .filter(Boolean);
         result.hooks[event] = [...userEntries, ...sArr];
       }
     }
   }
   return result;
+}
+
+function stripEvolverCommands(entry) {
+  if (!entry || typeof entry !== 'object') return entry;
+  if (typeof entry.command === 'string' && isEvolverHookCommand(entry.command)) {
+    return null;
+  }
+  if (!Array.isArray(entry.hooks)) return entry;
+
+  const hooks = entry.hooks.filter(h => {
+    const cmd = h && h.command;
+    return !(typeof cmd === 'string' && isEvolverHookCommand(cmd));
+  });
+  if (hooks.length === 0) return null;
+  if (hooks.length === entry.hooks.length) return entry;
+  return { ...entry, hooks };
 }
 
 // Pull all `command` strings out of an event entry, supporting both flat
@@ -99,6 +184,17 @@ function collectCommands(entry) {
     }
   }
   return out;
+}
+
+function isEvolverHookCommand(command) {
+  if (typeof command !== 'string') return false;
+  return command.includes('evolver-session') ||
+    command.includes('evolver-signal') ||
+    command.includes('evolver-task-recall') ||
+    // Legacy installs briefly shipped this companion daemon hook. Treat it
+    // as evolver-owned so reinstall/merge can remove it instead of preserving
+    // a stale supervisor that may point clients at a dead proxy.
+    command.includes('evolver-daemon-start');
 }
 
 function deepMerge(target, source) {
@@ -226,7 +322,7 @@ function removeEvolverHooks(filePath, { markerKey = '_evolver_managed' } = {}) {
           const before = data.hooks[event].length;
           data.hooks[event] = data.hooks[event].filter(h => {
             const cmd = h.command || '';
-            return !cmd.includes('evolver-session') && !cmd.includes('evolver-signal') && !cmd.includes('evolver-task-recall');
+            return !isEvolverHookCommand(cmd);
           });
           if (data.hooks[event].length !== before) changed = true;
           if (data.hooks[event].length === 0) delete data.hooks[event];
@@ -351,13 +447,16 @@ async function setupHooks({ platform, cwd, force, uninstall, evolverRoot } = {})
 }
 
 module.exports = {
+  detectPlatformFromEnv,
   detectPlatform,
+  buildSafeNodeHookCommand,
   resolveConfigRoot,
   loadAdapter,
   mergeJsonFile,
   deepMerge,
   mergeWithHooksUnion,
   collectCommands,
+  isEvolverHookCommand,
   copyHookScripts,
   appendSectionToFile,
   assertSafeConfigDir,

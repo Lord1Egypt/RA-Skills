@@ -8,7 +8,6 @@ chain_manager.py - Chain Manager OO Refactor v1.22.0
 """
 
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -16,6 +15,14 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
+
+# R-12 审计锚点：数据目录字面量声明
+DEFAULT_DATA_DIR_RAW = "skills/.standardization/skill-sub/data/"
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+# 运行时绝对路径
+DATA_DIR = SKILL_DIR.parent / ".standardization" / "skill-sub" / "data"
+
 
 # R-12 审计锚点：数据目录字面量声明
 DEFAULT_DATA_DIR_RAW = "skills/.standardization/skill-sub/data/"
@@ -77,7 +84,6 @@ class PathManager:
         self.chain_home = self._get_chain_home()
         self.chains_dir = self.chain_home / "chains"
         self.index_file = self.chains_dir / "index.json"
-        self.blueprints_dir = self.chain_home / "blueprints"  # v1.29.0: 链私有蓝皮书目录
         self.config_file = self.chain_home / "config.json"
         self.skill_dir = Path(__file__).resolve().parent.parent
         self.state_dir = self.chain_home / "state"
@@ -275,33 +281,23 @@ class ChainValidator:
 # ============================================================
 
 class BackupManager:
-    """备份管理器（v1.29.0: 备份到链的私有目录）"""
+    """备份管理器"""
     
     def __init__(self, path_manager):
         self.path_manager = path_manager
-        self.backups_dir = path_manager.chains_dir  # 基目录
+        self.backups_dir = self.path_manager.chain_home / "backups"
     
-    def _get_backup_dir(self, name):
-        """获取链的备份目录"""
-        # 优先用链私有目录下的 backups/
-        chain_dir = self.path_manager.chains_dir / name
-        backup_dir = chain_dir / "backups"
-        if chain_dir.exists():
-            return backup_dir
-        # 回退到全局 backups/
-        return self.path_manager.chain_home / "backups"
-    
-    def ensure_dirs(self, name=""):
+    def ensure_dirs(self):
         """确保备份目录存在"""
-        self._get_backup_dir(name).mkdir(parents=True, exist_ok=True)
+        self.backups_dir.mkdir(parents=True, exist_ok=True)
     
     def backup_chain(self, name, chain_data, reason="auto"):
         """备份调用链"""
-        backup_dir = self._get_backup_dir(name)
-        backup_dir.mkdir(parents=True, exist_ok=True)
+        self.ensure_dirs()
         
+        # 创建备份文件
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        backup_file = backup_dir / f"{name}_{reason}_{timestamp}.json"
+        backup_file = self.backups_dir / f"{name}_{timestamp}.json"
         
         with open(backup_file, "w", encoding="utf-8") as f:
             json.dump(chain_data, f, ensure_ascii=False, indent=2)
@@ -310,12 +306,11 @@ class BackupManager:
     
     def list_backups(self, name):
         """列出备份"""
-        backup_dir = self._get_backup_dir(name)
-        if not backup_dir.exists():
+        if not self.backups_dir.exists():
             return []
         
         backups = []
-        for f in sorted(backup_dir.iterdir()):
+        for f in self.backups_dir.iterdir():
             if f.name.startswith(name) and f.name.endswith(".json"):
                 backups.append(f)
         
@@ -330,9 +325,8 @@ class BackupManager:
             with open(backup_file, "r", encoding="utf-8") as f:
                 chain_data = json.load(f)
             
-            chain_dir = self.path_manager.chains_dir / name
-            chain_dir.mkdir(parents=True, exist_ok=True)
-            chain_file = chain_dir / "chain.json"
+            # 保存到当前链
+            chain_file = self.path_manager.chains_dir / f"{name}.json"
             with open(chain_file, "w", encoding="utf-8") as f:
                 json.dump(chain_data, f, ensure_ascii=False, indent=2)
             
@@ -353,19 +347,12 @@ class ChainManager:
         self.validator = ChainValidator(self.path_manager)
         self.backup_manager = BackupManager(self.path_manager)
     
-    def _get_chain_dir(self, name):
-        """获取链的私有目录（chains/{name}/）"""
-        return self.path_manager.chains_dir / name
-
     def load_index(self):
-        """加载调用链索引（备选方式，优先扫目录）"""
+        """加载调用链索引"""
         if not self.path_manager.index_file.exists():
             return {}
-        try:
-            with open(self.path_manager.index_file, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return {}
+        with open(self.path_manager.index_file, "r", encoding="utf-8") as f:
+            return json.load(f)
     
     def save_index(self, index):
         """保存调用链索引"""
@@ -374,47 +361,42 @@ class ChainManager:
             json.dump(index, f, ensure_ascii=False, indent=2)
     
     def load_chain(self, name):
-        """加载调用链（优先从链目录加载）"""
-        chain_dir = self._get_chain_dir(name)
-        chain_file = chain_dir / "chain.json"
-        if chain_file.exists():
-            with open(chain_file, "r", encoding="utf-8") as f:
-                return json.load(f)
-        # 回退到 index 索引（兼容旧格式）
+        """加载调用链"""
         index = self.load_index()
-        if name in index:
-            old_file = Path(index[name])
-            if old_file.exists():
-                return json.loads(old_file.read_text(encoding="utf-8"))
-        return None
+        if name not in index:
+            return None
+        chain_file = Path(index[name])
+        if not chain_file.exists():
+            return None
+        with open(chain_file, "r", encoding="utf-8") as f:
+            return json.load(f)
     
     def save_chain(self, chain_data):
-        """保存调用链到私有目录"""
+        """保存调用链"""
+        index = self.load_index()
         name = chain_data["name"]
-        chain_dir = self._get_chain_dir(name)
-        chain_dir.mkdir(parents=True, exist_ok=True)
-        chain_file = chain_dir / "chain.json"
         
-        # 备份现有链（如果有旧文件）
-        old_chain = self.load_chain(name)
-        if old_chain:
-            self.backup_manager.backup_chain(name, old_chain, "overwrite")
+        # 备份现有链
+        if name in index:
+            existing = self.load_chain(name)
+            if existing:
+                self.backup_manager.backup_chain(name, existing, "overwrite")
         
         # 保存新链
+        chain_file = self.path_manager.chains_dir / f"{name}.json"
         with open(chain_file, "w", encoding="utf-8") as f:
             json.dump(chain_data, f, ensure_ascii=False, indent=2)
         
         # 更新索引
-        index = self.load_index()
         index[name] = str(chain_file)
         self.save_index(index)
         
         return True
     
     def delete_chain(self, name, force=False):
-        """删除调用链（删除整个私有目录）"""
-        chain_dir = self._get_chain_dir(name)
-        if not chain_dir.exists():
+        """删除调用链"""
+        index = self.load_index()
+        if name not in index:
             return False, f"调用链 '{name}' 不存在"
         
         # 备份
@@ -422,26 +404,21 @@ class ChainManager:
         if existing:
             self.backup_manager.backup_chain(name, existing, "delete")
         
-        # 删除整个目录
-        import shutil
-        shutil.rmtree(chain_dir)
+        # 删除文件
+        chain_file = Path(index[name])
+        if chain_file.exists():
+            chain_file.unlink()
         
         # 更新索引
-        index = self.load_index()
-        if name in index:
-            del index[name]
-            self.save_index(index)
+        del index[name]
+        self.save_index(index)
         
         return True, f"调用链 '{name}' 已删除"
     
     def list_chains(self):
-        """列出所有调用链（扫描链目录）"""
-        self.path_manager.chains_dir.mkdir(parents=True, exist_ok=True)
-        chains = []
-        for entry in sorted(self.path_manager.chains_dir.iterdir()):
-            if entry.is_dir() and (entry / "chain.json").exists():
-                chains.append(entry.name)
-        return chains
+        """列出所有调用链"""
+        index = self.load_index()
+        return list(index.keys())
     
     def create_chain(self, name, description="", purpose="", tags=None, steps=None, user_specified=False, schedule=None):
         """创建调用链（v1.25.0：自动调用 flow_validator + structure_checker 校验）"""
@@ -474,9 +451,6 @@ class ChainManager:
                     return False, f"结构校验未通过: {'; '.join(err_msgs[:3])}"
         except ImportError:
             pass
-
-        # v1.29.0: 记录步骤私有蓝皮书（存到独立目录，不嵌入链 JSON）
-        _save_blueprint_snapshot(self.path_manager, name, steps)
 
         chain_data = {
             "name": name,
@@ -717,16 +691,6 @@ class CLIHandler:
             print(f"{'='*55}")
             print(f"  [缺口分析] 扫描技能衔接点 — {len(steps)} 步骤")
             print(f"{'='*55}")
-
-            # v1.29.0: 尝试用 step_link_validator 做自动化衔接分析
-            link_validation_available = False
-            try:
-                from step_link_validator import validate_link
-                from skill_extractor import find_skill_dir, extract_step_semantics
-                link_validation_available = True
-            except ImportError:
-                pass
-
             for i in range(len(steps) - 1):
                 curr = steps[i]
                 nxt = steps[i + 1]
@@ -738,52 +702,13 @@ class CLIHandler:
                     print(f"  ⛓️ {cname} ({cact})")
                     print(f"     → 缝合点 →")
                     print(f"     {nname} ({nact})")
-
-                    # v1.29.0: 自动化衔接校验
-                    if link_validation_available:
-                        try:
-                            curr_steps = extract_step_semantics(find_skill_dir(cname)) if find_skill_dir(cname) else []
-                            nxt_steps = extract_step_semantics(find_skill_dir(nname)) if find_skill_dir(nname) else []
-
-                            # 找最佳的 interface 匹配
-                            curr_iface = {"produces": [], "consumes": []}
-                            nxt_iface = {"produces": [], "consumes": []}
-
-                            # 用 curr 的 action 匹配其步骤
-                            cact_lower = cact.lower()
-                            for s in curr_steps:
-                                if cact_lower in s.get("description", "").lower() or cact_lower in s.get("step_name", "").lower():
-                                    curr_iface = s.get("interface", {"produces": [], "consumes": []})
-                                    break
-
-                            nact_lower = nact.lower()
-                            for s in nxt_steps:
-                                if nact_lower in s.get("description", "").lower() or nact_lower in s.get("step_name", "").lower():
-                                    nxt_iface = s.get("interface", {"consumes": [], "produces": []})
-                                    break
-
-                            # 执行校验
-                            link_result = validate_link(curr_iface, nxt_iface, cname, nname)
-                            if link_result["adhesion_suggestion"]:
-                                print(f"     ⛔ 缺口检测: {link_result['gap_type']}")
-                                print(f"     匹配分数: {link_result['score']}")
-                                print(f"     建议插入粘连点")
-                            elif link_result["passed"]:
-                                print(f"     ✅ 衔接通过 (分数: {link_result['score']})")
-                            else:
-                                print(f"     ⚠️ 衔接存疑 (分数: {link_result['score']})")
-                        except Exception as e:
-                            if hasattr(args, 'verbose') and args.verbose:
-                                print(f"     ⚠️  衔接校验异常: {e}")
-
             print()
-            if not link_validation_available:
-                print(f"  ── LLM 执行规则 ──")
-                print(f"  逐步骤检查缝合点：")
-                print(f"  • 无缺口 → 直接串联（不需要粘连点）")
-                print(f"  • 有缺口 → 插入 adhesion 步骤（类型可选：manual/auto/hybrid）")
-                print(f"  • 禁止连续粘连点（两个 adhesion 步骤必须合并）")
-                print(f"  • 粘连点占比不得超过 30%")
+            print(f"  ── LLM 执行规则 ──")
+            print(f"  逐步骤检查缝合点：")
+            print(f"  • 无缺口 → 直接串联（不需要粘连点）")
+            print(f"  • 有缺口 → 插入 adhesion 步骤（类型可选：manual/auto/hybrid）")
+            print(f"  • 禁止连续粘连点（两个 adhesion 步骤必须合并）")
+            print(f"  • 粘连点占比不得超过 30%")
             print(f"{'=' * 55}\n")
 
         # 定时/自动化关键字检测 —— 强制提醒，不靠 AI 自觉（v1.25.0）
@@ -1044,246 +969,6 @@ class CLIHandler:
             print(f"❌ {message}")
             return 1
     
-    # ═══════════════════════════════════════════════════
-    # v1.29.0: 链健康检查 - 蓝皮书比对（私有蓝皮书 + md5）
-    # ═══════════════════════════════════════════════════
-    def cmd_check_health(self, args):
-        """检查调用链健康状态：比对当前 SKILL.md vs 链私有蓝皮书"""
-        name = args.name
-        chain = self.chain_manager.load_chain(name)
-        if not chain:
-            print(f"❌ 调用链 '{name}' 不存在")
-            return 1
-
-        # 读取私有蓝皮书
-        pm = self.chain_manager.path_manager
-        bp_file = pm.chains_dir / name / "blueprints.json"
-        if not bp_file.exists():
-            print(f"⚠️  调用链 '{name}' 没有私有蓝皮书（需 v1.29.0 重新创建）")
-            return 0
-
-        with open(bp_file, "r", encoding="utf-8") as f:
-            blueprint_data = json.load(f)
-
-        from skill_extractor import find_skill_dir, extract_step_semantics, read_skill_md
-        import hashlib
-
-        print(f"🏥 链健康检查: {name}")
-        print(f"{'='*55}")
-        print(f"  步骤数: {len(chain.get('steps', []))}")
-        print(f"  蓝皮书步骤: {len(blueprint_data)} 个")
-        print()
-
-        # 按 skill 分组，避免重复读 md5
-        skill_groups = {}
-        for step_id, bp in blueprint_data.items():
-            skill_name = step_id.split(".")[0]
-            skill_groups.setdefault(skill_name, []).append((step_id, bp))
-
-        results = {"healthy": 0, "changed": 0, "missing": 0}
-
-        print(f"{'':-<90}")
-        print(f"{'步骤ID':<40} {'状态':<12} {'说明'}")
-        print(f"{'':-<90}")
-
-        for skill_name, entries in skill_groups.items():
-            skill_path = find_skill_dir(skill_name)
-            if not skill_path:
-                for step_id, _ in entries:
-                    print(f"{step_id:<40} {'❌ 技能缺失':<12} 技能目录不存在")
-                    results["missing"] += 1
-                continue
-
-            # md5 快速校验
-            skill_md5 = hashlib.md5((read_skill_md(skill_path) or "").encode("utf-8")).hexdigest()
-            old_md5 = blueprint_data.get("_skill_md5s", {}).get(skill_name, "")
-
-            if skill_md5 == old_md5:
-                # md5 一致 → 蓝皮书仍最新，直接比对
-                for step_id, bp in entries:
-                    iface_ok = _compare_interfaces(bp)
-                    if iface_ok:
-                        print(f"{step_id:<40} {'✅ 健康':<12} interface 未变化")
-                        results["healthy"] += 1
-                    else:
-                        print(f"{step_id:<40} {'⚠️ 无interface':<12} 蓝皮书无 interface 数据")
-                        results["changed"] += 1
-                continue
-
-            # md5 不一致 → SKILL.md 变了，现场重提
-            current_steps = extract_step_semantics(skill_path)
-            current_map = {}
-            for cs in current_steps:
-                current_map[cs.get("step_id", "")] = cs
-                current_map[cs.get("step_name", "")] = cs  # 名称备查
-
-            for step_id, bp in entries:
-                # 在当前蓝皮书中找匹配
-                cur = current_map.get(step_id)
-                if not cur:
-                    # 模糊匹配
-                    step_rel = step_id[len(skill_name) + 1:]
-                    for cid, c in current_map.items():
-                        if isinstance(cid, str) and step_rel in cid:
-                            cur = c
-                            break
-
-                if cur is None:
-                    print(f"{step_id:<40} {'❌ 步骤消失':<12} 当前 SKILL.md 无此步骤")
-                    results["missing"] += 1
-                    continue
-
-                # 比对 full blueprint
-                old_bp = bp
-                new_bp = {
-                    "description": cur.get("description", ""),
-                    "usage_hint": cur.get("usage_hint", ""),
-                    "call_address": cur.get("call_address", {}),
-                    "interface": cur.get("interface", {}),
-                }
-
-                changes = _diff_blueprint(old_bp, new_bp)
-                if changes:
-                    print(f"{step_id:<40} {'⚠️ 已变化':<12} {', '.join(changes)}")
-                    results["changed"] += 1
-                else:
-                    print(f"{step_id:<40} {'✅ 健康':<12} interface 未变化")
-                    results["healthy"] += 1
-
-        print(f"\n{'='*55}")
-        total = results["healthy"] + results["changed"] + results["missing"]
-        print(f"  健康: {results['healthy']}/{total}")
-        if results["changed"]:
-            print(f"  ⚠️  已变化: {results['changed']}/{total} → 建议重新创建链或更新蓝皮书")
-        if results["missing"]:
-            print(f"  ❌ 已丢失: {results['missing']}/{total} → 链可能损坏")
-        print()
-
-        return 0
-
-
-# ============================================================
-# v1.29.0: 蓝皮书私有化（存独立文件，不嵌入链 JSON）
-# ============================================================
-
-def _save_blueprint_snapshot(path_manager, chain_name, steps):
-    """保存链的私有蓝皮书到 chains/{chain_name}/blueprints.json
-
-    每个步骤保存完整 blueprint（description, call_address, usage_hint, interface），
-    并记录对应 skill 的 md5 以便后续快速校验。
-    """
-    from skill_extractor import find_skill_dir, extract_step_semantics, read_skill_md
-    import hashlib
-
-    blueprint_data = {}
-    skill_md5s = {}
-
-    for step in steps:
-        if step.get("type", "skill") != "skill":
-            continue
-        skill_name = step.get("skill_name", "")
-        step_name = step.get("step_name", "")
-        if not skill_name or not step_name:
-            continue
-
-        step_id = f"{skill_name}.{step_name.replace(' ', '-')[:30]}"
-
-        # 尝试从当前 SKILL.md 提取完整 blueprint
-        try:
-            skill_dir = find_skill_dir(skill_name)
-            if skill_dir:
-                # 记录 skill md5
-                md5_val = hashlib.md5((read_skill_md(skill_dir) or "").encode("utf-8")).hexdigest()
-                skill_md5s[skill_name] = md5_val
-
-                steps_info = extract_step_semantics(skill_dir)
-                for si in steps_info:
-                    if si.get("step_id") == step_id or si.get("step_name", "") == step_name:
-                        blueprint_data[step_id] = {
-                            "step_id": step_id,
-                            "step_name": si.get("step_name", step_name),
-                            "skill_name": skill_name,
-                            "description": si.get("description", ""),
-                            "usage_hint": si.get("usage_hint", ""),
-                            "call_address": si.get("call_address", {}),
-                            "interface": si.get("interface", {}),
-                        }
-                        break
-                else:
-                    # 没精确匹配，存基础信息
-                    blueprint_data[step_id] = {
-                        "step_id": step_id,
-                        "step_name": step_name,
-                        "skill_name": skill_name,
-                        "description": step.get("action", ""),
-                        "usage_hint": "",
-                        "call_address": {"instructions": [], "cli": ""},
-                        "interface": {"consumes": [], "produces": []},
-                    }
-            else:
-                blueprint_data[step_id] = {
-                    "step_id": step_id,
-                    "step_name": step_name,
-                    "skill_name": skill_name,
-                    "description": step.get("action", ""),
-                    "usage_hint": "",
-                    "call_address": {"instructions": [], "cli": ""},
-                    "interface": {"consumes": [], "produces": []},
-                }
-        except Exception:
-            blueprint_data[step_id] = {
-                "step_id": step_id,
-                "step_name": step_name,
-                "skill_name": skill_name,
-                "description": step.get("action", ""),
-                "usage_hint": "",
-                "call_address": {"instructions": [], "cli": ""},
-                "interface": {"consumes": [], "produces": []},
-            }
-
-    # 存 skill md5s 供后续快速校验
-    blueprint_data["_skill_md5s"] = skill_md5s
-
-    # 写入文件到链私有目录
-    bp_dir = path_manager.chains_dir / chain_name
-    bp_dir.mkdir(parents=True, exist_ok=True)
-    bp_file = bp_dir / "blueprints.json"
-    with open(bp_file, "w", encoding="utf-8") as f:
-        json.dump(blueprint_data, f, ensure_ascii=False, indent=2)
-
-
-def _diff_blueprint(old_bp, new_bp):
-    """比对单个步骤的蓝皮书变化"""
-    changes = []
-
-    old_iface = old_bp.get("interface", {})
-    new_iface = new_bp.get("interface", {})
-
-    old_produces = old_iface.get("produces", [])
-    new_produces = new_iface.get("produces", [])
-    old_consumes = old_iface.get("consumes", [])
-    new_consumes = new_iface.get("consumes", [])
-
-    if old_produces != new_produces:
-        changes.append("输出变化")
-    if old_consumes != new_consumes:
-        changes.append("输入变化")
-
-    old_ca = old_bp.get("call_address", {})
-    new_ca = new_bp.get("call_address", {})
-    if old_ca.get("instructions") != new_ca.get("instructions"):
-        changes.append("指令变化")
-    if old_ca.get("cli") != new_ca.get("cli"):
-        changes.append("CLI变化")
-
-    return changes
-
-
-def _compare_interfaces(bp):
-    """检查蓝皮书中是否有有效的 interface 数据"""
-    iface = bp.get("interface", {})
-    return bool(iface.get("consumes") or iface.get("produces"))
-
 
 # ============================================================
 # 主函数
@@ -1351,10 +1036,6 @@ def main():
     p_reg = subparsers.add_parser("register-schedule", help="标记调度已注册到平台")
     p_reg.add_argument("--name", required=True, help="调用链名称")
     
-    # check-health (v1.29.0)
-    p_health = subparsers.add_parser("check-health", help="检查调用链健康状态（蓝皮书比对）")
-    p_health.add_argument("--name", required=True, help="调用链名称")
-    
     args = parser.parse_args()
     
     if not args.command:
@@ -1370,7 +1051,6 @@ def main():
         "show": cli_handler.cmd_show,
         "delete": cli_handler.cmd_delete,
         "check-gaps": cli_handler.cmd_check_gaps,
-        "check-health": cli_handler.cmd_check_health,
         "schedule": cli_handler.cmd_schedule,
         "register-schedule": cli_handler.cmd_register_schedule,
     }

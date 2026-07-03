@@ -1,0 +1,15 @@
+{
+  "name": "室内质控报告",
+  "description": "室内质控特色报告 — 精密度分析表 + 质控图统计 + 合成结果卡片",
+  "type": "report",
+  "tags": ["internal_qc", "precision", "control_chart"],
+  "report": {
+    "title": "室内质控分析报告",
+    "sections": [
+      {"type": "precision_summary", "source": "%精密度分析%", "title": "精密度分析"},
+      {"type": "data_table", "source": "%精密度分析%", "title": "综合参数",
+       "fields": ["overall_mean", "synthetic_std", "synthetic_rsd", "group_count", "total_n"]},
+      {"type": "control_chart_section", "source": "%质控图%", "title": "质控图统计参数"}
+    ]
+  }
+}

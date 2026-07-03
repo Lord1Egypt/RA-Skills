@@ -12,6 +12,7 @@
     python3 zhipu_tool.py zread read "openai/openai" "README.md"
     python3 zhipu_tool.py file_parser /path/to/file [--file-type PDF]
     python3 zhipu_tool.py vision /path/to/media [--prompt "描述"] [--type image|video]
+    python3 zhipu_tool.py balance
 """
 
 import argparse
@@ -60,6 +61,7 @@ class ZhipuTools:
 
     MCP_BASE = "https://api.z.ai/api/mcp"
     LEGACY_BASE = "https://open.bigmodel.cn/api/paas/v4"
+    MONITOR_BASE = "https://open.bigmodel.cn/api/monitor"
 
     # --- MCP Session Management ---
 
@@ -491,6 +493,30 @@ class ZhipuTools:
             resp.raise_for_status()
         return resp.json()
 
+    # --- Balance / Quota Query ---
+    # 接口来源: cc-switch 项目公开的用量查询脚本示例 (GitHub farion1231/cc-switch#1588)
+    # 非官方文档记录接口，认证头是裸 API Key（不带 Bearer 前缀）
+
+    @classmethod
+    def balance(cls) -> dict:
+        """查询 Coding Plan 套餐等级、MCP 月度配额、Token 用量限速窗口"""
+        headers = {
+            "Authorization": cls.API_KEY,
+            "Content-Type": "application/json",
+        }
+        resp = requests.get(
+            f"{cls.MONITOR_BASE}/usage/quota/limit",
+            headers=headers,
+            timeout=30,
+        )
+        if resp.status_code in (401, 403):
+            raise RuntimeError(f"额度查询认证失败 (HTTP {resp.status_code}): 请检查 ZHIPU_API_KEY")
+        resp.raise_for_status()
+        data = resp.json()
+        if not data.get("success"):
+            raise RuntimeError(f"额度查询失败: {data.get('msg', '未知错误')}")
+        return data
+
 
 # --- Formatting Helpers ---
 
@@ -563,6 +589,35 @@ def format_zread_result(result: dict) -> str:
     return json.dumps(result, ensure_ascii=False, indent=2)
 
 
+def format_balance_result(result: dict) -> str:
+    data = result.get("data", {})
+    level = data.get("level", "unknown")
+    limits = data.get("limits", [])
+
+    output = [f"套餐等级: {level}"]
+
+    time_limit = next((l for l in limits if l.get("type") == "TIME_LIMIT"), None)
+    if time_limit:
+        usage = time_limit.get("usage", 0)
+        current = time_limit.get("currentValue", 0)
+        remaining = time_limit.get("remaining", 0)
+        pct = time_limit.get("percentage", 0)
+        output.append(f"MCP 月度配额: {current}/{usage} (已用 {pct}%), 剩余 {remaining}")
+        for d in time_limit.get("usageDetails", []):
+            output.append(f"  - {d.get('modelCode', '?')}: {d.get('usage', 0)}")
+
+    token_limits = [l for l in limits if l.get("type") == "TOKENS_LIMIT"]
+    if token_limits:
+        token_limits.sort(key=lambda l: l.get("nextResetTime", 0))
+        output.append("Token 用量:")
+        labels = ["5小时窗口", "每周窗口"]
+        for i, tl in enumerate(token_limits):
+            label = labels[i] if i < len(labels) else f"窗口{i+1}"
+            output.append(f"  - {label}: {tl.get('percentage', 0)}%")
+
+    return "\n".join(output)
+
+
 # --- CLI ---
 
 def main():
@@ -614,6 +669,10 @@ def main():
     fp.add_argument("--file-type", default="WPS")
     fp.add_argument("--raw", action="store_true")
 
+    # balance
+    bp = subparsers.add_parser("balance", help="查询套餐额度/余额")
+    bp.add_argument("--raw", action="store_true")
+
     args = parser.parse_args()
     if not args.command:
         parser.print_help()
@@ -657,14 +716,6 @@ def main():
                 media_path=args.media_path,
                 prompt=args.prompt,
                 model=args.model,
-            )
-            print(result)
-
-        elif args.command == "vision":
-            result = ZhipuTools.vision(
-                media_path=args.media_path,
-                prompt=args.prompt,
-                model=args.model,
                 media_type=args.type,
             )
             print(result)
@@ -672,6 +723,10 @@ def main():
         elif args.command == "file_parser":
             result = ZhipuTools.file_parser(file_path=args.file_path, file_type=args.file_type)
             print(json.dumps(result, ensure_ascii=False, indent=2) if args.raw else format_parser_result(result))
+
+        elif args.command == "balance":
+            result = ZhipuTools.balance()
+            print(json.dumps(result, ensure_ascii=False, indent=2) if args.raw else format_balance_result(result))
 
     except requests.HTTPError as e:
         print(f"API 错误: {e}", file=sys.stderr)

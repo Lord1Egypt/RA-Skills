@@ -1,7 +1,7 @@
 ---
 name: "smyx-depression-behavioral-markers-analysis"
 description: "Using fixed home cameras (bedroom and dining area), the system analyzes the multi-day behavior pattern of elderly people or solo-living individuals, detecting daily lying-in-bed duration (continuous lying > 20 hours per day) and a sharp drop in eating frequency / duration (e.g., daily eating-action count below 50% of personal baseline). | 通过家庭固定摄像头（卧室和餐厅区域），分析老年人或独居者连续多日的行为模式，检测卧床时长（连续卧床超过20小时/天）以及进食频次/时长骤减（如每日进食动作次数低于历史基线的50%）。当这些行为变化持续超过设定天数（如3天）时，输出行为变化报告，提醒家属或社区医生关注可能存在的抑郁倾向或其他健康问题。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 
@@ -160,7 +160,7 @@ python -m scripts.smyx_depression_behavioral_markers_analysis --list
 | 🔏 隐私合规 | 隐私合规：卧室视频涉及高度敏感个人隐私，使用前需取得老人本人明确知情同意，妥善加密保管；建议优先采用人体轮廓 + 面部马赛克模式 + 仅保存指标统计 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

@@ -1,7 +1,5 @@
 ---
 name: linkfox-eureka-claim-translated
-version: 1.0.1
-category: product-sourcing
 description: 通过Eureka专利数据平台获取翻译后的专利权利要求。当用户询问专利权利要求、权利要求翻译、查看特定语言（中文、英文或日文）的权利要求、通过专利ID或公开号查询专利权利、分析权利要求文本、Eureka权利要求、claim translation, patent claim translation, Eureka patent, patent translation时触发此技能。即使用户未明确提及"翻译版权利要求"，只要其需求涉及获取特定语言的专利权利要求内容，也应触发此技能。
 ---
 
@@ -83,9 +81,19 @@ Parameters: `patentNumber = "CN112345678A,US20200012345A1,EP3456789B1"`, `lang =
 4. **Large results**: When multiple patents are returned, summarize the count and show a few representative entries, reminding the user of the total.
 5. **Error handling**: When a query fails, explain the reason based on the error response and suggest checking the patent ID or publication number.
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/eureka_claim_translated.py` directly to run queries.
+- **API 端点**：`POST /tool-eureka/claimDataTranslated`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/eureka_claim_translated.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-eureka-claim-translated-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Important Limitations
 

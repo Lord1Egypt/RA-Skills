@@ -369,23 +369,38 @@ def build_prompt_package(paper_name: str, node_id: str) -> Dict[str, Any]:
     # 5. 字数范围
     word_range = get_word_count_range(level)
     
-    # 6. 多工具检索补充（v2.0.9 新增）
+    # 6. 多工具检索补充（v2.0.9 新增，v2.x P0 修复）
     #    当节点属于核心章节（第3/4/5/6章）且有 research_keywords 时自动触发
+    #    P0 修复：quick_search 函数不存在，改用 multi_search.multi_search_text
     search_context = ""
     node_keywords = current.get("research_keywords", []) or []
     if node_keywords:
         try:
-            from research_tools import quick_search
+            # quick_search → multi_search_text（同一函数，只改了名字）
+            from multi_search import multi_search_text as _do_search
             kw = node_keywords[0] if isinstance(node_keywords[0], str) else str(next(
                 (k for k in node_keywords if k), ""))
             if kw and len(kw) > 5:
-                search_context = quick_search(kw)
+                search_context = _do_search(kw)
         except Exception:
-            pass  # 检索失败静默降级
+            pass  # 检索失败静默降级，不阻断写作
 
     # 7. 组装 prompt 包
     # 增强项4: content_hint 字段（从 outline_state 节点字段读取，开题报告提取或用户手写）
     content_hint = current.get("content_hint", "").strip()
+
+    # v2.x.x 修复（v8.0 ch1 跑题事故）：主题锁定 + 反面警示 改为总是注入
+    # 背景: v2.0.7 B-2 只在 content_hint 空时注入，但 hint 有内容时 LLM 也会跑题
+    #       （v8.0 ch1 实际案例：手补的 hint 有内容，但 LLM 写了通用 MBA 论文）
+    # 修复: 无论 hint 是否为空，都生成 paper_subject_lock 字段供 prompt 使用
+    #       当 hint 空时，叠加 outline_skeleton（保留 v2.0.7 B-2 行为）
+    paper_subject_lock = ""
+    if state:
+        paper_subject = _extract_paper_subject(paper_name, state)
+        paper_subject_lock = _build_no_runoff_warning(paper_subject)
+        if not content_hint:
+            outline_skeleton = _build_outline_skeleton(state, node_id)
+            content_hint = f"{paper_subject_lock}\n\n{outline_skeleton}"
 
     package = {
         "ok": True,
@@ -401,6 +416,7 @@ def build_prompt_package(paper_name: str, node_id: str) -> Dict[str, Any]:
         "required_topics": required_topics,
         "ending_hint": ending_hint,  # 可能为 null
         "content_hint": content_hint,  # 增强项4: 开题报告提取或用户手写
+        "paper_subject_lock": paper_subject_lock,  # v2.x.x 新增：主题锁定 + 反面警示（总是生效）
         "search_context": search_context,  # v2.0.9 多工具检索补充
         "word_count_min": word_range["min"],
         "word_count_max": word_range["max"],
@@ -431,6 +447,12 @@ def build_prompt_package_text(package: Dict) -> str:
     
     parts.append(f"\n## 写作指令\n")
     parts.append(f"{package['writing_instruction']}\n")
+
+    # v2.x.x 新增：主题锁定 + 反面警示（v8.0 ch1 跑题事故修复）
+    # 总是注入（不管 hint 是否为空），防止 LLM 写通用 MBA 论文
+    if package.get('paper_subject_lock'):
+        parts.append(f"\n## ⚠️ 主题锁定（必读）\n")
+        parts.append(f"{package['paper_subject_lock']}\n")
     
     if package.get('bridge_paragraph'):
         parts.append(f"\n## 承接上文\n")
@@ -461,8 +483,87 @@ def build_prompt_package_text(package: Dict) -> str:
     
     parts.append(f"\n## 目录位置\n")
     parts.append(f"{package['outline_position']}\n")
-    
+
     return "".join(parts)
+
+
+# ============================================================
+# v2.x.x 新增：content_hint 空时兜底（v7.0 跑题事故修复）
+# 见 SKILL.md 附录 B
+# ============================================================
+
+def _build_outline_skeleton(outline_state: Dict, target_node_id: str) -> str:
+    """
+    构造论文大纲骨架
+
+    当 node.content_hint 为空时，构造大纲骨架为 LLM 提供上下文，
+    确保 LLM 知道"我在写论文 X 章节 Y"，不会跑题写通用 MBA 论文。
+    """
+    try:
+        nodes = outline_state.get("outline", {}).get("outline_tree", {}).get("nodes", [])
+    except Exception:
+        return ""
+
+    lines = ["【论文完整大纲（用于提供上下文）】", ""]
+    for n in nodes:
+        if n.get("is_virtual"):
+            continue
+        level = n.get("level", 2)
+        prefix = "#" * level
+        lines.append(f"{prefix} {n['id']} {n.get('title', '')}")
+    lines.append("")
+    lines.append("【你正在写的节点】")
+    target = next((n for n in nodes if n.get("id") == target_node_id), None)
+    if target:
+        lines.append(f"→ {target.get('title', target_node_id)}（{target_node_id}）")
+    return "\n".join(lines)
+
+
+def _extract_paper_subject(paper_name: str, outline_state: Optional[Dict] = None) -> str:
+    """
+    提取论文主题描述（用于 warning 主题锁定）
+
+    策略：
+      1. 优先从 outline_state["outline_tree"]["metadata"]["paper_title"] 读
+      2. 否则从 paper_name 去掉尾部版本/状态/时间戳后缀
+      3. 兜底返回 paper_name（如果 paper_name 本身为空，结果可能为空字符串）
+
+    参数：
+      paper_name: 论文项目名（用于推断主题）
+      outline_state: 可选，从 outline 读 paper_title（优先于 paper_name）
+    """
+    # 1. 优先 metadata.paper_title
+    if outline_state:
+        try:
+            title = outline_state.get("outline", {}).get("outline_tree", {}).get("metadata", {}).get("paper_title")
+            if title and title.strip():
+                return title.strip()
+        except Exception:
+            pass
+
+    # 2. 从 paper_name 去掉尾部版本/状态/时间戳后缀
+    import re as _re
+    # 一次性吃透尾部：_vN(.N)+ / _final / _YYYYMMDD_HHMMSS（可连续出现，如 v1.0_v2.0）
+    subject = _re.sub(r'(_v\d+(?:\.\d+)*|_final|_\d{8}_\d{6})+$', '', paper_name)
+    return subject if subject else paper_name
+
+
+def _build_no_runoff_warning(paper_subject: str = "本研究主题") -> str:
+    """
+    反面警示：明确禁止 LLM 写通用 MBA 论文模板，确保聚焦具体研究对象
+
+    参数：
+      paper_subject: 论文研究对象描述（建议从 outline metadata.paper_title 取，
+                     或用 _extract_paper_subject() 从 paper_name 推断）
+    """
+    return (
+        f"⚠️ 主题锁定：本论文研究对象是「{paper_subject}」。\n"
+        "- ✅ 围绕论文具体研究对象的真实业务场景、技术路线、客户/竞争格局等具体实体\n"
+        "- ✅ 引用与论文主题相关的权威数据源（行业报告 / 学术文献 / 公司财报）\n"
+        "- ❌ 严禁写成通用 MBA 模板论文（如「数字经济 / 企业数字化转型 / 战略管理一般性理论」）\n"
+        "- ❌ 严禁「党的二十大报告提出…」「国家政策强调…」这类脱离论文研究主题的泛泛话语\n"
+        "- ❌ 严禁用「企业四要素模型 / 波特钻石模型 / 一般性战略理论」等通用教科书内容代替研究主题的具体业务场景"
+    )
 
 
 if __name__ == "__main__":

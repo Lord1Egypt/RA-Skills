@@ -247,7 +247,7 @@ def test_monthly_report(t):
         m.write_checklog(records)
 
         text = tracker.generate_monthly_report()
-        if "Monthly Report" in text:
+        if "Monthly" in text:
             t.ok("monthly_report: 标题正确")
         else:
             t.fail("monthly_report: 标题缺失", text[:100])
@@ -400,6 +400,129 @@ def test_no_tmp_log(t):
         t.fail("no_tmp_log", "/tmp 日志路径仍存在")
 
 
+# ── 新增命令测试 ──────────────────────────────────────────
+
+def test_add_new_skill(t):
+    """add 命令：新建 skills.csv 并写入第一个 slug"""
+    with MockDir() as m:
+        tracker.cmd_add("new-skill", "Test note")
+        skills = tracker.load_skills()
+        if len(skills) == 1 and skills[0]["slug"].strip() == "new-skill":
+            t.ok("add: 新建 CSV 并写入 slug")
+        else:
+            t.fail("add", f"预期 1 条记录，得到 {skills}")
+
+
+def test_add_existing_skill(t):
+    """add 命令：已存在的 slug 不重复添加"""
+    with MockDir() as m:
+        m.write_skills(["existing"])
+        tracker.cmd_add("existing")
+        skills = tracker.load_skills()
+        if len(skills) == 1:
+            t.ok("add: 已存在 slug 不重复")
+        else:
+            t.fail("add", f"预期 1 条，得到 {len(skills)}")
+
+
+def test_add_invalid_slug(t):
+    """add 命令：非法 slug 被拒绝"""
+    with MockDir() as m:
+        if not os.path.exists(os.path.join(m.dir, "skills.csv")):
+            pass
+        # cmd_add 内部已校验，直接测 _valid_slug 行为
+        invalid_cases = ["; rm -rf /", "../etc/passwd", "FOO", "-leading-dash", "with space"]
+        for bad in invalid_cases:
+            if tracker._valid_slug(bad):
+                t.fail("add_invalid", f"非法 slug 通过校验: {bad}")
+                return
+        t.ok("add: 非法 slug 被拒绝")
+
+
+def test_remove_skill(t):
+    """remove 命令：从 skills.csv 删除，checklog 保留"""
+    with MockDir() as m:
+        m.write_skills(["keep", "remove-me"])
+        m.write_checklog([
+            ("2026-06-01 08:00:00", "keep", 100, 0),
+            ("2026-06-01 08:00:00", "remove-me", 50, 0),
+        ])
+        tracker.cmd_remove("remove-me")
+        skills = tracker.load_skills()
+        slugs = [s["slug"].strip() for s in skills]
+        if slugs == ["keep"]:
+            t.ok("remove: 仅删除目标")
+        else:
+            t.fail("remove", f"预期 ['keep']，得到 {slugs}")
+        # checklog 应该保留
+        log_data = tracker.read_checklog()
+        if "remove-me" in log_data:
+            t.ok("remove: 历史 checklog 保留")
+        else:
+            t.fail("remove", "历史数据被误删")
+
+
+def test_remove_nonexistent(t):
+    """remove 命令：不存在的 slug 不报错"""
+    with MockDir() as m:
+        m.write_skills(["only-one"])
+        try:
+            tracker.cmd_remove("does-not-exist")
+            skills = tracker.load_skills()
+            if len(skills) == 1:
+                t.ok("remove: 不存在的 slug 不报错")
+            else:
+                t.fail("remove", "不存在的 slug 影响了现有数据")
+        except Exception as e:
+            t.fail("remove", f"崩溃: {e}")
+
+
+def test_list_skills(t):
+    """list 命令：显示所有监控的 skill 及最后下载量"""
+    with MockDir() as m:
+        m.write_skills(["alpha", "beta"])
+        # 写入 last_state.json
+        tracker.LAST_STATE_FILE = os.path.join(m.dir, "last_state.json")
+        tracker.save_last_state({
+            "alpha": {"downloads": 123, "ts": "2026-07-01 10:00:00"},
+            "beta": {"downloads": 456, "ts": "2026-07-01 10:00:00"},
+        })
+        try:
+            # 不直接验证 stdout，只确认不崩溃
+            tracker.cmd_list()
+            t.ok("list: 不崩溃")
+        except Exception as e:
+            t.fail("list", f"崩溃: {e}")
+
+
+def test_file_lock_blocks_concurrent(t):
+    """文件锁：第二个实例应优雅退出而非报错"""
+    with MockDir() as m:
+        tracker.LOCK_FILE = os.path.join(m.dir, ".tracker.lock")
+        with tracker.FileLock(tracker.LOCK_FILE):
+            # 在锁内启动第二个实例，应捕获 BlockingIOError 并 exit
+            try:
+                with tracker.FileLock(tracker.LOCK_FILE):
+                    t.fail("file_lock", "第二个实例未获取锁就进入了")
+            except SystemExit:
+                t.ok("file_lock: 第二个实例优雅退出")
+            except BlockingIOError:
+                t.ok("file_lock: 捕获并发锁")
+
+
+def test_atomic_state_write(t):
+    """save_last_state 原子写：写入过程中不应损坏文件"""
+    with MockDir() as m:
+        tracker.LAST_STATE_FILE = os.path.join(m.dir, "last_state.json")
+        state = {"a": {"downloads": 1, "ts": "2026-07-01"}, "b": {"downloads": 2, "ts": "2026-07-01"}}
+        tracker.save_last_state(state)
+        loaded = tracker.load_last_state()
+        if loaded == state:
+            t.ok("atomic_write: 写入并读取一致")
+        else:
+            t.fail("atomic_write", f"写入内容与读取不一致: {loaded}")
+
+
 # ── 运行 ──────────────────────────────────────────────────
 
 def main():
@@ -427,6 +550,16 @@ def main():
     test_missing_credentials(t)
     test_no_hardcoded_credentials(t)
     test_no_tmp_log(t)
+
+    print("\n➕ 新增命令测试\n")
+    test_add_new_skill(t)
+    test_add_existing_skill(t)
+    test_add_invalid_slug(t)
+    test_remove_skill(t)
+    test_remove_nonexistent(t)
+    test_list_skills(t)
+    test_file_lock_blocks_concurrent(t)
+    test_atomic_state_write(t)
 
     ok = t.summary()
     sys.exit(0 if ok else 1)

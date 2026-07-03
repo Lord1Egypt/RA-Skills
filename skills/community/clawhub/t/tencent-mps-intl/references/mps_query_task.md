@@ -17,16 +17,16 @@ Applicable to tasks submitted via `ProcessMedia` (TaskId format: `1234567890-Wor
 
 ```bash
 # Query task status (concise output)
-python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a
 
 # Verbose output (including subtask information)
-python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --verbose
+python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --verbose
 
 # JSON format output (convenient for programmatic parsing)
-python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --json
+python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --json
 
 # Specify region
-python scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --region ap-beijing
+python3 scripts/mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --region ap-beijing
 ```
 
 ---
@@ -48,16 +48,16 @@ Applicable to tasks submitted via `ProcessImage`
 
 ```bash
 # Query task status (concise output)
-python scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a
 
 # Verbose output (including subtask information)
-python scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --verbose
+python3 scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --verbose
 
 # JSON format output
-python scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --json
+python3 scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --json
 
 # Specify region
-python scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --region ap-beijing
+python3 scripts/mps_get_image_task.py --task-id 1234567890-Image Task-80108cc3380155d98b2e3573a48a --region ap-beijing
 ```
 
 ## Mandatory Rules

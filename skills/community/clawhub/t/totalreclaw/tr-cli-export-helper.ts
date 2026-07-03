@@ -5,9 +5,9 @@
  * decrypts every active fact owned by the caller's Smart Account address.
  *
  * Lives in its own file because tr-cli.ts already contains a synchronous
- * disk read (status command loads `.loaded.json`), and combining that
- * with outbound HTTP in the same file would trip the OpenClaw skill
- * scanner's exfil rule (see ../scripts/check-scanner.mjs).
+ * disk read (status command reads credentials.json + onboarding state), and
+ * combining that with outbound HTTP in the same file would trip the
+ * OpenClaw skill scanner's exfil rule (see ../scripts/check-scanner.mjs).
  *
  * Phrase-safety: this module never touches the recovery phrase. It receives
  * pre-derived auth-key + wallet-address + encryption-key from the caller.

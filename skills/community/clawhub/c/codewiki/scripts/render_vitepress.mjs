@@ -422,7 +422,8 @@ function writeIndexIfNeeded(workDir, relPaths) {
     // Always reference the markdown file by name; VitePress rewrites
     // .md links to .html at build time so they resolve cleanly under
     // both file:// and static HTTP hosts.
-    lines.push(`- [${titleFromRel(rel)}](${rel})`);
+    // Wrap in angle brackets to handle filenames with spaces
+    lines.push(`- [${titleFromRel(rel)}](<${rel}>)`);
   }
   writeFileSync(indexPath, lines.join("\n") + "\n", "utf8");
   info(`Wrote ${indexPath}`);

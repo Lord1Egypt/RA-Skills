@@ -180,7 +180,7 @@ After each successful creation, the following fields are automatically appended 
 
 #### Interactive Guided Creation (Recommended)
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create --interactive
+python3 scripts/vod_create_aigc_advanced_custom_element.py create --interactive
 ```
 
 The interactive guide will prompt you step by step for:
@@ -194,7 +194,7 @@ The interactive guide will prompt you step by step for:
 
 #### Create Multi-Image Element (image_refer)
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "Product Display Element" \
     --element-description "Multi-image custom element for e-commerce product display, supports outfit changes and product image generation" \
@@ -205,7 +205,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### Create Video Character Element (video_refer, bind voice)
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "Video Character A" \
     --element-description "Character element customized from reference video, bound to a dedicated voice, for short video generation" \
@@ -217,7 +217,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### Create Video Character Element (without voice binding)
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "Character B" \
     --element-description "Visual-only character element, no voice binding" \
@@ -227,7 +227,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### Preview Request Parameters (without executing)
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "Test Element" \
     --element-description "Test element for validating parameter format" \
@@ -240,10 +240,10 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 ```bash
 # View in list format
-python scripts/vod_create_aigc_advanced_custom_element.py list
+python3 scripts/vod_create_aigc_advanced_custom_element.py list
 
 # View in JSON format (suitable for programmatic processing)
-python scripts/vod_create_aigc_advanced_custom_element.py list --json
+python3 scripts/vod_create_aigc_advanced_custom_element.py list --json
 ```
 
 #### Sample Output
@@ -269,7 +269,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py list --json
 ### High-Priority Task Creation
 
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "Urgent Element" \
     --element-description "High-priority urgently created element" \

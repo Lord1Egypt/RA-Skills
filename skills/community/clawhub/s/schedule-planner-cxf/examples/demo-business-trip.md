@@ -105,8 +105,8 @@
 
 ```
 // 模拟 query-5city-trip.js 输出
-Data saved to: C:\Users\...\Desktop\5city-trip.json
-Trip page generated: C:\Users\...\Desktop\5city-trip.html
+Data saved to: .../output/5city-trip.json   (或使用 --desktop 时写入 Desktop)
+Trip page generated: .../output/5city-trip.html
 
 // 模拟 generate-trip-page.js 输出
 ✅ HTML 行程单已生成: ./output/行程-杭州-1234567890.html

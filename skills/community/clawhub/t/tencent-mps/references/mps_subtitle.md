@@ -49,22 +49,22 @@
 
 ```bash
 # ASR 识别字幕（默认）
-python scripts/mps_subtitle.py --url https://example.com/video.mp4
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4
 
 # ASR + 翻译为英文（双语字幕）
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en
 
 # OCR 识别硬字幕 + 翻译
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --process-type ocr --src-lang zh_en --translate en
 
 # 多语言翻译（英文+日文）
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --src-lang zh --translate en/ja
 
 # COS 路径输入（推荐）
-python scripts/mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
+python3 scripts/mps_subtitle.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou \
     --cos-input-key /input/video.mp4 --src-lang zh --translate en
 
 # 异步提交后查询任务状态
-python scripts/mps_subtitle.py --url https://example.com/video.mp4 --no-wait
-python scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
+python3 scripts/mps_subtitle.py --url https://example.com/video.mp4 --no-wait
+python3 scripts/mps_get_video_task.py --task-id 1250017490-20260318152230-abcdef123456
 ```

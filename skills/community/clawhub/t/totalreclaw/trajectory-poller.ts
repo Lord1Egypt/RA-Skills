@@ -21,8 +21,59 @@
  *   existing extraction pipeline. Per-file byte-offset is tracked in
  *   ~/.totalreclaw/extract-state.json so we never re-process lines.
  *
- *   When the upstream OpenClaw bug is fixed, the agent_end hook starts
- *   firing again — both paths can coexist with offset-based dedup.
+ * RC1 capture strategy (Phase 4, 2026-06-22):
+ *   RC1 capture = POLLER-PRIMARY, FLUSH-SHADOWED. This poller is the
+ *   capture workhorse. OpenClaw's host-facing `flushPlanResolver`
+ *   (wired in native-memory.ts via buildFlushPlan) returns TR's
+ *   extraction plan so the memory slot is "complete" and the host CAN
+ *   drive flushes — but TR's encrypt→on-chain capture does NOT depend
+ *   on the host invoking the flush. The flush-driven capture path
+ *   (host flush → read scratch file → encrypt → on-chain) is NOT
+ *   wired on TR's side today; that is H2/RC2-gated. The poller
+ *   guarantees capture works regardless of host flush cadence: even
+ *   if the host never flushes, the poller still captures on its own
+ *   60 s schedule. This is the graceful-degradation stance —
+ *   recall-native + capture-poller meets both primary bars even if
+ *   H2 (host flush cadence) fails at the RC1 QA gate.
+ *
+ *   RC2 retires this poller IF H2 confirms the host invokes
+ *   flushPlanResolver at useful cadence. If H2 fails, the poller
+ *   stays as the long-term capture mechanism.
+ *
+ * Idempotency / offset-dedup:
+ *   The poller is idempotent across poller-restart and gateway-reload.
+ *   `extract-state.json` is the single source of truth for "what's
+ *   been consumed from each trajectory file": loadState() reads it at
+ *   the start of every poll iteration, parseNewMessages() only reads
+ *   bytes past the recorded offset, and the file is rewritten (via
+ *   saveState) only when at least one file's offset advanced. A
+ *   poller that crashes mid-extraction loses at most the in-flight
+ *   pass (state was not yet saved); the next poller re-reads from the
+ *   last persisted offset and re-runs the extraction — duplicate
+ *   facts are caught downstream by the dedup pass, and re-extraction
+ *   of the same slice is bounded to one retry (state then advances).
+ *
+ *   `parseNewMessages` caps newOffset at the last full newline so a
+ *   partially-flushed trailing line is re-read on the next poll
+ *   rather than dropped or double-counted.
+ *
+ * Cross-path double-write (NOT a risk today; RC2 work):
+ *   Today the poller is the only capture path that actually fires.
+ *   The agent_end / before_compaction / before_reset hook handlers
+ *   in index.ts still REGISTER storeExtractedFacts callbacks, but on
+ *   OpenClaw 2026.5.x the host never fires those events for
+ *   non-bundled plugins (the bug that motivated this poller), so in
+ *   practice the poller is the sole capture path. If a future
+ *   OpenClaw release un-blocks the hooks (or when the RC2
+ *   flush-driven capture path is wired), BOTH the poller AND the
+ *   parallel path would capture from overlapping state with NO
+ *   shared dedup — the hooks do NOT consult `extract-state.json`.
+ *   That is acceptable for RC1 (only the poller fires) but becomes
+ *   a real double-write risk at RC2. See the TODO(RC2/H2) marker on
+ *   STATE_FILE below for where the shared last-captured-offset
+ *   resolver would live. The earlier claim that "both paths can
+ *   coexist with offset-based dedup" was aspirational; no such
+ *   shared offset exists today.
  *
  * Module boundary (scanner constraint):
  *   This file does disk I/O (fs.read* on trajectory files + state file)
@@ -52,6 +103,18 @@ export interface TrajectoryPollerDeps {
     warn: (msg: string) => void;
     error: (msg: string) => void;
   };
+
+  /**
+   * 3.3.12-rc.19: optional slot-self-heal hook invoked once per poll
+   * tick. OpenClaw's config-rewrite-after-restart can strip
+   * plugins.slots.memory after register()'s self-heal ran (observed on
+   * pop-os reinstall 2026-06-30 → slot reverted to disabled memory-core
+   * → memory_search/memory_get never bound). The host wires this to
+   * patchOpenClawConfig + a SIGUSR1 restart so the slot is re-asserted
+   * on the next tick if it was clobbered. Runs before the pairing/
+   * import gates so it fires even when extraction is deferred.
+   */
+  recheckSlot?: () => void;
 
   /** Initialization gate — same one the agent_end hook uses. */
   ensureInitialized: () => Promise<void>;
@@ -126,6 +189,22 @@ export interface TrajectoryPollerHandle {
 }
 
 const DEFAULT_POLL_INTERVAL_MS = 60_000;
+// Per-file offset tracker (poller's own source of truth for what's been
+// consumed from each trajectory file). Today this is consulted ONLY by the
+// poller — the agent_end / before_compaction / before_reset hooks in
+// index.ts do NOT read or write it, so if any of those hooks ever fire
+// alongside the poller they would double-capture from overlapping state.
+//
+// TODO(RC2/H2): when the flush-driven capture path is wired (host invokes
+// flushPlanResolver → TR reads the scratch file → encrypt → on-chain) OR
+// the upstream agent_end block is lifted, ALL capture paths MUST consult
+// a shared last-captured-offset resolver before encrypting. The simplest
+// shape is to expose loadState()/saveState() (or a `consumed(file)`
+// helper) to the hook handlers and the flush callback so they skip any
+// byte range the poller already consumed, and conversely the poller must
+// skip any range the hooks/flush path recorded. Until then, this file is
+// poller-private and there is no cross-path double-write risk (only the
+// poller fires on OpenClaw 2026.5.x).
 const STATE_FILE = path.join(os.homedir(), '.totalreclaw', 'extract-state.json');
 /**
  * Skip trajectory files older than this. A user who installs
@@ -151,6 +230,9 @@ export function startTrajectoryPoller(
 
   const pollAndExtract = async (): Promise<void> => {
     try {
+      // 3.3.12-rc.19: re-assert slots.memory each tick in case OpenClaw's
+      // config-rewrite stripped it after register() (see deps.recheckSlot).
+      deps.recheckSlot?.();
       await deps.ensureInitialized();
       if (deps.isPairingPending()) return;
       if (deps.isImportActive()) return;

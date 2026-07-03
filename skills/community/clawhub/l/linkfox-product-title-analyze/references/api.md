@@ -2,9 +2,9 @@
 
 ## 调用规范
 
-- **请求地址**：`https://tool-gateway.linkfox.com/product/titleAnalyze`
+- **请求地址**：`${LINKFOX_TOOL_GATEWAY}/product/titleAnalyze`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
 
 ## 请求参数
 
@@ -15,11 +15,6 @@ POST Body（JSON）：
 | tokenizationAndCountingRequest | string | 是 | 自然语言描述，指定要从标题中提取的属性维度（如场景词、人群词、材质等）。每次只分析一个维度 |
 | outputMode | string | 否 | 属性值输出模式。`MULTIPLE_RECORDS`（默认）：拆分属性值，每个属性值单独一条记录；`COMMA_SEPARATED`：保持LLM返回格式，多个属性值用逗号分隔在一条记录中 |
 | refResultData | string | 否 | 引用的商品数据（JSON字符串）。仅在需要读取之前轮次对话的数据时使用，当前轮次的商品数据会自动汇总 |
-| uid | string | 否 | 用户ID，系统自动处理 |
-| chatId | string | 否 | 对话ID，系统自动处理 |
-| stepId | string | 否 | 步骤ID，系统自动处理 |
-| messageId | string | 否 | 消息ID，系统自动处理 |
-
 
 ## 响应结构
 
@@ -64,7 +59,7 @@ POST Body（JSON）：
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | 检查 `Authorization` Header 是否正确传入 API Key |
+| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key；API Key 申请方式请参考上述[调用规范](#调用规范)下的认证方式。|
 | 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
 
 错误响应示例：

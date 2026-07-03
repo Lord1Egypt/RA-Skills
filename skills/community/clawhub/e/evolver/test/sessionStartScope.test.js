@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
-const { execFileSync } = require('child_process');
+const { execFileSync, spawn } = require('child_process');
 
 const repoRoot = path.resolve(__dirname, '..');
 const scriptPath = path.join(repoRoot, 'src', 'adapters', 'scripts', 'evolver-session-start.js');
@@ -13,6 +13,57 @@ function makeTmpDir() {
 }
 function cleanup(dir) {
   try { fs.rmSync(dir, { recursive: true, force: true }); } catch {}
+}
+
+function startStatusServer(mode, token) {
+  const child = spawn(process.execPath, ['-e', `
+const http = require('http');
+const mode = process.env.TEST_PROXY_MODE;
+const token = process.env.TEST_PROXY_TOKEN;
+const server = http.createServer((req, res) => {
+  if (mode === 'auth') {
+    if (req.headers.authorization !== 'Bearer ' + token) {
+      res.writeHead(401, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: 'unauthorized' }));
+      return;
+    }
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({ status: 'running', proxy_protocol_version: '1.0.0' }));
+    return;
+  }
+  res.writeHead(200, { 'content-type': 'application/json' });
+  res.end(JSON.stringify({ ok: true }));
+});
+server.listen(0, '127.0.0.1', () => {
+  process.stdout.write('http://127.0.0.1:' + server.address().port + '\\n');
+});
+process.on('SIGTERM', () => server.close(() => process.exit(0)));
+`], {
+    env: { PATH: process.env.PATH, TEST_PROXY_MODE: mode, TEST_PROXY_TOKEN: token || '' },
+    stdio: ['ignore', 'pipe', 'inherit'],
+  });
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    child.once('error', reject);
+    child.stdout.once('data', (chunk) => {
+      settled = true;
+      resolve({ child, url: String(chunk).trim() });
+    });
+    child.once('exit', (code) => {
+      if (!settled) reject(new Error(`status server exited early: ${code}`));
+    });
+  });
+}
+
+function close(child) {
+  return new Promise((resolve) => {
+    if (child.exitCode !== null) {
+      resolve();
+      return;
+    }
+    child.once('exit', resolve);
+    child.kill('SIGTERM');
+  });
 }
 
 // Build a memory graph file with the given entries (one JSON object per line).
@@ -49,6 +100,7 @@ function baseEnv(extra) {
   return {
     HOME: extra.HOME,
     EVOLVER_ROOT: repoRoot,
+    EVOLVER_SESSION_AUTO_RESTART: '0',
     // Force dedup off (default) so every run injects.
     EVOLVER_SESSION_START_DEDUP: '',
     ...extra,
@@ -134,7 +186,13 @@ describe('evolver-session-start workspace scoping', () => {
   // belongsToWorkspace is the scoping predicate. Unit-test its branches
   // directly (deterministic) — the end-to-end tests above cover the wired path.
   describe('belongsToWorkspace predicate', () => {
-    const { belongsToWorkspace } = require('../src/adapters/scripts/evolver-session-start');
+    const {
+      belongsToWorkspace,
+      _isLoopbackProxyUrl,
+      _proxyExpected,
+      _proxyReachable,
+      _proxyHealthyIfExpected,
+    } = require('../src/adapters/scripts/evolver-session-start');
 
     it('unresolved current id -> tagged entries are NOT hidden (no regression)', () => {
       assert.equal(belongsToWorkspace({ workspace_id: 'ws-other' }, null, null), true);
@@ -149,6 +207,95 @@ describe('evolver-session-start workspace scoping', () => {
     it('cwd fallback when no workspace_id', () => {
       assert.equal(belongsToWorkspace({ cwd: '/p' }, null, '/p'), true);
       assert.equal(belongsToWorkspace({ cwd: '/q' }, null, '/p'), false);
+    });
+
+    it('detects managed loopback proxy settings as proxy-required', () => {
+      assert.equal(_isLoopbackProxyUrl('http://127.0.0.1:19820'), true);
+      assert.equal(_isLoopbackProxyUrl('https://evomap.ai'), false);
+
+      const prevBase = process.env.ANTHROPIC_BASE_URL;
+      process.env.ANTHROPIC_BASE_URL = 'http://127.0.0.1:19820';
+      try {
+        assert.equal(_proxyExpected(), true);
+      } finally {
+        if (prevBase === undefined) delete process.env.ANTHROPIC_BASE_URL;
+        else process.env.ANTHROPIC_BASE_URL = prevBase;
+      }
+    });
+
+    it('detects selected Codex loopback provider config as proxy-required', () => {
+      const tmp = makeTmpDir();
+      const configFile = path.join(tmp, '.codex', 'config.toml');
+      fs.mkdirSync(path.dirname(configFile), { recursive: true });
+      fs.writeFileSync(configFile, [
+        'model_provider = "evomap-proxy"',
+        '',
+        '[model_providers.evomap-proxy]',
+        'base_url = "http://127.0.0.1:19820/v1"',
+        'wire_api = "responses"',
+        '',
+      ].join('\n'), 'utf8');
+
+      const saved = {
+        CODEX_CONFIG_FILE: process.env.CODEX_CONFIG_FILE,
+        EVOMAP_PROXY: process.env.EVOMAP_PROXY,
+        A2A_TRANSPORT: process.env.A2A_TRANSPORT,
+        EVOMAP_PROXY_URL: process.env.EVOMAP_PROXY_URL,
+        ANTHROPIC_BASE_URL: process.env.ANTHROPIC_BASE_URL,
+        CLAUDE_SETTINGS_FILE: process.env.CLAUDE_SETTINGS_FILE,
+        EVOMAP_CLAUDE_SETTINGS_FILE: process.env.EVOMAP_CLAUDE_SETTINGS_FILE,
+      };
+      process.env.CODEX_CONFIG_FILE = configFile;
+      delete process.env.EVOMAP_PROXY;
+      delete process.env.A2A_TRANSPORT;
+      delete process.env.EVOMAP_PROXY_URL;
+      delete process.env.ANTHROPIC_BASE_URL;
+      delete process.env.CLAUDE_SETTINGS_FILE;
+      delete process.env.EVOMAP_CLAUDE_SETTINGS_FILE;
+      try {
+        assert.equal(_proxyExpected(), true);
+      } finally {
+        for (const [key, value] of Object.entries(saved)) {
+          if (value === undefined) delete process.env[key];
+          else process.env[key] = value;
+        }
+        cleanup(tmp);
+      }
+    });
+
+    it('treats missing proxy settings as unhealthy when proxy is expected', () => {
+      const prevBase = process.env.ANTHROPIC_BASE_URL;
+      const prevDir = process.env.EVOLVER_SETTINGS_DIR;
+      const tmp = makeTmpDir();
+      process.env.ANTHROPIC_BASE_URL = 'http://127.0.0.1:19820';
+      process.env.EVOLVER_SETTINGS_DIR = tmp;
+      try {
+        assert.equal(_proxyHealthyIfExpected(), false);
+      } finally {
+        if (prevBase === undefined) delete process.env.ANTHROPIC_BASE_URL;
+        else process.env.ANTHROPIC_BASE_URL = prevBase;
+        if (prevDir === undefined) delete process.env.EVOLVER_SETTINGS_DIR;
+        else process.env.EVOLVER_SETTINGS_DIR = prevDir;
+        cleanup(tmp);
+      }
+    });
+
+    it('requires an authenticated Evolver proxy status response', async () => {
+      const fixtureToken = 'fixture-proxy-token';
+      const { child: authServer, url: authUrl } = await startStatusServer('auth', fixtureToken);
+      try {
+        assert.equal(_proxyReachable(authUrl, 'wrong-fixture-token'), false);
+        assert.equal(_proxyReachable(authUrl, fixtureToken), true);
+      } finally {
+        await close(authServer);
+      }
+
+      const { child: nonProxyServer, url: nonProxyUrl } = await startStatusServer('non-proxy');
+      try {
+        assert.equal(_proxyReachable(nonProxyUrl, fixtureToken), false);
+      } finally {
+        await close(nonProxyServer);
+      }
     });
   });
 

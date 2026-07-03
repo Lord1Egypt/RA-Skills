@@ -1,0 +1,37 @@
+{
+  "name": "Claude Desktop Config Example",
+  "description": "Claude Desktop 配置示例：添加 Keynote MCP Server",
+  "config_structure": {
+    "mcpServers": {
+      "keynote": {
+        "type": "stdio",
+        "command": "/usr/bin/python3",
+        "args": [
+          "/ABSOLUTE/PATH/TO/keynote-mcp-server/server.py"
+        ]
+      }
+    }
+  },
+  "install_steps": [
+    "1. 找到配置文件位置: ~/Library/Application Support/Claude/claude_desktop_config.json",
+    "2. 如果文件不存在，创建一个基本配置（参考 examples/basic_config.json）",
+    "3. 在 mcpServers 对象中添加 keynote 配置（参考上方结构）",
+    "4. 将 args 数组中的路径替换为你的实际路径（绝对路径）",
+    "5. 保存文件并重启 Claude Desktop",
+    "6. 在 Claude 对话中尝试: '检查 Keynote 状态'"
+  ],
+  "troubleshooting": [
+    "问题: 调用工具超时或失败",
+    "  → 检查 server.py 是否有可执行权限",
+    "  → 检查 python3 路径是否正确 (运行: which python3)",
+    "",
+    "问题: AppleScript 无法控制 Keynote",
+    "  → 首次调用时系统会请求权限，点击允许",
+    "  → 检查: 系统设置 → 隐私与安全性 → 自动化 → Python",
+    "",
+    "问题: 工具在 Claude 中不可用",
+    "  → 重启 Claude Desktop",
+    "  → 检查配置文件语法是否正确（JSON 格式）",
+    "  → 查看配置文件路径是否正确"
+  ]
+}

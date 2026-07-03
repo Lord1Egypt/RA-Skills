@@ -33,6 +33,7 @@ export FINXDATA_AGENT_TYPE="openclaw"  # 可用 openclaw / hermes / opencode 等
 | `agent track-news` | `/api/v1/http/agent/track/news` | 另需 `--agent-type` | 新闻跟踪快照。 |
 | `agent track-market` | `/api/v1/http/agent/track/market` | 另需 `--agent-type` | 市场跟踪快照。 |
 | `agent track-notice` | `/api/v1/http/agent/track/notice` | 另需 `--agent-type` | 公告跟踪快照。 |
+| `agent economy-china` | `/api/v1/http/agent/economy/china` | `type`；另需 `--agent-type` | 中国宏观经济报表。 |
 | `agent economy-calendar` | `/api/v1/http/agent/economy/calendar` | `year`、`month`、`months`；另需 `--agent-type` | 国内宏观数据发布日历。 |
 | `agent ontology-abstract` | `/api/v1/http/agent/ontology/abstract` | `code`；另需 `--agent-type` | 股票图谱摘要，不返回实体和关系明细。 |
 | `agent financial` | `/api/v1/http/agent/financial` | `code`；另需 `--agent-type` | 股票业绩报表简版。 |
@@ -57,6 +58,7 @@ python3 scripts/finxdata.py agent dragon-tiger --trade-date 2026-06-12 --limit 5
 python3 scripts/finxdata.py agent track-news --agent-type hermes
 python3 scripts/finxdata.py agent track-market --agent-type hermes
 python3 scripts/finxdata.py agent track-notice --agent-type hermes
+python3 scripts/finxdata.py agent economy-china --type cpi --agent-type opencode
 python3 scripts/finxdata.py agent economy-calendar --year 2026 --month 6 --months 1 --agent-type opencode
 python3 scripts/finxdata.py agent ontology-abstract --code 600519 --agent-type openclaw
 python3 scripts/finxdata.py agent financial --code 300223 --agent-type openclaw

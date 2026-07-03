@@ -1,0 +1,202 @@
+{
+  "name": "products-update",
+  "description": "A product update skill based on the Tradebee Website Builder Open API. Before sending the update request, it automatically reads the current product and writes a local JSON backup file containing the pre-update backup bundle. It then updates an existing product under a specified site language and supports updating product information such as group, name, model, images, attributes, tags, descriptions, and SEO data.",
+  "version": "2.0.1",
+  "input": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "description": "Required. Exact site language code of the product being edited, such as `en` or `fr`. Do not guess or translate it. First call `languages-get`, show the language list to the user, then copy one exact `language` value the user confirms."
+      },
+      "products": {
+        "type": "object",
+        "description": "Required. Product fields to update. `products_id` is mandatory. Every other field is optional and should be omitted unless the user explicitly wants to change it.",
+        "properties": {
+          "products_id": {
+            "type": "integer",
+            "description": "Required. Existing product ID to update. Do not invent it. Read or obtain the real product ID first, then copy that exact integer here."
+          },
+          "productsgroup_id": {
+            "type": "integer",
+            "description": "Optional. New leaf product group ID. Omit this field to keep the current group unchanged. Only send it when the user explicitly wants to move the product. If provided, it must be a positive `productsgroup_id` selected from `productsgroup-read` where `is_leaf === true`. Parent groups and `0` are not allowed."
+          },
+          "product_name": {
+            "type": "string",
+            "description": "Optional. New product title, up to 300 characters. Omit this field if the title should stay unchanged."
+          },
+          "model": {
+            "type": "string",
+            "description": "Optional. New product model, up to 50 characters. Omit this field if the model should stay unchanged."
+          },
+          "upload_images": {
+            "type": "array",
+            "description": "Optional. New image list, up to 5 images. The first image becomes the main image. Omit this field if images should stay unchanged.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Image file label used to identify this image inside the payload."
+                },
+                "base64": {
+                  "type": "string",
+                  "description": "Base64 image data with MIME prefix, for example `image/jpeg;base64,...`. Each image must be 500 kB or smaller."
+                }
+              },
+              "required": [
+                "name",
+                "base64"
+              ]
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "description": "Optional. New product attribute list, up to 15 items. Omit this field if attributes should stay unchanged.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Attribute name, up to 100 characters"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Attribute value, up to 100 characters"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            }
+          },
+          "tags": {
+            "type": "array",
+            "description": "Optional. New search keyword tags, up to 6 unique items with 3 to 50 characters each. Omit this field if tags should stay unchanged.",
+            "items": {
+              "type": "string",
+              "description": "One keyword tag."
+            }
+          },
+          "brief_description": {
+            "type": "string",
+            "description": "Optional. New short plain-text summary, up to 127 characters. Omit this field if the brief description should stay unchanged."
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional. New HTML fragment only. Do not include any `<h1>` tag, and prefer `<h2>` to `<h6>`. `<img src>` may use a normal URL or `data:image/...;base64,...`. At most 50 `<img>` tags are allowed. Each single `<img>` image must be 500 kB or smaller. The 100,000-character limit is checked after removing `<img>` tags, and the server uploads supported base64 images and replaces them with URL addresses. Before generating this field, call `rule-get` with the exact selected `language` and the exact scene value `products.description`. Do not guess, translate, normalize, shorten, or rename either `language` or `scene`. The fragment must follow the full rule payload returned by `rule-get`, including the current tenant structure rules such as starting with one root `<section>` element and placing one embedded `<style>` block at the end of the fragment. Do not use inline style attributes as the main styling method. Omit this field if the detailed description should stay unchanged."
+          },
+          "seo": {
+            "type": "object",
+            "description": "Optional. New SEO metadata. Omit the whole `seo` object if SEO should stay unchanged.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Optional. New SEO title, up to 90 characters. Omit this field if the SEO title should stay unchanged."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional. New SEO description, up to 200 characters. Omit this field if the SEO description should stay unchanged."
+              },
+              "keywords": {
+                "type": "string",
+                "description": "Optional. New SEO keywords as one comma-separated string, with up to 6 keywords and total length 120 characters or fewer. Omit this field if SEO keywords should stay unchanged."
+              }
+            }
+          }
+        },
+        "required": [
+          "products_id"
+        ]
+      },
+      "confirmation": {
+        "type": "object",
+        "description": "Required. Proof that the user explicitly approved this exact product edit request after seeing the final language, product ID, and payload. That approval must also cover the automatic pre-update backup read and local backup file write before the update request is sent, because the backup file can contain current product data and requested update payload. If the backup snapshot cannot be captured or the backup file cannot be written, the update must not run.",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "Must be `true` only after the user explicitly confirms the language, target product ID, and exact product payload to be changed. Never set this to `true` based on assumption."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Required confirmation note that restates the language, target product ID, and exact payload shown to the user before execution."
+          }
+        },
+        "required": [
+          "approved",
+          "summary"
+        ]
+      }
+    },
+    "required": [
+      "language",
+      "products",
+      "confirmation"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned result, `null` on failure.",
+        "properties": {
+          "products_id": {
+            "type": "integer",
+            "description": "Updated product ID"
+          },
+          "url": {
+            "type": "string",
+            "description": "Preview URL for the updated product. Always return this to the user and ask the user to preview it."
+          }
+        },
+        "required": [
+          "products_id",
+          "url"
+        ]
+      },
+      "backup": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Returned automatic pre-update backup information. Includes backup file metadata, the raw read API response, the extracted snapshot, and a best-effort `restore_payload` for restoring the previous product state. The local backup file can contain sensitive business content from the current record and requested update payload. Uploaded images are only partially restorable because the read API does not return the original image base64 content."
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  },
+  "dependencies": {
+    "language": {
+      "skill": "languages-get",
+      "field": "list[].language",
+      "mode": "select"
+    },
+    "products.productsgroup_id": {
+      "skill": "productsgroup-read",
+      "field": "list[].productsgroup_id",
+      "mode": "select",
+      "filter": {
+        "is_leaf": true
+      },
+      "depends_on": {
+        "language": "language"
+      },
+      "description": "Select a leaf group ID from `productsgroup-read` where `is_leaf === true`. Omit this field to keep the current group unchanged. Parent groups and `0` are not allowed."
+    }
+  }
+}

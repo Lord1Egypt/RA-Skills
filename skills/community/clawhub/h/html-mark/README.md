@@ -1,8 +1,20 @@
 # HTML Mark
 
-> **Click-to-annotate overlay for any HTML page.** Drop coral-gradient pins on any element, write feedback inline, copy out as Markdown / Plain / JSON.
+> **Click-to-annotate overlay for any HTML page.** Drop coral-gradient pins on any element, write feedback inline, copy out as Markdown / Plain / JSON — or as a **For AI** handoff that pastes straight into Claude Code for one-pass fixes.
 
 ![status](https://img.shields.io/badge/status-stable-success) ![type](https://img.shields.io/badge/type-skill-blue) ![style](https://img.shields.io/badge/style-glassmorphism-orange) ![license](https://img.shields.io/badge/license-MIT--0-lightgrey)
+
+### ▶︎ [**Try it live — no install**](https://xuxinmaxen.github.io/html-mark/)
+
+A fake product page you can annotate right now: press `M`, click anything, write a note, copy it out as Markdown. 30 seconds, nothing to set up.
+
+## New in 1.2
+
+- **For AI export** — a fourth format with a unique CSS selector + HTML snapshot per pin, written to be pasted straight into Claude Code (or any coding agent): *"Copy all → paste → every note gets fixed in one pass."*
+- **Pins anchor to their element** — they survive window resizes and responsive reflows instead of drifting off-target.
+- **Annotations persist** — stored in `localStorage` per page and restored on reload, so an accidental refresh no longer loses a review.
+- **Hover preview** — while marking, the element a click *would* annotate shows a dashed outline before you commit.
+- **Undo for Clear** — clearing all pins shows a 5-second Undo toast instead of being irreversible.
 
 ---
 

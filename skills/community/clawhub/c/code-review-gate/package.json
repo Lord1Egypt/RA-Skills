@@ -1,0 +1,56 @@
+{
+  "name": "@community/code-review-gate",
+  "version": "0.2.0",
+  "description": "AI 代码审查门禁 — 自动对 git diff 执行 7 维度结构化审查，输出分级报告并阻塞 Critical 问题",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "quality-gate",
+    "ci-cd",
+    "static-analysis",
+    "security-scan",
+    "developer-tools"
+  ],
+  "skill": {
+    "type": "cli",
+    "entry": "src/gate.py",
+    "runtime": "python",
+    "min_version": "3.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Terr123123/code-review-gate"
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "git": ">=2.0"
+  },
+  "optionalDependencies": {
+    "bandit": ">=1.7",
+    "radon": ">=6.0"
+  },
+  "categories": [
+    "developer-tools",
+    "code-quality",
+    "security",
+    "ci-cd"
+  ],
+  "config": {
+    "severity_threshold": {
+      "type": "string",
+      "default": "important",
+      "description": "最低报告级别: critical / important / minor"
+    },
+    "max_diff_lines": {
+      "type": "number",
+      "default": 1000,
+      "description": "单次审查最大行数"
+    },
+    "skip_patterns": {
+      "type": "array",
+      "default": ["*.md", "*.json", "*.lock", "docs/**"],
+      "description": "跳过审查的文件 glob 模式"
+    }
+  }
+}

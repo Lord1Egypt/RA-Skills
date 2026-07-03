@@ -8,9 +8,21 @@ import argparse
 import asyncio
 import json
 import os
+import sqlite3
 import sys
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from tg_session_guard import (
+    NetworkError,
+    NotAuthorizedError,
+    SessionLockTimeout,
+    backup_session,
+    load_last_good_info,
+    restore_last_good,
+    save_last_good,
+    session_lock,
+)
 
 try:
     from telethon import TelegramClient
@@ -104,8 +116,23 @@ def _validate_session(session_name: str) -> None:
     }
     if found:
         error["found_sessions"] = [str(f) for f in found[:10]]
-        suggestion = str(found[0]).removesuffix(".session")
-        error["suggestion"] = f"Likely fix: use --session-file {suggestion}"
+        # Deliberately no "use the freshest file" suggestion: a found file may
+        # be an empty or never-authorized session, and agents follow such
+        # suggestions blindly (this is how session paths drifted apart in
+        # production). Verify authorization first.
+        error["note"] = (
+            "Do NOT switch to a found session file blindly — it may hold no "
+            "authorized user. Verify first: tg-reader-check --online "
+            "--session-file <path without .session>"
+        )
+    lkg = load_last_good_info(session_name)
+    if lkg:
+        error["last_good_backup"] = {
+            "path": lkg.get("path"),
+            "verified_at": lkg.get("verified_at"),
+            "username": lkg.get("username"),
+        }
+        error["restore_command"] = "tg-reader-telethon restore-session"
 
     print(json.dumps(error, indent=2))
     sys.exit(1)
@@ -150,6 +177,81 @@ def get_config(config_file=None, session_file=None):
         session_name = session_name[: -len(".session")]
 
     return int(api_id), api_hash, session_name
+
+
+# ── Non-interactive client ───────────────────────────────────────────────────
+
+@asynccontextmanager
+async def _authorized_client(session_name: str, api_id: int, api_hash: str):
+    """Open a client with NO interactive auth path — never prompts for a phone.
+
+    ``connect()`` + ``is_user_authorized()`` instead of ``start()`` (which
+    prompts for a phone number on an unauthorized session). ``get_me()``
+    identifies the user for the last-good manifest.
+
+    Raises NotAuthorizedError / NetworkError; the two are never conflated:
+    a network failure says nothing about session validity, and reporting it
+    as an auth problem pushes agents toward destructive re-auth.
+
+    On a clean exit the now-verified session is snapshotted as last-known-good
+    (client disconnected first, caller still holds the lock). This lives here,
+    not in each caller, so every authorized path gets the snapshot — including
+    channel-error returns, where the session itself is fine.
+    """
+    try:
+        client = TelegramClient(session_name, api_id, api_hash)
+        await client.connect()
+    except sqlite3.Error as e:
+        raise NotAuthorizedError(f"Session file could not be opened (corrupted?): {e}")
+    except (OSError, TimeoutError, ConnectionError) as e:
+        raise NetworkError(str(e))
+    except Exception as e:
+        # Unknown failure — default to "network", the non-destructive verdict.
+        raise NetworkError(f"{type(e).__name__}: {e}")
+    body_ok = False
+    try:
+        if not await client.is_user_authorized():
+            raise NotAuthorizedError(
+                "Session file exists but holds NO authorized user. This does not "
+                "mean Telegram revoked anything — the local file may be empty, "
+                "corrupted, or overwritten by another process."
+            )
+        try:
+            me = await client.get_me()
+        except Exception as e:
+            raise NetworkError(f"Could not verify authorization: {type(e).__name__}: {e}")
+        yield client, me
+        body_ok = True
+    finally:
+        await client.disconnect()
+    if body_ok:
+        save_last_good(session_name, user_id=me.id, username=me.username, backend="telethon")
+
+
+def _print_session_error(session_name: str, error_type: str, message: str) -> None:
+    """Print a structured session-level error for the agent."""
+    err: dict = {"error": message, "error_type": error_type}
+    if error_type == "not_authorized":
+        lkg = load_last_good_info(session_name)
+        if lkg:
+            err["last_good_backup"] = {
+                "path": lkg.get("path"),
+                "verified_at": lkg.get("verified_at"),
+                "username": lkg.get("username"),
+            }
+            err["action"] = "offer_restore"
+            err["restore_command"] = "tg-reader-telethon restore-session"
+        else:
+            err["action"] = "run_auth_interactive"
+            err["fix"] = "tg-reader-telethon auth  (interactive — needs phone + code from the user)"
+        err["background_policy"] = (
+            "If this is a scheduled/background run: do NOT attempt auth or "
+            "restore, do NOT delete/move session files or edit the config — "
+            "notify the user and exit."
+        )
+    else:
+        err["action"] = "retry_later"
+    print(json.dumps(err, indent=2))
 
 
 # ── Core ─────────────────────────────────────────────────────────────────────
@@ -407,16 +509,8 @@ async def fetch_multiple(channels: list, since: datetime, limit: int, text_only:
     api_id, api_hash, session_name = get_config(config_file, session_file)
     _validate_session(session_name)
 
-    client = TelegramClient(session_name, api_id, api_hash)
-    await client.connect()
-
-    if not await client.is_user_authorized():
-        print(json.dumps({"error": "Not authorized. Please run: tg-reader-telethon auth"}))
-        await client.disconnect()
-        sys.exit(1)
-
     results = []
-    try:
+    async with _authorized_client(session_name, api_id, api_hash) as (client, me):
         for i, channel in enumerate(channels):
             channel_min_id = (min_ids or {}).get(channel, 0)
             result = await fetch_messages(client, channel, since, limit, text_only,
@@ -439,9 +533,8 @@ async def fetch_multiple(channels: list, since: datetime, limit: int, text_only:
             # Delay between channels (skip after the last one)
             if i < len(channels) - 1:
                 await asyncio.sleep(delay)
-    finally:
-        await client.disconnect()
 
+    # _authorized_client snapshots the verified session as last-good on exit.
     return results
 
 
@@ -453,49 +546,108 @@ async def fetch_single(channel: str, since: datetime, limit: int, text_only: boo
     api_id, api_hash, session_name = get_config(config_file, session_file)
     _validate_session(session_name)
 
-    client = TelegramClient(session_name, api_id, api_hash)
-    await client.connect()
-
-    if not await client.is_user_authorized():
-        print(json.dumps({"error": "Not authorized. Please run: tg-reader-telethon auth"}))
-        await client.disconnect()
-        sys.exit(1)
-
-    try:
-        return await fetch_messages(client, channel, since, limit, text_only,
-                                    comments=comments, comment_limit=comment_limit,
-                                    comment_delay=comment_delay, min_id=min_id)
-    finally:
-        await client.disconnect()
+    async with _authorized_client(session_name, api_id, api_hash) as (client, me):
+        result = await fetch_messages(client, channel, since, limit, text_only,
+                                      comments=comments, comment_limit=comment_limit,
+                                      comment_delay=comment_delay, min_id=min_id)
+    # _authorized_client snapshots the verified session as last-good on exit.
+    return result
 
 
 # ── Auth setup ───────────────────────────────────────────────────────────────
 
 async def setup_auth(config_file=None, session_file=None):
-    """Interactive first-time auth — creates session file."""
+    """Interactive first-time auth — creates session file.
+
+    An existing session file is backed up first (auth overwrites it), and the
+    fresh session is verified with get_me() and snapshotted as last-good.
+    """
     api_id, api_hash, session_name = get_config(config_file, session_file)
+    backup = backup_session(session_name)
+    if backup:
+        print(f"Existing session backed up to: {backup}")
     print(f"Starting auth for session: {session_name}.session")
     print("You will receive a code in Telegram. Enter it when prompted.\n")
-    
+
     client = TelegramClient(session_name, api_id, api_hash)
-    
+
     # Use lambda to make phone input interactive
     await client.start(phone=lambda: input("Enter phone number (with country code, e.g. +79991234567): "))
-    
+
     if await client.is_user_authorized():
         me = await client.get_me()
         print(f"\n✅ Authenticated as: {me.phone} ({me.first_name})")
-        print(json.dumps({
+        status = {
             "status": "authenticated",
             "user": me.username or str(me.id),
             "phone": me.phone,
-            "session_file": f"{session_name}.session"
-        }))
+            "session_file": f"{session_name}.session",
+        }
+        if backup:
+            status["previous_session_backup"] = backup
+        print(json.dumps(status))
     else:
         print(json.dumps({"error": "Authentication failed"}))
         sys.exit(1)
-    
+
     await client.disconnect()
+    save_last_good(session_name, user_id=me.id, username=me.username, backend="telethon")
+
+
+# ── Session restore ──────────────────────────────────────────────────────────
+
+async def _verify_authorized(session_name, api_id, api_hash):
+    """Connect non-interactively and return the authorized user."""
+    async with _authorized_client(session_name, api_id, api_hash) as (client, me):
+        return me
+
+
+def restore_session(config_file=None, session_file=None):
+    """Restore the last-known-good session copy and verify it against Telegram.
+
+    Explicit recovery for a destroyed/emptied session file. The broken file is
+    moved aside (never deleted); the backup is checksum-verified before install.
+    """
+    api_id, api_hash, session_name = get_config(config_file, session_file)
+    try:
+        restored = restore_last_good(session_name)
+    except ValueError as e:
+        print(json.dumps({
+            "error": str(e),
+            "error_type": "not_authorized",
+            "action": "run_auth_interactive",
+        }, indent=2))
+        sys.exit(1)
+
+    try:
+        me = asyncio.run(_verify_authorized(session_name, api_id, api_hash))
+    except NotAuthorizedError as e:
+        print(json.dumps({
+            "status": "restored_but_not_authorized",
+            "error": f"Restored the last-good copy, but Telegram does not accept it: {e}",
+            "error_type": "not_authorized",
+            "action": "run_auth_interactive",
+            **restored,
+        }, indent=2))
+        sys.exit(1)
+    except NetworkError as e:
+        print(json.dumps({
+            "status": "restored_unverified",
+            "error": f"Restored the last-good copy, but could not reach Telegram to verify: {e}",
+            "error_type": "network",
+            "action": "retry_later",
+            **restored,
+        }, indent=2))
+        sys.exit(1)
+
+    # _verify_authorized already refreshed the last-good snapshot via the
+    # context manager — no explicit save needed here.
+    print(json.dumps({
+        "status": "restored",
+        "verified": True,
+        "user": me.username or str(me.id),
+        **restored,
+    }, indent=2))
 
 
 # ── Output helpers ────────────────────────────────────────────────────────────
@@ -632,12 +784,47 @@ def main():
     # auth
     sub.add_parser("auth", help="Authenticate with Telegram (first-time setup)")
 
+    # restore-session
+    sub.add_parser("restore-session",
+                   help="Restore the last-known-good session backup and verify it")
+
     args = parser.parse_args()
     cf = args.config_file
     sf = args.session_file
+    _, _, session_name = get_config(cf, sf)
 
+    if args.cmd != "auth":
+        # Hard guard: non-interactive commands must never block on stdin.
+        # _authorized_client leaves no prompt path, but if any library code
+        # still tries to read input it gets EOFError instead of hanging.
+        sys.stdin = open(os.devnull)
+
+    try:
+        # One tg-reader process per session at a time — concurrent access
+        # corrupts the SQLite session file (see tasks/task-0004.md).
+        with session_lock(session_name):
+            _dispatch(args, cf, sf)
+    except SessionLockTimeout:
+        _print_session_error(
+            session_name, "busy",
+            "Another tg-reader process is using this session — try again later",
+        )
+        sys.exit(1)
+    except NotAuthorizedError as e:
+        _print_session_error(session_name, "not_authorized", str(e))
+        sys.exit(1)
+    except NetworkError as e:
+        _print_session_error(session_name, "network", f"Could not reach Telegram: {e}")
+        sys.exit(1)
+
+
+def _dispatch(args, cf, sf):
     if args.cmd == "auth":
         asyncio.run(setup_auth(cf, sf))
+        return
+
+    if args.cmd == "restore-session":
+        restore_session(cf, sf)
         return
 
     if args.cmd == "fetch":

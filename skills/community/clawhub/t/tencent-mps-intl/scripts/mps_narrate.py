@@ -32,23 +32,23 @@ COS storage convention:
 
 Usage:
   # Single episode short drama narration (default with erasure, output 1 video)
-  python mps_narrate.py --url https://example.com/drama_ep01.mp4 --scene short-drama
+  python3 mps_narrate.py --url https://example.com/drama_ep01.mp4 --scene short-drama
 
   # COS input (recommended, using --cos-input-key)
-  python mps_narrate.py --cos-input-key /input/drama_ep01.mp4 --scene short-drama
+  python3 mps_narrate.py --cos-input-key /input/drama_ep01.mp4 --scene short-drama
 
   # Three-episode short drama combined narration, output 3 different versions
-  python mps_narrate.py \\
+  python3 mps_narrate.py \\
       --url https://example.com/ep01.mp4 \\
       --extra-urls https://example.com/ep02.mp4 https://example.com/ep03.mp4 \\
       --scene short-drama \\
       --output-count 3
 
   # Original video has no subtitles, disable erasure
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
 
   # Dry Run (preview escaped Extended Parameter)
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
 
 Environment variables:
   TENCENTCLOUD_SECRET_ID   - Tencent Cloud SecretId
@@ -85,7 +85,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.mps.v20190612 import mps_client, models
 except ImportError:
-    print("Error: Please install Tencent Cloud SDK first: pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("Error: Please install Tencent Cloud SDK first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
 
@@ -320,7 +320,7 @@ def process_media(args):
         else:
             print()
             print(f"Note: Task is processing in the background, you can use the following command to check progress:")
-            print(f"  python scripts/mps_get_video_task.py --task-id {task_id}")
+            print(f"  python3 scripts/mps_get_video_task.py --task-id {task_id}")
 
         return result
 
@@ -336,32 +336,32 @@ def main():
         epilog="""
 Examples:
   # URL input + default scene (short-drama, including erasure), output to TENCENTCLOUD_COS_BUCKET/output/narrate/
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama
 
   # COS path input (recommended, use after local upload)
-  python mps_narrate.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
+  python3 mps_narrate.py --cos-input-bucket mybucket-125xxx --cos-input-region ap-guangzhou --cos-input-key
   /input/drama.mp4 --scene short-drama
 
   # COS input (bucket and region automatically obtained from environment variables)
-  python mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
+  python3 mps_narrate.py --cos-input-key /input/drama.mp4 --scene short-drama
 
   # Original video has no subtitles, disable erasure
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama-no-erase
 
   # Multi-episode video combined narration (first episode with --url, subsequent episodes with --extra-urls)
-  python mps_narrate.py \\
+  python3 mps_narrate.py \\
       --url https://example.com/ep01.mp4 \\
       --extra-urls https://example.com/ep02.mp4 https://example.com/ep03.mp4 \\
       --scene short-drama
 
   # Output 3 different versions of videos
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --output-count 3
 
   # Dry Run (only print request parameters)
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --dry-run
 
   # Do not wait for task completion, only submit
-  python mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
+  python3 mps_narrate.py --url https://example.com/drama.mp4 --scene short-drama --no-wait
 
 Preset scenes:
   short-drama          Short drama video, has subtitles on screen (default, includes erasure)
@@ -412,6 +412,17 @@ Environment variables:
                         help="Automatically download results to specified directory after task completion (default: do not download; automatically downloads when path is specified)")  # NOCA:line-too-long(content cannot be shortened)
 
     args = parser.parse_args()
+
+    # Auto-load environment variables (execute at entry to ensure all downstream functions can access)
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=getattr(args, "verbose", False))
+        except SystemExit:
+            raise
+        except Exception as e:
+            if getattr(args, "verbose", False):
+                print(f"⚠️  Auto-load env failed: {e}", file=sys.stderr)
+
     # --url local path automatically converted to local upload mode
     if getattr(args, 'url', None) and not getattr(args, 'local_file', None):
         _val = args.url

@@ -1,3 +1,19 @@
+---
+name: couponclaw
+description: "CouponClaw finds coupons, stacks cashback, and calculates the exact final price before checkout — across China, US, UK, Australia, and Southeast Asia. Verified coupon sites + cashback portals + DTC first-order discounts in one 3-layer search."
+keywords: coupon finder, coupon codes, promo code, discount code, cashback, cashback stacking, savings, best price, final price, checkout discount, voucher codes, deal finder, RetailMeNot, VoucherCodes, OzBargain, ShopBack, Rakuten, TopCashback, smzdm, DTC discount, first order discount, 优惠券, 返利, 优惠码, 折扣码, 薅羊毛, 返现, 쿠폰, クーポン, mã giảm giá
+license: MIT-0
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
+metadata:
+  openclaw:
+    runtime:
+      node: ">=18"
+---
+
 # CouponClaw
 
 > Find coupons, stack cashback, and maximize savings — across China, US, UK, Australia, Southeast Asia, and DTC brands worldwide.

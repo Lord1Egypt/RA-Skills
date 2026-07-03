@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "huahua-daily"
-version = "2.0.6"
+version = "2.3.0"
 description = "花花日记 MCP Server - 让 OpenClaw 等 AI agent 访问花花日记的数据"
 requires-python = ">=3.10"
 dependencies = [

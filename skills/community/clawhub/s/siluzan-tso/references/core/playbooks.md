@@ -121,8 +121,8 @@
   1. （可选）Read `subagent-orchestration.md` § P6 决定是否分阶段委派。
   2. 确认 `mediaCustomerId` 与 `--start` / `--end`。
   3. 同一 `--json-out` 目录执行模板命令组合：`stats`、`balance`、`google-analysis --sections overview,campaigns,keywords,search-terms,campaign-device,campaign-geo-matched`。
-  4. 脚本读盘 → 交付话术 + 多 Sheet `.xlsx`（无 CLI 写表命令）。
-- **交付/确认**：**不**按 P4 默认 8 维追加；金额读 `*Yuan` 字段。
+  4. 脚本读盘 → 按 `okki-weekly-google-client.md` **默认客户话术**填数交付（用户另有话术/增删条目时从其自定义）；并产出多 Sheet `.xlsx`（无 CLI 写表命令）。
+- **交付/确认**：**不**按 P4 默认 8 维追加；金额读 `*Yuan` 字段；对外话术数值须与 xlsx 一致。
 
 ---
 

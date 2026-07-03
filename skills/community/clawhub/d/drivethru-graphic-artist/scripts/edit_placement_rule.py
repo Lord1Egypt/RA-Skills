@@ -16,9 +16,11 @@ otherwise the bundled starter. Override the file with ``--rules``.
 Subcommands:
     edit_placement_rule.py show [--category C] [--placement P]
     edit_placement_rule.py add <category> <placement> \
-        --width-ratio F --x-center-ratio F --y-top-ratio F [--rotation-deg F]
+        --width-ratio F --x-center-ratio F --y-top-ratio F \
+        [--rotation-deg F] [--max-height-ratio F]
     edit_placement_rule.py update <category> <placement> \
-        [--width-ratio F] [--x-center-ratio F] [--y-top-ratio F] [--rotation-deg F]
+        [--width-ratio F] [--x-center-ratio F] [--y-top-ratio F] \
+        [--rotation-deg F] [--max-height-ratio F]
     edit_placement_rule.py remove <category> <placement>
 
 After any mutation the helper prints a JSON receipt.
@@ -44,6 +46,7 @@ _RATIO_BOUNDS = {
     "x_center_ratio": (0.0, 1.0),
     "y_top_ratio": (0.0, 1.0),
     "rotation_deg": (-180.0, 180.0),
+    "max_height_ratio": (0.01, 1.5),
 }
 
 
@@ -151,6 +154,8 @@ def _rule_from_args(args) -> dict:
         "y_top_ratio": float(args.y_top_ratio),
         "rotation_deg": float(args.rotation_deg or 0.0),
     }
+    if getattr(args, "max_height_ratio", None) is not None:
+        rule["max_height_ratio"] = float(args.max_height_ratio)
     return rule
 
 
@@ -164,8 +169,10 @@ def _patch_from_args(args) -> dict:
         patch["y_top_ratio"] = float(args.y_top_ratio)
     if args.rotation_deg is not None:
         patch["rotation_deg"] = float(args.rotation_deg)
+    if getattr(args, "max_height_ratio", None) is not None:
+        patch["max_height_ratio"] = float(args.max_height_ratio)
     if not patch:
-        raise SystemExit("ERROR: no fields to update. Pass at least one of --width-ratio / --x-center-ratio / --y-top-ratio / --rotation-deg.")
+        raise SystemExit("ERROR: no fields to update. Pass at least one of --width-ratio / --x-center-ratio / --y-top-ratio / --rotation-deg / --max-height-ratio.")
     return patch
 
 
@@ -189,6 +196,8 @@ def main() -> None:
     add.add_argument("--x-center-ratio", type=float, required=True)
     add.add_argument("--y-top-ratio", type=float, required=True)
     add.add_argument("--rotation-deg", type=float, default=0.0)
+    add.add_argument("--max-height-ratio", type=float, default=None,
+                     help="Optional: cap print height as a fraction of the garment bbox height (fits a location's height box)")
 
     update = sub.add_parser("update", help="Update fields on an existing rule")
     update.add_argument("category")
@@ -197,6 +206,8 @@ def main() -> None:
     update.add_argument("--x-center-ratio", type=float, default=None)
     update.add_argument("--y-top-ratio", type=float, default=None)
     update.add_argument("--rotation-deg", type=float, default=None)
+    update.add_argument("--max-height-ratio", type=float, default=None,
+                        help="Optional: cap print height as a fraction of the garment bbox height")
 
     remove = sub.add_parser("remove", help="Remove a rule")
     remove.add_argument("category")

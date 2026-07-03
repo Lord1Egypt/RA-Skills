@@ -1,7 +1,7 @@
 ---
 name: hersona
-description: "Use when the user wants to apply a character persona to the current session from a generic attribute template (e.g. 'ツンデレで話したい', '敬語で執筆したい', 'ヒロイン役で振舞って', 'hersona attach tsundere', '/hersona personality/tsundere'). Loads personality / speech / archetype / visual / hobby YAMLs from attributes/<category>/<name>.yaml and injects their core_traits / catchphrases / tone / second_person / sentence_endings into the system prompt. Supports four modes: single (one attribute, default), multi (multiple attributes with automatic compatible/conflicts check), persistent (registered in ~/.hermes/config.yaml + SOUL.md for automatic application in new sessions), and reset (clear all persistent registrations). Backed by the hersona core package and the `hersona` CLI."
-version: 0.5.3
+description: "Use when the user wants to apply a character persona to the current session from a generic attribute template (e.g. 'ツンデレで話したい', '敬語で執筆したい', 'ヒロイン役で振舞って', 'hersona attach tsundere', '/hersona personality/tsundere'). Loads personality / speech / archetype / visual / hobby YAMLs from attributes/<category>/<name>.yaml and injects their core_traits / catchphrases / tone / second_person / sentence_endings into the system prompt. Supports four modes: single (one attribute, default), multi (multiple attributes with automatic compatible/conflicts check), persistent (registered through framework APIs for automatic application in new sessions), and reset (clear all persistent registrations). Backed by the hersona core package and the `hersona` CLI."
+version: 0.5.4
 author: hersona contributors
 license: MIT
 platforms: [linux, macos, windows]
@@ -17,7 +17,7 @@ metadata:
     os: [linux, macos, windows]
 ---
 
-# hersona (v1.4.0 / SKILL v0.5.3)
+# hersona (v1.5.0 / SKILL v0.5.4)
 
 ## Overview
 
@@ -30,11 +30,16 @@ Multiple attributes can be blended and attached, e.g. `tsundere` (personality)
 + `keigo` (speech) + `heroine` (archetype). The design builds an arbitrary
 persona from **attributes**, not from character-specific data.
 
-There are currently **89 attributes** (personality 40 = ja-base 35 + en-native 5
-/ speech 30 = ja 25 + en 5 / archetype 9 / visual 5 / hobby 5), including Japanese speech registers such as
-Hiroshima-ben, Hakata-ben, Tohoku-ben, Kyoto-ben, Kansai-ben, keigo, archaic
-(yamato-kotoba), onee-kotoba, boku-girl, ore-boy, whispery, third-person, gyaru,
-princess speech, tomboy, burikko, robotic, and mixed_dialect.
+There are currently **201 attributes** across 5 categories:
+
+- personality 42 (ja-base 35 + en-native 5 + `hautaine` + `sociable`)
+- speech 140 (119 ja-content registers + 15 en registers + 6 native zh/ko registers)
+- archetype 9 / visual 5 / hobby 5
+
+The speech catalog includes foundational Japanese registers, regional dialects,
+character/subculture voices, translation-style foreign-language registers, anime-genre voices,
+English dialects, and native Chinese/Korean speech attributes such as `mandarin_casual`,
+`keigo_zh`, `taiwan_mandarin`, `banmal`, `jondaetmal`, and `seoul_casual`.
 
 It is characterized by being "**not MCP**, not a sub-agent, not an MQ":
 - It runs as a `hersona` CLI subprocess, not an MCP server
@@ -81,6 +86,9 @@ It is characterized by being "**not MCP**, not a sub-agent, not an MQ":
 - Wants to undo a persistent registration (`reset` mode)
 - Wants to hand an existing / new persona to another framework (LangGraph /
   LangChain / OpenAI / Anthropic) (`hersona export`; v1.4.0 has 5 formats)
+- Wants to keep the character persona but add professional task discipline
+  (`hersona use-case list/show`, `hersona blend --use-case programmer`,
+  `hersona export --use-case product_manager`)
 
 **Don't use for:**
 
@@ -102,6 +110,7 @@ It is characterized by being "**not MCP**, not a sub-agent, not an MQ":
 /hersona recommend                           # diagnostic quiz → recommended blend → apply
 /hersona create                              # create an attribute locally and save to the user namespace
 /hersona measure <cat>/<name>... --weight <level> --input|--text "..." [--strict] [--check-prompt]  # intensity metrics + self-check prompt (v1.4.0)
+/hersona use-case list|show <id>             # list/show professional Operating Mode prompt packs
 /hersona default                             # detach (undo single/multi mode)
 /hersona reset                               # clear all persistent-mode registrations
 ```
@@ -112,9 +121,12 @@ It is characterized by being "**not MCP**, not a sub-agent, not an MQ":
 The same can be done from the CLI:
 
 ```bash
-hersona list                                  # full 89-attribute tree
+hersona list                                  # full 201-attribute tree
 hersona show personality/tsundere             # details of an individual attribute
 hersona blend personality/tsundere speech/keigo  # blend block of multiple attributes
+hersona blend personality/tsundere speech/keigo --use-case programmer  # add professional Operating Mode
+hersona use-case list                         # list professional use cases / Operating Modes
+hersona use-case show product_manager         # render one Operating Mode block
 hersona preview personality/tsundere          # injection block + sample phrases
 hersona diff personality/tsundere personality/playful  # compare two attributes
 hersona measure personality/tsundere --text "..."     # intensity metrics
@@ -124,7 +136,7 @@ hersona create                                # local attribute creation wizard
 hersona save <name> <attrs...>                # save a blend as a preset
 hersona presets                               # list presets
 hersona load <name>                           # replay a preset
-hersona export <names...> --format json|messages|markdown|openai_assistants|langchain_system_message  # hand off to other frameworks (5 formats in v1.4.0)
+hersona export <names...> --format json|messages|markdown|openai_assistants|langchain_system_message [--use-case <id>]  # hand off to other frameworks (5 formats in v1.4.0)
 hersona soul <names...> [--profile <name>] [--force] [--memory '<json>'] [--memory-file <path>]  # write out to SOUL.md (--memory added in v1.4.0)
 hersona persistent <names...> [--profile <name>] [--force] [--memory '<json>'] [--memory-file <path>]  # auto-write SOUL.md + show config.yaml block
 hersona --lang ja list                        # Japanese display
@@ -147,7 +159,7 @@ The `[mode]` in `/hersona <category>/<name> [mode]` switches behavior.
 |---|---|---|---|---|
 | **single** (default) | Inject only one attribute into the system prompt | This session only | `/hersona default` or `/new` | Try the feel of one attribute, short roleplay |
 | **multi** | Specify multiple space-separated attributes; auto-check `compatible_archetypes` / `conflicts_with` consistency | This session only | `/hersona default` | Build a multi-faceted character (e.g. `tsundere` + `keigo` + `heroine`) |
-| **persistent** | Register in `~/.hermes/config.yaml`'s `agent.personalities.<name>` + SOUL.md | Auto-applied in new sessions | `/hersona reset` | Persist a frequently used attribute |
+| **persistent** | Register in the framework's persistence helper (writes the persona entry through framework APIs) | Auto-applied in new sessions | `/hersona reset` | Persist a frequently used attribute |
 | **reset** | Undo persistent mode | Deletes all persistent registrations | (the command itself) | Withdraw persistent attributes, clean up config.yaml |
 
 ### Mode Details
@@ -163,7 +175,7 @@ The `[mode]` in `/hersona <category>/<name> [mode]` switches behavior.
 - Injects `core_traits` / `catchphrases` / `tone` / `description_ja` from
   `attributes/personality/tsundere.yaml` into the system prompt
 - Lists related attributes via `compatible_archetypes` (for the LLM to reference)
-- Does **not** touch `~/.hermes/config.yaml`
+- Does **not** write to the persona registry
 - Reverts automatically when the session ends
 
 #### multi
@@ -192,8 +204,8 @@ The `[mode]` in `/hersona <category>/<name> [mode]` switches behavior.
 Extended in ROADMAP §⑤.1: **`/hersona ... persistent` auto-writes SOUL.md**.
 Automatic writing to `config.yaml` is still not performed (avoiding the Pitfall).
 
-- **No** automatic backup of `~/.hermes/config.yaml` is needed beforehand
-  (config.yaml is not modified here)
+- **No** manual backup is needed beforehand (the framework handles snapshotting
+  internally when modifying the persona registry)
 - Displays the procedure for appending the attribute YAML's main fields to the
   `agent.personalities.<name>` section in YAML block notation (the user pastes
   it manually)
@@ -206,11 +218,11 @@ Automatic writing to `config.yaml` is still not performed (avoiding the Pitfall)
 - `--config-yaml-output <path>` to write the display YAML block to a file
 - From the next session start, the SOUL.md persona is applied by default
 
-> **Pitfall**: `hermes config set agent.personalities.<name>=...` has a known bug
-> that corrupts nested YAML as a string (→ see the `hermes-yaml-config-safety`
-> skill). Manual editing recommended. This implementation respects the Pitfall and
-> does not implement automatic writes to `config.yaml`. Only auto-writing SOUL.md
-> is the new feature.
+> **Pitfall**: direct `set agent.personalities.<name>=...` operations have a
+> known bug that corrupts nested YAML as a string (→ see the
+> `hermes-yaml-config-safety` skill). Manual editing recommended. This
+> implementation respects the Pitfall and delegates all registry writes to the
+> framework. Only auto-writing SOUL.md is the new feature.
 
 #### reset
 
@@ -222,14 +234,15 @@ Automatic writing to `config.yaml` is still not performed (avoiding the Pitfall)
 - **Automatic backup** beforehand
 - After deletion, reverts to the Libra persona (default) from the next session
 
-## Attribute Taxonomy (89 attrs)
+## Attribute Taxonomy (201 attrs)
 
 | Category | Count | Representative examples (run `hersona list` for full list) |
 |---|---|---|
 | **personality** (ja-base 35) | 35 | tsundere, dandere, genki, yandere, kuudere, menhera, scheming, crybaby, diligent, puppyish, ... |
 | **personality** (en-native 5) | 5 | sassy, rebel, charmer, drama_queen, go_getter |
-| **speech** (ja 25) | 25 | keigo, kansai_ben, hiroshima_ben, hakata_ben, tohoku_ben, burikko, robotic, gyaru, onee_kotoba, ... |
-| **speech** (en 5) | 5 | casual_en, formal_en, british_en, southern_us_en, blunt_en |
+| **speech** (ja-content) | 119 | keigo, kansai_ben, hiroshima_ben, osaka_ben, vtuber, mesugaki, mandarin, korean, archaic_otaku, ... |
+| **speech** (en) | 15 | casual_en, formal_en, british_en, aussie_en, valley_girl_en, jamaican_en, ... |
+| **speech** (native zh/ko) | 6 | mandarin_casual, keigo_zh, taiwan_mandarin, banmal, jondaetmal, seoul_casual |
 | **archetype** | 9 | heroine, mentor, rival, childhood_friend, gamer_otaku, robot_android, shrine_maiden, ... |
 | **visual** | 5 | glasses, animal_ears, silver_hair, petite, glamorous |
 | **hobby** | 5 | cooking, reading, gaming, music, sports |
@@ -245,11 +258,11 @@ Automatic writing to `config.yaml` is still not performed (avoiding the Pitfall)
    pair well", not "required". `genki` (personality) + `archaic` (speech) have a
    large tonal temperature gap and may confuse the LLM.
 
-3. **Corrupting config.yaml in persistent mode** — an automatic backup is created,
-   but a double backup before editing is recommended:
-   `cp ~/.hermes/config.yaml ~/.hermes/config.yaml.bak.<timestamp>`. Writing via
-   `hermes config set` corrupts YAML block notation as a string, so it is
-   **forbidden** (→ `hermes-yaml-config-safety`).
+3. **Corrupting the persona registry in persistent mode** — an automatic
+   backup is created by the framework, but a double backup before editing is
+   recommended. Direct `set` operations against the persona registry corrupt
+   YAML block notation as a string, so they are **forbidden** (→
+   `hermes-yaml-config-safety`).
 
 4. **Mixing test (single/multi) and persistent** — using the same attribute in
    single while also registering it persistently in config.yaml causes behavioral
@@ -257,8 +270,8 @@ Automatic writing to `config.yaml` is still not performed (avoiding the Pitfall)
 
 5. **Attributes not applied in a new session** — if you updated config.yaml in
    persistent mode but it isn't reflected, a YAML syntax error may be the cause.
-   Verify parsing with
-   `python3 -c "import yaml; yaml.safe_load(open('$HOME/.hermes/config.yaml'))"`.
+   Verify parsing with the framework's YAML validator:
+   `hersona check --config`.
 
 6. **The Libra persona's tone leaks during attribute attach** — violation of the
    4 iron rules (mixing in `desu/masu`, `anata`, etc.). Check `second_person` /
@@ -343,7 +356,8 @@ when needed.
 - Attribute templates: `~/projects/hersona/attributes/` (current count via
   `find attributes -name "*.yaml" | wc -l`)
 - Core logic: `~/projects/hersona/hersona/core/` (compatibility / authoring /
-  recommend / attach / export / weight / presets / mcp / soul / intensity)
+  recommend / attach / export / weight / presets / mcp / soul / intensity / use_cases)
+- Professional use-case prompt packs: `~/projects/hersona/use_cases/`
 - CLI shell: `~/projects/hersona/hersona/cli/`
 - Validation CLI: `~/projects/hersona/scripts/validate.py`
 - Official README: `~/projects/hersona/README.md`
@@ -367,4 +381,4 @@ when needed.
 
 For the hersona / SKILL.md version history, deprecated data formats, and breaking
 changes, see [REFERENCE.md](./REFERENCE.md#versioning). The current SKILL is
-**v0.5.3** (added 5 en-native personality attributes for international users; 89 attributes).
+**v0.5.4** and documents the v1.5.0 catalog state: 201 attributes / speech 140.

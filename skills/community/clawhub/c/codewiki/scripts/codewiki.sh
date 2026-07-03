@@ -64,10 +64,12 @@ DESCRIPTION
   Clones (or pulls) the target Git repository into an output directory, then
   invokes `codewiki generate` to produce a wiki under <output>/<repo>/wiki.
 
-  Repository (-r) accepts two forms:
+  Repository (-r) accepts these forms:
     1. "<group>/<repository>"           -> expanded to
        https://github.com/<group>/<repository>.git
     2. "https://..." or "git@..."       -> used verbatim as the clone URL.
+    3. "file://<path>" or local path    -> use an existing local directory
+       directly (no git operations). The directory must exist.
 
   When --render is supplied, the sibling `render_docs.sh` is invoked after the
   wiki is generated, turning the Markdown into a static MkDocs and/or VitePress
@@ -102,6 +104,11 @@ EXAMPLES
 
   # Generate + render both stacks, then serve on port 3000:
   codewiki.sh -r foo/bar --render both --serve 3000
+
+  # Local project (file:// protocol or plain path):
+  codewiki.sh -r file:///home/user/my-project
+  codewiki.sh -r /home/user/my-project
+  codewiki.sh -r ./my-project --render both --serve 3000
 
 EXIT CODES
   0  Success          1  Usage error
@@ -168,6 +175,32 @@ check_dependencies() {
 normalize_repository() {
   local raw="$1"
 
+  # Case 3: file:// protocol — strip the scheme and resolve to an absolute path.
+  if [[ "$raw" == file://* ]]; then
+    local local_path="${raw#file://}"
+    # Resolve relative components (e.g. file://./foo or file://../foo).
+    if [[ -d "$local_path" ]]; then
+      local resolved
+      resolved="$(cd "$local_path" && pwd)"
+      printf 'file://%s' "$resolved"
+    else
+      die 1 "Local directory does not exist: '$local_path'"
+    fi
+    return 0
+  fi
+
+  # Case 3b: plain local path (absolute or relative starting with . or ..).
+  if [[ "$raw" == /* || "$raw" == ./* || "$raw" == ../* ]]; then
+    if [[ -d "$raw" ]]; then
+      local resolved
+      resolved="$(cd "$raw" && pwd)"
+      printf 'file://%s' "$resolved"
+    else
+      die 1 "Local directory does not exist: '$raw'"
+    fi
+    return 0
+  fi
+
   # Case 2: already a full URL — accept https:// or git@...: forms verbatim.
   if [[ "$raw" == https://* || "$raw" == git@* ]]; then
     printf '%s' "$raw"
@@ -185,7 +218,7 @@ normalize_repository() {
   fi
 
   # Reject anything else with a useful diagnostic.
-  die 1 "Invalid repository '$raw'. Use '<group>/<repo>' or a full https:// / git@ URL."
+  die 1 "Invalid repository '$raw'. Use '<group>/<repo>', a full https:// / git@ URL, or a local path."
 }
 
 # -----------------------------------------------------------------------------
@@ -199,6 +232,14 @@ normalize_repository() {
 derive_repo_dirname() {
   local url="$1"
   local name
+
+  # Local repository (file://): use the directory basename.
+  if [[ "$url" == file://* ]]; then
+    local local_path="${url#file://}"
+    name="$(basename "$local_path")"
+    printf '%s' "${name:-repo}"
+    return 0
+  fi
 
   # Drop everything up to the final '/' (HTTPS) or ':' (SSH) so we're left
   # with "<repo>[.git]". We strip the longest prefix matching either
@@ -216,12 +257,23 @@ derive_repo_dirname() {
 # clone_or_pull <clone_url> <dest>
 # Ensure the repository is checked out at <dest>.
 #   - If <dest> is a git repo, run `git pull` to refresh it.
-#   - Otherwise, `git clone --depth 1` into <dest> (shallow, default branch).
+#   - Otherwise, `git clone --depth 1 --single-branch` into <dest> (shallow, default branch).
 # Exits with code 3 on any failure.
 # -----------------------------------------------------------------------------
 clone_or_pull() {
   local url="$1"
   local dest="$2"
+
+  # Local repository (file://): the directory must already exist.
+  # We use it in-place — no git clone/pull.
+  if [[ "$url" == file://* ]]; then
+    local local_path="${url#file://}"
+    if [[ ! -d "$local_path" ]]; then
+      die 3 "Local directory does not exist: '$local_path'"
+    fi
+    log "Using local directory: '$local_path' (no git operations)."
+    return 0
+  fi
 
   # `.git` presence is the canonical "is this a working clone?" check.
   if [[ -d "$dest/.git" ]]; then
@@ -231,11 +283,11 @@ clone_or_pull() {
       die 3 "git pull failed in '$dest'. Resolve conflicts or remove the directory."
     fi
   else
-    # --depth 1  : shallow clone, default branch only. Fast and small.
-    # We do NOT pass --no-single-branch: codewiki needs the working tree,
-    # not history, so the default branch tip is sufficient.
-    log "Cloning (shallow) '$url' into '$dest'."
-    if ! git clone --depth 1 "$url" "$dest"; then
+    # --depth 1 --single-branch : shallow clone, default branch only. Fast and small.
+    # We pass --single-branch to avoid fetching other branches, making the clone
+    # even more efficient for large repositories.
+    log "Cloning (shallow, single-branch) '$url' into '$dest'."
+    if ! git clone --depth 1 --single-branch "$url" "$dest"; then
       die 3 "git clone failed for '$url'."
     fi
   fi
@@ -445,10 +497,18 @@ main() {
   # Step 4: compute the destination path inside OUTPUT_DIR.
   local repo_name repo_dir
   repo_name="$(derive_repo_dirname "$clone_url")"
-  repo_dir="$OUTPUT_DIR/$repo_name"
-  log "Repository directory: $repo_dir"
 
-  # Step 5: get the code onto disk (clone or pull).
+  # For local repositories (file://), use the directory directly.
+  # For remote repos, compute the path under OUTPUT_DIR.
+  if [[ "$clone_url" == file://* ]]; then
+    repo_dir="${clone_url#file://}"
+    log "Repository directory: $repo_dir (local)"
+  else
+    repo_dir="$OUTPUT_DIR/$repo_name"
+    log "Repository directory: $repo_dir"
+  fi
+
+  # Step 5: get the code onto disk (clone/pull for remote, verify for local).
   clone_or_pull "$clone_url" "$repo_dir"
 
   # Step 6: generate the wiki.

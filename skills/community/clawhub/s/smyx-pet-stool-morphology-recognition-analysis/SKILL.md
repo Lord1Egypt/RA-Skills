@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-stool-morphology-recognition-analysis"
 description: "Triggers when a user provides an image/video URL or file of dog toilet area or outdoor dog-walking path for analysis; supports local uploads or network URLs to call server-side APIs for pet stool morphology recognition, analyzing stool color (brown, black, red, white), shape (formed, loose/soft, watery, granular hard), and the presence of blood or mucus, outputting standardized abnormal observation features to help early discovery of gastrointestinal diseases (without diagnosing diseases). Application scenarios: dog toilets, outdoor dog-walking path cameras, pet health monitoring, multi-pet households. | 当用户提供狗厕所或户外遛狗路径区域的粪便图像/视频时，触发本技能进行排便形态识别分析；支持通过上传本地文件或网络URL，调用服务端API识别粪便颜色（棕、黑、红、白）、形状（条状、稀糊、颗粒）、是否带血或粘液，输出异常特征观察结果，帮助早期发现肠胃疾病（不诊断疾病）。应用场景：狗厕所、遛狗路径摄像头、宠物健康监测、多宠家庭。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 
@@ -30,12 +30,13 @@ multi-pet households.
 当用户提供狗厕所或户外遛狗路径区域的粪便图像/视频时，触发本技能进行排便形态识别分析；支持通过上传本地文件或网络URL，调用服务端API识别粪便颜色（棕、黑、红、白）、形状（条状、稀糊、颗粒）、是否带血或粘液，输出异常特征观察结果，帮助早期发现肠胃疾病（不诊断疾病）。应用场景：狗厕所、遛狗路径摄像头、宠物健康监测、多宠家庭。
 
 ## 🤖 AI 角色 | AI Role
-**你是一个专业的宠物健康监测AI。你的任务是基于宠物排便区域的图像或视频帧，分析粪便的形态特征（颜色、形状、有无带血或粘液），输出标准化观察结果。不要提供疾病诊断或治疗方案，仅客观描述粪便外观。
-**
+| 角色要点 | 说明 |
+|---|---|
+| 说明 1 | **你是一个专业的宠物健康监测AI。你的任务是基于宠物排便区域的图像或视频帧，分析粪便的形态特征（颜色、形状、有无带血或粘液），输出标准化观察结果。不要提供疾病诊断或治疗方案，仅客观描述粪便外观。 ** |
 
 ## 🎬 技能演示 | Skill Demo
 
-[▶️ 点击查看技能使用介绍](https://lifeemergence.com/guide.html)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
 ---
 
@@ -47,19 +48,19 @@ multi-pet households.
 
 ### 2. 🛠️ 能力范围
 
-| 能力类型 | 具体能力 |
-|---|---|
-| 能力 1 | 图像/视频分析 |
-| 能力 2 | 粪便颜色识别（棕 |
-| 能力 3 | 黑 |
-| 能力 4 | 红 |
-| 能力 5 | 白） |
-| 能力 6 | 粪便形状识别（条状 |
-| 能力 7 | 稀糊 |
-| 能力 8 | 颗粒） |
-| 能力 9 | 带血/粘液检测 |
-| 能力 10 | 异常特征输出 |
-| 能力 11 | 肠胃健康风险提示 |
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 图像/视频分析 |
+| 2 | 粪便颜色识别（棕 |
+| 3 | 黑 |
+| 4 | 红 |
+| 5 | 白） |
+| 6 | 粪便形状识别（条状 |
+| 7 | 稀糊 |
+| 8 | 颗粒） |
+| 9 | 带血/粘液检测 |
+| 10 | 异常特征输出 |
+| 11 | 肠胃健康风险提示 |
 
 ### 3. ⚡ 触发条件
 
@@ -161,7 +162,7 @@ python -m scripts.smyx_pet_stool_morphology_recognition_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供健康参考，不提供疾病诊断或治疗建议 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 `reportImageUrl` 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 `` 作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

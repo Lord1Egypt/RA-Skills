@@ -108,6 +108,7 @@ def parse_inline_sequence(value: str) -> list[object] | None:
     items: list[str] = []
     current: list[str] = []
     quote: str | None = None
+    bracket_depth = 0
     for char in inner:
         if quote:
             current.append(char)
@@ -118,15 +119,32 @@ def parse_inline_sequence(value: str) -> list[object] | None:
             quote = char
             current.append(char)
             continue
-        if char == ",":
-            items.append("".join(current).strip())
+        if char == "[":
+            bracket_depth += 1
+            current.append(char)
+            continue
+        if char == "]":
+            if bracket_depth == 0:
+                return None
+            bracket_depth -= 1
+            current.append(char)
+            continue
+        if char == "," and bracket_depth == 0:
+            item = "".join(current).strip()
+            if item:
+                items.append(item)
             current = []
             continue
         current.append(char)
-    if quote:
+    if quote or bracket_depth:
         return None
-    items.append("".join(current).strip())
-    return [strip_yaml_quotes(item) for item in items]
+    item = "".join(current).strip()
+    if item:
+        items.append(item)
+    return [
+        parse_frontmatter_scalar(item) if item.startswith("[") and item.endswith("]") else strip_yaml_quotes(item)
+        for item in items
+    ]
 
 
 def parse_frontmatter_scalar(value: str) -> object:
@@ -372,8 +390,12 @@ def skill_required_env(frontmatter: dict[str, object], registry_metadata: dict[s
     return env_names
 
 
+def env_value_is_configured(name: str) -> bool:
+    return bool(os.getenv(name))
+
+
 def missing_required_env(required_env: list[str]) -> list[str]:
-    return [name for name in required_env if not os.environ.get(name)]
+    return [name for name in required_env if not env_value_is_configured(name)]
 
 
 def load_skill_registry_metadata(root: Path) -> dict[str, object]:

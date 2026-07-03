@@ -45,9 +45,11 @@ openclaw skills install thesis-workflow-v2
 - **Phase 3.5 深度学术评审**：P0/P1/P2 分级问题清单，自动修复 + 重审闭环
 - **RuntimeLLM**：零硬编码，自动复用当前 session 模型配置
 - **9 个 HIL 节点**：human-in-the-loop 检查点，关键决策不跳过
+- **公司映射强制采集**（v2.1.2+）：HIL #1 同步确认大纲 + 实际公司名（`actual_name`），确保 Phase 2 数据检索锚定真实公司
+- **OpenClaw 平台适配**（v2.1.2+）：Tavily MCP 检测自动识别 OpenClaw runtime，走内置桥接；不再依赖外部 `mcporter` CLI
 - **Guardrails 自检**：10 项自动化规范检查（章节完整性/字数/引用/表格格式等）
 - **Loop 架构**：Orchestrator Loop / 内部自检 Loop / 审核 Loop / Verification Loop
-- **Phase 5 Word输出**：md2docx_strict.py 合规脚本（三线表/分页/字体/行距）
+- **Phase 5 Word输出**：[thesis-docx-export](../thesis-docx-export/SKILL.md) skill（独立子 skill，三线表/分页/字体/行距）
 
 ## 适用场景TODO_SPLIT
 
@@ -67,6 +69,11 @@ openclaw skills install thesis-workflow-v2
 
 | 版本 | 亮点 |
 |------|------|
+| 2.0.21-beta | HIL #4 消息改为人话版：【节点X 写完：质量Y】 + AI 总结 + 路径 + 动作描述 |
+| 2.0.20-beta | 评审完整文字落盘 + HIL #4 消息简化为路径+选项（避免聊天刷屏）|
+| 2.0.19-beta | context_builder 主题锁定 + 反面警示 总是注入（修复 v8.0 ch1 跑题事故）|
+| 2.0.18-beta | outline_parser 新增 LLM 一次性兑底补全空 hint 节点 |
+| 2.0.17-beta | outline_parser 新增 C 路径：Word 自定义样式（MPA-章标题/一级节标题）支持 |
 | 2.0.12-beta | Phase 3.5 大纲锚定章节拆分（替代硬编码正则）+ P0/P1 修复（F1-F6）|
 | 2.0.11-beta | 清理 v1 残留 + clawhubignore 排除 |
 | 2.0.10-beta | Phase 3.5/4/5 实现 + requirements.txt + lazy BGE |
@@ -114,8 +121,8 @@ openclaw skills install thesis-workflow-v2
 - OpenClaw subagent (sessions_spawn)
 - BGE-small-zh 中文向量模型（Layer 2 标题匹配）
 - Tavily / arXiv / OpenAlex 多工具并行检索
-- md2docx_strict.py（Word 合规转换）
-- Guardrails loop_self_check.py（10 项自动化校验）
+- **OpenClaw 平台原生集成**（v2.1.2+）：Tavily 通过 `openclaw skills list` 检测，不再依赖 mcporter
+- **Word 输出**：见 [thesis-docx-export](../thesis-docx-export/SKILL.md) 独立 skill
 
 ## License
 

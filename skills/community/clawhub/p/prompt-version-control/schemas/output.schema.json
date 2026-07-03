@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/prompt-version-control/output.schema.json",
+  "title": "Prompt Version Control Output",
+  "description": "Schema for test results, diff output, and version log reports",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/definitions/TestResult" },
+    { "$ref": "#/definitions/DiffResult" },
+    { "$ref": "#/definitions/LogEntry" },
+    { "$ref": "#/definitions/RollbackResult" },
+    { "$ref": "#/definitions/ReportResult" }
+  ],
+  "definitions": {
+    "TestResult": {
+      "type": "object",
+      "required": ["prompt_name", "versions", "test_cases", "summary"],
+      "properties": {
+        "prompt_name": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "versions": {
+          "type": "object",
+          "required": ["control", "variant"],
+          "properties": {
+            "control": { "type": "string" },
+            "variant": { "type": "string" }
+          }
+        },
+        "test_cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "results"],
+            "properties": {
+              "name": { "type": "string" },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "version": { "type": "string" },
+                    "quality": { "type": "number" },
+                    "latency_ms": { "type": "number" },
+                    "tokens": { "type": "number" },
+                    "response_text": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "control_avg_quality": { "type": "number" },
+            "variant_avg_quality": { "type": "number" },
+            "quality_delta": { "type": "number" },
+            "control_avg_latency": { "type": "number" },
+            "variant_avg_latency": { "type": "number" },
+            "control_avg_tokens": { "type": "number" },
+            "variant_avg_tokens": { "type": "number" },
+            "winner": { "type": "string", "enum": ["control", "variant", "tie"] },
+            "confidence": { "type": "string", "enum": ["high", "medium", "low", "insufficient"] }
+          }
+        }
+      }
+    },
+    "DiffResult": {
+      "type": "object",
+      "required": ["prompt_name", "version_a", "version_b"],
+      "properties": {
+        "prompt_name": { "type": "string" },
+        "version_a": { "type": "string" },
+        "version_b": { "type": "string" },
+        "text_changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "section": { "type": "string" },
+              "type": { "type": "string", "enum": ["added", "removed", "modified", "unchanged"] },
+              "content": { "type": "string" }
+            }
+          }
+        },
+        "structural_changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["variable_added", "variable_removed", "model_changed", "parameter_changed"] },
+              "detail": { "type": "string" }
+            }
+          }
+        },
+        "summary": { "type": "string" }
+      }
+    },
+    "LogEntry": {
+      "type": "object",
+      "required": ["version", "date", "author"],
+      "properties": {
+        "version": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "author": { "type": "string" },
+        "message": { "type": "string" },
+        "bump_type": { "type": "string", "enum": ["major", "minor", "patch", "rollback", "initial"] },
+        "quality_score": { "type": "number" },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "avg_latency_ms": { "type": "number" },
+            "avg_tokens": { "type": "number" }
+          }
+        }
+      }
+    },
+    "RollbackResult": {
+      "type": "object",
+      "required": ["prompt_name", "rolled_back_from", "rolled_back_to", "new_version"],
+      "properties": {
+        "prompt_name": { "type": "string" },
+        "rolled_back_from": { "type": "string" },
+        "rolled_back_to": { "type": "string" },
+        "new_version": { "type": "string" },
+        "reason": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ReportResult": {
+      "type": "object",
+      "required": ["prompt_name", "versions", "summary"],
+      "properties": {
+        "prompt_name": { "type": "string" },
+        "format": { "type": "string", "enum": ["markdown", "html"] },
+        "versions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/LogEntry" }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_versions": { "type": "integer" },
+            "quality_trend": { "type": "array", "items": { "type": "number" } },
+            "best_version": { "type": "string" },
+            "best_quality": { "type": "number" },
+            "worst_version": { "type": "string" },
+            "worst_quality": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

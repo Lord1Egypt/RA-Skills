@@ -1,0 +1,34 @@
+{
+  "_comment": "agent-team-mesh registry. Edit this file to add your team's agents.",
+  "_schema": "see scripts/agent-mesh.sh cmd_sync for required fields",
+  "registryDocUrl": "(optional) URL of your shared team wiki page",
+  "lastSync": "2026-01-01T00:00:00+00:00",
+  "gatewayUrlPattern": "http://{ip}:18789",
+  "note": "Each agent has its own token. Tokens are stored separately in ${XDG_CONFIG_HOME:-~/.config}/agent-team-mesh/tokens.json (chmod 600).",
+  "agents": [
+    {
+      "name": "Alice",
+      "redName": "alice-display",
+      "emailPrefix": "alice",
+      "note": "Team Lead",
+      "ip": "10.0.0.10",
+      "hostname": "agent-alice-0"
+    },
+    {
+      "name": "Bob",
+      "redName": "bob-display",
+      "emailPrefix": "bob",
+      "note": "Engineer",
+      "ip": "10.0.0.11",
+      "hostname": "agent-bob-0"
+    },
+    {
+      "name": "Carol",
+      "redName": "carol-display",
+      "emailPrefix": "carol",
+      "note": "Designer",
+      "ip": "10.0.0.12",
+      "hostname": "agent-carol-0"
+    }
+  ]
+}

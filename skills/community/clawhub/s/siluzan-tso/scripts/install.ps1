@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 # -- Package info (injected at build time) ------------------------------------
 $PKG_NAME    = 'siluzan-tso-cli'
 # PKG_VERSION 锁定到与本脚本同批构建产物一致的版本，避免与 dist/skill 错位
-$PKG_VERSION = '1.1.30'
+$PKG_VERSION = '1.1.34'
 $CLI_BIN     = 'siluzan-tso'
 $SKILL_LABEL = 'Siluzan TSO'
 $INSTALL_CMD = 'npm install -g siluzan-tso-cli'

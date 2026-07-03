@@ -22,8 +22,14 @@ import stat
 import time
 from decimal import Decimal
 
+from erpclaw_lib.paths import db_default
 
-DEFAULT_DB_PATH = os.path.expanduser("~/.openclaw/erpclaw/data.sqlite")
+
+# Default SQLite path, derived from ERPCLAW_HOME (ADR-0017). With ERPCLAW_HOME
+# unset this equals os.path.expanduser("~/.openclaw/erpclaw/data.sqlite") exactly.
+# The ERPCLAW_DB_URL / ERPCLAW_DB_PATH chain below remains the DB-location
+# authority; this is only the default underneath it.
+DEFAULT_DB_PATH = db_default()
 
 
 def get_dialect():

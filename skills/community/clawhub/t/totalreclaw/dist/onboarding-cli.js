@@ -43,7 +43,7 @@ import path from 'node:path';
 import readline from 'node:readline/promises';
 import { generateMnemonic, validateMnemonic } from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english.js';
-import { defaultPairPendingPath, deletePairPendingFile, writeCredentialsJson, loadCredentialsJson, writeOnboardingState, loadOnboardingState, } from './fs-helpers.js';
+import { writeCredentialsJson, loadCredentialsJson, writeOnboardingState, loadOnboardingState, } from './fs-helpers.js';
 // ---------------------------------------------------------------------------
 // User-facing strings (centralised so tests can assert on them + localisation
 // has one place to grow into later).
@@ -55,7 +55,8 @@ import { defaultPairPendingPath, deletePairPendingFile, writeCredentialsJson, lo
  *
  * The phrase-print branch will be REMOVED in the next RC after rc.18.
  * Users running on a TTY can still complete the flow in rc.18; agents
- * MUST use `--pair-only` or the `totalreclaw_pair` tool today.
+ * MUST use `--pair-only` (or `tr pair --url-pin`) — the legacy
+ * `totalreclaw_pair` agent tool was retired in Phase 3.2.
  */
 export const PHRASE_PRINT_DEPRECATION_WARNING = '\nDEPRECATION (issue #95): the interactive `openclaw totalreclaw onboard` flow\n' +
     '  prints your recovery phrase to this terminal. This is being removed in the\n' +
@@ -111,7 +112,7 @@ export const COPY = {
     postSuccessImport: '\nDone. Your phrase is saved at ~/.totalreclaw/credentials.json (mode 0600).\n' +
         'Memory tools are now active.\n\n' +
         '  Next: run `openclaw chat` to start. Existing memories tied to this\n' +
-        '        phrase will be available via totalreclaw_recall.\n',
+        '        phrase are recalled automatically by the agent via memory_search.\n',
     skipped: '\nSkipped. Run `openclaw totalreclaw onboard` anytime to resume.\n' +
         'Memory tools remain disabled until you do.\n',
     ackFailed: '\nWord mismatch. Please write the phrase down carefully and run this\n' +
@@ -271,11 +272,6 @@ function writeCredsAndState(credentialsPath, statePath, mnemonic, createdBy) {
     if (!writeOnboardingState(statePath, state)) {
         throw new Error(`Could not write state.json at ${statePath}. Check that the parent directory is writable.`);
     }
-    // 3.3.13 — sentinel cleanup. The CLI wizard finalizes setup independently
-    // of the relay flow, but the user may have triggered auto-pair-on-load
-    // earlier in the same dir; the .pair-pending.json sentinel must not
-    // outlive credentials.json or the agent will keep surfacing a stale URL.
-    deletePairPendingFile(defaultPairPendingPath(credentialsPath));
     return state;
 }
 // ---------------------------------------------------------------------------

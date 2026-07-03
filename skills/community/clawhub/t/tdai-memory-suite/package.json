@@ -1,0 +1,29 @@
+{
+  "name": "tdai-memory-suite",
+  "version": "1.0.0",
+  "description": "Complete local memory system: 4-layer pipeline (L0-L3) + local vector search (nomic-embed-text) + ontology knowledge graph + Nomic Atlas visualization",
+  "keywords": [
+    "memory",
+    "embedding",
+    "vector",
+    "ontology",
+    "nomic",
+    "knowledge-graph",
+    "visualization",
+    "long-term-memory",
+    "persona",
+    "sqlite",
+    "vector-search",
+    "umap"
+  ],
+  "author": "paudyyin",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill-suite",
+    "components": [
+      "tdai-core",
+      "tdai-ontology",
+      "tdai-atlas"
+    ]
+  }
+}

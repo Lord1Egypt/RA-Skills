@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-tv-sedentary-reminder-analysis"
 description: "Using a fixed camera in the living room (aimed at the sofa and TV area), the system analyzes the elderly person's continuous sitting time while watching TV, detecting whether the body remains in a seated posture and the face is oriented toward the TV area (watching). | 通过客厅固定摄像头（对准沙发和电视区域），分析老年人连续观看电视的坐姿时长，检测人体是否持续处于坐姿且面部朝向电视区域（注视电视）。当连续坐姿观看电视超过预设阈值（默认2小时）且期间未起身活动时，输出'久坐活动提醒'，建议老年人起身走动、做伸展运动。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 

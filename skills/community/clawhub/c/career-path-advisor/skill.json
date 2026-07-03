@@ -1,0 +1,92 @@
+{
+  "name": "Career Path Advisor",
+  "slug": "career-path-advisor",
+  "description": "Map your career trajectory: skill gap analysis, role transitions, and personalized learning roadmaps based on market data.",
+  "tags": [
+    "career",
+    "job-search",
+    "skill-gap",
+    "learning-path",
+    "career-planning",
+    "china",
+    "professional-development"
+  ],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "workflowSteps": [
+    {
+      "step": 1,
+      "name": "Current State Capture",
+      "input": "Current role, years, industry, skills, location",
+      "output": "Structured career profile"
+    },
+    {
+      "step": 2,
+      "name": "Career Exploration",
+      "input": "Career profile (no target)",
+      "output": "5-7 possible directions with difficulty/timeline/salary impact"
+    },
+    {
+      "step": 3,
+      "name": "Target Role Selection",
+      "input": "Exploration menu or user target",
+      "output": "Confirmed target role(s) with constraints"
+    },
+    {
+      "step": 4,
+      "name": "Market Data Collection",
+      "input": "Target role + location",
+      "output": "Market demand dataset with required skills and salary ranges"
+    },
+    {
+      "step": 5,
+      "name": "Skill Gap Analysis",
+      "input": "Current skills + market data",
+      "output": "Gap matrix + radar visualization"
+    },
+    {
+      "step": 6,
+      "name": "Path Planning",
+      "input": "Target + gap matrix + constraints",
+      "output": "2-4 concrete career paths with timelines"
+    },
+    {
+      "step": 7,
+      "name": "Learning Roadmap Generation",
+      "input": "Selected path + gap matrix",
+      "output": "Month-by-month learning plan with resources"
+    },
+    {
+      "step": 8,
+      "name": "Offer Decision Matrix",
+      "input": "2+ job offers with details",
+      "output": "Weighted decision matrix + sensitivity analysis"
+    },
+    {
+      "step": 9,
+      "name": "Final Report",
+      "input": "All analysis results",
+      "output": "Complete career development plan"
+    }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Say: 我是[岗位]，[X]年经验，帮我看看有哪些发展方向",
+      "Browse the exploration menu and pick 1-2 target directions",
+      "Receive a detailed gap analysis and learning roadmap within 30 seconds"
+    ],
+    "cli": "bash scripts/advisor.sh --profile '{\"current_role\":\"Java后端\",\"years\":5,\"target\":\"AI工程师\",\"location\":\"上海\"}'"
+  },
+  "scripts": {
+    "main": "scripts/advisor.sh",
+    "usage": "bash scripts/advisor.sh --profile '{\"current_role\":\"Java后端\",\"years\":5,\"target\":\"AI工程师\",\"location\":\"上海\"}'",
+    "interactive": "bash scripts/advisor.sh --interactive"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "roles": "references/roles.json"
+  }
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Automatically detects electric motorcycles and e-bikes in restricted areas from video streams, images, local files, or media URLs, then reports counts, violation levels, alerts, and management suggestions. <br>
+Automatically detects electric motorcycles and e-bikes in restricted areas from video streams or images, counts illegal parking or driving instances, and produces violation alerts for safety management in parks, communities, and organizations. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, developers, and safety operations teams use this skill to analyze surveillance footage or images for e-bike and electric motorcycle activity in restricted areas. It supports park, community, campus, parking-lot, institutional, and road safety management workflows where results should be reviewed by humans before enforcement decisions. <br>
+External users, facility managers, and safety operations teams use this skill to analyze surveillance images or video URLs for e-bike and electric motorcycle violations in restricted areas. It returns structured detection results, violation counts, warning levels, management suggestions, and cloud report history when requested. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Surveillance images, videos, or media URLs are sent to a vendor cloud service for analysis. <br>
-Mitigation: Use only footage that is appropriate for vendor processing, and confirm retention, access, and privacy terms before analyzing sensitive locations or identifiable people. <br>
-Risk: The skill may silently create or reuse an identity and associate reports with that identity. <br>
-Mitigation: Review identity association behavior before deployment and avoid shared environments where report history could expose another user's analysis records. <br>
-Risk: Service tokens may be stored locally after login. <br>
-Mitigation: Run the skill in a controlled environment, protect local storage, and rotate or clear credentials according to the vendor's operational guidance. <br>
-Risk: Detection outputs are safety-management aids and may be incomplete or inaccurate. <br>
-Mitigation: Require human review before enforcement, escalation, or operational decisions based on detected violations. <br>
+Risk: Media submitted for detection is sent to a cloud service. <br>
+Mitigation: Use the skill only with images or videos that are appropriate to share with the publisher-operated lifeemergence.com services, and apply any required privacy review before processing surveillance media. <br>
+Risk: The skill can automatically query cloud report history linked to an account identity. <br>
+Mitigation: Review report history behavior before installation and restrict use to workspaces where account-linked detection history may be accessed. <br>
+Risk: The skill silently creates or reuses account identity and stores reusable tokens locally. <br>
+Mitigation: Install only if the publisher and remote services are trusted, and periodically review local workspace data and credential storage according to your security policy. <br>
 
 
 ## Reference(s): <br>
-- [Electric Vehicle Detection API Documentation](references/api_doc.md) <br>
-- [SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/guide.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-electric-vehicle-detection-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-electric-vehicle-detection-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [Electric vehicle detection API documentation](references/api_doc.md) <br>
+- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON analysis reports with optional saved output files and shell command invocations] <br>
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown or JSON text, with optional saved output file] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include detected e-bike counts, violation severity, warnings, management suggestions, history lists, and report export links.] <br>
+**Other Properties Related to Output:** [May include violation counts, risk or warning levels, management suggestions, structured API response fields, report links, and historical report listings.] <br>
 
 ## Skill Version(s): <br>
-1.0.13 (source: server release evidence) <br>
+1.0.15 (source: server release evidence; artifact frontmatter reports 1.0.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

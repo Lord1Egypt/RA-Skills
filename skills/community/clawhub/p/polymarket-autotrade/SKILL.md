@@ -1,7 +1,7 @@
 ---
 name: polymarket-autotrade
 description: Polymarket prediction market CLI - Browse markets, check prices, execute trades, and manage portfolio.
-version: 1.1.0
+version: 1.2.3
 metadata:
   openclaw:
     requires:

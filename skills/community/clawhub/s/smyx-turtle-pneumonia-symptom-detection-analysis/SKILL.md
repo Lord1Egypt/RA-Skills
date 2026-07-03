@@ -1,7 +1,7 @@
 ---
 name: "smyx-turtle-pneumonia-symptom-detection-analysis"
 description: "Through fixed enclosure cameras, the system analyzes mouth and nasal videos of turtles to detect abnormally frequent open-mouth breathing in non-feeding states (mouth opening frequency unusually elevated), as well as the presence of mucus (reflective spots or strands) or nasal discharge around the mouth and nose. | 通过龟缸固定摄像头，分析龟类的口鼻部视频，检测龟在非进食状态下（未摄食时）口部频繁开合（张嘴呼吸，频率异常增高），以及口鼻区域是否有黏液（反光点或丝状物）或鼻腔分泌物。当同时或单独出现上述症状时，输出'肺炎风险提示'，提醒饲养者检查环境温度、水质，并及时隔离治疗。"
-version: "1.0.3"
+version: "1.0.4"
 license: "MIT-0"
 ---
 
@@ -177,7 +177,7 @@ python -m scripts.smyx_turtle_pneumonia_symptom_detection_analysis --list
 | 📜 报告输出 | **必须**：肺炎风险预警报告**按 enclosure_id + individual_id + 事件时间戳输出**，含开合频率 + 黏液鼻分泌物 + 姿态评分 + 建议动作 + 免责声明 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史肺炎风险预警记录清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史肺炎风险预警记录清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

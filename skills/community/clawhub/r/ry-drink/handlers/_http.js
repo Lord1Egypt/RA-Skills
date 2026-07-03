@@ -1,15 +1,26 @@
-const DEFAULT_BASE = process.env.RY_DRINK_API_BASE || 'http://192.168.0.66:8080/user-biz';
+const DEFAULT_BASE = process.env.RY_DRINK_API_BASE || 'http://10.200.100.32:9302';
 /** 会话绑定门店 ID（user-system chat.send 写入），优先级最高，LLM 无法覆盖 */
 const FORCED_SHOP_ID = String(process.env.RY_DRINK_FORCED_SHOP_ID || '').trim();
 /** 租客 ID（t_merchant.id），/merchant/{id}/info、/menus 路径用此值 */
 const DEFAULT_PLATFORM_TENANT_ID = String(process.env.RY_DRINK_PLATFORM_TENANT_ID || '').trim();
 /** 仅本地调试可设 RY_DRINK_SHOP_ID */
 const DEFAULT_SHOP_ID = String(process.env.RY_DRINK_SHOP_ID || '').trim();
-const DEFAULT_SAAS_ID = String(process.env.RY_DRINK_SAAS_ID || 'sf8b00e05').trim();
+const DEFAULT_SAAS_ID = String(process.env.RY_DRINK_SAAS_ID || '').trim();
 const DEFAULT_TENANT_ID = String(
-  process.env.RY_DRINK_TENANT_ID || DEFAULT_PLATFORM_TENANT_ID || '5',
+  process.env.RY_DRINK_TENANT_ID || DEFAULT_PLATFORM_TENANT_ID || '',
 ).trim();
 const DEFAULT_LINK_PHONE = String(process.env.RY_DRINK_LINK_PHONE || '').trim();
+const DEFAULT_PAYMENT_LINK_BASE = String(
+  process.env.RY_DRINK_PAYMENT_LINK_BASE || 'https://claw.jscitylife.cn:43003',
+).trim();
+
+function buildPaymentLinkUrl(orderNo, merchantId, tenantId) {
+  const base = DEFAULT_PAYMENT_LINK_BASE.replace(/\/$/, '');
+  const order = encodeURIComponent(String(orderNo || '').trim());
+  const merchant = encodeURIComponent(String(merchantId || '').trim());
+  const tenant = encodeURIComponent(String(tenantId || '').trim());
+  return `${base}/link/yshop/order/${order}?merchantId=${merchant}&tenantId=${tenant}`;
+}
 
 function isNumericShopId(value) {
   if (value === undefined || value === null || value === '') {
@@ -235,4 +246,6 @@ module.exports = {
   DEFAULT_SHOP_ID,
   DEFAULT_SAAS_ID,
   DEFAULT_TENANT_ID,
+  DEFAULT_PAYMENT_LINK_BASE,
+  buildPaymentLinkUrl,
 };

@@ -1,0 +1,14 @@
+{
+  "cdpPort": 9222,
+  "cdpHost": "127.0.0.1",
+  "googleFlowUrl": "https://labs.google/fx/tools/flow",
+  "defaultRatio": "16:9",
+  "defaultDuration": "x2",
+  "outputDir": "./videos",
+  "pollInterval": 3000,
+  "maxWaitTime": 600000,
+  "screenshotOnError": true,
+  "screenshotDir": "./screenshots",
+  "selectorsFile": "selectors.json",
+  "logLevel": "info"
+}

@@ -144,8 +144,8 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
   return async ({ body, headers }) => {
     const inboundHeaders = headers || {};
     // x-api-key is satisfied by either the inbound header OR a proxy-side
-    // ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN env (token mediation, see
-    // _proxyAnthropic). The proxy server itself has already auth-checked
+    // EVOMAP_ANTHROPIC_API_KEY / ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN env
+    // (token mediation, see _proxyAnthropic). The proxy server itself has already auth-checked
     // `Authorization: Bearer <proxy_token>` before reaching this handler.
     //
     // Bedrock upstream uses SigV4 with AWS_* env, so neither inbound
@@ -161,7 +161,8 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
     if (upstreamMode !== 'bedrock') {
       const hasInboundKey = !!inboundHeaders['x-api-key'];
       const hasProxyEnvCreds = !!(
-        process.env.ANTHROPIC_API_KEY
+        process.env.EVOMAP_ANTHROPIC_API_KEY
+        || process.env.ANTHROPIC_API_KEY
         || process.env.EVOMAP_ANTHROPIC_AUTH_TOKEN
         || (process.env.EVOMAP_PROXY_AUTO_INJECTED === '1' ? '' : process.env.ANTHROPIC_AUTH_TOKEN)
       );
@@ -289,6 +290,7 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
         inboundHeaders,
         upstreamMode,
       });
+      if (upstream.traceRequestBody !== undefined) trace?.setRequestBody(upstream.traceRequestBody);
     } catch (err) {
       trace?.record({ status: 502, error: err, upstreamMode, model: chosenModel });
       throw err;
@@ -351,6 +353,7 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
       // — but that loses the original 503 body, so cache it here too and
       // restore it on the throw path.
       let drainedFirst = '';
+      let firstAttemptResponseBody = {};
       if (upstream.text) {
         // Bound response-body drain to 10s to prevent hanging on large or
         // slow-streaming error responses. If the drain times out, log it
@@ -388,14 +391,47 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
           if (drainTimer) clearTimeout(drainTimer);
         }
       }
+      if (drainedFirst.length > 0) {
+        try {
+          firstAttemptResponseBody = JSON.parse(drainedFirst);
+        } catch {
+          firstAttemptResponseBody = { error: drainedFirst };
+        }
+      }
+      trace?.recordAttempt({
+        attempt_index: 0,
+        status: upstream.status,
+        requestBody: upstream.traceRequestBody !== undefined ? upstream.traceRequestBody : outboundBody,
+        responseBody: firstAttemptResponseBody,
+        upstreamMode,
+        model: chosenModel,
+        headers: upstream.headers,
+      });
+      let retryBody = body;
       try {
-        const retryBody = rewriteModel(body, originalModel);
+        retryBody = rewriteModel(body, originalModel);
         finalUpstream = await anthropicProxy('/v1/messages', retryBody, {
           inboundHeaders,
           upstreamMode,
         });
+        trace?.setRequestBody(finalUpstream.traceRequestBody !== undefined ? finalUpstream.traceRequestBody : retryBody);
+        trace?.recordAttempt({
+          attempt_index: 1,
+          requestBody: finalUpstream.traceRequestBody !== undefined ? finalUpstream.traceRequestBody : retryBody,
+          upstreamMode,
+          model: originalModel,
+          headers: finalUpstream.headers,
+        });
         finalModel = originalModel;
       } catch (err) {
+        trace?.recordAttempt({
+          attempt_index: 1,
+          status: 502,
+          requestBody: retryBody,
+          error: err,
+          upstreamMode,
+          model: originalModel,
+        });
         // Replay the drained first response so the caller still sees the
         // original 503 + body, not an empty stream.
         finalUpstream = {
@@ -424,6 +460,7 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
         upstreamMode,
         model: finalModel,
         headers: forwardHeaders,
+        attempt_index: finalModel === originalModel && chosenModel !== originalModel ? 1 : undefined,
       });
       return {
         status: finalUpstream.status,
@@ -459,6 +496,21 @@ function buildMessagesHandler({ anthropicProxy, logger, routerEnabled, traceStor
           response_bytes: Buffer.byteLength(raw),
         }));
       }
+    }
+    if (
+      enabled
+      && chosenModel
+      && chosenModel !== originalModel
+      && finalModel === originalModel
+    ) {
+      trace?.recordAttempt({
+        attempt_index: 1,
+        status: finalUpstream.status,
+        responseBody: respBody,
+        upstreamMode,
+        model: finalModel,
+        headers: finalUpstream.headers,
+      });
     }
     trace?.record({
       status: finalUpstream.status,

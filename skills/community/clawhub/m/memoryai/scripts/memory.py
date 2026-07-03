@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""MemoryAI v2 — Thin client. All logic on server.
+"""MemoryAI — Thin client. All logic on server.
 
-Commands: store, recall, bootstrap, save, profile, health
+Commands: store, recall, bootstrap, track, save, profile, health
 Zero dependencies. Pure stdlib.
 """
 import json
@@ -183,7 +183,11 @@ def cmd_health(args):
 
 
 def cmd_track(args):
-    """Track a message in rolling session. Call on every user/assistant message."""
+    """Track a message. Call on every user/assistant message.
+
+    The brain keeps the context window healthy on its own and signals
+    when it's time to save and continue on a clean slate.
+    """
     content = args[0] if args else ""
     if not content:
         print("Usage: memory.py track \"message content\" [--role user|assistant]", file=sys.stderr)
@@ -203,152 +207,23 @@ def cmd_track(args):
     })
 
     if result.get("rotate"):
-        print(f"🔄 SESSION ROTATED → {result.get('session_id', '?')}")
+        print("SAVE_NOW")
         if result.get("should_compress"):
-            print(f"   COMPRESS: {result.get('compress_session_id')} ({result.get('compress_message_count', 0)} msgs)")
-            print(f"   Action: call 'memory.py save' with old session content")
-        print(f"   Context: {result.get('context_message_count', 0)} messages in window")
+            print("Action: call 'memory.py save' with a short summary of the conversation so far")
     else:
-        print(f"Session {result.get('session_id', '?')}: {result.get('message_count', 0)}/20")
-
-
-def cmd_guard(args):
-    """Legacy guard check. Use 'sync' instead."""
-    cmd_sync(args)
-
-
-def cmd_sync(args):
-    """Unified sync: guard + rolling in 1 call. Called by cron every 5 min."""
-    import os
-    from pathlib import Path
-
-    # 1. Read token count from sessions.json
-    openclaw_dir = Path(os.environ.get("OPENCLAW_DIR", str(Path.home() / ".openclaw")))
-    sessions_file = openclaw_dir / "agents" / "main" / "sessions" / "sessions.json"
-    estimated_tokens = 0
-    max_tokens = 200000
-    transcript_path = None
-
-    try:
-        with open(sessions_file, encoding="utf-8") as f:
-            import json as _json
-            sessions = _json.load(f)
-            for key, s in sessions.items():
-                if "main" in key:
-                    estimated_tokens = s.get("totalTokens", 0)
-                    max_tokens = s.get("contextTokens", 200000)
-                    transcript_path = s.get("sessionFile", "")
-                    break
-    except Exception:
-        pass
-
-    # 2. Read new messages from transcript (if available)
-    messages = []
-    state_path = Path(os.environ.get("WORKSPACE", str(openclaw_dir / "workspace"))) / "memory" / "sync_state.json"
-    state = {"byte_offset": 0, "transcript_path": ""}
-
-    try:
-        if state_path.exists():
-            with open(state_path, encoding="utf-8") as f:
-                state = _json.load(f)
-    except Exception:
-        pass
-
-    if transcript_path:
-        # Resolve full path
-        transcript_full = openclaw_dir / "agents" / "main" / "sessions" / transcript_path
-        if not transcript_full.exists():
-            transcript_full = Path(transcript_path)
-
-        # Detect transcript change (new session)
-        if state.get("transcript_path") != str(transcript_full):
-            state["byte_offset"] = 0
-            state["transcript_path"] = str(transcript_full)
-
-        # Read new lines from offset
-        try:
-            with open(transcript_full, "rb") as f:
-                f.seek(state["byte_offset"])
-                new_data = f.read()
-                new_offset = state["byte_offset"] + len(new_data)
-
-            if new_data:
-                lines = new_data.decode("utf-8", errors="ignore").split("\n")
-                for line in lines:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    try:
-                        msg = _json.loads(line)
-                        if msg.get("role") in ("user", "assistant"):
-                            messages.append({
-                                "role": msg["role"],
-                                "content": msg.get("content", "")[:500],
-                            })
-                    except Exception:
-                        continue
-        except Exception:
-            new_offset = state["byte_offset"]
-
-    # 3. Call server (1 unified call)
-    body = {
-        "estimated_tokens": estimated_tokens,
-        "max_tokens": max_tokens,
-        "messages": messages,
-    }
-
-    result = _api("POST", "/v1/bot/session/sync", body)
-
-    # 4. Update state (only after successful call)
-    if transcript_path:
-        try:
-            state_path.parent.mkdir(parents=True, exist_ok=True)
-            state["byte_offset"] = new_offset
-            with open(state_path, "w", encoding="utf-8") as f:
-                _json.dump(state, f)
-        except Exception:
-            pass
-
-    # 5. Report
-    action = result.get("action", "none")
-    phase = result.get("phase", "?")
-    usage = result.get("usage_percent", 0)
-
-    if action == "rotate":
-        print(f"ACTION: rotate")
-        print(f"PHASE: {phase}")
-        print(f"NEW_SESSION: {result.get('new_session_id', '?')}")
-        print(f"ARCHIVED: {result.get('archived_session_id', 'none')}")
-        if result.get("message"):
-            print(f"MSG: {result['message']}")
-    elif action == "compact":
-        print(f"ACTION: compact")
-        print(f"USAGE: {usage:.1f}%")
-        if result.get("message"):
-            print(f"MSG: {result['message']}")
-    elif action == "warning":
-        print(f"ACTION: none")
-        print(f"WARNING: {usage:.1f}% — approaching threshold")
-    else:
-        print(f"ACTION: none")
-        health = result.get("context_health", "safe")
-        next_rot = result.get("next_rotation_in", "")
-        status = f"healthy ({usage:.1f}%)" if usage > 0 else f"phase={phase}"
-        if next_rot:
-            status += f" | next rotation: {next_rot}"
-        print(f"STATUS: {status}")
+        print("OK")
 
 
 def main():
     if len(sys.argv) < 2:
-        print("MemoryAI v2.0 — Long-term memory for AI agents")
+        print("MemoryAI — Long-term memory for AI agents")
         print()
         print("Commands:")
         print("  store \"content\" [--type TYPE]  Store a memory")
         print("  recall \"query\" [--depth deep]  Recall memories")
         print("  bootstrap \"task\"               Wake up with context")
+        print("  track \"message\" [--role R]     Keep context healthy (per message)")
         print("  save \"summary\"                 Save session context")
-        print("  sync                           Sync context (cron, every 5 min)")
         print("  profile                        Get user cognitive profile")
         print("  health                         Check memory health")
         sys.exit(0)
@@ -364,8 +239,6 @@ def main():
         "profile": cmd_profile,
         "health": cmd_health,
         "track": cmd_track,
-        "guard": cmd_guard,
-        "sync": cmd_sync,
     }
 
     if cmd in commands:

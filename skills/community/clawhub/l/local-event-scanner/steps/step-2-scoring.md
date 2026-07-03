@@ -5,13 +5,13 @@ Evaluate candidate events against preferences, availability rules, date-window p
 ## Inputs
 
 - Candidate events from step-1-discovery.
-- `skills/event-scanner/assets/taste-profile.md`.
-- `skills/event-scanner/references/scoring-rubric.md`.
-- `skills/event-scanner/references/availability-rules.md`.
+- `<skill_dir>/assets/taste-profile.md`.
+- `<skill_dir>/references/scoring-rubric.md`.
+- `<skill_dir>/references/availability-rules.md`.
 
 ## Procedure
 
-1. Add `event-scanner-scoring` to the current run note's `Skills used` list before scoring work starts.
+1. Add `local-event-scanner-scoring` to the current run note's `Skills used` list before scoring work starts.
 2. Read the taste profile and scoring rubric.
 3. Compare each event against fit, practicality, novelty, timing, price friction, and confidence.
 4. Apply hard dealbreakers from the taste profile before recommending an event.

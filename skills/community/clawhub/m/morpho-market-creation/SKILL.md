@@ -1,6 +1,6 @@
 ---
 name: morpho-market-creation
-description: Deploys Morpho markets backed by API3 oracles.
+description: Deploys Morpho markets backed by Api3 oracles.
 metadata:
   version: 0.1.0
   clawdis:
@@ -31,6 +31,7 @@ metadata:
 
 # Rules
 - **NEVER** read .env files or ask for secrets such as WALLET_MNEMONIC.
+- **NEVER** read, list, or search inside `node_modules/`, `pnpm-lock.yaml`, or `pnpm-workspace.yaml`,they are not needed for this skill nor relevant to the user.
 - **ALWAYS** use the `exec` tool to run commands. Never use Bash or shell directly.
 - **ALWAYS** run scripts in skill's directory, which is referenced as `{baseDir}` variable and name is given in this file's name field at top. Prefix every command with `cd {baseDir} &&` to ensure it runs from the correct directory.
 - **ALWAYS** substitute actual variable values into every `exec` command before running it.
@@ -61,7 +62,6 @@ metadata:
 ```
 exec command="cd {baseDir} && pnpm install"
 ```
-- If the output contains `[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: unrs-resolver...`, this is expected and not a real failure — the ignored build script is not needed for this skill. Treat it as success and continue.
 - If the command fails for any other reason, inform the user and ask what to do. This step cannot be skipped.
 
 ---
@@ -127,7 +127,7 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/read-data-feed.ts <LOAN_
 - Show the value and timestamp from the output and ask the user if it looks correct. If no, ask them to recheck the URL and re-enter the address, then repeat.
 
 ### Part 3.3
-- Direct the user to open https://oracles.morpho.dev/oracle-tester and select `<CHAIN_NAME>` as the chain. Ask them to select the collateral and loan assets from the dropdowns — they should confirm those contract addresses match the intended assets. Then paste `<COLLATERAL_PROXY_ADDRESS>` into **Base Feed1** and `<LOAN_PROXY_ADDRESS>` into **Quote Feed1**. Wait for confirmation before continuing.
+- Direct the user to open https://oracles.morpho.dev/oracle-tester and select `<CHAIN_NAME>` as the chain. Ask them to select the collateral and loan assets from the dropdowns — they should confirm those contract addresses match the intended assets. If a token is not listed in the dropdown, tell the user they can find the token's contract address on the chain's block explorer and add it via the **Add asset** button by simply inputting the token address. Then paste `<COLLATERAL_PROXY_ADDRESS>` into **Base Feed1** and `<LOAN_PROXY_ADDRESS>` into **Quote Feed1**. Wait for confirmation before continuing.
 - Ask the user to click **Run Oracle Tests** and report whether all tests passed.
   - If any failed: ask them to recheck the feed addresses from the integration URLs, correct them on the tester, and retry. Wait until all tests pass.
 - Ask the user to click **Generate Safe Payload** to use later if needed. Proceed to Phase 4.
@@ -174,6 +174,7 @@ exec command="cd {baseDir} && ts-node {baseDir}/scripts/deploy-oracle.ts <CHAIN_
 - Ask the user to open `{baseDir}/market-params.json` and fill in the market parameters:
   - `loanToken` — contract address of the loan token (e.g. can be found at /tokens path of block explorer)
   - `collateralToken` — contract address of the collateral token (e.g. can be found at /tokens path of block explorer)
+  - **WARNING:** `loanToken` and `collateralToken` must be the actual ERC-20 token contract addresses — NOT the Api3ReaderProxyV1 addresses (`<COLLATERAL_PROXY_ADDRESS>` / `<LOAN_PROXY_ADDRESS>`) collected in Phase 3. Those proxy addresses are oracle feeds and belong only in the oracle parameters. Explicitly remind the user of this distinction, and if a provided token address matches one of the proxy addresses, flag it and ask them to re-check.
   - `oracle` — the oracle address deployed in Phase 4
   - `irm` — governance-approved Interest Rate Model address for `<CHAIN_NAME>` (tell the user to check https://docs.morpho.org/get-started/resources/addresses/#morpho-blue Adaptive Curve IRM model address)
   - `lltv` — liquidation LTV as a percentage number; suggested to be one of the governance-approved values: `0`, `38.5`, `62.5`, `77`, `86`, `91.5`, `94.5`, `96.5`, `98`

@@ -8,37 +8,55 @@
 /**
  * TotalReclaw Plugin for OpenClaw
  *
- * Registers runtime tools so OpenClaw can execute TotalReclaw operations:
- *   - totalreclaw_remember     -- store an encrypted memory
- *   - totalreclaw_recall       -- search and decrypt memories
- *   - totalreclaw_forget       -- soft-delete a memory
- *   - totalreclaw_export       -- export all memories (JSON or Markdown)
- *   - totalreclaw_status       -- check billing/subscription status
- *   - totalreclaw_consolidate  -- scan and merge near-duplicate memories
- *   - totalreclaw_pin          -- pin a memory so auto-resolution can never supersede it
- *   - totalreclaw_unpin        -- remove a pin, returning the memory to active status
- *   - totalreclaw_import_from   -- import memories from other tools (Mem0, MCP Memory, etc.)
- *   - totalreclaw_import_status -- check background import progress
- *   - totalreclaw_import_abort  -- cancel a running background import
- *   - totalreclaw_upgrade       -- create Stripe checkout for Pro upgrade
- *   - totalreclaw_migrate      -- migrate testnet memories to mainnet after Pro upgrade
- *   - totalreclaw_onboarding_start -- non-secret pointer to the CLI wizard (3.2.0)
- *   - totalreclaw_setup        -- DEPRECATED in 3.2.0; redirects to the CLI wizard
+ * Phase 3 — OpenClaw native integration. The agent reads memories via the
+ * bundled NATIVE tools `memory_search` / `memory_get`, registered through
+ * the host's MemoryPluginCapability by `registerNativeMemory` (see
+ * `native-memory.ts`). The TrMemorySearchManager adapter binds those tools
+ * to TotalReclaw's encrypted subgraph + decrypt + reranker pipeline.
+ *
+ * The legacy `totalreclaw_*` agent tools (remember / recall / forget / export
+ * / status / pin / unpin / retype / set_scope / import_from / import_status
+ * / import_abort / upgrade / migrate / onboarding_start / setup /
+ * report_qa_bug) were RETIRED in Task 3.2. Their capabilities now live on:
+ *   - read (recall):        native `memory_search` / `memory_get`.
+ *   - explicit write:       CLI `tr remember` (the conventional memory
+ *                            contract ships no agent-facing write tool;
+ *                            auto-extraction handles implicit writes).
+ *   - curation/lifecycle:   CLI `tr forget` / `tr export` + the
+ *                            registerCli `openclaw totalreclaw ...` surface.
+ *   - import/upgrade:       registerCli `openclaw totalreclaw import from ...`
+ *                            / `import status` / `import abort` / `upgrade`
+ *                            (3.3.13 — restored as CLI surfaces; the handlers
+ *                            stayed in this file post-3.2 but had no entry
+ *                            point). NOT on the standalone `tr` binary —
+ *                            import needs the full extraction pipeline that
+ *                            only loads inside the gateway runtime.
+ *   - onboarding/pair:      CLI `tr pair` + the 4 `/plugin/totalreclaw/pair/*`
+ *                            HTTP routes (registerHttpRoute bundle).
+ *
+ * Hooks registered here:
+ *   - `before_agent_start` — injects relevant memories into the agent's
+ *     context (via the MemoryPluginCapability's promptBuilder) and a
+ *     non-secret onboarding hint when the user has not paired yet.
+ *   - `before_tool_call` — gates the native `memory_search` / `memory_get`
+ *     tools behind onboarding state `active` so an unpaired agent gets an
+ *     actionable pointer to `tr pair --url-pin` instead of the adapter's
+ *     silent fail-soft empty result (see `tool-gating.ts`).
+ *   - `agent_end`, `message_received`, `before_reset` — auto-extraction
+ *     + digest bookkeeping (unchanged).
  *
  * Also registers:
- *   - `before_agent_start` hook that automatically injects relevant memories
- *     into the agent's context (and a non-secret onboarding hint when the
- *     user has not completed the CLI setup yet).
- *   - `before_tool_call` hook that gates every memory tool until onboarding
- *     state is `active` (3.2.0).
- *   - `registerCli` subcommand `openclaw totalreclaw onboard` — the ONLY
- *     surface that generates or accepts a recovery phrase. Lives entirely on
- *     the user's terminal; the phrase never enters an LLM request or a
- *     session transcript.
+ *   - `registerCli` subcommand `openclaw totalreclaw ...` — pair / onboard /
+ *     status / pin / unpin / retype / set_scope / import / export. The
+ *     `onboard` subcommand is the ONLY surface that generates or accepts a
+ *     recovery phrase; it lives entirely on the user's terminal and the
+ *     phrase never enters an LLM request or a session transcript.
+ *   - `registerHttpRoute` — the 4 QR-pair endpoints under
+ *     `/plugin/totalreclaw/pair/*` (browser-facing, plugin-auth).
  *   - `registerCommand` slash command `/totalreclaw {onboard,status}` — a
- *     non-secret pointer that directs the user to the CLI wizard.
+ *     non-secret pointer to the CLI wizard.
  *
- * Security: in 3.2.0, the recovery phrase NEVER appears in tool responses,
+ * Security: the recovery phrase NEVER appears in tool responses,
  * `prependContext` blocks, slash-command replies, or any other surface that
  * is sent to the LLM provider or persisted to the session transcript. See
  * `docs/plans/2026-04-20-plugin-320-secure-onboarding.md` in the internal
@@ -49,29 +67,24 @@
  */
 import { deriveKeys, deriveLshSeed, computeAuthKeyHash, encrypt, decrypt, generateBlindIndices, generateContentFingerprint, } from './crypto.js';
 import { createApiClient } from './api-client.js';
-import { extractFacts, extractCrystal, isValidMemoryType, parseEntity, VALID_MEMORY_TYPES, LEGACY_V0_MEMORY_TYPES, VALID_MEMORY_SOURCES, VALID_MEMORY_SCOPES, EXTRACTION_SYSTEM_PROMPT, extractFactsForCompaction, } from './extractor.js';
+import { extractFacts, extractCrystal, EXTRACTION_SYSTEM_PROMPT, extractFactsForCompaction, } from './extractor.js';
 import { initLLMClient, resolveLLMConfig, chatCompletion, generateEmbedding, getEmbeddingDims, getEmbeddingModelId, configureEmbedder, prefetchEmbedderBundle, } from './llm-client.js';
 import { defaultAuthProfilesRoot, readAllProfileKeys, dedupeByProvider, } from './llm-profile-reader.js';
 import { LSHHasher } from './lsh.js';
 import { rerank, cosineSimilarity, detectQueryIntent, INTENT_WEIGHTS } from './reranker.js';
 import { deduplicateBatch } from './semantic-dedup.js';
 import { startTrajectoryPoller } from './trajectory-poller.js';
-import { findNearDuplicate, shouldSupersede, clusterFacts, getStoreDedupThreshold, getConsolidationThreshold, STORE_DEDUP_MAX_CANDIDATES, } from './consolidation.js';
+import { findNearDuplicate, shouldSupersede, getStoreDedupThreshold, STORE_DEDUP_MAX_CANDIDATES, } from './consolidation.js';
 import { isSubgraphMode, getSubgraphConfig, encodeFactProtobuf, submitFactBatchOnChain, deriveSmartAccountAddress, PROTOBUF_VERSION_V4 } from './subgraph-store.js';
-import { confirmIndexed } from './confirm-indexed.js';
-import { DIGEST_TRAPDOOR, buildCanonicalClaim, computeEntityTrapdoor, computeEntityTrapdoors, isDigestBlob, normalizeToV1Type, readClaimFromBlob, resolveDigestMode, } from './claims-helper.js';
+import { DIGEST_TRAPDOOR, buildCanonicalClaim, computeEntityTrapdoors, isDigestBlob, readClaimFromBlob, resolveDigestMode, } from './claims-helper.js';
 import { maybeInjectDigest, recompileDigest, fetchAllActiveClaims, isRecompileInProgress, tryBeginRecompile, endRecompile, } from './digest-sync.js';
 import { detectAndResolveContradictions, runWeightTuningLoop, } from './contradiction-sync.js';
 import { searchSubgraph, searchSubgraphBroadened, getSubgraphFactCount, fetchFactById } from './subgraph-search.js';
-import { executePinOperation, validatePinArgs, } from './pin.js';
-import { executeRetype, executeSetScope, validateRetypeArgs, validateSetScopeArgs, } from './retype-setscope.js';
 import { PluginHotCache } from './hot-cache-wrapper.js';
 import { CONFIG, setRecoveryPhraseOverride } from './config.js';
 import { buildRelayHeaders } from './relay-headers.js';
 import { readBillingCache, writeBillingCache, BILLING_CACHE_PATH, } from './billing-cache.js';
-import { ensureMemoryHeaderFile, loadCredentialsJson, writeCredentialsJson, deleteCredentialsFile, isRunningInDocker, deleteFileIfExists, resolveOnboardingState, writeOnboardingState, readPluginVersion, cleanupInstallStagingDirs, clearPartialInstallMarker, patchOpenClawConfig, writePluginManifest, writePluginError, readPluginLoadedManifest, checkCredentialsFileMode, deletePairPendingFile, defaultPairPendingPath, } from './fs-helpers.js';
-import { maybeStartAutoPair } from './auto-pair-on-load.js';
-import { installBeforeAgentStartHook as installPairPendingHook } from './pair-pending-injection.js';
+import { ensureMemoryHeaderFile, loadCredentialsJson, writeCredentialsJson, deleteCredentialsFile, isRunningInDocker, deleteFileIfExists, resolveOnboardingState, writeOnboardingState, readPluginVersion, cleanupInstallStagingDirs, clearPartialInstallMarker, patchOpenClawConfig, checkCredentialsFileMode, } from './fs-helpers.js';
 import { isRcBuild } from './qa-bug-report.js';
 import { decideToolGate, isGatedToolName } from './tool-gating.js';
 import { resolveRestartAuth, rejectMessageFor, } from './restart-auth.js';
@@ -79,6 +92,8 @@ import { recordInboundUser, getDistinctInboundUserCount, resolveTrackerPath, } f
 import { detectFirstRun, buildWelcomePrepend } from './first-run.js';
 import { buildPairRoutes } from './pair-http.js';
 import { detectGatewayHost } from './gateway-url.js';
+import { registerNativeMemory } from './native-memory.js';
+import { ensureSkillRegistered } from './skill-register.js';
 import { validateMnemonic } from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english.js';
 import crypto from 'node:crypto';
@@ -215,15 +230,17 @@ function buildPairingUrl(api, session) {
                 // issue #110 fix 4: inside Docker the LAN IP is container-internal
                 // and useless. Loopback localhost only works for `docker exec`
                 // tests. The CORRECT pair URL for Docker is the relay-brokered
-                // path served by the `totalreclaw_pair` agent tool (CONFIG.pairMode
-                // === 'relay' since rc.11). The CLI-only path here cannot mint a
-                // relay session synchronously (the relay handshake needs a WS
-                // round-trip), so we emit the loopback URL with a LOUD warning
-                // pointing the operator at the agent tool / publicUrl override.
+                // path served by `tr pair` / the `/plugin/totalreclaw/pair/*` HTTP
+                // routes (CONFIG.pairMode === 'relay' since rc.11). The CLI-only
+                // path here cannot mint a relay session synchronously (the relay
+                // handshake needs a WS round-trip), so we emit the loopback URL
+                // with a LOUD warning pointing the operator at the pair CLI /
+                // publicUrl override.
                 api.logger.warn(`TotalReclaw: Docker container detected — pairing URL falling back to ` +
                     `http://localhost:${port}, which is unreachable from the host browser. ` +
-                    `Use the totalreclaw_pair AGENT TOOL (relay-brokered, universally reachable) ` +
-                    `instead of the CLI fallback, OR set plugins.entries.totalreclaw.config.publicUrl ` +
+                    `Run \`tr pair --url-pin\` (or \`openclaw totalreclaw pair generate --url-pin-only\`) ` +
+                    `on the gateway host to mint a relay-brokered pair URL that reaches the host browser, ` +
+                    `OR set plugins.entries.totalreclaw.config.publicUrl ` +
                     `to your gateway's host-reachable URL (e.g. http://<host-ip>:${port} when the ` +
                     `Docker port is published). Setting TOTALRECLAW_PAIR_MODE=relay is the default; ` +
                     `air-gapped operators on TOTALRECLAW_PAIR_MODE=local must publish a port + set publicUrl.`);
@@ -406,6 +423,11 @@ function getMaxFactsPerExtraction() {
     const cache = readBillingCache();
     if (cache?.features?.max_facts_per_extraction != null)
         return cache.features.max_facts_per_extraction;
+    // Env override is read in config.ts (env access is centralized there so
+    // the env-harvesting scanner-sim stays a no-op for index.ts).
+    if (CONFIG.maxFactsPerExtraction && CONFIG.maxFactsPerExtraction > 0) {
+        return CONFIG.maxFactsPerExtraction;
+    }
     return MAX_FACTS_PER_EXTRACTION;
 }
 /**
@@ -422,9 +444,10 @@ const MEMORY_HEADER = `# Memory
 
 > **TotalReclaw is active.** Your encrypted memories are loaded automatically
 > at the start of each conversation — no need to search this file for them.
-> Use \`totalreclaw_remember\` to store new memories and \`totalreclaw_recall\`
-> to search. Do NOT write user facts, preferences, or decisions to this file.
-> This file is for workspace-level notes only (non-sensitive).
+> Recall is automatic via the memory_search tool; to explicitly store a fact,
+> run \`tr remember "<text>"\` in a shell. Do NOT write user facts,
+> preferences, or decisions to this file. This file is for workspace-level
+> notes only (non-sensitive).
 
 `;
 function ensureMemoryHeader(logger) {
@@ -574,13 +597,12 @@ async function initialize(logger) {
     }
     if (!masterPassword) {
         needsSetup = true;
-        // 3.3.13 — replaced the stale "run `openclaw totalreclaw onboard` in a
-        // terminal to set up" log line. The auto-pair-on-load flow (kicked off
-        // from register()) now writes ~/.totalreclaw/.pair-pending.json with
-        // the URL + PIN the agent surfaces to the user on the next turn. The
-        // chat agent no longer hallucinates pair URLs — see the Pop-OS QA
-        // 2026-05-10 root-cause note in auto-pair-on-load.ts.
-        logger.info('TotalReclaw: no credentials found; auto-pair-on-load will surface a pair URL.');
+        // No credentials yet — pairing is user-initiated via `tr pair` or the
+        // `/plugin/totalreclaw/pair/*` HTTP route (QR scan flow). The plugin
+        // does not auto-open a pair session on load (the 3.3.13 auto-pair-on-
+        // load state machine was retired in Phase 3.4 — pairing is now
+        // explicitly user-triggered per the native-integration design).
+        logger.info('TotalReclaw: no credentials found. Run `tr pair` (or ask the agent to) to complete setup.');
         return;
     }
     apiClient = createApiClient(serverUrl);
@@ -751,10 +773,16 @@ function isDocker() {
     return isRunningInDocker();
 }
 function buildSetupErrorMsg() {
-    return 'TotalReclaw setup required. Use the `totalreclaw_setup` tool with a 12-word BIP-39 recovery phrase.\n\n' +
-        '1. Ask the user if they have an existing recovery phrase, or generate a new one with `npx @totalreclaw/mcp-server setup`.\n' +
-        '2. Call `totalreclaw_setup` with the phrase — no gateway restart needed.\n' +
-        '   (Optional: set TOTALRECLAW_SELF_HOSTED=true if using your own server instead of the managed service.)';
+    // NOTE: the legacy `totalreclaw_setup` agent tool was retired in 3.2.0
+    // (phrase-safety: the agent must never accept or relay a recovery phrase).
+    // The ONLY setup surface is the QR-pair flow: the agent cannot mint a
+    // pair URL itself, so it must direct the user to the CLI. This message is
+    // thrown by `requireFullSetup` (currently only reached via dead 3.2 tool
+    // handlers; kept accurate so any future caller gets the correct pointer).
+    return 'TotalReclaw setup required. Pairing is QR-only — the recovery phrase is generated and encrypted in-browser and never enters this chat.\n\n' +
+        'Run `tr pair --url-pin` on the gateway host (or `openclaw totalreclaw pair generate --url-pin-only`) ' +
+        'and hand the user the returned `url` and `pin`. The user opens the URL in a browser to complete pairing. ' +
+        'Do NOT ask the user for a recovery phrase and do NOT attempt to generate or relay one yourself.';
 }
 function buildSetupErrorMsgLegacy() {
     const base = 'TotalReclaw setup required:\n' +
@@ -783,8 +811,9 @@ const SETUP_ERROR_MSG = buildSetupErrorMsg();
  * Ensure `initialize()` has completed (runs at most once).
  *
  * If `needsSetup` is true after init, attempts a hot-reload from
- * credentials.json in case the mnemonic was written there by a
- * `totalreclaw_setup` tool call or `npx @totalreclaw/mcp-server setup`.
+ * credentials.json in case the mnemonic was just written there by the
+ * pair-completion HTTP route (`/plugin/totalreclaw/pair/respond` →
+ * `completePairing`) or the `tr pair` CLI on another process.
  */
 async function ensureInitialized(logger) {
     if (!initPromise) {
@@ -792,7 +821,7 @@ async function ensureInitialized(logger) {
     }
     await initPromise;
     // Hot-reload: if setup is still needed, check if credentials.json
-    // now has a mnemonic (written by totalreclaw_setup or MCP setup CLI).
+    // now has a mnemonic (written by the pair HTTP route / `tr pair` CLI).
     if (needsSetup) {
         await attemptHotReload(logger);
     }
@@ -801,9 +830,9 @@ async function ensureInitialized(logger) {
  * Attempt to hot-reload credentials from credentials.json.
  *
  * Called when `needsSetup` is true — checks if credentials.json contains
- * a mnemonic (written by the `totalreclaw_setup` tool or MCP setup CLI).
- * If found, re-derives keys and completes initialization without requiring
- * a gateway restart.
+ * a mnemonic (written by the pair-completion HTTP route or `tr pair` CLI
+ * on another process). If found, re-derives keys and completes
+ * initialization without requiring a gateway restart.
  */
 async function attemptHotReload(logger) {
     try {
@@ -827,9 +856,18 @@ async function attemptHotReload(logger) {
 /**
  * Force re-initialization with a specific mnemonic.
  *
- * Called by the `totalreclaw_setup` tool. Clears stale credentials from
- * disk so that `initialize()` treats this as a fresh registration and
- * persists the NEW mnemonic + freshly derived salt/userId.
+ * LEGACY (Phase 3.2): the only caller was the `totalreclaw_setup` agent
+ * tool, which was retired because accepting a recovery phrase via an agent
+ * tool violated phrase-safety (the phrase must never enter an LLM context).
+ * The function currently has NO callers; it is retained because the
+ * credential-rotation invariant documented below still describes a real
+ * trap for any future credential-rotating surface, and removing the body
+ * would lose that institutional knowledge. Safe to delete once confirmed
+ * unused across the whole plugin tree.
+ *
+ * Clears stale credentials from disk so that `initialize()` treats this as
+ * a fresh registration and persists the NEW mnemonic + freshly derived
+ * salt/userId.
  *
  * Without clearing credentials.json first, `initialize()` would load the
  * OLD salt and userId, derive keys from (new mnemonic + old salt), skip
@@ -1400,7 +1438,7 @@ function relativeTime(isoOrMs) {
  * Configurable via TOTALRECLAW_MIN_IMPORTANCE env var (default: 3).
  *
  * NOTE: This filter is ONLY applied to auto-extraction (hooks).
- * The explicit `totalreclaw_remember` tool always stores regardless of importance.
+ * The explicit `tr remember` CLI always stores regardless of importance.
  */
 const MIN_IMPORTANCE_THRESHOLD = CONFIG.minImportance;
 /**
@@ -1768,7 +1806,7 @@ async function storeExtractedFacts(facts, logger, sourceOverride) {
     // Submit subgraph payloads one fact at a time (sequential single-call UserOps).
     // Batch executeBatch UserOps have persistent gas estimation issues on Base Sepolia
     // that cause on-chain reverts. Single-fact UserOps use the simpler submitFactOnChain
-    // path which works reliably (same path as totalreclaw_remember). Each submission
+    // path which works reliably (same path the `tr remember` CLI uses). Each submission
     // polls for receipt (120s) before proceeding, so nonce is consumed before the next.
     let batchError;
     if (pendingPayloads.length > 0 && isSubgraphMode()) {
@@ -1820,10 +1858,11 @@ async function storeExtractedFacts(facts, logger, sourceOverride) {
     return stored;
 }
 // ---------------------------------------------------------------------------
-// Import handler (for totalreclaw_import_from tool)
+// Import handler (for the registerCli `openclaw totalreclaw import-from` surface)
 // ---------------------------------------------------------------------------
 /**
- * Handle import_from tool calls in the plugin context.
+ * Handle import_from calls (CLI subcommand path; was the totalreclaw_import_from
+ * agent tool before Phase 3.2 retired the agent tools).
  *
  * Two paths:
  * 1. Pre-structured sources (Mem0, MCP Memory) — adapter returns facts directly,
@@ -1952,7 +1991,7 @@ async function handlePluginImportFrom(params, logger) {
                 estimated_batches: estimatedBatches,
                 estimated_minutes: estimatedMinutes,
                 estimated_completion_iso: initialState.estimated_completion_iso,
-                message: `Import started in background. ~${estimatedMinutes} min for ${totalChunks} chunks. Ask "how's the import?" to check progress with totalreclaw_import_status.`,
+                message: `Import started in background. ~${estimatedMinutes} min for ${totalChunks} chunks. Check progress with \`openclaw totalreclaw import status\` on the gateway host (or \`import status --id ${importId} --json\` from an agent shell).`,
                 warnings: parseResult.warnings,
             };
         }
@@ -2412,7 +2451,7 @@ async function handleImportStatus(params, logger) {
     else {
         state = readMostRecentActiveImport();
         if (!state)
-            return { status: 'no_active_import', message: 'No active import found. Start one with totalreclaw_import_from.' };
+            return { status: 'no_active_import', message: 'No active import found. Start one with `openclaw totalreclaw import from <source>` on the gateway host. (Auto-resume still picks up running imports on gateway restart.)' };
     }
     // 1h freshness guard: mark stale imports as failed and prompt user to resume.
     if (state.status === 'running' && isImportStale(state)) {
@@ -2423,7 +2462,7 @@ async function handleImportStatus(params, logger) {
             status: 'failed',
             stale: true,
             facts_stored: state.facts_stored,
-            message: 'Import appears stale — no progress in 1 hour. Resume with totalreclaw_import_from using the same file and resume_id.',
+            message: 'Import appears stale — no progress in 1 hour. Resume it with `openclaw totalreclaw import from <source> --file <path> --resume ' + state.import_id + '` on the gateway host, or restart the gateway to trigger auto-resume.',
             resume_id: state.import_id,
         };
     }
@@ -2469,6 +2508,323 @@ async function handleImportAbort(params, logger) {
         facts_already_stored: state.facts_stored,
         message: 'Import abort requested. The background task will stop at the next chunk boundary. Already-stored facts are kept.',
     };
+}
+// ---------------------------------------------------------------------------
+// buildRecallDeps — bind the real recall pipeline into the closures the
+// native MemoryPluginCapability wiring helper (Task 2.7) consumes.
+//
+// WHY THIS LIVES IN index.ts (not in native-memory.ts):
+//   The real `recall` / `getById` closures must reach unexported index.ts
+//   helpers (generateBlindIndices, generateEmbedding, getLSHHasher,
+//   computeCandidatePool, isDigestBlob, readClaimFromBlob, searchSubgraph,
+//   searchSubgraphBroadened, getSubgraphFactCount, fetchFactById,
+//   ensureInitialized) AND module-level state (authKeyHex, encryptionKey,
+//   userId, subgraphOwner). Lifting these out of index.ts is a high
+//   blast-radius refactor with scanner-trap risk — out of scope for 2.7.
+//
+//   native-memory.ts (the wiring helper) is pure orchestration and stays
+//   scanner-trivial; the closures stay here where the rest of the plugin's
+//   network surface lives.
+//
+// LAZY CONTEXT RESOLUTION:
+//   The paired-account context (authKeyHex / encryptionKey / userId /
+//   subgraphOwner) is NOT resolved synchronously at register() time. It is
+//   populated by `initialize()` on the first tool/hook call via
+//   `ensureInitialized()`. So each closure calls `ensureInitialized(logger)`
+//   internally before touching the module-level state — the same lazy-init
+//   seam the retired totalreclaw_recall tool used to use (then via
+//   `requireFullSetup`).
+//
+//   If setup is incomplete (no credentials), `ensureInitialized` returns
+//   with `needsSetup=true`; the closures then surface a typed error
+//   (`getMemorySearchManager` will return `{ manager: null, error }` from
+//   the runtime wrapper, which the tools convert into the disabled-result
+//   payload the agent recognizes).
+//
+// SCANNER NOTE:
+//   This file (index.ts) is NOT scanner-clean — it is the plugin's network
+//   surface and contains the env+net pair legitimately (centralized via
+//   config.ts reads + relay.ts). The closures here CALL the scanner-clean
+//   subgraph-search / vault-crypto / reranker modules but do not add any
+//   NEW env-harvesting or exfiltration pattern: they read only the
+//   already-resolved module-level state. `check-scanner` was already
+//   non-zero on index.ts before this task (the file legitimately pairs
+//   config reads with network calls); the closures do not change that
+//   posture. The NEW files (native-memory.ts, register-native.test.ts)
+//   are scanner-clean by construction (verified).
+// ---------------------------------------------------------------------------
+/**
+ * Build the deps for the native MemoryPluginCapability. Returns the
+ * `recall` / `getById` closures bound to the real subgraph + decrypt +
+ * reranker pipeline, plus optional `quota` / `pinned` prompt-builder inputs
+ * (currently defaulted — see TODO(task 2.7b / H1 gate) below).
+ *
+ * `logger` is threaded in so the closures can call `ensureInitialized` (the
+ * lazy-init seam used by every other tool handler in this file).
+ *
+ * @param logger  the OpenClaw plugin logger (forwarded into ensureInitialized)
+ */
+function buildRecallDeps(logger) {
+    // -------------------------------------------------------------------
+    // recall(): the load-bearing closure. This is the search/decrypt/rerank
+    // pipeline that backs the native memory_search tool via the
+    // TrMemorySearchManager adapter. It replaced the retired totalreclaw_recall
+    // agent tool handler (Phase 3.2) MINUS the tool-level result formatting +
+    // hot-cache bookkeeping (those are tool concerns; the native memory
+    // pipeline only needs the TrFact[]). Returns TrFact[] shaped for the
+    // TrMemorySearchManager adapter (memory-runtime.ts).
+    // -------------------------------------------------------------------
+    const recall = async (query, opts) => {
+        // Lazy-init: this is the first seam the closure hits. If the user
+        // is not paired, ensureInitialized returns with needsSetup=true; we
+        // surface that as an empty result (the before_tool_call gate in
+        // tool-gating.ts normally intercepts memory_search BEFORE this runs
+        // when state != active, but fail-soft here too — a search with no
+        // credentials returning [] is benign; the agent treats empty
+        // results as "no memories found").
+        await ensureInitialized(logger);
+        // Guard: if setup is incomplete OR we're missing the pipeline state,
+        // return []. This is fail-soft: the user sees "no memories" rather
+        // than a thrown error out of the memory_search tool boundary.
+        if (needsSetup || !encryptionKey || !authKeyHex)
+            return [];
+        // subgraphOwner may be null on SA-derivation failure (see initialize()).
+        // The subgraph path requires a non-null owner (Bytes!); if missing,
+        // we cannot run recall — return [].
+        if (isSubgraphMode() && !subgraphOwner)
+            return [];
+        const k = Math.min(opts?.maxResults ?? 8, 20);
+        // 1. Generate word trapdoors (blind indices for the query).
+        const wordTrapdoors = generateBlindIndices(query);
+        // 2. Generate query embedding + LSH trapdoors (may fail gracefully).
+        let queryEmbedding = null;
+        let lshTrapdoors = [];
+        try {
+            queryEmbedding = await generateEmbedding(query, { isQuery: true });
+            const hasher = getLSHHasher(logger);
+            if (hasher && queryEmbedding) {
+                lshTrapdoors = hasher.hash(queryEmbedding);
+            }
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            logger.warn(`native recall: embedding/LSH generation failed (using word-only trapdoors): ${msg}`);
+        }
+        // 3. Merge word + LSH trapdoors.
+        const allTrapdoors = [...wordTrapdoors, ...lshTrapdoors];
+        if (allTrapdoors.length === 0)
+            return [];
+        // 4. Build reranker candidates from the decrypted subgraph results.
+        const rerankerCandidates = [];
+        if (isSubgraphMode()) {
+            // --- Subgraph search path (the canonical path for managed installs) ---
+            const factCount = await getSubgraphFactCount(subgraphOwner || userId, authKeyHex);
+            const pool = computeCandidatePool(factCount);
+            let subgraphResults = await searchSubgraph(subgraphOwner || userId, allTrapdoors, pool, authKeyHex);
+            // Broadened search + merge — vocabulary-mismatch safety net (mirrors
+            // the recall tool: ensures "preferences" still matches "prefer").
+            try {
+                const broadenedResults = await searchSubgraphBroadened(subgraphOwner || userId, pool, authKeyHex);
+                const existingIds = new Set(subgraphResults.map((r) => r.id));
+                for (const br of broadenedResults) {
+                    if (!existingIds.has(br.id))
+                        subgraphResults.push(br);
+                }
+            }
+            catch {
+                // best-effort
+            }
+            for (const result of subgraphResults) {
+                try {
+                    const docJson = decryptFromHex(result.encryptedBlob, encryptionKey);
+                    if (isDigestBlob(docJson))
+                        continue;
+                    const doc = readClaimFromBlob(docJson);
+                    let decryptedEmbedding;
+                    if (result.encryptedEmbedding) {
+                        try {
+                            decryptedEmbedding = JSON.parse(decryptFromHex(result.encryptedEmbedding, encryptionKey));
+                        }
+                        catch {
+                            // embedding decryption failed -- proceed without it
+                        }
+                    }
+                    // Dim-mismatch fallback: regenerate the embedding from text so
+                    // the reranker's cosine component stays meaningful across model
+                    // upgrades. Mirrors the recall tool exactly.
+                    if (decryptedEmbedding && decryptedEmbedding.length !== getEmbeddingDims()) {
+                        try {
+                            decryptedEmbedding = await generateEmbedding(doc.text);
+                        }
+                        catch {
+                            decryptedEmbedding = undefined;
+                        }
+                    }
+                    rerankerCandidates.push({
+                        id: result.id,
+                        text: doc.text,
+                        embedding: decryptedEmbedding,
+                        importance: doc.importance / 10,
+                        createdAt: result.timestamp ? parseInt(result.timestamp, 10) : undefined,
+                        // Retrieval v2 Tier 1 source — surfaced so applySourceWeights
+                        // could multiply the final RRF score (left false here to match
+                        // the recall tool's current behavior; TODO(task 2.7b): wire
+                        // source weighting for the native path at the H1 QA gate).
+                        source: typeof doc.metadata?.source === 'string' ? doc.metadata.source : undefined,
+                    });
+                }
+                catch {
+                    // Skip candidates we cannot decrypt (corrupted / wrong key).
+                }
+            }
+        }
+        else {
+            // --- Server search path (legacy / self-hosted) ---
+            // The non-subgraph path uses apiClient.search. The native memory
+            // pipeline is intended for managed (subgraph) installs, but we keep
+            // parity with the recall tool so self-hosted users get recall too.
+            if (!apiClient || !userId)
+                return [];
+            const factCount = await getFactCount(logger);
+            const pool = computeCandidatePool(factCount);
+            const candidates = await apiClient.search(userId, allTrapdoors, pool, authKeyHex);
+            for (const candidate of candidates) {
+                try {
+                    const docJson = decryptFromHex(candidate.encrypted_blob, encryptionKey);
+                    if (isDigestBlob(docJson))
+                        continue;
+                    const doc = readClaimFromBlob(docJson);
+                    let decryptedEmbedding;
+                    if (candidate.encrypted_embedding) {
+                        try {
+                            decryptedEmbedding = JSON.parse(decryptFromHex(candidate.encrypted_embedding, encryptionKey));
+                        }
+                        catch {
+                            // embedding decryption failed
+                        }
+                    }
+                    if (decryptedEmbedding && decryptedEmbedding.length !== getEmbeddingDims()) {
+                        try {
+                            decryptedEmbedding = await generateEmbedding(doc.text);
+                        }
+                        catch {
+                            decryptedEmbedding = undefined;
+                        }
+                    }
+                    rerankerCandidates.push({
+                        id: candidate.fact_id,
+                        text: doc.text,
+                        embedding: decryptedEmbedding,
+                        importance: doc.importance / 10,
+                        createdAt: typeof candidate.timestamp === 'number'
+                            ? candidate.timestamp / 1000
+                            : new Date(candidate.timestamp).getTime() / 1000,
+                        source: typeof doc.metadata?.source === 'string' ? doc.metadata.source : undefined,
+                    });
+                }
+                catch {
+                    // Skip candidates we cannot decrypt.
+                }
+            }
+        }
+        // 5. Re-rank with BM25 + cosine + intent-weighted RRF fusion.
+        const queryIntent = detectQueryIntent(query);
+        const reranked = rerank(query, queryEmbedding ?? [], rerankerCandidates, k, INTENT_WEIGHTS[queryIntent], 
+        // applySourceWeights=false — matches the recall tool's current
+        // behavior. TODO(task 2.7b / H1 gate): flip to true for the native
+        // path so Retrieval v2 Tier 1 source weighting takes effect.
+        false);
+        // 6. Map RerankerResult -> TrFact. The score field is rrfScore (the
+        // final fused + weighted score the manager's defensive sort uses).
+        return reranked.map((m) => ({
+            id: m.id,
+            plaintext: m.text,
+            score: m.rrfScore,
+            // pinned is intentionally not surfaced here today — pinned status
+            // lives in claim metadata and there's no clean read-side aggregate
+            // to lift in this task. See getById + pinned TODO below.
+        }));
+    };
+    // -------------------------------------------------------------------
+    // getById(): the load-bearing reverse-path closure. Mirrors the
+    // pin/unpin tool's fetchFactById -> decrypt pattern (the read-back
+    // reverse-path for memory_get). Returns { id, plaintext } or null.
+    // -------------------------------------------------------------------
+    const getById = async (id) => {
+        await ensureInitialized(logger);
+        // Fail-soft on missing setup / encryption key.
+        if (needsSetup || !encryptionKey || !authKeyHex)
+            return null;
+        // The subgraph path is the canonical one; fetchFactById resolves the
+        // fact by UUID and guards against owner mismatch (defense-in-depth
+        // against stale IDs from another user's recall results — see
+        // subgraph-search.ts fetchFactById docstring).
+        if (isSubgraphMode()) {
+            if (!subgraphOwner)
+                return null;
+            try {
+                const result = await fetchFactById(subgraphOwner, id, authKeyHex);
+                if (!result)
+                    return null;
+                const docJson = decryptFromHex(result.encryptedBlob, encryptionKey);
+                if (isDigestBlob(docJson))
+                    return null;
+                const doc = readClaimFromBlob(docJson);
+                return { id, plaintext: doc.text };
+            }
+            catch {
+                return null;
+            }
+        }
+        // Server-path: apiClient doesn't expose a clean get-by-id; fall back
+        // to a recall-style lookup using the id as a single trapdoor. This is
+        // a degenerate path for self-hosted installs and rarely hit (the
+        // native memory pipeline targets managed subgraph installs). Document
+        // rather than gold-plate.
+        // TODO(task 2.7b / H1 gate): wire apiClient get-by-id if/when exposed.
+        if (!apiClient || !userId)
+            return null;
+        try {
+            const candidates = await apiClient.search(userId, [id], 10, authKeyHex);
+            const hit = candidates.find((c) => c.fact_id === id);
+            if (!hit)
+                return null;
+            const docJson = decryptFromHex(hit.encrypted_blob, encryptionKey);
+            if (isDigestBlob(docJson))
+                return null;
+            const doc = readClaimFromBlob(docJson);
+            return { id, plaintext: doc.text };
+        }
+        catch {
+            return null;
+        }
+    };
+    // -------------------------------------------------------------------
+    // quota + pinned: prompt-builder inputs. These drive the warning /
+    // pinned-facts blocks in buildPromptSection (memory-runtime.ts).
+    //
+    // TODO(task 2.7b / H1 QA gate): bind these to the real paired-account
+    // state. The hooks to lift are:
+    //   - quota: readBillingCache() in billing-cache.ts exposes
+    //     { free_writes_used, free_writes_limit } — when used/limit > 0.8
+    //     pass { usedPct }, and on a recently-observed 403 pass { denied }.
+    //     The billing cache is refreshed by the trajectory-poller after
+    //     each capture attempt; today we default to undefined so no
+    //     warning fires (fail-quiet — better than a false warning).
+    //   - pinned: there is no clean read-side `fetchPinnedFacts(owner)`
+    //     aggregate today. pin.ts writes pinned status into claim metadata;
+    //     a pinned-facts read would need either (a) a subgraph query
+    //     filtering on the pinned status, or (b) reuse of the hot-cache
+    //     pinned list. Both are extraction work — out of scope for 2.7.
+    //     Default to [] (no pinned block emitted).
+    //
+    // Returning undefined / [] here is the documented correct default. The
+    // wiring helper accepts a deps object without quota/pinned, and the
+    // prompt builder emits no warning / no pinned block in that case.
+    // -------------------------------------------------------------------
+    const quota = undefined;
+    const pinned = undefined;
+    return { recall, getById, quota, pinned };
 }
 // ---------------------------------------------------------------------------
 // Plugin definition
@@ -2540,67 +2896,7 @@ const plugin = {
         },
     },
     register(api) {
-        // ---------------------------------------------------------------
-        // 3.3.2-rc.1 (issue #186) — load manifest instrumentation
-        // ---------------------------------------------------------------
-        //
-        // Capture every `api.registerTool({name, ...})` call so we can write
-        // a `.loaded.json` manifest at the end of register(). Wrap the body
-        // in try/catch so a register-time throw produces `.error.json` for
-        // agent-side filesystem verification (the CLI hangs in some Docker
-        // setups — issue #182 — so the manifest is the canonical "did the
-        // plugin load?" probe).
-        //
-        // Implementation: we intercept the api.registerTool method by
-        // wrapping it on the api object passed in. The wrapper inspects the
-        // `name` field (every TR registerTool call sets it) and forwards
-        // verbatim. NO behavior change to the SDK call — the original method
-        // is invoked with original args and `this` binding.
-        //
-        // Synchronous writes ONLY (see writePluginManifest doc): the SDK
-        // freezes plugin registries the moment register() returns; an async
-        // write would race that freeze.
-        const _registeredToolNames = [];
-        const _originalRegisterTool = api.registerTool.bind(api);
-        // 3.3.8-rc.1 HYBRID MODE (OpenClaw 2026.5.2 issue #223 workaround):
-        // The tool-policy-pipeline in OC 2026.5.2 strips non-bundled plugin tools
-        // before they reach the agent's session toolset. registerTool() calls
-        // succeed and tools are declared in contracts.tools, so the PLUGIN LOADS.
-        // But tool calls never reach execute() — the pipeline discards them before
-        // the agent's toolset is built.
-        //
-        // Strategy: keep all registerTool() calls intact so the plugin loader can
-        // verify the contracts.tools declaration and load the plugin (hooks fire).
-        // The `tr` CLI binary (dist/tr-cli.js) provides the alternative execution
-        // path. Agent runs `tr remember|recall|status|pair` from shell; tool calls
-        // are dead-letter but hooks (before_agent_start, agent_end, message_received,
-        // before_reset) still fire via the unbroken hook code path.
-        //
-        // NOTE: do NOT no-op registerTool here — OC 2026.5.2 validates the
-        // contracts.tools declaration against registered tools at load time and
-        // drops the plugin (unloads it) if no tools match. Confirmed empirically:
-        // no-op'ing registerTool causes the gateway to log "4 plugins" instead of
-        // "5 plugins" after restart (plugin excluded from active set).
-        //
-        // TODO: when OC ships a fix for issue #223, restore tool-call routing
-        // and remove the tr-cli.ts CLI layer. The bin/tr field in package.json
-        // can stay as a convenience CLI regardless.
-        api.registerTool = (tool, opts) => {
-            try {
-                const t = tool;
-                if (t && typeof t === 'object' && typeof t.name === 'string' && t.name.length > 0) {
-                    _registeredToolNames.push(t.name);
-                }
-            }
-            catch {
-                // Manifest is diagnostic; never let bookkeeping break tool registration.
-            }
-            _originalRegisterTool(tool, opts);
-        };
-        // Lazily resolved inside the try below — needed by both the manifest
-        // write and the error path. `dist/` after build, package root in tests.
-        let _pluginDirForManifest = null;
-        // NOTE: the body of register() below is intentionally NOT re-indented
+        // NOTE: the body of register() below is intentionally NOT re-indent
         // under this `try` block — re-indenting would touch every line in a
         // 3,500-line function and obscure the actual hotfix diff. The closing
         // `} catch (registerErr: unknown) { ... }` is at the very end of
@@ -2610,9 +2906,11 @@ const plugin = {
             // RC-build detection (3.3.1-rc.3)
             // ---------------------------------------------------------------
             //
-            // `isRcBuild` reads the plugin's own version string. When true, the
-            // `totalreclaw_report_qa_bug` tool is registered at the end of this
-            // function — stable builds never see it. The version is resolved via
+            // `isRcBuild` reads the plugin's own version string. The resulting
+            // `rcMode` flag is currently logged but has no gating effect after
+            // Task 3.2 retired the RC-only `totalreclaw_report_qa_bug` agent tool
+            // (the only former consumer). The flag is retained for the log line and
+            // any future RC-gated diagnostic surface. The version is resolved via
             // `readPluginVersion` from fs-helpers.ts (scanner-safe, pure-fs).
             let rcMode = false;
             // Plugin version resolved from package.json once at register time. Reused
@@ -2630,7 +2928,6 @@ const plugin = {
                 // `require('node:url')` — undefined under bare-ESM Node, broke the
                 // before_agent_start hook in the published rc.20 bundle (issue #124).
                 const pluginDir = nodePath.dirname(fileURLToPath(import.meta.url));
-                _pluginDirForManifest = pluginDir; // captured for #186 .loaded.json/.error.json
                 pluginVersion = readPluginVersion(pluginDir);
                 rcMode = isRcBuild(pluginVersion);
                 if (rcMode) {
@@ -2684,10 +2981,10 @@ const plugin = {
                 }
                 // 3.3.3-rc.1 (issue #187 — ONNX decouple): kick off a non-blocking
                 // bundle prefetch so the ~700 MB embedder tarball starts streaming
-                // as soon as the gateway boots, BEFORE the user completes
-                // `totalreclaw_pair`. Decouples the model download from the
-                // pair-completion gate the previous flow imposed via
-                // `requireFullSetup()` -> first `generateEmbedding()` call.
+                // as soon as the gateway boots, BEFORE the user completes pairing
+                // (`tr pair` / the `/plugin/totalreclaw/pair/*` HTTP route). Decouples
+                // the model download from the pair-completion gate the previous flow
+                // imposed via `requireFullSetup()` -> first `generateEmbedding()` call.
                 // Fire-and-forget — never awaits, never throws on failure (the next
                 // `generateEmbedding()` call retries via the same idempotent path).
                 // Disabled when `TOTALRECLAW_DISABLE_EMBEDDER_PREFETCH=1` (CI / tests
@@ -2844,71 +3141,6 @@ const plugin = {
                 }
             }
             // ---------------------------------------------------------------
-            // 3.3.13 — auto-pair-on-load (Pop-OS hallucination fix)
-            // ---------------------------------------------------------------
-            //
-            // If credentials.json is missing, open a relay pair session NOW and
-            // write URL + PIN + sid to ~/.totalreclaw/.pair-pending.json. The
-            // before_agent_start hook installed below reads that file and tells
-            // the agent the EXACT values to surface — the agent no longer guesses.
-            //
-            // Fire-and-forget so a relay outage never blocks plugin load. The
-            // sentinel write happens BEFORE the hook is registered, but the WS
-            // listener and credentials.json write run in the background after
-            // register() returns.
-            void (async () => {
-                try {
-                    const result = await maybeStartAutoPair({
-                        credentialsPath: CREDENTIALS_PATH,
-                        pendingPath: defaultPairPendingPath(CREDENTIALS_PATH),
-                        onboardingStatePath: CONFIG.onboardingStatePath,
-                        relayBaseUrl: CONFIG.pairRelayUrl,
-                        pluginVersion: pluginVersion ?? '3.3.0',
-                        logger: api.logger,
-                    });
-                    switch (result.status) {
-                        case 'creds_exist':
-                            // No-op — happy path; user is already set up.
-                            break;
-                        case 'pending_reused':
-                            api.logger.info('TotalReclaw: setup pending. Reusing existing pair URL at ~/.totalreclaw/.pair-pending.json — agent will surface URL+PIN to user on next turn.');
-                            break;
-                        case 'started':
-                            api.logger.info('TotalReclaw: setup pending. Pair URL written to ~/.totalreclaw/.pair-pending.json — agent will surface URL+PIN to user on next turn.');
-                            break;
-                        case 'failed':
-                            api.logger.warn(`TotalReclaw: setup pending. Auto-pair failed (${result.error}). User must run \`tr pair --json\` manually OR call the totalreclaw_pair tool.`);
-                            break;
-                    }
-                }
-                catch (err) {
-                    const msg = err instanceof Error ? err.message : String(err);
-                    api.logger.warn(`TotalReclaw: setup pending. Auto-pair failed (${msg}). User must run \`tr pair --json\` manually OR call the totalreclaw_pair tool.`);
-                }
-            })();
-            // Install the before_agent_start hook that reads the sentinel and
-            // injects URL + PIN into the agent's context verbatim. Registered
-            // here so it lives alongside the other hook registrations in
-            // register(); the hook body itself never blocks on plugin load.
-            try {
-                installPairPendingHook(api, {
-                    credentialsPath: CREDENTIALS_PATH,
-                    pendingPath: defaultPairPendingPath(CREDENTIALS_PATH),
-                    autoPairDepsFactory: () => ({
-                        credentialsPath: CREDENTIALS_PATH,
-                        pendingPath: defaultPairPendingPath(CREDENTIALS_PATH),
-                        onboardingStatePath: CONFIG.onboardingStatePath,
-                        relayBaseUrl: CONFIG.pairRelayUrl,
-                        pluginVersion: pluginVersion ?? '3.3.0',
-                        logger: api.logger,
-                    }),
-                });
-            }
-            catch (err) {
-                const msg = err instanceof Error ? err.message : String(err);
-                api.logger.warn(`TotalReclaw: failed to register pair-pending-injection hook: ${msg}`);
-            }
-            // ---------------------------------------------------------------
             // LLM client initialization (auto-detect provider from OpenClaw config)
             // ---------------------------------------------------------------
             //
@@ -3039,6 +3271,225 @@ const plugin = {
                             });
                         },
                     });
+                    // ---------------------------------------------------------------
+                    // 3.3.13 — `openclaw totalreclaw import ...` + `upgrade`
+                    //
+                    // Phase 3.2 retired the totalreclaw_import_from / import_status /
+                    // import_abort / upgrade agent tools (recall is native; the rest
+                    // became CLI/HTTP surfaces). The handlers stayed in this file
+                    // (auto-resume still calls handlePluginImportFrom on gateway
+                    // restart) but had NO user-facing entry point — users could not
+                    // START a new import, only auto-resume worked. This wiring closes
+                    // that gap.
+                    //
+                    // Why this lives on the `openclaw totalreclaw` subcommand chain
+                    // (NOT the standalone `tr` CLI binary): the import handler reaches
+                    // module-level state (authKeyHex / encryptionKey / subgraphOwner)
+                    // populated by initialize(), plus storeExtractedFacts +
+                    // extractFacts + runSmartImportPipeline. The `tr` binary
+                    // (tr-cli.ts) is a standalone Node script that does NOT import
+                    // the plugin runtime; importing index.ts from it would pull in
+                    // the entire gateway runtime. The registerCli subcommand runs
+                    // INSIDE the gateway process, so the handlers are directly in
+                    // scope — same pattern as `onboard` / `status` / `pair`.
+                    //
+                    // JSON output: every subcommand accepts --json and emits a single
+                    // machine-parseable JSON line on stdout (agent-driven use). Plain
+                    // text is for direct user CLI use.
+                    // ---------------------------------------------------------------
+                    const importCmd = tr.command('import')
+                        .description('Import memories from another tool (Mem0, MCP Memory, ChatGPT, Claude, Gemini). ' +
+                        'Subcommands: `import status`, `import abort`.');
+                    importCmd
+                        .command('from', { isDefault: true })
+                        .description('Start an import from a source tool. Conversation sources (ChatGPT/Claude/Gemini) ' +
+                        'run in the background; poll with `import status`. Pre-structured sources (Mem0/MCP) ' +
+                        'store synchronously.')
+                        .argument('<source>', 'mem0 | mcp-memory | chatgpt | claude | gemini')
+                        .option('--file <path>', 'Path to the source file on disk')
+                        .option('--content <text>', 'Inline source content (JSON/JSONL/CSV/text)')
+                        .option('--api-key <key>', 'API key for the source (used once, never stored)')
+                        .option('--source-user-id <id>', 'User/agent ID in the source system')
+                        .option('--api-url <url>', 'API base URL override (self-hosted instances)')
+                        .option('--dry-run', 'Parse + report without storing')
+                        .option('--resume <importId>', 'Resume a previously-started import by id')
+                        .option('--json', 'Emit machine-parseable JSON (required for agent shell calls)')
+                        .action(async (source, opts) => {
+                        try {
+                            await requireFullSetup(api.logger);
+                            const result = await handlePluginImportFrom({
+                                source,
+                                file_path: opts.file,
+                                content: opts.content,
+                                api_key: opts.apiKey,
+                                source_user_id: opts.sourceUserId,
+                                api_url: opts.apiUrl,
+                                dry_run: opts.dryRun,
+                                resume_id: opts.resume,
+                                disclosure_confirmed: true,
+                            }, api.logger);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify(result) + '\n');
+                            }
+                            else {
+                                // Human-readable summary. The handler already returns a
+                                // `message` for chunked (background) imports; for direct
+                                // stores + dry runs, synthesize a short summary.
+                                if (result.dry_run) {
+                                    const chunks = result.total_chunks;
+                                    if (chunks !== undefined) {
+                                        process.stdout.write(`Dry run: ~${result.estimated_facts} facts from ${chunks} chunks ` +
+                                            `(~${result.estimated_minutes} min). Confirm without --dry-run to start.\n`);
+                                    }
+                                    else {
+                                        process.stdout.write(`Dry run: found ${result.total_found} facts. Confirm without --dry-run to import.\n`);
+                                    }
+                                }
+                                else if (result.import_id && result.status === 'running') {
+                                    process.stdout.write(`${result.message}\nImport id: ${result.import_id}\n`);
+                                }
+                                else {
+                                    const stored = result.imported;
+                                    const total = result.total_found;
+                                    process.stdout.write(`Imported ${stored ?? 0}/${total ?? stored ?? 0} facts from ${source}.\n`);
+                                }
+                            }
+                        }
+                        catch (err) {
+                            const message = err instanceof Error ? err.message : String(err);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify({ success: false, error: message }) + '\n');
+                            }
+                            else {
+                                process.stderr.write(`import failed: ${message}\n`);
+                            }
+                            process.exit(1);
+                        }
+                    });
+                    importCmd
+                        .command('status')
+                        .description('Check progress of a background import. Omit --id for the most recent active import.')
+                        .option('--id <importId>', 'Import id (from `import from`). Omit for most-recent active.')
+                        .option('--json', 'Emit machine-parseable JSON (required for agent shell calls)')
+                        .action(async (opts) => {
+                        try {
+                            await requireFullSetup(api.logger);
+                            const result = await handleImportStatus({ import_id: opts.id }, api.logger);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify(result) + '\n');
+                            }
+                            else {
+                                const status = result.status;
+                                const stored = result.facts_stored;
+                                const batchDone = result.batch_done;
+                                const batchTotal = result.batch_total;
+                                if (status === 'no_active_import') {
+                                    process.stdout.write('No active import. Start one with `openclaw totalreclaw import from <source>`.\n');
+                                }
+                                else if (status === 'running') {
+                                    process.stdout.write(`Import ${result.import_id}: running — ${stored} facts stored, ` +
+                                        `batch ${batchDone}/${batchTotal}` +
+                                        (result.completion_iso ? `, ETA ${result.completion_iso}` : '') + '.\n');
+                                }
+                                else {
+                                    process.stdout.write(`Import ${result.import_id}: ${status} — ${stored ?? 0} facts stored.\n`);
+                                }
+                            }
+                        }
+                        catch (err) {
+                            const message = err instanceof Error ? err.message : String(err);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify({ error: message }) + '\n');
+                            }
+                            else {
+                                process.stderr.write(`import status failed: ${message}\n`);
+                            }
+                            process.exit(1);
+                        }
+                    });
+                    importCmd
+                        .command('abort')
+                        .description('Cancel a running background import. Already-stored facts are kept.')
+                        .argument('<importId>', 'Import id to abort (from `import from` or `import status`)')
+                        .option('--json', 'Emit machine-parseable JSON (required for agent shell calls)')
+                        .action(async (importId, opts) => {
+                        try {
+                            await requireFullSetup(api.logger);
+                            const result = await handleImportAbort({ import_id: importId }, api.logger);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify(result) + '\n');
+                            }
+                            else {
+                                if (result.aborted) {
+                                    process.stdout.write(`Import ${importId}: abort requested. ${result.facts_already_stored ?? 0} facts already stored (kept).\n`);
+                                }
+                                else {
+                                    process.stdout.write(`Import ${importId}: ${result.error ?? 'abort failed'}\n`);
+                                }
+                            }
+                        }
+                        catch (err) {
+                            const message = err instanceof Error ? err.message : String(err);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify({ error: message }) + '\n');
+                            }
+                            else {
+                                process.stderr.write(`import abort failed: ${message}\n`);
+                            }
+                            process.exit(1);
+                        }
+                    });
+                    // `openclaw totalreclaw upgrade` — Stripe checkout URL for Pro.
+                    // Restores the retired totalreclaw_upgrade agent tool (cd21176).
+                    // Self-contained: POST /v1/billing/checkout → checkout_url.
+                    tr.command('upgrade')
+                        .description('Get a Stripe checkout URL to upgrade to TotalReclaw Pro (unlimited memories on Gnosis mainnet).')
+                        .option('--json', 'Emit machine-parseable JSON (required for agent shell calls)')
+                        .action(async (opts) => {
+                        try {
+                            await requireFullSetup(api.logger);
+                            if (!authKeyHex) {
+                                throw new Error('Auth credentials are not available. Pair first (`openclaw totalreclaw pair`).');
+                            }
+                            const walletAddr = subgraphOwner || userId || '';
+                            if (!walletAddr) {
+                                throw new Error('Wallet address not available. Ensure the plugin is fully initialized.');
+                            }
+                            const response = await fetch(`${CONFIG.serverUrl}/v1/billing/checkout`, {
+                                method: 'POST',
+                                headers: buildRelayHeaders({
+                                    'Authorization': `Bearer ${authKeyHex}`,
+                                    'Content-Type': 'application/json',
+                                }),
+                                body: JSON.stringify({ wallet_address: walletAddr, tier: 'pro' }),
+                            });
+                            if (!response.ok) {
+                                const body = await response.text().catch(() => '');
+                                throw new Error(`checkout session failed (HTTP ${response.status}): ${body || response.statusText}`);
+                            }
+                            const data = await response.json();
+                            if (!data.checkout_url) {
+                                throw new Error('no checkout URL returned by the relay');
+                            }
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify({ checkout_url: data.checkout_url }) + '\n');
+                            }
+                            else {
+                                process.stdout.write(`Open this URL to upgrade to Pro: ${data.checkout_url}\n`);
+                            }
+                        }
+                        catch (err) {
+                            const message = err instanceof Error ? err.message : String(err);
+                            api.logger.error(`openclaw totalreclaw upgrade failed: ${message}`);
+                            if (opts.json) {
+                                process.stdout.write(JSON.stringify({ error: message }) + '\n');
+                            }
+                            else {
+                                process.stderr.write(`upgrade failed: ${humanizeError(message)}\n`);
+                            }
+                            process.exit(1);
+                        }
+                    });
                 }, { commands: ['totalreclaw'] });
             }
             else {
@@ -3074,6 +3525,17 @@ const plugin = {
                     sessionsPath: CONFIG.pairSessionsPath,
                     apiBase: '/plugin/totalreclaw/pair',
                     logger: api.logger,
+                    // 3.3.14 — wire the relay URL so buildPairRoutes exposes the
+                    // in-process `/pair/init` route. The gateway process opens the
+                    // relay WebSocket directly (via openRemotePairSession from
+                    // pair-remote-client.ts), eliminating the 30s-subprocess-kill
+                    // 502 that the CLI path (tr pair) hit when OpenClaw's shell
+                    // tool killed the subprocess mid-pair. relayBaseUrl is sourced
+                    // from CONFIG.pairRelayUrl (config.ts reads it from the env
+                    // once, centrally) — never read from the environment inside
+                    // pair-http.ts (scanner-surface rule).
+                    relayBaseUrl: CONFIG.pairRelayUrl,
+                    initPairMode: 'either',
                     validateMnemonic: (p) => validateMnemonic(p, wordlist),
                     completePairing: async ({ mnemonic }) => {
                         // Write credentials.json + flip state to 'active' via
@@ -3117,11 +3579,6 @@ const plugin = {
                             credentialsCreatedAt: new Date().toISOString(),
                             version: pluginVersion ?? '3.3.0',
                         });
-                        // 3.3.13 — sentinel cleanup. credentials.json is now the source
-                        // of truth; the auto-pair-on-load .pair-pending.json sentinel
-                        // must be removed so the before_agent_start hook stops surfacing
-                        // the URL + PIN on subsequent turns.
-                        deletePairPendingFile(defaultPairPendingPath(CREDENTIALS_PATH));
                         return { state: 'active' };
                     },
                 });
@@ -3139,7 +3596,20 @@ const plugin = {
                 api.registerHttpRoute({ path: bundle.startPath, handler: bundle.handlers.start, auth: 'plugin' });
                 api.registerHttpRoute({ path: bundle.respondPath, handler: bundle.handlers.respond, auth: 'plugin' });
                 api.registerHttpRoute({ path: bundle.statusPath, handler: bundle.handlers.status, auth: 'plugin' });
-                api.logger.info('TotalReclaw: registered 4 QR-pairing HTTP routes synchronously');
+                // 3.3.14 — in-process pair trigger. The bundle exposes initPath +
+                // handlers.init ONLY when relayBaseUrl is wired (always true here,
+                // since CONFIG.pairRelayUrl has a built-in default). Registered
+                // with auth: 'plugin' (same as the other pair routes) so the
+                // agent's localhost curl reaches it without a gateway bearer
+                // token. The route opens the relay WS in the gateway process →
+                // survives shell-tool timeouts, retries, SIGUSR1 reloads.
+                if (bundle.initPath && bundle.handlers.init) {
+                    api.registerHttpRoute({ path: bundle.initPath, handler: bundle.handlers.init, auth: 'plugin' });
+                    api.logger.info('TotalReclaw: registered 5 QR-pairing HTTP routes synchronously (incl. in-process /pair/init)');
+                }
+                else {
+                    api.logger.info('TotalReclaw: registered 4 QR-pairing HTTP routes synchronously (in-process /pair/init not wired — no relay URL)');
+                }
             }
             else {
                 api.logger.warn('api.registerHttpRoute is unavailable on this OpenClaw version — /totalreclaw pair will not work. ' +
@@ -3221,47 +3691,17 @@ const plugin = {
                             };
                         }
                         if (sub === 'diag') {
-                            // 3.3.7-rc.1 (issue #216) — diagnostic surface for the
-                            // tool-binding-on-restart bug. Reports whether the
-                            // plugin's register() ran in this process (boot count +
-                            // pid + version + tool count). Non-secret: only public
-                            // package metadata. The actual filesystem read lives in
-                            // fs-helpers.readPluginLoadedManifest() so this file
-                            // stays scanner-clean (whole-file rule disallows fs.read*
-                            // co-located with `fetch` / `post` markers).
-                            //
-                            // Usage: `/totalreclaw diag` from chat OR `cat
-                            // <pluginDir>/.loaded.json` from the host shell. Both
-                            // surfaces should agree; if chat says boot=N but the
-                            // file says boot=N+1, the chat session is stale and a
-                            // /totalreclaw-restart is warranted.
-                            try {
-                                const m = _pluginDirForManifest
-                                    ? readPluginLoadedManifest(_pluginDirForManifest)
-                                    : null;
-                                if (!m) {
-                                    return {
-                                        text: 'TotalReclaw diag:\n' +
-                                            `  pid=${process.pid}\n` +
-                                            `  version=${pluginVersion ?? 'unknown'}\n` +
-                                            '  loaded-manifest: NOT FOUND (register() may have failed — check .error.json)',
-                                    };
-                                }
-                                const stalePid = typeof m.pid === 'number' && m.pid !== process.pid;
-                                return {
-                                    text: 'TotalReclaw diag:\n' +
-                                        `  current pid=${process.pid}\n` +
-                                        `  manifest pid=${m.pid ?? '?'}${stalePid ? ' (STALE — file from prior boot, register() did NOT run in this process)' : ''}\n` +
-                                        `  version=${m.version ?? 'unknown'}\n` +
-                                        `  boot count=${m.bootCount ?? '?'}\n` +
-                                        `  boot at=${m.bootAt ?? '?'}\n` +
-                                        `  tools registered=${m.tools?.length ?? 0}`,
-                                };
-                            }
-                            catch (err) {
-                                const msg = err instanceof Error ? err.message : String(err);
-                                return { text: `TotalReclaw diag: error reading manifest (${msg})` };
-                            }
+                            // Diagnostic surface. The 3.3.7-rc.1 `.loaded.json` manifest
+                            // (boot count + pid + tool count) was retired in Phase 3.4 —
+                            // the writer was removed in 3.1 and the reader had nothing
+                            // current to read. `/totalreclaw diag` now reports pid + the
+                            // in-memory plugin version only. For richer boot history,
+                            // consult the gateway logs.
+                            return {
+                                text: 'TotalReclaw diag:\n' +
+                                    `  pid=${process.pid}\n` +
+                                    `  version=${pluginVersion ?? 'unknown'}\n`,
+                            };
                         }
                         return {
                             text: 'TotalReclaw slash commands:\n' +
@@ -3407,2297 +3847,20 @@ const plugin = {
                 return undefined;
             }, { priority: 5 });
             // ---------------------------------------------------------------
-            // Tool: totalreclaw_remember
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_remember',
-                label: 'Remember',
-                description: 'Store a memory in the encrypted vault. Use this when the user shares important information worth remembering.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        text: {
-                            type: 'string',
-                            description: 'The memory text to store',
-                        },
-                        type: {
-                            type: 'string',
-                            // Dedup the merged enum. `preference` and `summary` appear in
-                            // BOTH v1 (VALID_MEMORY_TYPES) and legacy v0 (LEGACY_V0_MEMORY_TYPES),
-                            // so the naive spread produces duplicate items at ## 5 and 12
-                            // (QA failure on 3.0.7-rc.1: ajv rejects schema with "items ##
-                            // 5 and 12 are identical"). `new Set(...)` drops dupes while
-                            // preserving insertion order so v1 tokens appear first in the
-                            // enum — agents default to picking one of those.
-                            enum: Array.from(new Set([...VALID_MEMORY_TYPES, ...LEGACY_V0_MEMORY_TYPES])),
-                            description: 'Memory Taxonomy v1 type: claim, preference, directive, commitment, episode, summary. ' +
-                                'Use "claim" for factual assertions and decisions (populate `reasoning` with the why clause). ' +
-                                'Use "directive" for imperative rules ("always X", "never Y"), "commitment" for future intent, ' +
-                                'and "episode" for notable events. Legacy v0 tokens (fact, decision, episodic, goal, context, ' +
-                                'rule) are silently coerced to their v1 equivalents. Default: claim.',
-                        },
-                        source: {
-                            type: 'string',
-                            enum: [...VALID_MEMORY_SOURCES],
-                            description: 'v1 provenance tag. "user" = user explicitly stated it, "user-inferred" = inferred from user ' +
-                                'signals, "assistant" = assistant-authored (downgrade unless user affirmed), "external" / ' +
-                                '"derived" = rare. Explicit remembers default to "user".',
-                        },
-                        scope: {
-                            type: 'string',
-                            enum: [...VALID_MEMORY_SCOPES],
-                            description: 'v1 life-domain scope: work, personal, health, family, creative, finance, misc, unspecified. ' +
-                                'Default: unspecified.',
-                        },
-                        reasoning: {
-                            type: 'string',
-                            description: 'For type=claim expressing a decision, the WHY clause ("because Y"). Max 256 chars. ' +
-                                'Omit for non-decision claims.',
-                            maxLength: 256,
-                        },
-                        importance: {
-                            type: 'number',
-                            minimum: 1,
-                            maximum: 10,
-                            description: 'Importance score 1-10 (default: 8 for explicit remember)',
-                        },
-                        entities: {
-                            type: 'array',
-                            description: 'Named entities this memory is about (people, projects, tools, companies, concepts, places). ' +
-                                'Supplying entities enables Phase 2 contradiction detection against existing facts about the same entity. ' +
-                                'Omit if unclear — a best-effort fallback will still store the memory.',
-                            items: {
-                                type: 'object',
-                                properties: {
-                                    name: { type: 'string' },
-                                    type: {
-                                        type: 'string',
-                                        enum: ['person', 'project', 'tool', 'company', 'concept', 'place'],
-                                    },
-                                    role: { type: 'string' },
-                                },
-                                required: ['name', 'type'],
-                                additionalProperties: false,
-                            },
-                        },
-                    },
-                    required: ['text'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        // v1 taxonomy: route explicit remembers through the same canonical
-                        // store path that auto-extraction uses (`storeExtractedFacts`). This
-                        // emits a Memory Taxonomy v1 JSON blob, generates entity trapdoors,
-                        // and runs through the Phase 2 contradiction-resolution pipeline.
-                        //
-                        // Accept legacy v0 tokens on input and coerce to v1 via
-                        // `normalizeToV1Type` so agents that still emit the pre-v3
-                        // taxonomy keep working.
-                        const rawType = typeof params.type === 'string' ? params.type.toLowerCase() : 'claim';
-                        const memoryType = isValidMemoryType(rawType)
-                            ? rawType
-                            : normalizeToV1Type(rawType);
-                        // Source defaults to 'user' for explicit remembers (the user is
-                        // the author by definition). Ignored if the caller passes an
-                        // invalid value.
-                        const rawSource = typeof params.source === 'string' ? params.source.toLowerCase() : 'user';
-                        const memorySource = VALID_MEMORY_SOURCES.includes(rawSource)
-                            ? rawSource
-                            : 'user';
-                        const rawScope = typeof params.scope === 'string' ? params.scope.toLowerCase() : 'unspecified';
-                        const memoryScope = VALID_MEMORY_SCOPES.includes(rawScope)
-                            ? rawScope
-                            : 'unspecified';
-                        const reasoning = typeof params.reasoning === 'string' && params.reasoning.length > 0
-                            ? params.reasoning.slice(0, 256)
-                            : undefined;
-                        // Explicit remember defaults to importance 8 (above auto-extraction's
-                        // typical 6-7), so store-time dedup's shouldSupersede prefers the
-                        // explicit call when it collides with an auto-extracted claim.
-                        const importance = Math.max(1, Math.min(10, params.importance ?? 8));
-                        const validatedEntities = Array.isArray(params.entities)
-                            ? params.entities
-                                .map((e) => parseEntity(e))
-                                .filter((e) => e !== null)
-                            : [];
-                        const fact = {
-                            text: params.text.slice(0, 512),
-                            type: memoryType,
-                            source: memorySource,
-                            scope: memoryScope,
-                            reasoning,
-                            importance,
-                            action: 'ADD',
-                            confidence: 1.0, // user explicitly asked to remember — highest confidence
-                        };
-                        if (validatedEntities.length > 0)
-                            fact.entities = validatedEntities;
-                        const stored = await storeExtractedFacts([fact], api.logger, 'explicit');
-                        api.logger.info(`totalreclaw_remember: routed to storeExtractedFacts (stored=${stored}, entities=${validatedEntities.length})`);
-                        if (stored === 0) {
-                            // Dedup or supersession consumed the write. Treat as success from
-                            // the user's perspective — the memory's content is already in the
-                            // vault (possibly under a different ID).
-                            return {
-                                content: [
-                                    {
-                                        type: 'text',
-                                        text: 'Memory noted (matched existing content in vault).',
-                                    },
-                                ],
-                            };
-                        }
-                        return {
-                            content: [{ type: 'text', text: 'Memory encrypted and stored.' }],
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_remember failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to store memory: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_remember' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_recall
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_recall',
-                label: 'Recall',
-                description: 'Search the encrypted memory vault. Returns the most relevant memories matching the query.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        query: {
-                            type: 'string',
-                            description: 'Search query text',
-                        },
-                        k: {
-                            type: 'number',
-                            minimum: 1,
-                            maximum: 20,
-                            description: 'Number of results to return (default: 8)',
-                        },
-                    },
-                    required: ['query'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        const k = Math.min(params.k ?? 8, 20);
-                        // 1. Generate word trapdoors (blind indices for the query).
-                        const wordTrapdoors = generateBlindIndices(params.query);
-                        // 2. Generate query embedding + LSH trapdoors (may fail gracefully).
-                        let queryEmbedding = null;
-                        let lshTrapdoors = [];
-                        try {
-                            queryEmbedding = await generateEmbedding(params.query, { isQuery: true });
-                            const hasher = getLSHHasher(api.logger);
-                            if (hasher && queryEmbedding) {
-                                lshTrapdoors = hasher.hash(queryEmbedding);
-                            }
-                        }
-                        catch (err) {
-                            const msg = err instanceof Error ? err.message : String(err);
-                            api.logger.warn(`Recall: embedding/LSH generation failed (using word-only trapdoors): ${msg}`);
-                        }
-                        // 3. Merge word trapdoors + LSH trapdoors.
-                        const allTrapdoors = [...wordTrapdoors, ...lshTrapdoors];
-                        if (allTrapdoors.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: 'No searchable terms in query.' }],
-                                details: { count: 0, memories: [] },
-                            };
-                        }
-                        // 4. Request more candidates than needed so we can re-rank client-side.
-                        // 5. Decrypt candidates (text + embeddings) and build reranker input.
-                        const rerankerCandidates = [];
-                        const metaMap = new Map();
-                        if (isSubgraphMode()) {
-                            // --- Subgraph search path ---
-                            const factCount = await getSubgraphFactCount(subgraphOwner || userId, authKeyHex);
-                            const pool = computeCandidatePool(factCount);
-                            let subgraphResults = await searchSubgraph(subgraphOwner || userId, allTrapdoors, pool, authKeyHex);
-                            // Always run broadened search and merge — ensures vocabulary mismatches
-                            // (e.g., "preferences" vs "prefer") don't cause recall failures.
-                            // The reranker handles scoring; extra cost is ~1 GraphQL query per recall.
-                            try {
-                                const broadenedResults = await searchSubgraphBroadened(subgraphOwner || userId, pool, authKeyHex);
-                                // Merge broadened results with existing (deduplicate by ID)
-                                const existingIds = new Set(subgraphResults.map(r => r.id));
-                                for (const br of broadenedResults) {
-                                    if (!existingIds.has(br.id)) {
-                                        subgraphResults.push(br);
-                                    }
-                                }
-                            }
-                            catch { /* best-effort */ }
-                            for (const result of subgraphResults) {
-                                try {
-                                    const docJson = decryptFromHex(result.encryptedBlob, encryptionKey);
-                                    if (isDigestBlob(docJson))
-                                        continue;
-                                    const doc = readClaimFromBlob(docJson);
-                                    let decryptedEmbedding;
-                                    if (result.encryptedEmbedding) {
-                                        try {
-                                            decryptedEmbedding = JSON.parse(decryptFromHex(result.encryptedEmbedding, encryptionKey));
-                                        }
-                                        catch {
-                                            // Embedding decryption failed -- proceed without it.
-                                        }
-                                    }
-                                    if (decryptedEmbedding && decryptedEmbedding.length !== getEmbeddingDims()) {
-                                        try {
-                                            decryptedEmbedding = await generateEmbedding(doc.text);
-                                        }
-                                        catch {
-                                            decryptedEmbedding = undefined;
-                                        }
-                                    }
-                                    rerankerCandidates.push({
-                                        id: result.id,
-                                        text: doc.text,
-                                        embedding: decryptedEmbedding,
-                                        importance: doc.importance / 10,
-                                        createdAt: result.timestamp ? parseInt(result.timestamp, 10) : undefined,
-                                        // Retrieval v2 Tier 1: surface v1 source so applySourceWeights
-                                        // can multiply the final RRF score by the source weight.
-                                        source: typeof doc.metadata?.source === 'string' ? doc.metadata.source : undefined,
-                                    });
-                                    metaMap.set(result.id, {
-                                        metadata: doc.metadata ?? {},
-                                        timestamp: Date.now(),
-                                        category: doc.category,
-                                    });
-                                }
-                                catch {
-                                    // Skip candidates we cannot decrypt.
-                                }
-                            }
-                            // Update hot cache with top results for instant auto-recall.
-                            try {
-                                if (!pluginHotCache && encryptionKey) {
-                                    const config = getSubgraphConfig();
-                                    pluginHotCache = new PluginHotCache(config.cachePath, encryptionKey.toString('hex'));
-                                    pluginHotCache.load();
-                                }
-                                if (pluginHotCache) {
-                                    const hotFacts = rerankerCandidates.map((c) => {
-                                        const meta = metaMap.get(c.id);
-                                        const importance = meta?.metadata.importance
-                                            ? Math.round(meta.metadata.importance * 10)
-                                            : 5;
-                                        return { id: c.id, text: c.text, importance };
-                                    });
-                                    pluginHotCache.setHotFacts(hotFacts);
-                                    pluginHotCache.setFactCount(rerankerCandidates.length);
-                                    pluginHotCache.flush();
-                                }
-                            }
-                            catch {
-                                // Hot cache update is best-effort -- don't fail the recall.
-                            }
-                        }
-                        else {
-                            // --- Server search path (existing behavior) ---
-                            const factCount = await getFactCount(api.logger);
-                            const pool = computeCandidatePool(factCount);
-                            const candidates = await apiClient.search(userId, allTrapdoors, pool, authKeyHex);
-                            for (const candidate of candidates) {
-                                try {
-                                    const docJson = decryptFromHex(candidate.encrypted_blob, encryptionKey);
-                                    if (isDigestBlob(docJson))
-                                        continue;
-                                    const doc = readClaimFromBlob(docJson);
-                                    let decryptedEmbedding;
-                                    if (candidate.encrypted_embedding) {
-                                        try {
-                                            decryptedEmbedding = JSON.parse(decryptFromHex(candidate.encrypted_embedding, encryptionKey));
-                                        }
-                                        catch {
-                                            // Embedding decryption failed -- proceed without it.
-                                        }
-                                    }
-                                    if (decryptedEmbedding && decryptedEmbedding.length !== getEmbeddingDims()) {
-                                        try {
-                                            decryptedEmbedding = await generateEmbedding(doc.text);
-                                        }
-                                        catch {
-                                            decryptedEmbedding = undefined;
-                                        }
-                                    }
-                                    rerankerCandidates.push({
-                                        id: candidate.fact_id,
-                                        text: doc.text,
-                                        embedding: decryptedEmbedding,
-                                        importance: doc.importance / 10,
-                                        createdAt: typeof candidate.timestamp === 'number'
-                                            ? candidate.timestamp / 1000
-                                            : new Date(candidate.timestamp).getTime() / 1000,
-                                        source: typeof doc.metadata?.source === 'string' ? doc.metadata.source : undefined,
-                                    });
-                                    metaMap.set(candidate.fact_id, {
-                                        metadata: doc.metadata ?? {},
-                                        timestamp: candidate.timestamp,
-                                        category: doc.category,
-                                    });
-                                }
-                                catch {
-                                    // Skip candidates we cannot decrypt (e.g. corrupted data).
-                                }
-                            }
-                        }
-                        // 6. Re-rank with BM25 + cosine + intent-weighted RRF fusion.
-                        const queryIntent = detectQueryIntent(params.query);
-                        const reranked = rerank(params.query, queryEmbedding ?? [], rerankerCandidates, k, INTENT_WEIGHTS[queryIntent], 
-                        /* applySourceWeights (Retrieval v2 Tier 1) */ true);
-                        if (reranked.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: 'No memories found matching your query.' }],
-                                details: { count: 0, memories: [] },
-                            };
-                        }
-                        // 6b. Relevance gate removed in rc.22 -- core's intent-weighted
-                        //     RRF + Tier 1 source weighting handles short queries via the
-                        //     BM25 component, making the rc.18 cosine + lexical-override
-                        //     band-aid (issue #116) redundant.
-                        // 7. Format results.
-                        const lines = reranked.map((m, i) => {
-                            const meta = metaMap.get(m.id);
-                            const imp = meta?.metadata.importance
-                                ? ` (importance: ${Math.round(meta.metadata.importance * 10)}/10)`
-                                : '';
-                            const age = meta ? relativeTime(meta.timestamp) : '';
-                            const typeTag = meta?.category ? `[${meta.category}] ` : '';
-                            return `${i + 1}. ${typeTag}${m.text}${imp} -- ${age} [ID: ${m.id}]`;
-                        });
-                        const formatted = lines.join('\n');
-                        return {
-                            content: [{ type: 'text', text: formatted }],
-                            details: {
-                                count: reranked.length,
-                                memories: reranked.map((m) => ({
-                                    factId: m.id,
-                                    text: m.text,
-                                })),
-                            },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_recall failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to search memories: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_recall' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_forget
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_forget',
-                label: 'Forget',
-                description: 'Delete a specific memory. Use when the user asks to forget, delete, or remove ' +
-                    'something specific (e.g. "forget that I live in Porto", "delete the memory about my old job"). ' +
-                    'Writes an on-chain tombstone — the delete is permanent and propagates across all devices. ' +
-                    'If the user names the memory in natural language instead of an ID, FIRST call ' +
-                    '`totalreclaw_recall` with their phrase as the query, then pass the top result\'s `id` as ' +
-                    '`factId`. Non-reversible.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        factId: {
-                            type: 'string',
-                            description: 'The UUID of the memory to delete. Get this from a prior `totalreclaw_recall` result — ' +
-                                'the `memories[i].id` field. Never invent a factId; if you don\'t have one, call recall first.',
-                        },
-                    },
-                    required: ['factId'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        // Validate factId shape BEFORE any on-chain work. Prevents
-                        // silent no-op when the LLM fabricates a non-UUID factId —
-                        // the classic failure mode from 3.3.1-rc.1 QA where the
-                        // agent replied "Done" without calling the tool at all, OR
-                        // called the tool with a plain natural-language string.
-                        const factId = typeof params.factId === 'string' ? params.factId.trim() : '';
-                        if (!factId) {
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: 'Cannot forget without a memory ID. Call `totalreclaw_recall` first with ' +
-                                            'the user\'s phrasing as the query — the top result\'s `id` field is the ' +
-                                            'factId to pass here.',
-                                    }],
-                                details: { deleted: false, error: 'missing-fact-id' },
-                            };
-                        }
-                        // UUID-v4-ish shape check (loose — accepts any hex-dashed id).
-                        // Prevents cases like `factId: "that I live in Porto"` from
-                        // reaching the UserOp path and silently failing on-chain.
-                        const looksLikeFactId = /^[0-9a-f-]{8,}$/i.test(factId);
-                        if (!looksLikeFactId) {
-                            api.logger.warn(`totalreclaw_forget: rejected likely-invalid factId "${factId.slice(0, 40)}" ` +
-                                `— expected a UUID from a prior recall result, not natural language.`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `"${factId.slice(0, 60)}" doesn\'t look like a memory ID. Call ` +
-                                            '`totalreclaw_recall` first with the user\'s phrasing as the query, then ' +
-                                            'pass the top result\'s `id` field (a hex UUID) as `factId`.',
-                                    }],
-                                details: { deleted: false, error: 'invalid-fact-id' },
-                            };
-                        }
-                        if (isSubgraphMode()) {
-                            // On-chain tombstone: write a minimal protobuf with decayScore=0
-                            // The subgraph picks this up and sets isActive=false.
-                            //
-                            // 3.3.1-rc.2 fix: route through submitFactBatchOnChain with a
-                            // single-payload batch so we share the tombstone codepath the
-                            // pin/unpin flow uses (that flow is known-good and the QA
-                            // confirms pin works). Also write at legacy v3 (NOT v4) so the
-                            // subgraph handler matches the source="tombstone" + version=3
-                            // shape the contradiction/pin tombstones use.
-                            const config = { ...getSubgraphConfig(), authKeyHex: authKeyHex, walletAddress: subgraphOwner ?? undefined };
-                            const tombstone = {
-                                id: factId,
-                                timestamp: new Date().toISOString(),
-                                owner: subgraphOwner || userId,
-                                encryptedBlob: '00', // minimal 1-byte placeholder
-                                blindIndices: [],
-                                decayScore: 0,
-                                source: 'tombstone',
-                                contentFp: '',
-                                agentId: 'openclaw-plugin-forget',
-                                // Deliberately NO version: field → uses the default (legacy v3).
-                                // The pin/unpin tombstones use v3 (see pin.ts:611-621) — we
-                                // MUST match that shape or the subgraph may not flip isActive.
-                            };
-                            const protobuf = encodeFactProtobuf(tombstone);
-                            const result = await submitFactBatchOnChain([protobuf], config);
-                            if (!result.success) {
-                                throw new Error(`On-chain tombstone failed (tx=${result.txHash?.slice(0, 10) || 'none'}…)`);
-                            }
-                            api.logger.info(`Tombstone written for ${factId}: tx=${result.txHash}`);
-                            // Read-after-write: poll the subgraph until the original fact id
-                            // is no longer active (forget flips isActive=false). On timeout
-                            // surface `partial: true` so the agent can explain the chain
-                            // write succeeded but the subgraph is still propagating.
-                            const confirm = await confirmIndexed(factId, {
-                                expect: 'inactive',
-                                authKeyHex: authKeyHex,
-                            });
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: confirm.indexed
-                                            ? `Memory ${factId} deleted on-chain and confirmed by the subgraph (tx: ${result.txHash}).`
-                                            : `Memory ${factId} deleted on-chain (tx: ${result.txHash}). ` +
-                                                'The subgraph indexer is still propagating the change — ' +
-                                                'recall/export may briefly show the memory as still active.',
-                                    }],
-                                details: {
-                                    deleted: true,
-                                    txHash: result.txHash,
-                                    factId,
-                                    ...(confirm.indexed ? {} : { partial: true }),
-                                },
-                            };
-                        }
-                        else {
-                            await apiClient.deleteFact(factId, authKeyHex);
-                            return {
-                                content: [{ type: 'text', text: `Memory ${factId} deleted` }],
-                                details: { deleted: true, factId },
-                            };
-                        }
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_forget failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to delete memory: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_forget' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_export
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_export',
-                label: 'Export',
-                description: 'Export all stored memories. Decrypts every memory and returns them as JSON or Markdown.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        format: {
-                            type: 'string',
-                            enum: ['json', 'markdown'],
-                            description: 'Output format (default: json)',
-                        },
-                    },
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        const format = params.format ?? 'json';
-                        // Paginate through all facts.
-                        const allFacts = [];
-                        if (isSubgraphMode()) {
-                            // Query subgraph for all active facts (cursor-based pagination via id_gt)
-                            const config = getSubgraphConfig();
-                            const relayUrl = config.relayUrl;
-                            const PAGE_SIZE = 1000;
-                            let lastId = '';
-                            const owner = subgraphOwner || userId || '';
-                            console.error(`[TotalReclaw Export] owner=${owner} subgraphOwner=${subgraphOwner} userId=${userId} relayUrl=${relayUrl} authKey=${authKeyHex ? authKeyHex.slice(0, 8) + '...' : 'MISSING'} isSubgraph=${isSubgraphMode()}`);
-                            while (true) {
-                                const hasLastId = lastId !== '';
-                                const query = hasLastId
-                                    ? `query($owner:Bytes!,$first:Int!,$lastId:String!){facts(where:{owner:$owner,isActive:true,id_gt:$lastId},first:$first,orderBy:id,orderDirection:asc){id encryptedBlob timestamp sequenceId}}`
-                                    : `query($owner:Bytes!,$first:Int!){facts(where:{owner:$owner,isActive:true},first:$first,orderBy:id,orderDirection:asc){id encryptedBlob timestamp sequenceId}}`;
-                                const variables = hasLastId
-                                    ? { owner, first: PAGE_SIZE, lastId }
-                                    : { owner, first: PAGE_SIZE };
-                                const res = await fetch(`${relayUrl}/v1/subgraph`, {
-                                    method: 'POST',
-                                    headers: buildRelayHeaders({
-                                        'Content-Type': 'application/json',
-                                        ...(authKeyHex ? { Authorization: `Bearer ${authKeyHex}` } : {}),
-                                    }),
-                                    body: JSON.stringify({ query, variables }),
-                                });
-                                const json = (await res.json());
-                                // Surface relay/subgraph errors instead of silently returning empty
-                                if (json.error || json.errors) {
-                                    const errMsg = json.error || json.errors?.map(e => e.message).join('; ') || 'Unknown error';
-                                    api.logger.error(`Export subgraph query failed: ${errMsg} (owner=${owner}, status=${res.status})`);
-                                    return {
-                                        content: [{ type: 'text', text: `Export failed: ${errMsg}` }],
-                                    };
-                                }
-                                const facts = json?.data?.facts || [];
-                                if (facts.length === 0)
-                                    break;
-                                for (const fact of facts) {
-                                    try {
-                                        let hexBlob = fact.encryptedBlob;
-                                        if (hexBlob.startsWith('0x'))
-                                            hexBlob = hexBlob.slice(2);
-                                        const docJson = decryptFromHex(hexBlob, encryptionKey);
-                                        if (isDigestBlob(docJson))
-                                            continue;
-                                        const doc = readClaimFromBlob(docJson);
-                                        allFacts.push({
-                                            id: fact.id,
-                                            text: doc.text,
-                                            metadata: doc.metadata,
-                                            created_at: new Date(parseInt(fact.timestamp) * 1000).toISOString(),
-                                        });
-                                    }
-                                    catch {
-                                        // Skip facts we cannot decrypt
-                                    }
-                                }
-                                if (facts.length < PAGE_SIZE)
-                                    break;
-                                lastId = facts[facts.length - 1].id;
-                            }
-                        }
-                        else {
-                            // HTTP server mode — paginate through PostgreSQL facts
-                            let cursor;
-                            let hasMore = true;
-                            while (hasMore) {
-                                const page = await apiClient.exportFacts(authKeyHex, 1000, cursor);
-                                for (const fact of page.facts) {
-                                    try {
-                                        const docJson = decryptFromHex(fact.encrypted_blob, encryptionKey);
-                                        if (isDigestBlob(docJson))
-                                            continue;
-                                        const doc = readClaimFromBlob(docJson);
-                                        allFacts.push({
-                                            id: fact.id,
-                                            text: doc.text,
-                                            metadata: doc.metadata,
-                                            created_at: fact.created_at,
-                                        });
-                                    }
-                                    catch {
-                                        // Skip facts we cannot decrypt.
-                                    }
-                                }
-                                cursor = page.cursor ?? undefined;
-                                hasMore = page.has_more;
-                            }
-                        }
-                        // Format output.
-                        let formatted;
-                        if (format === 'markdown') {
-                            if (allFacts.length === 0) {
-                                formatted = '*No memories stored.*';
-                            }
-                            else {
-                                const lines = allFacts.map((f, i) => {
-                                    const meta = f.metadata;
-                                    const type = meta.type ?? 'fact';
-                                    const imp = meta.importance
-                                        ? ` (importance: ${Math.round(meta.importance * 10)}/10)`
-                                        : '';
-                                    return `${i + 1}. **[${type}]** ${f.text}${imp}  \n   _ID: ${f.id} | Created: ${f.created_at}_`;
-                                });
-                                formatted = `# Exported Memories (${allFacts.length})\n\n${lines.join('\n')}`;
-                            }
-                        }
-                        else {
-                            formatted = JSON.stringify(allFacts, null, 2);
-                        }
-                        return {
-                            content: [{ type: 'text', text: formatted }],
-                            details: { count: allFacts.length },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_export failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to export memories: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_export' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_status
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_status',
-                label: 'Status',
-                description: 'Check TotalReclaw billing and subscription status — tier, writes used, reset date.',
-                parameters: {
-                    type: 'object',
-                    properties: {},
-                    additionalProperties: false,
-                },
-                async execute() {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!authKeyHex) {
-                            return {
-                                content: [{ type: 'text', text: 'Auth credentials are not available. Please initialize first.' }],
-                            };
-                        }
-                        const serverUrl = CONFIG.serverUrl;
-                        const walletAddr = subgraphOwner || userId || '';
-                        const response = await fetch(`${serverUrl}/v1/billing/status?wallet_address=${encodeURIComponent(walletAddr)}`, {
-                            method: 'GET',
-                            headers: buildRelayHeaders({
-                                'Authorization': `Bearer ${authKeyHex}`,
-                                'Accept': 'application/json',
-                            }),
-                        });
-                        if (!response.ok) {
-                            const body = await response.text().catch(() => '');
-                            return {
-                                content: [{ type: 'text', text: `Failed to fetch billing status (HTTP ${response.status}): ${body || response.statusText}` }],
-                            };
-                        }
-                        const data = await response.json();
-                        const tier = data.tier || 'free';
-                        const freeWritesUsed = data.free_writes_used ?? 0;
-                        const freeWritesLimit = data.free_writes_limit ?? 0;
-                        const freeWritesResetAt = data.free_writes_reset_at;
-                        // Update billing cache on success.
-                        writeBillingCache({
-                            tier,
-                            free_writes_used: freeWritesUsed,
-                            free_writes_limit: freeWritesLimit,
-                            features: data.features,
-                            checked_at: Date.now(),
-                        });
-                        // 3.3.1 (internal#130) — surface the Smart Account / scope
-                        // address so the user can do subgraph queries, BaseScan
-                        // lookups, and cross-client portability checks BEFORE any
-                        // chain write completes. Resolution priority:
-                        //   1. In-memory `subgraphOwner` (already derived earlier).
-                        //   2. credentials.json `scope_address` (persisted at pair).
-                        //   3. Lazy derive now from the loaded mnemonic + cache it
-                        //      back to credentials.json so the next call is free.
-                        let scopeAddress = subgraphOwner ?? undefined;
-                        if (!scopeAddress) {
-                            try {
-                                const credsCache = loadCredentialsJson(CREDENTIALS_PATH);
-                                if (credsCache?.scope_address && typeof credsCache.scope_address === 'string') {
-                                    scopeAddress = credsCache.scope_address;
-                                }
-                                else if (credsCache?.mnemonic && typeof credsCache.mnemonic === 'string') {
-                                    scopeAddress = await deriveSmartAccountAddress(credsCache.mnemonic, CONFIG.chainId);
-                                    if (scopeAddress) {
-                                        writeCredentialsJson(CREDENTIALS_PATH, { ...credsCache, scope_address: scopeAddress });
-                                    }
-                                }
-                            }
-                            catch (deriveErr) {
-                                api.logger.warn(`totalreclaw_status: scope_address lookup failed: ${deriveErr instanceof Error ? deriveErr.message : String(deriveErr)}`);
-                            }
-                        }
-                        const tierLabel = tier === 'pro' ? 'Pro' : 'Free';
-                        const lines = [
-                            `Tier: ${tierLabel}`,
-                            `Writes: ${freeWritesUsed}/${freeWritesLimit} used this month`,
-                        ];
-                        if (freeWritesResetAt) {
-                            lines.push(`Resets: ${new Date(freeWritesResetAt).toLocaleDateString()}`);
-                        }
-                        if (scopeAddress) {
-                            lines.push(`Smart Account: ${scopeAddress}`);
-                        }
-                        if (tier !== 'pro') {
-                            lines.push(`Pricing: https://totalreclaw.xyz/pricing`);
-                        }
-                        return {
-                            content: [{ type: 'text', text: lines.join('\n') }],
-                            details: {
-                                tier,
-                                free_writes_used: freeWritesUsed,
-                                free_writes_limit: freeWritesLimit,
-                                scope_address: scopeAddress,
-                            },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_status failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to check status: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_status' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_preload_embedder (3.3.3-rc.1 — issue #187)
+            // Hook: before_tool_call (memory-tool gate)
             // ---------------------------------------------------------------
             //
-            // Decouples the ~700 MB embedder bundle download from the pair-
-            // completion gate. The agent can call this BEFORE
-            // `totalreclaw_pair` to pre-flight disk space, kick off the
-            // download, and surface the completion state. The non-blocking
-            // prefetch in `register()` already starts the download
-            // unconditionally; this tool is an explicit on-demand hook for
-            // agents that want to confirm completion (or trigger a retry on
-            // network failure) without first completing pair.
+            // Phase 3.3: gates the bundled NATIVE memory tools (memory_search,
+            // memory_get) until onboarding state is `active`. The blockReason string
+            // is LLM-visible but carries no secret — it's a pointer to the CLI pair
+            // surface (`tr pair --url-pin`). Without this gate, an unpaired agent
+            // would hit the adapter's fail-soft empty-result path and surface
+            // "no memories found" with no actionable guidance.
             //
-            // Behavior:
-            //   - Disk-space pre-flight: refuses if free disk < 500 MB on the
-            //     embedder cache mount. Surfaces the path + free bytes so the
-            //     user can clear space.
-            //   - Triggers `prefetchEmbedderBundle()` (idempotent — cache hit
-            //     returns immediately).
-            //   - Returns a structured success message with status:
-            //     `cache_hit | fetched | failed`.
-            //
-            // Phrase-safety: this tool does NOT touch credentials.json,
-            // mnemonics, or keys. It only touches `~/.totalreclaw/embedder/`
-            // and the GitHub Releases CDN.
-            api.registerTool({
-                name: 'totalreclaw_preload_embedder',
-                label: 'Preload Embedder',
-                description: 'Download the local-embedding model bundle ahead of pair completion. Use this when the user wants to set up TotalReclaw on a slow connection or run an offline-after-setup workflow. Returns success once the ~700 MB bundle is cached at ~/.totalreclaw/embedder/.',
-                parameters: {
-                    type: 'object',
-                    properties: {},
-                    additionalProperties: false,
-                },
-                async execute() {
-                    try {
-                        // Disk-space pre-flight: refuse if < 500 MB free on the
-                        // embedder cache mount. Best-effort — if statfs fails, we
-                        // proceed without the pre-flight rather than blocking.
-                        const fsModule = await import('node:fs');
-                        const cacheRoot = CONFIG.embedderCachePath;
-                        const REQUIRED_BYTES = 500 * 1024 * 1024;
-                        try {
-                            // Find the deepest existing parent so statfs has a real
-                            // mount to measure (loadEmbedder will mkdir under it
-                            // anyway).
-                            let probeDir = cacheRoot;
-                            while (true) {
-                                try {
-                                    fsModule.statSync(probeDir);
-                                    break;
-                                }
-                                catch {
-                                    const parent = nodePath.dirname(probeDir);
-                                    if (parent === probeDir)
-                                        break;
-                                    probeDir = parent;
-                                }
-                            }
-                            const stats = fsModule.statfsSync?.(probeDir);
-                            if (stats) {
-                                const bavail = typeof stats.bavail === 'bigint' ? Number(stats.bavail) : stats.bavail;
-                                const bsize = typeof stats.bsize === 'bigint' ? Number(stats.bsize) : stats.bsize;
-                                const freeBytes = bavail * bsize;
-                                if (freeBytes > 0 && freeBytes < REQUIRED_BYTES) {
-                                    const freeMb = Math.round(freeBytes / (1024 * 1024));
-                                    return {
-                                        content: [{
-                                                type: 'text',
-                                                text: `Insufficient free disk space for embedder bundle. Required: 500 MB. Available at ${probeDir}: ${freeMb} MB. Free up space and retry.`,
-                                            }],
-                                        details: { status: 'failed', reason: 'disk_space', free_mb: freeMb, required_mb: 500, cache_root: cacheRoot },
-                                    };
-                                }
-                            }
-                        }
-                        catch {
-                            // statfs probe failed — surface a soft warning in logs
-                            // but proceed with the download anyway.
-                            api.logger.info('totalreclaw_preload_embedder: disk-space probe unavailable, proceeding without pre-flight');
-                        }
-                        // Trigger the prefetch. This is idempotent (cache hit returns
-                        // immediately) so it's safe to invoke even when the
-                        // background prefetch from register() already completed.
-                        const result = await prefetchEmbedderBundle({
-                            log: (msg) => api.logger.info(msg),
-                        });
-                        const human = result === 'fetched'
-                            ? `Embedder bundle downloaded and cached at ${cacheRoot}. Subsequent embedding calls run in-memory.`
-                            : `Embedder bundle already cached at ${cacheRoot} — no download needed.`;
-                        return {
-                            content: [{ type: 'text', text: human }],
-                            details: { status: result, cache_root: cacheRoot },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_preload_embedder failed: ${message}`);
-                        return {
-                            content: [{
-                                    type: 'text',
-                                    text: `Embedder bundle preload failed: ${humanizeError(message)}. The plugin will retry on first embedding call.`,
-                                }],
-                            details: { status: 'failed', reason: 'fetch_error', message },
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_preload_embedder' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_consolidate
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_consolidate',
-                label: 'Consolidate',
-                description: 'Deduplicate and merge related memories. Self-hosted mode only.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        dry_run: {
-                            type: 'boolean',
-                            description: 'Preview only (default: false)',
-                        },
-                    },
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        const dryRun = params.dry_run ?? false;
-                        // Consolidation is only available in centralized (HTTP server) mode.
-                        if (isSubgraphMode()) {
-                            return {
-                                content: [{ type: 'text', text: 'Consolidation is currently only available in centralized mode.' }],
-                            };
-                        }
-                        if (!apiClient || !authKeyHex || !encryptionKey) {
-                            return {
-                                content: [{ type: 'text', text: 'Plugin not fully initialized. Cannot consolidate.' }],
-                            };
-                        }
-                        // 1. Export all facts (paginated, max 10 pages of 1000).
-                        const allDecrypted = [];
-                        let cursor;
-                        let hasMore = true;
-                        let pageCount = 0;
-                        const MAX_PAGES = 10;
-                        while (hasMore && pageCount < MAX_PAGES) {
-                            const page = await apiClient.exportFacts(authKeyHex, 1000, cursor);
-                            for (const fact of page.facts) {
-                                try {
-                                    const docJson = decryptFromHex(fact.encrypted_blob, encryptionKey);
-                                    if (isDigestBlob(docJson))
-                                        continue;
-                                    const doc = readClaimFromBlob(docJson);
-                                    let embedding = null;
-                                    try {
-                                        embedding = await generateEmbedding(doc.text);
-                                    }
-                                    catch { /* skip — fact will not be clustered */ }
-                                    allDecrypted.push({
-                                        id: fact.id,
-                                        text: doc.text,
-                                        embedding,
-                                        importance: doc.importance,
-                                        decayScore: fact.decay_score,
-                                        createdAt: new Date(fact.created_at).getTime(),
-                                        version: fact.version,
-                                    });
-                                }
-                                catch {
-                                    // Skip undecryptable facts.
-                                }
-                            }
-                            cursor = page.cursor ?? undefined;
-                            hasMore = page.has_more;
-                            pageCount++;
-                        }
-                        if (allDecrypted.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: 'No memories found to consolidate.' }],
-                            };
-                        }
-                        // 2. Cluster by cosine similarity.
-                        const clusters = clusterFacts(allDecrypted, getConsolidationThreshold());
-                        if (clusters.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: `Scanned ${allDecrypted.length} memories — no near-duplicates found.` }],
-                            };
-                        }
-                        // 3. Build report.
-                        const totalDuplicates = clusters.reduce((sum, c) => sum + c.duplicates.length, 0);
-                        const reportLines = [
-                            `Scanned ${allDecrypted.length} memories.`,
-                            `Found ${clusters.length} cluster(s) with ${totalDuplicates} duplicate(s).`,
-                            '',
-                        ];
-                        const displayClusters = clusters.slice(0, 10);
-                        for (let i = 0; i < displayClusters.length; i++) {
-                            const cluster = displayClusters[i];
-                            reportLines.push(`Cluster ${i + 1}: KEEP "${cluster.representative.text.slice(0, 80)}…"`);
-                            for (const dup of cluster.duplicates) {
-                                reportLines.push(`  - REMOVE "${dup.text.slice(0, 80)}…" (ID: ${dup.id})`);
-                            }
-                        }
-                        if (clusters.length > 10) {
-                            reportLines.push(`... and ${clusters.length - 10} more cluster(s).`);
-                        }
-                        // 4. If not dry_run, batch-delete duplicates.
-                        if (!dryRun) {
-                            const idsToDelete = clusters.flatMap((c) => c.duplicates.map((d) => d.id));
-                            const BATCH_SIZE = 500;
-                            let totalDeleted = 0;
-                            for (let i = 0; i < idsToDelete.length; i += BATCH_SIZE) {
-                                const batch = idsToDelete.slice(i, i + BATCH_SIZE);
-                                const deleted = await apiClient.batchDelete(batch, authKeyHex);
-                                totalDeleted += deleted;
-                            }
-                            reportLines.push('');
-                            reportLines.push(`Deleted ${totalDeleted} duplicate memories.`);
-                        }
-                        else {
-                            reportLines.push('');
-                            reportLines.push('DRY RUN — no memories were deleted. Run without dry_run to apply.');
-                        }
-                        return {
-                            content: [{ type: 'text', text: reportLines.join('\n') }],
-                            details: {
-                                scanned: allDecrypted.length,
-                                clusters: clusters.length,
-                                duplicates: totalDuplicates,
-                                dry_run: dryRun,
-                            },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_consolidate failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to consolidate memories: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_consolidate' });
-            // ---------------------------------------------------------------
-            // Helper: build PinOpDeps bound to the live plugin state
-            // ---------------------------------------------------------------
-            // Wires the pure pin/unpin operation to the managed-service transport +
-            // crypto layer. Mirrors MCP's buildPinDepsFromState and Python's
-            // _change_claim_status argument plumbing.
-            const buildPinDeps = () => {
-                const owner = subgraphOwner || userId || '';
-                const config = {
-                    ...getSubgraphConfig(),
-                    authKeyHex: authKeyHex,
-                    walletAddress: subgraphOwner ?? undefined,
-                };
-                return {
-                    owner,
-                    sourceAgent: 'openclaw-plugin',
-                    fetchFactById: (factId) => fetchFactById(owner, factId, authKeyHex),
-                    decryptBlob: (hex) => decryptFromHex(hex, encryptionKey),
-                    encryptBlob: (plaintext) => encryptToHex(plaintext, encryptionKey),
-                    submitBatch: async (payloads) => {
-                        const result = await submitFactBatchOnChain(payloads, config);
-                        return { txHash: result.txHash, success: result.success };
-                    },
-                    generateIndices: async (text, entityNames) => {
-                        if (!text)
-                            return { blindIndices: [] };
-                        const wordIndices = generateBlindIndices(text);
-                        let lshIndices = [];
-                        let encryptedEmbedding;
-                        try {
-                            const embedding = await generateEmbedding(text);
-                            const hasher = getLSHHasher(api.logger);
-                            if (hasher)
-                                lshIndices = hasher.hash(embedding);
-                            encryptedEmbedding = encryptToHex(JSON.stringify(embedding), encryptionKey);
-                        }
-                        catch {
-                            // Best-effort: word + entity trapdoors alone still surface the claim.
-                        }
-                        const entityTrapdoors = entityNames.map((n) => computeEntityTrapdoor(n));
-                        return {
-                            blindIndices: [...wordIndices, ...lshIndices, ...entityTrapdoors],
-                            encryptedEmbedding,
-                        };
-                    },
-                };
-            };
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_pin
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_pin',
-                label: 'Pin',
-                description: 'Pin a memory so the auto-resolution engine will never override or supersede it. ' +
-                    "Use when the user explicitly confirms a claim is still valid after you or another agent " +
-                    "tried to retract/contradict it (e.g. 'wait, I still use Vim sometimes'). " +
-                    'Takes fact_id (from a prior recall result). Pinning is idempotent — pinning an already-pinned ' +
-                    'claim is a no-op. Cross-device: the pin propagates via the on-chain supersession chain.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        fact_id: {
-                            type: 'string',
-                            description: 'The ID of the fact to pin (from a totalreclaw_recall result).',
-                        },
-                        reason: {
-                            type: 'string',
-                            description: 'Optional human-readable reason for pinning (logged locally for tuning).',
-                        },
-                    },
-                    required: ['fact_id'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!isSubgraphMode()) {
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: 'Pin/unpin is only supported with the managed service. Self-hosted mode does not yet implement the status-flip supersession flow.',
-                                    }],
-                            };
-                        }
-                        const validation = validatePinArgs(params);
-                        if (!validation.ok) {
-                            return { content: [{ type: 'text', text: validation.error }] };
-                        }
-                        const deps = buildPinDeps();
-                        const result = await executePinOperation(validation.factId, 'pinned', deps, validation.reason);
-                        if (result.success && result.idempotent) {
-                            api.logger.info(`totalreclaw_pin: ${result.fact_id} already pinned (no-op)`);
-                            return {
-                                content: [{ type: 'text', text: `Memory ${result.fact_id} is already pinned.` }],
-                                details: result,
-                            };
-                        }
-                        if (result.success) {
-                            api.logger.info(`totalreclaw_pin: ${result.fact_id} → ${result.new_fact_id} (tx ${result.tx_hash?.slice(0, 10)})`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Pinned memory ${result.fact_id}. New fact id: ${result.new_fact_id} (tx: ${result.tx_hash}).`,
-                                    }],
-                                details: result,
-                            };
-                        }
-                        api.logger.error(`totalreclaw_pin failed: ${result.error}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to pin memory: ${humanizeError(result.error ?? 'unknown error')}` }],
-                            details: result,
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_pin failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to pin memory: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_pin' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_unpin
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_unpin',
-                label: 'Unpin',
-                description: 'Remove the pin from a previously pinned memory, returning it to active status so the ' +
-                    'auto-resolution engine can supersede or retract it again. Takes fact_id. Idempotent — ' +
-                    'unpinning a non-pinned claim is a no-op.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        fact_id: {
-                            type: 'string',
-                            description: 'The ID of the fact to unpin (from a totalreclaw_recall result).',
-                        },
-                    },
-                    required: ['fact_id'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!isSubgraphMode()) {
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: 'Pin/unpin is only supported with the managed service. Self-hosted mode does not yet implement the status-flip supersession flow.',
-                                    }],
-                            };
-                        }
-                        const validation = validatePinArgs(params);
-                        if (!validation.ok) {
-                            return { content: [{ type: 'text', text: validation.error }] };
-                        }
-                        const deps = buildPinDeps();
-                        const result = await executePinOperation(validation.factId, 'active', deps);
-                        if (result.success && result.idempotent) {
-                            api.logger.info(`totalreclaw_unpin: ${result.fact_id} already active (no-op)`);
-                            return {
-                                content: [{ type: 'text', text: `Memory ${result.fact_id} is not pinned.` }],
-                                details: result,
-                            };
-                        }
-                        if (result.success) {
-                            api.logger.info(`totalreclaw_unpin: ${result.fact_id} → ${result.new_fact_id} (tx ${result.tx_hash?.slice(0, 10)})`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Unpinned memory ${result.fact_id}. New fact id: ${result.new_fact_id} (tx: ${result.tx_hash}).`,
-                                    }],
-                                details: result,
-                            };
-                        }
-                        api.logger.error(`totalreclaw_unpin failed: ${result.error}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to unpin memory: ${humanizeError(result.error ?? 'unknown error')}` }],
-                            details: result,
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_unpin failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to unpin memory: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_unpin' });
-            // ---------------------------------------------------------------
-            // Shared deps for retype + set_scope (same shape as pin deps).
-            // Built lazily so the closure captures the current encryption key /
-            // subgraph owner at call time rather than at register() time.
-            // ---------------------------------------------------------------
-            const buildRetypeSetScopeDeps = () => {
-                const owner = subgraphOwner || userId || '';
-                const config = {
-                    ...getSubgraphConfig(),
-                    authKeyHex: authKeyHex,
-                    walletAddress: subgraphOwner ?? undefined,
-                };
-                return {
-                    owner,
-                    sourceAgent: 'openclaw-plugin',
-                    fetchFactById: (factId) => fetchFactById(owner, factId, authKeyHex),
-                    decryptBlob: (hex) => decryptFromHex(hex, encryptionKey),
-                    encryptBlob: (plaintext) => encryptToHex(plaintext, encryptionKey),
-                    submitBatch: async (payloads) => {
-                        const result = await submitFactBatchOnChain(payloads, config);
-                        return { txHash: result.txHash, success: result.success };
-                    },
-                    generateIndices: async (text, entityNames) => {
-                        if (!text)
-                            return { blindIndices: [] };
-                        const wordIndices = generateBlindIndices(text);
-                        let lshIndices = [];
-                        let encryptedEmbedding;
-                        try {
-                            const embedding = await generateEmbedding(text);
-                            const hasher = getLSHHasher(api.logger);
-                            if (hasher)
-                                lshIndices = hasher.hash(embedding);
-                            encryptedEmbedding = encryptToHex(JSON.stringify(embedding), encryptionKey);
-                        }
-                        catch {
-                            // Best-effort: word + entity trapdoors alone still surface the claim.
-                        }
-                        const entityTrapdoors = entityNames.map((n) => computeEntityTrapdoor(n));
-                        return {
-                            blindIndices: [...wordIndices, ...lshIndices, ...entityTrapdoors],
-                            encryptedEmbedding,
-                        };
-                    },
-                };
-            };
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_retype (3.3.1-rc.2 — agent-facing taxonomy edit)
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_retype',
-                label: 'Retype',
-                description: 'Reclassify an existing memory from one taxonomy type to another (claim / preference / ' +
-                    'directive / commitment / episode / summary). Use when the user corrects a memory\'s ' +
-                    'category — e.g. "that\'s actually a preference, not a fact" or "file this as a ' +
-                    'commitment, not a claim". Writes a new v1.1 blob with the updated type and tombstones ' +
-                    'the old fact on-chain.\n\n' +
-                    'If the user names the memory in natural language, FIRST call `totalreclaw_recall` to ' +
-                    'find the fact_id, then pass it here with the new type.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        fact_id: {
-                            type: 'string',
-                            description: 'The UUID of the memory to reclassify. Get this from a prior ' +
-                                '`totalreclaw_recall` result.',
-                        },
-                        new_type: {
-                            type: 'string',
-                            enum: ['claim', 'preference', 'directive', 'commitment', 'episode', 'summary'],
-                            description: 'The new taxonomy type. claim=factual statement, preference=opinion/like/dislike, ' +
-                                'directive=instruction, commitment=promise/plan, episode=event, summary=aggregate.',
-                        },
-                    },
-                    required: ['fact_id', 'new_type'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!isSubgraphMode()) {
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: 'Retype is only supported with the managed service. Self-hosted mode does not yet implement the status-flip supersession flow.',
-                                    }],
-                            };
-                        }
-                        const validation = validateRetypeArgs(params);
-                        if (!validation.ok) {
-                            return { content: [{ type: 'text', text: validation.error }] };
-                        }
-                        const deps = buildRetypeSetScopeDeps();
-                        const result = await executeRetype(validation.factId, validation.newType, deps);
-                        if (result.success) {
-                            api.logger.info(`totalreclaw_retype: ${result.fact_id} (${result.previous_type} → ${result.new_type}) → ${result.new_fact_id} (tx ${result.tx_hash?.slice(0, 10)})`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Retyped memory ${result.fact_id} from ${result.previous_type} to ${result.new_type}. ` +
-                                            `New fact id: ${result.new_fact_id} (tx: ${result.tx_hash}).`,
-                                    }],
-                                details: result,
-                            };
-                        }
-                        api.logger.error(`totalreclaw_retype failed: ${result.error}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to retype memory: ${humanizeError(result.error ?? 'unknown error')}` }],
-                            details: result,
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_retype failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to retype memory: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_retype' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_set_scope (3.3.1-rc.2 — agent-facing scope edit)
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_set_scope',
-                label: 'Set Scope',
-                description: 'Move an existing memory to a different scope (work / personal / health / family / ' +
-                    'creative / finance / misc / unspecified). Use when the user re-categorizes a memory\'s ' +
-                    'domain — e.g. "put that under work", "this is a health thing", "move this to personal". ' +
-                    'Writes a new v1.1 blob with the updated scope and tombstones the old fact on-chain.\n\n' +
-                    'If the user names the memory in natural language, FIRST call `totalreclaw_recall` to ' +
-                    'find the fact_id, then pass it here with the new scope.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        fact_id: {
-                            type: 'string',
-                            description: 'The UUID of the memory to rescope. Get this from a prior `totalreclaw_recall` result.',
-                        },
-                        new_scope: {
-                            type: 'string',
-                            enum: ['work', 'personal', 'health', 'family', 'creative', 'finance', 'misc', 'unspecified'],
-                            description: 'The new scope. Used for filtered recall — e.g. "recall work-related memories only".',
-                        },
-                    },
-                    required: ['fact_id', 'new_scope'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!isSubgraphMode()) {
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: 'Set-scope is only supported with the managed service. Self-hosted mode does not yet implement the status-flip supersession flow.',
-                                    }],
-                            };
-                        }
-                        const validation = validateSetScopeArgs(params);
-                        if (!validation.ok) {
-                            return { content: [{ type: 'text', text: validation.error }] };
-                        }
-                        const deps = buildRetypeSetScopeDeps();
-                        const result = await executeSetScope(validation.factId, validation.newScope, deps);
-                        if (result.success) {
-                            api.logger.info(`totalreclaw_set_scope: ${result.fact_id} (${result.previous_scope ?? 'unspecified'} → ${result.new_scope}) → ${result.new_fact_id} (tx ${result.tx_hash?.slice(0, 10)})`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Moved memory ${result.fact_id} from scope "${result.previous_scope ?? 'unspecified'}" to "${result.new_scope}". ` +
-                                            `New fact id: ${result.new_fact_id} (tx: ${result.tx_hash}).`,
-                                    }],
-                                details: result,
-                            };
-                        }
-                        api.logger.error(`totalreclaw_set_scope failed: ${result.error}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to set scope: ${humanizeError(result.error ?? 'unknown error')}` }],
-                            details: result,
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_set_scope failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to set scope: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_set_scope' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_import_from
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_import_from',
-                label: 'Import From',
-                description: 'Import memories from other AI memory tools (Mem0, MCP Memory Server, ChatGPT, Claude, Gemini, MemoClaw, or generic JSON/CSV). ' +
-                    'Provide the source name and either an API key, file content, or file path. ' +
-                    'Use dry_run=true to preview before importing. Idempotent — safe to run multiple times.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        source: {
-                            type: 'string',
-                            enum: ['mem0', 'mcp-memory', 'chatgpt', 'claude', 'gemini'],
-                            description: 'The source system to import from (gemini: Google Takeout HTML; chatgpt: conversations.json or memory text; claude: memory text)',
-                        },
-                        api_key: {
-                            type: 'string',
-                            description: 'API key for the source system (used once, never stored)',
-                        },
-                        source_user_id: {
-                            type: 'string',
-                            description: 'User or agent ID in the source system',
-                        },
-                        content: {
-                            type: 'string',
-                            description: 'File content (JSON, JSONL, or CSV)',
-                        },
-                        file_path: {
-                            type: 'string',
-                            description: 'Path to the file on disk',
-                        },
-                        namespace: {
-                            type: 'string',
-                            description: 'Target namespace (default: "imported")',
-                        },
-                        dry_run: {
-                            type: 'boolean',
-                            description: 'Preview without importing',
-                        },
-                    },
-                    required: ['source'],
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        return handlePluginImportFrom(params, api.logger);
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        return { error: message };
-                    }
-                },
-            }, { name: 'totalreclaw_import_from' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_import_batch
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_import_batch',
-                label: 'Import Batch',
-                description: 'Process one batch of a large import. Call repeatedly with increasing offset until is_complete=true.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        source: {
-                            type: 'string',
-                            enum: ['gemini', 'chatgpt', 'claude'],
-                            description: 'Source format',
-                        },
-                        file_path: {
-                            type: 'string',
-                            description: 'Path to source file',
-                        },
-                        content: {
-                            type: 'string',
-                            description: 'File content (text sources)',
-                        },
-                        offset: {
-                            type: 'number',
-                            description: 'Starting chunk index (0-based)',
-                        },
-                        batch_size: {
-                            type: 'number',
-                            description: 'Chunks per call (default 25)',
-                        },
-                    },
-                    required: ['source'],
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        return handleBatchImport(params, api.logger);
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        return { error: message };
-                    }
-                },
-            }, { name: 'totalreclaw_import_batch' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_import_status
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_import_status',
-                label: 'Import Status',
-                description: 'Check the progress of a background import. ' +
-                    'If import_id is omitted, returns the most recent active import. ' +
-                    'Returns status (running/completed/failed/aborted), batch progress, facts stored, and ETA. ' +
-                    'Use this when the user asks "how\'s the import?" or "is it done yet?".',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        import_id: {
-                            type: 'string',
-                            description: 'The import ID returned by totalreclaw_import_from. Omit for most recent active import.',
-                        },
-                    },
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        return handleImportStatus(params, api.logger);
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        return { error: message };
-                    }
-                },
-            }, { name: 'totalreclaw_import_status' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_import_abort
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_import_abort',
-                label: 'Abort Import',
-                description: 'Cancel a running background import. Already-stored facts are kept (import is idempotent via fingerprint dedup). ' +
-                    'The background task will stop at the next chunk boundary after receiving the abort signal. ' +
-                    'Use when the user says "stop the import" or "cancel the import".',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        import_id: {
-                            type: 'string',
-                            description: 'The import ID to abort (from totalreclaw_import_from or totalreclaw_import_status).',
-                        },
-                    },
-                    required: ['import_id'],
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        return handleImportAbort(params, api.logger);
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        return { error: message };
-                    }
-                },
-            }, { name: 'totalreclaw_import_abort' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_upgrade
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_upgrade',
-                label: 'Upgrade to Pro',
-                description: 'Upgrade to TotalReclaw Pro for unlimited encrypted memories. ' +
-                    'Returns a Stripe checkout URL for the user to complete payment via credit/debit card.',
-                parameters: {
-                    type: 'object',
-                    properties: {},
-                    additionalProperties: false,
-                },
-                async execute() {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!authKeyHex) {
-                            return {
-                                content: [{ type: 'text', text: 'Auth credentials are not available. Please initialize first.' }],
-                            };
-                        }
-                        const serverUrl = CONFIG.serverUrl;
-                        const walletAddr = subgraphOwner || userId || '';
-                        if (!walletAddr) {
-                            return {
-                                content: [{ type: 'text', text: 'Wallet address not available. Please ensure the plugin is fully initialized.' }],
-                            };
-                        }
-                        const response = await fetch(`${serverUrl}/v1/billing/checkout`, {
-                            method: 'POST',
-                            headers: buildRelayHeaders({
-                                'Authorization': `Bearer ${authKeyHex}`,
-                                'Content-Type': 'application/json',
-                            }),
-                            body: JSON.stringify({
-                                wallet_address: walletAddr,
-                                tier: 'pro',
-                            }),
-                        });
-                        if (!response.ok) {
-                            const body = await response.text().catch(() => '');
-                            return {
-                                content: [{ type: 'text', text: `Failed to create checkout session (HTTP ${response.status}): ${body || response.statusText}` }],
-                            };
-                        }
-                        const data = await response.json();
-                        if (!data.checkout_url) {
-                            return {
-                                content: [{ type: 'text', text: 'Failed to create checkout session: no checkout URL returned.' }],
-                            };
-                        }
-                        return {
-                            content: [{ type: 'text', text: `Open this URL to upgrade to Pro: ${data.checkout_url}` }],
-                            details: { checkout_url: data.checkout_url },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_upgrade failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to create checkout session: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_upgrade' });
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_migrate
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_migrate',
-                label: 'Migrate Testnet to Mainnet',
-                description: 'Migrate memories from testnet (Base Sepolia) to mainnet (Gnosis) after upgrading to Pro. ' +
-                    'Dry-run by default — set confirm=true to execute. Idempotent: re-running skips already-migrated facts.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        confirm: {
-                            type: 'boolean',
-                            description: 'Set to true to execute the migration. Without it, returns a dry-run preview.',
-                            default: false,
-                        },
-                    },
-                    additionalProperties: false,
-                },
-                async execute(_params) {
-                    try {
-                        await requireFullSetup(api.logger);
-                        if (!authKeyHex || !subgraphOwner) {
-                            return {
-                                content: [{ type: 'text', text: 'Plugin not fully initialized. Ensure TOTALRECLAW_RECOVERY_PHRASE is set.' }],
-                            };
-                        }
-                        if (!isSubgraphMode()) {
-                            return {
-                                content: [{ type: 'text', text: 'Migration is only available with the managed service (subgraph mode).' }],
-                            };
-                        }
-                        const confirm = _params?.confirm === true;
-                        const serverUrl = CONFIG.serverUrl;
-                        // 1. Check billing tier
-                        const billingResp = await fetch(`${serverUrl}/v1/billing/status?wallet_address=${encodeURIComponent(subgraphOwner)}`, {
-                            method: 'GET',
-                            headers: buildRelayHeaders({
-                                'Authorization': `Bearer ${authKeyHex}`,
-                                'Content-Type': 'application/json',
-                            }),
-                        });
-                        if (!billingResp.ok) {
-                            return { content: [{ type: 'text', text: `Failed to check billing tier (HTTP ${billingResp.status}).` }] };
-                        }
-                        const billingData = await billingResp.json();
-                        if (billingData.tier !== 'pro') {
-                            return {
-                                content: [{ type: 'text', text: 'Migration requires Pro tier. Use totalreclaw_upgrade to upgrade first.' }],
-                            };
-                        }
-                        // 2. Fetch testnet facts via relay (chain=testnet query param)
-                        const testnetSubgraphUrl = `${serverUrl}/v1/subgraph?chain=testnet`;
-                        const mainnetSubgraphUrl = `${serverUrl}/v1/subgraph`;
-                        api.logger.info('Fetching testnet facts...');
-                        const testnetFacts = await fetchAllFactsByOwner(testnetSubgraphUrl, subgraphOwner, authKeyHex);
-                        if (testnetFacts.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: 'No facts found on testnet. Nothing to migrate.' }],
-                            };
-                        }
-                        // 3. Check mainnet for existing facts (idempotency)
-                        api.logger.info('Checking mainnet for existing facts...');
-                        const mainnetFps = await fetchContentFingerprintsByOwner(mainnetSubgraphUrl, subgraphOwner, authKeyHex);
-                        const factsToMigrate = testnetFacts.filter(f => !f.contentFp || !mainnetFps.has(f.contentFp));
-                        const alreadyOnMainnet = testnetFacts.length - factsToMigrate.length;
-                        // 4. Dry-run
-                        if (!confirm) {
-                            const msg = factsToMigrate.length === 0
-                                ? `All ${testnetFacts.length} testnet facts already exist on mainnet. Nothing to migrate.`
-                                : `Found ${factsToMigrate.length} facts to migrate from testnet to Gnosis mainnet (${alreadyOnMainnet} already on mainnet). Call with confirm=true to proceed.`;
-                            return {
-                                content: [{ type: 'text', text: msg }],
-                                details: {
-                                    mode: 'dry_run',
-                                    testnet_facts: testnetFacts.length,
-                                    already_on_mainnet: alreadyOnMainnet,
-                                    to_migrate: factsToMigrate.length,
-                                },
-                            };
-                        }
-                        // 5. Execute migration
-                        if (factsToMigrate.length === 0) {
-                            return {
-                                content: [{ type: 'text', text: `All ${testnetFacts.length} testnet facts already exist on mainnet. Nothing to migrate.` }],
-                            };
-                        }
-                        // Fetch blind indices
-                        api.logger.info(`Fetching blind indices for ${factsToMigrate.length} facts...`);
-                        const factIds = factsToMigrate.map(f => f.id);
-                        const blindIndicesMap = await fetchBlindIndicesByFactIds(testnetSubgraphUrl, factIds, authKeyHex);
-                        // Build protobuf payloads
-                        const payloads = [];
-                        for (const fact of factsToMigrate) {
-                            const blobHex = fact.encryptedBlob.startsWith('0x') ? fact.encryptedBlob.slice(2) : fact.encryptedBlob;
-                            const indices = blindIndicesMap.get(fact.id) || [];
-                            const factPayload = {
-                                id: fact.id,
-                                timestamp: new Date().toISOString(),
-                                owner: subgraphOwner,
-                                encryptedBlob: blobHex,
-                                blindIndices: indices,
-                                decayScore: parseFloat(fact.decayScore) || 0.5,
-                                source: fact.source || 'migration',
-                                contentFp: fact.contentFp || '',
-                                agentId: fact.agentId || 'openclaw-plugin',
-                                encryptedEmbedding: fact.encryptedEmbedding || undefined,
-                                version: PROTOBUF_VERSION_V4,
-                            };
-                            payloads.push(encodeFactProtobuf(factPayload));
-                        }
-                        // Batch submit (15 per UserOp)
-                        const BATCH_SIZE = 15;
-                        const batchConfig = { ...getSubgraphConfig(), authKeyHex: authKeyHex, walletAddress: subgraphOwner ?? undefined };
-                        let migrated = 0;
-                        let failedBatches = 0;
-                        for (let i = 0; i < payloads.length; i += BATCH_SIZE) {
-                            const batch = payloads.slice(i, i + BATCH_SIZE);
-                            const batchNum = Math.floor(i / BATCH_SIZE) + 1;
-                            const totalBatches = Math.ceil(payloads.length / BATCH_SIZE);
-                            api.logger.info(`Migrating batch ${batchNum}/${totalBatches} (${batch.length} facts)...`);
-                            try {
-                                const result = await submitFactBatchOnChain(batch, batchConfig);
-                                if (result.success) {
-                                    migrated += batch.length;
-                                }
-                                else {
-                                    failedBatches++;
-                                }
-                            }
-                            catch (err) {
-                                const msg = err instanceof Error ? err.message : String(err);
-                                api.logger.error(`Migration batch ${batchNum} failed: ${msg}`);
-                                failedBatches++;
-                            }
-                        }
-                        const resultMsg = failedBatches === 0
-                            ? `Successfully migrated ${migrated} memories from testnet to Gnosis mainnet.`
-                            : `Migrated ${migrated}/${factsToMigrate.length} memories. ${failedBatches} batch(es) failed — re-run to retry (idempotent).`;
-                        return {
-                            content: [{ type: 'text', text: resultMsg }],
-                            details: {
-                                mode: 'executed',
-                                testnet_facts: testnetFacts.length,
-                                already_on_mainnet: alreadyOnMainnet,
-                                to_migrate: factsToMigrate.length,
-                                migrated,
-                                failed_batches: failedBatches,
-                            },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_migrate failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Migration failed: ${humanizeError(message)}` }],
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_migrate' });
-            // ---------------------------------------------------------------
-            // Tools: totalreclaw_setup + totalreclaw_onboarding_start —
-            //   REMOVED in 3.3.1-rc.5 (phrase-safety carve-out closure).
-            // ---------------------------------------------------------------
-            //
-            // rc.4 left these two registrations in place as *neutered* stubs —
-            // ``totalreclaw_setup`` rejected any ``recovery_phrase`` argument
-            // and returned a CLI-pointer message; ``totalreclaw_onboarding_start``
-            // was already pointer-only. Neither path could leak a phrase in
-            // rc.4, but the rc.4 auto-QA (2026-04-22) flagged them as future-
-            // regression surface: any future patch that re-enables phrase
-            // acceptance (e.g. a flag-driven "power-user" path) would silently
-            // re-open the leak, and their mere presence in the tool registry
-            // keeps signalling to agents that "phrase handling happens here".
-            //
-            // Per ``project_phrase_safety_rule.md`` the ONLY approved agent-
-            // facilitated setup surface is ``totalreclaw_pair`` (browser-side
-            // crypto keeps the phrase out of the LLM round-trip by construction).
-            // rc.5 deletes both registrations outright. The underlying CLI
-            // wizard (``openclaw totalreclaw onboard``) is unchanged — users
-            // run it in their own terminal, outside any agent shell.
-            //
-            // Audit assertion: ``phrase-safety-registry.test.ts`` asserts
-            // neither name is present in the ``api.registerTool`` call list.
-            // Re-adding either fails CI.
-            //
-            // Historical tombstone (so LLM-assisted contributors don't re-add
-            // the former shape from training-data memory): rc.4 registered two
-            // tools by the names "totalreclaw_setup" and
-            // "totalreclaw_onboarding_start" as pointer-only stubs. Both were
-            // deleted in rc.5. Do not re-introduce.
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_onboard — REMOVED in 3.3.1-rc.4 (phrase-safety).
-            //
-            // rc.3 shipped a `totalreclaw_onboard` agent tool that generated a
-            // fresh BIP-39 mnemonic in-process, wrote it to credentials.json,
-            // and returned `{scope_address, credentials_path}` to the agent.
-            // `emitPhrase: false` kept the mnemonic OUT of the tool's return
-            // payload, but NOTHING ARCHITECTURALLY PREVENTED leakage — a future
-            // patch could regress the flag, a different code path could echo
-            // the mnemonic in a log/error message the agent captures, or the
-            // mere existence of the tool implied to agents that "generating a
-            // phrase here is fine" (it isn't).
-            //
-            // Per ``project_phrase_safety_rule.md``
-            // (memory file in p-diogo/totalreclaw-internal — absolute rule:
-            // "recovery phrase MUST NEVER cross the LLM context in ANY form"),
-            // phrase-generating agent tools are forbidden. The ONLY approved
-            // agent-facilitated setup surface is ``totalreclaw_pair`` (browser-
-            // side crypto keeps the phrase out of the LLM round-trip by
-            // construction). The underlying ``runNonInteractiveOnboard`` code
-            // path is still reachable via the CLI ``openclaw totalreclaw onboard``
-            // — that path runs in the user's own terminal, OUTSIDE any agent
-            // shell, so phrase stdout never feeds back into LLM context.
-            //
-            // Audit assertion: ``tool-gating.test.ts`` enforces the removal —
-            // any future re-registration of ``totalreclaw_onboard`` (or any
-            // phrase-generating variant like ``totalreclaw_onboard_generate``,
-            // ``totalreclaw_restore_phrase``) fails CI.
-            // ---------------------------------------------------------------
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_pair (3.3.1-rc.2 — agent-callable pair-generate)
-            //
-            // Creates a pairing session (browser-mediated recovery-phrase sync),
-            // returns the URL + PIN + QR ASCII to the agent. The agent relays
-            // these to the user (paste-URL or scan-QR flow). The phrase itself
-            // NEVER crosses the gateway — the pair-http endpoint does the E2EE
-            // handshake with the browser pair-page.
-            // ---------------------------------------------------------------
-            api.registerTool({
-                name: 'totalreclaw_pair',
-                label: 'Set up the user\'s TotalReclaw account (encrypted, browser-side)',
-                description: 'Set up the user\'s TotalReclaw account (encrypted, browser-side recovery-phrase ' +
-                    'generation or import). Starts a brief remote session so the user can create or ' +
-                    'import a TotalReclaw recovery phrase from their phone or another browser. ' +
-                    'Returns an account-setup URL, a 6-digit PIN, and an ASCII QR code that the agent ' +
-                    'relays to the user. The recovery phrase itself is generated/entered in the ' +
-                    'BROWSER and uploaded end-to-end encrypted to this gateway — it NEVER touches ' +
-                    'the LLM provider or the chat transcript.\n\n' +
-                    'This is the CANONICAL agent-facilitated account-setup surface — use it whenever ' +
-                    'the user asks you to set up TotalReclaw, regardless of whether they have ' +
-                    'terminal access. Narrate it to the user as "setting up your TotalReclaw ' +
-                    'account". Browser-side crypto keeps the recovery phrase out of the LLM context ' +
-                    'entirely. If a user explicitly prefers local-terminal account setup with no ' +
-                    'browser, point them at `totalreclaw_onboarding_start` (a pointer to the CLI ' +
-                    'wizard they run on their own terminal, NOT through your shell tool).\n\n' +
-                    'Tool name `totalreclaw_pair` is kept for backward compatibility — function-wise ' +
-                    'this is the account-setup tool.',
-                parameters: {
-                    type: 'object',
-                    properties: {
-                        mode: {
-                            type: 'string',
-                            enum: ['generate', 'import'],
-                            description: '"generate" = the browser will create a NEW recovery phrase. "import" = the ' +
-                                'browser will accept an EXISTING phrase that the user pastes in their browser ' +
-                                '(never through chat).',
-                            default: 'generate',
-                        },
-                    },
-                    additionalProperties: false,
-                },
-                async execute(_toolCallId, params) {
-                    const rawMode = params?.mode;
-                    const mode = rawMode === 'import' ? 'import' : 'generate';
-                    const pairMode = CONFIG.pairMode;
-                    try {
-                        // 3.3.1-rc.11 — relay-brokered pair by default (universal reachability).
-                        // `TOTALRECLAW_PAIR_MODE=local` preserves the rc.4–rc.10 loopback flow
-                        // for air-gapped / self-hosted setups. Both paths return the same
-                        // tool payload (`{url, pin, expires_at_ms, qr_*, mode, instructions}`);
-                        // only the URL origin differs.
-                        let url;
-                        let pin;
-                        let sidOrToken;
-                        let expiresAtMs;
-                        let localSession;
-                        if (pairMode === 'relay') {
-                            const { openRemotePairSession, awaitPhraseUpload } = await import('./pair-remote-client.js');
-                            const remoteSession = await openRemotePairSession({
-                                relayBaseUrl: CONFIG.pairRelayUrl,
-                                mode: mode === 'generate' ? 'generate' : 'import',
-                            });
-                            url = remoteSession.url;
-                            pin = remoteSession.pin;
-                            sidOrToken = remoteSession.token;
-                            // Relay sends ISO-8601; convert to ms for tool payload parity.
-                            const parsed = Date.parse(remoteSession.expiresAt);
-                            expiresAtMs = Number.isFinite(parsed)
-                                ? parsed
-                                : Date.now() + 5 * 60_000;
-                            // Background task — writes credentials.json + flips state when
-                            // the browser completes the flow. Tool handler returns
-                            // immediately so the agent can tell the user the URL + PIN.
-                            //
-                            // 3.3.4-rc.2 (Pedro QA — pair flow stuck-session) — wrap the
-                            // WS-await in a 60s hard timeout. The relay drops sessions on
-                            // `ws_close` (separately patched relay-side); without this
-                            // bound the background task hangs in `waitNextMessage` for the
-                            // full 5-minute session TTL before resolving, and downstream
-                            // tooling that polls the gateway for completion sees stale
-                            // `processing` state at 129s/159s/189s. 60s is the user-side
-                            // deadline we surface in chat: long enough for a slow scan-
-                            // and-paste, short enough that a fresh URL request is the
-                            // obvious next step. Structured `timed_out` error in the log
-                            // lets ops grep for the failure mode independently of generic
-                            // ws-close errors.
-                            const PAIR_TOOL_HARD_TIMEOUT_MS = 60_000;
-                            void (async () => {
-                                try {
-                                    const phraseUploadPromise = awaitPhraseUpload(remoteSession, {
-                                        phraseValidator: (p) => validateMnemonic(p, wordlist),
-                                        completePairing: async ({ mnemonic }) => {
-                                            try {
-                                                // 3.3.1 (internal#130) — derive + persist the
-                                                // Smart Account address now so the user can see
-                                                // it immediately after pair, before any chain
-                                                // write. Mnemonic stays in this scope (already
-                                                // on disk in credentials.json); only the
-                                                // derived public scope_address is added.
-                                                let scopeAddress;
-                                                try {
-                                                    scopeAddress = await deriveSmartAccountAddress(mnemonic, CONFIG.chainId);
-                                                }
-                                                catch (deriveErr) {
-                                                    api.logger.warn(`totalreclaw_pair(relay): scope_address derivation failed (will retry lazily): ${deriveErr instanceof Error ? deriveErr.message : String(deriveErr)}`);
-                                                }
-                                                const creds = loadCredentialsJson(CREDENTIALS_PATH) ?? {};
-                                                const next = { ...creds, mnemonic };
-                                                if (scopeAddress)
-                                                    next.scope_address = scopeAddress;
-                                                if (!writeCredentialsJson(CREDENTIALS_PATH, next)) {
-                                                    return { state: 'error', error: 'credentials_write_failed' };
-                                                }
-                                                setRecoveryPhraseOverride(mnemonic);
-                                                writeOnboardingState(CONFIG.onboardingStatePath, {
-                                                    onboardingState: 'active',
-                                                    createdBy: mode === 'generate' ? 'generate' : 'import',
-                                                    credentialsCreatedAt: new Date().toISOString(),
-                                                    version: pluginVersion ?? '3.3.0',
-                                                });
-                                                // 3.3.13 — sentinel cleanup; see auto-pair-on-load.ts.
-                                                deletePairPendingFile(defaultPairPendingPath(CREDENTIALS_PATH));
-                                                api.logger.info(`totalreclaw_pair(relay): session ${remoteSession.token.slice(0, 8)}… completed; credentials written${scopeAddress ? ` (scope_address=${scopeAddress})` : ''}`);
-                                                return { state: 'active' };
-                                            }
-                                            catch (err) {
-                                                const msg = err instanceof Error ? err.message : String(err);
-                                                api.logger.error(`totalreclaw_pair(relay): completePairing failed: ${msg}`);
-                                                return { state: 'error', error: msg };
-                                            }
-                                        },
-                                        // 3.3.4-rc.2 — also pass through to awaitPhraseUpload so its
-                                        // internal `waitNextMessage` timer matches the outer race.
-                                        timeoutMs: PAIR_TOOL_HARD_TIMEOUT_MS,
-                                    });
-                                    // 3.3.4-rc.2 — outer Promise.race guard. Resolves to a
-                                    // sentinel ({ status: 'timed_out', ... }) so the catch
-                                    // handler can distinguish a hard-timeout from a generic
-                                    // ws-close error and surface it explicitly.
-                                    const TIMEOUT_SENTINEL = {
-                                        status: 'timed_out',
-                                        message: `Pair flow timed out (${PAIR_TOOL_HARD_TIMEOUT_MS / 1000}s) — generate a new URL with totalreclaw_pair.`,
-                                    };
-                                    let hardTimer;
-                                    const hardTimeoutPromise = new Promise((resolve) => {
-                                        hardTimer = setTimeout(() => resolve(TIMEOUT_SENTINEL), PAIR_TOOL_HARD_TIMEOUT_MS);
-                                    });
-                                    try {
-                                        const raced = await Promise.race([
-                                            phraseUploadPromise,
-                                            hardTimeoutPromise,
-                                        ]);
-                                        if (raced &&
-                                            typeof raced === 'object' &&
-                                            raced.status === 'timed_out') {
-                                            api.logger.warn(`totalreclaw_pair(relay): hard timeout — ${raced.message} (token=${remoteSession.token.slice(0, 8)}…)`);
-                                        }
-                                    }
-                                    finally {
-                                        if (hardTimer)
-                                            clearTimeout(hardTimer);
-                                    }
-                                }
-                                catch (bgErr) {
-                                    // Expected on TTL expiry / user-aborts — log at warn, not error.
-                                    const bgMsg = bgErr instanceof Error ? bgErr.message : String(bgErr);
-                                    api.logger.warn(`totalreclaw_pair(relay): background task ended for token=${remoteSession.token.slice(0, 8)}…: ${bgMsg}`);
-                                }
-                            })();
-                        }
-                        else {
-                            // Local loopback path (rc.10 behaviour).
-                            const { createPairSession } = await import('./pair-session-store.js');
-                            const { generateGatewayKeypair } = await import('./pair-crypto.js');
-                            const kp = generateGatewayKeypair();
-                            const session = await createPairSession(CONFIG.pairSessionsPath, {
-                                mode,
-                                operatorContext: { channel: 'agent' },
-                                rngPrivateKey: () => Buffer.from(kp.skB64, 'base64url'),
-                                rngPublicKey: () => Buffer.from(kp.pkB64, 'base64url'),
-                            });
-                            url = buildPairingUrl(api, session);
-                            pin = session.secondaryCode;
-                            sidOrToken = session.sid;
-                            expiresAtMs = session.expiresAtMs;
-                            localSession = session;
-                        }
-                        // QR renderers — same for both modes; input is the URL string.
-                        const { defaultRenderQr } = await import('./pair-cli.js');
-                        const qrAscii = await new Promise((resolve) => {
-                            let settled = false;
-                            const t = setTimeout(() => {
-                                if (!settled) {
-                                    settled = true;
-                                    resolve('');
-                                }
-                            }, 5_000);
-                            try {
-                                defaultRenderQr(url, (ascii) => {
-                                    if (settled)
-                                        return;
-                                    settled = true;
-                                    clearTimeout(t);
-                                    resolve(ascii);
-                                });
-                            }
-                            catch {
-                                if (settled)
-                                    return;
-                                settled = true;
-                                clearTimeout(t);
-                                resolve('');
-                            }
-                        });
-                        // 3.3.1-rc.5 — PNG + Unicode QR for multi-transport rendering.
-                        let qrPngB64 = '';
-                        let qrUnicode = '';
-                        try {
-                            const { encodePng, encodeUnicode } = await import('./pair-qr.js');
-                            const [pngBuf, uni] = await Promise.all([
-                                encodePng(url),
-                                encodeUnicode(url),
-                            ]);
-                            qrPngB64 = pngBuf.toString('base64');
-                            qrUnicode = uni;
-                        }
-                        catch (qrErr) {
-                            api.logger.warn(`totalreclaw_pair: QR encode failed (non-fatal): ${qrErr instanceof Error ? qrErr.message : String(qrErr)}`);
-                        }
-                        api.logger.info(`totalreclaw_pair: session ${sidOrToken.slice(0, 8)}… mode=${mode} transport=${pairMode} url=${url} qr_png=${qrPngB64.length} qr_unicode=${qrUnicode.length}`);
-                        // Voidly reference localSession so TS does not flag the unused
-                        // local-branch binding. Future rc.12 diagnostics can expose
-                        // `session.mode` / `session.status` separately.
-                        void localSession;
-                        return {
-                            content: [{
-                                    type: 'text',
-                                    text: `Pairing session started.\n\n` +
-                                        `URL: ${url}\n\n` +
-                                        `PIN (type this into the browser): ${pin}\n\n` +
-                                        (qrAscii ? `QR code:\n\n${qrAscii}\n\n` : '') +
-                                        `Instructions for the user:\n` +
-                                        `1. Open the URL above on their phone or another browser (scan the QR or copy-paste).\n` +
-                                        `2. ` +
-                                        (mode === 'generate'
-                                            ? `The browser will generate a NEW 12-word recovery phrase and ask the user to write it down + retype 3 words before finalizing.`
-                                            : `The browser will accept an EXISTING phrase that the user pastes in the browser (never through chat).`) +
-                                        `\n3. Enter the 6-digit PIN shown above into the browser.\n` +
-                                        `4. The encrypted phrase uploads to this gateway — it NEVER touches the LLM.\n` +
-                                        `5. Come back to chat once the browser says "Pairing complete".\n\n` +
-                                        `This session expires in ~5 minutes. Run this tool again if you need a fresh URL.`,
-                                }],
-                            details: {
-                                sid: sidOrToken,
-                                url,
-                                pin,
-                                mode,
-                                expires_at_ms: expiresAtMs,
-                                qr_ascii: qrAscii,
-                                qr_png_b64: qrPngB64,
-                                qr_unicode: qrUnicode,
-                                // rc.11 — surface the transport so downstream tooling (QA
-                                // harness asserters, telemetry) can confirm which path
-                                // served the URL. Either 'relay' or 'local'.
-                                transport: pairMode,
-                            },
-                        };
-                    }
-                    catch (err) {
-                        const message = err instanceof Error ? err.message : String(err);
-                        api.logger.error(`totalreclaw_pair failed: ${message}`);
-                        return {
-                            content: [{ type: 'text', text: `Failed to start pairing session: ${humanizeError(message)}` }],
-                            details: { error: message },
-                        };
-                    }
-                },
-            }, { name: 'totalreclaw_pair' });
-            // 3.3.1-rc.20 (issue #110): explicit post-registration breadcrumb so
-            // ops/QA can grep gateway logs for definitive proof the tool was
-            // declared. If the agent then reports the tool is missing from its
-            // tool list, the gap is upstream OpenClaw tool propagation, not our
-            // plugin — see issue #110 fix 3 + PR #102 (CLI fallback).
-            //
-            // 3.3.1-rc.21 (issue #128): the breadcrumb is debug-grade — it was
-            // bleeding into `openclaw agent --json` stdout, breaking programmatic
-            // parsers that expect the JSON-RPC body to be the only thing on the
-            // wire. Gated behind `TOTALRECLAW_VERBOSE_REGISTER` (or the general
-            // `TOTALRECLAW_DEBUG` toggle) so ops can opt back in when chasing
-            // a tool-injection regression. Default OFF — clean stdout for users.
-            if (CONFIG.verboseRegister) {
-                api.logger.info('TotalReclaw: registerTool(totalreclaw_pair) returned. If the agent does not see it in its tool list ' +
-                    'after gateway restart, the issue is upstream tool injection (containerized agents) — fall back to ' +
-                    '`openclaw totalreclaw pair generate --url-pin-only` (PR #102) or `openclaw totalreclaw onboard --pair-only`.');
-            }
-            // ---------------------------------------------------------------
-            // Tool: totalreclaw_report_qa_bug (3.3.1-rc.3 — RC-gated)
-            //
-            // Lets the agent file a structured QA-bug issue to
-            // `p-diogo/totalreclaw-internal` during RC testing. Only registered
-            // when the plugin version contains `-rc.` — stable users never see it.
-            //
-            // Secrets (recovery phrases, API keys, Telegram bot tokens) are
-            // redacted inside `postQaBugIssue` before the POST. The agent should
-            // still avoid passing raw secrets — see SKILL.md addendum.
-            // ---------------------------------------------------------------
-            if (rcMode) {
-                api.registerTool({
-                    name: 'totalreclaw_report_qa_bug',
-                    label: 'File a QA bug issue (RC builds only)',
-                    description: 'File a structured QA bug report to the internal tracker. RC-only; never available in stable builds. ' +
-                        'Do NOT call auto-file — ask the user first before invoking. The tool redacts recovery phrases, API keys, ' +
-                        'and Telegram bot tokens from all free-text fields before posting, but the agent SHOULD still avoid ' +
-                        'passing raw secrets.',
-                    parameters: {
-                        type: 'object',
-                        properties: {
-                            integration: {
-                                type: 'string',
-                                enum: ['plugin', 'hermes', 'nanoclaw', 'mcp', 'relay', 'clawhub', 'docs', 'other'],
-                                description: 'Which TotalReclaw surface is affected.',
-                            },
-                            rc_version: {
-                                type: 'string',
-                                description: 'Exact RC version string (e.g. "3.3.1-rc.3" or "2.3.1rc3").',
-                            },
-                            severity: {
-                                type: 'string',
-                                enum: ['blocker', 'high', 'medium', 'low'],
-                                description: 'blocker=release blocked, high=major UX failure, medium=annoying, low=polish.',
-                            },
-                            title: {
-                                type: 'string',
-                                description: 'Short summary, <60 chars. Prefix "[qa-bug]" is added automatically.',
-                                maxLength: 60,
-                            },
-                            symptom: {
-                                type: 'string',
-                                description: 'What happened (redacted automatically).',
-                            },
-                            expected: {
-                                type: 'string',
-                                description: 'What should have happened.',
-                            },
-                            repro: {
-                                type: 'string',
-                                description: 'Reproduction steps (redacted automatically).',
-                            },
-                            logs: {
-                                type: 'string',
-                                description: 'Log excerpts / error messages (redacted automatically).',
-                            },
-                            environment: {
-                                type: 'string',
-                                description: 'Host, Docker/native, OpenClaw version, LLM provider, etc.',
-                            },
-                        },
-                        required: [
-                            'integration',
-                            'rc_version',
-                            'severity',
-                            'title',
-                            'symptom',
-                            'expected',
-                            'repro',
-                            'logs',
-                            'environment',
-                        ],
-                        additionalProperties: false,
-                    },
-                    async execute(_toolCallId, params) {
-                        try {
-                            const { postQaBugIssue } = await import('./qa-bug-report.js');
-                            // The token is resolved via CONFIG (config.ts) so index.ts
-                            // stays clean of env-harvesting triggers.
-                            const token = CONFIG.qaGithubToken;
-                            if (!token) {
-                                return {
-                                    content: [{
-                                            type: 'text',
-                                            text: 'Cannot file QA bug: no GitHub token found. The operator must export ' +
-                                                'TOTALRECLAW_QA_GITHUB_TOKEN (or GITHUB_TOKEN) with `repo` scope to enable ' +
-                                                'agent-filed bug reports during RC testing.',
-                                        }],
-                                    details: { error: 'missing_github_token' },
-                                };
-                            }
-                            // rc.14 — `repo` is resolved inside `postQaBugIssue` via
-                            // `resolveQaRepo(...)`, which reads `TOTALRECLAW_QA_REPO` and
-                            // refuses any slug that isn't a `-internal` fork. Pass the
-                            // config-surfaced override so env reads stay in config.ts.
-                            const repoOverride = CONFIG.qaRepoOverride || undefined;
-                            const result = await postQaBugIssue(params, {
-                                githubToken: token,
-                                repo: repoOverride,
-                                logger: api.logger,
-                            });
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Filed QA bug #${result.issue_number}: ${result.issue_url}`,
-                                    }],
-                                details: { issue_url: result.issue_url, issue_number: result.issue_number },
-                            };
-                        }
-                        catch (err) {
-                            const message = err instanceof Error ? err.message : String(err);
-                            api.logger.error(`totalreclaw_report_qa_bug failed: ${message}`);
-                            return {
-                                content: [{
-                                        type: 'text',
-                                        text: `Failed to file QA bug: ${message}`,
-                                    }],
-                                details: { error: message },
-                            };
-                        }
-                    },
-                }, { name: 'totalreclaw_report_qa_bug' });
-                // 3.3.1-rc.21 (issue #128): demote the registration-confirmation
-                // breadcrumb to verbose-only. Same `--json` stdout pollution risk
-                // as the totalreclaw_pair breadcrumb above; ops can opt back in
-                // via TOTALRECLAW_VERBOSE_REGISTER / TOTALRECLAW_DEBUG.
-                if (CONFIG.verboseRegister) {
-                    api.logger.info('totalreclaw_report_qa_bug registered (RC build — this tool is hidden in stable releases).');
-                }
-            }
-            // ---------------------------------------------------------------
-            // Hook: before_tool_call (3.2.0 memory-tool gate)
-            // ---------------------------------------------------------------
-            //
-            // Blocks every memory tool until onboarding state is `active`. The
-            // `blockReason` string is LLM-visible but carries no secret — it's a
-            // pointer to the CLI wizard.
-            //
-            // Non-gated tools: totalreclaw_upgrade, totalreclaw_migrate,
-            // totalreclaw_onboarding_start, totalreclaw_setup (deprecated).
-            // Billing tools work pre-onboarding because they help the user reach a
-            // Pro tier before they have memories to store; setup-adjacent tools
-            // return their own routing messages.
+            // Non-gated tools: every other tool the agent sees (read/write helpers,
+            // the host's own tools, etc.). The pair surface is intentionally not
+            // gated — users must be able to start onboarding before the vault is
+            // active.
             //
             // Decision logic lives in `tool-gating.ts` so it's unit-testable
             // without a full plugin host.
@@ -5848,18 +4011,18 @@ const plugin = {
                                 '## TotalReclaw setup pending\n\n' +
                                 'TotalReclaw encrypted memory is installed but not yet set up on this machine. ' +
                                 'If the user asks about memory features or wants to configure TotalReclaw, ' +
-                                'call the `totalreclaw_pair` tool — it returns a pairing URL + 6-digit PIN ' +
-                                'the user opens in a browser (phrase is generated and encrypted in-browser, ' +
-                                'never leaves their device in plaintext). If `totalreclaw_pair` is not in ' +
-                                'your tool list (container-based agents sometimes miss it), shell out to ' +
-                                '`openclaw totalreclaw pair generate --url-pin-only` on the gateway host — ' +
-                                'it emits a single JSON line `{v,url,pin,expires_at_ms}` with no phrase ' +
-                                'material; hand the user the `url` and `pin`.\n\n' +
+                                'pairing is QR-only and CLI-driven (there is no agent tool for it). Run ' +
+                                '`tr pair --url-pin` in a shell on the gateway host — it emits a single JSON ' +
+                                'line `{v,url,pin,expires_at_ms}` with no phrase material. Hand the user the ' +
+                                '`url` and `pin`; they open the URL in a browser where the recovery phrase is ' +
+                                'generated and encrypted in-browser and never leaves their device in plaintext. ' +
+                                'Once pairing completes, memory_search/memory_get unlock automatically and this ' +
+                                'banner stops appearing.\n\n' +
                                 '**Do NOT** attempt to generate, display, or relay a recovery phrase in chat. ' +
                                 '**Do NOT** run `openclaw totalreclaw onboard` — that CLI emits the recovery ' +
-                                'phrase on stdout and would leak it into the LLM transcript. Use `pair` ' +
-                                '(tool or `--url-pin-only` CLI) instead; `onboard` is reserved for users ' +
-                                'running it directly in their own local terminal.',
+                                'phrase on stdout and would leak it into the LLM transcript. Use `tr pair --url-pin` ' +
+                                '(or `openclaw totalreclaw pair generate --url-pin-only`) instead; `onboard` is ' +
+                                'reserved for users running it directly in their own local terminal.',
                         };
                     }
                     // One-time welcome message (first conversation after setup or returning user)
@@ -5875,7 +4038,7 @@ const plugin = {
                         const tier = cache?.tier || 'free';
                         const tierInfo = tier === 'pro'
                             ? 'You are on the **Pro** tier — unlimited memories, permanently stored on Gnosis mainnet.'
-                            : 'You are on the **Free** tier — memories stored on testnet. Use the totalreclaw_upgrade tool to upgrade to Pro for permanent on-chain storage.';
+                            : 'You are on the **Free** tier — memories stored on testnet. (Upgrade to Pro: run `openclaw totalreclaw upgrade` on the gateway host for a Stripe checkout URL.)';
                         welcomeBack = `\n\nTotalReclaw is active. I will automatically remember important things from our conversations and recall relevant context at the start of each session. ${tierInfo}`;
                     }
                     // Billing cache check — warn if quota is approaching limit.
@@ -6076,7 +4239,7 @@ const plugin = {
                         // 6. Re-rank with BM25 + cosine + intent-weighted RRF fusion.
                         const hookQueryIntent = detectQueryIntent(evt.prompt);
                         const reranked = rerank(evt.prompt, queryEmbedding ?? [], rerankerCandidates, 8, INTENT_WEIGHTS[hookQueryIntent], 
-                        /* applySourceWeights (Retrieval v2 Tier 1) */ true);
+                        /* applySourceWeights (Retrieval v2 Tier 1) */ false);
                         // Update hot cache with reranked results.
                         try {
                             if (pluginHotCache) {
@@ -6098,15 +4261,16 @@ const plugin = {
                         if (reranked.length === 0)
                             return undefined;
                         // Relevance gate removed in rc.22 (see recall tool comment).
-                        // 7. Build context string.
-                        const lines = reranked.map((m, i) => {
+                        // 7. Build context string using core's unified recall formatter (adds dates + header).
+                        const recallItems = reranked.map((m) => {
                             const meta = hookMetaMap.get(m.id);
-                            const importance = meta?.importance ?? 5;
-                            const age = meta?.age ?? '';
-                            const typeTag = meta?.category ? `[${meta.category}] ` : '';
-                            return `${i + 1}. ${typeTag}${m.text} (importance: ${importance}/10, ${age})`;
+                            return {
+                                category: meta?.category ?? 'claim',
+                                text: m.text,
+                                created_at: m.createdAt ?? 0,
+                            };
                         });
-                        const contextString = `## Relevant Memories\n\n${lines.join('\n')}`;
+                        const contextString = getSmartImportWasm().formatRecallContext(JSON.stringify(recallItems), BigInt(Math.floor(Date.now() / 1000)));
                         return { prependContext: consumeBannerForPrepend() + contextString + welcomeBack + billingWarning };
                     }
                     // --- Server mode (existing behavior) ---
@@ -6177,18 +4341,18 @@ const plugin = {
                     // 6. Re-rank with BM25 + cosine + RRF fusion (intent-weighted).
                     const srvHookIntent = detectQueryIntent(evt.prompt);
                     const reranked = rerank(evt.prompt, queryEmbedding ?? [], rerankerCandidates, 8, INTENT_WEIGHTS[srvHookIntent], 
-                    /* applySourceWeights (Retrieval v2 Tier 1) */ true);
+                    /* applySourceWeights (Retrieval v2 Tier 1) */ false);
                     if (reranked.length === 0)
                         return undefined;
                     // Relevance gate removed in rc.22 (see recall tool comment).
-                    // 7. Build context string.
-                    const lines = reranked.map((m, i) => {
-                        const meta = hookMetaMap.get(m.id);
-                        const importance = meta?.importance ?? 5;
-                        const age = meta?.age ?? '';
-                        return `${i + 1}. ${m.text} (importance: ${importance}/10, ${age})`;
-                    });
-                    const contextString = `## Relevant Memories\n\n${lines.join('\n')}`;
+                    // 7. Build context string using core's unified recall formatter (adds dates + header).
+                    // Server mode has no category metadata, so we use 'claim' as default.
+                    const srvRecallItems = reranked.map((m) => ({
+                        category: 'claim',
+                        text: m.text,
+                        created_at: m.createdAt ?? 0,
+                    }));
+                    const contextString = getSmartImportWasm().formatRecallContext(JSON.stringify(srvRecallItems), BigInt(Math.floor(Date.now() / 1000)));
                     return { prependContext: consumeBannerForPrepend() + contextString + welcomeBack + billingWarning };
                 }
                 catch (err) {
@@ -6288,6 +4452,25 @@ const plugin = {
             // ---------------------------------------------------------------
             startTrajectoryPoller({
                 logger: api.logger,
+                // 3.3.12-rc.19: re-assert slots.memory each poll tick. OpenClaw's
+                // config-rewrite-after-restart can strip it after register()'s
+                // self-heal (pop-os reinstall 2026-06-30 → slot reverted to disabled
+                // memory-core → memory_search/memory_get never bound). Cheap fs
+                // read; heals + restarts only if the slot is wrong.
+                recheckSlot: () => {
+                    try {
+                        if (patchOpenClawConfig(undefined, pluginVersion ?? undefined) === 'patched') {
+                            api.logger.warn('TotalReclaw: slots.memory was wrong at poll — re-healed openclaw.json, restarting to apply');
+                            try {
+                                process.kill(process.pid, 'SIGUSR1');
+                            }
+                            catch { /* gateway shutting down */ }
+                        }
+                    }
+                    catch (err) {
+                        api.logger.warn(`TotalReclaw: slot recheck failed: ${err instanceof Error ? err.message : String(err)}`);
+                    }
+                },
                 ensureInitialized: () => ensureInitialized(api.logger),
                 isPairingPending: () => needsSetup,
                 isImportActive: () => _importInProgress,
@@ -6406,62 +4589,97 @@ const plugin = {
                 }
             }, { priority: 5 });
             // ---------------------------------------------------------------
-            // 3.3.2-rc.1 (issue #186) — write `.loaded.json` manifest
+            // OpenClaw native memory integration (Task 2.7) — register TR as the
+            // memory backend: the MemoryPluginCapability + the memory_search /
+            // memory_get tools the active-memory sub-agent drives.
             // ---------------------------------------------------------------
             //
-            // Final step of register(): drop the success manifest so the agent
-            // can `cat ~/.openclaw/extensions/totalreclaw/.loaded.json` to
-            // verify which tools bound. Synchronous (see writePluginManifest doc).
-            // Never throws — diagnostic loss only on I/O failure.
-            if (_pluginDirForManifest) {
-                try {
-                    const ok = writePluginManifest(_pluginDirForManifest, {
-                        loadedAt: Date.now(),
-                        tools: _registeredToolNames.slice(),
-                        version: pluginVersion ?? 'unknown',
-                        // 3.3.8-rc.1 hybrid mode annotation: tools ARE registered with the
-                        // SDK (required for plugin loader validation), but tool calls are
-                        // dead-letter on OC 2026.5.2 due to issue #223. Use `tr <cmd>` CLI.
-                        hybridMode: true,
-                        hybridCliTools: ['tr status', 'tr pair', 'tr remember', 'tr recall'],
-                    });
-                    if (ok) {
-                        api.logger.info(`TotalReclaw: wrote .loaded.json manifest (${_registeredToolNames.length} tools + hybridCli=tr, version=${pluginVersion ?? 'unknown'})`);
-                    }
-                }
-                catch {
-                    // Best-effort; helper swallows internally too.
-                }
+            // This is THE integration point. For TR to BE the memory backend (not
+            // just a tool plugin), it must register all four against TR's own
+            // pipeline:
+            //   1. api.registerMemoryCapability({ promptBuilder, flushPlanResolver, runtime })
+            //   2. api.registerTool(() => createMemorySearchTool(runtime), { names: ['memory_search'] })
+            //   3. api.registerTool(() => createMemoryGetTool(runtime),    { names: ['memory_get'] })
+            //
+            // These registerTool calls go through the real host api.registerTool
+            // directly (the 3.3.2-rc.1 monkey-patch + .loaded.json manifest
+            // machinery were removed in Phase 3 — the conventional names survive
+            // the tool-policy strip in OC 2026.5.x, so the declare-and-dead-letter
+            // dance + manifest are obsolete).
+            //
+            // Deps: buildRecallDeps captures `api.logger` so the closures can call
+            // ensureInitialized lazily on first use. The paired-account context
+            // (authKeyHex / encryptionKey / userId / subgraphOwner) is NOT
+            // resolved here — it's populated by initialize() on the first tool
+            // call. The closures call ensureInitialized internally (see
+            // buildRecallDeps docstring).
+            //
+            // Scanner note: this call is fine inside register() because
+            // register() itself is not scanner-clean (the file pairs config reads
+            // with network calls legitimately). The scanner-clean surface is
+            // native-memory.ts (the wiring helper), which never touches env or
+            // net primitives.
+            //
+            // Graceful degradation: the wiring is wrapped in try/catch so a
+            // failure in the native memory pipeline cannot block plugin load.
+            // NOTE (Phase 3.3): the legacy totalreclaw_* agent tools that used to
+            // serve as the capture fallback were RETIRED in Task 3.2. If this
+            // registration fails, the agent has NO memory surface until the cause
+            // is fixed and the gateway restarted. The before_tool_call gate stays
+            // armed (memory_search/memory_get are simply never registered), and
+            // auto-extraction hooks still fire on the message_received / agent_end
+            // cadence — they write to the subgraph directly, so memories keep
+            // getting captured even if the agent can't read them mid-session.
+            try {
+                registerNativeMemory(api, buildRecallDeps(api.logger));
+                api.logger.info('TotalReclaw: registered native MemoryPluginCapability + memory_search/memory_get tools');
+            }
+            catch (err) {
+                const msg = err instanceof Error ? err.message : String(err);
+                api.logger.warn(`TotalReclaw: native memory capability registration failed — agent memory_search/memory_get UNAVAILABLE until fixed: ${msg}`);
+            }
+            // ---------------------------------------------------------------
+            // Skill auto-register (rc.17 QA finding: plugin installs but the
+            // SKILL.md playbook does not — agents skipped the separate
+            // `openclaw skills install totalreclaw` step and ended up without
+            // pairing / recall instructions). Mirror the bundled SKILL.md +
+            // skill.json from the package root into the workspace skills dir so
+            // OpenClaw's workspace skill scanner discovers them on the next
+            // gateway load. A single `openclaw plugins install` is now enough
+            // for both plugin + skill. Idempotent + never throws (see
+            // skill-register.ts). Lives in a scanner-clean helper because
+            // index.ts already pairs env-derived config with network calls, so
+            // the disk I/O must stay out of this file.
+            // ---------------------------------------------------------------
+            try {
+                // Re-resolve the dist dir here: the earlier `pluginDir` const
+                // lives inside its own inner try/catch scope and is not visible
+                // this far down. The call is pure + cheap (URL parse + dirname).
+                ensureSkillRegistered({
+                    pluginDir: nodePath.dirname(fileURLToPath(import.meta.url)),
+                    skillsDir: nodePath.join(CONFIG.openclawWorkspace, 'skills'),
+                    logger: api.logger,
+                });
+            }
+            catch (err) {
+                const msg = err instanceof Error ? err.message : String(err);
+                api.logger.warn(`TotalReclaw: skill auto-register failed (non-fatal): ${msg}`);
             }
         }
         catch (registerErr) {
             // ---------------------------------------------------------------
-            // 3.3.2-rc.1 (issue #186) — write `.error.json` on register() throw
+            // register() threw — best-effort log then re-throw so the SDK sees
+            // the original failure. (3.3.2-rc.1 used to write a `.error.json`
+            // marker here; that machinery was retired in Phase 3.4 along with
+            // the `.loaded.json` success manifest. The gateway log is now the
+            // source of truth for register() failures.)
             // ---------------------------------------------------------------
-            //
-            // Some surface threw out of register(). Drop a structured error
-            // marker the agent can grep. Best-effort logging then re-throw so
-            // the SDK sees the original failure.
             const errMsg = registerErr instanceof Error ? registerErr.message : String(registerErr);
-            const errStack = registerErr instanceof Error ? registerErr.stack : undefined;
             try {
                 api.logger.error(`TotalReclaw: register() threw: ${errMsg}`);
             }
             catch {
                 // Logger may be unavailable (very early failure path).
-            }
-            if (_pluginDirForManifest) {
-                try {
-                    writePluginError(_pluginDirForManifest, {
-                        loadedAt: Date.now(),
-                        error: errMsg,
-                        stack: errStack,
-                        version: 'unknown',
-                    });
-                }
-                catch {
-                    // Best-effort.
-                }
             }
             throw registerErr;
         }

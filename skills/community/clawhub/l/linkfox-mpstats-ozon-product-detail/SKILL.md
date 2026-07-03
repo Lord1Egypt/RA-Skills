@@ -1,7 +1,5 @@
 ---
 name: linkfox-mpstats-ozon-product-detail
-version: 1.0.0
-category: product-sourcing
 description: MPSTATS Ozon 俄罗斯站 SKU 全量详情批量查询。一次最多传 100 个 Ozon 商品 ID，返回每个 SKU 的价格、折扣、Ozon Card 价、评分、评论数、库存、销量、销售额、潜在销售额/损失销售额、上架日期、图片等完整商品卡。当用户提到 Ozon 商品详情、Ozon SKU 详情、Ozon 价格/评分/销量/库存核对、批量 Ozon SKU 查询、竞品 Ozon 基础数据拉取、Ozon 竞品卡片、MPSTATS Ozon detail, Ozon SKU detail, Ozon product card, Ozon batch lookup, Russian marketplace product detail 时触发此技能。即使用户未明确说"MPSTATS"，只要意图是按 Ozon SKU 拉取全量商品卡数据，也应触发此技能。
 ---
 
@@ -34,10 +32,19 @@ Pass `includeFbs: true` to allow FBS SKUs and FBS-scoped metrics into the respon
 | endDate | string | no | Stats window end, `YYYY-MM-DD`; latest = yesterday |
 | includeFbs | boolean | no | `true` to include FBS data; `false` = FBO-only |
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, response structure, and error codes. You can also execute `scripts/mpstats_ozon_product_detail.py` directly for ad-hoc queries.
+- **API 端点**：`POST /mpstats/ozon/productDetail`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/mpstats_ozon_product_detail.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-mpstats-ozon-product-detail-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 ## Usage Examples
 
 **1. Single-SKU detail**

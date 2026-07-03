@@ -23,6 +23,7 @@ import sys
 import threading
 import urllib.request
 from pathlib import Path
+from research_tools import get_runtime_llm
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -72,243 +73,17 @@ WORKSPACE = Path(os.environ.get(
 #   2. agent plugin catalog → provider baseUrl + apiKey
 # ============================================================
 
-class RuntimeLLM:
-    """
-    复用当前运行 session 的模型配置，构造 llm_func。
-
-    完全零硬编码 agent_id / model / API key。
-    动态从以下位置读取：
-      - openclaw sessions list --all-agents --active 30 --json → 当前 session 模型名 + provider
-      - agent plugin catalog → provider baseUrl + apiKey + apiType
-    """
-
-    def __init__(self, agent_id: Optional[str] = None):
-        self._session_info: Optional[Dict] = None
-        self._lock = threading.Lock()
-
-    # ---- 内部：获取当前 agent 的 openclaw 可执行文件路径 ----
-    @staticmethod
-    def _find_openclaw() -> str:
-        """查找 openclaw CLI 路径"""
-        # 1. 尝试 nvm node 目录下的 openclaw
-        home = Path.home()
-        nvm_openclaw = (
-            home / ".nvm/versions/node/v24.14.0/bin/openclaw"
-        )
-        if nvm_openclaw.exists():
-            return str(nvm_openclaw)
-
-        # 2. 尝试 PATH 中的 openclaw
-        for path in os.environ.get("PATH", "").split(os.pathsep):
-            candidate = Path(path) / "openclaw"
-            if candidate.exists() and not candidate.is_dir():
-                return str(candidate)
-
-        raise RuntimeError("找不到 openclaw CLI，请确保已安装并位于 PATH 中")
-
-    # ---- 内部：从当前运行 session 获取模型信息 ----
-    def _get_session_info(self) -> Dict:
-        """
-        通过 openclaw sessions list --all-agents --active 30 获取当前 session 信息。
-
-        零硬编码：不传 --agent 参数，由 Gateway 自动识别当前调用者 session。
-        """
-        try:
-            openclaw_path = self._find_openclaw()
-            result = subprocess.run(
-                [openclaw_path, "sessions", "list",
-                 "--all-agents",
-                 "--active", "30",
-                 "--json"],
-                capture_output=True, text=True, timeout=10
-            )
-            if result.returncode != 0:
-                raise RuntimeError(f"openclaw sessions list failed: {result.stderr}")
-
-            data = json.loads(result.stdout)
-            sessions = data.get("sessions", [])
-            if not sessions:
-                raise RuntimeError("未找到活跃 session（30分钟内）")
-
-            # sessions[0] 就是当前调用者的 session（Gateway 自动路由）
-            current = sessions[0]
-            session_key = current.get("key", "")  # e.g. agent:zz:feishu:direct:ou_xxx
-
-            # 从 session key 解析 agent_id
-            parts = session_key.split(":")
-            agent_id = parts[1] if len(parts) >= 2 else "unknown"
-
-            return {
-                "model": current.get("model", ""),
-                "provider": current.get("modelProvider", ""),
-                "agent_id": agent_id,
-                "session_key": session_key,
-            }
-        except subprocess.TimeoutExpired:
-            raise RuntimeError("openclaw sessions list 超时")
-        except Exception as e:
-            raise RuntimeError(f"读取 session 信息失败: {e}")
-
-    # ---- 内部：从 agent plugin catalog 读取 provider 凭证 ----
-    def _get_provider_config(self, provider: str, agent_id: str) -> Dict:
-        """
-        从 ~/.openclaw/agents/{agent_id}/agent/plugins/*/catalog.json 读取凭证。
-
-        plugin 目录名（如 minimax）可能与 provider 名（如 minimax-cn）不同，
-        所以需要扫描 plugins/ 下所有子目录，找包含目标 provider 的 catalog。
-        """
-        plugins_base = Path.home() / ".openclaw" / "agents" / agent_id / "agent" / "plugins"
-
-        if not plugins_base.exists():
-            raise RuntimeError(f"plugins 目录不存在: {plugins_base}")
-
-        catalog_path = None
-        for subdir in plugins_base.iterdir():
-            if not subdir.is_dir():
-                continue
-            candidate = subdir / "catalog.json"
-            if candidate.exists():
-                try:
-                    with open(candidate) as f:
-                        catalog = json.load(f)
-                    providers = catalog.get("providers", {})
-                    if provider in providers or "minimax-cn" in providers:
-                        # 找到了包含目标 provider 的 catalog
-                        catalog_path = candidate
-                        break
-                except Exception:
-                    continue
-
-        if not catalog_path:
-            raise RuntimeError(
-                f"在 {plugins_base} 下未找到包含 provider '{provider}' 的 catalog"
-            )
-
-        with open(catalog_path) as f:
-            catalog = json.load(f)
-
-        providers = catalog.get("providers", {})
-        # 精确匹配 provider，再尝试 minimax-cn 作为 fallback
-        cfg = providers.get(provider) or providers.get("minimax-cn", {})
-
-        if not cfg:
-            raise RuntimeError(f"provider '{provider}' 未在 catalog 中找到")
-
-        return {
-            "base_url": cfg["baseUrl"],
-            "api_key": cfg["apiKey"],
-            "api_type": cfg.get("api", "anthropic-messages"),
-        }
-
-    # ---- 公开接口：构造 llm_func ----
-    def make_llm_func(self, model: Optional[str] = None) -> Callable[[str], str]:
-        """
-        返回 llm_func(prompt: str) -> str。
-
-        参数 model 为 None 时，自动使用当前 session 的模型。
-        """
-        if self._session_info is None:
-            with self._lock:
-                if self._session_info is None:
-                    self._session_info = self._get_session_info()
-
-        target_model = model or self._session_info["model"]
-        provider = self._session_info["provider"]
-        agent_id = self._session_info["agent_id"]
-
-        provider_cfg = self._get_provider_config(provider, agent_id)
-        base_url = provider_cfg["base_url"]
-        api_key = provider_cfg["api_key"]
-        api_type = provider_cfg["api_type"]
-
-        def llm_func(prompt: str) -> str:
-            if api_type == "anthropic-messages":
-                return self._call_anthropic(base_url, api_key, target_model, prompt)
-            else:
-                # openai-completions 格式（deepseek 等）
-                return self._call_openai(base_url, api_key, target_model, prompt)
-
-        return llm_func
-
-    def _call_anthropic(self, base_url: str, api_key: str, model: str, prompt: str) -> str:
-        """调用 Anthropic-format API（minimax-cn 等）"""
-        payload = {
-            "model": model,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 4096,
-        }
-        data = json.dumps(payload).encode()
-        req = urllib.request.Request(
-            f"{base_url}/v1/messages",
-            data=data,
-            headers={
-                "Content-Type": "application/json",
-                "x-api-key": api_key,
-                "anthropic-version": "2023-06-01",
-            },
-            method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            result = json.loads(resp.read())
-
-        # 从 content 数组中提取 type=="text" 的块
-        for block in result.get("content", []):
-            if block.get("type") == "text":
-                return block["text"]
-
-        stop_reason = result.get("stop_reason", "")
-        if stop_reason == "max_tokens":
-            raise RuntimeError("LLM 返回被截断（max_tokens），请增加 max_tokens 参数")
-        raise RuntimeError(f"LLM 响应为空，stop_reason={stop_reason}")
-
-    def _call_openai(self, base_url: str, api_key: str, model: str, prompt: str) -> str:
-        """调用 OpenAI-completions-format API（deepseek 等）"""
-        payload = {
-            "model": model,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 4096,
-        }
-        data = json.dumps(payload).encode()
-        req = urllib.request.Request(
-            f"{base_url}/chat/completions",
-            data=data,
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {api_key}",
-            },
-            method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            result = json.loads(resp.read())
-        return result["choices"][0]["message"]["content"]
-
-    def current_model(self) -> str:
-        """返回当前 session 使用的模型"""
-        if self._session_info is None:
-            with self._lock:
-                if self._session_info is None:
-                    self._session_info = self._get_session_info()
-        return self._session_info["model"]
-
-    def current_agent_id(self) -> str:
-        """返回当前 agent ID"""
-        if self._session_info is None:
-            with self._lock:
-                if self._session_info is None:
-                    self._session_info = self._get_session_info()
-        return self._session_info["agent_id"]
-
-
-# 全局单例（延迟初始化）
-_runtime_llm: Optional[RuntimeLLM] = None
-
-
-def get_runtime_llm() -> RuntimeLLM:
-    """获取 RuntimeLLM 全局单例"""
-    global _runtime_llm
-    if _runtime_llm is None:
-        _runtime_llm = RuntimeLLM()
-    return _runtime_llm
+def _find_openclaw() -> str:
+    """查找 openclaw CLI 路径"""
+    home = Path.home()
+    nvm_openclaw = home / ".nvm/versions/node/v24.14.0/bin/openclaw"
+    if nvm_openclaw.exists():
+        return str(nvm_openclaw)
+    for path in os.environ.get("PATH", "").split(os.pathsep):
+        candidate = Path(path) / "openclaw"
+        if candidate.exists() and not candidate.is_dir():
+            return str(candidate)
+    raise RuntimeError("找不到 openclaw CLI，请确保已安装并位于 PATH 中")
 
 
 # ============================================================
@@ -404,7 +179,7 @@ def _check_openclaw_cli():
     # 环境变量 THESIS_SKIP_CLI_CHECK=1 时跳过 OpenClaw CLI 检测
     if os.environ.get("THESIS_SKIP_CLI_CHECK") == "1":
         return True
-    openclaw_path = RuntimeLLM._find_openclaw()
+    openclaw_path = _find_openclaw()
     result = subprocess.run(
         [openclaw_path, "gateway", "status", "--deep"],
         capture_output=True, text=True, timeout=15
@@ -419,29 +194,55 @@ def _check_python_docx():
     return True
 
 
-def _check_hermes():
+
+def _check_tavily_mcp():
+    # v2.1.2 平台适配:优先检测 OpenClaw,降级到 mcporter (Hermes 兼容)
+    if _detect_openclaw_platform():
+        return _check_openclaw_tavily_bridge()
+    return _check_mcporter_tavily()
+
+
+def _detect_openclaw_platform() -> bool:
+    """检测是否在 OpenClaw runtime 环境(OPENCLAW_RUNTIME env 或 openclaw CLI 可用)"""
+    if os.environ.get("OPENCLAW_RUNTIME"):
+        return True
+    try:
+        _find_openclaw()
+        return True
+    except Exception:
+        return False
+
+
+def _check_openclaw_tavily_bridge() -> bool:
+    """检测 OpenClaw 内置 Tavily MCP 桥接是否注册(通过 openclaw skills list)
+
+    v2.1.2 修正:OpenClaw skill 名称是 'tavily-search' (不是 'tavily-mcp'),
+    且 name 字段可能含 emoji 前缀,采用模糊匹配。
+    """
+    openclaw_path = _find_openclaw()
     result = subprocess.run(
-        ["hermes", "--version"],
+        [openclaw_path, "skills", "list", "--json"],
         capture_output=True, text=True, timeout=10
     )
     if result.returncode != 0:
-        raise RuntimeError(result.stderr or "not found")
-    return result.stdout.strip()
+        raise RuntimeError("openclaw skills list failed")
+    try:
+        data = json.loads(result.stdout)
+    except Exception as e:
+        raise RuntimeError(f"openclaw skills list 输出解析失败: {e}")
+    installed = [s.get("name", "") for s in data.get("skills", [])]
+    # 模糊匹配:去除 emoji/空白后检查是否含 tavily
+    normalized = [name.strip().lstrip("🔍⚙️🤖📝").strip().lower() for name in installed]
+    if not any("tavily" in n for n in normalized):
+        raise RuntimeError(
+            "OpenClaw 平台下 tavily-search skill 未注册。"
+            "请执行: openclaw skills install tavily-search"
+        )
+    return True
 
 
-def _install_hermes():
-    # 优先用 pipx，其次 pip
-    for cmd in [["pipx", "install", "hermes-ai"], ["pip", "install", "hermes-ai"]]:
-        try:
-            r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-            if r.returncode == 0:
-                return
-        except Exception:
-            continue
-    raise RuntimeError("pipx/pip 安装均失败，请手动安装 hermes-ai")
-
-
-def _check_tavily_mcp():
+def _check_mcporter_tavily() -> bool:
+    """mcporter 路径(Hermes 兼容,可能需要 ~/.local/bin/mcporter 桥接)"""
     result = subprocess.run(
         ["mcporter", "call", "tavily-mcp.tavily_search",
          '{"query":"test","max_results":1}'],
@@ -482,7 +283,7 @@ def _install_mineru():
 
 def _check_skill(name: str):
     """检查 skill 是否已安装"""
-    openclaw_path = RuntimeLLM._find_openclaw()
+    openclaw_path = _find_openclaw()
     result = subprocess.run(
         [openclaw_path, "skills", "list", "--json"],
         capture_output=True, text=True, timeout=10
@@ -497,7 +298,7 @@ def _check_skill(name: str):
 
 
 def _install_skill(name: str):
-    openclaw_path = RuntimeLLM._find_openclaw()
+    openclaw_path = _find_openclaw()
     r = subprocess.run(
         [openclaw_path, "skills", "install", name],
         capture_output=True, text=True, timeout=60
@@ -539,22 +340,13 @@ def preflight_check(skip_install: bool = False) -> Tuple[bool, list, list]:
             description="Word 文档读写"
         ),
 
-        # P1: 建议安装（可降级）
-        Dependency(
-            "Hermes CLI", _check_hermes,
-            install_cmd="pipx install hermes-ai  或  pip install hermes-ai",
-            install_fn=_install_hermes,
-            required=False, block_on_fail=False,
-            description="版本H起草引擎（深度逻辑链），可降级到版本O",
-            install_category="silent"
-        ),
         Dependency(
             "Tavily MCP", _check_tavily_mcp,
             install_cmd="mcp install tavily-mcp",
             install_fn=_install_tavily_mcp,
             required=False, block_on_fail=False,
-            description="网络搜索增强（可选，web_search 可替代）",
-            install_category="needs_ai"  # 可能有交互式确认
+            description="网络搜索增强（v2.1.2:OpenClaw 走内置桥接；Hermes 走 mcporter）",
+            install_category="none"  # v2.1.2:truly optional,不再卡 needs_ai_deps 流程
         ),
         Dependency(
             "mineru-open-api", _check_mineru,
@@ -680,43 +472,60 @@ def preflight_check(skip_install: bool = False) -> Tuple[bool, list, list]:
 # HIL 硬暂停工具
 # ============================================================
 
-def hil_pause(hil_id: str, message: str, options: Optional[Dict[str, str]] = None) -> str:
-    """HIL 硬暂停：打印清晰提示，等用户输入决策"""
+def hil_pause(hil_id: str, message: str, options: Optional[Dict[str, str]] = None,
+             allow_extra: bool = False) -> str:
+    """HIL 硬暂停:打印清晰提示,等用户输入决策
+
+    Args:
+        hil_id: HIL 编号(如 "1")
+        message: 提示消息
+        options: 选项字典 {key: description}
+        allow_extra: 是否允许 key 后接附加内容(v2.1.2 公司映射用)
+                   True 时,输入 "[1] vivo" 返回完整字符串 "[1] vivo"
+                   False 时,只接受纯 key,附加内容会被拒绝
+    """
     print()
     print("=" * 60)
     print(f"🛑 HIL #{hil_id}")
     print("=" * 60)
     print(message)
     if options:
-        print("\n可选决策：")
+        print("\n可选决策:")
         for k, v in options.items():
             print(f"  [{k}] {v}")
     print()
 
     while True:
         try:
-            choice = input("请输入决策（输入 quit 退出）: ").strip()
+            choice = input("请输入决策(输入 quit 退出): ").strip()
         except (EOFError, KeyboardInterrupt):
-            print("\n⚠️ 输入中断，退出")
+            print("\n⚠️ 输入中断,退出")
             sys.exit(0)
 
         if choice == "quit":
             sys.exit(0)
 
-        if options and choice in options:
-            return choice
+        if options:
+            # v2.1.2:allow_extra 模式:接受 "[key] extra" 格式
+            if allow_extra:
+                matched = next((k for k in options if choice.startswith(f"[{k}]") or choice == k), None)
+                if matched:
+                    return choice
+            # 标准模式:只接受纯 key
+            elif choice in options:
+                return choice
 
         if not options and choice in ("", "y", "yes", "确认", "ok"):
             return choice
 
-        print(f"⚠️ 无效输入: {choice}，请重新选择")
+        print(f"⚠️ 无效输入: {choice},请重新选择")
 
 
 def get_paper_status(paper_name: str) -> Optional[Dict[str, Any]]:
     """打印当前 paper 状态"""
     state = load_orchestrate_state(paper_name)
     if not state:
-        print(f"❌ 论文 {paper_name} 状态文件不存在")
+        print(f"⚠️ 论文 {paper_name} 状态文件不存在（尚未初始化）")
         return None
 
     print(f"=== {paper_name} 状态 ===")
@@ -739,7 +548,7 @@ def get_paper_status(paper_name: str) -> Optional[Dict[str, Any]]:
 # Phase 1: 规划与归因
 # ============================================================
 
-def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
+def run_phase1(paper_name: str) -> bool:
     """Phase 1: 解析 + 大纲确认 + Phase 1.3"""
     state = load_orchestrate_state(paper_name)
 
@@ -755,8 +564,7 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
 
         if docx_path and Path(docx_path).exists():
             r = orchestrate(paper_name, action="phase1_1_init",
-                          input_type="docx", input_data=docx_path,
-                          llm_func=llm_func)
+                          input_type="docx", input_data=docx_path)
         elif docx_path:
             print(f"❌ 文件不存在: {docx_path}")
             return False
@@ -774,8 +582,7 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
                 print("❌ 文本为空，无法解析")
                 return False
             r = orchestrate(paper_name, action="phase1_1_init",
-                          input_type="text", input_data=outline_text,
-                          llm_func=llm_func)
+                          input_type="text", input_data=outline_text)
 
         if not r.get("ok"):
             print(f"❌ Phase 1.1 失败: {r.get('error')}")
@@ -784,7 +591,10 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
         node_count = len(r.get("outline", {}).get("outline_tree", {}).get("nodes", []))
         print(f"✅ Phase 1.1 完成: 解析 {node_count} 个节点")
 
-    # HIL #1: 大纲确认
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
+
+    # HIL #1: 大纲确认 + 公司映射(v2.1.2 新增)
     outline = outline_load(paper_name)
     nodes = outline["outline"]["outline_tree"]["nodes"]
     print(f"\n📋 论文大纲（共 {len(nodes)} 节点）:")
@@ -794,16 +604,33 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
     if len(nodes) > 30:
         print(f"  ... 还有 {len(nodes) - 30} 节点")
 
-    hil_pause("1", "以上大纲结构是否准确？",
-             {"1": "确认（进入归因分析）",
-              "2": "取消（修改后重跑）"})
+    # v2.1.2:从 state 读取公司映射信息以决定 HIL #1 选项
+    state_pre_hil1 = load_orchestrate_state(paper_name) or {}
+    company_info = state_pre_hil1.get("company_info") or {}
+    code_name = company_info.get("code_name") or "(未提取)"
 
-    # Phase 1.2: 大纲确认
-    r = orchestrate(paper_name, action="phase1_confirm")
+    print(f"\n📌 公司映射确认（v2.1.2 新增，HIL #1 必填）:")
+    print(f"   code_name: {code_name}（已从开题报告自动提取）")
+    print(f"   actual_name: ? ← 必须填写或显式跳过")
+    print(f"   说明：该信息仅用于数据检索 + 写作锚定 + 脱敏校验")
+    print(f"         不会进入最终 Word 文档")
+
+    choice = hil_pause("1", "以上大纲结构是否准确？（需同时完成公司映射）",
+                     {"1": f"确认 [填入 actual_name,例如:[1] vivo]",
+                      "2": "跳过公司映射(actual_name=None,仅适用于纯理论论文)",
+                      "3": "取消(修改后重跑)"},
+                     allow_extra=True)
+
+    # Phase 1.2: 大纲确认（带公司映射决策）
+    r = orchestrate(paper_name, action="phase1_confirm", user_input=choice)
     if not r.get("ok"):
         print(f"❌ Phase 1.2 confirm 失败: {r.get('error')}")
+        if "公司映射未填写" in r.get("error", ""):
+            print(f"\n💡 提示：请重新运行脚本，输入 [1] <公司名> 或 [2] 跳过")
         return False
-    print(f"✅ Phase 1.2 完成: 大纲已确认")
+    ci_confirmed = r.get("company_info", {})
+    actual_name = ci_confirmed.get("actual_name") or "(跳过)"
+    print(f"✅ Phase 1.2 完成: 大纲已确认，公司映射 actual_name={actual_name}")
 
     # ── Phase 1.3 归因分析（两步走：先 submit，再等用户确认归因） ──
     state = load_orchestrate_state(paper_name)
@@ -840,11 +667,15 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
 
         # 提交归因分析（silent）
         r = orchestrate(paper_name, action="phase1_3_submit",
-                       docx_path=existing_path, llm_func=llm_func)
+                       docx_path=existing_path)
         if not r.get("ok"):
             print(f"❌ Phase 1.3 submit 失败: {r.get('error')}")
             return False
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
         print(f"✅ Phase 1.3 submit 完成")
+        # 重新加载 state（orchestrate 写入了新 state）
+        state = load_orchestrate_state(paper_name)
 
     # 显示归因结果（章节 → 研究问题映射表）
     p13_result = state.get("phase1_3_result", {})
@@ -898,6 +729,8 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
         if not r.get("ok"):
             print(f"❌ Phase 1.3 confirm 失败: {r.get('error')}")
             return False
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
         print(f"✅ Phase 1.3 完成: 归因已确认，进入 Phase 2")
 
     elif choice == "2":
@@ -918,7 +751,7 @@ def run_phase1(paper_name: str, llm_func: Optional[Callable] = None) -> bool:
 # Phase 2: 写作循环
 # ============================================================
 
-def run_phase2(paper_name: str, llm_func: Callable) -> bool:
+def run_phase2(paper_name: str) -> bool:
     """Phase 2: 写作循环（v2.0.4 推荐调用模式）"""
     state = load_orchestrate_state(paper_name)
     if not state:
@@ -927,10 +760,6 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
     if state.get("phase1_3_status") != "confirmed":
         print(f"❌ Phase 1.3 未确认（当前: {state.get('phase1_3_status')}）")
         return False
-    if not llm_func:
-        print("❌ Phase 2 需要 llm_func 参数")
-        return False
-
     total = state.get('progress', {}).get('total', 0)
     print(f"\n📝 Phase 2: 逐节点写作（共 {total} 节点）")
 
@@ -959,7 +788,7 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
             break
 
         # v2.0.4 推荐路径：write_single_node（内部含 check_info_scarcity + LLM + review）
-        result = write_single_node(paper_name, next_node_id, llm_func, bypass_scarcity=False)
+        result = write_single_node(paper_name, next_node_id, bypass_scarcity=False)
 
         if not result.get("ok"):
             print(f"❌ 节点 {next_node_id} 失败: {result.get('error')}")
@@ -993,14 +822,12 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
                     return False
                 apply_user_decision(paper_name, next_node_id, "1", user_hint=new_hint)
                 # 重新调 write_single_node（bypass_scarcity=True 因为 hint 已更新）
-                result = write_single_node(paper_name, next_node_id, llm_func, bypass_scarcity=True)
-                action = result.get("action")
+                result = write_single_node(paper_name, next_node_id, bypass_scarcity=True)
 
             elif choice == "2":
                 apply_user_decision(paper_name, next_node_id, "2")
                 # 重新调 write_single_node
-                result = write_single_node(paper_name, next_node_id, llm_func, bypass_scarcity=True)
-                action = result.get("action")
+                result = write_single_node(paper_name, next_node_id, bypass_scarcity=True)
 
             elif choice == "3":
                 apply_user_decision(paper_name, next_node_id, "3")
@@ -1014,23 +841,30 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
 
         elif action == "pending_review":
             # HIL #4: 评审质量 medium/low
+            # v2.x.x 改进（v2.0.21-beta）：HIL 暂停消息改为人话版（摘要+路径+动作）
+            # 背景: 之前用 jq 命令对 MBA 学生门槛高
+            # 格式: 【节点ID 写完：质量X】\nAI 总结：...\n要细看：路径\n[1] 接受 / [2] 重写 / [3] 跳过
             quality = result.get("review_result", {}).get("quality")
             summary = result.get("review_result", {}).get("summary", "")
-            weaknesses = result.get("review_result", {}).get("weaknesses", [])
-            suggestions = result.get("review_result", {}).get("suggestions", [])
 
-            print(f"\n⚠️ 节点 {next_node_id} 评审质量: {quality}")
+            # 计算论文工作目录路径（仅显示给用户看，不包含 jq 命令）
+            from pathlib import Path as _Path
+            _workspace = os.environ.get("THESIS_WORKSPACE", os.path.expanduser("~/.openclaw/workspace"))
+            _paper_dir = _Path(_workspace) / paper_name
+            _review_file = _paper_dir / "_phase2_review.json"
+
+            print(f"\n【{next_node_id} 写完：质量{quality}】")
             if summary:
-                print(f"  总结: {summary[:200]}")
-            if weaknesses:
-                print(f"  问题: {weaknesses}")
-            if suggestions:
-                print(f"  建议: {suggestions}")
+                # 限制为一句话长度，避免刷屏
+                summary_short = summary.split("。")[0] + "。" if "。" in summary else summary[:100]
+                print(f"\nAI 总结：{summary_short}")
+            print(f"\n要细看：{_review_file}")
 
+            print()
             choice = hil_pause("4", f"节点 {next_node_id} 评审结果",
-                             {"1": "接受（标记 completed）",
-                              "2": "重写（再调一次 write_single_node）",
-                              "3": "跳过该节点"})
+                             {"1": "接受 → 继续",
+                              "2": "重写 → 让 AI 再写一遍",
+                              "3": "跳过 → 留空 phase 4 补"})
 
             if choice == "1":
                 # 接受：同步 outline state（reviewing → completed）+ orchestrate state
@@ -1048,7 +882,7 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
 
             elif choice == "2":
                 # 重写：调 write_single_node 一次（bypass_scarcity=True 跳过信息检查）
-                rewrite_result = write_single_node(paper_name, next_node_id, llm_func, bypass_scarcity=True)
+                rewrite_result = write_single_node(paper_name, next_node_id, bypass_scarcity=True)
                 rewrite_action = rewrite_result.get("action")
                 if rewrite_action == "completed":
                     # 重写后评审 high → 直接 completed
@@ -1093,6 +927,12 @@ def run_phase2(paper_name: str, llm_func: Callable) -> bool:
     failed_count = progress.get('failed', 0)
     total = progress.get('total', 0)
 
+    # 生成 Phase 2 HIL 消息（从 PhaseManager 文件读取状态）
+    from orchestrator_v2 import _get_pm
+    pm = _get_pm(paper_name)
+    hil_msg = pm.generate_hil_message(phase=2, next_phase=3)
+    print(f"\n{hil_msg}")
+
     print(f"\n📊 Phase 2 完成: {completed_count}/{total} 节点 completed，{failed_count} failed")
     hil_pause("5", "Phase 2 内容是否接受？",
              {"1": "确认（进入 Phase 3）",
@@ -1123,6 +963,9 @@ def run_phase3(paper_name: str) -> bool:
         print(f"❌ Phase 3 整合失败: {r.get('error')}")
         return False
 
+    if r.get("hil_message"):
+        print(f"\n{r['hil_message']}")
+
     # HIL #6: 整合版预览
     content = r.get("content", "")
     word_count = r.get("word_count", 0)
@@ -1143,6 +986,8 @@ def run_phase3(paper_name: str) -> bool:
         return False
 
     output_path = r.get("output_path")
+    if r.get("hil_message"):
+        print(f"\n{r['hil_message']}")
     print(f"✅ 论文已导出: {output_path}")
     print(f"   字数: {r.get('word_count')}")
 
@@ -1180,6 +1025,11 @@ def main():
     print(f"  模式: {args.phase}")
 
     # ── Pre-flight Check ──────────────────────────────────────
+    # --status 是纯查询，不需要检查依赖，提前处理
+    if args.status:
+        get_paper_status(paper_name)
+        return 0
+
     can_proceed, deps, needs_ai_deps = preflight_check()
     if not can_proceed:
         return 1
@@ -1198,67 +1048,16 @@ def main():
         print("=" * 60)
         return 2  # 返回特殊码，告知调用方需要 AI 介入
 
-    if args.status:
-        get_paper_status(paper_name)
-        return 0
-
-    llm_func = None
-
-    if args.phase in ("phase1", "auto"):
-        # Phase 1.3 需要 llm_func
-        try:
-            rllm = get_runtime_llm()
-            if args.llm:
-                # 用户指定了模型
-                model = args.llm
-                llm_func = rllm.make_llm_func(model=model)
-                print(f"✅ 使用指定模型: {model}")
-            else:
-                # 自动从当前 session 获取
-                model = rllm.current_model()
-                llm_func = rllm.make_llm_func()
-                print(f"✅ 自动使用当前 session 模型: {model}")
-        except Exception as e:
-            print()
-            print("=" * 60)
-            print("❌ 无法获取运行中 session 配置（Phase 1.3 需要 llm_func）")
-            print("=" * 60)
-            print(f"   错误: {e}")
-            print()
-            print("解决方案：")
-            print("   1. 确保从 OpenClaw session 内调用本脚本（自动获取配置）")
-            print("   2. 或通过 --llm 参数指定模型：")
-            print("      python3 scripts/run_workflow.py <paper> --phase phase1 \\")
-            print("        --llm MiniMax-M2.7")
-            print()
-            return 1
-
-    if args.phase in ("phase2", "auto"):
-        # Phase 2 llm_func：优先用 --llm 指定模型，否则自动从 session 获取
-        if not llm_func:
-            if args.llm:
-                # 用户指定了模型名
-                llm_func = get_runtime_llm().make_llm_func(model=args.llm)
-                print(f"✅ 使用指定模型: {args.llm}")
-            else:
-                # 自动从 session 获取
-                try:
-                    rllm = get_runtime_llm()
-                    model = rllm.current_model()
-                    llm_func = rllm.make_llm_func()
-                    print(f"✅ 自动使用当前 session 模型: {model}")
-                except Exception as e:
-                    print(f"❌ Phase 2 需要 llm_func，但无法获取 session 配置: {e}")
-                    print("   请用 --llm 参数指定模型，或从 OpenClaw session 内调用")
-                    return 1
+    # llm_func 由 orchestrator 内部通过 get_session_llm_func() 固化获取
+    # run_workflow.py 不再需要获取和传递 llm_func
 
     # 按 phase 执行
     if args.phase in ("phase1", "auto"):
-        if not run_phase1(paper_name, llm_func):
+        if not run_phase1(paper_name):
             return 1
 
     if args.phase in ("phase2", "auto"):
-        if not run_phase2(paper_name, llm_func):
+        if not run_phase2(paper_name):
             return 1
 
     if args.phase in ("phase3", "auto"):
@@ -1267,7 +1066,7 @@ def main():
 
     if args.phase in ("phase3_5", "auto"):
         print(f"\n📝 Phase 3.5: 深度学术评审")
-        r = orchestrate_phase3_5(paper_name, llm_func=llm_func)
+        r = orchestrate_phase3_5(paper_name)
         if not r.get("ok"):
             print(f"❌ Phase 3.5 失败: {r.get('error')}")
             return 1
@@ -1278,13 +1077,13 @@ def main():
         while r.get("p0_count", 0) > 0 and review_round <= max_rounds:
             print(f"\n🔄 审核 Loop 第 {review_round} 轮：发现 {r.get('p0_count', 0)} 个 P0，自动修复...")
             from orchestrator_v2 import auto_fix_p0_issues
-            fix_r = auto_fix_p0_issues(paper_name, llm_func=llm_func)
+            fix_r = auto_fix_p0_issues(paper_name)
             if not fix_r.get("ok"):
                 print(f"❌ P0 修复失败: {fix_r.get('error')}")
                 break
             print(f"   已修复 {fix_r.get('fixed', 0)}/{fix_r.get('total', 0)} 个 P0")
             # 重审
-            r = orchestrate_phase3_5(paper_name, llm_func=llm_func)
+            r = orchestrate_phase3_5(paper_name)
             if not r.get("ok"):
                 print(f"❌ 重审失败: {r.get('error')}")
                 break
@@ -1294,14 +1093,18 @@ def main():
             print(f"✅ Phase 3.5 通过（连续 2 轮无新 P0）")
         else:
             print(f"⚠️ Phase 3.5 超 {max_rounds} 轮仍有 P0，需人工介入")
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
         print(f"✅ Phase 3.5 完成")
 
     if args.phase in ("phase4", "auto"):
         print(f"\n📝 Phase 4: 整合修复")
-        r = orchestrate_phase4(paper_name, llm_func=llm_func)
+        r = orchestrate_phase4(paper_name)
         if not r.get("ok"):
             print(f"❌ Phase 4 失败: {r.get('error')}")
             return 1
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
         print(f"✅ Phase 4 完成")
 
     if args.phase in ("phase5", "auto"):
@@ -1310,6 +1113,8 @@ def main():
         if not r.get("ok"):
             print(f"❌ Phase 5 失败: {r.get('error')}")
             return 1
+        if r.get("hil_message"):
+            print(f"\n{r['hil_message']}")
         print(f"✅ Phase 5 完成")
 
     print(f"\n🎉 全部完成")

@@ -4,6 +4,7 @@
 3个工具：跟团游搜索与推荐、去目的地火车票、去目的地机票
 数据源：同程旅行（SCF代理）+ 飞猪旅行（SCF代理），零配置
 """
+import os
 import json
 import re
 import urllib.request
@@ -13,7 +14,7 @@ from datetime import datetime, timedelta
 # ============ 配置 ============
 TONGCHENG_PROXY = "https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com"
 FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TC_TIMEOUT = 15
 FG_TIMEOUT = 30
 

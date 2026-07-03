@@ -4,17 +4,18 @@ This skill uses documents, steps, checklists, and run notes as its primary worki
 
 ## Boot Sequence
 
+0. Locate this skill's root directory in the workspace (which may be `.agents/skills/local-event-scanner/`, `skills/local-event-scanner/`, etc.). We refer to this path as `<skill_dir>`. All references in this document use this placeholder.
 Read these files before every scan:
 
-1. `skills/event-scanner/references/privacy-and-access.md` — storage and access rules
-2. `skills/event-scanner/references/scoring-rubric.md` — ranking factors, labels, and explanation requirements
-3. `skills/event-scanner/references/availability-rules.md` — geography, practicality caveats, calendar privacy
-4. `skills/event-scanner/assets/sources.md` — primary sources per location; resolve scan location here. If this file does not exist, the `skills/event-scanner/steps/step-0-setup` setup flow MUST be run before continuing. It is very important that this file is configured with user prefences.
-5. `skills/event-scanner/assets/taste-profile.md` — interests, dealbreakers, and surprise signals. If this file does not exist, the `skills/event-scanner/steps/step-0-setup` setup flow MUST be run before continuing. It is very important that this file is configured with user prefences.
+1. `<skill_dir>/references/privacy-and-access.md` — storage and access rules
+2. `<skill_dir>/references/scoring-rubric.md` — ranking factors, labels, and explanation requirements
+3. `<skill_dir>/references/availability-rules.md` — geography, practicality caveats, calendar privacy
+4. `<skill_dir>/assets/sources.md` — primary sources per location; resolve scan location here. If this file does not exist, the `<skill_dir>/steps/step-0-setup` setup flow MUST be run before continuing. It is very important that this file is configured with user prefences.
+5. `<skill_dir>/assets/taste-profile.md` — interests, dealbreakers, and surprise signals. If this file does not exist, the `<skill_dir>/steps/step-0-setup` setup flow MUST be run before continuing. It is very important that this file is configured with user prefences.
 
 ## Skill Pipeline
 
-Invoke the `event-scanner` skill for every scan. It applies these steps in order:
+Invoke the `local-event-scanner` skill for every scan. It applies these steps in order:
 
 1. `steps/step-1-discovery.md` — finds candidate events from primary and public sources
 2. `steps/step-2-scoring.md` — scores and ranks candidates using the rubric
@@ -31,14 +32,14 @@ Read and write only within this skill's folder. Do not modify files outside it u
 
 ## Running An Event Scan
 
-1. Read the relevant references in `skills/event-scanner/references/`.
-2. Invoke `event-scanner`, which creates an empty run note in `skills/event-scanner/runs/`.
+1. Read the relevant references in `<skill_dir>/references/`.
+2. Invoke `local-event-scanner`, which creates an empty run note in `<skill_dir>/runs/`.
 3. Each pipeline step logs itself in that run note when it starts.
-4. Resolve the requested location from `skills/event-scanner/assets/sources.md`; if the user did not specify a location, use the configured default location.
+4. Resolve the requested location from `<skill_dir>/assets/sources.md`; if the user did not specify a location, use the configured default location.
 5. Use user-listed priority sources for the requested location first, when they exist.
 6. Discover candidate events and preserve source links.
 7. Normalize candidates into comparable notes.
-8. Score candidates using `skills/event-scanner/references/scoring-rubric.md`.
+8. Score candidates using `<skill_dir>/references/scoring-rubric.md`.
 9. Apply calendar-aware review when calendar context is available or explicitly provided.
 10. Populate the existing run note with the ranked shortlist, reasons, caveats, source links, and next actions.
 11. Remove temporary candidate, scoring, and calendar-review sections before finishing the run note.
@@ -47,7 +48,7 @@ Read and write only within this skill's folder. Do not modify files outside it u
 ## Source Handling
 
 - User-listed sources have priority.
-- Standard locations and the default location are defined in `skills/event-scanner/assets/sources.md`.
+- Standard locations and the default location are defined in `<skill_dir>/assets/sources.md`.
 - If the user does not specify a location, use the default location.
 - If the requested location has no primary sources, explore public event sources for that location and keep source links.
 - Newly discovered sources may be used for exploration or verification, but normal scans should not propose or log new primary sources.

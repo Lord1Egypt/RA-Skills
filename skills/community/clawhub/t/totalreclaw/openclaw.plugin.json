@@ -3,25 +3,13 @@
   "name": "TotalReclaw",
   "description": "End-to-end encrypted memory vault for AI agents",
   "kind": "memory",
+  "activation": {
+    "onStartup": false
+  },
   "contracts": {
     "tools": [
-      "totalreclaw_remember",
-      "totalreclaw_recall",
-      "totalreclaw_forget",
-      "totalreclaw_export",
-      "totalreclaw_status",
-      "totalreclaw_preload_embedder",
-      "totalreclaw_consolidate",
-      "totalreclaw_pin",
-      "totalreclaw_unpin",
-      "totalreclaw_retype",
-      "totalreclaw_set_scope",
-      "totalreclaw_import_from",
-      "totalreclaw_import_batch",
-      "totalreclaw_upgrade",
-      "totalreclaw_migrate",
-      "totalreclaw_pair",
-      "totalreclaw_report_qa_bug"
+      "memory_search",
+      "memory_get"
     ]
   },
   "configSchema": {

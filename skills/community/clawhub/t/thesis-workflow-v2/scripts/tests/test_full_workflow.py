@@ -694,7 +694,7 @@ def test_mock_7_phase2_enforcement():
     with open(_get_orchestrate_state_path(paper), "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
-    r = orchestrate_phase2(paper, llm_func=lambda p: "x")
+    r = orchestrate_phase2(paper)
     assert r["ok"] is False
     assert "Phase 1.3" in r["error"]
     print(f"   ✅ Phase 2 拒绝未确认: {r['error'][:60]}")
@@ -760,7 +760,7 @@ def run_real_sample(sample_name, docx_path):
 
     # Phase 1.3（用 mock_summary_llm）
     t3 = time.time()
-    r3 = orchestrate_phase1_3(paper, llm_func=mock_summary_llm)
+    r3 = orchestrate_phase1_3(paper)
     t3_elapsed = time.time() - t3
 
     if not r3["ok"]:

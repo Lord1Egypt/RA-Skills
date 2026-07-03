@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intent Engine - 意图引擎管理</title>
+<style>
+:root {
+  --bg: #0f1117; --panel: #1a1d27; --border: #2a2d3a;
+  --text: #e1e4ed; --text2: #8b8fa8; --accent: #6366f1;
+  --green: #22c55e; --yellow: #f59e0b; --red: #ef4444;
+  --blue: #3b82f6; --purple: #8b5cf6;
+  --radius: 10px; --shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,sans-serif; }
+.app { display:flex; min-height:100vh; }
+
+/* Sidebar */
+.sidebar {
+  width:240px; background:var(--panel); border-right:1px solid var(--border);
+  padding:20px 0; display:flex; flex-direction:column; flex-shrink:0;
+}
+.sidebar h1 { font-size:18px; padding:0 20px 16px; color:var(--accent); letter-spacing:-.5px; }
+.sidebar h1 span { font-size:12px; color:var(--text2); font-weight:400; }
+.sidebar nav { flex:1; }
+.sidebar nav a {
+  display:flex; align-items:center; gap:10px; padding:10px 20px;
+  color:var(--text2); text-decoration:none; font-size:14px;
+  border-left:3px solid transparent; transition:all .15s;
+}
+.sidebar nav a:hover, .sidebar nav a.active {
+  color:var(--text); background:rgba(99,102,241,.1);
+  border-left-color:var(--accent);
+}
+.sidebar nav a .icon { font-size:18px; width:24px; text-align:center; }
+.version { padding:20px; font-size:11px; color:var(--text2); border-top:1px solid var(--border); }
+
+/* Main */
+.main { flex:1; padding:24px 32px; overflow-y:auto; }
+.page { display:none; }
+.page.active { display:block; }
+
+/* Cards */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+.stat-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px;
+}
+.stat-card .label { font-size:13px; color:var(--text2); margin-bottom:8px; }
+.stat-card .value { font-size:28px; font-weight:700; }
+.stat-card.total .value { color:var(--accent); }
+.stat-card.enabled .value { color:var(--green); }
+.stat-card.disabled .value { color:var(--text2); }
+
+/* Category breakdown */
+.cat-bar { display:flex; gap:4px; height:28px; border-radius:6px; overflow:hidden; margin-bottom:24px; }
+.cat-bar div { display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:600; color:#fff; }
+.cat-legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+.cat-legend span { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text2); }
+.cat-dot { width:10px; height:10px; border-radius:3px; }
+
+/* Toolbar */
+.toolbar { display:flex; gap:10px; margin-bottom:16px; align-items:center; }
+.btn {
+  padding:8px 16px; border-radius:6px; border:none; font-size:13px;
+  font-weight:500; cursor:pointer; transition:all .15s;
+}
+.btn-primary { background:var(--accent); color:#fff; }
+.btn-primary:hover { background:#5558e6; }
+.btn-outline { background:transparent; color:var(--text); border:1px solid var(--border); }
+.btn-outline:hover { border-color:var(--accent); color:var(--accent); }
+.btn-danger { background:var(--red); color:#fff; }
+.btn-sm { padding:5px 10px; font-size:12px; }
+.search-box {
+  flex:1; padding:8px 14px; background:var(--bg); border:1px solid var(--border);
+  border-radius:6px; color:var(--text); font-size:13px; outline:none;
+}
+.search-box:focus { border-color:var(--accent); }
+
+/* Table */
+.table-wrap { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; padding:12px 16px; font-size:12px; color:var(--text2); font-weight:600;
+  background:rgba(0,0,0,.2); border-bottom:1px solid var(--border); text-transform:uppercase; }
+td { padding:12px 16px; font-size:13px; border-bottom:1px solid var(--border); }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:rgba(99,102,241,.05); }
+.badge {
+  display:inline-block; padding:3px 8px; border-radius:4px;
+  font-size:11px; font-weight:600; text-transform:uppercase;
+}
+.badge-CODE { background:rgba(59,130,246,.15); color:var(--blue); }
+.badge-KNOW { background:rgba(139,92,246,.15); color:var(--purple); }
+.badge-TASK { background:rgba(245,158,11,.15); color:var(--yellow); }
+.badge-CHAT { background:rgba(34,197,94,.15); color:var(--green); }
+.badge-on { background:rgba(34,197,94,.1); color:var(--green); }
+.badge-off { background:rgba(139,143,168,.1); color:var(--text2); }
+.actions { display:flex; gap:6px; }
+
+/* Modal */
+.modal-overlay {
+  display:none; position:fixed; top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.6); z-index:100; align-items:center; justify-content:center;
+}
+.modal-overlay.open { display:flex; }
+.modal {
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  width:560px; max-height:80vh; overflow-y:auto; box-shadow:var(--shadow);
+}
+.modal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 20px; border-bottom:1px solid var(--border);
+}
+.modal-header h3 { font-size:16px; }
+.modal-close { background:none; border:none; color:var(--text2); font-size:20px; cursor:pointer; }
+.modal-body { padding:20px; }
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:13px; color:var(--text2); margin-bottom:5px; }
+.form-group input, .form-group select, .form-group textarea {
+  width:100%; padding:8px 12px; background:var(--bg); border:1px solid var(--border);
+  border-radius:6px; color:var(--text); font-size:13px; outline:none;
+  font-family:inherit;
+}
+.form-group input:focus, .form-group textarea:focus { border-color:var(--accent); }
+.form-group textarea { resize:vertical; min-height:60px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+/* Keyword editor */
+.kw-list { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.kw-tag {
+  display:flex; align-items:center; gap:6px; padding:4px 10px;
+  background:rgba(99,102,241,.15); border-radius:20px; font-size:12px;
+}
+.kw-tag .weight { color:var(--accent); font-weight:600; }
+.kw-tag button { background:none; border:none; color:var(--text2); cursor:pointer; font-size:16px; line-height:1; }
+.kw-add { display:flex; gap:8px; }
+.kw-add input { flex:1; }
+.kw-add input.w { width:70px; flex:none; }
+
+/* Test area */
+.test-area { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.test-input textarea {
+  width:100%; min-height:120px; padding:14px; background:var(--bg);
+  border:1px solid var(--border); border-radius:var(--radius); color:var(--text);
+  font-size:14px; resize:vertical; outline:none; font-family:inherit;
+}
+.test-input textarea:focus { border-color:var(--accent); }
+.test-actions { margin-top:12px; display:flex; gap:8px; }
+.result-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px;
+}
+.result-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.confidence-ring {
+  width:64px; height:64px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; font-weight:700; flex-shrink:0;
+}
+.result-info h3 { font-size:18px; margin-bottom:4px; }
+.result-info p { font-size:13px; color:var(--text2); }
+.result-section { margin-top:14px; }
+.result-section h4 { font-size:13px; color:var(--text2); margin-bottom:6px; text-transform:uppercase; }
+.match-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.match-tag {
+  padding:3px 10px; border-radius:20px; font-size:12px;
+  background:rgba(99,102,241,.1); color:var(--accent);
+}
+.alt-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 12px; background:rgba(0,0,0,.15); border-radius:6px; margin-bottom:6px;
+}
+.alt-bar { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:4px; }
+.alt-bar-fill { height:100%; background:var(--accent); border-radius:3px; transition:width .3s; }
+.no-result { text-align:center; color:var(--text2); padding:40px 20px; font-size:14px; }
+
+/* Quick Test bar at bottom */
+.quick-test {
+  position:fixed; bottom:0; left:240px; right:0; background:var(--panel);
+  border-top:1px solid var(--border); padding:12px 32px;
+  display:flex; gap:10px; align-items:center; z-index:50;
+}
+.quick-test input {
+  flex:1; padding:8px 14px; background:var(--bg); border:1px solid var(--border);
+  border-radius:20px; color:var(--text); font-size:13px; outline:none;
+}
+.quick-test input:focus { border-color:var(--accent); }
+.quick-result {
+  font-size:13px; color:var(--accent); white-space:nowrap;
+  padding-right:16px;
+}
+.quick-result .cat { font-weight:600; }
+.quick-result .conf { color:var(--text2); }
+
+/* Responsive */
+@media(max-width:768px) {
+  .sidebar { width:180px; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .test-area { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1>Intent Engine <span>v2.0</span></h1>
+    <nav>
+      <a href="#dashboard" class="active" data-page="dashboard">
+        <span class="icon">📊</span> 仪表盘
+      </a>
+      <a href="#intents" data-page="intents">
+        <span class="icon">📋</span> 意图管理
+      </a>
+      <a href="#test" data-page="test">
+        <span class="icon">🧪</span> 分类测试
+      </a>
+    </nav>
+    <div class="version">AI-powered intent engine</div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Page: Dashboard -->
+    <section class="page active" id="page-dashboard">
+      <h2 style="font-size:20px;margin-bottom:20px;">仪表盘</h2>
+      <div class="stats-grid" id="statsGrid"></div>
+      <h3 style="font-size:14px;color:var(--text2);margin-bottom:10px;">分类分布</h3>
+      <div class="cat-bar" id="catBar"></div>
+      <div class="cat-legend" id="catLegend"></div>
+    </section>
+
+    <!-- Page: Intents -->
+    <section class="page" id="page-intents">
+      <h2 style="font-size:20px;margin-bottom:16px;">意图管理</h2>
+      <div class="toolbar">
+        <input class="search-box" id="intentSearch" placeholder="搜索意图..." oninput="renderIntents()">
+        <button class="btn btn-primary" onclick="openModal()">+ 新建意图</button>
+        <button class="btn btn-outline btn-sm" onclick="exportData()">导出</button>
+        <button class="btn btn-outline btn-sm" onclick="importData()">导入</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>名称</th><th>分类</th><th>子类别</th>
+              <th>关键词</th><th>路由技能</th>
+              <th>优先级</th><th>状态</th><th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="intentTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page: Test -->
+    <section class="page" id="page-test">
+      <h2 style="font-size:20px;margin-bottom:16px;">分类测试</h2>
+      <div class="test-area">
+        <div>
+          <div class="test-input">
+            <textarea id="testText" placeholder="输入要分类的文本...
+例如: 帮我写一个用户登录功能
+或: 什么是REST API
+或: 修复这个bug..."></textarea>
+          </div>
+          <div class="test-actions">
+            <button class="btn btn-primary" onclick="runTest()">分析意图</button>
+            <button class="btn btn-outline" onclick="runMultiTest()">多标签分析</button>
+          </div>
+        </div>
+        <div id="testResult">
+          <div class="no-result">输入文本并点击分析</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Quick Test Bar -->
+  <div class="quick-test">
+    <input id="quickInput" placeholder="快速输入文本测试分类..." onkeydown="if(event.key==='Enter')quickTest()">
+    <button class="btn btn-primary btn-sm" onclick="quickTest()">快速分析</button>
+    <div class="quick-result" id="quickResult"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">新建意图</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ============ State ============
+let intents = [];
+let editingId = null;
+const COLORS = {"CODE":"#3b82f6","KNOW":"#8b5cf6","TASK":"#f59e0b","CHAT":"#10b981"};
+const CATEGORIES = [
+  {key:"CODE",label:"代码类",icon:"💻"},
+  {key:"KNOW",label:"知识类",icon:"📚"},
+  {key:"TASK",label:"任务类",icon:"⚙️"},
+  {key:"CHAT",label:"闲聊类",icon:"💬"},
+];
+
+// ============ API ============
+async function api(path, opts={}) {
+  const res = await fetch(path, {
+    headers: {'Content-Type':'application/json'},
+    ...opts
+  });
+  return res.json();
+}
+
+// ============ Navigation ============
+// Navigation switch
+function switchPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-'+page);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('[data-page]').forEach(x => x.classList.remove('active'));
+  const link = document.querySelector('[data-page="'+page+'"]');
+  if (link) link.classList.add('active');
+  try {
+    if (page === 'dashboard') loadDashboard();
+    if (page === 'intents') renderIntents();
+    if (page === 'test') {} // test page UI is self-contained
+  } catch(e) { console.error('switchPage error:', e); }
+}
+document.querySelectorAll('[data-page]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    switchPage(a.dataset.page);
+  });
+  // Also handle via inline onclick as fallback
+  a.style.cursor = 'pointer';
+  a.addEventListener('mousedown', e => e.preventDefault());
+});
+
+// ============ Dashboard ============
+async function loadDashboard() {
+  try {
+    const [stats, intentsRes] = await Promise.all([
+      api('/api/stats'), api('/api/intents')
+    ]);
+    intents = intentsRes.intents || [];
+    const s = stats;
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card total"><div class="label">总意图数</div><div class="value">${s.total}</div></div>
+    <div class="stat-card enabled"><div class="label">已启用</div><div class="value">${s.enabled}</div></div>
+    <div class="stat-card disabled"><div class="label">已禁用</div><div class="value">${s.disabled}</div></div>
+    <div class="stat-card" style="color:var(--accent)"><div class="label">分类数</div><div class="value">${Object.keys(s.by_category).length}</div></div>
+  `;
+  // Category bar
+  const total = s.total || 1;
+  let barHtml = '';
+  let legendHtml = '';
+  const order = ['CODE','KNOW','TASK','CHAT'];
+  for (const cat of order) {
+    const count = s.by_category[cat] || 0;
+    const pct = ((count/total)*100).toFixed(1);
+    const color = COLORS[cat];
+    if (count > 0) {
+      barHtml += `<div style="width:${pct}%;background:${color}">${count}</div>`;
+    }
+    const c = CATEGORIES.find(x=>x.key===cat);
+    legendHtml += `<span><span class="cat-dot" style="background:${color}"></span> ${c.icon} ${c.label}: ${count}</span>`;
+  }
+  document.getElementById('catBar').innerHTML = barHtml || '<div style="color:var(--text2);padding:4px">暂无数据</div>';
+  document.getElementById('catLegend').innerHTML = legendHtml;
+  } catch(e) {
+    console.error('Failed to load dashboard:', e);
+  }
+}
+
+// ============ Intent List ============
+async function renderIntents() {
+  try {
+    const res = await api('/api/intents');
+    intents = res.intents || [];
+    const q = (document.getElementById('intentSearch')?.value || '').toLowerCase();
+    const filtered = q ? intents.filter(i =>
+      i.name.toLowerCase().includes(q) || i.description.toLowerCase().includes(q) ||
+      i.category.toLowerCase().includes(q)
+    ) : intents;
+
+    const tbody = document.getElementById('intentTable');
+    if (!tbody) return;
+    tbody.innerHTML = filtered.map(i => `
+      <tr>
+        <td><strong>${i.icon} ${i.name}</strong><br><small style="color:var(--text2)">${i.description||''}</small></td>
+        <td><span class="badge badge-${i.category}">${i.category}</span></td>
+        <td style="color:var(--text2)">${i.sub_category}</td>
+        <td>
+          <div style="display:flex;flex-wrap:wrap;gap:4px">
+            ${(i.keywords||[]).slice(0,3).map(k => {
+              const v = typeof k==='string' ? k : k.value;
+              return `<span class="kw-tag" style="font-size:11px;padding:2px 8px">${v}</span>`;
+            }).join('')}
+            ${(i.keywords||[]).length > 3 ? `<span style="color:var(--text2);font-size:11px">+${i.keywords.length-3}</span>` : ''}
+          </div>
+        </td>
+        <td style="color:var(--accent)">${i.route_skill || '-'}</td>
+        <td>${i.priority}</td>
+        <td><span class="badge ${i.enabled?'badge-on':'badge-off'}">${i.enabled?'启用':'禁用'}</span></td>
+        <td>
+          <div class="actions">
+            <button class="btn btn-outline btn-sm" onclick="openModal('${i.id}')">编辑</button>
+            <button class="btn btn-outline btn-sm" onclick="toggleIntent('${i.id}',${!i.enabled})">${i.enabled?'禁用':'启用'}</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteIntent('${i.id}')">删除</button>
+          </div>
+        </td>
+      </tr>
+    `).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:40px">暂无意图数据</td></tr>';
+  } catch(e) {
+    console.error('renderIntents error:', e);
+    const tbody = document.getElementById('intentTable');
+    if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--red);padding:40px">加载失败: '+e.message+'</td></tr>';
+  }
+}
+
+// ============ Modal CRUD ============
+function openModal(id) {
+  editingId = id || null;
+  const title = id ? '编辑意图' : '新建意图';
+  document.getElementById('modalTitle').textContent = title;
+
+  let intent = {name:'',description:'',category:'CODE',sub_category:'',
+    keywords:[],patterns:[],route_skill:'',route_description:'',priority:0,icon:'?'};
+  if (id) {
+    intent = intents.find(i => i.id === id) || intent;
+  }
+
+  const kwTags = (intent.keywords||[]).map(k => {
+    const v = typeof k==='string'?k:k.value;
+    const w = typeof k==='object'?k.weight||1:1;
+    return `<span class="kw-tag">${v} <span class="weight">${w.toFixed(1)}</span> <button onclick="this.parentElement.remove()">&times;</button></span>`;
+  }).join('');
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="form-row">
+      <div class="form-group">
+        <label>名称 *</label>
+        <input id="fName" value="${es(intent.name)}" placeholder="如: 编写代码">
+      </div>
+      <div class="form-group">
+        <label>图标</label>
+        <input id="fIcon" value="${es(intent.icon)}" placeholder="emoji">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>描述</label>
+      <input id="fDesc" value="${es(intent.description)}" placeholder="意图描述...">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>一级分类 *</label>
+        <select id="fCat">
+          ${CATEGORIES.map(c => `<option value="${c.key}" ${intent.category===c.key?'selected':''}>${c.icon} ${c.label}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>二级分类 *</label>
+        <input id="fSubcat" value="${es(intent.sub_category)}" placeholder="如: write, fix">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>关键词 (值:权重)</label>
+      <div class="kw-list" id="kwList">${kwTags}</div>
+      <div class="kw-add">
+        <input id="kwVal" placeholder="关键词" onkeydown="if(event.key==='Enter')addKeyword()">
+        <input id="kwWeight" class="w" placeholder="权重" value="1.0" type="number" step="0.1" min="0.1" max="5">
+        <button class="btn btn-outline btn-sm" onclick="addKeyword()">添加</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>正则模式 (每行一个)</label>
+      <textarea id="fPatterns" rows="3" placeholder="如: (写|创建).*(代码|模块)">${(intent.patterns||[]).join('\n')}</textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>路由技能</label>
+        <input id="fSkill" value="${es(intent.route_skill)}" placeholder="如: skill-creator">
+      </div>
+      <div class="form-group">
+        <label>路由说明</label>
+        <input id="fSkillDesc" value="${es(intent.route_description)}" placeholder="技能用途说明">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>优先级</label>
+        <input id="fPri" value="${intent.priority}" type="number">
+      </div>
+      <div class="form-group" style="display:flex;align-items:end">
+        <button class="btn btn-primary" onclick="saveIntent()" style="width:100%">保存</button>
+      </div>
+    </div>
+  `;
+  // Store keywords in a JS array
+  window._kw = (intent.keywords||[]).map(k => {
+    if (typeof k === 'string') return {type:'keyword',value:k,weight:1};
+    return {type:k.type||'keyword',value:k.value,weight:k.weight||1};
+  });
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function addKeyword() {
+  const v = document.getElementById('kwVal').value.trim();
+  const w = parseFloat(document.getElementById('kwWeight').value) || 1;
+  if (!v) return;
+  window._kw.push({type:'keyword', value:v, weight:w});
+  const list = document.getElementById('kwList');
+  list.innerHTML += `<span class="kw-tag">${v} <span class="weight">${w.toFixed(1)}</span> <button onclick="removeKw('${v}',${w})">&times;</button></span>`;
+  document.getElementById('kwVal').value = '';
+}
+
+function removeKw(v, w) {
+  window._kw = window._kw.filter(k => !(k.value===v && Math.abs(k.weight-w)<0.01));
+}
+
+async function saveIntent() {
+  const data = {
+    name: document.getElementById('fName').value.trim(),
+    description: document.getElementById('fDesc').value.trim(),
+    category: document.getElementById('fCat').value,
+    sub_category: document.getElementById('fSubcat').value.trim(),
+    icon: document.getElementById('fIcon').value.trim() || '?',
+    keywords: window._kw,
+    patterns: document.getElementById('fPatterns').value.split('\n').filter(Boolean),
+    route_skill: document.getElementById('fSkill').value.trim(),
+    route_description: document.getElementById('fSkillDesc').value.trim(),
+    priority: parseInt(document.getElementById('fPri').value) || 0,
+  };
+  if (!data.name || !data.category || !data.sub_category) {
+    alert('请填写名称、分类和子类别'); return;
+  }
+  let res;
+  if (editingId) {
+    res = await api('/api/intents/'+editingId, {method:'PUT',body:JSON.stringify(data)});
+  } else {
+    res = await api('/api/intents', {method:'POST',body:JSON.stringify(data)});
+  }
+  if (res.error) { alert(res.error); return; }
+  closeModal();
+  renderIntents();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  editingId = null;
+  window._kw = [];
+}
+
+async function toggleIntent(id, enable) {
+  await api('/api/intents/'+id, {method:'PUT',body:JSON.stringify({enabled:enable})});
+  renderIntents();
+}
+
+async function deleteIntent(id) {
+  if (!confirm('确认删除此意图？')) return;
+  await api('/api/intents/'+id, {method:'DELETE'});
+  renderIntents();
+}
+
+// ============ Import/Export ============
+function exportData() {
+  const blob = new Blob([JSON.stringify({intents, exported_at:new Date().toISOString()},null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'intents-export-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const text = await file.text();
+    const data = JSON.parse(text);
+    const list = data.intents || data;
+    if (!Array.isArray(list)) { alert('格式无效'); return; }
+    for (const item of list) {
+      await api('/api/intents', {method:'POST',body:JSON.stringify(item)});
+    }
+    renderIntents();
+    alert(`已导入 ${list.length} 条意图`);
+  };
+  input.click();
+}
+
+// ============ Test ============
+async function runTest() {
+  const text = document.getElementById('testText').value.trim();
+  if (!text) return;
+  const res = await api('/api/classify', {method:'POST',body:JSON.stringify({text})});
+  renderTestResult(res);
+}
+
+async function runMultiTest() {
+  const text = document.getElementById('testText').value.trim();
+  if (!text) return;
+  const res = await api('/api/classify', {method:'POST',body:JSON.stringify({text,multi:true})});
+  const container = document.getElementById('testResult');
+  if (!res.results || res.results.length === 0) {
+    container.innerHTML = '<div class="no-result">未匹配到任何意图</div>'; return;
+  }
+  container.innerHTML = `
+    <h3 style="font-size:15px;margin-bottom:12px;color:var(--text2)">多标签结果 (${res.results.length})</h3>
+    ${res.results.map(r => singleResultHTML(r)).join('')}
+  `;
+}
+
+function renderTestResult(res) {
+  const container = document.getElementById('testResult');
+  if (!res.result) {
+    container.innerHTML = '<div class="no-result">未匹配到任何意图 — 需添加关键词或模式</div>'; return;
+  }
+  container.innerHTML = `
+    <h3 style="font-size:15px;margin-bottom:12px;color:var(--text2)">主要结果</h3>
+    ${singleResultHTML(res.result)}
+    ${(res.result.alternatives||[]).length > 0 ? `
+      <h3 style="font-size:15px;margin:16px 0 8px;color:var(--text2)">备选分类</h3>
+      ${res.result.alternatives.map(a => `
+        <div class="alt-item">
+          <span>${a.icon} ${a.intent_name} <span class="badge badge-${a.category}" style="margin-left:8px">${a.category}</span></span>
+          <span style="color:var(--accent);font-weight:600">${(a.confidence*100).toFixed(1)}%</span>
+        </div>
+      `).join('')}
+    ` : ''}
+  `;
+}
+
+function singleResultHTML(r) {
+  const pct = (r.confidence*100).toFixed(1);
+  const hue = pct > 70 ? 150 : pct > 40 ? 45 : 0;
+  return `
+    <div class="result-card" style="margin-bottom:12px">
+      <div class="result-header">
+        <div class="confidence-ring" style="background:conic-gradient(var(--accent) ${pct}%, var(--border) ${pct}%)">
+          <span style="color:var(--accent)">${pct}%</span>
+        </div>
+        <div class="result-info">
+          <h3>${r.icon} ${r.intent_name}</h3>
+          <p><span class="badge badge-${r.category}">${r.category}</span> ${r.sub_category}</p>
+        </div>
+      </div>
+      ${r.matched_keywords && r.matched_keywords.length > 0 ? `
+        <div class="result-section">
+          <h4>命中关键词</h4>
+          <div class="match-tags">${r.matched_keywords.map(k => `<span class="match-tag">${k}</span>`).join('')}</div>
+        </div>
+      ` : ''}
+      ${r.matched_patterns && r.matched_patterns.length > 0 ? `
+        <div class="result-section">
+          <h4>命中模式</h4>
+          <div class="match-tags">${r.matched_patterns.map(p => `<span class="match-tag" style="font-family:monospace;font-size:11px">${p}</span>`).join('')}</div>
+        </div>
+      ` : ''}
+      ${r.route_skill ? `
+        <div class="result-section">
+          <h4>技能路由</h4>
+          <span style="color:var(--accent);font-weight:600">${r.route_skill}</span>
+          ${r.route_description ? `<span style="color:var(--text2);margin-left:8px">— ${r.route_description}</span>` : ''}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// ============ Quick Test ============
+async function quickTest() {
+  const text = document.getElementById('quickInput').value.trim();
+  if (!text) return;
+  const res = await api('/api/classify', {method:'POST',body:JSON.stringify({text})});
+  const div = document.getElementById('quickResult');
+  if (!res.result) {
+    div.innerHTML = '<span style="color:var(--text2)">未匹配</span>'; return;
+  }
+  div.innerHTML = `
+    <span class="cat" style="color:${COLORS[res.result.category]||'var(--text)'}">
+      ${res.result.icon} ${res.result.category}/${res.result.sub_category}
+    </span>
+    <span class="conf">${(res.result.confidence*100).toFixed(0)}%</span>
+  `;
+}
+
+// ============ Helpers ============
+function es(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Init
+loadDashboard();
+</script>
+
+</body>
+</html>

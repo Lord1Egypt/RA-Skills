@@ -1,7 +1,5 @@
 ---
 name: linkfox-eureka-abstract-image
-version: 1.0.1
-category: product-sourcing
 description: 通过Eureka专利数据平台获取专利摘要附图。当用户提到专利摘要附图、专利图纸、专利示意图、专利图片、摘要附图检索、专利图片查询、Eureka摘要附图、patent abstract images, patent drawings, patent illustrations, Eureka, abstract image lookup, patent figure时触发此技能。即使用户未明确说"摘要附图"，只要其需要查看专利文件中的图纸或示意图，也应触发此技能。
 ---
 
@@ -36,9 +34,19 @@ Abstract images (abstract drawings) are the representative figures attached to a
 | Total | total | Total number of records returned |
 | Cost Token | costToken | Tokens consumed by the query |
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/eureka_abstract_image.py` directly to run queries.
+- **API 端点**：`POST /tool-eureka/abstractImage`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/eureka_abstract_image.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-eureka-abstract-image-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## Usage Examples
 

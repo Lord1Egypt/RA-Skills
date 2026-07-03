@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} —— 审稿批注报告</title>
+<style>
+  :root {
+    --bg: #f9f8f4; --card-bg: #fff; --text: #2c2416; --muted: #6b5e4a;
+    --border: #e3dcd0; --accent: #8b4513;
+    --red-bg: #fff0f0; --red-border: #e8b4b4; --red-text: #a02020;
+    --orange-bg: #fff8ed; --orange-border: #e8cf9c; --orange-text: #a06010;
+    --blue-bg: #f0f6ff; --blue-border: #b4cce8; --blue-text: #2040a0;
+    --green-bg: #f0fff4; --green-border: #b4e8c8; --green-text: #107030;
+    --purple-bg: #f8f0ff; --purple-border: #d4c0f0; --purple-text: #6020a0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
+    background: var(--bg); color: var(--text); line-height: 1.8; font-size: 15px;
+  }
+  .cover {
+    background: linear-gradient(160deg, #f5f0e8 0%, #ebe2d5 40%, #d4c8b0 100%);
+    padding: 64px 48px 56px; text-align: center;
+    border-bottom: 3px double #8b4513;
+  }
+  .cover .journal { font-size: 22px; letter-spacing: 4px; color: #6b5e4a; margin-bottom: 8px; }
+  .cover h1 { font-size: 28px; color: #2c1810; margin: 20px 0 12px; letter-spacing: 2px; }
+  .cover .subtitle { font-size: 17px; color: var(--muted); margin-bottom: 28px; }
+  .cover .meta { font-size: 14px; color: #8b7355; line-height: 2; }
+  .cover .tag-row { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .exec { max-width: 860px; margin: 40px auto; padding: 0 24px; }
+  .exec h2 { font-size: 20px; color: var(--accent); border-left: 4px solid var(--accent); padding-left: 14px; margin-bottom: 20px; }
+  .exec .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; margin-bottom: 28px; }
+  .exec .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+  .exec .card h3 { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .exec .card .big { font-size: 36px; font-weight: 700; }
+  .exec .card .unit { font-size: 14px; color: var(--muted); }
+  .verdict {
+    background: #fff; border: 2px solid #8b4513; border-radius: 8px;
+    padding: 28px 32px; margin-bottom: 24px;
+  }
+  .verdict .highlight { color: #a02020; font-weight: 600; }
+
+  .review { max-width: 1100px; margin: 0 auto 60px; padding: 0 24px; }
+  .review h2 { font-size: 20px; color: var(--accent); border-left: 4px solid var(--accent); padding-left: 14px; margin: 44px 0 20px; }
+  .review h3 { font-size: 17px; color: #5c4a2e; margin: 28px 0 14px; border-bottom: 1px dashed #d0c8b8; padding-bottom: 8px; }
+
+  .block { background: #fff; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 20px; }
+  .block .orig { padding: 18px 22px; border-bottom: 1px solid #f0ece4; font-size: 14.5px; line-height: 2; color: #4a4030; }
+  .block .annotations { padding: 16px 22px; }
+  .ann { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; padding: 10px 14px; border-radius: 5px; }
+  .ann:last-child { margin-bottom: 0; }
+  .ann .badge { flex-shrink: 0; width: 56px; text-align: center; font-size: 12px; font-weight: 600; padding: 2px 0; border-radius: 3px; }
+  .badge-red { background: #e8c8c8; color: #a02020; }
+  .badge-orange { background: #ecd9a8; color: #a06010; }
+  .badge-blue { background: #c0d0e8; color: #2040a0; }
+  .badge-green { background: #b4e0c4; color: #107030; }
+  .badge-purple { background: #d4c0f0; color: #6020a0; }
+  .ann .content { flex: 1; font-size: 14px; line-height: 1.7; }
+
+  .rewrite { background: #f8fdf8; border: 1px solid #c8e0c8; border-radius: 6px; margin: 16px 0 20px; padding: 20px 24px; }
+  .rewrite h4 { font-size: 14px; color: #207030; margin-bottom: 10px; }
+  .rewrite p { font-size: 14.5px; line-height: 2; color: #2a4a20; }
+
+  .reduce-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .reduce-table th { background: #f0e8d8; color: #5c4a2e; padding: 10px 12px; text-align: left; border-bottom: 2px solid #c8b898; }
+  .reduce-table td { padding: 10px 12px; border-bottom: 1px solid #e8e0d0; }
+  .reduce-table .before { color: #a02020; }
+  .reduce-table .after { color: #107030; font-weight: 600; }
+
+  .priority-box { background: #fffaf0; border: 2px solid #d4a040; border-radius: 8px; padding: 24px 28px; margin: 20px 0; }
+  .priority-box h4 { color: #8b6508; font-size: 16px; margin-bottom: 12px; }
+  .priority-box ol { padding-left: 20px; }
+  .priority-box li { margin-bottom: 8px; }
+
+  .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .strategy-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+
+  footer { text-align: center; padding: 30px; color: #a09880; font-size: 13px; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+  .hl-red { background: #ffe0e0; border-bottom: 2px wavy #c04040; padding: 0 2px; }
+  .hl-orange { background: #fff0d0; border-bottom: 2px wavy #c08020; padding: 0 2px; }
+  .hl-blue { background: #e0e8ff; border-bottom: 2px wavy #4060c0; padding: 0 2px; }
+  .para-label { display: inline-block; background: #e8e0d4; color: #6b5e4a; font-size: 11px; padding: 1px 8px; border-radius: 3px; margin-right: 8px; font-family: monospace; }
+  .tag { display: inline-block; padding: 4px 18px; border-radius: 3px; font-size: 13px; letter-spacing: 1px; }
+  .tag-red { background: #e8c8c8; color: #a02020; }
+  .tag-orange { background: #ecd9a8; color: #a06010; }
+  .tag-blue { background: #c0d0e8; color: #2040a0; }
+
+  @media(max-width:768px){ .strategy-grid{grid-template-columns:1fr;} .exec .cards{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<!-- ⬆️ 模板说明: {{VARIABLE}} 需替换为实际值 -->
+
+<div class="cover">
+  <div class="journal">{{JOURNAL_NAME}} 审稿专家意见书</div>
+  <h1>{{PAPER_TITLE}}</h1>
+  <div class="subtitle">—— 逐段批注 · 可视化修改建议 · 一次通过指南</div>
+  <div class="meta">
+    作者：{{AUTHOR}} | 审稿日期：{{DATE}} | 目标：{{TARGET_PAGES}} / {{TARGET_WORDS}}字<br>
+    基于 {{DIAGNOSIS_VERDICT}}
+  </div>
+  <div class="tag-row">
+    {{TAG_ROW}}
+  </div>
+</div>
+
+<div class="exec">
+  <h2>一、总体评估</h2>
+  <div class="cards">
+    {{METRIC_CARDS}}
+  </div>
+  <div class="verdict">
+    {{VERDICT_CONTENT}}
+  </div>
+</div>
+
+<div class="review">
+  <h2>二、标题与摘要</h2>
+  {{TITLE_ABSTRACT_REVIEW}}
+
+  <h2>三、正文逐段批注</h2>
+  {{BODY_REVIEW}}
+
+  <h2>四、字数精简方案</h2>
+  {{REDUCTION_TABLE}}
+
+  <h2>五、修改通关清单</h2>
+  {{CHECKLIST}}
+</div>
+
+<footer>本审稿报告为基于{{JOURNAL_NAME}}期刊标准的模拟专家意见 | 仅供作者修改参考</footer>
+</body>
+</html>

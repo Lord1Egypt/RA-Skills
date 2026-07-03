@@ -11,6 +11,7 @@
 import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
 import { isValidMemoryType, isValidMemoryTypeV1, V0_TO_V1_TYPE, VALID_MEMORY_SCOPES, VALID_MEMORY_SOURCES, VALID_MEMORY_VOLATILITIES, VALID_MEMORY_TYPES_V1, } from './extractor.js';
+import { envStringLower } from './entry.js';
 // Lazy-load WASM. We use createRequire so this module loads cleanly under
 // both the OpenClaw runtime (CJS-ish tsx) and bare Node ESM (used by tests).
 const requireWasm = createRequire(import.meta.url);
@@ -411,7 +412,7 @@ export function resolveDigestMode() {
  * @internal Not public config — emergency kill-switch only.
  */
 export function resolveAutoResolveMode() {
-    const raw = (process.env.TOTALRECLAW_AUTO_RESOLVE_MODE ?? '').trim().toLowerCase();
+    const raw = envStringLower('TOTALRECLAW_AUTO_RESOLVE_MODE');
     if (raw === 'off')
         return 'off';
     if (raw === 'shadow')

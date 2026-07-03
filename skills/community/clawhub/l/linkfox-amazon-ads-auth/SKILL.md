@@ -1,7 +1,5 @@
 ---
 name: linkfox-amazon-ads-auth
-version: 1.0.1
-category: product-sourcing
 description: 亚马逊广告（Amazon Ads）店铺授权与管理技能，提供完整的授权流程、已绑定账号与站点的查询、令牌刷新与读取等能力。发起授权链接时需要先向用户确认一个账号名称；一次授权即可自动发现并绑定同账号下所有可用站点的广告 profile（每个站点对应一个 profileId）。当用户提到亚马逊广告授权、Amazon Ads 授权、绑定广告账户、刷新广告令牌、查询 profile 列表、管理已授权广告账户、Amazon Advertising authorization, Ads token refresh, list profiles, ad account management时触发此技能。即使未明确提及"Amazon Ads"或"授权"，只要涉及亚马逊广告账号绑定、访问令牌管理或广告 profile 列表查询，也应触发。
 ---
 
@@ -9,7 +7,7 @@ description: 亚马逊广告（Amazon Ads）店铺授权与管理技能，提供
 
 Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**下游 skill 的前置依赖**。
 
-下游：`linkfox-amazon-ads-entity`（实体查询）、`linkfox-amazon-ads-report`（报告）。
+下游：`linkfox-amazon-ads-manager`（广告管理）、`linkfox-amazon-ads-report`（报告）。
 
 ## Core Concepts
 
@@ -29,6 +27,20 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 | `store_tokens.py` | 查 token（供下游使用） |
 
 入参、响应字段、错误码见 `references/api.md`。
+
+## 调用方式
+
+- **API 端点**：`POST /amazonAds/{authorizeUrl|storeTokens|authorizedStores|refreshToken}`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ## 支持区域
 
@@ -86,7 +98,7 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 
 ## Not Applicable
 
-- 查广告活动 / 组 / 关键词 / 商品广告 / 定向 → `linkfox-amazon-ads-entity`
+- 查广告活动 / 组 / 关键词 / 商品广告 / 定向 → `linkfox-amazon-ads-manager`
 - 拉广告报告（含指标） → `linkfox-amazon-ads-report`
 - 修改 / 创建 / 删除广告 → 本系列为只读
 - 店铺订单 / 库存 / 财务 → `linkfox-amazon-store-*`

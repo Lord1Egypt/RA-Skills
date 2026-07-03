@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { PROXY_PROTOCOL_VERSION } = require('../mailbox/store');
+const { readMailboxStateFile } = require('../mailbox/state');
 const { buildEnvelope } = require('../envelope');
 const crypto = require('crypto');
 const {
@@ -11,6 +12,7 @@ const {
   isHubUnreachableError,
   readHubResponseJson,
   readHubResponseText,
+  sanitizeHubResponseForLog,
   throwIfHubUnreachableResponse,
 } = require('../../gep/hubFetch');
 const { getEvomapPath } = require('../../gep/paths');
@@ -362,6 +364,86 @@ class AuthError extends Error {
   }
 }
 
+function parseNodeSecretVersion(value) {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 0 ? n : null;
+}
+
+const NODE_SECRET_RE = /^[a-f0-9]{64}$/i;
+const NODE_SECRET_SUPPRESSION_RE = /^sha256:[a-f0-9]{64}$/i;
+const SECRET_DIVERGENCE_ERROR = 'secret_diverged_cleared';
+const SECRET_DIVERGENCE_REASON_CODES = [
+  'node_secret_invalid',
+  'invalid_secret',
+  'rotation_requires_current_secret',
+];
+
+function validNodeSecret(value) {
+  return typeof value === 'string' && NODE_SECRET_RE.test(value);
+}
+
+function getEnvNodeSecret() {
+  return ((process.env.A2A_NODE_SECRET || process.env.EVOMAP_NODE_SECRET || '').trim() || null);
+}
+
+function fingerprintNodeSecret(secret) {
+  if (!validNodeSecret(secret)) return null;
+  const normalized = String(secret).trim().toLowerCase();
+  return 'sha256:' + crypto.createHash('sha256').update(normalized).digest('hex');
+}
+
+function truthyState(value) {
+  const v = String(value || '').trim().toLowerCase();
+  return v === '1' || v === 'true' || v === 'yes' || v === 'on';
+}
+
+function matchSecretDivergenceReason(value) {
+  const reason = String(value || '').trim().toLowerCase();
+  if (!reason) return null;
+  return SECRET_DIVERGENCE_REASON_CODES.find((code) => reason.includes(code)) || null;
+}
+
+function extractSecretDivergenceReason(data) {
+  const candidates = [
+    data?.payload?.reason,
+    data?.payload?.error,
+    data?.reason,
+    data?.error,
+  ];
+  for (const value of candidates) {
+    const reason = matchSecretDivergenceReason(value);
+    if (reason) return reason;
+  }
+  return null;
+}
+
+function isSecretDivergenceError(error) {
+  return error === SECRET_DIVERGENCE_ERROR || Boolean(matchSecretDivergenceReason(error));
+}
+
+function safeHubErrorCode(data, statusCode) {
+  const candidates = [
+    data?.error,
+    data?.reason,
+    data?.payload?.error,
+    data?.payload?.reason,
+  ];
+  for (const value of candidates) {
+    if (typeof value !== 'string') continue;
+    const code = value.trim();
+    if (/^[a-z][a-z0-9_:-]{0,79}$/i.test(code)) return code;
+  }
+  return `http_${statusCode}`;
+}
+
+function normalizeNodeSecretEnvSuppression(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+  if (truthyState(raw)) return 'true';
+  const lower = raw.toLowerCase();
+  return NODE_SECRET_SUPPRESSION_RE.test(lower) ? lower : null;
+}
+
 class LifecycleManager {
   constructor({ hubUrl, store, logger, getTaskMeta } = {}) {
     this.hubUrl = (hubUrl || process.env.A2A_HUB_URL || '').replace(/\/+$/, '');
@@ -381,6 +463,11 @@ class LifecycleManager {
     this._lastDriftCheckAt = 0;
     this._hubUnreachableFailures = 0;
     this._hubUnreachableUntil = 0;
+    this._envSecretSuppressionMarker = normalizeNodeSecretEnvSuppression(this.store && this.store.getState
+      ? this.store.getState('node_secret_env_suppressed')
+      : null);
+    this._envSuppressionClearedForSecret = null;
+    this._suppressEnvSecret = Boolean(this._envSecretSuppressionMarker && getEnvNodeSecret());
 
     // H4 fix: persist the legacy node_id file as soon as the in-memory
     // node_id is known, NOT only after a successful hello(). The original
@@ -433,6 +520,23 @@ class LifecycleManager {
     return this._resolveNodeSecret();
   }
 
+  get nodeSecretVersion() {
+    this._resolveNodeSecret();
+    const storeVersion = parseNodeSecretVersion(this.store.getState('node_secret_version'));
+    const storeSecret = this.store.getState('node_secret') || null;
+    const storeSource = this.store.getState('node_secret_source') || null;
+    const envSecret = this._effectiveEnvNodeSecret();
+    const envVersion = parseNodeSecretVersion(process.env.A2A_NODE_SECRET_VERSION || process.env.EVOMAP_NODE_SECRET_VERSION);
+    const validStoreSecret = validNodeSecret(storeSecret);
+    if (this._suppressEnvSecret) return validStoreSecret ? storeVersion : null;
+    if (storeSource === 'hub_rotate' && validStoreSecret) return storeVersion;
+    if (envSecret) {
+      if (envVersion) return envVersion;
+      return storeSecret === envSecret ? storeVersion : null;
+    }
+    return validStoreSecret ? storeVersion : null;
+  }
+
   /**
    * Resolve the active node_secret with conflict reconciliation between the
    * persistent MailboxStore and `process.env.A2A_NODE_SECRET`.
@@ -464,35 +568,58 @@ class LifecycleManager {
    * @returns {string|null}
    */
   _resolveNodeSecret() {
-    const envSecret = this._suppressEnvSecret
-      ? null
-      : ((process.env.A2A_NODE_SECRET || '').trim() || null);
+    const envSecret = this._effectiveEnvNodeSecret();
+    const envUpdatedAfterSuppression = this._envSuppressionClearedForSecret === envSecret;
     const storeSecret = this.store.getState('node_secret') || null;
     const storeSource = this.store.getState('node_secret_source') || null;
-    const valid = (s) => typeof s === 'string' && /^[a-f0-9]{64}$/i.test(s);
+
+    if (
+      envSecret &&
+      envUpdatedAfterSuppression &&
+      validNodeSecret(envSecret) &&
+      (!storeSecret || envSecret === storeSecret) &&
+      !(storeSecret && envSecret === storeSecret && storeSource === 'hub_rotate')
+    ) {
+      this._syncEnvNodeSecretToStore(envSecret);
+      return envSecret;
+    }
 
     if (envSecret && storeSecret && envSecret !== storeSecret) {
       // Store value came from a successful hub rotation -> trust it.
       // The env var is necessarily stale: it was captured by the parent
       // shell before the rotation and a child process cannot mutate it
       // back into its parent.
-      if (storeSource === 'hub_rotate' && valid(storeSecret)) {
+      if (storeSource === 'hub_rotate' && validNodeSecret(storeSecret) && !envUpdatedAfterSuppression) {
         if (!this._storeSourceLogged) {
           this._storeSourceLogged = true;
           this.logger.warn(
             '[lifecycle] A2A_NODE_SECRET env var differs from MailboxStore; ' +
               'store value originated from a hub rotation, treating env as stale. ' +
-              'Run `evolver reset-local-secret` after a manual web reset, or ' +
-              'unset A2A_NODE_SECRET to silence this warning.'
+              'After a manual web reset, run `evolver reset-local-secret` to clear local ' +
+              'secret and env suppression state before relying only on updated env vars.'
           );
         }
         return storeSecret;
       }
-      if (valid(envSecret)) {
-        this.store.setState('node_secret', envSecret);
-        // Mark the new store value as env-seeded so a future rotation can
-        // distinguish "operator pasted this in" from "hub returned this".
-        this.store.setState('node_secret_source', 'env_seed');
+      if (validNodeSecret(envSecret)) {
+        const diskRotated = this._latestDiskHubRotatedSecret();
+        if (diskRotated) {
+          this._setNodeSecretState({
+            secret: diskRotated.secret,
+            version: diskRotated.version ? String(diskRotated.version) : '',
+            source: 'hub_rotate',
+            envSuppressed: this.store.getState('node_secret_env_suppressed') || '',
+          });
+          if (!this._storeSourceLogged) {
+            this._storeSourceLogged = true;
+            this.logger.warn(
+              '[lifecycle] MailboxStore memory differs from disk hub-rotated node_secret; ' +
+                'using disk value and treating env as stale.'
+            );
+          }
+          return diskRotated.secret;
+        }
+        this._syncEnvNodeSecretToStore(envSecret);
         if (!this._envOverrideLogged) {
           this._envOverrideLogged = true;
           this.logger.warn(
@@ -509,10 +636,98 @@ class LifecycleManager {
     return storeSecret || envSecret || null;
   }
 
+  _latestDiskHubRotatedSecret() {
+    const file = this.store && this.store._stateFile;
+    if (!file) return null;
+    const state = readMailboxStateFile(file);
+    const secret = typeof state?.node_secret === 'string' ? state.node_secret.trim() : null;
+    if (!validNodeSecret(secret) || state?.node_secret_source !== 'hub_rotate') return null;
+    return {
+      secret,
+      version: parseNodeSecretVersion(state.node_secret_version),
+    };
+  }
+
+  _syncEnvNodeSecretToStore(envSecret) {
+    const envVersion = parseNodeSecretVersion(process.env.A2A_NODE_SECRET_VERSION || process.env.EVOMAP_NODE_SECRET_VERSION);
+    this._setNodeSecretState({
+      secret: envSecret,
+      version: envVersion ? String(envVersion) : '',
+      source: 'env_seed',
+      envSuppressed: '',
+    });
+    this._clearEnvSecretSuppression();
+  }
+
+  _setNodeSecretState({ secret = '', version = '', source = '', envSuppressed = '' } = {}) {
+    if (this.store && typeof this.store.setNodeSecretState === 'function') {
+      this.store.setNodeSecretState({ secret, version, source, envSuppressed });
+      return;
+    }
+    this.store.setState('node_secret', secret);
+    this.store.setState('node_secret_version', version ? String(version) : '');
+    this.store.setState('node_secret_source', source);
+    this.store.setState('node_secret_env_suppressed', envSuppressed);
+  }
+
+  _effectiveEnvNodeSecret() {
+    const envSecret = getEnvNodeSecret();
+    return this._isEnvNodeSecretSuppressed(envSecret) ? null : envSecret;
+  }
+
+  _isEnvNodeSecretSuppressed(envSecret) {
+    this._envSuppressionClearedForSecret = null;
+    const persistedMarker = normalizeNodeSecretEnvSuppression(this.store && this.store.getState
+      ? this.store.getState('node_secret_env_suppressed')
+      : null);
+    const marker = persistedMarker || this._envSecretSuppressionMarker;
+    if (!marker) {
+      this._envSecretSuppressionMarker = null;
+      this._suppressEnvSecret = false;
+      return false;
+    }
+    this._envSecretSuppressionMarker = marker;
+    if (marker === 'true') {
+      this._suppressEnvSecret = Boolean(envSecret);
+      return Boolean(envSecret);
+    }
+    const envFingerprint = fingerprintNodeSecret(envSecret);
+    if (!envFingerprint) {
+      this._suppressEnvSecret = false;
+      return false;
+    }
+    if (envFingerprint === marker) {
+      this._suppressEnvSecret = true;
+      return true;
+    }
+    this._clearEnvSecretSuppression();
+    this._envSuppressionClearedForSecret = envSecret;
+    return false;
+  }
+
+  _markCurrentEnvSecretSuppressed() {
+    const marker = fingerprintNodeSecret(getEnvNodeSecret());
+    if (!marker) {
+      this._clearEnvSecretSuppression();
+      return;
+    }
+    try { this.store.setState('node_secret_env_suppressed', marker); } catch { /* best-effort */ }
+    this._envSecretSuppressionMarker = marker;
+    this._suppressEnvSecret = true;
+  }
+
+  _clearEnvSecretSuppression() {
+    try { this.store.setState('node_secret_env_suppressed', ''); } catch { /* best-effort */ }
+    this._envSecretSuppressionMarker = null;
+    this._suppressEnvSecret = false;
+  }
+
   _buildHeaders() {
     const headers = { 'Content-Type': 'application/json' };
     const secret = this.nodeSecret;
     if (secret) headers['Authorization'] = 'Bearer ' + secret;
+    const secretVersion = this.nodeSecretVersion;
+    if (secretVersion) headers['X-EvoMap-Node-Secret-Version'] = String(secretVersion);
     headers['x-correlation-id'] = crypto.randomUUID();
     return headers;
   }
@@ -580,32 +795,64 @@ class LifecycleManager {
       await throwIfHubUnreachableResponse(res, 'lifecycle hello');
       this._recordHubReachable();
       if (!res.ok) {
-        const errData = await readHubResponseJson(res).catch(() => ({}));
-        const errMsg = errData?.error || `http_${res.status}`;
+        const errText = await readHubResponseText(res).catch(() => '');
+        let errData = {};
+        try { errData = errText ? JSON.parse(errText) : {}; } catch (_) { /* non-JSON API error */ }
+        const errMsg = safeHubErrorCode(errData, res.status);
         if (res.status === 429) {
           const retryAfter = parseInt(res.headers.get('retry-after') || '3600', 10);
           this._helloRateLimitUntil = Date.now() + retryAfter * 1000;
           this.logger.error(`[lifecycle] hello rate limited (429): retry after ${retryAfter}s`);
           return { ok: false, error: 'hello_rate_limited', retryAfter };
         }
-        this.logger.error(`[lifecycle] hello HTTP ${res.status}: ${errMsg}`);
+        const divergenceReason = (res.status === 401 || res.status === 403)
+          ? extractSecretDivergenceReason(errData)
+          : null;
+        if (divergenceReason) {
+          this.logger.warn(
+            `[lifecycle] hello rejected secret rotation (${res.status}, reason=${divergenceReason}); ` +
+              'local secret divergence detected'
+          );
+          return {
+            ok: false,
+            error: SECRET_DIVERGENCE_ERROR,
+            reason: divergenceReason,
+            statusCode: res.status,
+          };
+        }
+        const safeErrText = errText ? sanitizeHubResponseForLog(errText) : errMsg;
+        this.logger.error(`[lifecycle] hello HTTP ${res.status}: ${safeErrText}`);
         return { ok: false, error: errMsg, statusCode: res.status };
       }
 
       const data = await readHubResponseJson(res);
 
       if (data?.payload?.status === 'rejected') {
-        this.logger.error(`[lifecycle] hello rejected: ${data.payload.reason || 'unknown'}`);
-        return { ok: false, error: data.payload.reason || 'hello_rejected', response: data };
+        const divergenceReason = extractSecretDivergenceReason(data);
+        if (divergenceReason) {
+          this.logger.warn(
+            `[lifecycle] hello rejected secret rotation (reason=${divergenceReason}); ` +
+              'local secret divergence detected'
+          );
+          return {
+            ok: false,
+            error: SECRET_DIVERGENCE_ERROR,
+            reason: divergenceReason,
+            response: data,
+          };
+        }
+        const reason = data.payload.reason || 'unknown';
+        const safeReason = sanitizeHubResponseForLog(reason);
+        this.logger.error(`[lifecycle] hello rejected: ${safeReason}`);
+        const error = String(reason || '').startsWith('node_id_already_claimed')
+          ? reason
+          : 'hello_rejected';
+        return { ok: false, error, response: data };
       }
 
       const secret = data?.payload?.node_secret || data?.node_secret || null;
-      if (secret && /^[a-f0-9]{64}$/i.test(secret)) {
-        this.store.setState('node_secret', secret);
-        // Tag the store entry so the next process that boots into a stale
-        // shell env can recognise this value as hub-authoritative and
-        // refuse to overwrite it (see _resolveNodeSecret above).
-        this.store.setState('node_secret_source', 'hub_rotate');
+      const secretVersion = parseNodeSecretVersion(data?.payload?.node_secret_version || data?.node_secret_version);
+      if (secret && validNodeSecret(secret)) {
         // Hub just handed us a fresh secret. Whatever sits in
         // A2A_NODE_SECRET is now older than the store, so suppress the
         // env-wins reconciliation in _resolveNodeSecret for the rest of
@@ -615,8 +862,22 @@ class LifecycleManager {
         // and overwrite the freshly rotated secret with the stale one,
         // re-creating the auth loop the previous patch fixed (see #529
         // and the Bugbot review on PR #22).
-        this._suppressEnvSecret = true;
+        if (getEnvNodeSecret() && getEnvNodeSecret() !== secret) {
+          this._markCurrentEnvSecretSuppressed();
+        } else {
+          this._clearEnvSecretSuppression();
+        }
+        this._setNodeSecretState({
+          secret,
+          version: secretVersion ? String(secretVersion) : '',
+          source: 'hub_rotate',
+          envSuppressed: this.store.getState('node_secret_env_suppressed') || '',
+        });
         this.logger.log('[lifecycle] new node_secret stored from hello response');
+      } else if (secretVersion) {
+        this.store.setState('node_secret_version', String(secretVersion));
+      } else {
+        this.store.setState('node_secret_version', '');
       }
 
       this.store.setState('node_id', nodeId);
@@ -680,6 +941,7 @@ class LifecycleManager {
     this._reauthInProgress = true;
     let manualResetRequired = false;
     let hubUnreachable = false;
+    let droppedDivergedSecret = false;
     try {
       for (let attempt = 1; attempt <= MAX_REAUTH_ATTEMPTS; attempt++) {
         this.logger.warn(`[lifecycle] re-auth attempt ${attempt}/${MAX_REAUTH_ATTEMPTS}: rotating secret via hello...`);
@@ -696,6 +958,18 @@ class LifecycleManager {
           // reachable again. The hub-unreachable window already gates re-entry.
           if (helloResult.error === 'hub_unreachable' || helloResult.error === 'hub_unreachable_backoff') {
             hubUnreachable = true;
+            break;
+          }
+          if (isSecretDivergenceError(helloResult.error)) {
+            // The hub has explicitly rejected our current secret as diverged
+            // from its record. Drop store/env-derived auth once, then spend
+            // the second attempt on an unauthenticated rotate hello instead
+            // of backing off while still presenting the same stale Bearer.
+            if (attempt < MAX_REAUTH_ATTEMPTS && !droppedDivergedSecret) {
+              this._dropLocalSecret(SECRET_DIVERGENCE_ERROR);
+              droppedDivergedSecret = true;
+              continue;
+            }
             break;
           }
           if (typeof helloResult.error === 'string' && helloResult.error.startsWith('node_id_already_claimed')) {
@@ -769,13 +1043,37 @@ class LifecycleManager {
    */
   _dropLocalSecret(reason) {
     this.logger.warn(`[lifecycle] dropping cached node_secret (reason=${reason}); next hello will run unauthenticated`);
-    try { this.store.setState('node_secret', ''); } catch { /* best-effort */ }
-    // Clear the source tag too -- nothing is stored, nothing to attribute.
-    try { this.store.setState('node_secret_source', ''); } catch { /* best-effort */ }
-    try { this.store.setState('node_secret_env_suppressed', 'true'); } catch { /* best-effort */ }
-    // Suppress the env override for this process so _resolveNodeSecret stops
-    // re-seeding the store with the same stale env value next call.
-    this._suppressEnvSecret = true;
+    const diskRotated = this._latestDiskHubRotatedSecret();
+    const storeSecret = this.store.getState('node_secret') || null;
+    if (diskRotated && diskRotated.secret !== storeSecret) {
+      try {
+        this._setNodeSecretState({
+          secret: diskRotated.secret,
+          version: diskRotated.version ? String(diskRotated.version) : '',
+          source: 'hub_rotate',
+          envSuppressed: this.store.getState('node_secret_env_suppressed') || '',
+        });
+        this.logger.warn('[lifecycle] local in-memory node_secret is stale; preserving newer disk hub-rotated secret');
+        return;
+      } catch (err) {
+        const reason = err && (err.code || err.name) ? (err.code || err.name) : 'error';
+        this.logger.warn(`[lifecycle] failed to sync newer disk hub-rotated node_secret into memory (reason=${reason})`);
+      }
+    }
+    try {
+      this._setNodeSecretState({
+        secret: '',
+        version: '',
+        source: '',
+        envSuppressed: this.store.getState('node_secret_env_suppressed') || '',
+      });
+    } catch (err) {
+      const reason = err && (err.code || err.name || err.message) ? (err.code || err.name || err.message) : 'error';
+      this.logger.warn(`[lifecycle] failed to clear local node_secret state (reason=${reason})`);
+    }
+    // Suppress only the exact env secret that was just proven stale. If no
+    // env secret is present, do not leave a marker that blocks a future reset.
+    this._markCurrentEnvSecretSuppressed();
   }
 
   _emitManualResetNeeded() {
@@ -787,7 +1085,7 @@ class LifecycleManager {
         payload: {
           action: 'manual_secret_reset_required',
           message:
-            'Hub disowns this node_id (node_id_already_claimed). Local node_secret in MailboxStore and A2A_NODE_SECRET env var are both invalid. Visit https://evomap.ai/account, click "Reset Secret" on the agent card, then update A2A_NODE_SECRET (or delete ~/.evomap/mailbox/state.json) and restart proxy.',
+            'Hub disowns this node_id (node_id_already_claimed). Local node_secret and the current node secret env value are invalid. Visit https://evomap.ai/account, click "Reset Secret" on the agent card, run `evolver reset-local-secret` to clear local secret and env suppression state, then update A2A_NODE_SECRET/EVOMAP_NODE_SECRET and restart proxy. Only changing env before clearing suppression state can keep an older local marker active.',
           docs_url: 'https://evomap.ai/account',
         },
       });
@@ -824,6 +1122,7 @@ class LifecycleManager {
       const endpoint = `${this.hubUrl}/a2a/heartbeat`;
       const taskMeta = typeof this.getTaskMeta === 'function' ? this.getTaskMeta() : {};
       const fp = _getEnvFingerprint();
+      const secretVersion = this.nodeSecretVersion;
       const body = {
         node_id: this.nodeId,
         sender_id: this.nodeId,
@@ -837,6 +1136,10 @@ class LifecycleManager {
           ...taskMeta,
         },
       };
+      if (secretVersion) {
+        body.node_secret_version = secretVersion;
+        body.meta.node_secret_version = secretVersion;
+      }
 
       try {
         const cfg = require('../../config');
@@ -885,7 +1188,8 @@ class LifecycleManager {
       if (res.status === 403 || res.status === 401) {
         this._consecutiveFailures++;
         const errText = await readHubResponseText(res).catch(() => '');
-        this.logger.error(`[lifecycle] heartbeat auth failed (${res.status}): ${errText}`);
+        const safeErrText = sanitizeHubResponseForLog(errText);
+        this.logger.error(`[lifecycle] heartbeat auth failed (${res.status}): ${safeErrText}`);
         if (!_skipReauth) {
           const recovered = await this.reAuthenticate();
           if (recovered) {
@@ -898,6 +1202,7 @@ class LifecycleManager {
 
       if (!res.ok) {
         const errText = await readHubResponseText(res).catch(() => '');
+        const safeErrText = sanitizeHubResponseForLog(errText);
         // 426 Upgrade Required: hub emits this when our evolver_version is
         // below the minimum version it requires. The body is JSON of shape
         // `{ error: 'evolver_min_version_required', force_update: {...} }`
@@ -922,7 +1227,7 @@ class LifecycleManager {
             _maybeTriggerForceUpdateFromHeartbeat(fu, this.logger);
           } else {
             this.logger.warn(
-              `[lifecycle] heartbeat HTTP 426 without parseable force_update payload: ${errText}`
+              `[lifecycle] heartbeat HTTP 426 without parseable force_update payload: ${safeErrText}`
             );
           }
         }
@@ -961,7 +1266,7 @@ class LifecycleManager {
           }
         }
         this._consecutiveFailures++;
-        this.logger.error(`[lifecycle] heartbeat HTTP ${res.status}: ${errText}`);
+        this.logger.error(`[lifecycle] heartbeat HTTP ${res.status}: ${safeErrText}`);
         return { ok: false, error: `http_${res.status}`, statusCode: res.status };
       }
 

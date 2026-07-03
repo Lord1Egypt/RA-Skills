@@ -221,28 +221,49 @@ def fit_regular_grid(candidates: list[tuple[float, float]], board_size: int, ima
     values = np.array([value for value, _ in candidates], dtype=np.float64)
     weights = np.clip(np.array([weight for _, weight in candidates], dtype=np.float64), 0.25, 6.0)
     best: tuple[float, float, float, int] | None = None
-    for spacing in np.linspace(nominal * 0.78, nominal * 1.02, 300):
-        max_offset = image_size - 1 - (board_size - 1) * spacing
-        if max_offset < 0:
-            continue
-        offsets = np.linspace(0, min(max_offset, image_size * 0.16), 220)
-        tolerance = max(4.5, spacing * 0.095)
-        for offset in offsets:
-            grid = offset + np.arange(board_size) * spacing
-            distances = np.min(np.abs(values[:, None] - grid[None, :]), axis=1)
-            nearest = np.argmin(np.abs(values[:, None] - grid[None, :]), axis=1)
-            weighted = float(np.sum(weights * np.exp(-((distances / tolerance) ** 2))))
-            coverage = len(set(int(v) for v in nearest[distances < tolerance * 1.2]))
-            score = weighted + coverage * 1.8
-            if best is None or score > best[0]:
-                best = (score, float(offset), float(spacing), coverage)
+
+    def evaluate(spacing_values: np.ndarray, offset_values_for_spacing: int | np.ndarray) -> None:
+        nonlocal best
+        for spacing in spacing_values:
+            max_offset = image_size - 1 - (board_size - 1) * spacing
+            if max_offset < 0:
+                continue
+            if isinstance(offset_values_for_spacing, np.ndarray):
+                offsets = offset_values_for_spacing
+            else:
+                offsets = np.linspace(0, min(max_offset, image_size * 0.16), offset_values_for_spacing)
+            tolerance = max(4.5, spacing * 0.095)
+            grid_base = np.arange(board_size) * spacing
+            for offset in offsets:
+                if offset < 0 or offset > max_offset:
+                    continue
+                grid = offset + grid_base
+                distances = np.min(np.abs(values[:, None] - grid[None, :]), axis=1)
+                nearest = np.argmin(np.abs(values[:, None] - grid[None, :]), axis=1)
+                weighted = float(np.sum(weights * np.exp(-((distances / tolerance) ** 2))))
+                coverage = len(set(int(v) for v in nearest[distances < tolerance * 1.2]))
+                score = weighted + coverage * 1.8
+                if best is None or score > best[0]:
+                    best = (score, float(offset), float(spacing), coverage)
+
+    evaluate(np.linspace(nominal * 0.78, nominal * 1.02, 72), 72)
+    if best is not None:
+        _, best_offset, best_spacing, _ = best
+        spacing_step = nominal * 0.24 / 71.0
+        offset_limit = image_size * 0.16
+        spacing_values = np.linspace(best_spacing - spacing_step * 2.0, best_spacing + spacing_step * 2.0, 36)
+        offset_values = np.linspace(
+            max(0.0, best_offset - spacing_step * 2.0),
+            min(offset_limit, best_offset + spacing_step * 2.0),
+            36,
+        )
+        evaluate(spacing_values, offset_values)
 
     if best is None:
         margin = image_size * 0.045
         return GridFit(margin, (image_size - 2 * margin) / float(board_size - 1), 0.0, 0, len(candidates))
     score, offset, spacing, coverage = best
     return GridFit(offset, spacing, score, coverage, len(candidates))
-
 
 def detect_grid(warped: np.ndarray, board_size: int) -> tuple[GridFit, GridFit]:
     size = warped.shape[0]
@@ -351,11 +372,20 @@ def classify_intersections(warped: np.ndarray, xfit: GridFit, yfit: GridFit, boa
                 and mean_s < 95.0
                 and edge_contrast > 0.5
             )
+            white_uniform_ok = (
+                bright_fraction > 0.96
+                and bright_low_sat > 0.96
+                and white_core > 0.96
+                and center_low_sat > 0.96
+                and mean_s < 45.0
+                and edge_contrast > -3.2
+            )
 
             if dark_fraction > 0.30 or (mean_v < 108 and very_dark_fraction > 0.10):
                 cells.append("B")
             elif (
                 white_bright_ok
+                or white_uniform_ok
                 or (
                     white_shape_ok
                     and (

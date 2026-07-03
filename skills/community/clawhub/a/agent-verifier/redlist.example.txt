@@ -1,0 +1,33 @@
+# Maggie pre-send confidential-leak redlist.
+# Terms in this file BLOCK the send if they appear in subject/body — UNLESS
+# the recipient's email also contains the term (i.e. they're the related
+# party). Case-insensitive. Lines starting with # are comments.
+#
+# Add: client names, internal agent names, deal values, codenames.
+# Remove: anything that's now public.
+
+# Internal agent names — never appear in cold outbound
+Bob
+Larry
+Walt
+Maggie
+Gary
+Ruby
+Otto
+Vera
+
+# Client / prospect codenames + private deal context
+Aeon
+Aeon Investments
+Ben Church
+Virtus
+Steph Newman
+Josh Newman
+JN Support
+Conexus
+
+# Internal projects / amounts
+6% revshare
+£64K
+$64K
+fractional CTO

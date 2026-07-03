@@ -1,0 +1,12 @@
+{
+  "name": "memory-tencentdb-setup",
+  "version": "1.0.0",
+  "description": "memory-tencentdb 插件安装指南 - 四层记忆系统部署文档",
+  "author": "paudyyin",
+  "license": "MIT",
+  "tags": ["memory", "tencentdb", "installation", "setup", "openclaw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  }
+}

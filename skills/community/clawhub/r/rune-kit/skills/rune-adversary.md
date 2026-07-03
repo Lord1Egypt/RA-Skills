@@ -71,6 +71,31 @@ Every finding MUST reference the specific plan section, file, or assumption it c
 3. Use `scout` to identify existing code files that the plan will touch or depend on
 4. Identify the plan's core assumptions — what MUST be true for this plan to work?
 
+### Step 0.5: Steelman + Pick a Reasoning Lens
+<MUST-READ path="references/reasoning-modes.md" trigger="before challenging any plan — to steelman the thesis and select the reasoning lens per dimension"/>
+
+Before attacking, **steelman the plan's core thesis** — restate it in its strongest
+form (strip weak framing, supply the strongest implied evidence, name what's genuinely
+good). Attacking a weak paraphrase produces findings the author dismisses with "that's
+not what I meant." The steelman also seeds the Strength Notes section (Step 6).
+
+The 5 dimensions below answer *what* to attack. The 5 **reasoning modes** answer *how*:
+
+| Mode | Core question | Reach for when |
+|------|---------------|----------------|
+| **Red Team** (default) | "How would someone break/exploit/game this?" | auth, payment, user data, public input, perverse incentives. NB: this is *persona framing* (who attacks, their capability/motivation) — it composes with Step 2's attack-surface inventory, not a duplicate of it |
+| **Pre-mortem** | "It's 6 months out and this failed — why?" | migrations, infra, architecture, cascading failure |
+| **Evidence Audit** | "Does the evidence actually support this claim?" | benchmark/"X is faster"/capacity-number justifications |
+| **Dialectic** | "What's the strongest case for the opposite choice?" | tech/vendor/architecture one-way-door decisions |
+| **Socratic** | "What is this plan taking for granted?" | vague scope, consensus-driven plans, thin specs |
+
+Default to **Red Team**. Switch or add a second lens when the plan's shape calls for it
+(signal→mode table + mode mechanics in `references/reasoning-modes.md`). State which lens
+you applied per dimension — don't ask the user to pick. Dialectic's synthesis usually
+produces concrete remediations (likely HARDEN), but maps to REVISE if it exposes a
+structural flaw in the chosen approach; Socratic's surfaced assumptions and Pre-mortem's
+narratives become findings.
+
 ### Step 1: Edge Case Analysis
 
 Challenge the plan's handling of boundary conditions.
@@ -202,6 +227,7 @@ After reporting:
 ## Adversary Report: [feature/plan name]
 - **Plan analyzed**: [path to plan file]
 - **Dimensions checked**: [which of the 5 were relevant]
+- **Reasoning lens**: [Red Team | Pre-mortem | Evidence Audit | Dialectic | Socratic — and why]
 - **Findings**: [count by severity]
 - **Verdict**: REVISE | HARDEN | PROCEED
 
@@ -253,7 +279,7 @@ Trigger: plan involves auth, crypto, payment, or user data handling.
 
 1. **Pre-bundle gate** — emit `context.preview` to `context-engine` first; abort if action=block
 2. **Build context bundle** — see `references/context-bundle-format.md` for exact format
-3. **Dispatch** — emit `oracle.dispatched` signal; route via `session-bridge` detach if target model is opus-class (non-blocking)
+3. **Dispatch** — emit `oracle.dispatched` signal; route via `session-bridge` detach if target model is opus-class (non-blocking). **For genuine architectural independence** (security-critical logic, irreversible ops, a loop the in-mesh model cannot break), prefer a **different-architecture external CLI** (Gemini/Codex) over another Claude instance — a same-family reviewer shares blind spots with the author. Invoke it via the safe transport in `references/cross-model-escalation.md`: explicit per-call user authorization, read-only sandbox, stdin not inline args, binary pre-flight. Never auto-invoke an external CLI in non-interactive contexts — skip and announce.
 4. **Wait for response** — synchronous if model is sonnet-class, polled via `.rune/oracle-pending/<id>.json` if opus-class
 5. **Validate response** — every claim MUST cite file:line. Strip + warn on uncited claims (`oracle.failed` if all claims uncited)
 6. **Emit response** — `oracle.response` carries the validated diagnosis, consumed by `debug`/`fix` to override or refine their current hypothesis
@@ -284,7 +310,7 @@ Trigger: plan involves auth, crypto, payment, or user data handling.
 
 Replies failing this contract are rejected — `oracle.failed` emitted, primary agent continues without second opinion.
 
-See `references/oracle-mode.md` for the full protocol and integration with `debug`/`fix`.
+See `references/oracle-mode.md` for the full protocol and integration with `debug`/`fix`. See `references/cross-model-escalation.md` for the safe external-CLI transport when the second opinion should come from a different model architecture.
 
 ## Constraints
 
@@ -295,6 +321,7 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 5. MUST use concrete attack scenarios, not vague warnings ("could be a problem" is NOT a finding)
 6. MUST NOT block on MEDIUM/LOW findings — only CRITICAL and HIGH trigger REVISE verdict
 7. MUST include Strength Notes — adversary finds weaknesses AND acknowledges what's well-designed
+7b. SHOULD steelman the plan's core thesis before challenging it (Step 0.5) — a challenge that only lands against a weaker paraphrase is a weak finding, not a CRITICAL/HIGH. If steelmanning reveals a dimension is genuinely solid, record "No findings after steelman" for that dimension — that satisfies the per-dimension HARD-GATE
 8. (oracle-mode) MUST emit `context.preview` BEFORE building the bundle — abort if context-engine action=block
 9. (oracle-mode) MUST validate every Oracle reply citation against the provided files — reject uncited claims as `oracle.failed`
 
@@ -310,6 +337,8 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 | Failure Mode | Severity | Mitigation |
 |---|---|---|
 | Over-challenging — nitpicking every line of the plan | HIGH | Rigor filter: only findings you can justify with specific references. Skip theoretical 3+ condition chains |
+| Strawmanning — attacking a weaker version of the plan than what's written | HIGH | Step 0.5: steelman the thesis first; a challenge that only lands against the weak reading is dropped |
+| One-lens tunnel vision — red-teaming a decision that needed dialectic/evidence-audit | MEDIUM | Step 0.5 signal→mode table: match the reasoning lens to the plan's shape, state which lens you applied |
 | False security alarms — flagging secure patterns as vulnerable | HIGH | Call sentinel for validation before reporting security findings as CRITICAL |
 | Analysis paralysis — too many findings block all progress | MEDIUM | Max 3 CRITICAL + 5 HIGH. If more found, consolidate or prioritize top impact |
 | Missing context — challenging plan without understanding existing codebase | HIGH | Step 0 MUST load existing code context via scout before challenging |
@@ -318,9 +347,13 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 | (oracle-mode) Bundle exceeds token cap — caller didn't prune | HIGH | Caller MUST run `context.preview` first; adversary fails fast with `oracle.failed` instead of silently truncating signal |
 | (oracle-mode) Oracle reply has no citations — model improvised | CRITICAL | Reject reply with `oracle.failed`. Primary agent continues without second opinion (better than acting on hallucination) |
 | (oracle-mode) Loop: oracle reply triggers another `agent.stuck` | HIGH | Cap at 1 oracle dispatch per primary-agent stuck cycle. Subsequent stucks must escalate to user |
+| (cross-model) External CLI invoked without authorization or in non-interactive run | CRITICAL | Per-call user authorization required; non-interactive → skip + announce. See `references/cross-model-escalation.md` |
+| (cross-model) Bundle interpolated into shell args — embedded `$(...)` executes | CRITICAL | Always pass via stdin from a temp file; read-only sandbox. Never inline `-p "<bundle>"` |
+| (cross-model) Rubber-stamping the external reviewer's verdict | MEDIUM | Reply is data, not ruling — reconcile against the artifact; classify each finding |
 
 ## Done When
 
+- Plan thesis steelmanned before challenging (Step 0.5) — reasoning lens(es) selected and stated
 - All relevant dimensions analyzed (minimum: edge cases + security + integration)
 - Every finding references specific plan section or codebase file
 - Security-sensitive plans escalated to sentinel (or confirmed not security-relevant)
@@ -346,7 +379,7 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 **Scope guardrail:** adversary reviews THE PLAN only — never audits existing codebase quality or rewrites code.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
 > **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

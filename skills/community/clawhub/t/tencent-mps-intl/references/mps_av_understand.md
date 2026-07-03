@@ -36,46 +36,46 @@
 
 ```bash
 # Understand video content (--mode video + prompt)
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video \
     --prompt "Analyze the main content, scenes, and key information of this video"
 
 # Audio mode: speech recognition (audio is automatically extracted from video)
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode audio \
     --prompt "Perform speech recognition on this audio and output the complete text"
 
 # Pure audio file
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/audio.mp3 \
     --mode audio \
     --prompt "Recognize the content of this audio and output the text"
 
 # Comparative analysis (two audio/video clips)
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/standard.mp4 \
     --extend-url https://example.com/user.mp4 \
     --mode audio \
     --prompt "Compare these two audio clips, analyze the differences, and provide a professional evaluation"
 
 # COS object input
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --cos-input-key /input/my-video.mp4 \
     --mode video \
     --prompt "Summarize the core content of the video"
 
 # Async mode: submit task only
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video --prompt "Analyze video content" --no-wait
 
 # Query an existing task result
-python scripts/mps_av_understand.py --task-id 2600011633-WorkflowTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_av_understand.py --task-id 2600011633-WorkflowTask-80108cc3380155d98b2e3573a48a
 
 # Save results to a local directory
-python scripts/mps_av_understand.py \
+python3 scripts/mps_av_understand.py \
     --url https://example.com/video.mp4 \
     --mode video --prompt "Analyze content" --output-dir /output/
 ```

@@ -13,12 +13,12 @@ This repository contains **two independent version lines**, published separately
 | Version | ClawHub Slug | Latest | Status |
 |---------|-------------|--------|--------|
 | **v1.x** (stable) | `thesis-workflow` | **v1.7.3** | Maintenance only, compatibility fixes |
-| **v2.x** (new framework) | `thesis-workflow-v2` | **v2.0.12-beta** | ⚠️ Beta, outline-anchored + 9 HIL |
+| **v2.x** (new framework) | `thesis-workflow-v2` | **v2.1.2-beta.1** | ⚠️ Beta, outline-anchored + 9 HIL + OpenClaw platform integration |
 
 ### Selection Guide
 
 - **Production / v1 users** → `thesis-workflow` (v1.7.3, stable)
-- **New framework / outline-anchored / 9 HIL** → `thesis-workflow-v2` (v2.0.12-beta, testing)
+- **New framework / outline-anchored / 9 HIL** → `thesis-workflow-v2` (v2.1.2-beta.1, testing)
 - **Multiple theses** → Both can coexist
 
 ## Core Features (v2 Framework)
@@ -29,9 +29,11 @@ This repository contains **two independent version lines**, published separately
 - **Phase 3.5 Academic Deep Review**: P0/P1/P2 graded issue list, auto-fix + re-review loop
 - **RuntimeLLM**: Zero hardcoded config, auto-reuse current session model
 - **9 HIL Nodes**: Human-in-the-loop checkpoints for key decisions
+- **Company Mapping Enforcement** (v2.1.2+): HIL #1 confirms outline + `actual_name` simultaneously, ensures Phase 2 data retrieval anchored to real company
+- **OpenClaw Platform Integration** (v2.1.2+): Tavily MCP auto-detects OpenClaw runtime via `openclaw skills list`; no external `mcporter` dependency
 - **Guardrails**: 10 automated checks (chapter completeness, citations, word count, table format)
 - **Loop Architecture**: Orchestrator Loop / Self-Check Loop / Review Loop / Verification Loop
-- **Phase 5 Word Output**: md2docx_strict.py with proper formatting (three-line tables, fonts, spacing)
+- **Phase 5 Word Output**: see [thesis-docx-export](../thesis-docx-export/SKILL.md) (independent sub-skill)
 
 ## Workflow
 
@@ -45,6 +47,11 @@ User → Phase 1 (Outline + Proposal) → Phase 2 (Node-by-Node Writing) → Pha
 
 | Version | Highlights |
 |---------|-----------|
+| 2.0.21-beta | HIL #4 message in human-friendly format: [Node X written: quality Y] + AI summary + path + action |
+| 2.0.20-beta | Review full text persisted + HIL #4 message simplified to file path + options |
+| 2.0.19-beta | context_builder: paper_subject_lock + no-runoff warning always injected (fix v8.0 ch1 topic drift) |
+| 2.0.18-beta | outline_parser: LLM one-shot fallback for empty content_hints |
+| 2.0.17-beta | outline_parser: new path C for Word custom styles (MBA templates) |
 | 2.0.12-beta | Phase 3.5 outline-anchored chapter split + P0/P1 fixes (F1-F6) |
 | 2.0.11-beta | Removed v1 remnants + clawhubignore |
 | 2.0.10-beta | Phase 3.5/4/5 + requirements.txt + lazy BGE |
@@ -75,8 +82,8 @@ User → Phase 1 (Outline + Proposal) → Phase 2 (Node-by-Node Writing) → Pha
 - OpenClaw subagent (sessions_spawn)
 - BGE-small-zh Chinese embedding model (Layer 2 title matching)
 - Tavily / arXiv / OpenAlex multi-tool search
-- md2docx_strict.py (Word conversion)
-- Guardrails loop_self_check.py (10 automated checks)
+- **OpenClaw Native Integration** (v2.1.2+): Tavily detected via `openclaw skills list`, no mcporter required
+- **Word Export**: see [thesis-docx-export](../thesis-docx-export/SKILL.md) (independent sub-skill)
 
 ## License
 

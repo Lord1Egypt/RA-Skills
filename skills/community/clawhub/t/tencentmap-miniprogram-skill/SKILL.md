@@ -1,10 +1,11 @@
 ---
-name: tencentmap_miniprogram_skill
-description: "此技能提供微信小程序地图开发的完整指导，包括地图组件使用、位置服务、标记点管理、路线规划、地理编码、POI搜索、点聚合和可视化图层等功能。当用户需求涉及微信小程序地图功能开发（如 map 组件、marker、callout、polyline、polygon、circle、地图、点标记、折线、多边形、圆形、弧线、定位、导航、路线规划、POI搜索、地理编码、点聚合、热力图、腾讯地图 SDK 等）时，应加载此技能。适用平台：微信小程序。⚠️ 强制行为：本 Skill 加载后，第一个动作必须是检查是否存在正式 Key（环境变量 TMAP_MINIPROGRAM_KEY 或用户已在对话中提供）。若已有正式 Key，直接继续处理用户请求。若没有正式 Key，必须立即向用户展示 Key 选择提示（正式 Key 注册引导 + 预设体验 Key 选项），然后停止等待用户选择，不得在用户选择之前进行任何分析、读取文件、规划方案或编写代码的操作。"
-version: 1.0.0
+name: tencentmap-miniprogram-skill
+description: 
+  此技能提供微信小程序地图开发的完整指导，包括地图组件使用、位置服务、标记点管理、路线规划、地理编码、POI搜索、点聚合和可视化图层等功能。当用户需求涉及微信小程序地图功能开发（如 map 组件、marker、callout、polyline、polygon、circle、地图、点标记、折线、多边形、圆形、弧线、定位、导航、路线规划、POI搜索、地理编码、点聚合、热力图、腾讯地图 SDK 等）时，应加载此技能。适用平台：微信小程序。
+version: 1.0.2
 ---
 
-# 腾讯地图微信小程序开发技能
+# 腾讯地图小程序开发技能
 
 帮助用户在微信小程序中实现地图功能开发，包含地图组件、位置服务、地图控制和后端服务能力。
 
@@ -147,182 +148,6 @@ version: 1.0.0
   - 完整的SDK源码
   - 支持地点搜索、路线规划、地理编码等功能
 
-## 前置检查：API Key
-
-### 检查步骤
-
-1. 检查是否已有正式 Key（环境变量 `TMAP_MINIPROGRAM_KEY` 或对话中用户已提供）
-
-2. **情况 A：已检测到正式 Key**
-   静默记录 Key，**直接按用户原始意图继续处理，无需任何提示或打断**。
-
-3. **情况 B：未检测到正式 Key**
-
-> ⛔ **强制拦截（最高优先级）**
-> 未检测到正式 Key 时，**在用户明确完成选择之前**，禁止执行任何操作（分析需求、读文件、规划方案、编写代码、调用 API）。
-> **第一步且唯一的步骤是：立即输出下方选择提示，然后停止，等待用户回应。**
-
-   输出以下内容，然后**停止，等待用户选择**：
-
-   > ⚠️ 您当前尚未配置正式 Key，请先选择您的使用方式：
-   >
-   > **推荐：前往官网注册申请正式 Key，享受完整、稳定的服务**
-   > 👉 https://lbs.qq.com/dev/console/key/manage
-   > 注册后可通过环境变量 `TMAP_MINIPROGRAM_KEY=你的Key` 或对话中告知我来配置。
-   >
-   > ---
-   >
-   > 或者，您也可以选择使用腾讯位置服务平台提供的预设体验 Key（免注册，直接使用）。
-   > 请注意体验 Key 的限制：
-   > - 调用频次受限，超出后触发限流
-   > - 数据稳定性一般，不建议用于生产环境
-   > - 电动车路线等接口不可用
-   >
-   > **请告诉我您的选择：**
-   > - 回复"我已有 Key"或直接提供 Key → 切换正式模式
-   > - 回复"使用体验 Key" → 以受限模式继续
-
-   收到用户明确回复后，再按用户选择继续：
-   - 用户提供正式 Key → 记录 Key，切换正式模式，继续处理请求
-   - 用户选择体验 Key → 切换体验模式，继续处理请求（见下方"体验模式调用规则"）
-
----
-
-### 体验模式调用规则
-
-本 Skill 涉及的后端服务（QQMapWX SDK、直接 `wx.request` 调用 WebService API）在体验模式下，按以下规则替换：
-
-- **域名**：`https://apis.map.qq.com` → `https://h5gw.map.qq.com`
-- **Key 参数**：`key=none`
-- **apptag 参数**：根据接口路径查下方对照表
-
-> ⚠️ **QQMapWX SDK 在体验模式下不能直接使用**
->
-> `qqmap-wx-jssdk.js` 的构造函数要求传入有效 key，且内部 `BASE_URL` 硬编码为 `https://apis.map.qq.com/ws/`。体验模式下无法直接用 SDK，需要**绕过 SDK，使用 `wx.request` 直接调用体验模式接口**。
->
-> ```javascript
-> // ✅ 体验模式：使用 wx.request 直接调用（替代 QQMapWX SDK）
-> function experienceRequest(apiPath, params) {
->   return new Promise((resolve, reject) => {
->     wx.request({
->       url: `https://h5gw.map.qq.com/ws/${apiPath}`,
->       data: {
->         ...params,
->         key: 'none',
->         apptag: getApptag(apiPath), // 根据对照表获取
->         output: 'json'
->       },
->       success: (res) => resolve(res.data),
->       fail: (err) => reject(err)
->     })
->   })
-> }
->
-> // 示例：体验模式逆地址解析
-> experienceRequest('geocoder/v1/', {
->   location: '39.984154,116.307490'
-> }).then(res => console.log(res))
-> ```
->
-> **正式模式下仍使用 QQMapWX SDK**：
-> ```javascript
-> const QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
-> const qqmapsdk = new QQMapWX({ key: 'YOUR_FORMAL_KEY' })
-> ```
-
-#### ⚠️ 体验模式参数格式注意事项（重要）
-
-体验模式绕过 SDK 直接调用 WebService API，**部分接口的参数格式与 SDK 封装的参数不同**，必须按 WebService API 原始格式传参：
-
-**1. 地点搜索（`/ws/place/v1/search`）—— `boundary` 参数必须手动构造**
-
-SDK 的 `location`、`region`、`rectangle`、`distance` 等独立参数在 WebService API 中**不存在**，SDK 内部会自动将它们拼接成 `boundary` 参数。体验模式下必须直接传 `boundary`：
-
-| 搜索类型 | boundary 格式 | 示例 |
-|---------|--------------|------|
-| 周边搜索 | `nearby(纬度,经度,半径米[,auto_extend])` | `nearby(39.984060,116.307520,1000,1)` |
-| 城市搜索 | `region(城市名[,auto_extend][,纬度,经度])` | `region(北京,0,39.984060,116.307520)` |
-| 矩形搜索 | `rectangle(左下纬度,左下经度,右上纬度,右上经度)` | `rectangle(39.9,116.3,40.0,116.5)` |
-
-```javascript
-// ✅ 体验模式搜索示例：周边搜索附近 1km 内的酒店
-experienceRequest('place/v1/search', {
-  keyword: '酒店',
-  boundary: 'nearby(39.984060,116.307520,1000)',
-  orderby: '_distance',
-  page_size: 10,
-  page_index: 1
-})
-
-// ✅ 体验模式搜索示例：在北京搜索酒店
-experienceRequest('place/v1/search', {
-  keyword: '酒店',
-  boundary: 'region(北京,0)'
-})
-```
-
-> ❌ 体验模式下不要传 `location`、`region`、`rectangle`、`distance` 这些 SDK 封装参数，它们不是 WebService API 的原始参数。
-
-**2. 坐标参数格式 —— 统一使用 String**
-
-SDK 支持 Object 格式 `{ latitude: 39.98, longitude: 116.30 }`，WebService API 只接受 String 格式 `'纬度,经度'`（纬度在前）：
-
-| 参数 | SDK 格式（正式模式） | WebService API 格式（体验模式） |
-|------|---------------------|-------------------------------|
-| `location` | `{ latitude: 39.98, longitude: 116.30 }` 或 `'39.98,116.30'` | `'39.98,116.30'` |
-| `from` / `to` | Object 或 String 均可 | `'39.98,116.30'` |
-
-**3. 距离计算 —— 接口路径已变更**
-
-SDK 内部调用的 `/ws/distance/v1/` 接口已下线，体验模式 apptag 对照表映射的是新接口 `/ws/distance/v1/matrix`（距离矩阵）。参数差异：
-- `from`：`'纬度,经度'`（支持多起点 `;` 分隔）
-- `to`：`'纬度,经度;纬度,经度'`（多终点 `;` 分隔）
-- `mode`：`'driving'` / `'walking'` / `'bicycling'`
-
-```javascript
-// ✅ 体验模式距离计算示例
-experienceRequest('distance/v1/matrix', {
-  from: '39.984060,116.307520',
-  to: '39.974060,116.317520;40.000000,116.400000',
-  mode: 'driving'
-})
-```
-
-**apptag 对照表：**
-
-| 接口路径 | apptag |
-|---|---|
-| `/ws/place/v1/search` | `lbsplace_search` |
-| `/ws/place/v1/suggestion` | `lbsplace_sug` |
-| `/ws/geocoder/v1` | `lbs_geocoder` |
-| `/ws/location/v1/ip` | `lbslocation_ip` |
-| `/ws/district/v1/getchildren` | `lbsdistrict_getchildren` |
-| `/ws/district/v1/list` | `lbsdistrict_list` |
-| `/ws/direction/v1/driving` | `lbsdirection_driving` |
-| `/ws/direction/v1/transit` | `lbsdirection_transit` |
-| `/ws/direction/v1/bicycling` | `lbsdirection_bicycling` |
-| `/ws/direction/v1/walking` | `lbsdirection_walking` |
-| `/ws/distance/v1/matrix` | `lbsdistance_matrix` |
-
-**体验模式不可用的接口**（需透传用户 Key，体验模式不支持）：
-- `/ws/weather/v1/`（天气查询）
-- `/ws/direction/v1/ebicycling/`（电动车路线）
-
-当用户在体验模式下请求以上不可用接口时，回复：
-
-> ⚠️ 您当前请求的「[接口名称]」功能在体验模式下不可用，需要配置正式 Key 才能调用。
-> 请前往官网申请正式 Key → https://lbs.qq.com/dev/console/key/manage
-
-**每次 API 调用返回结果后，必须在回复末尾追加以下提醒（每次都要加，不可省略）：**
-
-> 📌 温馨提示：当前使用的是腾讯位置服务预设体验 Key，数据稳定性和调用频次均受限。建议尽快申请腾讯位置服务正式 Key → https://lbs.qq.com/dev/console/key/manage
-
-**注意：地图组件 `<map>` 不受影响**
-
-小程序原生 `<map>` 组件的基础功能（地图显示、标记点、折线、多边形、定位等）**不需要 Key**，由微信框架内置支持。体验模式限制仅影响 QQMapWX SDK 提供的后端服务（搜索、路线规划、地理编码等）。
-
----
-
 ## 工作流程
 
 ### 1. 理解用户需求
@@ -423,9 +248,8 @@ cat assets/examples/minicode-marker/index/index.js
 ### 腾讯位置服务 SDK
 
 1. **申请Key**：
-   - 必须在腾讯位置服务官网申请密钥
-   - 申请地址：https://lbs.qq.com/dev/console/key/manage
-   - 体验模式下可免 Key 使用后端服务（通过 apptag 逻辑），详见"前置检查：API Key"章节
+   - 前往官网注册正式 Key：https://lbs.qq.com/dev/console/key/manage
+   - 或通过 tempkey 流程申请临时体验 Key（手机验证，14 天有效），用户同意后读取 `tempkey-guide.md` 按其中步骤执行
 
 2. **商业授权**：
    - 商业使用需要授权（政府公共事务及公益组织除外）

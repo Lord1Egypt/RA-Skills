@@ -73,25 +73,25 @@
 
 ```bash
 # 最简用法：URL 原图 + URL 遮罩图
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "蓝色天空和白云"
 
 # 本地原图 + URL 遮罩图
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --local-file /tmp/room.jpg \
     --mask-url "https://example.com/mask.png" \
     --prompt "一盆绿色植物"
 
 # COS 原图 + COS 遮罩图
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --cos-input-key "/input/scene.jpg" \
     --mask-cos-key "/input/mask.png" \
     --prompt "一只白色的猫"
 
 # 遮罩图使用非默认 Bucket
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-cos-key "/masks/area.png" \
     --mask-cos-bucket mybucket-125xxx \
@@ -99,28 +99,28 @@ python scripts/mps_image_repaint.py \
     --prompt "红色花朵"
 
 # 自定义输出路径
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "木质地板" \
     --output-path "/output/repaint/custom_result.jpg"
 
 # 只提交任务，不等待结果
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "绿色草地" \
     --no-wait
 
 # 完成后下载到本地目录
-python scripts/mps_image_repaint.py \
+python3 scripts/mps_image_repaint.py \
     --url "https://example.com/photo.jpg" \
     --mask-url "https://example.com/mask.png" \
     --prompt "大理石纹理" \
     --download-dir /tmp/results/
 
 # 手动查询重绘任务状态
-python scripts/mps_get_image_task.py --task-id <TaskId>
+python3 scripts/mps_get_image_task.py --task-id <TaskId>
 ```
 
 ---

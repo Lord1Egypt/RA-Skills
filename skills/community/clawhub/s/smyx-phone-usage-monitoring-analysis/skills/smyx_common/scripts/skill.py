@@ -5,7 +5,6 @@ import sys
 
 from .config import ApiEnum as ApiEnumBase, ConstantEnum
 from .base import BaseSkill
-from skills.smyx_common.scripts.api_service import ApiService as ApiServiceBase
 from .util import FileUtil
 
 from .api_service import ApiService
@@ -47,12 +46,12 @@ class AgentSkill(BaseSkill, ApiService):
 
         # 构建命令
         cmd = [
-            "openclaw",
-            "agent",
-            "-m", str(prompt),
-            "--session-id", session_id,
-            "--thinking", "minimal",
-            "--timeout", str(timeout)
+            # "openclaw",
+            # "agent",
+            # "-m", str(prompt),
+            # "--session-id", session_id,
+            # "--thinking", "minimal",
+            # "--timeout", str(timeout)
         ]
 
         ConstantEnum.is_debug() and print(f"🤖 正在调用 openclaw agent 执行命令{' '.join(cmd)}")
@@ -66,7 +65,7 @@ class AgentSkill(BaseSkill, ApiService):
             #     timeout=timeout + 10
             # )
 
-            result = {}
+            result: dict = {}
 
             if result.stderr:
                 ConstantEnum.is_debug() and print(f"🤖 正在调用 openclaw agent 执行错误:{result.stderr}")

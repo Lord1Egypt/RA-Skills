@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Article Archive"
+  short_description: "Save WeChat articles as Markdown and assets"
+  default_prompt: "Use $wechat-article-archive to save this WeChat article into my specified folder as Markdown with local images."

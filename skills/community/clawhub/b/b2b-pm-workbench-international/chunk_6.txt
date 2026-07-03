@@ -1,0 +1,181 @@
+## B2B Anti-Patterns Encyclopedia (20 Common Mistakes)
+
+### Strategy Anti-Patterns
+
+| # | Anti-Pattern | Manifestation | Correct Approach |
+|---|-------------|---------------|------------------|
+| 1 | **Feature Factory** | Proud of feature count delivered | Measure success by business outcomes |
+| 2 | **Build Trap** | Constantly building, never evaluating | Review actual impact within 7 days of launch |
+| 3 | **Roadmap Theater** | Displaying fixed-date commitment lists | Now-Next-Later, based on hypotheses not promises |
+| 4 | **Big Design Upfront** | Spend months on complete design before development | Small batch exploration, continuous validation |
+| 5 | **Rollercoaster Mode** | Executives frequently change direction | Fixed cadence (e.g. quarterly OKR + bi-weekly Sprint) builds predictability |
+
+### Requirements Anti-Patterns
+
+| # | Anti-Pattern | Manifestation | Correct Approach |
+|---|-------------|---------------|------------------|
+| 6 | **Customizing for One Big Customer** | Changing product for one customer | Configurability / PaaS capabilities absorb customization |
+| 7 | **Taking Sales Requests as Orders** | Do whatever sales says | Analyze the real customer problem behind the request |
+| 8 | **Feature Creep** | Constantly adding features to win deals | "Subtraction is addition" — conditionally say "no" |
+| 9 | **Ignoring Exception Flows** | Only design the Happy Path | Exceptions are 3x the work of main flow but must be covered |
+| 10 | **Building in an Ivory Tower** | Not talking to customers before building | Every requirement must have customer input |
+
+### Execution Anti-Patterns
+
+| # | Anti-Pattern | Manifestation | Correct Approach |
+|---|-------------|---------------|------------------|
+| 11 | **Product Orphan** | Abandon after launch | Continuously track usage data and user feedback |
+| 12 | **Analysis Paralysis** | Obsessed with ROI calculations, never decide | Use goals to guide decisions, not pure numbers |
+| 13 | **Consensus Trap** | Everyone must agree before proceeding | Data-backed opinions > consensus without data |
+| 14 | **MQL Worship** | Treating marketing leads as buying signals | PQL (product usage data) is more accurate than MQL |
+| 15 | **HIPPO-Driven** | Highest paid person's opinion makes the decision | Data + customer evidence driven |
+
+### B2B-Specific Anti-Patterns
+
+| # | Anti-Pattern | Manifestation | Correct Approach |
+|---|-------------|---------------|------------------|
+| 16 | **No Data Isolation** | Customer A can see Customer B's data | Design tenant_id isolation from Day 1 |
+| 17 | **Over-Engineered Permissions** | Dozens of roles, hundreds of permission points | MVP minimal permission set, expand version by version |
+| 18 | **Ignoring Audit** | No operation logs | Log all CUD operations, immutable |
+| 19 | **Shrunken Desktop on Mobile** | 100-field forms on mobile | Mobile focuses on approval / viewing / notifications |
+| 20 | **Ignoring Onboarding** | Great product but nobody knows how to use it | Onboarding experience is the decisive factor for renewal |
+
+---
+
+## B2B Product Evolution Path (Custom → Commercial → Platform → Ecosystem)
+
+```
+Stage 1: Customization
+  ├── Deliver project for one enterprise customer
+  ├── Deep understanding of business domain
+  └── Goal: Validate business value, accumulate industry knowledge
+
+Stage 2: Commercialization
+  ├── Abstract commonalities, build standardized product
+  ├── Industry analysis + Competitive analysis + Commercial refactoring
+  └── Goal: Scale from one customer to N customers
+
+Stage 3: Platformization (Platform/PaaS)
+  ├── Configurability (Object editor / Process editor / Report builder / Frontend components)
+  ├── Multi-tenant support + Custom extensions
+  └── Goal: Customers/ISVs can self-configure, reduce custom development
+
+Stage 4: Ecosystem
+  ├── Open API + App Marketplace + ISV ecosystem
+  ├── Developer docs + SDK + Sandbox environment
+  └── Goal: From selling product to selling platform, network effect moat
+```
+
+---
+
+## Platform Product Management (Platform PM Special)
+
+### McKinsey 5 Platform Transformation Actions
+
+```
+1. Establish platform governance: Single "mission control center"
+2. Create autonomous product/platform teams: With sustained resource commitment
+3. Restructure funding: Fund by product domain not project, linked to OKRs
+4. Business-Technology joint accountability: "Two-in-a-box" or "Trio" model
+5. Invest in developer experience: 10-30% of development capacity for engineering automation
+```
+
+### Platform Success 5 Principles (ThoughtWorks)
+
+```
+1. Clear vision & value hypothesis (specific, measurable goals)
+2. Consistent platform strategy (choose the right platform type)
+3. Product mindset (manage the platform itself as a product)
+4. New ways of working & team structures (organize around products not projects)
+5. Deliberate change management (cultural transformation parallel to technical)
+```
+
+### Platform Health Formula
+
+```
+Platform Health = 
+  Feature Reuse Rate × 0.3 + 
+  API Standardization Rate × 0.4 + 
+  Extensibility Cost Coefficient × 0.3
+```
+
+---
+
+## API Product Management Special
+
+### API Productization 4-Step Process
+
+```
+Step 1: Define API value proposition (What problem? For whom?)
+Step 2: Design developer experience (Docs / Sandbox / SDK / Sample code)
+Step 3: Establish API governance (Versioning / Rate limiting / Security / Monitoring)
+Step 4: Measure API success (Call volume / Success rate / Developer satisfaction / Business contribution)
+```
+
+### API Design Standards
+
+```
+Versioning: URL path versioning /api/v1/
+Authentication: Bearer Token + API Key + OAuth 2.0
+Rate Limiting: Token bucket algorithm, per API Key granularity
+Documentation: OpenAPI 3.0, Swagger auto-generated
+Error Codes: Unified 4-digit error code + message + details
+Pagination: cursor-based (recommended), or page-based
+```
+
+---
+
+## B2B Pricing Science
+
+---
+
+## 10 SaaS Pricing Models Panorama + 2026 Market Trends
+
+### 10 Pricing Models Deep Dive
+
+| # | Pricing Model | Billing Unit | Use Case | Representative Products | 2026 Trend |
+|---|--------------|-------------|----------|------------------------|------------|
+| 1 | **Flat Rate** | Fixed monthly/annual | Simple features, stable user count | Basecamp | Declining share |
+| 2 | **Per User** | Per user/month | Collaboration tools, CRM | Salesforce, Slack | Still mainstream |
+| 3 | **Tiered Pricing** | By feature package tier | SaaS mainstream | HubSpot, Zoom | **67% of companies adopt** |
+| 4 | **Usage-Based** | API calls/GB/events | Infrastructure, AI API | AWS, OpenAI | **Fastest growing** |
+| 5 | **Feature-Based** | By feature module | Complex enterprise software | ERP, HR systems | Stable |
+| 6 | **Hybrid Pricing** | Base fee + usage | Balance predictability and flexibility | Twilio, Stripe | **38% include usage element** |
+| 7 | **Per Storage** | Per GB/month | Cloud storage, data platforms | Dropbox, Snowflake | Mature |
+| 8 | **Per Transaction** | % per transaction | Payments, e-commerce platforms | Stripe, Shopify | Stable |
+| 9 | **Per Active User** | Monthly active users | Community, collaboration platforms | Slack (partial) | Growing |
+| 10 | **Value-Based** | % of value created | AI efficiency, ROI tools | Emerging model | Frontier exploration |
+
+### Global SaaS Pricing Benchmarks
+
+| Company | Pricing Model | Starting Price | Key Insight |
+|---------|-------------|----------------|-------------|
+| **Salesforce** | Per User + Tiered | $25/user/month (Starter) | Enterprise anchor at $500/user/month creates mid-tier pull |
+| **Slack** | Per User + Freemium | Free / $7.25/user (Pro) | Freemium drives PLG; per-user pricing aligns with team value |
+| **Notion** | Per User + Freemium | Free / $10/user (Plus) | Seat-based with generous free tier for bottoms-up adoption |
+| **HubSpot** | Tiered + Freemium | Free / $15/user (Starter) | Free CRM as loss leader, monetize on Marketing/Sales hubs |
+| **Datadog** | Usage-Based + Per Host | Free / $15/host | Usage-based pricing scales with infrastructure growth |
+| **Atlassian (Jira)** | Per User (tiered by count) | Free (up to 10) / $8.15/user | Volume discount tiers: 1-10, 11-100, 101-250, etc. |
+
+### Regional Pricing Strategy Differences
+
+| Region | Pricing Sensitivity | Preferred Model | Payment Methods | Key Consideration |
+|--------|--------------------|-----------------|-----------------|-------------------|
+| **US** | Moderate | Annual subscription, per-user | Credit card, ACH, invoice | Enterprise procurement cycles (3-6 months) |
+| **EU** | High (value-conscious) | Annual subscription, GDPR premium | SEPA transfer, credit card | VAT handling, country-specific invoicing |
+| **UK** | Moderate-High | Annual subscription | BACS, credit card | Post-Brexit data residency considerations |
+| **APAC (SEA)** | Very High | Monthly, usage-based preferred | Local bank transfer, GrabPay, GoPay | Price localization essential; free tier critical |
+| **APAC (ANZ)** | Moderate | Annual subscription | Credit card, direct debit | Similar to US/UK patterns |
+| **Middle East** | Low-Moderate | Annual, enterprise contracts | Wire transfer | Long sales cycles, relationship-driven |
+| **LATAM** | Very High | Monthly, localized pricing | Local cards, Boleto, OXXO | Currency volatility, inflation-adjusted pricing |
+| **India** | Extremely High | Monthly, INR pricing | UPI, NEFT, local cards | Must offer INR pricing; expect heavy discounting |
+
+### 2026 Market Trend Data
+
+| Metric | Data | Source |
+|--------|------|--------|
+| Tiered pricing adoption rate | 67% | Profitwell |
+| Pure usage-based pricing adoption | 18% | Profitwell |
+| Hybrid pricing with usage element | 38% | Profitwell |
+| Projected preference for usage-based by 2026 | 70% | Gartner |
+| Hybrid pricing renewal rate vs pure tiered | 12% higher | OpenView |

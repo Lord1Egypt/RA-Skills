@@ -57,6 +57,31 @@ def sanitize(name, maxlen=80):
     s = re.sub(r"[^\w\-]", "_", name).lower()
     return (s or "unknown")[:maxlen]
 
+# --- Secret redaction -------------------------------------------------------
+# Scraped third-party skills sometimes ship real leaked credentials in their
+# docs/examples. GitHub push protection rejects the whole push if any of these
+# reach a commit, which silently kills the scheduled workflow. Redact known
+# secret shapes at write time so mirrored content stays pushable.
+_SECRET_PATTERNS = [
+    re.compile(r"xox[baprs]-[0-9A-Za-z-]{10,}"),                # Slack tokens
+    re.compile(r"https://hooks\.slack\.com/services/[A-Za-z0-9/_-]+"),  # Slack webhook
+    re.compile(r"gh[pousr]_[0-9A-Za-z]{36,}"),                  # GitHub PAT/OAuth
+    re.compile(r"github_pat_[0-9A-Za-z_]{60,}"),                # GitHub fine-grained PAT
+    re.compile(r"AKIA[0-9A-Z]{16}"),                            # AWS access key id
+    re.compile(r"AIza[0-9A-Za-z_\-]{35}"),                      # Google API key
+    re.compile(r"sk-(?:proj-)?[0-9A-Za-z_\-]{20,}"),            # OpenAI-style keys
+    re.compile(r"(?:sk|rk)_live_[0-9A-Za-z]{20,}"),             # Stripe live keys
+    re.compile(r"glpat-[0-9A-Za-z_\-]{20,}"),                   # GitLab PAT
+    re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----"),
+]
+_PLACEHOLDER = "REDACTED-SECRET"
+
+def redact_secrets(text):
+    """Replace known secret shapes in text with a placeholder. Returns text."""
+    for pat in _SECRET_PATTERNS:
+        text = pat.sub(_PLACEHOLDER, text)
+    return text
+
 def partition_char(name):
     clean = re.sub(r"[^a-zA-Z0-9]", "", name)
     return clean[0].lower() if clean else "_"
@@ -96,7 +121,13 @@ def write_skill_files(out_dir, files):
         dest = out_dir / sr
         dest.parent.mkdir(parents=True, exist_ok=True)
         if isinstance(data, str):
-            data = data.encode("utf-8")
+            data = redact_secrets(data).encode("utf-8")
+        else:
+            # Redact text-like blobs; leave true binaries untouched.
+            try:
+                data = redact_secrets(data.decode("utf-8")).encode("utf-8")
+            except (UnicodeDecodeError, AttributeError):
+                pass
         dest.write_bytes(data)
         written += 1
     (out_dir / MARKER).write_text("ok", encoding="utf-8")

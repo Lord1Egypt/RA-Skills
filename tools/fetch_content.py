@@ -28,6 +28,26 @@ def sanitize(name, maxlen=80):
     s = re.sub(r"[^\w\-]", "_", name).lower()
     return (s or "unknown")[:maxlen]
 
+# Redact leaked credentials in scraped content so it can't trip GitHub push
+# protection when committed. Keep in sync with tools/bulk_download.py.
+_SECRET_PATTERNS = [
+    re.compile(r"xox[baprs]-[0-9A-Za-z-]{10,}"),
+    re.compile(r"https://hooks\.slack\.com/services/[A-Za-z0-9/_-]+"),
+    re.compile(r"gh[pousr]_[0-9A-Za-z]{36,}"),
+    re.compile(r"github_pat_[0-9A-Za-z_]{60,}"),
+    re.compile(r"AKIA[0-9A-Z]{16}"),
+    re.compile(r"AIza[0-9A-Za-z_\-]{35}"),
+    re.compile(r"sk-(?:proj-)?[0-9A-Za-z_\-]{20,}"),
+    re.compile(r"(?:sk|rk)_live_[0-9A-Za-z]{20,}"),
+    re.compile(r"glpat-[0-9A-Za-z_\-]{20,}"),
+    re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----"),
+]
+
+def redact_secrets(text):
+    for pat in _SECRET_PATTERNS:
+        text = pat.sub("REDACTED-SECRET", text)
+    return text
+
 def partition_char(name):
     clean = re.sub(r"[^a-zA-Z0-9]", "", name)
     return clean[0].lower() if clean else "_"
@@ -263,7 +283,7 @@ def main():
     out_file = os.path.join(out_dir, "SKILL.md")
 
     with open(out_file, "w", encoding="utf-8") as f:
-        f.write(content)
+        f.write(redact_secrets(content))
 
     print(f"\nSaved {len(content):,} bytes to:")
     print(f"  {out_file}")
